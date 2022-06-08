@@ -1,0 +1,329 @@
+<template>
+  <div id="right-panel" class="right-panel">
+    <div class="content">
+      <div class="animated fadeIn">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card">
+              <div class="card-header">
+                <strong>Edit School</strong><small></small>
+              </div>
+              <div class="card-body card-block">
+                <form @submit.prevent="UpdateSchools">
+                  <div class="form-group required">
+                    <label for="school" class="form-control-label"
+                      >School Name</label
+                    ><input
+                      type="text"
+                      id="school"
+                      placeholder="Enter your school name"
+                      class="form-control"
+                      v-model="Schoolname"
+                      :class="{
+                        'is-invalid': submitted && $v.Schoolname.$error,
+                      }"
+                    />
+                    <div
+                      v-if="submitted && $v.Schoolname.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.Schoolname.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="form-control-label">Phone Number</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-phone"></i>
+                      </div>
+                      <input
+                        class="form-control"
+                        type="tel"
+                        placeholder="(xxx) xxx-xxxx"
+                        v-model="phone"
+                        @input="acceptNumber"
+                        :class="{ 'is-invalid': submitted && $v.phone.$error }"
+                      />
+                      <div
+                        v-if="submitted && $v.phone.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.phone.required"
+                          >This field is required</span
+                        >
+                        <span v-if="!($v.phone.minLength && $v.phone.maxLength)"
+                          >Phone number is invalid</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label class="form-control-label">Email address</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Email"
+                      v-model="Email"
+                      :class="{ 'is-invalid': submitted && $v.Email.$error }"
+                      maxlength="320"
+                    />
+                    <div
+                      v-if="submitted && $v.Email.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.Email.required"
+                        >This field is required</span
+                      >
+                      <span v-if="!$v.Email.email">Email is invalid</span>
+                    </div>
+                  </div>
+
+                  <div class="form-group required">
+                    <label for="contact-person" class="form-control-label"
+                      >Contact Person</label
+                    ><input
+                      type="text"
+                      id="person"
+                      placeholder="Enter the name of contact person"
+                      class="form-control"
+                      v-model="ContactPerson"
+                      :class="{
+                        'is-invalid': submitted && $v.ContactPerson.$error,
+                      }"
+                    />
+                    <div
+                      v-if="submitted && $v.ContactPerson.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.ContactPerson.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="form-group required">
+                    <label for="state" class="form-control-label"
+                      >Select your State</label
+                    >
+                    <select
+                      class="custom-select custom-select-sm mb-3"
+                      tabindex=""
+                      v-model="statelist"
+                      :class="{
+                        'is-invalid': submitted && $v.statelist.$error,
+                      }"
+                    >
+                      <option
+                        :value="state.id"
+                        v-for="(state, index) in states"
+                        :key="index"
+                      >
+                        {{ state.state_name }}
+                      </option>
+                    </select>
+                    <div
+                      v-if="submitted && $v.statelist.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.statelist.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="form-group required">
+                    <label for="exampleFormControlTextarea2">Description</label>
+                    <textarea
+                      class="form-control rounded-0"
+                      id="exampleFormControlTextarea2"
+                      rows="3"
+                      v-model="Description"
+                      :class="{
+                        'is-invalid': submitted && $v.Description.$error,
+                      }"
+                    ></textarea>
+                    <div
+                      v-if="submitted && $v.Description.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.Description.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                  <div class="form-group required">
+                    <label for="state" class="form-control-label"
+                      >Select the Time zone</label
+                    >
+                    <select
+                      class="custom-select custom-select-sm mb-3"
+                      tabindex=""
+                      v-model="timezonelist"
+                      :class="{
+                        'is-invalid': submitted && $v.timezonelist.$error,
+                      }"
+                    >
+                      <option
+                        :value="time.id"
+                        v-for="(time, index) in timezone"
+                        :key="index"
+                      >
+                        {{ time.timeZone }}
+                      </option>
+                    </select>
+                    <div
+                      v-if="submitted && $v.timezonelist.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.timezonelist.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-flat m-b-30 m-t-30"
+                    :disabled="processing"
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn-flat m-b-30 m-t-30 color-dark"
+                  >
+                    <nuxt-link
+                      to="/school-list-table"
+                      class="
+                        border border-secondary
+                        text-decoration-none text-dark
+                        btn
+                        bg-light
+                      "
+                    >
+                      cancel</nuxt-link
+                    >
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import { mapState, mapActions } from "vuex";
+import {
+  required,
+  email,
+  minLength,
+  maxLength,
+} from "vuelidate/lib/validators";
+
+export default {
+  name: "SchoolEditForm",
+  data() {
+    return {
+      Email: "",
+      ContactPerson: "",
+      Schoolname: "",
+      phone: "",
+      statelist: "",
+      Description: "",
+      timezonelist: "",
+      submitted: false,
+      processing: false,
+    };
+  },
+  validations: {
+    Email: { required, email },
+    ContactPerson: { required },
+    Schoolname: { required },
+    phone: { required, minLength: minLength(10), maxLength: maxLength(14) },
+    statelist: { required },
+    timezonelist: { required },
+    Description: { required },
+  },
+  mounted() {
+    this.FetchSchool();
+    this.fetchStates();
+    this.fetchTimeZone();
+  },
+  computed: {
+    ...mapState("schoolEditForm", {
+      schoolDetails: (state) => state.schoolDetails,
+      timezone: (state) => state.timezone,
+      states: (state) => state.states,
+      successMessage: (state) => state.successMessage,
+      SuccessType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+    }),
+  },
+  methods: {
+    ...mapActions("schoolEditForm", {
+      fetchSchool: "fetchSchool",
+      fetchStates: "fetchStates",
+      updateSchools: "updateSchools",
+      fetchTimeZone: "fetchTimeZone",
+    }),
+    acceptNumber() {
+      var x = this.phone
+        .replace(/\D/g, "")
+        .match(/(\d{0,3})(\d{0,3})(\d{0,4})(\d{0,0})/);
+      this.phone = !x[2]
+        ? x[1]
+        : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "") + x[4];
+    },
+    async FetchSchool() {
+      await this.fetchSchool({
+        school_id: this.$route.query.id,
+      });
+      this.Schoolname = this.schoolDetails.name;
+      this.phone = this.schoolDetails.phone;
+      this.Email = this.schoolDetails.email;
+      this.ContactPerson = this.schoolDetails.contact_person;
+      this.statelist = this.schoolDetails.state;
+      this.Description = this.schoolDetails.description;
+      this.timezonelist = this.schoolDetails.time_zone;
+    },
+    async UpdateSchools() {
+      this.submitted = true;
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      } else {
+        this.processing = true;
+        await this.updateSchools({
+          id: this.$route.query.id,
+          email: this.Email,
+          state: this.statelist,
+          phone: this.phone,
+          description: this.Description,
+          name: this.Schoolname,
+          contact_person: this.ContactPerson,
+          time_zone: this.timezonelist,
+        });
+        if (this.successMessage != "") {
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.SuccessType,
+            duration: 5000,
+          });
+          this.$router.push("/school-list-table");
+        } else if (this.errorMessage != "") {
+          this.$toast.open({
+            message: this.errorMessage,
+            type: this.errorType,
+            duration: 5000,
+          });
+        }
+        this.processing = false;
+      }
+    },
+  },
+};
+</script>
