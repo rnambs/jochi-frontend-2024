@@ -42,122 +42,124 @@
 
         <section id="sign-up" class="">
           <h1 class="heading mb-5">Sign up</h1>
-          <form action="" class="sign-in" @submit.prevent="GetSignUp">
-            <div class="row mb-3">
-              <div class="col-12">
-                <div class="form-row m-0">
-                  <label class="form-label" for="name">Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="name"
-                    :class="{ 'is-invalid': submitted && $v.name.$error }"
-                    placeholder="Enter Name"
-                    maxlength="150"
-                  />
-                  <div
-                    v-if="submitted && $v.name.$error"
-                    class="invalid-feedback"
-                  >
-                    <span v-if="!$v.name.required">This field is required</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-12">
-                <div class="form-row m-0">
-                  <label class="form-label" for="email">Email</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="Email"
-                    :class="{ 'is-invalid': submitted && $v.Email.$error }"
-                    placeholder="Enter Email"
-                    maxlength="320"
-                  />
-                  <div
-                    v-if="submitted && $v.Email.$error"
-                    class="invalid-feedback"
-                  >
-                    <span v-if="!$v.Email.required"
-                      >This field is required</span
+          <div class="jochi-components-light-bg p-5">
+            <form action="" class="sign-in" @submit.prevent="GetSignUp">
+              <div class="row mb-3">
+                <div class="col-12">
+                  <div class="form-row m-0">
+                    <label class="form-label" for="name">Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="name"
+                      :class="{ 'is-invalid': submitted && $v.name.$error }"
+                      placeholder="Enter Name"
+                      maxlength="150"
+                    />
+                    <div
+                      v-if="submitted && $v.name.$error"
+                      class="invalid-feedback"
                     >
-                    <span v-if="!$v.Email.email">Email is invalid</span>
+                      <span v-if="!$v.name.required">This field is required</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-12">
-                <div class="form-row m-0 flex-column">
-                  <label for="state" class="form-label">School </label>
-                  <multiselect
-                    v-model="value"
-                    :options="schools"
-                    track-by="name"
-                    label="name"
-                    placeholder="Select your school"
-                    @input="SchoolSelection"
-                    :class="{ 'is-invalid': submitted && $v.value.$error }"
-                  >
-                    <span slot="noResult">No data found</span>
-                  </multiselect>
-                  <div
-                    v-if="submitted && $v.value.$error"
-                    class="invalid-feedback"
-                  >
-                    <span v-if="!$v.value.required"
-                      >This field is required</span
+              <div class="row mb-3">
+                <div class="col-12">
+                  <div class="form-row m-0">
+                    <label class="form-label" for="email">Email</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="Email"
+                      :class="{ 'is-invalid': submitted && $v.Email.$error }"
+                      placeholder="Enter Email"
+                      maxlength="320"
+                    />
+                    <div
+                      v-if="submitted && $v.Email.$error"
+                      class="invalid-feedback"
                     >
+                      <span v-if="!$v.Email.required"
+                        >This field is required</span
+                      >
+                      <span v-if="!$v.Email.email">Email is invalid</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-12">
-                <!-- student pwd -->
+              <div class="row mb-3">
+                <div class="col-12">
+                  <div class="form-row m-0 flex-column">
+                    <label for="state" class="form-label">School </label>
+                    <multiselect
+                      v-model="value"
+                      :options="schools"
+                      track-by="name"
+                      label="name"
+                      placeholder="Select your school"
+                      @input="SchoolSelection"
+                      :class="{ 'is-invalid': submitted && $v.value.$error }"
+                    >
+                      <span slot="noResult">No data found</span>
+                    </multiselect>
+                    <div
+                      v-if="submitted && $v.value.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.value.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-12">
+                  <!-- student pwd -->
 
-                <div class="form-row m-0">
-                  <label class="form-label" for="Password">Student ID</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter your ID"
-                    v-model="studentId"
-                    :class="{
-                      'is-invalid': submitted && $v.studentId.$error,
-                    }"
-                  /><br />
-                  <div
-                    v-if="submitted && $v.studentId.$error"
-                    class="invalid-feedback"
-                  >
-                    <span v-if="!$v.studentId.required"
-                      >This field is required</span
+                  <div class="form-row m-0">
+                    <label class="form-label" for="Password">Student ID</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter your ID"
+                      v-model="studentId"
+                      :class="{
+                        'is-invalid': submitted && $v.studentId.$error,
+                      }"
+                    /><br />
+                    <div
+                      v-if="submitted && $v.studentId.$error"
+                      class="invalid-feedback"
                     >
+                      <span v-if="!$v.studentId.required"
+                        >This field is required</span
+                      >
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-12 my-4">
-                    <span>Already have an account? </span
-                    ><span
-                      ><nuxt-link to="/" class="btn-link"
-                        >Sign in</nuxt-link
-                      ></span
-                    >
+                  <div class="row">
+                    <div class="col-12 my-4">
+                      <span>Already have an account? </span
+                      ><span
+                        ><nuxt-link to="/" class="btn-link"
+                          >Sign in</nuxt-link
+                        ></span
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="row mb-2 mt-4">
-              <div class="col-12 signin-button-section">
-                <button action="" class="signin" :disabled="processing">
-                  <strong>Sign Up</strong>
-                </button>
+              <div class="row mb-2 mt-4">
+                <div class="col-12 signin-button-section">
+                  <button action="" class="signin" :disabled="processing">
+                    <strong>Sign Up</strong>
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </section>
       </div>
     </div>
