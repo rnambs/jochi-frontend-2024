@@ -68,10 +68,98 @@
                 <div class="row">
                   <div class="col-8">
                     <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1">
-                      <div class="row">
+                      <div class="row position-relative">
                         <div class="col-7"></div>
+                        <div class="dashboard-text-content-section position-absolute">
+                          <p class="dashboard-head">Dashboard</p>
+                          <p class="dashboard-text-content">“Education is the passport to the future,
+                              for tomorrow belongs To those who prepare
+                              for it today.”<br/>
+                              — Malcolm X
+                          </p>
+                        </div>
                         <div class="col-5 p-0">
-                          <img src="../static/image/dashboard_img.png" alt="" class="img-fluid">
+                          <img src="../static/image/dashboard_img.png" alt="" class="img-fluid mt-4">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mt-1">
+                      <div class="col-4">
+                        <div class="jochi-sub-components-light-bg h-100">
+                          <div class="study-status-card d-flex flex-column justify-content-between align-items-center h-100">
+                            <div class="study-status-img-section position-relative my-4">
+                              <div class="study-status-img">
+                                <img src="../static/image/alarm.png" alt="">
+                              </div>
+                              <div class="study-status-progress position-absolute"></div>
+                            </div>
+                            <div class="study-status-text text-center mb-2">
+                              <p class="study-status-studied mb-1">149 Minutes Studied Today</p>
+                              <p class="study-status-time-left">102 Minutes Left</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-8">
+                        <div class="col-12 faculty-availability-card mb-1">
+                          <div class="row">
+                            <div class="col-3 py-0">
+                              <div class="jochi-sub-components-light-bg fa-card-date d-flex flex-column align-items-center justify-content-center w-100 p-3">
+                                <p class="fac-day mb-1">MON</p>
+                                <p class="fac-date mb-0">11</p>
+                              </div>
+                            </div>
+                            <div class="col-9">
+                              <div class="d-flex justify-content-between align-items-center">
+                                <div class="fa-meeting-faculty-details">
+                                  <p class="mb-1 faculty-meeting-text">Faculty Meeting</p>
+                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
+                                  <div class="fa-time-section">6:00 pm</div>
+                                </div>
+                                <i class="arrow right"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 faculty-availability-card mb-1">
+                          <div class="row">
+                            <div class="col-3 py-0">
+                              <div class="jochi-sub-components-light-bg fa-card-date d-flex flex-column align-items-center justify-content-center w-100 p-3">
+                                <p class="fac-day mb-1">MON</p>
+                                <p class="fac-date mb-0">11</p>
+                              </div>
+                            </div>
+                            <div class="col-9">
+                              <div class="d-flex justify-content-between align-items-center">
+                                <div class="fa-meeting-faculty-details">
+                                  <p class="mb-1 faculty-meeting-text">Faculty Meeting</p>
+                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
+                                  <div class="fa-time-section">6:00 pm</div>
+                                </div>
+                                <i class="arrow right"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 faculty-availability-card mb-1">
+                          <div class="row">
+                            <div class="col-3 py-0">
+                              <div class="jochi-sub-components-light-bg fa-card-date d-flex flex-column align-items-center justify-content-center w-100 p-3">
+                                <p class="fac-day mb-1">MON</p>
+                                <p class="fac-date mb-0">11</p>
+                              </div>
+                            </div>
+                            <div class="col-9">
+                              <div class="d-flex justify-content-between align-items-center">
+                                <div class="fa-meeting-faculty-details">
+                                  <p class="mb-1 faculty-meeting-text">Faculty Meeting</p>
+                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
+                                  <div class="fa-time-section">6:00 pm</div>
+                                </div>
+                                <i class="arrow right"></i>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -108,9 +196,12 @@ export default {
     margin: 0;
   }
 
+  .sd-sidebar {
+    height: 100%;
+  }
   .sd-sidebar,
   .dashboard-main-content{
-    height: calc(100vh - 1.8rem);
+    min-height: calc(100vh - 1.8rem);
   }
 
   .sb-btn-icon {
@@ -173,5 +264,92 @@ export default {
     font-weight: 700;
     color: #000000;
   }
+
+  .dashboard-text-content-section {
+    top: 10px;
+    left: 15px;
+    right: 26%;
+  }
+
+  .dashboard-head {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+  }
+
+  .dashboard-text-content {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ff6d6d;
+    line-height: 30px;
+    font-style: italic;
+  }
+
+  .study-status-img-section {
+    width: 150px;
+    height: 150px;
+    border: 10px solid #ff6d6d;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .study-status-img {
+    width: 80px;
+  }
+
+  .study-status-progress {
+    width: 148px;
+    height: 148px;
+    border: 8px solid #000000;
+    border-radius: 50%;
+    border-top-color: transparent;
+    border-left-color: transparent;
+  }
+
+  .study-status-studied  {
+    font-weight: 600;
+    color: #ff6d6d;
+  }
+
+  .arrow.right {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.fac-day {
+    color: #ff6d6d;
+    font-size: 12px;
+}
+
+.fac-date {
+  color: #ff6d6d;
+  font-size: 50px;
+  line-height: 41px;
+}
+
+.faculty-meeting-text {
+  font-size: 14px;
+}
+
+.faculty-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.fa-time-section {
+  font-size: 12px;
+  padding: 2px 15px;
+  background-color: #ff6d6d;
+  width: fit-content;
+  border-radius: 12px;
+  color: #ffffff;
+}
 
 </style>
