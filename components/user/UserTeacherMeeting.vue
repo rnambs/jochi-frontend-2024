@@ -9,231 +9,252 @@
 
     <div class="main-section">
       <!-- tab section for teacher meeting -->
-      <section id="tab" class="">
-        <div class="tab-section container-fluid mt-4">
-          <h5 class="tab-head">Teacher Meeting</h5>
-          <div class="inner-tab-section container-fluid py-3">
-            <div class="row m-auto">
-              <div class="col-md-4 m-auto">
-                <div class="input-icon-area">
-                  <multiselect
-                    v-model="value"
-                    :options="teachers"
-                    track-by="first_name"
-                    label="first_name"
-                    placeholder="Select a teacher"
-                    @input="UpdateTimeSchedule"
-                  >
-                    <span slot="noResult">No data found</span>
-                  </multiselect>
-                  <span class="input-icon"
-                    ><i class="fa fa-search" aria-hidden="true"></i
-                  ></span>
+      <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+        <section id="tab" class="">
+          <div class="tab-section container-fluid mt-4">
+            <h4 class="tab-head">Teacher Meeting</h4>
+            <div class="inner-tab-section container-fluid p-0">
+              <div class="row m-0">
+                <div class="col-md-3 pl-0">
+                  <div class="input-icon-area">
+                    <multiselect
+                      v-model="value"
+                      :options="types"
+                      track-by="first_name"
+                      label="first_name"
+                      placeholder="Types of Meeting"
+                      @input="UpdateTimeSchedule"
+                    >
+                      <span slot="noResult">No data found</span>
+                    </multiselect>
+                    <!-- <span class="input-icon"
+                      ><i class="fa fa-search" aria-hidden="true"></i
+                    ></span> -->
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4 m-auto">
-                <div class="input-icon-area">
-                  <input
-                    type="text"
-                    name="daterange"
-                    autocomplete="off"
-                    placeholder="Select Date"
-                    class="form-control"
-                    readonly="readonly"
-                    :disabled="!value"
-                  />
-                  <span class="input-icon"
-                    ><i class="fa fa-calendar" aria-hidden="true"></i>
-                  </span>
+                <div class="col-md-3">
+                  <div class="input-icon-area">
+                    <multiselect
+                      v-model="value"
+                      :options="teachers"
+                      track-by="first_name"
+                      label="first_name"
+                      placeholder="Select a teacher"
+                      @input="UpdateTimeSchedule"
+                    >
+                      <span slot="noResult">No data found</span>
+                    </multiselect>
+                    <span class="input-icon custom-search-icon"
+                      ><i class="fa fa-search" aria-hidden="true"></i
+                    ></span>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4 m-auto px-2 justify-content-md-end">
-                <div class="custom-switch pb-2">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="custom-Switches"
-                    v-model="week"
-                    @change="UpdateTimeSchedule()"
-                    v-on:click="weekToggle()"
-                  />
-                  <label class="custom-control-label" for="custom-Switches"
-                    >Include weekends
-                  </label>
+                <div class="col-md-3">
+                  <div class="input-icon-area">
+                    <input
+                      type="text"
+                      name="daterange"
+                      autocomplete="off"
+                      placeholder="Date Range"
+                      class="form-control custom-form-control"
+                      readonly="readonly"
+                      :disabled="!value"
+                    />
+                    <!-- <span class="input-icon"
+                      ><i class="fa fa-calendar" aria-hidden="true"></i>
+                    </span> -->
+                  </div>
                 </div>
-                <div class="custom-switch">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="customSwitches"
-                    v-model="availability"
-                    @change="UpdateTimeSchedule()"
-                    v-on:click="availabilityToggle()"
-                  />
-                  <label class="custom-control-label" for="customSwitches"
-                    >Show options based on my availability
-                  </label>
+                <div class="col-md-3 px-2 justify-content-md-end">
+                  <div class="custom-switch pb-2">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="custom-Switches"
+                      v-model="week"
+                      @change="UpdateTimeSchedule()"
+                      v-on:click="weekToggle()"
+                    />
+                    <label class="custom-control-label" for="custom-Switches"
+                      >Include weekends
+                    </label>
+                  </div>
+                  <div class="custom-switch">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="customSwitches"
+                      v-model="availability"
+                      @change="UpdateTimeSchedule()"
+                      v-on:click="availabilityToggle()"
+                    />
+                    <label class="custom-control-label" for="customSwitches"
+                      >Show options based on my availability
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- end tab section for teacher meeting -->
+        <!-- end tab section for teacher meeting -->
 
-      <!-- element secton -->
+        <!-- element secton -->
 
-      <section id="teacher-section" class="">
-        <div class="meeting-section container-fluid mt-4">
-          <div class="inner-meeting m-auto container-fluid py-3 scroll">
-            <div class="row Meeting-row" v-show="isShowing">
-              <div class="col-md-4 p-3">
-                <div class="default-section">
-                  <img src="~/assets/images/undraw/step1.png" alt="" />
-                  <div class="default-area">
-                    <h6 class="default-head">Step 1</h6>
-                    <p class="default-text">Search & Select Your Teacher</p>
+        <section id="teacher-section" class="">
+          <div class="meeting-section container-fluid">
+            <div class="inner-meeting m-auto container-fluid py-3 pl-0 scroll">
+              <div class="row Meeting-row" v-show="isShowing">
+                <div class="col-md-4 p-3">
+                  <div class="default-section">
+                    <img src="~/assets/images/undraw/step1.png" alt="" />
+                    <div class="default-area">
+                      <h6 class="default-head">Step 1</h6>
+                      <p class="default-text">Search & Select Your Teacher</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 p-3">
+                  <div class="default-section">
+                    <img src="~/assets/images/undraw/step2.png" alt="" />
+                    <div class="default-area">
+                      <h6 class="default-head">Step 2</h6>
+                      <p class="default-text">Choose Your Date Range</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 p-3">
+                  <div class="default-section">
+                    <img src="~/assets/images/undraw/step3.png" alt="" />
+                    <div class="default-area">
+                      <h6 class="default-head">Step 3</h6>
+                      <p class="default-text">Select Your Time and Confirm</p>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 p-3">
-                <div class="default-section">
-                  <img src="~/assets/images/undraw/step2.png" alt="" />
-                  <div class="default-area">
-                    <h6 class="default-head">Step 2</h6>
-                    <p class="default-text">Choose Your Date Range</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 p-3">
-                <div class="default-section">
-                  <img src="~/assets/images/undraw/step3.png" alt="" />
-                  <div class="default-area">
-                    <h6 class="default-head">Step 3</h6>
-                    <p class="default-text">Select Your Time and Confirm</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row Meeting-row pl-3 pr-3 pt-3">
-              <div
-                class="col-md-4 mb-4 py-0"
-                v-for="(Schedule, index) in slot_date"
-                :key="index"
-              >
-                <div
-                  class="meeting-list p-3"
-                  data-toggle="modal"
-                  data-target="#exampleModalCenter"
-                  v-on:click="
-                    modalValue(
-                      Schedule.dateFormat,
-                      Schedule.from,
-                      Schedule.end,
-                      Schedule.slot
-                    )
-                  "
-                >
-                  <h6>{{ Schedule["dateFormat"] }}</h6>
-                  <p class="time">
-                    {{ Schedule["from"] }} to {{ Schedule["end"] }}
-                    {{ timeZones.timeZone }}
-                  </p>
-                </div>
-              </div>
-              <div
-                v-if="slot_date.length == 0 && isMounted"
-                class="empty-schedule"
-              >
-                <p>No time slot is available</p>
-              </div>
-            </div>
-          </div>
-          <!-- pop up -->
-
-          <!-- Modal -->
-          <div
-            class="modal fade"
-            id="exampleModalCenter"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">
-                    Confirm Meeting
-                  </h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
+              <div class="col-10 p-0">
+                <div class="row Meeting-row pl-0 pr-3 pt-3">
+                  <div
+                    class="col-md-3 mb-4 py-0"
+                    v-for="(Schedule, index) in slot_date"
+                    :key="index"
                   >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                    <div
+                      class="meeting-list p-3"
+                      data-toggle="modal"
+                      data-target="#exampleModalCenter"
+                      v-on:click="
+                        modalValue(
+                          Schedule.dateFormat,
+                          Schedule.from,
+                          Schedule.end,
+                          Schedule.slot
+                        )
+                      "
+                    >
+                      <h6>{{ Schedule["dateFormat"] }}</h6>
+                      <p class="time">
+                        {{ Schedule["from"] }} to {{ Schedule["end"] }}
+                        <!-- {{ timeZones.timeZone }} -->
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    v-if="slot_date.length == 0 && isMounted"
+                    class="empty-schedule"
+                  >
+                    <p>No time slot is available</p>
+                  </div>
                 </div>
-                <div class="modal-body">
-                  <table class="w-100 table-modal">
-                    <tr>
-                      <td class="tmodal-data text-nowrap">Meeting With</td>
-                      <td class="tmodal-data">
-                        <p class="mb-0 tdata-overflow">
+              </div>
+            </div>
+            <!-- pop up -->
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModalCenter"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalCenterTitle"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                      Confirm Meeting
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="w-100 table-modal">
+                      <tr>
+                        <td class="tmodal-data text-nowrap">Meeting With</td>
+                        <td class="tmodal-data">
+                          <p class="mb-0 tdata-overflow">
+                            <span class="pr-2">:</span>
+                            <span v-if="value">
+                              {{
+                                value.first_name +
+                                " " +
+                                (value.last_name ? value.last_name : "")
+                              }}
+                            </span>
+                          </p>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td class="tmodal-data">Date</td>
+                        <td class="tmodal-data">
                           <span class="pr-2">:</span>
-                          <span v-if="value">
-                            {{
-                              value.first_name +
-                              " " +
-                              (value.last_name ? value.last_name : "")
-                            }}
-                          </span>
-                        </p>
-                      </td>
-                    </tr>
+                          {{ popupValue[0] }}
+                        </td>
+                      </tr>
 
-                    <tr>
-                      <td class="tmodal-data">Date</td>
-                      <td class="tmodal-data">
-                        <span class="pr-2">:</span>
-                        {{ popupValue[0] }}
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td class="tmodal-data">Time</td>
-                      <td class="tmodal-data">
-                        <span class="pr-2">:</span>
-                        {{ popupFrom[0] }} to {{ popupEnd[0] }}
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-color-close"
-                    data-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-color-save"
-                    data-dismiss="modal"
-                    @click="ScheduleConfirm()"
-                  >
-                    Confirm
-                  </button>
+                      <tr>
+                        <td class="tmodal-data">Time</td>
+                        <td class="tmodal-data">
+                          <span class="pr-2">:</span>
+                          {{ popupFrom[0] }} to {{ popupEnd[0] }}
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-color-close"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-color-save"
+                      data-dismiss="modal"
+                      @click="ScheduleConfirm()"
+                    >
+                      Confirm
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+      </div>
 
       <!-- end element secton -->
     </div>
@@ -282,6 +303,7 @@ export default {
       loading: false,
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
+      types:['Teachers', 'Peer'],
     };
   },
   mounted() {

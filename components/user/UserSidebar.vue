@@ -1,98 +1,10 @@
 <template>
   <section id="header" class="">
-    <div class="header-section fixed-top">
-      <span class="menu-bar-icon" v-on:click="clickableIcon()"
+    <div class="header-section position-fixed top-0">
+      <!-- <span class="menu-bar-icon" v-on:click="clickableIcon()"
         ><i class="fas fa-bars"></i
-      ></span>
+      ></span> -->
       <!-- <h5 class="mr-3 mb-0 mt-0 text-light">{{ firstName }}</h5> -->
-      <div class="user-icon mr-3">
-        <div class="dropdown">
-          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-            <i class="fas fa-cog"></i>
-          </a>
-          <div class="dropdown-menu">
-            <!-- <a class="dropdown-item" href="#">Reset Password</a> -->
-            <nuxt-link to="/user-reset-password" class="dropdown-item">
-              <span>Reset Password</span>
-            </nuxt-link>
-            <a class="dropdown-item" href="#" @click="GetLogout()">Logout</a>
-          </div>
-        </div>
-      </div>
-      <div class="user-icon mr-3">
-        <div class="dropdown">
-          <a
-            class="dropdown-toggle position-relative p-2"
-            href="#"
-            data-toggle="dropdown"
-          >
-            <i class="fas fa-bell"></i>
-            <span v-if="notificationCount > 0" class="notify-span">{{
-              notificationCount
-            }}</span>
-          </a>
-          <div class="dropdown-menu notify">
-            <!-- notification -->
-            <div
-              class="notifications dropdown-item px-2"
-              v-if="notificationList && notificationList.length > 0"
-            >
-              <div
-                class="
-                  d-flex
-                  justify-content-between
-                  align-items-center
-                  px-3
-                  mt-2
-                  mb-3
-                "
-              >
-                <h5 class="notify-head">Notificaitons</h5>
-                <button
-                  class="btn btn-sm notify-btn mb-3"
-                  @click="clearNotifications()"
-                >
-                  Clear all
-                </button>
-              </div>
-              <div class="notification-text px-3">
-                <p
-                  :class="
-                    data.isViewed
-                      ? 'unread d-flex flex-column p-3'
-                      : 'read d-flex flex-column p-3'
-                  "
-                  v-for="(data, index) in notificationList"
-                  :key="index"
-                  @click="onNotificationClick(data.id, data.title)"
-                >
-                  <span class="notify-text">{{ data.message }}</span>
-                  <span class="notify-time d-flex justify-content-end">{{
-                    data.timestamp
-                  }}</span>
-                </p>
-              </div>
-            </div>
-            <div
-              class="notifications dropdown-item px-2 no-notify"
-              v-if="!notificationList || notificationList.length == 0"
-            >
-              No notifications to display
-            </div>
-            <!-- notification End -->
-          </div>
-        </div>
-      </div>
-      <nuxt-link to="/user-profile" class="pr-4">
-        <img
-          v-bind:src="profile && profile != 'null' ? profile : defaultImage"
-          class="rounded-circle img-profile"
-          alt=""
-          id="profileImage"
-        />
-        <!-- <img v-else src="../../assets/images/avatar/man_green.svg" class="rounded-circle img-profile" alt="" > -->
-      </nuxt-link>
-
       <!-- Student Sidebar -->
       <div
         class="
@@ -100,11 +12,12 @@
           col-sm-4 col-md-5 col-lg-6
           d-flex
           justify-content-between
+          jochi-components-light-bg p-4
         "
         id="clickableId"
       >
         <div>
-          <div class="logo-section mt-3 p-2">
+          <!-- <div class="logo-section mt-3 p-2">
             <a href="">
               <div
                 class="
@@ -127,9 +40,98 @@
                 class="icon-logo"
               />
             </a>
-          </div>
+          </div> -->
           <div class="position-relative profile-sidebar">
-            <div class="sidebar-profile p-2 d-flex align-items-center">
+            
+            <div class="user-icon mr-3 position-absolute notification-icon-section">
+              <div class="dropdown">
+                <a
+                  class="dropdown-toggle position-relative p-2"
+                  href="#"
+                  data-toggle="dropdown"
+                >
+                  <i class="fas fa-bell"></i>
+                  <span v-if="notificationCount > 0" class="notify-span">{{
+                    notificationCount
+                  }}</span>
+                </a>
+                <div class="dropdown-menu notify">
+                  <!-- notification -->
+                  <div
+                    class="notifications dropdown-item px-2"
+                    v-if="notificationList && notificationList.length > 0"
+                  >
+                    <div
+                      class="
+                        d-flex
+                        justify-content-between
+                        align-items-center
+                        px-3
+                        mt-2
+                        mb-3
+                      "
+                    >
+                      <h5 class="notify-head">Notificaitons</h5>
+                      <button
+                        class="btn btn-sm notify-btn mb-3"
+                        @click="clearNotifications()"
+                      >
+                        Clear all
+                      </button>
+                    </div>
+                    <div class="notification-text px-3">
+                      <p
+                        :class="
+                          data.isViewed
+                            ? 'unread d-flex flex-column p-3'
+                            : 'read d-flex flex-column p-3'
+                        "
+                        v-for="(data, index) in notificationList"
+                        :key="index"
+                        @click="onNotificationClick(data.id, data.title)"
+                      >
+                        <span class="notify-text">{{ data.message }}</span>
+                        <span class="notify-time d-flex justify-content-end">{{
+                          data.timestamp
+                        }}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="notifications dropdown-item px-2 no-notify"
+                    v-if="!notificationList || notificationList.length == 0"
+                  >
+                    No notifications to display
+                  </div>
+                  <!-- notification End -->
+                </div>
+              </div>
+            </div>
+            <nuxt-link to="/user-profile" class="pr-4">
+              <img
+                v-bind:src="profile && profile != 'null' ? profile : defaultImage"
+                class="rounded-circle img-profile"
+                alt=""
+                id="profileImage"
+              />
+              <!-- <img v-else src="../../assets/images/avatar/man_green.svg" class="rounded-circle img-profile" alt="" > -->
+              <h4 class="profile-name mb-0 mt-2">{{ firstName }}</h4>
+            </nuxt-link>
+            
+            <div class="user-icon mr-3 settings-icon-section position-absolute">
+              <div class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                  <p>Settings</p>
+                </a>
+                <div class="dropdown-menu">
+                  <nuxt-link to="/user-reset-password" class="dropdown-item">
+                    <span>Reset Password</span>
+                  </nuxt-link>
+                  <a class="dropdown-item" href="#" @click="GetLogout()">Logout</a>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="sidebar-profile p-2 d-flex align-items-center">
               <img
                 v-bind:src="
                   profile && profile != 'null' ? profile : defaultImage
@@ -142,7 +144,7 @@
                 <p class="wish-text mb-1">Hello,</p>
                 <p class="profile-name mb-0">{{ firstName }}</p>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="menu-items py-4">
             <div class="accordion" id="accordionExample">
@@ -159,7 +161,11 @@
                       aria-controls="collapseOne"
                     >
                       <div class="font-icon d-inline-block">
-                        <i class="fas fa-calendar-alt"></i>
+                        <img
+                            src="../../static/image/Calendar.png"
+                            alt=""
+                            class="planner"
+                        />
                       </div>
                       <span class="ml-2">Planner</span>
                       <i class="fas fa-chevron-right"></i>
@@ -215,7 +221,11 @@
                       aria-controls="collapseTwo"
                     >
                       <div class="font-icon d-inline-block">
-                        <i class="fas fa-user-friends"></i>
+                        <img
+                          src="../../static/image/Call.png"
+                          alt=""
+                          class="meetings"
+                        />
                       </div>
                       <span class="ml-2">Meeting</span>
                       <i class="fas fa-chevron-right"></i>
@@ -272,12 +282,12 @@
                     >
                       <div class="font-icon d-inline-block">
                         <img
-                          src="~/assets/images/Icon/club-icon.png"
-                          class="image-i"
+                          src="../../static/image/Football.png"
                           alt=""
+                          class="teams-clubs"
                         />
                       </div>
-                      <span class="ml-2">Clubs</span>
+                      <span class="ml-2">Teams & Clubs</span>
                       <i class="fas fa-chevron-right"></i>
                     </button>
                   </h2>
@@ -317,9 +327,13 @@
                       aria-controls="collapseFour"
                     >
                       <div class="font-icon d-inline-block">
-                        <i class="fas fa-book-open"></i>
+                        <img
+                          src="../../static/image/Lot_of_book.png"
+                          alt=""
+                          class="study-room"
+                        />
                       </div>
-                      <span class="ml-2">Study</span>
+                      <span class="ml-2">Study Room</span>
                       <i class="fas fa-chevron-right"></i>
                     </button>
                   </h2>

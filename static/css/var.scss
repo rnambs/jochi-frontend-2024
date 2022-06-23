@@ -2,16 +2,16 @@ $dark-theme:#FF4E71;
 $theme-color: #FF6D6D;
 $icon-bg-green:#4AC55E;
 $border-color:#424246;
-$selected-color:#3F8CFF;
+$selected-color:#FF6D6D;
 $icon-color:#D7F9FF;
 $cal-border:#5B5B5E;
 $white:#ffffff;
 // element color
 
-$global-background-color : #373739;
+$global-background-color : rgba($color: $white, $alpha: 0.45);
 $global-sidebar-bg:#2D2D2F;
-$Global-background-element:#2b2b2b;
-$global-box-shadow:#1E1E1E;
+$Global-background-element: rgba($color: $white, $alpha: 0.45);
+$global-box-shadow: rgba($color: $white, $alpha: 0.45);
 
 $priority-low: #F6D73C;
 $priority-medium: #00CCA0;

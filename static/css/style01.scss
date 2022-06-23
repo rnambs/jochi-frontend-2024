@@ -206,11 +206,11 @@ body{
                                     color: $global-font-color; background: $theme-color;
                                     border-radius: 0.4rem;
                                     &:target, &:visited, &:active{
-                                        background: $theme-color;
+                                        background: #FF646F;
                                     }
                                 }
                                 .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
-                                    background: $theme-color;
+                                    background: #FF646F;
                                     color: $global-font-color;
                                     font-weight: 500;
                                     border-radius: .4rem;
@@ -284,7 +284,7 @@ body{
     
 .inner-section{
     position: relative;
-    background-color: $global-background-color;
+    background-color: transparent;
     height: 100vh;
 
     // header
@@ -346,8 +346,7 @@ body{
             .dropdown-menu{
                 background-color: $global-sidebar-bg;
                 box-shadow: 3px 3px 6px #202021;
-                right: 7px !important;
-                left: auto !important;
+                right: 0 !important;
                 top: 25px !important;
                 border-radius: 5px;
                 @media (max-width: 767.98px) {
@@ -410,8 +409,8 @@ body{
             text-decoration: none;
             color: $global-font-color;
             .rounded-circle{
-                width:60px;
-                height: 60px;
+                width: 80px;
+                height: 80px;
                 background-color: $border-color;
                 object-fit: cover;
             }
@@ -429,9 +428,9 @@ body{
             display: flex;
             flex-direction: column;
             width: 15.625rem;
-            height: 100vh;
+            height: calc(100vh - 24px);
+            margin: 12px;
             padding: 0;
-            background-color: $global-sidebar-bg;
             color: $global-font-color;
             font-size: 0.9rem;
             transition: all 0.3s;
@@ -482,7 +481,6 @@ body{
             }
             // Sidebar profile
             .profile-sidebar{
-                height: 120px;
                 @media (max-width: 1002.98px) {
                     display: none !important;
                 }
@@ -529,12 +527,13 @@ body{
                 .accordion{
                     .card{
                         border: none;
-                        background-color: $global-sidebar-bg;
+                        background-color: transparent;
                         box-shadow: none;
                         .card-header{
                             border: none;
+                            background-color: transparent;
                             button.btn-link{
-                                background-color: $global-sidebar-bg;
+                                background-color: transparent;
                                 text-decoration: none;
                                 color: $font-label-color;
                                 font-size: 1.125rem;
@@ -651,7 +650,7 @@ body{
                             } 
                         }
                         .card-body{
-                            background-color: $global-sidebar-bg;
+                            background-color: transparent;
                             .inner-custom-list{
                                 list-style-type: none;
                                 padding: 0.2rem 0.6rem;
@@ -675,9 +674,10 @@ body{
                                             padding: inherit;
                                         }
                                         &.nav-link.nuxt-link-exact-active.nuxt-link-active{
-                                            background-color: $border-color;
+                                            background-color: #FF646F;
                                             padding: 0.5rem;
                                             border-radius: 0.3rem;
+                                            color: $white;
                                             @media (max-width: 1002.98px){
                                                 padding: inherit;
                                             }
@@ -915,9 +915,12 @@ body{
      // quotes
 
     .main-section{
-        padding-top: 6rem;
         padding-left: 15.625rem;
-        background-color: $global-background-color;
+        // background-color: $global-background-color;
+        background-image: url("./../image/jochi-light-bg.png");
+        background-position:center;
+        background-repeat:no-repeat;
+        background-size:cover;
         height: 100vh;
         width: 100vw;
         overflow: hidden;
@@ -1760,8 +1763,8 @@ body{
             }
             .inner-tab-section{
                 border-radius: 0.75rem;
-                background-color: $Global-background-element;
-                .col-md-4, .col-md-6{
+                background-color: transparent;
+                .col-md-3, .col-md-4, .col-md-6{
                     font-size: .85rem;
                     color: $global-font-color;
                     @media (max-width:1155px) {
@@ -1796,13 +1799,14 @@ body{
                             }
                         }
                         .multiselect__tags {
-                            border-radius: 0.4rem;
+                            border-radius: 1.2rem;
                             font-size: 0.8rem;
-                            border: 2px solid $border-color;
-                            background-color: $global-sidebar-bg;
+                            border: none;
+                            background-color: $white;
                             color: $font-label-color;
-                            padding: .375rem 2.5rem;
-                            min-height: calc(2.8rem + 2px);  
+                            padding: .375rem 2.5rem .375rem 1rem;
+                            min-height: calc(2.8rem + 2px);
+                            box-shadow: 0 0 7px -4px rgba($color: #000000, $alpha: 0.25);  
                             @media (max-width: 1024.98px) {
                                 min-height: calc(2.8rem + 0px); 
                             }
@@ -1837,9 +1841,9 @@ body{
                         }
                         .multiselect__content-wrapper{
                             list-style-type: none;
-                            border: 2px solid $border-color;
-                            border-radius: 0.45rem;
-                            background-color: $global-sidebar-bg ;
+                            border: none;
+                            border-radius: 1.2rem;
+                            background-color: $white;
                             padding: .375rem .75rem;
                             z-index: 10;
                             position: absolute;
@@ -1858,11 +1862,11 @@ body{
                                         background: $border-color;
                                         border-radius: 0.4rem;
                                         &:target, &:visited, &:active{
-                                            background: $border-color;
+                                            background: #FF646F;
                                         }
                                     }
                                     .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
-                                        background: $border-color;
+                                        background: #FF646F;
                                         color: $global-font-color;
                                         font-weight: 500;
                                         border-radius: .4rem;
@@ -1885,6 +1889,7 @@ body{
                         cursor: pointer;
                         font-size: 0.8rem; 
                         font-weight: 300;
+                        color: #000000;
                         @media (max-width: 797.98px) {
                             font-size: 0.8rem;  
                         }
@@ -1894,15 +1899,16 @@ body{
                     }
                     .form-control{
                         position: relative;
-                        border: 2px solid $border-color;
-                        background-color: $global-sidebar-bg ;
-                        border-radius: 0.4rem;
+                        border: none;
+                        background-color: $white;
+                        border-radius: 1.2rem;
                         color: $font-label-color;
                         padding: .375rem 0.5rem .375rem 2.5rem;
                         min-height: calc(2.8rem + 2px);
                         font-size: 0.8rem;
                         box-shadow: none;
                         text-align: left;
+                        box-shadow: 0 0 7px -4px rgba($color: #000000, $alpha: 0.25);
                         @media (max-width: 1024.98px) {
                             min-height: calc(2.8rem + 0px); 
                         }
@@ -1963,14 +1969,13 @@ body{
                 overflow-y: auto;
                 min-height: calc(100vh - 320px);
                 max-height: calc(100vh - 320px);
-                background-color: $Global-background-element;
+                background-color: transparent;
                 height: auto;
                 border-radius: 1rem;
                 font-size: .85rem;
                 @media (max-width:1155px) {
                     font-size: .65rem;
                 }
-                
                 .Meeting-row{
                     align-items: center;
                     text-align: center;
@@ -1991,12 +1996,14 @@ body{
                     }
                     .meeting-list{
                         cursor: pointer;
-                        background-color: $global-sidebar-bg;
-                        border: 1px solid $border-color;
+                        background-color: $white;
+                        border: none;
                         border-radius: .5rem;
+                        box-shadow: 0px 0px 8px -4px rgba($color: #000100, $alpha: 0.25);
                         h6{
                             margin-bottom: 0.3rem;
-                            color: $global-font-color;
+                            color: #000000;
+                            font-weight: 700;
                             @media (max-width: 1396.98px) {
                                 font-size: 0.9rem;
                             }
@@ -2028,7 +2035,8 @@ body{
                             }
                         }
                         .time{
-                            columns: $border-color;
+                            // columns: $border-color;
+                            color: #FF646F;
                             font-size: .85rem;
                             margin-bottom: 0.5rem;
                             @media (max-width: 1396.98px) {
@@ -2045,8 +2053,8 @@ body{
                             }
                         }
                         &:hover,&:active{
-                            background-color: $border-color;
-                            box-shadow: .45rem .45rem 1rem $global-box-shadow;
+                            background-color: $white;
+                            box-shadow: .45rem .45rem 1rem rgba($color: #000100, $alpha: 0.25);
                         }
                     }
                     .default-section{
@@ -2406,11 +2414,11 @@ body{
                                                     background: $border-color;
                                                     border-radius: 0.4rem;
                                                     &:target, &:visited, &:active{
-                                                        background: $border-color;
+                                                        background: #FF646F;
                                                     }
                                                 }
                                                 .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
-                                                    background: $border-color;
+                                                    background: #FF646F;
                                                     color: $global-font-color;
                                                     font-weight: 500;
                                                     border-radius: .4rem;
@@ -2647,11 +2655,11 @@ body{
                                                     background: $border-color;
                                                     border-radius: 0.4rem;
                                                     &:target, &:visited, &:active{
-                                                        background: $border-color;
+                                                        background: #FF646F;
                                                     }
                                                 }
                                                 .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
-                                                    background: $border-color;
+                                                    background: #FF646F;
                                                     color: $global-font-color;
                                                     font-weight: 500;
                                                     border-radius: .4rem;
@@ -3708,11 +3716,11 @@ body{
                                                 color: $global-font-color; background: $theme-color;
                                                 border-radius: 0.4rem;
                                                 &:target, &:visited, &:active{
-                                                    background: $theme-color;
+                                                    background: #FF646F;
                                                 }
                                             }
                                             .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
-                                                background: $theme-color;
+                                                background: #FF646F;
                                                 color: $global-font-color;
                                                 font-weight: 500;
                                                 border-radius: .4rem;
@@ -5277,7 +5285,7 @@ body{
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: $global-background-color;
+    background: none;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: none;
@@ -5285,7 +5293,7 @@ body{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: $border-color;
+    background: #f6f2f3;
     border-radius: 10px;
     box-shadow: none;
 }
@@ -5425,12 +5433,14 @@ switch to violet when it is active*/
         }
         .modal-content{
             height: auto;
-            border: 1px solid $border-color;
+            border: none;
             border-radius: 0.5rem;
-            background-color: unset;
+            background: url("./../image/jochi-light-bg.png");
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:cover;
             .modal-header{
-                border-bottom: 1px solid $border-color;
-                background-color: $Global-background-element;
+                background-color: transparent;
                 border-radius: 6px 6px 0px 0px;
                 .modal-title{
                     color: $global-font-color;
@@ -5449,7 +5459,7 @@ switch to violet when it is active*/
                 }
             } 
             .modal-body{
-                background-color: $global-box-shadow;
+                background-color: transparent;
                 &.no-overflow{
                     overflow: unset !important;
                 }
@@ -5460,7 +5470,7 @@ switch to violet when it is active*/
                     text-overflow: ellipsis;
                 }
                 p,.col-form-label{
-                    color: $font-label-color;
+                    color: $border-color;
                     font-size: 0.95rem;
                     @media (max-width:1024.98px) {
                         font-size: 0.85rem;
@@ -6251,4 +6261,57 @@ select.form-control{
     background-color: rgba($color: $white, $alpha: 0.45);
     box-shadow: 0px 0px 32px -4px rgba($color: #000100, $alpha: 0.09);
     border-radius: 22px;
+}
+
+.jochi-sidebar-main {
+    position: fixed;
+    margin: 12px;
+    width: 240px;
+}
+
+.col-12.jochi-main-content-container {
+    padding-left: 275px;
+}
+
+.custom-margin-for-main-section {
+    margin: 12px 24px;
+}
+
+.custom-full-height {
+    height: calc(100vh - 24px);
+}
+
+.profile-sidebar .profile-name {
+    color: #ff6d6d;
+}
+
+.inner-section .header-section {
+    .notification-icon-section {
+        right: 0;
+        a {
+            color: #424246;
+        }
+    }
+    .settings-icon-section {
+        bottom: -15px;
+    }
+}
+
+.custom-search-icon {
+    right: 0 !important;
+    background-color: $white !important;
+    color: $font-label-color !important;
+}
+
+.multiselect__placeholder {
+    padding-top: 5px !important;
+}
+
+.form-control.custom-form-control {
+    padding-left: 1rem !important;
+}
+
+.modal.fade {
+    backdrop-filter: blur(4px) !important;
+    background: rgba($color: $white, $alpha: 0.3) !important;
 }
