@@ -9,84 +9,86 @@
 
     <div class="main-section">
       <!-- tab section for View all meeting -->
-      <section id="tab" class="">
-        <div class="tab-section container-fluid mt-4">
-          <h5 class="tab-head">View All Meeting</h5>
-          <div class="inner-tab-section container-fluid py-3">
-            <div class="row m-auto">
-              <div class="col-md-4">
-                <div class="input-icon-area">
-                  <multiselect
-                    v-model="value"
-                    :options="allData"
-                    track-by="first_name"
-                    label="first_name"
-                    placeholder="Search name"
-                    @input="ListAllMeeting"
-                  >
-                    <span slot="noResult">No data found</span>
-                  </multiselect>
-                  <span class="input-icon"
-                    ><i class="fa fa-search" aria-hidden="true"></i
-                  ></span>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="dropdown input-icon-area">
-                  <button
-                    id="dLabel"
-                    class="dropdown-select form-control"
-                    type="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Filter
-                    <span class="caret"></span>
-                  </button>
-                  <span class="input-icon"
-                    ><i class="fa fa-filter" aria-hidden="true"></i
-                  ></span>
-                  <ul class="dropdown-menu" aria-labelledby="dLabel">
-                    <li class="item">Teacher</li>
-                    <li class="item">Student</li>
-                    <li class="item">All</li>
-                  </ul>
+      <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+        <section id="tab" class="">
+          <div class="tab-section container-fluid mt-4">
+            <h4 class="tab-head mb-0 p-0">My Meetings</h4>
+            <div class="inner-tab-section container-fluid p-0">
+              <div class="row m-0">
+                <!-- <div class="col-md-4">
+                  <div class="input-icon-area">
+                    <multiselect
+                      v-model="value"
+                      :options="allData"
+                      track-by="first_name"
+                      label="first_name"
+                      placeholder="Search name"
+                      @input="ListAllMeeting"
+                    >
+                      <span slot="noResult">No data found</span>
+                    </multiselect>
+                    <span class="input-icon"
+                      ><i class="fa fa-search" aria-hidden="true"></i
+                    ></span>
+                  </div>
+                </div> -->
+                <div class="col-md-4 p-0">
+                  <div class="dropdown input-icon-area custom-sort-by-btn">
+                    <button
+                      id="dLabel"
+                      class="dropdown-select form-control p-0"
+                      type="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Sort by
+                      <span class="caret"></span>
+                    </button>
+                    <!-- <span class="input-icon"
+                      ><i class="fa fa-filter" aria-hidden="true"></i
+                    ></span> -->
+                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                      <li class="item">Teacher</li>
+                      <li class="item">Student</li>
+                      <li class="item">All</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- end tab section for view all meeting -->
-      <!-- element secton -->
+        <!-- end tab section for view all meeting -->
+        <!-- element secton -->
 
-      <section id="view-all-section" class="">
-        <div class="meeting-section container-fluid mt-4">
-          <div class="inner-meeting m-auto container-fluid py-3">
-            <div class="row Meeting-row pl-3 pr-3 pt-3">
-              <div
-                class="col-md-4 mb-4 py-0"
-                v-for="(list, index) in slot_date"
-                :key="index"
-              >
-                <div class="meeting-list p-3">
-                  <h6>Meeting with {{ list["title"] }}</h6>
-                  <p class="date">{{ list["dateFormat"] }}</p>
-                  <p class="time">
-                    {{ list["from"] }} to {{ list["end"] }}
-                    {{ timeZones.timeZone }}
-                  </p>
+        <section id="view-all-section" class="">
+          <div class="meeting-section container-fluid">
+            <div class="inner-meeting m-auto container-fluid p-0">
+              <div class="row Meeting-row pl-0 pr-3 pt-0">
+                <div
+                  class="col-md-3 mb-4 p-4"
+                  v-for="(list, index) in slot_date"
+                  :key="index"
+                >
+                  <div class="meeting-list p-3">
+                    <h6>Meeting with {{ list["title"] }}</h6>
+                    <p class="date">{{ list["dateFormat"] }}</p>
+                    <p class="time">
+                      {{ list["from"] }} to {{ list["end"] }}
+                      {{ timeZones.timeZone }}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div v-if="slot_date.length == 0" class="empty-schedule">
-                <p>No meetings found</p>
+                <div v-if="slot_date.length == 0" class="empty-schedule">
+                  <p>No meetings found</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <!-- end element secton -->
     </div>

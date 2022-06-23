@@ -7037,6 +7037,7 @@ switch to violet when it is active*/
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #ffffff;
 }
 
 .modal .modal-dialog .modal-content .modal-header {
@@ -7045,13 +7046,18 @@ switch to violet when it is active*/
 }
 
 .modal .modal-dialog .modal-content .modal-header .modal-title {
-  color: #F9F9F9;
+  color: #2D2D2F;
+  font-weight: 700;
 }
 
 @media (max-width: 1024.98px) {
   .modal .modal-dialog .modal-content .modal-header .modal-title {
     font-size: 1rem;
   }
+}
+
+.modal .modal-dialog .modal-content .modal-header .close {
+  color: #2D2D2F;
 }
 
 .modal .modal-dialog .modal-content .modal-header .close:hover {
@@ -7306,7 +7312,7 @@ switch to violet when it is active*/
 }
 
 .modal .modal-dialog .modal-content .modal-body table.table-modal .tmodal-data, .modal .modal-dialog .modal-content .modal-body table.table-modal .tmodal-data {
-  color: #B4B4B4;
+  color: #2D2D2F;
   font-size: 0.95rem;
   line-height: 2;
 }
@@ -7330,7 +7336,6 @@ switch to violet when it is active*/
 }
 
 .modal .modal-dialog .modal-content .modal-footer {
-  border-top: 1px solid #424246;
   background-color: rgba(255, 255, 255, 0.45);
   border-radius: 0px 0px 10px 10px;
 }
@@ -7970,5 +7975,17 @@ select.form-control.is-invalid {
   -webkit-backdrop-filter: blur(4px) !important;
           backdrop-filter: blur(4px) !important;
   background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.dropdown.input-icon-area.custom-sort-by-btn {
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.dropdown.input-icon-area.custom-sort-by-btn button {
+  background: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 /*# sourceMappingURL=style01.css.map */

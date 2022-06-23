@@ -5439,16 +5439,19 @@ switch to violet when it is active*/
             background-position:center;
             background-repeat:no-repeat;
             background-size:cover;
+            background-color: $white;
             .modal-header{
                 background-color: transparent;
                 border-radius: 6px 6px 0px 0px;
                 .modal-title{
-                    color: $global-font-color;
+                    color: $global-sidebar-bg;
+                    font-weight: 700;
                     @media (max-width:1024.98px) {
                         font-size: 1rem;
                     }
                 }
                 .close{
+                    color: $global-sidebar-bg;
                     &:hover{
                         color: $theme-color;
                     }
@@ -5656,7 +5659,7 @@ switch to violet when it is active*/
                 }
                 table.table-modal{
                     .tmodal-data, .tmodal-data{
-                        color: $font-label-color;
+                        color: $global-sidebar-bg;
                         font-size: 0.95rem;
                         line-height: 2;
                         @media (max-width:1024.98px) {
@@ -5679,7 +5682,7 @@ switch to violet when it is active*/
 
             }
             .modal-footer{
-                border-top: 1px solid $border-color;
+                // border-top: 1px solid $border-color;
                 background-color: $global-box-shadow;
                 border-radius: 0px 0px 10px 10px;
                 .btn-color-close{
@@ -6314,4 +6317,13 @@ select.form-control{
 .modal.fade {
     backdrop-filter: blur(4px) !important;
     background: rgba($color: $white, $alpha: 0.3) !important;
+}
+
+.dropdown.input-icon-area.custom-sort-by-btn {
+    background: none;
+    box-shadow: none;
+    button {
+        background: none !important;
+        box-shadow: none !important;
+    }
 }
