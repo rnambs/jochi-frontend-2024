@@ -86,7 +86,7 @@
                     <p class="date">{{ list["dateFormat"] }}</p>
                     <p class="time">
                       {{ list["from"] }} to {{ list["end"] }}
-                      {{ timeZones.timeZone }}
+                      <!-- {{ timeZones.timeZone }} -->
                     </p>
                   </div>
                 </div>
@@ -151,7 +151,7 @@
                 <tr>
                   <td class="tmodal-data">Date</td>
                   <td class="tmodal-data">
-                    <span class="pr-2">:</span>
+                    <!-- <span class="pr-2">:</span> -->
                     <!-- <div class="col-md-6 ml-auto"> -->
                     <!-- <div class="form-group"> -->
                     <!-- <label for="recipient-name" class="col-form-label"
@@ -166,7 +166,9 @@
                       class="form-control"
                       placeholder="MM/DD/YYYY"
                       format="MM/dd/yyyy"
+                      :value="date"
                       v-model="date"
+                      @selected="onDateChange()"
                     />
                     <!-- <div
                             v-if="submitted && $v.dateValue.$error"
@@ -178,6 +180,33 @@
                           </div> -->
                     <!-- </div> -->
                     <!-- </div> -->
+
+                    <div
+                      v-if="slot_date_selection.length > 0"
+                      class="col-10 p-0"
+                    >
+                      <div class="row Meeting-row pl-0 pr-3 pt-3">
+                        <div
+                          class="col-md-3 mb-4 py-0"
+                          v-for="(Schedule, index) in slot_date_selection"
+                          :key="index"
+                        >
+                          <div class="meeting-list p-3">
+                            <h6>{{ Schedule["dateFormat"] }}</h6>
+                            <p class="time">
+                              {{ Schedule["from"] }} to {{ Schedule["end"] }}
+                              <!-- {{ timeZones.timeZone }} -->
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          v-if="slot_date_selection.length == 0 && isMounted"
+                          class="empty-schedule"
+                        >
+                          <p>No time slot is available</p>
+                        </div>
+                      </div>
+                    </div>
                   </td>
                 </tr>
 
@@ -292,7 +321,7 @@
                 <tr>
                   <td class="tmodal-data text-nowrap">
                     {{
-                      conversation_type == "Video Conference"
+                      detailConversationType == "Video Conference"
                         ? "Meeting Link"
                         : "Meeting Location"
                     }}
@@ -395,6 +424,7 @@ export default {
       value: "",
       date: "",
       slot_date: [],
+      slot_date_selection: [],
       all_data: [],
       filterValue: "",
       loading: false,
@@ -402,6 +432,7 @@ export default {
       lottieOptions: { animationData: animationData.default },
       detailMeetingId: "",
       detailScheduleId: "",
+      detailTeacherId: "",
       detailSlotId: "",
       detailType: "",
       detailWith: "",
@@ -411,6 +442,9 @@ export default {
       detailMeetingDesc: "",
       detailConversationType: "",
       detailVenue: "",
+      date_formatted: "",
+      submitted: false,
+      // initialDateSelect: true,
     };
   },
   validations: {
@@ -436,12 +470,31 @@ export default {
       allData: (state) => state.allData,
       timeZones: (state) => state.timeZones,
     }),
+    ...mapState("teacherMeeting", {
+      students: (state) => state.students,
+      teachers: (state) => state.teachers,
+      studentsSchedule: (state) => state.studentsSchedule,
+      teacherSchedule: (state) => state.teacherSchedule,
+      successMessage: (state) => state.successMessage,
+      SuccessType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+      timeZones: (state) => state.timeZones,
+    }),
   },
   methods: {
     ...mapActions("viewAllMeeting", {
       listAllMeeting: "listAllMeeting",
       updateMeeting: "updateMeeting",
       getAll: "getAll",
+    }),
+    ...mapActions("teacherMeeting", {
+      getStudents: "getStudents",
+      getTeacher: "getTeacher",
+      updateStudentTimeSchedule: "updateStudentTimeSchedule",
+      updateTimeSchedule: "updateTimeSchedule",
+      studentScheduleConfirm: "studentScheduleConfirm",
+      scheduleConfirm: "scheduleConfirm",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -515,7 +568,6 @@ export default {
         Scheduleobj["from"] = from;
         Scheduleobj["end"] = end;
         Scheduleobj["date"] = element.date;
-        console.log("consoling the date for opening modal ", this.date);
         Scheduleobj["meeting_description"] = element.meeting_description;
         Scheduleobj["meeting_link"] = element.meeting_link;
         Scheduleobj["meeting_location"] = element.meeting_location;
@@ -525,6 +577,13 @@ export default {
         Scheduleobj["meeting_id"] = element.meeting_id;
         Scheduleobj["schedule_id"] = element.schedule_id;
         Scheduleobj["slot_id"] = element.slot_id;
+        Scheduleobj["teacher_id"] = element.teacher_id;
+        Scheduleobj["date_formatted"] =
+          date.format("YYYY") +
+          "-" +
+          date.format("MM") +
+          "-" +
+          date.format("DD");
         this.slot_date.push(Scheduleobj);
         Allarray.push(Scheduleobj);
         if (meetingType == "Teacher") {
@@ -559,8 +618,10 @@ export default {
       this.detailWith = list.new_title;
       this.detailMeetingId = list.meeting_id;
       this.detailScheduleId = list.schedule_id;
+      this.detailTeacherId = list.teacher_id;
       this.detailSlotId = list.slot_id;
-      this.date = list.date;
+      // var dateF = list.date.split("-");
+      this.date = new Date(moment(list.date));
     },
     async updateDetails() {
       this.submitted = true;
@@ -617,7 +678,154 @@ export default {
       this.detailConversationType = "";
       this.detailMeetingName = "";
       this.detailMeetingDesc = "";
-      this.detailConversationTyp = "";
+      this.e = "";
+    },
+
+    onDateChange() {
+      console.log(moment(this.date).format("YYYY-MM-DD"), this.date_formatted);
+      if (moment(this.date).format("YYYY-MM-DD") == this.date_formatted) {
+        alert("matching");
+      } else {
+        // if (this.initialDateSelect) {
+        //   this.initialDateSelect = !this.initialDateSelect;
+        // } else {
+        this.UpdateTimeSchedule();
+        // }
+      }
+    },
+    async UpdateTimeSchedule() {
+      alert("getting time schedule");
+      if (this.detailType == "Teacher") {
+        // if (!this.date) {
+        //   $('input[name="daterange"]').val("");
+        //   fromDate = "";
+        //   endDate = "";
+        //   this.slot_date = [];
+        // }
+
+        if (this.date) {
+          // this.isMounted = true;
+          this.loading = true;
+          await this.updateTimeSchedule({
+            student_id: parseInt(localStorage.getItem("id")),
+            teacher_id: this.detailTeacherId ? this.detailTeacherId : "",
+            from_date: this.date,
+            to_date: this.date,
+            include_weekends: 1,
+            options_based_on_my_availability: 1,
+          });
+
+          this.loading = false;
+
+          this.dateConversionSlot();
+        }
+      } else {
+        if (this.selectedStudents.length > 0) {
+          this.studentsValue = [];
+          this.students_name = [];
+          this.selectedStudents?.forEach((element) => {
+            this.studentsValue.push(element.id);
+            this.students_name.push(element.first_name);
+          });
+        }
+        if (this.studentsValue.length === 0) {
+          this.value = "";
+          $('input[name="daterange"]').val("");
+          fromDate = "";
+          endDate = "";
+          this.studentsValue = "";
+          this.loading = false;
+          this.slot_date = [];
+          this.isShowing = true;
+          this.isMounted = false;
+        }
+
+        if (this.studentsValue.length != 0 && fromDate && endDate) {
+          this.isMounted = true;
+          this.loading = true;
+
+          await this.updateStudentTimeSchedule({
+            student_id: parseInt(localStorage.getItem("id")),
+            group_id: this.studentsValue,
+            from_date: this.date,
+            to_date: this.date,
+            include_weekends: this.week ? 1 : 0,
+            options_based_on_my_availability: this.availability ? 1 : 0,
+          });
+          this.dateConversionSlot();
+          this.loading = false;
+        }
+      }
+    },
+    dateConversionSlot() {
+      this.slot_date_selection = [];
+      var days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      if (this.detailType == "Teacher") {
+        this.teacherSchedule?.forEach((element) => {
+          var Scheduleobj = {};
+          var slot = element.id;
+          var from = element.default_slots.start_time;
+          var end = element.default_slots.end_time;
+          var dateValue = element.date;
+
+          var date = moment(element.date, "YYYY-MM-DD");
+          var dateFormat =
+            date.format("dddd") +
+            ", " +
+            date.format("D") +
+            " " +
+            date.format("MMMM");
+          Scheduleobj["slot"] = slot;
+          Scheduleobj["dateFormat"] = dateFormat;
+          Scheduleobj["from"] = from;
+          Scheduleobj["end"] = end;
+          Scheduleobj["dateValue"] = dateValue;
+          this.slot_date_selection.push(Scheduleobj);
+        });
+      } else {
+        const monthNames = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        this.studentsSchedule?.forEach((element) => {
+          var Scheduleobj = {};
+
+          var date = moment(element.date, "YYYY-MM-DD");
+
+          var dateValue = element.date;
+          var slot = element.slot_id;
+          var from = element.timings;
+          var dateFormat =
+            date.format("dddd") +
+            ", " +
+            date.format("D") +
+            " " +
+            date.format("MMMM");
+          Scheduleobj["dateValue"] = dateValue;
+          Scheduleobj["slot"] = slot;
+          Scheduleobj["dateFormat"] = dateFormat;
+          Scheduleobj["from"] = from;
+          this.slot_date_selection.push(Scheduleobj);
+        });
+      }
     },
   },
 };
