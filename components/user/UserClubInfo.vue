@@ -304,6 +304,7 @@ export default {
       await this.getTagList({
         club_id: this.$route.query.id,
       });
+      console.log(this.taglist);
     },
     async ShowClubInCatalog() {
       this.loading = true;
