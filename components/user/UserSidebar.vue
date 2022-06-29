@@ -12,7 +12,8 @@
           col-sm-4 col-md-5 col-lg-6
           d-flex
           justify-content-between
-          jochi-components-light-bg p-4
+          jochi-components-light-bg
+          p-4
         "
         id="clickableId"
       >
@@ -42,8 +43,9 @@
             </a>
           </div> -->
           <div class="position-relative profile-sidebar">
-            
-            <div class="user-icon mr-3 position-absolute notification-icon-section">
+            <div
+              class="user-icon mr-3 position-absolute notification-icon-section"
+            >
               <div class="dropdown">
                 <a
                   class="dropdown-toggle position-relative p-2"
@@ -109,7 +111,9 @@
             </div>
             <nuxt-link to="/user-profile" class="pr-4">
               <img
-                v-bind:src="profile && profile != 'null' ? profile : defaultImage"
+                v-bind:src="
+                  profile && profile != 'null' ? profile : defaultImage
+                "
                 class="rounded-circle img-profile"
                 alt=""
                 id="profileImage"
@@ -117,7 +121,7 @@
               <!-- <img v-else src="../../assets/images/avatar/man_green.svg" class="rounded-circle img-profile" alt="" > -->
               <h4 class="profile-name mb-0 mt-2">{{ firstName }}</h4>
             </nuxt-link>
-            
+
             <div class="user-icon mr-3 settings-icon-section position-absolute">
               <div class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">
@@ -127,7 +131,9 @@
                   <nuxt-link to="/user-reset-password" class="dropdown-item">
                     <span>Reset Password</span>
                   </nuxt-link>
-                  <a class="dropdown-item" href="#" @click="GetLogout()">Logout</a>
+                  <a class="dropdown-item" href="#" @click="GetLogout()"
+                    >Logout</a
+                  >
                 </div>
               </div>
             </div>
@@ -162,9 +168,9 @@
                     >
                       <div class="font-icon d-inline-block">
                         <img
-                            src="../../static/image/Calendar.png"
-                            alt=""
-                            class="planner"
+                          src="../../static/image/Calendar.png"
+                          alt=""
+                          class="planner"
                         />
                       </div>
                       <span class="ml-2">Planner</span>
@@ -455,38 +461,38 @@ export default {
     this.sendToken();
     this.getNotifications();
 
-    window.addEventListener("keydown", (e) => {
-      if (e.keyCode == 123) {
-        e.preventDefault();
+    // window.addEventListener("keydown", (e) => {
+    //   if (e.keyCode == 123) {
+    //     e.preventDefault();
 
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.keyCode == "I".charCodeAt(0)) {
-        e.preventDefault();
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.keyCode == "J".charCodeAt(0)) {
-        e.preventDefault();
+    //     return false;
+    //   }
+    //   if (e.ctrlKey && e.shiftKey && e.keyCode == "I".charCodeAt(0)) {
+    //     e.preventDefault();
+    //     return false;
+    //   }
+    //   if (e.ctrlKey && e.shiftKey && e.keyCode == "J".charCodeAt(0)) {
+    //     e.preventDefault();
 
-        return false;
-      }
-      if (e.ctrlKey && e.keyCode == "U".charCodeAt(0)) {
-        e.preventDefault();
+    //     return false;
+    //   }
+    //   if (e.ctrlKey && e.keyCode == "U".charCodeAt(0)) {
+    //     e.preventDefault();
 
-        return false;
-      }
+    //     return false;
+    //   }
 
-      if (e.ctrlKey && e.shiftKey && e.keyCode == "C".charCodeAt(0)) {
-        e.preventDefault();
+    //   if (e.ctrlKey && e.shiftKey && e.keyCode == "C".charCodeAt(0)) {
+    //     e.preventDefault();
 
-        return false;
-      }
-    });
+    //     return false;
+    //   }
+    // });
 
-    window.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-      return false;
-    });
+    // window.addEventListener("contextmenu", (e) => {
+    //   e.preventDefault();
+    //   return false;
+    // });
   },
   updated() {
     document.addEventListener("DOMContentLoaded", function () {

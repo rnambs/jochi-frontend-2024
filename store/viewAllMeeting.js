@@ -56,7 +56,86 @@ const actions = {
         }
 
     },
+    async updateMeeting({ commit }, payLoad) {
 
+        const token = localStorage.getItem('token')
+        try {
+            const response = await this.$axios.$put(BASE_URL + 'meeting/request/edit_meeting', payLoad, {
+                headers: {
+                    'Authorization': ` ${token}`
+                },
+            });
+            if (response.message == "Validation error") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "Invalid Value");
+                commit('setErrorType', "error");
+            }
+            else if (response.message == "Teacher Not Found") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "Teacher Not Found");
+                commit('setErrorType', "error");
+            }
+            else if (response.message == "Student Not Found") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "Student Not Found");
+                commit('setErrorType', "error");
+            }
+            else if (response.message == "You are selected time slot is invalid, please try with another") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "You are selected time slot is invalid, Please try with another");
+                commit('setErrorType', "error");
+
+            }
+            else if (response.message == "You have already selected this time slot") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "You have already selected this time slot");
+                commit('setErrorType', "error");
+
+            }
+            else if (response.message == "Teacher and Student are from different school") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "Teacher and Student are from different school");
+                commit('setErrorType', "error");
+
+            }
+            else if (response.message == "You already have a meeting at the selected time, Please try with another time") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "You already have a meeting at the selected time, Please try with another slot");
+                commit('setErrorType', "error");
+
+            }
+            else if (response.message == "You already have a meeting") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "You already have a meeting");
+                commit('setErrorType', "error");
+
+            }
+            else if (response.message == "Success") {
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                commit('setSuccessMessage', "Your meeting request submitted successfully");
+                commit('setSuccessType', "error");
+
+            }
+        } catch (e) {
+            if (e.response.data.message == "Unauthorized") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                window.localStorage.clear();
+                this.$router.push('/');
+            }
+        }
+    },
 
 }
 const mutations = {
