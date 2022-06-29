@@ -111,15 +111,15 @@
       aria-labelledby="meetingDetailModalCenterTitle"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content px-4">
           <div class="modal-header">
             <h5 class="modal-title" id="meetingDetailModalLongTitle">
               Meeting Details
             </h5>
-            <button type="button" class="close">
+            <!-- <button type="button" class="close">
               <span aria-hidden="true">Edit</span>
-            </button>
+            </button> -->
             <button
               type="button"
               class="close"
@@ -131,7 +131,7 @@
           </div>
           <div class="modal-body">
             <form action="">
-              <table class="w-100 table-modal">
+              <table class="w-100 table-modal custom-row-table">
                 <tr>
                   <td class="tmodal-data">Type</td>
                   <td class="tmodal-data">
@@ -150,8 +150,8 @@
 
                 <tr>
                   <td class="tmodal-data">Date</td>
-                  <td class="tmodal-data">
-                    <!-- <span class="pr-2">:</span> -->
+                  <td class="tmodal-data d-flex align-items-center">
+                    <span class="pr-2">:</span>
                     <!-- <div class="col-md-6 ml-auto"> -->
                     <!-- <div class="form-group"> -->
                     <!-- <label for="recipient-name" class="col-form-label"
@@ -221,8 +221,8 @@
                 <tr>
                   <td class="tmodal-data text-nowrap">Meeting Name</td>
                   <td class="tmodal-data">
-                    <p class="mb-0 tdata-overflow">
-                      <!-- <span class="pr-2">:</span> -->
+                    <p class="mb-0 tdata-overflow d-flex align-items-center">
+                      <span class="pr-2">:</span>
                       <!-- <span v-if="value">
                               {{
                                 value.first_name +
@@ -256,8 +256,8 @@
                 <tr>
                   <td class="tmodal-data text-nowrap">Description</td>
                   <td class="tmodal-data">
-                    <p class="mb-0 tdata-overflow">
-                      <!-- <span class="pr-2">:</span> -->
+                    <p class="mb-0 tdata-overflow d-flex align-items-center">
+                      <span class="pr-2">:</span>
                       <!-- <span v-if="value">
                               {{
                                 value.first_name +
@@ -291,7 +291,8 @@
                 <tr>
                   <td class="tmodal-data text-nowrap">Type of Meeting</td>
                   <td class="tmodal-data">
-                    <p class="mb-0 tdata-overflow">
+                    <p class="mb-0 tdata-overflow  d-flex align-items-center">
+                      <span class="pr-2">:</span>
                       <select
                         class="custom-select custom-select-sm mb-3"
                         tabindex=""
@@ -327,8 +328,8 @@
                     }}
                   </td>
                   <td class="tmodal-data">
-                    <p class="mb-0 tdata-overflow">
-                      <!-- <span class="pr-2">:</span> -->
+                    <p class="mb-0 tdata-overflow d-flex align-items-center">
+                      <span class="pr-2">:</span>
                       <!-- <span v-if="value">
                               {{
                                 value.first_name +

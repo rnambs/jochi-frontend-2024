@@ -152,7 +152,7 @@
               </div>
             </div> -->
           </div>
-          <div class="menu-items py-4">
+          <div class="menu-items py-4 custom-scroll-for-side-menus">
             <div class="accordion" id="accordionExample">
               <div class="card mb-2">
                 <div class="card-header p-1" id="headingOne">

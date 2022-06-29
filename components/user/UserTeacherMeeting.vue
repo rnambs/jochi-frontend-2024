@@ -202,7 +202,7 @@
               aria-labelledby="exampleModalCenterTitle"
               aria-hidden="true"
             >
-              <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">
@@ -218,7 +218,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <table class="w-100 table-modal">
+                    <table class="w-100 table-modal custom-row-table">
                       <tr>
                         <td class="tmodal-data text-nowrap">Meeting With</td>
                         <td class="tmodal-data">
@@ -281,8 +281,8 @@
               aria-labelledby="meetingDetailModalCenterTitle"
               aria-hidden="true"
             >
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
+              <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content px-4">
                   <div class="modal-header">
                     <h5 class="modal-title" id="meetingDetailModalLongTitle">
                       Confirm Meeting
@@ -298,7 +298,7 @@
                   </div>
                   <div class="modal-body">
                     <form action="">
-                      <table class="w-100 table-modal">
+                      <table class="w-100 table-modal custom-row-table">
                         <tr>
                           <td class="tmodal-data">Date</td>
                           <td class="tmodal-data">
@@ -317,8 +317,8 @@
                         <tr>
                           <td class="tmodal-data text-nowrap">Meeting Name</td>
                           <td class="tmodal-data">
-                            <p class="mb-0 tdata-overflow">
-                              <!-- <span class="pr-2">:</span> -->
+                            <p class="mb-0 tdata-overflow d-flex align-items-center">
+                              <span class="pr-2">:</span>
                               <!-- <span v-if="value">
                               {{
                                 value.first_name +
@@ -352,8 +352,8 @@
                         <tr>
                           <td class="tmodal-data text-nowrap">Description</td>
                           <td class="tmodal-data">
-                            <p class="mb-0 tdata-overflow">
-                              <!-- <span class="pr-2">:</span> -->
+                            <p class="mb-0 tdata-overflow d-flex align-items-center">
+                              <span class="pr-2">:</span>
                               <!-- <span v-if="value">
                               {{
                                 value.first_name +
@@ -389,7 +389,8 @@
                             Type of Meeting
                           </td>
                           <td class="tmodal-data">
-                            <p class="mb-0 tdata-overflow">
+                            <p class="mb-0 tdata-overflow d-flex align-items-center">
+                              <span class="pr-2">:</span>
                               <select
                                 class="custom-select custom-select-sm mb-3"
                                 tabindex=""
@@ -425,8 +426,8 @@
                             }}
                           </td>
                           <td class="tmodal-data">
-                            <p class="mb-0 tdata-overflow">
-                              <!-- <span class="pr-2">:</span> -->
+                            <p class="mb-0 tdata-overflow d-flex align-items-center">
+                              <span class="pr-2">:</span>
                               <!-- <span v-if="value">
                               {{
                                 value.first_name +

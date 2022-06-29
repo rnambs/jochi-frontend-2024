@@ -3094,7 +3094,6 @@ body{
                                 }
                             }
                             .to-do-li{
-                                color: $global-font-color;
                                 font-size: 0.75rem;
                                 list-style: none;
                                 color: $white;
@@ -3102,6 +3101,9 @@ body{
                                 border-radius: 6px;
                                 margin-right: 5px;
                                 margin-bottom: 5px;
+                                &.no-tag-available-span {
+                                    color: $timer-label;
+                                }
                                 // @media (max-width: 1396.98px) {
                                 //     font-size: .75rem;
                                 // }
@@ -5709,26 +5711,27 @@ switch to violet when it is active*/
             }
             .modal-footer{
                 // border-top: 1px solid $border-color;
-                background-color: $global-box-shadow;
-                border-radius: 0px 0px 10px 10px;
+                // background-color: $global-box-shadow;
+                // border-radius: 0px 0px 10px 10px;
+                background-color: transparent !important;
                 .btn-color-close{
-                    color: $global-font-color;
-                    background-color: $global-background-color;
-                    border-radius: 50px;
-                    padding: 3px 20px;
-                    font-size: 0.8rem;
-                    &:hover{
-                       background-color: $cal-border;
-                    }
-                }
-                .btn-color-save{
-                    color: $global-font-color;
+                    color: $white;
                     background-color: $theme-color;
                     border-radius: 50px;
                     padding: 3px 20px;
                     font-size: 0.8rem;
                     &:hover{
-                        background-color: $dark-theme;
+                       background-color: rgba($color: $theme-color, $alpha: 0.6);
+                    }
+                }
+                .btn-color-save{
+                    color: $black;
+                    background-color: $confirm-green;
+                    border-radius: 50px;
+                    padding: 3px 20px;
+                    font-size: 0.8rem;
+                    &:hover{
+                        background-color: rgba($color: $confirm-green, $alpha: 0.6);
                      }
                 }
             }
@@ -6472,4 +6475,17 @@ select.form-control{
     .multiselect__select {
         top: 4px !important;
     }
+}
+
+.custom-scroll-for-side-menus {
+    max-height: 320px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        width: 3px;
+    }
+}
+
+.custom-row-table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
 }

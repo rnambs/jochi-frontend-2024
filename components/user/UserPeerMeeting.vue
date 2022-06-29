@@ -166,7 +166,7 @@
               aria-labelledby="exampleModalCenterTitle"
               aria-hidden="true"
             >
-              <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">
@@ -182,7 +182,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    <table class="w-100 table-modal w-100">
+                    <table class="w-100 table-modal custom-row-table">
                       <tr>
                         <td class="tmodal-data mb-2 text-nowrap">Meeting With</td>
                         <td class="tmodal-data">

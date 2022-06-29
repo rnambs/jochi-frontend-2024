@@ -108,7 +108,7 @@
                                 {{ todos }}
                               </li>
                             </span>
-                            <span v-if="list.tagList.length == 0" class="to-do-li">
+                            <span v-if="list.tagList.length == 0" class="to-do-li no-tag-available-span">
                               No tags available
                             </span>
                           </ul>
