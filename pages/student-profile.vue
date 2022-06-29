@@ -109,7 +109,7 @@
                     <input type="text" class="form-control mb-2"/>
                     <p>Need help connecting, follow our guide for help!</p>
                     <div class="leaders-details-section">
-                      <h6 class="jochi-headings">Leaders Details</h6>
+                      <h6 class="jochi-headings">Adviser Details</h6>
                       <div class="d-flex align-items-center mt-4">
                         <div class="ld-img-section mr-3">
                           <div class="ld-img-holder"></div>

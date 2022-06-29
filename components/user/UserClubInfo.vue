@@ -8,230 +8,289 @@
     />
     <div class="main-section">
       <!-- tab for club info -->
+      <div class="jochi-components-light-bg custom-margin-for-main-section custom-full-height">
 
-      <section id="tab" class="">
-        <div class="info-tab container-fluid mt-3">
-          <div class="row tab-row mt-2">
-            <div class="col-md-4 col-xs-12">
-              <nuxt-link
-                :to="{
-                  path: '/club-info',
-                  query: { id: clubId, name: headingName },
-                }"
-                class="inner-tab"
-              >
-                <i class="fas fa-info"></i><span class="pl">Info</span>
-              </nuxt-link>
-            </div>
-            <div class="col-md-4 col-xs-12">
-              <nuxt-link
-                :to="{
-                  path: '/club-files',
-                  query: { id: clubId, name: headingName },
-                }"
-                class="inner-tab"
-              >
-                <i class="fas fa-file-alt"></i
-                ><span class="pl">Files/Slides</span>
-              </nuxt-link>
-            </div>
-            <div class="col-md-4 col-xs-12">
-              <nuxt-link
-                :to="{
-                  path: '/club-moreInfo',
-                  query: { id: clubId, name: headingName },
-                }"
-                class="inner-tab"
-              >
-                <i class="fas fa-ellipsis-h"></i><span class="pl">More</span>
-              </nuxt-link>
-            </div>
-          </div>
+        <!-- end tab for club info -->
+
+        <!-- Club info -->
+        <div class="cd-cover-pic-section">
+          <div class="black-grad"></div>
         </div>
-      </section>
 
-      <!-- end tab for club info -->
-
-      <!-- Club info -->
-
-      <section id="club-detail" class="">
-        <div class="club-section container-fluid mt-2">
-          <div
-            class="
-              inner-club
-              club-info
-              d-flex
-              flex-column
-              justify-content-center
-              container-fluid
-              p-3
-            "
-          >
-            <div class="info-head my-2">
-              <h5 class="mb-3">{{ headingName }}</h5>
-            </div>
-            <div class="inner-info">
-              <div
-                class="row mx-3"
-                v-for="(list, index) in list_data"
-                :key="index"
-              >
-                <div class="col-md-6 col-xs-12 px-0">
-                  <div class="inner-info-head mb-3">
-                    <h6>Club info</h6>
-                  </div>
-                  <div class="form-group">
-                    <textarea
-                      placeholder="No data"
-                      class="form-control club-info mb-3 w-75 input"
-                      id=""
-                      rows="5"
-                      v-model="list.description"
-                      maxlength="500"
-                    ></textarea>
-
-                    <button
-                      href=""
-                      class="btn btn-info-edit pl-4 pr-4 mb-3 button"
-                      v-if="enableEdit"
-                      :disabled="!list.description"
-                      @click.prevent="Editinformation(clubId, list.description)"
-                    >
-                      Update
-                    </button>
-                  </div>
-                  <div class="custom-switch pb-2" v-if="enableEdit">
-                    <input
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="custom-Switches"
-                      v-model="availability"
-                      @change="ShowClubInCatalog()"
-                      v-on:click="availabilityToggle()"
-                    />
-                    <label class="custom-control-label" for="custom-Switches"
-                      >Show club in catalog
-                    </label>
-                  </div>
-                </div>
-                <div class="col-md-6 col-xs-12 px-0">
-                  <div class="row inner-row">
-                    <div class="col-6 inner-col">
-                      <div class="inner-info-head mb-3">
-                        <h6>Leaders</h6>
-                      </div>
-                      <div class="inner-info-text">
-                        <ul class="mb-0">
-                          <li
-                            v-for="(data, index) in list.todoArr"
-                            :key="index"
-                          >
-                            <span class="input-name">{{ data }}</span>
-                          </li>
-
-                          <li
-                            v-for="(leader, index) in list.todoLeader"
-                            :key="index"
-                          >
-                            <span class="input-name">{{ leader }}</span>
-                            <span
-                              class="input-icon"
-                              v-if="enableEdit"
-                              @click.prevent="RemoveLeader(leader)"
-                            >
-                              <i class="fa fa-times p-1" aria-hidden="true"></i
-                            ></span>
-                          </li>
-                          <li
-                            v-if="
-                              list.todoArr.length == 0 &&
-                              list.todoLeader.length == 0
-                            "
-                          >
-                            <span class="input-name">No data</span>
-                          </li>
-                        </ul>
-                      </div>
+        <section id="club-detail" class="custom-height-for-club-detail-section">
+          <div class="club-section container-fluid mt-2">
+            <div
+              class="
+                inner-club
+                club-info
+                d-flex
+                flex-column
+                justify-content-top
+                container-fluid
+                pr-3
+                py-0 pl-0
+              "
+            >
+              <div class="info-head my-2">
+                <h3 class="mb-1">Club Details</h3>
+              </div>
+              <div class="inner-info">
+                <div
+                  class="row mx-3"
+                  v-for="(list, index) in list_data"
+                  :key="index"
+                >
+                  <div class="col-md-6 col-xs-12 pr-0 pl-3">
+                    <div class="inner-info-head mb-2">
+                      <h5>About the {{ headingName }}</h5>
                     </div>
-                    <div class="col-6 inner-col" v-if="enableEdit">
-                      <div class="inner-info-head mb-3">
-                        <h6>Add Leaders</h6>
-                      </div>
+                    <p class="mb-2 cd-about-club-details">The Drama Club is our school’s premier performing arts groups.
+                      Opportunities for students interested in drama, technology, singing
+                      and more!
+                    </p>
+                    <div class="form-group mb-1">
+                      <textarea
+                        placeholder="No data"
+                        class="form-control club-info mb-0 w-75 input"
+                        id=""
+                        rows="5"
+                        v-model="list.description"
+                        maxlength="500"
+                      ></textarea>
 
-                      <div class="form-row m-0">
-                        <input
-                          type="text"
-                          class="form-control"
-                          v-model="student"
-                          maxlength="20"
-                        />
-                        <button
-                          class="btn btn-info-edit mt-2"
-                          :disabled="!student"
-                          @click.prevent="Editinformation(clubId)"
-                        >
-                          Update
-                        </button>
+                      <button
+                        href=""
+                        class="btn btn-info-edit custom-theme-color-btn pl-4 pr-4 mb-0 button"
+                        v-if="enableEdit"
+                        :disabled="!list.description"
+                        @click.prevent="Editinformation(clubId, list.description)"
+                      >
+                        Update
+                      </button>
+                    </div>
+                    <div class="custom-switch pb-2" v-if="enableEdit">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        id="custom-Switches"
+                        v-model="availability"
+                        @change="ShowClubInCatalog()"
+                        v-on:click="availabilityToggle()"
+                      />
+                      <label class="custom-control-label" for="custom-Switches"
+                        >Show club in catalog
+                      </label>
+                    </div>
+                    <div class="inner-info-head mb-2 mt-4">
+                      <h5>Members</h5>
+                    </div>
+                    <div class="members-thumbnail-list d-flex flex-column align-items-center justify-content-start mt-3 position-relative">
+                      <div class="first-row">
+                        <div class="d-flex align-items-center">
+                          <div class="mlist-thumb-holder"></div>
+                          <div class="mlist-thumb-holder"></div>
+                          <div class="mlist-thumb-holder"></div>
+                          <div class="mlist-thumb-holder"></div>
+                        </div>
                       </div>
+                      <div class="second-row">
+                        <div class="d-flex align-items-center">
+                          <div class="mlist-thumb-holder"></div>
+                          <div class="mlist-thumb-holder"></div>
+                          <div class="mlist-thumb-holder"></div>
+                        </div>
+                      </div>
+                      <div class="ml-list-more position-absolute">17+</div>
                     </div>
                   </div>
-                  <div class="row inner-row">
-                    <div class="col-6 inner-col">
-                      <div class="inner-info-head mb-3">
-                        <h6>Tags</h6>
-                      </div>
-                      <div class="info-tag">
-                        <div class="input-group mb-0">
-                          <div
-                            class="input-icon-area mb-2 mr-2"
-                            v-for="(value, index) in list.taglists"
-                            :key="index"
-                          >
-                            <input type="text" class="pl" />{{ value.name }}
-                            <span
-                              class="input-icon"
-                              v-if="enableEdit"
-                              @click.prevent="RemoveTag(value.id)"
-                              ><i class="fa fa-times p-1" aria-hidden="true"></i
-                            ></span>
-                          </div>
-                          <div
-                            class="input-icon-area mb-2 mr-2"
-                            v-if="list.taglists.length == 0"
-                          >
-                            <input type="text" class="pl" />No data
+                  <div class="col-md-6 col-xs-12 px-0">
+                    <div class="row">
+                      <div class="col-12 inner-col text-right">
+                        <div class="inner-info-head mb-3">
+                          <h5>Leaders</h5>
+                        </div>
+                        <div class="row">
+                          <div class="col-4"></div>
+                          <div class="col-8">
+                            <div class="inner-info-text">
+                              <ul class="mb-0 leader-list-style">
+                                <li
+                                  v-for="(data, index) in list.todoArr"
+                                  :key="index"
+                                >
+                                  <!-- <span class="input-name">{{ data }}</span> -->
+                                  <div class="d-flex align-items-center justify-content-end mt-2">
+                                    <div class="col-4 d-flex justify-content-end p-0">
+                                      <div class="ld-img-section">
+                                        <div class="ld-img-holder"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-8 p-0">
+                                      <div class="ld-details-section">
+                                        <p class="ld-heading mb-1">
+                                          {{ data }}, President
+                                        </p>
+                                        <p class="ld-details mb-0">
+                                          markjones@school.edu
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+
+                                <!-- <li
+                                  v-for="(leader, index) in list.todoLeader"
+                                  :key="index"
+                                >
+                                  <span class="input-name">{{ leader }}</span>
+                                  <span
+                                    class="input-icon"
+                                    v-if="enableEdit"
+                                    @click.prevent="RemoveLeader(leader)"
+                                  >
+                                    <i class="fa fa-times p-1" aria-hidden="true"></i
+                                  ></span> 
+                                </li> -->
+                                <li
+                                  v-if="
+                                    list.todoArr.length == 0 &&
+                                    list.todoLeader.length == 0
+                                  "
+                                >
+                                  <span class="input-name">No data</span>
+                                </li>
+                              </ul>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-6 inner-col" v-if="enableEdit">
-                      <div class="inner-info-head mb-3">
-                        <h6>Add Tags</h6>
+                      <div class="col-12 text-right inner-col" v-if="enableEdit">
+                        <div class="inner-info-head mb-3">
+                          <h5>Add Leaders</h5>
+                        </div>
+
+                        <div class="form-row m-0 d-flex align-items-center justify-content-end">
+                          <input
+                            type="text"
+                            class="form-control col-6"
+                            v-model="student"
+                            maxlength="20"
+                          />
+                          <button
+                            class="btn btn-info-edit custom-theme-color-btn"
+                            :disabled="!student"
+                            @click.prevent="Editinformation(clubId)"
+                          >
+                            Update
+                          </button>
+                        </div>
                       </div>
-                      <div class="input-icon-area">
-                        <multiselect
-                          v-model="value"
-                          :options="taglist"
-                          track-by="name"
-                          label="name"
-                          placeholder="Select a tag"
-                          @input="EditTag"
-                        >
-                          <span slot="noResult">No data found</span>
-                        </multiselect>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 inner-col text-right">
+                        <div class="inner-info-head mb-3">
+                          <h5>Tags</h5>
+                        </div>
+                        <div class="row">
+                          <div class="col-6"></div>
+                          <div class="col-6 info-tag pr-0">
+                            <div class="input-group mb-0 justify-content-end">
+                              <div
+                                class="input-icon-area py-1 px-4 mb-2 mr-2 custom-club-details-tag-bg"
+                                v-for="(value, index) in list.taglists"
+                                :key="index"
+                              >
+                                <input type="text" class="pl" hidden/>{{ value.name }}
+                                <span
+                                  class="input-icon"
+                                  v-if="enableEdit"
+                                  @click.prevent="RemoveTag(value.id)"
+                                  ><i class="fa fa-times p-1" aria-hidden="true"></i
+                                ></span>
+                              </div>
+                              <div
+                                class="input-icon-area mb-2 mr-2"
+                                v-if="list.taglists.length == 0"
+                              >
+                                <input type="text" class="pl" />No data
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 text-right inner-col" v-if="enableEdit">
+                        <div class="inner-info-head mb-3">
+                          <h5>Add Tags</h5>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-end">
+                          <div class="input-icon-area col-6 pr-0">
+                            <multiselect
+                              v-model="value"
+                              :options="taglist"
+                              track-by="name"
+                              label="name"
+                              placeholder="Select a tag"
+                              @input="EditTag"
+                            >
+                              <span slot="noResult">No data found</span>
+                            </multiselect>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div v-if="list_data.length == 0" class="w-100 text-center py-5">
+              <p class="no-data">No Data</p>
+            </div>
           </div>
-          <div v-if="list_data.length == 0" class="w-100 text-center py-5">
-            <p class="no-data">No Data</p>
-          </div>
-        </div>
-      </section>
+        </section>
 
+        <section id="tab" class="">
+          <div class="info-tab container-fluid mt-3">
+            <div class="row tab-row mt-2">
+              <div class="col-md-4 col-xs-12">
+                <nuxt-link
+                  :to="{
+                    path: '/club-info',
+                    query: { id: clubId, name: headingName },
+                  }"
+                  class="inner-tab"
+                >
+                  <!-- <i class="fas fa-info"></i> -->
+                  <span class="pl">Club Details</span>
+                </nuxt-link>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <nuxt-link
+                  :to="{
+                    path: '/club-files',
+                    query: { id: clubId, name: headingName },
+                  }"
+                  class="inner-tab"
+                >
+                  <!-- <i class="fas fa-file-alt"></i> -->
+                  <span class="pl">Files & Slides</span>
+                </nuxt-link>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <nuxt-link
+                  :to="{
+                    path: '/club-moreInfo',
+                    query: { id: clubId, name: headingName },
+                  }"
+                  class="inner-tab"
+                >
+                  <!-- <i class="fas fa-ellipsis-h"></i> -->
+                  <span class="pl">More</span>
+                </nuxt-link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
       <!-- End Club info -->
     </div>
   </div>

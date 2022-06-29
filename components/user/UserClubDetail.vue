@@ -8,94 +8,95 @@
     />
     <div class="main-section">
       <!-- tab for club detail -->
-      <section id="tab" class="">
-        <div class="tab-section container-fluid mt-3">
-          <h5 class="tab-head">Club details</h5>
-          <div class="inner-tab-section container-fluid py-3">
-            <div class="row m-auto d-flex justify-content-between">
-              <div class="col-md-4">
-                <div class="input-icon-area">
-                  <multiselect
-                    v-model="value"
-                    :options="taglist"
-                    track-by="name"
-                    label="name"
-                    placeholder="Filter"
-                    @input="filterSelection"
-                  >
-                    <span slot="noResult">No data found</span>
-                  </multiselect>
-                  <span class="input-icon"
-                    ><i class="fa fa-filter" aria-hidden="true"></i
-                  ></span>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="custom-switch pb-2 float-right">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="custom-Switches"
-                    v-model="availability"
-                    @change="SyncClub()"
-                  />
-                  <label class="custom-control-label" for="custom-Switches"
-                    >Sync to Planner
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- end tab for club detail -->
-
-      <!-- Club detail -->
-
-      <section id="club-detail" class="">
-        <div class="club-section container-fluid mt-2">
-          <div class="inner-club club-datail container-fluid py-3">
-            <div class="row club-row m-1">
-              <div
-                class="col-md-4"
-                v-for="(list, index) in list_data"
-                :key="index"
-              >
-                <div class="club-list p-4">
-                  <h6 class="list-title mb-3">{{ list["description"] }}</h6>
-                  <div class="to-do-list">
-                    <ul>
-                      <li v-for="(todos, index) in list.todoArr" :key="index">
-                        {{ todos }}
-                      </li>
-                      <li v-if="list.todoArr.length == 0">
-                        No to-do's available
-                      </li>
-                    </ul>
+      <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+        <section id="tab" class="">
+          <div class="tab-section container-fluid mt-3">
+            <h4 class="tab-head">Club details</h4>
+            <div class="inner-tab-section container-fluid py-3">
+              <div class="row m-auto d-flex justify-content-between align-items-center">
+                <div class="col-md-4">
+                  <div class="input-icon-area">
+                    <multiselect
+                      v-model="value"
+                      :options="taglist"
+                      track-by="name"
+                      label="name"
+                      placeholder="Filter"
+                      @input="filterSelection"
+                    >
+                      <span slot="noResult">No data found</span>
+                    </multiselect>
+                    <!-- <span class="input-icon"
+                      ><i class="fa fa-filter" aria-hidden="true"></i
+                    ></span> -->
                   </div>
-                  <p class="list-text">
-                    Next meeting:
-                    {{ list.day ? list.day : "No Meeting Scheduled" }}
-                  </p>
-                  <nuxt-link
-                    :to="{
-                      path: '/club-info',
-                      query: { id: list.id, name: list.description },
-                    }"
-                    class="btn btn-sm btn-view-more"
-                    >View More</nuxt-link
-                  >
                 </div>
-              </div>
-              <div v-if="list_data.length == 0" class="w-100 text-center py-5">
-                <p class="no-data">No data available</p>
+                <div class="col-md-4">
+                  <div class="custom-switch pb-2 float-right">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="custom-Switches"
+                      v-model="availability"
+                      @change="SyncClub()"
+                    />
+                    <label class="custom-control-label" for="custom-Switches"
+                      >Sync to Planner
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
+        <!-- end tab for club detail -->
+
+        <!-- Club detail -->
+
+        <section id="club-detail" class="">
+          <div class="club-section container-fluid mt-2">
+            <div class="inner-club club-datail container-fluid py-3">
+              <div class="row club-row m-1">
+                <div
+                  class="col-md-4"
+                  v-for="(list, index) in list_data"
+                  :key="index"
+                >
+                  <div class="club-list p-4">
+                    <h6 class="list-title mb-3">{{ list["description"] }}</h6>
+                    <div class="to-do-list">
+                      <ul>
+                        <li v-for="(todos, index) in list.todoArr" :key="index">
+                          {{ todos }}
+                        </li>
+                        <li v-if="list.todoArr.length == 0">
+                          No to-do's available
+                        </li>
+                      </ul>
+                    </div>
+                    <p class="list-text">
+                      Next meeting:
+                      {{ list.day ? list.day : "No Meeting Scheduled" }}
+                    </p>
+                    <nuxt-link
+                      :to="{
+                        path: '/club-info',
+                        query: { id: list.id, name: list.description },
+                      }"
+                      class="btn btn-sm btn-view-more"
+                      >View More</nuxt-link
+                    >
+                  </div>
+                </div>
+                <div v-if="list_data.length == 0" class="w-100 text-center py-5">
+                  <p class="no-data">No data available</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
       <!-- End Club detail -->
     </div>
   </div>

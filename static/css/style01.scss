@@ -1786,20 +1786,20 @@ body{
                         .input-icon{
                             position: absolute;
                             margin: 13px;
-                            background-color: $icon-bg-green;
+                            background-color: transparent;
                             display: flex;
                             width: 22px;
                             height: 22px;
                             justify-content: center;
                             align-items: center;
                             border-radius: 5px;
-                            color: $global-font-color;
+                            color: $font-label-color;
                             @media (max-width:1090.89px){
                                 margin: 10px;
                             }
                         }
                         .multiselect__tags {
-                            border-radius: 1.2rem;
+                            border-radius: 0.65rem;
                             font-size: 0.8rem;
                             border: none;
                             background-color: $white;
@@ -1901,7 +1901,7 @@ body{
                         position: relative;
                         border: none;
                         background-color: $white;
-                        border-radius: 1.2rem;
+                        border-radius: 0.65rem;
                         color: $font-label-color;
                         padding: .375rem 0.5rem .375rem 2.5rem;
                         min-height: calc(2.8rem + 2px);
@@ -2137,10 +2137,10 @@ body{
                         text-decoration: none;
                         color: $global-font-color;
                         background-color: $Global-background-element;
-                        height: 100%;
                         display: flex;
                         align-items: center;
-                        padding: 30px;
+                        justify-content: center;
+                        padding: 20px;
                         border-radius: 10px;
                         &:hover, &.nuxt-link-exact-active.nuxt-link-active{
                             background-color:$global-background-color;
@@ -2160,7 +2160,8 @@ body{
                         }
                         .pl{
                             padding-left: 30px;
-                            font-size: 0.85rem;
+                            font-size: 1.5rem;
+                            color: $theme-color;
                         }
                     }
                 }
@@ -2173,27 +2174,31 @@ body{
         // club info
         .club-section{
             .inner-club{
-                background-color: $Global-background-element;
+                background-color: transparent;
                 height: auto;
                 border-radius: 1rem;
                 font-size: .75rem;
                 @media (max-width:1155px) {
                     font-size: .65rem;
                 }
-                &.club-info{
-                    min-height: calc(100vh - 240px);
-                }
+                // &.club-info{
+                //     min-height: calc(100vh - 240px);
+                // }
                 .info-head{
                     padding: 0px 15px;
-                    h5{
+                    h5, h3{
                         color: $theme-color;
+                        font-weight: 700;
                     }
                 }
                 .inner-info{
                     .row{
                         .col-md-6{
                             .inner-info-head{
-                                color: $global-font-color;
+                                color: $black;
+                                h5 {
+                                    font-weight: 700;
+                                }
                             }
                             .form-group{
                                 textarea,.form-control{
@@ -2206,9 +2211,9 @@ body{
                                     }
                                 }
                                 .club-info{
-                                    background-color: $global-sidebar-bg;
-                                    border-color: $border-color;
-                                    color: $global-font-color;
+                                    background-color: $white;
+                                    border-color: transparent;
+                                    color: $border-color;
                                 }
                                 .btn-info-edit{
                                     color: $global-font-color;
@@ -2230,7 +2235,7 @@ body{
                                     overflow: hidden;
                                     ul{
                                         font-size: .5rem;
-                                        list-style-type: none;
+                                        list-style: none;
                                         padding-left: 1.5em;
                                         max-height: 75px;
                                         overflow: hidden;
@@ -2394,9 +2399,9 @@ body{
                                     }
                                     .multiselect__content-wrapper{
                                         list-style-type: none;
-                                        border: 2px solid $border-color;
+                                        border: 1px solid #ced4da !important;
                                         border-radius: 0.45rem;
-                                        background-color: $global-sidebar-bg ;
+                                        background-color: $white !important;
                                         padding: .375rem .75rem;
                                         z-index: 10;
                                         position: absolute;
@@ -2457,12 +2462,13 @@ body{
                     .row{
                         .col-md-7, .col-md-5{
                             .inner-info{
-                                background-color: $global-sidebar-bg;
+                                background-color: rgba($color: $white, $alpha: 0.6);
                                 border-radius: 10px;
-                                border: 1px solid $border-color;
+                                border: none;
                                 height: 100%;
+                                box-shadow: 0 0 12px rgba($color: $black, $alpha: 0.1);
                                 .inner-info-head{
-                                    color: $global-font-color;
+                                    color: $border-color;
                                 }
                                 .time{
                                     font-size: 0.8rem;
@@ -2482,7 +2488,7 @@ body{
                                         display: flex;
                                         flex-direction: row;
                                         justify-content: space-between;
-                                        color: $global-font-color;
+                                        color: $timer-label;
                                         font-size: .8rem;
                                         text-transform: capitalize;
                                             @media (max-width: 1002.98px) {
@@ -2541,11 +2547,11 @@ body{
                                             justify-content: center;
                                             text-align: center;
                                              &.active{
-                                                background-color: $icon-bg-green;
+                                                background-color: $theme-color;
                                                 color:$global-font-color;
                                             }
                                             &:hover{
-                                                background-color: $icon-color;
+                                                background-color: $dark-theme;
                                                 color:$global-background-color; 
                                                 box-shadow: 0 0 0 0.2rem rgba(255,255 ,255,0.25);
                                             }
@@ -2597,11 +2603,11 @@ body{
                                     .multiselect__tags {
                                         border-radius: 0.4rem;
                                         font-size: 0.8rem;
-                                        border: 2px solid $border-color;
-                                        background-color: $global-sidebar-bg;
+                                        // border: 2px solid $border-color;
+                                        // background-color: $global-sidebar-bg;
                                         color: $font-label-color;
                                         padding: .375rem 0.75rem;
-                                        min-height: calc(2.8rem + 0px);  
+                                        // min-height: calc(2.8rem + 0px);  
                                         @media (max-width: 1024.98px) {
                                             min-height: calc(2.8rem + 0px); 
                                         }
@@ -2629,15 +2635,15 @@ body{
                                             }
                                         }
                                         span.multiselect__placeholder{
-                                            margin: 2px;
+                                            margin: 0;
                                             font-size: 0.9rem;
                                         }
                                     }
                                     .multiselect__content-wrapper{
                                         list-style-type: none;
-                                        border: 2px solid $border-color;
+                                        // border: 2px solid $border-color;
                                         border-radius: 0.45rem;
-                                        background-color: $global-sidebar-bg ;
+                                        // background-color: $global-sidebar-bg;
                                         padding: .375rem .75rem;
                                         z-index: 10;
                                         position: absolute;
@@ -2690,8 +2696,8 @@ body{
                                 }
                             }
                             .form-control{
-                                border: 2px solid $border-color;
-                                background-color: $global-sidebar-bg;
+                                // border: 2px solid $border-color;
+                                // background-color: $global-sidebar-bg;
                                 border-radius: 0.4rem;
                                 font-size: 1rem;
                                 color: $font-label-color;
@@ -2772,7 +2778,7 @@ body{
                                             .figure-caption{
                                                 word-break: break-all;
                                                 padding: 0px 4px;
-                                                background-color: $border-color;
+                                                background-color: $white;
                                                 border-radius: 0px 0px 5px 0px;
                                                 text-overflow: ellipsis;
                                                 white-space: nowrap;
@@ -2836,10 +2842,11 @@ body{
                         }
                         .upload-area{
                             position: relative;
-                            background-color: $global-sidebar-bg;
+                            background-color: rgba($color: $white, $alpha: 0.7);
                             border-radius: 8px;
-                            border: 2px solid $border-color;
-                            border-style: dashed;
+                            border: none;
+                            border-style: none;
+                            box-shadow: 0 0 12px rgba($color: $black, $alpha: 0.1);
                             width: 100%;
                             min-height: 34vh; 
                             display: flex;
@@ -2856,7 +2863,7 @@ body{
                                 }
                             }
                             .form-label{
-                                color: $global-font-color;
+                                color: $cal-border;
                                 font-size: 0.85rem;
                                 @media (max-width:1024.89px) {
                                     font-size: 0.7rem;
@@ -2894,7 +2901,7 @@ body{
         // catalog
         .club-section-catlg{
             .inner-club{
-                background-color: $Global-background-element;
+                background-color: transparent;
                 height: auto;
                 border-radius: 1rem;
                 font-size: .75rem;
@@ -2920,7 +2927,7 @@ body{
                             }
                         }
                         .list-title{
-                            color: $global-font-color;
+                            color: $theme-color;
                             text-align: center;
                             @media (max-width: 1024.98px) {
                                 font-size: .8rem;
@@ -3009,14 +3016,13 @@ body{
                     }
                 }
                 .catalog-list{
-                    background-color: $global-sidebar-bg;
-                    border: 1px solid $border-color;
-                    border-radius: .5rem;
+                    background-color: transparent;
+                    border-bottom: 1px solid $font-label-color;
                     height: 100%;
                     margin: 0;
-                    &:hover, &:active{
-                        background-color: $global-background-color;
-                    }
+                    // &:hover, &:active{
+                    //     background-color: $global-background-color;
+                    // }
                     .row-heading{
                         color: $theme-color;
                         padding: 0px;
@@ -3030,9 +3036,13 @@ body{
                     .catalog-row{
                         margin: 0px -12px 12px 0px;
                         .col-md-4{
+                            h5 {
+                                color: $black;
+                                font-weight: 700;
+                            }
                             .catalog-text{
-                                color: $global-font-color;
-                                font-size: .75rem;
+                                color: $timer-label;
+                                font-size: 1rem;
                                 @media (max-width: 1396.98px) {
                                     font-size: .75rem;
                                 }
@@ -3060,52 +3070,68 @@ body{
 
                             }
                         }
-                        .col-md-3{
-                            ul{
-                                list-style-type: none;
-                                padding-left: 1em;
-                                @media (max-width: 575.98px) {
-                                    text-align: center;
+                        ul{
+                            list-style-type: none;
+                            padding-left: 1em;
+                            @media (max-width: 575.98px) {
+                                text-align: center;
+                            }
+                            span {
+                                &:first-child li {
+                                    background-color: #9d00df;
                                 }
-                                
-                                .to-do-li{
-                                    color: $global-font-color;
-                                    font-size: .75rem;
-                                    @media (max-width: 1396.98px) {
-                                        font-size: .75rem;
-                                    }
-                                    @media (max-width: 1270.98px) {
-                                        font-size: .68rem;
-                                    }
-                                    @media (max-width: 1024.98px) {
-                                        font-size: .55rem;
-                                    }
-                                    @media (max-width: 1002.98px) {
-                                        font-size: .65rem;
-                                    }
-                                    @media (max-width: 767.98px) {
-                                        font-size: .8rem;
-                                        // max-height: 3vh;
-                                        line-height: 1.8rem;
-                                        // overflow: hidden;
-                                    }
-                                    @media (max-width: 575.98px) {
-                                        text-align: center;
-                                        // max-height: 3vh;
-                                        line-height: 1.8rem;
-                                        // overflow: hidden;
-                                    }   
+                                &:nth-child(n+2) li {
+                                    background-color: #1d9c00;
+                                }
+                                &:nth-child(n+3) li {
+                                    background-color: #f28d53;
+                                }
+                                &:nth-child(n+4) li {
+                                    background-color: #fb3e80;
+                                }
+                                &:nth-child(n+5) li {
+                                    background-color: #1d9c00;
                                 }
                             }
-                            ul li::before {
-                                content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-                                color: $theme-color; /* Change the color */
-                                font-weight: bold; /* If you want it to be bold */
-                                display: inline-block; /* Needed to add space between the bullet and the text */
-                                width: 1em; /* Also needed for space (tweak if needed) */
-                                margin-left: -1em; /* Also needed for space (tweak if needed) */
-                            }    
+                            .to-do-li{
+                                color: $global-font-color;
+                                font-size: 0.75rem;
+                                list-style: none;
+                                color: $white;
+                                padding: 5px 20px;
+                                border-radius: 6px;
+                                margin-right: 5px;
+                                margin-bottom: 5px;
+                                // @media (max-width: 1396.98px) {
+                                //     font-size: .75rem;
+                                // }
+                                // @media (max-width: 1270.98px) {
+                                //     font-size: .68rem;
+                                // }
+                                // @media (max-width: 1024.98px) {
+                                //     font-size: .55rem;
+                                // }
+                                // @media (max-width: 1002.98px) {
+                                //     font-size: .65rem;
+                                // }
+                                // @media (max-width: 767.98px) {
+                                //     font-size: .8rem;
+                                //     line-height: 1.8rem;
+                                // }
+                                // @media (max-width: 575.98px) {
+                                //     text-align: center;
+                                //     line-height: 1.8rem;
+                                // }   
+                            }
                         }
+                        // ul li::before {
+                        //     content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+                        //     color: $theme-color; /* Change the color */
+                        //     font-weight: bold; /* If you want it to be bold */
+                        //     display: inline-block; /* Needed to add space between the bullet and the text */
+                        //     width: 1em; /* Also needed for space (tweak if needed) */
+                        //     margin-left: -1em; /* Also needed for space (tweak if needed) */
+                        // }
                         .col-md-2{
                             display: flex;
                             align-items: center;
@@ -3161,7 +3187,7 @@ body{
         // club details
         .club-section{
             .inner-club{
-                background-color: $Global-background-element;
+                background-color: transparent;
                 height: auto;
                 border-radius: 1rem;
                 font-size: .75rem;
@@ -3197,7 +3223,7 @@ body{
                                 }
                             }
                             .list-title{
-                                color: $global-font-color;
+                                color: $theme-color;
                                 text-align: center;
                                 @media (max-width: 1024.98px) {
                                     font-size: .8rem;
@@ -3243,7 +3269,7 @@ body{
                                         min-height: 12vh;
                                     }
                                     li{
-                                        color: $global-font-color;
+                                        color: $black;
                                         font-size: .75rem;
                                         @media (max-width: 1396.98px) {
                                             font-size: .75rem;
@@ -6307,7 +6333,7 @@ select.form-control{
 }
 
 .multiselect__placeholder {
-    padding-top: 5px !important;
+    padding-top: 0 !important;
 }
 
 .form-control.custom-form-control {
@@ -6325,5 +6351,125 @@ select.form-control{
     button {
         background: none !important;
         box-shadow: none !important;
+    }
+}
+
+.cd-cover-pic-section {
+    background-image: url("./../image/cover-pic.jpg");
+    background-position:top;
+    background-repeat:no-repeat;
+    background-size:cover;
+    width: 100%;
+    height: 175px;
+    border-radius: 22px 22px 0 0;
+    overflow: hidden;
+    .black-grad {
+        background-color: rgba($color: $black, $alpha: 0.3);
+        height: 175px;
+        width: 100%;
+    }
+}
+
+.custom-club-details-tag-bg {
+    color: $white;
+    border-radius: 6px;
+    height: fit-content;
+    &:first-child {
+        background-color: #9d00df;
+    }
+    &:nth-child(n+2) {
+        background-color: #1d9c00;
+    }
+    &:nth-child(n+3) {
+        background-color: #f28d53;
+    }
+    &:nth-child(n+4) {
+        background-color: #fb3e80;
+    }
+    &:nth-child(n+5) {
+        background-color: #1d9c00;
+    }
+}
+
+.inner-info-text {
+    .leader-list-style {
+        list-style: none;
+    }
+}
+
+.ld-img-holder {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $theme-color;
+    box-shadow: 0 0 8px rgba($color: $black, $alpha: 0.5);
+    overflow: hidden;
+}
+
+.ld-heading {
+    font-size: 16px;
+    color: #000000;
+    font-weight: 600;
+}
+
+.cd-about-club-details {
+    font-size: 14px;
+}
+
+.members-thumbnail-list {
+    width: fit-content;
+    .mlist-thumb-holder {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: $theme-color;
+        margin-left: -20px;
+        box-shadow: 0 0 6px rgba($color: $black, $alpha: 0.5);
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+    .first-row {
+        margin-bottom: -20px;
+    }
+    .ml-list-more {
+        font-size: 24px;
+        font-weight: 700;
+        right: -35px;
+        bottom: 0;
+        color: $font-label-color;
+        cursor: pointer;
+    }
+}
+
+.custom-height-for-club-detail-section {
+    height: calc(100vh - 315px);
+    overflow: auto;
+}
+
+.btn-info-edit.custom-theme-color-btn {
+    background-color: $theme-color;
+    color: $white;
+}
+
+.custom-screen-height-for-club-details {
+    height: calc(100vh - 165px);
+    overflow: auto;
+}
+
+.input-icon.custom-search-icon-1 {
+    i {
+        font-size: 14px !important;
+    }
+}
+
+.input-icon-area.custom-multiselect-adj-text {
+    .multiselect__placeholder {
+        position: relative;
+        top: 4px;
+    }
+    .multiselect__select {
+        top: 4px !important;
     }
 }

@@ -8,154 +8,162 @@
     />
     <div class="main-section">
       <!-- tab for club catalog -->
-
-      <section id="tab" class="">
-        <div class="tab-section container-fluid mt-4">
-          <h5 class="tab-head">Club Catalog</h5>
-          <div class="inner-tab-section container-fluid py-3">
-            <div class="row m-auto">
-              <div class="col-md-4">
-                <div class="input-icon-area">
-                  <input
-                    class="form-control"
-                    type="text"
-                    v-model="search"
-                    placeholder="Search"
-                    v-on:keyup="ClubCatalogue()"
-                  />
-                  <span class="input-icon">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </span>
+      <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+        <section id="tab" class="">
+          <div class="tab-section container-fluid mt-4">
+            <h4 class="tab-head">Club Catalog</h4>
+            <div class="inner-tab-section container-fluid py-3">
+              <div class="row m-auto">
+                <div class="col-md-4">
+                  <div class="input-icon-area">
+                    <input
+                      class="form-control"
+                      type="text"
+                      v-model="search"
+                      placeholder="Search"
+                      v-on:keyup="ClubCatalogue()"
+                    />
+                    <span class="input-icon custom-search-icon-1">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4">
-                <div class="input-icon-area">
-                  <multiselect
-                    v-model="value"
-                    :options="taglist"
-                    track-by="name"
-                    label="name"
-                    placeholder="Filter"
-                    @input="filterSelection"
-                  >
-                    <span slot="noResult">No data found</span>
-                  </multiselect>
-                  <span class="input-icon">
-                    <i class="fa fa-filter" aria-hidden="true"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- end tab for club catalog -->
-
-      <!-- Club catalog -->
-
-      <section id="club-detail" class="">
-        <div class="club-section-catlg container-fluid mt-3">
-          <div class="inner-club container-fluid p-4">
-            <div class="inner-clb p-2">
-              <div
-                class="
-                  row
-                  catalog-list
-                  container-fluid
-                  pl-3
-                  pr-3
-                  pt-3
-                  mb-3
-                  mx-auto
-                "
-                v-for="(list, index) in list_data"
-                :key="index"
-              >
-                <div class="row-heading col-12">
-                  <h6 class="mb-0">{{ list["name"] }}</h6>
-                </div>
-                <div class="col-12 p-0">
-                  <div class="row catalog-row">
-                    <div class="col-md-4 col-sm-4">
-                      <p class="catalog-text">
-                        {{ list.part ? list.part : "No data "
-                        }}<span :id="'dots' + list.id" v-if="list.remaining"
-                          >...</span
-                        ><span :id="'more' + list.id" style="display: none">
-                          {{ list.remaining }}
-                        </span>
-                      </p>
-                    </div>
-                    <div class="col-md-3">
-                      <ul class="to-do-ul">
-                        <span
-                          v-for="(todos, index) in list.tagList"
-                          :key="index"
-                        >
-                          <li
-                            class="to-do-li"
-                            v-if="
-                              index % 2 == 0 &&
-                              (!(expandId == list.id) ? index < 4 : true)
-                            "
-                          >
-                            {{ todos }}
-                          </li>
-                        </span>
-                        <span v-if="list.tagList.length == 0" class="to-do-li">
-                          No tags available
-                        </span>
-                      </ul>
-                    </div>
-                    <div class="col-md-3">
-                      <ul class="to-do-ul">
-                        <span
-                          v-for="(todos, index) in list.tagList"
-                          :key="index"
-                        >
-                          <li
-                            class="to-do-li"
-                            v-if="
-                              index % 2 != 0 &&
-                              (!(expandId == list.id) ? index < 4 : true)
-                            "
-                          >
-                            {{ todos }}
-                          </li>
-                        </span>
-                      </ul>
-                    </div>
-                    <div class="col-md-2">
-                      <a
-                        href="#"
-                        class="btn btn-join-now"
-                        @click="JoinClub(list.id)"
-                        >Join Now</a
-                      >
-                      <a
-                        v-if="
-                          (list.part && list.remaining) ||
-                          list.tagList.length >= 5
-                        "
-                        class="btn readmore-btn"
-                        @click="myFunction(list.id)"
-                        :id="list.id"
-                        >Read more<i class="fas fa-chevron-right pl-1"></i
-                      ></a>
-                    </div>
+                <div class="col-md-4">
+                  <div class="input-icon-area custom-multiselect-adj-text">
+                    <multiselect
+                      v-model="value"
+                      :options="taglist"
+                      track-by="name"
+                      label="name"
+                      placeholder="Filter"
+                      @input="filterSelection"
+                    >
+                      <span slot="noResult">No data found</span>
+                    </multiselect>
+                    <!-- <span class="input-icon">
+                      <i class="fa fa-filter" aria-hidden="true"></i>
+                    </span> -->
                   </div>
                 </div>
               </div>
-              <div v-if="list_data.length == 0" class="w-100 text-center py-5">
-                <p class="no-data">No data available</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- end tab for club catalog -->
+
+        <!-- Club catalog -->
+
+        <section id="club-detail" class="">
+          <div class="club-section-catlg container-fluid mt-3">
+            <div class="inner-club container-fluid p-4">
+              <div class="inner-clb p-2">
+                <div
+                  class="
+                    row
+                    catalog-list
+                    container-fluid
+                    pl-3
+                    pr-3
+                    pt-3
+                    mb-3
+                    mx-auto
+                  "
+                  v-for="(list, index) in list_data"
+                  :key="index"
+                >
+                  <!-- <div class="row-heading col-12">
+                    <h6 class="mb-0">{{ list["name"] }}</h6>
+                  </div> -->
+                  <div class="col-12 p-0">
+                    <div class="row catalog-row">
+                      <div class="col-md-4 col-sm-4">
+                        <h5 class="mb-0">{{ list["name"] }}</h5>
+                        <p class="catalog-text">
+                          {{ list.part ? list.part : "No data "
+                          }}<span :id="'dots' + list.id" v-if="list.remaining"
+                            >...</span
+                          ><span :id="'more' + list.id" style="display: none">
+                            {{ list.remaining }}
+                          </span>
+                        </p>
+                      </div>
+                      <div class="col-md-6 d-flex justify-content-end">
+                        <div class="col-md-8 pt-0 d-flex justify-content-end">
+                          <ul class="to-do-ul d-flex align-items-center justify-content-end flex-wrap">
+                            <span
+                              v-for="(todos, index) in list.tagList"
+                              :key="index"
+                            >
+                              <!-- <li
+                                class="to-do-li"
+                                v-if="
+                                  index % 2 == 0 &&
+                                  (!(expandId == list.id) ? index < 4 : true)
+                                "
+                              >
+                                {{ todos }}
+                              </li> -->
+                              <li class="to-do-li">
+                                {{ todos }}
+                              </li>
+                            </span>
+                            <span v-if="list.tagList.length == 0" class="to-do-li">
+                              No tags available
+                            </span>
+                          </ul>
+                        </div>
+                        
+                      </div>
+                      <!-- <div class="col-md-3">
+                        <ul class="to-do-ul">
+                          <span
+                            v-for="(todos, index) in list.tagList"
+                            :key="index"
+                          >
+                            <li
+                              class="to-do-li"
+                              v-if="
+                                index % 2 != 0 &&
+                                (!(expandId == list.id) ? index < 4 : true)
+                              "
+                            >
+                              {{ todos }}
+                            </li>
+                          </span>
+                        </ul>
+                      </div> -->
+                      <div class="col-md-2">
+                        <a
+                          href="#"
+                          class="btn btn-join-now"
+                          @click="JoinClub(list.id)"
+                          >Join Now</a
+                        >
+                        <a
+                          v-if="
+                            (list.part && list.remaining) ||
+                            list.tagList.length >= 5
+                          "
+                          class="btn readmore-btn"
+                          @click="myFunction(list.id)"
+                          :id="list.id"
+                          >Read more<i class="fas fa-chevron-right pl-1"></i
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div v-if="list_data.length == 0" class="w-100 text-center py-5">
+                  <p class="no-data">No data available</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- End Club catalog -->
+        <!-- End Club catalog -->
+      </div>
     </div>
   </div>
 </template>

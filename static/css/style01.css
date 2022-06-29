@@ -2273,7 +2273,7 @@ body {
 .inner-section .main-section .tab-section .inner-tab-section .col-md-3 .input-icon-area .input-icon, .inner-section .main-section .tab-section .inner-tab-section .col-md-4 .input-icon-area .input-icon, .inner-section .main-section .tab-section .inner-tab-section .col-md-6 .input-icon-area .input-icon {
   position: absolute;
   margin: 13px;
-  background-color: #4AC55E;
+  background-color: transparent;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2286,7 +2286,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 5px;
-  color: #F9F9F9;
+  color: #B4B4B4;
 }
 
 @media (max-width: 1090.89px) {
@@ -2296,7 +2296,7 @@ body {
 }
 
 .inner-section .main-section .tab-section .inner-tab-section .col-md-3 .input-icon-area .multiselect__tags, .inner-section .main-section .tab-section .inner-tab-section .col-md-4 .input-icon-area .multiselect__tags, .inner-section .main-section .tab-section .inner-tab-section .col-md-6 .input-icon-area .multiselect__tags {
-  border-radius: 1.2rem;
+  border-radius: 0.65rem;
   font-size: 0.8rem;
   border: none;
   background-color: #ffffff;
@@ -2432,7 +2432,7 @@ body {
   position: relative;
   border: none;
   background-color: #ffffff;
-  border-radius: 1.2rem;
+  border-radius: 0.65rem;
   color: #B4B4B4;
   padding: .375rem 0.5rem .375rem 2.5rem;
   min-height: calc(2.8rem + 2px);
@@ -2769,14 +2769,16 @@ body {
   text-decoration: none;
   color: #F9F9F9;
   background-color: rgba(255, 255, 255, 0.45);
-  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 30px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20px;
   border-radius: 10px;
 }
 
@@ -2807,11 +2809,12 @@ body {
 
 .inner-section .main-section .info-tab .tab-row .col-md-4 a .pl {
   padding-left: 30px;
-  font-size: 0.85rem;
+  font-size: 1.5rem;
+  color: #FF6D6D;
 }
 
 .inner-section .main-section .club-section .inner-club {
-  background-color: rgba(255, 255, 255, 0.45);
+  background-color: transparent;
   height: auto;
   border-radius: 1rem;
   font-size: .75rem;
@@ -2823,20 +2826,21 @@ body {
   }
 }
 
-.inner-section .main-section .club-section .inner-club.club-info {
-  min-height: calc(100vh - 240px);
-}
-
 .inner-section .main-section .club-section .inner-club .info-head {
   padding: 0px 15px;
 }
 
-.inner-section .main-section .club-section .inner-club .info-head h5 {
+.inner-section .main-section .club-section .inner-club .info-head h5, .inner-section .main-section .club-section .inner-club .info-head h3 {
   color: #FF6D6D;
+  font-weight: 700;
 }
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-info-head {
-  color: #F9F9F9;
+  color: #000000;
+}
+
+.inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-info-head h5 {
+  font-weight: 700;
 }
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .form-group textarea, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .form-group .form-control {
@@ -2856,9 +2860,9 @@ body {
 }
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .form-group .club-info {
-  background-color: #2D2D2F;
-  border-color: #424246;
-  color: #F9F9F9;
+  background-color: #ffffff;
+  border-color: transparent;
+  color: #424246;
 }
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .form-group .btn-info-edit {
@@ -2885,7 +2889,7 @@ body {
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-row .inner-info-text ul {
   font-size: .5rem;
-  list-style-type: none;
+  list-style: none;
   padding-left: 1.5em;
   max-height: 75px;
   overflow: hidden;
@@ -3146,9 +3150,9 @@ body {
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-row .input-icon-area .multiselect__content-wrapper {
   list-style-type: none;
-  border: 2px solid #424246;
+  border: 1px solid #ced4da !important;
   border-radius: 0.45rem;
-  background-color: #2D2D2F;
+  background-color: #ffffff !important;
   padding: .375rem .75rem;
   z-index: 10;
   position: absolute;
@@ -3200,14 +3204,16 @@ body {
 }
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info {
-  background-color: #2D2D2F;
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
-  border: 1px solid #424246;
+  border: none;
   height: 100%;
+  -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .inner-info-head, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .inner-info-head {
-  color: #F9F9F9;
+  color: #424246;
 }
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .time, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .time {
@@ -3240,7 +3246,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  color: #F9F9F9;
+  color: #707070;
   font-size: .8rem;
   text-transform: capitalize;
 }
@@ -3324,12 +3330,12 @@ body {
 }
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .choose-date .col .date-picker.active, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .choose-date .col .date-picker.active {
-  background-color: #4AC55E;
+  background-color: #FF6D6D;
   color: #F9F9F9;
 }
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .choose-date .col .date-picker:hover, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .choose-date .col .date-picker:hover {
-  background-color: #D7F9FF;
+  background-color: #FF4E71;
   color: rgba(255, 255, 255, 0.45);
   -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
           box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
@@ -3408,11 +3414,8 @@ body {
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .input-icon-area .multiselect__tags, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .input-icon-area .multiselect__tags {
   border-radius: 0.4rem;
   font-size: 0.8rem;
-  border: 2px solid #424246;
-  background-color: #2D2D2F;
   color: #B4B4B4;
   padding: .375rem 0.75rem;
-  min-height: calc(2.8rem + 0px);
 }
 
 @media (max-width: 1024.98px) {
@@ -3463,15 +3466,13 @@ body {
 }
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .input-icon-area .multiselect__tags span.multiselect__placeholder, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .input-icon-area .multiselect__tags span.multiselect__placeholder {
-  margin: 2px;
+  margin: 0;
   font-size: 0.9rem;
 }
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .input-icon-area .multiselect__content-wrapper, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .input-icon-area .multiselect__content-wrapper {
   list-style-type: none;
-  border: 2px solid #424246;
   border-radius: 0.45rem;
-  background-color: #2D2D2F;
   padding: .375rem .75rem;
   z-index: 10;
   position: absolute;
@@ -3523,8 +3524,6 @@ body {
 }
 
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .form-control, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .form-control {
-  border: 2px solid #424246;
-  background-color: #2D2D2F;
   border-radius: 0.4rem;
   font-size: 1rem;
   color: #B4B4B4;
@@ -3620,7 +3619,7 @@ body {
 .inner-section .main-section .club-section .row .col-md-8 .inner-club .image-overflow .info-row .col-md-3 .fig-section figure .figure-caption {
   word-break: break-all;
   padding: 0px 4px;
-  background-color: #424246;
+  background-color: #ffffff;
   border-radius: 0px 0px 5px 0px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -3703,10 +3702,12 @@ body {
 
 .inner-section .main-section .club-section .row .col-md-4 .inner-club .upload-area {
   position: relative;
-  background-color: #2D2D2F;
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 8px;
-  border: 2px solid #424246;
-  border-style: dashed;
+  border: none;
+  border-style: none;
+  -webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
   width: 100%;
   min-height: 34vh;
   display: -webkit-box;
@@ -3733,7 +3734,7 @@ body {
 }
 
 .inner-section .main-section .club-section .row .col-md-4 .inner-club .upload-area .form-label {
-  color: #F9F9F9;
+  color: #5B5B5E;
   font-size: 0.85rem;
 }
 
@@ -3771,7 +3772,7 @@ body {
 }
 
 .inner-section .main-section .club-section-catlg .inner-club {
-  background-color: rgba(255, 255, 255, 0.45);
+  background-color: transparent;
   height: auto;
   border-radius: 1rem;
   font-size: .75rem;
@@ -3807,7 +3808,7 @@ body {
 }
 
 .inner-section .main-section .club-section-catlg .inner-club .club-row .club-list .list-title {
-  color: #F9F9F9;
+  color: #FF6D6D;
   text-align: center;
 }
 
@@ -3961,15 +3962,10 @@ body {
 }
 
 .inner-section .main-section .club-section-catlg .inner-club .catalog-list {
-  background-color: #2D2D2F;
-  border: 1px solid #424246;
-  border-radius: .5rem;
+  background-color: transparent;
+  border-bottom: 1px solid #B4B4B4;
   height: 100%;
   margin: 0;
-}
-
-.inner-section .main-section .club-section-catlg .inner-club .catalog-list:hover, .inner-section .main-section .club-section-catlg .inner-club .catalog-list:active {
-  background-color: rgba(255, 255, 255, 0.45);
 }
 
 .inner-section .main-section .club-section-catlg .inner-club .catalog-list .row-heading {
@@ -3991,9 +3987,14 @@ body {
   margin: 0px -12px 12px 0px;
 }
 
+.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-4 h5 {
+  color: #000000;
+  font-weight: 700;
+}
+
 .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-4 .catalog-text {
-  color: #F9F9F9;
-  font-size: .75rem;
+  color: #707070;
+  font-size: 1rem;
 }
 
 @media (max-width: 1396.98px) {
@@ -4034,73 +4035,46 @@ body {
   }
 }
 
-.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-3 ul {
+.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul {
   list-style-type: none;
   padding-left: 1em;
 }
 
 @media (max-width: 575.98px) {
-  .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-3 ul {
+  .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul {
     text-align: center;
   }
 }
 
-.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-3 ul .to-do-li {
+.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul span:first-child li {
+  background-color: #9d00df;
+}
+
+.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul span:nth-child(n+2) li {
+  background-color: #1d9c00;
+}
+
+.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul span:nth-child(n+3) li {
+  background-color: #f28d53;
+}
+
+.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul span:nth-child(n+4) li {
+  background-color: #fb3e80;
+}
+
+.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul span:nth-child(n+5) li {
+  background-color: #1d9c00;
+}
+
+.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul .to-do-li {
   color: #F9F9F9;
-  font-size: .75rem;
-}
-
-@media (max-width: 1396.98px) {
-  .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-3 ul .to-do-li {
-    font-size: .75rem;
-  }
-}
-
-@media (max-width: 1270.98px) {
-  .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-3 ul .to-do-li {
-    font-size: .68rem;
-  }
-}
-
-@media (max-width: 1024.98px) {
-  .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-3 ul .to-do-li {
-    font-size: .55rem;
-  }
-}
-
-@media (max-width: 1002.98px) {
-  .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-3 ul .to-do-li {
-    font-size: .65rem;
-  }
-}
-
-@media (max-width: 767.98px) {
-  .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-3 ul .to-do-li {
-    font-size: .8rem;
-    line-height: 1.8rem;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-3 ul .to-do-li {
-    text-align: center;
-    line-height: 1.8rem;
-  }
-}
-
-.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-3 ul li::before {
-  content: "\2022";
-  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-  color: #FF6D6D;
-  /* Change the color */
-  font-weight: bold;
-  /* If you want it to be bold */
-  display: inline-block;
-  /* Needed to add space between the bullet and the text */
-  width: 1em;
-  /* Also needed for space (tweak if needed) */
-  margin-left: -1em;
-  /* Also needed for space (tweak if needed) */
+  font-size: 0.75rem;
+  list-style: none;
+  color: #ffffff;
+  padding: 5px 20px;
+  border-radius: 6px;
+  margin-right: 5px;
+  margin-bottom: 5px;
 }
 
 .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-2 {
@@ -4191,7 +4165,7 @@ body {
 }
 
 .inner-section .main-section .club-section .inner-club {
-  background-color: rgba(255, 255, 255, 0.45);
+  background-color: transparent;
   height: auto;
   border-radius: 1rem;
   font-size: .75rem;
@@ -4243,7 +4217,7 @@ body {
 }
 
 .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .list-title {
-  color: #F9F9F9;
+  color: #FF6D6D;
   text-align: center;
 }
 
@@ -4321,7 +4295,7 @@ body {
 }
 
 .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list ul li {
-  color: #F9F9F9;
+  color: #000000;
   font-size: .75rem;
 }
 
@@ -7964,7 +7938,7 @@ select.form-control.is-invalid {
 }
 
 .multiselect__placeholder {
-  padding-top: 5px !important;
+  padding-top: 0 !important;
 }
 
 .form-control.custom-form-control {
@@ -7987,5 +7961,136 @@ select.form-control.is-invalid {
   background: none !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
+}
+
+.cd-cover-pic-section {
+  background-image: url("./../image/cover-pic.jpg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 175px;
+  border-radius: 22px 22px 0 0;
+  overflow: hidden;
+}
+
+.cd-cover-pic-section .black-grad {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 175px;
+  width: 100%;
+}
+
+.custom-club-details-tag-bg {
+  color: #ffffff;
+  border-radius: 6px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.custom-club-details-tag-bg:first-child {
+  background-color: #9d00df;
+}
+
+.custom-club-details-tag-bg:nth-child(n+2) {
+  background-color: #1d9c00;
+}
+
+.custom-club-details-tag-bg:nth-child(n+3) {
+  background-color: #f28d53;
+}
+
+.custom-club-details-tag-bg:nth-child(n+4) {
+  background-color: #fb3e80;
+}
+
+.custom-club-details-tag-bg:nth-child(n+5) {
+  background-color: #1d9c00;
+}
+
+.inner-info-text .leader-list-style {
+  list-style: none;
+}
+
+.ld-img-holder {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #FF6D6D;
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.ld-heading {
+  font-size: 16px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.cd-about-club-details {
+  font-size: 14px;
+}
+
+.members-thumbnail-list {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.members-thumbnail-list .mlist-thumb-holder {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #FF6D6D;
+  margin-left: -20px;
+  -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.members-thumbnail-list .mlist-thumb-holder:first-child {
+  margin-left: 0;
+}
+
+.members-thumbnail-list .first-row {
+  margin-bottom: -20px;
+}
+
+.members-thumbnail-list .ml-list-more {
+  font-size: 24px;
+  font-weight: 700;
+  right: -35px;
+  bottom: 0;
+  color: #B4B4B4;
+  cursor: pointer;
+}
+
+.custom-height-for-club-detail-section {
+  height: calc(100vh - 315px);
+  overflow: auto;
+}
+
+.btn-info-edit.custom-theme-color-btn {
+  background-color: #FF6D6D;
+  color: #ffffff;
+}
+
+.custom-screen-height-for-club-details {
+  height: calc(100vh - 165px);
+  overflow: auto;
+}
+
+.input-icon.custom-search-icon-1 i {
+  font-size: 14px !important;
+}
+
+.input-icon-area.custom-multiselect-adj-text .multiselect__placeholder {
+  position: relative;
+  top: 4px;
+}
+
+.input-icon-area.custom-multiselect-adj-text .multiselect__select {
+  top: 4px !important;
 }
 /*# sourceMappingURL=style01.css.map */

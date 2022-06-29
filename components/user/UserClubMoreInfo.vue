@@ -8,205 +8,210 @@
     />
     <div class="main-section">
       <!-- tab for club info -->
+      <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+        
 
-      <section id="tab" class="">
-        <div class="info-tab container-fluid mt-3">
-          <div class="row tab-row mt-2">
-            <div class="col-md-4 col-xs-12">
-              <nuxt-link
-                :to="{
-                  path: '/club-info',
-                  query: { id: clubId, name: headingName },
-                }"
-                class="inner-tab"
-              >
-                <i class="fas fa-info"></i><span class="pl">Info</span>
-              </nuxt-link>
-            </div>
-            <div class="col-md-4 col-xs-12">
-              <nuxt-link
-                :to="{
-                  path: '/club-files',
-                  query: { id: clubId, name: headingName },
-                }"
-                class="inner-tab"
-              >
-                <i class="fas fa-file-alt"></i
-                ><span class="pl">Files/Slides</span>
-              </nuxt-link>
-            </div>
-            <div class="col-md-4 col-xs-12">
-              <nuxt-link
-                :to="{
-                  path: '/club-moreInfo',
-                  query: { id: clubId, name: headingName },
-                }"
-                class="inner-tab"
-              >
-                <i class="fas fa-ellipsis-h"></i><span class="pl">More</span>
-              </nuxt-link>
-            </div>
-          </div>
-        </div>
-      </section>
+        <!-- end tab for club info -->
 
-      <!-- end tab for club info -->
+        <!-- Club info -->
 
-      <!-- Club info -->
+        <section id="club-detail" class="">
+          <div class="club-section container-fluid mt-2">
+            <div
+              class="
+                inner-club
+                club-info
+                d-flex
+                flex-column
+                justify-content-center
+                container-fluid
+                p-3
+              "
+            >
+              <div class="info-head my-2">
+                <h5 class="mb-3">{{ headingName }}</h5>
+              </div>
+              <div class="inner-info container-fluid my-3">
+                <div class="row">
+                  <div class="col-md-7 col-xs-12">
+                    <div class="inner-info container-fluid p-4">
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="inner-info-head mb-3">
+                            <h6>To do!</h6>
+                          </div>
+                          <div class="form-group">
+                            <ul>
+                              <li
+                                v-for="(todos, index) in list_data"
+                                :key="index"
+                              >
+                                <span class="input-name"> {{ todos.name }}</span>
 
-      <section id="club-detail" class="">
-        <div class="club-section container-fluid mt-2">
-          <div
-            class="
-              inner-club
-              club-info
-              d-flex
-              flex-column
-              justify-content-center
-              container-fluid
-              p-3
-            "
-          >
-            <div class="info-head my-2">
-              <h5 class="mb-3">{{ headingName }}</h5>
-            </div>
-            <div class="inner-info container-fluid my-3">
-              <div class="row">
-                <div class="col-md-7 col-xs-12">
-                  <div class="inner-info container-fluid p-4">
-                    <div class="row">
-                      <div class="col-6">
-                        <div class="inner-info-head mb-3">
-                          <h6>To do!</h6>
+                                <span
+                                  class="input-icon"
+                                  v-if="enableEdit"
+                                  @click.prevent="Removetodo(todos.id)"
+                                >
+                                  <i
+                                    class="fa fa-times p-1"
+                                    aria-hidden="true"
+                                  ></i
+                                ></span>
+                              </li>
+                              <li v-if="list_data.length === 0">
+                                <span class="input-name">
+                                  No to-do's available</span
+                                >
+                              </li>
+                            </ul>
+                          </div>
                         </div>
-                        <div class="form-group">
-                          <ul>
-                            <li
-                              v-for="(todos, index) in list_data"
-                              :key="index"
+                        <div class="col-6" v-if="enableEdit">
+                          <div class="inner-info-head mb-3">
+                            <h6>Add Todo</h6>
+                          </div>
+                          <div class="form-row m-0">
+                            <input
+                              class="form-control"
+                              v-model="todolist"
+                              maxlength="30"
+                            />
+                            <button
+                              :disabled="!todolist"
+                              class="btn btn-info-edit mt-2"
+                              @click.prevent="EditTodo(clubId)"
                             >
-                              <span class="input-name"> {{ todos.name }}</span>
-
-                              <span
-                                class="input-icon"
-                                v-if="enableEdit"
-                                @click.prevent="Removetodo(todos.id)"
-                              >
-                                <i
-                                  class="fa fa-times p-1"
-                                  aria-hidden="true"
-                                ></i
-                              ></span>
-                            </li>
-                            <li v-if="list_data.length === 0">
-                              <span class="input-name">
-                                No to-do's available</span
-                              >
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="col-6" v-if="enableEdit">
-                        <div class="inner-info-head mb-3">
-                          <h6>Add Todo</h6>
-                        </div>
-                        <div class="form-row m-0">
-                          <input
-                            class="form-control"
-                            v-model="todolist"
-                            maxlength="30"
-                          />
-                          <button
-                            :disabled="!todolist"
-                            class="btn btn-info-edit mt-2"
-                            @click.prevent="EditTodo(clubId)"
-                          >
-                            Update
-                          </button>
+                              Update
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-md-5 col-xs-12">
-                  <div class="inner-info container p-4">
-                    <div class="inner-info-head mb-3">
-                      <h6>Meeting Time</h6>
-                    </div>
-                    <p class="time">
-                      Next meeting:
-                      {{
-                        allList.announcement == null
-                          ? "No meeting scheduled "
-                          : allList.announcement
-                      }}
-                    </p>
-
-                    <div class="row inner-col" v-if="enableEdit">
-                      <div class="col-lg-4 col-md-12 inner-info-head">
-                        <h6>Choose time</h6>
+                  <div class="col-md-5 col-xs-12">
+                    <div class="inner-info container p-4">
+                      <div class="inner-info-head mb-3">
+                        <h6>Meeting Time</h6>
                       </div>
-                      <div class="col-lg-8 col-md-12 input-icon-area">
-                        <multiselect
-                          v-model="value"
-                          track-by="start_time"
-                          label="start_time"
-                          placeholder="Select the time"
-                          :options="slots"
-                          @input="UpdateSlots"
-                        >
-                          <span slot="noResult">No data found</span>
-                        </multiselect>
-                      </div>
-                    </div>
+                      <p class="time">
+                        Next meeting:
+                        {{
+                          allList.announcement == null
+                            ? "No meeting scheduled "
+                            : allList.announcement
+                        }}
+                      </p>
 
-                    <div class="row choose-date my-2 m-0 p-0">
-                      <div
-                        class="col"
-                        v-for="(day, index) in dayList"
-                        :key="index"
-                        @click.prevent="
-                          UpdateDays(day);
-                          $event.target.classList.toggle('active');
-                        "
-                      >
-                        <a
-                          class="
-                            btn
-                            date-picker
-                            badge badge-pill badge-color
-                            active
+                      <div class="row inner-col" v-if="enableEdit">
+                        <div class="col-lg-4 col-md-12 inner-info-head">
+                          <h6>Choose time</h6>
+                        </div>
+                        <div class="col-lg-8 col-md-12 input-icon-area">
+                          <multiselect
+                            v-model="value"
+                            track-by="start_time"
+                            label="start_time"
+                            placeholder="Select the time"
+                            :options="slots"
+                            @input="UpdateSlots"
+                          >
+                            <span slot="noResult">No data found</span>
+                          </multiselect>
+                        </div>
+                      </div>
+
+                      <div class="row choose-date my-2 m-0 p-0">
+                        <div
+                          class="col"
+                          v-for="(day, index) in dayList"
+                          :key="index"
+                          @click.prevent="
+                            UpdateDays(day);
+                            $event.target.classList.toggle('active');
                           "
-                          :id="day"
-                          v-if="checkSlot(day)"
-                          >{{ day }}</a
                         >
-                        <a
-                          href=""
-                          class="btn date-picker badge badge-pill badge-color"
-                          :id="day"
-                          v-else
-                          >{{ day }}</a
-                        >
+                          <a
+                            class="
+                              btn
+                              date-picker
+                              badge badge-pill badge-color
+                              active
+                            "
+                            :id="day"
+                            v-if="checkSlot(day)"
+                            >{{ day }}</a
+                          >
+                          <a
+                            href=""
+                            class="btn date-picker badge badge-pill badge-color"
+                            :id="day"
+                            v-else
+                            >{{ day }}</a
+                          >
+                        </div>
                       </div>
+                      <button
+                        v-if="enableEdit"
+                        class="btn btn-info-edit mt-2"
+                        :disabled="!value"
+                        @click.prevent="UpdateTime"
+                      >
+                        Update the next meeting
+                      </button>
                     </div>
-                    <button
-                      v-if="enableEdit"
-                      class="btn btn-info-edit mt-2"
-                      :disabled="!value"
-                      @click.prevent="UpdateTime"
-                    >
-                      Update the next meeting
-                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- End Club info -->
+        <section id="tab" class="">
+          <div class="info-tab container-fluid mt-3">
+            <div class="row tab-row mt-2">
+              <div class="col-md-4 col-xs-12">
+                <nuxt-link
+                  :to="{
+                    path: '/club-info',
+                    query: { id: clubId, name: headingName },
+                  }"
+                  class="inner-tab"
+                >
+                  <!-- <i class="fas fa-info"></i> -->
+                  <span class="pl">Info</span>
+                </nuxt-link>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <nuxt-link
+                  :to="{
+                    path: '/club-files',
+                    query: { id: clubId, name: headingName },
+                  }"
+                  class="inner-tab"
+                >
+                  <!-- <i class="fas fa-file-alt"></i> -->
+                  <span class="pl">Files/Slides</span>
+                </nuxt-link>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <nuxt-link
+                  :to="{
+                    path: '/club-moreInfo',
+                    query: { id: clubId, name: headingName },
+                  }"
+                  class="inner-tab"
+                >
+                  <!-- <i class="fas fa-ellipsis-h"></i> -->
+                  <span class="pl">More</span>
+                </nuxt-link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- End Club info -->
+      </div>
     </div>
   </div>
 </template>
