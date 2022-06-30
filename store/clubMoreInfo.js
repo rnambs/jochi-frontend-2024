@@ -2,6 +2,7 @@ import { BASE_URL } from "../assets/js/constants";
 
 const state = {
   allList: [],
+  announcements: [],
   slots: [],
   errorMessage: "",
   errorType: "",
@@ -272,12 +273,112 @@ const actions = {
     }
   },
 
+  async getAnnouncements({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$get(BASE_URL + `club/detail/get_announcement?club_id=${payLoad.club_id}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+
+      });
+      if (response.message == "Success") {
+        commit('setAnnouncements', response.data);
+        // commit('setEnableEdit', response.enable_edit);
+      }
 
 
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+
+    }
+  },
+  async deleteAnnouncement({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$delete(BASE_URL + `club/detail/delete_announcement?announcement_id=${payLoad.id}&club_id=${payLoad.clubId}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      if (response.message == "Success") {
+        commit('setSuccessMessage', "Announcement removed successfully");
+      }
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+    }
+
+
+  },
+  async addAnnouncement({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$post(BASE_URL + 'club/detail/create_announcement', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      if (response.message == "Success") {
+        commit('setSuccessMessage', "Announcement created successfully");
+      }
+
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+    }
+
+  },
+  async updateAnnouncement({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$post(BASE_URL + 'club/detail/create_announcement', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      if (response.message == "Success") {
+        commit('setSuccessMessage', "Announcement created successfully");
+      }
+
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+    }
+
+  }
 }
 const mutations = {
   setAllList(state, data) {
     state.allList = data;
+  },
+  setAnnouncements(state, data) {
+    state.announcements = data;
   },
   setEnableEdit(state, data) {
     state.enableEdit = data;
@@ -303,6 +404,9 @@ const mutations = {
 const getters = {
   allList: () => {
     return state.allList;
+  },
+  announcements: () => {
+    return state.announcements;
   },
   enableEdit: () => {
     return state.enableEdit;
