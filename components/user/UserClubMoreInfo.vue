@@ -411,35 +411,6 @@
                   >
                 </div>
               </div>
-
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label"
-                      >Date<em>*</em></label
-                    >
-                    <div>
-                      <date-picker
-                        class="form-control"
-                        placeholder="MM/DD/YYYY"
-                        format="MM/dd/yyyy"
-                        :value="announceDate"
-                        v-model="announceDate"
-                        name="announceDate"
-                      />
-                      <div
-                        v-if="submitted && $v.announceDate.$error"
-                        class="invalid-feedback"
-                      >
-                        <span v-if="!$v.announceDate.required"
-                          >This field is required</span
-                        >
-                      </div>
-                    </div>
-                    <!-- <input type="text" class="form-control"> -->
-                  </div>
-                </div>
-              </div>
             </form>
           </div>
           <div class="modal-footer">
@@ -506,14 +477,13 @@ export default {
       isAnnouncementEdit: false,
       announceTitle: "",
       announceDesc: "",
-      announceDate: "",
       announcementId: 0,
+      submitted: false,
     };
   },
   validations: {
     announceTitle: { required },
     announceDesc: { required },
-    announceDate: { required },
   },
   mounted() {
     var user = localStorage.getItem("user_type");
@@ -741,7 +711,6 @@ export default {
     async openModal() {
       // this.dateValue = new Date(this.calendarApi.view.activeStart);
       // this.isAssignmentEdit = false;
-      this.announceDate = new Date(moment());
       $("#announcementModal").modal({ backdrop: true });
     },
     async openEdit(data) {
@@ -750,29 +719,35 @@ export default {
       this.announcementId = data.id;
       this.announceTitle = data.title;
       this.announceDesc = data.description;
-      this.announceDate = new Date(data.date);
+      // this.announceDate = new Date(data.date);
       this.announceClubId = data.club_id;
       $("#announcementModal").modal({ backdrop: true });
     },
     async addNewAnnouncement() {
-      this.loading = true;
-      await this.addAnnouncement({
-        title: this.announceTitle,
-        description: this.announceDesc,
-        date: this.announceDate,
-        club_id: this.clubId,
-      });
-      this.loading = false;
-      if (this.successMessage != "") {
-        $("#announcementModal").modal("hide");
-        this.deleteClickId = 0;
-        this.deleteClubId = 0;
-        this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
-          duration: 5000,
+      this.submitted = true;
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      } else {
+        this.loading = true;
+        await this.addAnnouncement({
+          title: this.announceTitle,
+          description: this.announceDesc,
+          club_id: this.clubId,
         });
-        this.getAnnouncement();
+        this.loading = false;
+        this.submitted = false;
+        if (this.successMessage != "") {
+          $("#announcementModal").modal("hide");
+          this.deleteClickId = 0;
+          this.deleteClubId = 0;
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.SuccessType,
+            duration: 5000,
+          });
+          this.getAnnouncement();
+        }
       }
     },
     async updateAnnouncementId() {
@@ -781,7 +756,6 @@ export default {
         id: this.announcementId,
         title: this.announceTitle,
         description: this.announceDesc,
-        date: this.announceDate,
         clubId: this.clubId,
       });
       this.loading = false;
