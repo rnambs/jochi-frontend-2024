@@ -738,6 +738,7 @@ export default {
         this.loading = false;
         this.submitted = false;
         if (this.successMessage != "") {
+          this.resetAnnouncement();
           $("#announcementModal").modal("hide");
           this.deleteClickId = 0;
           this.deleteClubId = 0;
@@ -752,23 +753,38 @@ export default {
     },
     async updateAnnouncementId() {
       this.loading = true;
-      await this.updateAnnouncement({
-        id: this.announcementId,
-        title: this.announceTitle,
-        description: this.announceDesc,
-        clubId: this.clubId,
-      });
-      this.loading = false;
-      if (this.successMessage != "") {
-        this.deleteClickId = 0;
-        this.deleteClubId = 0;
-        this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
-          duration: 5000,
+      this.submitted = true;
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      } else {
+        await this.updateAnnouncement({
+          id: this.announcementId,
+          title: this.announceTitle,
+          description: this.announceDesc,
+          clubId: this.clubId,
         });
-        this.getAnnouncement();
+        this.loading = false;
+        this.submitted = false;
+
+        if (this.successMessage != "") {
+          this.resetAnnouncement();
+          this.deleteClickId = 0;
+          this.deleteClubId = 0;
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.SuccessType,
+            duration: 5000,
+          });
+          this.getAnnouncement();
+        }
       }
+    },
+    resetAnnouncement() {
+      this.announceClubId = "";
+      this.announcementId = "";
+      this.announceTitle = "";
+      this.announceDesc = "";
     },
   },
 };
