@@ -137,12 +137,14 @@
                       <div class="row">
                         <div
                           @click="openEdit(item)"
-                          v-for="(item, index) in announcements"
+                          v-for="(item, index) in announcementList"
                           :key="index"
                         >
+                          {{ item.first_name }}
                           {{ item.title }}
                           {{ item.description }}
-
+                          {{ item.date }}
+                          {{ item.time }}
                           <button
                             @click="onDeleteClick(item.id, item.club_id)"
                             data-toggle="modal"
@@ -374,6 +376,7 @@
                   class="form-control"
                   v-model="announceTitle"
                   name="announceTitle"
+                  maxlength="100"
                   :class="{
                     'is-invalid': submitted && $v.announceTitle.$error,
                   }"
@@ -396,7 +399,7 @@
                   id="message-text"
                   v-model="announceDesc"
                   name="announceDesc"
-                  maxlength="125"
+                  maxlength="800"
                   placeholder="Enter task description"
                   :class="{
                     'is-invalid': submitted && $v.announceDesc.$error,
@@ -479,6 +482,7 @@ export default {
       announceDesc: "",
       announcementId: 0,
       submitted: false,
+      announcementList: [],
     };
   },
   validations: {
@@ -529,7 +533,14 @@ export default {
         // user_id: localStorage.getItem("id"),
       });
       this.loading = false;
-      console.log("consoling announcements ", this.announcements);
+      this.announcementList = [];
+      this.announcements.forEach((e) => {
+        e["date"] = moment(e.createdAt).format("MMMM Do, YYYY");
+        e["time"] = moment(e.createdAt).format("h:mm A");
+        // e["time"] = moment(e.createdAt, "h:mm a");
+        this.announcementList.push(e);
+      });
+
       // this.list_data = [];
 
       // var daysArr = [];
@@ -690,7 +701,6 @@ export default {
       this.deleteClubId = clubId;
     },
     async onDeleteAnnouncement() {
-      console.log(this.deleteClickId, this.deleteClubId);
       this.loading = true;
       await this.deleteAnnouncement({
         id: this.deleteClickId,
