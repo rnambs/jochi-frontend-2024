@@ -81,7 +81,13 @@
                   v-for="(list, index) in slot_date"
                   :key="index"
                 >
-                  <div class="meeting-list p-3">
+                  <div class="meeting-list p-3 position-realtive">
+                    <div class="approved-tag position-absolute">
+                      <div class="approved-status done">
+                        <img src="../../static/image/pending.png" alt="" class="pending-img img-fluid">
+                        <img src="../../static/image/done.png" alt="" class="success-img img-fluid">
+                      </div>
+                    </div>
                     <h6>Meeting with {{ list["title"] }}</h6>
                     <p class="date">{{ list["dateFormat"] }}</p>
                     <p class="time">
@@ -163,7 +169,7 @@
                             }"
                             :disabled-dates="disabledDates" -->
                     <date-picker
-                      class="form-control"
+                      class="form-control w-50"
                       placeholder="MM/DD/YYYY"
                       format="MM/dd/yyyy"
                       :value="date"
@@ -181,32 +187,48 @@
                     <!-- </div> -->
                     <!-- </div> -->
 
-                    <div
-                      v-if="slot_date_selection.length > 0"
-                      class="col-10 p-0"
-                    >
-                      <div class="row Meeting-row pl-0 pr-3 pt-3">
-                        <div
-                          class="col-md-3 mb-4 py-0"
-                          v-for="(Schedule, index) in slot_date_selection"
-                          :key="index"
-                        >
-                          <div class="meeting-list p-3">
-                            <h6>{{ Schedule["dateFormat"] }}</h6>
-                            <p class="time">
-                              {{ Schedule["from"] }} to {{ Schedule["end"] }}
-                              <!-- {{ timeZones.timeZone }} -->
-                            </p>
+                    
+                  </td>
+                </tr>
+
+                <tr v-if="slot_date_selection.length > 0">
+                  <td>Select Time</td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <span class="pr-2">:</span>
+                      <div
+                        v-if="slot_date_selection.length > 0"
+                        class="col-10 p-0 position-relative"
+                      >
+                        <button class="btn up-btn up-arrow-icon position-absolute">
+                          <i class="fa-solid fa-circle-chevron-up"></i>
+                        </button>
+                        <div class="row Meeting-row pl-0 pr-3 pt-3 custom-modal-ts-height">
+                          <div
+                            class="col-6 text-center modal-time-schedules"
+                            v-for="(Schedule, index) in slot_date_selection"
+                            :key="index"
+                          >
+                            <div class="meeting-list p-3">
+                              <h6>{{ Schedule["dateFormat"] }}</h6>
+                              <p class="time">
+                                {{ Schedule["from"] }} to {{ Schedule["end"] }}
+                                <!-- {{ timeZones.timeZone }} -->
+                              </p>
+                            </div>
+                          </div>
+                          <div
+                            v-if="slot_date_selection.length == 0 && isMounted"
+                            class="empty-schedule"
+                          >
+                            <p>No time slot is available</p>
                           </div>
                         </div>
-                        <div
-                          v-if="slot_date_selection.length == 0 && isMounted"
-                          class="empty-schedule"
-                        >
-                          <p>No time slot is available</p>
-                        </div>
+                        <button class="btn down-btn down-arrow-icon position-absolute">
+                          <i class="fa-solid fa-circle-chevron-down"></i>
+                        </button>
                       </div>
-                    </div>
+                    </div>             
                   </td>
                 </tr>
 

@@ -11,7 +11,10 @@
       <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-4">
-            <h4 class="tab-head">Club Catalog</h4>
+            <div class="d-flex justify-content-between align-item-center">
+              <h4 class="tab-head">Club Catalog</h4>
+              <button class="btn create-new-btn">Create New</button>
+            </div>
             <div class="inner-tab-section container-fluid py-3">
               <div class="row m-auto">
                 <div class="col-md-4">

@@ -2000,10 +2000,15 @@ body{
                         border: none;
                         border-radius: .5rem;
                         box-shadow: 0px 0px 8px -4px rgba($color: #000100, $alpha: 0.25);
+                        height: 135px;
                         h6{
                             margin-bottom: 0.3rem;
                             color: #000000;
                             font-weight: 700;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
                             @media (max-width: 1396.98px) {
                                 font-size: 0.9rem;
                             }
@@ -2018,7 +2023,7 @@ body{
                             }
                         }
                         .date{
-                            color: $global-font-color;
+                            color: $timer-label;
                             font-weight: 300;
                             margin-bottom: 0.3rem;
                             @media (max-width: 1396.98px) {
@@ -5491,6 +5496,7 @@ switch to violet when it is active*/
             } 
             .modal-body{
                 background-color: transparent;
+                max-height: 75vh;
                 &.no-overflow{
                     overflow: unset !important;
                 }
@@ -6488,4 +6494,56 @@ select.form-control{
 .custom-row-table {
     border-collapse: separate;
     border-spacing: 0 15px;
+}
+
+.approved-tag {
+    top: 12px;
+    right: 12px;
+    .approved-status {
+        width: 30px;
+        &.pending {
+            .pending-img {
+                display: block;
+            }
+            .success-img {
+                display: none;
+            }
+        }
+        &.done {
+            .pending-img {
+                display: none;
+            }
+            .success-img {
+                display: block;
+            }
+        }
+    }
+}
+
+.custom-modal-ts-height {
+    height: 266px;
+    overflow: auto;
+    .modal-time-schedules {
+        .meeting-list {
+            background-color: rgba($color: $white, $alpha: 0.6);
+            box-shadow: 0 0 12px rgba($color: $black, $alpha: 0.15);
+            border-radius: 8px;
+            height: unset;
+        }
+    }
+}
+
+.down-arrow-icon,
+.up-arrow-icon {
+    color: $dark-theme;
+}
+
+.up-arrow-icon {
+    right: -20px;
+    top: -15px;
+}
+
+.down-arrow-icon {
+    right: -20px;
+    bottom: -25px;
 }
