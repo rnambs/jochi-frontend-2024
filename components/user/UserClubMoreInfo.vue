@@ -8,9 +8,13 @@
     />
     <div class="main-section">
       <!-- tab for club info -->
-      <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
-        
-
+      <div
+        class="
+          jochi-components-light-bg
+          p-4
+          custom-margin-for-main-section custom-full-height
+        "
+      >
         <!-- end tab for club info -->
 
         <!-- Club info -->
@@ -46,7 +50,9 @@
                                 v-for="(todos, index) in list_data"
                                 :key="index"
                               >
-                                <span class="input-name"> {{ todos.name }}</span>
+                                <span class="input-name">
+                                  {{ todos.name }}</span
+                                >
 
                                 <span
                                   class="input-icon"
@@ -87,6 +93,75 @@
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                  <div class="col-md-5 col-xs-12">
+                    <div class="inner-info container p-4">
+                      <div class="inner-info-head mb-3">
+                        <h6>Announcements</h6>
+                        <a
+                          href="#"
+                          class="btn add-assignment"
+                          data-toggle="modal"
+                          @click="openModal()"
+                          >Add Announcement</a
+                        >
+                      </div>
+                      <!-- <p class="time">
+                        Next meeting:
+                        {{
+                          allList.announcement == null
+                            ? "No meeting scheduled "
+                            : allList.announcement
+                        }}
+                      </p>
+
+                      <div class="row inner-col" v-if="enableEdit">
+                        <div class="col-lg-4 col-md-12 inner-info-head">
+                          <h6>Choose time</h6>
+                        </div>
+                        <div class="col-lg-8 col-md-12 input-icon-area">
+                          <multiselect
+                            v-model="value"
+                            track-by="start_time"
+                            label="start_time"
+                            placeholder="Select the time"
+                            :options="slots"
+                            @input="UpdateSlots"
+                          >
+                            <span slot="noResult">No data found</span>
+                          </multiselect>
+                        </div>
+                      </div> -->
+
+                      <div class="row">
+                        <div
+                          @click="openEdit(item)"
+                          v-for="(item, index) in announcements"
+                          :key="index"
+                        >
+                          {{ item.title }}
+                          {{ item.description }}
+
+                          <button
+                            @click="onDeleteClick(item.id, item.club_id)"
+                            data-toggle="modal"
+                            data-target="#mediumModal"
+                          >
+                            <span>
+                              <i class="fa fa-trash" aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                      <button
+                        v-if="enableEdit"
+                        class="btn btn-info-edit mt-2"
+                        :disabled="!value"
+                        @click.prevent="UpdateTime"
+                      >
+                        Update the next meeting
+                      </button>
                     </div>
                   </div>
                   <div class="col-md-5 col-xs-12">
@@ -213,13 +288,163 @@
         <!-- End Club info -->
       </div>
     </div>
+    <!-- modal delete confirm pop up -->
+    <div
+      class="modal fade"
+      id="mediumModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="mediumModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content h-auto">
+          <div class="modal-header bg-light text-dark">
+            <h5 class="modal-title" id="mediumModalLabel">Delete</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="text-left">Are you sure you want to delete this item?</p>
+          </div>
+          <div class="modal-footer bg-white text-dark">
+            <button
+              type="button"
+              data-dismiss="modal"
+              class="btn btn-primary color-white"
+              @click="onDeleteAnnouncement()"
+            >
+              Yes
+            </button>
+            <button
+              type="button"
+              data-dismiss="modal"
+              class="btn btn-light border border-secondary color-dark"
+              aria-label="Close"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal delete confirm pop up -->
+
+    <!-- modal for add announcement -->
+    <div
+      class="modal fade"
+      id="announcementModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="announcementModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="announcementModalLongTitle">
+              {{ isAnnouncementEdit ? "Edit" : "Add" }} Announcement
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body no-overflow px-4">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Title<em>*</em></label
+                >
+
+                <input
+                  type="text"
+                  id="club"
+                  placeholder="Enter your club name"
+                  class="form-control"
+                  v-model="announceTitle"
+                  name="announceTitle"
+                  :class="{
+                    'is-invalid': submitted && $v.announceTitle.$error,
+                  }"
+                />
+                <div
+                  v-if="submitted && $v.announceTitle.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.announceTitle.required"
+                    >This field is required</span
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label"
+                  >Description<em>*</em></label
+                >
+                <textarea
+                  class="form-control"
+                  id="message-text"
+                  v-model="announceDesc"
+                  name="announceDesc"
+                  maxlength="125"
+                  placeholder="Enter task description"
+                  :class="{
+                    'is-invalid': submitted && $v.announceDesc.$error,
+                  }"
+                ></textarea>
+                <div
+                  v-if="submitted && $v.announceDesc.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.announceDesc.required"
+                    >This field is required</span
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-color-close"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-color-save"
+              :disabled="submitted"
+              @click="
+                isAnnouncementEdit
+                  ? updateAnnouncementId()
+                  : addNewAnnouncement()
+              "
+            >
+              {{ (isAnnouncementEdit ? "Update" : "Add") + " Announcement" }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal add assignment -->
   </div>
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
-
+import { required } from "vuelidate/lib/validators";
 import Multiselect from "vue-multiselect";
 var headingName = "";
 var clubId = "";
@@ -247,10 +472,22 @@ export default {
       daysArray: [],
       dayArrVal: [],
       valueId: "",
+      deleteClickId: 0,
+      deleteClubId: 0,
+      isAnnouncementEdit: false,
+      announceTitle: "",
+      announceDesc: "",
+      announcementId: 0,
+      submitted: false,
     };
+  },
+  validations: {
+    announceTitle: { required },
+    announceDesc: { required },
   },
   mounted() {
     var user = localStorage.getItem("user_type");
+    this.getAnnouncement();
     if (user == 3) {
       this.ClubMoreInfo();
       this.SlotswithId();
@@ -261,6 +498,7 @@ export default {
   computed: {
     ...mapState("clubMoreInfo", {
       allList: (state) => state.allList,
+      announcements: (state) => state.announcements,
       enableEdit: (state) => state.enableEdit,
       slots: (state) => state.slots,
       successMessage: (state) => state.successMessage,
@@ -276,9 +514,42 @@ export default {
       updateTime: "updateTime",
       slotswithId: "slotswithId",
       removetodo: "removetodo",
+      getAnnouncements: "getAnnouncements",
+      deleteAnnouncement: "deleteAnnouncement",
+      addAnnouncement: "addAnnouncement",
+      updateAnnouncement: "updateAnnouncement",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
+    },
+    async getAnnouncement() {
+      this.loading = true;
+      await this.getAnnouncements({
+        club_id: this.clubId,
+        // user_id: localStorage.getItem("id"),
+      });
+      this.loading = false;
+      console.log("consoling announcements ", this.announcements);
+      // this.list_data = [];
+
+      // var daysArr = [];
+      // if (this.allList.days) {
+      //   this.allList.days.forEach((day) => {
+      //     daysArr.push(day);
+      //   });
+      // }
+      // this.dateArray = daysArr;
+      // var todoArr = [];
+      // if (this.allList.todo) {
+      //   this.allList.todo.forEach((element) => {
+      //     var ScheduleArr = {};
+      //     ScheduleArr["name"] = element.todo_list;
+      //     ScheduleArr["id"] = element.id;
+      //     todoArr.push(ScheduleArr);
+
+      //     this.list_data = todoArr;
+      //   });
+      // }
     },
     checkSlot(day) {
       if (this.dateArray.includes(day)) {
@@ -290,10 +561,10 @@ export default {
 
     async ClubMoreInfo() {
       this.loading = true;
-      await this.clubMoreInfo({
-        club_id: this.clubId,
-        user_id: localStorage.getItem("id"),
-      });
+      // await this.clubMoreInfo({
+      //   club_id: this.clubId,
+      //   user_id: localStorage.getItem("id"),
+      // });
       this.loading = false;
       this.list_data = [];
 
@@ -413,6 +684,107 @@ export default {
     },
     UpdateSlots(val) {
       this.valueId = val.id;
+    },
+    onDeleteClick(id, clubId) {
+      this.deleteClickId = id;
+      this.deleteClubId = clubId;
+    },
+    async onDeleteAnnouncement() {
+      console.log(this.deleteClickId, this.deleteClubId);
+      this.loading = true;
+      await this.deleteAnnouncement({
+        id: this.deleteClickId,
+        clubId: this.deleteClubId,
+      });
+      this.loading = false;
+      if (this.successMessage != "") {
+        this.deleteClickId = 0;
+        this.deleteClubId = 0;
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        this.getAnnouncement();
+      }
+    },
+    async openModal() {
+      // this.dateValue = new Date(this.calendarApi.view.activeStart);
+      // this.isAssignmentEdit = false;
+      $("#announcementModal").modal({ backdrop: true });
+    },
+    async openEdit(data) {
+      // this.dateValue = new Date(this.calendarApi.view.activeStart);
+      // this.isAssignmentEdit = false;
+      this.announcementId = data.id;
+      this.announceTitle = data.title;
+      this.announceDesc = data.description;
+      // this.announceDate = new Date(data.date);
+      this.announceClubId = data.club_id;
+      $("#announcementModal").modal({ backdrop: true });
+    },
+    async addNewAnnouncement() {
+      this.submitted = true;
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      } else {
+        this.loading = true;
+        await this.addAnnouncement({
+          title: this.announceTitle,
+          description: this.announceDesc,
+          club_id: this.clubId,
+        });
+        this.loading = false;
+        this.submitted = false;
+        if (this.successMessage != "") {
+          this.resetAnnouncement();
+          $("#announcementModal").modal("hide");
+          this.deleteClickId = 0;
+          this.deleteClubId = 0;
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.SuccessType,
+            duration: 5000,
+          });
+          this.getAnnouncement();
+        }
+      }
+    },
+    async updateAnnouncementId() {
+      this.loading = true;
+      this.submitted = true;
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      } else {
+        await this.updateAnnouncement({
+          id: this.announcementId,
+          title: this.announceTitle,
+          description: this.announceDesc,
+          clubId: this.clubId,
+        });
+        this.loading = false;
+        this.submitted = false;
+
+        if (this.successMessage != "") {
+          this.resetAnnouncement();
+          this.deleteClickId = 0;
+          this.deleteClubId = 0;
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.SuccessType,
+            duration: 5000,
+          });
+          this.getAnnouncement();
+        }
+      }
+    },
+    resetAnnouncement() {
+      this.announceClubId = "";
+      this.announcementId = "";
+      this.announceTitle = "";
+      this.announceDesc = "";
     },
   },
 };
