@@ -168,12 +168,28 @@
                     <span v-if="meetingType == 'Teacher'"
                       >{{ detailWith }}
                     </span>
-                    <span
+                    <div
+                      class="row"
                       v-else
-                      v-for="(item, index) of detailMeetingWith"
+                      v-for="(item, index) of invitedMembers"
                       :key="index"
-                      >{{ item }}</span
                     >
+                      <span
+                        v-if="item.student_id != studentId"
+                        :class="
+                          item.student_id == item.teacher_id
+                            ? 'accepted'
+                            : meeting_request == 0
+                            ? 'pending'
+                            : meeting_request == 1
+                            ? 'accepted'
+                            : meeting_request == 2
+                            ? 'rejected'
+                            : ''
+                        "
+                        >{{ item.name }}</span
+                      >
+                    </div>
                   </td>
                 </tr>
 
@@ -509,6 +525,7 @@ export default {
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
       detailMeetingId: "",
+      detailGroupId: "",
       detailStudentId: "",
       detailMeetingRequest: "",
       detailRequestId: "",
@@ -564,6 +581,7 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
       timeZones: (state) => state.timeZones,
+      invitedMembers: (state) => state.invitedMembers,
     }),
   },
   methods: {
@@ -580,6 +598,7 @@ export default {
       studentScheduleConfirm: "studentScheduleConfirm",
       scheduleConfirm: "scheduleConfirm",
       acceptOrRejectMeeting: "acceptOrRejectMeeting",
+      getInvitedMembers: "getInvitedMembers",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -668,6 +687,7 @@ export default {
             : "";
 
         Scheduleobj["meeting_id"] = element.meeting_id;
+        Scheduleobj["group_id"] = element.group_id;
         Scheduleobj["request_id"] = element.request_id;
         Scheduleobj["student_id"] = element.student_id;
         Scheduleobj["schedule_id"] = element.schedule_id;
@@ -713,6 +733,8 @@ export default {
       this.detailWith = list.new_title;
       this.detailMeetingWith = list.meeting_with;
       this.detailMeetingId = list.meeting_id;
+      this.detailMeetingId = list.meeting_id;
+      this.detailGroupId = list.group_id;
       this.detailStudentId = list.student_id;
       this.detailRequestId = list.request_id;
       this.detailMeetingRequest = list.meeting_request;
@@ -721,6 +743,7 @@ export default {
       this.detailSlotId = list.slot_id;
       // var dateF = list.date.split("-");
       this.date = new Date(moment(list.date));
+      this.getMemberDetails();
     },
     async updateDetails() {
       this.submitted = true;
@@ -732,6 +755,7 @@ export default {
         this.loading = true;
 
         await this.updateMeeting({
+          id: this.detailMeetingId,
           id: this.detailMeetingId,
           // teacher_id: this.value?.id,
           // student_id: localStorage.getItem("id"),
@@ -768,6 +792,7 @@ export default {
       }
     },
     resetValues() {
+      this.detailMeetingId = "";
       this.detailMeetingId = "";
       // teacher_id: this.value?.id,
       // student_id: localStorage.getItem("id"),
@@ -951,9 +976,29 @@ export default {
         });
       }
     },
+    async getMemberDetails() {
+      this.loading = true;
+      await this.getInvitedMembers({
+        group_id: this.detailGroupId,
+      });
+      this.loading = false;
+      console.log("invited members ", this.invitedMembers);
+    },
   },
 
   // https://api.jochi.devateam.com/view/all/group_members_detail?group_id=36
 };
 </script>
+
+<style>
+.pending {
+  background-color: yellow;
+}
+.accepted {
+  background-color: green;
+}
+.rejected {
+  background-color: red;
+}
+</style>
 

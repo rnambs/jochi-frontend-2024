@@ -6,6 +6,7 @@ const state = {
   timeZones: [],
   studentsSchedule: [],
   teacherSchedule: [],
+  invitedMembers: [],
   errorMessage: "",
   errorType: "",
   successMessage: "",
@@ -269,6 +270,27 @@ const actions = {
     }
 
   },
+  async getInvitedMembers({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$get(BASE_URL + `view/all/group_members_detail?group_id=${payLoad.group_id}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      commit('setInvitedMembers', response.data);
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+    }
+
+  },
 
 }
 const mutations = {
@@ -280,6 +302,9 @@ const mutations = {
   },
   setTeacherSchedule(state, data) {
     state.teacherSchedule = data;
+  },
+  setInvitedMembers(state, data) {
+    state.invitedMembers = data;
   },
   setTimeZone(state, data) {
     state.timeZones = data;
@@ -307,6 +332,9 @@ const getters = {
   },
   teacherSchedule: () => {
     return state.teacherSchedule;
+  },
+  invitedMembers: () => {
+    return state.invitedMembers;
   },
   students: () => {
     return state.students;
