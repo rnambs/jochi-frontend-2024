@@ -43,7 +43,13 @@
         <section id="sign-up" class="">
           <h1 class="heading mb-5">Sign up</h1>
           <div class="jochi-components-light-bg p-5">
-            <form action="" class="sign-in" @submit.prevent="GetSignUp">
+            <a href="#" class="text-center">
+              <img src="../static/image/school_passport.png" alt="" class="mb-2">
+              <div class="sc-sign-in-btn">
+                Sign in with School Passport
+              </div>
+            </a>
+            <!-- <form action="" class="sign-in" @submit.prevent="GetSignUp">
               <div class="row mb-3">
                 <div class="col-12">
                   <div class="form-row m-0">
@@ -117,7 +123,6 @@
               </div>
               <div class="row mb-3">
                 <div class="col-12">
-                  <!-- student pwd -->
 
                   <div class="form-row m-0">
                     <label class="form-label" for="Password">Student ID</label>
@@ -158,7 +163,7 @@
                   </button>
                 </div>
               </div>
-            </form>
+            </form> -->
           </div>
         </section>
       </div>

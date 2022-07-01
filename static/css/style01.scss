@@ -5515,8 +5515,8 @@ switch to violet when it is active*/
                 }
                 .form-group{
                     .form-control{
-                        border: 2px solid $border-color;
-                        background-color: $global-sidebar-bg;
+                        // border: 2px solid $border-color;
+                        // background-color: $global-sidebar-bg;
                         border-radius: 0.4rem;
                         font-size: 0.75rem;
                         color: $font-label-color;
@@ -5526,8 +5526,8 @@ switch to violet when it is active*/
                         &:focus{
                             border: none;
                             background: $global-background-color ;
-                            box-shadow: -4px -4px 6px #202021,
-                                        4px 4px 7px #3a3a3d;
+                            // box-shadow: -4px -4px 6px #202021,
+                            //             4px 4px 7px #3a3a3d;
                         } 
                         &::placeholder{
                             color: rgba($color:$font-label-color,$alpha:0.4);
@@ -6546,4 +6546,43 @@ select.form-control{
 .down-arrow-icon {
     right: -20px;
     bottom: -25px;
+}
+
+.create-new-btn {
+    color: #F9F9F9 !important;
+    border: none;
+    border-radius: 12px;
+    background-color: #FF6D6D;
+    padding: 0.25rem 2rem;
+}
+
+.announcement-section {
+    max-height: 28vh;
+    overflow: auto;
+    .announcement-card {
+        border-radius: 8px;
+        background-color: $white;
+        box-shadow: 0 0 8px rgba($color: $black, $alpha: 0.2);
+        .anc-name-section,
+        .anc-title-section {
+            font-size: 18px;
+        }
+        .anc-title-section {
+            width: 130px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .anc-status-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            &.green {
+                background-color: #1d9c00;
+            }
+            &.red {
+                background-color: #ea4335;
+            }   
+        }
+    }
 }
