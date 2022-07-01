@@ -83,9 +83,24 @@
                 >
                   <div class="meeting-list p-3 position-realtive">
                     <div class="approved-tag position-absolute">
-                      <div class="approved-status done">
-                        <img src="../../static/image/pending.png" alt="" class="pending-img img-fluid">
-                        <img src="../../static/image/done.png" alt="" class="success-img img-fluid">
+                      <!-- {{ list }} -->
+                      <div
+                        :class="
+                          list.meeting_request == 0
+                            ? 'approved-status pending'
+                            : 'approved-status done'
+                        "
+                      >
+                        <img
+                          src="../../static/image/pending.png"
+                          alt=""
+                          class="pending-img img-fluid"
+                        />
+                        <img
+                          src="../../static/image/done.png"
+                          alt=""
+                          class="success-img img-fluid"
+                        />
                       </div>
                     </div>
                     <h6>Meeting with {{ list["title"] }}</h6>
@@ -150,7 +165,15 @@
                   <td class="tmodal-data">With</td>
                   <td class="tmodal-data">
                     <span class="pr-2">:</span>
-                    {{ detailWith }}
+                    <span v-if="meetingType == 'Teacher'"
+                      >{{ detailWith }}
+                    </span>
+                    <span
+                      v-else
+                      v-for="(item, index) of detailMeetingWith"
+                      :key="index"
+                      >{{ item }}</span
+                    >
                   </td>
                 </tr>
 
@@ -186,8 +209,6 @@
                           </div> -->
                     <!-- </div> -->
                     <!-- </div> -->
-
-                    
                   </td>
                 </tr>
 
@@ -200,10 +221,21 @@
                         v-if="slot_date_selection.length > 0"
                         class="col-10 p-0 position-relative"
                       >
-                        <button class="btn up-btn up-arrow-icon position-absolute">
+                        <button
+                          class="btn up-btn up-arrow-icon position-absolute"
+                        >
                           <i class="fa-solid fa-circle-chevron-up"></i>
                         </button>
-                        <div class="row Meeting-row pl-0 pr-3 pt-3 custom-modal-ts-height">
+                        <div
+                          class="
+                            row
+                            Meeting-row
+                            pl-0
+                            pr-3
+                            pt-3
+                            custom-modal-ts-height
+                          "
+                        >
                           <div
                             class="col-6 text-center modal-time-schedules"
                             v-for="(Schedule, index) in slot_date_selection"
@@ -224,11 +256,13 @@
                             <p>No time slot is available</p>
                           </div>
                         </div>
-                        <button class="btn down-btn down-arrow-icon position-absolute">
+                        <button
+                          class="btn down-btn down-arrow-icon position-absolute"
+                        >
                           <i class="fa-solid fa-circle-chevron-down"></i>
                         </button>
                       </div>
-                    </div>             
+                    </div>
                   </td>
                 </tr>
 
@@ -313,7 +347,7 @@
                 <tr>
                   <td class="tmodal-data text-nowrap">Type of Meeting</td>
                   <td class="tmodal-data">
-                    <p class="mb-0 tdata-overflow  d-flex align-items-center">
+                    <p class="mb-0 tdata-overflow d-flex align-items-center">
                       <span class="pr-2">:</span>
                       <select
                         class="custom-select custom-select-sm mb-3"
@@ -459,6 +493,7 @@ export default {
       detailSlotId: "",
       detailType: "",
       detailWith: "",
+      detailMeetingWith: "",
       detailDate: "",
       detailTime: "",
       detailMeetingName: "",
@@ -594,9 +629,17 @@ export default {
         Scheduleobj["meeting_description"] = element.meeting_description;
         Scheduleobj["meeting_link"] = element.meeting_link;
         Scheduleobj["meeting_location"] = element.meeting_location;
+        Scheduleobj["meeting_request"] = element.meeting_request;
         Scheduleobj["meeting_name"] = element.meeting_name;
         Scheduleobj["conversation_type"] = element.conversation_type;
         Scheduleobj["new_title"] = element.new_title;
+        Scheduleobj["meeting_with"] =
+          meetingType == "Teacher"
+            ? element.new_title
+            : element.new_title
+            ? element.new_title.split(",")
+            : "";
+
         Scheduleobj["meeting_id"] = element.meeting_id;
         Scheduleobj["schedule_id"] = element.schedule_id;
         Scheduleobj["slot_id"] = element.slot_id;
@@ -639,6 +682,7 @@ export default {
           : list.meeting_link;
       this.detailType = list.type;
       this.detailWith = list.new_title;
+      this.detailMeetingWith = list.meeting_with;
       this.detailMeetingId = list.meeting_id;
       this.detailScheduleId = list.schedule_id;
       this.detailTeacherId = list.teacher_id;
