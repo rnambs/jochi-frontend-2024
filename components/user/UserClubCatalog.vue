@@ -173,17 +173,91 @@
           <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create New</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                ...
+                <form action="">
+                  <table class="w-100 table-modal custom-row-table">
+                    <tr>
+                      <td class="tmodal-data text-nowrap">Catalog Name</td>
+                      <td class="tmodal-data">
+                        <p class="mb-0 tdata-overflow d-flex align-items-center">
+                          <span class="pr-2">:</span>
+                          <input
+                            type="text"
+                            autocomplete="off"
+                            maxlength="100"
+                            class="form-control custom-form-control"
+                          />
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tmodal-data text-nowrap">Description</td>
+                      <td class="tmodal-data">
+                        <p class="mb-0 tdata-overflow d-flex align-items-center">
+                          <span class="pr-2">:</span>
+                          <textarea
+                            type="text"
+                            autocomplete="off"
+                            maxlength="500"
+                            class="form-control custom-form-control"
+                          ></textarea>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tmodal-data text-nowrap">Type</td>
+                      <td class="tmodal-data">
+                        <p class="mb-0 tdata-overflow  d-flex align-items-center">
+                          <span class="pr-2">:</span>
+                          <select
+                            class="custom-select custom-select-sm mb-3"
+                          >
+                            <option value="club">
+                              Club
+                            </option>
+                            <option value="team">Team</option>
+                          </select>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tmodal-data text-nowrap">Tags</td>
+                      <td class="tmodal-data">
+                        <p class="mb-0 tdata-overflow  d-flex align-items-center">
+                          <span class="pr-2">:</span>
+                          <select
+                            class="custom-select custom-select-sm mb-3"
+                          >
+                            <option value="Video Conference">
+                              Tag 1
+                            </option>
+                            <option value="In Person">Tag 2</option>
+                          </select>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button
+                  type="button"
+                  class="btn btn-color-close"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-color-save"
+                >
+                  Save
+                </button>
               </div>
             </div>
           </div>

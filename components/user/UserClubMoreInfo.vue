@@ -134,26 +134,51 @@
                         </div>
                       </div> -->
 
-                      <div class="row">
+                      <div class="col-12 announcement-section">
                         <div
                           @click="openEdit(item)"
                           v-for="(item, index) in announcementList"
                           :key="index"
                         >
-                          {{ item.first_name }}
-                          {{ item.title }}
-                          {{ item.description }}
-                          {{ item.date }}
-                          {{ item.time }}
-                          <button
-                            @click="onDeleteClick(item.id, item.club_id)"
-                            data-toggle="modal"
-                            data-target="#mediumModal"
-                          >
-                            <span>
-                              <i class="fa fa-trash" aria-hidden="true"></i>
-                            </span>
-                          </button>
+                          <div class="announcement-card px-3 py-2 mb-2">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                              <div class="left-side">
+                                <div class="anc-name-section">
+                                  {{ item.first_name }}
+                                </div>
+                                <div class="anc-date-section">
+                                  {{ item.date }}
+                                </div>
+                                <div class="anc-time-section">
+                                  {{ item.time }}
+                                </div>
+                              </div>
+                              <div class="right-side h-100 d-flex align-items-center justify-content-between flex-column">
+                                <div class="anc-title-section mb-2">
+                                  {{ item.title }}
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center mb-2">
+                                  <div class="anc-status-btn green mr-3"></div>
+                                  <button
+                                    @click="onDeleteClick(item.id, item.club_id)"
+                                    data-toggle="modal"
+                                    data-target="#mediumModal"
+                                  >
+                                    <span>
+                                      <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </span>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                            
+                          </div>
+                          
+                          
+                          <!-- {{ item.description }} -->
+                          
+                          
+                          
                         </div>
                       </div>
                       <button
