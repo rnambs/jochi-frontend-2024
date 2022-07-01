@@ -241,6 +241,34 @@ const actions = {
       }
     }
   },
+  async acceptOrRejectMeeting({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$post(BASE_URL + 'meeting/request/respond_to_meeting_request', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      if (response.message == "Success") {
+
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', "Your meeting request submitted successfully");
+        commit('setSuccessType', "error");
+
+      }
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+    }
+
+  },
 
 }
 const mutations = {

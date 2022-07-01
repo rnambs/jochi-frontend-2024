@@ -432,6 +432,27 @@
                         </td> 
                       </tr>-->
               </table>
+
+              <div
+                v-if="detailMeetingRequest == 0 && detailTeacherId != studentId"
+                class="row text-center"
+              >
+                <button
+                  type="button"
+                  class="btn btn-color-save"
+                  @click="acceptOrReject(1)"
+                >
+                  Accept
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-color-close"
+                  data-dismiss="modal"
+                  @click="acceptOrReject(2)"
+                >
+                  Reject
+                </button>
+              </div>
             </form>
           </div>
           <div class="modal-footer">
@@ -488,6 +509,9 @@ export default {
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
       detailMeetingId: "",
+      detailStudentId: "",
+      detailMeetingRequest: "",
+      detailRequestId: "",
       detailScheduleId: "",
       detailTeacherId: "",
       detailSlotId: "",
@@ -502,7 +526,8 @@ export default {
       detailVenue: "",
       date_formatted: "",
       submitted: false,
-      // initialDateSelect: true,
+      meetingType: "",
+      studentId: 0,
     };
   },
   validations: {
@@ -512,6 +537,7 @@ export default {
     detailVenue: { required },
   },
   mounted() {
+    this.studentId = parseInt(localStorage.getItem("id"));
     this.ListAllMeeting();
     this.GetAll();
     var _this = this;
@@ -553,6 +579,7 @@ export default {
       updateTimeSchedule: "updateTimeSchedule",
       studentScheduleConfirm: "studentScheduleConfirm",
       scheduleConfirm: "scheduleConfirm",
+      acceptOrRejectMeeting: "acceptOrRejectMeeting",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -608,7 +635,7 @@ export default {
           "November",
           "December",
         ];
-        var meetingType = element.meeting_type;
+        this.meetingType = element.meeting_type;
         var title = element.new_title;
         var from = element.start_time;
         var end = element.end_time;
@@ -620,7 +647,7 @@ export default {
           date.format("D") +
           " " +
           date.format("MMMM");
-        Scheduleobj["type"] = meetingType;
+        Scheduleobj["type"] = this.meetingType;
         Scheduleobj["title"] = title;
         Scheduleobj["dateFormat"] = dateFormat;
         Scheduleobj["from"] = from;
@@ -634,13 +661,15 @@ export default {
         Scheduleobj["conversation_type"] = element.conversation_type;
         Scheduleobj["new_title"] = element.new_title;
         Scheduleobj["meeting_with"] =
-          meetingType == "Teacher"
+          this.meetingType == "Teacher"
             ? element.new_title
             : element.new_title
             ? element.new_title.split(",")
             : "";
 
         Scheduleobj["meeting_id"] = element.meeting_id;
+        Scheduleobj["request_id"] = element.request_id;
+        Scheduleobj["student_id"] = element.student_id;
         Scheduleobj["schedule_id"] = element.schedule_id;
         Scheduleobj["slot_id"] = element.slot_id;
         Scheduleobj["teacher_id"] = element.teacher_id;
@@ -652,9 +681,9 @@ export default {
           date.format("DD");
         this.slot_date.push(Scheduleobj);
         Allarray.push(Scheduleobj);
-        if (meetingType == "Teacher") {
+        if (this.meetingType == "Teacher") {
           Teacherarray.push(Scheduleobj);
-        } else if (meetingType == "Peer") {
+        } else if (this.meetingType == "Peer") {
           Peerarray.push(Scheduleobj);
         }
       });
@@ -684,6 +713,9 @@ export default {
       this.detailWith = list.new_title;
       this.detailMeetingWith = list.meeting_with;
       this.detailMeetingId = list.meeting_id;
+      this.detailStudentId = list.student_id;
+      this.detailRequestId = list.request_id;
+      this.detailMeetingRequest = list.meeting_request;
       this.detailScheduleId = list.schedule_id;
       this.detailTeacherId = list.teacher_id;
       this.detailSlotId = list.slot_id;
@@ -761,7 +793,6 @@ export default {
       }
     },
     async UpdateTimeSchedule() {
-      alert("getting time schedule");
       if (this.detailType == "Teacher") {
         // if (!this.date) {
         //   $('input[name="daterange"]').val("");
@@ -894,7 +925,35 @@ export default {
         });
       }
     },
+    async acceptOrReject(status) {
+      this.loading = true;
+
+      await this.acceptOrRejectMeeting({
+        meeting_request: status ? status.toString() : "",
+        request_id: this.detailRequestId,
+        student_id: this.detailStudentId,
+      });
+
+      this.loading = false;
+
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        this.ListAllMeeting();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+    },
   },
+
+  // https://api.jochi.devateam.com/view/all/group_members_detail?group_id=36
 };
 </script>
 
