@@ -194,7 +194,7 @@
             <!-- pop up -->
 
             <!-- Modal -->
-            <div
+            <!-- <div
               class="modal fade"
               id="exampleModalCenter"
               tabindex="-1"
@@ -202,7 +202,10 @@
               aria-labelledby="exampleModalCenterTitle"
               aria-hidden="true"
             >
-              <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+              <div
+                class="modal-dialog modal-lg modal-dialog-centered"
+                role="document"
+              >
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">
@@ -266,13 +269,12 @@
                       data-toggle="modal"
                       data-target="#meetingDetailModal"
                     >
-                      <!-- @click="ScheduleConfirm()" -->
-                      Confirm Meeting
+                      Add New Meeting
                     </button>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div
               class="modal fade"
               id="meetingDetailModal"
@@ -281,7 +283,10 @@
               aria-labelledby="meetingDetailModalCenterTitle"
               aria-hidden="true"
             >
-              <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+              <div
+                class="modal-dialog modal-lg modal-dialog-centered"
+                role="document"
+              >
                 <div class="modal-content px-4">
                   <div class="modal-header">
                     <h5 class="modal-title" id="meetingDetailModalLongTitle">
@@ -317,7 +322,14 @@
                         <tr>
                           <td class="tmodal-data text-nowrap">Meeting Name</td>
                           <td class="tmodal-data">
-                            <p class="mb-0 tdata-overflow d-flex align-items-center">
+                            <p
+                              class="
+                                mb-0
+                                tdata-overflow
+                                d-flex
+                                align-items-center
+                              "
+                            >
                               <span class="pr-2">:</span>
                               <!-- <span v-if="value">
                               {{
@@ -352,7 +364,14 @@
                         <tr>
                           <td class="tmodal-data text-nowrap">Description</td>
                           <td class="tmodal-data">
-                            <p class="mb-0 tdata-overflow d-flex align-items-center">
+                            <p
+                              class="
+                                mb-0
+                                tdata-overflow
+                                d-flex
+                                align-items-center
+                              "
+                            >
                               <span class="pr-2">:</span>
                               <!-- <span v-if="value">
                               {{
@@ -389,7 +408,14 @@
                             Type of Meeting
                           </td>
                           <td class="tmodal-data">
-                            <p class="mb-0 tdata-overflow d-flex align-items-center">
+                            <p
+                              class="
+                                mb-0
+                                tdata-overflow
+                                d-flex
+                                align-items-center
+                              "
+                            >
                               <span class="pr-2">:</span>
                               <select
                                 class="custom-select custom-select-sm mb-3"
@@ -426,7 +452,14 @@
                             }}
                           </td>
                           <td class="tmodal-data">
-                            <p class="mb-0 tdata-overflow d-flex align-items-center">
+                            <p
+                              class="
+                                mb-0
+                                tdata-overflow
+                                d-flex
+                                align-items-center
+                              "
+                            >
                               <span class="pr-2">:</span>
                               <!-- <span v-if="value">
                               {{
@@ -805,7 +838,6 @@ export default {
       if (this.$v.$invalid) {
         return;
       } else {
-        $("#meetingDetailModal").modal("hide");
         this.loading = true;
 
         if (this.meetingType == "Teachers") {
@@ -825,6 +857,8 @@ export default {
           this.loading = false;
 
           if (this.successMessage != "") {
+            $(".modal-backdrop").remove();
+            $("#meetingDetailModal").modal("hide");
             this.resetValues();
             this.$toast.open({
               message: this.successMessage,
@@ -856,6 +890,8 @@ export default {
           this.loading = false;
 
           if (this.successMessage != "") {
+            $(".modal-backdrop").remove();
+            $("#meetingDetailModal").modal("hide");
             this.resetValues();
             this.$toast.open({
               message: this.successMessage,
