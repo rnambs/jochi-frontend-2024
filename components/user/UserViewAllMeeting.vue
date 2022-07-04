@@ -152,70 +152,75 @@
           </div>
           <div class="modal-body">
             <form action="">
-              <table class="w-100 table-modal custom-row-table">
-                <tr>
-                  <td class="tmodal-data">Type</td>
-                  <td class="tmodal-data">
-                    <span class="pr-2">:</span>
-                    {{ detailType }}
-                  </td>
-                </tr>
+              <fieldset
+                :disabled="
+                  detailTeacherId != studentId || detailMeetingRequest != 1
+                "
+              >
+                <table class="w-100 table-modal custom-row-table">
+                  <tr>
+                    <td class="tmodal-data">Type</td>
+                    <td class="tmodal-data">
+                      <span class="pr-2">:</span>
+                      {{ detailType }}
+                    </td>
+                  </tr>
 
-                <tr>
-                  <td class="tmodal-data">With</td>
-                  <td class="tmodal-data">
-                    <span class="pr-2">:</span>
-                    <span v-if="meetingType == 'Teacher'"
-                      >{{ detailWith }}
-                    </span>
-                    <div
-                      class="row"
-                      v-else
-                      v-for="(item, index) of invitedMembers"
-                      :key="index"
-                    >
-                      <span
-                        v-if="item.student_id != studentId"
-                        :class="
-                          item.student_id == item.teacher_id
-                            ? 'accepted'
-                            : meeting_request == 0
-                            ? 'pending'
-                            : meeting_request == 1
-                            ? 'accepted'
-                            : meeting_request == 2
-                            ? 'rejected'
-                            : ''
-                        "
-                        >{{ item.name }}</span
+                  <tr>
+                    <td class="tmodal-data">With</td>
+                    <td class="tmodal-data">
+                      <span class="pr-2">:</span>
+                      <span v-if="meetingType == 'Teacher'"
+                        >{{ detailWith }}
+                      </span>
+                      <div
+                        class="row"
+                        v-else
+                        v-for="(item, index) of invitedMembers"
+                        :key="index"
                       >
-                    </div>
-                  </td>
-                </tr>
+                        <span
+                          v-if="item.student_id != studentId"
+                          :class="
+                            item.student_id == item.teacher_id
+                              ? 'accepted-meeting'
+                              : item.meeting_request == 0
+                              ? 'pending-meeting'
+                              : item.meeting_request == 1
+                              ? 'accepted-meeting'
+                              : item.meeting_request == 2
+                              ? 'rejected-meeting'
+                              : ''
+                          "
+                          >{{ item.name }}</span
+                        >
+                      </div>
+                    </td>
+                  </tr>
 
-                <tr>
-                  <td class="tmodal-data">Date</td>
-                  <td class="tmodal-data d-flex align-items-center">
-                    <span class="pr-2">:</span>
-                    <!-- <div class="col-md-6 ml-auto"> -->
-                    <!-- <div class="form-group"> -->
-                    <!-- <label for="recipient-name" class="col-form-label"
+                  <tr>
+                    <td class="tmodal-data">Date</td>
+                    <td class="tmodal-data d-flex align-items-center">
+                      <span class="pr-2">:</span>
+                      <!-- <div class="col-md-6 ml-auto"> -->
+                      <!-- <div class="form-group"> -->
+                      <!-- <label for="recipient-name" class="col-form-label"
                         >Date<em>*</em></label
                       > -->
-                    <!-- v-model="dateValue"
+                      <!-- v-model="dateValue"
                             :class="{
                               'is-invalid': submitted && $v.dateValue.$error,
                             }"
                             :disabled-dates="disabledDates" -->
-                    <date-picker
-                      class="form-control w-50"
-                      placeholder="MM/DD/YYYY"
-                      format="MM/dd/yyyy"
-                      :value="date"
-                      v-model="date"
-                      @selected="onDateChange()"
-                    />
-                    <!-- <div
+                      <date-picker
+                        class="form-control w-50"
+                        placeholder="MM/DD/YYYY"
+                        format="MM/dd/yyyy"
+                        :value="date"
+                        v-model="date"
+                        @selected="onDateChange()"
+                      />
+                      <!-- <div
                             v-if="submitted && $v.dateValue.$error"
                             class="invalid-feedback"
                           >
@@ -223,216 +228,223 @@
                               >This field is required</span
                             >
                           </div> -->
-                    <!-- </div> -->
-                    <!-- </div> -->
-                  </td>
-                </tr>
+                      <!-- </div> -->
+                      <!-- </div> -->
+                    </td>
+                  </tr>
 
-                <tr v-if="slot_date_selection.length > 0">
-                  <td>Select Time</td>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <span class="pr-2">:</span>
-                      <div
-                        v-if="slot_date_selection.length > 0"
-                        class="col-10 p-0 position-relative"
-                      >
-                        <button
-                          class="btn up-btn up-arrow-icon position-absolute"
-                        >
-                          <i class="fa-solid fa-circle-chevron-up"></i>
-                        </button>
+                  <tr v-if="slot_date_selection.length > 0">
+                    <td>Select Time</td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="pr-2">:</span>
                         <div
-                          class="
-                            row
-                            Meeting-row
-                            pl-0
-                            pr-3
-                            pt-3
-                            custom-modal-ts-height
-                          "
+                          v-if="slot_date_selection.length > 0"
+                          class="col-10 p-0 position-relative"
                         >
-                          <div
-                            class="col-6 text-center modal-time-schedules"
-                            v-for="(Schedule, index) in slot_date_selection"
-                            :key="index"
+                          <button
+                            class="btn up-btn up-arrow-icon position-absolute"
                           >
-                            <div class="meeting-list p-3">
-                              <h6>{{ Schedule["dateFormat"] }}</h6>
-                              <p class="time">
-                                {{ Schedule["from"] }} to {{ Schedule["end"] }}
-                                <!-- {{ timeZones.timeZone }} -->
-                              </p>
+                            <i class="fa-solid fa-circle-chevron-up"></i>
+                          </button>
+                          <div
+                            class="
+                              row
+                              Meeting-row
+                              pl-0
+                              pr-3
+                              pt-3
+                              custom-modal-ts-height
+                            "
+                          >
+                            <div
+                              class="col-6 text-center modal-time-schedules"
+                              v-for="(Schedule, index) in slot_date_selection"
+                              :key="index"
+                            >
+                              <div class="meeting-list p-3">
+                                <h6>{{ Schedule["dateFormat"] }}</h6>
+                                <p class="time">
+                                  {{ Schedule["from"] }} to
+                                  {{ Schedule["end"] }}
+                                  <!-- {{ timeZones.timeZone }} -->
+                                </p>
+                              </div>
+                            </div>
+                            <div
+                              v-if="
+                                slot_date_selection.length == 0 && isMounted
+                              "
+                              class="empty-schedule"
+                            >
+                              <p>No time slot is available</p>
                             </div>
                           </div>
-                          <div
-                            v-if="slot_date_selection.length == 0 && isMounted"
-                            class="empty-schedule"
+                          <button
+                            class="
+                              btn
+                              down-btn down-arrow-icon
+                              position-absolute
+                            "
                           >
-                            <p>No time slot is available</p>
-                          </div>
+                            <i class="fa-solid fa-circle-chevron-down"></i>
+                          </button>
                         </div>
-                        <button
-                          class="btn down-btn down-arrow-icon position-absolute"
-                        >
-                          <i class="fa-solid fa-circle-chevron-down"></i>
-                        </button>
                       </div>
-                    </div>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
 
-                <tr>
-                  <td class="tmodal-data">Time</td>
-                  <td class="tmodal-data">
-                    <span class="pr-2">:</span>
-                    {{ detailTime }}
-                    <!-- {{ popupFrom[0] }} to {{ popupEnd[0] }} -->
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tmodal-data text-nowrap">Meeting Name</td>
-                  <td class="tmodal-data">
-                    <p class="mb-0 tdata-overflow d-flex align-items-center">
+                  <tr>
+                    <td class="tmodal-data">Time</td>
+                    <td class="tmodal-data">
                       <span class="pr-2">:</span>
-                      <!-- <span v-if="value">
+                      {{ detailTime }}
+                      <!-- {{ popupFrom[0] }} to {{ popupEnd[0] }} -->
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tmodal-data text-nowrap">Meeting Name</td>
+                    <td class="tmodal-data">
+                      <p class="mb-0 tdata-overflow d-flex align-items-center">
+                        <span class="pr-2">:</span>
+                        <!-- <span v-if="value">
                               {{
                                 value.first_name +
                                 " " +
                                 (value.last_name ? value.last_name : "")
                               }}
                             </span> -->
-                      <input
-                        type="text"
-                        name="detailMeetingName"
-                        autocomplete="off"
-                        maxlength="100"
-                        class="form-control custom-form-control"
-                        v-model="detailMeetingName"
-                        :class="{
-                          'is-invalid':
-                            submitted && $v.detailMeetingName.$error,
-                        }"
-                      />
-                    </p>
-                    <div
-                      v-if="submitted && $v.detailMeetingName.$error"
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.detailMeetingName.required"
-                        >This field is required</span
+                        <input
+                          type="text"
+                          name="detailMeetingName"
+                          autocomplete="off"
+                          maxlength="100"
+                          class="form-control custom-form-control"
+                          v-model="detailMeetingName"
+                          :class="{
+                            'is-invalid':
+                              submitted && $v.detailMeetingName.$error,
+                          }"
+                        />
+                      </p>
+                      <div
+                        v-if="submitted && $v.detailMeetingName.$error"
+                        class="invalid-feedback"
                       >
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tmodal-data text-nowrap">Description</td>
-                  <td class="tmodal-data">
-                    <p class="mb-0 tdata-overflow d-flex align-items-center">
-                      <span class="pr-2">:</span>
-                      <!-- <span v-if="value">
+                        <span v-if="!$v.detailMeetingName.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tmodal-data text-nowrap">Description</td>
+                    <td class="tmodal-data">
+                      <p class="mb-0 tdata-overflow d-flex align-items-center">
+                        <span class="pr-2">:</span>
+                        <!-- <span v-if="value">
                               {{
                                 value.first_name +
                                 " " +
                                 (value.last_name ? value.last_name : "")
                               }}
                             </span> -->
-                      <textarea
-                        type="text"
-                        name="detailMeetingDesc"
-                        autocomplete="off"
-                        maxlength="500"
-                        class="form-control custom-form-control"
-                        v-model="detailMeetingDesc"
-                        :class="{
-                          'is-invalid':
-                            submitted && $v.detailMeetingDesc.$error,
-                        }"
-                      ></textarea>
-                    </p>
-                    <div
-                      v-if="submitted && $v.detailMeetingDesc.$error"
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.detailMeetingDesc.required"
-                        >This field is required</span
+                        <textarea
+                          type="text"
+                          name="detailMeetingDesc"
+                          autocomplete="off"
+                          maxlength="500"
+                          class="form-control custom-form-control"
+                          v-model="detailMeetingDesc"
+                          :class="{
+                            'is-invalid':
+                              submitted && $v.detailMeetingDesc.$error,
+                          }"
+                        ></textarea>
+                      </p>
+                      <div
+                        v-if="submitted && $v.detailMeetingDesc.$error"
+                        class="invalid-feedback"
                       >
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tmodal-data text-nowrap">Type of Meeting</td>
-                  <td class="tmodal-data">
-                    <p class="mb-0 tdata-overflow d-flex align-items-center">
-                      <span class="pr-2">:</span>
-                      <select
-                        class="custom-select custom-select-sm mb-3"
-                        tabindex=""
-                        name="detailConversationType"
-                        v-model="detailConversationType"
-                        :class="{
-                          'is-invalid':
-                            submitted && $v.detailConversationType.$error,
-                        }"
+                        <span v-if="!$v.detailMeetingDesc.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tmodal-data text-nowrap">Type of Meeting</td>
+                    <td class="tmodal-data">
+                      <p class="mb-0 tdata-overflow d-flex align-items-center">
+                        <span class="pr-2">:</span>
+                        <select
+                          class="custom-select custom-select-sm mb-3"
+                          tabindex=""
+                          name="detailConversationType"
+                          v-model="detailConversationType"
+                          :class="{
+                            'is-invalid':
+                              submitted && $v.detailConversationType.$error,
+                          }"
+                        >
+                          <option value="Video Conference">
+                            Video Conference
+                          </option>
+                          <option value="In Person">In Person</option>
+                        </select>
+                      </p>
+                      <div
+                        v-if="submitted && $v.detailConversationType.$error"
+                        class="invalid-feedback"
                       >
-                        <option value="Video Conference">
-                          Video Conference
-                        </option>
-                        <option value="In Person">In Person</option>
-                      </select>
-                    </p>
-                    <div
-                      v-if="submitted && $v.detailConversationType.$error"
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.detailConversationType.required"
-                        >This field is required</span
-                      >
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tmodal-data text-nowrap">
-                    {{
-                      detailConversationType == "Video Conference"
-                        ? "Meeting Link"
-                        : "Meeting Location"
-                    }}
-                  </td>
-                  <td class="tmodal-data">
-                    <p class="mb-0 tdata-overflow d-flex align-items-center">
-                      <span class="pr-2">:</span>
-                      <!-- <span v-if="value">
+                        <span v-if="!$v.detailConversationType.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tmodal-data text-nowrap">
+                      {{
+                        detailConversationType == "Video Conference"
+                          ? "Meeting Link"
+                          : "Meeting Location"
+                      }}
+                    </td>
+                    <td class="tmodal-data">
+                      <p class="mb-0 tdata-overflow d-flex align-items-center">
+                        <span class="pr-2">:</span>
+                        <!-- <span v-if="value">
                               {{
                                 value.first_name +
                                 " " +
                                 (value.last_name ? value.last_name : "")
                               }}
                             </span> -->
-                      <input
-                        type="text"
-                        name="detailVenue"
-                        autocomplete="off"
-                        maxlength="200"
-                        class="form-control custom-form-control"
-                        v-model="detailVenue"
-                        :class="{
-                          'is-invalid': submitted && $v.detailVenue.$error,
-                        }"
-                      />
-                    </p>
-                    <div
-                      v-if="submitted && $v.detailVenue.$error"
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.detailVenue.required"
-                        >This field is required</span
+                        <input
+                          type="text"
+                          name="detailVenue"
+                          autocomplete="off"
+                          maxlength="200"
+                          class="form-control custom-form-control"
+                          v-model="detailVenue"
+                          :class="{
+                            'is-invalid': submitted && $v.detailVenue.$error,
+                          }"
+                        />
+                      </p>
+                      <div
+                        v-if="submitted && $v.detailVenue.$error"
+                        class="invalid-feedback"
                       >
-                    </div>
-                  </td>
-                </tr>
+                        <span v-if="!$v.detailVenue.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </td>
+                  </tr>
 
-                <!-- <tr>
+                  <!-- <tr>
                         <td class="tmodal-data">Date</td>
                         <td class="tmodal-data">
                           <span class="pr-2">:</span>
@@ -447,8 +459,8 @@
                           {{ popupFrom[0] }} to {{ popupEnd[0] }}
                         </td> 
                       </tr>-->
-              </table>
-
+                </table>
+              </fieldset>
               <div
                 v-if="detailMeetingRequest == 0 && detailTeacherId != studentId"
                 class="row text-center"
@@ -456,6 +468,7 @@
                 <button
                   type="button"
                   class="btn btn-color-save"
+                  data-dismiss="modal"
                   @click="acceptOrReject(1)"
                 >
                   Accept
@@ -483,6 +496,7 @@
               type="button"
               class="btn btn-color-save"
               @click="updateDetails()"
+              v-if="detailTeacherId == studentId && detailMeetingRequest == 1"
             >
               Update
             </button>
@@ -570,6 +584,8 @@ export default {
       allList: (state) => state.allList,
       allData: (state) => state.allData,
       timeZones: (state) => state.timeZones,
+      successMessages: (state) => state.successMessages,
+      SuccessTypes: (state) => state.SuccessTypes,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -686,7 +702,7 @@ export default {
             ? element.new_title.split(",")
             : "";
 
-        Scheduleobj["meeting_id"] = element.meeting_id;
+        Scheduleobj["meeting_id"] = element.id;
         Scheduleobj["group_id"] = element.group_id;
         Scheduleobj["request_id"] = element.request_id;
         Scheduleobj["student_id"] = element.student_id;
@@ -751,11 +767,9 @@ export default {
       if (this.$v.$invalid) {
         return;
       } else {
-        $("#meetingDetailModal").modal("hide");
         this.loading = true;
 
         await this.updateMeeting({
-          id: this.detailMeetingId,
           id: this.detailMeetingId,
           // teacher_id: this.value?.id,
           // student_id: localStorage.getItem("id"),
@@ -774,12 +788,14 @@ export default {
         });
 
         this.loading = false;
-
-        if (this.successMessage != "") {
+        if (this.successMessages != "") {
           this.resetValues();
+          $(".modal-backdrop").remove();
+          $("#meetingDetailModal").modal("hide");
+
           this.$toast.open({
-            message: this.successMessage,
-            type: this.SuccessType,
+            message: this.successMessages,
+            type: this.SuccessTypes,
             duration: 5000,
           });
         } else if (this.errorMessage != "") {
@@ -982,7 +998,6 @@ export default {
         group_id: this.detailGroupId,
       });
       this.loading = false;
-      console.log("invited members ", this.invitedMembers);
     },
   },
 
@@ -991,13 +1006,13 @@ export default {
 </script>
 
 <style>
-.pending {
+.pending-meeting {
   background-color: yellow;
 }
-.accepted {
+.accepted-meeting {
   background-color: green;
 }
-.rejected {
+.rejected-meeting {
   background-color: red;
 }
 </style>

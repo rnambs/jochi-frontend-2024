@@ -6,8 +6,8 @@ const state = {
     timeZones: [],
     errorMessage: "",
     errorType: "",
-    successMessage: "",
-    successType: "",
+    successMessages: "",
+    successTypes: "",
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -24,8 +24,8 @@ const actions = {
             commit('setTimeZone', response.timeZone);
         } catch {
             if (e.response.data.message == "Unauthorized") {
-                commit('setSuccessMessage', "");
-                commit('setSuccessType', "");
+                commit('setSuccessMessages', "");
+                commit('setSuccessTypes', "");
                 commit('setErrorMessage', "");
                 commit('setErrorType', "");
                 window.localStorage.clear();
@@ -46,8 +46,8 @@ const actions = {
             commit('setAllData', response.data);
         } catch {
             if (e.response.data.message == "Unauthorized") {
-                commit('setSuccessMessage', "");
-                commit('setSuccessType', "");
+                commit('setSuccessMessages', "");
+                commit('setSuccessTypes', "");
                 commit('setErrorMessage', "");
                 commit('setErrorType', "");
                 window.localStorage.clear();
@@ -65,55 +65,63 @@ const actions = {
                     'Authorization': ` ${token}`
                 },
             });
+            if (response.message) {
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                commit('setSuccessMessages', response.message);
+                commit('setSuccessTypes', "success");
+                return
+
+            }
             if (response.message == "Validation error") {
-                commit('setSuccessMessage', "");
-                commit('setSuccessType', "");
+                commit('setSuccessMessages', "");
+                commit('setSuccessTypes', "");
                 commit('setErrorMessage', "Invalid Value");
                 commit('setErrorType', "error");
             }
             else if (response.message == "Teacher Not Found") {
-                commit('setSuccessMessage', "");
-                commit('setSuccessType', "");
+                commit('setSuccessMessages', "");
+                commit('setSuccessTypes', "");
                 commit('setErrorMessage', "Teacher Not Found");
                 commit('setErrorType', "error");
             }
             else if (response.message == "Student Not Found") {
-                commit('setSuccessMessage', "");
-                commit('setSuccessType', "");
+                commit('setSuccessMessages', "");
+                commit('setSuccessTypes', "");
                 commit('setErrorMessage', "Student Not Found");
                 commit('setErrorType', "error");
             }
             else if (response.message == "You are selected time slot is invalid, please try with another") {
-                commit('setSuccessMessage', "");
-                commit('setSuccessType', "");
+                commit('setSuccessMessages', "");
+                commit('setSuccessTypes', "");
                 commit('setErrorMessage', "You are selected time slot is invalid, Please try with another");
                 commit('setErrorType', "error");
 
             }
             else if (response.message == "You have already selected this time slot") {
-                commit('setSuccessMessage', "");
-                commit('setSuccessType', "");
+                commit('setSuccessMessages', "");
+                commit('setSuccessTypes', "");
                 commit('setErrorMessage', "You have already selected this time slot");
                 commit('setErrorType', "error");
 
             }
             else if (response.message == "Teacher and Student are from different school") {
-                commit('setSuccessMessage', "");
-                commit('setSuccessType', "");
+                commit('setSuccessMessages', "");
+                commit('setSuccessTypes', "");
                 commit('setErrorMessage', "Teacher and Student are from different school");
                 commit('setErrorType', "error");
 
             }
             else if (response.message == "You already have a meeting at the selected time, Please try with another time") {
-                commit('setSuccessMessage', "");
-                commit('setSuccessType', "");
+                commit('setSuccessMessages', "");
+                commit('setSuccessTypes', "");
                 commit('setErrorMessage', "You already have a meeting at the selected time, Please try with another slot");
                 commit('setErrorType', "error");
 
             }
             else if (response.message == "You already have a meeting") {
-                commit('setSuccessMessage', "");
-                commit('setSuccessType', "");
+                commit('setSuccessMessages', "");
+                commit('setSuccessTypes', "");
                 commit('setErrorMessage', "You already have a meeting");
                 commit('setErrorType', "error");
 
@@ -121,14 +129,15 @@ const actions = {
             else if (response.message == "Success") {
                 commit('setErrorMessage', "");
                 commit('setErrorType', "");
-                commit('setSuccessMessage', "Your meeting request submitted successfully");
-                commit('setSuccessType', "error");
+                commit('setSuccessMessages', "Your meeting request submitted successfully");
+                commit('setSuccessTypes', "error");
 
             }
+
         } catch (e) {
             if (e.response.data.message == "Unauthorized") {
-                commit('setSuccessMessage', "");
-                commit('setSuccessType', "");
+                commit('setSuccessMessages', "");
+                commit('setSuccessTypes', "");
                 commit('setErrorMessage', "");
                 commit('setErrorType', "");
                 window.localStorage.clear();
@@ -154,11 +163,11 @@ const mutations = {
     setErrorType(state, data) {
         state.errorType = data;
     },
-    setSuccessMessage(state, data) {
-        state.successMessage = data;
+    setSuccessMessages(state, data) {
+        state.successMessages = data;
     },
-    setSuccessType(state, data) {
-        state.successType = data;
+    setSuccessTypes(state, data) {
+        state.successTypes = data;
     },
 
 }
@@ -178,11 +187,11 @@ const getters = {
     errorType: () => {
         return state.errorType;
     },
-    successMessage: () => {
-        return state.successMessage;
+    successMessages: () => {
+        return state.successMessages;
     },
-    successType: () => {
-        return state.successType;
+    successTypes: () => {
+        return state.successTypes;
     },
 
 }

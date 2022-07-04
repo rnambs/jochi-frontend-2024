@@ -728,7 +728,6 @@ export default {
           this.studentsValue = [];
           this.students_name = [];
           this.selectedStudents.forEach((element) => {
-            console.log("inside for each", fromDate, endDate);
             this.studentsValue.push(element.id);
             this.students_name.push(element.first_name);
           });
