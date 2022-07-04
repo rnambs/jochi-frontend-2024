@@ -8210,4 +8210,23 @@ select.form-control.is-invalid {
 .announcement-section .announcement-card .anc-status-btn.red {
   background-color: #ea4335;
 }
+
+.invited-members-status .i-member-status {
+  padding: 2px 10px;
+  font-size: 12px;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+.invited-members-status .i-member-status.pending-meeting {
+  background-color: #F6D73C;
+}
+
+.invited-members-status .i-member-status.accepted-meeting {
+  background-color: #4AC55E;
+}
+
+.invited-members-status .i-member-status.rejected-meeting {
+  background-color: #EF382E;
+}
 /*# sourceMappingURL=style01.css.map */

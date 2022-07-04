@@ -77,7 +77,7 @@
                   data-toggle="modal"
                   data-target="#meetingDetailModal"
                   @click="onCardClick(list)"
-                  class="col-md-3 mb-4 p-4"
+                  class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 p-4"
                   v-for="(list, index) in slot_date"
                   :key="index"
                 >
@@ -168,13 +168,13 @@
 
                   <tr>
                     <td class="tmodal-data">With</td>
-                    <td class="tmodal-data">
+                    <td class="tmodal-data d-flex align-items-center flex-wrap">
                       <span class="pr-2">:</span>
                       <span v-if="meetingType == 'Teacher'"
                         >{{ detailWith }}
                       </span>
                       <div
-                        class="row"
+                        class="invited-members-status mr-2"
                         v-else
                         v-for="(item, index) of invitedMembers"
                         :key="index"
@@ -183,13 +183,13 @@
                           v-if="item.student_id != studentId"
                           :class="
                             item.student_id == item.teacher_id
-                              ? 'accepted-meeting'
+                              ? 'accepted-meeting i-member-status'
                               : item.meeting_request == 0
-                              ? 'pending-meeting'
+                              ? 'pending-meeting i-member-status'
                               : item.meeting_request == 1
-                              ? 'accepted-meeting'
+                              ? 'accepted-meeting i-member-status'
                               : item.meeting_request == 2
-                              ? 'rejected-meeting'
+                              ? 'rejected-meeting i-member-status'
                               : ''
                           "
                           >{{ item.name }}</span
@@ -1004,16 +1004,4 @@ export default {
   // https://api.jochi.devateam.com/view/all/group_members_detail?group_id=36
 };
 </script>
-
-<style>
-.pending-meeting {
-  background-color: yellow;
-}
-.accepted-meeting {
-  background-color: green;
-}
-.rejected-meeting {
-  background-color: red;
-}
-</style>
 

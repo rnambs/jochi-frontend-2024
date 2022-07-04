@@ -6586,3 +6586,21 @@ select.form-control{
         }
     }
 }
+
+.invited-members-status {
+    .i-member-status {
+        padding: 2px 10px;
+        font-size: 12px;
+        color: $white;
+        border-radius: 8px;
+        &.pending-meeting {
+            background-color: $priority-low;
+        }
+        &.accepted-meeting {
+        background-color: $icon-bg-green;
+        }
+        &.rejected-meeting {
+        background-color: $priority-high;
+        }
+    }
+}
