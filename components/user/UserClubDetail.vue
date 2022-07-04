@@ -8,12 +8,26 @@
     />
     <div class="main-section">
       <!-- tab for club detail -->
-      <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+      <div
+        class="
+          jochi-components-light-bg
+          p-4
+          custom-margin-for-main-section custom-full-height
+        "
+      >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-3">
             <h4 class="tab-head">Club details</h4>
             <div class="inner-tab-section container-fluid py-3">
-              <div class="row m-auto d-flex justify-content-between align-items-center">
+              <div
+                class="
+                  row
+                  m-auto
+                  d-flex
+                  justify-content-between
+                  align-items-center
+                "
+              >
                 <div class="col-md-4">
                   <div class="input-icon-area">
                     <multiselect
@@ -82,14 +96,21 @@
                     <nuxt-link
                       :to="{
                         path: '/club-info',
-                        query: { id: list.id, name: list.description },
+                        query: {
+                          id: list.id,
+                          name: list.description,
+                          type: 'club',
+                        },
                       }"
                       class="btn btn-sm btn-view-more"
                       >View More</nuxt-link
                     >
                   </div>
                 </div>
-                <div v-if="list_data.length == 0" class="w-100 text-center py-5">
+                <div
+                  v-if="list_data.length == 0"
+                  class="w-100 text-center py-5"
+                >
                   <p class="no-data">No data available</p>
                 </div>
               </div>

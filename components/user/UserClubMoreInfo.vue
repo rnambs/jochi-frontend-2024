@@ -37,7 +37,116 @@
               </div>
               <div class="inner-info container-fluid my-3">
                 <div class="row">
-                  <div class="col-md-7 col-xs-12">
+                  <div v-if="type == 'team'" class="col-md-7 col-xs-12">
+                    <div class="inner-info container-fluid p-4">
+                      <div class="row">
+                        <!-- <div class="col-6"> -->
+                        <div class="inner-info-head mb-3">
+                          <h6>Trainings/Matches</h6>
+                          <a
+                            href="#"
+                            class="btn add-assignment"
+                            data-toggle="modal"
+                            @click="openModal()"
+                            >Add Training/Match</a
+                          >
+                        </div>
+                        <div class="col-12 announcement-section">
+                          <div
+                            @click="openEdit(item)"
+                            v-for="(item, index) in announcementList"
+                            :key="index"
+                          >
+                            <div class="announcement-card">
+                              <div
+                                class="
+                                  d-flex
+                                  align-items-center
+                                  justify-content-between
+                                  w-100
+                                "
+                              >
+                                <div class="left-side">
+                                  <div class="anc-name-section">
+                                    {{ item.first_name }}
+                                  </div>
+                                  <div class="anc-date-section">
+                                    {{ item.date }}
+                                  </div>
+                                  <div class="anc-time-section">
+                                    {{ item.time }}
+                                  </div>
+                                </div>
+                                <div
+                                  class="
+                                    right-side
+                                    h-100
+                                    d-flex
+                                    align-items-center
+                                    justify-content-between
+                                    flex-column
+                                  "
+                                >
+                                  <div class="anc-title-section mb-2">
+                                    {{ item.title }}
+                                  </div>
+                                  <div
+                                    class="
+                                      d-flex
+                                      align-items-center
+                                      justify-content-center
+                                      mb-2
+                                    "
+                                  >
+                                    <div
+                                      class="anc-status-btn green mr-3"
+                                    ></div>
+                                    <button
+                                      @click="
+                                        onDeleteClick(item.id, item.club_id)
+                                      "
+                                      data-toggle="modal"
+                                      data-target="#mediumModal"
+                                    >
+                                      <span>
+                                        <i
+                                          class="fa fa-trash"
+                                          aria-hidden="true"
+                                        ></i>
+                                      </span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- {{ item.description }} -->
+                          </div>
+                        </div>
+                        <!-- </div> -->
+                        <div class="col-6" v-if="enableEdit">
+                          <div class="inner-info-head mb-3">
+                            <h6>Add Todo</h6>
+                          </div>
+                          <div class="form-row m-0">
+                            <input
+                              class="form-control"
+                              v-model="todolist"
+                              maxlength="30"
+                            />
+                            <button
+                              :disabled="!todolist"
+                              class="btn btn-info-edit mt-2"
+                              @click.prevent="EditTodo(clubId)"
+                            >
+                              Update
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div v-else class="col-md-7 col-xs-12">
                     <div class="inner-info container-fluid p-4">
                       <div class="row">
                         <div class="col-6">
@@ -141,7 +250,14 @@
                           :key="index"
                         >
                           <div class="announcement-card px-3 py-2 mb-2">
-                            <div class="d-flex align-items-center justify-content-between w-100">
+                            <div
+                              class="
+                                d-flex
+                                align-items-center
+                                justify-content-between
+                                w-100
+                              "
+                            >
                               <div class="left-side">
                                 <div class="anc-name-section">
                                   {{ item.first_name }}
@@ -153,32 +269,48 @@
                                   {{ item.time }}
                                 </div>
                               </div>
-                              <div class="right-side h-100 d-flex align-items-center justify-content-between flex-column">
+                              <div
+                                class="
+                                  right-side
+                                  h-100
+                                  d-flex
+                                  align-items-center
+                                  justify-content-between
+                                  flex-column
+                                "
+                              >
                                 <div class="anc-title-section mb-2">
                                   {{ item.title }}
                                 </div>
-                                <div class="d-flex align-items-center justify-content-center mb-2">
+                                <div
+                                  class="
+                                    d-flex
+                                    align-items-center
+                                    justify-content-center
+                                    mb-2
+                                  "
+                                >
                                   <div class="anc-status-btn green mr-3"></div>
                                   <button
-                                    @click="onDeleteClick(item.id, item.club_id)"
+                                    @click="
+                                      onDeleteClick(item.id, item.club_id)
+                                    "
                                     data-toggle="modal"
                                     data-target="#mediumModal"
                                   >
                                     <span>
-                                      <i class="fa fa-trash" aria-hidden="true"></i>
+                                      <i
+                                        class="fa fa-trash"
+                                        aria-hidden="true"
+                                      ></i>
                                     </span>
                                   </button>
                                 </div>
                               </div>
                             </div>
-                            
                           </div>
-                          
-                          
+
                           <!-- {{ item.description }} -->
-                          
-                          
-                          
                         </div>
                       </div>
                       <button
@@ -490,6 +622,7 @@ export default {
       lottieOptions: { animationData: animationData.default },
       headingName: this.$route.query.name,
       clubId: this.$route.query.id,
+      type: this.$route.query.type,
       list_data: [],
       dateArray: [],
       simpleStringValue: "",

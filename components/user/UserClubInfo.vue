@@ -8,8 +8,12 @@
     />
     <div class="main-section">
       <!-- tab for club info -->
-      <div class="jochi-components-light-bg custom-margin-for-main-section custom-full-height">
-
+      <div
+        class="
+          jochi-components-light-bg
+          custom-margin-for-main-section custom-full-height
+        "
+      >
         <!-- end tab for club info -->
 
         <!-- Club info -->
@@ -28,7 +32,8 @@
                 justify-content-top
                 container-fluid
                 pr-3
-                py-0 pl-0
+                py-0
+                pl-0
               "
             >
               <div class="info-head my-2">
@@ -44,9 +49,10 @@
                     <div class="inner-info-head mb-2">
                       <h5>About the {{ headingName }}</h5>
                     </div>
-                    <p class="mb-2 cd-about-club-details">The Drama Club is our school’s premier performing arts groups.
-                      Opportunities for students interested in drama, technology, singing
-                      and more!
+                    <p class="mb-2 cd-about-club-details">
+                      The Drama Club is our school’s premier performing arts
+                      groups. Opportunities for students interested in drama,
+                      technology, singing and more!
                     </p>
                     <div class="form-group mb-1">
                       <textarea
@@ -60,10 +66,19 @@
 
                       <button
                         href=""
-                        class="btn btn-info-edit custom-theme-color-btn pl-4 pr-4 mb-0 button"
+                        class="
+                          btn btn-info-edit
+                          custom-theme-color-btn
+                          pl-4
+                          pr-4
+                          mb-0
+                          button
+                        "
                         v-if="enableEdit"
                         :disabled="!list.description"
-                        @click.prevent="Editinformation(clubId, list.description)"
+                        @click.prevent="
+                          Editinformation(clubId, list.description)
+                        "
                       >
                         Update
                       </button>
@@ -84,7 +99,17 @@
                     <div class="inner-info-head mb-2 mt-4">
                       <h5>Members</h5>
                     </div>
-                    <div class="members-thumbnail-list d-flex flex-column align-items-center justify-content-start mt-3 position-relative">
+                    <div
+                      class="
+                        members-thumbnail-list
+                        d-flex
+                        flex-column
+                        align-items-center
+                        justify-content-start
+                        mt-3
+                        position-relative
+                      "
+                    >
                       <div class="first-row">
                         <div class="d-flex align-items-center">
                           <div class="mlist-thumb-holder"></div>
@@ -119,8 +144,22 @@
                                   :key="index"
                                 >
                                   <!-- <span class="input-name">{{ data }}</span> -->
-                                  <div class="d-flex align-items-center justify-content-end mt-2">
-                                    <div class="col-4 d-flex justify-content-end p-0">
+                                  <div
+                                    class="
+                                      d-flex
+                                      align-items-center
+                                      justify-content-end
+                                      mt-2
+                                    "
+                                  >
+                                    <div
+                                      class="
+                                        col-4
+                                        d-flex
+                                        justify-content-end
+                                        p-0
+                                      "
+                                    >
                                       <div class="ld-img-section">
                                         <div class="ld-img-holder"></div>
                                       </div>
@@ -164,12 +203,23 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-12 text-right inner-col" v-if="enableEdit">
+                      <div
+                        class="col-12 text-right inner-col"
+                        v-if="enableEdit"
+                      >
                         <div class="inner-info-head mb-3">
                           <h5>Add Leaders</h5>
                         </div>
 
-                        <div class="form-row m-0 d-flex align-items-center justify-content-end">
+                        <div
+                          class="
+                            form-row
+                            m-0
+                            d-flex
+                            align-items-center
+                            justify-content-end
+                          "
+                        >
                           <input
                             type="text"
                             class="form-control col-6"
@@ -196,16 +246,28 @@
                           <div class="col-6 info-tag pr-0">
                             <div class="input-group mb-0 justify-content-end">
                               <div
-                                class="input-icon-area py-1 px-4 mb-2 mr-2 custom-club-details-tag-bg"
+                                class="
+                                  input-icon-area
+                                  py-1
+                                  px-4
+                                  mb-2
+                                  mr-2
+                                  custom-club-details-tag-bg
+                                "
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
                               >
-                                <input type="text" class="pl" hidden/>{{ value.name }}
+                                <input type="text" class="pl" hidden />{{
+                                  value.name
+                                }}
                                 <span
                                   class="input-icon"
                                   v-if="enableEdit"
                                   @click.prevent="RemoveTag(value.id)"
-                                  ><i class="fa fa-times p-1" aria-hidden="true"></i
+                                  ><i
+                                    class="fa fa-times p-1"
+                                    aria-hidden="true"
+                                  ></i
                                 ></span>
                               </div>
                               <div
@@ -218,11 +280,16 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-12 text-right inner-col" v-if="enableEdit">
+                      <div
+                        class="col-12 text-right inner-col"
+                        v-if="enableEdit"
+                      >
                         <div class="inner-info-head mb-3">
                           <h5>Add Tags</h5>
                         </div>
-                        <div class="d-flex align-items-center justify-content-end">
+                        <div
+                          class="d-flex align-items-center justify-content-end"
+                        >
                           <div class="input-icon-area col-6 pr-0">
                             <multiselect
                               v-model="value"
@@ -279,7 +346,7 @@
                 <nuxt-link
                   :to="{
                     path: '/club-moreInfo',
-                    query: { id: clubId, name: headingName },
+                    query: { id: clubId, name: headingName, type: 'club' },
                   }"
                   class="inner-tab"
                 >
@@ -320,6 +387,7 @@ export default {
       lottieOptions: { animationData: animationData.default },
       headingName: this.$route.query.name,
       clubId: this.$route.query.id,
+      type: this.$route.query.type,
       list_data: [],
       tagValue: [],
       availability: "",
