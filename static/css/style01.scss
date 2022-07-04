@@ -3214,7 +3214,7 @@ body{
                     max-height: calc(100vh - 320px);
                     overflow: hidden;
                     overflow-y: auto;
-                    .col-md-4{
+                    .col-md-6{
                         margin-bottom: 10px;
                         margin-top: 10px;
                         .club-list{
@@ -6601,6 +6601,28 @@ select.form-control{
         }
         &.rejected-meeting {
         background-color: $priority-high;
+        }
+    }
+}
+
+.club-type-icon {
+    width: 30px;
+    top: 5px;
+    right: 5px;
+    &.team {
+        .ct-team {
+            display: block;
+        }
+        .ct-club {
+            display: none;
+        }
+    }
+    &.club {
+        .ct-team {
+            display: none;
+        }
+        .ct-club {
+            display: block;
         }
     }
 }

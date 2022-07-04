@@ -4202,12 +4202,12 @@ body {
   overflow-y: auto;
 }
 
-.inner-section .main-section .club-section .inner-club .club-row .col-md-4 {
+.inner-section .main-section .club-section .inner-club .club-row .col-md-6 {
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
-.inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list {
+.inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list {
   max-height: 248px;
   background-color: rgba(255, 255, 255, 0.45);
   -webkit-box-shadow: 0.1rem 0.1rem 0.4rem rgba(255, 255, 255, 0.45);
@@ -4216,38 +4216,38 @@ body {
   height: 100%;
 }
 
-.inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list:hover, .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list:active {
+.inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list:hover, .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list:active {
   background-color: rgba(255, 255, 255, 0.45);
 }
 
-.inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list:hover .list-title, .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list:active .list-title {
+.inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list:hover .list-title, .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list:active .list-title {
   color: #FF6D6D;
 }
 
-.inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .list-title {
+.inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .list-title {
   color: #FF6D6D;
   text-align: center;
 }
 
 @media (max-width: 1024.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .list-title {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .list-title {
     font-size: .8rem;
   }
 }
 
 @media (max-width: 767.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .list-title {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .list-title {
     font-size: 1rem;
   }
 }
 
-.inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list {
+.inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list {
   max-height: 10vh;
   overflow: hidden;
 }
 
 @media (min-width: 1396.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list {
     max-height: 6.2rem;
     overflow: hidden;
     line-height: 1.5rem;
@@ -4255,7 +4255,7 @@ body {
 }
 
 @media (max-width: 1396.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list {
     max-height: 6.2rem;
     overflow: hidden;
     line-height: 1.5rem;
@@ -4263,7 +4263,7 @@ body {
 }
 
 @media (max-width: 1024.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list {
     max-height: 5.1rem;
     overflow: hidden;
     line-height: 1.2rem;
@@ -4271,73 +4271,73 @@ body {
 }
 
 @media (max-width: 764.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list {
     max-height: 5.1rem;
     overflow: hidden;
     line-height: 1.3rem;
   }
 }
 
-.inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list ul {
+.inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list ul {
   list-style-type: none;
   padding-left: 1em;
   min-height: 10vh;
 }
 
 @media (min-width: 1396.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list ul {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list ul {
     min-height: 12vh;
   }
 }
 
 @media (max-width: 1396.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list ul {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list ul {
     min-height: 13vh;
   }
 }
 
 @media (max-width: 1024.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list ul {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list ul {
     min-height: 12vh;
   }
 }
 
-.inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list ul li {
+.inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list ul li {
   color: #000000;
   font-size: .75rem;
 }
 
 @media (max-width: 1396.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list ul li {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list ul li {
     font-size: .75rem;
   }
 }
 
 @media (max-width: 1270.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list ul li {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list ul li {
     font-size: .68rem;
   }
 }
 
 @media (max-width: 1024.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list ul li {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list ul li {
     font-size: .55rem;
   }
 }
 
 @media (max-width: 1002.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list ul li {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list ul li {
     font-size: .65rem;
   }
 }
 
 @media (max-width: 767.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list ul li {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list ul li {
     font-size: .8rem;
   }
 }
 
-.inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .to-do-list ul li::before {
+.inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list ul li::before {
   content: "\2022";
   /* Add content: \2022 is the CSS Code/unicode for a bullet */
   color: #FF6D6D;
@@ -4352,43 +4352,43 @@ body {
   /* Also needed for space (tweak if needed) */
 }
 
-.inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .list-text {
+.inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .list-text {
   -webkit-columns: #424246;
           columns: #424246;
   font-size: .75rem;
 }
 
 @media (max-width: 1396.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .list-text {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .list-text {
     font-size: .75rem;
   }
 }
 
 @media (max-width: 1270.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .list-text {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .list-text {
     font-size: .68rem;
   }
 }
 
 @media (max-width: 1024.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .list-text {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .list-text {
     font-size: .55rem;
   }
 }
 
 @media (max-width: 1002.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .list-text {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .list-text {
     font-size: .65rem;
   }
 }
 
 @media (max-width: 767.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .list-text {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .list-text {
     font-size: .8rem;
   }
 }
 
-.inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .btn-view-more {
+.inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .btn-view-more {
   color: #F9F9F9;
   border: none;
   border-radius: 4px;
@@ -4398,31 +4398,31 @@ body {
 }
 
 @media (max-width: 1396.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .btn-view-more {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .btn-view-more {
     font-size: .75rem;
   }
 }
 
 @media (max-width: 1270.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .btn-view-more {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .btn-view-more {
     font-size: .68rem;
   }
 }
 
 @media (max-width: 1024.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .btn-view-more {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .btn-view-more {
     font-size: .55rem;
   }
 }
 
 @media (max-width: 1002.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .btn-view-more {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .btn-view-more {
     font-size: .65rem;
   }
 }
 
 @media (max-width: 767.98px) {
-  .inner-section .main-section .club-section .inner-club .club-row .col-md-4 .club-list .btn-view-more {
+  .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .btn-view-more {
     font-size: .8rem;
   }
 }
@@ -8228,5 +8228,27 @@ select.form-control.is-invalid {
 
 .invited-members-status .i-member-status.rejected-meeting {
   background-color: #EF382E;
+}
+
+.club-type-icon {
+  width: 30px;
+  top: 5px;
+  right: 5px;
+}
+
+.club-type-icon.team .ct-team {
+  display: block;
+}
+
+.club-type-icon.team .ct-club {
+  display: none;
+}
+
+.club-type-icon.club .ct-team {
+  display: none;
+}
+
+.club-type-icon.club .ct-club {
+  display: block;
 }
 /*# sourceMappingURL=style01.css.map */

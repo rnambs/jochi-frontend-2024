@@ -57,7 +57,7 @@
                             v-for="(item, index) in announcementList"
                             :key="index"
                           >
-                            <div class="announcement-card">
+                            <div class="announcement-card px-3 py-2 mb-2">
                               <div
                                 class="
                                   d-flex
