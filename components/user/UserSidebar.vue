@@ -251,17 +251,17 @@
                           to="/teacher-meeting"
                           @click="$event.target.classList.toggle('active')"
                           class="nav-link"
-                          >Teacher</nuxt-link
+                          >Schedule</nuxt-link
                         >
                       </li>
-                      <li class="nav-item">
+                      <!-- <li class="nav-item">
                         <nuxt-link
                           to="/peer-meeting"
                           @click="$event.target.classList.toggle('active')"
                           class="nav-link"
                           >Peer</nuxt-link
                         >
-                      </li>
+                      </li> -->
                       <li class="nav-item">
                         <nuxt-link
                           to="/viewall-meeting"

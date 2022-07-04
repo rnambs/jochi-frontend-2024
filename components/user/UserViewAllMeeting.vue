@@ -74,8 +74,6 @@
             <div class="inner-meeting m-auto container-fluid p-0">
               <div class="row Meeting-row pl-0 pr-3 pt-0">
                 <div
-                  data-toggle="modal"
-                  data-target="#meetingDetailModal"
                   @click="onCardClick(list)"
                   class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 p-4"
                   v-for="(list, index) in slot_date"
@@ -736,6 +734,7 @@ export default {
     },
 
     onCardClick(list) {
+      $("#meetingDetailModal").modal();
       this.detailDate = list.dateFormat;
       this.detailTime = list.from + " to " + list.end;
       this.detailMeetingName = list.meeting_name;
@@ -859,7 +858,7 @@ export default {
           this.dateConversionSlot();
         }
       } else {
-        if (this.selectedStudents.length > 0) {
+        if (this.selectedStudents && this.selectedStudents.length > 0) {
           this.studentsValue = [];
           this.students_name = [];
           this.selectedStudents?.forEach((element) => {

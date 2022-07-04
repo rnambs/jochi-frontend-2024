@@ -724,7 +724,7 @@ export default {
           this.dateConversion();
         }
       } else {
-        if (this.selectedStudents.length > 0) {
+        if (this.selectedStudents && this.selectedStudents.length > 0) {
           this.studentsValue = [];
           this.students_name = [];
           this.selectedStudents.forEach((element) => {
