@@ -73,11 +73,15 @@
             <div class="inner-club club-datail container-fluid py-3">
               <div class="row club-row m-1">
                 <div
-                  class="col-md-4"
+                  class="col-lg-4 col-md-6 col-sm-12 col-12"
                   v-for="(list, index) in list_data"
                   :key="index"
                 >
-                  <div class="club-list p-4">
+                  <div class="club-list p-4 position-relative">
+                    <div class="position-absolute club-type-icon team">
+                      <img src="../../static/image/Football.png" alt="" class="img-fluid ct-team">
+                      <img src="../../static/image/club-type.png" alt="" class="img-fluid ct-club">
+                    </div>
                     <h6 class="list-title mb-3">{{ list["description"] }}</h6>
                     <div class="to-do-list">
                       <ul>
