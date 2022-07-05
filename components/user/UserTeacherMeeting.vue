@@ -18,11 +18,11 @@
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-4">
-            <h4 class="tab-head">Teacher Meeting</h4>
+            <h4 class="tab-head">Schedule a Meeting!</h4>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0">
                 <div class="col-md-3 pl-0">
-                  <div class="input-icon-area">
+                  <div class="input-icon-area schedule-meeting-section">
                     <multiselect
                       v-model="meetingType"
                       :options="types"
@@ -36,7 +36,7 @@
                   </div>
                 </div>
                 <div class="col-md-3">
-                  <div class="input-icon-area">
+                  <div class="input-icon-area schedule-meeting-section">
                     <multiselect
                       v-if="meetingType == 'Teachers'"
                       v-model="value"
@@ -70,7 +70,7 @@
                   </div>
                 </div>
                 <div class="col-md-3">
-                  <div class="input-icon-area">
+                  <div class="input-icon-area schedule-meeting-section">
                     <input
                       type="text"
                       name="daterange"
@@ -154,7 +154,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-10 p-0">
+              <div class="col-xl-10 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                 <div class="row Meeting-row pl-0 pr-3 pt-3">
                   <div
                     class="col-md-3 mb-4 py-0"

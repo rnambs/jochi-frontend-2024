@@ -8,320 +8,324 @@
     />
     <div class="main-section">
       <!-- Weekly Calander -->
+      <div class="jochi-components-light-bg custom-margin-for-main-section custom-full-height">
 
-      <section id="Weekly-Calander" class="">
-        <div class="element-section container-fluid">
-          <div class="row mt-4">
-            <div class="col-12">
-              <div class="planner-week p-4">
-                <div class="planner-head mb-3">
-                  <h5>Weekly Planner</h5>
-                  <a
-                    href="#"
-                    class="btn add-assignment"
-                    data-toggle="modal"
-                    @click="
-                      resetAssignment();
-                      openModal();
-                    "
-                    >Add Assignment</a
-                  >
+        <section id="Weekly-Calander" class="">
+          <div class="element-section container-fluid">
+            
+            <div class="row mt-2">
+              <div class="col-12 p-0">
+                <div class="planner-week p-4">
+                  <!-- <div class="planner-head mb-3">
+                    <h5>Weekly Planner</h5>
+                    <a
+                      href="#"
+                      class="btn add-assignment"
+                      data-toggle="modal"
+                      @click="
+                        resetAssignment();
+                        openModal();
+                      "
+                      >Add Assignment</a
+                    >
+                  </div> -->
+                  <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-                <FullCalendar ref="fullCalendar" :options="calendarOptions" />
               </div>
             </div>
           </div>
-        </div>
-        <!-- Modal -->
-        <div
-          class="modal fade"
-          id="exampleModalCenter"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalCenterTitle"
-          aria-hidden="true"
-        >
+          <!-- Modal -->
           <div
-            class="modal-dialog modal-dialog-centered add-assmt"
-            role="document"
+            class="modal fade"
+            id="exampleModalCenter"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
           >
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">
-                  {{ isAssignmentEdit ? "Edit" : "Add" }} Assignment
-                </h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body no-overflow px-4">
-                <form>
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label"
-                      >Subject<em>*</em></label
-                    >
-                    <select
-                      class="form-control"
-                      tabindex=""
-                      v-model="subject"
-                      :class="{
-                        'is-invalid': submitted && $v.subject.$error,
-                      }"
-                    >
-                      <option value="">Select subject</option>
-                      <option
-                        v-bind:value="{
-                          id: subjects.id,
-                          text: subjects.subject_name,
+            <div
+              class="modal-dialog modal-dialog-centered add-assmt"
+              role="document"
+            >
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">
+                    {{ isAssignmentEdit ? "Edit" : "Add" }} Assignment
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body no-overflow px-4">
+                  <form>
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label"
+                        >Subject<em>*</em></label
+                      >
+                      <select
+                        class="form-control"
+                        tabindex=""
+                        v-model="subject"
+                        :class="{
+                          'is-invalid': submitted && $v.subject.$error,
                         }"
-                        v-for="(subjects, index) in subjectsData"
-                        :key="index"
                       >
-                        {{ subjects.subject_name }}
-                      </option>
-                      <option v-if="subjectsData.length == 0">No data</option>
-                    </select>
-                    <div
-                      v-if="submitted && $v.subject.$error"
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.subject.required"
-                        >This field is required</span
-                      >
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="message-text" class="col-form-label"
-                      >Task<em>*</em></label
-                    >
-                    <textarea
-                      class="form-control"
-                      id="message-text"
-                      v-model="task"
-                      maxlength="125"
-                      placeholder="Enter task description"
-                      :class="{
-                        'is-invalid': submitted && $v.task.$error,
-                      }"
-                    ></textarea>
-                    <div
-                      v-if="submitted && $v.task.$error"
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.task.required"
-                        >This field is required</span
-                      >
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 ml-auto">
-                      <div class="form-group mb-0">
-                        <label for="recipient-name" class="col-form-label"
-                          >Priority<em>*</em></label
+                        <option value="">Select subject</option>
+                        <option
+                          v-bind:value="{
+                            id: subjects.id,
+                            text: subjects.subject_name,
+                          }"
+                          v-for="(subjects, index) in subjectsData"
+                          :key="index"
                         >
-                        <div class="dropdown input-icon-area">
-                          <button
-                            id="dLabel"
-                            class="dropdown-select form-control"
-                            type="button"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                          >
-                            <span class="caret">
-                              {{
-                                priorityVal ? priorityVal : "Select priority"
-                              }}
-                            </span>
-                          </button>
-                          <ul class="dropdown-menu" aria-labelledby="dLabel">
-                            <li class="item">
-                              <div class="low-color"></div>
-                              Low
-                            </li>
-                            <li class="item">
-                              <div class="medium-color"></div>
-                              Medium
-                            </li>
-                            <li class="item">
-                              <div class="high-color"></div>
-                              High
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+                          {{ subjects.subject_name }}
+                        </option>
+                        <option v-if="subjectsData.length == 0">No data</option>
+                      </select>
                       <div
-                        v-if="
-                          submitted &&
-                          priorityVal != '1' &&
-                          priorityVal != '2' &&
-                          priorityVal != '3'
-                        "
+                        v-if="submitted && $v.subject.$error"
+                        class="invalid-feedback"
                       >
-                        <span
-                          v-if="
-                            priorityVal != '1' &&
-                            priorityVal != '2' &&
-                            priorityVal != '3'
-                          "
-                          class="required-button"
+                        <span v-if="!$v.subject.required"
                           >This field is required</span
                         >
                       </div>
                     </div>
-                    <div class="col-md-6 ml-auto">
-                      <div class="form-group">
-                        <label for="recipient-name" class="col-form-label"
-                          >Date<em>*</em></label
+                    <div class="form-group">
+                      <label for="message-text" class="col-form-label"
+                        >Task<em>*</em></label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="message-text"
+                        v-model="task"
+                        maxlength="125"
+                        placeholder="Enter task description"
+                        :class="{
+                          'is-invalid': submitted && $v.task.$error,
+                        }"
+                      ></textarea>
+                      <div
+                        v-if="submitted && $v.task.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.task.required"
+                          >This field is required</span
                         >
-                        <date-picker
-                          class="form-control"
-                          placeholder="MM/DD/YYYY"
-                          format="MM/dd/yyyy"
-                          v-model="dateValue"
-                          :class="{
-                            'is-invalid': submitted && $v.dateValue.$error,
-                          }"
-                          :disabled-dates="disabledDates"
-                        />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 ml-auto">
+                        <div class="form-group mb-0">
+                          <label for="recipient-name" class="col-form-label"
+                            >Priority<em>*</em></label
+                          >
+                          <div class="dropdown input-icon-area">
+                            <button
+                              id="dLabel"
+                              class="dropdown-select form-control"
+                              type="button"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              <span class="caret">
+                                {{
+                                  priorityVal ? priorityVal : "Select priority"
+                                }}
+                              </span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dLabel">
+                              <li class="item">
+                                <div class="low-color"></div>
+                                Low
+                              </li>
+                              <li class="item">
+                                <div class="medium-color"></div>
+                                Medium
+                              </li>
+                              <li class="item">
+                                <div class="high-color"></div>
+                                High
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
                         <div
-                          v-if="submitted && $v.dateValue.$error"
-                          class="invalid-feedback"
+                          v-if="
+                            submitted &&
+                            priorityVal != '1' &&
+                            priorityVal != '2' &&
+                            priorityVal != '3'
+                          "
                         >
-                          <span v-if="!$v.dateValue.required"
+                          <span
+                            v-if="
+                              priorityVal != '1' &&
+                              priorityVal != '2' &&
+                              priorityVal != '3'
+                            "
+                            class="required-button"
                             >This field is required</span
                           >
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-6">
-                      <div class="form-group">
-                        <label for="recipient-name" class="col-form-label"
-                          >Time<em>*</em></label
-                        >
-                        <div>
-                          <vue-timepicker
-                            format="hh:mm A"
-                            v-model="timeValue"
-                            name="timeValue"
-                            class="show-cursor"
+                      <div class="col-md-6 ml-auto">
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label"
+                            >Date<em>*</em></label
+                          >
+                          <date-picker
+                            class="form-control"
+                            placeholder="MM/DD/YYYY"
+                            format="MM/dd/yyyy"
+                            v-model="dateValue"
                             :class="{
-                              'is-invalid': submitted && $v.timeValue.$error,
+                              'is-invalid': submitted && $v.dateValue.$error,
                             }"
-                          ></vue-timepicker>
+                            :disabled-dates="disabledDates"
+                          />
                           <div
-                            v-if="submitted && $v.timeValue.$error"
+                            v-if="submitted && $v.dateValue.$error"
                             class="invalid-feedback"
                           >
-                            <span v-if="!$v.timeValue.required"
+                            <span v-if="!$v.dateValue.required"
                               >This field is required</span
                             >
                           </div>
                         </div>
-                        <!-- <input type="text" class="form-control"> -->
                       </div>
                     </div>
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-color-close"
-                  data-dismiss="modal"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-color-save"
-                  :disabled="processing"
-                  @click="
-                    isAssignmentEdit ? UpdateAssignment() : AddAssignment()
-                  "
-                >
-                  Confirm
-                </button>
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label"
+                            >Time<em>*</em></label
+                          >
+                          <div>
+                            <vue-timepicker
+                              format="hh:mm A"
+                              v-model="timeValue"
+                              name="timeValue"
+                              class="show-cursor"
+                              :class="{
+                                'is-invalid': submitted && $v.timeValue.$error,
+                              }"
+                            ></vue-timepicker>
+                            <div
+                              v-if="submitted && $v.timeValue.$error"
+                              class="invalid-feedback"
+                            >
+                              <span v-if="!$v.timeValue.required"
+                                >This field is required</span
+                              >
+                            </div>
+                          </div>
+                          <!-- <input type="text" class="form-control"> -->
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-color-close"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-color-save"
+                    :disabled="processing"
+                    @click="
+                      isAssignmentEdit ? UpdateAssignment() : AddAssignment()
+                    "
+                  >
+                    Confirm
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          class="modal fade"
-          id="MeetingModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalCenterTitle"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">
-                  Meeting Details
-                </h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body px-4">
-                <table class="w-100 table-modal">
-                  <tr>
-                    <td class="tmodal-data text-nowrap">Meeting With</td>
-                    <td class="tmodal-data">
-                      <p class="mb-0 tdata-overflow">
+          <div
+            class="modal fade"
+            id="MeetingModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">
+                    Meeting Details
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body px-4">
+                  <table class="w-100 table-modal">
+                    <tr>
+                      <td class="tmodal-data text-nowrap">Meeting With</td>
+                      <td class="tmodal-data">
+                        <p class="mb-0 tdata-overflow">
+                          <span class="px-2">:</span>
+                          <span>
+                            {{ popTitle }}
+                          </span>
+                        </p>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="tmodal-data">Meeting Type</td>
+                      <td class="tmodal-data">
                         <span class="px-2">:</span>
                         <span>
-                          {{ popTitle }}
+                          {{ popMeeting }}
                         </span>
-                      </p>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <td class="tmodal-data">Meeting Type</td>
-                    <td class="tmodal-data">
-                      <span class="px-2">:</span>
-                      <span>
-                        {{ popMeeting }}
-                      </span>
-                    </td>
-                  </tr>
+                    <tr>
+                      <td class="tmodal-data">Date</td>
+                      <td class="tmodal-data">
+                        <span class="px-2">:</span>
+                        {{ popDate }}
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <td class="tmodal-data">Date</td>
-                    <td class="tmodal-data">
-                      <span class="px-2">:</span>
-                      {{ popDate }}
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td class="tmodal-data">Time</td>
-                    <td class="tmodal-data">
-                      <span class="px-2">:</span>
-                      {{ popTime }}
-                    </td>
-                  </tr>
-                </table>
+                    <tr>
+                      <td class="tmodal-data">Time</td>
+                      <td class="tmodal-data">
+                        <span class="px-2">:</span>
+                        {{ popTime }}
+                      </td>
+                    </tr>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- edit modal -->
-      </section>
+          <!-- edit modal -->
+        </section>
+
+      </div>
 
       <!-- End Weekly Calander -->
     </div>
@@ -871,3 +875,335 @@ export default {
   },
 };
 </script>
+
+<style>
+.material-link {
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.material-date {
+  font-size: 10px;
+}
+
+.addition-material-section h6 {
+  color: #000000;
+}
+
+.form-control {
+  background-color: #b4b4b4;
+  border-block-color: #b4b4b4;
+  color: #ffffff;
+}
+
+.upload-file-section .form-control {
+  height: 18px;
+  font-size: 8px;
+  padding: 0;
+}
+
+.upload-file-section .form-control::placeholder {
+  color: #ffffff;
+}
+
+.completed-assignments h4 {
+  font-weight: 700;
+}
+
+.completed-assignments h4.blue {
+  color: #9d00df;
+}
+
+.completed-assignments h4.green {
+  color: #1d9c00;
+}
+
+.completed-assignments p {
+  color: #c7c1c1;
+  font-size: 12px;
+}
+
+.add-person-section {
+  top: -5px;
+  display: flex;
+  right: 25px;
+}
+
+.ap-img-add,
+.ap-img-section {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.ap-img-add {
+  margin-left: -15px;
+  cursor: pointer;
+}
+
+.ap-img-section {
+  background-color: #ffffff;
+}
+
+.fc .fc-scrollgrid {
+    border-radius: 12px;
+    overflow: hidden;
+    border: none;
+}
+
+.fc-timegrid-body {
+  padding-top: 25px;
+}
+
+.fc-theme-standard .fc-popover {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.fc .fc-more-popover .fc-popover-header {
+  background: #ff6f69;
+  color: #ffffff;
+  border-radius: 12px 12px 0 0;
+  font-weight: 700;
+}
+
+.fc .fc-more-popover .fc-popover-body {
+  background: none;
+  padding: 0;
+}
+
+.fc .fc-more-popover .fc-popover-body .fc-timegrid-event {
+  border-radius: 0 0 12px 12px;
+}
+
+.fc-toolbar-chunk .fc-toolbar-title {
+    position: absolute;
+    font-size: 20px;
+    color: #000000;
+    font-weight: 700;
+    z-index: 999;
+}
+
+.fc-toolbar-chunk button {
+    display: none !important;
+}
+
+/* .fc .fc-button .fc-icon {
+    color: #a28cf6;
+    font-size: 1em;
+    line-height: 1em;
+    margin: 0;
+}
+
+.fc-toolbar-chunk .fc-next-button.fc-button,
+.fc-toolbar-chunk .fc-prev-button.fc-button {
+    background: none;
+    border: 1px solid #b4b4b4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fc-toolbar-chunk .fc-next-button.fc-button {
+    position: relative;
+    top: 1.065rem;
+}
+
+.fc .fc-day-disabled {
+    background: none;
+}
+
+.fc .fc-daygrid-day-number {
+    color: #8c8bac !important;
+    font-weight: 600;
+}
+
+.fc-theme-standard th {
+    border-right: none;
+    border-left: none;
+    background-color: #f0deeb;
+    padding: 5px;
+}
+
+.fc-theme-standard th .fc-col-header-cell-cushion {
+    color: #a995ef;
+}
+
+.fc-theme-standard td {
+  border-color: #e9d7ee;
+} */
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border: none;
+}
+
+/* .fc-button.fc-button-primary {
+  display: none;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+  border: none;
+} */
+
+.fc .fc-daygrid-day.fc-day-today,
+.fc .fc-timegrid-col.fc-day-today {
+  background-color: transparent;
+}
+
+.fc .fc-timegrid-slot-minor {
+  border-top: none;
+}
+
+/* .fc-media-screen .fc-timegrid-cols {
+  position: unset;
+} */
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+  text-align: center;
+  background-color: #c6c5c5;
+  color: #ffffff;
+  border-radius: 7px;
+  font-size: 12px;
+  position: relative;
+}
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame::after {
+  content: "";
+  background-color: #c6c5c5;
+  width: 100vw;
+  height: 1px;
+  position: absolute;
+  top: 8px;
+}
+
+.fc-scrollgrid-sync-table{
+  display: none;
+}
+
+.fc .fc-cell-shaded,
+.fc .fc-day-disabled {
+  background: none;
+}
+
+.fc-toolbar-chunk .fc-toolbar-title {
+  position: absolute;
+  left: 42%;
+  right: 42%;
+  top: -5px;
+  font-size: 14px;
+  color: #ffffff;
+  background: #ff6f69;
+  border-radius: 12px;
+  padding: 5px;
+}
+
+.fc-view-harness.fc-view-harness-active {
+  height: 75vh !important;
+  margin-top: 20px;
+}
+
+.fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar {
+  width: 3px;
+}
+
+.fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-track {
+  background: none;
+}
+
+.fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-thumb {
+  background: #ff6d6d;
+}
+
+.fc-timegrid-event-harness > .fc-timegrid-event {
+  left: 15px;
+}
+
+.fc-v-event {
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 15%) !important;
+  box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 15%) !important;
+  border-radius: 22px;
+  border: none;
+  padding: 15px 20px;
+}
+
+.fc-v-event .fc-event-main {
+  color: #000000;
+}
+
+.fc-timegrid-col-events .fc-timegrid-more-link.fc-more-link {
+  bottom: Unset !important;
+  background: #ff6f69;
+  color: #ffffff !important;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.fc-v-event .fc-event-title {
+  font-weight: 800;
+  font-size: 18px;
+  word-break: break-all;
+}
+
+.jochi-components-light-bg.pending-assignment-popup {
+  top: 12px;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background-color: #ffffff;
+  transform: scale(0);
+  transition: transform 1s ease;
+}
+
+.jochi-components-light-bg.pending-assignment-popup.active {
+  transform: scale(1);
+  transition: transform 1s ease;
+}
+
+.planner-action-btns {
+  transform: rotate(-90deg);
+  top: 50vh;
+  right: -164px;
+}
+
+.planner-action-btns .pa-btn {
+  padding: 5px 20px;
+  background-color: #b8b8b8;
+  color: #ffffff;
+  border-radius: 14px 14px 0 0;
+  transition: background-color 0.5s ease;
+}
+
+.planner-action-btns .pa-btn.active {
+  background-color: #ffffff;
+  color: #b8b8b8;
+  border: 1px solid #b8b8b8;
+  transition: background-color 0.5s ease;
+}
+
+.assignment-planner-section {
+  top: 0;
+  right: 3rem;
+  bottom: 0;
+  z-index: 5;
+  display: none;
+}
+
+.assignment-planner-section.active {
+  display: block;
+}
+
+.assignment-planner-section .jochi-components-light-bg {
+  background-color: #ffffff;
+  height: 100%;
+}
+</style>

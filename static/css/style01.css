@@ -1224,7 +1224,7 @@ body {
 }
 
 .inner-section .main-section .element-section {
-  height: 81vh;
+  height: 95vh;
   margin: auto;
   width: 100%;
   position: relative;
@@ -1321,7 +1321,7 @@ body {
 }
 
 .inner-section .main-section .element-section .planner-daily .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-  height: calc(100vh - 320px) !important;
+  height: 85vh !important;
 }
 
 .inner-section .main-section .element-section .planner-daily .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid {
@@ -1569,9 +1569,7 @@ body {
 }
 
 .inner-section .main-section .element-section .planner-week {
-  background-color: #2D2D2F;
-  max-height: calc(100vh - 154px);
-  min-height: calc(100vh - 145px);
+  background-color: transparent;
   overflow: hidden;
   border-radius: 1rem;
   display: -webkit-box;
@@ -1655,7 +1653,7 @@ body {
 }
 
 .inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-  height: calc(100vh - 300px) !important;
+  height: 82vh !important;
 }
 
 .inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid {
@@ -2299,7 +2297,7 @@ body {
   border-radius: 0.65rem;
   font-size: 0.8rem;
   border: none;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
   color: #B4B4B4;
   padding: .375rem 2.5rem .375rem 1rem;
   min-height: calc(2.8rem + 2px);
@@ -5131,7 +5129,7 @@ body {
 }
 
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th .fc-scroller-harness table.fc-col-header th {
-  border-right: 1px solid #5B5B5E !important;
+  border-right: none !important;
 }
 
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th .fc-scroller-harness table.fc-col-header th:nth-child(7) {
@@ -7937,12 +7935,12 @@ select.form-control.is-invalid {
 
 .custom-search-icon {
   right: 0 !important;
-  background-color: #ffffff !important;
+  background-color: transparent !important;
   color: #B4B4B4 !important;
 }
 
 .multiselect__placeholder {
-  padding-top: 0 !important;
+  padding-top: 4px !important;
 }
 
 .form-control.custom-form-control {
@@ -8250,5 +8248,21 @@ select.form-control.is-invalid {
 
 .club-type-icon.club .ct-club {
   display: block;
+}
+
+.inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td {
+  border-right: none !important;
+}
+
+.inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-timegrid-slot.fc-timegrid-slot-lane {
+  border-bottom: none !important;
+}
+
+.schedule-meeting-section .multiselect__select:before {
+  content: none;
+}
+
+.schedule-meeting-section .form-control {
+  background-color: rgba(255, 255, 255, 0.2) !important;
 }
 /*# sourceMappingURL=style01.css.map */

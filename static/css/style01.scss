@@ -938,7 +938,7 @@ body{
         // planner
 
         .element-section{
-            height: 81vh;
+            height: 95vh;
             margin:auto;
             width:100%;
             position: relative;
@@ -1006,7 +1006,7 @@ body{
                         }
                     }
                     .fc-view-harness.fc-view-harness-active{
-                        height: calc(100vh - 320px) !important;
+                        height: 85vh !important;
                         // @media (max-width:1536.98px) {
                         //     height: 731.185px !important;
                         // }
@@ -1209,9 +1209,9 @@ body{
             }
             // planner-week
             .planner-week{
-                background-color: $global-sidebar-bg;
-                max-height: calc(100vh - 154px);
-                min-height: calc(100vh - 145px);
+                background-color: transparent;
+                // max-height: calc(100vh - 154px);
+                // min-height: calc(100vh - 145px);
                 overflow: hidden;
                 border-radius: 1rem;
                 display: flex;
@@ -1268,7 +1268,7 @@ body{
                         }
                     }
                     .fc-view-harness.fc-view-harness-active{
-                        height: calc(100vh - 300px) !important;
+                        height: 82vh !important;
                         table.fc-scrollgrid.fc-scrollgrid-liquid{
                             border: none !important;
                             thead{
@@ -1802,7 +1802,7 @@ body{
                             border-radius: 0.65rem;
                             font-size: 0.8rem;
                             border: none;
-                            background-color: $white;
+                            background-color: rgba($color: $white, $alpha: 0.2);
                             color: $font-label-color;
                             padding: .375rem 2.5rem .375rem 1rem;
                             min-height: calc(2.8rem + 2px);
@@ -4007,7 +4007,7 @@ body{
                                                     table.fc-col-header{
                                                         border-bottom: hidden;
                                                         th{
-                                                            border-right: 1px solid $cal-border !important;
+                                                            border-right: none !important;
                                                             &:nth-child(7){
                                                                 border-right: none;
                                                             }
@@ -6337,12 +6337,12 @@ select.form-control{
 
 .custom-search-icon {
     right: 0 !important;
-    background-color: $white !important;
+    background-color: transparent !important;
     color: $font-label-color !important;
 }
 
 .multiselect__placeholder {
-    padding-top: 0 !important;
+    padding-top: 4px !important;
 }
 
 .form-control.custom-form-control {
@@ -6626,3 +6626,20 @@ select.form-control{
         }
     }
 }
+
+.inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td {
+    border-right: none !important;
+}
+
+.inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-timegrid-slot.fc-timegrid-slot-lane {
+    border-bottom: none !important;
+}
+
+.schedule-meeting-section {
+    .multiselect__select:before {
+        content: none;
+    }
+    .form-control {
+        background-color: rgba($color: $white, $alpha: 0.2) !important;
+    }
+} 
