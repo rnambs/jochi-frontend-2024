@@ -214,8 +214,8 @@
                         class="form-control w-50"
                         placeholder="MM/DD/YYYY"
                         format="MM/dd/yyyy"
-                        :value="date"
-                        v-model="date"
+                        :value="detailDate"
+                        v-model="detailDate"
                         @selected="onDateChange()"
                       />
                       <!-- <div
@@ -674,18 +674,30 @@ export default {
         var end = element.end_time;
 
         var date = moment(element.date, "YYYY-MM-DD");
+        // var date = moment(element.date, "YYYY-MM-DD");
         var dateFormat =
           date.format("dddd") +
           ", " +
           date.format("D") +
           " " +
           date.format("MMMM");
+        var splitDate = element.date.split("-");
+        console.log(
+          "date of split ",
+          element.date,
+          splitDate,
+          new Date(splitDate[0], splitDate[1], splitDate[2])
+        );
         Scheduleobj["type"] = this.meetingType;
         Scheduleobj["title"] = title;
         Scheduleobj["dateFormat"] = dateFormat;
         Scheduleobj["from"] = from;
         Scheduleobj["end"] = end;
-        Scheduleobj["date"] = element.date;
+        Scheduleobj["date"] = new Date(
+          splitDate[0],
+          splitDate[1],
+          splitDate[2]
+        );
         Scheduleobj["meeting_description"] = element.meeting_description;
         Scheduleobj["meeting_link"] = element.meeting_link;
         Scheduleobj["meeting_location"] = element.meeting_location;
@@ -735,7 +747,7 @@ export default {
 
     onCardClick(list) {
       $("#meetingDetailModal").modal();
-      this.detailDate = list.dateFormat;
+      this.detailDate = list.date;
       this.detailTime = list.from + " to " + list.end;
       this.detailMeetingName = list.meeting_name;
       this.detailMeetingDesc = list.meeting_description;
@@ -767,6 +779,7 @@ export default {
         return;
       } else {
         this.loading = true;
+        console.log("date consoling ", this.date);
 
         await this.updateMeeting({
           id: this.detailMeetingId,
@@ -774,7 +787,7 @@ export default {
           // student_id: localStorage.getItem("id"),
           schedule_id: this.detailScheduleId,
           slot_id: this.detailSlotId,
-          date: this.date,
+          date: this.detailDate,
           conversation_type: this.detailConversationType,
           meeting_name: this.detailMeetingName,
           meeting_description: this.detailMeetingDesc,
@@ -797,6 +810,7 @@ export default {
             type: this.SuccessTypes,
             duration: 5000,
           });
+          this.ListAllMeeting();
         } else if (this.errorMessage != "") {
           this.$toast.open({
             message: this.errorMessage,
@@ -926,6 +940,7 @@ export default {
           Scheduleobj["from"] = from;
           Scheduleobj["end"] = end;
           Scheduleobj["dateValue"] = dateValue;
+          Scheduleobj["date"] = dateValue;
           this.slot_date_selection.push(Scheduleobj);
         });
       } else {
