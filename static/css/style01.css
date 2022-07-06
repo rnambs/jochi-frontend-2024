@@ -1288,7 +1288,7 @@ body {
   font-size: .8rem !important;
   font-weight: 400;
   color: #F9F9F9;
-  background-color: #424246;
+  background-color: #FF6F69;
   padding: 0.4em 0.65em;
   min-height: 20px;
 }
@@ -1620,7 +1620,7 @@ body {
   font-size: .8rem !important;
   font-weight: 400;
   color: #F9F9F9;
-  background-color: #424246;
+  background-color: #FF6F69;
   padding: 0.4em 0.65em;
   min-height: 20px;
 }
@@ -1858,7 +1858,7 @@ body {
 }
 
 .inner-section .main-section .element-section .planner-Month {
-  background-color: #2D2D2F;
+  background-color: transparent;
   max-height: calc(100vh - 154px);
   min-height: calc(100vh - 154px);
   overflow: hidden;
@@ -1911,7 +1911,7 @@ body {
   font-size: .8rem !important;
   font-weight: 400;
   color: #F9F9F9;
-  background-color: #424246;
+  background-color: #FF6F69;
   padding: 0.4em 0.65em;
   min-height: 20px;
 }
@@ -5048,7 +5048,7 @@ body {
   font-size: 1.1em !important;
   font-weight: 400;
   color: #F9F9F9;
-  background-color: #424246;
+  background-color: #FF6F69;
   padding: 0.4em 0.65em;
   min-height: 20px;
 }
@@ -5456,7 +5456,7 @@ body {
   font-size: 1.1em !important;
   font-weight: 400;
   color: #F9F9F9;
-  background-color: #424246;
+  background-color: #FF6F69;
   padding: 0.4em 0.65em;
   min-height: 20px;
 }
@@ -5859,7 +5859,7 @@ body {
   font-size: 1.1em !important;
   font-weight: 400;
   color: #F9F9F9;
-  background-color: #424246;
+  background-color: #FF6F69;
   padding: 0.4em 0.65em;
   min-height: 20px;
 }
@@ -6042,7 +6042,7 @@ body {
   font-size: 1.056em !important;
   font-weight: 400;
   color: #F9F9F9;
-  background-color: #424246;
+  background-color: #FF6F69;
   padding: 0.4em 0.65em;
   min-height: 20px;
 }
