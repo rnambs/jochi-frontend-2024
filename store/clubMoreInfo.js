@@ -3,6 +3,7 @@ import { BASE_URL } from "../assets/js/constants";
 const state = {
   allList: [],
   announcements: [],
+  sportsActivities: [],
   slots: [],
   errorMessage: "",
   errorType: "",
@@ -284,7 +285,7 @@ const actions = {
       });
       if (response.message == "Success") {
         commit('setAnnouncements', response.data);
-        // commit('setEnableEdit', response.enable_edit);
+        commit('setEnableEdit', response.enable_edit);
       }
 
 
@@ -300,6 +301,7 @@ const actions = {
 
     }
   },
+
   async deleteAnnouncement({ commit }, payLoad) {
     try {
       const token = localStorage.getItem('token')
@@ -371,7 +373,68 @@ const actions = {
       }
     }
 
-  }
+  },
+  async markAsRead({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$get(BASE_URL + `club/detail/read_announcement?announcement_id=${payLoad.announcement_id}&club_id=${payLoad.club_id}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+
+      if (response.message == "Success") {
+        commit('setAllList', response.data);
+        commit('setEnableEdit', response.enable_edit);
+      }
+
+      else if (response.message) {
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "success");
+
+      }
+
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+      }
+    }
+
+  },
+  async getActivities({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$get(BASE_URL + `team/get_team_match_training?club_id=${payLoad.club_id}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+
+      });
+      if (response.message == "Success") {
+        commit('setSportsActivities', response.data);
+        commit('setEnableEdit', response.enable_edit);
+      }
+
+
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+
+    }
+  },
+
 }
 const mutations = {
   setAllList(state, data) {
@@ -379,6 +442,9 @@ const mutations = {
   },
   setAnnouncements(state, data) {
     state.announcements = data;
+  },
+  setSportsActivities(state, data) {
+    state.sportsActivities = data;
   },
   setEnableEdit(state, data) {
     state.enableEdit = data;
@@ -407,6 +473,9 @@ const getters = {
   },
   announcements: () => {
     return state.announcements;
+  },
+  sportsActivities: () => {
+    return state.sportsActivities;
   },
   enableEdit: () => {
     return state.enableEdit;

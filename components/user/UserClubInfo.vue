@@ -464,6 +464,7 @@ export default {
         club_id: this.$route.query.id,
         user_id: localStorage.getItem("id"),
       });
+      console.log(this.allList);
       this.loading = false;
       this.list_data = [];
       this.allList.forEach((element) => {

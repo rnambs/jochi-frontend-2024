@@ -37,7 +37,7 @@
               </div>
               <div class="inner-info container-fluid my-3">
                 <div class="row">
-                  <div v-if="type == 'team'" class="col-md-7 col-xs-12">
+                  <div v-if="type == 'Sports'" class="col-md-7 col-xs-12">
                     <div class="inner-info container-fluid p-4">
                       <div class="row">
                         <!-- <div class="col-6"> -->
@@ -47,14 +47,14 @@
                             href="#"
                             class="btn add-assignment"
                             data-toggle="modal"
-                            @click="openModal()"
+                            @click="openActivityModal()"
                             >Add Training/Match</a
                           >
                         </div>
                         <div class="col-12 announcement-section">
                           <div
-                            @click="openEdit(item)"
-                            v-for="(item, index) in announcementList"
+                            @click="openEditSportsActivity(item)"
+                            v-for="(item, index) in sportsActivities"
                             :key="index"
                           >
                             <div class="announcement-card px-3 py-2 mb-2">
@@ -99,7 +99,11 @@
                                     "
                                   >
                                     <div
-                                      class="anc-status-btn green mr-3"
+                                      :class="
+                                        isRead == 1
+                                          ? 'anc-status-btn green mr-3'
+                                          : 'anc-status-btn red mr-3'
+                                      "
                                     ></div>
                                     <button
                                       @click="
@@ -209,6 +213,7 @@
                       <div class="inner-info-head mb-3">
                         <h6>Announcements</h6>
                         <a
+                          v-if="enableEdit"
                           href="#"
                           class="btn add-assignment"
                           data-toggle="modal"
@@ -290,7 +295,13 @@
                                     mb-2
                                   "
                                 >
-                                  <div class="anc-status-btn green mr-3"></div>
+                                  <div
+                                    :class="
+                                      item.isRead == 1
+                                        ? 'anc-status-btn green mr-3'
+                                        : 'anc-status-btn red mr-3'
+                                    "
+                                  ></div>
                                   <button
                                     @click="
                                       onDeleteClick(item.id, item.club_id)
@@ -598,6 +609,240 @@
       </div>
     </div>
     <!-- modal add assignment -->
+
+    <!-- modal for add activities -->
+    <div
+      class="modal fade"
+      id="activityModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="activityModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="activityModalLongTitle">
+              {{ isActivityEdit ? "Edit" : "Add" }} Training/Match
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body no-overflow px-4">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Type<em>*</em></label
+                >
+
+                <select
+                  class="custom-select custom-select-sm mb-3"
+                  tabindex=""
+                  name="activityType"
+                  v-model="activityType"
+                  :class="{
+                    'is-invalid': submitted && $v.activityType.$error,
+                  }"
+                >
+                  <option value="Match">Match</option>
+                  <option value="Training">Training</option>
+                </select>
+                <div
+                  v-if="submitted && $v.activityType.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.activityType.required"
+                    >This field is required</span
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Title<em>*</em></label
+                >
+
+                <input
+                  type="text"
+                  id="club"
+                  placeholder="Enter your club name"
+                  class="form-control"
+                  v-model="activityTitle"
+                  name="activityTitle"
+                  maxlength="100"
+                  :class="{
+                    'is-invalid': submitted && $v.activityTitle.$error,
+                  }"
+                />
+                <div
+                  v-if="submitted && $v.activityTitle.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.activityTitle.required"
+                    >This field is required</span
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label"
+                  >Description<em>*</em></label
+                >
+                <textarea
+                  class="form-control"
+                  id="message-text"
+                  v-model="activityDesc"
+                  name="activityDesc"
+                  maxlength="800"
+                  placeholder="Enter task description"
+                  :class="{
+                    'is-invalid': submitted && $v.activityDesc.$error,
+                  }"
+                ></textarea>
+                <div
+                  v-if="submitted && $v.activityDesc.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.activityDesc.required"
+                    >This field is required</span
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Date<em>*</em></label
+                >
+
+                <input
+                  type="text"
+                  id="club"
+                  placeholder="Enter your club name"
+                  class="form-control"
+                  v-model="activityTitle"
+                  name="activityTitle"
+                  maxlength="100"
+                  :class="{
+                    'is-invalid': submitted && $v.activityTitle.$error,
+                  }"
+                />
+                <div
+                  v-if="submitted && $v.activityTitle.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.activityTitle.required"
+                    >This field is required</span
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Time<em>*</em></label
+                >
+
+                <input
+                  type="text"
+                  id="club"
+                  placeholder="Enter your club name"
+                  class="form-control"
+                  v-model="activityTitle"
+                  name="activityTitle"
+                  maxlength="100"
+                  :class="{
+                    'is-invalid': submitted && $v.activityTitle.$error,
+                  }"
+                />
+                <div
+                  v-if="submitted && $v.activityTitle.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.activityTitle.required"
+                    >This field is required</span
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Venue<em>*</em></label
+                >
+
+                <input
+                  type="text"
+                  id="club"
+                  placeholder="Enter your club name"
+                  class="form-control"
+                  v-model="activityVenue"
+                  name="activityVenue"
+                  maxlength="100"
+                  :class="{
+                    'is-invalid': submitted && $v.activityVenue.$error,
+                  }"
+                />
+                <div
+                  v-if="submitted && $v.activityVenue.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.activityVenue.required"
+                    >This field is required</span
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Opponent Team<em>*</em></label
+                >
+
+                <input
+                  type="text"
+                  id="club"
+                  placeholder="Enter your club name"
+                  class="form-control"
+                  v-model="activityOpponentTeam"
+                  name="activityOpponentTeam"
+                  maxlength="100"
+                  :class="{
+                    'is-invalid': submitted && $v.activityOpponentTeam.$error,
+                  }"
+                />
+                <div
+                  v-if="submitted && $v.activityOpponentTeam.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.activityOpponentTeam.required"
+                    >This field is required</span
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-color-close"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-color-save"
+              :disabled="submitted"
+              @click="
+                isAnnouncementEdit
+                  ? updateAnnouncementId()
+                  : addNewAnnouncement()
+              "
+            >
+              {{ (isAnnouncementEdit ? "Update" : "Add") + " Announcement" }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal add assignment -->
   </div>
 </template>
 <script>
@@ -636,11 +881,20 @@ export default {
       deleteClickId: 0,
       deleteClubId: 0,
       isAnnouncementEdit: false,
+      isActivityEdit: false,
       announceTitle: "",
       announceDesc: "",
       announcementId: 0,
       submitted: false,
       announcementList: [],
+      activityId: "",
+      activityType: "",
+      activityTitle: "",
+      activityDesc: "",
+      activityDate: "",
+      activityTime: "",
+      activityVenue: "",
+      activityOpponentTeam: "",
     };
   },
   validations: {
@@ -650,6 +904,7 @@ export default {
   mounted() {
     var user = localStorage.getItem("user_type");
     this.getAnnouncement();
+    this.getSportActivities();
     if (user == 3) {
       this.ClubMoreInfo();
       this.SlotswithId();
@@ -661,6 +916,7 @@ export default {
     ...mapState("clubMoreInfo", {
       allList: (state) => state.allList,
       announcements: (state) => state.announcements,
+      sportsActivities: (state) => state.sportsActivities,
       enableEdit: (state) => state.enableEdit,
       slots: (state) => state.slots,
       successMessage: (state) => state.successMessage,
@@ -680,6 +936,8 @@ export default {
       deleteAnnouncement: "deleteAnnouncement",
       addAnnouncement: "addAnnouncement",
       updateAnnouncement: "updateAnnouncement",
+      markAsRead: "markAsRead",
+      getActivities: "getActivities",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -876,12 +1134,17 @@ export default {
         this.getAnnouncement();
       }
     },
-    async openModal() {
+    async openModal(id) {
       // this.dateValue = new Date(this.calendarApi.view.activeStart);
       // this.isAssignmentEdit = false;
       $("#announcementModal").modal({ backdrop: true });
     },
+    async openActivityModal(id) {
+      $("#activityModal").modal({ backdrop: true });
+    },
     async openEdit(data) {
+      this.isAnnouncementEdit = true;
+      this.markAnnouncementAsRead(data.id);
       // this.dateValue = new Date(this.calendarApi.view.activeStart);
       // this.isAssignmentEdit = false;
       this.announcementId = data.id;
@@ -889,6 +1152,18 @@ export default {
       this.announceDesc = data.description;
       // this.announceDate = new Date(data.date);
       this.announceClubId = data.club_id;
+      $("#announcementModal").modal({ backdrop: true });
+    },
+    async openEditSportsActivity(data) {
+      this.isActivityEdit = true;
+      // this.markAnnouncementAsRead(data.id);
+      // // this.dateValue = new Date(this.calendarApi.view.activeStart);
+      // // this.isAssignmentEdit = false;
+      // this.announcementId = data.id;
+      // this.announceTitle = data.title;
+      // this.announceDesc = data.description;
+      // // this.announceDate = new Date(data.date);
+      // this.announceClubId = data.club_id;
       $("#announcementModal").modal({ backdrop: true });
     },
     async addNewAnnouncement() {
@@ -936,6 +1211,7 @@ export default {
         this.submitted = false;
 
         if (this.successMessage != "") {
+          this.isAnnouncementEdit = false;
           this.resetAnnouncement();
           this.deleteClickId = 0;
           this.deleteClubId = 0;
@@ -953,6 +1229,29 @@ export default {
       this.announcementId = "";
       this.announceTitle = "";
       this.announceDesc = "";
+    },
+    async markAnnouncementAsRead(id) {
+      this.loading = true;
+      await this.markAsRead({
+        announcement_id: id,
+        club_id: this.clubId,
+      });
+      this.loading = false;
+      this.getAnnouncement();
+    },
+    async getSportActivities() {
+      this.loading = true;
+      await this.getActivities({
+        club_id: this.clubId,
+      });
+      this.loading = false;
+      // this.announcementList = [];
+      // this.announcements.forEach((e) => {
+      //   e["date"] = moment(e.createdAt).format("MMMM Do, YYYY");
+      //   e["time"] = moment(e.createdAt).format("h:mm A");
+      //   // e["time"] = moment(e.createdAt, "h:mm a");
+      //   this.announcementList.push(e);
+      // });
     },
   },
 };
