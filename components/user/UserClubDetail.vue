@@ -78,9 +78,23 @@
                   :key="index"
                 >
                   <div class="club-list p-4 position-relative">
-                    <div class="position-absolute club-type-icon team">
-                      <img src="../../static/image/Football.png" alt="" class="img-fluid ct-team">
-                      <img src="../../static/image/club-type.png" alt="" class="img-fluid ct-club">
+                    <div
+                      :class="
+                        list.activity_type == 'Clubs'
+                          ? 'position-absolute club-type-icon club'
+                          : 'position-absolute club-type-icon team'
+                      "
+                    >
+                      <img
+                        src="../../static/image/Football.png"
+                        alt=""
+                        class="img-fluid ct-team"
+                      />
+                      <img
+                        src="../../static/image/club-type.png"
+                        alt=""
+                        class="img-fluid ct-club"
+                      />
                     </div>
                     <h6 class="list-title mb-3">{{ list["description"] }}</h6>
                     <div class="to-do-list">
@@ -103,7 +117,7 @@
                         query: {
                           id: list.id,
                           name: list.description,
-                          type: 'club',
+                          type: list.activity_type,
                         },
                       }"
                       class="btn btn-sm btn-view-more"
@@ -232,6 +246,7 @@ export default {
         Scheduleobj["day"] = day;
         Scheduleobj["time"] = time;
         Scheduleobj["id"] = id;
+        Scheduleobj["activity_type"] = element.activity_type;
 
         element.todo.forEach((ele) => {
           todoArr.push(ele.todo_list);
