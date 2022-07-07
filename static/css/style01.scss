@@ -978,7 +978,7 @@ body{
                             font-size: .8rem !important;
                             font-weight: 400;
                             color: $global-font-color;
-                            background-color: $border-color;
+                            background-color: $head-theme-color;
                             padding: 0.4em 0.65em;
                             min-height: 20px;
                         }
@@ -1240,7 +1240,7 @@ body{
                             font-size: .8rem !important;
                             font-weight: 400;
                             color: $global-font-color;
-                            background-color: $border-color;
+                            background-color: $head-theme-color;
                             padding: 0.4em 0.65em;
                             min-height: 20px;
                         }
@@ -1448,7 +1448,7 @@ body{
             }
             //planner-Month
             .planner-Month{
-                background-color: $global-sidebar-bg;
+                background-color: transparent;
                 max-height: calc(100vh - 154px);
                 min-height: calc(100vh - 154px);
                 overflow: hidden;
@@ -1479,7 +1479,7 @@ body{
                             font-size: .8rem !important;
                             font-weight: 400;
                             color: $global-font-color;
-                            background-color: $border-color;
+                            background-color: $head-theme-color;
                             padding: 0.4em 0.65em;
                             min-height: 20px;
                         }
@@ -3952,7 +3952,7 @@ body{
                                         font-size: 1.1em !important;
                                         font-weight: 400;
                                         color: $global-font-color;
-                                        background-color: $border-color;
+                                        background-color: $head-theme-color;
                                         padding: 0.4em 0.65em;
                                         min-height: 20px;
                                     }
@@ -4260,7 +4260,7 @@ body{
                                     font-size: 1.1em !important;
                                     font-weight: 400;
                                     color: $global-font-color;
-                                    background-color: $border-color;
+                                    background-color: $head-theme-color;
                                     padding: 0.4em 0.65em;
                                     min-height: 20px;
                                 }
@@ -4566,7 +4566,7 @@ body{
                                             font-size: 1.1em !important;
                                             font-weight: 400;
                                             color: $global-font-color;
-                                            background-color: $border-color;
+                                            background-color: $head-theme-color;
                                             padding: 0.4em 0.65em;
                                             min-height: 20px;
                                         }
@@ -4714,7 +4714,7 @@ body{
                                             font-size: 1.056em !important;
                                             font-weight: 400;
                                             color: $global-font-color;
-                                            background-color: $border-color;
+                                            background-color: $head-theme-color;
                                             padding: 0.4em 0.65em;
                                             min-height: 20px;
                                         }
