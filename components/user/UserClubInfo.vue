@@ -49,12 +49,27 @@
                     <div class="inner-info-head mb-2">
                       <h5>About the {{ headingName }}</h5>
                     </div>
-                    <p class="mb-2 cd-about-club-details">
-                      The Drama Club is our school’s premier performing arts
-                      groups. Opportunities for students interested in drama,
-                      technology, singing and more!
+                    <p
+                      v-if="!editDescription"
+                      class="mb-2 cd-about-club-details"
+                    >
+                      {{ list.description }}
+                      <span
+                        v-if="enableEdit"
+                        class="ml-2 text-dark"
+                        @click="editDescription = true"
+                        ><i class="fas fa-pencil"></i
+                      ></span>
                     </p>
-                    <div class="form-group mb-1">
+
+                    <div v-if="editDescription" class="form-group mb-1">
+                      <button @click="editDescription = false" class="close">
+                        <span
+                          @click="editDescription = false"
+                          aria-hidden="true"
+                          >&times;</span
+                        >
+                      </button>
                       <textarea
                         placeholder="No data"
                         class="form-control club-info mb-0 w-75 input"
@@ -83,7 +98,7 @@
                         Update
                       </button>
                     </div>
-                    <div class="custom-switch pb-2" v-if="enableEdit">
+                    <!-- <div class="custom-switch pb-2" v-if="enableEdit">
                       <input
                         type="checkbox"
                         class="custom-control-input"
@@ -95,7 +110,7 @@
                       <label class="custom-control-label" for="custom-Switches"
                         >Show club in catalog
                       </label>
-                    </div>
+                    </div> -->
                     <div class="inner-info-head mb-2 mt-4">
                       <h5>Members</h5>
                     </div>
@@ -346,7 +361,11 @@
                 <nuxt-link
                   :to="{
                     path: '/club-moreInfo',
-                    query: { id: clubId, name: headingName, type: 'club' },
+                    query: {
+                      id: clubId,
+                      name: headingName,
+                      type: activity_type,
+                    },
                   }"
                   class="inner-tab"
                 >
@@ -391,6 +410,8 @@ export default {
       list_data: [],
       tagValue: [],
       availability: "",
+      activity_type: "",
+      editDescription: false,
     };
   },
 
@@ -465,6 +486,7 @@ export default {
         user_id: localStorage.getItem("id"),
       });
       console.log(this.allList);
+      this.activity_type = this.allList[0].activity_type;
       this.loading = false;
       this.list_data = [];
       this.allList.forEach((element) => {
@@ -538,6 +560,7 @@ export default {
           type: this.SuccessType,
           duration: 5000,
         });
+        this.editDescription = false;
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -621,6 +644,10 @@ export default {
       this.ClubInfo();
     },
     availabilityToggle() {},
+    check() {
+      this.editDescription = true;
+      alert("inside alert");
+    },
   },
 };
 </script>

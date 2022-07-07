@@ -69,7 +69,9 @@
                     v-if="submitted && $v.password.$error"
                     class="invalid-feedback"
                   >
-                    <span v-if="!$v.password.required">Password is required</span>
+                    <span v-if="!$v.password.required"
+                      >Password is required</span
+                    >
                     <!-- <span v-if="!$v.password.minLength"
                       >Password must be at least 8 characters</span
                     > -->
@@ -133,6 +135,8 @@ export default {
       isLoggedIn: false,
       currentToken: "",
       passwordFieldType: "password",
+      code: this.$route.query.code,
+      stateResp: this.$route.query.state,
     };
   },
   validations: {
@@ -141,6 +145,11 @@ export default {
     password: { required },
   },
   mounted() {
+    console.log("this code >>>>>>>>>>>>>>>>>>", this.code, this.stateResp);
+    if (this.code && this.stateResp) {
+      this.redirectToPassport();
+    }
+
     this.getTokenDevice();
 
     if (localStorage.getItem("email")) {
@@ -167,6 +176,7 @@ export default {
   methods: {
     ...mapActions("studentSignIn", {
       getSignIn: "getSignIn",
+      passportRedirect: "passportRedirect",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -205,6 +215,28 @@ export default {
       this.$fire.messaging.onMessage((payload) => {
         console.info("Message received: ", payload);
       });
+    },
+    async redirectToPassport() {
+      this.loading = true;
+      await this.passportRedirect({
+        code: this.code,
+        state: this.stateResp,
+      });
+      this.loading = false;
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+      }
+      if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
     },
   },
 };

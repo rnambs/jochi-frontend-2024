@@ -337,6 +337,9 @@ const actions = {
       if (response.message == "Success") {
         commit('setSuccessMessage', "Announcement created successfully");
       }
+      else if (response.message == "Success") {
+        commit('setSuccessMessage', "Announcement created successfully");
+      }
 
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
@@ -359,8 +362,12 @@ const actions = {
         },
       });
       if (response.message == "Success") {
-        commit('setSuccessMessage', "Announcement created successfully");
+        commit('setSuccessMessage', "Announcement updated successfully");
       }
+      else if (response.message) {
+        commit('setSuccessMessage', "Announcement updated successfully");
+      }
+
 
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
@@ -433,6 +440,84 @@ const actions = {
       }
 
     }
+  },
+  async addActivities({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$post(BASE_URL + 'team/create_team_match_training', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      if (response.message == "Success") {
+        commit('setSuccessMessage', "Training/Match created successfully");
+      }
+      else if (response.message) {
+        commit('setSuccessMessage', "Training/Match created successfully");
+      }
+
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+    }
+
+  },
+  async updateActivities({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$put(BASE_URL + 'team/update_team_match_training', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      if (response.message == "Success") {
+        commit('setSuccessMessage', "Training/Match updated successfully");
+      }
+      else if (response.message) {
+        commit('setSuccessMessage', "Training/Match updated successfully");
+      }
+
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+    }
+
+  },
+  async deleteActivity({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$delete(BASE_URL + `team/delete_team_match_training?match_training_id=${payLoad.id}&club_id=${payLoad.clubId}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      if (response.message == "Success") {
+        commit('setSuccessMessage', "Training/Match removed successfully");
+      }
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+    }
+
+
   },
 
 }

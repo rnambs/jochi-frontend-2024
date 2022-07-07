@@ -57,7 +57,82 @@
                             v-for="(item, index) in sportsActivities"
                             :key="index"
                           >
-                            <div class="announcement-card px-3 py-2 mb-2">
+                            <div
+                              v-if="item.session_type == 'Training'"
+                              class="announcement-card px-3 py-2 mb-2"
+                            >
+                              <div
+                                class="
+                                  d-flex
+                                  align-items-center
+                                  justify-content-between
+                                  w-100
+                                "
+                              >
+                                <div class="left-side">
+                                  <div class="anc-name-section">
+                                    {{ item.first_name }}
+                                  </div>
+                                  <div class="anc-date-section">
+                                    {{ item.date }}
+                                  </div>
+                                  <div class="anc-time-section">
+                                    {{ item.time }}
+                                  </div>
+                                </div>
+                                <div
+                                  class="
+                                    right-side
+                                    h-100
+                                    d-flex
+                                    align-items-center
+                                    justify-content-between
+                                    flex-column
+                                  "
+                                >
+                                  <div class="anc-title-section mb-2">
+                                    {{ item.title }}
+                                  </div>
+                                  <div
+                                    class="
+                                      d-flex
+                                      align-items-center
+                                      justify-content-center
+                                      mb-2
+                                    "
+                                  >
+                                    <!-- <div
+                                      :class="
+                                        isRead == 1
+                                          ? 'anc-status-btn green mr-3'
+                                          : 'anc-status-btn red mr-3'
+                                      "
+                                    ></div> -->
+                                    <button
+                                      @click="
+                                        onDeleteActivityClick(
+                                          item.id,
+                                          item.club_id
+                                        )
+                                      "
+                                      data-toggle="modal"
+                                      data-target="#mediumModal"
+                                    >
+                                      <span>
+                                        <i
+                                          class="fa fa-trash"
+                                          aria-hidden="true"
+                                        ></i>
+                                      </span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              v-else
+                              class="announcement-card px-3 py-2 mb-2"
+                            >
                               <div
                                 class="
                                   d-flex
@@ -488,7 +563,11 @@
               type="button"
               data-dismiss="modal"
               class="btn btn-primary color-white"
-              @click="onDeleteAnnouncement()"
+              @click="
+                deleteActivityClickId
+                  ? onDeleteActivity()
+                  : onDeleteAnnouncement()
+              "
             >
               Yes
             </button>
@@ -722,18 +801,18 @@
                   id="club"
                   placeholder="Enter your club name"
                   class="form-control"
-                  v-model="activityTitle"
-                  name="activityTitle"
+                  v-model="activityDate"
+                  name="activityDate"
                   maxlength="100"
                   :class="{
-                    'is-invalid': submitted && $v.activityTitle.$error,
+                    'is-invalid': submitted && $v.activityDate.$error,
                   }"
                 />
                 <div
-                  v-if="submitted && $v.activityTitle.$error"
+                  v-if="submitted && $v.activityDate.$error"
                   class="invalid-feedback"
                 >
-                  <span v-if="!$v.activityTitle.required"
+                  <span v-if="!$v.activityDate.required"
                     >This field is required</span
                   >
                 </div>
@@ -748,18 +827,18 @@
                   id="club"
                   placeholder="Enter your club name"
                   class="form-control"
-                  v-model="activityTitle"
-                  name="activityTitle"
+                  v-model="activityTime"
+                  name="activityTime"
                   maxlength="100"
                   :class="{
-                    'is-invalid': submitted && $v.activityTitle.$error,
+                    'is-invalid': submitted && $v.activityTime.$error,
                   }"
                 />
                 <div
-                  v-if="submitted && $v.activityTitle.$error"
+                  v-if="submitted && $v.activityTime.$error"
                   class="invalid-feedback"
                 >
-                  <span v-if="!$v.activityTitle.required"
+                  <span v-if="!$v.activityTime.required"
                     >This field is required</span
                   >
                 </div>
@@ -790,7 +869,7 @@
                   >
                 </div>
               </div>
-              <div class="form-group">
+              <div v-if="activityType == 'Match'" class="form-group">
                 <label for="recipient-name" class="col-form-label"
                   >Opponent Team<em>*</em></label
                 >
@@ -829,14 +908,10 @@
             <button
               type="button"
               class="btn btn-color-save"
-              :disabled="submitted"
-              @click="
-                isAnnouncementEdit
-                  ? updateAnnouncementId()
-                  : addNewAnnouncement()
-              "
+              :disabled="submittedActivity"
+              @click="isActivityEdit ? updateActivity() : addNewActivity()"
             >
-              {{ (isAnnouncementEdit ? "Update" : "Add") + " Announcement" }}
+              {{ (isActivityEdit ? "Update" : "Add") + " Training/Match" }}
             </button>
           </div>
         </div>
@@ -880,12 +955,15 @@ export default {
       valueId: "",
       deleteClickId: 0,
       deleteClubId: 0,
+      deleteActivityClickId: 0,
+      deleteActivityClubId: 0,
       isAnnouncementEdit: false,
       isActivityEdit: false,
       announceTitle: "",
       announceDesc: "",
       announcementId: 0,
       submitted: false,
+      submittedActivity: false,
       announcementList: [],
       activityId: "",
       activityType: "",
@@ -938,6 +1016,9 @@ export default {
       updateAnnouncement: "updateAnnouncement",
       markAsRead: "markAsRead",
       getActivities: "getActivities",
+      addActivities: "addActivities",
+      updateActivities: "updateActivities",
+      deleteActivity: "deleteActivity",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -956,27 +1037,6 @@ export default {
         // e["time"] = moment(e.createdAt, "h:mm a");
         this.announcementList.push(e);
       });
-
-      // this.list_data = [];
-
-      // var daysArr = [];
-      // if (this.allList.days) {
-      //   this.allList.days.forEach((day) => {
-      //     daysArr.push(day);
-      //   });
-      // }
-      // this.dateArray = daysArr;
-      // var todoArr = [];
-      // if (this.allList.todo) {
-      //   this.allList.todo.forEach((element) => {
-      //     var ScheduleArr = {};
-      //     ScheduleArr["name"] = element.todo_list;
-      //     ScheduleArr["id"] = element.id;
-      //     todoArr.push(ScheduleArr);
-
-      //     this.list_data = todoArr;
-      //   });
-      // }
     },
     checkSlot(day) {
       if (this.dateArray.includes(day)) {
@@ -988,10 +1048,7 @@ export default {
 
     async ClubMoreInfo() {
       this.loading = true;
-      // await this.clubMoreInfo({
-      //   club_id: this.clubId,
-      //   user_id: localStorage.getItem("id"),
-      // });
+
       this.loading = false;
       this.list_data = [];
 
@@ -1135,8 +1192,6 @@ export default {
       }
     },
     async openModal(id) {
-      // this.dateValue = new Date(this.calendarApi.view.activeStart);
-      // this.isAssignmentEdit = false;
       $("#announcementModal").modal({ backdrop: true });
     },
     async openActivityModal(id) {
@@ -1156,15 +1211,15 @@ export default {
     },
     async openEditSportsActivity(data) {
       this.isActivityEdit = true;
-      // this.markAnnouncementAsRead(data.id);
-      // // this.dateValue = new Date(this.calendarApi.view.activeStart);
-      // // this.isAssignmentEdit = false;
-      // this.announcementId = data.id;
-      // this.announceTitle = data.title;
-      // this.announceDesc = data.description;
-      // // this.announceDate = new Date(data.date);
-      // this.announceClubId = data.club_id;
-      $("#announcementModal").modal({ backdrop: true });
+      this.activityId = data.id;
+      this.activityType = data.session_type;
+      this.activityTitle = data.title;
+      this.activityDesc = data.description;
+      this.activityDate = data.date;
+      this.activityTime = data.time;
+      this.activityVenue = data.venue;
+      this.activityOpponentTeam = data.opponent_team;
+      $("#activityModal").modal({ backdrop: true });
     },
     async addNewAnnouncement() {
       this.submitted = true;
@@ -1230,6 +1285,16 @@ export default {
       this.announceTitle = "";
       this.announceDesc = "";
     },
+    resetActivity() {
+      this.activityId = "";
+      this.activityTitle = "";
+      this.activityType = "";
+      this.activityDesc = "";
+      this.activityDate = "";
+      this.activityTime = "";
+      this.activityVenue = "";
+      this.activityOpponentTeam = "";
+    },
     async markAnnouncementAsRead(id) {
       this.loading = true;
       await this.markAsRead({
@@ -1252,6 +1317,93 @@ export default {
       //   // e["time"] = moment(e.createdAt, "h:mm a");
       //   this.announcementList.push(e);
       // });
+    },
+    async addNewActivity() {
+      // debugger;
+      this.submittedActivity = true;
+      this.$v.$touch();
+      // if (this.$v.$invalid) {
+      //   return;
+      // } else {
+      this.loading = true;
+      await this.addActivities({
+        club_id: this.clubId,
+        title: this.activityTitle,
+        description: this.activityDesc,
+        session_type: this.activityType,
+        date: this.activityDate,
+        time: this.activityTime,
+        venue: this.activityVenue,
+        opponent_team: this.activityOpponentTeam,
+      });
+      this.loading = false;
+      this.submittedActivity = false;
+      if (this.successMessage != "") {
+        this.resetActivity();
+        $("#activityModal").modal("hide");
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        this.getSportActivities();
+      }
+      // }
+    },
+    async updateActivity() {
+      this.loading = true;
+      this.submittedActivity = true;
+      // this.$v.$touch();
+      // if (this.$v.$invalid) {
+      //   return;
+      // } else {
+      await this.updateActivities({
+        id: this.activityId,
+        club_id: this.clubId,
+        title: this.activityTitle,
+        description: this.activityDesc,
+        session_type: this.activityType,
+        date: this.activityDate,
+        time: this.activityTime,
+        venue: this.activityVenue,
+        opponent_team: this.activityOpponentTeam,
+      });
+      this.loading = false;
+      this.submittedActivity = false;
+
+      if (this.successMessage != "") {
+        this.isActivityEdit = false;
+        this.resetActivity();
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        this.getSportActivities();
+      }
+      // }
+    },
+    onDeleteActivityClick(id, clubId) {
+      this.deleteActivityClickId = id;
+      this.deleteActivityClubId = clubId;
+    },
+    async onDeleteActivity() {
+      this.loading = true;
+      await this.deleteActivity({
+        id: this.deleteActivityClickId,
+        clubId: this.deleteActivityClubId,
+      });
+      this.loading = false;
+      if (this.successMessage != "") {
+        this.deleteClickId = 0;
+        this.deleteClubId = 0;
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        this.getSportActivities();
+      }
     },
   },
 };
