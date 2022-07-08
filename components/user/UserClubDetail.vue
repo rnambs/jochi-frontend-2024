@@ -113,7 +113,7 @@
                     </p>
                     <nuxt-link
                       :to="{
-                        path: '/club-info',
+                        path: '/club-moreInfo',
                         query: {
                           id: list.id,
                           name: list.description,

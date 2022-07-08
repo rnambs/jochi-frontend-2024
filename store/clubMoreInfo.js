@@ -2,6 +2,7 @@ import { BASE_URL } from "../assets/js/constants";
 
 const state = {
   allList: [],
+  clubMoreDetails: {},
   announcements: [],
   sportsActivities: [],
   slots: [],
@@ -26,7 +27,7 @@ const actions = {
 
 
       if (response.message == "Success") {
-        commit('setAllList', response.data);
+        commit('setClubMoreDetails', response.data);
         commit('setEnableEdit', response.enable_edit);
       }
       else if (response.message == "No club found") {
@@ -525,6 +526,9 @@ const mutations = {
   setAllList(state, data) {
     state.allList = data;
   },
+  setClubMoreDetails(state, data) {
+    state.clubMoreDetails = data;
+  },
   setAnnouncements(state, data) {
     state.announcements = data;
   },
@@ -555,6 +559,9 @@ const mutations = {
 const getters = {
   allList: () => {
     return state.allList;
+  },
+  clubMoreDetails: () => {
+    return state.clubMoreDetails;
   },
   announcements: () => {
     return state.announcements;

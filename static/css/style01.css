@@ -8024,6 +8024,18 @@ select.form-control.is-invalid {
   overflow: hidden;
 }
 
+.ld-img-holder span {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: black;
+  line-height: 50px;
+  font-size: 20px;
+  display: block;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
 .ld-heading {
   font-size: 16px;
   color: #000000;
@@ -8053,6 +8065,18 @@ select.form-control.is-invalid {
 
 .members-thumbnail-list .mlist-thumb-holder:first-child {
   margin-left: 0;
+}
+
+.members-thumbnail-list .mlist-thumb-holder span {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: black;
+  line-height: 50px;
+  font-size: 20px;
+  display: block;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .members-thumbnail-list .first-row {

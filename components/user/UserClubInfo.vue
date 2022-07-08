@@ -45,7 +45,7 @@
                   v-for="(list, index) in list_data"
                   :key="index"
                 >
-                  <div class="col-md-6 col-xs-12 pr-0 pl-3">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3">
                     <div class="inner-info-head mb-2">
                       <h5>About the {{ headingName }}</h5>
                     </div>
@@ -53,7 +53,7 @@
                       v-if="!editDescription"
                       class="mb-2 cd-about-club-details"
                     >
-                      {{ list.description }}
+                      {{ clubDetails.description }}
                       <span
                         v-if="enableEdit"
                         class="ml-2 text-dark"
@@ -75,7 +75,7 @@
                         class="form-control club-info mb-0 w-75 input"
                         id=""
                         rows="5"
-                        v-model="list.description"
+                        v-model="clubDetails.description"
                         maxlength="500"
                       ></textarea>
 
@@ -90,9 +90,9 @@
                           button
                         "
                         v-if="enableEdit"
-                        :disabled="!list.description"
+                        :disabled="!clubDetails.description"
                         @click.prevent="
-                          Editinformation(clubId, list.description)
+                          Editinformation(clubId, clubDetails.description)
                         "
                       >
                         Update
@@ -127,23 +127,77 @@
                     >
                       <div class="first-row">
                         <div class="d-flex align-items-center">
+                          <div
+                            v-for="index in 4"
+                            :key="index"
+                            :class="
+                              membersInfo[index - 1] &&
+                              membersInfo[index - 1].user_info
+                                ? 'mlist-thumb-holder'
+                                : 'd-none'
+                            "
+                          >
+                            <!-- {{ membersInfo[index].user_info }} -->
+                            <img
+                              v-if="
+                                membersInfo[index - 1] &&
+                                membersInfo[index - 1].user_info &&
+                                membersInfo[index - 1].user_info
+                                  .proPic_file_name
+                              "
+                              :src="
+                                membersInfo[index - 1].user_info
+                                  .proPic_file_name
+                              "
+                              alt=""
+                            />
+                            <span v-else>{{
+                              membersInfo[index - 1] &&
+                              membersInfo[index - 1].user_info
+                                ? membersInfo[
+                                    index - 1
+                                  ].user_info.first_name.charAt(0)
+                                : ""
+                            }}</span>
+                          </div>
+                          <!-- <div class="mlist-thumb-holder"></div>
                           <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div>
+                          <div class="mlist-thumb-holder"></div> -->
                         </div>
                       </div>
                       <div class="second-row">
                         <div class="d-flex align-items-center">
-                          <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div>
+                          <div
+                            v-for="index in 3"
+                            :key="index"
+                            class="mlist-thumb-holder"
+                          >
+                            <img
+                              v-if="
+                                membersInfo[index + 3] &&
+                                membersInfo[index + 3].user_info
+                                  .proPic_file_name
+                              "
+                              :src="
+                                membersInfo[index + 3].user_info
+                                  .proPic_file_name
+                              "
+                              alt=""
+                            />
+                          </div>
+                          <!-- <div class="mlist-thumb-holder"></div>
+                          <div class="mlist-thumb-holder"></div> -->
                         </div>
                       </div>
-                      <div class="ml-list-more position-absolute">17+</div>
+                      <div
+                        v-if="membersInfo.length > 7"
+                        class="ml-list-more position-absolute"
+                      >
+                        7+
+                      </div>
                     </div>
                   </div>
-                  <div class="col-md-6 col-xs-12 px-0">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
                     <div class="row">
                       <div class="col-12 inner-col text-right">
                         <div class="inner-info-head mb-3">
@@ -155,7 +209,7 @@
                             <div class="inner-info-text">
                               <ul class="mb-0 leader-list-style">
                                 <li
-                                  v-for="(data, index) in list.todoArr"
+                                  v-for="(data, index) in leadersInfo"
                                   :key="index"
                                 >
                                   <!-- <span class="input-name">{{ data }}</span> -->
@@ -176,16 +230,35 @@
                                       "
                                     >
                                       <div class="ld-img-section">
-                                        <div class="ld-img-holder"></div>
+                                        <div class="ld-img-holder">
+                                          <img
+                                            v-if="data.user_info.profile_pic"
+                                            :src="data.user_info.profile_pic"
+                                            alt=""
+                                          />
+                                          <span v-else>{{
+                                            data.user_info.first_name.charAt(0)
+                                          }}</span>
+                                        </div>
                                       </div>
                                     </div>
                                     <div class="col-8 p-0">
                                       <div class="ld-details-section">
                                         <p class="ld-heading mb-1">
-                                          {{ data }}, President
+                                          {{
+                                            data.user_info.first_name +
+                                            (data.user_info.last_name
+                                              ? " " + data.user_info.last_name
+                                              : "")
+                                          }},
+                                          {{
+                                            data.user_info.user_type_id == 3
+                                              ? "Student"
+                                              : "Teacher"
+                                          }}
                                         </p>
                                         <p class="ld-details mb-0">
-                                          markjones@school.edu
+                                          {{ data.user_info.email }}
                                         </p>
                                       </div>
                                     </div>
@@ -336,13 +409,17 @@
               <div class="col-md-4 col-xs-12">
                 <nuxt-link
                   :to="{
-                    path: '/club-info',
-                    query: { id: clubId, name: headingName },
+                    path: '/club-moreInfo',
+                    query: {
+                      id: clubId,
+                      name: headingName,
+                      type: clubDetails.activity_type,
+                    },
                   }"
                   class="inner-tab"
                 >
                   <!-- <i class="fas fa-info"></i> -->
-                  <span class="pl">Club Details</span>
+                  <span class="pl">Home Page</span>
                 </nuxt-link>
               </div>
               <div class="col-md-4 col-xs-12">
@@ -357,8 +434,8 @@
                   <span class="pl">Files & Slides</span>
                 </nuxt-link>
               </div>
-              <div class="col-md-4 col-xs-12">
-                <nuxt-link
+              <div @click="onNextMeeting" class="col-md-4 col-xs-12">
+                <!-- <nuxt-link
                   :to="{
                     path: '/club-moreInfo',
                     query: {
@@ -368,10 +445,14 @@
                     },
                   }"
                   class="inner-tab"
-                >
-                  <!-- <i class="fas fa-ellipsis-h"></i> -->
-                  <span class="pl">More</span>
-                </nuxt-link>
+                > -->
+                <!-- <i class="fas fa-ellipsis-h"></i> -->
+                <!-- <span class="pl">More</span> -->
+                <span class="pl">Next Meeting</span>
+                <span style="color: black">{{
+                  clubMoreDetails.announcement
+                }}</span>
+                <!-- </nuxt-link> -->
               </div>
             </div>
           </div>
@@ -379,6 +460,120 @@
       </div>
       <!-- End Club info -->
     </div>
+    <!-- modal for add next meeting -->
+    <div
+      class="modal fade"
+      id="nextMeetingModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="nextMeetingModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="nextMeetingModalLongTitle">
+              Configure Meeting Days
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body no-overflow px-4">
+            <!-- <div class="col-md-5 col-xs-12"> -->
+            <div class="inner-info container p-4">
+              <div class="inner-info-head mb-3">
+                <h6>Meeting Time</h6>
+              </div>
+              <p class="time">
+                Next meeting:
+                {{
+                  clubMoreDetails.announcement == null
+                    ? "No meeting scheduled "
+                    : clubMoreDetails.announcement
+                }}
+              </p>
+
+              <div class="row inner-col" v-if="enableEdit">
+                <div class="col-lg-4 col-md-12 inner-info-head">
+                  <h6>Choose time</h6>
+                </div>
+                <div class="col-lg-8 col-md-12 input-icon-area">
+                  <multiselect
+                    v-model="valueMeeting"
+                    track-by="start_time"
+                    label="start_time"
+                    placeholder="Select the time"
+                    :options="slots"
+                    @input="UpdateSlots"
+                  >
+                    <span slot="noResult">No data found</span>
+                  </multiselect>
+                </div>
+              </div>
+
+              <div class="row choose-date my-2 m-0 p-0">
+                <div
+                  class="col"
+                  v-for="(day, index) in dayList"
+                  :key="index"
+                  @click.prevent="
+                    UpdateDays(day);
+                    $event.target.classList.toggle('active');
+                  "
+                >
+                  <a
+                    class="btn date-picker badge badge-pill badge-color active"
+                    :id="day"
+                    v-if="checkSlot(day)"
+                    >{{ day }}</a
+                  >
+                  <a
+                    href=""
+                    class="btn date-picker badge badge-pill badge-color"
+                    :id="day"
+                    v-else
+                    >{{ day }}</a
+                  >
+                </div>
+              </div>
+              <!-- <button
+                v-if="enableEdit"
+                class="btn btn-info-edit mt-2"
+                :disabled="!value"
+                @click.prevent="UpdateTime"
+              >
+                Update the next meeting
+              </button> -->
+            </div>
+            <!-- </div> -->
+          </div>
+          <div class="modal-footer">
+            <!-- <button
+              type="button"
+              class="btn btn-color-close"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button> -->
+            <button
+              v-if="enableEdit"
+              class="btn btn-info-edit mt-2"
+              :disabled="!valueMeeting"
+              @click.prevent="UpdateTime"
+            >
+              Update the next meeting
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal add assignment -->
   </div>
 </template>
 <script>
@@ -399,6 +594,7 @@ export default {
   data() {
     return {
       value: [],
+      valueMeeting: "",
       name: "",
       student: "",
       loading: false,
@@ -412,11 +608,21 @@ export default {
       availability: "",
       activity_type: "",
       editDescription: false,
+      clubDetails: {},
+      leadersInfo: {},
+      membersInfo: {},
+      dayList: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+      dateArray: [],
+      dayArrVal: [],
+      daysArray: [],
     };
   },
 
   mounted() {
     var user = localStorage.getItem("user_type");
+    this.getClubMoreInfo();
+    this.SlotswithId();
+
     if (user == 3) {
       this.ClubInfo();
       this.GetTag();
@@ -434,6 +640,14 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    ...mapState("clubMoreInfo", {
+      clubMoreDetails: (state) => state.clubMoreDetails,
+      slots: (state) => state.slots,
+      successMessageClub: (state) => state.successMessage,
+      SuccessTypeClub: (state) => state.SuccessType,
+      errorMessageClub: (state) => state.errorMessage,
+      errorTypeClub: (state) => state.errorType,
+    }),
   },
   methods: {
     ...mapActions("clubInfo", {
@@ -445,14 +659,80 @@ export default {
       removeLeader: "removeLeader",
       removeTag: "removeTag",
     }),
+    ...mapActions("clubMoreInfo", {
+      clubMoreInfo: "clubMoreInfo",
+      updateTime: "updateTime",
+      slotswithId: "slotswithId",
+    }),
     handleAnimation: function (anim) {
       this.anim = anim;
+    },
+    async getClubMoreInfo() {
+      await this.clubMoreInfo({
+        club_id: this.$route.query.id,
+        user_id: localStorage.getItem("id"),
+      });
+    },
+    async UpdateTime() {
+      this.dayArrVal = [];
+      let activeElements = document.getElementsByClassName(
+        "badge badge-pill badge-color active"
+      );
+      let tempArray = [];
+      Array.prototype.forEach.call(activeElements, function (element) {
+        tempArray.push(element.id);
+      });
+      this.dayArrVal = tempArray;
+      this.loading = true;
+      await this.updateTime({
+        club_id: this.clubId,
+        user_id: localStorage.getItem("id"),
+        week: this.dayArrVal,
+        slot_id: this.valueId,
+      });
+
+      this.loading = false;
+      if (this.successMessageClub != "") {
+        $("#nextMeetingModal").modal("hide");
+        this.$toast.open({
+          message: this.successMessageClub,
+          type: this.SuccessTypeClub,
+          duration: 5000,
+        });
+        this.getClubMoreInfo();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      this.valueMeeting = "";
+    },
+    async SlotswithId() {
+      await this.slotswithId({});
+    },
+    UpdateDays(value) {
+      this.daysArray.push(value);
+      this.dayArrVal = [];
+      this.daysArray.forEach((element) => {
+        this.dayArrVal.push(element);
+      });
+    },
+    checkSlot(day) {
+      if (this.dateArray.includes(day)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    UpdateSlots(val) {
+      this.valueId = val.id;
     },
     async GetTag() {
       await this.getTagList({
         club_id: this.$route.query.id,
       });
-      console.log(this.taglist);
     },
     async ShowClubInCatalog() {
       this.loading = true;
@@ -485,10 +765,12 @@ export default {
         club_id: this.$route.query.id,
         user_id: localStorage.getItem("id"),
       });
-      console.log(this.allList);
       this.activity_type = this.allList[0].activity_type;
       this.loading = false;
       this.list_data = [];
+      this.clubDetails = this.allList[0];
+      this.leadersInfo = this.allList[1].Leaders_info;
+      this.membersInfo = this.allList[2].Members_info;
       this.allList.forEach((element) => {
         var Scheduleobj = {};
         statusValue = element.status_by_leader;
@@ -507,7 +789,7 @@ export default {
         Scheduleobj["description"] = description;
         Scheduleobj["leaders"] = leaders;
         Scheduleobj["newLeader"] = newLeader;
-        element["tag_details"].forEach((el) => {
+        element["tag_details"]?.forEach((el) => {
           var ScheduleArr = {};
           ScheduleArr["name"] = el.tags.name;
           ScheduleArr["id"] = el.tags.id;
@@ -647,6 +929,11 @@ export default {
     check() {
       this.editDescription = true;
       alert("inside alert");
+    },
+    onNextMeeting() {
+      if (this.enableEdit) {
+        $("#nextMeetingModal").modal();
+      }
     },
   },
 };

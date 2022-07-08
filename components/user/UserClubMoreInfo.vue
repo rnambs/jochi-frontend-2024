@@ -203,7 +203,7 @@
                           </div>
                         </div>
                         <!-- </div> -->
-                        <div class="col-6" v-if="enableEdit">
+                        <!-- <div class="col-6" v-if="enableEdit">
                           <div class="inner-info-head mb-3">
                             <h6>Add Todo</h6>
                           </div>
@@ -221,7 +221,7 @@
                               Update
                             </button>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -399,86 +399,14 @@
                           <!-- {{ item.description }} -->
                         </div>
                       </div>
-                      <button
+                      <!-- <button
                         v-if="enableEdit"
                         class="btn btn-info-edit mt-2"
                         :disabled="!value"
                         @click.prevent="UpdateTime"
                       >
                         Update the next meeting
-                      </button>
-                    </div>
-                  </div>
-                  <div class="col-md-5 col-xs-12">
-                    <div class="inner-info container p-4">
-                      <div class="inner-info-head mb-3">
-                        <h6>Meeting Time</h6>
-                      </div>
-                      <p class="time">
-                        Next meeting:
-                        {{
-                          allList.announcement == null
-                            ? "No meeting scheduled "
-                            : allList.announcement
-                        }}
-                      </p>
-
-                      <div class="row inner-col" v-if="enableEdit">
-                        <div class="col-lg-4 col-md-12 inner-info-head">
-                          <h6>Choose time</h6>
-                        </div>
-                        <div class="col-lg-8 col-md-12 input-icon-area">
-                          <multiselect
-                            v-model="value"
-                            track-by="start_time"
-                            label="start_time"
-                            placeholder="Select the time"
-                            :options="slots"
-                            @input="UpdateSlots"
-                          >
-                            <span slot="noResult">No data found</span>
-                          </multiselect>
-                        </div>
-                      </div>
-
-                      <div class="row choose-date my-2 m-0 p-0">
-                        <div
-                          class="col"
-                          v-for="(day, index) in dayList"
-                          :key="index"
-                          @click.prevent="
-                            UpdateDays(day);
-                            $event.target.classList.toggle('active');
-                          "
-                        >
-                          <a
-                            class="
-                              btn
-                              date-picker
-                              badge badge-pill badge-color
-                              active
-                            "
-                            :id="day"
-                            v-if="checkSlot(day)"
-                            >{{ day }}</a
-                          >
-                          <a
-                            href=""
-                            class="btn date-picker badge badge-pill badge-color"
-                            :id="day"
-                            v-else
-                            >{{ day }}</a
-                          >
-                        </div>
-                      </div>
-                      <button
-                        v-if="enableEdit"
-                        class="btn btn-info-edit mt-2"
-                        :disabled="!value"
-                        @click.prevent="UpdateTime"
-                      >
-                        Update the next meeting
-                      </button>
+                      </button> -->
                     </div>
                   </div>
                 </div>
@@ -494,12 +422,12 @@
                 <nuxt-link
                   :to="{
                     path: '/club-info',
-                    query: { id: clubId, name: headingName },
+                    query: { id: clubId, name: headingName, type: type },
                   }"
                   class="inner-tab"
                 >
                   <!-- <i class="fas fa-info"></i> -->
-                  <span class="pl">Info</span>
+                  <span class="pl">Club Details</span>
                 </nuxt-link>
               </div>
               <div class="col-md-4 col-xs-12">
@@ -514,17 +442,20 @@
                   <span class="pl">Files/Slides</span>
                 </nuxt-link>
               </div>
-              <div class="col-md-4 col-xs-12">
-                <nuxt-link
+              <div @click="onNextMeeting" class="col-md-4 col-xs-12">
+                <!-- <nuxt-link
                   :to="{
                     path: '/club-moreInfo',
                     query: { id: clubId, name: headingName },
                   }"
                   class="inner-tab"
-                >
-                  <!-- <i class="fas fa-ellipsis-h"></i> -->
-                  <span class="pl">More</span>
-                </nuxt-link>
+                > -->
+                <!-- <i class="fas fa-ellipsis-h"></i> -->
+                <span class="pl">Next Meeting</span>
+                <span style="color: black">{{
+                  clubMoreDetails.announcement
+                }}</span>
+                <!-- </nuxt-link> -->
               </div>
             </div>
           </div>
@@ -687,7 +618,7 @@
         </div>
       </div>
     </div>
-    <!-- modal add assignment -->
+    <!-- modal add announcement -->
 
     <!-- modal for add activities -->
     <div
@@ -917,6 +848,121 @@
         </div>
       </div>
     </div>
+    <!-- modal add activities -->
+
+    <!-- modal for add next meeting -->
+    <div
+      class="modal fade"
+      id="nextMeetingModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="nextMeetingModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="nextMeetingModalLongTitle">
+              Configure Meeting Days
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body no-overflow px-4">
+            <!-- <div class="col-md-5 col-xs-12"> -->
+            <div class="inner-info container p-4">
+              <div class="inner-info-head mb-3">
+                <h6>Meeting Time</h6>
+              </div>
+              <p class="time">
+                Next meeting:
+                {{
+                  clubMoreDetails.announcement == null
+                    ? "No meeting scheduled "
+                    : clubMoreDetails.announcement
+                }}
+              </p>
+
+              <div class="row inner-col" v-if="enableEdit">
+                <div class="col-lg-4 col-md-12 inner-info-head">
+                  <h6>Choose time</h6>
+                </div>
+                <div class="col-lg-8 col-md-12 input-icon-area">
+                  <multiselect
+                    v-model="value"
+                    track-by="start_time"
+                    label="start_time"
+                    placeholder="Select the time"
+                    :options="slots"
+                    @input="UpdateSlots"
+                  >
+                    <span slot="noResult">No data found</span>
+                  </multiselect>
+                </div>
+              </div>
+
+              <div class="row choose-date my-2 m-0 p-0">
+                <div
+                  class="col"
+                  v-for="(day, index) in dayList"
+                  :key="index"
+                  @click.prevent="
+                    UpdateDays(day);
+                    $event.target.classList.toggle('active');
+                  "
+                >
+                  <a
+                    class="btn date-picker badge badge-pill badge-color active"
+                    :id="day"
+                    v-if="checkSlot(day)"
+                    >{{ day }}</a
+                  >
+                  <a
+                    href=""
+                    class="btn date-picker badge badge-pill badge-color"
+                    :id="day"
+                    v-else
+                    >{{ day }}</a
+                  >
+                </div>
+              </div>
+              <!-- <button
+                v-if="enableEdit"
+                class="btn btn-info-edit mt-2"
+                :disabled="!value"
+                @click.prevent="UpdateTime"
+              >
+                Update the next meeting
+              </button> -->
+            </div>
+            <!-- </div> -->
+          </div>
+          <div class="modal-footer">
+            <!-- <button
+              type="button"
+              class="btn btn-color-close"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button> -->
+            <button
+              v-if="enableEdit"
+              class="btn btn-info-edit mt-2"
+              :disabled="!value"
+              @click.prevent="UpdateTime"
+            >
+              Update the next meeting
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- modal add assignment -->
   </div>
 </template>
@@ -983,6 +1029,7 @@ export default {
     var user = localStorage.getItem("user_type");
     this.getAnnouncement();
     this.getSportActivities();
+    this.getClubMoreInfo();
     if (user == 3) {
       this.ClubMoreInfo();
       this.SlotswithId();
@@ -993,6 +1040,7 @@ export default {
   computed: {
     ...mapState("clubMoreInfo", {
       allList: (state) => state.allList,
+      clubMoreDetails: (state) => state.clubMoreDetails,
       announcements: (state) => state.announcements,
       sportsActivities: (state) => state.sportsActivities,
       enableEdit: (state) => state.enableEdit,
@@ -1046,6 +1094,12 @@ export default {
       }
     },
 
+    async getClubMoreInfo() {
+      await this.clubMoreInfo({
+        club_id: this.$route.query.id,
+        user_id: localStorage.getItem("id"),
+      });
+    },
     async ClubMoreInfo() {
       this.loading = true;
 
@@ -1116,6 +1170,7 @@ export default {
       this.loading = false;
 
       if (this.successMessage != "") {
+        $("#nextMeetingModal").modal("hide");
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -1403,6 +1458,11 @@ export default {
           duration: 5000,
         });
         this.getSportActivities();
+      }
+    },
+    onNextMeeting() {
+      if (this.enableEdit) {
+        $("#nextMeetingModal").modal();
       }
     },
   },
