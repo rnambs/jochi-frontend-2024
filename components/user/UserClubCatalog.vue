@@ -8,12 +8,25 @@
     />
     <div class="main-section">
       <!-- tab for club catalog -->
-      <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+      <div
+        class="
+          jochi-components-light-bg
+          p-4
+          custom-margin-for-main-section custom-full-height
+        "
+      >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-4">
             <div class="d-flex justify-content-between align-item-center">
               <h4 class="tab-head">Club Catalog</h4>
-              <button type="button" class="btn create-new-btn" data-toggle="modal" data-target="#createNewModal">Create New</button>
+              <button
+                type="button"
+                class="btn create-new-btn"
+                data-toggle="modal"
+                data-target="#createNewModal"
+              >
+                Create New
+              </button>
             </div>
             <div class="inner-tab-section container-fluid py-3">
               <div class="row m-auto">
@@ -93,7 +106,15 @@
                       </div>
                       <div class="col-md-6 d-flex justify-content-end">
                         <div class="col-md-8 pt-0 d-flex justify-content-end">
-                          <ul class="to-do-ul d-flex align-items-center justify-content-end flex-wrap">
+                          <ul
+                            class="
+                              to-do-ul
+                              d-flex
+                              align-items-center
+                              justify-content-end
+                              flex-wrap
+                            "
+                          >
                             <span
                               v-for="(todos, index) in list.tagList"
                               :key="index"
@@ -111,12 +132,14 @@
                                 {{ todos }}
                               </li>
                             </span>
-                            <span v-if="list.tagList.length == 0" class="to-do-li no-tag-available-span">
+                            <span
+                              v-if="list.tagList.length == 0"
+                              class="to-do-li no-tag-available-span"
+                            >
                               No tags available
                             </span>
                           </ul>
                         </div>
-                        
                       </div>
                       <!-- <div class="col-md-3">
                         <ul class="to-do-ul">
@@ -157,7 +180,10 @@
                     </div>
                   </div>
                 </div>
-                <div v-if="list_data.length == 0" class="w-100 text-center py-5">
+                <div
+                  v-if="list_data.length == 0"
+                  class="w-100 text-center py-5"
+                >
                   <p class="no-data">No data available</p>
                 </div>
               </div>
@@ -169,12 +195,27 @@
 
         <!-- Create new modal -->
 
-        <div class="modal fade" id="createNewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div
+          class="modal fade"
+          id="createNewModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div
+            class="modal-dialog modal-lg modal-dialog-centered"
+            role="document"
+          >
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Create New</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -182,12 +223,32 @@
                 <form action="">
                   <table class="w-100 table-modal custom-row-table">
                     <tr>
-                      <td class="tmodal-data text-nowrap">Catalog Name</td>
+                      <td class="tmodal-data text-nowrap">Type</td>
                       <td class="tmodal-data">
-                        <p class="mb-0 tdata-overflow d-flex align-items-center">
+                        <p
+                          class="mb-0 tdata-overflow d-flex align-items-center"
+                        >
+                          <span class="pr-2">:</span>
+                          <select
+                            v-model="activity_type"
+                            class="custom-select custom-select-sm mb-3"
+                          >
+                            <option value="Clubs">Club</option>
+                            <option value="Sports">Team</option>
+                          </select>
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="tmodal-data text-nowrap">Name</td>
+                      <td class="tmodal-data">
+                        <p
+                          class="mb-0 tdata-overflow d-flex align-items-center"
+                        >
                           <span class="pr-2">:</span>
                           <input
                             type="text"
+                            v-model="name"
                             autocomplete="off"
                             maxlength="100"
                             class="form-control custom-form-control"
@@ -198,9 +259,12 @@
                     <tr>
                       <td class="tmodal-data text-nowrap">Description</td>
                       <td class="tmodal-data">
-                        <p class="mb-0 tdata-overflow d-flex align-items-center">
+                        <p
+                          class="mb-0 tdata-overflow d-flex align-items-center"
+                        >
                           <span class="pr-2">:</span>
                           <textarea
+                            v-model="description"
                             type="text"
                             autocomplete="off"
                             maxlength="500"
@@ -209,23 +273,8 @@
                         </p>
                       </td>
                     </tr>
-                    <tr>
-                      <td class="tmodal-data text-nowrap">Type</td>
-                      <td class="tmodal-data">
-                        <p class="mb-0 tdata-overflow  d-flex align-items-center">
-                          <span class="pr-2">:</span>
-                          <select
-                            class="custom-select custom-select-sm mb-3"
-                          >
-                            <option value="club">
-                              Club
-                            </option>
-                            <option value="team">Team</option>
-                          </select>
-                        </p>
-                      </td>
-                    </tr>
-                    <tr>
+
+                    <!-- <tr>
                       <td class="tmodal-data text-nowrap">Tags</td>
                       <td class="tmodal-data">
                         <p class="mb-0 tdata-overflow  d-flex align-items-center">
@@ -240,7 +289,7 @@
                           </select>
                         </p>
                       </td>
-                    </tr>
+                    </tr> -->
                   </table>
                 </form>
               </div>
@@ -254,6 +303,7 @@
                 </button>
                 <button
                   type="button"
+                  @click="createNewClub"
                   class="btn btn-color-save"
                 >
                   Save
@@ -264,7 +314,6 @@
         </div>
 
         <!-- Create new modal end -->
-
       </div>
     </div>
   </div>
@@ -295,6 +344,9 @@ export default {
       todoList: false,
       expandId: "",
       // taglist: [],
+      activity_type: "",
+      name: "",
+      description: "",
     };
   },
   mounted() {
@@ -317,6 +369,7 @@ export default {
       clubCatalogue: "clubCatalogue",
       joinClub: "joinClub",
       getTag: "getTag",
+      createClub: "createClub",
     }),
     myFunction: function (id) {
       if (this.expandId && this.expandId != id) {
@@ -448,6 +501,34 @@ export default {
       } else {
         SelectValue = "";
       }
+      this.ClubCatalogue();
+    },
+    async createNewClub() {
+      this.loading = true;
+      await this.createClub({
+        activity_type: this.activity_type,
+        school_id: localStorage.getItem("school_id"),
+        student_id: localStorage.getItem("id"),
+        name: this.name,
+        description: this.description,
+      });
+
+      if (this.successMessage != "") {
+        $("#createNewModal").modal("hide");
+
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      this.loading = false;
       this.ClubCatalogue();
     },
   },
