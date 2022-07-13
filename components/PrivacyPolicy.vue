@@ -2,7 +2,6 @@
   <div>
     <div class="main-section">
       <div class="study-section container-fluid">
-        <div class="inner-study p-3 mt-4">
           <div class="study-row">
             <div class="py-3 px-5">
               <h3 class="faq-head text-center mb-5 mt-2">Privacy Policy</h3>
@@ -264,7 +263,6 @@
             </div>
             
           </div>
-        </div>
       </div>
     </div>
   </div>

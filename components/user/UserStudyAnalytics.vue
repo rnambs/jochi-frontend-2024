@@ -1,23 +1,23 @@
 <template>
   <div class="main-section">
     <!-- Study Page -->
-
+    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+      
     <section id="study-detail" class="">
       <div class="study-section container-fluid">
-        <div class="inner-study p-3 mt-4">
           <div class="study-row">
             <div class="row header-row mb-1">
               <div class="col-md-6 py-2">
-                <h4>Weekly Dashboard</h4>
+                <h4 class="color-primary">Weekly Dashboard</h4>
               </div>
               <div class="col-md-6 py-2">
-                <h4>Dashboard</h4>
+                <h4 class="color-primary">Dashboard</h4>
               </div>
             </div>
-            <div class="row inner-row text-center mb-2">
+            <div class="row inner-row mt-0 text-center mb-2">
               <div class="col-md-3 py-2">
                 <div class="inner-col p-2">
-                  <h6>Total Minutes</h6>
+                  <h6 class="color-dark font-semi-bold">Total Minutes</h6>
                   <p class="total-value">
                     {{
                       mySession.total_minutes_week
@@ -37,7 +37,7 @@
               </div>
               <div class="col-md-3 py-2">
                 <div class="inner-col p-2">
-                  <h6>Total Session</h6>
+                  <h6 class="color-dark font-semi-bold">Total Session</h6>
                   <p class="total-value">
                     {{
                       mySession.total_sessions_week
@@ -57,7 +57,7 @@
               </div>
               <div class="col-md-3 py-2">
                 <div class="inner-col p-2">
-                  <h6>Total Minutes</h6>
+                  <h6 class="color-dark font-semi-bold">Total Minutes</h6>
                   <p class="total-value">
                     {{ mySession.total_minutes ? mySession.total_minutes : 0 }}
                   </p>
@@ -65,7 +65,7 @@
               </div>
               <div class="col-md-3 py-2">
                 <div class="inner-col p-2">
-                  <h6>Total Session</h6>
+                  <h6 class="color-dark font-semi-bold">Total Session</h6>
                   <p class="total-value">
                     {{
                       mySession.total_sessions ? mySession.total_sessions : 0
@@ -160,7 +160,7 @@
             </div>
             <div class="row inner-row">
               <div class="col-md-12 mb-2">
-                <h4 class="txt-pink mb-0">Progress Chart</h4>
+                <h4 class="color-primary font-semi-bold mb-0">Progress Chart</h4>
               </div>
               <div class="col-md-6 mb-2">
                 <div class="inner-col p-2">
@@ -174,9 +174,10 @@
               </div>
             </div>
           </div>
-        </div>
       </div>
     </section>
+
+    </div>
 
     <!-- End Study Page -->
   </div>

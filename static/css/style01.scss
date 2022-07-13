@@ -19,6 +19,119 @@ body{
     text-decoration: none;
 }
 
+// Typography
+
+// FONT SIZE
+
+.text-14{
+    font-size: 0.875rem;
+    line-height: 1rem;
+}
+.text-16{
+    font-size: 1rem;
+    line-height: 1.5rem;
+    @media (max-width:$xs-screen ){
+        font-size: 0.875rem;
+        line-height: 1rem;
+    }
+}
+.text-18{
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    @media (max-width:$xs-screen ){
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+}
+.text-24{
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    @media (max-width:$xs-screen ){
+        font-size: 1.125rem;
+        line-height: 1.5rem;
+    }
+}
+.text-30{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+// FONT WEIGHT
+.font-black{
+    font-weight: 800;
+}
+.font-bold{
+    font-weight: 700;
+}
+.font-semi-bold{
+    font-weight: 600;
+}
+.font-medium{
+    font-weight: 500;
+}
+.font-regular{
+    font-weight: 400;
+}
+.font-light{
+    font-weight: 300;
+}
+
+// COLOR
+
+.color-primary{
+    color: $theme-color;
+}
+.color-dark{
+    color: $text-dark;
+}
+.color-secondary{
+    color: $text-secondary;
+}
+
+// BUTTON
+.btn{
+    text-transform: uppercase;
+    border: none;
+    &:hover,&:focus,&:active,&:active:focus{border: none;}
+    font-size: 1rem;
+    line-height: 1.5rem;
+    box-shadow: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 0.625rem 1rem;
+    border-radius: 8px;
+    position: relative;
+    letter-spacing: 0.5px;
+    transition: 0.3s ease all;
+    &.btn-lg{
+        font-size: 1.375rem;
+        line-height: 1.5rem;
+    }
+    &.btn-md{
+        padding: 0.625rem 1rem;
+    }
+    &.btn-sm{
+        padding: 0.5rem 1rem;
+        &.text-13{
+            font-size: 0.813rem;
+        }
+    }
+    &:hover,&:focus,&:active,&:active:focus,&:visited{
+        opacity: 1;
+        box-shadow: none;
+    }
+    &.btn-primary{
+        background-color: $theme-color;
+        color: $global-font-color;
+    }
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
 // SIGN-IN
 
 .main-container{
@@ -27,12 +140,6 @@ body{
     background-position:center;
     background-repeat:no-repeat;
     background-size:cover;
-    .main-row{
-        display: flex;
-        align-items: center;
-        flex-direction: row;
-        height: 100vh;
-    }
     .img-section{
         text-align: center;
 
@@ -683,7 +790,7 @@ body{
                                             }
                                         }
                                         &:hover, .active{
-                                            background-color: $border-color;
+                                            @include jochi-components-light-bg;
                                             padding: 0.5rem;
                                             border-radius: 0.3rem;
                                             @media (max-width: 1002.98px){
@@ -1682,18 +1789,8 @@ body{
 
             // welcome quotes
             .customModal{
-                display: flex;
-                width: 100%;
-                flex-direction: column;
-                margin: auto;
                 #Welcome{
                     z-index: 4;
-                    position: absolute;
-                    display: flex;
-                    align-items: center;
-                    flex-direction: column;
-                    justify-content: center;
-                    text-align: center;
                     height: 90vh;
                     margin:auto;
                     top: -24px;
@@ -1705,14 +1802,8 @@ body{
                     box-shadow: -5px -5px 6px #3a3a3d,
                                 5px 5px 7px  #202021;
                     backdrop-filter: blur(5px);
-                        h4{
-                            color: $theme-color;
-                        }
                         .quotes-section{
                             color: $global-font-color;
-                        }
-                        .auther-section{
-                            color: $font-label-color;
                         }
                         .skip-button-section{
                             .skip-btn{
@@ -3475,337 +3566,231 @@ body{
         // club details
         // Study
         .study-section{
-            .study-text{
-                color: $theme-color;
-                font-size: 1.25rem;
+            &.sync-inner{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
-            .inner-study{
-                background-color: $global-sidebar-bg;
-                border-radius: 1rem;
-                font-size: .75rem;
-                &.sync-inner{
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                }
-                @media (max-width:1155px) {
-                    font-size: .65rem;
-                }
-                .profile-head{
-                    display: flex;
-                    justify-content: space-between;
-                    h4{
-                        color: $theme-color;
-                    }
-                    .close-btn{
-                        color:$font-label-color;
-                        font-size: 1.3rem;
-                        i.fa-times{
-                            font-weight: 400;
-                        }
-                    }
-                }
-                .study-row{
-                    min-height: calc(100vh - 170px);
-                    max-height: calc(100vh - 170px);
+            .study-row{
+                min-height: calc(100vh - 170px);
+                max-height: calc(100vh - 170px);
+                overflow: hidden;
+                overflow-y: auto;
+                &.room-form{
+                    min-height: calc(100vh - 190px);
+                    max-height: calc(100vh - 190px);
                     overflow: hidden;
                     overflow-y: auto;
-                    &.room-form{
-                        min-height: calc(100vh - 190px);
-                        max-height: calc(100vh - 190px);
-                        overflow: hidden;
-                        overflow-y: auto;
-                    }
-                    &.profile-row{
-                        min-height: calc(100vh - 216px);
-                        max-height: calc(100vh - 216px);
-                        overflow: hidden;
-                        overflow-y: auto;
-                    }
-                    .study-col{
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        &.profile-col{
-                            align-items: center;
-                        }
-                        .upload-image{
+                }
+                &.profile-row{
+                    min-height: calc(100vh - 216px);
+                    max-height: calc(100vh - 216px);
+                    overflow: hidden;
+                    overflow-y: auto;
+                }
+                .study-col{
+                    .upload-image{
+                        position: relative;
+                        .proof-img-wrp{
                             position: relative;
-                            .proof-img-wrp{
-                                position: relative;
-                                cursor: pointer;
-                                .profile-pic{
-                                    width: 200px;
-                                    height: 200px;
-                                    background-color: $border-color;
-                                    border-radius: 50%;
-                                    object-fit: cover;
-                                }
-                                .middle {
-                                    transition: .5s ease;
+                            cursor: pointer;
+                            .profile-pic{
+                                width: 200px;
+                                height: 200px;
+                                background-color: $border-color;
+                                object-fit: cover;
+                            }
+                            .middle {
+                                transition: .5s ease;
+                                opacity: 0;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                -ms-transform: translate(-50%, -50%);
+                            }
+                            &:hover .profile-pic {
+                                opacity: 0.3;
+                            }
+                            &:hover .middle {
+                                opacity: 1;
+                            }
+                        }
+                        .pic-edit{
+                            bottom: 20px;
+                            right: 5px;
+                            i.fa-pen{
+                                background-color: $theme-color;
+                                padding: 10px;
+                                input.rg-img-upload{
+                                    left: 0;
+                                    top: 0;
                                     opacity: 0;
-                                    position: absolute;
-                                    top: 50%;
-                                    left: 50%;
-                                    transform: translate(-50%, -50%);
-                                    -ms-transform: translate(-50%, -50%);
-                                    text-align: center;
-                                    .text{
-                                        font-size: 2rem;
-                                        color: $global-font-color;
-                                        .text-remove{
-                                            white-space: nowrap;
-                                            font-size: 0.8rem;
-                                            color: $font-label-color;
-                                        }
+                                    &::-webkit-file-upload-button {
+                                        cursor:pointer;
                                     }
-                                }
-                                &:hover .profile-pic {
-                                    opacity: 0.3;
-                                }
-                                &:hover .middle {
-                                    opacity: 1;
+                                    
                                 }
                             }
-                            .pic-edit{
-                                width: 100%;
-                                display: flex;
-                                flex-direction: row-reverse;
-                                position: absolute;
-                                bottom: 20px;
-                                right: 5px;
-                                i.fa-pen{
-                                    background-color: $theme-color;
-                                    border-radius: 50%;
-                                    padding: 10px;
-                                    color: $global-font-color;
+                        }
+                    }
+                    .cal-image{
+                        width: 170px;
+                        height: 170px;
+                    }
+                    .study-image{
+                        width: 400px;
+                        padding: 0px 60px 0px 60px;
+                        @media (min-width: 1536.98px) {
+                            width: 400px;
+                        }
+                        @media (max-width: 1536.98px) {
+                            width: 260px;
+                        }
+                        @media (max-width:1396.98px) {
+                            width: 260px;
+                        }
+                        @media (max-width: 1024.98px) {
+                            width: 230px;
+                        }
+                        @media (max-width: 767.98px) {
+                            padding: 0px 50px 0px 50px;
+                            margin: 0px auto 0;
+                            max-width: 230px;
+                            width: 100%;
+                        }
+                        @media (max-width: 575.98px) {
+                            margin: 0px auto 0;
+                            width: 212px;
+                        } 
+                    }
+                    .form-section{
+                        padding: 30px 30px 30px 0px;
+                        border-radius: .75rem;
+                        &.study-room-form{
+                            padding: 5px;
+                        }
+                        &.form-bg{
+                            background-color: $Global-background-element;
+                            padding: 80px 30px 80px 30px;
+                        }
+                        .form-group{
+                            label{
+                                color: $font-label-color;
+                                font-size: .8rem;
+                            }
+                            .form-control{
+                                list-style-type: none;
+                                border: 2px solid $border-color;
+                                background-color: $global-background-color ;
+                                font-size: 1rem;
+                                color: $font-label-color;
+                                padding: .375rem .75rem;
+                                option{
                                     font-size: 1rem;
-                                    position: relative;
-                                    input.rg-img-upload{
-                                        cursor: pointer;
-                                        position: absolute;
-                                        width: 100%;
-                                        height: 100%;
-                                        left: 0;
-                                        top: 0;
-                                        border-radius: 50%;
-                                        opacity: 0;
-                                        &::-webkit-file-upload-button {
-                                            cursor:pointer;
+                                    color: $font-label-color;
+                                    padding: inherit;
+                                    border-radius: 0.3rem;
+                                    &:hover{
+                                        background-color:$theme-color;
+                                        color: $global-font-color;
+                                        padding: inherit;
+                                        border-radius: 0.3rem;
+                                    }
+                                }
+                            }
+                            .form-field{
+                                border: none;
+                                background-color: $border-color;
+                                font-size: 1rem;
+                                color: $global-font-color;
+                                padding: .65rem 1.5rem;
+                                border-radius: 12px;
+                                box-shadow: 0.1rem 0.2rem 0.6rem rgba(0, 0, 0, 0.29);
+                                min-height: 45px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                cursor: default;
+                                &.change-pwd{
+                                    margin-top: 43px;
+                                    text-align: center;
+                                    padding: 0rem;
+                                    a{
+                                        text-decoration: none;
+                                        color: $global-font-color;
+                                        padding: .65rem 1.5rem;
+                                        display: block;
+                                    }
+                                }
+                            }
+                            .multiselect__tags {
+                                border-radius: 0.4rem;
+                                font-size: 1rem;
+                                border: 2px solid $border-color;
+                                background-color: $global-background-color ;
+                                color: $font-label-color;
+                                padding: 6px 40px 0 10px;
+                                height: calc(2.25rem + 2px);
+                                .multiselect__input, .multiselect__single {
+                                    background-color: unset;
+                                    border-radius: unset;
+                                    height: unset;
+                                    line-height: unset;color: $font-label-color;
+                                    &::placeholder{
+                                        color: rgba($color:$font-label-color,$alpha:0.4);
+                                    }
+                                }
+                            }
+                            .multiselect__content-wrapper{
+                                background-color: unset;
+                                list-style-type: none;
+                                z-index: 10;
+                                position: absolute;
+                                left: 0;
+                                width: 100%;
+                                top: calc(2.25rem + 2px);
+                                overflow: visible;
+                                border: none;
+                                ul{
+                                    border: 2px solid $border-color;
+                                    border-radius: 0.45rem;
+                                    background-color: $global-background-color;
+                                    padding: .375rem .75rem;
+                                    max-height: 200px;
+                                    overflow: hidden;
+                                    overflow-y: auto;
+                                    li{
+                                        color: $font-label-color;
+                                        .multiselect__option--highlight{
+                                            font-size: 1rem;
+                                            color: $global-font-color; background: $theme-color;
+                                            border-radius: 0.4rem;
+                                            &:target, &:visited, &:active{
+                                                background: #FF646F;
+                                            }
+                                        }
+                                        .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
+                                            background: #FF646F;
+                                            color: $global-font-color;
+                                            font-weight: 500;
+                                            border-radius: .4rem;
+                                        }
+                                        span{
+                                            &::after{
+                                                display: none !important;
+                                            }
                                         }
                                         
                                     }
+                                    .vs__dropdown-option--highlight {
+                                        
+                                        color: $global-font-color;
+                                    }
                                 }
                             }
                         }
-                        h6{
+                        .add{
+                            color: $global-font-color;
                             text-align: center;
-                            color: $global-font-color;
-                        }
-                        .upload-btn{
-                            background-color: $theme-color;
-                            width: 100%;
-                            color: $global-font-color;
-                            border-radius: 8px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-size: 0.9rem;
-                        }
-                        .cal-image{
-                            width: 170px;
-                            height: 170px;
-                        }
-                        .study-image{
-                            width: 400px;
-                            padding: 0px 60px 0px 60px;
-                            @media (min-width: 1536.98px) {
-                                width: 400px;
-                            }
-                            @media (max-width: 1536.98px) {
-                                width: 260px;
-                            }
-                            @media (max-width:1396.98px) {
-                                width: 260px;
-                            }
-                            @media (max-width: 1024.98px) {
-                                width: 230px;
-                            }
-                            @media (max-width: 767.98px) {
-                                padding: 0px 50px 0px 50px;
-                                margin: 0px auto 0;
-                                max-width: 230px;
-                                width: 100%;
-                            }
-                            @media (max-width: 575.98px) {
-                                margin: 0px auto 0;
-                                width: 212px;
-                            } 
-                        }
-                        .study-text{
-                            color: $theme-color;
-                            text-align: center;
-                            font-size: 1.25rem;
-                        }
-                        .form-section{
-                            padding: 30px 30px 30px 0px;
-                            border-radius: .75rem;
-                            &.study-room-form{
-                                padding: 5px;
-                            }
-                            &.form-bg{
-                                background-color: $Global-background-element;
-                                padding: 80px 30px 80px 30px;
-                            }
-                            .form-group{
-                                label{
-                                    color: $font-label-color;
-                                    font-size: .8rem;
-                                }
-                                .form-control{
-                                    list-style-type: none;
-                                    border: 2px solid $border-color;
-                                    background-color: $global-background-color ;
-                                    font-size: 1rem;
-                                    color: $font-label-color;
-                                    padding: .375rem .75rem;
-                                    option{
-                                        font-size: 1rem;
-                                        color: $font-label-color;
-                                        padding: inherit;
-                                        border-radius: 0.3rem;
-                                        &:hover{
-                                            background-color:$theme-color;
-                                            color: $global-font-color;
-                                            padding: inherit;
-                                            border-radius: 0.3rem;
-                                        }
-                                    }
-                                }
-                                .form-field{
-                                    border: none;
-                                    background-color: $border-color;
-                                    font-size: 1rem;
-                                    color: $global-font-color;
-                                    padding: .65rem 1.5rem;
-                                    border-radius: 12px;
-                                    box-shadow: 0.1rem 0.2rem 0.6rem rgba(0, 0, 0, 0.29);
-                                    min-height: 45px;
-                                    overflow: hidden;
-                                    text-overflow: ellipsis;
-                                    cursor: default;
-                                    &.change-pwd{
-                                        margin-top: 43px;
-                                        text-align: center;
-                                        padding: 0rem;
-                                        a{
-                                            text-decoration: none;
-                                            color: $global-font-color;
-                                            padding: .65rem 1.5rem;
-                                            display: block;
-                                        }
-                                    }
-                                }
-                                .multiselect__tags {
-                                    border-radius: 0.4rem;
-                                    font-size: 1rem;
-                                    border: 2px solid $border-color;
-                                    background-color: $global-background-color ;
-                                    color: $font-label-color;
-                                    padding: 6px 40px 0 10px;
-                                    height: calc(2.25rem + 2px);
-                                    .multiselect__input, .multiselect__single {
-                                        background-color: unset;
-                                        border-radius: unset;
-                                        height: unset;
-                                        line-height: unset;color: $font-label-color;
-                                        &::placeholder{
-                                            color: rgba($color:$font-label-color,$alpha:0.4);
-                                        }
-                                    }
-                                }
-                                .multiselect__content-wrapper{
-                                    background-color: unset;
-                                    list-style-type: none;
-                                    z-index: 10;
-                                    position: absolute;
-                                    left: 0;
-                                    width: 100%;
-                                    top: calc(2.25rem + 2px);
-                                    overflow: visible;
-                                    border: none;
-                                    ul{
-                                        border: 2px solid $border-color;
-                                        border-radius: 0.45rem;
-                                        background-color: $global-background-color;
-                                        padding: .375rem .75rem;
-                                        max-height: 200px;
-                                        overflow: hidden;
-                                        overflow-y: auto;
-                                        li{
-                                            color: $font-label-color;
-                                            .multiselect__option--highlight{
-                                                font-size: 1rem;
-                                                color: $global-font-color; background: $theme-color;
-                                                border-radius: 0.4rem;
-                                                &:target, &:visited, &:active{
-                                                    background: #FF646F;
-                                                }
-                                            }
-                                            .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
-                                                background: #FF646F;
-                                                color: $global-font-color;
-                                                font-weight: 500;
-                                                border-radius: .4rem;
-                                            }
-                                            span{
-                                                &::after{
-                                                    display: none !important;
-                                                }
-                                            }
-                                            
-                                        }
-                                        .vs__dropdown-option--highlight {
-                                           
-                                            color: $global-font-color;
-                                        }
-                                    }
-                                }
-                            }
-                            .add{
-                                color: $global-font-color;
-                                text-align: center;
-                            }
-                            .btn-color{
-                                color: $global-font-color;
-                                background-color: $theme-color;
-                                text-align: center;
-                                margin: auto;
-                                left: 0;
-                                right: 0;
-                                border-radius: 10px;
-                                font-size: 0.9rem;
-                                padding: 0.3rem 0.8rem;
-                            }
-                        }
-                        .study-heading{
-                            color: $theme-color;
-                            h1{
-                                font-weight: 700;
-                                @media (max-width: 767.98px) {
-                                    font-size: 2rem;
-                                }
-                            }
-                        }
-                        .subject-name{
-                            color: $global-font-color;
-                            font-size: 1.4rem;
-                            font-weight: 650;
-                            &.subject-time{
-                                color: $font-label-color;
-                                font-size: 1rem;
-                                font-weight: 500;
-                            }
                         }
                         .btn-color{
                             color: $global-font-color;
@@ -3814,95 +3799,84 @@ body{
                             margin: auto;
                             left: 0;
                             right: 0;
-                            border-radius: 2rem;
+                            border-radius: 10px;
+                            font-size: 0.9rem;
+                            padding: 0.3rem 0.8rem;
                         }
                     }
-                    
-                    .discription-area{
-                        p.discription-text{
-                            text-align: center;
+                    .study-heading{
+                        color: $theme-color;
+                        h1{
+                            font-weight: 700;
+                            @media (max-width: 767.98px) {
+                                font-size: 2rem;
+                            }
+                        }
+                    }
+                    .subject-name{
+                        color: $global-font-color;
+                        font-size: 1.4rem;
+                        font-weight: 650;
+                        &.subject-time{
+                            color: $font-label-color;
+                            font-size: 1rem;
+                            font-weight: 500;
+                        }
+                    }
+                    .btn-color{
+                        color: $global-font-color;
+                        background-color: $theme-color;
+                        text-align: center;
+                        margin: auto;
+                        left: 0;
+                        right: 0;
+                        border-radius: 2rem;
+                    }
+                }
+                .inner-row{
+                    margin-top: 0 !important;
+                    .inner-col{
+                        background-color: $Global-background-element;
+                        border-radius: .3rem;
+                        box-shadow: 0.1rem 0.1rem 0.4rem $global-box-shadow;
+                        .total-value{
+                            size: 1.5rem;
                             color: $global-font-color;
-                            font-size: 0.8rem;
-                            button.more-btn{
-                                color: $font-label-color;
-                                font-size: 0.8rem;
+                            sup{
+                                color: $icon-bg-green;
                             }
                         }
                     }
-                    // timer
-                    .header-row{
-                        .col-md-6{
-                            h4{
-                                color: $theme-color;
-                                margin-bottom: 0 !important;
-                            }
-                        }
-                    }
-                    .inner-row{
-                        margin-top: 0 !important;
-                        .inner-col{
-                            background-color: $Global-background-element;
-                            border-radius: .3rem;
-                            box-shadow: 0.1rem 0.1rem 0.4rem $global-box-shadow;
-                            h6{
-                                color: $global-font-color;
-                            }
-                            .total-value{
-                                size: 1.5rem;
-                                color: $global-font-color;
-                                sup{
-                                    color: $icon-bg-green;
-                                }
-                            }
-                        }
-                    }
-                    .header-row{
-                        .col-md-12{
-                            h4{
-                                color: $theme-color;
-                                margin-bottom: 0 !important;
-                            }
-                        }
-                    }
-                    .inner-row{
-                        margin-top: 0 !important;
-                        h4.txt-pink{
+                }
+                .inner-row{
+                    .inner-col{
+                        background-color: $Global-background-element;
+                        border-radius: .3rem;
+                        box-shadow: 0.1rem 0.1rem 0.4rem $global-box-shadow;
+                        min-height: 83px;
+                        .star-icon{
                             color: $theme-color;
-                            font-weight: 600;
+                            font-size: 1.5rem;
                         }
-                        .inner-col{
-                            background-color: $Global-background-element;
-                            border-radius: .3rem;
-                            box-shadow: 0.1rem 0.1rem 0.4rem $global-box-shadow;
-                            min-height: 83px;
-                            h6{
-                                color: $global-font-color;
-                                font-weight: 600;
-                            }
-                            .star-icon{
-                                color: $theme-color;
-                                font-size: 1.5rem;
-                            }
-                            .total-value{
-                                color: $global-font-color;
-                                sub{
-                                    color: $font-label-color;
-                                }
+                        .total-value{
+                            color: $global-font-color;
+                            sub{
+                                color: $font-label-color;
                             }
                         }
                     }
-                    .button-row{
-                        margin-top: 0 !important;
-                        .col-md-12{
-                            .btn-color{
-                                color: $global-font-color;
-                                background-color: $theme-color;
-                                text-align: center;
-                                margin: auto;
-                                left: 0;
-                                right: 0;
-                                border-radius: 2rem;
-                            }
+                }
+                .button-row{
+                    margin-top: 0 !important;
+                    .col-md-12{
+                        .btn-color{
+                            color: $global-font-color;
+                            background-color: $theme-color;
+                            text-align: center;
+                            margin: auto;
+                            left: 0;
+                            right: 0;
+                            border-radius: 2rem;
                         }
                     }
                 }
@@ -6290,9 +6264,7 @@ select.form-control{
 }
 
 .jochi-components-light-bg {
-    background-color: rgba($color: $white, $alpha: 0.45);
-    box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
-    border-radius: 22px;
+    @include jochi-components-light-bg;
 }
 
 .jochi-sub-components-light-bg {

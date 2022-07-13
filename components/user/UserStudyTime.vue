@@ -4,7 +4,7 @@
 
     <section id="study-detail" class="">
       <div class="study-section container-fluid">
-        <h3 class="study-text mb-2 mt-4">Study Room</h3>
+        <h3 class="color-primary text-18 mb-2 mt-4">Study Room</h3>
         <div class="inner-study p-3">
           <!-- Study Room -->
           <div
@@ -20,14 +20,14 @@
             v-if="!addedStudyTime && timerStatus == 0"
           >
             <div class="d-flex flex-column w-100">
-              <div class="study-col">
+              <div class="study-col d-flex flex-column justify-content-center">
                 <!-- <img
                   src="~/assets/images/undraw/studying.png"
                   alt=""
                   class="container study-image"
                 /> -->
               </div>
-              <div class="study-col col-8 mx-auto py-0">
+              <div class="study-col d-flex flex-column justify-content-center col-8 mx-auto py-0">
                 <div class="form-section study-room-form py-0 mx-5">
                   <form
                     @submit.prevent="StartStudySession"
@@ -167,7 +167,7 @@
                 </div>
               </div>
               <div class="discription-area py-3 px-5" v-if="studyTypes.id == 1">
-                <p class="discription-text mb-1">
+                <p class="discription-text mb-1 text-center color-dark text-14">
                   25-minute chunks separated by five-minute breaks. After about
                   four pomodoros, you take a longer break of about 15 minutes
                   <span>
@@ -180,7 +180,7 @@
                 </p>
               </div>
               <div class="discription-area py-3 px-5" v-if="studyTypes.id == 2">
-                <p class="discription-text mb-1">
+                <p class="discription-text mb-1 text-center color-dark text-14">
                   The 52/17 Rule is a time management method that recommends 52
                   minutes of focused working alternated by 17 minutes of
                   complete resting and recharging
@@ -202,7 +202,7 @@
             v-if="!addedStudyTime && timerStatus == 1"
           >
             <div class="row study-row">
-              <div class="col-md-6 study-col">
+              <div class="col-md-6 study-col d-flex flex-column justify-content-center">
                 <div class="m-5">
                   <div class="study-heading mb-2"><h1>Working on</h1></div>
                   <p class="subject-name mb-1">
@@ -235,7 +235,7 @@
                 </div>
               </div>
 
-              <div class="col-md-6 study-col">
+              <div class="col-md-6 study-col d-flex flex-column justify-content-center">
                 <div>
                   <div id="app" class="mb-3">
                     <div class="base-timer m-auto">
@@ -308,11 +308,11 @@
                 <!-- <button type="button" @click.prevent="onBackClick()" class="btn btn-color mb-3 mt-2 pl-3 pr-3 text-right">Back</button> -->
               </div>
             </div>
-            <div class="inner-row container">
+            <div class="inner-row mt-0 container">
               <div class="inner-col px-5 py-4 d-flex flex-column">
                 <div class="mb-3 col-5 mx-0 mx-md-auto">
                   <div class="d-flex justify-content-between">
-                    <h6 class="py-2">Focus</h6>
+                    <h6 class="py-2 color-dark font-semi-bold">Focus</h6>
                   </div>
                   <div class="d-flex justify-content-between">
                     <star-rating

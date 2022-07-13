@@ -9,8 +9,14 @@ $cal-border:#5B5B5E;
 $confirm-green: #86FD97;
 $white:#ffffff;
 $black:#000000;
+$text-dark:#431F1C;
+$text-secondary: #C5C0BD;
 // element color
-
+@mixin jochi-components-light-bg{
+    background-color: rgba($color: $white, $alpha: 0.45);
+    box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
+    border-radius: 22px;
+}
 $global-background-color : rgba($color: $white, $alpha: 0.45);
 $global-sidebar-bg:#2D2D2F;
 $Global-background-element: rgba($color: $white, $alpha: 0.45);
@@ -28,3 +34,22 @@ $timer-label: #707070;
 // font
 $text-style: 'Poppins', sans-serif;
 $logo-text-style: 'Montserrat',  sans-serif;
+
+// Responsive Screens
+$hd-screen           : 1700px;
+$xl-screen           : 1399.98px;
+$lg-screen           : 1199.98px;
+$md-screen           : 991.98px;
+$sm-screen           : 767.98px;
+$min-sm-screen       : 768px;
+$xs-screen           : 575.98px;
+$min-md-screen       : 992px;
+$min-lg-screen       : 1200px;
+$max-xs-screen       : 575px;
+
+$touchdevice         :1024px;
+
+$lg-screen-h         : 1080px;
+$lg-screen-h         : 1079.98px;
+$md-screen-h         : 1023.98px;
+$sm-screen-h         : 767.98px;

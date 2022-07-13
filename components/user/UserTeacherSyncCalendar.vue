@@ -6,15 +6,15 @@
       <div class="study-section container">
         <div class="inner-study sync-inner container p-3 mt-4">
           <div class="row study-row">
-            <div class="col-md-6 study-col">
+            <div class="col-md-6 study-col d-flex flex-column justify-content-center">
               <img
                 src="~/assets/images/undraw/Group 293.png"
                 alt=""
                 class="container cal-image p-3"
               />
-              <h4 class="study-text">Sync Calendar</h4>
+              <h4 class="color-primary text-18">Sync Calendar</h4>
             </div>
-            <div class="col-md-6 study-col">
+            <div class="col-md-6 study-col d-flex flex-column justify-content-center">
               <div
                 class="form-section form-bg mt-4 mr-5 mb-4 ml-5 ml-sm-5 ml-md-0"
               >

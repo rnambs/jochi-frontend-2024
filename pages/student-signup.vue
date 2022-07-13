@@ -29,7 +29,7 @@
       <div id="fountainTextG_3" class="fountainTextG animation">. &nbsp;</div>
       <div id="fountainTextG_4" class="fountainTextG animation">. &nbsp;</div>
     </div>
-    <div class="row main-row">
+    <div class="row main-row d-flex align-items-center flex-row vh-100">
       <div class="col-md-6 img-section">
         <img
           src="~/assets/images/undraw/Undraw_signUp.png"

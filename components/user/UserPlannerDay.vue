@@ -426,17 +426,17 @@
 
           <!-- Welcome Pop Up -->
           <div
-            class="customModal"
+            class="customModal d-flex flex-column m-auto w-100"
             id="welcomeModal"
             v-show="isShowing && isShowQuote"
           >
             <!-- quots -->
-            <section id="Welcome" class="">
-              <h4 class="mb-5">Welcome</h4>
-              <div class="quotes-section mb-4">
+            <section id="Welcome" class="position-absolute d-flex flex-column align-items-center justify-content-center text-center w-100">
+              <h4 class="mb-5 color-primary">Welcome</h4>
+              <div class="quotes-section mb-4 color-dark">
                 {{ quoteMessage }}
               </div>
-              <!-- <div class="auther-section mb-4">- A P J Abdul Kalam -</div> -->
+              <!-- <div class="auther-section color-secondary mb-4">- A P J Abdul Kalam -</div> -->
 
               <div class="skip-button-section">
                 <button

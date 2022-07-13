@@ -4,11 +4,11 @@
     <section id="study-detail" class="">
       <div class="study-section container">
         <div class="inner-study container p-3 mt-4">
-          <div class="col-12 profile-head px-4">
+          <div class="col-12 px-4 d-flex justify-content-between">
             <h4>Profile</h4>
           </div>
           <div class="row profile-row study-row px-5">
-            <div class="col-md-6 study-col profile-col">
+            <div class="col-md-6 study-col profile-col d-flex flex-column justify-content-center align-items-center">
               <form
                 method="post"
                 @submit.prevent="UploadProfile"
@@ -16,12 +16,12 @@
                 enctype="multipart/form-data"
               >
                 <div class="upload-area">
-                  <div class="upload-image">
-                    <div class="proof-img-wrp">
+                  <div class="upload-image position-relative">
+                    <div class="proof-img-wrp position-relative cursor-pointer">
                       <img
                         v-if="profileImageUrl"
                         :src="profileImageUrl"
-                        class="profile-pic"
+                        class="profile-pic rounded-circle"
                         alt=""
                       />
                       <img
@@ -38,11 +38,11 @@
                           this.profile !=
                             'https://jochi-developement.s3.ap-south-1.amazonaws.com/profilePic/1634542050892.png'
                         "
-                        class="middle"
+                        class="middle position-absolute text-center"
                       >
-                        <div class="text" @click="ProfileRemove()">
+                        <div class="text-30 color-dark" @click="ProfileRemove()">
                           <i class="far fa-trash-alt"></i>
-                          <p class="text-remove">Remove profile</p>
+                          <p class="text-remove color-secondary text-14 text-nowrap">Remove profile</p>
                         </div>
                       </div>
 
@@ -63,15 +63,15 @@
                       </div>
                     </div>
                     <div v-if="profileImageUrl">
-                      <span class="pic-edit">
-                        <i class="fas fa-pen">
+                      <span class="pic-edit w-100 d-flex flex-row-reverse position-absolute">
+                        <i class="fas fa-pen rounded-circle color-dark position-relative text-16">
                           <!-- accept=".png,.jpeg,.jpg,.doc,.docx,.pdf" -->
                           <input
                             type="file"
                             :v-model="profilePic"
                             ref="profilePic"
                             name="profilePic"
-                            class="rg-img-upload img-up-two"
+                            class="rg-img-upload img-up-two cursor-pointer position-absolute w-100 h-100 rounded-circle"
                             @change="onFileChange"
                             accept=".jpeg,.jpg,.png"
                           />
@@ -79,15 +79,15 @@
                       ><br />
                     </div>
                     <div v-else class="custom-upload-with-msg text-center">
-                      <span class="pic-edit">
-                        <i class="fas fa-pen">
+                      <span class="pic-edit w-100 d-flex flex-row-reverse position-absolute">
+                        <i class="fas fa-pen rounded-circle color-dark position-relative text-16">
                           <input
                             id="actual-btn"
                             type="file"
                             :v-model="profilePic"
                             ref="profilePic"
                             name="profilePic"
-                            class="rg-img-upload img-up-two"
+                            class="rg-img-upload img-up-two cursor-pointer position-absolute w-100 h-100 rounded-circle"
                             @change="onFileChange"
                             accept=".jpeg,.jpg,.png"
                           />
@@ -96,18 +96,18 @@
                     </div>
                   </div>
                 </div>
-                <h6>{{ name }}</h6>
+                <h6 class="text-center color-dark">{{ name }}</h6>
                 <button
                   id="clckPrevent"
                   type="submit"
-                  class="btn upload-btn"
+                  class="btn btn-primary "
                   :disabled="!profileImageUrl || loading"
                 >
-                  <i class="far fa-save pr-1"></i>Save Changes
+                  <i class="far fa-save pr-1 font-regular"></i>Save Changes
                 </button>
               </form>
             </div>
-            <div class="col-md-6 study-col">
+            <div class="col-md-6 study-col d-flex flex-column justify-content-center">
               <div
                 class="form-section mt-4 mb-4 mx-auto w-100 py-4 px-0 pr-md-5"
               >
