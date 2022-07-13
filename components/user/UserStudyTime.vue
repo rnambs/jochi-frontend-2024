@@ -268,7 +268,7 @@
                         <span id="base-timer-label" class="base-timer__label">{{
                           timerDurationDisplay
                         }}</span>
-                        <span class="text-white base-timer-text">{{
+                        <span class="color-dark base-timer-text">{{
                           studyStatus == "break" ? "BREAK" : ""
                         }}</span>
                       </div>

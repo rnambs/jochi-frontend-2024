@@ -4,7 +4,7 @@
 
     <section id="study-detail" class="">
       <div class="study-section container">
-        <div class="inner-study sync-inner container p-3 mt-4">
+        <div class="inner-study sync-inner container p-3 mt-4 d-flex flex-column justify-content-center">
           <div class="row study-row">
             <div class="col-md-6 study-col d-flex flex-column justify-content-center">
               <img

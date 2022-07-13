@@ -441,7 +441,7 @@
               <div class="skip-button-section">
                 <button
                   action=""
-                  class="skip-btn btn mt-4 mb-2 px-5"
+                  class="btn btn-primary px-4"
                   @click="isShowing = false"
                 >
                   <strong>Skip</strong>

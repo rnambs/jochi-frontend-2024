@@ -1,29 +1,35 @@
 <template>
   <div class="main-section">
     <!-- Study Page -->
-    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex">
       
-    <section id="study-detail" class="">
-      <div class="study-section container-fluid">
-          <div class="study-row">
+      <div class="study-section d-flex flex-column">
+          <div class="d-flex align-items-center justify-content-between mb-3 px-2">
+            <h2 class="color-primary font-semi-bold mb-0">Study Analytics</h2>
+            <p class="mb-0">
+              <span class="color-dark text-16 font-normal">Daily goal :</span>
+              <span class="color-dark text-24 font-semi-bold">45</span><span class="color-dark font-normal text-16">min</span>
+            </p>
+          </div>
+          <div class="study-row d-flex flex-column px-2">
             <div class="row header-row mb-1">
               <div class="col-md-6 py-2">
-                <h4 class="color-primary">Weekly Dashboard</h4>
+                <h4 class="color-dark font-semi-bold">Weekly Dashboard</h4>
               </div>
               <div class="col-md-6 py-2">
-                <h4 class="color-primary">Dashboard</h4>
+                <h4 class="color-dark font-semi-bold">Dashboard</h4>
               </div>
             </div>
             <div class="row inner-row mt-0 text-center mb-2">
               <div class="col-md-3 py-2">
-                <div class="inner-col p-2">
+                <div class="inner-col card card-white p-2">
                   <h6 class="color-dark font-semi-bold">Total Minutes</h6>
-                  <p class="total-value">
+                  <p class="total-value text-24 color-dark font-semi-bold">
                     {{
                       mySession.total_minutes_week
                         ? mySession.total_minutes_week
                         : 0
-                    }}<sup
+                    }}<sup class="color-label-green font-light text-16"
                       >{{
                         formatted_minute_status_week
                           ? formatted_minute_status_week >= 0
@@ -36,14 +42,14 @@
                 </div>
               </div>
               <div class="col-md-3 py-2">
-                <div class="inner-col p-2">
+                <div class="inner-col card card-white p-2">
                   <h6 class="color-dark font-semi-bold">Total Session</h6>
-                  <p class="total-value">
+                  <p class="total-value text-24 color-dark font-semi-bold">
                     {{
                       mySession.total_sessions_week
                         ? mySession.total_sessions_week
                         : 0
-                    }}<sup
+                    }}<sup class="color-label-green font-light text-16"
                       >{{
                         formatted_session_status_week
                           ? formatted_session_status_week >= 0
@@ -56,17 +62,17 @@
                 </div>
               </div>
               <div class="col-md-3 py-2">
-                <div class="inner-col p-2">
+                <div class="inner-col card card-white p-2">
                   <h6 class="color-dark font-semi-bold">Total Minutes</h6>
-                  <p class="total-value">
+                  <p class="total-value text-24 color-dark">
                     {{ mySession.total_minutes ? mySession.total_minutes : 0 }}
                   </p>
                 </div>
               </div>
               <div class="col-md-3 py-2">
-                <div class="inner-col p-2">
+                <div class="inner-col card card-white p-2">
                   <h6 class="color-dark font-semi-bold">Total Session</h6>
-                  <p class="total-value">
+                  <p class="total-value text-24 color-dark">
                     {{
                       mySession.total_sessions ? mySession.total_sessions : 0
                     }}
@@ -74,11 +80,12 @@
                 </div>
               </div>
             </div>
-            <div class="row inner-row mb-2">
+            <div class="row inner-row mt-0 mb-2">
               <div class="col-md-6 py-2">
                 <div
                   class="
                     inner-col
+                    card card-white
                     p-3
                     h-100
                     d-flex
@@ -99,12 +106,12 @@
                           class="chart-color mx-2"
                         >
                         </span>
-                        <span class="chart-text">
+                        <span class="chart-text color-dark">
                           {{ item.value }}
                         </span>
                       </div>
                     </div>
-                    <div id="weeklyContainer" class="chart text-white">
+                    <div id="weeklyContainer" class="chart color-secondary">
                       <canvas
                         id="weekly"
                         width="600"
@@ -119,6 +126,7 @@
                 <div
                   class="
                     inner-col
+                    card card-white
                     p-3
                     h-100
                     d-flex
@@ -158,24 +166,23 @@
                 </div>
               </div>
             </div>
-            <div class="row inner-row">
+            <div class="row inner-row mt-0">
               <div class="col-md-12 mb-2">
-                <h4 class="color-primary font-semi-bold mb-0">Progress Chart</h4>
+                <h4 class="color-dark font-semi-bold mb-0">Progress Chart</h4>
               </div>
               <div class="col-md-6 mb-2">
-                <div class="inner-col p-2">
+                <div class="inner-col card card-white p-2">
                   <canvas id="progress1" width="600" height="380"></canvas>
                 </div>
               </div>
               <div class="col-md-6 mb-2">
-                <div class="inner-col p-2">
+                <div class="inner-col card card-white p-2">
                   <canvas id="progress2" width="600" height="380"></canvas>
                 </div>
               </div>
             </div>
           </div>
       </div>
-    </section>
 
     </div>
 
