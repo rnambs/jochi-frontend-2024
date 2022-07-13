@@ -308,12 +308,12 @@
                     <ul class="inner-custom-list ml-4">
                       <li class="nav-item">
                         <nuxt-link to="/club-detail" class="nav-link"
-                          >My Clubs</nuxt-link
+                          >Existing</nuxt-link
                         >
                       </li>
                       <li class="nav-item">
                         <nuxt-link to="/club-catalogue" class="nav-link"
-                          >Clubs Catalog</nuxt-link
+                          >Catalog</nuxt-link
                         >
                       </li>
                     </ul>

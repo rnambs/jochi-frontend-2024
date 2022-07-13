@@ -186,7 +186,7 @@
                 <span class="ml-2">Sync Calendar</span>
               </nuxt-link>
             </li>
-            <li class="menu-list nav-item">
+            <!-- <li class="menu-list nav-item">
               <nuxt-link to="/clubs" data-toggle="collapse" class="nav-link">
                 <div class="font-icon d-inline-block">
                   <img
@@ -197,6 +197,55 @@
                 </div>
                 <span class="ml-2">Clubs</span>
               </nuxt-link>
+            </li> -->
+
+            <li class="menu-list nav-item">
+              <div class="card mb-2">
+                <div class="card-header p-1" id="headingThree">
+                  <h2 class="mb-0">
+                    <button
+                      class="btn btn-link btn-block text-left collapsed"
+                      @click="$event.target.classList.toggle('active')"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
+                      <div class="font-icon d-inline-block">
+                        <img
+                          src="~/assets/images/Icon/club-icon.png"
+                          alt=""
+                          class="teams-clubs"
+                        />
+                      </div>
+                      <span class="ml-2">Teams & Clubs</span>
+                      <i class="fas fa-chevron-right"></i>
+                    </button>
+                  </h2>
+                </div>
+                <div
+                  id="collapseThree"
+                  class="collapse"
+                  aria-labelledby="headingThree"
+                  data-parent="#accordionExample"
+                >
+                  <div class="card-body py-0">
+                    <ul class="inner-custom-list ml-4">
+                      <li class="nav-item">
+                        <nuxt-link to="/club-detail" class="nav-link"
+                          >Existing</nuxt-link
+                        >
+                      </li>
+                      <li class="nav-item">
+                        <nuxt-link to="/club-catalogue" class="nav-link"
+                          >Catalog</nuxt-link
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </li>
           </ul>
           <ul class="custom-list">

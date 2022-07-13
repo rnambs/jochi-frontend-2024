@@ -86,10 +86,10 @@
               </a>
               <ul class="collapse inner-custom-list ml-4 p-2" id="Club-subMenu">
                 <li>
-                  <a href="">My Clubs</a>
+                  <a href="">Existing</a>
                 </li>
                 <li>
-                  <a href="">Clubs Catalog</a>
+                  <a href="">Catalog</a>
                 </li>
               </ul>
             </li>
