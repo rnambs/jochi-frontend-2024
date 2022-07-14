@@ -175,7 +175,7 @@
                                   >
                                     <div
                                       :class="
-                                        isRead == 1
+                                        item.isRead == 1
                                           ? 'anc-status-btn green mr-3'
                                           : 'anc-status-btn red mr-3'
                                       "
@@ -536,6 +536,7 @@
               class="close"
               data-dismiss="modal"
               aria-label="Close"
+              @click="resetAnnouncement"
             >
               <span aria-hidden="true">&times;</span>
             </button>
@@ -556,11 +557,12 @@
                   name="announceTitle"
                   maxlength="100"
                   :class="{
-                    'is-invalid': submitted && $v.announceTitle.$error,
+                    'is-invalid':
+                      submitted && isAnnouncement && $v.announceTitle.$error,
                   }"
                 />
                 <div
-                  v-if="submitted && $v.announceTitle.$error"
+                  v-if="submitted && isAnnouncement && $v.announceTitle.$error"
                   class="invalid-feedback"
                 >
                   <span v-if="!$v.announceTitle.required"
@@ -580,11 +582,12 @@
                   maxlength="800"
                   placeholder="Enter task description"
                   :class="{
-                    'is-invalid': submitted && $v.announceDesc.$error,
+                    'is-invalid':
+                      submitted && isAnnouncement && $v.announceDesc.$error,
                   }"
                 ></textarea>
                 <div
-                  v-if="submitted && $v.announceDesc.$error"
+                  v-if="submitted && isAnnouncement && $v.announceDesc.$error"
                   class="invalid-feedback"
                 >
                   <span v-if="!$v.announceDesc.required"
@@ -599,6 +602,7 @@
               type="button"
               class="btn btn-color-close"
               data-dismiss="modal"
+              @click="resetAnnouncement"
             >
               Cancel
             </button>
@@ -657,14 +661,15 @@
                   name="activityType"
                   v-model="activityType"
                   :class="{
-                    'is-invalid': submitted && $v.activityType.$error,
+                    'is-invalid':
+                      submitted && isActivity && $v.activityType.$error,
                   }"
                 >
                   <option value="Match">Match</option>
                   <option value="Training">Training</option>
                 </select>
                 <div
-                  v-if="submitted && $v.activityType.$error"
+                  v-if="submitted && isActivity && $v.activityType.$error"
                   class="invalid-feedback"
                 >
                   <span v-if="!$v.activityType.required"
@@ -686,11 +691,12 @@
                   name="activityTitle"
                   maxlength="100"
                   :class="{
-                    'is-invalid': submitted && $v.activityTitle.$error,
+                    'is-invalid':
+                      submitted && isActivity && $v.activityTitle.$error,
                   }"
                 />
                 <div
-                  v-if="submitted && $v.activityTitle.$error"
+                  v-if="submitted && isActivity && $v.activityTitle.$error"
                   class="invalid-feedback"
                 >
                   <span v-if="!$v.activityTitle.required"
@@ -710,11 +716,12 @@
                   maxlength="800"
                   placeholder="Enter description"
                   :class="{
-                    'is-invalid': submitted && $v.activityDesc.$error,
+                    'is-invalid':
+                      submitted && isActivity && $v.activityDesc.$error,
                   }"
                 ></textarea>
                 <div
-                  v-if="submitted && $v.activityDesc.$error"
+                  v-if="submitted && isActivity && $v.activityDesc.$error"
                   class="invalid-feedback"
                 >
                   <span v-if="!$v.activityDesc.required"
@@ -736,11 +743,12 @@
                   name="activityDate"
                   maxlength="100"
                   :class="{
-                    'is-invalid': submitted && $v.activityDate.$error,
+                    'is-invalid':
+                      submitted && isActivity && $v.activityDate.$error,
                   }"
                 />
                 <div
-                  v-if="submitted && $v.activityDate.$error"
+                  v-if="submitted && isActivity && $v.activityDate.$error"
                   class="invalid-feedback"
                 >
                   <span v-if="!$v.activityDate.required"
@@ -762,11 +770,12 @@
                   name="activityTime"
                   maxlength="100"
                   :class="{
-                    'is-invalid': submitted && $v.activityTime.$error,
+                    'is-invalid':
+                      submitted && isActivity && $v.activityTime.$error,
                   }"
                 />
                 <div
-                  v-if="submitted && $v.activityTime.$error"
+                  v-if="submitted && isActivity && $v.activityTime.$error"
                   class="invalid-feedback"
                 >
                   <span v-if="!$v.activityTime.required"
@@ -788,11 +797,12 @@
                   name="activityVenue"
                   maxlength="100"
                   :class="{
-                    'is-invalid': submitted && $v.activityVenue.$error,
+                    'is-invalid':
+                      submitted && isActivity && $v.activityVenue.$error,
                   }"
                 />
                 <div
-                  v-if="submitted && $v.activityVenue.$error"
+                  v-if="submitted && isActivity && $v.activityVenue.$error"
                   class="invalid-feedback"
                 >
                   <span v-if="!$v.activityVenue.required"
@@ -814,11 +824,14 @@
                   name="activityOpponentTeam"
                   maxlength="100"
                   :class="{
-                    'is-invalid': submitted && $v.activityOpponentTeam.$error,
+                    'is-invalid':
+                      submitted && isActivity && $v.activityOpponentTeam.$error,
                   }"
                 />
                 <div
-                  v-if="submitted && $v.activityOpponentTeam.$error"
+                  v-if="
+                    submitted && isActivity && $v.activityOpponentTeam.$error
+                  "
                   class="invalid-feedback"
                 >
                   <span v-if="!$v.activityOpponentTeam.required"
@@ -970,7 +983,7 @@
 import { mapState, mapActions } from "vuex";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
-import { required } from "vuelidate/lib/validators";
+import { required, requiredUnless } from "vuelidate/lib/validators";
 import Multiselect from "vue-multiselect";
 var headingName = "";
 var clubId = "";
@@ -1019,11 +1032,19 @@ export default {
       activityTime: "",
       activityVenue: "",
       activityOpponentTeam: "",
+      isAnnouncement: false,
+      isActivity: false,
     };
   },
   validations: {
-    announceTitle: { required },
-    announceDesc: { required },
+    announceTitle: { required: requiredUnless("checkIsAnnouncement") },
+    announceDesc: { required: requiredUnless("checkIsAnnouncement") },
+    activityTitle: { required: requiredUnless("checkIsActivity") },
+    activityDesc: { required: requiredUnless("checkIsActivity") },
+    activityDate: { required: requiredUnless("checkIsActivity") },
+    activityTime: { required: requiredUnless("checkIsActivity") },
+    activityVenue: { required: requiredUnless("checkIsActivity") },
+    activityOpponentTeam: { required: requiredUnless("checkIsActivity") },
   },
   mounted() {
     var user = localStorage.getItem("user_type");
@@ -1050,6 +1071,12 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    checkIsAnnouncement() {
+      return this.isAnnouncement; // some conditional logic here...
+    },
+    checkIsActivity() {
+      return this.isActivity; // some conditional logic here...
+    },
   },
   methods: {
     ...mapActions("clubMoreInfo", {
@@ -1246,13 +1273,19 @@ export default {
         this.getAnnouncement();
       }
     },
-    async openModal(id) {
+    async openModal() {
+      this.submitted = false;
+      this.isAnnouncement = true;
       $("#announcementModal").modal({ backdrop: true });
     },
-    async openActivityModal(id) {
+    async openActivityModal() {
+      this.resetActivity();
+      this.submitted = false;
+      this.isActivity = true;
       $("#activityModal").modal({ backdrop: true });
     },
     async openEdit(data) {
+      this.resetActivity();
       this.isAnnouncementEdit = true;
       this.markAnnouncementAsRead(data.id);
       // this.dateValue = new Date(this.calendarApi.view.activeStart);
@@ -1335,12 +1368,14 @@ export default {
       }
     },
     resetAnnouncement() {
+      this.isAnnouncement = false;
       this.announceClubId = "";
       this.announcementId = "";
       this.announceTitle = "";
       this.announceDesc = "";
     },
     resetActivity() {
+      this.isActivity = false;
       this.activityId = "";
       this.activityTitle = "";
       this.activityType = "";
