@@ -104,6 +104,8 @@ const actions = {
             commit('setErrorType', "");
             commit('setSuccessMessage', response.message);
             commit('setSuccessType', "success");
+
+
         } catch (e) {
             if (e.response.data.message == "Unauthorized") {
                 commit('setSuccessMessage', "");
@@ -112,6 +114,13 @@ const actions = {
                 commit('setErrorType', "");
                 window.localStorage.clear();
                 this.$router.push('/');
+            }
+
+            if (e.response.data.message) {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', e.response.data.message);
+                commit('setErrorType', "error");
             }
         }
 
