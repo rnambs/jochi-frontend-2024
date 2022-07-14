@@ -144,6 +144,14 @@ body{
     }
 }
 
+// icon image
+
+.icon-img{
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
 .cursor-pointer{
     cursor: pointer;
 }
