@@ -235,11 +235,11 @@
                           <div class="form-group">
                             <ul>
                               <li
-                                v-for="(todos, index) in list_data"
+                                v-for="(todos, index) in clubMoreDetails.todo"
                                 :key="index"
                               >
                                 <span class="input-name">
-                                  {{ todos.name }}</span
+                                  {{ todos.todo_list }}</span
                                 >
 
                                 <span
@@ -253,7 +253,7 @@
                                   ></i
                                 ></span>
                               </li>
-                              <li v-if="list_data.length === 0">
+                              <li v-if="clubMoreDetails.todo === 0">
                                 <span class="input-name">
                                   No to-do's available</span
                                 >
@@ -1126,6 +1126,7 @@ export default {
         club_id: this.$route.query.id,
         user_id: localStorage.getItem("id"),
       });
+      console.log(this.clubMoreDetails);
     },
     async ClubMoreInfo() {
       this.loading = true;
@@ -1147,9 +1148,8 @@ export default {
           ScheduleArr["name"] = element.todo_list;
           ScheduleArr["id"] = element.id;
           todoArr.push(ScheduleArr);
-
-          this.list_data = todoArr;
         });
+        this.list_data = todoArr;
       }
     },
     async EditTodo() {
@@ -1173,7 +1173,7 @@ export default {
           duration: 5000,
         });
       }
-      this.ClubMoreInfo();
+      this.getClubMoreInfo();
       this.todolist = "";
     },
     async UpdateTime() {
@@ -1211,7 +1211,7 @@ export default {
         });
       }
       this.value = "";
-      this.ClubMoreInfo();
+      this.getClubMoreInfo();
     },
     async Removetodo(val) {
       this.loading = true;
@@ -1233,7 +1233,7 @@ export default {
           duration: 5000,
         });
       }
-      this.ClubMoreInfo();
+      this.getClubMoreInfo();
 
       this.loading = false;
     },

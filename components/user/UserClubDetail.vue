@@ -109,7 +109,11 @@
                     </div>
                     <p class="list-text">
                       Next meeting:
-                      {{ list.day ? list.day : "No Meeting Scheduled" }}
+                      {{
+                        list.upcoming_meeting
+                          ? list.upcoming_meeting
+                          : "No Meeting Scheduled"
+                      }}
                     </p>
                     <nuxt-link
                       :to="{
@@ -256,6 +260,8 @@ export default {
           todoArr.push(ele.todo_list);
         });
         Scheduleobj["todoArr"] = todoArr;
+        Scheduleobj["upcoming_meeting"] = element.upcoming_meeting;
+        Scheduleobj["todo"] = element.todo;
         this.list_data.push(Scheduleobj);
       });
     },
