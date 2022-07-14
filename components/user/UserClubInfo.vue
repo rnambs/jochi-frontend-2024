@@ -170,7 +170,12 @@
                           <div
                             v-for="index in 3"
                             :key="index"
-                            class="mlist-thumb-holder"
+                            :class="
+                              membersInfo[index + 3] &&
+                              membersInfo[index + 3].user_info
+                                ? 'mlist-thumb-holder'
+                                : 'd-none'
+                            "
                           >
                             <img
                               v-if="
