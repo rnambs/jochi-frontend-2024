@@ -177,7 +177,8 @@
                     >
                       <h6>{{ Schedule["dateFormat"] }}</h6>
                       <p class="time">
-                        {{ Schedule["from"] }} to {{ Schedule["end"] }}
+                        {{ Schedule["from"] }}
+                        {{ Schedule["end"] ? "to " + Schedule["end"] : "" }}
                         <!-- {{ timeZones.timeZone }} -->
                       </p>
                     </div>
