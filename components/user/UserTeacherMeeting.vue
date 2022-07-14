@@ -54,7 +54,7 @@
                       :options="students"
                       track-by="first_name"
                       label="first_name"
-                      placeholder="Select students"
+                      placeholder="Add Participants"
                       :multiple="true"
                       :max="4"
                       @input="UpdateTimeSchedule"
@@ -177,7 +177,8 @@
                     >
                       <h6>{{ Schedule["dateFormat"] }}</h6>
                       <p class="time">
-                        {{ Schedule["from"] }} to {{ Schedule["end"] }}
+                        {{ Schedule["from"] }}
+                        {{ Schedule["end"] ? "to " + Schedule["end"] : "" }}
                         <!-- {{ timeZones.timeZone }} -->
                       </p>
                     </div>

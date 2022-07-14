@@ -44,6 +44,7 @@
                         <div class="inner-info-head mb-3">
                           <h6>Trainings/Matches</h6>
                           <a
+                            v-if="enableEdit"
                             href="#"
                             class="btn add-assignment"
                             data-toggle="modal"
@@ -109,6 +110,7 @@
                                       "
                                     ></div> -->
                                     <button
+                                      v-if="enableEdit"
                                       @click="
                                         onDeleteActivityClick(
                                           item.id,
@@ -175,12 +177,13 @@
                                   >
                                     <div
                                       :class="
-                                        isRead == 1
+                                        item.isRead == 1
                                           ? 'anc-status-btn green mr-3'
                                           : 'anc-status-btn red mr-3'
                                       "
                                     ></div>
                                     <button
+                                      v-if="enableEdit"
                                       @click="
                                         onDeleteClick(item.id, item.club_id)
                                       "
@@ -235,11 +238,11 @@
                           <div class="form-group">
                             <ul>
                               <li
-                                v-for="(todos, index) in list_data"
+                                v-for="(todos, index) in clubMoreDetails.todo"
                                 :key="index"
                               >
                                 <span class="input-name">
-                                  {{ todos.name }}</span
+                                  {{ todos.todo_list }}</span
                                 >
 
                                 <span
@@ -253,7 +256,7 @@
                                   ></i
                                 ></span>
                               </li>
-                              <li v-if="list_data.length === 0">
+                              <li v-if="clubMoreDetails.todo === 0">
                                 <span class="input-name">
                                   No to-do's available</span
                                 >
@@ -378,6 +381,7 @@
                                     "
                                   ></div>
                                   <button
+                                    v-if="enableEdit"
                                     @click="
                                       onDeleteClick(item.id, item.club_id)
                                     "
@@ -529,76 +533,85 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="announcementModalLongTitle">
-              {{ isAnnouncementEdit ? "Edit" : "Add" }} Announcement
+              {{ enableEdit ? (isAnnouncementEdit ? "Edit" : "Add") : "" }}
+              Announcement
             </h5>
             <button
               type="button"
               class="close"
               data-dismiss="modal"
               aria-label="Close"
+              @click="resetAnnouncement"
             >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body no-overflow px-4">
             <form>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Title<em>*</em></label
-                >
+              <fieldset :disabled="!enableEdit">
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Title<em>*</em></label
+                  >
 
-                <input
-                  type="text"
-                  id="club"
-                  placeholder="Enter your club name"
-                  class="form-control"
-                  v-model="announceTitle"
-                  name="announceTitle"
-                  maxlength="100"
-                  :class="{
-                    'is-invalid': submitted && $v.announceTitle.$error,
-                  }"
-                />
-                <div
-                  v-if="submitted && $v.announceTitle.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.announceTitle.required"
-                    >This field is required</span
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter your club name"
+                    class="form-control"
+                    v-model="announceTitle"
+                    name="announceTitle"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submitted && isAnnouncement && $v.announceTitle.$error,
+                    }"
+                  />
+                  <div
+                    v-if="
+                      submitted && isAnnouncement && $v.announceTitle.$error
+                    "
+                    class="invalid-feedback"
                   >
+                    <span v-if="!$v.announceTitle.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="col-form-label"
-                  >Description<em>*</em></label
-                >
-                <textarea
-                  class="form-control"
-                  id="message-text"
-                  v-model="announceDesc"
-                  name="announceDesc"
-                  maxlength="800"
-                  placeholder="Enter task description"
-                  :class="{
-                    'is-invalid': submitted && $v.announceDesc.$error,
-                  }"
-                ></textarea>
-                <div
-                  v-if="submitted && $v.announceDesc.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.announceDesc.required"
-                    >This field is required</span
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label"
+                    >Description<em>*</em></label
                   >
+                  <textarea
+                    class="form-control"
+                    id="message-text"
+                    v-model="announceDesc"
+                    name="announceDesc"
+                    maxlength="800"
+                    placeholder="Enter task description"
+                    :class="{
+                      'is-invalid':
+                        submitted && isAnnouncement && $v.announceDesc.$error,
+                    }"
+                  ></textarea>
+                  <div
+                    v-if="submitted && isAnnouncement && $v.announceDesc.$error"
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.announceDesc.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
+              </fieldset>
             </form>
           </div>
-          <div class="modal-footer">
+          <div v-if="enableEdit" class="modal-footer">
             <button
               type="button"
               class="btn btn-color-close"
               data-dismiss="modal"
+              @click="resetAnnouncement"
             >
               Cancel
             </button>
@@ -633,7 +646,8 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="activityModalLongTitle">
-              {{ isActivityEdit ? "Edit" : "Add" }} Training/Match
+              {{ enableEdit ? (isActivityEdit ? "Edit" : "Add") : "" }}
+              Training/Match
             </h5>
             <button
               type="button"
@@ -646,189 +660,202 @@
           </div>
           <div class="modal-body no-overflow px-4">
             <form>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Type<em>*</em></label
-                >
+              <fieldset :disabled="!enableEdit">
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Type<em>*</em></label
+                  >
 
-                <select
-                  class="custom-select custom-select-sm mb-3"
-                  tabindex=""
-                  name="activityType"
-                  v-model="activityType"
-                  :class="{
-                    'is-invalid': submitted && $v.activityType.$error,
-                  }"
-                >
-                  <option value="Match">Match</option>
-                  <option value="Training">Training</option>
-                </select>
-                <div
-                  v-if="submitted && $v.activityType.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityType.required"
-                    >This field is required</span
+                  <select
+                    class="custom-select custom-select-sm mb-3"
+                    tabindex=""
+                    name="activityType"
+                    v-model="activityType"
+                    :class="{
+                      'is-invalid':
+                        submitted && isActivity && $v.activityType.$error,
+                    }"
                   >
+                    <option value="Match">Match</option>
+                    <option value="Training">Training</option>
+                  </select>
+                  <div
+                    v-if="submitted && isActivity && $v.activityType.$error"
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.activityType.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Title<em>*</em></label
-                >
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Title<em>*</em></label
+                  >
 
-                <input
-                  type="text"
-                  id="club"
-                  placeholder="Enter your club name"
-                  class="form-control"
-                  v-model="activityTitle"
-                  name="activityTitle"
-                  maxlength="100"
-                  :class="{
-                    'is-invalid': submitted && $v.activityTitle.$error,
-                  }"
-                />
-                <div
-                  v-if="submitted && $v.activityTitle.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityTitle.required"
-                    >This field is required</span
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the title"
+                    class="form-control"
+                    v-model="activityTitle"
+                    name="activityTitle"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submitted && isActivity && $v.activityTitle.$error,
+                    }"
+                  />
+                  <div
+                    v-if="submitted && isActivity && $v.activityTitle.$error"
+                    class="invalid-feedback"
                   >
+                    <span v-if="!$v.activityTitle.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="col-form-label"
-                  >Description<em>*</em></label
-                >
-                <textarea
-                  class="form-control"
-                  id="message-text"
-                  v-model="activityDesc"
-                  name="activityDesc"
-                  maxlength="800"
-                  placeholder="Enter task description"
-                  :class="{
-                    'is-invalid': submitted && $v.activityDesc.$error,
-                  }"
-                ></textarea>
-                <div
-                  v-if="submitted && $v.activityDesc.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityDesc.required"
-                    >This field is required</span
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label"
+                    >Description<em>*</em></label
                   >
+                  <textarea
+                    class="form-control"
+                    id="message-text"
+                    v-model="activityDesc"
+                    name="activityDesc"
+                    maxlength="800"
+                    placeholder="Enter description"
+                    :class="{
+                      'is-invalid':
+                        submitted && isActivity && $v.activityDesc.$error,
+                    }"
+                  ></textarea>
+                  <div
+                    v-if="submitted && isActivity && $v.activityDesc.$error"
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.activityDesc.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Date<em>*</em></label
-                >
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Date<em>*</em></label
+                  >
 
-                <input
-                  type="text"
-                  id="club"
-                  placeholder="Enter your club name"
-                  class="form-control"
-                  v-model="activityDate"
-                  name="activityDate"
-                  maxlength="100"
-                  :class="{
-                    'is-invalid': submitted && $v.activityDate.$error,
-                  }"
-                />
-                <div
-                  v-if="submitted && $v.activityDate.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityDate.required"
-                    >This field is required</span
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the date"
+                    class="form-control"
+                    v-model="activityDate"
+                    name="activityDate"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submitted && isActivity && $v.activityDate.$error,
+                    }"
+                  />
+                  <div
+                    v-if="submitted && isActivity && $v.activityDate.$error"
+                    class="invalid-feedback"
                   >
+                    <span v-if="!$v.activityDate.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Time<em>*</em></label
-                >
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Time<em>*</em></label
+                  >
 
-                <input
-                  type="text"
-                  id="club"
-                  placeholder="Enter your club name"
-                  class="form-control"
-                  v-model="activityTime"
-                  name="activityTime"
-                  maxlength="100"
-                  :class="{
-                    'is-invalid': submitted && $v.activityTime.$error,
-                  }"
-                />
-                <div
-                  v-if="submitted && $v.activityTime.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityTime.required"
-                    >This field is required</span
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the time"
+                    class="form-control"
+                    v-model="activityTime"
+                    name="activityTime"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submitted && isActivity && $v.activityTime.$error,
+                    }"
+                  />
+                  <div
+                    v-if="submitted && isActivity && $v.activityTime.$error"
+                    class="invalid-feedback"
                   >
+                    <span v-if="!$v.activityTime.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Venue<em>*</em></label
-                >
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Venue<em>*</em></label
+                  >
 
-                <input
-                  type="text"
-                  id="club"
-                  placeholder="Enter your club name"
-                  class="form-control"
-                  v-model="activityVenue"
-                  name="activityVenue"
-                  maxlength="100"
-                  :class="{
-                    'is-invalid': submitted && $v.activityVenue.$error,
-                  }"
-                />
-                <div
-                  v-if="submitted && $v.activityVenue.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityVenue.required"
-                    >This field is required</span
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the venue"
+                    class="form-control"
+                    v-model="activityVenue"
+                    name="activityVenue"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submitted && isActivity && $v.activityVenue.$error,
+                    }"
+                  />
+                  <div
+                    v-if="submitted && isActivity && $v.activityVenue.$error"
+                    class="invalid-feedback"
                   >
+                    <span v-if="!$v.activityVenue.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div v-if="activityType == 'Match'" class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Opponent Team<em>*</em></label
-                >
+                <div v-if="activityType == 'Match'" class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Opponent Team<em>*</em></label
+                  >
 
-                <input
-                  type="text"
-                  id="club"
-                  placeholder="Enter your club name"
-                  class="form-control"
-                  v-model="activityOpponentTeam"
-                  name="activityOpponentTeam"
-                  maxlength="100"
-                  :class="{
-                    'is-invalid': submitted && $v.activityOpponentTeam.$error,
-                  }"
-                />
-                <div
-                  v-if="submitted && $v.activityOpponentTeam.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityOpponentTeam.required"
-                    >This field is required</span
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the opponent team name"
+                    class="form-control"
+                    v-model="activityOpponentTeam"
+                    name="activityOpponentTeam"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submitted &&
+                        isActivity &&
+                        $v.activityOpponentTeam.$error,
+                    }"
+                  />
+                  <div
+                    v-if="
+                      submitted && isActivity && $v.activityOpponentTeam.$error
+                    "
+                    class="invalid-feedback"
                   >
+                    <span v-if="!$v.activityOpponentTeam.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
+              </fieldset>
             </form>
           </div>
-          <div class="modal-footer">
+          <div v-if="enableEdit" class="modal-footer">
             <button
               type="button"
               class="btn btn-color-close"
@@ -970,7 +997,7 @@
 import { mapState, mapActions } from "vuex";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
-import { required } from "vuelidate/lib/validators";
+import { required, requiredUnless } from "vuelidate/lib/validators";
 import Multiselect from "vue-multiselect";
 var headingName = "";
 var clubId = "";
@@ -1019,11 +1046,19 @@ export default {
       activityTime: "",
       activityVenue: "",
       activityOpponentTeam: "",
+      isAnnouncement: false,
+      isActivity: false,
     };
   },
   validations: {
-    announceTitle: { required },
-    announceDesc: { required },
+    announceTitle: { required: requiredUnless("checkIsAnnouncement") },
+    announceDesc: { required: requiredUnless("checkIsAnnouncement") },
+    activityTitle: { required: requiredUnless("checkIsActivity") },
+    activityDesc: { required: requiredUnless("checkIsActivity") },
+    activityDate: { required: requiredUnless("checkIsActivity") },
+    activityTime: { required: requiredUnless("checkIsActivity") },
+    activityVenue: { required: requiredUnless("checkIsActivity") },
+    activityOpponentTeam: { required: requiredUnless("checkIsActivity") },
   },
   mounted() {
     var user = localStorage.getItem("user_type");
@@ -1050,6 +1085,12 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    checkIsAnnouncement() {
+      return this.isAnnouncement; // some conditional logic here...
+    },
+    checkIsActivity() {
+      return this.isActivity; // some conditional logic here...
+    },
   },
   methods: {
     ...mapActions("clubMoreInfo", {
@@ -1099,6 +1140,7 @@ export default {
         club_id: this.$route.query.id,
         user_id: localStorage.getItem("id"),
       });
+      console.log(this.clubMoreDetails);
     },
     async ClubMoreInfo() {
       this.loading = true;
@@ -1120,9 +1162,8 @@ export default {
           ScheduleArr["name"] = element.todo_list;
           ScheduleArr["id"] = element.id;
           todoArr.push(ScheduleArr);
-
-          this.list_data = todoArr;
         });
+        this.list_data = todoArr;
       }
     },
     async EditTodo() {
@@ -1146,7 +1187,7 @@ export default {
           duration: 5000,
         });
       }
-      this.ClubMoreInfo();
+      this.getClubMoreInfo();
       this.todolist = "";
     },
     async UpdateTime() {
@@ -1184,7 +1225,7 @@ export default {
         });
       }
       this.value = "";
-      this.ClubMoreInfo();
+      this.getClubMoreInfo();
     },
     async Removetodo(val) {
       this.loading = true;
@@ -1206,7 +1247,7 @@ export default {
           duration: 5000,
         });
       }
-      this.ClubMoreInfo();
+      this.getClubMoreInfo();
 
       this.loading = false;
     },
@@ -1246,13 +1287,19 @@ export default {
         this.getAnnouncement();
       }
     },
-    async openModal(id) {
+    async openModal() {
+      this.submitted = false;
+      this.isAnnouncement = true;
       $("#announcementModal").modal({ backdrop: true });
     },
-    async openActivityModal(id) {
+    async openActivityModal() {
+      this.resetActivity();
+      this.submitted = false;
+      this.isActivity = true;
       $("#activityModal").modal({ backdrop: true });
     },
     async openEdit(data) {
+      this.resetActivity();
       this.isAnnouncementEdit = true;
       this.markAnnouncementAsRead(data.id);
       // this.dateValue = new Date(this.calendarApi.view.activeStart);
@@ -1335,12 +1382,14 @@ export default {
       }
     },
     resetAnnouncement() {
+      this.isAnnouncement = false;
       this.announceClubId = "";
       this.announcementId = "";
       this.announceTitle = "";
       this.announceDesc = "";
     },
     resetActivity() {
+      this.isActivity = false;
       this.activityId = "";
       this.activityTitle = "";
       this.activityType = "";

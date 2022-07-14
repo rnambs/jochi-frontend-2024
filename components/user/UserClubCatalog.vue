@@ -38,7 +38,7 @@
                       type="text"
                       v-model="search"
                       placeholder="Search"
-                      v-on:keyup="ClubCatalogue()"
+                      v-on:keyup="debounceSearch()"
                     />
                     <span class="input-icon custom-search-icon-1">
                       <i class="fa fa-search" aria-hidden="true"></i>
@@ -49,7 +49,7 @@
                   <div class="input-icon-area custom-multiselect-adj-text">
                     <multiselect
                       v-model="value"
-                      :options="taglist"
+                      :options="tags"
                       track-by="name"
                       label="name"
                       placeholder="Filter"
@@ -386,6 +386,8 @@ export default {
       name: "",
       description: "",
       submitted: false,
+      tags: [],
+      debounce: null,
     };
   },
   validations: {
@@ -415,6 +417,16 @@ export default {
       getTag: "getTag",
       createClub: "createClub",
     }),
+    debounceSearch() {
+      // this.message = null
+      // this.typing = 'You are typing'
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+        this.ClubCatalogue();
+        // this.typing = null
+        // this.message = event.target.value
+      }, 600);
+    },
     myFunction: function (id) {
       if (this.expandId && this.expandId != id) {
         this.todoList = false;
@@ -456,6 +468,9 @@ export default {
     },
     async GetTag() {
       await this.getTag({});
+      this.tags = [{ createdAt: "", id: "", name: "All", updatedAt: "" }];
+      this.tags = this.tags.concat(this.taglist);
+      this.value = this.tags[0];
     },
     async ClubCatalogue() {
       this.loading = true;
@@ -540,7 +555,7 @@ export default {
       this.ClubCatalogue();
     },
     filterSelection(val) {
-      if (val) {
+      if (val && val.id) {
         SelectValue = val.id;
       } else {
         SelectValue = "";
