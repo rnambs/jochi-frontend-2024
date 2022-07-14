@@ -38,7 +38,7 @@
                       type="text"
                       v-model="search"
                       placeholder="Search"
-                      v-on:keyup="ClubCatalogue()"
+                      v-on:keyup="debounceSearch()"
                     />
                     <span class="input-icon custom-search-icon-1">
                       <i class="fa fa-search" aria-hidden="true"></i>
@@ -387,6 +387,7 @@ export default {
       description: "",
       submitted: false,
       tags: [],
+      debounce: null,
     };
   },
   validations: {
@@ -416,6 +417,16 @@ export default {
       getTag: "getTag",
       createClub: "createClub",
     }),
+    debounceSearch() {
+      // this.message = null
+      // this.typing = 'You are typing'
+      clearTimeout(this.debounce);
+      this.debounce = setTimeout(() => {
+        this.ClubCatalogue();
+        // this.typing = null
+        // this.message = event.target.value
+      }, 600);
+    },
     myFunction: function (id) {
       if (this.expandId && this.expandId != id) {
         this.todoList = false;
