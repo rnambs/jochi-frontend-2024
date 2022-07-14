@@ -680,7 +680,7 @@
                 <input
                   type="text"
                   id="club"
-                  placeholder="Enter your club name"
+                  placeholder="Enter the title"
                   class="form-control"
                   v-model="activityTitle"
                   name="activityTitle"
@@ -708,7 +708,7 @@
                   v-model="activityDesc"
                   name="activityDesc"
                   maxlength="800"
-                  placeholder="Enter task description"
+                  placeholder="Enter description"
                   :class="{
                     'is-invalid': submitted && $v.activityDesc.$error,
                   }"
@@ -730,7 +730,7 @@
                 <input
                   type="text"
                   id="club"
-                  placeholder="Enter your club name"
+                  placeholder="Enter the date"
                   class="form-control"
                   v-model="activityDate"
                   name="activityDate"
@@ -756,7 +756,7 @@
                 <input
                   type="text"
                   id="club"
-                  placeholder="Enter your club name"
+                  placeholder="Enter the time"
                   class="form-control"
                   v-model="activityTime"
                   name="activityTime"
@@ -782,7 +782,7 @@
                 <input
                   type="text"
                   id="club"
-                  placeholder="Enter your club name"
+                  placeholder="Enter the venue"
                   class="form-control"
                   v-model="activityVenue"
                   name="activityVenue"
@@ -808,7 +808,7 @@
                 <input
                   type="text"
                   id="club"
-                  placeholder="Enter your club name"
+                  placeholder="Enter the opponent team name"
                   class="form-control"
                   v-model="activityOpponentTeam"
                   name="activityOpponentTeam"
