@@ -556,19 +556,13 @@ body{
         //side bar student
 
         .sidebar-section{
-            display: flex;
-            flex-direction: column;
             width: 15.625rem;
             height: calc(100vh - 24px);
             margin: 12px;
-            padding: 0;
-            color: $global-font-color;
-            font-size: 0.9rem;
             transition: all 0.3s;
             top: 0;
             left: 0;
             z-index: 1031;
-            position: fixed;
             @media (max-width: 1023.98px) {
                 width: 14.625rem;
                 padding: .375rem 1.2rem;
@@ -580,105 +574,85 @@ body{
                 left: -7rem;
                 transition: 0.3s ease all;
             }
-            .logo-section{
-                display: flex;
-                text-align: center;
-                justify-content: space-around;
-                // width: 135px;
-                // height: 71px;
-                @media (max-width: 1002.98px) {
-                    padding: 0 !important;
-                }
-                .text-logo{
-                    img.jochi-logo-text{
-                        width: 50px;
+            // .logo-section{
+            //     display: flex;
+            //     text-align: center;
+            //     justify-content: space-around;
+            //     // width: 135px;
+            //     // height: 71px;
+            //     @media (max-width: 1002.98px) {
+            //         padding: 0 !important;
+            //     }
+            //     .text-logo{
+            //         img.jochi-logo-text{
+            //             width: 50px;
                         
-                    }
-                    p.jochi-logo{
-                        color: $global-font-color;
-                        font-size: 2rem;
-                        font-family: $logo-text-style;
+            //         }
+            //         p.jochi-logo{
+            //             color: $global-font-color;
+            //             font-size: 2rem;
+            //             font-family: $logo-text-style;
                         
-                    }
-                    @media (max-width: 1002.98px) {
-                        display: none !important;
-                    }
-                }
-                .icon-logo{
-                    @media (min-width: 1002.98px) {
-                        display: none;
-                    }
-                }
-            }
+            //         }
+            //         @media (max-width: 1002.98px) {
+            //             display: none !important;
+            //         }
+            //     }
+            //     .icon-logo{
+            //         @media (min-width: 1002.98px) {
+            //             display: none;
+            //         }
+            //     }
+            // }
             // Sidebar profile
-            .profile-sidebar{
-                @media (max-width: 1002.98px) {
-                    display: none !important;
-                }
-                .sidebar-profile{
-                    background-color: $global-background-color;
-                    border-bottom-right-radius: 12px;
-                    border-top-right-radius: 12px;
-                    left: 0;
-                    bottom: 10px;
-                    width: 85%;
-                    position: absolute;
-                    img.profile-pic{
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        object-fit: cover;
-                        background-repeat: no-repeat;
-                        background-position: center;
-                    }
-                    .profile-text{
-                        p.wish-text{
-                            color: $font-label-color;
-                            font-size: 0.85rem;
-                            line-height: 1;
-                        }
-                        p.profile-name{
-                            color: $global-font-color;
-                            font-size: 0.85rem;
-                            line-height: 1.5;
-                            max-width: 130px;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
-                        }
-                    }
-                }
-            }
+            // .profile-sidebar{
+            //     @media (max-width: 1002.98px) {
+            //         display: none !important;
+            //     }
+            //     .sidebar-profile{
+            //         background-color: $global-background-color;
+            //         border-bottom-right-radius: 12px;
+            //         border-top-right-radius: 12px;
+            //         left: 0;
+            //         bottom: 10px;
+            //         width: 85%;
+            //         position: absolute;
+            //         img.profile-pic{
+            //             width: 50px;
+            //             height: 50px;
+            //             border-radius: 50%;
+            //             object-fit: cover;
+            //             background-repeat: no-repeat;
+            //             background-position: center;
+            //         }
+            //         .profile-text{
+            //             p.wish-text{
+            //                 color: $font-label-color;
+            //                 font-size: 0.85rem;
+            //                 line-height: 1;
+            //             }
+            //             p.profile-name{
+            //                 color: $global-font-color;
+            //                 font-size: 0.85rem;
+            //                 line-height: 1.5;
+            //                 max-width: 130px;
+            //                 overflow: hidden;
+            //                 text-overflow: ellipsis;
+            //                 white-space: nowrap;
+            //             }
+            //         }
+            //     }
+            // }
             // Sidebar profile end
             .menu-items{
                 position: relative;
+                overflow: hidden;
+                overflow-y: auto;
                 @media (max-width: 1002.98px) {
                     margin: auto 0px;
                 }
                 .accordion{
-                    .card{
-                        border: none;
-                        background-color: transparent;
-                        box-shadow: none;
-                        .card-header{
-                            border: none;
-                            background-color: transparent;
                             button.btn-link{
-                                background-color: transparent;
-                                text-decoration: none;
-                                color: $font-label-color;
-                                font-size: 1.125rem;
-                                display: flex;
-                                align-items: center;
-                                justify-content: space-between;
-                                // &.active{
-                                //     .fa-chevron-right{
-                                //         transition: all 0.5s;
-                                //         overflow: hidden;
-                                //         transform: rotate(90deg);
-                                //         display: block;
-                                //     }
-                                // }
                                 &::after {
                                     display: none;
                                     // transform: rotate(90deg);
@@ -700,34 +674,33 @@ body{
                                     @media (max-width: 1002.98px) {
                                         width: 100%;
                                     }
-                                    i{
-                                        font-size: 1.3rem;
-                                        @media (max-width: 1024.98px) {
-                                            font-size: 1.5rem;
-                                        }
-                                        @media (max-width: 1002.98px) {
-                                            background-color: $global-background-color;
-                                            display: flex;
-                                            align-items: center;
-                                            justify-content: center;
-                                            border-radius: 5px;
-                                            margin:0 auto;
-                                            padding: .5rem; 
-                                        }
-                                        &.image-i{
-                                            @media (max-width: 1002.98px) {
-                                                background-color: $global-background-color;
-                                                display: flex;
-                                                align-items: center;
-                                                justify-content: center;
-                                                border-radius: 5px;
-                                                margin:0 auto; 
-                                            }
-                                        }
-                                    }
+                                    // i{
+                                    //     font-size: 1.3rem;
+                                    //     @media (max-width: 1024.98px) {
+                                    //         font-size: 1.5rem;
+                                    //     }
+                                    //     @media (max-width: 1002.98px) {
+                                    //         background-color: $global-background-color;
+                                    //         display: flex;
+                                    //         align-items: center;
+                                    //         justify-content: center;
+                                    //         border-radius: 5px;
+                                    //         margin:0 auto;
+                                    //         padding: .5rem; 
+                                    //     }
+                                    //     &.image-i{
+                                    //         @media (max-width: 1002.98px) {
+                                    //             background-color: $global-background-color;
+                                    //             display: flex;
+                                    //             align-items: center;
+                                    //             justify-content: center;
+                                    //             border-radius: 5px;
+                                    //             margin:0 auto; 
+                                    //         }
+                                    //     }
+                                    // }
                                 }
                                 span{
-                                    color: $font-label-color;
                                     margin: auto;
                                     font-size: 0.85rem;
                                     @media (max-width: 1024.98px) {
@@ -831,8 +804,6 @@ body{
                                 }
                             }
                         }
-                    }
-                }
                 .custom-list {
                     list-style-type: none;
                     .menu-list{

@@ -541,19 +541,13 @@ body {
   }
 }
 .inner-section .header-section .sidebar-section {
-  display: flex;
-  flex-direction: column;
   width: 15.625rem;
   height: calc(100vh - 24px);
   margin: 12px;
-  padding: 0;
-  color: #F9F9F9;
-  font-size: 0.9rem;
   transition: all 0.3s;
   top: 0;
   left: 0;
   z-index: 1031;
-  position: fixed;
 }
 @media (max-width: 1023.98px) {
   .inner-section .header-section .sidebar-section {
@@ -572,260 +566,149 @@ body {
     transition: 0.3s ease all;
   }
 }
-.inner-section .header-section .sidebar-section .logo-section {
-  display: flex;
-  text-align: center;
-  justify-content: space-around;
-}
-@media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .logo-section {
-    padding: 0 !important;
-  }
-}
-.inner-section .header-section .sidebar-section .logo-section .text-logo img.jochi-logo-text {
-  width: 50px;
-}
-.inner-section .header-section .sidebar-section .logo-section .text-logo p.jochi-logo {
-  color: #F9F9F9;
-  font-size: 2rem;
-  font-family: "Montserrat", sans-serif;
-}
-@media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .logo-section .text-logo {
-    display: none !important;
-  }
-}
-@media (min-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .logo-section .icon-logo {
-    display: none;
-  }
-}
-@media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .profile-sidebar {
-    display: none !important;
-  }
-}
-.inner-section .header-section .sidebar-section .profile-sidebar .sidebar-profile {
-  background-color: rgba(255, 255, 255, 0.45);
-  border-bottom-right-radius: 12px;
-  border-top-right-radius: 12px;
-  left: 0;
-  bottom: 10px;
-  width: 85%;
-  position: absolute;
-}
-.inner-section .header-section .sidebar-section .profile-sidebar .sidebar-profile img.profile-pic {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.inner-section .header-section .sidebar-section .profile-sidebar .sidebar-profile .profile-text p.wish-text {
-  color: #B4B4B4;
-  font-size: 0.85rem;
-  line-height: 1;
-}
-.inner-section .header-section .sidebar-section .profile-sidebar .sidebar-profile .profile-text p.profile-name {
-  color: #F9F9F9;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  max-width: 130px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 .inner-section .header-section .sidebar-section .menu-items {
   position: relative;
+  overflow: hidden;
+  overflow-y: auto;
 }
 @media (max-width: 1002.98px) {
   .inner-section .header-section .sidebar-section .menu-items {
     margin: auto 0px;
   }
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card {
-  border: none;
-  background-color: transparent;
-  box-shadow: none;
-}
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header {
-  border: none;
-  background-color: transparent;
-}
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link {
-  background-color: transparent;
-  text-decoration: none;
-  color: #B4B4B4;
-  font-size: 1.125rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link::after {
+.inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link::after {
   display: none;
 }
 @media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link {
+  .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link {
     background-color: rgba(255, 255, 255, 0.45);
     display: block;
   }
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link::after {
+  .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link::after {
     display: none;
   }
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .font-icon {
+.inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .font-icon {
   color: #B4B4B4;
   width: 2rem;
   text-align: center;
 }
 @media (max-width: 1024.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .font-icon {
+  .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .font-icon {
     width: 1.7rem;
   }
 }
 @media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .font-icon {
+  .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .font-icon {
     width: 100%;
   }
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .font-icon i {
-  font-size: 1.3rem;
-}
-@media (max-width: 1024.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .font-icon i {
-    font-size: 1.5rem;
-  }
-}
-@media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .font-icon i {
-    background-color: rgba(255, 255, 255, 0.45);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    margin: 0 auto;
-    padding: 0.5rem;
-  }
-}
-@media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .font-icon i.image-i {
-    background-color: rgba(255, 255, 255, 0.45);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    margin: 0 auto;
-  }
-}
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link span {
-  color: #B4B4B4;
+.inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link span {
   margin: auto;
   font-size: 0.85rem;
 }
 @media (max-width: 1024.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link span {
+  .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link span {
     font-size: 0.8rem;
   }
 }
 @media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link span {
+  .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link span {
     display: none;
   }
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .fa-chevron-right {
+.inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .fa-chevron-right {
   font-weight: 500;
   font-size: 0.8rem;
   transition: all 0.5s;
   transform: rotate(90deg);
 }
 @media (max-width: 1024.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .fa-chevron-right {
+  .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .fa-chevron-right {
     font-size: 0.7rem;
   }
 }
 @media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .fa-chevron-right {
+  .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .fa-chevron-right {
     display: none;
   }
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link.collapsed .fa-chevron-right {
+.inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link.collapsed .fa-chevron-right {
   font-weight: 500;
   font-size: 0.8rem;
   transition: all 0.5s;
   transform: rotate(0deg);
 }
 @media (max-width: 1024.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link.collapsed .fa-chevron-right {
+  .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link.collapsed .fa-chevron-right {
     font-size: 0.7rem;
   }
 }
 @media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link.collapsed .fa-chevron-right {
+  .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link.collapsed .fa-chevron-right {
     display: none;
   }
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .bottum-btn {
+.inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .bottum-btn {
   display: flex;
   flex: 1 0 auto;
   padding: 7px 0px;
   border-radius: 4px;
 }
 @media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .bottum-btn {
+  .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .bottum-btn {
     padding: 0px;
   }
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-header button.btn-link .bottum-btn.nuxt-link-exact-active.nuxt-link-active.bottum-btn {
+.inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .bottum-btn.nuxt-link-exact-active.nuxt-link-active.bottum-btn {
   background-color: rgba(255, 255, 255, 0.45);
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body {
+.inner-section .header-section .sidebar-section .menu-items .card-body {
   background-color: transparent;
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list {
+.inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list {
   list-style-type: none;
   padding: 0.2rem 0.6rem;
 }
 @media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list {
+  .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list {
     padding: 0 !important;
     margin: 3px -10px !important;
     text-align: center;
   }
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list li {
+.inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li {
   padding: 0.2rem;
   border-radius: 0.3rem;
 }
 @media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list li {
+  .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li {
     padding: inherit;
   }
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list li a {
+.inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a {
   text-decoration: none;
   color: #B4B4B4;
   font-size: 0.75rem;
   padding: 0.5rem;
 }
 @media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list li a {
+  .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a {
     padding: inherit;
   }
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list li a.nav-link.nuxt-link-exact-active.nuxt-link-active {
+.inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a.nav-link.nuxt-link-exact-active.nuxt-link-active {
   background-color: #FF646F;
   padding: 0.5rem;
   border-radius: 0.3rem;
   color: #ffffff;
 }
 @media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list li a.nav-link.nuxt-link-exact-active.nuxt-link-active {
+  .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a.nav-link.nuxt-link-exact-active.nuxt-link-active {
     padding: inherit;
   }
 }
-.inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list li a:hover, .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list li a .active {
+.inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a:hover, .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a .active {
   background-color: rgba(255, 255, 255, 0.45);
   box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
   border-radius: 22px;
@@ -833,12 +716,12 @@ body {
   border-radius: 0.3rem;
 }
 @media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list li a:hover, .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list li a .active {
+  .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a:hover, .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a .active {
     padding: inherit;
   }
 }
 @media (max-width: 1002.98px) {
-  .inner-section .header-section .sidebar-section .menu-items .accordion .card .card-body .inner-custom-list li a:hover {
+  .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a:hover {
     background-color: unset;
   }
 }
