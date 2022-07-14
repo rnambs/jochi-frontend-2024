@@ -44,6 +44,7 @@
                         <div class="inner-info-head mb-3">
                           <h6>Trainings/Matches</h6>
                           <a
+                            v-if="enableEdit"
                             href="#"
                             class="btn add-assignment"
                             data-toggle="modal"
@@ -109,6 +110,7 @@
                                       "
                                     ></div> -->
                                     <button
+                                      v-if="enableEdit"
                                       @click="
                                         onDeleteActivityClick(
                                           item.id,
@@ -181,6 +183,7 @@
                                       "
                                     ></div>
                                     <button
+                                      v-if="enableEdit"
                                       @click="
                                         onDeleteClick(item.id, item.club_id)
                                       "
@@ -378,6 +381,7 @@
                                     "
                                   ></div>
                                   <button
+                                    v-if="enableEdit"
                                     @click="
                                       onDeleteClick(item.id, item.club_id)
                                     "
@@ -529,7 +533,8 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="announcementModalLongTitle">
-              {{ isAnnouncementEdit ? "Edit" : "Add" }} Announcement
+              {{ enableEdit ? (isAnnouncementEdit ? "Edit" : "Add") : "" }}
+              Announcement
             </h5>
             <button
               type="button"
@@ -543,61 +548,65 @@
           </div>
           <div class="modal-body no-overflow px-4">
             <form>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Title<em>*</em></label
-                >
+              <fieldset :disabled="!enableEdit">
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Title<em>*</em></label
+                  >
 
-                <input
-                  type="text"
-                  id="club"
-                  placeholder="Enter your club name"
-                  class="form-control"
-                  v-model="announceTitle"
-                  name="announceTitle"
-                  maxlength="100"
-                  :class="{
-                    'is-invalid':
-                      submitted && isAnnouncement && $v.announceTitle.$error,
-                  }"
-                />
-                <div
-                  v-if="submitted && isAnnouncement && $v.announceTitle.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.announceTitle.required"
-                    >This field is required</span
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter your club name"
+                    class="form-control"
+                    v-model="announceTitle"
+                    name="announceTitle"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submitted && isAnnouncement && $v.announceTitle.$error,
+                    }"
+                  />
+                  <div
+                    v-if="
+                      submitted && isAnnouncement && $v.announceTitle.$error
+                    "
+                    class="invalid-feedback"
                   >
+                    <span v-if="!$v.announceTitle.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="col-form-label"
-                  >Description<em>*</em></label
-                >
-                <textarea
-                  class="form-control"
-                  id="message-text"
-                  v-model="announceDesc"
-                  name="announceDesc"
-                  maxlength="800"
-                  placeholder="Enter task description"
-                  :class="{
-                    'is-invalid':
-                      submitted && isAnnouncement && $v.announceDesc.$error,
-                  }"
-                ></textarea>
-                <div
-                  v-if="submitted && isAnnouncement && $v.announceDesc.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.announceDesc.required"
-                    >This field is required</span
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label"
+                    >Description<em>*</em></label
                   >
+                  <textarea
+                    class="form-control"
+                    id="message-text"
+                    v-model="announceDesc"
+                    name="announceDesc"
+                    maxlength="800"
+                    placeholder="Enter task description"
+                    :class="{
+                      'is-invalid':
+                        submitted && isAnnouncement && $v.announceDesc.$error,
+                    }"
+                  ></textarea>
+                  <div
+                    v-if="submitted && isAnnouncement && $v.announceDesc.$error"
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.announceDesc.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
+              </fieldset>
             </form>
           </div>
-          <div class="modal-footer">
+          <div v-if="enableEdit" class="modal-footer">
             <button
               type="button"
               class="btn btn-color-close"
@@ -637,7 +646,8 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="activityModalLongTitle">
-              {{ isActivityEdit ? "Edit" : "Add" }} Training/Match
+              {{ enableEdit ? (isActivityEdit ? "Edit" : "Add") : "" }}
+              Training/Match
             </h5>
             <button
               type="button"
@@ -650,198 +660,202 @@
           </div>
           <div class="modal-body no-overflow px-4">
             <form>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Type<em>*</em></label
-                >
+              <fieldset :disabled="!enableEdit">
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Type<em>*</em></label
+                  >
 
-                <select
-                  class="custom-select custom-select-sm mb-3"
-                  tabindex=""
-                  name="activityType"
-                  v-model="activityType"
-                  :class="{
-                    'is-invalid':
-                      submitted && isActivity && $v.activityType.$error,
-                  }"
-                >
-                  <option value="Match">Match</option>
-                  <option value="Training">Training</option>
-                </select>
-                <div
-                  v-if="submitted && isActivity && $v.activityType.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityType.required"
-                    >This field is required</span
+                  <select
+                    class="custom-select custom-select-sm mb-3"
+                    tabindex=""
+                    name="activityType"
+                    v-model="activityType"
+                    :class="{
+                      'is-invalid':
+                        submitted && isActivity && $v.activityType.$error,
+                    }"
                   >
+                    <option value="Match">Match</option>
+                    <option value="Training">Training</option>
+                  </select>
+                  <div
+                    v-if="submitted && isActivity && $v.activityType.$error"
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.activityType.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Title<em>*</em></label
-                >
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Title<em>*</em></label
+                  >
 
-                <input
-                  type="text"
-                  id="club"
-                  placeholder="Enter the title"
-                  class="form-control"
-                  v-model="activityTitle"
-                  name="activityTitle"
-                  maxlength="100"
-                  :class="{
-                    'is-invalid':
-                      submitted && isActivity && $v.activityTitle.$error,
-                  }"
-                />
-                <div
-                  v-if="submitted && isActivity && $v.activityTitle.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityTitle.required"
-                    >This field is required</span
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the title"
+                    class="form-control"
+                    v-model="activityTitle"
+                    name="activityTitle"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submitted && isActivity && $v.activityTitle.$error,
+                    }"
+                  />
+                  <div
+                    v-if="submitted && isActivity && $v.activityTitle.$error"
+                    class="invalid-feedback"
                   >
+                    <span v-if="!$v.activityTitle.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="message-text" class="col-form-label"
-                  >Description<em>*</em></label
-                >
-                <textarea
-                  class="form-control"
-                  id="message-text"
-                  v-model="activityDesc"
-                  name="activityDesc"
-                  maxlength="800"
-                  placeholder="Enter description"
-                  :class="{
-                    'is-invalid':
-                      submitted && isActivity && $v.activityDesc.$error,
-                  }"
-                ></textarea>
-                <div
-                  v-if="submitted && isActivity && $v.activityDesc.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityDesc.required"
-                    >This field is required</span
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label"
+                    >Description<em>*</em></label
                   >
+                  <textarea
+                    class="form-control"
+                    id="message-text"
+                    v-model="activityDesc"
+                    name="activityDesc"
+                    maxlength="800"
+                    placeholder="Enter description"
+                    :class="{
+                      'is-invalid':
+                        submitted && isActivity && $v.activityDesc.$error,
+                    }"
+                  ></textarea>
+                  <div
+                    v-if="submitted && isActivity && $v.activityDesc.$error"
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.activityDesc.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Date<em>*</em></label
-                >
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Date<em>*</em></label
+                  >
 
-                <input
-                  type="text"
-                  id="club"
-                  placeholder="Enter the date"
-                  class="form-control"
-                  v-model="activityDate"
-                  name="activityDate"
-                  maxlength="100"
-                  :class="{
-                    'is-invalid':
-                      submitted && isActivity && $v.activityDate.$error,
-                  }"
-                />
-                <div
-                  v-if="submitted && isActivity && $v.activityDate.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityDate.required"
-                    >This field is required</span
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the date"
+                    class="form-control"
+                    v-model="activityDate"
+                    name="activityDate"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submitted && isActivity && $v.activityDate.$error,
+                    }"
+                  />
+                  <div
+                    v-if="submitted && isActivity && $v.activityDate.$error"
+                    class="invalid-feedback"
                   >
+                    <span v-if="!$v.activityDate.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Time<em>*</em></label
-                >
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Time<em>*</em></label
+                  >
 
-                <input
-                  type="text"
-                  id="club"
-                  placeholder="Enter the time"
-                  class="form-control"
-                  v-model="activityTime"
-                  name="activityTime"
-                  maxlength="100"
-                  :class="{
-                    'is-invalid':
-                      submitted && isActivity && $v.activityTime.$error,
-                  }"
-                />
-                <div
-                  v-if="submitted && isActivity && $v.activityTime.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityTime.required"
-                    >This field is required</span
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the time"
+                    class="form-control"
+                    v-model="activityTime"
+                    name="activityTime"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submitted && isActivity && $v.activityTime.$error,
+                    }"
+                  />
+                  <div
+                    v-if="submitted && isActivity && $v.activityTime.$error"
+                    class="invalid-feedback"
                   >
+                    <span v-if="!$v.activityTime.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Venue<em>*</em></label
-                >
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Venue<em>*</em></label
+                  >
 
-                <input
-                  type="text"
-                  id="club"
-                  placeholder="Enter the venue"
-                  class="form-control"
-                  v-model="activityVenue"
-                  name="activityVenue"
-                  maxlength="100"
-                  :class="{
-                    'is-invalid':
-                      submitted && isActivity && $v.activityVenue.$error,
-                  }"
-                />
-                <div
-                  v-if="submitted && isActivity && $v.activityVenue.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityVenue.required"
-                    >This field is required</span
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the venue"
+                    class="form-control"
+                    v-model="activityVenue"
+                    name="activityVenue"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submitted && isActivity && $v.activityVenue.$error,
+                    }"
+                  />
+                  <div
+                    v-if="submitted && isActivity && $v.activityVenue.$error"
+                    class="invalid-feedback"
                   >
+                    <span v-if="!$v.activityVenue.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
-              <div v-if="activityType == 'Match'" class="form-group">
-                <label for="recipient-name" class="col-form-label"
-                  >Opponent Team<em>*</em></label
-                >
+                <div v-if="activityType == 'Match'" class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Opponent Team<em>*</em></label
+                  >
 
-                <input
-                  type="text"
-                  id="club"
-                  placeholder="Enter the opponent team name"
-                  class="form-control"
-                  v-model="activityOpponentTeam"
-                  name="activityOpponentTeam"
-                  maxlength="100"
-                  :class="{
-                    'is-invalid':
-                      submitted && isActivity && $v.activityOpponentTeam.$error,
-                  }"
-                />
-                <div
-                  v-if="
-                    submitted && isActivity && $v.activityOpponentTeam.$error
-                  "
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.activityOpponentTeam.required"
-                    >This field is required</span
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the opponent team name"
+                    class="form-control"
+                    v-model="activityOpponentTeam"
+                    name="activityOpponentTeam"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submitted &&
+                        isActivity &&
+                        $v.activityOpponentTeam.$error,
+                    }"
+                  />
+                  <div
+                    v-if="
+                      submitted && isActivity && $v.activityOpponentTeam.$error
+                    "
+                    class="invalid-feedback"
                   >
+                    <span v-if="!$v.activityOpponentTeam.required"
+                      >This field is required</span
+                    >
+                  </div>
                 </div>
-              </div>
+              </fieldset>
             </form>
           </div>
-          <div class="modal-footer">
+          <div v-if="enableEdit" class="modal-footer">
             <button
               type="button"
               class="btn btn-color-close"
