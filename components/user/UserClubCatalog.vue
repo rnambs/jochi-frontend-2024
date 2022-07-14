@@ -19,11 +19,12 @@
           <div class="tab-section container-fluid mt-4">
             <div class="d-flex justify-content-between align-item-center">
               <h4 class="tab-head">Club Catalog</h4>
+              <!-- data-toggle="modal"
+                data-target="#createNewModal" -->
               <button
                 type="button"
                 class="btn create-new-btn"
-                data-toggle="modal"
-                data-target="#createNewModal"
+                @click="openCreateNewModal"
               >
                 Create New
               </button>
@@ -215,6 +216,7 @@
                   class="close"
                   data-dismiss="modal"
                   aria-label="Close"
+                  @click="resetClubData"
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -290,7 +292,7 @@
                             v-model="description"
                             type="text"
                             autocomplete="off"
-                            maxlength="500"
+                            maxlength="700"
                             class="form-control custom-form-control"
                             :class="{
                               'is-invalid': submitted && $v.description.$error,
@@ -332,6 +334,7 @@
                   type="button"
                   class="btn btn-color-close"
                   data-dismiss="modal"
+                  @click="resetClubData"
                 >
                   Close
                 </button>
@@ -560,8 +563,10 @@ export default {
         });
         this.submitted = false;
         if (this.successMessage != "") {
+          this.resetClubData();
           $("#createNewModal").modal("hide");
-
+          $(".modal-backdrop").remove();
+          // $(".modal").modal("hide");
           this.$toast.open({
             message: this.successMessage,
             type: this.SuccessType,
@@ -577,6 +582,14 @@ export default {
         this.loading = false;
         this.ClubCatalogue();
       }
+    },
+    resetClubData() {
+      this.activity_type = "";
+      this.name = "";
+      this.description = "";
+    },
+    openCreateNewModal() {
+      $("#createNewModal").modal({ backdrop: true });
     },
   },
 };
