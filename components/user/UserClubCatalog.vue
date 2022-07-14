@@ -232,11 +232,23 @@
                           <select
                             v-model="activity_type"
                             class="custom-select custom-select-sm mb-3"
+                            :class="{
+                              'is-invalid':
+                                submitted && $v.activity_type.$error,
+                            }"
                           >
                             <option value="Clubs">Club</option>
                             <option value="Sports">Team</option>
                           </select>
                         </p>
+                        <div
+                          v-if="submitted && $v.activity_type.$error"
+                          class="invalid-feedback"
+                        >
+                          <span v-if="!$v.activity_type.required"
+                            >This field is required</span
+                          >
+                        </div>
                       </td>
                     </tr>
                     <tr>
@@ -252,8 +264,19 @@
                             autocomplete="off"
                             maxlength="100"
                             class="form-control custom-form-control"
+                            :class="{
+                              'is-invalid': submitted && $v.name.$error,
+                            }"
                           />
                         </p>
+                        <div
+                          v-if="submitted && $v.name.$error"
+                          class="invalid-feedback"
+                        >
+                          <span v-if="!$v.name.required"
+                            >This field is required</span
+                          >
+                        </div>
                       </td>
                     </tr>
                     <tr>
@@ -269,8 +292,19 @@
                             autocomplete="off"
                             maxlength="500"
                             class="form-control custom-form-control"
+                            :class="{
+                              'is-invalid': submitted && $v.description.$error,
+                            }"
                           ></textarea>
                         </p>
+                        <div
+                          v-if="submitted && $v.description.$error"
+                          class="invalid-feedback"
+                        >
+                          <span v-if="!$v.description.required"
+                            >This field is required</span
+                          >
+                        </div>
                       </td>
                     </tr>
 
@@ -323,6 +357,7 @@ import { mapState, mapActions } from "vuex";
 import Multiselect from "vue-multiselect";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
+import { required } from "vuelidate/lib/validators";
 
 var SelectValue = "";
 var list_data = [];
@@ -347,7 +382,13 @@ export default {
       activity_type: "",
       name: "",
       description: "",
+      submitted: false,
     };
+  },
+  validations: {
+    activity_type: { required },
+    name: { required },
+    description: { required },
   },
   mounted() {
     SelectValue = "";
@@ -504,32 +545,38 @@ export default {
       this.ClubCatalogue();
     },
     async createNewClub() {
-      this.loading = true;
-      await this.createClub({
-        activity_type: this.activity_type,
-        school_id: localStorage.getItem("school_id"),
-        student_id: localStorage.getItem("id"),
-        name: this.name,
-        description: this.description,
-      });
-
-      if (this.successMessage != "") {
-        $("#createNewModal").modal("hide");
-
-        this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
-          duration: 5000,
+      this.submitted = true;
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      } else {
+        this.loading = true;
+        await this.createClub({
+          activity_type: this.activity_type,
+          school_id: localStorage.getItem("school_id"),
+          student_id: localStorage.getItem("id"),
+          name: this.name,
+          description: this.description,
         });
-      } else if (this.errorMessage != "") {
-        this.$toast.open({
-          message: this.errorMessage,
-          type: this.errorType,
-          duration: 5000,
-        });
+        this.submitted = false;
+        if (this.successMessage != "") {
+          $("#createNewModal").modal("hide");
+
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.SuccessType,
+            duration: 5000,
+          });
+        } else if (this.errorMessage != "") {
+          this.$toast.open({
+            message: this.errorMessage,
+            type: this.errorType,
+            duration: 5000,
+          });
+        }
+        this.loading = false;
+        this.ClubCatalogue();
       }
-      this.loading = false;
-      this.ClubCatalogue();
     },
   },
 };
