@@ -32,7 +32,7 @@
                   <div class="input-icon-area">
                     <multiselect
                       v-model="value"
-                      :options="taglist"
+                      :options="tags"
                       track-by="name"
                       label="name"
                       placeholder="Filter"
@@ -163,6 +163,7 @@ export default {
       lottieOptions: { animationData: animationData.default },
       todoVal: [],
       availability: "",
+      tags: [],
     };
   },
   mounted() {
@@ -218,6 +219,9 @@ export default {
     },
     async GetTag() {
       await this.getTag({});
+      this.tags = [{ createdAt: "", id: "", name: "All", updatedAt: "" }];
+      this.tags = this.tags.concat(this.taglist);
+      this.value = this.tags[0];
     },
     async MyClubList() {
       this.loading = true;
@@ -257,7 +261,7 @@ export default {
     },
 
     filterSelection(val) {
-      if (val) {
+      if (val && val.id) {
         SelectValue = val.id;
       } else {
         SelectValue = "";

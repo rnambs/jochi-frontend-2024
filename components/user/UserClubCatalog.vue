@@ -49,7 +49,7 @@
                   <div class="input-icon-area custom-multiselect-adj-text">
                     <multiselect
                       v-model="value"
-                      :options="taglist"
+                      :options="tags"
                       track-by="name"
                       label="name"
                       placeholder="Filter"
@@ -386,6 +386,7 @@ export default {
       name: "",
       description: "",
       submitted: false,
+      tags: [],
     };
   },
   validations: {
@@ -456,6 +457,9 @@ export default {
     },
     async GetTag() {
       await this.getTag({});
+      this.tags = [{ createdAt: "", id: "", name: "All", updatedAt: "" }];
+      this.tags = this.tags.concat(this.taglist);
+      this.value = this.tags[0];
     },
     async ClubCatalogue() {
       this.loading = true;
@@ -540,7 +544,7 @@ export default {
       this.ClubCatalogue();
     },
     filterSelection(val) {
-      if (val) {
+      if (val && val.id) {
         SelectValue = val.id;
       } else {
         SelectValue = "";
