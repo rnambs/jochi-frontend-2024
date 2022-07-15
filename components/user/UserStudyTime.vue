@@ -351,8 +351,78 @@
 
     <!-- rating  -->
 
-    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex hidden-scroll">
-
+    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex align-items-center justify-content-center hidden-scroll">
+      <div class=" px-5 py-4 d-flex flex-column card card-light col-lg-7">
+        <h2 class="color-primary font-semi-bold mb-1">Rate your session</h2>
+        <div class="d-flex flex-column py-3 px-0">
+          <div class="mb-3">
+            <h4 class=" color-dark font-semi-bold">Focus</h4>
+            <div class="d-flex justify-content-between">
+              <star-rating
+                class="mb-2"
+                v-model="focusRating"
+                inactive-color="#2b2b2b"
+                active-color="#F49196"
+                border-color="#F49196"
+                v-bind:border-width="4"
+                v-bind:star-size="21"
+                v-bind:padding="1"
+                v-bind:animate="true"
+                v-bind:rounded-corners="true"
+                v-bind:max-rating="5"
+              ></star-rating>
+              <p class="total-value px-4">
+                {{ focusRating }}<sub>/5</sub>
+              </p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <h4 class=" color-dark font-semi-bold">Efficiency</h4>
+            <div class="d-flex justify-content-between">
+              <star-rating
+                class="mb-2"
+                v-model="focusEfficiency"
+                inactive-color="#2b2b2b"
+                active-color="#F49196"
+                border-color="#F49196"
+                v-bind:border-width="4"
+                v-bind:star-size="21"
+                v-bind:padding="1"
+                v-bind:animate="true"
+                v-bind:rounded-corners="true"
+                v-bind:max-rating="5"
+              ></star-rating>
+              <p class="total-value px-4">
+                {{ focusEfficiency }}<sub>/5</sub>
+              </p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <h4 class=" color-dark font-semi-bold">Work Completed</h4>
+            <div class="d-flex justify-content-between">
+              <star-rating
+                class="mb-2"
+                v-model="focusWorkComplete"
+                inactive-color="#2b2b2b"
+                active-color="#F49196"
+                border-color="#F49196"
+                v-bind:border-width="4"
+                v-bind:star-size="21"
+                v-bind:padding="1"
+                v-bind:animate="true"
+                v-bind:rounded-corners="true"
+                v-bind:max-rating="5"
+              ></star-rating>
+              <p class="total-value px-4">
+                {{ focusWorkComplete }}<sub>/5</sub>
+              </p>
+            </div>
+          </div>
+        </div>
+        <button type="button" @click.prevent="onLogSession()" class="btn btn-primary mb-3 mt-2 pl-3 pr-3">
+          Log Session
+        </button>
+      </div>
     </div>
 
     <!-- end rating -->

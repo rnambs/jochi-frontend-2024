@@ -107,6 +107,7 @@ body{
     position: relative;
     letter-spacing: 0.5px;
     transition: 0.3s ease all;
+    width: fit-content;
     &.btn-lg{
         font-size: 1.375rem;
         line-height: 1.5rem;
