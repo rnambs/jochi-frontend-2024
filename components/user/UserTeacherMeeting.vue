@@ -54,7 +54,9 @@
                       :options="students"
                       track-by="first_name"
                       label="first_name"
-                      placeholder="Add Participants"
+                      :placeholder="
+                        meetingType ? 'Select students' : 'Add Participants'
+                      "
                       :multiple="true"
                       :max="4"
                       @input="UpdateTimeSchedule"
