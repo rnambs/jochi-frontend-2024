@@ -1288,18 +1288,21 @@ export default {
       }
     },
     async openModal() {
+      this.resetAnnouncement();
       this.submitted = false;
       this.isAnnouncement = true;
+      this.isAnnouncementEdit = false;
       $("#announcementModal").modal({ backdrop: true });
     },
     async openActivityModal() {
       this.resetActivity();
       this.submitted = false;
       this.isActivity = true;
+      this.isActivityEdit = false;
       $("#activityModal").modal({ backdrop: true });
     },
     async openEdit(data) {
-      this.resetActivity();
+      this.resetAnnouncement();
       this.isAnnouncementEdit = true;
       this.markAnnouncementAsRead(data.id);
       // this.dateValue = new Date(this.calendarApi.view.activeStart);
@@ -1312,6 +1315,7 @@ export default {
       $("#announcementModal").modal({ backdrop: true });
     },
     async openEditSportsActivity(data) {
+      this.resetActivity();
       this.isActivityEdit = true;
       this.activityId = data.id;
       this.activityType = data.session_type;
