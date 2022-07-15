@@ -18,6 +18,13 @@ $text-secondary: #C5C0BD;
     border-radius: 22px;
     border: 1px solid $white;
 }
+@mixin jochi-sub-components-light-bg{
+    background-color: rgba($color: $white, $alpha: 0.45);
+    box-shadow: 0px 0px 32px -4px rgba($color: #000100, $alpha: 0.09);
+    border-radius: 22px;
+}
+
+
 $global-background-color : rgba($color: $white, $alpha: 0.45);
 $global-sidebar-bg:#2D2D2F;
 $Global-background-element: rgba($color: $white, $alpha: 0.45);

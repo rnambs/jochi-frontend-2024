@@ -85,6 +85,281 @@
     </div>
     <!-- end session -->
 
+    <!-- step one -->
+
+    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll">
+      <h2 class="color-primary font-bold mb-1">Step One:</h2>
+      <h2 class="color-primary font-bold mb-4">Choose An Assignment</h2>
+      <div class="row">
+      <div class="col-4">
+          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div class="assignment-tag red mr-2">Urgent</div>
+                  <div class="assignment-tag pink">AP French</div>
+              </div>
+              <div class="text-center">
+                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
+                  <div class="text-center px-3">
+                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12">Study Vocab List</label>
+                  </div>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                  >
+                  </div>
+              </div>
+              <div class="">
+                  <h6 class="mb-1 color-primary">Additional Material</h6>
+                  <div
+                  class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                  "
+                  >
+                  <div class="col-8 py-0 pl-0 material-link">
+                      Rubric: https://docs.google.com/document/...
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                      12/04/22
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-4">
+          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div class="assignment-tag red mr-2">Urgent</div>
+                  <div class="assignment-tag pink">AP French</div>
+              </div>
+              <div class="text-center">
+                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
+                  <div class="text-center px-3">
+                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12">Study Vocab List</label>
+                  </div>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                  >
+                  </div>
+              </div>
+              <div class="">
+                  <h6 class="mb-1 color-primary">Additional Material</h6>
+                  <div
+                  class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                  "
+                  >
+                  <div class="col-8 py-0 pl-0 material-link">
+                      Rubric: https://docs.google.com/document/...
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                      12/04/22
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-4">
+          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div class="assignment-tag red mr-2">Urgent</div>
+                  <div class="assignment-tag pink">AP French</div>
+              </div>
+              <div class="text-center">
+                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
+                  <div class="text-center px-3">
+                  <p  class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12">Study Vocab List</label>
+                  </div>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                  >
+                  </div>
+              </div>
+              <div class="">
+                  <h6 class="mb-1 color-primary">Additional Material</h6>
+                  <div
+                  class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                  "
+                  >
+                  <div class="col-8 py-0 pl-0 material-link">
+                      Rubric: https://docs.google.com/document/...
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                      12/04/22
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-4">
+          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div class="assignment-tag red mr-2">Urgent</div>
+                  <div class="assignment-tag pink">AP French</div>
+              </div>
+              <div class="text-center">
+                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
+                  <div class="text-center px-3">
+                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12">Study Vocab List</label>
+                  </div>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                  >
+                  </div>
+              </div>
+              <div class="">
+                  <h6 class="mb-1 color-primary">Additional Material</h6>
+                  <div
+                  class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                  "
+                  >
+                  <div class="col-8 py-0 pl-0 material-link">
+                      Rubric: https://docs.google.com/document/...
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                      12/04/22
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-4">
+          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div class="assignment-tag red mr-2">Urgent</div>
+                  <div class="assignment-tag pink">AP French</div>
+              </div>
+              <div class="text-center">
+                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
+                  <div class="text-center px-3">
+                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12">Study Vocab List</label>
+                  </div>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                  >
+                  </div>
+              </div>
+              <div class="">
+                  <h6 class="mb-1 color-primary">Additional Material</h6>
+                  <div
+                  class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                  "
+                  >
+                  <div class="col-8 py-0 pl-0 material-link">
+                      Rubric: https://docs.google.com/document/...
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                      12/04/22
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-4">
+          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div class="assignment-tag red mr-2">Urgent</div>
+                  <div class="assignment-tag pink">AP French</div>
+              </div>
+              <div class="text-center">
+                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
+                  <div class="text-center px-3">
+                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12">Study Vocab List</label>
+                  </div>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                  >
+                  </div>
+              </div>
+              <div class="">
+                  <h6 class="mb-1 color-primary">Additional Material</h6>
+                  <div
+                  class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                  "
+                  >
+                  <div class="col-8 py-0 pl-0 material-link">
+                      Rubric: https://docs.google.com/document/...
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                      12/04/22
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- end step one -->
+
     <!-- step two configure -->
     <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll">
       <h2 class="color-primary font-semi-bold mb-3">Step Two: <br> Configure your Session</h2>
@@ -257,6 +532,11 @@
               Subject Name
             </p>
             <p class="color-dark text-24 font-semi-bold mb-1">{{ SubjectName }}</p>
+            <p
+              class="color-secondary text-16 font-regular mb-1"
+            >
+              Study Method : <span>Regular studying</span>
+            </p>
             <p
               class="color-secondary text-16 font-regular mb-1"
               v-if="studyTypes.id != 3"
