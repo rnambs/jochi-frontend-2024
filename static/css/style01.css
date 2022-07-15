@@ -154,7 +154,7 @@ body {
 .form-row label.form-label, .form-group label.form-label {
   color: #C5C0BD;
 }
-.form-row input.form-control, .form-row select.form-control, .form-group input.form-control, .form-group select.form-control {
+.form-row input.form-control, .form-row select.form-control, .form-row .form-control, .form-group input.form-control, .form-group select.form-control, .form-group .form-control {
   border: none;
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);

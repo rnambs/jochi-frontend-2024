@@ -338,7 +338,7 @@
                 class="btn btn-color mb-2 mt-2 pl-3 pr-3"
                 id="pause-button"
               >
-                <i class="fa fa-pause"></i>
+                <i class="fa fa-pause color-dark"></i>
                 {{ showResume ? "Resume" : "Pause" }}
               </button>
             </div>
@@ -352,7 +352,7 @@
     <!-- rating  -->
 
     <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex hidden-scroll">
-      
+
     </div>
 
     <!-- end rating -->
