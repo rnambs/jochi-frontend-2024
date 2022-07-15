@@ -168,7 +168,7 @@
                     <td class="tmodal-data">With</td>
                     <td class="tmodal-data d-flex align-items-center flex-wrap">
                       <span class="pr-2">:</span>
-                      <span v-if="meetingType == 'Teacher'"
+                      <span v-if="detailType == 'Teacher'"
                         >{{ detailWith }}
                       </span>
                       <div
@@ -757,7 +757,7 @@ export default {
           ? list.meeting_location
           : list.meeting_link;
       this.detailType = list.type;
-      this.detailWith = list.new_title;
+      this.detailWith = list.title;
       this.detailMeetingWith = list.meeting_with;
       this.detailMeetingId = list.meeting_id;
       this.detailMeetingId = list.meeting_id;
@@ -770,7 +770,9 @@ export default {
       this.detailSlotId = list.slot_id;
       // var dateF = list.date.split("-");
       this.date = new Date(moment(list.date));
-      this.getMemberDetails();
+      if (this.detailType != "Teacher") {
+        this.getMemberDetails();
+      }
     },
     async updateDetails() {
       this.submitted = true;

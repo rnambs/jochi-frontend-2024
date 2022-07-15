@@ -33,6 +33,12 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
 
   },
@@ -53,6 +59,12 @@ const actions = {
         commit('setErrorType', "");
         window.localStorage.clear();
         this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
       }
     }
 
@@ -76,6 +88,12 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
 
   },
@@ -98,6 +116,12 @@ const actions = {
         commit('setErrorType', "");
         window.localStorage.clear();
         this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
       }
     }
 
@@ -181,6 +205,12 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
   },
   async studentScheduleConfirm({ commit }, payLoad) {
@@ -240,6 +270,13 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
   },
   async acceptOrRejectMeeting({ commit }, payLoad) {
@@ -273,6 +310,12 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
 
   },
@@ -293,6 +336,12 @@ const actions = {
         commit('setErrorType', "");
         window.localStorage.clear();
         this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
       }
     }
 

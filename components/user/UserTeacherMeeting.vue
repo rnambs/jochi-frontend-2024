@@ -54,7 +54,9 @@
                       :options="students"
                       track-by="first_name"
                       label="first_name"
-                      placeholder="Add Participants"
+                      :placeholder="
+                        meetingType ? 'Select students' : 'Add Participants'
+                      "
                       :multiple="true"
                       :max="4"
                       @input="UpdateTimeSchedule"
@@ -545,7 +547,6 @@ import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import { required } from "vuelidate/lib/validators";
 
-var teacherValue = "";
 var fromDate = "";
 var endDate = "";
 var slot_date = [];
@@ -860,6 +861,7 @@ export default {
             $(".modal-backdrop").remove();
             $("#meetingDetailModal").modal("hide");
             this.resetValues();
+            this.resetSelection();
             this.$toast.open({
               message: this.successMessage,
               type: this.SuccessType,
@@ -893,6 +895,7 @@ export default {
             $(".modal-backdrop").remove();
             $("#meetingDetailModal").modal("hide");
             this.resetValues();
+            this.resetSelection();
             this.$toast.open({
               message: this.successMessage,
               type: this.SuccessType,
@@ -911,7 +914,6 @@ export default {
         $('input[name="daterange"]').val("");
         fromDate = "";
         endDate = "";
-        teacherValue = "";
         this.slot_date = [];
         this.isShowing = true;
         this.isMounted = false;
@@ -919,7 +921,7 @@ export default {
       }
     },
     resetValues() {
-      this.studentsValue = [];
+      // this.studentsValue = [];
       this.submitted = false;
       slot_id = "";
       modalDate = "";
@@ -928,10 +930,16 @@ export default {
       this.meeting_description = "";
       this.venue = "";
     },
+    resetSelection() {
+      this.value = "";
+      this.selectedStudents = [];
+      this.meetingType = "";
+    },
 
     weekToggle() {},
     availabilityToggle() {},
     modalValue(modalData, modalFrom, modalEnd, slotValue, value) {
+      this.resetValues();
       this.popupValue = [];
       this.popupFrom = [];
       this.popupEnd = [];
