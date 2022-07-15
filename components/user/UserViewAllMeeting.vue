@@ -198,7 +198,7 @@
 
                   <tr>
                     <td class="tmodal-data">Date</td>
-                    <td class="tmodal-data d-flex align-items-center">
+                    <td class="tmodal-data d-flex align-items-center form-row">
                       <span class="pr-2">:</span>
                       <!-- <div class="col-md-6 ml-auto"> -->
                       <!-- <div class="form-group"> -->
@@ -686,7 +686,7 @@ export default {
           "date of split ",
           element.date,
           splitDate,
-          new Date(splitDate[0], splitDate[1], splitDate[2])
+          new Date(splitDate[0], splitDate[1] - 1, splitDate[2])
         );
         Scheduleobj["type"] = this.meetingType;
         Scheduleobj["title"] = title;
@@ -695,7 +695,7 @@ export default {
         Scheduleobj["end"] = end;
         Scheduleobj["date"] = new Date(
           splitDate[0],
-          splitDate[1],
+          splitDate[1] - 1,
           splitDate[2]
         );
         Scheduleobj["meeting_description"] = element.meeting_description;
