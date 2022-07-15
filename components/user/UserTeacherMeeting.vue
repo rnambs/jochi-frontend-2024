@@ -932,6 +932,7 @@ export default {
     weekToggle() {},
     availabilityToggle() {},
     modalValue(modalData, modalFrom, modalEnd, slotValue, value) {
+      this.resetValues();
       this.popupValue = [];
       this.popupFrom = [];
       this.popupEnd = [];
