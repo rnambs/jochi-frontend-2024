@@ -14,10 +14,12 @@
           justify-content-between
           jochi-components-light-bg
           p-4
+          position-fixed
+          flex-column
         "
         id="clickableId"
       >
-        <div>
+        <div class="d-flex flex-column h-40 flex-fill">
           <!-- <div class="logo-section mt-3 p-2">
             <a href="">
               <div
@@ -152,13 +154,13 @@
               </div>
             </div> -->
           </div>
-          <div class="menu-items py-4 custom-scroll-for-side-menus">
+          <div class="menu-items  position-relative py-4 custom-scroll-for-side-menus d-flex flex-column flex-fill h-40">
             <div class="accordion" id="accordionExample">
-              <div class="card mb-2">
-                <div class="card-header p-1" id="headingOne">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div class="card-header bg-transparent border-0 p-1" id="headingOne">
                   <h2 class="mb-0">
                     <button
-                      class="btn btn-link btn-block text-left collapsed"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -173,8 +175,8 @@
                           class="planner"
                         />
                       </div>
-                      <span class="ml-2">Planner</span>
-                      <i class="fas fa-chevron-right"></i>
+                      <span class="ml-2 color-secondary text-capitalize">Planner</span>
+                      <i class="fas fa-chevron-right color-secondary"></i>
                     </button>
                   </h2>
                 </div>
@@ -214,11 +216,11 @@
                   </div>
                 </div>
               </div>
-              <div class="card mb-2">
-                <div class="card-header p-1" id="headingTwo">
+              <div class="card bg-transparent shadow-none border-0mb-2">
+                <div class="card-header bg-transparent border-0 p-1" id="headingTwo">
                   <h2 class="mb-0">
                     <button
-                      class="btn btn-link btn-block text-left collapsed"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -233,8 +235,8 @@
                           class="meetings"
                         />
                       </div>
-                      <span class="ml-2">Meeting</span>
-                      <i class="fas fa-chevron-right"></i>
+                      <span class="ml-2 color-secondary text-capitalize">Meeting</span>
+                      <i class="fas fa-chevron-right color-secondary"></i>
                     </button>
                   </h2>
                 </div>
@@ -274,11 +276,11 @@
                   </div>
                 </div>
               </div>
-              <div class="card mb-2">
-                <div class="card-header p-1" id="headingThree">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div class="card-header bg-transparent border-0 p-1" id="headingThree">
                   <h2 class="mb-0">
                     <button
-                      class="btn btn-link btn-block text-left collapsed"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -293,8 +295,8 @@
                           class="teams-clubs"
                         />
                       </div>
-                      <span class="ml-2">Teams & Clubs</span>
-                      <i class="fas fa-chevron-right"></i>
+                      <span class="ml-2 color-secondary text-capitalize">Teams & Clubs</span>
+                      <i class="fas fa-chevron-right color-secondary"></i>
                     </button>
                   </h2>
                 </div>
@@ -320,11 +322,11 @@
                   </div>
                 </div>
               </div>
-              <div class="card mb-2">
-                <div class="card-header p-1" id="headingFour">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div class="card-header bg-transparent border-0 p-1" id="headingFour">
                   <h2 class="mb-0">
                     <button
-                      class="btn btn-link btn-block text-left collapsed"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -339,8 +341,8 @@
                           class="study-room"
                         />
                       </div>
-                      <span class="ml-2">Study Room</span>
-                      <i class="fas fa-chevron-right"></i>
+                      <span class="ml-2 color-secondary text-capitalize">Study Room</span>
+                      <i class="fas fa-chevron-right color-secondary"></i>
                     </button>
                   </h2>
                 </div>
@@ -354,12 +356,12 @@
                     <ul class="inner-custom-list ml-4">
                       <li class="nav-item">
                         <nuxt-link to="/study-time" class="nav-link"
-                          >Study Room</nuxt-link
+                          >Session</nuxt-link
                         >
                       </li>
                       <li class="nav-item">
                         <nuxt-link to="/study-analytics" class="nav-link"
-                          >My Sessions</nuxt-link
+                          >Analytics</nuxt-link
                         >
                       </li>
                     </ul>
@@ -370,14 +372,14 @@
           </div>
         </div>
         <div>
-          <div class="menu-items py-0">
+          <div class="menu-items  position-relative py-0">
             <div class="accordion" id="accordionExample">
-              <div class="card mb-2">
-                <div class="card-header p-1" id="headingOne">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div class="card-header bg-transparent border-0 p-1" id="headingOne">
                   <h2 class="mb-0">
                     <button
                       class="
-                        btn btn-link btn-block
+                        btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block
                         text-left
                         collapsed
                         justify-content-start
@@ -396,7 +398,7 @@
                         <div class="font-icon d-inline-block">
                           <i class="fas fa-comments"></i>
                         </div>
-                        <span class="ml-2">FAQ</span>
+                        <span class="ml-2 color-secondary text-capitalize">FAQ</span>
                       </div>
                       <!-- <a href="https://www.jochi.info/faqs">FAQ</a> -->
                     </button>
@@ -405,14 +407,14 @@
               </div>
             </div>
           </div>
-          <div class="menu-items py-0">
+          <div class="menu-items  position-relative py-0">
             <div class="accordion" id="accordionExample">
-              <div class="card mb-2">
-                <div class="card-header p-1" id="headingOne">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div class="card-header bg-transparent border-0 p-1" id="headingOne">
                   <h2 class="mb-0">
                     <button
                       class="
-                        btn btn-link btn-block
+                        btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block
                         text-left
                         collapsed
                         justify-content-start
@@ -428,7 +430,7 @@
                         <div class="font-icon d-inline-block">
                           <i class="fas fa-shield-alt"></i>
                         </div>
-                        <span class="ml-2">Privacy Policy</span>
+                        <span class="ml-2 color-secondary text-capitalize">Privacy Policy</span>
                       </nuxt-link>
                     </button>
                   </h2>

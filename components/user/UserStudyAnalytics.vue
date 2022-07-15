@@ -4,20 +4,23 @@
     <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex">
       
       <div class="study-section d-flex flex-column">
-          <div class="d-flex align-items-center justify-content-between mb-3 px-2">
+          <div class="d-flex align-items-center justify-content-between mb-4 px-2">
             <h2 class="color-primary font-semi-bold mb-0">Study Analytics</h2>
-            <p class="mb-0">
-              <span class="color-dark text-16 font-normal">Daily goal :</span>
-              <span class="color-dark text-24 font-semi-bold">45</span><span class="color-dark font-normal text-16">min</span>
-            </p>
+            <div class="d-flex align-items-center">
+              <p class="mb-0 d-flex flex-column text-right">
+                <span class="color-dark text-16 font-semi-bold">145 Minutes Studied Today</span>
+                <span class="color-secondary text-14 font-normal">102 Minutes Left</span>
+              </p>
+              <img src="../../static/image/alarm.png" alt="" class="img-fluid icon-img ml-2">
+            </div>
           </div>
           <div class="study-row d-flex flex-column px-2">
             <div class="row header-row mb-1">
-              <div class="col-md-6 py-2">
-                <h4 class="color-dark font-semi-bold">Weekly Dashboard</h4>
+              <div class="col-md-6 pt-2 pb-0">
+                <h4 class="color-dark font-semi-bold  mb-0">Weekly Dashboard</h4>
               </div>
-              <div class="col-md-6 py-2">
-                <h4 class="color-dark font-semi-bold">Dashboard</h4>
+              <div class="col-md-6 pt-2 pb-0">
+                <h4 class="color-dark font-semi-bold mb-0">Dashboard</h4>
               </div>
             </div>
             <div class="row inner-row mt-0 text-center mb-2">
@@ -167,7 +170,7 @@
               </div>
             </div>
             <div class="row inner-row mt-0">
-              <div class="col-md-12 mb-2">
+              <div class="col-md-12 pt-2 pb-0">
                 <h4 class="color-dark font-semi-bold mb-0">Progress Chart</h4>
               </div>
               <div class="col-md-6 mb-2">

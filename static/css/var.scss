@@ -16,6 +16,7 @@ $text-secondary: #C5C0BD;
     background-color: rgba($color: $white, $alpha: 0.45);
     box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
     border-radius: 22px;
+    border: 1px solid $white;
 }
 $global-background-color : rgba($color: $white, $alpha: 0.45);
 $global-sidebar-bg:#2D2D2F;

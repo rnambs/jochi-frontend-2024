@@ -1,7 +1,142 @@
 <template>
   <div class="main-section">
     <!-- Study Page -->
+    <!-- session  -->
+    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex hidden-scroll">
+      
+      <div class="study-section d-flex flex-column flex-fill">
+        <div class="row h-100">
+          <div class="col-lg-7 d-flex flex-column">
+              <div class="row card card-primary rounded-22 m-0 mb-4 p-4 flex-row">
+                  <div class="col-7">
+                      <h2 class="color-primary font-semi-bold mb-1">Complete An Assignment</h2>
+                      <p class="mb-0 color-dark font-semi-bold text-16">
+                        Tackle  your upcoming assignments
+                      </p>
+                  </div>
+                  <div class="col-5 d-flex justify-content-end">
+                      <img src="../../static/image/folder.png" alt="" class="card-img">
+                  </div>
+              </div>
+              <div class="row card card-primary rounded-22 p-4 m-0 flex-row">
+                  <div class="col-7">
+                      <h2 class="color-primary font-semi-bold mb-1">Start a new Study Session</h2>
+                      <p class="mb-0 color-dark font-semi-bold text-16">
+                        Stay focused while you study, and monitor your productivity
+                      </p>
+                  </div>
+                  <div class="col-5 d-flex justify-content-end">
+                      <img src="../../static/image/lamp.png" alt="" class="card-img">
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-5 h-100">
+              <div class="card card-primary rounded-22 p-4 h-100 hidden-scroll">
+                <!-- default -->
+                  <!-- <div class="d-flex justify-content-between flex-column h-100">
+                      <div class="head-section">
+                          <h2 class="color-primary font-semi-bold mb-1">Enhance your studying with research-backed technqiues</h2>
+                          <button class="btn btn-dark my-2">Swipe to Learn More</button>
+                      </div>
+                      <div class="img-section">
+                          <img src="../../static/image/student_img.png" alt="" class="img-fluid">
+                      </div>
+                  </div> -->
+                  <!-- end -->
+                  <!-- listing -->
+                  <div class="d-flex flex-column h-100">
+                    <div class="d-flex card card-primary p-3 d-flex flex-column mb-3">
+                      <h6 class="color-dark font-semi-bold mb-1">Title </h6>
+                      <p class="mb-0 color-secondary font-normal text-14"><span>02 Jan 2022 </span> <span>|</span><span>02:03 pm</span></p>
+                    </div>
+                    <div class="d-flex card card-primary p-3 d-flex flex-column mb-3">
+                      <h6 class="color-dark font-semi-bold mb-1">Title </h6>
+                      <p class="mb-0 color-secondary font-normal text-14"><span>02 Jan 2022 </span> <span>|</span><span>02:03 pm</span></p>
+                    </div>
+                    <div class="d-flex card card-primary p-3 d-flex flex-column mb-3">
+                      <h6 class="color-dark font-semi-bold mb-1">Title </h6>
+                      <p class="mb-0 color-secondary font-normal text-14"><span>02 Jan 2022 </span> <span>|</span><span>02:03 pm</span></p>
+                    </div>
+                    
+                  </div>
+                  <!-- end -->
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end session -->
 
+    <!-- step two configure -->
+    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll">
+      <h2 class="color-primary font-semi-bold mb-3">Step Two: <br> Configure your Session</h2>
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="card card-primary rounded-22 h-100 p-4">
+            <h3 class="color-dark font-semi-bold">Goals</h3>
+            <p class="mb-0 d-flex flex-column">
+              <span class="color-primary text-24 font-bold">Studied Today</span>
+              <span class="color-dark text-16 font-semi-bold">145 Minutes</span>
+              <span class="color-secondary text-14 font-normal">102 Minutes Left</span>
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-7 d-flex flex-column">
+          <div class="card card-primary rounded-22 p-4 mb-4">
+            <h3 class="color-dark font-semi-bold">Duration</h3>
+            <div class="d-flex align-items-center py-3">
+              <img src="../../static/image/alarm.png" alt="" class="img-fluid mr-3 card-img">
+              <p class="mb-0 d-flex flex-column">
+                <span class="color-primary text-24 font-bold">Studied Today</span>
+                <span class="color-dark text-16 font-semi-bold">145 Minutes</span>
+                <span class="color-secondary text-14 font-normal">102 Minutes Left</span>
+              </p>
+            </div>
+          </div>
+          <div class="card card-primary rounded-22 h-40 flex-fill p-4">
+            <h3 class="color-dark font-semi-bold">Invite Peers</h3>
+            <div class="d-flex flex-row align-items-center">
+              <div class="form-row mb-2 mx-0 mr-2">
+                <label class="form-label" for="name">Invite peers</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="pt-4">
+                <button class="btn btn-primary btn-sm">Submit</button>
+              </div>
+            </div>
+            <div class="hidden-scroll p-3 row my-0 max-height-100">
+              <div class="d-flex align-items-center my-2 mr-2">
+                <div class="ld-img-section mr-3">
+                  <div class="ld-img-holder"></div>
+                </div>
+                <div class="ld-details-section">
+                  <p class="ld-heading mb-1">
+                    Mark Jones, President
+                  </p>
+                  <p class="ld-details mb-0">
+                    markjones@school.edu
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center my-2 mr-2">
+                <div class="ld-img-section mr-3">
+                  <div class="ld-img-holder"></div>
+                </div>
+                <div class="ld-details-section">
+                  <p class="ld-heading mb-1">
+                    Mark Jones, President
+                  </p>
+                  <p class="ld-details mb-0">
+                    markjones@school.edu
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end step two configure -->
     <section id="study-detail" class="">
       <div class="study-section container-fluid">
         <h3 class="color-primary text-18 mb-2 mt-4">Study Room</h3>
