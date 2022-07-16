@@ -13,16 +13,18 @@
         class="
           jochi-components-light-bg
           p-4
-          custom-margin-for-main-section custom-full-height
+          custom-margin-for-main-section custom-full-height 
+          d-flex
+          flex-column
         "
       >
         <section id="tab" class="">
-          <div class="tab-section container-fluid mt-4">
-            <h4 class="tab-head">Schedule a Meeting!</h4>
+          <div class="tab-section container-fluid mt-4 w-100">
+            <h3 class="color-primary font-bold">Schedule a Meeting!</h3>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0">
-                <div class="col-md-3 pl-0">
-                  <div class="input-icon-area schedule-meeting-section">
+                <div class="col-md-6 col-lg-3 px-2 pr-3">
+                  <div class="form-row d-flex position-relative schedule-meeting-section">
                     <multiselect
                       v-model="meetingType"
                       :options="types"
@@ -35,8 +37,8 @@
                     ></span> -->
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="input-icon-area schedule-meeting-section">
+                <div class="col-md-6 col-lg-3 px-2 pr-3">
+                  <div class="form-row d-flex position-relative schedule-meeting-section">
                     <multiselect
                       v-if="meetingType == 'Teachers'"
                       v-model="value"
@@ -45,6 +47,7 @@
                       label="first_name"
                       placeholder="Select a teacher"
                       @input="UpdateTimeSchedule"
+
                     >
                       <span slot="noResult">No data found</span>
                     </multiselect>
@@ -66,13 +69,13 @@
                       >
                       <span slot="noResult">No data found</span>
                     </multiselect>
-                    <span class="input-icon custom-search-icon"
-                      ><i class="fa fa-search" aria-hidden="true"></i
+                    <span class="input-icon custom-search-icon position-absolute d-flex align-items-center justify-content-center"
+                      ><i class="fa fa-search color-secondary" aria-hidden="true"></i
                     ></span>
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="input-icon-area schedule-meeting-section">
+                <div class="col-md-6 col-lg-3 px-2">
+                  <div class="form-row d-flex position-relative schedule-meeting-section">
                     <input
                       type="text"
                       name="daterange"
@@ -87,30 +90,30 @@
                     </span> -->
                   </div>
                 </div>
-                <div class="col-md-3 px-2 justify-content-md-end">
+                <div class="col-md-6 col-lg-3  px-2 justify-content-md-end">
                   <div class="custom-switch pb-2">
                     <input
                       type="checkbox"
-                      class="custom-control-input"
+                      class="custom-control-input color-primary"
                       id="custom-Switches"
                       v-model="week"
                       @change="UpdateTimeSchedule()"
                       v-on:click="weekToggle()"
                     />
-                    <label class="custom-control-label" for="custom-Switches"
+                    <label class="custom-control-label font-normal color-dark text-14" for="custom-Switches"
                       >Include weekends
                     </label>
                   </div>
                   <div class="custom-switch">
                     <input
                       type="checkbox"
-                      class="custom-control-input"
+                      class="custom-control-input color-primary"
                       id="customSwitches"
                       v-model="availability"
                       @change="UpdateTimeSchedule()"
                       v-on:click="availabilityToggle()"
                     />
-                    <label class="custom-control-label" for="customSwitches"
+                    <label class="custom-control-label font-normal color-dark text-14" for="customSwitches"
                       >Show options based on my availability
                     </label>
                   </div>
@@ -124,34 +127,34 @@
 
         <!-- element secton -->
 
-        <section id="teacher-section" class="">
-          <div class="meeting-section container-fluid">
-            <div class="inner-meeting m-auto container-fluid py-3 pl-0 scroll">
-              <div class="row Meeting-row" v-show="isShowing">
+        <section id="teacher-section" class=" d-flex h-40 flex-fill">
+          <div class="meeting-section container-fluid d-flex custom-overflow pe-2 mr--2 flex-fill">
+            <div class="inner-meeting m-auto container-fluid py-3 pl-0 scroll ">
+              <div class="row Meeting-row text-center align-items-center px-4 px-md-5 px-lg-3 px-xl-5" v-show="isShowing">
                 <div class="col-md-4 p-3">
-                  <div class="default-section">
+                  <div class="default-section d-flex flex-row flex-md-column">
                     <img src="~/assets/images/undraw/step1.png" alt="" />
-                    <div class="default-area">
-                      <h6 class="default-head">Step 1</h6>
-                      <p class="default-text">Search & Select Your Teacher</p>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="color-primary font-medium">Step 1</h6>
+                      <p class="color-secondary text-12">Search & Select Your Teacher</p>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4 p-3">
-                  <div class="default-section">
+                  <div class="default-section d-flex flex-row flex-md-column">
                     <img src="~/assets/images/undraw/step2.png" alt="" />
-                    <div class="default-area">
-                      <h6 class="default-head">Step 2</h6>
-                      <p class="default-text">Choose Your Date Range</p>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="color-primary font-medium">Step 2</h6>
+                      <p class="color-secondary text-12">Choose Your Date Range</p>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4 p-3">
-                  <div class="default-section">
+                  <div class="default-section d-flex flex-row flex-md-column">
                     <img src="~/assets/images/undraw/step3.png" alt="" />
-                    <div class="default-area">
-                      <h6 class="default-head">Step 3</h6>
-                      <p class="default-text">Select Your Time and Confirm</p>
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="color-primary font-medium">Step 3</h6>
+                      <p class="color-secondary text-12">Select Your Time and Confirm</p>
                     </div>
                   </div>
                 </div>
@@ -159,12 +162,12 @@
               <div class="col-xl-10 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                 <div class="row Meeting-row pl-0 pr-3 pt-3">
                   <div
-                    class="col-md-3 mb-4 py-0"
+                    class="col-md-3  mb-4 py-0"
                     v-for="(Schedule, index) in slot_date"
                     :key="index"
                   >
                     <div
-                      class="meeting-list p-3"
+                      class="meeting-list p-3 cursor-pointer card card-void align-items-center h-100"
                       data-toggle="modal"
                       data-target="#meetingDetailModal"
                       v-on:click="
@@ -177,8 +180,8 @@
                         )
                       "
                     >
-                      <h6>{{ Schedule["dateFormat"] }}</h6>
-                      <p class="time">
+                      <h6 class="font-bold color-dark text-center">{{ Schedule["dateFormat"] }}</h6>
+                      <p class="time color-primary font-normal text-14 mb-1 text-center">
                         {{ Schedule["from"] }}
                         {{ Schedule["end"] ? "to " + Schedule["end"] : "" }}
                         <!-- {{ timeZones.timeZone }} -->
@@ -187,9 +190,9 @@
                   </div>
                   <div
                     v-if="slot_date.length == 0 && isMounted"
-                    class="empty-schedule"
+                    class="empty-schedule d-flex align-items-center justify-content-center h-40 m-auto"
                   >
-                    <p>No time slot is available</p>
+                    <p class="color-secondary text-16">No time slot is available</p>
                   </div>
                 </div>
               </div>

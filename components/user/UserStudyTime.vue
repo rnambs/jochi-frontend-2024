@@ -380,25 +380,25 @@
               </div>
             </div>
             <div class="custom-overflow pr-2 mr--2 d-flex flex-column">
-              <div class="card card-void show-icon p-1 mt-1">
+              <div class="card card-transparent show-icon p-1 mt-1">
                 <div class="d-flex align-items-center justify-content-between">
                   <p class="mb-0 color-secondary text-16 font-regular text-truncate pr-3"><span><i class="far fa-circle"></i></span> study vocab list</p>
                   <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt"></i></span>
                 </div>
               </div>
-              <div class="card card-void show-icon p-1 mt-1">
+              <div class="card card-transparent show-icon p-1 mt-1">
                 <div class="d-flex align-items-center justify-content-between">
                   <p class="mb-0 color-secondary text-16 font-regular text-truncate pr-3"><span><i class="far fa-circle"></i></span> study vocab list</p>
                   <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt"></i></span>
                 </div>
               </div>
-              <div class="card card-void show-icon p-1 mt-1">
+              <div class="card card-transparent show-icon p-1 mt-1">
                 <div class="d-flex align-items-center justify-content-between">
                   <p class="mb-0 color-secondary text-16 font-regular text-truncate pr-3"><span><i class="far fa-circle"></i></span> study vocab list</p>
                   <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt"></i></span>
                 </div>
               </div>
-              <div class="card card-void show-icon p-1 mt-1">
+              <div class="card card-transparent show-icon p-1 mt-1">
                 <div class="d-flex align-items-center justify-content-between">
                   <p class="mb-0 color-secondary text-16 font-regular text-truncate pr-3"><span><i class="far fa-circle"></i></span> study vocab list</p>
                   <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt"></i></span>

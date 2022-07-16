@@ -159,6 +159,9 @@ body{
         color: #B4B4B4;
         padding: 0.375rem 0.75rem;
         height: calc(2.25rem + 4px);
+        &::placeholder{
+            color: $text-secondary;
+        }
     }
     textarea.form-control{
         border: none;
@@ -169,7 +172,146 @@ body{
         color: #B4B4B4;
         padding: 0.375rem 0.75rem;
     }
+    .dropdown-menu{
+        background-color: $global-sidebar-bg ;
+        font-size: 0.8rem;
+        padding: inherit;
+        border-radius: 0.3rem;
+        list-style-type: none;
+        border: 2px solid $border-color;
+        border-radius: 0.45rem;
+        padding: .375rem .75rem;
+        z-index: 10;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        top: calc(2.25rem + 2px) !important;
+        max-height: 200px;
+        overflow: auto;
+        .item{
+            padding: 0.75rem 1rem;
+            font-size: 0.8rem;
+            color: $font-label-color;
+            &:hover{
+                background-color: $border-color;
+                color: $global-font-color;
+                border-radius: 0.3rem;
+            }
+        }
+    }
+    // Vue input field
+
+    //  Search icon
+
+    .input-icon{
+        margin: 13px;
+        background-color: transparent;
+        width: 22px;
+        height: 22px;
+        border-radius: 5px;
+        @media (max-width:1090.89px){
+            margin: 10px;
+        }
+    }
+
+    .multiselect__tags {
+        border-radius: 0.65rem;
+        font-size: 0.8rem;
+        border: none;
+        background-color: rgba($color: $white, $alpha: 0.2);
+        color: $font-label-color;
+        padding: .375rem 2.5rem .375rem 1rem;
+        min-height: calc(2.8rem + 2px);
+        box-shadow: 0 0 7px -4px rgba($color: #000000, $alpha: 0.25);  
+        @media (max-width: 1024.98px) {
+            min-height: calc(2.8rem + 0px); 
+        }
+        &::placeholder{
+            color: $text-secondary;
+            font-size: 0.9rem;
+        }
+        .multiselect__input, .multiselect__single {
+            background-color: unset;
+            border-radius: unset;
+            height: unset;
+            line-height: unset;color: $font-label-color;
+            font-size: 0.8rem;
+            margin: 6px 2px;
+            &::placeholder{
+                color: $text-secondary;
+                font-size: 0.9rem;
+            }
+        }
+        span.multiselect__tag{
+            background-color: $selected-color;
+            margin: 5px;
+            @media (max-width:1128.98px) {
+                margin: 3px;
+            }
+            i.multiselect__tag-icon{
+                &:hover{
+                    background-color: $selected-color;
+                }
+                &::after{
+                    color: $white;
+                }
+            }
+        }
+        span.multiselect__placeholder{
+            margin: 2px;
+            font-size: 0.9rem;
+        }
+    }
+    // Drop Down
+    .multiselect__content-wrapper{
+        list-style-type: none;
+        border: none;
+        border-radius: 1.2rem;
+        background-color: $white;
+        padding: .75rem .75rem;
+        z-index: 10;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        top: 100%;
+        max-height: 200px;
+        overflow: auto;
+        font-size: 0.9rem;
+        ul{
+            li{
+                color: $font-label-color;
+                .multiselect__option--highlight{
+                    font-size: 0.9rem;
+                    color: $text-dark; 
+                    background: $white;
+                    box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+                    border-radius: .6rem;
+                    &:target, &:visited, &:active{
+                        background: #FF646F;
+                    }
+                }
+                .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
+                    background: #FF646F;
+                    color: $global-font-color;
+                    font-weight: 500;
+                    border-radius: .4rem;
+                }
+                span{
+                    &::after{
+                        display: none !important;
+                    }
+                }
+                
+            }
+            .vs__dropdown-option--highlight {
+               
+                color: $global-font-color;
+            }
+        }
+    }
 }
+
+
 
 // Card
 
@@ -193,6 +335,10 @@ body{
         box-shadow: 0.1rem 0.1rem 0.4rem $global-box-shadow;
     }
     &.card-void{
+        background-color: transparent;
+        box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+    }
+    &.card-transparent{
         background-color: transparent;
         box-shadow: none;
     }
@@ -1902,209 +2048,35 @@ img.card-img{
         // meeting
         
         .tab-section{
-            margin:auto;
-            width:100%;
             .tab-head{
-                color: $theme-color;
-                padding: 6px 0px;
+                // color: $theme-color;
+                // padding: 6px 0px;
             }
             .inner-tab-section{
-                border-radius: 0.75rem;
-                background-color: transparent;
+                // border-radius: 0.75rem;
+                // background-color: transparent;
                 .col-md-3, .col-md-4, .col-md-6{
-                    font-size: .85rem;
-                    color: $global-font-color;
-                    @media (max-width:1155px) {
-                        font-size: .65rem;
-                    }
-                    @media (max-width:767.98px) {
-                        font-size: .75rem;
-                        padding: 3px 0px;
-                    }
+                    // font-size: .85rem;
+                    // color: $global-font-color;
+                    // @media (max-width:1155px) {
+                    //     font-size: .65rem;
+                    // }
+                    // @media (max-width:767.98px) {
+                    //     font-size: .75rem;
+                    //     padding: 3px 0px;
+                    // }
                     .input-icon-area{
-                        position: relative;
-                        display: flex;
-                        .multiselect__select{
-                            top: 5px;
-                        }
-                        .pl{
-                            padding-left: 30px;
-                        }
-                        .input-icon{
-                            position: absolute;
-                            margin: 13px;
-                            background-color: transparent;
-                            display: flex;
-                            width: 22px;
-                            height: 22px;
-                            justify-content: center;
-                            align-items: center;
-                            border-radius: 5px;
-                            color: $font-label-color;
-                            @media (max-width:1090.89px){
-                                margin: 10px;
-                            }
-                        }
-                        .multiselect__tags {
-                            border-radius: 0.65rem;
-                            font-size: 0.8rem;
-                            border: none;
-                            background-color: rgba($color: $white, $alpha: 0.2);
-                            color: $font-label-color;
-                            padding: .375rem 2.5rem .375rem 1rem;
-                            min-height: calc(2.8rem + 2px);
-                            box-shadow: 0 0 7px -4px rgba($color: #000000, $alpha: 0.25);  
-                            @media (max-width: 1024.98px) {
-                                min-height: calc(2.8rem + 0px); 
-                            }
-                            .multiselect__input, .multiselect__single {
-                                background-color: unset;
-                                border-radius: unset;
-                                height: unset;
-                                line-height: unset;color: $font-label-color;
-                                font-size: 0.8rem;
-                                margin: 6px 2px;
-                                &::placeholder{
-                                    color: rgba($color:$font-label-color,$alpha:0.4);
-                                    font-size: 0.9rem;
-                                }
-                            }
-                            span.multiselect__tag{
-                                background-color: $selected-color;
-                                margin: 5px;
-                                @media (max-width:1128.98px) {
-                                    margin: 3px;
-                                }
-                                i.multiselect__tag-icon{
-                                    &:hover{
-                                        background-color: $selected-color;
-                                    }
-                                }
-                            }
-                            span.multiselect__placeholder{
-                                margin: 2px;
-                                font-size: 0.9rem;
-                            }
-                        }
-                        .multiselect__content-wrapper{
-                            list-style-type: none;
-                            border: none;
-                            border-radius: 1.2rem;
-                            background-color: $white;
-                            padding: .375rem .75rem;
-                            z-index: 10;
-                            position: absolute;
-                            left: 0;
-                            width: 100%;
-                            top: 100%;
-                            max-height: 200px;
-                            overflow: auto;
-                            font-size: 0.9rem;
-                            ul{
-                                li{
-                                    color: $font-label-color;
-                                    .multiselect__option--highlight{
-                                        font-size: 0.9rem;
-                                        color: $global-font-color; 
-                                        background: $border-color;
-                                        border-radius: 0.4rem;
-                                        &:target, &:visited, &:active{
-                                            background: #FF646F;
-                                        }
-                                    }
-                                    .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
-                                        background: #FF646F;
-                                        color: $global-font-color;
-                                        font-weight: 500;
-                                        border-radius: .4rem;
-                                    }
-                                    span{
-                                        &::after{
-                                            display: none !important;
-                                        }
-                                    }
-                                    
-                                }
-                                .vs__dropdown-option--highlight {
-                                   
-                                    color: $global-font-color;
-                                }
-                            }
-                        }
-                    }
-                    .custom-control-label{
-                        cursor: pointer;
-                        font-size: 0.8rem; 
-                        font-weight: 300;
-                        color: #000000;
-                        @media (max-width: 797.98px) {
-                            font-size: 0.8rem;  
-                        }
-                        @media (max-width: 1024.98px) {
-                            font-size: 0.7rem;
-                        }
-                    }
-                    .form-control{
-                        position: relative;
-                        border: none;
-                        background-color: $white;
-                        border-radius: 0.65rem;
-                        color: $font-label-color;
-                        padding: .375rem 0.5rem .375rem 2.5rem;
-                        min-height: calc(2.8rem + 2px);
-                        font-size: 0.8rem;
-                        box-shadow: none;
-                        text-align: left;
-                        box-shadow: 0 0 7px -4px rgba($color: #000000, $alpha: 0.25);
-                        @media (max-width: 1024.98px) {
-                            min-height: calc(2.8rem + 0px); 
-                        }
-                        // option{
-                        //     background-color: $global-sidebar-bg ;
-                        //     color: $font-label-color;
-                        //     font-size: 0.8rem;
-                        //     padding: inherit;
-                        //     border-radius: 0.3rem;
-                        //     &:hover{
-                        //         background-color:$theme-color;
-                        //         color: $global-font-color;
-                        //         padding: inherit;
-                        //         border-radius: 0.3rem;
-                        //     }
+                        // position: relative;
+                        // display: flex;
+                        // .multiselect__select{
+                        //     top: 5px;
                         // }
+                        .pl{
+                            // padding-left: 30px;
+                        }
                         
-                    }
-                    .dropdown-menu{
-                        background-color: $global-sidebar-bg ;
-                        font-size: 0.8rem;
-                        padding: inherit;
-                        border-radius: 0.3rem;
-                        list-style-type: none;
-                        border: 2px solid $border-color;
-                        border-radius: 0.45rem;
-                        padding: .375rem .75rem;
-                        z-index: 10;
-                        position: absolute;
-                        left: 0;
-                        width: 100%;
-                        top: calc(2.25rem + 2px) !important;
-                        max-height: 200px;
-                        overflow: auto;
-                        .item{
-                            padding: 0.75rem 1rem;
-                            font-size: 0.8rem;
-                            color: $font-label-color;
-                            &:hover{
-                                background-color: $border-color;
-                                color: $global-font-color;
-                                border-radius: 0.3rem;
-                            }
-                        }
-                    }
-                    .custom-switch{
-                        .custom-control-input{
-                            background-color: #f49196;
-                        }
+                        
+                        
                     }
                 }
             }
@@ -2112,112 +2084,112 @@ img.card-img{
         //meeting
         .meeting-section{
             .inner-meeting{
-                overflow: hidden;
-                overflow-y: auto;
-                min-height: calc(100vh - 320px);
-                max-height: calc(100vh - 320px);
-                background-color: transparent;
-                height: auto;
-                border-radius: 1rem;
-                font-size: .85rem;
-                @media (max-width:1155px) {
-                    font-size: .65rem;
-                }
+                // overflow: hidden;
+                // overflow-y: auto;
+                // min-height: calc(100vh - 320px);
+                // max-height: calc(100vh - 320px);
+                // background-color: transparent;
+                // height: auto;
+                // border-radius: 1rem;
+                // font-size: .85rem;
+                // @media (max-width:1155px) {
+                //     font-size: .65rem;
+                // }
                 .Meeting-row{
-                    align-items: center;
-                    text-align: center;
-                    @media (min-width: 1396.98px) {
-                        padding: 0rem 7.5rem;
-                    }
-                    @media (max-width: 1396.98px) {
-                        padding: 0rem 6.5rem;
-                    }
-                    @media (max-width: 1270.98px) {
-                        padding: 0rem 1rem;
-                    }
-                    @media (max-width: 1024.98px) {
-                        padding: 0rem 2rem;
-                    }
-                    @media (max-width: 767.98px) {
-                        padding: 0rem 4.5rem;
-                    }
+                    // align-items: center;
+                    // text-align: center;
+                    // @media (min-width: 1396.98px) {
+                    //     padding: 0rem 7.5rem;
+                    // }
+                    // @media (max-width: 1396.98px) {
+                    //     padding: 0rem 6.5rem;
+                    // }
+                    // @media (max-width: 1270.98px) {
+                    //     padding: 0rem 1rem;
+                    // }
+                    // @media (max-width: 1024.98px) {
+                    //     padding: 0rem 2rem;
+                    // }
+                    // @media (max-width: 767.98px) {
+                    //     padding: 0rem 4.5rem;
+                    // }
                     .meeting-list{
-                        cursor: pointer;
-                        background-color: $white;
-                        border: none;
-                        border-radius: .5rem;
-                        box-shadow: 0px 0px 8px -4px rgba($color: #000100, $alpha: 0.25);
-                        height: 135px;
-                        h6{
-                            margin-bottom: 0.3rem;
-                            color: #000000;
-                            font-weight: 700;
-                            display: -webkit-box;
-                            -webkit-line-clamp: 2;
-                            -webkit-box-orient: vertical;
-                            overflow: hidden;
-                            @media (max-width: 1396.98px) {
-                                font-size: 0.9rem;
-                            }
-                            @media (max-width:1270.98px) {
-                                font-size: 0.8rem;
-                            }
-                            @media (max-width: 1002.98px) {
-                                font-size: 0.75rem;
-                            }
-                            @media (max-width: 767.98px) {
-                                font-size: 1.125rem;
-                            }
-                        }
-                        .date{
-                            color: $timer-label;
-                            font-weight: 300;
-                            margin-bottom: 0.3rem;
-                            @media (max-width: 1396.98px) {
-                                font-size: 0.8rem;
-                            }
-                            @media (max-width:1270.98px) {
-                                font-size: 0.75rem;
-                            }
-                            @media (max-width: 1002.98px) {
-                                font-size: 0.7rem;
-                            }
-                            @media (max-width: 767.98px) {
-                                font-size: 1rem;
-                            }
-                        }
-                        .time{
-                            // columns: $border-color;
-                            color: #FF646F;
-                            font-size: .85rem;
-                            margin-bottom: 0.5rem;
-                            @media (max-width: 1396.98px) {
-                                font-size: 0.8rem;
-                            }
-                            @media (max-width:1270.98px) {
-                                font-size: 0.7rem;
-                            }
-                            @media (max-width: 1002.98px) {
-                                font-size: 0.65rem;
-                            }
-                            @media (max-width: 767.98px) {
-                                font-size: .85rem;
-                            }
-                        }
-                        &:hover,&:active{
-                            background-color: $white;
-                            box-shadow: .45rem .45rem 1rem rgba($color: #000100, $alpha: 0.25);
-                        }
+                        // cursor: pointer;
+                        // background-color: $white;
+                        // border: none;
+                        // border-radius: .5rem;
+                        // box-shadow: 0px 0px 8px -4px rgba($color: #000100, $alpha: 0.25);
+                        // height: 135px;
+                        // h6{
+                        //     margin-bottom: 0.3rem;
+                        //     color: #000000;
+                        //     font-weight: 700;
+                        //     display: -webkit-box;
+                        //     -webkit-line-clamp: 2;
+                        //     -webkit-box-orient: vertical;
+                        //     overflow: hidden;
+                        //     @media (max-width: 1396.98px) {
+                        //         font-size: 0.9rem;
+                        //     }
+                        //     @media (max-width:1270.98px) {
+                        //         font-size: 0.8rem;
+                        //     }
+                        //     @media (max-width: 1002.98px) {
+                        //         font-size: 0.75rem;
+                        //     }
+                        //     @media (max-width: 767.98px) {
+                        //         font-size: 1.125rem;
+                        //     }
+                        // }
+                        // .date{
+                        //     color: $timer-label;
+                        //     font-weight: 300;
+                        //     margin-bottom: 0.3rem;
+                        //     @media (max-width: 1396.98px) {
+                        //         font-size: 0.8rem;
+                        //     }
+                        //     @media (max-width:1270.98px) {
+                        //         font-size: 0.75rem;
+                        //     }
+                        //     @media (max-width: 1002.98px) {
+                        //         font-size: 0.7rem;
+                        //     }
+                        //     @media (max-width: 767.98px) {
+                        //         font-size: 1rem;
+                        //     }
+                        // }
+                        // .time{
+                        //     // columns: $border-color;
+                        //     color: #FF646F;
+                        //     font-size: .85rem;
+                        //     margin-bottom: 0.5rem;
+                        //     @media (max-width: 1396.98px) {
+                        //         font-size: 0.8rem;
+                        //     }
+                        //     @media (max-width:1270.98px) {
+                        //         font-size: 0.7rem;
+                        //     }
+                        //     @media (max-width: 1002.98px) {
+                        //         font-size: 0.65rem;
+                        //     }
+                        //     @media (max-width: 767.98px) {
+                        //         font-size: .85rem;
+                        //     }
+                        // }
+                        // &:hover,&:active{
+                        //     background-color: $white;
+                        //     box-shadow: .45rem .45rem 1rem rgba($color: #000100, $alpha: 0.25);
+                        // }
                     }
                     .default-section{
-                        display: flex;
-                        flex-direction: column;
-                        @media (max-width: 928.98px) {
-                            flex-direction: column;
-                        }
-                        @media (max-width: 767.98px) {
-                            flex-direction: row;
-                        }
+                        // display: flex;
+                        // flex-direction: column;
+                        // @media (max-width: 928.98px) {
+                        //     flex-direction: column;
+                        // }
+                        // @media (max-width: 767.98px) {
+                        //     flex-direction: row;
+                        // }
                         img{
                             padding: 0.5rem;
                             padding-bottom: 2rem;
@@ -2240,34 +2212,6 @@ img.card-img{
                                 width: 60%;
                                 margin: 0;
                             }
-                        }
-                        .default-area{
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            .default-head{
-                                color: $global-font-color;
-                            }
-                            .default-text{
-                                color: $font-label-color;
-                                font-size: .8rem;
-                                @media (max-width: 1024.98px) {
-                                    font-size: .7rem;
-                                }
-                            }
-                        }
-                    }
-                    .empty-schedule{
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        height: 35vh;
-                        margin: auto;
-                        left: 0;
-                        right: 0;
-                        p{
-                            color: $font-label-color;
-                            font-size: 1rem;
                         }
                     }
                 }
@@ -5325,33 +5269,12 @@ img.card-img{
 ::-webkit-scrollbar-thumb:hover {
     background: #f49196;
 }
-/* width */
-// .scroll {
-//     width: 20%;
-//     height: 100px;
-//     border: 1px solid green;
-//     overflow: scroll;
-//     display: inline-block;
-//   }
-//   .scroll-color-auto {
-//     scrollbar-color: auto;
-//   }
-//   .scroll-color-dark {
-//     scrollbar-color: dark;
-//   }
-//   .scroll-color-light {
-//     scrollbar-color: light;
-//   }
-//   .scroll-color-colors {
-//     scrollbar-color: orange lightyellow;
-//   }
-
 
 .custom-control-input:focus ~ 
 .custom-control-label::before {
       /* when the button is toggled off 
 it is still in focus and a violet border will appear */
-      border-color: $icon-bg-green !important;
+      border-color: $theme-color!important;
       /* box shadow is blue by default
 but we do not want any shadow hence we have set 
 all the values as 0 */
@@ -5363,17 +5286,18 @@ all the values as 0 */
 switch to violet when it is checked*/
   .custom-control-input:checked ~ 
 .custom-control-label::before {
-      border-color: $icon-bg-green !important;
-      background-color: $icon-bg-green !important;
+      border-color: $theme-color !important;
+      background-color: $theme-color !important;
   }
 
   /*sets the background color of
 switch to violet when it is active*/
   .custom-control-input:active ~ 
 .custom-control-label::before {
-      background-color: $icon-bg-green !important;
-      border-color: $icon-bg-green !important;
+      background-color: $theme-color !important;
+      border-color: $theme-color !important;
   }
+
 .lottie-loader{
     position: fixed;
     display: flex;
@@ -5411,7 +5335,7 @@ switch to violet when it is active*/
                 //     color: $global-font-color;
                 // }
                 td.in-range.available{
-                    background-color: $font-label-color;
+                    background-color: #fbdcdc;
                     color: $global-sidebar-bg;
                 }
                 td.active.start-date.available{
@@ -5430,8 +5354,8 @@ switch to violet when it is active*/
             color: $cal-border;
         }
         button.cancelBtn.btn.btn-sm.btn-default{
-            background-color: $cal-border;
-            color: $global-font-color;
+            background-color: #fbdcdc;
+            color: $text-dark;
             border: none;
         }
         button.applyBtn.btn.btn-sm.btn-primary{
