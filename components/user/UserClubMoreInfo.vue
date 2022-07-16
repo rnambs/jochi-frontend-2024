@@ -547,7 +547,7 @@
             </button>
           </div>
           <div class="modal-body no-overflow px-4">
-            <form>
+            <form name="announcement">
               <fieldset :disabled="!enableEdit">
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label"
@@ -564,16 +564,20 @@
                     maxlength="100"
                     :class="{
                       'is-invalid':
-                        submitted && isAnnouncement && $v.announceTitle.$error,
+                        submitted &&
+                        isAnnouncement &&
+                        $v.announcement.announceTitle.$error,
                     }"
                   />
                   <div
                     v-if="
-                      submitted && isAnnouncement && $v.announceTitle.$error
+                      submitted &&
+                      isAnnouncement &&
+                      $v.announcement.announceTitle.$error
                     "
                     class="invalid-feedback"
                   >
-                    <span v-if="!$v.announceTitle.required"
+                    <span v-if="!$v.announcement.announceTitle.required"
                       >This field is required</span
                     >
                   </div>
@@ -591,14 +595,20 @@
                     placeholder="Enter task description"
                     :class="{
                       'is-invalid':
-                        submitted && isAnnouncement && $v.announceDesc.$error,
+                        submitted &&
+                        isAnnouncement &&
+                        $v.announcement.announceDesc.$error,
                     }"
                   ></textarea>
                   <div
-                    v-if="submitted && isAnnouncement && $v.announceDesc.$error"
+                    v-if="
+                      submitted &&
+                      isAnnouncement &&
+                      $v.announcement.announceDesc.$error
+                    "
                     class="invalid-feedback"
                   >
-                    <span v-if="!$v.announceDesc.required"
+                    <span v-if="!$v.announcement.announceDesc.required"
                       >This field is required</span
                     >
                   </div>
@@ -673,17 +683,23 @@
                     v-model="activityType"
                     :class="{
                       'is-invalid':
-                        submitted && isActivity && $v.activityType.$error,
+                        submitted &&
+                        isActivity &&
+                        $v.activity.activityType.$error,
                     }"
                   >
                     <option value="Match">Match</option>
                     <option value="Training">Training</option>
                   </select>
                   <div
-                    v-if="submitted && isActivity && $v.activityType.$error"
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityType.$error
+                    "
                     class="invalid-feedback"
                   >
-                    <span v-if="!$v.activityType.required"
+                    <span v-if="!$v.activity.activityType.required"
                       >This field is required</span
                     >
                   </div>
@@ -703,14 +719,20 @@
                     maxlength="100"
                     :class="{
                       'is-invalid':
-                        submitted && isActivity && $v.activityTitle.$error,
+                        submittedActivity &&
+                        isActivity &&
+                        $v.activity.activityTitle.$error,
                     }"
                   />
                   <div
-                    v-if="submitted && isActivity && $v.activityTitle.$error"
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityTitle.$error
+                    "
                     class="invalid-feedback"
                   >
-                    <span v-if="!$v.activityTitle.required"
+                    <span v-if="!$v.activity.activityTitle.required"
                       >This field is required</span
                     >
                   </div>
@@ -728,14 +750,20 @@
                     placeholder="Enter description"
                     :class="{
                       'is-invalid':
-                        submitted && isActivity && $v.activityDesc.$error,
+                        submittedActivity &&
+                        isActivity &&
+                        $v.activity.activityDesc.$error,
                     }"
                   ></textarea>
                   <div
-                    v-if="submitted && isActivity && $v.activityDesc.$error"
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityDesc.$error
+                    "
                     class="invalid-feedback"
                   >
-                    <span v-if="!$v.activityDesc.required"
+                    <span v-if="!$v.activity.activityDesc.required"
                       >This field is required</span
                     >
                   </div>
@@ -755,14 +783,20 @@
                     maxlength="100"
                     :class="{
                       'is-invalid':
-                        submitted && isActivity && $v.activityDate.$error,
+                        submittedActivity &&
+                        isActivity &&
+                        $v.activity.activityDate.$error,
                     }"
                   />
                   <div
-                    v-if="submitted && isActivity && $v.activityDate.$error"
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityDate.$error
+                    "
                     class="invalid-feedback"
                   >
-                    <span v-if="!$v.activityDate.required"
+                    <span v-if="!$v.activity.activityDate.required"
                       >This field is required</span
                     >
                   </div>
@@ -782,14 +816,20 @@
                     maxlength="100"
                     :class="{
                       'is-invalid':
-                        submitted && isActivity && $v.activityTime.$error,
+                        submittedActivity &&
+                        isActivity &&
+                        $v.activity.activityTime.$error,
                     }"
                   />
                   <div
-                    v-if="submitted && isActivity && $v.activityTime.$error"
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityTime.$error
+                    "
                     class="invalid-feedback"
                   >
-                    <span v-if="!$v.activityTime.required"
+                    <span v-if="!$v.activity.activityTime.required"
                       >This field is required</span
                     >
                   </div>
@@ -809,14 +849,20 @@
                     maxlength="100"
                     :class="{
                       'is-invalid':
-                        submitted && isActivity && $v.activityVenue.$error,
+                        submittedActivity &&
+                        isActivity &&
+                        $v.activity.activityVenue.$error,
                     }"
                   />
                   <div
-                    v-if="submitted && isActivity && $v.activityVenue.$error"
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityVenue.$error
+                    "
                     class="invalid-feedback"
                   >
-                    <span v-if="!$v.activityVenue.required"
+                    <span v-if="!$v.activity.activityVenue.required"
                       >This field is required</span
                     >
                   </div>
@@ -836,18 +882,20 @@
                     maxlength="100"
                     :class="{
                       'is-invalid':
-                        submitted &&
+                        submittedActivity &&
                         isActivity &&
-                        $v.activityOpponentTeam.$error,
+                        $v.activity.activityOpponentTeam.$error,
                     }"
                   />
                   <div
                     v-if="
-                      submitted && isActivity && $v.activityOpponentTeam.$error
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityOpponentTeam.$error
                     "
                     class="invalid-feedback"
                   >
-                    <span v-if="!$v.activityOpponentTeam.required"
+                    <span v-if="!$v.activity.activityOpponentTeam.required"
                       >This field is required</span
                     >
                   </div>
@@ -1051,14 +1099,18 @@ export default {
     };
   },
   validations: {
-    announceTitle: { required: requiredUnless("checkIsAnnouncement") },
-    announceDesc: { required: requiredUnless("checkIsAnnouncement") },
-    activityTitle: { required: requiredUnless("checkIsActivity") },
-    activityDesc: { required: requiredUnless("checkIsActivity") },
-    activityDate: { required: requiredUnless("checkIsActivity") },
-    activityTime: { required: requiredUnless("checkIsActivity") },
-    activityVenue: { required: requiredUnless("checkIsActivity") },
-    activityOpponentTeam: { required: requiredUnless("checkIsActivity") },
+    announcement: {
+      announceTitle: { required },
+      announceDesc: { required },
+    },
+    activity: {
+      activityTitle: { required },
+      activityDesc: { required },
+      activityDate: { required },
+      activityTime: { required },
+      activityVenue: { required },
+      activityOpponentTeam: { required },
+    },
   },
   mounted() {
     var user = localStorage.getItem("user_type");
@@ -1329,8 +1381,9 @@ export default {
     },
     async addNewAnnouncement() {
       this.submitted = true;
-      this.$v.$touch();
-      if (this.$v.$invalid) {
+      this.$v.announcement.announceTitle.$touch();
+      this.$v.announcement.announceDesc.$touch();
+      if (this.$v.announcement.$invalid) {
         return;
       } else {
         this.loading = true;
@@ -1358,8 +1411,11 @@ export default {
     async updateAnnouncementId() {
       this.loading = true;
       this.submitted = true;
-      this.$v.$touch();
-      if (this.$v.$invalid) {
+      debugger;
+      this.$v.announcement.announceTitle.$touch();
+      this.$v.announcement.announceDesc.$touch();
+      console.log(this.$v.announcement, this.$v.announcement.$invalid);
+      if (this.$v.announcement.$invalid) {
         return;
       } else {
         await this.updateAnnouncement({
@@ -1429,67 +1485,79 @@ export default {
     async addNewActivity() {
       // debugger;
       this.submittedActivity = true;
-      this.$v.$touch();
-      // if (this.$v.$invalid) {
-      //   return;
-      // } else {
-      this.loading = true;
-      await this.addActivities({
-        club_id: this.clubId,
-        title: this.activityTitle,
-        description: this.activityDesc,
-        session_type: this.activityType,
-        date: this.activityDate,
-        time: this.activityTime,
-        venue: this.activityVenue,
-        opponent_team: this.activityOpponentTeam,
-      });
-      this.loading = false;
-      this.submittedActivity = false;
-      if (this.successMessage != "") {
-        this.resetActivity();
-        $("#activityModal").modal("hide");
-        this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
-          duration: 5000,
+      this.$v.activity.activityTitle.$touch();
+      this.$v.activity.activityDesc.$touch();
+      this.$v.activity.activityType.$touch();
+      this.$v.activity.activityDate.$touch();
+      this.$v.activity.activityTime.$touch();
+      this.$v.activity.activityVenue.$touch();
+      // this.$v.activity.activityOpponentTeam.$touch();
+      if (this.$v.activity.$invalid) {
+        return;
+      } else {
+        this.loading = true;
+        await this.addActivities({
+          club_id: this.clubId,
+          title: this.activityTitle,
+          description: this.activityDesc,
+          session_type: this.activityType,
+          date: this.activityDate,
+          time: this.activityTime,
+          venue: this.activityVenue,
+          opponent_team: this.activityOpponentTeam,
         });
-        this.getSportActivities();
+        this.loading = false;
+        this.submittedActivity = false;
+        if (this.successMessage != "") {
+          this.resetActivity();
+          $("#activityModal").modal("hide");
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.SuccessType,
+            duration: 5000,
+          });
+          this.getSportActivities();
+        }
       }
-      // }
     },
     async updateActivity() {
       this.loading = true;
       this.submittedActivity = true;
-      // this.$v.$touch();
-      // if (this.$v.$invalid) {
-      //   return;
-      // } else {
-      await this.updateActivities({
-        id: this.activityId,
-        club_id: this.clubId,
-        title: this.activityTitle,
-        description: this.activityDesc,
-        session_type: this.activityType,
-        date: this.activityDate,
-        time: this.activityTime,
-        venue: this.activityVenue,
-        opponent_team: this.activityOpponentTeam,
-      });
-      this.loading = false;
-      this.submittedActivity = false;
-
-      if (this.successMessage != "") {
-        this.isActivityEdit = false;
-        this.resetActivity();
-        this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
-          duration: 5000,
+      this.$v.activity.activityTitle.$touch();
+      this.$v.activity.activityDesc.$touch();
+      this.$v.activity.activityType.$touch();
+      this.$v.activity.activityDate.$touch();
+      this.$v.activity.activityTime.$touch();
+      this.$v.activity.activityVenue.$touch();
+      // this.$v.activity.activityOpponentTeam.$touch();
+      if (this.$v.activity.$invalid) {
+        return;
+      } else {
+        await this.updateActivities({
+          id: this.activityId,
+          club_id: this.clubId,
+          title: this.activityTitle,
+          description: this.activityDesc,
+          session_type: this.activityType,
+          date: this.activityDate,
+          time: this.activityTime,
+          venue: this.activityVenue,
+          opponent_team: this.activityOpponentTeam,
         });
-        this.getSportActivities();
+        this.loading = false;
+        this.submittedActivity = false;
+
+        if (this.successMessage != "") {
+          this.isActivityEdit = false;
+          this.resetActivity();
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.SuccessType,
+            duration: 5000,
+          });
+          this.getSportActivities();
+        }
       }
-      // }
     },
     onDeleteActivityClick(id, clubId) {
       this.deleteActivityClickId = id;

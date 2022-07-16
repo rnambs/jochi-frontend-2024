@@ -444,6 +444,42 @@ const actions = {
       }
     }
   },
+  // add a new leader
+  async addStudentLeader({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$post(BASE_URL + 'club/detail/add_student_leaders', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+      if (response.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', "success");
+
+
+      }
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', e.response.data.message);
+        commit('setSuccessType', "error");
+
+      }
+    }
+  }
 }
 const mutations = {
   setTagList(state, data) {
