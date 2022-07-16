@@ -613,7 +613,7 @@ img.card-img {
 .inner-section .header-section a .rounded-circle {
   width: 80px;
   height: 80px;
-  background-color: #424246;
+  background-color: #a7a7a7;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -950,11 +950,11 @@ img.card-img {
 }
 @media (min-width: 1002.98px) {
   .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list:hover, .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list:active {
-    background-color: #424246;
+    background-color: #a7a7a7;
   }
 }
 .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list a.nuxt-link-exact-active.nuxt-link-active {
-  background-color: #424246;
+  background-color: #a7a7a7;
   border-radius: 0.3rem;
 }
 @media (max-width: 1002.98px) {
@@ -965,7 +965,7 @@ img.card-img {
 }
 @media (max-width: 1002.98px) {
   .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list a.nuxt-link-exact-active.nuxt-link-active i, .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list a.nuxt-link-exact-active.nuxt-link-active .image-i {
-    background-color: #424246;
+    background-color: #a7a7a7;
   }
 }
 .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list .nav-link {
@@ -1119,7 +1119,7 @@ img.card-img {
   min-height: 20px;
 }
 .inner-section .main-section .element-section .planner-daily .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
-  background-color: #424246;
+  background-color: #a7a7a7;
   color: #F9F9F9;
 }
 .inner-section .main-section .element-section .planner-daily .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary:hover {
@@ -1201,7 +1201,7 @@ img.card-img {
   background-color: unset;
 }
 .inner-section .main-section .element-section .planner-daily .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-timegrid-slot.fc-timegrid-slot-lane {
-  border-top: 1px solid #424246 !important;
+  border-top: 1px solid #a7a7a7 !important;
 }
 .inner-section .main-section .element-section .planner-daily .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-timegrid-slot.fc-timegrid-slot-lane.fc-timegrid-slot-minor {
   border-top: none !important;
@@ -1222,7 +1222,7 @@ img.card-img {
   background-color: rgba(255, 255, 255, 0.45);
   color: #F9F9F9;
   transform: translateY(1px);
-  border: 1px solid #424246;
+  border: 1px solid #a7a7a7;
 }
 .inner-section .main-section .element-section .planner-daily .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td a.fc-timegrid-more-link.fc-more-link .fc-timegrid-more-link-inner.fc-sticky {
   display: flex;
@@ -1240,7 +1240,7 @@ img.card-img {
 .inner-section .main-section .element-section .planner-daily .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active .fc-popover.fc-more-popover {
   background-color: #2D2D2F;
   border-radius: 8px;
-  border: 1px solid #424246;
+  border: 1px solid #a7a7a7;
   right: 45px;
   left: unset !important;
 }
@@ -1269,7 +1269,7 @@ img.card-img {
   cursor: pointer;
 }
 .inner-section .main-section .element-section .planner-daily .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active .fc-popover.fc-more-popover a.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end.fc-event-past:hover {
-  background-color: #424246;
+  background-color: #a7a7a7;
 }
 .inner-section .main-section .element-section .assignment {
   display: flex;
@@ -1362,7 +1362,7 @@ img.card-img {
   min-height: 20px;
 }
 .inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
-  background-color: #424246;
+  background-color: #a7a7a7;
   color: #F9F9F9;
 }
 .inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary:hover {
@@ -1434,7 +1434,7 @@ img.card-img {
 }
 .inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td {
   border: none;
-  border-right: 1px solid #424246;
+  border-right: 1px solid #a7a7a7;
 }
 .inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td:last-child {
   border-right: none !important;
@@ -1459,7 +1459,7 @@ img.card-img {
   background-color: unset;
 }
 .inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-timegrid-slot.fc-timegrid-slot-lane {
-  border-bottom: 1px solid #424246 !important;
+  border-bottom: 1px solid #a7a7a7 !important;
 }
 .inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-timegrid-slot.fc-timegrid-slot-lane.fc-timegrid-slot-minor {
   border-bottom: none !important;
@@ -1480,7 +1480,7 @@ img.card-img {
   background-color: rgba(255, 255, 255, 0.45);
   color: #F9F9F9;
   transform: translateY(1px);
-  border: 1px solid #424246;
+  border: 1px solid #a7a7a7;
 }
 .inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td a.fc-timegrid-more-link.fc-more-link .fc-timegrid-more-link-inner.fc-sticky {
   display: flex;
@@ -1504,7 +1504,7 @@ img.card-img {
 .inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active .fc-popover.fc-more-popover {
   background-color: #2D2D2F;
   border-radius: 8px;
-  border: 1px solid #424246;
+  border: 1px solid #a7a7a7;
 }
 .inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active .fc-popover.fc-more-popover.fc-day.fc-day-fri {
   left: unset !important;
@@ -1539,7 +1539,7 @@ img.card-img {
   cursor: pointer;
 }
 .inner-section .main-section .element-section .planner-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active .fc-popover.fc-more-popover a.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end.fc-event-past:hover {
-  background-color: #424246;
+  background-color: #a7a7a7;
 }
 .inner-section .main-section .element-section .planner-Month {
   background-color: transparent;
@@ -1579,7 +1579,7 @@ img.card-img {
   min-height: 20px;
 }
 .inner-section .main-section .element-section .planner-Month .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
-  background-color: #424246;
+  background-color: #a7a7a7;
   color: #F9F9F9;
 }
 .inner-section .main-section .element-section .planner-Month .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary:hover {
@@ -1637,15 +1637,15 @@ img.card-img {
 }
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid thead td th.fc-col-header-cell.fc-day, .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody td th.fc-col-header-cell.fc-day {
   font-weight: 500;
-  border-bottom: 1px solid #424246 !important;
-  border-right: 1px solid #424246 !important;
+  border-bottom: 1px solid #a7a7a7 !important;
+  border-right: 1px solid #a7a7a7 !important;
 }
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid thead td th.fc-col-header-cell.fc-day:last-child, .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody td th.fc-col-header-cell.fc-day:last-child {
   border-right: none !important;
 }
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td {
-  border-top: 1px solid #424246;
-  border-right: 1px solid #424246 !important;
+  border-top: 1px solid #a7a7a7;
+  border-right: 1px solid #a7a7a7 !important;
   border-bottom: none !important;
 }
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day {
@@ -1655,7 +1655,7 @@ img.card-img {
   background-color: rgba(255, 255, 255, 0.45);
 }
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day:hover {
-  background-color: #424246;
+  background-color: #a7a7a7;
 }
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td:last-child {
   border-right: none !important;
@@ -1678,10 +1678,10 @@ img.card-img {
   border-color: #B4B4B4;
 }
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td a.fc-daygrid-event.fc-daygrid-block-event.fc-h-event.fc-event.fc-event-start.fc-event-end.fc-event-past .fc-event-main {
-  color: #424246 !important;
+  color: #a7a7a7 !important;
 }
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day.fc-day-today {
-  background-color: #424246;
+  background-color: #a7a7a7;
 }
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day .fc-daygrid-event-harness {
   color: #F9F9F9;
@@ -1707,7 +1707,7 @@ img.card-img {
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-popover.fc-more-popover {
   background-color: #2D2D2F;
   border-radius: 8px;
-  border: 1px solid #424246;
+  border: 1px solid #a7a7a7;
 }
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-popover.fc-more-popover.fc-day-sat {
   right: 0 !important;
@@ -1748,7 +1748,7 @@ img.card-img {
   cursor: pointer;
 }
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-popover.fc-more-popover a.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end:hover {
-  background-color: #424246;
+  background-color: #a7a7a7;
 }
 .inner-section .main-section .element-section .planner-Month .fc-view-harness.fc-view-harness-active .fc-popover.fc-more-popover a.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end .fc-event-title {
   font-size: small;
@@ -1905,7 +1905,7 @@ img.card-img {
 .inner-section .main-section .tab-section .inner-tab-section .col-md-3 .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight, .inner-section .main-section .tab-section .inner-tab-section .col-md-4 .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight, .inner-section .main-section .tab-section .inner-tab-section .col-md-6 .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight {
   font-size: 0.9rem;
   color: #F9F9F9;
-  background: #424246;
+  background: #a7a7a7;
   border-radius: 0.4rem;
 }
 .inner-section .main-section .tab-section .inner-tab-section .col-md-3 .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:target, .inner-section .main-section .tab-section .inner-tab-section .col-md-3 .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:visited, .inner-section .main-section .tab-section .inner-tab-section .col-md-3 .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:active, .inner-section .main-section .tab-section .inner-tab-section .col-md-4 .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:target, .inner-section .main-section .tab-section .inner-tab-section .col-md-4 .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:visited, .inner-section .main-section .tab-section .inner-tab-section .col-md-4 .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:active, .inner-section .main-section .tab-section .inner-tab-section .col-md-6 .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:target, .inner-section .main-section .tab-section .inner-tab-section .col-md-6 .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:visited, .inner-section .main-section .tab-section .inner-tab-section .col-md-6 .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:active {
@@ -1963,7 +1963,7 @@ img.card-img {
   padding: inherit;
   border-radius: 0.3rem;
   list-style-type: none;
-  border: 2px solid #424246;
+  border: 2px solid #a7a7a7;
   border-radius: 0.45rem;
   padding: 0.375rem 0.75rem;
   z-index: 10;
@@ -1980,7 +1980,7 @@ img.card-img {
   color: #B4B4B4;
 }
 .inner-section .main-section .tab-section .inner-tab-section .col-md-3 .dropdown-menu .item:hover, .inner-section .main-section .tab-section .inner-tab-section .col-md-4 .dropdown-menu .item:hover, .inner-section .main-section .tab-section .inner-tab-section .col-md-6 .dropdown-menu .item:hover {
-  background-color: #424246;
+  background-color: #a7a7a7;
   color: #F9F9F9;
   border-radius: 0.3rem;
 }
@@ -2275,7 +2275,7 @@ img.card-img {
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .form-group .club-info {
   background-color: #ffffff;
   border-color: transparent;
-  color: #424246;
+  color: #a7a7a7;
 }
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .form-group .btn-info-edit {
   color: #F9F9F9;
@@ -2288,7 +2288,7 @@ img.card-img {
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-row {
   background-color: #2D2D2F;
   margin: 0px 12px 12px;
-  border: 1px solid #424246;
+  border: 1px solid #a7a7a7;
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
@@ -2350,7 +2350,7 @@ img.card-img {
   margin-left: -1em; /* Also needed for space (tweak if needed) */
 }
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-row .form-row .form-control {
-  border: 2px solid #424246;
+  border: 2px solid #a7a7a7;
   background-color: #2D2D2F;
   border-radius: 0.4rem;
   font-size: 1rem;
@@ -2378,7 +2378,7 @@ img.card-img {
 }
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-row .info-tag .input-group .input-icon-area {
   position: relative;
-  background-color: #424246;
+  background-color: #a7a7a7;
   color: #B4B4B4;
   border-radius: 25px;
   padding: 0.2rem 1.5rem 0.2rem 0.6rem;
@@ -2443,7 +2443,7 @@ img.card-img {
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-row .input-icon-area .multiselect__tags {
   border-radius: 0.4rem;
   font-size: 0.8rem;
-  border: 2px solid #424246;
+  border: 2px solid #a7a7a7;
   background-color: #2D2D2F;
   color: #B4B4B4;
   padding: 0.05rem 0.75rem;
@@ -2508,7 +2508,7 @@ img.card-img {
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-row .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight {
   font-size: 0.9rem;
   color: #F9F9F9;
-  background: #424246;
+  background: #a7a7a7;
   border-radius: 0.4rem;
 }
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-row .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:target, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-row .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:visited, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-row .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:active {
@@ -2542,7 +2542,7 @@ img.card-img {
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .inner-info-head, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .inner-info-head {
-  color: #424246;
+  color: #a7a7a7;
 }
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .time, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .time {
   font-size: 0.8rem;
@@ -2754,7 +2754,7 @@ img.card-img {
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight {
   font-size: 0.9rem;
   color: #F9F9F9;
-  background: #424246;
+  background: #a7a7a7;
   border-radius: 0.4rem;
 }
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:target, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:visited, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:active, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:target, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:visited, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .input-icon-area .multiselect__content-wrapper ul li .multiselect__option--highlight:active {
@@ -2834,12 +2834,12 @@ img.card-img {
   font-weight: 400;
 }
 .inner-section .main-section .club-section .row .col-md-8 .inner-club .image-overflow .info-row .col-md-3 .fig-section .input-icon .fa-times::before {
-  background-color: #424246;
+  background-color: #a7a7a7;
   padding: 3px 5px;
   border-radius: 50%;
 }
 .inner-section .main-section .club-section .row .col-md-8 .inner-club .image-overflow .info-row .col-md-3 .fig-section figure {
-  border: 1px solid #424246;
+  border: 1px solid #a7a7a7;
   border-radius: 0px 0px 6px 0px;
 }
 .inner-section .main-section .club-section .row .col-md-8 .inner-club .image-overflow .info-row .col-md-3 .fig-section figure .img-figure {
@@ -3063,8 +3063,8 @@ img.card-img {
   margin-left: -1em; /* Also needed for space (tweak if needed) */
 }
 .inner-section .main-section .club-section-catlg .inner-club .club-row .club-list .list-text {
-  -moz-columns: #424246;
-       columns: #424246;
+  -moz-columns: #a7a7a7;
+       columns: #a7a7a7;
   font-size: 0.75rem;
 }
 @media (max-width: 1396.98px) {
@@ -3429,8 +3429,8 @@ img.card-img {
   margin-left: -1em; /* Also needed for space (tweak if needed) */
 }
 .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .list-text {
-  -moz-columns: #424246;
-       columns: #424246;
+  -moz-columns: #a7a7a7;
+       columns: #a7a7a7;
   font-size: 0.75rem;
 }
 @media (max-width: 1396.98px) {
@@ -3517,7 +3517,7 @@ img.card-img {
 .inner-section .main-section .study-section .study-row .study-col .upload-image .proof-img-wrp .profile-pic {
   width: 200px;
   height: 200px;
-  background-color: #424246;
+  background-color: #a7a7a7;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -3610,7 +3610,7 @@ img.card-img {
 }
 .inner-section .main-section .study-section .study-row .study-col .form-section .form-group .form-control {
   list-style-type: none;
-  border: 2px solid #424246;
+  border: 2px solid #a7a7a7;
   background-color: rgba(255, 255, 255, 0.45);
   font-size: 1rem;
   color: #B4B4B4;
@@ -3630,7 +3630,7 @@ img.card-img {
 }
 .inner-section .main-section .study-section .study-row .study-col .form-section .form-group .form-field {
   border: none;
-  background-color: #424246;
+  background-color: #a7a7a7;
   font-size: 1rem;
   color: #F9F9F9;
   padding: 0.65rem 1.5rem;
@@ -3655,7 +3655,7 @@ img.card-img {
 .inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__tags {
   border-radius: 0.4rem;
   font-size: 1rem;
-  border: 2px solid #424246;
+  border: 2px solid #a7a7a7;
   background-color: rgba(255, 255, 255, 0.45);
   color: #B4B4B4;
   padding: 6px 40px 0 10px;
@@ -3689,7 +3689,7 @@ img.card-img {
   border: none;
 }
 .inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper ul {
-  border: 2px solid #424246;
+  border: 2px solid #a7a7a7;
   border-radius: 0.45rem;
   background-color: rgba(255, 255, 255, 0.45);
   padding: 0.375rem 0.75rem;
@@ -3812,7 +3812,7 @@ img.card-img {
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light {
   height: 100%;
-  background-color: #424246;
+  background-color: #a7a7a7;
   border-radius: 0.5rem;
   box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.45);
 }
@@ -3828,7 +3828,7 @@ img.card-img {
   min-height: 20px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
-  background-color: #424246;
+  background-color: #a7a7a7;
   color: #F9F9F9;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary:hover {
@@ -3946,7 +3946,7 @@ img.card-img {
   border-color: #B4B4B4;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td a.fc-daygrid-event.fc-daygrid-block-event.fc-h-event.fc-event.fc-event-start.fc-event-end.fc-event-past .fc-event-main {
-  color: #424246 !important;
+  color: #a7a7a7 !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day.fc-day-today {
   background-color: #FF6D6D;
@@ -4014,7 +4014,7 @@ img.card-img {
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher .inner-agenda .time-detail p {
   background-color: #2D2D2F;
-  border: 2px solid #424246;
+  border: 2px solid #a7a7a7;
   border-radius: 0.5rem;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher .inner-agenda .time-detail p .club-name {
@@ -4060,7 +4060,7 @@ img.card-img {
   color: #F9F9F9;
   font-size: 0.8rem;
   border-top: none;
-  border-bottom: 1px solid #424246;
+  border-bottom: 1px solid #a7a7a7;
   padding: 5px 10px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req table tbody tr {
@@ -4071,17 +4071,17 @@ img.card-img {
   color: #F9F9F9;
   font-size: 0.7rem;
   padding: 10px;
-  border-bottom: 1px solid #424246;
-  border-top: 1px solid #424246;
+  border-bottom: 1px solid #a7a7a7;
+  border-top: 1px solid #a7a7a7;
   vertical-align: middle;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req table tbody tr td:first-child {
-  border-left: 1px solid #424246;
+  border-left: 1px solid #a7a7a7;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req table tbody tr td:last-child {
-  border-right: 1px solid #424246;
+  border-right: 1px solid #a7a7a7;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
@@ -4138,7 +4138,7 @@ img.card-img {
   min-height: 20px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
-  background-color: #424246;
+  background-color: #a7a7a7;
   color: #F9F9F9;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary:hover {
@@ -4256,7 +4256,7 @@ img.card-img {
   border-color: #B4B4B4;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td a.fc-daygrid-event.fc-daygrid-block-event.fc-h-event.fc-event.fc-event-start.fc-event-end.fc-event-past .fc-event-main {
-  color: #424246 !important;
+  color: #a7a7a7 !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day.fc-day-today {
   background-color: #FF6D6D;
@@ -4324,7 +4324,7 @@ img.card-img {
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher .inner-agenda .time-detail p {
   background-color: #2D2D2F;
-  border: 2px solid #424246;
+  border: 2px solid #a7a7a7;
   border-radius: 0.5rem;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher .inner-agenda .time-detail p .club-name {
@@ -4371,7 +4371,7 @@ img.card-img {
   color: #F9F9F9;
   font-size: 0.8rem;
   border-top: none;
-  border-bottom: 1px solid #424246;
+  border-bottom: 1px solid #a7a7a7;
   padding: 5px 10px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .appointment-req .table-req table tbody tr {
@@ -4382,17 +4382,17 @@ img.card-img {
   color: #F9F9F9;
   font-size: 0.7rem;
   padding: 10px;
-  border-bottom: 1px solid #424246;
-  border-top: 1px solid #424246;
+  border-bottom: 1px solid #a7a7a7;
+  border-top: 1px solid #a7a7a7;
   vertical-align: middle;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .appointment-req .table-req table tbody tr td:first-child {
-  border-left: 1px solid #424246;
+  border-left: 1px solid #a7a7a7;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .appointment-req .table-req table tbody tr td:last-child {
-  border-right: 1px solid #424246;
+  border-right: 1px solid #a7a7a7;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
@@ -4444,7 +4444,7 @@ img.card-img {
   min-height: 20px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
-  background-color: #424246;
+  background-color: #a7a7a7;
   color: #F9F9F9;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary:hover {
@@ -4528,22 +4528,22 @@ img.card-img {
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid thead td th.fc-col-header-cell.fc-day, .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody td th.fc-col-header-cell.fc-day {
   font-weight: 500;
-  border-bottom: 1px solid #424246 !important;
-  border-right: 1px solid #424246 !important;
+  border-bottom: 1px solid #a7a7a7 !important;
+  border-right: 1px solid #a7a7a7 !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid thead td th.fc-col-header-cell.fc-day:last-child, .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody td th.fc-col-header-cell.fc-day:last-child {
   border-right: none !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td {
-  border-top: 1px solid #424246;
-  border-right: 1px solid #424246 !important;
+  border-top: 1px solid #a7a7a7;
+  border-right: 1px solid #a7a7a7 !important;
   border-bottom: none !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day {
   cursor: pointer;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day:hover {
-  background-color: #424246;
+  background-color: #a7a7a7;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td:last-child {
   border-right: none !important;
@@ -4559,7 +4559,7 @@ img.card-img {
   border-color: #B4B4B4;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td a.fc-daygrid-event.fc-daygrid-block-event.fc-h-event.fc-event.fc-event-start.fc-event-end.fc-event-past .fc-event-main {
-  color: #424246 !important;
+  color: #a7a7a7 !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day.fc-day-today {
   background-color: #FF6D6D;
@@ -4587,7 +4587,7 @@ img.card-img {
   min-height: 20px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
-  background-color: #424246;
+  background-color: #a7a7a7;
   color: #F9F9F9;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary span.fc-icon {
@@ -4939,7 +4939,7 @@ img.card-img {
   font-weight: 450;
   color: #B4B4B4;
   background-color: #2D2D2F;
-  border: 1px solid #424246;
+  border: 1px solid #a7a7a7;
   cursor: pointer;
 }
 @media (max-width: 1396.98px) {
@@ -4985,7 +4985,7 @@ img.card-img {
   }
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color:hover {
-  background-color: #424246;
+  background-color: #a7a7a7;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color.active {
   color: rgba(255, 255, 255, 0.45);
@@ -5097,7 +5097,7 @@ img.card-img {
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-meeting-today .row {
   background-color: #2D2D2F;
-  border: 1px solid #424246;
+  border: 1px solid #a7a7a7;
   border-radius: 0.5rem;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-meeting-today .row:hover {
@@ -5150,7 +5150,7 @@ img.card-img {
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-meeting-req .row {
   background-color: #2D2D2F;
-  border: 1px solid #424246;
+  border: 1px solid #a7a7a7;
   border-radius: 0.5rem;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-meeting-req .row:hover {
@@ -5290,7 +5290,7 @@ switch to violet when it is active*/
 }
 
 .daterangepicker.ltr.show-calendar.opensleft .drp-calendar .calendar-table thead {
-  color: #424246;
+  color: #a7a7a7;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-calendar .calendar-table thead th.available span {
   color: rgba(255, 255, 255, 0.45);
@@ -5382,7 +5382,7 @@ switch to violet when it is active*/
   text-overflow: ellipsis;
 }
 .modal .modal-dialog .modal-content .modal-body p, .modal .modal-dialog .modal-content .modal-body .col-form-label {
-  color: #424246;
+  color: #a7a7a7;
   font-size: 0.95rem;
 }
 @media (max-width: 1024.98px) {
@@ -5469,7 +5469,7 @@ switch to violet when it is active*/
   padding: inherit;
   border-radius: 0.3rem;
   list-style-type: none;
-  border: 2px solid #424246;
+  border: 2px solid #a7a7a7;
   border-radius: 0.45rem;
   padding: 0.375rem 0.75rem;
   z-index: 10;
@@ -5507,7 +5507,7 @@ switch to violet when it is active*/
   margin-right: 5px;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group .dropdown .dropdown-menu .item:hover {
-  background-color: #424246;
+  background-color: #a7a7a7;
   color: #F9F9F9;
   border-radius: 0.3rem;
 }
@@ -5515,7 +5515,7 @@ switch to violet when it is active*/
   width: 100%;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group span.vue__time-picker.time-picker input.display-time {
-  border: 2px solid #424246;
+  border: 2px solid #a7a7a7;
   background-color: #2D2D2F;
   border-radius: 0.4rem;
   font-size: 0.75rem;
@@ -5965,7 +5965,7 @@ switch to violet when it is active*/
 .vdp-datepicker__calendar {
   top: 38px;
   right: 0;
-  color: #424246;
+  color: #a7a7a7;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   line-height: 1em;
