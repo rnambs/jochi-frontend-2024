@@ -1937,7 +1937,7 @@ img.card-img {
     display: block;
   }
 }
-.inner-section .main-section .meeting-section .inner-meeting .Meeting-row .default-section img {
+.inner-section .main-section .meeting-section img {
   padding: 0.5rem;
   padding-bottom: 2rem;
   width: 100%;
@@ -1945,25 +1945,25 @@ img.card-img {
      object-fit: contain;
 }
 @media (min-width: 1396.98px) {
-  .inner-section .main-section .meeting-section .inner-meeting .Meeting-row .default-section img {
+  .inner-section .main-section .meeting-section img {
     width: 65%;
     margin: auto;
   }
 }
 @media (max-width: 1396.98px) {
-  .inner-section .main-section .meeting-section .inner-meeting .Meeting-row .default-section img {
+  .inner-section .main-section .meeting-section img {
     width: 70%;
     margin: auto;
   }
 }
 @media (max-width: 1024.98px) {
-  .inner-section .main-section .meeting-section .inner-meeting .Meeting-row .default-section img {
+  .inner-section .main-section .meeting-section img {
     width: 60%;
     margin: auto;
   }
 }
 @media (max-width: 767.98px) {
-  .inner-section .main-section .meeting-section .inner-meeting .Meeting-row .default-section img {
+  .inner-section .main-section .meeting-section img {
     padding: 1rem;
     width: 60%;
     margin: 0;
