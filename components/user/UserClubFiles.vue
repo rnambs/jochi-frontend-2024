@@ -28,7 +28,13 @@
     </div>
     <div class="main-section">
       <!-- tab for club files -->
-      <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+      <div
+        class="
+          jochi-components-light-bg
+          p-4
+          custom-margin-for-main-section custom-full-height
+        "
+      >
         <!-- end tab for club files -->
 
         <!-- Club files -->
@@ -243,8 +249,18 @@
                 </div>
               </div>
               <div class="col-md-4">
-                <div class="inner-club club-files jochi-sub-components-light-bg p-3">
-                  <div class="container-fluid p-4 text-center" v-if="enableEdit">
+                <div
+                  class="
+                    inner-club
+                    club-files
+                    jochi-sub-components-light-bg
+                    p-3
+                  "
+                >
+                  <div
+                    class="container-fluid p-4 text-center"
+                    v-if="enableEdit"
+                  >
                     <form
                       method="post"
                       @submit.prevent="UploadFile"
@@ -262,7 +278,9 @@
                             src="~/assets/images/ppt-upload.jpg"
                           />
                           <img
-                            v-if="!fileCheck && !filepptCheck && profileImageUrl"
+                            v-if="
+                              !fileCheck && !filepptCheck && profileImageUrl
+                            "
                             :src="profileImageUrl"
                           />
                           <img
@@ -361,7 +379,7 @@
                   class="inner-tab"
                 >
                   <!-- <i class="fas fa-info"></i> -->
-                  <span class="pl">Info</span>
+                  <span class="pl">Club Details</span>
                 </nuxt-link>
               </div>
               <div class="col-md-4 col-xs-12">
