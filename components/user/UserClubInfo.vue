@@ -313,16 +313,54 @@
                             justify-content-end
                           "
                         >
-                          <input
-                            type="text"
-                            class="form-control col-6"
-                            v-model="student"
-                            maxlength="20"
-                          />
+                          <!-- <multiselect
+                              v-model="value"
+                              :options="taglist"
+                              track-by="name"
+                              label="name"
+                              placeholder="Select a tag"
+                              @input="EditTag"
+                            >
+                              <span slot="noResult">No data found</span>
+                            </multiselect> -->
+                          <!-- <multiselect
+                            v-model="value"
+                            deselect-label="Can't remove this value"
+                            track-by="name"
+                            label="name"
+                            placeholder="Select one"
+                            :options="options"
+                            :searchable="false"
+                            :allow-empty="false"
+                          >
+                            <template slot="singleLabel" slot-scope="{ option }"
+                              ><strong>{{ option.name }}</strong> is written
+                              in<strong>
+                                {{ option.language }}</strong
+                              ></template
+                            >
+                          </multiselect> -->
+                          <multiselect
+                            v-model="leaderUpdate"
+                            :options="students"
+                            track-by="first_name"
+                            label="first_name"
+                            placeholder="
+                              Select students
+                            "
+                          >
+                            <!-- <span slot="maxElements"
+                              >Maximum of 4 students selected</span
+                            > -->
+                            <span slot="noResult">No data found</span>
+                          </multiselect>
+                          <span class="input-icon custom-search-icon"
+                            ><i class="fa fa-search" aria-hidden="true"></i
+                          ></span>
                           <button
                             class="btn btn-info-edit custom-theme-color-btn"
-                            :disabled="!student"
-                            @click.prevent="Editinformation(clubId)"
+                            :disabled="!leaderUpdate"
+                            @click.prevent="addLeader()"
                           >
                             Update
                           </button>
@@ -620,6 +658,8 @@ export default {
       dateArray: [],
       dayArrVal: [],
       daysArray: [],
+      selectedStudents: [],
+      leaderUpdate: {},
     };
   },
 
@@ -627,6 +667,8 @@ export default {
     var user = localStorage.getItem("user_type");
     this.getClubMoreInfo();
     this.SlotswithId();
+    // load students for add leader
+    this.GetStudents();
 
     if (user == 3) {
       this.ClubInfo();
@@ -653,6 +695,9 @@ export default {
       errorMessageClub: (state) => state.errorMessage,
       errorTypeClub: (state) => state.errorType,
     }),
+    ...mapState("teacherMeeting", {
+      students: (state) => state.students,
+    }),
   },
   methods: {
     ...mapActions("clubInfo", {
@@ -663,11 +708,15 @@ export default {
       showClubInCatalog: "showClubInCatalog",
       removeLeader: "removeLeader",
       removeTag: "removeTag",
+      addStudentLeader: "addStudentLeader",
     }),
     ...mapActions("clubMoreInfo", {
       clubMoreInfo: "clubMoreInfo",
       updateTime: "updateTime",
       slotswithId: "slotswithId",
+    }),
+    ...mapActions("teacherMeeting", {
+      getStudents: "getStudents",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -938,6 +987,35 @@ export default {
     onNextMeeting() {
       if (this.enableEdit) {
         $("#nextMeetingModal").modal();
+      }
+    },
+    // adding student leader
+    async GetStudents() {
+      await this.getStudents({
+        school_id: localStorage.getItem("school_id"),
+        studentId: localStorage.getItem("id"),
+      });
+    },
+    async addLeader() {
+      console.log("selected leader ", this.leaderUpdate);
+      await this.addStudentLeader({
+        club_id: this.$route.query.id,
+        user_id: this.leaderUpdate ? this.leaderUpdate.id : "",
+      });
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        this.leaderUpdate = "";
+        this.ClubInfo();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
       }
     },
   },
