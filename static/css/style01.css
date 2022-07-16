@@ -216,6 +216,7 @@ body {
   font-size: 1rem;
   color: #B4B4B4;
   padding: 0.375rem 0.75rem;
+  height: unset;
 }
 .form-row .dropdown-menu, .form-group .dropdown-menu {
   background-color: #ffffff;
@@ -474,7 +475,7 @@ img.card-img {
     text-align: center;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .main-container .form-section h1 {
     font-size: 2.5rem;
   }
@@ -820,7 +821,7 @@ img.card-img {
     padding: 0.375rem 1.2rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section {
     width: 6.625rem;
   }
@@ -836,7 +837,7 @@ img.card-img {
   overflow: hidden;
   overflow-y: auto;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items {
     margin: auto 0px;
   }
@@ -844,7 +845,7 @@ img.card-img {
 .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link::after {
   display: none;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link {
     background-color: rgba(255, 255, 255, 0.45);
     display: block;
@@ -863,7 +864,7 @@ img.card-img {
     width: 1.7rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .font-icon {
     width: 100%;
   }
@@ -877,7 +878,7 @@ img.card-img {
     font-size: 0.8rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link span {
     display: none;
   }
@@ -893,7 +894,7 @@ img.card-img {
     font-size: 0.7rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .fa-chevron-right {
     display: none;
   }
@@ -909,7 +910,7 @@ img.card-img {
     font-size: 0.7rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link.collapsed .fa-chevron-right {
     display: none;
   }
@@ -920,7 +921,7 @@ img.card-img {
   padding: 7px 0px;
   border-radius: 4px;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .bottum-btn {
     padding: 0px;
   }
@@ -935,7 +936,7 @@ img.card-img {
   list-style-type: none;
   padding: 0.2rem 0.6rem;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list {
     padding: 0 !important;
     margin: 3px -10px !important;
@@ -946,7 +947,7 @@ img.card-img {
   padding: 0.2rem;
   border-radius: 0.3rem;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li {
     padding: inherit;
   }
@@ -957,7 +958,7 @@ img.card-img {
   font-size: 0.75rem;
   padding: 0.5rem;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a {
     padding: inherit;
   }
@@ -968,7 +969,7 @@ img.card-img {
   border-radius: 0.3rem;
   color: #ffffff;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a.nav-link.nuxt-link-exact-active.nuxt-link-active {
     padding: inherit;
   }
@@ -981,12 +982,12 @@ img.card-img {
   padding: 0.5rem;
   border-radius: 0.3rem;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a:hover, .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a .active {
     padding: inherit;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a:hover {
     background-color: unset;
   }
@@ -998,7 +999,7 @@ img.card-img {
   margin-bottom: 0.2rem;
   border-radius: 0.3rem;
 }
-@media (min-width: 1002.98px) {
+@media (min-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .custom-list .menu-list {
     padding: 10px 0px;
   }
@@ -1024,7 +1025,7 @@ img.card-img {
     padding: 0.375rem 1.2rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section {
     width: 6.625rem;
   }
@@ -1040,7 +1041,7 @@ img.card-img {
   text-align: center;
   justify-content: space-around;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section .logo-section {
     padding: 0 !important;
   }
@@ -1053,12 +1054,12 @@ img.card-img {
   font-size: 2rem;
   font-family: "Montserrat", sans-serif;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section .logo-section .text-logo {
     display: none !important;
   }
 }
-@media (min-width: 1002.98px) {
+@media (min-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section .logo-section .icon-logo {
     display: none;
   }
@@ -1066,7 +1067,7 @@ img.card-img {
 .inner-section .header-section .teacher-sidebar-section .profile-sidebar {
   height: 120px;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section .profile-sidebar {
     display: none !important;
   }
@@ -1106,7 +1107,7 @@ img.card-img {
 .inner-section .header-section .teacher-sidebar-section .menu-items {
   position: relative;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section .menu-items {
     margin: auto 0px;
   }
@@ -1128,7 +1129,7 @@ img.card-img {
     padding: 10px;
   }
 }
-@media (min-width: 1002.98px) {
+@media (min-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list:hover, .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list:active {
     background-color: #a7a7a7;
   }
@@ -1137,13 +1138,13 @@ img.card-img {
   background-color: #a7a7a7;
   border-radius: 0.3rem;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list a.nuxt-link-exact-active.nuxt-link-active {
     padding: inherit;
     background-color: unset;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list a.nuxt-link-exact-active.nuxt-link-active i, .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list a.nuxt-link-exact-active.nuxt-link-active .image-i {
     background-color: #a7a7a7;
   }
@@ -1166,7 +1167,7 @@ img.card-img {
     font-size: 0.75rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list .nav-link {
     padding: inherit;
   }
@@ -1183,7 +1184,7 @@ img.card-img {
     width: 1.7rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list .nav-link .font-icon {
     width: 80%;
   }
@@ -1196,7 +1197,7 @@ img.card-img {
     font-size: 1.15rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list .nav-link .font-icon i, .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list .nav-link .font-icon .image-i {
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.45);
@@ -1217,7 +1218,7 @@ img.card-img {
     font-size: 0.8rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .header-section .teacher-sidebar-section .menu-items .custom-list .menu-list .nav-link span {
     display: none;
   }
@@ -1241,7 +1242,7 @@ img.card-img {
     padding-left: 14.625rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section {
     padding-left: 6.625rem;
   }
@@ -2054,7 +2055,7 @@ img.card-img {
 .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .form-group textarea, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .form-group .form-control {
   font-size: 0.75rem;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .form-group textarea, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .form-group .form-control {
     font-size: 0.75rem;
   }
@@ -2109,7 +2110,7 @@ img.card-img {
   color: #F9F9F9;
   font-size: 0.75rem;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-row .inner-info-text ul li {
     font-size: 0.75rem;
   }
@@ -2191,7 +2192,7 @@ img.card-img {
     font-size: 0.55rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-6 .inner-row .info-tag .input-group .input-icon-area {
     font-size: 0.65rem;
   }
@@ -2360,7 +2361,7 @@ img.card-img {
   font-size: 0.8rem;
   text-transform: capitalize;
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .form-group ul li, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .form-group ul li {
     font-size: 0.75rem;
   }
@@ -2449,7 +2450,7 @@ img.card-img {
     font-size: 0.55rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-7 .inner-info .choose-date .col .date-picker, .inner-section .main-section .club-section .inner-club .inner-info .row .col-md-5 .inner-info .choose-date .col .date-picker {
     width: 26px;
     height: 26px;
@@ -2836,7 +2837,7 @@ img.card-img {
     font-size: 0.55rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section-catlg .inner-club .club-row .club-list ul li {
     font-size: 0.65rem;
   }
@@ -2874,7 +2875,7 @@ img.card-img {
     font-size: 0.55rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section-catlg .inner-club .club-row .club-list .list-text {
     font-size: 0.65rem;
   }
@@ -2907,7 +2908,7 @@ img.card-img {
     font-size: 0.55rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section-catlg .inner-club .club-row .club-list .btn-view-more {
     font-size: 0.65rem;
   }
@@ -2961,7 +2962,7 @@ img.card-img {
     font-size: 0.55rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-4 .catalog-text {
     font-size: 0.65rem;
   }
@@ -3034,7 +3035,7 @@ img.card-img {
     font-size: 0.55rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row .col-md-2 .btn-join-now {
     font-size: 0.65rem;
   }
@@ -3187,7 +3188,7 @@ img.card-img {
     font-size: 0.55rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .to-do-list ul li {
     font-size: 0.65rem;
   }
@@ -3225,7 +3226,7 @@ img.card-img {
     font-size: 0.55rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .list-text {
     font-size: 0.65rem;
   }
@@ -3258,7 +3259,7 @@ img.card-img {
     font-size: 0.55rem;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .club-section .inner-club .club-row .col-md-6 .club-list .btn-view-more {
     font-size: 0.65rem;
   }
@@ -3765,7 +3766,7 @@ img.card-img {
     max-height: 21vh;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher .inner-agenda {
     max-height: 23vh;
   }
@@ -4075,7 +4076,7 @@ img.card-img {
     max-height: 21vh;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher .inner-agenda {
     max-height: 23vh;
   }
@@ -4643,7 +4644,7 @@ img.card-img {
     height: 65px !important;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid table.fc-scrollgrid-sync-table {
     height: 67px !important;
   }
@@ -4798,7 +4799,7 @@ img.card-img {
     padding-bottom: 0px;
   }
 }
-@media (max-width: 1002.98px) {
+@media (max-width: 991.98px) {
   .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .slot-form .col {
     flex: 0 0 100%;
     max-width: 100%;

@@ -46,7 +46,7 @@
           </div> -->
           <div class="position-relative profile-sidebar">
             <div
-              class="user-icon mr-3 position-absolute notification-icon-section"
+              class="user-icon mr-3 position-lg-absolute notification-icon-section"
             >
               <div class="dropdown">
                 <a
@@ -121,7 +121,7 @@
                 id="profileImage"
               />
               <!-- <img v-else src="../../assets/images/avatar/man_green.svg" class="rounded-circle img-profile" alt="" > -->
-              <h4 class="profile-name mb-0 mt-2">{{ firstName }}</h4>
+              <h4 class="color-primary mb-0 mt-2 font-semi-bold text-18 text-center text-lg-left">{{ firstName }}</h4>
             </nuxt-link>
 
             <div class="user-icon mr-3 settings-icon-section position-absolute">
@@ -160,7 +160,7 @@
                 <div class="card-header bg-transparent border-0 p-1" id="headingOne">
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-1 py-1 px-lg-3 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -220,7 +220,7 @@
                 <div class="card-header bg-transparent border-0 p-1" id="headingTwo">
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-1 py-1 px-lg-3 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -280,7 +280,7 @@
                 <div class="card-header bg-transparent border-0 p-1" id="headingThree">
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-1 py-1 px-lg-3 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -326,7 +326,7 @@
                 <div class="card-header bg-transparent border-0 p-1" id="headingFour">
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-1 py-1 px-lg-3 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"

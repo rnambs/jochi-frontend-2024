@@ -129,8 +129,8 @@
 
         <section id="teacher-section" class=" d-flex h-40 flex-fill">
           <div class="meeting-section container-fluid d-flex custom-overflow pe-2 mr--2 flex-fill">
-            <div class="inner-meeting m-auto container-fluid py-3 pl-0 scroll ">
-              <div class="row Meeting-row text-center align-items-center px-4 px-md-5 px-lg-3 px-xl-5" v-show="isShowing">
+            <div class="inner-meeting flex-fill container-fluid py-3 pl-0 scroll ">
+              <div class="row Meeting-row text-center h-100 align-items-center px-4 px-md-5 px-lg-3 px-xl-5" v-show="isShowing">
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img src="~/assets/images/undraw/step1.png" class="img-illustrate" alt="" />
@@ -313,7 +313,7 @@
                         <tr>
                           <td class="tmodal-data">Date</td>
                           <td class="tmodal-data">
-                            <span class="pr-2">:</span>
+                            <span class="pr-2"></span>
                             {{ popupValue[0] }}
                           </td>
                         </tr>
@@ -321,91 +321,96 @@
                         <tr>
                           <td class="tmodal-data">Time</td>
                           <td class="tmodal-data">
-                            <span class="pr-2">:</span>
+                            <span class="pr-2"></span>
                             {{ popupFrom[0] }} to {{ popupEnd[0] }}
                           </td>
                         </tr>
                         <tr>
                           <td class="tmodal-data text-nowrap">Meeting Name</td>
                           <td class="tmodal-data">
-                            <p
-                              class="
-                                mb-0
-                                tdata-overflow
-                                d-flex
-                                align-items-center
-                              "
-                            >
-                              <span class="pr-2">:</span>
-                              <!-- <span v-if="value">
-                              {{
-                                value.first_name +
-                                " " +
-                                (value.last_name ? value.last_name : "")
-                              }}
-                            </span> -->
-                              <input
-                                type="text"
-                                name="meeting_name"
-                                autocomplete="off"
-                                maxlength="100"
-                                class="form-control custom-form-control"
-                                v-model="meeting_name"
-                                :class="{
-                                  'is-invalid':
-                                    submitted && $v.meeting_name.$error,
-                                }"
-                              />
-                            </p>
-                            <div
-                              v-if="submitted && $v.meeting_name.$error"
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.meeting_name.required"
-                                >This field is required</span
+                            <div class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                                <p
+                                class="
+                                  mb-0
+                                  tdata-overflow
+                                  d-flex
+                                  align-items-center
+                                "
                               >
+                                <span class="pr-2"></span>
+                                <!-- <span v-if="value">
+                                {{
+                                  value.first_name +
+                                  " " +
+                                  (value.last_name ? value.last_name : "")
+                                }}
+                              </span> -->
+                                <input
+                                  type="text"
+                                  name="meeting_name"
+                                  autocomplete="off"
+                                  maxlength="100"
+                                  class="form-control bg-white custom-form-control"
+                                  v-model="meeting_name"
+                                  :class="{
+                                    'is-invalid':
+                                      submitted && $v.meeting_name.$error,
+                                  }"
+                                />
+                              </p>
+                              <div
+                                v-if="submitted && $v.meeting_name.$error"
+                                class="invalid-feedback"
+                              >
+                                <span v-if="!$v.meeting_name.required"
+                                  >This field is required</span
+                                >
+                              </div>
                             </div>
                           </td>
                         </tr>
                         <tr>
                           <td class="tmodal-data text-nowrap">Description</td>
                           <td class="tmodal-data">
-                            <p
-                              class="
-                                mb-0
-                                tdata-overflow
-                                d-flex
-                                align-items-center
-                              "
-                            >
-                              <span class="pr-2">:</span>
-                              <!-- <span v-if="value">
-                              {{
-                                value.first_name +
-                                " " +
-                                (value.last_name ? value.last_name : "")
-                              }}
-                            </span> -->
-                              <textarea
-                                type="text"
-                                name="meeting_description"
-                                autocomplete="off"
-                                maxlength="500"
-                                class="form-control custom-form-control"
-                                v-model="meeting_description"
-                                :class="{
-                                  'is-invalid':
-                                    submitted && $v.meeting_description.$error,
-                                }"
-                              ></textarea>
-                            </p>
-                            <div
-                              v-if="submitted && $v.meeting_description.$error"
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.meeting_description.required"
-                                >This field is required</span
+                            <div class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                                <p
+                                class="
+                                  mb-0
+                                  tdata-overflow
+                                  d-flex
+                                  align-items-center
+                                "
                               >
+                                <span class="pr-2"></span>
+                                <!-- <span v-if="value">
+                                {{
+                                  value.first_name +
+                                  " " +
+                                  (value.last_name ? value.last_name : "")
+                                }}
+                              </span> -->
+                                <textarea
+                                  type="text"
+                                  name="meeting_description"
+                                  autocomplete="off"
+                                  maxlength="500"
+                                  row="3"
+                                  class="form-control custom-form-control bg-white"
+                                  v-model="meeting_description"
+                                  :class="{
+                                    'is-invalid':
+                                      submitted && $v.meeting_description.$error,
+                                  }"
+                                ></textarea>
+                              </p>
+                              <div
+                                v-if="submitted && $v.meeting_description.$error"
+                                class="invalid-feedback"
+                              >
+                                <span v-if="!$v.meeting_description.required"
+                                  >This field is required</span
+                                >
+                              </div>
                             </div>
                           </td>
                         </tr>
@@ -414,38 +419,40 @@
                             Type of Meeting
                           </td>
                           <td class="tmodal-data">
-                            <p
-                              class="
-                                mb-0
-                                tdata-overflow
-                                d-flex
-                                align-items-center
-                              "
-                            >
-                              <span class="pr-2">:</span>
-                              <select
-                                class="custom-select custom-select-sm mb-3"
-                                tabindex=""
-                                name="conversation_type"
-                                v-model="conversation_type"
-                                :class="{
-                                  'is-invalid':
-                                    submitted && $v.conversation_type.$error,
-                                }"
+                            <div class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                                <p
+                                class="
+                                  mb-0
+                                  tdata-overflow
+                                  d-flex
+                                  align-items-center
+                                "
                               >
-                                <option value="Video Conference">
-                                  Video Conference
-                                </option>
-                                <option value="In Person">In Person</option>
-                              </select>
-                            </p>
-                            <div
-                              v-if="submitted && $v.conversation_type.$error"
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.conversation_type.required"
-                                >This field is required</span
+                                <span class="pr-2"></span>
+                                <select
+                                  class="form-control bg-white mb-3"
+                                  tabindex=""
+                                  name="conversation_type"
+                                  v-model="conversation_type"
+                                  :class="{
+                                    'is-invalid':
+                                      submitted && $v.conversation_type.$error,
+                                  }"
+                                >
+                                  <option value="Video Conference">
+                                    Video Conference
+                                  </option>
+                                  <option value="In Person">In Person</option>
+                                </select>
+                              </p>
+                              <div
+                                v-if="submitted && $v.conversation_type.$error"
+                                class="invalid-feedback"
                               >
+                                <span v-if="!$v.conversation_type.required"
+                                  >This field is required</span
+                                >
+                              </div>
                             </div>
                           </td>
                         </tr>
@@ -458,7 +465,8 @@
                             }}
                           </td>
                           <td class="tmodal-data">
-                            <p
+                            <div class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                              <p
                               class="
                                 mb-0
                                 tdata-overflow
@@ -466,7 +474,7 @@
                                 align-items-center
                               "
                             >
-                              <span class="pr-2">:</span>
+                              <span class="pr-2"></span>
                               <!-- <span v-if="value">
                               {{
                                 value.first_name +
@@ -493,6 +501,7 @@
                               <span v-if="!$v.venue.required"
                                 >This field is required</span
                               >
+                            </div>
                             </div>
                           </td>
                         </tr>
