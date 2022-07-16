@@ -796,7 +796,7 @@ img.card-img{
                 background-color: $border-color;
                 object-fit: cover;
             }
-            @media (max-width: 767.98px) {
+            @media (max-width: 992.98px) {
                 .rounded-circle{
                     width:40px;
                     height: 40px;
@@ -903,158 +903,158 @@ img.card-img{
                     margin: auto 0px;
                 }
                 .accordion{
-                            button.btn-link{
-                                &::after {
-                                    display: none;
-                                    // transform: rotate(90deg);
+                    button.btn-link{
+                        &::after {
+                            display: none;
+                            // transform: rotate(90deg);
+                        }
+                        @media (max-width: 991.98px) {
+                            background-color: $global-background-color;
+                            display: block;
+                            &::after {
+                            display: none;
+                            }
+                        }
+                        .font-icon{
+                            color: $font-label-color;
+                            width: 2rem;
+                            text-align: center;
+                            @media (max-width: 1024.98px) {
+                                width: 1.7rem;
+                            }
+                            @media (max-width: 991.98px) {
+                                width: 100%;
+                            }
+                            // i{
+                            //     font-size: 1.3rem;
+                            //     @media (max-width: 1024.98px) {
+                            //         font-size: 1.5rem;
+                            //     }
+                            //     @media (max-width: 991.98px) {
+                            //         background-color: $global-background-color;
+                            //         display: flex;
+                            //         align-items: center;
+                            //         justify-content: center;
+                            //         border-radius: 5px;
+                            //         margin:0 auto;
+                            //         padding: .5rem; 
+                            //     }
+                            //     &.image-i{
+                            //         @media (max-width: 991.98px) {
+                            //             background-color: $global-background-color;
+                            //             display: flex;
+                            //             align-items: center;
+                            //             justify-content: center;
+                            //             border-radius: 5px;
+                            //             margin:0 auto; 
+                            //         }
+                            //     }
+                            // }
+                        }
+                        span{
+                            margin: auto;
+                            font-size: 0.85rem;
+                            @media (max-width: 1024.98px) {
+                                font-size: 0.8rem;
+                            }
+                            @media (max-width: 991.98px) {
+                                display: none;
+                            }
+                        }
+                        .fa-chevron-right{
+                            font-weight: 500;
+                            font-size: 0.8rem;
+                            transition: all 0.5s;
+                            transform: rotate(90deg);
+                                @media (max-width: 1024.98px) {
+                                    font-size: 0.7rem;
+                            }
+                            @media (max-width: 991.98px) {
+                                display: none;
+                            }
+                        }
+                        &.collapsed{
+                            .fa-chevron-right{
+                                font-weight: 500;
+                                font-size: 0.8rem;
+                                transition: all 0.5s;
+                                transform: rotate(0deg);
+                                    @media (max-width: 1024.98px) {
+                                        font-size: 0.7rem;
                                 }
                                 @media (max-width: 991.98px) {
-                                    background-color: $global-background-color;
-                                    display: block;
-                                    &::after {
                                     display: none;
-                                    }
                                 }
-                                .font-icon{
-                                    color: $font-label-color;
-                                    width: 2rem;
-                                    text-align: center;
-                                    @media (max-width: 1024.98px) {
-                                        width: 1.7rem;
-                                    }
-                                    @media (max-width: 991.98px) {
-                                        width: 100%;
-                                    }
-                                    // i{
-                                    //     font-size: 1.3rem;
-                                    //     @media (max-width: 1024.98px) {
-                                    //         font-size: 1.5rem;
-                                    //     }
-                                    //     @media (max-width: 991.98px) {
-                                    //         background-color: $global-background-color;
-                                    //         display: flex;
-                                    //         align-items: center;
-                                    //         justify-content: center;
-                                    //         border-radius: 5px;
-                                    //         margin:0 auto;
-                                    //         padding: .5rem; 
-                                    //     }
-                                    //     &.image-i{
-                                    //         @media (max-width: 991.98px) {
-                                    //             background-color: $global-background-color;
-                                    //             display: flex;
-                                    //             align-items: center;
-                                    //             justify-content: center;
-                                    //             border-radius: 5px;
-                                    //             margin:0 auto; 
-                                    //         }
-                                    //     }
-                                    // }
-                                }
-                                span{
-                                    margin: auto;
-                                    font-size: 0.85rem;
-                                    @media (max-width: 1024.98px) {
-                                        font-size: 0.8rem;
-                                    }
-                                    @media (max-width: 991.98px) {
-                                        display: none;
-                                    }
-                                }
-                                .fa-chevron-right{
-                                    font-weight: 500;
-                                    font-size: 0.8rem;
-                                    transition: all 0.5s;
-                                    transform: rotate(90deg);
-                                        @media (max-width: 1024.98px) {
-                                            font-size: 0.7rem;
-                                    }
-                                    @media (max-width: 991.98px) {
-                                        display: none;
-                                    }
-                                }
-                                &.collapsed{
-                                    .fa-chevron-right{
-                                        font-weight: 500;
-                                        font-size: 0.8rem;
-                                        transition: all 0.5s;
-                                        transform: rotate(0deg);
-                                            @media (max-width: 1024.98px) {
-                                                font-size: 0.7rem;
-                                        }
-                                        @media (max-width: 991.98px) {
-                                            display: none;
-                                        }
-                                    }
-                                }
-                                .bottum-btn{
-                                    display: flex;
-                                    flex: 1 0 auto;
-                                    padding: 7px 0px;
-                                    border-radius: 4px;
-                                    @media (max-width: 991.98px){
-                                        padding: 0px;
-                                    }
-                                    &.nuxt-link-exact-active.nuxt-link-active{
-                                        &.bottum-btn{
-                                            background-color: $global-background-color;
-
-                                        }
-                                    }
-                                }
-                            } 
+                            }
                         }
-                        .card-body{
-                            background-color: transparent;
-                            .inner-custom-list{
-                                list-style-type: none;
-                                padding: 0.2rem 0.6rem;
-                                @media (max-width: 991.98px){
-                                    padding: 0 !important;
-                                    margin: 3px -10px !important;
-                                    text-align: center;
+                        .bottum-btn{
+                            display: flex;
+                            flex: 1 0 auto;
+                            padding: 7px 0px;
+                            border-radius: 4px;
+                            @media (max-width: 991.98px){
+                                padding: 0px;
+                            }
+                            &.nuxt-link-exact-active.nuxt-link-active{
+                                &.bottum-btn{
+                                    background-color: $global-background-color;
+
                                 }
-                                li{
-                                    padding: 0.2rem;
+                            }
+                        }
+                    } 
+                }
+                .card-body{
+                    background-color: transparent;
+                    .inner-custom-list{
+                        list-style-type: none;
+                        padding: 0.2rem 0.6rem;
+                        @media (max-width: 991.98px){
+                            padding: 0 !important;
+                            margin: 3px -10px !important;
+                            text-align: center;
+                        }
+                        li{
+                            padding: 0.2rem;
+                            border-radius: 0.3rem;
+                            @media (max-width: 991.98px){
+                                padding: inherit;
+                            }
+                            a{
+                                text-decoration: none;
+                                color: $font-label-color;
+                                font-size: 0.75rem;
+                                padding: 0.5rem;
+                                @media (max-width: 991.98px){
+                                    padding: inherit;
+                                }
+                                &.nav-link.nuxt-link-exact-active.nuxt-link-active{
+                                    background-color: #FF646F;
+                                    padding: 0.5rem;
+                                    border-radius: 0.3rem;
+                                    color: $white;
+                                    @media (max-width: 991.98px){
+                                        padding: inherit;
+                                    }
+                                }
+                                &:hover, .active{
+                                    @include jochi-components-light-bg;
+                                    padding: 0.5rem;
                                     border-radius: 0.3rem;
                                     @media (max-width: 991.98px){
                                         padding: inherit;
                                     }
-                                    a{
-                                        text-decoration: none;
-                                        color: $font-label-color;
-                                        font-size: 0.75rem;
-                                        padding: 0.5rem;
-                                        @media (max-width: 991.98px){
-                                            padding: inherit;
-                                        }
-                                        &.nav-link.nuxt-link-exact-active.nuxt-link-active{
-                                            background-color: #FF646F;
-                                            padding: 0.5rem;
-                                            border-radius: 0.3rem;
-                                            color: $white;
-                                            @media (max-width: 991.98px){
-                                                padding: inherit;
-                                            }
-                                        }
-                                        &:hover, .active{
-                                            @include jochi-components-light-bg;
-                                            padding: 0.5rem;
-                                            border-radius: 0.3rem;
-                                            @media (max-width: 991.98px){
-                                                padding: inherit;
-                                            }
-                                        }
-                                        @media (max-width: 991.98px){
-                                            &:hover{
-                                                background-color: unset;
-                                            }        
-                                        }   
-                                    }
-                                    
                                 }
+                                @media (max-width: 991.98px){
+                                    &:hover{
+                                        background-color: unset;
+                                    }        
+                                }   
                             }
+                            
                         }
+                    }
+                }
                 .custom-list {
                     list-style-type: none;
                     .menu-list{

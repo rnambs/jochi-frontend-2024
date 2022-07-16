@@ -13,7 +13,7 @@
           d-flex
           justify-content-between
           jochi-components-light-bg
-          p-4
+          p-3 p-lg-4
           position-fixed
           flex-column
         "
@@ -46,7 +46,7 @@
           </div> -->
           <div class="position-relative profile-sidebar">
             <div
-              class="user-icon mr-3 position-lg-absolute notification-icon-section"
+              class="user-icon mr-3 d-flex notification-icon-section justify-content-end"
             >
               <div class="dropdown">
                 <a
@@ -160,7 +160,7 @@
                 <div class="card-header bg-transparent border-0 p-1" id="headingOne">
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-1 py-1 px-lg-3 py-lg-2"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-2 py-2 px-lg-3 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -220,7 +220,7 @@
                 <div class="card-header bg-transparent border-0 p-1" id="headingTwo">
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-1 py-1 px-lg-3 py-lg-2"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-2 py-2 px-lg-3 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -280,7 +280,7 @@
                 <div class="card-header bg-transparent border-0 p-1" id="headingThree">
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-1 py-1 px-lg-3 py-lg-2"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-2 py-2 px-lg-3 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -326,7 +326,7 @@
                 <div class="card-header bg-transparent border-0 p-1" id="headingFour">
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-1 py-1 px-lg-3 py-lg-2"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-2 py-2 px-lg-3 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
