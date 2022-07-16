@@ -18,7 +18,7 @@
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-4">
-            <h3 class="color-primary font-bold">My Meetings</h3>
+            <h3 class="color-primary font-bold px-3">My Meetings</h3>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0 mb-3">
                 <!-- <div class="col-md-4">
@@ -38,19 +38,20 @@
                     ></span>
                   </div>
                 </div> -->
-                <div class="col-md-4 p-0">
+                <div class="col-md-4 p-0 px-3 mx-1">
                   <div class="dropdown form-row custom-sort-by-btn">
                     <button
                       id="dLabel"
-                      class="dropdown-select btn btn-void p-0"
+                      class="dropdown-select btn btn-void p-0 color-secondary font-normal text-16 pr-2"
                       type="button"
                       data-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      Sort by
-                      <span class="caret"></span>
+                      <span class="mr-2 color-secondary"> Sort by</span>
                     </button>
+                    
+                    <span class="caret color-secondary"><i class="fas fa-chevron-down"></i></span>
                     <!-- <span class="input-icon"
                       ><i class="fa fa-filter" aria-hidden="true"></i
                     ></span> -->
