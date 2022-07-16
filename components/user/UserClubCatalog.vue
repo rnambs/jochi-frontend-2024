@@ -96,13 +96,16 @@
                     <div class="row catalog-row">
                       <div class="col-md-4 col-sm-4">
                         <h5 class="mb-0">{{ list["name"] }}</h5>
-                        <p class="catalog-text">
+                        <!-- <p class="catalog-text">
                           {{ list.part ? list.part : "No data "
                           }}<span :id="'dots' + list.id" v-if="list.remaining"
                             >...</span
                           ><span :id="'more' + list.id" style="display: none">
                             {{ list.remaining }}
                           </span>
+                        </p> -->
+                        <p>
+                          {{ list.activity_type == "Clubs" ? "Club" : "Team" }}
                         </p>
                       </div>
                       <div class="col-md-6 d-flex justify-content-end">
@@ -165,7 +168,7 @@
                           </span>
                         </ul>
                       </div> -->
-                      <div class="col-md-2">
+                      <!-- <div class="col-md-2">
                         <a
                           href="#"
                           class="btn btn-join-now"
@@ -182,6 +185,23 @@
                           :id="list.id"
                           >Read more<i class="fas fa-chevron-right pl-1"></i
                         ></a>
+                      </div> -->
+
+                      <div class="col-md-2">
+                        <nuxt-link
+                          :to="{
+                            path: '/student-club-view',
+                            query: { id: list.id, name: list.activity_type },
+                          }"
+                          class="
+                            border border-secondary
+                            text-decoration-none text-dark
+                            btn
+                            bg-light
+                          "
+                        >
+                          <button class="btn btn-join-now">View More</button>
+                        </nuxt-link>
                       </div>
                     </div>
                   </div>
@@ -523,6 +543,7 @@ export default {
           tagList.push(ele?.tags?.name);
         });
         Scheduleobj["tagList"] = tagList;
+        Scheduleobj["activity_type"] = element.activity_type;
         this.list_data.push(Scheduleobj);
       });
       this.list_data.forEach((element) => {
