@@ -166,6 +166,7 @@ body {
 }
 .btn.btn-void {
   background-color: transparent;
+  color: #C5C0BD;
 }
 
 .form-row label.form-label, .form-group label.form-label {
@@ -219,7 +220,7 @@ body {
   list-style-type: none;
   border: none;
   border-radius: 0.45rem;
-  padding: 0.375rem 0.75rem;
+  padding: 0.75rem 0.75rem;
   z-index: 10;
   position: absolute;
   left: 0;
