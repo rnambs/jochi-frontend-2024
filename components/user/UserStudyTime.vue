@@ -85,6 +85,281 @@
     </div>
     <!-- end session -->
 
+    <!-- step one -->
+
+    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll">
+      <h2 class="color-primary font-bold mb-1">Step One:</h2>
+      <h2 class="color-primary font-bold mb-4">Choose An Assignment</h2>
+      <div class="row">
+      <div class="col-md-6 col-lg-4">
+          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div class="assignment-tag red mr-2">Urgent</div>
+                  <div class="assignment-tag pink">AP French</div>
+              </div>
+              <div class="text-center">
+                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
+                  <div class="text-center px-3">
+                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12">Study Vocab List</label>
+                  </div>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                  >
+                  </div>
+              </div>
+              <div class="">
+                  <h6 class="mb-1 color-primary">Additional Material</h6>
+                  <div
+                  class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                  "
+                  >
+                  <div class="col-8 py-0 pl-0 material-link">
+                      Rubric: https://docs.google.com/document/...
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                      12/04/22
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div class="assignment-tag red mr-2">Urgent</div>
+                  <div class="assignment-tag pink">AP French</div>
+              </div>
+              <div class="text-center">
+                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
+                  <div class="text-center px-3">
+                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12">Study Vocab List</label>
+                  </div>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                  >
+                  </div>
+              </div>
+              <div class="">
+                  <h6 class="mb-1 color-primary">Additional Material</h6>
+                  <div
+                  class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                  "
+                  >
+                  <div class="col-8 py-0 pl-0 material-link">
+                      Rubric: https://docs.google.com/document/...
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                      12/04/22
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div class="assignment-tag red mr-2">Urgent</div>
+                  <div class="assignment-tag pink">AP French</div>
+              </div>
+              <div class="text-center">
+                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
+                  <div class="text-center px-3">
+                  <p  class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12">Study Vocab List</label>
+                  </div>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                  >
+                  </div>
+              </div>
+              <div class="">
+                  <h6 class="mb-1 color-primary">Additional Material</h6>
+                  <div
+                  class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                  "
+                  >
+                  <div class="col-8 py-0 pl-0 material-link">
+                      Rubric: https://docs.google.com/document/...
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                      12/04/22
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div class="assignment-tag red mr-2">Urgent</div>
+                  <div class="assignment-tag pink">AP French</div>
+              </div>
+              <div class="text-center">
+                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
+                  <div class="text-center px-3">
+                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12">Study Vocab List</label>
+                  </div>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                  >
+                  </div>
+              </div>
+              <div class="">
+                  <h6 class="mb-1 color-primary">Additional Material</h6>
+                  <div
+                  class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                  "
+                  >
+                  <div class="col-8 py-0 pl-0 material-link">
+                      Rubric: https://docs.google.com/document/...
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                      12/04/22
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div class="assignment-tag red mr-2">Urgent</div>
+                  <div class="assignment-tag pink">AP French</div>
+              </div>
+              <div class="text-center">
+                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
+                  <div class="text-center px-3">
+                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12">Study Vocab List</label>
+                  </div>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                  >
+                  </div>
+              </div>
+              <div class="">
+                  <h6 class="mb-1 color-primary">Additional Material</h6>
+                  <div
+                  class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                  "
+                  >
+                  <div class="col-8 py-0 pl-0 material-link">
+                      Rubric: https://docs.google.com/document/...
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                      12/04/22
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div class="assignment-tag red mr-2">Urgent</div>
+                  <div class="assignment-tag pink">AP French</div>
+              </div>
+              <div class="text-center">
+                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
+                  <div class="text-center px-3">
+                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
+                  </div>
+              </div>
+              <div class="mb-3">
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12">Study Vocab List</label>
+                  </div>
+                  <div class="pl-2 d-flex align-items-center">
+                  <input type="radio" class="mr-2" />
+                  <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                  >
+                  </div>
+              </div>
+              <div class="">
+                  <h6 class="mb-1 color-primary">Additional Material</h6>
+                  <div
+                  class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                  "
+                  >
+                  <div class="col-8 py-0 pl-0 material-link">
+                      Rubric: https://docs.google.com/document/...
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                      12/04/22
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- end step one -->
+
     <!-- step two configure -->
     <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll">
       <h2 class="color-primary font-semi-bold mb-3">Step Two: <br> Configure your Session</h2>
@@ -250,27 +525,33 @@
 
     <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex hidden-scroll">
       <div class="row">
-        <div class="col-md-6 study-col d-flex flex-column justify-content-center">
-          <div class="m-5">
-            <div class="mb-2"><h1 class="color-primary font-bold">Working on</h1></div>
+        <div class="col-lg-7 study-col d-flex flex-column justify-content-center flex-fill">
+          <div class="card card-light rounded-22 p-4 flex-fill mb-4 justify-content-center">
+            <div class=""><h1 class="color-primary font-bold mb-2">Working on</h1></div>
             <p class="color-dark text-24 font-semi-bold mb-1">
               Subject Name
             </p>
             <p class="color-dark text-24 font-semi-bold mb-1">{{ SubjectName }}</p>
             <p
               class="color-secondary text-16 font-regular mb-1"
-              v-if="studyTypes.id != 3"
             >
-              Remaining Cycles :
-              10
+              Study Method : <span>Regular studying</span>
             </p>
+            
             <p
-              class="color-secondary text-16 font-regular mb-1"
-              v-if="studyTypes.id != 3"
-            >
-              Remaining Repetitions :
-              12
-            </p>
+            class="color-secondary text-16 font-regular mb-1"
+            v-if="studyTypes.id != 3"
+          >
+            Remaining Cycles :
+            10
+          </p>
+          <p
+            class="color-secondary text-16 font-regular mb-1"
+            v-if="studyTypes.id != 3"
+          >
+            Remaining Repetitions :
+            12
+          </p>
             <!-- <input type="text" v-model="remainingTime" id="remainingTime"> -->
             <button
               type="button"
@@ -281,44 +562,67 @@
               End Session
             </button>
           </div>
+          <div class="card card-light rounded-22 p-4">
+            <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
+            <div class="hidden-scroll p-3 row my-0">
+              <div class="d-flex align-items-center my-2 mr-3">
+                <div class="ld-img-section mr-3">
+                  <div class="ld-img-holder"></div>
+                </div>
+                <div class="ld-details-section">
+                  <p class="ld-heading mb-1">
+                    Mark Jones, President
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="col-md-6 study-col d-flex flex-column justify-content-center">
-          <div>
-            <div id="app" class="mb-3">
-              <div class="base-timer m-auto">
-                <svg
-                  class="base-timer__svg"
-                  viewBox="0 0 100 100"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g class="base-timer__circle">
-                    <circle
-                      class="base-timer__path-elapsed"
-                      cx="50"
-                      cy="50"
-                      r="45"
-                    ></circle>
-                    <path
-                      id="base-timer-path-remaining"
-                      stroke-dasharray="283"
-                      class="base-timer__path-remaining arc"
-                      d="
-                              M 50, 50
-                              m -45, 0
-                              a 45,45 0 1,0 90,0
-                              a 45,45 0 1,0 -90,0
-                              "
-                    ></path>
-                  </g>
-                </svg>
-                <div class="inner-timer">
-                  <img src="../../static/image/alarm.png" alt="">
-                </div>
-                <p class="mb-2">
-                  <span id="base-timer-label" class="color-dark text-24 font-semi-bold">12</span>
-                  <span class="color-dark text-24 font-semi-bold">22</span>
+        <div class="col-lg-5 study-col d-flex justify-content-center align-items-center">
+          <div class=" card card-light rounded-22 p-4 flex-fill h-100 justify-constent-center">
+            <div class="d-flex flex-column flex-fill justify-content-center">
+              <div class="d-flex flex-column mb-4">
+                <h1 class="color-primary font-bold mb-0">Timer</h1>
+                <p class="color-dark text-24 font-semi-bold mb-1">
+                  Concentrate on session
                 </p>
+              </div>
+              <div id="app" class="mb-3">
+                <div class="base-timer m-auto">
+                  <svg
+                    class="base-timer__svg"
+                    viewBox="0 0 100 100"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g class="base-timer__circle">
+                      <circle
+                        class="base-timer__path-elapsed"
+                        cx="50"
+                        cy="50"
+                        r="45"
+                      ></circle>
+                      <path
+                        id="base-timer-path-remaining"
+                        stroke-dasharray="283"
+                        class="base-timer__path-remaining arc"
+                        d="
+                                M 50, 50
+                                m -45, 0
+                                a 45,45 0 1,0 90,0
+                                a 45,45 0 1,0 -90,0
+                                "
+                      ></path>
+                    </g>
+                  </svg>
+                  <div class="inner-timer">
+                    <img src="../../static/image/alarm.png" alt="">
+                  </div>
+                  <p class="mb-2">
+                    <span id="base-timer-label" class="color-dark text-24 font-semi-bold">12</span>
+                    <span class="color-dark text-24 font-semi-bold">22</span>
+                  </p>
+                </div>
               </div>
             </div>
             <div
@@ -351,8 +655,78 @@
 
     <!-- rating  -->
 
-    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex hidden-scroll">
-
+    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex align-items-center justify-content-center hidden-scroll">
+      <div class=" px-5 py-4 d-flex flex-column card card-light col-lg-7">
+        <h2 class="color-primary font-semi-bold mb-1">Rate your session</h2>
+        <div class="d-flex flex-column py-3 px-0">
+          <div class="mb-3">
+            <h4 class=" color-dark font-semi-bold">Focus</h4>
+            <div class="d-flex justify-content-between">
+              <star-rating
+                class="mb-2"
+                v-model="focusRating"
+                inactive-color="#FFDCDB"
+                active-color="#F49196"
+                border-color="#ffeded"
+                v-bind:border-width="4"
+                v-bind:star-size="21"
+                v-bind:padding="1"
+                v-bind:animate="true"
+                v-bind:rounded-corners="true"
+                v-bind:max-rating="5"
+              ></star-rating>
+              <p class="total-value px-4">
+                {{ focusRating }}<sub>/5</sub>
+              </p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <h4 class=" color-dark font-semi-bold">Efficiency</h4>
+            <div class="d-flex justify-content-between">
+              <star-rating
+                class="mb-2"
+                v-model="focusEfficiency"
+                inactive-color="#FFDCDB"
+                active-color="#F49196"
+                border-color="#ffeded"
+                v-bind:border-width="4"
+                v-bind:star-size="21"
+                v-bind:padding="1"
+                v-bind:animate="true"
+                v-bind:rounded-corners="true"
+                v-bind:max-rating="5"
+              ></star-rating>
+              <p class="total-value px-4">
+                {{ focusEfficiency }}<sub>/5</sub>
+              </p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <h4 class=" color-dark font-semi-bold">Work Completed</h4>
+            <div class="d-flex justify-content-between">
+              <star-rating
+                class="mb-2"
+                v-model="focusWorkComplete"
+                inactive-color="#FFDCDB"
+                active-color="#F49196"
+                border-color="#ffeded"
+                v-bind:border-width="4"
+                v-bind:star-size="21"
+                v-bind:padding="1"
+                v-bind:animate="true"
+                v-bind:rounded-corners="true"
+                v-bind:max-rating="5"
+              ></star-rating>
+              <p class="total-value px-4">
+                {{ focusWorkComplete }}<sub>/5</sub>
+              </p>
+            </div>
+          </div>
+        </div>
+        <button type="button" @click.prevent="onLogSession()" class="btn btn-primary mb-3 mt-2 pl-3 pr-3">
+          Log Session
+        </button>
+      </div>
     </div>
 
     <!-- end rating -->
