@@ -160,7 +160,7 @@
                   <tr>
                     <td class="tmodal-data">Type</td>
                     <td class="tmodal-data">
-                      <span class="pr-2">:</span>
+                      <span class="pr-2"></span>
                       {{ detailType }}
                     </td>
                   </tr>
@@ -168,7 +168,7 @@
                   <tr>
                     <td class="tmodal-data">With</td>
                     <td class="tmodal-data d-flex align-items-center flex-wrap">
-                      <span class="pr-2">:</span>
+                      <span class="pr-2"></span>
                       <span v-if="detailType == 'Teacher'"
                         >{{ detailWith }}
                       </span>
@@ -199,36 +199,38 @@
 
                   <tr>
                     <td class="tmodal-data">Date</td>
-                    <td class="tmodal-data d-flex align-items-center form-row">
-                      <span class="pr-2">:</span>
-                      <!-- <div class="col-md-6 ml-auto"> -->
-                      <!-- <div class="form-group"> -->
-                      <!-- <label for="recipient-name" class="col-form-label"
-                        >Date<em>*</em></label
-                      > -->
-                      <!-- v-model="dateValue"
-                            :class="{
-                              'is-invalid': submitted && $v.dateValue.$error,
-                            }"
-                            :disabled-dates="disabledDates" -->
-                      <date-picker
-                        class="form-control w-50"
-                        placeholder="MM/DD/YYYY"
-                        format="MM/dd/yyyy"
-                        :value="detailDate"
-                        v-model="detailDate"
-                        @selected="onDateChange()"
-                      />
-                      <!-- <div
-                            v-if="submitted && $v.dateValue.$error"
-                            class="invalid-feedback"
-                          >
-                            <span v-if="!$v.dateValue.required"
-                              >This field is required</span
+                    <td class="tmodal-data">
+                      <div class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                        <span class="pr-2"></span>
+                        <!-- <div class="col-md-6 ml-auto"> -->
+                        <!-- <div class="form-group"> -->
+                        <!-- <label for="recipient-name" class="col-form-label"
+                          >Date<em>*</em></label
+                        > -->
+                        <!-- v-model="dateValue"
+                              :class="{
+                                'is-invalid': submitted && $v.dateValue.$error,
+                              }"
+                              :disabled-dates="disabledDates" -->
+                        <date-picker
+                          class="form-control"
+                          placeholder="MM/DD/YYYY"
+                          format="MM/dd/yyyy"
+                          :value="detailDate"
+                          v-model="detailDate"
+                          @selected="onDateChange()"
+                        />
+                        <!-- <div
+                              v-if="submitted && $v.dateValue.$error"
+                              class="invalid-feedback"
                             >
-                          </div> -->
-                      <!-- </div> -->
-                      <!-- </div> -->
+                              <span v-if="!$v.dateValue.required"
+                                >This field is required</span
+                              >
+                            </div> -->
+                        <!-- </div> -->
+                        <!-- </div> -->
+                      </div>
                     </td>
                   </tr>
 
@@ -236,7 +238,7 @@
                     <td>Select Time</td>
                     <td>
                       <div class="d-flex align-items-center">
-                        <span class="pr-2">:</span>
+                        <span class="pr-2"></span>
                         <div
                           v-if="slot_date_selection.length > 0"
                           class="col-10 p-0 position-relative"
@@ -296,7 +298,7 @@
                   <tr>
                     <td class="tmodal-data">Time</td>
                     <td class="tmodal-data">
-                      <span class="pr-2">:</span>
+                      <span class="pr-2"></span>
                       {{ detailTime }}
                       <!-- {{ popupFrom[0] }} to {{ popupEnd[0] }} -->
                     </td>
@@ -304,8 +306,8 @@
                   <tr>
                     <td class="tmodal-data text-nowrap">Meeting Name</td>
                     <td class="tmodal-data">
-                      <p class="mb-0 tdata-overflow d-flex align-items-center">
-                        <span class="pr-2">:</span>
+                      <p class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                        <span class="pr-2"></span>
                         <!-- <span v-if="value">
                               {{
                                 value.first_name +
@@ -318,7 +320,7 @@
                           name="detailMeetingName"
                           autocomplete="off"
                           maxlength="100"
-                          class="form-control custom-form-control"
+                          class="form-control bg-white "
                           v-model="detailMeetingName"
                           :class="{
                             'is-invalid':
@@ -339,8 +341,8 @@
                   <tr>
                     <td class="tmodal-data text-nowrap">Description</td>
                     <td class="tmodal-data">
-                      <p class="mb-0 tdata-overflow d-flex align-items-center">
-                        <span class="pr-2">:</span>
+                      <p class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                        <span class="pr-2"></span>
                         <!-- <span v-if="value">
                               {{
                                 value.first_name +
@@ -353,7 +355,7 @@
                           name="detailMeetingDesc"
                           autocomplete="off"
                           maxlength="500"
-                          class="form-control custom-form-control"
+                          class="form-control bg-white"
                           v-model="detailMeetingDesc"
                           :class="{
                             'is-invalid':
@@ -374,10 +376,10 @@
                   <tr>
                     <td class="tmodal-data text-nowrap">Type of Meeting</td>
                     <td class="tmodal-data">
-                      <p class="mb-0 tdata-overflow d-flex align-items-center">
-                        <span class="pr-2">:</span>
+                      <p class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                        <span class="pr-2"></span>
                         <select
-                          class="custom-select custom-select-sm mb-3"
+                          class=" form-control bg-white"
                           tabindex=""
                           name="detailConversationType"
                           v-model="detailConversationType"
@@ -411,8 +413,8 @@
                       }}
                     </td>
                     <td class="tmodal-data">
-                      <p class="mb-0 tdata-overflow d-flex align-items-center">
-                        <span class="pr-2">:</span>
+                      <p class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                        <span class="pr-2"> </span>
                         <!-- <span v-if="value">
                               {{
                                 value.first_name +
@@ -425,7 +427,7 @@
                           name="detailVenue"
                           autocomplete="off"
                           maxlength="200"
-                          class="form-control custom-form-control"
+                          class="form-control custom-form-control bg-white"
                           v-model="detailVenue"
                           :class="{
                             'is-invalid': submitted && $v.detailVenue.$error,
