@@ -197,6 +197,7 @@
                       <div
                         v-if="membersInfo.length > 7"
                         class="ml-list-more position-absolute"
+                        @click="openViewMoreMembers(false)"
                       >
                         7+
                       </div>
@@ -219,6 +220,7 @@
                                 >
                                   <!-- <span class="input-name">{{ data }}</span> -->
                                   <div
+                                    v-if="index < 2"
                                     class="
                                       d-flex
                                       align-items-center
@@ -270,6 +272,13 @@
                                   </div>
                                 </li>
 
+                                <div
+                                  v-if="leadersInfo.length >= 3"
+                                  @click="openViewMoreMembers(true)"
+                                >
+                                  View More
+                                </div>
+
                                 <!-- <li
                                   v-for="(leader, index) in list.todoLeader"
                                   :key="index"
@@ -283,11 +292,9 @@
                                     <i class="fa fa-times p-1" aria-hidden="true"></i
                                   ></span> 
                                 </li> -->
+                                <!-- list.todoArr.length == 0 && -->
                                 <li
-                                  v-if="
-                                    list.todoArr.length == 0 &&
-                                    list.todoLeader.length == 0
-                                  "
+                                  v-if="!leadersInfo || leadersInfo.length == 0"
                                 >
                                   <span class="input-name">No data</span>
                                 </li>
@@ -617,6 +624,141 @@
       </div>
     </div>
     <!-- modal add assignment -->
+
+    <!-- modal for view members and leaders -->
+    <div
+      class="modal fade"
+      id="viewMoreModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="viewMoreModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="viewMoreModalLongTitle">
+              View {{ isLeaderView ? "Leaders" : "Members" }}
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body no-overflow px-4">
+            <!-- leader details -->
+            <div v-if="isLeaderView" class="inner-info-text">
+              <ul class="mb-0 leader-list-style">
+                <li v-for="(data, index) in leadersInfo" :key="index">
+                  <!-- <span class="input-name">{{ data }}</span> -->
+                  <div
+                    class="d-flex align-items-center justify-content-end mt-2"
+                  >
+                    <div class="col-4 d-flex justify-content-end p-0">
+                      <div class="ld-img-section">
+                        <div class="ld-img-holder">
+                          <img
+                            v-if="data.user_info.profile_pic"
+                            :src="data.user_info.profile_pic"
+                            alt=""
+                          />
+                          <span v-else>{{
+                            data.user_info.first_name.charAt(0)
+                          }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-8 p-0">
+                      <div class="ld-details-section">
+                        <p class="ld-heading mb-1">
+                          {{
+                            data.user_info.first_name +
+                            (data.user_info.last_name
+                              ? " " + data.user_info.last_name
+                              : "")
+                          }},
+                          {{
+                            data.user_info.user_type_id == 3
+                              ? "Student"
+                              : "Teacher"
+                          }}
+                        </p>
+                        <p class="ld-details mb-0">
+                          {{ data.user_info.email }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li v-if="!leadersInfo || leadersInfo.length == 0">
+                  <span class="input-name">No data</span>
+                </li>
+              </ul>
+            </div>
+            <!-- details end -->
+
+            <!-- member details -->
+            <div v-if="!isLeaderView" class="inner-info-text">
+              <ul class="mb-0 leader-list-style">
+                <li v-for="(data, index) in membersInfo" :key="index">
+                  <!-- <span class="input-name">{{ data }}</span> -->
+                  <div
+                    class="d-flex align-items-center justify-content-end mt-2"
+                  >
+                    <div class="col-4 d-flex justify-content-end p-0">
+                      <div class="ld-img-section">
+                        <div class="ld-img-holder">
+                          <img
+                            v-if="data.user_info.profile_pic"
+                            :src="data.user_info.profile_pic"
+                            alt=""
+                          />
+                          <span v-else>{{
+                            data.user_info.first_name.charAt(0)
+                          }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-8 p-0">
+                      <div class="ld-details-section">
+                        <p class="ld-heading mb-1">
+                          {{
+                            data.user_info.first_name +
+                            (data.user_info.last_name
+                              ? " " + data.user_info.last_name
+                              : "")
+                          }},
+                          {{
+                            data.user_info.user_type_id == 3
+                              ? "Student"
+                              : "Teacher"
+                          }}
+                        </p>
+                        <p class="ld-details mb-0">
+                          {{ data.user_info.email }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li v-if="!membersInfo || membersInfo.length == 0">
+                  <span class="input-name">No data</span>
+                </li>
+              </ul>
+            </div>
+            <!-- details end -->
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+    <!--  modal for view members and leaders -->
   </div>
 </template>
 <script>
@@ -660,6 +802,7 @@ export default {
       daysArray: [],
       selectedStudents: [],
       leaderUpdate: {},
+      isLeaderView: false,
     };
   },
 
@@ -997,7 +1140,6 @@ export default {
       });
     },
     async addLeader() {
-      console.log("selected leader ", this.leaderUpdate);
       await this.addStudentLeader({
         club_id: this.$route.query.id,
         user_id: this.leaderUpdate ? this.leaderUpdate.id : "",
@@ -1017,6 +1159,11 @@ export default {
           duration: 5000,
         });
       }
+    },
+    // view more members
+    openViewMoreMembers(isLeader) {
+      this.isLeaderView = isLeader;
+      $("#viewMoreModal").modal({ backdrop: true });
     },
   },
 };
