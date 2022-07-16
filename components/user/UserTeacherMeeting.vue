@@ -133,7 +133,7 @@
               <div class="row Meeting-row text-center align-items-center px-4 px-md-5 px-lg-3 px-xl-5" v-show="isShowing">
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
-                    <img src="~/assets/images/undraw/step1.png" alt="" />
+                    <img src="~/assets/images/undraw/step1.png" class="img-illustrate" alt="" />
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary font-medium">Step 1</h6>
                       <p class="color-secondary text-12">Search & Select Your Teacher</p>
@@ -142,7 +142,7 @@
                 </div>
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
-                    <img src="~/assets/images/undraw/step2.png" alt="" />
+                    <img src="~/assets/images/undraw/step2.png" class="img-illustrate" alt="" />
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary font-medium">Step 2</h6>
                       <p class="color-secondary text-12">Choose Your Date Range</p>
@@ -151,7 +151,7 @@
                 </div>
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
-                    <img src="~/assets/images/undraw/step3.png" alt="" />
+                    <img src="~/assets/images/undraw/step3.png" class="img-illustrate" alt="" />
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary font-medium">Step 3</h6>
                       <p class="color-secondary text-12">Select Your Time and Confirm</p>

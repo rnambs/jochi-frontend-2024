@@ -164,6 +164,9 @@ body {
   background-color: #000000;
   color: #ffffff;
 }
+.btn.btn-void {
+  background-color: transparent;
+}
 
 .form-row label.form-label, .form-group label.form-label {
   color: #C5C0BD;
@@ -210,12 +213,11 @@ body {
   padding: 0.375rem 0.75rem;
 }
 .form-row .dropdown-menu, .form-group .dropdown-menu {
-  background-color: #2D2D2F;
+  background-color: #ffffff;
   font-size: 0.8rem;
   padding: inherit;
-  border-radius: 0.3rem;
   list-style-type: none;
-  border: 2px solid #a7a7a7;
+  border: none;
   border-radius: 0.45rem;
   padding: 0.375rem 0.75rem;
   z-index: 10;
@@ -229,11 +231,12 @@ body {
 .form-row .dropdown-menu .item, .form-group .dropdown-menu .item {
   padding: 0.75rem 1rem;
   font-size: 0.8rem;
-  color: #B4B4B4;
+  color: #431F1C;
 }
 .form-row .dropdown-menu .item:hover, .form-group .dropdown-menu .item:hover {
-  background-color: #a7a7a7;
-  color: #F9F9F9;
+  color: #ffffff;
+  background: #FF6D6D;
+  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
   border-radius: 0.3rem;
 }
 .form-row .input-icon, .form-group .input-icon {
@@ -1950,7 +1953,7 @@ img.card-img {
     display: block;
   }
 }
-.inner-section .main-section .meeting-section img {
+.inner-section .main-section .meeting-section img.img-illustrate {
   padding: 0.5rem;
   padding-bottom: 2rem;
   width: 100%;
@@ -1958,25 +1961,25 @@ img.card-img {
      object-fit: contain;
 }
 @media (min-width: 1396.98px) {
-  .inner-section .main-section .meeting-section img {
+  .inner-section .main-section .meeting-section img.img-illustrate {
     width: 65%;
     margin: auto;
   }
 }
 @media (max-width: 1396.98px) {
-  .inner-section .main-section .meeting-section img {
+  .inner-section .main-section .meeting-section img.img-illustrate {
     width: 70%;
     margin: auto;
   }
 }
 @media (max-width: 1024.98px) {
-  .inner-section .main-section .meeting-section img {
+  .inner-section .main-section .meeting-section img.img-illustrate {
     width: 60%;
     margin: auto;
   }
 }
 @media (max-width: 767.98px) {
-  .inner-section .main-section .meeting-section img {
+  .inner-section .main-section .meeting-section img.img-illustrate {
     padding: 1rem;
     width: 60%;
     margin: 0;
@@ -2978,21 +2981,6 @@ img.card-img {
   .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul {
     text-align: center;
   }
-}
-.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul span:first-child li {
-  background-color: #9d00df;
-}
-.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul span:nth-child(n+2) li {
-  background-color: #1d9c00;
-}
-.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul span:nth-child(n+3) li {
-  background-color: #f28d53;
-}
-.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul span:nth-child(n+4) li {
-  background-color: #fb3e80;
-}
-.inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul span:nth-child(n+5) li {
-  background-color: #1d9c00;
 }
 .inner-section .main-section .club-section-catlg .inner-club .catalog-list .catalog-row ul .to-do-li {
   font-size: 0.75rem;
@@ -5924,15 +5912,6 @@ select.form-control.is-invalid {
   background: rgba(255, 255, 255, 0.3) !important;
 }
 
-.dropdown.input-icon-area.custom-sort-by-btn {
-  background: none;
-  box-shadow: none;
-}
-.dropdown.input-icon-area.custom-sort-by-btn button {
-  background: none !important;
-  box-shadow: none !important;
-}
-
 .cd-cover-pic-section {
   background-image: url("./../image/cover-pic.jpg");
   background-position: top;
@@ -5955,21 +5934,6 @@ select.form-control.is-invalid {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-}
-.custom-club-details-tag-bg:first-child {
-  background-color: #9d00df;
-}
-.custom-club-details-tag-bg:nth-child(n+2) {
-  background-color: #1d9c00;
-}
-.custom-club-details-tag-bg:nth-child(n+3) {
-  background-color: #f28d53;
-}
-.custom-club-details-tag-bg:nth-child(n+4) {
-  background-color: #fb3e80;
-}
-.custom-club-details-tag-bg:nth-child(n+5) {
-  background-color: #1d9c00;
 }
 
 .inner-info-text .leader-list-style {
@@ -6079,8 +6043,8 @@ select.form-control.is-invalid {
 }
 
 .approved-tag {
-  top: 12px;
-  right: 12px;
+  top: -12px;
+  right: -12px;
 }
 .approved-tag .approved-status {
   width: 30px;

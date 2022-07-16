@@ -13,14 +13,14 @@
         class="
           jochi-components-light-bg
           p-4
-          custom-margin-for-main-section custom-full-height
+          custom-margin-for-main-section custom-full-height d-flex flex-column
         "
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-4">
-            <h4 class="tab-head mb-0 p-0">My Meetings</h4>
+            <h3 class="color-primary font-bold">My Meetings</h3>
             <div class="inner-tab-section container-fluid p-0">
-              <div class="row m-0">
+              <div class="row m-0 mb-3">
                 <!-- <div class="col-md-4">
                   <div class="input-icon-area">
                     <multiselect
@@ -39,10 +39,10 @@
                   </div>
                 </div> -->
                 <div class="col-md-4 p-0">
-                  <div class="dropdown input-icon-area custom-sort-by-btn">
+                  <div class="dropdown form-row custom-sort-by-btn">
                     <button
                       id="dLabel"
-                      class="dropdown-select form-control p-0"
+                      class="dropdown-select btn btn-void p-0"
                       type="button"
                       data-toggle="dropdown"
                       aria-haspopup="true"
@@ -69,17 +69,17 @@
         <!-- end tab section for view all meeting -->
         <!-- element secton -->
 
-        <section id="view-all-section" class="">
-          <div class="meeting-section container-fluid">
+        <section id="view-all-section" class=" d-flex h-40 flex-fill">
+          <div class="meeting-section container-fluid d-flex custom-overflow pe-2 mr--2 flex-fill">
             <div class="inner-meeting m-auto container-fluid p-0">
               <div class="row Meeting-row pl-0 pr-3 pt-0">
                 <div
                   @click="onCardClick(list)"
-                  class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4 p-4"
+                  class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3 p-4"
                   v-for="(list, index) in slot_date"
                   :key="index"
                 >
-                  <div class="meeting-list p-3 position-realtive">
+                  <div class="meeting-list p-3 position-realtive cursor-pointer card card-void align-items-center h-100">
                     <div class="approved-tag position-absolute">
                       <!-- {{ list }} -->
                       <div
@@ -101,9 +101,9 @@
                         />
                       </div>
                     </div>
-                    <h6>Meeting with {{ list["title"] }}</h6>
-                    <p class="date">{{ list["dateFormat"] }}</p>
-                    <p class="time">
+                    <h6 class="color-dark text-center mb-2 font-semi-bold">Meeting with {{ list["title"] }}</h6>
+                    <p class="color-secondary text-center mb-1">{{ list["dateFormat"] }}</p>
+                    <p class="color-primary text-center mb-1">
                       {{ list["from"] }} to {{ list["end"] }}
                       <!-- {{ timeZones.timeZone }} -->
                     </p>
