@@ -117,6 +117,10 @@ body {
   color: #159E00;
 }
 
+.bg-white {
+  background-color: #ffffff;
+}
+
 .btn {
   text-transform: capitalize;
   border: none;
