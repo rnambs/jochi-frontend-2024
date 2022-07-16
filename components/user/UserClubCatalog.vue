@@ -129,7 +129,12 @@
                               >
                                 {{ todos }}
                               </li> -->
-                              <li class="to-do-li">
+                              <li
+                                class="to-do-li"
+                                :style="{
+                                  'background-color': tagColorMap[todos],
+                                }"
+                              >
                                 {{ todos }}
                               </li>
                             </span>
@@ -388,6 +393,7 @@ export default {
       submitted: false,
       tags: [],
       debounce: null,
+      tagColorMap: {},
     };
   },
   validations: {
@@ -527,6 +533,30 @@ export default {
           dots.style.display = "inline";
           btnText.innerHTML = "Read more";
           moreText.style.display = "none";
+        }
+      });
+      this.generateRandomColor();
+    },
+
+    // generate random tag colours
+    generateRandomColor() {
+      this.tagColorMap = {};
+      const obj = {};
+      // console.log("color", this.list_data);
+      this.list_data.forEach((e) => {
+        if (e.tagList && e.tagList.length > 0) {
+          e.tagList.forEach((tag) => {
+            // let index = this.tagColorMap.find((index) => index.tag == tag);
+            if (!this.tagColorMap[tag]) {
+              let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+              const key = tag;
+
+              obj[key] = color;
+
+              console.log(obj);
+            }
+            this.tagColorMap = obj;
+          });
         }
       });
     },
