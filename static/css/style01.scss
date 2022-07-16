@@ -162,6 +162,13 @@ body{
         &::placeholder{
             color: $text-secondary;
         }
+        &.tab-form-control{
+            height: calc(2.25rem + 10px);
+            font-size: 12px;
+            &::placeholder{
+                font-size: 14px;
+            }
+        }
     }
     textarea.form-control{
         border: none;

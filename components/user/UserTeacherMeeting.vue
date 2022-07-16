@@ -81,7 +81,7 @@
                       name="daterange"
                       autocomplete="off"
                       placeholder="Date Range"
-                      class="form-control custom-form-control"
+                      class="form-control tab-form-control custom-form-control"
                       readonly="readonly"
                       :disabled="!value && !(selectedStudents.length > 0)"
                     />

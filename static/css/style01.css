@@ -187,6 +187,19 @@ body {
 .form-row input.form-control::placeholder, .form-row select.form-control::placeholder, .form-row .form-control::placeholder, .form-group input.form-control::placeholder, .form-group select.form-control::placeholder, .form-group .form-control::placeholder {
   color: #C5C0BD;
 }
+.form-row input.form-control.tab-form-control, .form-row select.form-control.tab-form-control, .form-row .form-control.tab-form-control, .form-group input.form-control.tab-form-control, .form-group select.form-control.tab-form-control, .form-group .form-control.tab-form-control {
+  height: calc(2.25rem + 10px);
+  font-size: 12px;
+}
+.form-row input.form-control.tab-form-control::-moz-placeholder, .form-row select.form-control.tab-form-control::-moz-placeholder, .form-row .form-control.tab-form-control::-moz-placeholder, .form-group input.form-control.tab-form-control::-moz-placeholder, .form-group select.form-control.tab-form-control::-moz-placeholder, .form-group .form-control.tab-form-control::-moz-placeholder {
+  font-size: 14px;
+}
+.form-row input.form-control.tab-form-control:-ms-input-placeholder, .form-row select.form-control.tab-form-control:-ms-input-placeholder, .form-row .form-control.tab-form-control:-ms-input-placeholder, .form-group input.form-control.tab-form-control:-ms-input-placeholder, .form-group select.form-control.tab-form-control:-ms-input-placeholder, .form-group .form-control.tab-form-control:-ms-input-placeholder {
+  font-size: 14px;
+}
+.form-row input.form-control.tab-form-control::placeholder, .form-row select.form-control.tab-form-control::placeholder, .form-row .form-control.tab-form-control::placeholder, .form-group input.form-control.tab-form-control::placeholder, .form-group select.form-control.tab-form-control::placeholder, .form-group .form-control.tab-form-control::placeholder {
+  font-size: 14px;
+}
 .form-row textarea.form-control, .form-group textarea.form-control {
   border: none;
   background-color: rgba(255, 255, 255, 0.5);
