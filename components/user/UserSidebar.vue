@@ -158,9 +158,9 @@
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
                 <div class="card-header bg-transparent border-0 p-1" id="headingOne">
-                  <h2 class="mb-0">
+                  <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -178,7 +178,7 @@
                       <span class="ml-2 color-secondary text-capitalize">Planner</span>
                       <i class="fas fa-chevron-right color-secondary"></i>
                     </button>
-                  </h2>
+                  </div>
                 </div>
                 <div
                   id="collapseOne"
@@ -187,7 +187,7 @@
                   data-parent="#accordionExample"
                 >
                   <div class="card-body py-0">
-                    <ul class="inner-custom-list ml-4">
+                    <ul class="inner-custom-list ml-4 mb-2">
                       <li class="nav-item">
                         <nuxt-link
                           to="/planner-day"
@@ -218,9 +218,9 @@
               </div>
               <div class="card bg-transparent shadow-none border-0mb-2">
                 <div class="card-header bg-transparent border-0 p-1" id="headingTwo">
-                  <h2 class="mb-0">
+                  <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -238,7 +238,7 @@
                       <span class="ml-2 color-secondary text-capitalize">Meeting</span>
                       <i class="fas fa-chevron-right color-secondary"></i>
                     </button>
-                  </h2>
+                  </div>
                 </div>
                 <div
                   id="collapseTwo"
@@ -247,7 +247,7 @@
                   data-parent="#accordionExample"
                 >
                   <div class="card-body py-0">
-                    <ul class="inner-custom-list ml-4">
+                    <ul class="inner-custom-list ml-4 mb-2">
                       <li class="nav-item">
                         <nuxt-link
                           to="/teacher-meeting"
@@ -278,9 +278,9 @@
               </div>
               <div class="card bg-transparent shadow-none border-0 mb-2">
                 <div class="card-header bg-transparent border-0 p-1" id="headingThree">
-                  <h2 class="mb-0">
+                  <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -298,7 +298,7 @@
                       <span class="ml-2 color-secondary text-capitalize">Teams & Clubs</span>
                       <i class="fas fa-chevron-right color-secondary"></i>
                     </button>
-                  </h2>
+                  </div>
                 </div>
                 <div
                   id="collapseThree"
@@ -307,7 +307,7 @@
                   data-parent="#accordionExample"
                 >
                   <div class="card-body py-0">
-                    <ul class="inner-custom-list ml-4">
+                    <ul class="inner-custom-list ml-4 mb-2">
                       <li class="nav-item">
                         <nuxt-link to="/club-detail" class="nav-link"
                           >Existing</nuxt-link
@@ -324,9 +324,9 @@
               </div>
               <div class="card bg-transparent shadow-none border-0 mb-2">
                 <div class="card-header bg-transparent border-0 p-1" id="headingFour">
-                  <h2 class="mb-0">
+                  <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -344,7 +344,7 @@
                       <span class="ml-2 color-secondary text-capitalize">Study Room</span>
                       <i class="fas fa-chevron-right color-secondary"></i>
                     </button>
-                  </h2>
+                  </div>
                 </div>
                 <div
                   id="collapseFour"
@@ -353,7 +353,7 @@
                   data-parent="#accordionExample"
                 >
                   <div class="card-body py-0">
-                    <ul class="inner-custom-list ml-4">
+                    <ul class="inner-custom-list ml-4 mb-2">
                       <li class="nav-item">
                         <nuxt-link to="/study-time" class="nav-link"
                           >Session</nuxt-link
@@ -376,7 +376,7 @@
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
                 <div class="card-header bg-transparent border-0 p-1" id="headingOne">
-                  <h2 class="mb-0">
+                  <div class="mb-0 d-flex">
                     <button
                       class="
                         btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block
@@ -402,7 +402,7 @@
                       </div>
                       <!-- <a href="https://www.jochi.info/faqs">FAQ</a> -->
                     </button>
-                  </h2>
+                  </div>
                 </div>
               </div>
             </div>
@@ -411,7 +411,7 @@
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
                 <div class="card-header bg-transparent border-0 p-1" id="headingOne">
-                  <h2 class="mb-0">
+                  <div class="mb-0 d-flex">
                     <button
                       class="
                         btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block
@@ -433,7 +433,7 @@
                         <span class="ml-2 color-secondary text-capitalize">Privacy Policy</span>
                       </nuxt-link>
                     </button>
-                  </h2>
+                  </div>
                 </div>
               </div>
             </div>
