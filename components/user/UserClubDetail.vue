@@ -91,7 +91,7 @@
                         class="img-fluid ct-team"
                       />
                       <img
-                        src="../../static/image/club-type.png"
+                        src="../../static/image/meeting.png"
                         alt=""
                         class="img-fluid ct-club"
                       />
