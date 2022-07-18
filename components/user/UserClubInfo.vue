@@ -38,7 +38,7 @@
                 pl-0
               "
             >
-              <div class=" my-2">
+              <div class="my-2 px-2">
                 <h3 class="color-primary font-semi-bold mb-1">Club Details</h3>
               </div>
               <div class="inner-info">
@@ -310,7 +310,7 @@
                         class="col-12 text-right inner-col"
                         v-if="enableEdit"
                       >
-                        <div class="inner-info-head mb-3">
+                        <div class="inner-info-head mb-0">
                           <h5 class="color-dark mb-2 font-bold">Add Leaders</h5>
                         </div>
 
@@ -379,21 +379,15 @@
                     </div>
                     <div class="row">
                       <div class="col-12 inner-col text-right">
-                        <div class="inner-info-head mb-3">
-                          <h5>Tags</h5>
+                        <div class="inner-info-head mb-0">
+                          <h5 class="color-dark mb-2 font-bold">Tags</h5>
                         </div>
                         <div class="row">
                           <div class="col-6"></div>
                           <div class="col-6 info-tag pr-0">
                             <div class="input-group mb-0 justify-content-end">
                               <div
-                                class="
-                                  input-icon-area
-                                  py-1
-                                  px-4
-                                  mb-2
-                                  mr-2
-                                  custom-club-details-tag-bg
+                                class="p-1
                                 "
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
@@ -414,7 +408,7 @@
                                   :style="{
                                     'background-color': tagColorMap[value.name],
                                   }"
-                                  class="pl"
+                                  class="px-4 py-1 rounded color-white"
                                   >{{ value.name }}</span
                                 >
                                 <span

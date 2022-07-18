@@ -2015,28 +2015,6 @@ img.card-img {
   background-color: #ffffff;
   box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
 }
-.inner-section .main-section .club-section .row .col-md-8 {
-  padding-right: 10px;
-  padding-left: 15px;
-}
-@media (max-width: 767.98px) {
-  .inner-section .main-section .club-section .row .col-md-8 {
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-}
-.inner-section .main-section .club-section .row .col-md-8 .inner-club {
-  width: 100%;
-  height: 100%;
-}
-.inner-section .main-section .club-section .row .col-md-8 .inner-club.club-files {
-  min-height: calc(100vh - 240px);
-}
-.inner-section .main-section .club-section .row .col-md-8 .inner-club .image-overflow {
-  overflow: hidden;
-  overflow-y: auto;
-  height: calc(100vh - 342px);
-}
 .inner-section .main-section .club-section .row .col-md-8 .inner-club .image-overflow .info-row .col-md-3 .fig-section {
   position: relative;
 }
@@ -2116,24 +2094,6 @@ img.card-img {
   height: 100% !important;
   -o-object-fit: contain !important;
      object-fit: contain !important;
-}
-.inner-section .main-section .club-section .row .col-md-4 {
-  padding-right: 15px;
-  padding-left: 10px;
-}
-@media (max-width: 767.98px) {
-  .inner-section .main-section .club-section .row .col-md-4 {
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-}
-.inner-section .main-section .club-section .row .col-md-4 .inner-club {
-  min-height: 64vh;
-  display: flex;
-  align-items: center;
-}
-.inner-section .main-section .club-section .row .col-md-4 .inner-club.club-files {
-  min-height: calc(100vh - 240px);
 }
 .inner-section .main-section .club-section .row .col-md-4 .inner-club .upload-area {
   position: relative;

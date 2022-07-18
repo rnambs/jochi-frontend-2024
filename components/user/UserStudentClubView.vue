@@ -12,6 +12,8 @@
         class="
           jochi-components-light-bg
           custom-margin-for-main-section custom-full-height
+          d-flex
+          flex-column
         "
       >
         <!-- end tab for club info -->
@@ -37,7 +39,13 @@
               "
             >
               <div class="info-head my-2">
-                <h3 class="mb-1">Club Details</h3>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <h3 class="color-primary font-semi-bold mb-1">Club Details</h3>
+                  
+                  <a href="#" class="btn btn-primary py-1" @click="JoinClub()">{{
+                    user == 3 ? "Join Now" : "Join As Leader"
+                  }}</a>
+                </div>
               </div>
               <div class="inner-info">
                 <div
@@ -47,11 +55,11 @@
                 >
                   <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3">
                     <div class="inner-info-head mb-2">
-                      <h5>About the {{ headingName }}</h5>
+                      <h5 class="color-dark mb-2 font-bold">About the {{ headingName }}</h5>
                     </div>
                     <p
                       v-if="!editDescription"
-                      class="mb-2 cd-about-club-details"
+                      class="mb-2 text-14 color-secondary"
                     >
                       {{ clubDetails.description }}
                       <span
@@ -112,7 +120,7 @@
                       </label>
                     </div> -->
                     <div class="inner-info-head mb-2 mt-4">
-                      <h5>Members</h5>
+                      <h5 class="color-dark mb-2 font-bold">Members</h5>
                     </div>
                     <div
                       class="
@@ -205,13 +213,10 @@
                   </div>
 
                   <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
-                    <a href="#" class="btn btn-join-now" @click="JoinClub()">{{
-                      user == 3 ? "Join Now" : "Join As Leader"
-                    }}</a>
                     <div class="row">
                       <div class="col-12 inner-col text-right">
                         <div class="inner-info-head mb-3">
-                          <h5>Leaders</h5>
+                          <h5 class="color-dark mb-2 font-bold">Leaders</h5>
                         </div>
                         <div class="row">
                           <div class="col-4"></div>
@@ -300,7 +305,7 @@
                                 <li
                                   v-if="!leadersInfo || leadersInfo.length == 0"
                                 >
-                                  <span class="input-name">No data</span>
+                                  <span class="color-secondary font-regular text-14">No data</span>
                                 </li>
                               </ul>
                             </div>
@@ -312,7 +317,7 @@
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-3">
-                          <h5>Add Leaders</h5>
+                          <h5 class="color-dark mb-2 font-bold">Add Leaders</h5>
                         </div>
 
                         <div
@@ -363,7 +368,7 @@
                             <!-- <span slot="maxElements"
                               >Maximum of 4 students selected</span
                             > -->
-                            <span slot="noResult">No data found</span>
+                            <span slot="color-secondary text-14 font-regular">No data found</span>
                           </multiselect>
                           <span class="input-icon custom-search-icon"
                             ><i class="fa fa-search" aria-hidden="true"></i
@@ -381,7 +386,7 @@
                     <div class="row">
                       <div class="col-12 inner-col text-right">
                         <div class="inner-info-head mb-3">
-                          <h5>Tags</h5>
+                          <h5 class="color-dark mb-2 font-bold">Tags</h5>
                         </div>
                         <div class="row">
                           <div class="col-6"></div>
@@ -437,7 +442,8 @@
                                 class="input-icon-area mb-2 mr-2"
                                 v-if="list.taglists.length == 0"
                               >
-                                <input type="text" class="pl" />No data
+                                <input type="text" class="color-secondary text-14 font-regular" />
+                                <span class="color-secondary text-14 font-normal text-nowrap">No data</span>
                               </div>
                             </div>
                           </div>
@@ -448,7 +454,7 @@
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-3">
-                          <h5>Add Tags</h5>
+                          <h5 class="color-dark mb-2 font-bold">Add Tags</h5>
                         </div>
                         <div
                           class="d-flex align-items-center justify-content-end"
@@ -462,7 +468,8 @@
                               placeholder="Select a tag"
                               @input="EditTag"
                             >
-                              <span slot="noResult">No data found</span>
+                              <span slot="color-secondary font-regular text-14"></span>
+                              <span class="color-secondary text-14 font-normal">No data found</span>
                             </multiselect>
                           </div>
                         </div>
@@ -473,7 +480,7 @@
               </div>
             </div>
             <div v-if="list_data.length == 0" class="w-100 text-center py-5">
-              <p class="no-data">No Data</p>
+              <p class="color-secondary font-regular text-14 mb-1">No Data</p>
             </div>
           </div>
         </section>

@@ -11,16 +11,21 @@
       <div
         class="
           jochi-components-light-bg
-          p-4
           custom-margin-for-main-section custom-full-height
+          d-flex
+          flex-column
         "
       >
         <!-- end tab for club info -->
 
+        <div class="cd-cover-pic-section">
+          <div class="black-grad"></div>
+        </div>
+
         <!-- Club info -->
 
-        <section id="club-detail" class="">
-          <div class="club-section container-fluid mt-2">
+        <section id="club-detail" class=" d-flex flex-column flex-fill h-40">
+          <div class="club-section container-fluid mt-2 d-flex flex-column flex-fill h-40 custom-overflow">
             <div
               class="
                 inner-club
@@ -32,8 +37,10 @@
                 p-3
               "
             >
+
+            
               <div class="info-head my-2">
-                <h5 class="mb-3">{{ headingName }}</h5>
+                <h3 class="color-primary font-bold">{{ headingName }}</h3>
               </div>
               <div class="inner-info container-fluid my-3">
                 <div class="row">
@@ -244,7 +251,7 @@
                       <div class="row">
                         <div class="col-6">
                           <div class="inner-info-head mb-3">
-                            <h6>To do!</h6>
+                            <h5 class="color-dark mb-2 font-bold">To do!</h5>
                           </div>
                           <div class="form-group">
                             <ul>
@@ -300,7 +307,7 @@
                   <div class="col-md-5 col-xs-12">
                     <div class="inner-info container p-4">
                       <div class="inner-info-head mb-3">
-                        <h6>Announcements</h6>
+                        <h5 class="color-dark mb-2 font-bold">Announcements</h5>
                         <a
                           v-if="enableEdit"
                           href="#"
@@ -433,18 +440,18 @@
         </section>
 
         <section id="tab" class="">
-          <div class="info-tab container-fluid mt-3">
-            <div class="row tab-row mt-2">
+          <div class="info-tab container-fluid  my-3 px-3">
+            <div class="row tab-row m-0">
               <div class="col-md-4 col-xs-12">
                 <nuxt-link
                   :to="{
                     path: '/club-info',
                     query: { id: clubId, name: headingName, type: type },
                   }"
-                  class="inner-tab"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
                 >
                   <!-- <i class="fas fa-info"></i> -->
-                  <span class="pl">Club Details</span>
+                  <span class="text-24 color-primary font-semi-bold">Club Details</span>
                 </nuxt-link>
               </div>
               <div class="col-md-4 col-xs-12">
@@ -453,26 +460,28 @@
                     path: '/club-files',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
                 >
                   <!-- <i class="fas fa-file-alt"></i> -->
-                  <span class="pl">Files/Slides</span>
+                  <span class="text-24 color-primary font-semi-bold">Files/Slides</span>
                 </nuxt-link>
               </div>
               <div @click="onNextMeeting" class="col-md-4 col-xs-12">
-                <!-- <nuxt-link
-                  :to="{
-                    path: '/club-moreInfo',
-                    query: { id: clubId, name: headingName },
-                  }"
-                  class="inner-tab"
-                > -->
-                <!-- <i class="fas fa-ellipsis-h"></i> -->
-                <span class="pl">Next Meeting</span>
-                <span style="color: black">{{
-                  clubMoreDetails.announcement
-                }}</span>
-                <!-- </nuxt-link> -->
+                <div class="inner-tab default d-flex flex-column align-items-center justify-content-center p-4 rounded-10">
+                  <!-- <nuxt-link
+                    :to="{
+                      path: '/club-moreInfo',
+                      query: { id: clubId, name: headingName },
+                    }"
+                    class="inner-tab"
+                  > -->
+                  <!-- <i class="fas fa-ellipsis-h"></i> -->
+                  <span class="text-24 color-primary font-semi-bold">Next Meeting</span>
+                  <span style="color: black">{{
+                    clubMoreDetails.announcement
+                  }}</span>
+                  <!-- </nuxt-link> -->
+                </div>
               </div>
             </div>
           </div>
