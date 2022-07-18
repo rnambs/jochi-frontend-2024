@@ -188,7 +188,7 @@
             </li>
             <li class="menu-list nav-item">
               <nuxt-link
-                to="/teacher-club-detail"
+                to="/club-detail"
                 data-toggle="collapse"
                 class="nav-link"
               >
@@ -204,7 +204,7 @@
             </li>
             <li class="menu-list nav-item">
               <nuxt-link
-                to="/teacher-club-catalogue"
+                to="/club-catalogue"
                 data-toggle="collapse"
                 class="nav-link"
               >

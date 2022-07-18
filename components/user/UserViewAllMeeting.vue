@@ -868,7 +868,7 @@ export default {
           // student_id: localStorage.getItem("id"),
           schedule_id: this.detailScheduleId,
           slot_id: this.detailSlotId,
-          date: this.detailDate,
+          date: moment(this.date_formatted).format("YYYY-MM-DD"),
           conversation_type: this.detailConversationType,
           meeting_name: this.detailMeetingName,
           meeting_description: this.detailMeetingDesc,

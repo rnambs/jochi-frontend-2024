@@ -5,7 +5,8 @@
     <!-- end section -->
 
     <!-- sidebar -->
-    <UserSidebar />
+    {{user_type==3?<UserSidebar />:<UserTeacherSidebar />}}
+
     <!-- sidebar -->
     <UserClubCatalog />
   </div>
@@ -13,6 +14,7 @@
 <script>
 // import UserNavHeader from "~/components/user/UserNavHeader.vue";
 import UserSidebar from "~/components/user/UserSidebar.vue";
+import UserTeacherSidebar from "~/components/user/UserTeacherSidebar.vue";
 import UserClubCatalog from "~/components/user/UserClubCatalog.vue";
 export default {
   // middleware: "authenticated",

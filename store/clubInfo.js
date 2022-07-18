@@ -68,6 +68,12 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
 
 
@@ -125,6 +131,14 @@ const actions = {
 
 
       }
+      else if (response.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', "success");
+
+
+      }
     }
     catch (e) {
       if (e.response.data.message == "Unauthorized") {
@@ -132,6 +146,14 @@ const actions = {
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
         commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
         window.localStorage.clear();
         this.$router.push('/');
       }
@@ -158,6 +180,12 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
 
 
@@ -180,6 +208,12 @@ const actions = {
         commit('setErrorType', "");
         window.localStorage.clear();
         this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
       }
     }
 
@@ -246,6 +280,12 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
   },
   //show club in catalog
@@ -311,6 +351,12 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
 
   },
@@ -370,6 +416,12 @@ const actions = {
         commit('setErrorType', "");
         window.localStorage.clear();
         this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
       }
     }
 
@@ -433,6 +485,14 @@ const actions = {
 
 
       }
+      else if (response.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', "success");
+
+
+      }
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -441,6 +501,12 @@ const actions = {
         commit('setErrorType', "");
         window.localStorage.clear();
         this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
       }
     }
   },
