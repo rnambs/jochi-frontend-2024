@@ -6,7 +6,7 @@
 
     <!-- sidebar -->
 
-    <UserSidebar />
+    {{user_type==3?<UserSidebar />:<UserTeacherSidebar />}}
 
     <!-- sidebar -->
 
@@ -15,6 +15,7 @@
 </template>
 <script>
 import UserSidebar from "~/components/user/UserSidebar.vue";
+import UserTeacherSidebar from "~/components/user/UserTeacherSidebar.vue";
 import UserStudentClubView from "~/components/user/UserStudentClubView.vue";
 export default {
   // middleware: "authenticated",

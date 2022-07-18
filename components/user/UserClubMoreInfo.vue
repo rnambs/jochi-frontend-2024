@@ -1182,12 +1182,12 @@ export default {
     this.getAnnouncement();
     this.getSportActivities();
     this.getClubMoreInfo();
-    if (user == 3) {
-      this.ClubMoreInfo();
-      this.SlotswithId();
-    } else {
-      this.$router.push("/");
-    }
+    // if (user == 3) {
+    this.ClubMoreInfo();
+    this.SlotswithId();
+    // } else {
+    //   this.$router.push("/");
+    // }
     this.initializeDatePicker();
   },
   computed: {

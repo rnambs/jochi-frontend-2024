@@ -205,9 +205,9 @@
                   </div>
 
                   <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
-                    <a href="#" class="btn btn-join-now" @click="JoinClub()"
-                      >Join Now</a
-                    >
+                    <a href="#" class="btn btn-join-now" @click="JoinClub()">{{
+                      user == 3 ? "Join Now" : "Join As Leader"
+                    }}</a>
                     <div class="row">
                       <div class="col-12 inner-col text-right">
                         <div class="inner-info-head mb-3">
@@ -407,14 +407,13 @@
                                   class="pl"
                                   >{{ value.name }}</span
                                 > -->
-                                <input
-                                  type="text"
+                                <span
                                   :style="{
                                     'background-color': tagColorMap[value.name],
                                   }"
                                   class="pl"
-                                  hidden
-                                />{{ value.name }}
+                                  >{{ value.name }}</span
+                                >
                                 <span
                                   class="input-icon"
                                   v-if="enableEdit"
@@ -671,12 +670,12 @@ export default {
     // load students for add leader
     this.GetStudents();
 
-    if (user == 3) {
-      this.ClubInfo();
-      this.GetTag();
-    } else {
-      this.$router.push("/");
-    }
+    // if (user == 3) {
+    this.ClubInfo();
+    this.GetTag();
+    // } else {
+    //   this.$router.push("/");
+    // }
   },
   computed: {
     ...mapState("clubInfo", {
@@ -806,7 +805,6 @@ export default {
             }
           });
           this.tagColorMap = obj;
-          console.log("color", this.tagColorMap);
         }
       });
     },

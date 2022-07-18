@@ -13,7 +13,7 @@
           jochi-components-light-bg
           p-4
           custom-margin-for-main-section custom-full-height
-          d-flex 
+          d-flex
           flex-column
         "
       >
@@ -73,15 +73,45 @@
         <!-- Club detail -->
 
         <section id="club-detail" class="d-flex flex-column h-40 flex-fill">
-          <div class="club-section container-fluid mt-2 px-0 d-flex flex-column h-40 flex-fill">
-            <div class="inner-club club-datail container-fluid p-0 custom-overflow mr--2 pr-2">
+          <div
+            class="
+              club-section
+              container-fluid
+              mt-2
+              px-0
+              d-flex
+              flex-column
+              h-40
+              flex-fill
+            "
+          >
+            <div
+              class="
+                inner-club
+                club-datail
+                container-fluid
+                p-0
+                custom-overflow
+                mr--2
+                pr-2
+              "
+            >
               <div class="row club-row m-1">
                 <div
                   class="col-lg-4 col-md-6 col-sm-12 col-12"
                   v-for="(list, index) in list_data"
                   :key="index"
                 >
-                  <div class="club-list card card-secondary justify-content-between p-4 position-relative h-100">
+                  <div
+                    class="
+                      club-list
+                      card card-secondary
+                      justify-content-between
+                      p-4
+                      position-relative
+                      h-100
+                    "
+                  >
                     <div
                       :class="
                         list.activity_type == 'Clubs'
@@ -101,13 +131,22 @@
                       />
                     </div>
                     <div class="d-flex flex-column">
-                      <h6 class="list-title mb-3 color-primary font-medium">{{ list["description"] }}</h6>
+                      <h6 class="list-title mb-3 color-primary font-medium">
+                        {{ list["description"] }}
+                      </h6>
                       <div class="to-do-list">
                         <ul class="list-unstyled">
-                          <li class="text-12 color-secondary" v-for="(todos, index) in list.todoArr" :key="index">
+                          <li
+                            class="text-12 color-secondary"
+                            v-for="(todos, index) in list.todoArr"
+                            :key="index"
+                          >
                             {{ todos }}
                           </li>
-                          <li class="text-14 color-secondary font-regular" v-if="list.todoArr.length == 0">
+                          <li
+                            class="text-14 color-secondary font-regular"
+                            v-if="list.todoArr.length == 0"
+                          >
                             No to-do's available
                           </li>
                         </ul>

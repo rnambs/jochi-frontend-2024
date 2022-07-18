@@ -6,7 +6,7 @@
 
     <!-- sidebar -->
 
-    <UserSidebar />
+    {{user_type==3?<UserSidebar />:<UserTeacherSidebar />}}
 
     <!-- sidebar -->
 
@@ -15,6 +15,7 @@
 </template>
 <script>
 import UserSidebar from "~/components/user/UserSidebar.vue";
+import UserTeacherSidebar from "~/components/user/UserTeacherSidebar.vue";
 import UserClubInfo from "~/components/user/UserClubInfo.vue";
 export default {
   // middleware: "authenticated",
@@ -22,6 +23,9 @@ export default {
     return {
       link: [{ rel: "stylesheet", href: "/css/style01.css" }],
     };
+  },
+  mounted() {
+    var user_type = localStorage.getItem("user_type");
   },
 };
 </script>

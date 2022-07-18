@@ -398,9 +398,25 @@
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
                               >
-                                <input type="text" class="pl" hidden />{{
+                                <!-- <input type="text" class="pl" hidden />{{
                                   value.name
-                                }}
+                                }} -->
+
+                                <!-- <input
+                                  type="text"
+                                  :style="{
+                                    'background-color': tagColorMap[value.name],
+                                  }"
+                                  class="pl"
+                                  hidden
+                                />{{ value.name }} -->
+                                <span
+                                  :style="{
+                                    'background-color': tagColorMap[value.name],
+                                  }"
+                                  class="pl"
+                                  >{{ value.name }}</span
+                                >
                                 <span
                                   class="input-icon"
                                   v-if="enableEdit"
@@ -808,6 +824,7 @@ export default {
       selectedStudents: [],
       leaderUpdate: {},
       isLeaderView: false,
+      tagColorMap: {},
     };
   },
 
@@ -818,12 +835,12 @@ export default {
     // load students for add leader
     this.GetStudents();
 
-    if (user == 3) {
-      this.ClubInfo();
-      this.GetTag();
-    } else {
-      this.$router.push("/");
-    }
+    // if (user == 3) {
+    this.ClubInfo();
+    this.GetTag();
+    // } else {
+    //   this.$router.push("/");
+    // }
   },
   computed: {
     ...mapState("clubInfo", {
@@ -936,6 +953,26 @@ export default {
         club_id: this.$route.query.id,
       });
     },
+    // generate random tag colours
+    generateRandomColor() {
+      this.tagColorMap = {};
+      const obj = {};
+      this.list_data.forEach((e) => {
+        if (e.taglists && e.taglists.length > 0) {
+          e.taglists.forEach((tag) => {
+            // let index = this.tagColorMap.find((index) => index.tag == tag);
+            if (!this.tagColorMap[tag.name]) {
+              let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+              const key = tag.name;
+
+              obj[key] = color;
+            }
+          });
+          this.tagColorMap = obj;
+          console.log("color", this.tagColorMap);
+        }
+      });
+    },
     async ShowClubInCatalog() {
       this.loading = true;
       await this.showClubInCatalog({
@@ -1014,7 +1051,7 @@ export default {
         this.list_data.push(Scheduleobj);
         // this.taglist = this.taglist.filter( ( el ) => !this.list_data.includes( el ) );
       });
-
+      this.generateRandomColor();
       if (statusValue == "active") {
         this.availability = true;
       } else {
