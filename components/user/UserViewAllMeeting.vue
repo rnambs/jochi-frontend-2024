@@ -189,9 +189,12 @@
             <form action="">
               <fieldset
                 :disabled="
-                  detailTeacherId != studentId || detailMeetingRequest != 1
+                  (detailType == 'Peer' && detailTeacherId != studentId) ||
+                  detailMeetingRequest != 1
                 "
               >
+                {{ detailTeacherId != studentId }}
+                {{ detailMeetingRequest != 1 }}
                 <table class="w-100 table-modal custom-row-table">
                   <tr>
                     <td class="tmodal-data">Type</td>
@@ -279,7 +282,7 @@
                     </td>
                   </tr>
 
-                  <tr v-if="slot_date_selection.length > 0">
+                  <tr v-if="isDateChanged && slot_date_selection.length > 0">
                     <td>Select Time</td>
                     <td>
                       <div class="d-flex align-items-center">
@@ -307,6 +310,10 @@
                               class="col-6 text-center modal-time-schedules"
                               v-for="(Schedule, index) in slot_date_selection"
                               :key="index"
+                              :class="{
+                                selected: Schedule.slot_id == selectedSlot,
+                              }"
+                              @click="slotClick(Schedule.slot_id)"
                             >
                               <div class="meeting-list p-3">
                                 <h6>{{ Schedule["dateFormat"] }}</h6>
@@ -340,7 +347,7 @@
                     </td>
                   </tr>
 
-                  <tr>
+                  <tr v-if="!isDateChanged">
                     <td class="tmodal-data">Time</td>
                     <td class="tmodal-data">
                       <span class="pr-2"></span>
@@ -578,7 +585,10 @@
               type="button"
               class="btn btn-color-save"
               @click="updateDetails()"
-              v-if="detailTeacherId == studentId && detailMeetingRequest == 1"
+              v-if="
+                (detailTeacherId == studentId || detailType == 'Teacher') &&
+                detailMeetingRequest == 1
+              "
             >
               Update
             </button>
@@ -641,6 +651,9 @@ export default {
       submitted: false,
       meetingType: "",
       studentId: 0,
+      isDateChanged: false,
+      selectedSlot: "",
+      updatedDate: "",
     };
   },
   validations: {
@@ -860,6 +873,13 @@ export default {
       if (this.$v.$invalid) {
         return;
       } else {
+        if (this.isDateChanged && !this.selectedSlot) {
+          return this.$toast.open({
+            message: "Please choose a slot before proceeding",
+            type: "warning",
+            duration: 5000,
+          });
+        }
         this.loading = true;
 
         await this.updateMeeting({
@@ -867,8 +887,10 @@ export default {
           // teacher_id: this.value?.id,
           // student_id: localStorage.getItem("id"),
           schedule_id: this.detailScheduleId,
-          slot_id: this.detailSlotId,
-          date: moment(this.date_formatted).format("YYYY-MM-DD"),
+          slot_id: this.isDateChanged ? this.selectedSlot : this.detailSlotId,
+          date: this.isDateChanged
+            ? this.updatedDate
+            : moment(this.detail).format("YYYY-MM-DD"),
           conversation_type: this.detailConversationType,
           meeting_name: this.detailMeetingName,
           meeting_description: this.detailMeetingDesc,
@@ -885,7 +907,6 @@ export default {
           this.resetValues();
           $(".modal-backdrop").remove();
           $("#meetingDetailModal").modal("hide");
-
           this.$toast.open({
             message: this.successMessages,
             type: this.SuccessTypes,
@@ -902,6 +923,7 @@ export default {
       }
     },
     resetValues() {
+      this.isDateChanged = false;
       this.detailMeetingId = "";
       this.detailMeetingId = "";
       // teacher_id: this.value?.id,
@@ -922,16 +944,20 @@ export default {
         this.date_formatted
       );
       if (moment(event).format("YYYY-MM-DD") == this.date_formatted) {
-        alert("matching");
+        // alert("matching");
+        this.isDateChanged = false;
       } else {
+        // this.detailDate = moment(this.event, "YYYY-MM-DD");
         // if (this.initialDateSelect) {
         //   this.initialDateSelect = !this.initialDateSelect;
         // } else {
-        this.UpdateTimeSchedule();
+        this.isDateChanged = true;
+        this.updatedDate = moment(event).format("YYYY-MM-DD");
+        this.UpdateTimeSchedule(event);
         // }
       }
     },
-    async UpdateTimeSchedule() {
+    async UpdateTimeSchedule(dateSelected) {
       if (this.detailType == "Teacher") {
         // if (!this.date) {
         //   $('input[name="daterange"]').val("");
@@ -957,12 +983,12 @@ export default {
           this.dateConversionSlot();
         }
       } else {
-        if (this.selectedStudents && this.selectedStudents.length > 0) {
+        console.log(dateSelected);
+        if (this.invitedMembers && this.invitedMembers.length > 0) {
           this.studentsValue = [];
           this.students_name = [];
-          this.selectedStudents?.forEach((element) => {
-            this.studentsValue.push(element.id);
-            this.students_name.push(element.first_name);
+          this.invitedMembers?.forEach((element) => {
+            this.studentsValue.push(element.student_id);
           });
         }
         // if (this.studentsValue.length === 0) {
@@ -977,15 +1003,15 @@ export default {
         //   this.isMounted = false;
         // }
 
-        if (this.studentsValue.length != 0 && fromDate && endDate) {
+        if (this.studentsValue.length != 0) {
           this.isMounted = true;
           this.loading = true;
 
           await this.updateStudentTimeSchedule({
             student_id: parseInt(localStorage.getItem("id")),
             group_id: this.studentsValue,
-            from_date: this.date,
-            to_date: this.date,
+            from_date: moment(dateSelected).format("YYYY-MM-DD"),
+            to_date: moment(dateSelected).format("YYYY-MM-DD"),
             include_weekends: this.week ? 1 : 0,
             options_based_on_my_availability: this.availability ? 1 : 0,
           });
@@ -1026,6 +1052,7 @@ export default {
           Scheduleobj["end"] = end;
           Scheduleobj["dateValue"] = dateValue;
           Scheduleobj["date"] = dateValue;
+          Scheduleobj["slot_id"] = element.slot_id;
           this.slot_date_selection.push(Scheduleobj);
         });
       } else {
@@ -1061,6 +1088,7 @@ export default {
           Scheduleobj["slot"] = slot;
           Scheduleobj["dateFormat"] = dateFormat;
           Scheduleobj["from"] = from;
+          Scheduleobj["slot_id"] = element.slot_id;
           this.slot_date_selection.push(Scheduleobj);
         });
       }
@@ -1097,6 +1125,9 @@ export default {
         group_id: this.detailGroupId,
       });
       this.loading = false;
+    },
+    slotClick(id) {
+      this.selectedSlot = id;
     },
   },
 
