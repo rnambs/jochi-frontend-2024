@@ -22,5 +22,8 @@ export default {
       link: [{ rel: "stylesheet", href: "/css/style01.css" }],
     };
   },
+  mounted() {
+    var user_type = localStorage.getItem("user_type");
+  },
 };
 </script>
