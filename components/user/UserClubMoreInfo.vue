@@ -54,7 +54,6 @@
                         </div>
                         <div class="col-12 announcement-section">
                           <div
-                            @click="openEditSportsActivity(item)"
                             v-for="(item, index) in sportsActivities"
                             :key="index"
                           >
@@ -70,7 +69,10 @@
                                   w-100
                                 "
                               >
-                                <div class="left-side">
+                                <div
+                                  @click="openEditSportsActivity(item)"
+                                  class="left-side"
+                                >
                                   <div class="anc-name-section">
                                     {{ item.first_name }}
                                   </div>
@@ -91,7 +93,10 @@
                                     flex-column
                                   "
                                 >
-                                  <div class="anc-title-section mb-2">
+                                  <div
+                                    @click="openEditSportsActivity(item)"
+                                    class="anc-title-section mb-2"
+                                  >
                                     {{ item.title }}
                                   </div>
                                   <div
@@ -143,7 +148,10 @@
                                   w-100
                                 "
                               >
-                                <div class="left-side">
+                                <div
+                                  @click="openEditSportsActivity(item)"
+                                  class="left-side"
+                                >
                                   <div class="anc-name-section">
                                     {{ item.first_name }}
                                   </div>
@@ -164,7 +172,10 @@
                                     flex-column
                                   "
                                 >
-                                  <div class="anc-title-section mb-2">
+                                  <div
+                                    @click="openEditSportsActivity(item)"
+                                    class="anc-title-section mb-2"
+                                  >
                                     {{ item.title }}
                                   </div>
                                   <div
@@ -175,13 +186,13 @@
                                       mb-2
                                     "
                                   >
-                                    <div
+                                    <!-- <div
                                       :class="
                                         item.isRead == 1
                                           ? 'anc-status-btn green mr-3'
                                           : 'anc-status-btn red mr-3'
                                       "
-                                    ></div>
+                                    ></div> -->
                                     <button
                                       v-if="enableEdit"
                                       @click="
@@ -328,7 +339,6 @@
 
                       <div class="col-12 announcement-section">
                         <div
-                          @click="openEdit(item)"
                           v-for="(item, index) in announcementList"
                           :key="index"
                         >
@@ -341,7 +351,7 @@
                                 w-100
                               "
                             >
-                              <div class="left-side">
+                              <div @click="openEdit(item)" class="left-side">
                                 <div class="anc-name-section">
                                   {{ item.first_name }}
                                 </div>
@@ -362,7 +372,10 @@
                                   flex-column
                                 "
                               >
-                                <div class="anc-title-section mb-2">
+                                <div
+                                  @click="openEdit(item)"
+                                  class="anc-title-section mb-2"
+                                >
                                   {{ item.title }}
                                 </div>
                                 <div
@@ -559,7 +572,7 @@
                     id="club"
                     placeholder="Enter your club name"
                     class="form-control"
-                    v-model="announceTitle"
+                    v-model="announcement.announceTitle"
                     name="announceTitle"
                     maxlength="100"
                     :class="{
@@ -589,7 +602,7 @@
                   <textarea
                     class="form-control"
                     id="message-text"
-                    v-model="announceDesc"
+                    v-model="announcement.announceDesc"
                     name="announceDesc"
                     maxlength="800"
                     placeholder="Enter task description"
@@ -628,7 +641,7 @@
             <button
               type="button"
               class="btn btn-color-save"
-              :disabled="submitted"
+              :disabled="submitted && !$v.announcement.$invalid"
               @click="
                 isAnnouncementEdit
                   ? updateAnnouncementId()
@@ -680,10 +693,10 @@
                     class="custom-select custom-select-sm mb-3"
                     tabindex=""
                     name="activityType"
-                    v-model="activityType"
+                    v-model="activity.activityType"
                     :class="{
                       'is-invalid':
-                        submitted &&
+                        submittedActivity &&
                         isActivity &&
                         $v.activity.activityType.$error,
                     }"
@@ -714,7 +727,7 @@
                     id="club"
                     placeholder="Enter the title"
                     class="form-control"
-                    v-model="activityTitle"
+                    v-model="activity.activityTitle"
                     name="activityTitle"
                     maxlength="100"
                     :class="{
@@ -744,7 +757,7 @@
                   <textarea
                     class="form-control"
                     id="message-text"
-                    v-model="activityDesc"
+                    v-model="activity.activityDesc"
                     name="activityDesc"
                     maxlength="800"
                     placeholder="Enter description"
@@ -773,12 +786,12 @@
                     >Date<em>*</em></label
                   >
 
-                  <input
+                  <!-- <input
                     type="text"
                     id="club"
                     placeholder="Enter the date"
                     class="form-control"
-                    v-model="activityDate"
+                    v-model="activity.activityDate"
                     name="activityDate"
                     maxlength="100"
                     :class="{
@@ -787,6 +800,29 @@
                         isActivity &&
                         $v.activity.activityDate.$error,
                     }"
+                  /> -->
+                  <!-- <input
+                    type="text"
+                    name="daterange"
+                    @change="onDateChange($event)"
+                    v-model="activity.activityDate"
+                    autocomplete="off"
+                    placeholder="Date Range"
+                    class="form-control tab-form-control custom-form-control"
+                    :class="{
+                      'is-invalid':
+                        submittedActivity &&
+                        isActivity &&
+                        $v.activity.activityDate.$error,
+                    }"
+                  /> -->
+                  <date-picker
+                    class="form-control"
+                    placeholder="MM/DD/YYYY"
+                    format="MM/dd/yyyy"
+                    :value="activity.activityDate"
+                    v-model="activity.activityDate"
+                    @change="onDateChange"
                   />
                   <div
                     v-if="
@@ -806,7 +842,7 @@
                     >Time<em>*</em></label
                   >
 
-                  <input
+                  <!-- <input
                     type="text"
                     id="club"
                     placeholder="Enter the time"
@@ -820,7 +856,18 @@
                         isActivity &&
                         $v.activity.activityTime.$error,
                     }"
-                  />
+                  /> -->
+                  <vue-timepicker
+                    format="hh:mm A"
+                    v-model="activity.activityTime"
+                    name="activityTime"
+                    class="show-cursor"
+                    :value="activity.activityTime"
+                    :class="{
+                      'is-invalid':
+                        submitted && $v.activity.activityTime.$error,
+                    }"
+                  ></vue-timepicker>
                   <div
                     v-if="
                       submittedActivity &&
@@ -844,7 +891,7 @@
                     id="club"
                     placeholder="Enter the venue"
                     class="form-control"
-                    v-model="activityVenue"
+                    v-model="activity.activityVenue"
                     name="activityVenue"
                     maxlength="100"
                     :class="{
@@ -867,7 +914,7 @@
                     >
                   </div>
                 </div>
-                <div v-if="activityType == 'Match'" class="form-group">
+                <div v-if="activity.activityType == 'Match'" class="form-group">
                   <label for="recipient-name" class="col-form-label"
                     >Opponent Team<em>*</em></label
                   >
@@ -877,7 +924,7 @@
                     id="club"
                     placeholder="Enter the opponent team name"
                     class="form-control"
-                    v-model="activityOpponentTeam"
+                    v-model="activity.activityOpponentTeam"
                     name="activityOpponentTeam"
                     maxlength="100"
                     :class="{
@@ -914,7 +961,7 @@
             <button
               type="button"
               class="btn btn-color-save"
-              :disabled="submittedActivity"
+              :disabled="submittedActivity && !$v.activity.$invalid"
               @click="isActivityEdit ? updateActivity() : addNewActivity()"
             >
               {{ (isActivityEdit ? "Update" : "Add") + " Training/Match" }}
@@ -1047,7 +1094,10 @@ import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import { required, requiredUnless } from "vuelidate/lib/validators";
 import Multiselect from "vue-multiselect";
-var headingName = "";
+import VueTimepicker from "vue2-timepicker";
+
+var today = new Date();
+var activityDate = "";
 var clubId = "";
 var list_data = "";
 export default {
@@ -1055,6 +1105,7 @@ export default {
   components: {
     lottie,
     Multiselect,
+    VueTimepicker,
   },
   data() {
     return {
@@ -1096,6 +1147,19 @@ export default {
       activityOpponentTeam: "",
       isAnnouncement: false,
       isActivity: false,
+      announcement: {
+        announceTitle: "",
+        announceDesc: "",
+      },
+      activity: {
+        activityType: "",
+        activityTitle: "",
+        activityDesc: "",
+        activityDate: "",
+        activityTime: "",
+        activityVenue: "",
+        activityOpponentTeam: "",
+      },
     };
   },
   validations: {
@@ -1104,12 +1168,13 @@ export default {
       announceDesc: { required },
     },
     activity: {
+      activityType: { required },
       activityTitle: { required },
       activityDesc: { required },
       activityDate: { required },
       activityTime: { required },
       activityVenue: { required },
-      activityOpponentTeam: { required },
+      // activityOpponentTeam: { required },
     },
   },
   mounted() {
@@ -1123,6 +1188,7 @@ export default {
     } else {
       this.$router.push("/");
     }
+    this.initializeDatePicker();
   },
   computed: {
     ...mapState("clubMoreInfo", {
@@ -1192,7 +1258,6 @@ export default {
         club_id: this.$route.query.id,
         user_id: localStorage.getItem("id"),
       });
-      console.log(this.clubMoreDetails);
     },
     async ClubMoreInfo() {
       this.loading = true;
@@ -1360,8 +1425,8 @@ export default {
       // this.dateValue = new Date(this.calendarApi.view.activeStart);
       // this.isAssignmentEdit = false;
       this.announcementId = data.id;
-      this.announceTitle = data.title;
-      this.announceDesc = data.description;
+      this.announcement.announceTitle = data.title;
+      this.announcement.announceDesc = data.description;
       // this.announceDate = new Date(data.date);
       this.announceClubId = data.club_id;
       $("#announcementModal").modal({ backdrop: true });
@@ -1370,13 +1435,13 @@ export default {
       this.resetActivity();
       this.isActivityEdit = true;
       this.activityId = data.id;
-      this.activityType = data.session_type;
-      this.activityTitle = data.title;
-      this.activityDesc = data.description;
-      this.activityDate = data.date;
-      this.activityTime = data.time;
-      this.activityVenue = data.venue;
-      this.activityOpponentTeam = data.opponent_team;
+      this.activity.activityType = data.session_type;
+      this.activity.activityTitle = data.title;
+      this.activity.activityDesc = data.description;
+      this.activity.activityDate = data.date;
+      this.activity.activityTime = data.time;
+      this.activity.activityVenue = data.venue;
+      this.activity.activityOpponentTeam = data.opponent_team;
       $("#activityModal").modal({ backdrop: true });
     },
     async addNewAnnouncement() {
@@ -1388,8 +1453,8 @@ export default {
       } else {
         this.loading = true;
         await this.addAnnouncement({
-          title: this.announceTitle,
-          description: this.announceDesc,
+          title: this.announcement.announceTitle,
+          description: this.announcement.announceDesc,
           club_id: this.clubId,
         });
         this.loading = false;
@@ -1397,6 +1462,8 @@ export default {
         if (this.successMessage != "") {
           this.resetAnnouncement();
           $("#announcementModal").modal("hide");
+          $(".modal").modal("hide");
+          $(".modal-backdrop").remove();
           this.deleteClickId = 0;
           this.deleteClubId = 0;
           this.$toast.open({
@@ -1411,23 +1478,24 @@ export default {
     async updateAnnouncementId() {
       this.loading = true;
       this.submitted = true;
-      debugger;
       this.$v.announcement.announceTitle.$touch();
       this.$v.announcement.announceDesc.$touch();
-      console.log(this.$v.announcement, this.$v.announcement.$invalid);
       if (this.$v.announcement.$invalid) {
         return;
       } else {
         await this.updateAnnouncement({
           id: this.announcementId,
-          title: this.announceTitle,
-          description: this.announceDesc,
-          clubId: this.clubId,
+          title: this.announcement.announceTitle,
+          description: this.announcement.announceDesc,
+          club_id: this.clubId,
         });
         this.loading = false;
         this.submitted = false;
 
         if (this.successMessage != "") {
+          $("#announcementModal").modal("hide");
+          $(".modal").modal("hide");
+          $(".modal-backdrop").remove();
           this.isAnnouncementEdit = false;
           this.resetAnnouncement();
           this.deleteClickId = 0;
@@ -1445,19 +1513,19 @@ export default {
       this.isAnnouncement = false;
       this.announceClubId = "";
       this.announcementId = "";
-      this.announceTitle = "";
-      this.announceDesc = "";
+      this.announcement.announceTitle = "";
+      this.announcement.announceDesc = "";
     },
     resetActivity() {
       this.isActivity = false;
       this.activityId = "";
-      this.activityTitle = "";
-      this.activityType = "";
-      this.activityDesc = "";
-      this.activityDate = "";
-      this.activityTime = "";
-      this.activityVenue = "";
-      this.activityOpponentTeam = "";
+      this.activity.activityTitle = "";
+      this.activity.activityType = "";
+      this.activity.activityDesc = "";
+      this.activity.activityDate = "";
+      this.activity.activityTime = "";
+      this.activity.activityVenue = "";
+      this.activity.activityOpponentTeam = "";
     },
     async markAnnouncementAsRead(id) {
       this.loading = true;
@@ -1483,7 +1551,7 @@ export default {
       // });
     },
     async addNewActivity() {
-      // debugger;
+      console.log(this.activity);
       this.submittedActivity = true;
       this.$v.activity.activityTitle.$touch();
       this.$v.activity.activityDesc.$touch();
@@ -1498,13 +1566,15 @@ export default {
         this.loading = true;
         await this.addActivities({
           club_id: this.clubId,
-          title: this.activityTitle,
-          description: this.activityDesc,
-          session_type: this.activityType,
-          date: this.activityDate,
-          time: this.activityTime,
-          venue: this.activityVenue,
-          opponent_team: this.activityOpponentTeam,
+          title: this.activity.activityTitle,
+          description: this.activity.activityDesc,
+          session_type: this.activity.activityType,
+          date: this.activity.activityDate
+            ? moment(this.activity.activityDate).format("YYYY-MM-DD")
+            : "",
+          time: this.activity.activityTime,
+          venue: this.activity.activityVenue,
+          opponent_team: this.activity.activityOpponentTeam,
         });
         this.loading = false;
         this.submittedActivity = false;
@@ -1536,18 +1606,20 @@ export default {
         await this.updateActivities({
           id: this.activityId,
           club_id: this.clubId,
-          title: this.activityTitle,
-          description: this.activityDesc,
-          session_type: this.activityType,
-          date: this.activityDate,
-          time: this.activityTime,
-          venue: this.activityVenue,
-          opponent_team: this.activityOpponentTeam,
+          title: this.activity.activityTitle,
+          description: this.activity.activityDesc,
+          session_type: this.activity.activityType,
+          date: this.activity.activityDate,
+          time: this.activity.activityTime,
+          venue: this.activity.activityVenue,
+          opponent_team: this.activity.activityOpponentTeam,
         });
         this.loading = false;
         this.submittedActivity = false;
 
         if (this.successMessage != "") {
+          $("#activityModal").modal("hide");
+          $(".modal-backdrop").remove();
           this.isActivityEdit = false;
           this.resetActivity();
           this.$toast.open({
@@ -1585,6 +1657,44 @@ export default {
       if (this.enableEdit) {
         $("#nextMeetingModal").modal();
       }
+    },
+    initializeDatePicker() {
+      $(function () {
+        $('input[name="daterange"]').daterangepicker({
+          autoUpdateInput: false,
+          singleDatePicker: true,
+          minDate: today,
+
+          opens: "left",
+          locale: {
+            format: "DD-MM-YYYY",
+            cancelLabel: "Clear",
+          },
+        });
+
+        $('input[name="daterange"]').on(
+          "apply.daterangepicker",
+          function (ev, picker) {
+            $(this).val(picker.startDate.format("MM/DD/YYYY"));
+            activityDate = picker.startDate.format("YYYY-MM-DD");
+            // endDate = picker.endDate.format("YYYY-MM-DD");
+          }
+        );
+
+        $('input[name="daterange"]').on(
+          "cancel.daterangepicker",
+          function (ev, picker) {
+            $(this).val("");
+          }
+        );
+      });
+    },
+    onDateChange(event) {
+      console.log(event, this.activity.activityDate);
+      this.activity.activityDate = moment(this.activity.activityDate).format(
+        "YYYY-MM-DD"
+      );
+      console.log(this.activity.activityDate);
     },
   },
 };

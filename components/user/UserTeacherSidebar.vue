@@ -186,8 +186,12 @@
                 <span class="ml-2">Sync Calendar</span>
               </nuxt-link>
             </li>
-            <!-- <li class="menu-list nav-item">
-              <nuxt-link to="/clubs" data-toggle="collapse" class="nav-link">
+            <li class="menu-list nav-item">
+              <nuxt-link
+                to="/teacher-club-detail"
+                data-toggle="collapse"
+                class="nav-link"
+              >
                 <div class="font-icon d-inline-block">
                   <img
                     src="~/assets/images/Icon/club-icon.png"
@@ -195,11 +199,27 @@
                     alt=""
                   />
                 </div>
-                <span class="ml-2">Clubs</span>
+                <span class="ml-2">Club - Existing</span>
               </nuxt-link>
-            </li> -->
-
+            </li>
             <li class="menu-list nav-item">
+              <nuxt-link
+                to="/club-catalogue"
+                data-toggle="collapse"
+                class="nav-link"
+              >
+                <div class="font-icon d-inline-block">
+                  <img
+                    src="~/assets/images/Icon/club-icon.png"
+                    class="image-i"
+                    alt=""
+                  />
+                </div>
+                <span class="ml-2">Club Catalog</span>
+              </nuxt-link>
+            </li>
+
+            <!-- <li class="menu-list nav-item">
               <div class="card mb-2">
                 <div class="card-header p-1" id="headingThree">
                   <h2 class="mb-0">
@@ -246,7 +266,7 @@
                   </div>
                 </div>
               </div>
-            </li>
+            </li> -->
           </ul>
           <ul class="custom-list">
             <li @click="openLink()" class="active menu-list nav-item">

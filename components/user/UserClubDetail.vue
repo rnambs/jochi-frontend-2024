@@ -172,12 +172,12 @@ export default {
   },
   mounted() {
     var user = localStorage.getItem("user_type");
-    if (user == 3) {
-      this.GetTag();
-      this.MyClubList();
-    } else {
-      this.$router.push("/");
-    }
+    // if (user == 3) {
+    this.GetTag();
+    this.MyClubList();
+    // } else {
+    // this.$router.push("/");
+    // }
   },
   computed: {
     ...mapState("myClub", {
