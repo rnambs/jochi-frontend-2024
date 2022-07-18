@@ -70,7 +70,7 @@
 
         <!-- Club catalog -->
 
-        <section id="club-detail" class="d-flex flex-column flex-fill h-40">
+        <section id="club-detail" class="d-flex flex-column flex-fill h-40 pr-3">
             <div class="inner-club container-fluid bg-transparent custom-overflow pe-2 mr--2 mt-3 d-flex flex-column flex-fill">
                 <div
                   class="

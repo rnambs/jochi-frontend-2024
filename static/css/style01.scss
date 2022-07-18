@@ -2871,35 +2871,32 @@ img.card-img{
                 }
             }
         }
-        // catalog
-            
-        // end club
         // club details
-        .club-section{
-            .inner-club{
-                &.club-datail{
-                    min-height: calc(100vh - 310px);
-                }
-                .club-row{
+        // .club-section{
+        //     .inner-club{
+        //         &.club-datail{
+        //             min-height: calc(100vh - 310px);
+        //         }
+                // .club-row{
                     // min-height: calc(100vh - 320px);
                     // max-height: calc(100vh - 320px);
                     // overflow: hidden;
                     // overflow-y: auto;
-                    .col-md-6{
+                    // .col-md-6{
                         // margin-bottom: 10px;
                         // margin-top: 10px;
-                        .club-list{
-                            // max-height: 248px;
-                            // background-color: $Global-background-element;
-                            // box-shadow: 0.1rem 0.1rem 0.4rem $global-box-shadow;
-                            // border-radius: .5rem;
-                            // height: 100%;
-                            // &:hover, &:active{
-                            //     background-color: $global-background-color;
-                            //     .list-title{
-                            //         color: $theme-color;
-                            //     }
-                            // }
+                        // .club-list{
+                        //     max-height: 248px;
+                        //     background-color: $Global-background-element;
+                        //     box-shadow: 0.1rem 0.1rem 0.4rem $global-box-shadow;
+                        //     border-radius: .5rem;
+                        //     height: 100%;
+                        //     &:hover, &:active{
+                        //         background-color: $global-background-color;
+                        //         .list-title{
+                        //             color: $theme-color;
+                        //         }
+                        //     }
                             // .list-title{
                             //     color: $theme-color;
                             //     text-align: center;
@@ -2910,118 +2907,118 @@ img.card-img{
                             //         font-size: 1rem;
                             //     }
                             // }
-                            .to-do-list{
-                                max-height: 10vh;
-                                overflow: hidden;
-                                @media (min-width: 1396.98px) {
-                                    max-height: 6.2rem;
-                                    overflow: hidden;
-                                    line-height: 1.5rem;
-                                }
-                                @media (max-width: 1396.98px) {
-                                    max-height: 6.2rem;
-                                    overflow: hidden;
-                                    line-height: 1.5rem;
-                                }
-                                @media (max-width: 1024.98px) {
-                                    max-height: 5.1rem;
-                                    overflow: hidden;
-                                    line-height: 1.2rem;
-                                }
-                                @media (max-width: 764.98px) {
-                                    max-height: 5.1rem;
-                                    overflow: hidden;
-                                    line-height: 1.3rem;
-                                }
-                                ul{
-                                    list-style-type: none;
-                                    padding-left: 1em;
-                                    min-height: 10vh;
-                                    @media (min-width: 1396.98px) {
-                                        min-height: 12vh;
-                                    }
-                                    @media (max-width: 1396.98px) {
-                                        min-height: 13vh;
-                                    }
-                                    @media (max-width: 1024.98px) {
-                                        min-height: 12vh;
-                                    }
-                                    li{
-                                        color: $black;
-                                        font-size: .75rem;
-                                        @media (max-width: 1396.98px) {
-                                            font-size: .75rem;
-                                        }
-                                        @media (max-width: 1270.98px) {
-                                            font-size: .68rem;
-                                        }
-                                        @media (max-width: 1024.98px) {
-                                            font-size: .55rem;
-                                        }
-                                        @media (max-width: 991.98px) {
-                                            font-size: .65rem;
-                                        }
-                                        @media (max-width: 767.98px) {
-                                            font-size: .8rem;
-                                        }
-                                    }
-                                }
-                                ul li::before {
-                                    content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-                                    color: $theme-color; /* Change the color */
-                                    font-weight: bold; /* If you want it to be bold */
-                                    display: inline-block; /* Needed to add space between the bullet and the text */
-                                    width: 1em; /* Also needed for space (tweak if needed) */
-                                    margin-left: -1em; /* Also needed for space (tweak if needed) */
-                                }
+                            // .to-do-list{
+                            //     max-height: 10vh;
+                            //     overflow: hidden;
+                            //     @media (min-width: 1396.98px) {
+                            //         max-height: 6.2rem;
+                            //         overflow: hidden;
+                            //         line-height: 1.5rem;
+                            //     }
+                            //     @media (max-width: 1396.98px) {
+                            //         max-height: 6.2rem;
+                            //         overflow: hidden;
+                            //         line-height: 1.5rem;
+                            //     }
+                            //     @media (max-width: 1024.98px) {
+                            //         max-height: 5.1rem;
+                            //         overflow: hidden;
+                            //         line-height: 1.2rem;
+                            //     }
+                            //     @media (max-width: 764.98px) {
+                            //         max-height: 5.1rem;
+                            //         overflow: hidden;
+                            //         line-height: 1.3rem;
+                            //     }
+                            //     ul{
+                            //         list-style-type: none;
+                            //         padding-left: 1em;
+                            //         min-height: 10vh;
+                            //         @media (min-width: 1396.98px) {
+                            //             min-height: 12vh;
+                            //         }
+                            //         @media (max-width: 1396.98px) {
+                            //             min-height: 13vh;
+                            //         }
+                            //         @media (max-width: 1024.98px) {
+                            //             min-height: 12vh;
+                            //         }
+                            //         li{
+                            //             color: $black;
+                            //             font-size: .75rem;
+                            //             @media (max-width: 1396.98px) {
+                            //                 font-size: .75rem;
+                            //             }
+                            //             @media (max-width: 1270.98px) {
+                            //                 font-size: .68rem;
+                            //             }
+                            //             @media (max-width: 1024.98px) {
+                            //                 font-size: .55rem;
+                            //             }
+                            //             @media (max-width: 991.98px) {
+                            //                 font-size: .65rem;
+                            //             }
+                            //             @media (max-width: 767.98px) {
+                            //                 font-size: .8rem;
+                            //             }
+                            //         }
+                            //     }
+                            //     ul li::before {
+                            //         content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+                            //         color: $theme-color; /* Change the color */
+                            //         font-weight: bold; /* If you want it to be bold */
+                            //         display: inline-block; /* Needed to add space between the bullet and the text */
+                            //         width: 1em; /* Also needed for space (tweak if needed) */
+                            //         margin-left: -1em; /* Also needed for space (tweak if needed) */
+                            //     }
     
-                            }
-                            .list-text{
-                                columns: $border-color;
-                                font-size: .75rem;
-                                @media (max-width: 1396.98px) {
-                                    font-size: .75rem;
-                                }
-                                @media (max-width: 1270.98px) {
-                                    font-size: .68rem;
-                                }
-                                @media (max-width: 1024.98px) {
-                                    font-size: .55rem;
-                                }
-                                @media (max-width: 991.98px) {
-                                    font-size: .65rem;
-                                }
-                                @media (max-width: 767.98px) {
-                                    font-size: .8rem;
-                                }
-                            }
-                            .btn-view-more{
-                                color: $global-font-color;
-                                border: none;
-                                border-radius: 4px;
-                                background-color: $theme-color;
-                                font-size: .75rem;
-                                padding: .25rem 1rem;
-                                @media (max-width: 1396.98px) {
-                                    font-size: .75rem;
-                                }
-                                @media (max-width: 1270.98px) {
-                                    font-size: .68rem;
-                                }
-                                @media (max-width: 1024.98px) {
-                                    font-size: .55rem;
-                                }
-                                @media (max-width: 991.98px) {
-                                    font-size: .65rem;
-                                }
-                                @media (max-width: 767.98px) {
-                                    font-size: .8rem;
-                                }
-                            }
-                        }
-                    }
+                            // }
+                            // .list-text{
+                            //     columns: $border-color;
+                            //     font-size: .75rem;
+                            //     @media (max-width: 1396.98px) {
+                            //         font-size: .75rem;
+                            //     }
+                            //     @media (max-width: 1270.98px) {
+                            //         font-size: .68rem;
+                            //     }
+                            //     @media (max-width: 1024.98px) {
+                            //         font-size: .55rem;
+                            //     }
+                            //     @media (max-width: 991.98px) {
+                            //         font-size: .65rem;
+                            //     }
+                            //     @media (max-width: 767.98px) {
+                            //         font-size: .8rem;
+                            //     }
+                            // }
+                            // .btn-view-more{
+                            //     color: $global-font-color;
+                            //     border: none;
+                            //     border-radius: 4px;
+                            //     background-color: $theme-color;
+                            //     font-size: .75rem;
+                            //     padding: .25rem 1rem;
+                            //     @media (max-width: 1396.98px) {
+                            //         font-size: .75rem;
+                            //     }
+                            //     @media (max-width: 1270.98px) {
+                            //         font-size: .68rem;
+                            //     }
+                            //     @media (max-width: 1024.98px) {
+                            //         font-size: .55rem;
+                            //     }
+                            //     @media (max-width: 991.98px) {
+                            //         font-size: .65rem;
+                            //     }
+                            //     @media (max-width: 767.98px) {
+                            //         font-size: .8rem;
+                            //     }
+                            // }
+                        // }
+                    // }
                     
-                }
+                // }
                 // .catalog-list{
                 //     background-color: $global-sidebar-bg;
                 //     border: 1px solid $border-color;
@@ -3141,8 +3138,8 @@ img.card-img{
                 //         }
                 //     }
                 // }
-            }
-        }
+        //     }
+        // }
         // club details
         // Study
         .study-section{
