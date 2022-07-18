@@ -13,40 +13,40 @@
           jochi-components-light-bg
           p-4
           custom-margin-for-main-section custom-full-height
+          d-flex flex-column
         "
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-4">
             <div class="d-flex justify-content-between align-item-center">
-              <h4 class="tab-head">Club Catalog</h4>
+              <h3 class="color-primary font-semi-bold">Club Catalog</h3>
               <!-- data-toggle="modal"
                 data-target="#createNewModal" -->
               <button
                 type="button"
-                class="btn create-new-btn"
+                class="btn btn-primary"
                 @click="openCreateNewModal"
               >
                 Create New
               </button>
             </div>
-            <div class="inner-tab-section container-fluid py-3">
-              <div class="row m-auto">
+              <div class="row p-2">
                 <div class="col-md-4">
-                  <div class="input-icon-area">
+                  <div class="form-row position-relative">
                     <input
-                      class="form-control"
+                      class="form-control w-100 tab-form-control"
                       type="text"
                       v-model="search"
                       placeholder="Search"
                       v-on:keyup="debounceSearch()"
                     />
-                    <span class="input-icon custom-search-icon-1">
+                    <span class="input-icon custom-search-icon position-absolute">
                       <i class="fa fa-search" aria-hidden="true"></i>
                     </span>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="input-icon-area custom-multiselect-adj-text">
+                  <div class="input-icon-area custom-multiselect-adj-text form-row">
                     <multiselect
                       v-model="value"
                       :options="tags"
@@ -63,7 +63,6 @@
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         </section>
 
@@ -71,20 +70,11 @@
 
         <!-- Club catalog -->
 
-        <section id="club-detail" class="">
-          <div class="club-section-catlg container-fluid mt-3">
-            <div class="inner-club container-fluid p-4">
-              <div class="inner-clb p-2">
+        <section id="club-detail" class="d-flex flex-column flex-fill h-40 pr-3">
+            <div class="inner-club container-fluid bg-transparent custom-overflow pe-2 mr--2 mt-3 d-flex flex-column flex-fill">
                 <div
                   class="
-                    row
-                    catalog-list
-                    container-fluid
-                    pl-3
-                    pr-3
-                    pt-3
-                    mb-3
-                    mx-auto
+                   pt-3 pb-1 border-bottom
                   "
                   v-for="(list, index) in list_data"
                   :key="index"
@@ -92,117 +82,117 @@
                   <!-- <div class="row-heading col-12">
                     <h6 class="mb-0">{{ list["name"] }}</h6>
                   </div> -->
-                  <div class="col-12 p-0">
-                    <div class="row catalog-row">
-                      <div class="col-md-4 col-sm-4">
-                        <h5 class="mb-0">{{ list["name"] }}</h5>
-                        <!-- <p class="catalog-text">
-                          {{ list.part ? list.part : "No data "
-                          }}<span :id="'dots' + list.id" v-if="list.remaining"
-                            >...</span
-                          ><span :id="'more' + list.id" style="display: none">
-                            {{ list.remaining }}
-                          </span>
-                        </p> -->
-                        <p>
-                          {{ list.activity_type == "Clubs" ? "Club" : "Team" }}
-                        </p>
-                      </div>
-                      <div class="col-md-6 d-flex justify-content-end">
-                        <div class="col-md-8 pt-0 d-flex justify-content-end">
-                          <ul
-                            class="
-                              to-do-ul
-                              d-flex
-                              align-items-center
-                              justify-content-end
-                              flex-wrap
-                            "
-                          >
-                            <span
-                              v-for="(todos, index) in list.tagList"
-                              :key="index"
-                            >
-                              <!-- <li
-                                class="to-do-li"
-                                v-if="
-                                  index % 2 == 0 &&
-                                  (!(expandId == list.id) ? index < 4 : true)
-                                "
-                              >
-                                {{ todos }}
-                              </li> -->
-                              <li
-                                class="to-do-li"
-                                :style="{
-                                  'background-color': tagColorMap[todos],
-                                }"
-                              >
-                                {{ todos }}
-                              </li>
-                            </span>
-                            <span
-                              v-if="list.tagList.length == 0"
-                              class="to-do-li no-tag-available-span"
-                            >
-                              No tags available
-                            </span>
-                          </ul>
-                        </div>
-                      </div>
-                      <!-- <div class="col-md-3">
-                        <ul class="to-do-ul">
-                          <span
+                  <div class="row catalog-row">
+                    <div class="col-lg-4">
+                      <h5 class="mb-0 color-dark font-semi-bold">{{ list["name"] }}</h5>
+                      <!-- <p class="catalog-text">
+                        {{ list.part ? list.part : "No data "
+                        }}<span :id="'dots' + list.id" v-if="list.remaining"
+                          >...</span
+                        ><span :id="'more' + list.id" style="display: none">
+                          {{ list.remaining }}
+                        </span>
+                      </p> -->
+                      <p class="color-secondary fort-regular text-14">
+                        {{ list.activity_type == "Clubs" ? "Club" : "Team" }}
+                      </p>
+                    </div>
+                    <div class="col-lg-6 d-flex justify-content-start justify-content-lg-end">
+                      <div class="col-md-8 p-0 pr-2 d-flex justify-content-start justify-content-lg-end">
+                        <div
+                          class="
+                            to-do-ul
+                            d-flex
+                            align-items-center
+                            justify-content-end
+                            flex-wrap
+                          "
+                        >
+                          <p
                             v-for="(todos, index) in list.tagList"
                             :key="index"
+                            class="mb-2"
                           >
-                            <li
+                            <!-- <li
                               class="to-do-li"
                               v-if="
-                                index % 2 != 0 &&
+                                index % 2 == 0 &&
                                 (!(expandId == list.id) ? index < 4 : true)
                               "
                             >
                               {{ todos }}
-                            </li>
+                            </li> -->
+                            <span
+                              class="to-do-li color-white text-14 rounded px-2 py-1 m-1"
+                              :style="{
+                                'background-color': tagColorMap[todos],
+                              }"
+                            >
+                              {{ todos }}
+                            </span>
+                          </p>
+                          <span
+                            v-if="list.tagList.length == 0"
+                            class="to-do-li color-secondary"
+                          >
+                            No tags available
                           </span>
-                        </ul>
-                      </div> -->
-                      <!-- <div class="col-md-2">
-                        <a
-                          href="#"
-                          class="btn btn-join-now"
-                          @click="JoinClub(list.id)"
-                          >Join Now</a
-                        >
-                        <a
-                          v-if="
-                            (list.part && list.remaining) ||
-                            list.tagList.length >= 5
-                          "
-                          class="btn readmore-btn"
-                          @click="myFunction(list.id)"
-                          :id="list.id"
-                          >Read more<i class="fas fa-chevron-right pl-1"></i
-                        ></a>
-                      </div> -->
-
-                      <div class="col-md-2">
-                        <nuxt-link
-                          :to="{
-                            path: '/student-club-view',
-                            query: { id: list.id, name: list.activity_type },
-                          }"
-                          class="
-                            border border-secondary
-                            text-decoration-none text-dark
-                            btn
-                            bg-light
-                          "
-                        >
-                          <button class="btn btn-join-now">View More</button>
-                        </nuxt-link>
+                        </div>
                       </div>
+                    </div>
+                    <!-- <div class="col-md-3">
+                      <ul class="to-do-ul">
+                        <span
+                          v-for="(todos, index) in list.tagList"
+                          :key="index"
+                        >
+                          <li
+                            class="to-do-li"
+                            v-if="
+                              index % 2 != 0 &&
+                              (!(expandId == list.id) ? index < 4 : true)
+                            "
+                          >
+                            {{ todos }}
+                          </li>
+                        </span>
+                      </ul>
+                    </div> -->
+                    <!-- <div class="col-md-2">
+                      <a
+                        href="#"
+                        class="btn btn-join-now"
+                        @click="JoinClub(list.id)"
+                        >Join Now</a
+                      >
+                      <a
+                        v-if="
+                          (list.part && list.remaining) ||
+                          list.tagList.length >= 5
+                        "
+                        class="btn readmore-btn"
+                        @click="myFunction(list.id)"
+                        :id="list.id"
+                        >Read more<i class="fas fa-chevron-right pl-1"></i
+                      ></a>
+                    </div> -->
+
+                    <div class="col-lg-2 d-flex justify-content-start justify-content-lg-end">
+                      <nuxt-link
+                        :to="{
+                          path: '/student-club-view',
+                          query: { id: list.id, name: list.activity_type },
+                        }"
+                        class="
+                          btn
+                          btn-primary
+                          py-1
+                          mt-2
+                          h-fit-content
+                        "
+                      >
+                        View More
+                      </nuxt-link>
                     </div>
                   </div>
                 </div>
@@ -212,8 +202,6 @@
                 >
                   <p class="no-data">No data available</p>
                 </div>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -251,14 +239,14 @@
                   <table class="w-100 table-modal custom-row-table">
                     <tr>
                       <td class="tmodal-data text-nowrap">Type</td>
-                      <td class="tmodal-data">
+                      <td class="tmodal-data d-flex">
                         <p
-                          class="mb-0 tdata-overflow d-flex align-items-center"
+                          class="mb-0 tdata-overflow d-flex align-items-center form-row col-8 px-0 py-1"
                         >
-                          <span class="pr-2">:</span>
+                          <span class="pr-2"></span>
                           <select
                             v-model="activity_type"
-                            class="custom-select custom-select-sm mb-3"
+                            class="custom-select form-control bg-white"
                             :class="{
                               'is-invalid':
                                 submitted && $v.activity_type.$error,
@@ -280,17 +268,17 @@
                     </tr>
                     <tr>
                       <td class="tmodal-data text-nowrap">Name</td>
-                      <td class="tmodal-data">
+                      <td class="tmodal-data d-flex">
                         <p
-                          class="mb-0 tdata-overflow d-flex align-items-center"
+                          class="mb-0 tdata-overflow d-flex align-items-center form-row px-0 py-1 col-8"
                         >
-                          <span class="pr-2">:</span>
+                          <span class="pr-2"></span>
                           <input
                             type="text"
                             v-model="name"
                             autocomplete="off"
                             maxlength="100"
-                            class="form-control custom-form-control"
+                            class="form-control bg-white custom-form-control"
                             :class="{
                               'is-invalid': submitted && $v.name.$error,
                             }"
@@ -308,17 +296,18 @@
                     </tr>
                     <tr>
                       <td class="tmodal-data text-nowrap">Description</td>
-                      <td class="tmodal-data">
+                      <td class="tmodal-data d-flex">
                         <p
-                          class="mb-0 tdata-overflow d-flex align-items-center"
+                          class="mb-0 tdata-overflow d-flex align-items-center form-row col-8 px-0 py-1"
                         >
-                          <span class="pr-2">:</span>
+                          <span class="pr-2"></span>
                           <textarea
+                          rows="3"
                             v-model="description"
                             type="text"
                             autocomplete="off"
                             maxlength="700"
-                            class="form-control custom-form-control"
+                            class="form-control bg-white custom-form-control"
                             :class="{
                               'is-invalid': submitted && $v.description.$error,
                             }"

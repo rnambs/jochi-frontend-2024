@@ -13,23 +13,26 @@
           jochi-components-light-bg
           p-4
           custom-margin-for-main-section custom-full-height
+          d-flex 
+          flex-column
         "
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-3">
-            <h4 class="tab-head">Club details</h4>
-            <div class="inner-tab-section container-fluid py-3">
+            <h4 class="tab-head color-primary font-semi-bold">Club details</h4>
+            <div class="inner-tab-section container-fluid p-0">
               <div
                 class="
                   row
                   m-auto
+                  px-2
                   d-flex
                   justify-content-between
                   align-items-center
                 "
               >
-                <div class="col-md-4">
-                  <div class="input-icon-area">
+                <div class="col-md-4 px-0">
+                  <div class="input-icon-area form-row">
                     <multiselect
                       v-model="value"
                       :options="tags"
@@ -37,6 +40,7 @@
                       label="name"
                       placeholder="Filter"
                       @input="filterSelection"
+                      class="form-contol"
                     >
                       <span slot="noResult">No data found</span>
                     </multiselect>
@@ -45,7 +49,7 @@
                     ></span> -->
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 px-0">
                   <div class="custom-switch pb-2 float-right">
                     <input
                       type="checkbox"
@@ -68,16 +72,16 @@
 
         <!-- Club detail -->
 
-        <section id="club-detail" class="">
-          <div class="club-section container-fluid mt-2">
-            <div class="inner-club club-datail container-fluid py-3">
+        <section id="club-detail" class="d-flex flex-column h-40 flex-fill">
+          <div class="club-section container-fluid mt-2 px-0 d-flex flex-column h-40 flex-fill">
+            <div class="inner-club club-datail container-fluid p-0 custom-overflow mr--2 pr-2">
               <div class="row club-row m-1">
                 <div
                   class="col-lg-4 col-md-6 col-sm-12 col-12"
                   v-for="(list, index) in list_data"
                   :key="index"
                 >
-                  <div class="club-list p-4 position-relative">
+                  <div class="club-list card card-secondary justify-content-between p-4 position-relative h-100">
                     <div
                       :class="
                         list.activity_type == 'Clubs'
@@ -91,30 +95,32 @@
                         class="img-fluid ct-team"
                       />
                       <img
-                        src="../../static/image/club-type.png"
+                        src="../../static/image/meeting.png"
                         alt=""
                         class="img-fluid ct-club"
                       />
                     </div>
-                    <h6 class="list-title mb-3">{{ list["description"] }}</h6>
-                    <div class="to-do-list">
-                      <ul>
-                        <li v-for="(todos, index) in list.todoArr" :key="index">
-                          {{ todos }}
-                        </li>
-                        <li v-if="list.todoArr.length == 0">
-                          No to-do's available
-                        </li>
-                      </ul>
+                    <div class="d-flex flex-column">
+                      <h6 class="list-title mb-3 color-primary font-medium">{{ list["description"] }}</h6>
+                      <div class="to-do-list">
+                        <ul class="list-unstyled">
+                          <li class="text-12 color-secondary" v-for="(todos, index) in list.todoArr" :key="index">
+                            {{ todos }}
+                          </li>
+                          <li class="text-14 color-secondary font-regular" v-if="list.todoArr.length == 0">
+                            No to-do's available
+                          </li>
+                        </ul>
+                      </div>
+                      <p class="list-text color-secondary text-14 font-regular">
+                        Next meeting:
+                        {{
+                          list.upcoming_meeting
+                            ? list.upcoming_meeting
+                            : "No Meeting Scheduled"
+                        }}
+                      </p>
                     </div>
-                    <p class="list-text">
-                      Next meeting:
-                      {{
-                        list.upcoming_meeting
-                          ? list.upcoming_meeting
-                          : "No Meeting Scheduled"
-                      }}
-                    </p>
                     <nuxt-link
                       :to="{
                         path:
@@ -127,7 +133,7 @@
                           type: list.activity_type,
                         },
                       }"
-                      class="btn btn-sm btn-view-more"
+                      class="btn btn-sm btn-dark py-1"
                       >View More</nuxt-link
                     >
                   </div>
