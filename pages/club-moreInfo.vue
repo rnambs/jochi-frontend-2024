@@ -2,7 +2,9 @@
   <div class="inner-section">
     <!-- header -->
 
-    {{user_type==3?<UserSidebar />:<UserTeacherSidebar />}}
+    <!-- {{user_type==3?<UserSidebar />:<UserTeacherSidebar />}} -->
+    <div v-if="user_type == 3"><UserSidebar /></div>
+    <div v-else><UserTeacherSidebar /></div>
 
     <!-- end section -->
 
@@ -24,8 +26,13 @@ export default {
       link: [{ rel: "stylesheet", href: "/css/style01.css" }],
     };
   },
+  data() {
+    return {
+      user_type: "",
+    };
+  },
   mounted() {
-    var user_type = localStorage.getItem("user_type");
+    this.user_type = localStorage.getItem("user_type");
   },
 };
 </script>
