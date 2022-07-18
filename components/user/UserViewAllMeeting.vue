@@ -13,7 +13,9 @@
         class="
           jochi-components-light-bg
           p-4
-          custom-margin-for-main-section custom-full-height d-flex flex-column
+          custom-margin-for-main-section custom-full-height
+          d-flex
+          flex-column
         "
       >
         <section id="tab" class="">
@@ -42,7 +44,15 @@
                   <div class="dropdown form-row custom-sort-by-btn">
                     <button
                       id="dLabel"
-                      class="dropdown-select btn btn-void p-0 color-secondary font-normal text-16 pr-2"
+                      class="
+                        dropdown-select
+                        btn btn-void
+                        p-0
+                        color-secondary
+                        font-normal
+                        text-16
+                        pr-2
+                      "
                       type="button"
                       data-toggle="dropdown"
                       aria-haspopup="true"
@@ -50,8 +60,10 @@
                     >
                       <span class="mr-2 color-secondary"> Sort by</span>
                     </button>
-                    
-                    <span class="caret color-secondary"><i class="fas fa-chevron-down"></i></span>
+
+                    <span class="caret color-secondary"
+                      ><i class="fas fa-chevron-down"></i
+                    ></span>
                     <!-- <span class="input-icon"
                       ><i class="fa fa-filter" aria-hidden="true"></i
                     ></span> -->
@@ -70,8 +82,18 @@
         <!-- end tab section for view all meeting -->
         <!-- element secton -->
 
-        <section id="view-all-section" class=" d-flex h-40 flex-fill">
-          <div class="meeting-section container-fluid d-flex custom-overflow pe-2 mr--2 flex-fill">
+        <section id="view-all-section" class="d-flex h-40 flex-fill">
+          <div
+            class="
+              meeting-section
+              container-fluid
+              d-flex
+              custom-overflow
+              pe-2
+              mr--2
+              flex-fill
+            "
+          >
             <div class="inner-meeting m-auto container-fluid p-0">
               <div class="row Meeting-row pl-0 pr-3 pt-0">
                 <div
@@ -80,7 +102,17 @@
                   v-for="(list, index) in slot_date"
                   :key="index"
                 >
-                  <div class="meeting-list p-3 position-realtive cursor-pointer card card-void align-items-center h-100">
+                  <div
+                    class="
+                      meeting-list
+                      p-3
+                      position-realtive
+                      cursor-pointer
+                      card card-void
+                      align-items-center
+                      h-100
+                    "
+                  >
                     <div class="approved-tag position-absolute">
                       <!-- {{ list }} -->
                       <div
@@ -102,8 +134,12 @@
                         />
                       </div>
                     </div>
-                    <h6 class="color-dark text-center mb-2 font-semi-bold">Meeting with {{ list["title"] }}</h6>
-                    <p class="color-secondary text-center mb-1">{{ list["dateFormat"] }}</p>
+                    <h6 class="color-dark text-center mb-2 font-semi-bold">
+                      Meeting with {{ list["title"] }}
+                    </h6>
+                    <p class="color-secondary text-center mb-1">
+                      {{ list["dateFormat"] }}
+                    </p>
                     <p class="color-primary text-center mb-1">
                       {{ list["from"] }} to {{ list["end"] }}
                       <!-- {{ timeZones.timeZone }} -->
@@ -200,7 +236,16 @@
                   <tr>
                     <td class="tmodal-data">Date</td>
                     <td class="tmodal-data">
-                      <div class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                      <div
+                        class="
+                          mb-0
+                          col-12 col-md-8 col-lg-7
+                          d-flex
+                          align-items-center
+                          form-row
+                          py-0
+                        "
+                      >
                         <span class="pr-2"></span>
                         <!-- <div class="col-md-6 ml-auto"> -->
                         <!-- <div class="form-group"> -->
@@ -218,7 +263,7 @@
                           format="MM/dd/yyyy"
                           :value="detailDate"
                           v-model="detailDate"
-                          @selected="onDateChange()"
+                          @selected="onDateChange($event)"
                         />
                         <!-- <div
                               v-if="submitted && $v.dateValue.$error"
@@ -306,7 +351,16 @@
                   <tr>
                     <td class="tmodal-data text-nowrap">Meeting Name</td>
                     <td class="tmodal-data">
-                      <p class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                      <p
+                        class="
+                          mb-0
+                          col-12 col-md-8 col-lg-7
+                          d-flex
+                          align-items-center
+                          form-row
+                          py-0
+                        "
+                      >
                         <span class="pr-2"></span>
                         <!-- <span v-if="value">
                               {{
@@ -320,7 +374,7 @@
                           name="detailMeetingName"
                           autocomplete="off"
                           maxlength="100"
-                          class="form-control bg-white "
+                          class="form-control bg-white"
                           v-model="detailMeetingName"
                           :class="{
                             'is-invalid':
@@ -341,7 +395,16 @@
                   <tr>
                     <td class="tmodal-data text-nowrap">Description</td>
                     <td class="tmodal-data">
-                      <p class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                      <p
+                        class="
+                          mb-0
+                          col-12 col-md-8 col-lg-7
+                          d-flex
+                          align-items-center
+                          form-row
+                          py-0
+                        "
+                      >
                         <span class="pr-2"></span>
                         <!-- <span v-if="value">
                               {{
@@ -376,10 +439,19 @@
                   <tr>
                     <td class="tmodal-data text-nowrap">Type of Meeting</td>
                     <td class="tmodal-data">
-                      <p class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                      <p
+                        class="
+                          mb-0
+                          col-12 col-md-8 col-lg-7
+                          d-flex
+                          align-items-center
+                          form-row
+                          py-0
+                        "
+                      >
                         <span class="pr-2"></span>
                         <select
-                          class=" form-control bg-white"
+                          class="form-control bg-white"
                           tabindex=""
                           name="detailConversationType"
                           v-model="detailConversationType"
@@ -413,7 +485,16 @@
                       }}
                     </td>
                     <td class="tmodal-data">
-                      <p class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
+                      <p
+                        class="
+                          mb-0
+                          col-12 col-md-8 col-lg-7
+                          d-flex
+                          align-items-center
+                          form-row
+                          py-0
+                        "
+                      >
                         <span class="pr-2"> </span>
                         <!-- <span v-if="value">
                               {{
@@ -685,12 +766,7 @@ export default {
           " " +
           date.format("MMMM");
         var splitDate = element.date.split("-");
-        console.log(
-          "date of split ",
-          element.date,
-          splitDate,
-          new Date(splitDate[0], splitDate[1] - 1, splitDate[2])
-        );
+
         Scheduleobj["type"] = this.meetingType;
         Scheduleobj["title"] = title;
         Scheduleobj["dateFormat"] = dateFormat;
@@ -771,6 +847,7 @@ export default {
       this.detailScheduleId = list.schedule_id;
       this.detailTeacherId = list.teacher_id;
       this.detailSlotId = list.slot_id;
+      this.date_formatted = list.date_formatted;
       // var dateF = list.date.split("-");
       this.date = new Date(moment(list.date));
       if (this.detailType != "Teacher") {
@@ -784,7 +861,6 @@ export default {
         return;
       } else {
         this.loading = true;
-        console.log("date consoling ", this.date);
 
         await this.updateMeeting({
           id: this.detailMeetingId,
@@ -839,9 +915,13 @@ export default {
       this.e = "";
     },
 
-    onDateChange() {
-      console.log(moment(this.date).format("YYYY-MM-DD"), this.date_formatted);
-      if (moment(this.date).format("YYYY-MM-DD") == this.date_formatted) {
+    onDateChange(event) {
+      console.log(
+        event,
+        moment(event).format("YYYY-MM-DD"),
+        this.date_formatted
+      );
+      if (moment(event).format("YYYY-MM-DD") == this.date_formatted) {
         alert("matching");
       } else {
         // if (this.initialDateSelect) {
@@ -885,17 +965,17 @@ export default {
             this.students_name.push(element.first_name);
           });
         }
-        if (this.studentsValue.length === 0) {
-          this.value = "";
-          $('input[name="daterange"]').val("");
-          fromDate = "";
-          endDate = "";
-          this.studentsValue = "";
-          this.loading = false;
-          this.slot_date = [];
-          this.isShowing = true;
-          this.isMounted = false;
-        }
+        // if (this.studentsValue.length === 0) {
+        //   this.value = "";
+        //   $('input[name="daterange"]').val("");
+        //   fromDate = "";
+        //   endDate = "";
+        //   this.studentsValue = "";
+        //   this.loading = false;
+        //   this.slot_date = [];
+        //   this.isShowing = true;
+        //   this.isMounted = false;
+        // }
 
         if (this.studentsValue.length != 0 && fromDate && endDate) {
           this.isMounted = true;
