@@ -204,7 +204,7 @@
             </li>
             <li class="menu-list nav-item">
               <nuxt-link
-                to="/club-catalogue"
+                to="/teacher-club-catalogue"
                 data-toggle="collapse"
                 class="nav-link"
               >

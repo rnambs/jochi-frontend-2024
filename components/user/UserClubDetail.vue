@@ -117,7 +117,10 @@
                     </p>
                     <nuxt-link
                       :to="{
-                        path: '/club-moreInfo',
+                        path:
+                          user == 3
+                            ? '/club-moreInfo'
+                            : '/teacher-club-moreInfo',
                         query: {
                           id: list.id,
                           name: list.description,
