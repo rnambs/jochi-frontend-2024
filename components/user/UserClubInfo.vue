@@ -12,6 +12,8 @@
         class="
           jochi-components-light-bg
           custom-margin-for-main-section custom-full-height
+          d-flex
+          flex-column
         "
       >
         <!-- end tab for club info -->
@@ -21,7 +23,7 @@
           <div class="black-grad"></div>
         </div>
 
-        <section id="club-detail" class="custom-height-for-club-detail-section">
+        <section id="club-detail" class=" flex-fill custom-overflow">
           <div class="club-section container-fluid mt-2">
             <div
               class="
@@ -36,8 +38,8 @@
                 pl-0
               "
             >
-              <div class="info-head my-2">
-                <h3 class="mb-1">Club Details</h3>
+              <div class=" my-2">
+                <h3 class="color-primary font-semi-bold mb-1">Club Details</h3>
               </div>
               <div class="inner-info">
                 <div
@@ -47,11 +49,11 @@
                 >
                   <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3">
                     <div class="inner-info-head mb-2">
-                      <h5>About the {{ headingName }}</h5>
+                      <h5 class="color-dark mb-2 font-bold">About the {{ headingName }}</h5>
                     </div>
                     <p
                       v-if="!editDescription"
-                      class="mb-2 cd-about-club-details"
+                      class="mb-2 text-14 color-secondary"
                     >
                       {{ clubDetails.description }}
                       <span
@@ -111,8 +113,8 @@
                         >Show club in catalog
                       </label>
                     </div> -->
-                    <div class="inner-info-head mb-2 mt-4">
-                      <h5>Members</h5>
+                    <div class="mb-2 mt-4">
+                      <h5 class="color-dark mb-2 font-bold">Members</h5>
                     </div>
                     <div
                       class="
@@ -206,8 +208,8 @@
                   <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
                     <div class="row">
                       <div class="col-12 inner-col text-right">
-                        <div class="inner-info-head mb-3">
-                          <h5>Leaders</h5>
+                        <div class="mb-3">
+                          <h5 class="color-dark mb-2 font-bold">Leaders</h5>
                         </div>
                         <div class="row">
                           <div class="col-4"></div>
@@ -234,6 +236,7 @@
                                         d-flex
                                         justify-content-end
                                         p-0
+                                        mr-1
                                       "
                                     >
                                       <div class="ld-img-section">
@@ -296,7 +299,7 @@
                                 <li
                                   v-if="!leadersInfo || leadersInfo.length == 0"
                                 >
-                                  <span class="input-name">No data</span>
+                                  <span class="text-secondary text-14 font-regular">No data</span>
                                 </li>
                               </ul>
                             </div>
@@ -308,7 +311,7 @@
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-3">
-                          <h5>Add Leaders</h5>
+                          <h5 class="color-dark mb-2 font-bold">Add Leaders</h5>
                         </div>
 
                         <div
@@ -365,7 +368,7 @@
                             ><i class="fa fa-search" aria-hidden="true"></i
                           ></span>
                           <button
-                            class="btn btn-info-edit custom-theme-color-btn"
+                            class="btn btn-primary"
                             :disabled="!leaderUpdate"
                             @click.prevent="addLeader()"
                           >
@@ -454,9 +457,9 @@
         </section>
 
         <section id="tab" class="">
-          <div class="info-tab container-fluid mt-3">
-            <div class="row tab-row mt-2">
-              <div class="col-md-4 col-xs-12">
+          <div class="info-tab container-fluid my-3 px-3">
+            <div class="row tab-row m-0 ">
+              <div class="col-md-4 col-xs-12 p-2">
                 <nuxt-link
                   :to="{
                     path: '/club-moreInfo',
@@ -466,42 +469,44 @@
                       type: clubDetails.activity_type,
                     },
                   }"
-                  class="inner-tab"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
                 >
                   <!-- <i class="fas fa-info"></i> -->
-                  <span class="pl">Home Page</span>
+                  <span class="text-24 color-primary font-semi-bold">Home Page</span>
                 </nuxt-link>
               </div>
-              <div class="col-md-4 col-xs-12">
+              <div class="col-md-4 col-xs-12 p-2">
                 <nuxt-link
                   :to="{
                     path: '/club-files',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
                 >
                   <!-- <i class="fas fa-file-alt"></i> -->
-                  <span class="pl">Files & Slides</span>
+                  <span class="text-24 color-primary font-semi-bold">Files & Slides</span>
                 </nuxt-link>
               </div>
-              <div @click="onNextMeeting" class="col-md-4 col-xs-12">
-                <!-- <nuxt-link
-                  :to="{
-                    path: '/club-moreInfo',
-                    query: {
-                      id: clubId,
-                      name: headingName,
-                      type: activity_type,
-                    },
-                  }"
-                  class="inner-tab"
-                > -->
-                <!-- <i class="fas fa-ellipsis-h"></i> -->
-                <!-- <span class="pl">More</span> -->
-                <span class="pl">Next Meeting</span>
-                <span style="color: black">{{
-                  clubMoreDetails.announcement
-                }}</span>
+              <div @click="onNextMeeting" class="col-md-4 col-xs-12 p-2">
+                <div class="inner-tab default d-flex flex-column align-items-center justify-content-center p-4 rounded-10">
+                  <!-- <nuxt-link
+                    :to="{
+                      path: '/club-moreInfo',
+                      query: {
+                        id: clubId,
+                        name: headingName,
+                        type: activity_type,
+                      },
+                    }"
+                    class="inner-tab"
+                  > -->
+                  <!-- <i class="fas fa-ellipsis-h"></i> -->
+                  <!-- <span class="pl">More</span> -->
+                  <span class="text-24 color-primary font-semi-bold">Next Meeting</span>
+                  <span class="text-16 color-primary font-regular">{{
+                    clubMoreDetails.announcement
+                  }}</span>
+                </div>
                 <!-- </nuxt-link> -->
               </div>
             </div>

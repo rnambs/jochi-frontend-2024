@@ -371,6 +371,9 @@ body{
         }
     }
 }
+.rounded-10{
+    border-radius: 12px;
+}
 
 // icon image
 
@@ -2103,596 +2106,569 @@ img.card-img{
             //     margin: auto;
             // }
             .tab-row{   
-                margin: 0px -10px;
-                .col-md-4{
-                    padding: 10px;
-                    a{
-                        text-decoration: none;
-                        color: $global-font-color;
-                        background-color: $Global-background-element;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        padding: 20px;
-                        border-radius: 10px;
-                        &:hover, &.nuxt-link-exact-active.nuxt-link-active{
-                            background-color:$global-background-color;
-                            box-shadow: .45rem .45rem 1rem $global-box-shadow;
-                        }
-                        i{
-                            position: absolute;
-                            margin: auto 0;
-                            background-color:$theme-color;
-                            display: flex;
-                            width: 22px;
-                            height: 22px;
-                            justify-content: center;
-                            align-items: center;
-                            border-radius: 5px;
-                            color: $global-font-color;
-                        }
-                        .pl{
-                            padding-left: 30px;
-                            font-size: 1.5rem;
-                            color: $theme-color;
-                        }
+                .inner-tab{
+                    text-decoration: none;
+                    color: $global-font-color;
+                    background-color: $Global-background-element;
+                    &:hover, &.nuxt-link-exact-active.nuxt-link-active{
+                        background-color:$white;
+                        box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
                     }
                 }
-                
             }
             
         }
         // end club info tab.
 
         // club info
-        .club-section{
-            .inner-club{
-                background-color: transparent;
-                height: auto;
-                border-radius: 1rem;
-                font-size: .75rem;
-                @media (max-width:1155px) {
-                    font-size: .65rem;
-                }
-                // &.club-info{
-                //     min-height: calc(100vh - 240px);
-                // }
-                .info-head{
-                    padding: 0px 15px;
-                    h5, h3{
-                        color: $theme-color;
-                        font-weight: 700;
-                    }
-                }
-                .inner-info{
-                    .row{
-                        .col-md-6{
-                            .inner-info-head{
-                                color: $black;
-                                h5 {
-                                    font-weight: 700;
-                                }
-                            }
-                            .form-group{
-                                textarea,.form-control{
-                                    font-size: .75rem;
-                                    @media (max-width: 991.98px) {
-                                        font-size: .75rem;
-                                    }
-                                    @media (max-width: 575.98px) {
-                                        font-size: .8rem;
-                                    }
-                                }
-                                .club-info{
-                                    background-color: $white;
-                                    border-color: transparent;
-                                    color: $border-color;
-                                }
-                                .btn-info-edit{
-                                    color: $global-font-color;
-                                    border: none;
-                                    border-radius: 4px;
-                                    background-color: $theme-color;
-                                    padding: 0.3rem 1.75rem;
-                                    font-size: 0.8rem;
-                                }
-                            }
-                            .inner-row{
-                                background-color: $global-sidebar-bg;
-                                margin: 0px 12px 12px;
-                                border: 1px solid $border-color;
-                                border-radius: 0.5rem;
-                                padding: 0.5rem;
-                                .inner-info-text{
-                                    max-height: 11vh;
-                                    overflow: hidden;
-                                    ul{
-                                        font-size: .5rem;
-                                        list-style: none;
-                                        padding-left: 1.5em;
-                                        max-height: 75px;
-                                        overflow: hidden;
-                                        overflow-y: auto;
-                                        @media (max-width:1155px) {
-                                            font-size: .45rem;
-                                        }
-                                        li{
-                                        text-transform: capitalize;
-                                        display: flex;
-                                        flex-direction: row;
-                                        justify-content: space-between;
-                                        color: $global-font-color;
-                                        font-size: .75rem;
-                                            @media (max-width: 991.98px) {
-                                                font-size: .75rem;
-                                            }
-                                            @media (max-width: 575.98px) {
-                                                font-size: .8rem;
-                                            }
-                                            .input-name{
-                                                margin-right: auto;
-                                            }
-                                            .input-icon{
-                                                color: $font-label-color ;
-                                                .fa-times{
-                                                    font-weight: 400;
-                                                    color: $font-label-color;
-                                                    &:hover{
-                                                        color: $font-label-color;
-                                                        cursor: pointer;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    ul li::before {
-                                        content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-                                        color: $theme-color; /* Change the color */
-                                        font-weight: bold; /* If you want it to be bold */
-                                        display: inline-block; /* Needed to add space between the bullet and the text */
-                                        width: 1em; /* Also needed for space (tweak if needed) */
-                                        margin-left: -1em; /* Also needed for space (tweak if needed) */
-                                    }
-                                }
-                                .form-row{
-                                    .form-control{
-                                        border: 2px solid $border-color;
-                                        background-color: $global-sidebar-bg;
-                                        border-radius: 0.4rem;
-                                        font-size: 1rem;
-                                        color: $font-label-color;
-                                        padding: .375rem .75rem;
-                                        height: calc(2.25rem + -3px);
-                                        &:focus{
-                                            box-shadow: none;
-                                        }
-                                    }
-                                    .btn-info-edit{
-                                        color: $global-font-color;
-                                        border: none;
-                                        border-radius: 4px;
-                                        background-color: $theme-color;
-                                        padding: 0.3rem 1.75rem;
-                                        font-size: 0.8rem;
-                                    }
-                                }
+        // .club-section{
+        //     .inner-club{
+        //         background-color: transparent;
+        //         height: auto;
+        //         border-radius: 1rem;
+        //         font-size: .75rem;
+        //         @media (max-width:1155px) {
+        //             font-size: .65rem;
+        //         }
+        //         &.club-info{
+        //             min-height: calc(100vh - 240px);
+        //         }
+        //         .info-head{
+        //             padding: 0px 15px;
+        //             h5, h3{
+        //                 color: $theme-color;
+        //                 font-weight: 700;
+        //             }
+        //         }
+        //         .inner-info{
+        //             .row{
+        //                 .col-md-6{
+        //                     .inner-info-head{
+        //                         color: $black;
+        //                         h5 {
+        //                             font-weight: 700;
+        //                         }
+        //                     }
+        //                     .form-group{
+        //                         textarea,.form-control{
+        //                             font-size: .75rem;
+        //                             @media (max-width: 991.98px) {
+        //                                 font-size: .75rem;
+        //                             }
+        //                             @media (max-width: 575.98px) {
+        //                                 font-size: .8rem;
+        //                             }
+        //                         }
+        //                         .club-info{
+        //                             background-color: $white;
+        //                             border-color: transparent;
+        //                             color: $border-color;
+        //                         }
+        //                         .btn-info-edit{
+        //                             color: $global-font-color;
+        //                             border: none;
+        //                             border-radius: 4px;
+        //                             background-color: $theme-color;
+        //                             padding: 0.3rem 1.75rem;
+        //                             font-size: 0.8rem;
+        //                         }
+        //                     }
+        //                     .inner-row{
+        //                         background-color: $global-sidebar-bg;
+        //                         margin: 0px 12px 12px;
+        //                         border: 1px solid $border-color;
+        //                         border-radius: 0.5rem;
+        //                         padding: 0.5rem;
+        //                         .inner-info-text{
+        //                             max-height: 11vh;
+        //                             overflow: hidden;
+        //                             ul{
+        //                                 font-size: .5rem;
+        //                                 list-style: none;
+        //                                 padding-left: 1.5em;
+        //                                 max-height: 75px;
+        //                                 overflow: hidden;
+        //                                 overflow-y: auto;
+        //                                 @media (max-width:1155px) {
+        //                                     font-size: .45rem;
+        //                                 }
+        //                                 li{
+        //                                 text-transform: capitalize;
+        //                                 display: flex;
+        //                                 flex-direction: row;
+        //                                 justify-content: space-between;
+        //                                 color: $global-font-color;
+        //                                 font-size: .75rem;
+        //                                     @media (max-width: 991.98px) {
+        //                                         font-size: .75rem;
+        //                                     }
+        //                                     @media (max-width: 575.98px) {
+        //                                         font-size: .8rem;
+        //                                     }
+        //                                     .input-name{
+        //                                         margin-right: auto;
+        //                                     }
+        //                                     .input-icon{
+        //                                         color: $font-label-color ;
+        //                                         .fa-times{
+        //                                             font-weight: 400;
+        //                                             color: $font-label-color;
+        //                                             &:hover{
+        //                                                 color: $font-label-color;
+        //                                                 cursor: pointer;
+        //                                             }
+        //                                         }
+        //                                     }
+        //                                 }
+        //                             }
+        //                             ul li::before {
+        //                                 content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+        //                                 color: $theme-color; /* Change the color */
+        //                                 font-weight: bold; /* If you want it to be bold */
+        //                                 display: inline-block; /* Needed to add space between the bullet and the text */
+        //                                 width: 1em; /* Also needed for space (tweak if needed) */
+        //                                 margin-left: -1em; /* Also needed for space (tweak if needed) */
+        //                             }
+        //                         }
+        //                         .form-row{
+        //                             .form-control{
+        //                                 border: 2px solid $border-color;
+        //                                 background-color: $global-sidebar-bg;
+        //                                 border-radius: 0.4rem;
+        //                                 font-size: 1rem;
+        //                                 color: $font-label-color;
+        //                                 padding: .375rem .75rem;
+        //                                 height: calc(2.25rem + -3px);
+        //                                 &:focus{
+        //                                     box-shadow: none;
+        //                                 }
+        //                             }
+        //                             .btn-info-edit{
+        //                                 color: $global-font-color;
+        //                                 border: none;
+        //                                 border-radius: 4px;
+        //                                 background-color: $theme-color;
+        //                                 padding: 0.3rem 1.75rem;
+        //                                 font-size: 0.8rem;
+        //                             }
+        //                         }
                                 
-                                .info-tag{
-                                    display: flex;
-                                    align-items: center;
-                                    .input-group{
-                                        display: inline-flex;
-                                        .input-icon-area{
-                                            position: relative;
-                                            background-color: $border-color;
-                                            color: $font-label-color;
-                                            border-radius: 25px;
-                                            padding: .2rem 1.5rem 0.2rem 0.6rem;
-                                            font-size: .8rem;
-                                            @media (max-width: 1396.98px) {
-                                                font-size: .75rem;
-                                            }
-                                            @media (max-width: 1270.98px) {
-                                                font-size: .68rem;
-                                            }
-                                            @media (max-width: 1024.98px) {
-                                                font-size: .55rem;
-                                            }
-                                            @media (max-width: 991.98px) {
-                                                font-size: .65rem;
-                                            }
-                                            @media (max-width: 767.98px) {
-                                                font-size: .8rem;
-                                            }
-                                            .pl{
-                                                color: $font-label-color ;
-                                                width: 0;
-                                                &::placeholder{
-                                                    color: $font-label-color ;
-                                                }
-                                            }
-                                            .input-icon{
-                                                cursor: pointer;
-                                                position: absolute;
-                                                margin: auto;
-                                                left: auto;
-                                                right: 4px;
-                                                color: $font-label-color ;
-                                                .fa-times{
-                                                    font-weight: 400;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                .input-icon-area{
-                                    position: relative;
-                                    display: flex;
-                                    .multiselect__select{
-                                        top: 2px;
-                                    }
-                                    .multiselect__tags {
-                                        border-radius: 0.4rem;
-                                        font-size: 0.8rem;
-                                        border: 2px solid $border-color;
-                                        background-color: $global-sidebar-bg;
-                                        color: $font-label-color;
-                                        padding: .05rem 0.75rem;
-                                        min-height: calc(2.8rem + -10px);  
-                                        @media (max-width: 1024.98px) {
-                                            min-height: calc(2.8rem + -10px); 
-                                        }
-                                        .multiselect__input, .multiselect__single {
-                                            background-color: unset;
-                                            border-radius: unset;
-                                            height: unset;
-                                            line-height: unset;color: $font-label-color;
-                                            font-size: 0.8rem;
-                                            margin: 6px 2px;
-                                            &::placeholder{
-                                                color: rgba($color:$font-label-color,$alpha:0.4);
-                                            }
-                                        }
-                                        span.multiselect__tag{
-                                            background-color: $selected-color;
-                                            margin: 5px;
-                                            @media (max-width:1128.98px) {
-                                                margin: 3px;
-                                            }
-                                            i.multiselect__tag-icon{
-                                                &:hover{
-                                                    background-color: $selected-color;
-                                                }
-                                            }
-                                        }
-                                        span.multiselect__placeholder{
-                                            margin: 2px;
-                                            font-size: 0.7rem;
-                                        }
-                                    }
-                                    .multiselect__content-wrapper{
-                                        list-style-type: none;
-                                        border: 1px solid #ced4da !important;
-                                        border-radius: 0.45rem;
-                                        background-color: $white !important;
-                                        padding: .375rem .75rem;
-                                        z-index: 10;
-                                        position: absolute;
-                                        left: 0;
-                                        width: 100%;
-                                        max-height: 135px !important;
-                                        overflow: auto;
-                                        font-size: 0.9rem;
-                                        ul{
-                                            li{
-                                                color: $font-label-color;
-                                                .multiselect__option--highlight{
-                                                    font-size: 0.9rem;
-                                                    color: $global-font-color; 
-                                                    background: $border-color;
-                                                    border-radius: 0.4rem;
-                                                    &:target, &:visited, &:active{
-                                                        background: #FF646F;
-                                                    }
-                                                }
-                                                .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
-                                                    background: #FF646F;
-                                                    color: $global-font-color;
-                                                    font-weight: 500;
-                                                    border-radius: .4rem;
-                                                }
-                                                span{
-                                                    &::after{
-                                                        display: none !important;
-                                                    }
-                                                }
+        //                         .info-tag{
+        //                             display: flex;
+        //                             align-items: center;
+        //                             .input-group{
+        //                                 display: inline-flex;
+        //                                 .input-icon-area{
+        //                                     position: relative;
+        //                                     background-color: $border-color;
+        //                                     color: $font-label-color;
+        //                                     border-radius: 25px;
+        //                                     padding: .2rem 1.5rem 0.2rem 0.6rem;
+        //                                     font-size: .8rem;
+        //                                     @media (max-width: 1396.98px) {
+        //                                         font-size: .75rem;
+        //                                     }
+        //                                     @media (max-width: 1270.98px) {
+        //                                         font-size: .68rem;
+        //                                     }
+        //                                     @media (max-width: 1024.98px) {
+        //                                         font-size: .55rem;
+        //                                     }
+        //                                     @media (max-width: 991.98px) {
+        //                                         font-size: .65rem;
+        //                                     }
+        //                                     @media (max-width: 767.98px) {
+        //                                         font-size: .8rem;
+        //                                     }
+        //                                     .pl{
+        //                                         color: $font-label-color ;
+        //                                         width: 0;
+        //                                         &::placeholder{
+        //                                             color: $font-label-color ;
+        //                                         }
+        //                                     }
+        //                                     .input-icon{
+        //                                         cursor: pointer;
+        //                                         position: absolute;
+        //                                         margin: auto;
+        //                                         left: auto;
+        //                                         right: 4px;
+        //                                         color: $font-label-color ;
+        //                                         .fa-times{
+        //                                             font-weight: 400;
+        //                                         }
+        //                                     }
+        //                                 }
+        //                             }
+        //                         }
+        //                         .input-icon-area{
+        //                             position: relative;
+        //                             display: flex;
+        //                             .multiselect__select{
+        //                                 top: 2px;
+        //                             }
+        //                             .multiselect__tags {
+        //                                 border-radius: 0.4rem;
+        //                                 font-size: 0.8rem;
+        //                                 border: 2px solid $border-color;
+        //                                 background-color: $global-sidebar-bg;
+        //                                 color: $font-label-color;
+        //                                 padding: .05rem 0.75rem;
+        //                                 min-height: calc(2.8rem + -10px);  
+        //                                 @media (max-width: 1024.98px) {
+        //                                     min-height: calc(2.8rem + -10px); 
+        //                                 }
+        //                                 .multiselect__input, .multiselect__single {
+        //                                     background-color: unset;
+        //                                     border-radius: unset;
+        //                                     height: unset;
+        //                                     line-height: unset;color: $font-label-color;
+        //                                     font-size: 0.8rem;
+        //                                     margin: 6px 2px;
+        //                                     &::placeholder{
+        //                                         color: rgba($color:$font-label-color,$alpha:0.4);
+        //                                     }
+        //                                 }
+        //                                 span.multiselect__tag{
+        //                                     background-color: $selected-color;
+        //                                     margin: 5px;
+        //                                     @media (max-width:1128.98px) {
+        //                                         margin: 3px;
+        //                                     }
+        //                                     i.multiselect__tag-icon{
+        //                                         &:hover{
+        //                                             background-color: $selected-color;
+        //                                         }
+        //                                     }
+        //                                 }
+        //                                 span.multiselect__placeholder{
+        //                                     margin: 2px;
+        //                                     font-size: 0.7rem;
+        //                                 }
+        //                             }
+        //                             .multiselect__content-wrapper{
+        //                                 list-style-type: none;
+        //                                 border: 1px solid #ced4da !important;
+        //                                 border-radius: 0.45rem;
+        //                                 background-color: $white !important;
+        //                                 padding: .375rem .75rem;
+        //                                 z-index: 10;
+        //                                 position: absolute;
+        //                                 left: 0;
+        //                                 width: 100%;
+        //                                 max-height: 135px !important;
+        //                                 overflow: auto;
+        //                                 font-size: 0.9rem;
+        //                                 ul{
+        //                                     li{
+        //                                         color: $font-label-color;
+        //                                         .multiselect__option--highlight{
+        //                                             font-size: 0.9rem;
+        //                                             color: $global-font-color; 
+        //                                             background: $border-color;
+        //                                             border-radius: 0.4rem;
+        //                                             &:target, &:visited, &:active{
+        //                                                 background: #FF646F;
+        //                                             }
+        //                                         }
+        //                                         .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
+        //                                             background: #FF646F;
+        //                                             color: $global-font-color;
+        //                                             font-weight: 500;
+        //                                             border-radius: .4rem;
+        //                                         }
+        //                                         span{
+        //                                             &::after{
+        //                                                 display: none !important;
+        //                                             }
+        //                                         }
                                                 
-                                            }
-                                            .vs__dropdown-option--highlight {
+        //                                     }
+        //                                     .vs__dropdown-option--highlight {
                                             
-                                                color: $global-font-color;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            .custom-switch{
-                                .custom-control-label{
-                                    color: $global-font-color;
-                                    font-size: 0.8rem;
-                                    cursor: pointer;
-                                }
-                                .custom-control-input{
-                                    background-color: $icon-bg-green;
-                                }
-                            }
-                        }
-                    }
-                }
-                // more info
+        //                                         color: $global-font-color;
+        //                                     }
+        //                                 }
+        //                             }
+        //                         }
+        //                     }
+        //                     .custom-switch{
+        //                         .custom-control-label{
+        //                             color: $global-font-color;
+        //                             font-size: 0.8rem;
+        //                             cursor: pointer;
+        //                         }
+        //                         .custom-control-input{
+        //                             background-color: $icon-bg-green;
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //         // more info
 
-                .inner-info{
-                    .row{
-                        .col-md-7, .col-md-5{
-                            .inner-info{
-                                background-color: rgba($color: $white, $alpha: 0.6);
-                                border-radius: 10px;
-                                border: none;
-                                height: 100%;
-                                box-shadow: 0 0 12px rgba($color: $black, $alpha: 0.1);
-                                .inner-info-head{
-                                    color: $border-color;
-                                }
-                                .time{
-                                    font-size: 0.8rem;
-                                }
-                                .form-group{
-                                    ul{
-                                        font-size: .5rem;
-                                        list-style-type: none;
-                                        padding-left: 1.5em;
-                                        max-height: 165px;
-                                        overflow: hidden;
-                                        overflow-y: auto;
-                                        @media (max-width:1155px) {
-                                            font-size: .45rem;
-                                        }
-                                        li{
-                                        display: flex;
-                                        flex-direction: row;
-                                        justify-content: space-between;
-                                        color: $timer-label;
-                                        font-size: .8rem;
-                                        text-transform: capitalize;
-                                            @media (max-width: 991.98px) {
-                                                font-size: .75rem;
-                                            }
-                                            @media (max-width: 575.98px) {
-                                                font-size: .8rem;
-                                            }
-                                            .input-name{
-                                                margin-right: auto;
-                                            }
-                                            .input-icon{
-                                                i{
-                                                font-weight: 400;
-                                                color: $font-label-color;
-                                                &:hover{
-                                                    color: $font-label-color;
-                                                    cursor: pointer;
-                                                }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    ul li::before {
-                                        content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-                                        color: $theme-color; /* Change the color */
-                                        font-weight: bold; /* If you want it to be bold */
-                                        display: inline-block; /* Needed to add space between the bullet and the text */
-                                        width: 1em; /* Also needed for space (tweak if needed) */
-                                        margin-left: -1em; /* Also needed for space (tweak if needed) */
-                                    }
-                                    .btn-info-edit{
-                                        color: $global-font-color;
-                                        border: none;
-                                        border-radius: 4px;
-                                        background-color: $theme-color;
-                                        padding: 0.3rem 1.75rem;
-                                        font-size: 0.8rem;
-                                    }
-                                }
-                                .choose-date{
-                                    .col{ 
-                                        padding: 5px;
-                                        p{
-                                            color: $global-font-color;
-                                            font-size: 0.7rem;
-                                        }
-                                        .date-picker{
-                                            color:$global-font-color ;
-                                            font-size: 0.6rem;
-                                            border-radius: 50%;
-                                            background-color: $font-label-color;
-                                            padding: 0px;
-                                            display: flex;
-                                            flex-direction: column;
-                                            justify-content: center;
-                                            text-align: center;
-                                             &.active{
-                                                background-color: $theme-color;
-                                                color:$global-font-color;
-                                            }
-                                            &:hover{
-                                                background-color: $dark-theme;
-                                                color:$global-background-color; 
-                                                box-shadow: 0 0 0 0.2rem rgba(255,255 ,255,0.25);
-                                            }
-                                            @media (min-width: 1396.98px) {
-                                                width: 45px;
-                                                height: 45px;
-                                            }
-                                            @media (max-width: 1396.98px) {
-                                                width: 40px;
-                                                height: 40px;
-                                            }
-                                            @media (max-width: 1270.98px) {
-                                                width: 30px;
-                                                height: 30px;
-                                            }
-                                            @media (max-width: 1024.98px) {
-                                                width: 28px;
-                                                height: 28px;
-                                                font-size: 0.55rem;
-                                            }
-                                            @media (max-width: 991.98px) {
-                                                width: 26px;
-                                                height: 26px;
-                                            }
-                                            @media (max-width: 767.98px) {
-                                                width: 45px;
-                                                height: 45px;
-                                                padding: 12px;
-                                                font-size: 0.65rem;
-                                            }
-                                            @media (max-width: 586.98px) {
-                                                width: 30px;
-                                                height: 30px;
-                                                padding: 5px;
-                                                font-size: 0.6rem;
-                                            }
-                                            @media (max-width: 386.98px) {
-                                                width: 26px;
-                                                height: 26px;
-                                                padding: 5px;
-                                                font-size: 0.5rem;
-                                            }
-                                        }
-                                    }
-                                }
-                                .input-icon-area{
-                                    position: relative;
-                                    display: flex;
-                                    .multiselect__tags {
-                                        border-radius: 0.4rem;
-                                        font-size: 0.8rem;
-                                        // border: 2px solid $border-color;
-                                        // background-color: $global-sidebar-bg;
-                                        color: $font-label-color;
-                                        padding: .375rem 0.75rem;
-                                        // min-height: calc(2.8rem + 0px);  
-                                        @media (max-width: 1024.98px) {
-                                            min-height: calc(2.8rem + 0px); 
-                                        }
-                                        .multiselect__input, .multiselect__single {
-                                            background-color: unset;
-                                            border-radius: unset;
-                                            height: unset;
-                                            line-height: unset;color: $font-label-color;
-                                            font-size: 0.8rem;
-                                            margin: 2px;
-                                            &::placeholder{
-                                                color: rgba($color:$font-label-color,$alpha:0.4);
-                                            }
-                                        }
-                                        span.multiselect__tag{
-                                            background-color: $selected-color;
-                                            margin: 5px;
-                                            @media (max-width:1128.98px) {
-                                                margin: 3px;
-                                            }
-                                            i.multiselect__tag-icon{
-                                                &:hover{
-                                                    background-color: $selected-color;
-                                                }
-                                            }
-                                        }
-                                        span.multiselect__placeholder{
-                                            margin: 0;
-                                            font-size: 0.9rem;
-                                        }
-                                    }
-                                    .multiselect__content-wrapper{
-                                        list-style-type: none;
-                                        // border: 2px solid $border-color;
-                                        border-radius: 0.45rem;
-                                        // background-color: $global-sidebar-bg;
-                                        padding: .375rem .75rem;
-                                        z-index: 10;
-                                        position: absolute;
-                                        left: 0;
-                                        width: 100%;
-                                        max-height: 135px!important;
-                                        overflow: auto;
-                                        font-size: 0.9rem;
-                                        ul{
-                                            li{
-                                                color: $font-label-color;
-                                                .multiselect__option--highlight{
-                                                    font-size: 0.9rem;
-                                                    color: $global-font-color; 
-                                                    background: $border-color;
-                                                    border-radius: 0.4rem;
-                                                    &:target, &:visited, &:active{
-                                                        background: #FF646F;
-                                                    }
-                                                }
-                                                .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
-                                                    background: #FF646F;
-                                                    color: $global-font-color;
-                                                    font-weight: 500;
-                                                    border-radius: .4rem;
-                                                }
-                                                span{
-                                                    &::after{
-                                                        display: none !important;
-                                                    }
-                                                }
+        //         .inner-info{
+        //             .row{
+        //                 .col-md-7, .col-md-5{
+        //                     .inner-info{
+        //                         background-color: rgba($color: $white, $alpha: 0.6);
+        //                         border-radius: 10px;
+        //                         border: none;
+        //                         height: 100%;
+        //                         box-shadow: 0 0 12px rgba($color: $black, $alpha: 0.1);
+        //                         .inner-info-head{
+        //                             color: $border-color;
+        //                         }
+        //                         .time{
+        //                             font-size: 0.8rem;
+        //                         }
+        //                         .form-group{
+        //                             ul{
+        //                                 font-size: .5rem;
+        //                                 list-style-type: none;
+        //                                 padding-left: 1.5em;
+        //                                 max-height: 165px;
+        //                                 overflow: hidden;
+        //                                 overflow-y: auto;
+        //                                 @media (max-width:1155px) {
+        //                                     font-size: .45rem;
+        //                                 }
+        //                                 li{
+        //                                 display: flex;
+        //                                 flex-direction: row;
+        //                                 justify-content: space-between;
+        //                                 color: $timer-label;
+        //                                 font-size: .8rem;
+        //                                 text-transform: capitalize;
+        //                                     @media (max-width: 991.98px) {
+        //                                         font-size: .75rem;
+        //                                     }
+        //                                     @media (max-width: 575.98px) {
+        //                                         font-size: .8rem;
+        //                                     }
+        //                                     .input-name{
+        //                                         margin-right: auto;
+        //                                     }
+        //                                     .input-icon{
+        //                                         i{
+        //                                         font-weight: 400;
+        //                                         color: $font-label-color;
+        //                                         &:hover{
+        //                                             color: $font-label-color;
+        //                                             cursor: pointer;
+        //                                         }
+        //                                         }
+        //                                     }
+        //                                 }
+        //                             }
+        //                             ul li::before {
+        //                                 content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+        //                                 color: $theme-color; /* Change the color */
+        //                                 font-weight: bold; /* If you want it to be bold */
+        //                                 display: inline-block; /* Needed to add space between the bullet and the text */
+        //                                 width: 1em; /* Also needed for space (tweak if needed) */
+        //                                 margin-left: -1em; /* Also needed for space (tweak if needed) */
+        //                             }
+        //                             .btn-info-edit{
+        //                                 color: $global-font-color;
+        //                                 border: none;
+        //                                 border-radius: 4px;
+        //                                 background-color: $theme-color;
+        //                                 padding: 0.3rem 1.75rem;
+        //                                 font-size: 0.8rem;
+        //                             }
+        //                         }
+        //                         .choose-date{
+        //                             .col{ 
+        //                                 padding: 5px;
+        //                                 p{
+        //                                     color: $global-font-color;
+        //                                     font-size: 0.7rem;
+        //                                 }
+        //                                 .date-picker{
+        //                                     color:$global-font-color ;
+        //                                     font-size: 0.6rem;
+        //                                     border-radius: 50%;
+        //                                     background-color: $font-label-color;
+        //                                     padding: 0px;
+        //                                     display: flex;
+        //                                     flex-direction: column;
+        //                                     justify-content: center;
+        //                                     text-align: center;
+        //                                      &.active{
+        //                                         background-color: $theme-color;
+        //                                         color:$global-font-color;
+        //                                     }
+        //                                     &:hover{
+        //                                         background-color: $dark-theme;
+        //                                         color:$global-background-color; 
+        //                                         box-shadow: 0 0 0 0.2rem rgba(255,255 ,255,0.25);
+        //                                     }
+        //                                     @media (min-width: 1396.98px) {
+        //                                         width: 45px;
+        //                                         height: 45px;
+        //                                     }
+        //                                     @media (max-width: 1396.98px) {
+        //                                         width: 40px;
+        //                                         height: 40px;
+        //                                     }
+        //                                     @media (max-width: 1270.98px) {
+        //                                         width: 30px;
+        //                                         height: 30px;
+        //                                     }
+        //                                     @media (max-width: 1024.98px) {
+        //                                         width: 28px;
+        //                                         height: 28px;
+        //                                         font-size: 0.55rem;
+        //                                     }
+        //                                     @media (max-width: 991.98px) {
+        //                                         width: 26px;
+        //                                         height: 26px;
+        //                                     }
+        //                                     @media (max-width: 767.98px) {
+        //                                         width: 45px;
+        //                                         height: 45px;
+        //                                         padding: 12px;
+        //                                         font-size: 0.65rem;
+        //                                     }
+        //                                     @media (max-width: 586.98px) {
+        //                                         width: 30px;
+        //                                         height: 30px;
+        //                                         padding: 5px;
+        //                                         font-size: 0.6rem;
+        //                                     }
+        //                                     @media (max-width: 386.98px) {
+        //                                         width: 26px;
+        //                                         height: 26px;
+        //                                         padding: 5px;
+        //                                         font-size: 0.5rem;
+        //                                     }
+        //                                 }
+        //                             }
+        //                         }
+        //                         .input-icon-area{
+        //                             position: relative;
+        //                             display: flex;
+        //                             .multiselect__tags {
+        //                                 border-radius: 0.4rem;
+        //                                 font-size: 0.8rem;
+        //                                 // border: 2px solid $border-color;
+        //                                 // background-color: $global-sidebar-bg;
+        //                                 color: $font-label-color;
+        //                                 padding: .375rem 0.75rem;
+        //                                 // min-height: calc(2.8rem + 0px);  
+        //                                 @media (max-width: 1024.98px) {
+        //                                     min-height: calc(2.8rem + 0px); 
+        //                                 }
+        //                                 .multiselect__input, .multiselect__single {
+        //                                     background-color: unset;
+        //                                     border-radius: unset;
+        //                                     height: unset;
+        //                                     line-height: unset;color: $font-label-color;
+        //                                     font-size: 0.8rem;
+        //                                     margin: 2px;
+        //                                     &::placeholder{
+        //                                         color: rgba($color:$font-label-color,$alpha:0.4);
+        //                                     }
+        //                                 }
+        //                                 span.multiselect__tag{
+        //                                     background-color: $selected-color;
+        //                                     margin: 5px;
+        //                                     @media (max-width:1128.98px) {
+        //                                         margin: 3px;
+        //                                     }
+        //                                     i.multiselect__tag-icon{
+        //                                         &:hover{
+        //                                             background-color: $selected-color;
+        //                                         }
+        //                                     }
+        //                                 }
+        //                                 span.multiselect__placeholder{
+        //                                     margin: 0;
+        //                                     font-size: 0.9rem;
+        //                                 }
+        //                             }
+        //                             .multiselect__content-wrapper{
+        //                                 list-style-type: none;
+        //                                 // border: 2px solid $border-color;
+        //                                 border-radius: 0.45rem;
+        //                                 // background-color: $global-sidebar-bg;
+        //                                 padding: .375rem .75rem;
+        //                                 z-index: 10;
+        //                                 position: absolute;
+        //                                 left: 0;
+        //                                 width: 100%;
+        //                                 max-height: 135px!important;
+        //                                 overflow: auto;
+        //                                 font-size: 0.9rem;
+        //                                 ul{
+        //                                     li{
+        //                                         color: $font-label-color;
+        //                                         .multiselect__option--highlight{
+        //                                             font-size: 0.9rem;
+        //                                             color: $global-font-color; 
+        //                                             background: $border-color;
+        //                                             border-radius: 0.4rem;
+        //                                             &:target, &:visited, &:active{
+        //                                                 background: #FF646F;
+        //                                             }
+        //                                         }
+        //                                         .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
+        //                                             background: #FF646F;
+        //                                             color: $global-font-color;
+        //                                             font-weight: 500;
+        //                                             border-radius: .4rem;
+        //                                         }
+        //                                         span{
+        //                                             &::after{
+        //                                                 display: none !important;
+        //                                             }
+        //                                         }
                                                 
-                                            }
-                                            .vs__dropdown-option--highlight {
+        //                                     }
+        //                                     .vs__dropdown-option--highlight {
                                                
-                                                color: $global-font-color;
-                                            }
-                                        }
-                                    }
-                                }
-                                .custom-switch{
-                                    .custom-control-label{
-                                        color: $global-font-color;
-                                        font-size: 0.8rem;
-                                        cursor: pointer;
-                                    }
-                                    .custom-control-input{
-                                        background-color: $icon-bg-green;
-                                    }
-                                }
-                            }
-                            .form-control{
-                                // border: 2px solid $border-color;
-                                // background-color: $global-sidebar-bg;
-                                border-radius: 0.4rem;
-                                font-size: 1rem;
-                                color: $font-label-color;
-                                padding: .375rem .75rem;
-                                height: calc(2.25rem + 2px);
-                                &:focus{
-                                    box-shadow: none;
-                                }
-                            }
-                            .btn-info-edit{
-                                color: $global-font-color;
-                                border: none;
-                                border-radius: 4px;
-                                background-color: $theme-color;
-                                padding: 0.3rem 1.75rem;
-                                font-size: 0.8rem;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        //                                         color: $global-font-color;
+        //                                     }
+        //                                 }
+        //                             }
+        //                         }
+        //                         .custom-switch{
+        //                             .custom-control-label{
+        //                                 color: $global-font-color;
+        //                                 font-size: 0.8rem;
+        //                                 cursor: pointer;
+        //                             }
+        //                             .custom-control-input{
+        //                                 background-color: $icon-bg-green;
+        //                             }
+        //                         }
+        //                     }
+        //                     .form-control{
+        //                         // border: 2px solid $border-color;
+        //                         // background-color: $global-sidebar-bg;
+        //                         border-radius: 0.4rem;
+        //                         font-size: 1rem;
+        //                         color: $font-label-color;
+        //                         padding: .375rem .75rem;
+        //                         height: calc(2.25rem + 2px);
+        //                         &:focus{
+        //                             box-shadow: none;
+        //                         }
+        //                     }
+        //                     .btn-info-edit{
+        //                         color: $global-font-color;
+        //                         border: none;
+        //                         border-radius: 4px;
+        //                         background-color: $theme-color;
+        //                         padding: 0.3rem 1.75rem;
+        //                         font-size: 0.8rem;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
         // club files
         .club-section{
             .row{
@@ -5637,9 +5613,9 @@ select.form-control{
     font-weight: 600;
 }
 
-.cd-about-club-details {
-    font-size: 14px;
-}
+// .cd-about-club-details {
+//     font-size: 14px;
+// }
 
 .members-thumbnail-list {
     width: fit-content;
@@ -5679,15 +5655,15 @@ select.form-control{
     }
 }
 
-.custom-height-for-club-detail-section {
-    height: calc(100vh - 315px);
-    overflow: auto;
-}
+// .custom-height-for-club-detail-section {
+//     height: calc(100vh - 315px);
+//     overflow: auto;
+// }
 
-.btn-info-edit.custom-theme-color-btn {
-    background-color: $theme-color;
-    color: $white;
-}
+// .btn-info-edit.custom-theme-color-btn {
+//     background-color: $theme-color;
+//     color: $white;
+// }
 
 .custom-screen-height-for-club-details {
     height: calc(100vh - 165px);
