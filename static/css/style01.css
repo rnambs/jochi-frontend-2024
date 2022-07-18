@@ -119,6 +119,7 @@ body {
 
 .bg-white {
   background-color: #ffffff;
+  background: #ffffff;
 }
 
 .btn {
@@ -414,6 +415,12 @@ body {
 
 .h-40 {
   height: 40%;
+}
+
+.h-fit-content {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .custom-overflow {

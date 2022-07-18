@@ -83,7 +83,7 @@
                     <h6 class="mb-0">{{ list["name"] }}</h6>
                   </div> -->
                   <div class="row catalog-row">
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-lg-4">
                       <h5 class="mb-0 color-dark font-semi-bold">{{ list["name"] }}</h5>
                       <!-- <p class="catalog-text">
                         {{ list.part ? list.part : "No data "
@@ -97,8 +97,8 @@
                         {{ list.activity_type == "Clubs" ? "Club" : "Team" }}
                       </p>
                     </div>
-                    <div class="col-md-6 d-flex justify-content-end">
-                      <div class="col-md-8 pt-0 d-flex justify-content-end">
+                    <div class="col-lg-6 d-flex justify-content-start justify-content-lg-end">
+                      <div class="col-md-8 p-0 pr-2 d-flex justify-content-start justify-content-lg-end">
                         <div
                           class="
                             to-do-ul
@@ -177,7 +177,7 @@
                       ></a>
                     </div> -->
 
-                    <div class="col-md-2">
+                    <div class="col-lg-2 d-flex justify-content-start justify-content-lg-end">
                       <nuxt-link
                         :to="{
                           path: '/student-club-view',
@@ -187,6 +187,8 @@
                           btn
                           btn-primary
                           py-1
+                          mt-2
+                          h-fit-content
                         "
                       >
                         View More
@@ -237,14 +239,14 @@
                   <table class="w-100 table-modal custom-row-table">
                     <tr>
                       <td class="tmodal-data text-nowrap">Type</td>
-                      <td class="tmodal-data">
+                      <td class="tmodal-data d-flex">
                         <p
-                          class="mb-0 tdata-overflow d-flex align-items-center"
+                          class="mb-0 tdata-overflow d-flex align-items-center form-row col-8 px-0 py-1"
                         >
-                          <span class="pr-2">:</span>
+                          <span class="pr-2"></span>
                           <select
                             v-model="activity_type"
-                            class="custom-select custom-select-sm mb-3"
+                            class="custom-select form-control bg-white"
                             :class="{
                               'is-invalid':
                                 submitted && $v.activity_type.$error,
@@ -266,17 +268,17 @@
                     </tr>
                     <tr>
                       <td class="tmodal-data text-nowrap">Name</td>
-                      <td class="tmodal-data">
+                      <td class="tmodal-data d-flex">
                         <p
-                          class="mb-0 tdata-overflow d-flex align-items-center"
+                          class="mb-0 tdata-overflow d-flex align-items-center form-row px-0 py-1 col-8"
                         >
-                          <span class="pr-2">:</span>
+                          <span class="pr-2"></span>
                           <input
                             type="text"
                             v-model="name"
                             autocomplete="off"
                             maxlength="100"
-                            class="form-control custom-form-control"
+                            class="form-control bg-white custom-form-control"
                             :class="{
                               'is-invalid': submitted && $v.name.$error,
                             }"
@@ -294,17 +296,18 @@
                     </tr>
                     <tr>
                       <td class="tmodal-data text-nowrap">Description</td>
-                      <td class="tmodal-data">
+                      <td class="tmodal-data d-flex">
                         <p
-                          class="mb-0 tdata-overflow d-flex align-items-center"
+                          class="mb-0 tdata-overflow d-flex align-items-center form-row col-8 px-0 py-1"
                         >
-                          <span class="pr-2">:</span>
+                          <span class="pr-2"></span>
                           <textarea
+                          rows="3"
                             v-model="description"
                             type="text"
                             autocomplete="off"
                             maxlength="700"
-                            class="form-control custom-form-control"
+                            class="form-control bg-white custom-form-control"
                             :class="{
                               'is-invalid': submitted && $v.description.$error,
                             }"
