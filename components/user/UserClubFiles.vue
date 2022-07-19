@@ -382,7 +382,7 @@
                     path: '/club-info',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-info"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Club Details</span>
@@ -394,7 +394,7 @@
                     path: '/club-files',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-file-alt"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Files & Slides</span>
@@ -406,7 +406,7 @@
                     path: '/club-moreInfo',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-ellipsis-h"></i> -->
                   <span class="text-24 color-primary font-semi-bold">More</span>

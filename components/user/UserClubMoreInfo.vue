@@ -258,25 +258,24 @@
                         </div> -->
                     </div>
                   </div>
-                  <div v-else class="col-md-6 col-xs-12 d-100 d-flex">
+                  <div v-else class="col-md-6 col-xs-12 h-100 d-flex">
                     <div class="inner-info container-fluid p-2">
-                      <div class="row">
-                        <div class="col-6">
+                        <div class="">
                           <div class="inner-info-head mb-3">
                             <h5 class="color-dark mb-2 font-bold">To do!</h5>
                           </div>
-                          <div class="form-group">
-                            <ul>
+                          <div class="form-group ">
+                            <ul class="list-unstyled">
                               <li
                                 v-for="(todos, index) in clubMoreDetails.todo"
                                 :key="index"
                               >
-                                <span class="input-name">
+                                <span class="input-name color-dark">
                                   {{ todos.todo_list }}</span
                                 >
 
                                 <span
-                                  class="input-icon"
+                                  class="input-icon color-secondary btn p-1 m-0"
                                   v-if="enableEdit"
                                   @click.prevent="Removetodo(todos.id)"
                                 >
@@ -294,26 +293,27 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="col-6" v-if="enableEdit">
+                        <div class="" v-if="enableEdit">
                           <div class="inner-info-head mb-3">
-                            <h6>Add Todo</h6>
+                            <h5 class="color-dark mb-2 font-bold">Add Todo</h5>
                           </div>
-                          <div class="form-row m-0">
-                            <input
-                              class="form-control"
-                              v-model="todolist"
-                              maxlength="30"
-                            />
+                          <div class="d-flex flex-row align-items-center">
+                            <div class="form-row m-0 flex-fill mr-2">
+                              <input
+                                class="form-control"
+                                v-model="todolist"
+                                maxlength="30"
+                              />
+                            </div>
                             <button
                               :disabled="!todolist"
-                              class="btn btn-info-edit mt-2"
+                              class="btn btn-primary"
                               @click.prevent="EditTodo(clubId)"
                             >
                               Update
                             </button>
                           </div>
                         </div>
-                      </div>
                     </div>
                   </div>
                   <div class="col-md-6 col-xs-12 h-100 d-flex">
@@ -468,7 +468,7 @@
                     path: '/club-info',
                     query: { id: clubId, name: headingName, type: type },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-info"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Club Details</span>
@@ -480,14 +480,14 @@
                     path: '/club-files',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-file-alt"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Files/Slides</span>
                 </nuxt-link>
               </div>
               <div @click="onNextMeeting" class="col-md-4 col-xs-12">
-                <div class="inner-tab default d-flex flex-column align-items-center justify-content-center p-4 rounded-10">
+                <div class="inner-tab default d-flex flex-column align-items-center justify-content-center p-4 rounded-10 h-100">
                   <!-- <nuxt-link
                     :to="{
                       path: '/club-moreInfo',
