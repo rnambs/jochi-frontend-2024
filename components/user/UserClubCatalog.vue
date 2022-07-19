@@ -98,7 +98,7 @@
                       </p>
                     </div>
                     <div class="col-lg-6 d-flex justify-content-start justify-content-lg-end">
-                      <div class="col-md-8 p-0 pr-2 d-flex justify-content-start justify-content-lg-end">
+                      <div class=" p-0 pr-2 d-flex justify-content-start justify-content-lg-end">
                         <div
                           class="
                             to-do-ul

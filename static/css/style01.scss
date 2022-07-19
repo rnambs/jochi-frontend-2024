@@ -5744,36 +5744,36 @@ select.form-control{
     bottom: -25px;
 }
 
-.announcement-section {
-    max-height: 28vh;
-    overflow: auto;
-    .announcement-card {
-        border-radius: 8px;
-        background-color: $white;
-        box-shadow: 0 0 8px rgba($color: $black, $alpha: 0.2);
-        .anc-name-section,
-        .anc-title-section {
-            font-size: 18px;
-        }
-        .anc-title-section {
-            width: 130px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
-        .anc-status-btn {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            &.green {
-                background-color: #1d9c00;
-            }
-            &.red {
-                background-color: #ea4335;
-            }   
-        }
-    }
-}
+// .announcement-section {
+//     max-height: 28vh;
+//     overflow: auto;
+//     .announcement-card {
+//         border-radius: 8px;
+//         background-color: $white;
+//         box-shadow: 0 0 8px rgba($color: $black, $alpha: 0.2);
+//         .anc-name-section,
+//         .anc-title-section {
+//             font-size: 18px;
+//         }
+//         .anc-title-section {
+//             width: 130px;
+//             white-space: nowrap;
+//             text-overflow: ellipsis;
+//             overflow: hidden;
+//         }
+//         .anc-status-btn {
+//             width: 12px;
+//             height: 12px;
+//             border-radius: 50%;
+//             &.green {
+//                 background-color: #1d9c00;
+//             }
+//             &.red {
+//                 background-color: #ea4335;
+//             }   
+//         }
+//     }
+// }
 
 .invited-members-status {
     .i-member-status {
