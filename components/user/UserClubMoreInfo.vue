@@ -361,7 +361,14 @@
                             v-for="(item, index) in announcementList"
                             :key="index"
                           >
-                            <div class="card card-white px-3 py-2 mb-2">
+                            <div class="card px-3 py-2 mb-2"
+                            
+                            :class="
+                            item.isRead == 1
+                              ? 'card-void'
+                              : 'card-void'
+                          ">
+                              
                               <div
                                 class="
                                   d-flex
@@ -412,12 +419,8 @@
                                   >
                                   <div class="d-flex align-items-center">
                                     <div
-                                      :class="
-                                        item.isRead == 1
-                                          ? 'anc-status-btn green mr-3'
-                                          : 'anc-status-btn red mr-3'
-                                      "
-                                    ><i class="fas fa-circle"></i></div>
+                                      
+                                    ></div>
                                     <button
                                       v-if="enableEdit"
                                       @click="

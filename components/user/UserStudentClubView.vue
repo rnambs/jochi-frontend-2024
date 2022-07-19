@@ -512,7 +512,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body no-overflow px-4">
+          <div class="modal-body d-flex custom-overflow px-4">
             <!-- leader details -->
             <div v-if="isLeaderView" class="inner-info-text">
               <ul class="mb-0 leader-list-style">
@@ -521,7 +521,7 @@
                   <div
                     class="d-flex align-items-center justify-content-end mt-2"
                   >
-                    <div class="col-4 d-flex justify-content-end p-0">
+                    <div class="mr-2 d-flex justify-content-end p-0">
                       <div class="ld-img-section">
                         <div class="ld-img-holder">
                           <img
@@ -535,9 +535,9 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-8 p-0">
+                    <div class=" p-0">
                       <div class="ld-details-section">
-                        <p class="ld-heading mb-1">
+                        <p class="ld-heading color-dark mb-1">
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name
