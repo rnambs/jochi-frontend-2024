@@ -286,6 +286,7 @@ body{
     // Drop Down
     .multiselect__content-wrapper{
         list-style-type: none;
+        box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
         border: none;
         border-radius: 1.2rem;
         background-color: $white;
