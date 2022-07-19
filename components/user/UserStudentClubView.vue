@@ -273,7 +273,7 @@
                                               : "Teacher"
                                           }}
                                         </p>
-                                        <p class="ld-details mb-0">
+                                        <p class="ld-details mb-0 text-truncate">
                                           {{ data.user_info.email }}
                                         </p>
                                       </div>
