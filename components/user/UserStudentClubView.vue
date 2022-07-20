@@ -19,8 +19,16 @@
         <!-- end tab for club info -->
 
         <!-- Club info -->
-        <div class="cd-cover-pic-section">
+        <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
+          <div class="position-absolute cover-button mr-3 mb-1">
+            <button class="btn p-1 m-2">
+              <i class="fas fa-pen color-white"></i>
+            </button>
+            <button class="btn p-1 m-2">
+              <i class="fas fa-eye color-white"></i>
+            </button>
+          </div>
         </div>
 
         <section id="club-detail" class="custom-height-for-club-detail-section">

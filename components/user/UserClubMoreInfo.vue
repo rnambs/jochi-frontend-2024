@@ -18,8 +18,16 @@
       >
         <!-- end tab for club info -->
 
-        <div class="cd-cover-pic-section">
+        <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
+          <div class="position-absolute cover-button mr-3 mb-1">
+            <button class="btn p-1 m-2">
+              <i class="fas fa-pen color-white"></i>
+            </button>
+            <button class="btn p-1 m-2">
+              <i class="fas fa-eye color-white"></i>
+            </button>
+          </div>
         </div>
 
         <!-- Club info -->
@@ -261,7 +269,7 @@
                   <div v-else class="col-md-6 col-xs-12 h-100 d-flex">
                     <div class="inner-info container-fluid p-2">
                         <div class="">
-                          <div class="inner-info-head mb-3">
+                          <div class="inner-info-head mb-2">
                             <h5 class="color-dark mb-2 font-bold">To do!</h5>
                           </div>
                           <div class="form-group ">
@@ -269,11 +277,14 @@
                               <li
                                 v-for="(todos, index) in clubMoreDetails.todo"
                                 :key="index"
+                                class="row m-0"
                               >
+                              <p class="mb-0 col-8 p-0 text-truncate">
                                 <span class="input-name color-dark">
                                   {{ todos.todo_list }}</span
                                 >
-
+                              </p>
+                              <p class="mb-0 col-4 p-0"> 
                                 <span
                                   class="input-icon color-secondary btn p-1 m-0"
                                   v-if="enableEdit"
@@ -284,6 +295,8 @@
                                     aria-hidden="true"
                                   ></i
                                 ></span>
+                              </p>
+
                               </li>
                               <li v-if="clubMoreDetails.todo === 0">
                                 <span class="input-name">
@@ -294,10 +307,10 @@
                           </div>
                         </div>
                         <div class="" v-if="enableEdit">
-                          <div class="inner-info-head mb-3">
+                          <div class="inner-info-head mb-2">
                             <h5 class="color-dark mb-2 font-bold">Add Todo</h5>
                           </div>
-                          <div class="d-flex flex-row align-items-center">
+                          <div class="d-flex flex-row align-items-center mb-2">
                             <div class="form-row m-0 flex-fill mr-2">
                               <input
                                 class="form-control"
