@@ -167,7 +167,7 @@
                 <button
                   type="button"
                   data-dismiss="modal"
-                  class="btn btn-secondary px-3 py-1 rounded-pill"
+                  class="btn btn-secondary px-3 py-1 rounded-pill" 
                   aria-label="Close"
                 >
                   No
