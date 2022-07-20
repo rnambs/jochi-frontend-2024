@@ -58,7 +58,7 @@
                     href="#"
                     class="btn btn-primary py-1"
                     @click="JoinClub()"
-                    >{{ user == 3 ? "Join Now" : "Join As Leader" }}</a
+                    >{{ userType == 3 ? "Join Now" : "Join As Leader" }}</a
                   >
                 </div>
               </div>
@@ -706,11 +706,12 @@ export default {
       leaderUpdate: {},
       isLeaderView: false,
       tagColorMap: {},
+      userType: 0,
     };
   },
 
   mounted() {
-    var user = localStorage.getItem("user_type");
+    this.userType = localStorage.getItem("user_type");
     this.getClubMoreInfo();
     this.SlotswithId();
     // load students for add leader
@@ -1106,7 +1107,7 @@ export default {
         });
         this.$router.push({
           path: "/club-info",
-          query: { id: clubId, name: headingName },
+          query: { id: this.clubId, name: this.headingName },
         });
       } else if (this.errorMessage != "") {
         this.$toast.open({

@@ -31,7 +31,7 @@
           </div>
         </div>
 
-        <section id="club-detail" class=" flex-fill custom-overflow">
+        <section id="club-detail" class="flex-fill custom-overflow">
           <div class="club-section container-fluid mt-2">
             <div
               class="
@@ -57,7 +57,9 @@
                 >
                   <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3">
                     <div class="inner-info-head mb-2">
-                      <h5 class="color-dark mb-2 font-bold">About the {{ headingName }}</h5>
+                      <h5 class="color-dark mb-2 font-bold">
+                        About the {{ headingName }}
+                      </h5>
                     </div>
                     <p
                       v-if="!editDescription"
@@ -66,7 +68,7 @@
                       {{ clubDetails.description }}
                       <span
                         v-if="enableEdit"
-                        class="ml-2 text-secondary btn p-1 "
+                        class="ml-2 text-secondary btn p-1"
                         @click="editDescription = true"
                         ><i class="fas fa-pencil"></i
                       ></span>
@@ -277,7 +279,9 @@
                                               : "Teacher"
                                           }}
                                         </p>
-                                        <p class="ld-details mb-0 text-truncate">
+                                        <p
+                                          class="ld-details mb-0 text-truncate"
+                                        >
                                           {{ data.user_info.email }}
                                         </p>
                                       </div>
@@ -291,7 +295,7 @@
                                   class="btn btn-dark mt-2 py-1"
                                 >
                                   View More
-                              </button>
+                                </button>
 
                                 <!-- <li
                                   v-for="(leader, index) in list.todoLeader"
@@ -310,7 +314,10 @@
                                 <li
                                   v-if="!leadersInfo || leadersInfo.length == 0"
                                 >
-                                  <span class="text-secondary text-14 font-regular">No data</span>
+                                  <span
+                                    class="text-secondary text-14 font-regular"
+                                    >No data</span
+                                  >
                                 </li>
                               </ul>
                             </div>
@@ -371,13 +378,12 @@
                                 Select students
                               "
                             >
-                            <!-- <span slot="maxElements"
+                              <!-- <span slot="maxElements"
                               >Maximum of 4 students selected</span
                             > -->
-                            <span slot="noResult">No data found</span>
-                          </multiselect>
-                          
-                        </div>
+                              <span slot="noResult">No data found</span>
+                            </multiselect>
+                          </div>
                           <!-- <span class="input-icon custom-search-icon"
                             ><i class="fa fa-search" aria-hidden="true"></i
                           ></span> -->
@@ -401,8 +407,7 @@
                           <div class="col-6 info-tag pr-0">
                             <div class="input-group mb-0 justify-content-end">
                               <div
-                                class="p-1
-                                "
+                                class="p-1"
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
                               >
@@ -422,9 +427,17 @@
                                   :style="{
                                     'background-color': tagColorMap[value.name],
                                   }"
-                                  class="px-2 py-1 rounded color-white d-flex text-14 align-items-center"
+                                  class="
+                                    px-2
+                                    py-1
+                                    rounded
+                                    color-white
+                                    d-flex
+                                    text-14
+                                    align-items-center
+                                  "
                                   >{{ value.name }}
-                                    <span
+                                  <span
                                     class="input-icon color-white btn p-0"
                                     v-if="enableEdit"
                                     @click.prevent="RemoveTag(value.id)"
@@ -433,8 +446,7 @@
                                       aria-hidden="true"
                                     ></i
                                   ></span>
-                                  </span
-                                >
+                                </span>
                               </div>
                               <div
                                 class="input-icon-area mb-2 mr-2"
@@ -483,7 +495,7 @@
 
         <section id="tab" class="">
           <div class="info-tab container-fluid my-3 px-3">
-            <div class="row tab-row m-0 ">
+            <div class="row tab-row m-0">
               <div class="col-md-4 col-xs-12 p-2">
                 <nuxt-link
                   :to="{
@@ -494,26 +506,62 @@
                       type: clubDetails.activity_type,
                     },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
+                  class="
+                    inner-tab
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                    p-4
+                    rounded-10
+                    h-100
+                  "
                 >
                   <!-- <i class="fas fa-info"></i> -->
-                  <span class="text-24 color-primary font-semi-bold">Home Page</span>
+                  <span class="text-24 color-primary font-semi-bold"
+                    >Home Page</span
+                  >
                 </nuxt-link>
               </div>
               <div class="col-md-4 col-xs-12 p-2">
                 <nuxt-link
                   :to="{
                     path: '/club-files',
-                    query: { id: clubId, name: headingName },
+                    query: {
+                      id: clubId,
+                      name: headingName,
+                      type: clubDetails.activity_type,
+                    },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
+                  class="
+                    inner-tab
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                    p-4
+                    rounded-10
+                    h-100
+                  "
                 >
                   <!-- <i class="fas fa-file-alt"></i> -->
-                  <span class="text-24 color-primary font-semi-bold">Files & Slides</span>
+                  <span class="text-24 color-primary font-semi-bold"
+                    >Files & Slides</span
+                  >
                 </nuxt-link>
               </div>
               <div @click="onNextMeeting" class="col-md-4 col-xs-12 p-2">
-                <div class="inner-tab default d-flex flex-column align-items-center justify-content-center p-4 rounded-10 h-100">
+                <div
+                  class="
+                    inner-tab
+                    default
+                    d-flex
+                    flex-column
+                    align-items-center
+                    justify-content-center
+                    p-4
+                    rounded-10
+                    h-100
+                  "
+                >
                   <!-- <nuxt-link
                     :to="{
                       path: '/club-moreInfo',
@@ -527,7 +575,9 @@
                   > -->
                   <!-- <i class="fas fa-ellipsis-h"></i> -->
                   <!-- <span class="pl">More</span> -->
-                  <span class="text-24 color-primary font-semi-bold">Next Meeting</span>
+                  <span class="text-24 color-primary font-semi-bold"
+                    >Next Meeting</span
+                  >
                   <span class="text-16 color-primary font-regular">{{
                     clubMoreDetails.announcement
                   }}</span>
@@ -685,10 +735,8 @@
               <ul class="mb-0 leader-list-style">
                 <li v-for="(data, index) in leadersInfo" :key="index">
                   <!-- <span class="input-name">{{ data }}</span> -->
-                  <div
-                    class="d-flex align-items-center  mt-2"
-                  >
-                    <div class=" d-flex justify-content-end p-0">
+                  <div class="d-flex align-items-center mt-2">
+                    <div class="d-flex justify-content-end p-0">
                       <div class="ld-img-section mr-3">
                         <div class="ld-img-holder">
                           <img
@@ -702,7 +750,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class=" p-0">
+                    <div class="p-0">
                       <div class="ld-details-section">
                         <p class="ld-heading color-dark mb-1">
                           {{
