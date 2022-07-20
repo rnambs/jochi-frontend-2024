@@ -484,7 +484,7 @@
         <section id="tab" class="">
           <div class="info-tab container-fluid my-3 px-3">
             <div class="row tab-row m-0 ">
-              <div class="col-md-4 col-xs-12 p-2">
+              <div class="col-md-4 col-xs-12 py-2 py-md-3">
                 <nuxt-link
                   :to="{
                     path: '/club-moreInfo',
@@ -494,26 +494,26 @@
                       type: clubDetails.activity_type,
                     },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
+                  class="inner-tab d-flex align-items-center justify-content-center p-3 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-info"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Home Page</span>
                 </nuxt-link>
               </div>
-              <div class="col-md-4 col-xs-12 p-2">
+              <div class="col-md-4 col-xs-12 py-2 py-md-3">
                 <nuxt-link
                   :to="{
                     path: '/club-files',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
+                  class="inner-tab d-flex align-items-center justify-content-center p-3 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-file-alt"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Files & Slides</span>
                 </nuxt-link>
               </div>
-              <div @click="onNextMeeting" class="col-md-4 col-xs-12 p-2">
-                <div class="inner-tab default d-flex flex-column align-items-center justify-content-center p-4 rounded-10 h-100">
+              <div @click="onNextMeeting" class="col-md-4 col-xs-12 py-2 py-md-3">
+                <div class="inner-tab default d-flex flex-column align-items-center justify-content-center p-3 rounded-10 h-100">
                   <!-- <nuxt-link
                     :to="{
                       path: '/club-moreInfo',
@@ -579,7 +579,7 @@
                 }}
               </p>
 
-              <div class="row inner-col" v-if="enableEdit">
+              <div class="row inner-col mb-3" v-if="enableEdit">
                 <div class="col-lg-4 col-md-12 inner-inner-info-head d-flex align-items-center">
                   <h6 class="color-dark mb-0">Choose time</h6>
                 </div>
@@ -643,7 +643,7 @@
             </button> -->
             <button
               v-if="enableEdit"
-              class="btn btn-info-edit mt-2"
+              class="btn btn-primary mt-2"
               :disabled="!valueMeeting"
               @click.prevent="UpdateTime"
             >
