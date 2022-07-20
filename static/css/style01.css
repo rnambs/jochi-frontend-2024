@@ -165,6 +165,9 @@ body {
   background-color: #FF6D6D;
   color: #F9F9F9;
 }
+.btn.btn-primary:hover {
+  background-color: #FF4E71;
+}
 .btn.btn-dark {
   background-color: #000000;
   color: #ffffff;
@@ -172,6 +175,13 @@ body {
 .btn.btn-void {
   background-color: transparent;
   color: #C5C0BD;
+}
+.btn.btn-secondary {
+  background-color: #C5C0BD;
+  color: #ffffff;
+}
+.btn.btn-secondary:hover {
+  background-color: #000000;
 }
 
 .form-row label.form-label, .form-group label.form-label {

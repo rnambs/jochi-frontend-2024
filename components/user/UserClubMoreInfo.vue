@@ -535,9 +535,9 @@
       aria-labelledby="mediumModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-md" role="document">
+      <div class="modal-dialog modal-md modal-dialog-centered " role="document">
         <div class="modal-content h-auto">
-          <div class="modal-header bg-light text-dark">
+          <div class="modal-header text-dark">
             <h5 class="modal-title" id="mediumModalLabel">Delete</h5>
             <button
               type="button"
@@ -555,7 +555,7 @@
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-primary color-white"
+              class="btn btn-primary color-white px-4 py-2"
               @click="
                 deleteActivityClickId
                   ? onDeleteActivity()
@@ -567,7 +567,7 @@
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-light border border-secondary color-dark"
+              class="btn btn-secondary px-4 py-2"
               aria-label="Close"
             >
               No
