@@ -141,6 +141,9 @@ body{
     &.btn-primary{
         background-color: $theme-color;
         color: $global-font-color;
+        &:hover{
+            background-color: $dark-theme;
+        }
     }
     &.btn-dark{
         background-color: $black;
@@ -149,7 +152,13 @@ body{
     &.btn-void{
         background-color: transparent;
         color: $text-secondary;
-
+    }
+    &.btn-secondary{
+        background-color: $text-secondary;
+        color: $white;
+        &:hover{
+            background-color: $black;
+        }
     }
 }
 
@@ -2117,7 +2126,6 @@ img.card-img{
                     }
                 }
             }
-            
         }
         // end club info tab.
 
@@ -4912,7 +4920,16 @@ switch to violet when it is active*/
                         text-overflow: ellipsis;
                     }
                 }
-
+                .date-picker.badge.badge-pill.badge-color{
+                    background-color: $Global-background-element;
+                    box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+                    color: $text-dark;
+                    width: 56px;
+                    &.active{
+                        background-color: $theme-color;
+                        color: $white;
+                    }
+                }
             }
             .modal-footer{
                 // border-top: 1px solid $border-color;

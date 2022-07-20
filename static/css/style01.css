@@ -165,6 +165,9 @@ body {
   background-color: #FF6D6D;
   color: #F9F9F9;
 }
+.btn.btn-primary:hover {
+  background-color: #FF4E71;
+}
 .btn.btn-dark {
   background-color: #000000;
   color: #ffffff;
@@ -172,6 +175,13 @@ body {
 .btn.btn-void {
   background-color: transparent;
   color: #C5C0BD;
+}
+.btn.btn-secondary {
+  background-color: #C5C0BD;
+  color: #ffffff;
+}
+.btn.btn-secondary:hover {
+  background-color: #000000;
 }
 
 .form-row label.form-label, .form-group label.form-label {
@@ -4237,6 +4247,16 @@ switch to violet when it is active*/
 .modal .modal-dialog .modal-content .modal-body .confirm-text .delete-text {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.modal .modal-dialog .modal-content .modal-body .date-picker.badge.badge-pill.badge-color {
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+  color: #431F1C;
+  width: 56px;
+}
+.modal .modal-dialog .modal-content .modal-body .date-picker.badge.badge-pill.badge-color.active {
+  background-color: #FF6D6D;
+  color: #ffffff;
 }
 .modal .modal-dialog .modal-content .modal-footer {
   background-color: transparent !important;

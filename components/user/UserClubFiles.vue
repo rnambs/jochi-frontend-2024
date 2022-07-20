@@ -277,7 +277,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 d-flex flex-column">
+              <div v-if="enableEdit" class="col-md-4 d-flex flex-column">
                 <div
                   class="
                     inner-club
@@ -288,10 +288,7 @@
                     flex-fill
                   "
                 >
-                  <div
-                    class="container-fluid p-2 text-center"
-                    v-if="enableEdit"
-                  >
+                  <div class="container-fluid p-2 text-center">
                     <form
                       method="post"
                       @submit.prevent="UploadFile"
@@ -402,13 +399,13 @@
         <section id="tab" class="">
           <div class="info-tab container-fluid my-3 px-3">
             <div class="row tab-row m-0">
-              <div class="col-md-4 col-xs-12">
+              <div class="col-md-4 col-xs-12 py-2 py-md-3">
                 <!-- <nuxt-link
                   :to="{
                     path: '/club-info',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
+                  class="inner-tab d-flex align-items-center justify-content-center p-3 rounded-10 h-100"
                 >
                   <span class="text-24 color-primary font-semi-bold">Club Details</span>
                 </nuxt-link> -->
@@ -426,7 +423,7 @@
                     d-flex
                     align-items-center
                     justify-content-center
-                    p-4
+                    p-3
                     rounded-10
                     h-100
                   "
@@ -437,7 +434,7 @@
                   >
                 </nuxt-link>
               </div>
-              <div class="col-md-4 col-xs-12">
+              <div class="col-md-4 col-xs-12 py-2 py-md-3">
                 <nuxt-link
                   :to="{
                     path: '/club-info',
@@ -452,7 +449,7 @@
                     d-flex
                     align-items-center
                     justify-content-center
-                    p-4
+                    p-3
                     rounded-10
                     h-100
                   "

@@ -518,7 +518,7 @@
         <section id="tab" class="">
           <div class="info-tab container-fluid my-3 px-3">
             <div class="row tab-row m-0">
-              <div class="col-md-4 col-xs-12">
+              <div class="col-md-4 col-xs-12 py-2 py-md-3">
                 <nuxt-link
                   :to="{
                     path: '/club-info',
@@ -529,7 +529,7 @@
                     d-flex
                     align-items-center
                     justify-content-center
-                    p-4
+                    p-3
                     rounded-10
                     h-100
                   "
@@ -540,7 +540,7 @@
                   >
                 </nuxt-link>
               </div>
-              <div class="col-md-4 col-xs-12">
+              <div class="col-md-4 col-xs-12 py-2 py-md-3">
                 <nuxt-link
                   :to="{
                     path: '/club-files',
@@ -551,7 +551,7 @@
                     d-flex
                     align-items-center
                     justify-content-center
-                    p-4
+                    p-3
                     rounded-10
                     h-100
                   "
@@ -562,7 +562,10 @@
                   >
                 </nuxt-link>
               </div>
-              <div @click="onNextMeeting" class="col-md-4 col-xs-12">
+              <div
+                @click="onNextMeeting"
+                class="col-md-4 col-xs-12 py-2 py-md-3"
+              >
                 <div
                   class="
                     inner-tab
@@ -571,9 +574,10 @@
                     flex-column
                     align-items-center
                     justify-content-center
-                    p-4
+                    p-3
                     rounded-10
                     h-100
+                    cursor-pointer
                   "
                 >
                   <!-- <nuxt-link
@@ -587,7 +591,7 @@
                   <span class="text-24 color-primary font-semi-bold"
                     >Next Meeting</span
                   >
-                  <span style="color: black">{{
+                  <span class="text-16 color-primary font-regular">{{
                     clubMoreDetails.announcement
                   }}</span>
                   <!-- </nuxt-link> -->
@@ -609,9 +613,9 @@
       aria-labelledby="mediumModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-md" role="document">
+      <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content h-auto">
-          <div class="modal-header bg-light text-dark">
+          <div class="modal-header text-dark">
             <h5 class="modal-title" id="mediumModalLabel">Delete</h5>
             <button
               type="button"
@@ -629,7 +633,7 @@
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-primary color-white"
+              class="btn btn-primary color-white px-4 py-2"
               @click="
                 deleteActivityClickId
                   ? onDeleteActivity()
@@ -641,7 +645,7 @@
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-light border border-secondary color-dark"
+              class="btn btn-secondary px-4 py-2"
               aria-label="Close"
             >
               No
@@ -1103,7 +1107,7 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="nextMeetingModalLongTitle">
+            <h5 class="modal-title color-dark" id="nextMeetingModalLongTitle">
               Configure Meeting Days
             </h5>
             <button
@@ -1117,11 +1121,11 @@
           </div>
           <div class="modal-body no-overflow px-4">
             <!-- <div class="col-md-5 col-xs-12"> -->
-            <div class="inner-info container p-4">
+            <div class="inner-info container">
               <div class="inner-info-head mb-3">
-                <h6>Meeting Time</h6>
+                <h6 class="color-dark">Meeting Time</h6>
               </div>
-              <p class="time">
+              <p class="color-secondary text-16 font-regular">
                 Next meeting:
                 {{
                   clubMoreDetails.announcement == null
@@ -1130,11 +1134,18 @@
                 }}
               </p>
 
-              <div class="row inner-col" v-if="enableEdit">
-                <div class="col-lg-4 col-md-12 inner-info-head">
-                  <h6>Choose time</h6>
+              <div class="row inner-col mb-3" v-if="enableEdit">
+                <div
+                  class="
+                    col-lg-4 col-md-12
+                    inner-info-head
+                    d-flex
+                    align-items-center
+                  "
+                >
+                  <h6 class="color-dark mb-0">Choose time</h6>
                 </div>
-                <div class="col-lg-8 col-md-12 input-icon-area">
+                <div class="col-lg-8 col-md-12 input-icon-area form-row">
                   <multiselect
                     v-model="value"
                     track-by="start_time"
@@ -1150,7 +1161,7 @@
 
               <div class="row choose-date my-2 m-0 p-0">
                 <div
-                  class="col"
+                  class="col p-0 d-flex justify-content-center"
                   v-for="(day, index) in dayList"
                   :key="index"
                   @click.prevent="
@@ -1159,14 +1170,20 @@
                   "
                 >
                   <a
-                    class="btn date-picker badge badge-pill badge-color active"
+                    class="
+                      btn
+                      date-picker
+                      badge badge-pill badge-color
+                      active
+                      mx-1
+                    "
                     :id="day"
                     v-if="checkSlot(day)"
                     >{{ day }}</a
                   >
                   <a
                     href=""
-                    class="btn date-picker badge badge-pill badge-color"
+                    class="btn date-picker badge badge-pill badge-color mx-1"
                     :id="day"
                     v-else
                     >{{ day }}</a
@@ -1184,7 +1201,7 @@
             </div>
             <!-- </div> -->
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer px-4">
             <!-- <button
               type="button"
               class="btn btn-color-close"
@@ -1194,7 +1211,7 @@
             </button> -->
             <button
               v-if="enableEdit"
-              class="btn btn-info-edit mt-2"
+              class="btn btn-primary mt-2"
               :disabled="!value"
               @click.prevent="UpdateTime"
             >
