@@ -141,7 +141,7 @@ body{
     &.btn-primary{
         background-color: $theme-color;
         color: $global-font-color;
-        &:hover{
+        &:hover,&:focus,&:active,&:active:focus{
             background-color: $dark-theme;
         }
     }
@@ -340,6 +340,65 @@ body{
             }
         }
     }
+    // time Picker
+    span.vue__time-picker.time-picker{
+        width: 100%;
+        &.form-white{
+            input.display-time{
+                background-color: $white;
+            }
+        }
+        input.display-time{
+            border: none;
+            background-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 5px rgb(0 0 0 / 5%);
+            border-radius: 0.4rem;
+            font-size: 0.75rem;
+            color: $font-label-color;
+            padding: .375rem .75rem;
+            height: calc(2.25rem + 2px);
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
+        }
+        .controls{
+            span.clear-btn{
+                padding: 0.2em 0.35em 0em;
+                span.char{
+                    font-size: 1.2em;
+                    line-height: 1;
+                }
+            }
+        }
+        .dropdown.drop-down{
+            // position: fixed;
+            // left: unset;
+            // top: unset;
+            // margin-top: 3px;
+            // width: 13.3em;
+            // border-radius: 5px;
+            background-color: $white;
+            .select-list{
+                width: 13.3em;
+                border-radius: 5px;
+                background-color: $white;
+                ul{
+                    background-color: rgba(255, 255, 255, 0.5);
+                    box-shadow: 0 0 5px rgb(0 0 0 / 5%);
+                    li.hint{
+                        color: $text-dark;
+                    }
+                    li{
+                        color: $text-dark;
+                        &.active{
+                            background-color: $theme-color;
+                            color: $white;
+                        }
+                    }
+                }
+            }
+        } 
+    } 
 }
 
 
@@ -4745,6 +4804,7 @@ switch to violet when it is active*/
                         &.vdp-datepicker{
                             position: relative;
                             cursor: pointer;
+                            padding: 0.6rem 0.75rem;
                             &::after{
                                 content: "\f073";
                                 display: inline-block;
@@ -4842,57 +4902,7 @@ switch to violet when it is active*/
                             }
                         }
                     }
-                    // time Picker
-                    span.vue__time-picker.time-picker{
-                        width: 100%;
-                        input.display-time{
-                            border: 2px solid $border-color;
-                            background-color: $global-sidebar-bg;
-                            border-radius: 0.4rem;
-                            font-size: 0.75rem;
-                            color: $font-label-color;
-                            padding: .375rem .75rem;
-                            height: calc(2.25rem + 2px);
-                            text-align: left;
-                            width: 100%;
-                            cursor: pointer;
-                        }
-                        .controls{
-                            span.clear-btn{
-                                padding: 0.2em 0.35em 0em;
-                                span.char{
-                                    font-size: 1.2em;
-                                    line-height: 1;
-                                }
-                            }
-                        }
-                        .dropdown.drop-down{
-                            position: fixed;
-                            left: unset;
-                            top: unset;
-                            margin-top: 3px;
-                            width: 13.3em;
-                            border-radius: 5px;
-                            background-color: transparent;
-                            .select-list{
-                                width: 13.3em;
-                                border-radius: 5px;
-                                ul{
-                                    background-color: $global-sidebar-bg;
-                                    li.hint{
-                                        color: $global-font-color;
-                                    }
-                                    li{
-                                        color: $global-font-color;
-                                        &.active{
-                                            background-color: $theme-color;
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                        } 
-                    } 
+                    
                 }
                 .required-button{
                     font-size: 80%;
@@ -4936,26 +4946,26 @@ switch to violet when it is active*/
                 // background-color: $global-box-shadow;
                 // border-radius: 0px 0px 10px 10px;
                 background-color: transparent !important;
-                .btn-color-close{
-                    color: $white;
-                    background-color: $theme-color;
-                    border-radius: 50px;
-                    padding: 3px 20px;
-                    font-size: 0.8rem;
-                    &:hover{
-                       background-color: rgba($color: $theme-color, $alpha: 0.6);
-                    }
-                }
-                .btn-color-save{
-                    color: $black;
-                    background-color: $confirm-green;
-                    border-radius: 50px;
-                    padding: 3px 20px;
-                    font-size: 0.8rem;
-                    &:hover{
-                        background-color: rgba($color: $confirm-green, $alpha: 0.6);
-                     }
-                }
+                // .btn-color-close{
+                //     color: $white;
+                //     background-color: $theme-color;
+                //     border-radius: 50px;
+                //     padding: 3px 20px;
+                //     font-size: 0.8rem;
+                //     &:hover{
+                //        background-color: rgba($color: $theme-color, $alpha: 0.6);
+                //     }
+                // }
+                // .btn-color-save{
+                //     color: $black;
+                //     background-color: $confirm-green;
+                //     border-radius: 50px;
+                //     padding: 3px 20px;
+                //     font-size: 0.8rem;
+                //     &:hover{
+                //         background-color: rgba($color: $confirm-green, $alpha: 0.6);
+                //      }
+                // }
             }
         }
     }
