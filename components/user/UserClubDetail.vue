@@ -169,7 +169,7 @@
                           type: list.activity_type,
                         },
                       }"
-                      class="btn btn-sm btn-dark py-1"
+                      class="btn btn-sm btn-primary py-1"
                       >View More</nuxt-link
                     >
                   </div>

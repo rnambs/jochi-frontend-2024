@@ -39,20 +39,28 @@
         <!-- end tab for club files -->
 
         <!-- Club files -->
-        <div class="cd-cover-pic-section">
+         <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
+          <div class="position-absolute cover-button mr-3 mb-1">
+            <button class="btn p-1 m-2">
+              <i class="fas fa-pen color-white"></i>
+            </button>
+            <button class="btn p-1 m-2">
+              <i class="fas fa-eye color-white"></i>
+            </button>
+          </div>
         </div>
 
         <section id="club-detail" class=" flex-fill d-flex">
-          <div class="club-section container-fluid mt-2 d-flex flex-fill h-40  custom-overflow">
-            <div class="row">
-              <div class="col-md-8">
-                <div class="inner-club club-files container-fluid p-3">
-                  <div class="info-head container-fluid my-3">
+          <div class="club-section container-fluid mt-2 d-flex custom-overflow">
+            <div class="row my-0">
+              <div class="col-md-8 d-flex h-100">
+                <div class="inner-club club-files container-fluid p-3 d-flex flex-column">
+                  <div class="info-head container-fluid mb-2">
                     <h3 class="color-primary font-semi-bold mb-1">{{ headingName }}</h3>
                   </div>
-                  <div class="image-overflow custom-overflow">
-                    <div class="row info-row container-fluid mt-2 mx-auto">
+                  <div class="custom-overflow d-flex flex-column flex-fill">
+                    <div class="row info-row container-fluid my-0 mx-auto">
                       <div
                         class="col-md-3 col-sm-6"
                         v-for="(list, index) in allList"
@@ -188,7 +196,7 @@
                       </div>
                       <div
                         v-if="allList.length == 0"
-                        class="w-100 text-center py-5"
+                        class="w-100 text-center d-flex align-items-center justify-content-center"
                       >
                         <p class="no-data">No Data</p>
                       </div>
@@ -264,7 +272,7 @@
                   "
                 >
                   <div
-                    class="container-fluid p-4 text-center"
+                    class="container-fluid p-2 text-center"
                     v-if="enableEdit"
                   >
                     <form
@@ -341,8 +349,8 @@
                         </div>
                         <button
                           id="clckPrevent"
-                          type=""
-                          class="btn upload-btn mt-3"
+                          type="file"
+                          class="btn btn-primary py-1 my-3"
                         >
                           Browse for file
                         </button>
@@ -382,7 +390,7 @@
                     path: '/club-info',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-info"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Club Details</span>
@@ -394,7 +402,7 @@
                     path: '/club-files',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-file-alt"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Files & Slides</span>
@@ -406,7 +414,7 @@
                     path: '/club-moreInfo',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-ellipsis-h"></i> -->
                   <span class="text-24 color-primary font-semi-bold">More</span>

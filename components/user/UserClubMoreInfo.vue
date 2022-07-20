@@ -18,8 +18,16 @@
       >
         <!-- end tab for club info -->
 
-        <div class="cd-cover-pic-section">
+        <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
+          <div class="position-absolute cover-button mr-3 mb-1">
+            <button class="btn p-1 m-2">
+              <i class="fas fa-pen color-white"></i>
+            </button>
+            <button class="btn p-1 m-2">
+              <i class="fas fa-eye color-white"></i>
+            </button>
+          </div>
         </div>
 
         <!-- Club info -->
@@ -32,9 +40,11 @@
                 club-info
                 d-flex
                 flex-column
-                justify-content-center
                 container-fluid
-                p-3
+                h-40 
+                flex-fill
+                pt-3
+                px-3
               "
             >
 
@@ -42,187 +52,198 @@
               <div class="info-head my-2">
                 <h3 class="color-primary font-bold">{{ headingName }}</h3>
               </div>
-              <div class="inner-info container-fluid my-3">
-                <div class="row">
-                  <div v-if="type == 'Sports'" class="col-md-7 col-xs-12">
-                    <div class="inner-info container-fluid p-4">
-                      <div class="row">
-                        <!-- <div class="col-6"> -->
-                        <div class="inner-info-head mb-3">
-                          <h6>Trainings/Matches</h6>
-                          <a
-                            v-if="enableEdit"
-                            href="#"
-                            class="btn add-assignment"
-                            data-toggle="modal"
-                            @click="openActivityModal()"
-                            >Add Training/Match</a
-                          >
-                        </div>
-                        <div class="col-12 announcement-section">
-                          <div
-                            v-for="(item, index) in sportsActivities"
-                            :key="index"
-                          >
-                            <div
-                              v-if="item.session_type == 'Training'"
-                              class="announcement-card px-3 py-2 mb-2"
+              <div class="inner-info container-fluid my-1 d-flex h-40 flex-fill">
+                <div class="row my-0">
+                  <div v-if="type == 'Sports'" class="col-md-6 col-xs-12 h-100 d-flex">
+                    <div class="inner-info container-fluid p-2 d-flex flex-column">
+                          
+                          <div class="d-flex align-items-center justify-content-between mb-2">
+                            <h5 class="color-dark mb-0 font-bold">Trainings/Matches</h5>
+                            <a
+                              v-if="enableEdit"
+                              href="#"
+                              class="btn add-assignment p-1 color-secondary"
+                              data-toggle="modal"
+                              @click="openActivityModal()"
+                              ><span><i class="fas fa-plus"></i></span></a
                             >
-                              <div
-                                class="
-                                  d-flex
-                                  align-items-center
-                                  justify-content-between
-                                  w-100
-                                "
-                              >
-                                <div
-                                  @click="openEditSportsActivity(item)"
-                                  class="left-side"
-                                >
-                                  <div class="anc-name-section">
-                                    {{ item.first_name }}
-                                  </div>
-                                  <div class="anc-date-section">
-                                    {{ item.date }}
-                                  </div>
-                                  <div class="anc-time-section">
-                                    {{ item.time }}
-                                  </div>
-                                </div>
-                                <div
-                                  class="
-                                    right-side
-                                    h-100
-                                    d-flex
-                                    align-items-center
-                                    justify-content-between
-                                    flex-column
-                                  "
-                                >
-                                  <div
-                                    @click="openEditSportsActivity(item)"
-                                    class="anc-title-section mb-2"
-                                  >
-                                    {{ item.title }}
-                                  </div>
-                                  <div
-                                    class="
-                                      d-flex
-                                      align-items-center
-                                      justify-content-center
-                                      mb-2
-                                    "
-                                  >
-                                    <!-- <div
-                                      :class="
-                                        isRead == 1
-                                          ? 'anc-status-btn green mr-3'
-                                          : 'anc-status-btn red mr-3'
-                                      "
-                                    ></div> -->
-                                    <button
-                                      v-if="enableEdit"
-                                      @click="
-                                        onDeleteActivityClick(
-                                          item.id,
-                                          item.club_id
-                                        )
-                                      "
-                                      data-toggle="modal"
-                                      data-target="#mediumModal"
-                                    >
-                                      <span>
-                                        <i
-                                          class="fa fa-trash"
-                                          aria-hidden="true"
-                                        ></i>
-                                      </span>
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              v-else
-                              class="announcement-card px-3 py-2 mb-2"
-                            >
-                              <div
-                                class="
-                                  d-flex
-                                  align-items-center
-                                  justify-content-between
-                                  w-100
-                                "
-                              >
-                                <div
-                                  @click="openEditSportsActivity(item)"
-                                  class="left-side"
-                                >
-                                  <div class="anc-name-section">
-                                    {{ item.first_name }}
-                                  </div>
-                                  <div class="anc-date-section">
-                                    {{ item.date }}
-                                  </div>
-                                  <div class="anc-time-section">
-                                    {{ item.time }}
-                                  </div>
-                                </div>
-                                <div
-                                  class="
-                                    right-side
-                                    h-100
-                                    d-flex
-                                    align-items-center
-                                    justify-content-between
-                                    flex-column
-                                  "
-                                >
-                                  <div
-                                    @click="openEditSportsActivity(item)"
-                                    class="anc-title-section mb-2"
-                                  >
-                                    {{ item.title }}
-                                  </div>
-                                  <div
-                                    class="
-                                      d-flex
-                                      align-items-center
-                                      justify-content-center
-                                      mb-2
-                                    "
-                                  >
-                                    <!-- <div
-                                      :class="
-                                        item.isRead == 1
-                                          ? 'anc-status-btn green mr-3'
-                                          : 'anc-status-btn red mr-3'
-                                      "
-                                    ></div> -->
-                                    <button
-                                      v-if="enableEdit"
-                                      @click="
-                                        onDeleteClick(item.id, item.club_id)
-                                      "
-                                      data-toggle="modal"
-                                      data-target="#mediumModal"
-                                    >
-                                      <span>
-                                        <i
-                                          class="fa fa-trash"
-                                          aria-hidden="true"
-                                        ></i>
-                                      </span>
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <!-- {{ item.description }} -->
                           </div>
-                        </div>
+                          <div class="custom-overflow pr-2 mr--2">
+                            <div
+                              v-for="(item, index) in sportsActivities"
+                              :key="index"
+                            >
+                              <div
+                                v-if="item.session_type == 'Training'"
+                                class="card card-white px-3 py-2 mb-2"
+                              >
+                                <div
+                                  class="
+                                    d-flex
+                                    flex-row
+                                  flex-sm-column
+                                  flex-lg-row
+                                    justify-content-between
+                                    w-100
+                                  "
+                                >
+                                  <div
+                                    @click="openEditSportsActivity(item)"
+                                    class="left-side"
+                                  >
+                                    <p class="color-dark text-16 font-semi-bold mb-0">
+                                      {{ item.first_name }}
+                                    </p>
+                                    <p class="color-secondary text-14 font-regular mb-1">
+                                      {{ item.date }}
+                                    </p>
+                                    <p class="color-secondary text-14 font-regular mb-0">
+                                      {{ item.time }}
+                                    </p>
+                                  </div>
+                                  <div
+                                    class="
+                                    right-side
+                                    h-100
+                                    d-flex
+                                    align-items-end
+                                    align-items-sm-start
+                                    align-items-lg-end
+                                    justify-content-between
+                                    flex-column
+                                    flex-sm-row
+                                    flex-lg-column
+                                    "
+                                  >
+                                    <p
+                                      @click="openEditSportsActivity(item)"
+                                      class="color-primary text-truncate mb-0"
+                                    >
+                                      {{ item.title }}
+                                </p>
+                                    <div
+                                      class="
+                                      d-flex
+                                      justify-content-end
+                                      mb-2
+                                      "
+                                    >
+                                      <!-- <div
+                                        :class="
+                                          isRead == 1
+                                            ? 'anc-status-btn green mr-3'
+                                            : 'anc-status-btn red mr-3'
+                                        "
+                                      ></div> -->
+                                      <button
+                                        v-if="enableEdit"
+                                        @click="
+                                          onDeleteActivityClick(
+                                            item.id,
+                                            item.club_id
+                                          )
+                                        "
+                                        data-toggle="modal"
+                                        data-target="#mediumModal"
+                                        class="btn p-1 color-secondary"
+                                      >
+                                        <span>
+                                          <i
+                                            class="fa fa-trash "
+                                            aria-hidden="true"
+                                          ></i>
+                                        </span>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                v-else
+                                class="card card-white px-3 py-2 mb-2"
+                              >
+                                <div
+                                  class="
+                                    d-flex
+                                    flex-row
+                                    flex-sm-column
+                                    flex-lg-row
+                                    justify-content-between
+                                    w-100
+                                  "
+                                >
+                                  <div
+                                    @click="openEditSportsActivity(item)"
+                                    class="left-side"
+                                  >
+                                    <p class="color-dark text-16 font-semi-bold mb-0">
+                                      {{ item.first_name }}
+                                    </p>
+                                    <p class="color-secondary text-14 font-regular mb-1">
+                                      {{ item.date }}
+                                    </p>
+                                    <p class="color-secondary text-14 font-regular mb-0">
+                                      {{ item.time }}
+                                    </p>
+                                  </div>
+                                  <div
+                                    class="
+                                    right-side
+                                    h-100
+                                    d-flex
+                                    align-items-end
+                                    align-items-sm-start
+                                    align-items-lg-end
+                                    justify-content-between
+                                    flex-column
+                                    flex-sm-row
+                                    flex-lg-column
+                                    "
+                                  >
+                                    <p
+                                      @click="openEditSportsActivity(item)"
+                                      class="color-primary text-truncate mb-0"
+                                    >
+                                      {{ item.title }}
+                                </p>
+                                    <div
+                                      class="
+                                      d-flex
+                                      justify-content-end
+                                      mb-2
+                                      "
+                                    >
+                                      <!-- <div
+                                        :class="
+                                          item.isRead == 1
+                                            ? 'anc-status-btn green mr-3'
+                                            : 'anc-status-btn red mr-3'
+                                        "
+                                      ></div> -->
+                                      <button
+                                        v-if="enableEdit"
+                                        @click="
+                                          onDeleteClick(item.id, item.club_id)
+                                        "
+                                        data-toggle="modal"
+                                        data-target="#mediumModal"
+                                        class="btn p-1 color-secondary"
+                                      >
+                                        <span>
+                                          <i
+                                            class="fa fa-trash"
+                                            aria-hidden="true"
+                                          ></i>
+                                        </span>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+  
+                              <!-- {{ item.description }} -->
+                            </div>
+                          </div>
                         <!-- </div> -->
                         <!-- <div class="col-6" v-if="enableEdit">
                           <div class="inner-info-head mb-3">
@@ -243,28 +264,29 @@
                             </button>
                           </div>
                         </div> -->
-                      </div>
                     </div>
                   </div>
-                  <div v-else class="col-md-7 col-xs-12">
-                    <div class="inner-info container-fluid p-4">
-                      <div class="row">
-                        <div class="col-6">
-                          <div class="inner-info-head mb-3">
+                  <div v-else class="col-md-6 col-xs-12 h-100 d-flex">
+                    <div class="inner-info container-fluid p-2">
+                        <div class="">
+                          <div class="inner-info-head mb-2">
                             <h5 class="color-dark mb-2 font-bold">To do!</h5>
                           </div>
-                          <div class="form-group">
-                            <ul>
+                          <div class="form-group ">
+                            <ul class="list-unstyled">
                               <li
                                 v-for="(todos, index) in clubMoreDetails.todo"
                                 :key="index"
+                                class="row m-0"
                               >
-                                <span class="input-name">
+                              <p class="mb-0 col-8 p-0 text-truncate">
+                                <span class="input-name color-dark">
                                   {{ todos.todo_list }}</span
                                 >
-
+                              </p>
+                              <p class="mb-0 col-4 p-0"> 
                                 <span
-                                  class="input-icon"
+                                  class="input-icon color-secondary btn p-1 m-0"
                                   v-if="enableEdit"
                                   @click.prevent="Removetodo(todos.id)"
                                 >
@@ -273,6 +295,8 @@
                                     aria-hidden="true"
                                   ></i
                                 ></span>
+                              </p>
+
                               </li>
                               <li v-if="clubMoreDetails.todo === 0">
                                 <span class="input-name">
@@ -282,41 +306,31 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="col-6" v-if="enableEdit">
-                          <div class="inner-info-head mb-3">
-                            <h6>Add Todo</h6>
+                        <div class="" v-if="enableEdit">
+                          <div class="inner-info-head mb-2">
+                            <h5 class="color-dark mb-2 font-bold">Add Todo</h5>
                           </div>
-                          <div class="form-row m-0">
-                            <input
-                              class="form-control"
-                              v-model="todolist"
-                              maxlength="30"
-                            />
+                          <div class="d-flex flex-row align-items-center mb-2">
+                            <div class="form-row m-0 flex-fill mr-2">
+                              <input
+                                class="form-control"
+                                v-model="todolist"
+                                maxlength="30"
+                              />
+                            </div>
                             <button
                               :disabled="!todolist"
-                              class="btn btn-info-edit mt-2"
+                              class="btn btn-primary"
                               @click.prevent="EditTodo(clubId)"
                             >
                               Update
                             </button>
                           </div>
                         </div>
-                      </div>
                     </div>
                   </div>
-                  <div class="col-md-5 col-xs-12">
-                    <div class="inner-info container p-4">
-                      <div class="inner-info-head mb-3">
-                        <h5 class="color-dark mb-2 font-bold">Announcements</h5>
-                        <a
-                          v-if="enableEdit"
-                          href="#"
-                          class="btn add-assignment"
-                          data-toggle="modal"
-                          @click="openModal()"
-                          >Add Announcement</a
-                        >
-                      </div>
+                  <div class="col-md-6 col-xs-12 h-100 d-flex">
+                    <div class="inner-info container p-2 d-flex flex-column">
                       <!-- <p class="time">
                         Next meeting:
                         {{
@@ -343,86 +357,108 @@
                           </multiselect>
                         </div>
                       </div> -->
-
-                      <div class="col-12 announcement-section">
-                        <div
-                          v-for="(item, index) in announcementList"
-                          :key="index"
-                        >
-                          <div class="announcement-card px-3 py-2 mb-2">
-                            <div
-                              class="
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                                w-100
-                              "
-                            >
-                              <div @click="openEdit(item)" class="left-side">
-                                <div class="anc-name-section">
-                                  {{ item.first_name }}
-                                </div>
-                                <div class="anc-date-section">
-                                  {{ item.date }}
-                                </div>
-                                <div class="anc-time-section">
-                                  {{ item.time }}
-                                </div>
-                              </div>
+                          
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                          <h5 class="color-dark font-bold mb-0">Announcements</h5>
+                          <a
+                            v-if="enableEdit"
+                            href="#"
+                            class="btn add-assignment p-1 color-secondary"
+                            data-toggle="modal"
+                            @click="openModal()"
+                            ><span><i class="fas fa-plus"></i></span></a
+                          >
+                        </div>
+                        <div class="custom-overflow pr-2 mr--2">
+                          <div
+                            v-for="(item, index) in announcementList"
+                            :key="index"
+                          >
+                            <div class="card px-3 py-2 mb-2"
+                            
+                            :class="
+                            item.isRead == 1
+                              ? 'card-void'
+                              : 'card-void'
+                          ">
+                              
                               <div
                                 class="
-                                  right-side
-                                  h-100
                                   d-flex
-                                  align-items-center
                                   justify-content-between
-                                  flex-column
+                                  flex-row
+                                  flex-sm-column
+                                  flex-lg-row
+                                  w-100
                                 "
                               >
-                                <div
-                                  @click="openEdit(item)"
-                                  class="anc-title-section mb-2"
-                                >
-                                  {{ item.title }}
+                                <div @click="openEdit(item)" class="left-side">
+                                  <p class="color-dark mb-0 font-semi-bold text-16">
+                                    {{ item.first_name }}
+                                  </p>
+                                  <p class="color-secondary font-regular text-14 mb-1 ">
+                                    {{ item.date }}
+                                  </p>
+                                  <p class="color-secondary font-regular text-14 mb-0 ">
+                                    {{ item.time }}
+                                  </p>
                                 </div>
                                 <div
                                   class="
+                                    right-side
+                                    h-100
                                     d-flex
-                                    align-items-center
-                                    justify-content-center
-                                    mb-2
+                                    align-items-end
+                                    align-items-sm-start
+                                    align-items-lg-end
+                                    justify-content-between
+                                    flex-column
+                                    flex-sm-row
+                                    flex-lg-column
                                   "
                                 >
-                                  <div
-                                    :class="
-                                      item.isRead == 1
-                                        ? 'anc-status-btn green mr-3'
-                                        : 'anc-status-btn red mr-3'
-                                    "
-                                  ></div>
-                                  <button
-                                    v-if="enableEdit"
-                                    @click="
-                                      onDeleteClick(item.id, item.club_id)
-                                    "
-                                    data-toggle="modal"
-                                    data-target="#mediumModal"
+                                  <p
+                                    @click="openEdit(item)"
+                                    class="color-primary text-truncate mb-0"
                                   >
-                                    <span>
-                                      <i
-                                        class="fa fa-trash"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </span>
-                                  </button>
+                                    {{ item.title }}
+                              </p>
+                                  <div
+                                    class="
+                                      d-flex
+                                      justify-content-end
+                                      mb-2
+                                    "
+                                  >
+                                  <div class="d-flex align-items-center">
+                                    <div
+                                      
+                                    ></div>
+                                    <button
+                                      v-if="enableEdit"
+                                      @click="
+                                        onDeleteClick(item.id, item.club_id)
+                                      "
+                                      data-toggle="modal"
+                                      data-target="#mediumModal"
+                                      class="btn p-1 color-secondary"
+                                    >
+                                      <span>
+                                        <i
+                                          class="fa fa-trash"
+                                          aria-hidden="true"
+                                        ></i>
+                                      </span>
+                                    </button>
+                                  </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
+  
+                            <!-- {{ item.description }} -->
                           </div>
-
-                          <!-- {{ item.description }} -->
                         </div>
-                      </div>
                       <!-- <button
                         v-if="enableEdit"
                         class="btn btn-info-edit mt-2"
@@ -448,7 +484,7 @@
                     path: '/club-info',
                     query: { id: clubId, name: headingName, type: type },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-info"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Club Details</span>
@@ -460,14 +496,14 @@
                     path: '/club-files',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-file-alt"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Files/Slides</span>
                 </nuxt-link>
               </div>
               <div @click="onNextMeeting" class="col-md-4 col-xs-12">
-                <div class="inner-tab default d-flex flex-column align-items-center justify-content-center p-4 rounded-10">
+                <div class="inner-tab default d-flex flex-column align-items-center justify-content-center p-4 rounded-10 h-100">
                   <!-- <nuxt-link
                     :to="{
                       path: '/club-moreInfo',

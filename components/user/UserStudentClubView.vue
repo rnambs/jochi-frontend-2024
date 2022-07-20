@@ -19,8 +19,16 @@
         <!-- end tab for club info -->
 
         <!-- Club info -->
-        <div class="cd-cover-pic-section">
+        <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
+          <div class="position-absolute cover-button mr-3 mb-1">
+            <button class="btn p-1 m-2">
+              <i class="fas fa-pen color-white"></i>
+            </button>
+            <button class="btn p-1 m-2">
+              <i class="fas fa-eye color-white"></i>
+            </button>
+          </div>
         </div>
 
         <section id="club-detail" class="custom-height-for-club-detail-section">
@@ -273,7 +281,7 @@
                                               : "Teacher"
                                           }}
                                         </p>
-                                        <p class="ld-details mb-0">
+                                        <p class="ld-details mb-0 text-truncate">
                                           {{ data.user_info.email }}
                                         </p>
                                       </div>
@@ -512,7 +520,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body no-overflow px-4">
+          <div class="modal-body d-flex custom-overflow px-4">
             <!-- leader details -->
             <div v-if="isLeaderView" class="inner-info-text">
               <ul class="mb-0 leader-list-style">
@@ -521,7 +529,7 @@
                   <div
                     class="d-flex align-items-center justify-content-end mt-2"
                   >
-                    <div class="col-4 d-flex justify-content-end p-0">
+                    <div class="mr-2 d-flex justify-content-end p-0">
                       <div class="ld-img-section">
                         <div class="ld-img-holder">
                           <img
@@ -535,9 +543,9 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-8 p-0">
+                    <div class=" p-0">
                       <div class="ld-details-section">
-                        <p class="ld-heading mb-1">
+                        <p class="ld-heading color-dark mb-1">
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name

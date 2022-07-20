@@ -19,8 +19,16 @@
         <!-- end tab for club info -->
 
         <!-- Club info -->
-        <div class="cd-cover-pic-section">
+        <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
+          <div class="position-absolute cover-button mr-3 mb-1">
+            <button class="btn p-1 m-2">
+              <i class="fas fa-pen color-white"></i>
+            </button>
+            <button class="btn p-1 m-2">
+              <i class="fas fa-eye color-white"></i>
+            </button>
+          </div>
         </div>
 
         <section id="club-detail" class=" flex-fill custom-overflow">
@@ -58,38 +66,40 @@
                       {{ clubDetails.description }}
                       <span
                         v-if="enableEdit"
-                        class="ml-2 text-dark"
+                        class="ml-2 text-secondary btn p-1 "
                         @click="editDescription = true"
                         ><i class="fas fa-pencil"></i
                       ></span>
                     </p>
 
                     <div v-if="editDescription" class="form-group mb-1">
-                      <button @click="editDescription = false" class="close">
-                        <span
-                          @click="editDescription = false"
-                          aria-hidden="true"
-                          >&times;</span
-                        >
-                      </button>
-                      <textarea
-                        placeholder="No data"
-                        class="form-control club-info mb-0 w-75 input"
-                        id=""
-                        rows="5"
-                        v-model="clubDetails.description"
-                        maxlength="500"
-                      ></textarea>
+                      <div class="d-flex align-items-start">
+                        <textarea
+                          placeholder="No data"
+                          class="form-control club-info mb-0 input mr-2"
+                          id=""
+                          rows="5"
+                          v-model="clubDetails.description"
+                          maxlength="500"
+                        ></textarea>
+                        <button @click="editDescription = false" class="close">
+                          <span
+                            @click="editDescription = false"
+                            aria-hidden="true"
+                            >&times;</span
+                          >
+                        </button>
+                      </div>
 
                       <button
                         href=""
                         class="
-                          btn btn-info-edit
+                          btn btn-dark
                           custom-theme-color-btn
                           pl-4
                           pr-4
                           mb-0
-                          button
+                          mt-3
                         "
                         v-if="enableEdit"
                         :disabled="!clubDetails.description"
@@ -267,7 +277,7 @@
                                               : "Teacher"
                                           }}
                                         </p>
-                                        <p class="ld-details mb-0">
+                                        <p class="ld-details mb-0 text-truncate">
                                           {{ data.user_info.email }}
                                         </p>
                                       </div>
@@ -275,12 +285,13 @@
                                   </div>
                                 </li>
 
-                                <div
+                                <button
                                   v-if="leadersInfo.length >= 3"
                                   @click="openViewMoreMembers(true)"
+                                  class="btn btn-dark mt-2 py-1"
                                 >
                                   View More
-                                </div>
+                              </button>
 
                                 <!-- <li
                                   v-for="(leader, index) in list.todoLeader"
@@ -350,23 +361,26 @@
                               ></template
                             >
                           </multiselect> -->
-                          <multiselect
-                            v-model="leaderUpdate"
-                            :options="students"
-                            track-by="first_name"
-                            label="first_name"
-                            placeholder="
-                              Select students
-                            "
-                          >
+                          <div class="d-flex align-items-center flex-fill mr-2">
+                            <multiselect
+                              v-model="leaderUpdate"
+                              :options="students"
+                              track-by="first_name"
+                              label="first_name"
+                              placeholder="
+                                Select students
+                              "
+                            >
                             <!-- <span slot="maxElements"
                               >Maximum of 4 students selected</span
                             > -->
                             <span slot="noResult">No data found</span>
                           </multiselect>
-                          <span class="input-icon custom-search-icon"
+                          
+                        </div>
+                          <!-- <span class="input-icon custom-search-icon"
                             ><i class="fa fa-search" aria-hidden="true"></i
-                          ></span>
+                          ></span> -->
                           <button
                             class="btn btn-primary"
                             :disabled="!leaderUpdate"
@@ -408,18 +422,19 @@
                                   :style="{
                                     'background-color': tagColorMap[value.name],
                                   }"
-                                  class="px-4 py-1 rounded color-white"
-                                  >{{ value.name }}</span
+                                  class="px-2 py-1 rounded color-white d-flex text-14 align-items-center"
+                                  >{{ value.name }}
+                                    <span
+                                    class="input-icon color-white btn p-0"
+                                    v-if="enableEdit"
+                                    @click.prevent="RemoveTag(value.id)"
+                                    ><i
+                                      class="fa fa-times p-1 text-12"
+                                      aria-hidden="true"
+                                    ></i
+                                  ></span>
+                                  </span
                                 >
-                                <span
-                                  class="input-icon"
-                                  v-if="enableEdit"
-                                  @click.prevent="RemoveTag(value.id)"
-                                  ><i
-                                    class="fa fa-times p-1"
-                                    aria-hidden="true"
-                                  ></i
-                                ></span>
                               </div>
                               <div
                                 class="input-icon-area mb-2 mr-2"
@@ -436,12 +451,12 @@
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-3">
-                          <h5>Add Tags</h5>
+                          <h5 class="color-dark mb-2 font-bold">Add Tags</h5>
                         </div>
                         <div
                           class="d-flex align-items-center justify-content-end"
                         >
-                          <div class="input-icon-area col-6 pr-0">
+                          <div class="input-icon-area col-6 pr-0 form-row">
                             <multiselect
                               v-model="value"
                               :options="taglist"
@@ -479,7 +494,7 @@
                       type: clubDetails.activity_type,
                     },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-info"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Home Page</span>
@@ -491,14 +506,14 @@
                     path: '/club-files',
                     query: { id: clubId, name: headingName },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10"
+                  class="inner-tab d-flex align-items-center justify-content-center p-4 rounded-10 h-100"
                 >
                   <!-- <i class="fas fa-file-alt"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Files & Slides</span>
                 </nuxt-link>
               </div>
               <div @click="onNextMeeting" class="col-md-4 col-xs-12 p-2">
-                <div class="inner-tab default d-flex flex-column align-items-center justify-content-center p-4 rounded-10">
+                <div class="inner-tab default d-flex flex-column align-items-center justify-content-center p-4 rounded-10 h-100">
                   <!-- <nuxt-link
                     :to="{
                       path: '/club-moreInfo',
@@ -664,17 +679,17 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body no-overflow px-4">
+          <div class="modal-body d-flex custom-overflow px-4">
             <!-- leader details -->
             <div v-if="isLeaderView" class="inner-info-text">
               <ul class="mb-0 leader-list-style">
                 <li v-for="(data, index) in leadersInfo" :key="index">
                   <!-- <span class="input-name">{{ data }}</span> -->
                   <div
-                    class="d-flex align-items-center justify-content-end mt-2"
+                    class="d-flex align-items-center  mt-2"
                   >
-                    <div class="col-4 d-flex justify-content-end p-0">
-                      <div class="ld-img-section">
+                    <div class=" d-flex justify-content-end p-0">
+                      <div class="ld-img-section mr-3">
                         <div class="ld-img-holder">
                           <img
                             v-if="data.user_info.profile_pic"
@@ -687,9 +702,9 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-8 p-0">
+                    <div class=" p-0">
                       <div class="ld-details-section">
-                        <p class="ld-heading mb-1">
+                        <p class="ld-heading color-dark mb-1">
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name
