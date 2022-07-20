@@ -433,7 +433,9 @@
                           <td class="tmodal-data">Time</td>
                           <td class="tmodal-data">
                             <span class="pr-2"></span>
-                            {{ popupFrom[0] }} to {{ popupEnd[0] }}
+                            <!-- {{ popupFrom[0] }} to {{ popupEnd[0] }} -->
+                            {{ popupFrom[0] }}
+                            {{ popupEnd[0] ? "to " + popupEnd[0] : "" }}
                           </td>
                         </tr>
                         <tr>

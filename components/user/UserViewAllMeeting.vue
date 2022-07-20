@@ -141,8 +141,11 @@
                       {{ list["dateFormat"] }}
                     </p>
                     <p class="color-primary text-center mb-1">
-                      {{ list["from"] }} to {{ list["end"] }}
-                      <!-- {{ timeZones.timeZone }} -->
+                      <!-- {{ list["from"] }} to {{ list["end"] }} -->
+                      {{ list["from"] }}
+                      {{ list["end"] ? "to " + list["end"] : "" }}
+
+                      {{ timeZones.timeZone }}
                     </p>
                   </div>
                 </div>
@@ -316,9 +319,15 @@
                               <div class="meeting-list p-3">
                                 <h6>{{ Schedule["dateFormat"] }}</h6>
                                 <p class="time">
-                                  {{ Schedule["from"] }} to
-                                  {{ Schedule["end"] }}
-                                  <!-- {{ timeZones.timeZone }} -->
+                                  <!-- {{ Schedule["from"] }} to
+                                  {{ Schedule["end"] }} -->
+                                  {{ Schedule["from"] }}
+                                  {{
+                                    Schedule["end"]
+                                      ? "to " + Schedule["end"]
+                                      : ""
+                                  }}
+                                  {{ timeZones.timeZone }}
                                 </p>
                               </div>
                             </div>
