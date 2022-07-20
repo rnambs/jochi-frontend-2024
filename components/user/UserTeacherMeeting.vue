@@ -13,7 +13,7 @@
         class="
           jochi-components-light-bg
           p-4
-          custom-margin-for-main-section custom-full-height 
+          custom-margin-for-main-section custom-full-height
           d-flex
           flex-column
         "
@@ -24,7 +24,14 @@
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0">
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
-                  <div class="form-row d-flex position-relative schedule-meeting-section">
+                  <div
+                    class="
+                      form-row
+                      d-flex
+                      position-relative
+                      schedule-meeting-section
+                    "
+                  >
                     <multiselect
                       v-model="meetingType"
                       :options="types"
@@ -38,7 +45,14 @@
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
-                  <div class="form-row d-flex position-relative schedule-meeting-section">
+                  <div
+                    class="
+                      form-row
+                      d-flex
+                      position-relative
+                      schedule-meeting-section
+                    "
+                  >
                     <multiselect
                       v-if="meetingType == 'Teachers'"
                       v-model="value"
@@ -47,7 +61,6 @@
                       label="first_name"
                       placeholder="Select a teacher"
                       @input="UpdateTimeSchedule"
-
                     >
                       <span slot="noResult">No data found</span>
                     </multiselect>
@@ -69,13 +82,31 @@
                       >
                       <span slot="noResult">No data found</span>
                     </multiselect>
-                    <span class="input-icon custom-search-icon position-absolute d-flex align-items-center justify-content-center"
-                      ><i class="fa fa-search color-secondary" aria-hidden="true"></i
+                    <span
+                      class="
+                        input-icon
+                        custom-search-icon
+                        position-absolute
+                        d-flex
+                        align-items-center
+                        justify-content-center
+                      "
+                      ><i
+                        class="fa fa-search color-secondary"
+                        aria-hidden="true"
+                      ></i
                     ></span>
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 px-2">
-                  <div class="form-row d-flex position-relative schedule-meeting-section">
+                  <div
+                    class="
+                      form-row
+                      d-flex
+                      position-relative
+                      schedule-meeting-section
+                    "
+                  >
                     <input
                       type="text"
                       name="daterange"
@@ -90,7 +121,7 @@
                     </span> -->
                   </div>
                 </div>
-                <div class="col-md-6 col-lg-3  px-2 justify-content-md-end">
+                <div class="col-md-6 col-lg-3 px-2 justify-content-md-end">
                   <div class="custom-switch pb-2">
                     <input
                       type="checkbox"
@@ -100,7 +131,14 @@
                       @change="UpdateTimeSchedule()"
                       v-on:click="weekToggle()"
                     />
-                    <label class="custom-control-label font-normal color-dark text-14" for="custom-Switches"
+                    <label
+                      class="
+                        custom-control-label
+                        font-normal
+                        color-dark
+                        text-14
+                      "
+                      for="custom-Switches"
                       >Include weekends
                     </label>
                   </div>
@@ -113,7 +151,14 @@
                       @change="UpdateTimeSchedule()"
                       v-on:click="availabilityToggle()"
                     />
-                    <label class="custom-control-label font-normal color-dark text-14" for="customSwitches"
+                    <label
+                      class="
+                        custom-control-label
+                        font-normal
+                        color-dark
+                        text-14
+                      "
+                      for="customSwitches"
                       >Show options based on my availability
                     </label>
                   </div>
@@ -127,34 +172,74 @@
 
         <!-- element secton -->
 
-        <section id="teacher-section" class=" d-flex h-40 flex-fill">
-          <div class="meeting-section container-fluid d-flex custom-overflow pe-2 mr--2 flex-fill">
-            <div class="inner-meeting flex-fill container-fluid py-3 pl-0 scroll ">
-              <div class="row Meeting-row text-center h-100 align-items-center px-4 px-md-5 px-lg-3 px-xl-5" v-show="isShowing">
+        <section id="teacher-section" class="d-flex h-40 flex-fill">
+          <div
+            class="
+              meeting-section
+              container-fluid
+              d-flex
+              custom-overflow
+              pe-2
+              mr--2
+              flex-fill
+            "
+          >
+            <div
+              class="inner-meeting flex-fill container-fluid py-3 pl-0 scroll"
+            >
+              <div
+                class="
+                  row
+                  Meeting-row
+                  text-center
+                  h-100
+                  align-items-center
+                  px-4 px-md-5 px-lg-3 px-xl-5
+                "
+                v-show="isShowing"
+              >
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
-                    <img src="~/assets/images/undraw/step1.png" class="img-illustrate" alt="" />
+                    <img
+                      src="~/assets/images/undraw/step1.png"
+                      class="img-illustrate"
+                      alt=""
+                    />
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary font-medium">Step 1</h6>
-                      <p class="color-secondary text-12">Search & Select Your Teacher</p>
+                      <p class="color-secondary text-12">
+                        Search & Select Your Teacher
+                      </p>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
-                    <img src="~/assets/images/undraw/step2.png" class="img-illustrate" alt="" />
+                    <img
+                      src="~/assets/images/undraw/step2.png"
+                      class="img-illustrate"
+                      alt=""
+                    />
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary font-medium">Step 2</h6>
-                      <p class="color-secondary text-12">Choose Your Date Range</p>
+                      <p class="color-secondary text-12">
+                        Choose Your Date Range
+                      </p>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
-                    <img src="~/assets/images/undraw/step3.png" class="img-illustrate" alt="" />
+                    <img
+                      src="~/assets/images/undraw/step3.png"
+                      class="img-illustrate"
+                      alt=""
+                    />
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary font-medium">Step 3</h6>
-                      <p class="color-secondary text-12">Select Your Time and Confirm</p>
+                      <p class="color-secondary text-12">
+                        Select Your Time and Confirm
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -162,14 +247,19 @@
               <div class="col-xl-10 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
                 <div class="row Meeting-row pl-0 pr-3 pt-3">
                   <div
-                    class="col-md-3  mb-4 py-0"
+                    class="col-md-3 mb-4 py-0"
                     v-for="(Schedule, index) in slot_date"
                     :key="index"
                   >
                     <div
-                      class="meeting-list p-3 cursor-pointer card card-void align-items-center h-100"
-                      data-toggle="modal"
-                      data-target="#meetingDetailModal"
+                      class="
+                        meeting-list
+                        p-3
+                        cursor-pointer
+                        card card-void
+                        align-items-center
+                        h-100
+                      "
                       v-on:click="
                         modalValue(
                           Schedule.dateFormat,
@@ -177,11 +267,23 @@
                           Schedule.end,
                           Schedule.slot,
                           Schedule.dateValue
-                        )
+                        );
+                        openConfirmMeetingModal();
                       "
                     >
-                      <h6 class="font-bold color-dark text-center">{{ Schedule["dateFormat"] }}</h6>
-                      <p class="time color-primary font-normal text-14 mb-1 text-center">
+                      <h6 class="font-bold color-dark text-center">
+                        {{ Schedule["dateFormat"] }}
+                      </h6>
+                      <p
+                        class="
+                          time
+                          color-primary
+                          font-normal
+                          text-14
+                          mb-1
+                          text-center
+                        "
+                      >
                         {{ Schedule["from"] }}
                         {{ Schedule["end"] ? "to " + Schedule["end"] : "" }}
                         <!-- {{ timeZones.timeZone }} -->
@@ -190,9 +292,18 @@
                   </div>
                   <div
                     v-if="slot_date.length == 0 && isMounted"
-                    class="empty-schedule d-flex align-items-center justify-content-center h-40 m-auto"
+                    class="
+                      empty-schedule
+                      d-flex
+                      align-items-center
+                      justify-content-center
+                      h-40
+                      m-auto
+                    "
                   >
-                    <p class="color-secondary text-16">No time slot is available</p>
+                    <p class="color-secondary text-16">
+                      No time slot is available
+                    </p>
                   </div>
                 </div>
               </div>
@@ -328,8 +439,17 @@
                         <tr>
                           <td class="tmodal-data text-nowrap">Meeting Name</td>
                           <td class="tmodal-data">
-                            <div class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
-                                <p
+                            <div
+                              class="
+                                mb-0
+                                col-12 col-md-8 col-lg-7
+                                d-flex
+                                align-items-center
+                                form-row
+                                py-0
+                              "
+                            >
+                              <p
                                 class="
                                   mb-0
                                   tdata-overflow
@@ -350,7 +470,11 @@
                                   name="meeting_name"
                                   autocomplete="off"
                                   maxlength="100"
-                                  class="form-control bg-white custom-form-control"
+                                  class="
+                                    form-control
+                                    bg-white
+                                    custom-form-control
+                                  "
                                   v-model="meeting_name"
                                   :class="{
                                     'is-invalid':
@@ -372,8 +496,17 @@
                         <tr>
                           <td class="tmodal-data text-nowrap">Description</td>
                           <td class="tmodal-data">
-                            <div class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
-                                <p
+                            <div
+                              class="
+                                mb-0
+                                col-12 col-md-8 col-lg-7
+                                d-flex
+                                align-items-center
+                                form-row
+                                py-0
+                              "
+                            >
+                              <p
                                 class="
                                   mb-0
                                   tdata-overflow
@@ -395,16 +528,23 @@
                                   autocomplete="off"
                                   maxlength="500"
                                   row="3"
-                                  class="form-control custom-form-control bg-white"
+                                  class="
+                                    form-control
+                                    custom-form-control
+                                    bg-white
+                                  "
                                   v-model="meeting_description"
                                   :class="{
                                     'is-invalid':
-                                      submitted && $v.meeting_description.$error,
+                                      submitted &&
+                                      $v.meeting_description.$error,
                                   }"
                                 ></textarea>
                               </p>
                               <div
-                                v-if="submitted && $v.meeting_description.$error"
+                                v-if="
+                                  submitted && $v.meeting_description.$error
+                                "
                                 class="invalid-feedback"
                               >
                                 <span v-if="!$v.meeting_description.required"
@@ -419,8 +559,17 @@
                             Type of Meeting
                           </td>
                           <td class="tmodal-data">
-                            <div class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
-                                <p
+                            <div
+                              class="
+                                mb-0
+                                col-12 col-md-8 col-lg-7
+                                d-flex
+                                align-items-center
+                                form-row
+                                py-0
+                              "
+                            >
+                              <p
                                 class="
                                   mb-0
                                   tdata-overflow
@@ -465,43 +614,52 @@
                             }}
                           </td>
                           <td class="tmodal-data">
-                            <div class="mb-0 col-12 col-md-8 col-lg-7 d-flex align-items-center form-row py-0">
-                              <p
+                            <div
                               class="
                                 mb-0
-                                tdata-overflow
+                                col-12 col-md-8 col-lg-7
                                 d-flex
                                 align-items-center
+                                form-row
+                                py-0
                               "
                             >
-                              <span class="pr-2"></span>
-                              <!-- <span v-if="value">
+                              <p
+                                class="
+                                  mb-0
+                                  tdata-overflow
+                                  d-flex
+                                  align-items-center
+                                "
+                              >
+                                <span class="pr-2"></span>
+                                <!-- <span v-if="value">
                               {{
                                 value.first_name +
                                 " " +
                                 (value.last_name ? value.last_name : "")
                               }}
                             </span> -->
-                              <input
-                                type="text"
-                                name="venue"
-                                autocomplete="off"
-                                maxlength="200"
-                                class="form-control custom-form-control"
-                                v-model="venue"
-                                :class="{
-                                  'is-invalid': submitted && $v.venue.$error,
-                                }"
-                              />
-                            </p>
-                            <div
-                              v-if="submitted && $v.venue.$error"
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.venue.required"
-                                >This field is required</span
+                                <input
+                                  type="text"
+                                  name="venue"
+                                  autocomplete="off"
+                                  maxlength="200"
+                                  class="form-control custom-form-control"
+                                  v-model="venue"
+                                  :class="{
+                                    'is-invalid': submitted && $v.venue.$error,
+                                  }"
+                                />
+                              </p>
+                              <div
+                                v-if="submitted && $v.venue.$error"
+                                class="invalid-feedback"
                               >
-                            </div>
+                                <span v-if="!$v.venue.required"
+                                  >This field is required</span
+                                >
+                              </div>
                             </div>
                           </td>
                         </tr>
@@ -960,6 +1118,10 @@ export default {
       this.popupEnd.push(modalEnd);
       slot_id = slotValue;
       modalDate = value;
+    },
+    openConfirmMeetingModal() {
+      // meetingDetailModal
+      $("#meetingDetailModal").modal();
     },
   },
 };

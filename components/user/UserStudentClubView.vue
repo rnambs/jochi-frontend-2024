@@ -47,12 +47,19 @@
               "
             >
               <div class="info-head my-2">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                  <h3 class="color-primary font-semi-bold mb-1">Club Details</h3>
-                  
-                  <a href="#" class="btn btn-primary py-1" @click="JoinClub()">{{
-                    user == 3 ? "Join Now" : "Join As Leader"
-                  }}</a>
+                <div
+                  class="d-flex align-items-center justify-content-between mb-3"
+                >
+                  <h3 class="color-primary font-semi-bold mb-1">
+                    Club Details
+                  </h3>
+
+                  <a
+                    href="#"
+                    class="btn btn-primary py-1"
+                    @click="JoinClub()"
+                    >{{ user == 3 ? "Join Now" : "Join As Leader" }}</a
+                  >
                 </div>
               </div>
               <div class="inner-info">
@@ -63,7 +70,9 @@
                 >
                   <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3">
                     <div class="inner-info-head mb-2">
-                      <h5 class="color-dark mb-2 font-bold">About the {{ headingName }}</h5>
+                      <h5 class="color-dark mb-2 font-bold">
+                        About the {{ headingName }}
+                      </h5>
                     </div>
                     <p
                       v-if="!editDescription"
@@ -281,7 +290,9 @@
                                               : "Teacher"
                                           }}
                                         </p>
-                                        <p class="ld-details mb-0 text-truncate">
+                                        <p
+                                          class="ld-details mb-0 text-truncate"
+                                        >
                                           {{ data.user_info.email }}
                                         </p>
                                       </div>
@@ -313,7 +324,10 @@
                                 <li
                                   v-if="!leadersInfo || leadersInfo.length == 0"
                                 >
-                                  <span class="color-secondary font-regular text-14">No data</span>
+                                  <span
+                                    class="color-secondary font-regular text-14"
+                                    >No data</span
+                                  >
                                 </li>
                               </ul>
                             </div>
@@ -376,7 +390,9 @@
                             <!-- <span slot="maxElements"
                               >Maximum of 4 students selected</span
                             > -->
-                            <span slot="color-secondary text-14 font-regular">No data found</span>
+                            <span slot="color-secondary text-14 font-regular"
+                              >No data found</span
+                            >
                           </multiselect>
                           <span class="input-icon custom-search-icon"
                             ><i class="fa fa-search" aria-hidden="true"></i
@@ -450,8 +466,19 @@
                                 class="input-icon-area mb-2 mr-2"
                                 v-if="list.taglists.length == 0"
                               >
-                                <input type="text" class="color-secondary text-14 font-regular" />
-                                <span class="color-secondary text-14 font-normal text-nowrap">No data</span>
+                                <input
+                                  type="text"
+                                  class="color-secondary text-14 font-regular"
+                                />
+                                <span
+                                  class="
+                                    color-secondary
+                                    text-14
+                                    font-normal
+                                    text-nowrap
+                                  "
+                                  >No data</span
+                                >
                               </div>
                             </div>
                           </div>
@@ -476,8 +503,12 @@
                               placeholder="Select a tag"
                               @input="EditTag"
                             >
-                              <span slot="color-secondary font-regular text-14"></span>
-                              <span class="color-secondary text-14 font-normal">No data found</span>
+                              <span
+                                slot="color-secondary font-regular text-14"
+                              ></span>
+                              <span class="color-secondary text-14 font-normal"
+                                >No data found</span
+                              >
                             </multiselect>
                           </div>
                         </div>
@@ -543,7 +574,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class=" p-0">
+                    <div class="p-0">
                       <div class="ld-details-section">
                         <p class="ld-heading color-dark mb-1">
                           {{
@@ -712,6 +743,7 @@ export default {
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
+      successMessageTeacher: (state) => state.successMessage,
     }),
   },
   methods: {
@@ -1066,9 +1098,9 @@ export default {
         user_id: localStorage.getItem("id"),
       });
 
-      if (this.successMessage != "") {
+      if (this.successMessageClub != "") {
         this.$toast.open({
-          message: this.successMessage,
+          message: this.successMessageClub,
           type: this.SuccessType,
           duration: 5000,
         });
