@@ -193,8 +193,6 @@
                   detailMeetingRequest != 1
                 "
               >
-                {{ detailTeacherId != studentId }}
-                {{ detailMeetingRequest != 1 }}
                 <table class="w-100 table-modal custom-row-table">
                   <tr>
                     <td class="tmodal-data">Type</td>
