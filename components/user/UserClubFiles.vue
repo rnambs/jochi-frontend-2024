@@ -39,7 +39,7 @@
         <!-- end tab for club files -->
 
         <!-- Club files -->
-         <div class="cd-cover-pic-section position-relative">
+        <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
           <div class="position-absolute cover-button mr-3 mb-1">
             <button class="btn p-1 m-2">
@@ -51,13 +51,24 @@
           </div>
         </div>
 
-        <section id="club-detail" class=" flex-fill d-flex">
+        <section id="club-detail" class="flex-fill d-flex">
           <div class="club-section container-fluid mt-2 d-flex custom-overflow">
             <div class="row my-0">
               <div class="col-md-8 d-flex h-100">
-                <div class="inner-club club-files container-fluid p-3 d-flex flex-column">
+                <div
+                  class="
+                    inner-club
+                    club-files
+                    container-fluid
+                    p-3
+                    d-flex
+                    flex-column
+                  "
+                >
                   <div class="info-head container-fluid mb-2">
-                    <h3 class="color-primary font-semi-bold mb-1">{{ headingName }}</h3>
+                    <h3 class="color-primary font-semi-bold mb-1">
+                      {{ headingName }}
+                    </h3>
                   </div>
                   <div class="custom-overflow d-flex flex-column flex-fill">
                     <div class="row info-row container-fluid my-0 mx-auto">
@@ -196,7 +207,13 @@
                       </div>
                       <div
                         v-if="allList.length == 0"
-                        class="w-100 text-center d-flex align-items-center justify-content-center"
+                        class="
+                          w-100
+                          text-center
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
                       >
                         <p class="no-data">No Data</p>
                       </div>
@@ -260,7 +277,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-4 d-flex flex-column">
+              <div v-if="enableEdit" class="col-md-4 d-flex flex-column">
                 <div
                   class="
                     inner-club
@@ -271,10 +288,7 @@
                     flex-fill
                   "
                 >
-                  <div
-                    class="container-fluid p-2 text-center"
-                    v-if="enableEdit"
-                  >
+                  <div class="container-fluid p-2 text-center">
                     <form
                       method="post"
                       @submit.prevent="UploadFile"
@@ -347,13 +361,14 @@
                             accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
                           />
                         </div>
-                        <button
+                        <!-- <button
                           id="clckPrevent"
                           type="file"
                           class="btn btn-primary py-1 my-3"
+                          @click="$event.stopPropagation()"
                         >
-                          Browse for file
-                        </button>
+                          Browse for files
+                        </button> -->
                       </div>
                       <button
                         id="clckPrevent"
@@ -385,46 +400,206 @@
           <div class="info-tab container-fluid my-3 px-3">
             <div class="row tab-row m-0">
               <div class="col-md-4 col-xs-12 py-2 py-md-3">
-                <nuxt-link
+                <!-- <nuxt-link
                   :to="{
                     path: '/club-info',
                     query: { id: clubId, name: headingName },
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-3 rounded-10 h-100"
                 >
-                  <!-- <i class="fas fa-info"></i> -->
                   <span class="text-24 color-primary font-semi-bold">Club Details</span>
-                </nuxt-link>
-              </div>
-              <div class="col-md-4 col-xs-12 py-2 py-md-3">
-                <nuxt-link
-                  :to="{
-                    path: '/club-files',
-                    query: { id: clubId, name: headingName },
-                  }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-3 rounded-10 h-100"
-                >
-                  <!-- <i class="fas fa-file-alt"></i> -->
-                  <span class="text-24 color-primary font-semi-bold">Files & Slides</span>
-                </nuxt-link>
-              </div>
-              <div class="col-md-4 col-xs-12 py-2 py-md-3">
+                </nuxt-link> -->
                 <nuxt-link
                   :to="{
                     path: '/club-moreInfo',
-                    query: { id: clubId, name: headingName },
+                    query: {
+                      id: clubId,
+                      name: headingName,
+                      type: activity_type,
+                    },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-3 rounded-10 h-100"
+                  class="
+                    inner-tab
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                    p-3
+                    rounded-10
+                    h-100
+                  "
                 >
-                  <!-- <i class="fas fa-ellipsis-h"></i> -->
-                  <span class="text-24 color-primary font-semi-bold">More</span>
+                  <!-- <i class="fas fa-info"></i> -->
+                  <span class="text-24 color-primary font-semi-bold"
+                    >Home Page</span
+                  >
                 </nuxt-link>
+              </div>
+              <div class="col-md-4 col-xs-12 py-2 py-md-3">
+                <nuxt-link
+                  :to="{
+                    path: '/club-info',
+                    query: {
+                      id: clubId,
+                      name: headingName,
+                      type: activity_type,
+                    },
+                  }"
+                  class="
+                    inner-tab
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                    p-3
+                    rounded-10
+                    h-100
+                  "
+                >
+                  <span class="text-24 color-primary font-semi-bold"
+                    >Club Details</span
+                  >
+                </nuxt-link>
+              </div>
+              <div @click="onNextMeeting" class="col-md-4 col-xs-12 p-2">
+                <div
+                  class="
+                    inner-tab
+                    default
+                    d-flex
+                    flex-column
+                    align-items-center
+                    justify-content-center
+                    p-4
+                    rounded-10
+                    h-100
+                  "
+                >
+                  <span class="text-24 color-primary font-semi-bold"
+                    >Next Meeting</span
+                  >
+                  <span class="text-16 color-primary font-regular">{{
+                    clubMoreDetails.announcement
+                  }}</span>
+                </div>
               </div>
             </div>
           </div>
         </section>
       </div>
     </div>
+    <!-- modal for add next meeting -->
+    <div
+      class="modal fade"
+      id="nextMeetingModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="nextMeetingModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="nextMeetingModalLongTitle">
+              Configure Meeting Days
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body no-overflow px-4">
+            <!-- <div class="col-md-5 col-xs-12"> -->
+            <div class="inner-info container p-4">
+              <div class="inner-info-head mb-3">
+                <h6>Meeting Time</h6>
+              </div>
+              <p class="time">
+                Next meeting:
+                {{
+                  clubMoreDetails.announcement == null
+                    ? "No meeting scheduled "
+                    : clubMoreDetails.announcement
+                }}
+              </p>
+
+              <div class="row inner-col" v-if="enableEdit">
+                <div class="col-lg-4 col-md-12 inner-info-head">
+                  <h6>Choose time</h6>
+                </div>
+                <div class="col-lg-8 col-md-12 input-icon-area">
+                  <multiselect
+                    v-model="valueMeeting"
+                    track-by="start_time"
+                    label="start_time"
+                    placeholder="Select the time"
+                    :options="slots"
+                    @input="UpdateSlots"
+                  >
+                    <span slot="noResult">No data found</span>
+                  </multiselect>
+                </div>
+              </div>
+
+              <div class="row choose-date my-2 m-0 p-0">
+                <div
+                  class="col"
+                  v-for="(day, index) in dayList"
+                  :key="index"
+                  @click.prevent="
+                    UpdateDays(day);
+                    $event.target.classList.toggle('active');
+                  "
+                >
+                  <a
+                    class="btn date-picker badge badge-pill badge-color active"
+                    :id="day"
+                    v-if="checkSlot(day)"
+                    >{{ day }}</a
+                  >
+                  <a
+                    href=""
+                    class="btn date-picker badge badge-pill badge-color"
+                    :id="day"
+                    v-else
+                    >{{ day }}</a
+                  >
+                </div>
+              </div>
+              <!-- <button
+                v-if="enableEdit"
+                class="btn btn-info-edit mt-2"
+                :disabled="!value"
+                @click.prevent="UpdateTime"
+              >
+                Update the next meeting
+              </button> -->
+            </div>
+            <!-- </div> -->
+          </div>
+          <div class="modal-footer">
+            <!-- <button
+              type="button"
+              class="btn btn-color-close"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button> -->
+            <button
+              v-if="enableEdit"
+              class="btn btn-info-edit mt-2"
+              :disabled="!valueMeeting"
+              @click.prevent="UpdateTime"
+            >
+              Update the next meeting
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal add assignment -->
   </div>
 </template>
 <script>
@@ -455,10 +630,17 @@ export default {
       filepptCheck: false,
       remove_id: "",
       remove_name: "",
+      activity_type: this.$route.query.type,
+      dayList: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+      dateArray: [],
+      dayArrVal: [],
+      daysArray: [],
     };
   },
   mounted() {
     var user = localStorage.getItem("user_type");
+    this.getClubMoreInfo();
+    this.SlotswithId();
     // if (user == 3) {
     this.ClubFiles();
     // } else {
@@ -474,6 +656,14 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    ...mapState("clubMoreInfo", {
+      clubMoreDetails: (state) => state.clubMoreDetails,
+      slots: (state) => state.slots,
+      // successMessageClub: (state) => state.successMessage,
+      // SuccessTypeClub: (state) => state.SuccessType,
+      // errorMessageClub: (state) => state.errorMessage,
+      // errorTypeClub: (state) => state.errorType,
+    }),
   },
   methods: {
     ...mapActions("clubFiles", {
@@ -481,8 +671,31 @@ export default {
       uploadFile: "uploadFile",
       fileRemove: "fileRemove",
     }),
+    ...mapActions("clubMoreInfo", {
+      clubMoreInfo: "clubMoreInfo",
+      slotswithId: "slotswithId",
+    }),
     handleAnimation: function (anim) {
       this.anim = anim;
+    },
+    async SlotswithId() {
+      await this.slotswithId({});
+    },
+    UpdateSlots(val) {
+      this.valueId = val.id;
+    },
+    async getClubMoreInfo() {
+      await this.clubMoreInfo({
+        club_id: this.$route.query.id,
+        user_id: localStorage.getItem("id"),
+      });
+    },
+    checkSlot(day) {
+      if (this.dateArray.includes(day)) {
+        return true;
+      } else {
+        return false;
+      }
     },
     checkFile(filesName) {
       if (filesName.includes("pdf")) {
@@ -512,34 +725,36 @@ export default {
     },
 
     async UploadFile() {
-      this.loading = true;
-      const data = new FormData();
-      data.append("file", this.profilePic);
-      data.append("club_id", this.$route.query.id);
-      data.append("user_id", localStorage.getItem("id"));
+      if (this.profilePic) {
+        this.loading = true;
+        const data = new FormData();
+        data.append("file", this.profilePic);
+        data.append("club_id", this.$route.query.id);
+        data.append("user_id", localStorage.getItem("id"));
 
-      await this.uploadFile(data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        club_id: this.$route.query.id,
-      });
-      this.loading = false;
-      if (this.successMessage != "") {
-        this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
-          duration: 5000,
+        await this.uploadFile(data, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          club_id: this.$route.query.id,
         });
-      } else if (this.errorMessage != "") {
-        this.$toast.open({
-          message: this.errorMessage,
-          type: this.errorType,
-          duration: 5000,
-        });
+        this.loading = false;
+        if (this.successMessage != "") {
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.SuccessType,
+            duration: 5000,
+          });
+        } else if (this.errorMessage != "") {
+          this.$toast.open({
+            message: this.errorMessage,
+            type: this.errorType,
+            duration: 5000,
+          });
+        }
+        this.profileImageUrl = "";
+        this.ClubFiles();
       }
-      this.profileImageUrl = "";
-      this.ClubFiles();
     },
     async FileRemove() {
       this.loading = true;
@@ -564,26 +779,28 @@ export default {
       this.ClubFiles();
     },
     onFileChange(e) {
-      this.profilePic = this.$refs.profilePic.files[0];
-      const file = e.target.files[0];
-      this.file_type = file.name;
-      //
-      if (this.file_type.includes("pdf")) {
-        this.fileCheck = true;
-        this.filepptCheck = false;
-        this.profileImageUrl = "pdf-upload.png";
-      } else if (this.file_type.includes("ppt")) {
-        this.filepptCheck = true;
-        this.fileCheck = false;
-        this.profileImageUrl = "ppt.jpg";
-      } else if (this.file_type.includes("pptx")) {
-        this.filepptCheck = true;
-        this.fileCheck = false;
-        this.profileImageUrl = "ppt.jpg";
-      } else {
-        this.filepptCheck = false;
-        this.fileCheck = false;
-        this.profileImageUrl = URL.createObjectURL(file);
+      if (e.target.files[0]) {
+        this.profilePic = this.$refs.profilePic.files[0];
+        const file = e.target.files[0];
+        this.file_type = file.name;
+        //
+        if (this.file_type.includes("pdf")) {
+          this.fileCheck = true;
+          this.filepptCheck = false;
+          this.profileImageUrl = "pdf-upload.png";
+        } else if (this.file_type.includes("ppt")) {
+          this.filepptCheck = true;
+          this.fileCheck = false;
+          this.profileImageUrl = "ppt.jpg";
+        } else if (this.file_type.includes("pptx")) {
+          this.filepptCheck = true;
+          this.fileCheck = false;
+          this.profileImageUrl = "ppt.jpg";
+        } else {
+          this.filepptCheck = false;
+          this.fileCheck = false;
+          this.profileImageUrl = URL.createObjectURL(file);
+        }
       }
     },
     removeFile() {
@@ -616,6 +833,11 @@ export default {
     modalPopUp(valId, valName) {
       this.remove_id = valId;
       this.remove_name = valName;
+    },
+    onNextMeeting() {
+      if (this.enableEdit) {
+        $("#nextMeetingModal").modal();
+      }
     },
   },
 };

@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      user_type: "",
+      user_type: "3",
     };
   },
   mounted() {
