@@ -549,7 +549,11 @@
                 </table>
               </fieldset>
               <div
-                v-if="detailMeetingRequest == 0 && detailTeacherId != studentId"
+                v-if="
+                  detailType == 'Peer' &&
+                  detailMeetingRequest == 0 &&
+                  detailTeacherId != studentId
+                "
                 class="row text-center"
               >
                 <button
@@ -661,6 +665,8 @@ export default {
     detailVenue: { required },
   },
   mounted() {
+    var user = localStorage.getItem("user_type");
+
     this.studentId = parseInt(localStorage.getItem("id"));
     this.ListAllMeeting();
     this.GetAll();
