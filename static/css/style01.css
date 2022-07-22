@@ -162,6 +162,7 @@ body {
   box-shadow: none;
 }
 .btn.btn-primary {
+  font-weight: 600;
   background-color: #FF6D6D;
   color: #F9F9F9;
 }
@@ -169,12 +170,16 @@ body {
   background-color: #FF4E71;
 }
 .btn.btn-dark {
+  font-weight: 600;
   background-color: #000000;
   color: #ffffff;
 }
 .btn.btn-void {
   background-color: transparent;
   color: #C5C0BD;
+}
+.btn.btn-void:hover {
+  color: #431F1C;
 }
 .btn.btn-secondary {
   background-color: #C5C0BD;
@@ -507,6 +512,10 @@ img.card-img {
   -o-object-fit: contain;
      object-fit: contain;
   width: 100%;
+}
+
+.min-w-100 {
+  min-width: 100px;
 }
 
 .main-container {
@@ -4826,12 +4835,6 @@ select.form-control.is-invalid {
   display: block;
   font-weight: 600;
   text-transform: uppercase;
-}
-
-.ld-heading {
-  font-size: 16px;
-  color: #000000;
-  font-weight: 600;
 }
 
 .members-thumbnail-list {

@@ -61,7 +61,7 @@
                 <h3 class="color-primary font-bold">{{ headingName }}</h3>
               </div>
               <div
-                class="inner-info container-fluid my-1 d-flex h-40 flex-fill"
+                class="inner-info container-fluid my-1 d-flex flex-column h-40 flex-fill"
               >
                 <div class="row my-0">
                   <div
@@ -1213,7 +1213,7 @@
             </button> -->
             <button
               v-if="enableEdit"
-              class="btn btn-primary mt-2"
+              class="btn btn-primary rounded-pill mt-2 py-1 px-4"
               :disabled="!value"
               @click.prevent="UpdateTime"
             >

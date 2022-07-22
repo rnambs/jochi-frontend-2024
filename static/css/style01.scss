@@ -139,6 +139,7 @@ body{
         box-shadow: none;
     }
     &.btn-primary{
+        font-weight: 600;
         background-color: $theme-color;
         color: $global-font-color;
         &:hover,&:focus,&:active,&:active:focus{
@@ -146,12 +147,16 @@ body{
         }
     }
     &.btn-dark{
+        font-weight: 600;
         background-color: $black;
         color: $white;
     }
     &.btn-void{
         background-color: transparent;
         color: $text-secondary;
+        &:hover{
+            color: $text-dark;
+        }
     }
     &.btn-secondary{
         background-color: $text-secondary;
@@ -485,6 +490,10 @@ img.card-img{
     max-width: 130px;
     object-fit: contain;
     width: 100%;
+}
+
+.min-w-100{
+    min-width: 100px;
 }
 
 // SIGN-IN
@@ -5701,11 +5710,11 @@ select.form-control{
     }
 }
 
-.ld-heading {
-    font-size: 16px;
-    color: #000000;
-    font-weight: 600;
-}
+// .ld-heading {
+//     font-size: 16px;
+//     color: #000000;
+//     font-weight: 600;
+// }
 
 // .cd-about-club-details {
 //     font-size: 14px;

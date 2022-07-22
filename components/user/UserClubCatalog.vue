@@ -84,7 +84,7 @@
                   </div> -->
                   <div class="row catalog-row">
                     <div class="col-lg-4">
-                      <h5 class="mb-0 color-dark font-semi-bold">{{ list["name"] }}</h5>
+                      <h5 class="mb-2 color-dark font-semi-bold">{{ list["name"] }}</h5>
                       <!-- <p class="catalog-text">
                         {{ list.part ? list.part : "No data "
                         }}<span :id="'dots' + list.id" v-if="list.remaining"
@@ -123,7 +123,7 @@
                               {{ todos }}
                             </li> -->
                             <span
-                              class="to-do-li color-white text-14 rounded px-2 py-1 m-1"
+                              class="to-do-li color-white text-14 rounded px-4 py-1 m-1 min-w-100 d-flex justify-content-center"
                               :style="{
                                 'background-color': tagColorMap[todos],
                               }"
@@ -186,7 +186,8 @@
                         class="
                           btn
                           btn-primary
-                          py-1
+                          py-2
+                          px-4
                           mt-2
                           h-fit-content
                         "

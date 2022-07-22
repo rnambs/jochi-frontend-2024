@@ -52,7 +52,7 @@
         </div>
 
         <section id="club-detail" class="flex-fill d-flex flex-column h-40">
-          <div class="club-section container-fluid mt-2 d-flex custom-overflow">
+          <div class="club-section container-fluid mt-2 d-flex flex-column custom-overflow">
             <div class="row my-0">
               <div class="col-md-8 d-flex h-100">
                 <div
@@ -589,7 +589,7 @@
             </button> -->
             <button
               v-if="enableEdit"
-              class="btn btn-info-edit mt-2"
+              class="btn btn-primary rounded-pill mt-2 py-1 px-4"
               :disabled="!valueMeeting"
               @click.prevent="UpdateTime"
             >
