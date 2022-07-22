@@ -176,7 +176,7 @@
                         />
                       </div>
                       <span class="ml-2 color-secondary text-capitalize">Planner</span>
-                      <i class="fas fa-chevron-right color-secondary"></i>
+                      <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
                   </div>
                 </div>
@@ -236,7 +236,7 @@
                         />
                       </div>
                       <span class="ml-2 color-secondary text-capitalize">Meeting</span>
-                      <i class="fas fa-chevron-right color-secondary"></i>
+                      <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
                   </div>
                 </div>
@@ -296,7 +296,7 @@
                         />
                       </div>
                       <span class="ml-2 color-secondary text-capitalize">Teams & Clubs</span>
-                      <i class="fas fa-chevron-right color-secondary"></i>
+                      <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
                   </div>
                 </div>
@@ -342,7 +342,7 @@
                         />
                       </div>
                       <span class="ml-2 color-secondary text-capitalize">Study Room</span>
-                      <i class="fas fa-chevron-right color-secondary"></i>
+                      <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
                   </div>
                 </div>

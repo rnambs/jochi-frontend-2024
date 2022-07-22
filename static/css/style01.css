@@ -943,8 +943,9 @@ img.card-img {
   }
 }
 .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link span {
+  color: #C5C0BD;
   margin: auto;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
 }
 @media (max-width: 1024.98px) {
   .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link span {
@@ -955,6 +956,9 @@ img.card-img {
   .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link span {
     display: none;
   }
+}
+.inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link span.active {
+  color: #431F1C;
 }
 .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .fa-chevron-right {
   font-weight: 500;
@@ -1028,7 +1032,7 @@ img.card-img {
 .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a {
   text-decoration: none;
   color: #B4B4B4;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   padding: 0.5rem;
 }
 @media (max-width: 991.98px) {
@@ -1037,10 +1041,9 @@ img.card-img {
   }
 }
 .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a.nav-link.nuxt-link-exact-active.nuxt-link-active {
-  background-color: #FF646F;
   padding: 0.5rem;
   border-radius: 0.3rem;
-  color: #ffffff;
+  color: #431F1C;
 }
 @media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a.nav-link.nuxt-link-exact-active.nuxt-link-active {
@@ -1048,12 +1051,9 @@ img.card-img {
   }
 }
 .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a:hover, .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a .active {
-  background-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
-  border-radius: 22px;
-  border: 1px solid #ffffff;
   padding: 0.5rem;
   border-radius: 0.3rem;
+  color: #431F1C;
 }
 @media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a:hover, .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a .active {
