@@ -182,7 +182,7 @@
                     </div>
                     <button
                       v-if="enableEdit"
-                      class="btn btn-info-edit mt-2"
+                      class="btn btn-primary rounded-pill mt-2 py-1 px-4"
                       :disabled="!value"
                       @click.prevent="UpdateTime"
                     >

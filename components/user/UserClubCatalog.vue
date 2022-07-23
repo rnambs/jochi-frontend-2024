@@ -159,9 +159,12 @@
                             color-white
                             text-14
                             rounded
-                            px-2
+                            px-4
                             py-1
                             m-1
+                            min-w-100
+                            d-flex
+                            justify-content-center
                           "
                           :style="{
                             'background-color': tagColorMap[todos],
@@ -216,6 +219,26 @@
                       ></a>
                     </div> -->
 
+                <!-- <div class="col-lg-2 d-flex justify-content-start justify-content-lg-end">
+                      <nuxt-link
+                        :to="{
+                          path: '/student-club-view',
+                          query: { id: list.id, name: list.activity_type },
+                        }"
+                        class="
+                          btn
+                          btn-primary
+                          py-2
+                          px-4
+                          mt-2
+                          h-fit-content
+                        "
+                      >
+                        View More
+                      </nuxt-link>
+                    </div>
+                  </div>
+                </div> -->
                 <div
                   class="
                     col-lg-2

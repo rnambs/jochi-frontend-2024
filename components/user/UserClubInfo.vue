@@ -57,9 +57,9 @@
                 >
                   <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3">
                     <div class="inner-info-head mb-2">
-                      <h5 class="color-dark mb-2 font-bold">
+                      <h4 class="color-dark mb-2 font-bold">
                         About the {{ headingName }}
-                      </h5>
+                      </h4>
                     </div>
                     <p
                       v-if="!editDescription"
@@ -126,7 +126,7 @@
                       </label>
                     </div> -->
                     <div class="mb-2 mt-4">
-                      <h5 class="color-dark mb-2 font-bold">Members</h5>
+                      <h4 class="color-dark mb-2 font-bold">Members</h4>
                     </div>
                     <div
                       class="
@@ -221,7 +221,7 @@
                     <div class="row">
                       <div class="col-12 inner-col text-right">
                         <div class="mb-3">
-                          <h5 class="color-dark mb-2 font-bold">Leaders</h5>
+                          <h4 class="color-dark mb-2 font-bold">Leaders</h4>
                         </div>
                         <div class="row">
                           <div class="col-4"></div>
@@ -266,7 +266,7 @@
                                     </div>
                                     <div class="col-8 p-0">
                                       <div class="ld-details-section">
-                                        <p class="ld-heading mb-1">
+                                        <p class="mb-1 text-18 color-dark font-semi-bold">
                                           {{
                                             data.user_info.first_name +
                                             (data.user_info.last_name
@@ -280,7 +280,7 @@
                                           }}
                                         </p>
                                         <p
-                                          class="ld-details mb-0 text-truncate"
+                                          class="color-secondary text-16 font-regular mb-0 text-truncate"
                                         >
                                           {{ data.user_info.email }}
                                         </p>
@@ -292,9 +292,9 @@
                                 <button
                                   v-if="leadersInfo.length >= 3"
                                   @click="openViewMoreMembers(true)"
-                                  class="btn btn-dark mt-2 py-1"
+                                  class="btn btn-void mt-3 py-1 px-0"
                                 >
-                                  View More
+                                  <span class="font-semi-bold mr-1">View More</span><span class="more-icon"><i class="fas fa-chevron-right"></i></span>
                                 </button>
 
                                 <!-- <li
@@ -329,7 +329,7 @@
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-0">
-                          <h5 class="color-dark mb-2 font-bold">Add Leaders</h5>
+                          <h4 class="color-dark mb-2 font-bold">Add Leaders</h4>
                         </div>
 
                         <div
@@ -400,7 +400,7 @@
                     <div class="row">
                       <div class="col-12 inner-col text-right">
                         <div class="inner-info-head mb-0">
-                          <h5 class="color-dark mb-2 font-bold">Tags</h5>
+                          <h4 class="color-dark mb-2 font-bold">Tags</h4>
                         </div>
                         <div class="row">
                           <div class="col-6"></div>
@@ -428,11 +428,13 @@
                                     'background-color': tagColorMap[value.name],
                                   }"
                                   class="
-                                    px-2
-                                    py-1
+                                    px-4
+                                    py-2
                                     rounded
                                     color-white
                                     d-flex
+                                    justify-content-center
+                                    min-w-100
                                     text-14
                                     align-items-center
                                   "
@@ -463,7 +465,7 @@
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-3">
-                          <h5 class="color-dark mb-2 font-bold">Add Tags</h5>
+                          <h4 class="color-dark mb-2 font-bold">Add Tags</h4>
                         </div>
                         <div
                           class="d-flex align-items-center justify-content-end"
@@ -605,9 +607,9 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title color-dark" id="nextMeetingModalLongTitle">
+            <h4 class="modal-title color-dark" id="nextMeetingModalLongTitle">
               Configure Meeting Days
-            </h5>
+            </h4>
             <button
               type="button"
               class="close"
@@ -709,7 +711,7 @@
             </button> -->
             <button
               v-if="enableEdit"
-              class="btn btn-primary mt-2"
+              class="btn btn-primary rounded-pill mt-2 py-1 px-4"
               :disabled="!valueMeeting"
               @click.prevent="UpdateTime"
             >
@@ -733,9 +735,9 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="viewMoreModalLongTitle">
+            <h4 class="modal-title" id="viewMoreModalLongTitle">
               View {{ isLeaderView ? "Leaders" : "Members" }}
-            </h5>
+            </h4>
             <button
               type="button"
               class="close"
@@ -768,7 +770,7 @@
                     </div>
                     <div class="p-0">
                       <div class="ld-details-section">
-                        <p class="ld-heading color-dark mb-1">
+                        <p class="mb-1 text-18 color-dark font-semi-bold">
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name
@@ -781,7 +783,7 @@
                               : "Teacher"
                           }}
                         </p>
-                        <p class="ld-details mb-0">
+                        <p class="color-secondary text-16 font-regular mb-0  text-truncate">
                           {{ data.user_info.email }}
                         </p>
                       </div>
@@ -820,7 +822,7 @@
                     </div>
                     <div class="col-8 p-0">
                       <div class="ld-details-section">
-                        <p class="ld-heading mb-1">
+                        <p class="mb-1 text-18 color-dark font-semi-bold">
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name
@@ -833,7 +835,7 @@
                               : "Teacher"
                           }}
                         </p>
-                        <p class="ld-details mb-0">
+                        <p class="color-secondary text-16 font-regular mb-0  text-truncate">
                           {{ data.user_info.email }}
                         </p>
                       </div>

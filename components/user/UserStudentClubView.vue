@@ -70,9 +70,9 @@
                 >
                   <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3">
                     <div class="inner-info-head mb-2">
-                      <h5 class="color-dark mb-2 font-bold">
+                      <h4 class="color-dark mb-2 font-bold">
                         About the {{ headingName }}
-                      </h5>
+                      </h4>
                     </div>
                     <p
                       v-if="!editDescription"
@@ -137,7 +137,7 @@
                       </label>
                     </div> -->
                     <div class="inner-info-head mb-2 mt-4">
-                      <h5 class="color-dark mb-2 font-bold">Members</h5>
+                      <h4 class="color-dark mb-2 font-bold">Members</h4>
                     </div>
                     <div
                       class="
@@ -233,7 +233,7 @@
                     <div class="row">
                       <div class="col-12 inner-col text-right">
                         <div class="inner-info-head mb-3">
-                          <h5 class="color-dark mb-2 font-bold">Leaders</h5>
+                          <h4 class="color-dark mb-2 font-bold">Leaders</h4>
                         </div>
                         <div class="row">
                           <div class="col-4"></div>
@@ -277,7 +277,7 @@
                                     </div>
                                     <div class="col-8 p-0">
                                       <div class="ld-details-section">
-                                        <p class="ld-heading mb-1">
+                                        <p class="mb-1 color-dark text-18 font-semi-bold">
                                           {{
                                             data.user_info.first_name +
                                             (data.user_info.last_name
@@ -291,7 +291,7 @@
                                           }}
                                         </p>
                                         <p
-                                          class="ld-details mb-0 text-truncate"
+                                          class="text-16 color-secondary mb-0 text-truncate"
                                         >
                                           {{ data.user_info.email }}
                                         </p>
@@ -339,7 +339,7 @@
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-3">
-                          <h5 class="color-dark mb-2 font-bold">Add Leaders</h5>
+                          <h4 class="color-dark mb-2 font-bold">Add Leaders</h4>
                         </div>
 
                         <div
@@ -410,7 +410,7 @@
                     <div class="row">
                       <div class="col-12 inner-col text-right">
                         <div class="inner-info-head mb-3">
-                          <h5 class="color-dark mb-2 font-bold">Tags</h5>
+                          <h4 class="color-dark mb-2 font-bold">Tags</h4>
                         </div>
                         <div class="row">
                           <div class="col-6"></div>
@@ -489,7 +489,7 @@
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-3">
-                          <h5 class="color-dark mb-2 font-bold">Add Tags</h5>
+                          <h4 class="color-dark mb-2 font-bold">Add Tags</h4>
                         </div>
                         <div
                           class="d-flex align-items-center justify-content-end"
@@ -539,9 +539,9 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="viewMoreModalLongTitle">
+            <h4 class="modal-title" id="viewMoreModalLongTitle">
               View {{ isLeaderView ? "Leaders" : "Members" }}
-            </h5>
+            </h4>
             <button
               type="button"
               class="close"
@@ -576,7 +576,7 @@
                     </div>
                     <div class="p-0">
                       <div class="ld-details-section">
-                        <p class="ld-heading color-dark mb-1">
+                        <p class="color-dark mb-1 text-18 font-semi-bold">
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name
@@ -589,7 +589,7 @@
                               : "Teacher"
                           }}
                         </p>
-                        <p class="ld-details mb-0">
+                        <p class="text-16 color-secondary mb-0 text-truncate">
                           {{ data.user_info.email }}
                         </p>
                       </div>
@@ -628,7 +628,7 @@
                     </div>
                     <div class="col-8 p-0">
                       <div class="ld-details-section">
-                        <p class="ld-heading mb-1">
+                        <p class="mb-1 color-dark text-18 font-semi-bold">
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name
@@ -641,7 +641,7 @@
                               : "Teacher"
                           }}
                         </p>
-                        <p class="ld-details mb-0">
+                        <p class="text-16 color-secondary mb-0 text-truncate">
                           {{ data.user_info.email }}
                         </p>
                       </div>

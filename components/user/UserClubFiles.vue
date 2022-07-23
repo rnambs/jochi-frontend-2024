@@ -51,8 +51,8 @@
           </div>
         </div>
 
-        <section id="club-detail" class="flex-fill d-flex">
-          <div class="club-section container-fluid mt-2 d-flex custom-overflow">
+        <section id="club-detail" class="flex-fill d-flex flex-column h-40">
+          <div class="club-section container-fluid mt-2 d-flex flex-column custom-overflow">
             <div class="row my-0">
               <div class="col-md-8 d-flex h-100">
                 <div
@@ -70,10 +70,10 @@
                       {{ headingName }}
                     </h3>
                   </div>
-                  <div class="custom-overflow d-flex flex-column flex-fill">
+                  <div class="custom-overflow image-overflow d-flex flex-column flex-fill">
                     <div class="row info-row container-fluid my-0 mx-auto">
                       <div
-                        class="col-md-3 col-sm-6"
+                        class="col-md-3 col-sm-6 p-2"
                         v-for="(list, index) in allList"
                         :key="index"
                       >
@@ -260,14 +260,14 @@
                     <div class="modal-footer">
                       <button
                         type="button"
-                        class="btn btn-color-close"
+                        class="btn btn-secondary px-3 py-1 rounded-pill"
                         data-dismiss="modal"
                       >
                         No
                       </button>
                       <button
                         type="button"
-                        class="btn btn-color-save"
+                        class="btn btn-primary px-3 py-1 rounded-pill"
                         data-dismiss="modal"
                         @click="FileRemove"
                       >
@@ -589,7 +589,7 @@
             </button> -->
             <button
               v-if="enableEdit"
-              class="btn btn-info-edit mt-2"
+              class="btn btn-primary rounded-pill mt-2 py-1 px-4"
               :disabled="!valueMeeting"
               @click.prevent="UpdateTime"
             >

@@ -236,14 +236,14 @@
                   <div class="modal-footer">
                     <button
                       type="button"
-                      class="btn btn-color-close"
+                      class="btn btn-secondary px-3 py-1 rounded-pill"
                       data-dismiss="modal"
                     >
                       No
                     </button>
                     <button
                       type="button"
-                      class="btn btn-color-save"
+                      class="btn btn-primary px-3 py-1 rounded-pill"
                       data-dismiss="modal"
                       @click="FileRemove"
                     >

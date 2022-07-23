@@ -139,19 +139,24 @@ body{
         box-shadow: none;
     }
     &.btn-primary{
+        font-weight: 600;
         background-color: $theme-color;
         color: $global-font-color;
-        &:hover{
+        &:hover,&:focus,&:active,&:active:focus{
             background-color: $dark-theme;
         }
     }
     &.btn-dark{
+        font-weight: 600;
         background-color: $black;
         color: $white;
     }
     &.btn-void{
         background-color: transparent;
         color: $text-secondary;
+        &:hover{
+            color: $text-dark;
+        }
     }
     &.btn-secondary{
         background-color: $text-secondary;
@@ -340,6 +345,65 @@ body{
             }
         }
     }
+    // time Picker
+    span.vue__time-picker.time-picker{
+        width: 100%;
+        &.form-white{
+            input.display-time{
+                background-color: $white;
+            }
+        }
+        input.display-time{
+            border: none;
+            background-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 5px rgb(0 0 0 / 5%);
+            border-radius: 0.4rem;
+            font-size: 0.75rem;
+            color: $font-label-color;
+            padding: .375rem .75rem;
+            height: calc(2.25rem + 2px);
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
+        }
+        .controls{
+            span.clear-btn{
+                padding: 0.2em 0.35em 0em;
+                span.char{
+                    font-size: 1.2em;
+                    line-height: 1;
+                }
+            }
+        }
+        .dropdown.drop-down{
+            // position: fixed;
+            // left: unset;
+            // top: unset;
+            // margin-top: 3px;
+            // width: 13.3em;
+            // border-radius: 5px;
+            background-color: $white;
+            .select-list{
+                width: 13.3em;
+                border-radius: 5px;
+                background-color: $white;
+                ul{
+                    background-color: rgba(255, 255, 255, 0.5);
+                    box-shadow: 0 0 5px rgb(0 0 0 / 5%);
+                    li.hint{
+                        color: $text-dark;
+                    }
+                    li{
+                        color: $text-dark;
+                        &.active{
+                            background-color: $theme-color;
+                            color: $white;
+                        }
+                    }
+                }
+            }
+        } 
+    } 
 }
 
 
@@ -426,6 +490,10 @@ img.card-img{
     max-width: 130px;
     object-fit: contain;
     width: 100%;
+}
+
+.min-w-100{
+    min-width: 100px;
 }
 
 // SIGN-IN
@@ -973,13 +1041,18 @@ img.card-img{
                             // }
                         }
                         span{
+                            color: $text-secondary;
                             margin: auto;
-                            font-size: 0.85rem;
+                            font-size: 0.95rem;
+                            
                             @media (max-width: 1024.98px) {
                                 font-size: 0.8rem;
                             }
                             @media (max-width: 991.98px) {
                                 display: none;
+                            }
+                            &.active{
+                                color: $text-dark;
                             }
                         }
                         .fa-chevron-right{
@@ -1044,24 +1117,23 @@ img.card-img{
                             a{
                                 text-decoration: none;
                                 color: $font-label-color;
-                                font-size: 0.75rem;
+                                font-size: 0.8rem;
                                 padding: 0.5rem;
                                 @media (max-width: 991.98px){
                                     padding: inherit;
                                 }
                                 &.nav-link.nuxt-link-exact-active.nuxt-link-active{
-                                    background-color: #FF646F;
                                     padding: 0.5rem;
                                     border-radius: 0.3rem;
-                                    color: $white;
+                                    color: $text-dark;
                                     @media (max-width: 991.98px){
                                         padding: inherit;
                                     }
                                 }
                                 &:hover, .active{
-                                    @include jochi-components-light-bg;
                                     padding: 0.5rem;
                                     border-radius: 0.3rem;
+                                    color: $text-dark;
                                     @media (max-width: 991.98px){
                                         padding: inherit;
                                     }
@@ -2127,6 +2199,117 @@ img.card-img{
                 }
             }
         }
+        .fig-section{
+            position: relative;
+            .input-icon{
+                .fa-times{
+                    cursor: pointer;
+                    position: absolute;
+                    color: $global-font-color !important;
+                    left: -3px;
+                    display: flex;
+                    flex-direction: row-reverse;
+                    font-size: 0.75rem;
+                    font-weight: 400;
+                    &::before{
+                        background-color: #e6e6e6;
+                        padding: 3px 5px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+            figure{
+                box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+                border: none;
+                border-radius: 0px 0px 6px 0px;
+                .img-figure{
+                    width: 100%;
+                    height: 100px;
+                    text-align: center;
+                    .figure-img{
+                        padding: 5px;
+                        height: 100px;
+                        object-fit: contain;
+                    }
+                }
+                
+                .figure-caption{
+                    word-break: break-all;
+                    padding: 0px 4px;
+                    background-color: $white;
+                    border-radius: 0px 0px 5px 0px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    width: 100%;
+                    overflow: hidden;
+                    p.fig-caption {
+                        font-size: 0.65rem;
+                        max-width: 100%;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        @media (max-width: 928.98px) {
+                            max-width: 210px;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .upload-area{
+            position: relative;
+            background-color: rgba($color: $white, $alpha: 0.7);
+            border-radius: 8px;
+            border: none;
+            border-style: none;
+            box-shadow: 0 0 12px rgba($color: $black, $alpha: 0.1);
+            width: 100%;
+            // min-height: 34vh; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            left: 0;
+            right: 0;
+            .proof-img-wrp{
+                img{
+                    width: 100%;
+                    height: 100px;
+                }
+            }
+            .form-label{
+                color: $cal-border;
+                font-size: 0.85rem;
+                @media (max-width:1024.89px) {
+                    font-size: 0.7rem;
+                }
+            }
+            .rg-img-upload{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                opacity: 0;
+            }
+        }
+        .upload-btn{
+            color: $global-font-color;
+            border: none;
+            border-radius: 4px;
+            background-color: $theme-color;
+            padding: 0.3rem 1.5rem;
+            font-size: 0.8rem;
+        }
+        .delete-btn{
+            color: $global-font-color;
+            border: none;
+            border-radius: 4px;
+            background-color: $cal-border;
+            padding: 0.3rem 1.5rem;
+            font-size: 0.8rem;
+        }
         // end club info tab.
 
         // club info
@@ -2700,85 +2883,85 @@ img.card-img{
                             // height: calc(100vh - 342px);
                             .info-row{
                                 .col-md-3{
-                                    .fig-section{
-                                        position: relative;
-                                        .input-icon{
-                                            .fa-times{
-                                                cursor: pointer;
-                                                position: absolute;
-                                                color: $global-font-color !important;
-                                                left: -3px;
-                                                display: flex;
-                                                flex-direction: row-reverse;
-                                                font-size: 0.75rem;
-                                                font-weight: 400;
-                                                &::before{
-                                                    background-color: $border-color;
-                                                    padding: 3px 5px;
-                                                    border-radius: 50%;
-                                                }
-                                            }
-                                        }
-                                        figure{
-                                            border: 1px solid $border-color;
-                                            border-radius: 0px 0px 6px 0px;
-                                            .img-figure{
-                                                width: 100%;
-                                                height: 100px;
-                                                text-align: center;
-                                                .figure-img{
-                                                    padding: 5px;
-                                                    height: 100px;
-                                                    object-fit: contain;
-                                                }
-                                            }
+                                    // .fig-section{
+                                    //     position: relative;
+                                    //     .input-icon{
+                                    //         .fa-times{
+                                    //             cursor: pointer;
+                                    //             position: absolute;
+                                    //             color: $global-font-color !important;
+                                    //             left: -3px;
+                                    //             display: flex;
+                                    //             flex-direction: row-reverse;
+                                    //             font-size: 0.75rem;
+                                    //             font-weight: 400;
+                                    //             &::before{
+                                    //                 background-color: $border-color;
+                                    //                 padding: 3px 5px;
+                                    //                 border-radius: 50%;
+                                    //             }
+                                    //         }
+                                    //     }
+                                    //     figure{
+                                    //         border: 1px solid $border-color;
+                                    //         border-radius: 0px 0px 6px 0px;
+                                    //         .img-figure{
+                                    //             width: 100%;
+                                    //             height: 100px;
+                                    //             text-align: center;
+                                    //             .figure-img{
+                                    //                 padding: 5px;
+                                    //                 height: 100px;
+                                    //                 object-fit: contain;
+                                    //             }
+                                    //         }
                                             
-                                            .figure-caption{
-                                                word-break: break-all;
-                                                padding: 0px 4px;
-                                                background-color: $white;
-                                                border-radius: 0px 0px 5px 0px;
-                                                text-overflow: ellipsis;
-                                                white-space: nowrap;
-                                                width: 100%;
-                                                overflow: hidden;
-                                                p.fig-caption {
-                                                    font-size: 0.65rem;
-                                                    max-width: 100%;
-                                                    overflow: hidden;
-                                                    text-overflow: ellipsis;
-                                                    white-space: nowrap;
-                                                    @media (max-width: 928.98px) {
-                                                        max-width: 210px;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        .modal{
-                                            width: 80% !important;
-                                            height: 80% !important;
-                                            margin: auto;
-                                        }
-                                        span.close{
-                                            display: flex;
-                                            flex-direction: row-reverse;
-                                            left: -10px;
-                                            top: 2px;
-                                            position: absolute;
-                                            z-index: 1;
-                                            float: none;
-                                            width: 100%;
-                                            font-size: 2rem;
-                                            font-weight: 300;
-                                            color: $global-font-color;
-                                            opacity: 1;
-                                        }
-                                        .modal-content{
-                                            background-color: rgba(0,0,0,0.7)!important;
-                                            height: 100%!important;
-                                            object-fit: contain!important;
-                                        }
-                                    }
+                                    //         .figure-caption{
+                                    //             word-break: break-all;
+                                    //             padding: 0px 4px;
+                                    //             background-color: $white;
+                                    //             border-radius: 0px 0px 5px 0px;
+                                    //             text-overflow: ellipsis;
+                                    //             white-space: nowrap;
+                                    //             width: 100%;
+                                    //             overflow: hidden;
+                                    //             p.fig-caption {
+                                    //                 font-size: 0.65rem;
+                                    //                 max-width: 100%;
+                                    //                 overflow: hidden;
+                                    //                 text-overflow: ellipsis;
+                                    //                 white-space: nowrap;
+                                    //                 @media (max-width: 928.98px) {
+                                    //                     max-width: 210px;
+                                    //                 }
+                                    //             }
+                                    //         }
+                                    //     }
+                                    //     .modal{
+                                    //         width: 80% !important;
+                                    //         height: 80% !important;
+                                    //         margin: auto;
+                                    //     }
+                                    //     span.close{
+                                    //         display: flex;
+                                    //         flex-direction: row-reverse;
+                                    //         left: -10px;
+                                    //         top: 2px;
+                                    //         position: absolute;
+                                    //         z-index: 1;
+                                    //         float: none;
+                                    //         width: 100%;
+                                    //         font-size: 2rem;
+                                    //         font-weight: 300;
+                                    //         color: $global-font-color;
+                                    //         opacity: 1;
+                                    //     }
+                                    //     .modal-content{
+                                    //         background-color: rgba(0,0,0,0.7)!important;
+                                    //         height: 100%!important;
+                                    //         object-fit: contain!important;
+                                    //     }
+                                    // }
                                 }
                             }
                         }
@@ -2798,60 +2981,6 @@ img.card-img{
                         // &.club-files{
                         //     min-height: calc(100vh - 240px);
                         // }
-                        .upload-area{
-                            position: relative;
-                            background-color: rgba($color: $white, $alpha: 0.7);
-                            border-radius: 8px;
-                            border: none;
-                            border-style: none;
-                            box-shadow: 0 0 12px rgba($color: $black, $alpha: 0.1);
-                            width: 100%;
-                            // min-height: 34vh; 
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            justify-content: center;
-                            margin: auto;
-                            left: 0;
-                            right: 0;
-                            .proof-img-wrp{
-                                img{
-                                    width: 100%;
-                                    height: 100%;
-                                }
-                            }
-                            .form-label{
-                                color: $cal-border;
-                                font-size: 0.85rem;
-                                @media (max-width:1024.89px) {
-                                    font-size: 0.7rem;
-                                }
-                            }
-                            .rg-img-upload{
-                                position: absolute;
-                                width: 100%;
-                                height: 100%;
-                                left: 0;
-                                top: 0;
-                                opacity: 0;
-                            }
-                        }
-                        .upload-btn{
-                            color: $global-font-color;
-                            border: none;
-                            border-radius: 4px;
-                            background-color: $theme-color;
-                            padding: 0.3rem 1.5rem;
-                            font-size: 0.8rem;
-                        }
-                        .delete-btn{
-                            color: $global-font-color;
-                            border: none;
-                            border-radius: 4px;
-                            background-color: $cal-border;
-                            padding: 0.3rem 1.5rem;
-                            font-size: 0.8rem;
-                        }
                     }
                 }
             }
@@ -4745,6 +4874,7 @@ switch to violet when it is active*/
                         &.vdp-datepicker{
                             position: relative;
                             cursor: pointer;
+                            padding: 0.6rem 0.75rem;
                             &::after{
                                 content: "\f073";
                                 display: inline-block;
@@ -4842,57 +4972,7 @@ switch to violet when it is active*/
                             }
                         }
                     }
-                    // time Picker
-                    span.vue__time-picker.time-picker{
-                        width: 100%;
-                        input.display-time{
-                            border: 2px solid $border-color;
-                            background-color: $global-sidebar-bg;
-                            border-radius: 0.4rem;
-                            font-size: 0.75rem;
-                            color: $font-label-color;
-                            padding: .375rem .75rem;
-                            height: calc(2.25rem + 2px);
-                            text-align: left;
-                            width: 100%;
-                            cursor: pointer;
-                        }
-                        .controls{
-                            span.clear-btn{
-                                padding: 0.2em 0.35em 0em;
-                                span.char{
-                                    font-size: 1.2em;
-                                    line-height: 1;
-                                }
-                            }
-                        }
-                        .dropdown.drop-down{
-                            position: fixed;
-                            left: unset;
-                            top: unset;
-                            margin-top: 3px;
-                            width: 13.3em;
-                            border-radius: 5px;
-                            background-color: transparent;
-                            .select-list{
-                                width: 13.3em;
-                                border-radius: 5px;
-                                ul{
-                                    background-color: $global-sidebar-bg;
-                                    li.hint{
-                                        color: $global-font-color;
-                                    }
-                                    li{
-                                        color: $global-font-color;
-                                        &.active{
-                                            background-color: $theme-color;
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                        } 
-                    } 
+                    
                 }
                 .required-button{
                     font-size: 80%;
@@ -4936,26 +5016,26 @@ switch to violet when it is active*/
                 // background-color: $global-box-shadow;
                 // border-radius: 0px 0px 10px 10px;
                 background-color: transparent !important;
-                .btn-color-close{
-                    color: $white;
-                    background-color: $theme-color;
-                    border-radius: 50px;
-                    padding: 3px 20px;
-                    font-size: 0.8rem;
-                    &:hover{
-                       background-color: rgba($color: $theme-color, $alpha: 0.6);
-                    }
-                }
-                .btn-color-save{
-                    color: $black;
-                    background-color: $confirm-green;
-                    border-radius: 50px;
-                    padding: 3px 20px;
-                    font-size: 0.8rem;
-                    &:hover{
-                        background-color: rgba($color: $confirm-green, $alpha: 0.6);
-                     }
-                }
+                // .btn-color-close{
+                //     color: $white;
+                //     background-color: $theme-color;
+                //     border-radius: 50px;
+                //     padding: 3px 20px;
+                //     font-size: 0.8rem;
+                //     &:hover{
+                //        background-color: rgba($color: $theme-color, $alpha: 0.6);
+                //     }
+                // }
+                // .btn-color-save{
+                //     color: $black;
+                //     background-color: $confirm-green;
+                //     border-radius: 50px;
+                //     padding: 3px 20px;
+                //     font-size: 0.8rem;
+                //     &:hover{
+                //         background-color: rgba($color: $confirm-green, $alpha: 0.6);
+                //      }
+                // }
             }
         }
     }
@@ -5630,11 +5710,11 @@ select.form-control{
     }
 }
 
-.ld-heading {
-    font-size: 16px;
-    color: #000000;
-    font-weight: 600;
-}
+// .ld-heading {
+//     font-size: 16px;
+//     color: #000000;
+//     font-weight: 600;
+// }
 
 // .cd-about-club-details {
 //     font-size: 14px;

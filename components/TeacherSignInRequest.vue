@@ -160,14 +160,14 @@
                   type="button"
                   data-dismiss="modal"
                   @click="AdminSelect(1)"
-                  class="btn btn-primary color-dark"
+                  class="btn btn-primary px-3 py-1 rounded-pill"
                 >
                   Yes
                 </button>
                 <button
                   type="button"
                   data-dismiss="modal"
-                  class="btn btn-light border border-secondary color-dark"
+                  class="btn btn-secondary px-3 py-1 rounded-pill" 
                   aria-label="Close"
                 >
                   No
