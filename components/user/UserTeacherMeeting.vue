@@ -71,7 +71,11 @@
                       track-by="first_name"
                       label="first_name"
                       :placeholder="
-                        meetingType ? 'Select students' : 'Add Participants'
+                        meetingType
+                          ? selectedStudents.length > 3
+                            ? ''
+                            : 'Select students'
+                          : 'Add Participants'
                       "
                       :multiple="true"
                       :max="4"
