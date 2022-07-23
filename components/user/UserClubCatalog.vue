@@ -13,7 +13,8 @@
           jochi-components-light-bg
           p-4
           custom-margin-for-main-section custom-full-height
-          d-flex flex-column
+          d-flex
+          flex-column
         "
       >
         <section id="tab" class="">
@@ -30,39 +31,41 @@
                 Create New
               </button>
             </div>
-              <div class="row p-2">
-                <div class="col-md-4">
-                  <div class="form-row position-relative">
-                    <input
-                      class="form-control w-100 tab-form-control"
-                      type="text"
-                      v-model="search"
-                      placeholder="Search"
-                      v-on:keyup="debounceSearch()"
-                    />
-                    <span class="input-icon custom-search-icon position-absolute">
-                      <i class="fa fa-search" aria-hidden="true"></i>
-                    </span>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="input-icon-area custom-multiselect-adj-text form-row">
-                    <multiselect
-                      v-model="value"
-                      :options="tags"
-                      track-by="name"
-                      label="name"
-                      placeholder="Filter"
-                      @input="filterSelection"
-                    >
-                      <span slot="noResult">No data found</span>
-                    </multiselect>
-                    <!-- <span class="input-icon">
-                      <i class="fa fa-filter" aria-hidden="true"></i>
-                    </span> -->
-                  </div>
+            <div class="row p-2">
+              <div class="col-md-4">
+                <div class="form-row position-relative">
+                  <input
+                    class="form-control w-100 tab-form-control"
+                    type="text"
+                    v-model="search"
+                    placeholder="Search"
+                    v-on:keyup="debounceSearch()"
+                  />
+                  <span class="input-icon custom-search-icon position-absolute">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                  </span>
                 </div>
               </div>
+              <div class="col-md-4">
+                <div
+                  class="input-icon-area custom-multiselect-adj-text form-row"
+                >
+                  <multiselect
+                    v-model="value"
+                    :options="tags"
+                    track-by="name"
+                    label="name"
+                    placeholder="Filter"
+                    @input="filterSelection"
+                  >
+                    <span slot="noResult">No data found</span>
+                  </multiselect>
+                  <!-- <span class="input-icon">
+                      <i class="fa fa-filter" aria-hidden="true"></i>
+                    </span> -->
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -70,22 +73,37 @@
 
         <!-- Club catalog -->
 
-        <section id="club-detail" class="d-flex flex-column flex-fill h-40 pr-3">
-            <div class="inner-club container-fluid bg-transparent custom-overflow pe-2 mr--2 mt-3 d-flex flex-column flex-fill">
-                <div
-                  class="
-                   pt-3 pb-1 border-bottom
-                  "
-                  v-for="(list, index) in list_data"
-                  :key="index"
-                >
-                  <!-- <div class="row-heading col-12">
+        <section
+          id="club-detail"
+          class="d-flex flex-column flex-fill h-40 pr-3"
+        >
+          <div
+            class="
+              inner-club
+              container-fluid
+              bg-transparent
+              custom-overflow
+              pe-2
+              mr--2
+              mt-3
+              d-flex
+              flex-column flex-fill
+            "
+          >
+            <div
+              class="pt-3 pb-1 border-bottom"
+              v-for="(list, index) in list_data"
+              :key="index"
+            >
+              <!-- <div class="row-heading col-12">
                     <h6 class="mb-0">{{ list["name"] }}</h6>
                   </div> -->
-                  <div class="row catalog-row">
-                    <div class="col-lg-4">
-                      <h5 class="mb-0 color-dark font-semi-bold">{{ list["name"] }}</h5>
-                      <!-- <p class="catalog-text">
+              <div class="row catalog-row">
+                <div class="col-lg-4">
+                  <h5 class="mb-0 color-dark font-semi-bold">
+                    {{ list["name"] }}
+                  </h5>
+                  <!-- <p class="catalog-text">
                         {{ list.part ? list.part : "No data "
                         }}<span :id="'dots' + list.id" v-if="list.remaining"
                           >...</span
@@ -93,27 +111,40 @@
                           {{ list.remaining }}
                         </span>
                       </p> -->
-                      <p class="color-secondary fort-regular text-14">
-                        {{ list.activity_type == "Clubs" ? "Club" : "Team" }}
-                      </p>
-                    </div>
-                    <div class="col-lg-6 d-flex justify-content-start justify-content-lg-end">
-                      <div class=" p-0 pr-2 d-flex justify-content-start justify-content-lg-end">
-                        <div
-                          class="
-                            to-do-ul
-                            d-flex
-                            align-items-center
-                            justify-content-end
-                            flex-wrap
-                          "
-                        >
-                          <p
-                            v-for="(todos, index) in list.tagList"
-                            :key="index"
-                            class="mb-2"
-                          >
-                            <!-- <li
+                  <p class="color-secondary fort-regular text-14">
+                    {{ list.activity_type == "Clubs" ? "Club" : "Team" }}
+                  </p>
+                </div>
+                <div
+                  class="
+                    col-lg-6
+                    d-flex
+                    justify-content-start justify-content-lg-end
+                  "
+                >
+                  <div
+                    class="
+                      p-0
+                      pr-2
+                      d-flex
+                      justify-content-start justify-content-lg-end
+                    "
+                  >
+                    <div
+                      class="
+                        to-do-ul
+                        d-flex
+                        align-items-center
+                        justify-content-end
+                        flex-wrap
+                      "
+                    >
+                      <p
+                        v-for="(todos, index) in list.tagList"
+                        :key="index"
+                        class="mb-2"
+                      >
+                        <!-- <li
                               class="to-do-li"
                               v-if="
                                 index % 2 == 0 &&
@@ -122,25 +153,33 @@
                             >
                               {{ todos }}
                             </li> -->
-                            <span
-                              class="to-do-li color-white text-14 rounded px-2 py-1 m-1"
-                              :style="{
-                                'background-color': tagColorMap[todos],
-                              }"
-                            >
-                              {{ todos }}
-                            </span>
-                          </p>
-                          <span
-                            v-if="list.tagList.length == 0"
-                            class="to-do-li color-secondary"
-                          >
-                            No tags available
-                          </span>
-                        </div>
-                      </div>
+                        <span
+                          class="
+                            to-do-li
+                            color-white
+                            text-14
+                            rounded
+                            px-2
+                            py-1
+                            m-1
+                          "
+                          :style="{
+                            'background-color': tagColorMap[todos],
+                          }"
+                        >
+                          {{ todos }}
+                        </span>
+                      </p>
+                      <span
+                        v-if="list.tagList.length == 0"
+                        class="to-do-li color-secondary"
+                      >
+                        No tags available
+                      </span>
                     </div>
-                    <!-- <div class="col-md-3">
+                  </div>
+                </div>
+                <!-- <div class="col-md-3">
                       <ul class="to-do-ul">
                         <span
                           v-for="(todos, index) in list.tagList"
@@ -158,7 +197,7 @@
                         </span>
                       </ul>
                     </div> -->
-                    <!-- <div class="col-md-2">
+                <!-- <div class="col-md-2">
                       <a
                         href="#"
                         class="btn btn-join-now"
@@ -177,31 +216,28 @@
                       ></a>
                     </div> -->
 
-                    <div class="col-lg-2 d-flex justify-content-start justify-content-lg-end">
-                      <nuxt-link
-                        :to="{
-                          path: '/student-club-view',
-                          query: { id: list.id, name: list.activity_type },
-                        }"
-                        class="
-                          btn
-                          btn-primary
-                          py-1
-                          mt-2
-                          h-fit-content
-                        "
-                      >
-                        View More
-                      </nuxt-link>
-                    </div>
-                  </div>
-                </div>
                 <div
-                  v-if="list_data.length == 0"
-                  class="w-100 text-center py-5"
+                  class="
+                    col-lg-2
+                    d-flex
+                    justify-content-start justify-content-lg-end
+                  "
                 >
-                  <p class="no-data">No data available</p>
+                  <nuxt-link
+                    :to="{
+                      path: '/student-club-view',
+                      query: { id: list.id, name: list.activity_type },
+                    }"
+                    class="btn btn-primary py-1 mt-2 h-fit-content"
+                  >
+                    View More
+                  </nuxt-link>
                 </div>
+              </div>
+            </div>
+            <div v-if="list_data.length == 0" class="w-100 text-center py-5">
+              <p class="no-data">No data available</p>
+            </div>
           </div>
         </section>
 
@@ -241,7 +277,16 @@
                       <td class="tmodal-data text-nowrap">Type</td>
                       <td class="tmodal-data d-flex">
                         <p
-                          class="mb-0 tdata-overflow d-flex align-items-center form-row col-8 px-0 py-1"
+                          class="
+                            mb-0
+                            tdata-overflow
+                            d-flex
+                            align-items-center
+                            form-row
+                            col-8
+                            px-0
+                            py-1
+                          "
                         >
                           <span class="pr-2"></span>
                           <select
@@ -270,7 +315,16 @@
                       <td class="tmodal-data text-nowrap">Name</td>
                       <td class="tmodal-data d-flex">
                         <p
-                          class="mb-0 tdata-overflow d-flex align-items-center form-row px-0 py-1 col-8"
+                          class="
+                            mb-0
+                            tdata-overflow
+                            d-flex
+                            align-items-center
+                            form-row
+                            px-0
+                            py-1
+                            col-8
+                          "
                         >
                           <span class="pr-2"></span>
                           <input
@@ -298,11 +352,20 @@
                       <td class="tmodal-data text-nowrap">Description</td>
                       <td class="tmodal-data d-flex">
                         <p
-                          class="mb-0 tdata-overflow d-flex align-items-center form-row col-8 px-0 py-1"
+                          class="
+                            mb-0
+                            tdata-overflow
+                            d-flex
+                            align-items-center
+                            form-row
+                            col-8
+                            px-0
+                            py-1
+                          "
                         >
                           <span class="pr-2"></span>
                           <textarea
-                          rows="3"
+                            rows="3"
                             v-model="description"
                             type="text"
                             autocomplete="off"
@@ -433,13 +496,9 @@ export default {
       createClub: "createClub",
     }),
     debounceSearch() {
-      // this.message = null
-      // this.typing = 'You are typing'
       clearTimeout(this.debounce);
       this.debounce = setTimeout(() => {
         this.ClubCatalogue();
-        // this.typing = null
-        // this.message = event.target.value
       }, 600);
     },
     myFunction: function (id) {
