@@ -726,6 +726,8 @@ export default {
       this.description = "";
     },
     openCreateNewModal() {
+      this.$v.$reset();
+      this.resetClubData();
       $("#createNewModal").modal({ backdrop: true });
     },
   },
