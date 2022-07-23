@@ -61,7 +61,15 @@
                 <h3 class="color-primary font-bold">{{ headingName }}</h3>
               </div>
               <div
-                class="inner-info container-fluid my-1 d-flex flex-column h-40 flex-fill"
+                class="
+                  inner-info
+                  container-fluid
+                  my-1
+                  d-flex
+                  flex-column
+                  h-40
+                  flex-fill
+                "
               >
                 <div class="row my-0">
                   <div
@@ -812,7 +820,7 @@
                     <label for="recipient-name" class="col-form-label"
                       >Type<em>*</em></label
                     >
-  
+
                     <select
                       class="form-control bg-white mb-3"
                       tabindex=""
@@ -845,7 +853,7 @@
                     <label for="recipient-name" class="col-form-label"
                       >Title<em>*</em></label
                     >
-  
+
                     <input
                       type="text"
                       id="club"
@@ -909,7 +917,7 @@
                     <label for="recipient-name" class="col-form-label"
                       >Date<em>*</em></label
                     >
-  
+
                     <!-- <input
                       type="text"
                       id="club"
@@ -947,6 +955,13 @@
                       :value="activity.activityDate"
                       v-model="activity.activityDate"
                       @change="onDateChange"
+                      name="activityDate"
+                      :class="{
+                        'is-invalid':
+                          submittedActivity &&
+                          isActivity &&
+                          $v.activity.activityDate.$error,
+                      }"
                     />
                     <div
                       v-if="
@@ -965,7 +980,7 @@
                     <label for="recipient-name" class="col-form-label"
                       >Time<em>*</em></label
                     >
-  
+
                     <!-- <input
                       type="text"
                       id="club"
@@ -989,7 +1004,7 @@
                       :value="activity.activityTime"
                       :class="{
                         'is-invalid':
-                          submitted && $v.activity.activityTime.$error,
+                          submittedActivity && $v.activity.activityTime.$error,
                       }"
                     ></vue-timepicker>
                     <div
@@ -1009,7 +1024,7 @@
                     <label for="recipient-name" class="col-form-label"
                       >Venue<em>*</em></label
                     >
-  
+
                     <input
                       type="text"
                       id="club"
@@ -1038,11 +1053,14 @@
                       >
                     </div>
                   </div>
-                  <div v-if="activity.activityType == 'Match'" class="form-group">
+                  <div
+                    v-if="activity.activityType == 'Match'"
+                    class="form-group"
+                  >
                     <label for="recipient-name" class="col-form-label"
                       >Opponent Team<em>*</em></label
                     >
-  
+
                     <input
                       type="text"
                       id="club"
@@ -1543,6 +1561,7 @@ export default {
       }
     },
     async openModal() {
+      this.$v.$reset();
       this.resetAnnouncement();
       this.submitted = false;
       this.isAnnouncement = true;
@@ -1550,6 +1569,7 @@ export default {
       $("#announcementModal").modal({ backdrop: true });
     },
     async openActivityModal() {
+      this.$v.$reset();
       this.resetActivity();
       this.submitted = false;
       this.isActivity = true;
