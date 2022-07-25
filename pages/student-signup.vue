@@ -1,8 +1,10 @@
 <template>
-  <div class="container-fluid main-container" data-app>
+  <div class="w-100 main-container register" data-app>
     <!-- <div class="text-center" v-if="loading && loadingMessage">
       {{ loadingMessage }}
     </div> -->
+    <img src="../static/image/login-bg.jpg" alt="" class="bg-img d-none d-md-block">
+    <img src="../static/image/login-bg-rotate.jpg" alt="" class="bg-img d-block d-md-none">
 
     <lottie
       v-if="loading"
@@ -29,26 +31,31 @@
       <div id="fountainTextG_3" class="fountainTextG animation">. &nbsp;</div>
       <div id="fountainTextG_4" class="fountainTextG animation">. &nbsp;</div>
     </div>
-    <div class="row main-row d-flex align-items-center flex-row vh-100">
-      <div class="col-md-6 img-section">
-        <img
-          src="~/assets/images/undraw/Undraw_signUp.png"
-          alt="undraw"
-          class="img-responsive"
-        />
+    <div class="row main-row align-items-center flex-row vh-100 m-0">
+      <div class="col-md-6 img-section login-cover d-flex align-items-center justify-content-center h-100 flex-fill">
+        <div class="d-flex flex-column justify-content-between h-100">
+          <div class="logo-img d-flex align-items-center">
+            <img src="../assets/images/Icon/logo-icon.png" alt="">
+            <p class="mb-0 color-white">Jochi</p>
+          </div>
+          <img
+            src="../static/image/login-img.png"
+            alt="undraw"
+            class="img-responsive"
+          />
+          <p class="mb-0 color-white text-16 font-regular">FAQ's | Privacy Policy</p>
+        </div>
       </div>
-      <div class="col-md-5 col-lg-4 form-section">
+      <div class="col-md-6 form-section d-flex align-items-center justify-content-center h-100">
         <!-- Sign-Up -->
 
-        <section id="sign-up" class="">
-          <h1 class="heading mb-5">Sign up</h1>
-          <div class="jochi-components-light-bg p-5">
-            <a href="#" class="text-center">
-              <img src="../static/image/school_passport.png" alt="" class="mb-2">
-              <div class="sc-sign-in-btn">
-                Sign in with School Passport
-              </div>
-            </a>
+        <section id="sign-up" class="login-box">
+          <h1 class="heading mb-3">Sign up</h1>
+          <div class="card rounded-22 p-5 d-flex flex-column justify-content-center align-items-center">
+            <img src="../static/image/school_passport.png" alt="" class="mb-4 passport-img">
+            <button class="btn btn-primary px-5">
+              Sign in with School Passport
+            </button>
             <!-- <form action="" class="sign-in" @submit.prevent="GetSignUp">
               <div class="row mb-3">
                 <div class="col-12">
@@ -164,6 +171,13 @@
                 </div>
               </div>
             </form> -->
+          </div>
+          <div class="login-icon-area d-flex align-items-center justify-content-between p-4">
+            <a class="btn" href=""><img src="../static/image/social-icon/Instagram logo.png" alt=""></a>
+            <a class="btn" href=""><img src="../static/image/social-icon/Twitter Png.png" alt=""></a>
+            <a class="btn" href=""><img src="../static/image/social-icon/TikTok Logo.png" alt=""></a>
+            <a class="btn" href=""><img src="../static/image/social-icon/Spotify Logo.png" alt=""></a>
+            <a class="btn" href=""><img src="../static/image/social-icon/YouTube Png.png" alt=""></a>
           </div>
         </section>
       </div>

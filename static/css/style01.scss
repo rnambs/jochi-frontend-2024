@@ -3,6 +3,10 @@
     font-size: 16px; 
     @media (max-width: 991.98px) {font-size: 14px; }
 }
+html{
+    overflow: hidden !important;
+    overflow-y: auto !important;
+}
 body{
     margin: 0;
     padding: 0;
@@ -428,9 +432,6 @@ body{
     &.card-primary{
         background-color: rgba($color: $white, $alpha: 0.45);
         box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
-        &.rounded-22{
-            border-radius: 22px;
-        }
     }
     &.card-secondary{
         background-color: $Global-background-element;
@@ -450,6 +451,9 @@ body{
                 display: block !important;
             }
         }
+    }
+    &.rounded-22{
+        border-radius: 22px;
     }
 }
 .rounded-10{
@@ -513,12 +517,51 @@ img.card-img{
     background-size:cover;
     &.register{
         background-image: url("../../image/login-bg.jpg");
+        @media (max-width: $min-sm-screen ) {
+            background-image: url("../../image/login-bg-rotate.jpg");
+        }
+        .bg-img{
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+        // background-image: none;
+        // background-color: #f2f1f1;
+        // .login-cover{
+        //     background-image: url("../../image/login-bg\ 1.png")
+        // }
+        section.login-box {
+            max-width: 500px;
+            width: 100%;
+            img.passport-img{
+                max-width: 260px;
+                width: 100%;
+            }
+        }
+        .login-icon-area{
+            a.btn{
+                // width: 60px;
+                // height: 60px;
+                // padding: 0px;
+                // display: flex;
+                // align-items: center;
+                // justify-content: center;
+                img{
+                    width: auto;
+                    height: 30px;
+                }
+            }
+        }
     }
     .img-section{
         text-align: center;
-
         .img-responsive{
-            padding: 60px;
+            max-width: 600px;
+            width: 100%;
             @media (max-width: 767.98px) {
                 padding: 0;
                 margin: 50px auto 0;
