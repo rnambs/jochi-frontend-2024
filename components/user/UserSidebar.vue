@@ -160,7 +160,7 @@
                 <div class="card-header bg-transparent border-0 p-1" id="headingOne">
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-2 py-2 px-lg-3 py-lg-2"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -175,7 +175,7 @@
                           class="planner"
                         />
                       </div>
-                      <span class="ml-2 color-secondary text-capitalize">Planner</span>
+                      <span class="ml-3 color-secondary text-capitalize font-medium">Planner</span>
                       <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
                   </div>
@@ -220,7 +220,7 @@
                 <div class="card-header bg-transparent border-0 p-1" id="headingTwo">
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-2 py-2 px-lg-3 py-lg-2"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -235,7 +235,7 @@
                           class="meetings"
                         />
                       </div>
-                      <span class="ml-2 color-secondary text-capitalize">Meeting</span>
+                      <span class="ml-3 color-secondary text-capitalize font-medium">Meeting</span>
                       <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
                   </div>
@@ -280,7 +280,7 @@
                 <div class="card-header bg-transparent border-0 p-1" id="headingThree">
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-2 py-2 px-lg-3 py-lg-2"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -295,7 +295,7 @@
                           class="teams-clubs"
                         />
                       </div>
-                      <span class="ml-2 color-secondary text-capitalize">Teams & Clubs</span>
+                      <span class="ml-3 color-secondary text-capitalize font-medium">Teams & Clubs</span>
                       <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
                   </div>
@@ -326,7 +326,7 @@
                 <div class="card-header bg-transparent border-0 p-1" id="headingFour">
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-2 py-2 px-lg-3 py-lg-2"
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -341,7 +341,7 @@
                           class="study-room"
                         />
                       </div>
-                      <span class="ml-2 color-secondary text-capitalize">Study Room</span>
+                      <span class="ml-3 color-secondary text-capitalize font-medium">Study Room</span>
                       <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
                   </div>
@@ -398,7 +398,7 @@
                         <div class="font-icon d-inline-block">
                           <i class="fas fa-comments"></i>
                         </div>
-                        <span class="ml-2 color-secondary text-capitalize">FAQ</span>
+                        <span class="ml-3 color-secondary text-capitalize font-medium">FAQ</span>
                       </div>
                       <!-- <a href="https://www.jochi.info/faqs">FAQ</a> -->
                     </button>
@@ -430,7 +430,7 @@
                         <div class="font-icon d-inline-block">
                           <i class="fas fa-shield-alt"></i>
                         </div>
-                        <span class="ml-2 color-secondary text-capitalize">Privacy Policy</span>
+                        <span class="ml-3 color-secondary text-capitalize font-medium">Privacy Policy</span>
                       </nuxt-link>
                     </button>
                   </div>

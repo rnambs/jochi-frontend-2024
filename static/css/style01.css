@@ -954,7 +954,7 @@ img.card-img {
 .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link span {
   color: #C5C0BD;
   margin: auto;
-  font-size: 0.95rem;
+  font-size: 1.125rem;
 }
 @media (max-width: 1024.98px) {
   .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link span {
@@ -1020,7 +1020,7 @@ img.card-img {
 }
 .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list {
   list-style-type: none;
-  padding: 0.2rem 0.6rem;
+  padding: 0rem 0.6rem;
 }
 @media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list {
@@ -1041,7 +1041,7 @@ img.card-img {
 .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a {
   text-decoration: none;
   color: #B4B4B4;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   padding: 0.5rem;
 }
 @media (max-width: 991.98px) {

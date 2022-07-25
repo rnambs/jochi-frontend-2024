@@ -46,7 +46,7 @@
               <i class="fas fa-pen color-white"></i>
             </button>
             <button class="btn p-1 m-2">
-              <i class="fas fa-eye color-white"></i>
+              <i class="fas fa-info-circle color-white"></i>
             </button>
           </div>
         </div>

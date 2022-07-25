@@ -1043,7 +1043,8 @@ img.card-img{
                         span{
                             color: $text-secondary;
                             margin: auto;
-                            font-size: 0.95rem;
+                            font-size: 1.125rem;
+                            
                             
                             @media (max-width: 1024.98px) {
                                 font-size: 0.8rem;
@@ -1102,7 +1103,7 @@ img.card-img{
                     background-color: transparent;
                     .inner-custom-list{
                         list-style-type: none;
-                        padding: 0.2rem 0.6rem;
+                        padding: 0rem 0.6rem;
                         @media (max-width: 991.98px){
                             padding: 0 !important;
                             margin: 3px -10px !important;
@@ -1117,7 +1118,7 @@ img.card-img{
                             a{
                                 text-decoration: none;
                                 color: $font-label-color;
-                                font-size: 0.8rem;
+                                font-size: 0.9rem;
                                 padding: 0.5rem;
                                 @media (max-width: 991.98px){
                                     padding: inherit;
