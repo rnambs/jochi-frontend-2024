@@ -41,7 +41,6 @@
               d-flex
               flex-column flex-fill
               h-40
-              custom-overflow
             "
           >
             <div
@@ -71,20 +70,21 @@
                   flex-fill
                 "
               >
-                <div class="row my-0">
+                <div class="row my-0 h-40">
                   <div
                     v-if="type == 'Sports'"
                     class="col-md-6 col-xs-12 h-100 d-flex"
                   >
                     <div
-                      class="inner-info container-fluid p-2 d-flex flex-column"
+                      class="inner-info container-fluid p-2 d-flex flex-column  card card-primary rounded-22 p-4"
                     >
                       <div
                         class="
                           d-flex
                           align-items-center
                           justify-content-between
-                          mb-2
+                          mb-3
+                          px-2
                         "
                       >
                         <h5 class="color-dark mb-0 font-bold">
@@ -99,15 +99,16 @@
                           ><span><i class="fas fa-plus"></i></span
                         ></a>
                       </div>
-                      <div class="custom-overflow pr-2 mr--2">
+                      <div class="hidden-scroll p-2">
                         <div
                           v-for="(item, index) in sportsActivities"
                           :key="index"
                         >
                           <div
                             v-if="item.session_type == 'Training'"
-                            class="card card-white px-3 py-2 mb-2"
+                            class="card card-void px-3 py-2 mb-3"
                           >
+                          <div class="d-flex flex-column">
                             <div
                               class="
                                 d-flex
@@ -120,10 +121,17 @@
                                 @click="openEditSportsActivity(item)"
                                 class="left-side"
                               >
+                                  <h4
+                                  @click="openEditSportsActivity(item)"
+                                  class="color-primary text-truncate mb-1 font-semi-bold text-18"
+                                >
+                                  {{ item.title }}
+                                </h4>
                                 <p
                                   class="color-dark text-16 font-semi-bold mb-0"
                                 >
                                   {{ item.first_name }}
+                                  <span>Robin</span> <span class="color-primary text-18 font-semi-bold">Vs</span> <span>Ronny</span>
                                 </p>
                                 <p
                                   class="
@@ -133,17 +141,7 @@
                                     mb-1
                                   "
                                 >
-                                  {{ item.date }}
-                                </p>
-                                <p
-                                  class="
-                                    color-secondary
-                                    text-14
-                                    font-regular
-                                    mb-0
-                                  "
-                                >
-                                  {{ item.time }}
+                                  <span>{{ item.date }}</span><span>, </span><span>{{ item.time }}</span>
                                 </p>
                               </div>
                               <div
@@ -152,19 +150,16 @@
                                   h-100
                                   d-flex
                                   align-items-end
-                                  align-items-sm-start
-                                  align-items-lg-end
+                                  align-items-sm-center
                                   justify-content-between
-                                  flex-column flex-sm-row flex-lg-column
+                                  flex-column flex-sm-row
                                 "
                               >
-                                <p
-                                  @click="openEditSportsActivity(item)"
-                                  class="color-primary text-truncate mb-0"
-                                >
-                                  {{ item.title }}
+                                <p class="mb-0 color-secondary mr-2">
+                                  <span><i class="fas fa-map-marker-alt"></i></span>
+                                  <span>Location</span>
                                 </p>
-                                <div class="d-flex justify-content-end mb-2">
+                                <div class="d-flex justify-content-end">
                                   <!-- <div
                                         :class="
                                           isRead == 1
@@ -194,8 +189,10 @@
                                 </div>
                               </div>
                             </div>
+                            <p class="mb-0 color-secondary text-14 font-regular">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis unde laborum delectus praesentium porro doloremque, tempore aliquam iure soluta id similique corrupti maiores, provident vitae! Ut iure unde praesentium similique.</p>
                           </div>
-                          <div v-else class="card card-white px-3 py-2 mb-2">
+                          </div>
+                          <div v-else class="card card-void px-3 py-2 mb-3">
                             <div
                               class="
                                 d-flex
@@ -369,7 +366,7 @@
                     </div>
                   </div>
                   <div class="col-md-6 col-xs-12 h-100 d-flex">
-                    <div class="inner-info container p-2 d-flex flex-column">
+                    <div class="inner-info container p-2 d-flex flex-column card card-primary rounded-22 p-4">
                       <!-- <p class="time">
                         Next meeting:
                         {{
@@ -403,6 +400,7 @@
                           align-items-center
                           justify-content-between
                           mb-2
+                          px-2
                         "
                       >
                         <h5 class="color-dark font-bold mb-0">Announcements</h5>
@@ -415,13 +413,13 @@
                           ><span><i class="fas fa-plus"></i></span
                         ></a>
                       </div>
-                      <div class="custom-overflow pr-2 mr--2">
+                      <div class="hidden-scroll p-2">
                         <div
                           v-for="(item, index) in announcementList"
                           :key="index"
                         >
                           <div
-                            class="card px-3 py-2 mb-2"
+                            class="card card-void px-3 py-2 mb-3"
                             :class="
                               item.isRead == 1 ? 'card-void' : 'card-void'
                             "
@@ -444,6 +442,7 @@
                                   class="
                                     color-secondary
                                     font-regular
+                                    text-nowrap
                                     text-14
                                     mb-1
                                   "
@@ -453,6 +452,7 @@
                                 <p
                                   class="
                                     color-secondary
+                                    text-nowrap
                                     font-regular
                                     text-14
                                     mb-0
@@ -475,7 +475,7 @@
                               >
                                 <p
                                   @click="openEdit(item)"
-                                  class="color-primary text-truncate mb-0"
+                                  class="color-primary text-right mb-0"
                                 >
                                   {{ item.title }}
                                 </p>

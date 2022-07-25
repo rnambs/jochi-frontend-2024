@@ -19,7 +19,7 @@
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-3">
-            <h4 class="tab-head color-primary font-semi-bold">Club details</h4>
+            <h2 class="tab-head color-primary font-semi-bold">Club details</h2>
             <div class="inner-tab-section container-fluid p-0">
               <div
                 class="
@@ -120,12 +120,12 @@
                       "
                     >
                       <img
-                        src="../../static/image/Football.png"
+                        src="../../static/image/Trophy.png"
                         alt=""
                         class="img-fluid ct-team"
                       />
                       <img
-                        src="../../static/image/meeting.png"
+                        src="../../static/image/Badge.png"
                         alt=""
                         class="img-fluid ct-club"
                       />

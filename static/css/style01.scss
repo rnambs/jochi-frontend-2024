@@ -146,7 +146,7 @@ body{
         box-shadow: none;
     }
     &.btn-primary{
-        font-weight: 600;
+        font-weight: 500;
         background-color: $theme-color;
         color: $global-font-color;
         &:hover,&:focus,&:active,&:active:focus{
@@ -511,6 +511,9 @@ img.card-img{
     background-position:center;
     background-repeat:no-repeat;
     background-size:cover;
+    &.register{
+        background-image: url("../../image/login-bg.jpg");
+    }
     .img-section{
         text-align: center;
 
@@ -5926,7 +5929,7 @@ select.form-control{
 }
 
 .club-type-icon {
-    width: 30px;
+    width: 50px;
     top: 5px;
     right: 5px;
     &.team {

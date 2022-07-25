@@ -52,7 +52,7 @@
         </div>
 
         <section id="club-detail" class="flex-fill d-flex flex-column h-40">
-          <div class="club-section container-fluid mt-2 d-flex flex-column custom-overflow">
+          <div class="club-section container-fluid mt-2 d-flex flex-column custom-overflow flex-fill">
             <div class="row my-0">
               <div class="col-md-8 d-flex h-100">
                 <div
@@ -286,16 +286,18 @@
                     p-3
                     h-40
                     flex-fill
+                    d-flex
                   "
                 >
-                  <div class="container-fluid p-2 text-center">
+                  <div class="container-fluid p-2 text-center d-flex flex-column justify-content-center align-items-center">
                     <form
                       method="post"
                       @submit.prevent="UploadFile"
                       id="form"
                       enctype="multipart/form-data"
+                      class="d-flex flex-column align-items-center w-100 h-100"
                     >
-                      <div class="py-4 upload-area">
+                      <div class="py-4 upload-area h-100">
                         <div class="proof-img-wrp mt-3 mb-3">
                           <img
                             v-if="fileCheck && profileImageUrl"

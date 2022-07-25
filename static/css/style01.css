@@ -166,7 +166,7 @@ body {
   box-shadow: none;
 }
 .btn.btn-primary {
-  font-weight: 600;
+  font-weight: 500;
   background-color: #FF6D6D;
   color: #F9F9F9;
 }
@@ -528,6 +528,9 @@ img.card-img {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.main-container.register {
+  background-image: url("../../image/login-bg.jpg");
 }
 .main-container .img-section {
   text-align: center;
@@ -4972,7 +4975,7 @@ select.form-control.is-invalid {
 }
 
 .club-type-icon {
-  width: 30px;
+  width: 50px;
   top: 5px;
   right: 5px;
 }

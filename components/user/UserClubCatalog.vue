@@ -20,12 +20,17 @@
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-4">
             <div class="d-flex justify-content-between align-item-center">
-              <h3 class="color-primary font-semi-bold">Club Catalog</h3>
+              <div class="d-flex flex-column">
+                <h2 class="color-primary font-semi-bold">Club Catalog</h2>
+                <h4 class="mb-2 color-dark font-semi-bold">
+                  Find your People!
+                </h4>
+              </div>
               <!-- data-toggle="modal"
                 data-target="#createNewModal" -->
               <button
                 type="button"
-                class="btn btn-primary"
+                class="btn btn-primary py-2 mt-2 h-fit-content"
                 @click="openCreateNewModal"
               >
                 Create New
@@ -91,7 +96,7 @@
             "
           >
             <div
-              class="pt-3 pb-1 border-bottom"
+              class="pt-4 pb-3 border-bottom"
               v-for="(list, index) in list_data"
               :key="index"
             >
@@ -100,9 +105,9 @@
                   </div> -->
               <div class="row catalog-row">
                 <div class="col-lg-4">
-                  <h5 class="mb-1 color-dark font-semi-bold">
+                  <h4 class="mb-2 color-dark font-semi-bold">
                     {{ list["name"] }}
-                  </h5>
+                  </h4>
                   <!-- <p class="catalog-text">
                         {{ list.part ? list.part : "No data "
                         }}<span :id="'dots' + list.id" v-if="list.remaining"
@@ -111,7 +116,7 @@
                           {{ list.remaining }}
                         </span>
                       </p> -->
-                  <p class="color-secondary fort-regular text-14">
+                  <p class="color-secondary fort-regular text-14 mb-0">
                     {{ list.activity_type == "Clubs" ? "Club" : "Team" }}
                   </p>
                 </div>
@@ -158,7 +163,7 @@
                             to-do-li
                             color-white
                             text-14
-                            rounded
+                            rounded-6
                             px-4
                             py-1
                             m-1
@@ -251,7 +256,7 @@
                       path: '/student-club-view',
                       query: { id: list.id, name: list.activity_type },
                     }"
-                    class="btn btn-primary py-1 mt-2 h-fit-content"
+                    class="btn btn-primary py-1 mt-2 h-fit-content px-lg-3 px-xl-4"
                   >
                     View More
                   </nuxt-link>
