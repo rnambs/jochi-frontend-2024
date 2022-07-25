@@ -429,7 +429,7 @@
                                   }"
                                   class="
                                     px-4
-                                    py-2
+                                    py-1
                                     rounded
                                     color-white
                                     d-flex

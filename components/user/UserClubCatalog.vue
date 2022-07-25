@@ -100,7 +100,7 @@
                   </div> -->
               <div class="row catalog-row">
                 <div class="col-lg-4">
-                  <h5 class="mb-0 color-dark font-semi-bold">
+                  <h5 class="mb-1 color-dark font-semi-bold">
                     {{ list["name"] }}
                   </h5>
                   <!-- <p class="catalog-text">
