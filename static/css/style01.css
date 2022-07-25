@@ -122,6 +122,10 @@ body {
   background: #ffffff;
 }
 
+.rounded-6 {
+  border-radius: 6px;
+}
+
 .btn {
   text-transform: capitalize;
   border: none;
@@ -4082,12 +4086,6 @@ switch to violet when it is active*/
 }
 .modal .modal-dialog .modal-content .modal-body p, .modal .modal-dialog .modal-content .modal-body .col-form-label {
   color: #a7a7a7;
-  font-size: 0.95rem;
-}
-@media (max-width: 1024.98px) {
-  .modal .modal-dialog .modal-content .modal-body p, .modal .modal-dialog .modal-content .modal-body .col-form-label {
-    font-size: 0.85rem;
-  }
 }
 .modal .modal-dialog .modal-content .modal-body .form-group .form-control {
   border-radius: 0.4rem;
@@ -4825,6 +4823,12 @@ select.form-control.is-invalid {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
+.ld-img-holder img {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 .ld-img-holder span {
   width: 100%;
   height: 100%;
@@ -4853,6 +4857,12 @@ select.form-control.is-invalid {
 }
 .members-thumbnail-list .mlist-thumb-holder:first-child {
   margin-left: 0;
+}
+.members-thumbnail-list .mlist-thumb-holder img {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .members-thumbnail-list .mlist-thumb-holder span {
   width: 100%;

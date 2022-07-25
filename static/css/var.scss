@@ -63,3 +63,55 @@ $lg-screen-h         : 1080px;
 $lg-screen-h         : 1079.98px;
 $md-screen-h         : 1023.98px;
 $sm-screen-h         : 767.98px;
+
+// Border Radius
+@mixin borderRadius ($br) {
+    @if $br==0 {
+        border-radius: 0;
+    }
+    @else if $br==1 {
+        border-radius: 1px;
+    }
+    @else if $br==2 {
+        border-radius: 2px;
+    }
+    @else if $br==3 {
+        border-radius: 3px;
+    }
+    @else if $br==4 {
+        border-radius: 4px;
+    }
+    @else if $br==5 {
+        border-radius: 5px;
+    }
+    @else if $br==6 {
+        border-radius: 6px;
+    }
+    @else if $br==8 {
+        border-radius: 8px;
+    }
+    @else if $br==10 {
+        border-radius: 10px;
+    }
+    @else if $br==12 {
+        border-radius: 12px;
+    }
+    @else if $br==15 {
+        border-radius: 15px;
+    }
+    @else if $br==20 {
+        border-radius: 20px;
+    }
+    @else if $br==25 {
+        border-radius: 25px;
+    }
+    @else if $br==30 {
+        border-radius: 30px;
+    }
+    @else if $br==40 {
+        border-radius: 40px;
+    }
+    @else if $br==round {
+        border-radius: 50%;
+    }
+}

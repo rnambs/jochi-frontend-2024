@@ -136,97 +136,6 @@
                         >Show club in catalog
                       </label>
                     </div> -->
-                    <div class="inner-info-head mb-2 mt-4">
-                      <h4 class="color-dark mb-2 font-bold">Members</h4>
-                    </div>
-                    <div
-                      class="
-                        members-thumbnail-list
-                        d-flex
-                        flex-column
-                        align-items-center
-                        justify-content-start
-                        mt-3
-                        position-relative
-                      "
-                    >
-                      <div class="first-row">
-                        <div class="d-flex align-items-center">
-                          <div
-                            v-for="index in 4"
-                            :key="index"
-                            :class="
-                              membersInfo[index - 1] &&
-                              membersInfo[index - 1].user_info
-                                ? 'mlist-thumb-holder'
-                                : 'd-none'
-                            "
-                          >
-                            <!-- {{ membersInfo[index].user_info }} -->
-                            <img
-                              v-if="
-                                membersInfo[index - 1] &&
-                                membersInfo[index - 1].user_info &&
-                                membersInfo[index - 1].user_info
-                                  .proPic_file_name
-                              "
-                              :src="
-                                membersInfo[index - 1].user_info
-                                  .proPic_file_name
-                              "
-                              alt=""
-                            />
-                            <span v-else>{{
-                              membersInfo[index - 1] &&
-                              membersInfo[index - 1].user_info
-                                ? membersInfo[
-                                    index - 1
-                                  ].user_info.first_name.charAt(0)
-                                : ""
-                            }}</span>
-                          </div>
-                          <!-- <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div> -->
-                        </div>
-                      </div>
-                      <div v-if="membersInfo.length > 4" class="second-row">
-                        <div class="d-flex align-items-center">
-                          <div
-                            v-for="index in 3"
-                            :key="index"
-                            :class="
-                              membersInfo[index + 3] &&
-                              membersInfo[index + 3].user_info
-                                ? 'mlist-thumb-holder'
-                                : 'd-none'
-                            "
-                          >
-                            <img
-                              v-if="
-                                membersInfo[index + 3] &&
-                                membersInfo[index + 3].user_info
-                                  .proPic_file_name
-                              "
-                              :src="
-                                membersInfo[index + 3].user_info
-                                  .proPic_file_name
-                              "
-                              alt=""
-                            />
-                          </div>
-                          <!-- <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div> -->
-                        </div>
-                      </div>
-                      <div
-                        v-if="membersInfo.length > 7"
-                        class="ml-list-more position-absolute"
-                        @click="openViewMoreMembers(false)"
-                      >
-                        7+
-                      </div>
-                    </div>
                   </div>
 
                   <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
@@ -235,8 +144,7 @@
                         <div class="inner-info-head mb-3">
                           <h4 class="color-dark mb-2 font-bold">Leaders</h4>
                         </div>
-                        <div class="row">
-                          <div class="col-4"></div>
+                        <div class="row justify-content-end">
                           <div class="col-8">
                             <div class="inner-info-text">
                               <ul class="mb-0 leader-list-style">
@@ -407,13 +315,109 @@
                         </div>
                       </div>
                     </div>
+                  </div>
+
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3">
+                    <div class="inner-info-head mb-2 mt-4">
+                      <h4 class="color-dark mb-2 font-bold">Members</h4>
+                    </div>
+                    <div
+                      class="
+                        members-thumbnail-list
+                        d-flex
+                        flex-column
+                        align-items-center
+                        justify-content-start
+                        mt-3
+                        position-relative
+                      "
+                    >
+                      <div class="first-row">
+                        <div class="d-flex align-items-center">
+                          <div
+                            v-for="index in 4"
+                            :key="index"
+                            :class="
+                              membersInfo[index - 1] &&
+                              membersInfo[index - 1].user_info
+                                ? 'mlist-thumb-holder'
+                                : 'd-none'
+                            "
+                          >
+                            <!-- {{ membersInfo[index].user_info }} -->
+                            <img
+                              v-if="
+                                membersInfo[index - 1] &&
+                                membersInfo[index - 1].user_info &&
+                                membersInfo[index - 1].user_info
+                                  .proPic_file_name
+                              "
+                              :src="
+                                membersInfo[index - 1].user_info
+                                  .proPic_file_name
+                              "
+                              alt=""
+                            />
+                            <span v-else>{{
+                              membersInfo[index - 1] &&
+                              membersInfo[index - 1].user_info
+                                ? membersInfo[
+                                    index - 1
+                                  ].user_info.first_name.charAt(0)
+                                : ""
+                            }}</span>
+                          </div>
+                          <!-- <div class="mlist-thumb-holder"></div>
+                          <div class="mlist-thumb-holder"></div>
+                          <div class="mlist-thumb-holder"></div> -->
+                        </div>
+                      </div>
+                      <div v-if="membersInfo.length > 4" class="second-row">
+                        <div class="d-flex align-items-center">
+                          <div
+                            v-for="index in 3"
+                            :key="index"
+                            :class="
+                              membersInfo[index + 3] &&
+                              membersInfo[index + 3].user_info
+                                ? 'mlist-thumb-holder'
+                                : 'd-none'
+                            "
+                          >
+                            <img
+                              v-if="
+                                membersInfo[index + 3] &&
+                                membersInfo[index + 3].user_info
+                                  .proPic_file_name
+                              "
+                              :src="
+                                membersInfo[index + 3].user_info
+                                  .proPic_file_name
+                              "
+                              alt=""
+                            />
+                          </div>
+                          <!-- <div class="mlist-thumb-holder"></div>
+                          <div class="mlist-thumb-holder"></div> -->
+                        </div>
+                      </div>
+                      <div
+                        v-if="membersInfo.length > 7"
+                        class="ml-list-more position-absolute"
+                        @click="openViewMoreMembers(false)"
+                      >
+                        7+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
                     <div class="row">
                       <div class="col-12 inner-col text-right">
                         <div class="inner-info-head mb-3">
                           <h4 class="color-dark mb-2 font-bold">Tags</h4>
                         </div>
-                        <div class="row">
-                          <div class="col-6"></div>
+                        <div class="row justify-content-end">
                           <div class="col-6 info-tag pr-0">
                             <div class="input-group mb-0 justify-content-end">
                               <div
@@ -558,7 +562,7 @@
                 <li v-for="(data, index) in leadersInfo" :key="index">
                   <!-- <span class="input-name">{{ data }}</span> -->
                   <div
-                    class="d-flex align-items-center justify-content-end mt-2"
+                    class="d-flex align-items-center justify-content-end mt-3"
                   >
                     <div class="mr-2 d-flex justify-content-end p-0">
                       <div class="ld-img-section">
@@ -576,7 +580,7 @@
                     </div>
                     <div class="p-0">
                       <div class="ld-details-section">
-                        <p class="color-dark mb-1 text-18 font-semi-bold">
+                        <p class="color-dark mb-1 text-18 font-semi-bold mb-0">
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name
@@ -610,7 +614,7 @@
                 <li v-for="(data, index) in membersInfo" :key="index">
                   <!-- <span class="input-name">{{ data }}</span> -->
                   <div
-                    class="d-flex align-items-center justify-content-end mt-2"
+                    class="d-flex align-items-center justify-content-end mt-3"
                   >
                     <div class="col-4 d-flex justify-content-end p-0">
                       <div class="ld-img-section">
@@ -628,7 +632,7 @@
                     </div>
                     <div class="col-8 p-0">
                       <div class="ld-details-section">
-                        <p class="mb-1 color-dark text-18 font-semi-bold">
+                        <p class="mb-0 color-dark text-18 font-semi-bold">
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name
