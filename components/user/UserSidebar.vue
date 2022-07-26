@@ -46,15 +46,18 @@
           </div> -->
           <div class="position-relative profile-sidebar">
             <div
-              class="user-icon mr-3 d-flex notification-icon-section justify-content-end"
+              class="user-icon  d-flex notification-icon-section align-items-center justify-content-end"
             >
+              <a class="position-relative p-2" href="#">
+                <img src="../../static/image/Jochi Icons/home_hires.png" alt="" class="dark-icon">
+              </a>
               <div class="dropdown">
                 <a
                   class="dropdown-toggle position-relative p-2"
                   href="#"
                   data-toggle="dropdown"
                 >
-                  <i class="fas fa-bell"></i>
+                  <img src="../../static/image/Jochi Icons/bell_hires.png" alt="" class="dark-icon">
                   <span v-if="notificationCount > 0" class="notify-span">{{
                     notificationCount
                   }}</span>

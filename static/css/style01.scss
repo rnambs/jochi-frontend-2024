@@ -94,6 +94,9 @@ body{
 .color-primary{
     color: $theme-color;
 }
+.color-black{
+    color: $black;
+}
 .color-dark{
     color: $text-dark !important;
 }
@@ -515,6 +518,12 @@ img.card-img{
 .jump {
 transform-origin: 50% 50%;
 animation: jump 4s linear alternate infinite;
+}
+
+// ICONS
+
+img.dark-icon{
+    width: 24px;
 }
 
 // SIGN-IN

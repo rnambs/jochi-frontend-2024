@@ -110,6 +110,10 @@ body {
   color: #FF6D6D;
 }
 
+.color-black {
+  color: #000000;
+}
+
 .color-dark {
   color: #431F1C !important;
 }
@@ -560,6 +564,10 @@ img.card-img {
   transform-origin: 50% 50%;
   -webkit-animation: jump 4s linear alternate infinite;
           animation: jump 4s linear alternate infinite;
+}
+
+img.dark-icon {
+  width: 24px;
 }
 
 .main-container {
