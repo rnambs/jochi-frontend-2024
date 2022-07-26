@@ -1,11 +1,11 @@
 <template>
   <section id="header" class="">
-    <div class="header-section fixed-top">
-      <span class="menu-bar-icon" v-on:click="clickableIcon()"
+    <div class="header-section position-fixed top-0">
+      <!-- <span class="menu-bar-icon" v-on:click="clickableIcon()"
         ><i class="fas fa-bars"></i
-      ></span>
+      ></span> -->
       <!-- <h5 class="mr-3 mb-0 mt-0 text-light">{{ firstName }}</h5> -->
-      <div class="user-icon mr-3">
+      <!-- <div class="user-icon mr-3">
         <div class="dropdown">
           <a class="dropdown-toggle" href="#" data-toggle="dropdown">
             <i class="fas fa-cog"></i>
@@ -30,9 +30,9 @@
               notificationCount
             }}</span>
           </a>
-          <div class="dropdown-menu notify">
+          <div class="dropdown-menu notify"> -->
             <!-- notification -->
-            <div
+            <!-- <div
               class="notifications dropdown-item px-2"
               v-if="notificationList && notificationList.length > 0"
             >
@@ -77,9 +77,9 @@
               v-if="!notificationList || notificationList.length == 0"
             >
               No notifications to display
-            </div>
+            </div> -->
             <!-- notification End -->
-          </div>
+          <!-- </div>
         </div>
       </div>
       <nuxt-link to="/user-profile" class="pr-4">
@@ -89,11 +89,18 @@
           alt=""
           id="profileImageTeacher"
         />
-      </nuxt-link>
+      </nuxt-link> -->
 
       <!-- Teacher Sidebar -->
-      <div class="teacher-sidebar-section" id="clickableId">
-        <div class="logo-section mt-3 p-2">
+      <div class="sidebar-section
+      col-sm-4 col-md-5 col-lg-6
+      d-flex
+      justify-content-between
+      jochi-components-light-bg
+      p-3 p-lg-4
+      position-fixed
+      flex-column" id="clickableId">
+        <!-- <div class="logo-section mt-3 p-2">
           <a href="">
             <div
               class="text-logo d-flex align-items-center justify-content-center"
@@ -111,9 +118,106 @@
               class="icon-logo"
             />
           </a>
-        </div>
+        </div> -->
         <div class="position-relative profile-sidebar">
-          <div class="sidebar-profile p-2 d-flex align-items-center">
+          <div
+              class="user-icon  d-flex notification-icon-section align-items-center justify-content-end"
+            >
+              <a class="position-relative p-2" href="#">
+                <img src="../../static/image/Jochi Icons/home_hires.png" alt="" class="dark-icon">
+              </a>
+              <div class="dropdown">
+                <a
+                  class="dropdown-toggle position-relative p-2"
+                  href="#"
+                  data-toggle="dropdown"
+                >
+                  <img src="../../static/image/Jochi Icons/bell_hires.png" alt="" class="dark-icon">
+                  <span v-if="notificationCount > 0" class="notify-span">{{
+                    notificationCount
+                  }}</span>
+                </a>
+                <div class="dropdown-menu notify">
+                  <!-- notification -->
+                  <div
+                    class="notifications dropdown-item px-2"
+                    v-if="notificationList && notificationList.length > 0"
+                  >
+                    <div
+                      class="
+                        d-flex
+                        justify-content-between
+                        align-items-center
+                        px-3
+                        mt-2
+                        mb-3
+                      "
+                    >
+                      <h5 class="notify-head">Notificaitons</h5>
+                      <button
+                        class="btn btn-sm notify-btn mb-3"
+                        @click="clearNotifications()"
+                      >
+                        Clear all
+                      </button>
+                    </div>
+                    <div class="notification-text px-3">
+                      <p
+                        :class="
+                          data.isViewed
+                            ? 'unread d-flex flex-column p-3'
+                            : 'read d-flex flex-column p-3'
+                        "
+                        v-for="(data, index) in notificationList"
+                        :key="index"
+                        @click="onNotificationClick(data.id, data.title)"
+                      >
+                        <span class="notify-text">{{ data.message }}</span>
+                        <span class="notify-time d-flex justify-content-end">{{
+                          data.timestamp
+                        }}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="notifications dropdown-item px-2 no-notify"
+                    v-if="!notificationList || notificationList.length == 0"
+                  >
+                    No notifications to display
+                  </div>
+                  <!-- notification End -->
+                </div>
+              </div>
+            </div>
+            <nuxt-link to="/user-profile" class="pr-4">
+              <img
+                v-bind:src="
+                  profile && profile != 'null' ? profile : defaultImage
+                "
+                class="rounded-circle img-profile"
+                alt=""
+                id="profileImage"
+              />
+              <!-- <img v-else src="../../assets/images/avatar/man_green.svg" class="rounded-circle img-profile" alt="" > -->
+              <h4 class="color-primary mb-0 mt-2 font-semi-bold text-18 text-center text-lg-left">Tophia</h4>
+            </nuxt-link>
+
+            <div class="user-icon mr-3 settings-icon-section position-absolute">
+              <div class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                  <p>Settings</p>
+                </a>
+                <div class="dropdown-menu">
+                  <nuxt-link  class="dropdown-item">
+                    <span>Reset Password</span>
+                  </nuxt-link>
+                  <a class="dropdown-item" href="#" 
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          <!-- <div class="sidebar-profile p-2 d-flex align-items-center">
             <img
               v-bind:src="profile && profile != 'null' ? profile : defaultImage"
               id="menu_profile_pic"
@@ -124,7 +228,7 @@
               <p class="wish-text mb-1">Hello,</p>
               <p class="profile-name mb-0">{{ firstName }}</p>
             </div>
-          </div>
+          </div> -->
         </div>
         <div
           class="
