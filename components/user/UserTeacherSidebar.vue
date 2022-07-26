@@ -156,7 +156,6 @@
                       <h5 class="notify-head">Notificaitons</h5>
                       <button
                         class="btn btn-sm notify-btn mb-3"
-                        @click="clearNotifications()"
                       >
                         Clear all
                       </button>
