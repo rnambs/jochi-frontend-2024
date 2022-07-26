@@ -96,8 +96,8 @@
                           class="btn add-assignment p-1 color-secondary"
                           data-toggle="modal"
                           @click="openActivityModal()"
-                          ><span><i class="fas fa-plus"></i></span
-                        ></a>
+                          ><span><i class="fas fa-plus-circle"></i></span
+                            ></a>
                       </div>
                       <div class="hidden-scroll p-2">
                         <div
@@ -410,8 +410,8 @@
                           class="btn add-assignment p-1 color-secondary"
                           data-toggle="modal"
                           @click="openModal()"
-                          ><span><i class="fas fa-plus"></i></span
-                        ></a>
+                          ><span><i class="fas fa-plus-circle"></i></span
+                            ></a>
                       </div>
                       <div class="hidden-scroll p-2">
                         <div

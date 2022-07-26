@@ -129,8 +129,13 @@
                   <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
                     <div class="row">
                       <div class="col-12 inner-col text-right">
-                        <div class="mb-3">
-                          <h4 class="color-dark mb-2 font-bold">Leaders</h4>
+                        <div class="d-flex mb-3 justify-content-end align-items-center mb-2">
+                          <h4 class="color-dark mb-0 mr-2 font-bold">Leaders</h4>
+                          <a
+                          href="#"
+                          class="btn p-1 color-secondary"
+                          ><span><i class="fas fa-plus-circle"></i></span
+                        ></a>
                         </div>
                         <div class="row justify-content-end">
                           <div class="col-8">
@@ -402,11 +407,14 @@
                   <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
                     <div class="row">
                       <div class="col-12 inner-col text-right">
-                        <div class="inner-info-head mb-0">
-                          <h4 class="color-dark mb-2 font-bold">Tags</h4>
+                        <div class="inner-info-head mb-2 d-flex align-items-center justify-content-end">
+                          <h4 class="color-dark mb-0 mr-2 font-bold">Tags</h4>
+                          <a href="#" class="btn p-1 color-secondary">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                          </a>
                         </div>
                         <div class="row justify-content-end">
-                          <div class="col-6 info-tag pr-0">
+                          <div class="col-6 info-tag ">
                             <div class="input-group mb-0 justify-content-end">
                               <div
                                 class="p-1"
