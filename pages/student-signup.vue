@@ -32,19 +32,16 @@
       <div id="fountainTextG_4" class="fountainTextG animation">. &nbsp;</div>
     </div>
     <div class="row main-row align-items-center flex-row vh-100 m-0">
-      <div class="col-md-6 img-section login-cover d-flex align-items-center justify-content-center h-100 flex-fill">
-        <div class="d-flex flex-column justify-content-between h-100">
-          <div class="logo-img d-flex align-items-center">
-            <img src="../assets/images/Icon/logo-icon.png" alt="">
-            <p class="mb-0 color-white">Jochi</p>
+      <div class="col-md-6 img-section login-cover d-flex flex-column align-items-center justify-content-between h-100 flex-fill">
+          <div class="logo-img d-flex align-items-center w-100">
+            <img src="../static/image/logo.png" alt="" class="logo-icon">
           </div>
           <img
             src="../static/image/login-img.png"
             alt="undraw"
-            class="img-responsive"
+            class="img-responsive jump"
           />
           <p class="mb-0 color-white text-16 font-regular">FAQ's | Privacy Policy</p>
-        </div>
       </div>
       <div class="col-md-6 form-section d-flex align-items-center justify-content-center h-100">
         <!-- Sign-Up -->
@@ -178,6 +175,10 @@
             <a class="btn" href=""><img src="../static/image/social-icon/TikTok Logo.png" alt=""></a>
             <a class="btn" href=""><img src="../static/image/social-icon/Spotify Logo.png" alt=""></a>
             <a class="btn" href=""><img src="../static/image/social-icon/YouTube Png.png" alt=""></a>
+          </div>
+          <div class="d-flex flex-column justify-content-center">
+            <a href="" class="text-center color-secondary font-regular text-16">www.jochi.info</a>
+            <a href="" class="text-center color-secondary font-regular text-16"> contact@jochi.info</a>
           </div>
         </section>
       </div>
