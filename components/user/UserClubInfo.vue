@@ -55,7 +55,7 @@
                   v-for="(list, index) in list_data"
                   :key="index"
                 >
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3 py-12">
                     <div class="inner-info-head mb-2">
                       <h4 class="color-dark mb-2 font-bold">
                         About the {{ headingName }}
@@ -126,9 +126,9 @@
                       </label>
                     </div> -->
                   </div>
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
                     <div class="row">
-                      <div class="col-12 inner-col text-right">
+                      <div class="col-12 inner-col text-right py-12">
                         <div class="d-flex mb-3 justify-content-end align-items-center mb-2">
                           <h4 class="color-dark mb-0 mr-2 font-bold">Leaders</h4>
                           <a
@@ -238,7 +238,7 @@
                         </div>
                       </div>
                       <div
-                        class="col-12 text-right inner-col"
+                        class="col-12 text-right inner-col py-12"
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-0">
@@ -311,7 +311,7 @@
                       </div>
                     </div>
                   </div>
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3 py-12">
                     <div class="mb-2 mt-4">
                       <h4 class="color-dark mb-2 font-bold">Members</h4>
                     </div>
@@ -404,9 +404,9 @@
                       </div>
                     </div>
                   </div>
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
                     <div class="row">
-                      <div class="col-12 inner-col text-right">
+                      <div class="col-12 inner-col text-right py-12">
                         <div class="inner-info-head mb-2 d-flex align-items-center justify-content-end">
                           <h4 class="color-dark mb-0 mr-2 font-bold">Tags</h4>
                           <a href="#" class="btn p-1 color-secondary">
@@ -471,7 +471,7 @@
                         </div>
                       </div>
                       <div
-                        class="col-12 text-right inner-col"
+                        class="col-12 text-right inner-col py-12"
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-3">

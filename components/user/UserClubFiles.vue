@@ -52,8 +52,8 @@
         </div>
 
         <section id="club-detail" class="flex-fill d-flex flex-column h-40">
-          <div class="club-section container-fluid mt-2 d-flex flex-column custom-overflow flex-fill">
-            <div class="row my-0">
+          <div class="club-section container-fluid pt-2 d-flex flex-column custom-overflow flex-fill">
+            <div class="row my-0 flex-fill">
               <div class="col-md-8 d-flex h-100">
                 <div
                   class="
@@ -277,19 +277,20 @@
                   </div>
                 </div>
               </div>
-              <div v-if="enableEdit" class="col-md-4 d-flex flex-column">
+              <div v-if="enableEdit" class="col-md-4 d-flex flex-column py-3">
                 <div
                   class="
                     inner-club
                     club-files
-                    jochi-sub-components-light-bg
+                    card card-primary
+                    rounded-22
                     p-3
                     h-40
                     flex-fill
                     d-flex
                   "
                 >
-                  <div class="container-fluid p-2 text-center d-flex flex-column justify-content-center align-items-center">
+                  <div class="container-fluid p-2 text-center d-flex flex-column justify-content-center align-items-center flex-fill">
                     <form
                       method="post"
                       @submit.prevent="UploadFile"

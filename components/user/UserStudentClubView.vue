@@ -68,7 +68,7 @@
                   v-for="(list, index) in list_data"
                   :key="index"
                 >
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3 py-12">
                     <div class="inner-info-head mb-2">
                       <h4 class="color-dark mb-2 font-bold">
                         About the {{ headingName }}
@@ -138,9 +138,9 @@
                     </div> -->
                   </div>
 
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
                     <div class="row">
-                      <div class="col-12 inner-col text-right">
+                      <div class="col-12 inner-col text-right py-12">
                         <div class="inner-info-head mb-3">
                           <h4 class="color-dark mb-2 font-bold">Leaders</h4>
                         </div>
@@ -243,7 +243,7 @@
                         </div>
                       </div>
                       <div
-                        class="col-12 text-right inner-col"
+                        class="col-12 text-right inner-col py-12"
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-3">
@@ -413,7 +413,7 @@
 
                   <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
                     <div class="row">
-                      <div class="col-12 inner-col text-right">
+                      <div class="col-12 inner-col text-right py-12">
                         <div class="inner-info-head mb-3">
                           <h4 class="color-dark mb-2 font-bold">Tags</h4>
                         </div>

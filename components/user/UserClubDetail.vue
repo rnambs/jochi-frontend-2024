@@ -98,7 +98,7 @@
             >
               <div class="row club-row m-1">
                 <div
-                  class="col-lg-4 col-md-6 col-sm-12 col-12"
+                  class="col-lg-4 col-md-6 col-sm-12 col-12 py-12"
                   v-for="(list, index) in list_data"
                   :key="index"
                 >

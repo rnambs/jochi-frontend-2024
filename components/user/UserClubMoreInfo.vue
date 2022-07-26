@@ -70,7 +70,7 @@
                   flex-fill
                 "
               >
-                <div class="row my-0 h-40">
+                <div class="row my-0 h-40 flex-fill">
                   <div
                     v-if="type == 'Sports'"
                     class="col-md-6 col-xs-12 h-100 d-flex"
