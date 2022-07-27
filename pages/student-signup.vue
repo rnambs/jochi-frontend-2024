@@ -50,7 +50,7 @@
           <div class="d-flex flex-column h-100 justify-content-center p-3">
             <div class="card rounded-22 p-5 d-flex flex-column justify-content-center align-items-center">
               <img src="../static/image/school_passport.png" alt="" class="mb-4 passport-img py-4">
-              <button class="btn btn-primary px-5">
+              <button class="btn btn-primary font-semi-bold px-5">
                 Sign in with School Passport
               </button>
               <!-- <form action="" class="sign-in" @submit.prevent="GetSignUp">
