@@ -11,22 +11,22 @@
       d-flex
       flex-column custom-overflow">
         <h3 class="text-color m-0 p-3">Teacher Appointment</h3>
-        <div class="inner-teacher container-fluid p-3">
-          <div class="row teacher-row container-fluid">
+        <div class="inner-teacher p-3">
+          <div class="row teacher-row m-0">
             
             <!-- CALANDER -->
             <div class="col-md-5 custom-teacher-container">
-              <div class="inner-custom-teacher text-light container p-2">
+              <div class="inner-custom-teacher text-light  p-2 card card-primary rounded-22">
                 <FullCalendar :options="calendarOptions" />
               </div>
             </div>
             <!-- END CALANDER -->
 
             <!-- AGENDA -->
-            <div class="col-md-7 container custom-teacher-container">
-              <div class="inner-custom-teacher container p-2">
+            <div class="col-md-7  custom-teacher-container">
+              <div class="inner-custom-teacher  p-2 card card-primary rounded-22 flex-fill">
                 <h6 class="text-center">Meetings</h6>
-                <div class="inner-agenda">
+                <div class="inner-agenda flex-fill">
                   <div
                     class="row container m-0 p-0"
                     v-for="(list, index) in listAgenda"
@@ -54,7 +54,7 @@
 
           <!-- TABLE  -->
           <div class="teacher-row mt-3 p-0">
-            <div class="col-md-12 p-0 mt-3 custom-teacher-container">
+            <div class="col-md-12 p-0 mt-3 custom-teacher-container card card-primary rounded-22">
               <div class="appointment-req pb-2">
                 <h6 class="text-center pt-3 mb-0">Meeting Requests</h6>
                 <div class="table-req container py-0">

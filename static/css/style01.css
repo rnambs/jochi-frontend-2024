@@ -541,6 +541,35 @@ img.card-img {
   min-width: 100px;
 }
 
+@-webkit-keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(30px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(30px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.jump {
+  transform-origin: 50% 50%;
+  -webkit-animation: jump 15s linear alternate infinite;
+          animation: jump 15s linear alternate infinite;
+}
+
 img.dark-icon {
   width: 24px;
 }
@@ -2651,8 +2680,8 @@ img.dark-icon {
   justify-content: center;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar h2.fc-toolbar-title {
-  font-size: 1.1em !important;
-  font-weight: 400;
+  font-size: 1em !important;
+  font-weight: 500;
   color: #F9F9F9;
   background-color: #FF6F69;
   padding: 0.4em 0.65em;
@@ -2661,7 +2690,6 @@ img.dark-icon {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  left: 40%;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
   background-color: #f0f0f0;

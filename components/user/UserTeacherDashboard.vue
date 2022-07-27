@@ -68,8 +68,8 @@
                 <div class="teacher-row container mb-3 card card-primary rounded-22 p-0">
                   <div class="appointment-req p-2">
                     <h6 class="text-center color-primary pt-3 mb-0">Meeting Requests</h6>
-                    <div class="table-req container py-3 custom-overflow-x hidden-scroll">
-                      <table class="table">
+                    <div class="table-req container py-3 custom-overflow-x custom-overflow">
+                      <table class="table mb-0">
                         <thead>
                           <tr class="color-dark font-semi-bold">
                             <td scope="col"></td>
@@ -96,7 +96,7 @@
                                   border border-success
                                   text-success
                                   meet-req
-                                  px-3
+                                  px-3 py-1
                                 "
                                 @click="
                                   TeacherMeetingConfirm(
@@ -120,7 +120,7 @@
                                   btn
                                   border border-danger
                                   text-danger
-                                  px-3
+                                  px-3 py-1
                                 "
                                 @click="
                                   TeacherMeetingConfirm(

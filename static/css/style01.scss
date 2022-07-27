@@ -518,14 +518,19 @@ img.card-img{
 }
 
 // @keyframes jump {
-//     0%   {transform: translate3d(0,-80px,0) scale3d(1,1,1)  rotate(-10deg);transition: .8s}
-//     40%  {transform: translate3d(0,3%,0) scale3d(.9,1.1,.9) rotate(10deg);transition: .7s}
-//     100% {transform: translate3d(0,8%,0) scale3d(1,1,1)  rotate(0deg);transition: .6s}
+//     0%   {transform: translate3d(0,-40px,0) scale3d(1,1,1)  rotate(-10deg);transition: 1.9s}
+//     40%  {transform: translate3d(0,3%,0) scale3d(.9,1.1,.9) rotate(10deg);transition: 1.7s}
+//     100% {transform: translate3d(0,8%,0) scale3d(1,1,1)  rotate(0deg);transition: 1.8s}
 // }
-// .jump {
-// transform-origin: 50% 50%;
-// animation: jump 4s linear alternate infinite;
-// }
+@keyframes jump {
+    0%   {transform: translateY(0px);}
+    50%  {transform: translateY(30px) rotate(5deg);}
+    100% {transform: translateY(0px);}
+}
+.jump {
+transform-origin: 50% 50%;
+animation: jump 15s linear alternate infinite;
+}
 
 // ICONS
 
@@ -3716,15 +3721,14 @@ img.dark-icon{
                             .fc-header-toolbar.fc-toolbar{
                                 justify-content: center;
                                 h2.fc-toolbar-title{
-                                    font-size: 1.1em !important;
-                                    font-weight: 400;
+                                    font-size: 1em !important;
+                                    font-weight: 500;
                                     color: $global-font-color;
                                     background-color: $head-theme-color;
                                     padding: 0.4em 0.65em;
                                     min-height: 20px;
                                     white-space: nowrap;
                                     width: fit-content;
-                                    left: 40%;
                                 }
                                 button.fc-button.fc-button-primary{
                                     background-color: $border-color;
