@@ -48,9 +48,8 @@
 
         <section id="sign-up" class="login-box d-flex flex-column h-100 justify-content-between">
           <div class="d-flex flex-column h-100 justify-content-center p-3">
-            <h1 class="heading mb-3 mt-5">Sign up</h1>
             <div class="card rounded-22 p-5 d-flex flex-column justify-content-center align-items-center">
-              <img src="../static/image/school_passport.png" alt="" class="mb-4 passport-img">
+              <img src="../static/image/school_passport.png" alt="" class="mb-4 passport-img py-4">
               <button class="btn btn-primary px-5">
                 Sign in with School Passport
               </button>
