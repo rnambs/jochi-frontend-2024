@@ -3409,148 +3409,149 @@ img.dark-icon{
                             // box-shadow: 
                             //         0px 2px 8px $global-box-shadow;
                             //appointment cal
-                            .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
-                                .fc-header-toolbar.fc-toolbar{
-                                    justify-content: center;
-                                    h2.fc-toolbar-title{
-                                        font-size: 1.1em !important;
-                                        font-weight: 400;
-                                        color: $global-font-color;
-                                        background-color: $head-theme-color;
-                                        padding: 0.4em 0.65em;
-                                        min-height: 20px;
-                                    }
-                                    button.fc-button.fc-button-primary{
-                                        background-color: $border-color;
-                                        color: $global-font-color;
-                                        &:hover{
-                                            border: none;
-                                            color: $theme-color;
-                                        }
-                                        span.fc-icon{
-                                            position: relative;
-                                            top: -0.35rem;
-                                        }
-                                    }
-                                    button.fc-next-button.fc-button.fc-button-primary{
-                                        border-radius: 0px 50px 50px 0px;
-                                        min-height: 20px;
-                                    }
-                                    button.fc-prev-button.fc-button.fc-button-primary{
-                                        border-radius:50px 0px 0px 50px;
-                                        min-height: 20px;
-                                    }
-                                }
-                            }
-                            .fc-view-harness.fc-view-harness-active{
-                                height: 331.185px  !important;
-                                @media (min-width:1396.98px) {
-                                    height: 191.185px !important
-                                }
-                                @media (max-width:1396.98px) {
-                                    height: 185.185px !important
-                                }
-                                @media (max-width:1200.98px) {
-                                    height:178.185px !important
-                                }
-                                @media (max-width:1070.98px) {
-                                    height: 165.185px !important;
-                                }
-                                @media (max-width:786.98px) {
-                                    height: 152.185px !important
-                                }
-                                .fc-daygrid.fc-dayGridMonth-view.fc-view{
-                                    table.fc-scrollgrid.fc-scrollgrid-liquid{
-                                        tr.fc-scrollgrid-section.fc-scrollgrid-section-header{
-                                            th{
-                                                border: none;
-                                                .fc-scroller-harness{
-                                                    .fc-scroller{
-                                                        overflow: unset !important;
-                                                    }
-                                                    table.fc-col-header{
-                                                        border-bottom: hidden;
-                                                        th{
-                                                            border-right: none !important;
-                                                            &:nth-child(7){
-                                                                border-right: none;
-                                                            }
-                                                        }
-                                                        .fc-scroller{
-                                                            border-right: hidden;
-                                                        }
-                                                        a.fc-col-header-cell-cushion{
-                                                            color: $font-label-color;
-                                                            font-size: 0.65rem;
-                                                            font-weight: 400;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        border: none;
-                                        thead,tbody{
-                                            color: $font-label-color;
-                                            td{
-                                                border: none;
-                                                .fc-scroller{
-                                                    overflow: hidden !important;
-                                                }
-                                                th.fc-col-header-cell.fc-day{
-                                                    font-weight: 500;
-                                                    border-bottom: 1px solid $cal-border !important;
-                                                    border-right: 1px solid $cal-border !important;
-                                                    &:last-child{
-                                                        border-right: none !important;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        tbody{
-                                            tr{
-                                                td{
-                                                    border-top: 1px solid $cal-border;
-                                                    border-right: 1px solid $cal-border !important;
-                                                    border-bottom: none !important;
-                                                    &:last-child{
-                                                        border-right: none !important;
-                                                    }
-                                                    
-                                                    table.fc-scrollgrid-sync-table{
-                                                        height: 133px !important;
-                                                    }
-                                                    .fc-scroller.fc-scroller-liquid-absolute{
-                                                        overflow: hidden !important;
-                                                    }
-                                                    .fc-daygrid-day-frame.fc-scrollgrid-sync-inner{
-                                                        cursor: pointer;
-                                                        &:hover{
-                                                            background-color: $cal-border !important;
-                                                        }
-                                                        .fc-daygrid-day-events{
-                                                            display: none;
-                                                        }
+                                // .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
+                                //     .fc-header-toolbar.fc-toolbar{
+                                //         justify-content: center;
+                                //         h2.fc-toolbar-title{
+                                //             font-size: 1.1em !important;
+                                //             font-weight: 400;
+                                //             color: $global-font-color;
+                                //             background-color: $head-theme-color;
+                                //             padding: 0.4em 0.65em;
+                                //             min-height: 20px;
+                                //         }
+                                //         button.fc-button.fc-button-primary{
+                                //             background-color: $border-color;
+                                //             color: $global-font-color;
+                                //             &:hover{
+                                //                 border: none;
+                                //                 color: $theme-color;
+                                //             }
+                                //             span.fc-icon{
+                                //                 position: relative;
+                                //                 top: -0.35rem;
+                                //             }
+                                //         }
+                                //         button.fc-next-button.fc-button.fc-button-primary{
+                                //             border-radius: 0px 50px 50px 0px;
+                                //             min-height: 20px;
+                                //         }
+                                //         button.fc-prev-button.fc-button.fc-button-primary{
+                                //             border-radius:50px 0px 0px 50px;
+                                //             min-height: 20px;
+                                //         }
+                                //     }
+                                // }
+                                // .fc-view-harness.fc-view-harness-active{
+                                //     height: 331.185px  !important;
+                                //     @media (min-width:1396.98px) {
+                                //         height: 191.185px !important
+                                //     }
+                                //     @media (max-width:1396.98px) {
+                                //         height: 185.185px !important
+                                //     }
+                                //     @media (max-width:1200.98px) {
+                                //         height:178.185px !important
+                                //     }
+                                //     @media (max-width:1070.98px) {
+                                //         height: 165.185px !important;
+                                //     }
+                                //     @media (max-width:786.98px) {
+                                //         height: 152.185px !important
+                                //     }
+                                //     .fc-daygrid.fc-dayGridMonth-view.fc-view{
+                                //         table.fc-scrollgrid.fc-scrollgrid-liquid{
+                                //             tr.fc-scrollgrid-section.fc-scrollgrid-section-header{
+                                //                 th{
+                                //                     border: none;
+                                //                     .fc-scroller-harness{
+                                //                         .fc-scroller{
+                                //                             overflow: unset !important;
+                                //                         }
+                                //                         table.fc-col-header{
+                                //                             border-bottom: hidden;
+                                //                             th{
+                                //                                 border-right: none !important;
+                                //                                 &:nth-child(7){
+                                //                                     border-right: none;
+                                //                                 }
+                                //                             }
+                                //                             .fc-scroller{
+                                //                                 border-right: hidden;
+                                //                             }
+                                //                             a.fc-col-header-cell-cushion{
+                                //                                 color: $font-label-color;
+                                //                                 font-size: 0.65rem;
+                                //                                 font-weight: 400;
+                                //                             }
+                                //                         }
+                                //                     }
+                                //                 }
+                                //             }
+                                //             border: none;
+                                //             thead,tbody{
+                                //                 color: $font-label-color;
+                                //                 td{
+                                //                     border: none;
+                                //                     .fc-scroller{
+                                //                         overflow: hidden !important;
+                                //                     }
+                                //                     th.fc-col-header-cell.fc-day{
+                                //                         font-weight: 500;
+                                //                         border-bottom: 1px solid $cal-border !important;
+                                //                         border-right: 1px solid $cal-border !important;
+                                //                         &:last-child{
+                                //                             border-right: none !important;
+                                //                         }
+                                //                     }
+                                //                 }
+                                //             }
+                                //             tbody{
+                                //                 tr{
+                                //                     td{
+                                //                         border-top: 1px solid $cal-border;
+                                //                         border-right: 1px solid $cal-border !important;
+                                //                         border-bottom: none !important;
+                                //                         &:last-child{
+                                //                             border-right: none !important;
+                                //                         }
+                                                        
+                                //                         table.fc-scrollgrid-sync-table{
+                                //                             height: 133px !important;
+                                //                         }
+                                //                         .fc-scroller.fc-scroller-liquid-absolute{
+                                //                             overflow: hidden !important;
+                                //                         }
+                                //                         .fc-daygrid-day-frame.fc-scrollgrid-sync-inner{
+                                //                             cursor: pointer;
+                                //                             &:hover{
+                                //                                 background-color: $cal-border !important;
+                                //                             }
+                                //                             .fc-daygrid-day-events{
+                                //                                 display: none;
+                                //                             }
 
-                                                    }
-                                                    a.fc-daygrid-event.fc-daygrid-block-event.fc-h-event.fc-event.fc-event-start.fc-event-end.fc-event-past{
-                                                        background-color: $font-label-color;
-                                                        border-color: $font-label-color;
-                                                        .fc-event-main{
-                                                            color: $border-color !important;
-                                                        }
-                                                    }
-                                                }
-                                                td.fc-daygrid-day.fc-day.fc-day-today{
-                                                    background-color: $theme-color;
-                                                }
-                                                .fc-highlight {
-                                                    background: $font-label-color !important;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                                //                         }
+                                //                         a.fc-daygrid-event.fc-daygrid-block-event.fc-h-event.fc-event.fc-event-start.fc-event-end.fc-event-past{
+                                //                             background-color: $font-label-color;
+                                //                             border-color: $font-label-color;
+                                //                             .fc-event-main{
+                                //                                 color: $border-color !important;
+                                //                             }
+                                //                         }
+                                //                     }
+                                //                     td.fc-daygrid-day.fc-day.fc-day-today{
+                                //                         background-color: $theme-color;
+                                //                     }
+                                //                     .fc-highlight {
+                                //                         background: $font-label-color !important;
+                                //                     }
+                                //                 }
+                                //             }
+                                //         }
+                                //     }
+                                // }
+                                @include calendar-sm();
                         }
                         .inner-custom-teacher{
                             // height: 100%;
@@ -3636,52 +3637,55 @@ img.dark-icon{
                                 overflow: hidden;
                                 overflow-y: auto;
                                 max-height: 30vh;
-                                table{
-                                    border-collapse: separate;
-                                    border-spacing: 0 20px;
-                                    thead{
-                                        tr{
-                                            td{
-                                                color: $global-font-color;
-                                                font-size: 0.8rem;
-                                                border-top: none;
-                                                border-bottom: 1px solid $border-color;
-                                                padding: 5px 10px;
-                                            }
-                                        }
-                                    }
-                                    tbody{
-                                        tr{
-                                            background-color: $global-sidebar-bg;
-                                            td{
-                                                text-transform: capitalize;
-                                                color: $global-font-color;
-                                                font-size: 0.7rem;
-                                                padding: 10px;
-                                                border-bottom: 1px solid $border-color;
-                                                border-top: 1px solid $border-color;
-                                                vertical-align: middle;
-                                                &:first-child{
-                                                    border-left: 1px solid $border-color;
-                                                    border-top-left-radius: 0.5rem;
-                                                    border-bottom-left-radius: 0.5rem;
-                                                }
-                                                &:last-child{
-                                                    border-right: 1px solid $border-color;
-                                                    border-top-right-radius: 0.5rem;
-                                                    border-bottom-right-radius: 0.5rem;
-                                                }
-                                                .comment-icon{
-                                                    font-size: 1.3rem;
-                                                    color: $icon-color;
-                                                }
-                                                .btn{
-                                                    border-radius: 20px;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+
+                                @include customTable();
+                                    // table{
+                                    //     border-collapse: separate;
+                                    //     border-spacing: 0 20px;
+                                    //     thead{
+                                    //         tr{
+                                    //             td{
+                                    //                 color: $global-font-color;
+                                    //                 font-size: 0.8rem;
+                                    //                 border-top: none;
+                                    //                 border-bottom: 1px solid $border-color;
+                                    //                 padding: 5px 10px;
+                                    //             }
+                                    //         }
+                                    //     }
+                                    //     tbody{
+                                    //         tr{
+                                    //             background-color: $global-sidebar-bg;
+                                    //             td{
+                                    //                 text-transform: capitalize;
+                                    //                 color: $global-font-color;
+                                    //                 font-size: 0.7rem;
+                                    //                 padding: 10px;
+                                    //                 border-bottom: 1px solid $border-color;
+                                    //                 border-top: 1px solid $border-color;
+                                    //                 vertical-align: middle;
+                                    //                 &:first-child{
+                                    //                     border-left: 1px solid $border-color;
+                                    //                     border-top-left-radius: 0.5rem;
+                                    //                     border-bottom-left-radius: 0.5rem;
+                                    //                 }
+                                    //                 &:last-child{
+                                    //                     border-right: 1px solid $border-color;
+                                    //                     border-top-right-radius: 0.5rem;
+                                    //                     border-bottom-right-radius: 0.5rem;
+                                    //                 }
+                                    //                 .comment-icon{
+                                    //                     font-size: 1.3rem;
+                                    //                     color: $icon-color;
+                                    //                 }
+                                    //                 .btn{
+                                    //                     border-radius: 20px;
+                                    //                 }
+                                    //             }
+                                    //         }
+                                    //     }
+                                    // }
+                                
                                 .empty-shedule{
                                     display: flex;
                                     flex-direction: column;
@@ -3717,150 +3721,7 @@ img.dark-icon{
                         // box-shadow: 
                         //         0px 2px 8px $global-box-shadow;
                         //appointment cal
-                        .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
-                            .fc-header-toolbar.fc-toolbar{
-                                justify-content: center;
-                                h2.fc-toolbar-title{
-                                    font-size: 1em !important;
-                                    font-weight: 500;
-                                    color: $global-font-color;
-                                    background-color: $head-theme-color;
-                                    padding: 0.4em 0.65em;
-                                    min-height: 20px;
-                                    white-space: nowrap;
-                                    width: fit-content;
-                                }
-                                button.fc-button.fc-button-primary{
-                                    background-color: $border-color;
-                                    color: $global-font-color;
-                                    &:hover{
-                                        border: none;
-                                        color: $theme-color;
-                                    }
-                                    span.fc-icon{
-                                        position: relative;
-                                        top: -0.35rem;
-                                    }
-                                }
-                                button.fc-next-button.fc-button.fc-button-primary{
-                                    border-radius: 0px 50px 50px 0px;
-                                    min-height: 20px;
-                                }
-                                button.fc-prev-button.fc-button.fc-button-primary{
-                                    border-radius:50px 0px 0px 50px;
-                                    min-height: 20px;
-                                }
-                            }
-                        }
-                        .fc-view-harness.fc-view-harness-active{
-                            height: 331.185px  !important;
-                            @media (min-width:1396.98px) {
-                                height: 191.185px !important
-                            }
-                            @media (max-width:1396.98px) {
-                                height: 185.185px !important
-                            }
-                            @media (max-width:1200.98px) {
-                                height:178.185px !important
-                            }
-                            @media (max-width:1070.98px) {
-                                height: 165.185px !important;
-                            }
-                            @media (max-width:786.98px) {
-                                height: 152.185px !important
-                            }
-                            .fc-daygrid.fc-dayGridMonth-view.fc-view{
-                                table.fc-scrollgrid.fc-scrollgrid-liquid{
-                                    tr.fc-scrollgrid-section.fc-scrollgrid-section-header{
-                                        th{
-                                            border-right: none;
-                                            .fc-scroller-harness{
-                                                .fc-scroller{
-                                                    overflow: unset !important;
-                                                }
-                                                table.fc-col-header{
-                                                    border-bottom: hidden;
-                                                    th{
-                                                        border-right: 1px solid $cal-border !important;
-                                                        &:nth-child(7){
-                                                            border-right: none;
-                                                        }
-                                                    }
-                                                    .fc-scroller{
-                                                        border-right: hidden;
-                                                    }
-                                                    a.fc-col-header-cell-cushion{
-                                                        color: $font-label-color;
-                                                        font-size: 0.65rem;
-                                                        font-weight: 400;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    border: none;
-                                    thead,tbody{
-                                        color: $font-label-color;
-                                        td{
-                                            border: none;
-                                            .fc-scroller{
-                                                overflow: hidden !important;
-                                            }
-                                            th.fc-col-header-cell.fc-day{
-                                                font-weight: 500;
-                                                border-bottom: 1px solid $cal-border !important;
-                                                border-right: 1px solid $cal-border !important;
-                                                &:last-child{
-                                                    border-right: none !important;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    tbody{
-                                        tr{
-                                            td{
-                                                border-top: 1px solid $cal-border;
-                                                border-right: 1px solid $cal-border !important;
-                                                border-bottom: none !important;
-                                                &:last-child{
-                                                    border-right: none !important;
-                                                }
-                                                
-                                                table.fc-scrollgrid-sync-table{
-                                                    height: 133px !important;
-                                                }
-                                                .fc-scroller.fc-scroller-liquid-absolute{
-                                                    overflow: hidden !important;
-                                                }
-                                                .fc-daygrid-day-frame.fc-scrollgrid-sync-inner{
-                                                    cursor: pointer;
-                                                    &:hover{
-                                                        background-color: $cal-border !important;
-                                                    }
-                                                    .fc-daygrid-day-events{
-                                                        display: none;
-                                                    }
-
-                                                }
-                                                a.fc-daygrid-event.fc-daygrid-block-event.fc-h-event.fc-event.fc-event-start.fc-event-end.fc-event-past{
-                                                    background-color: $font-label-color;
-                                                    border-color: $font-label-color;
-                                                    .fc-event-main{
-                                                        color: $border-color !important;
-                                                    }
-                                                }
-                                            }
-                                            td.fc-daygrid-day.fc-day.fc-day-today{
-                                                background-color: $theme-color;
-                                            }
-                                            .fc-highlight {
-                                                background: $font-label-color !important;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        @include calendar-sm();
                     }
                     .inner-custom-teacher{
                         // height: 100%;
@@ -3945,56 +3806,10 @@ img.dark-icon{
                         .table-req{
                             // overflow: hidden;
                             // overflow-x: auto;
+                            min-height: 30vh;
                             max-height: 30vh;
                             overflow-y: auto;
-                            table{
-                                border-collapse: separate;
-                                border-spacing: 0 12px;
-                                thead{
-                                    tr{
-                                        td{
-                                            // color: $global-font-color;
-                                            font-size: 0.8rem;
-                                            border-top: none;
-                                            border-bottom: 1px solid $border-color;
-                                            padding: 5px 10px;
-                                        }
-                                    }
-                                }
-                                tbody{
-                                    tr{
-                                        @include jochi-components-bg();
-                                        @include borderRadius(12);
-                                        td{
-                                            text-transform: capitalize;
-                                            // color: $text-dark;
-                                            font-size: 0.7rem;
-                                            padding: 10px;
-                                            border-top: none;
-                                            // border-bottom: 1px solid $border-color;
-                                            // border-top: 1px solid $border-color;
-                                            vertical-align: middle;
-                                            // &:first-child{
-                                            //     border-left: 1px solid $border-color;
-                                            //     border-top-left-radius: 0.5rem;
-                                            //     border-bottom-left-radius: 0.5rem;
-                                            // }
-                                            // &:last-child{
-                                            //     border-right: 1px solid $border-color;
-                                            //     border-top-right-radius: 0.5rem;
-                                            //     border-bottom-right-radius: 0.5rem;
-                                            // }
-                                            .comment-icon{
-                                                font-size: 1.3rem;
-                                                color: $icon-color;
-                                            }
-                                            .btn{
-                                                border-radius: 20px;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                            @include customTable();
                             .empty-shedule{
                                 display: flex;
                                 flex-direction: column;

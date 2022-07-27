@@ -108,7 +108,7 @@
                                 "
                               >
                                 <i
-                                  class="fa fa-check px-1"
+                                  class="fa fa-check text-12 px-1"
                                   aria-hidden="true"
                                 ></i>
                               </button>
@@ -131,7 +131,7 @@
                                 "
                               >
                                 <i
-                                  class="fa fa-times px-1"
+                                  class="fa fa-times text-12 px-1"
                                   aria-hidden="true"
                                 ></i>
                               </button>
