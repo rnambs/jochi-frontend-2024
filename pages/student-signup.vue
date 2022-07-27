@@ -31,8 +31,8 @@
       <div id="fountainTextG_3" class="fountainTextG animation">. &nbsp;</div>
       <div id="fountainTextG_4" class="fountainTextG animation">. &nbsp;</div>
     </div>
-    <div class="row main-row align-items-center flex-row vh-100 m-0">
-      <div class="col-md-6 img-section login-cover d-flex flex-column align-items-center justify-content-between h-100 flex-fill">
+    <div class="row main-row flex-row vh-100 m-0">
+      <div class="col-md-6 img-section login-cover d-flex flex-column align-items-center justify-content-between h-md-100 flex-fill">
           <div class="logo-img d-flex align-items-center w-100">
             <img src="../static/image/logo.png" alt="" class="logo-icon">
           </div>
@@ -43,7 +43,7 @@
           />
           <p class="mb-0 color-white text-16 font-regular">FAQ's | Privacy Policy</p>
       </div>
-      <div class="col-md-6 form-section d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-6 form-section d-flex align-items-center justify-content-center h-md-100">
         <!-- Sign-Up -->
 
         <section id="sign-up" class="login-box d-flex flex-column h-100 justify-content-between">
