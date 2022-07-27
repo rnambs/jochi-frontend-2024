@@ -110,6 +110,9 @@ body{
     background-color: $white;
     background: $white;
 }
+.component-bg{
+    @include jochi-components-bg();
+}
 
 // BORDER RADIUS{
 
@@ -1074,6 +1077,56 @@ img.dark-icon{
                 @media (max-width: 991.98px) {
                     margin: auto 0px;
                 }
+                .font-icon{
+                    color: $font-label-color;
+                    width: 2rem;
+                    text-align: center;
+                    @media (max-width: 1024.98px) {
+                        width: 1.7rem;
+                    }
+                    @media (max-width: 991.98px) {
+                        width: 100%;
+                    }
+                    // i{
+                    //     font-size: 1.3rem;
+                    //     @media (max-width: 1024.98px) {
+                    //         font-size: 1.5rem;
+                    //     }
+                    //     @media (max-width: 991.98px) {
+                    //         background-color: $global-background-color;
+                    //         display: flex;
+                    //         align-items: center;
+                    //         justify-content: center;
+                    //         border-radius: 5px;
+                    //         margin:0 auto;
+                    //         padding: .5rem; 
+                    //     }
+                    //     &.image-i{
+                    //         @media (max-width: 991.98px) {
+                    //             background-color: $global-background-color;
+                    //             display: flex;
+                    //             align-items: center;
+                    //             justify-content: center;
+                    //             border-radius: 5px;
+                    //             margin:0 auto; 
+                    //         }
+                    //     }
+                    // }
+                }
+                span{
+                    color: $text-secondary;
+                    margin: auto;
+                    font-size: 1.125rem;
+                    @media (max-width: 1024.98px) {
+                        font-size: 0.8rem;
+                    }
+                    @media (max-width: 991.98px) {
+                        display: none;
+                    }
+                    &.active, &:hover{
+                        color: $text-dark;
+                    }
+                }
                 .accordion{
                     button.btn-link{
                         &::after {
@@ -1087,48 +1140,10 @@ img.dark-icon{
                             display: none;
                             }
                         }
-                        .font-icon{
-                            color: $font-label-color;
-                            width: 2rem;
-                            text-align: center;
-                            @media (max-width: 1024.98px) {
-                                width: 1.7rem;
-                            }
-                            @media (max-width: 991.98px) {
-                                width: 100%;
-                            }
-                            // i{
-                            //     font-size: 1.3rem;
-                            //     @media (max-width: 1024.98px) {
-                            //         font-size: 1.5rem;
-                            //     }
-                            //     @media (max-width: 991.98px) {
-                            //         background-color: $global-background-color;
-                            //         display: flex;
-                            //         align-items: center;
-                            //         justify-content: center;
-                            //         border-radius: 5px;
-                            //         margin:0 auto;
-                            //         padding: .5rem; 
-                            //     }
-                            //     &.image-i{
-                            //         @media (max-width: 991.98px) {
-                            //             background-color: $global-background-color;
-                            //             display: flex;
-                            //             align-items: center;
-                            //             justify-content: center;
-                            //             border-radius: 5px;
-                            //             margin:0 auto; 
-                            //         }
-                            //     }
-                            // }
-                        }
                         span{
                             color: $text-secondary;
                             margin: auto;
                             font-size: 1.125rem;
-                            
-                            
                             @media (max-width: 1024.98px) {
                                 font-size: 0.8rem;
                             }
@@ -1246,196 +1261,196 @@ img.dark-icon{
         }
         //side bar teacher
 
-        .teacher-sidebar-section{
-            display: flex;
-            flex-direction: column;
-            width: 15.625rem;
-            height: 100vh;
-            padding: 0;
-            background-color: $global-sidebar-bg;
-            color: $global-font-color;
-            font-size: 1rem;
-            transition: all 0.3s;
-            top: 0;
-            left: 0;
-            z-index: 1031;
-            position: fixed;
-            @media (max-width: 1023.98px) {
-                width: 14.625rem;
-                padding: .375rem 1.2rem;
-            }
-            @media (max-width: 991.98px) {
-                width: 6.625rem;
-            }
-            @media (max-width: 510.98px) {
-                left: -7rem;
-                transition: 0.3s ease all;
-            }
-            .logo-section{
-                display: flex;
-                text-align: center;
-                justify-content: space-around;
-                // width: 135px;
-                // height: 71px;
-                @media (max-width: 991.98px) {
-                    padding: 0 !important;
-                }
-                .text-logo{
-                    img.jochi-logo-text{
-                        width: 50px;
+        // .teacher-sidebar-section{
+        //     display: flex;
+        //     flex-direction: column;
+        //     width: 15.625rem;
+        //     height: 100vh;
+        //     padding: 0;
+        //     background-color: $global-sidebar-bg;
+        //     color: $global-font-color;
+        //     font-size: 1rem;
+        //     transition: all 0.3s;
+        //     top: 0;
+        //     left: 0;
+        //     z-index: 1031;
+        //     position: fixed;
+        //     @media (max-width: 1023.98px) {
+        //         width: 14.625rem;
+        //         padding: .375rem 1.2rem;
+        //     }
+        //     @media (max-width: 991.98px) {
+        //         width: 6.625rem;
+        //     }
+        //     @media (max-width: 510.98px) {
+        //         left: -7rem;
+        //         transition: 0.3s ease all;
+        //     }
+        //     .logo-section{
+        //         display: flex;
+        //         text-align: center;
+        //         justify-content: space-around;
+        //         // width: 135px;
+        //         // height: 71px;
+        //         @media (max-width: 991.98px) {
+        //             padding: 0 !important;
+        //         }
+        //         .text-logo{
+        //             img.jochi-logo-text{
+        //                 width: 50px;
                         
-                    }
-                    p.jochi-logo{
-                        color: $global-font-color;
-                        font-size: 2rem;
-                        font-family: $logo-text-style;
+        //             }
+        //             p.jochi-logo{
+        //                 color: $global-font-color;
+        //                 font-size: 2rem;
+        //                 font-family: $logo-text-style;
                         
-                    }
-                    @media (max-width: 991.98px) {
-                        display: none !important;
-                    }
-                }
-                .icon-logo{
-                    @media (min-width: 991.98px) {
-                        display: none;
-                    }
-                }
-            }
-            // Sidebar profile
-            .profile-sidebar{
-                height: 120px;
-                @media (max-width: 991.98px) {
-                    display: none !important;
-                }
-                .sidebar-profile{
-                    background-color: $global-background-color;
-                    border-bottom-right-radius: 12px;
-                    border-top-right-radius: 12px;
-                    left: 0;
-                    bottom: 10px;
-                    width: 85%;
-                    position: absolute;
-                    img.profile-pic{
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        object-fit: cover;
-                        background-repeat: no-repeat;
-                        background-position: center;
-                    }
-                    .profile-text{
-                        p.wish-text{
-                            color: $font-label-color;
-                            font-size: 0.85rem;
-                            line-height: 1;
-                        }
-                        p.profile-name{
-                            color: $global-font-color;
-                            font-size: 0.85rem;
-                            line-height: 1.5;
-                            max-width: 130px;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            white-space: nowrap;
-                        }
-                    }
-                }
-            }
-            .menu-items{
-                position: relative;
-                @media (max-width: 991.98px) {
-                    margin: auto 0px;
-                }
-                .custom-list {
-                    list-style-type: none;
-                    @media (min-width: 1023.98px) {
-                        padding: .375rem 1.2rem;
-                    }
-                    .menu-list{
-                        margin-bottom: 0.8rem;
-                        border-radius: .3rem;
-                        @media (max-width:786.98) {
-                            padding: 10px;
-                        }
-                        @media (min-width: 991.98px) {
-                            &:hover, &:active{
-                                background-color: $border-color;
-                            }
-                        }
-                        a.nuxt-link-exact-active.nuxt-link-active{
-                            background-color: $border-color;
-                            border-radius: .3rem;
-                            @media (max-width: 991.98px) {
-                                padding: inherit;
-                                background-color: unset;
-                            }
-                            i, .image-i{
-                                @media (max-width: 991.98px) {
-                                    background-color: $border-color;
-                                }
-                            }
-                        }
-                        .nav-link{
-                            cursor: pointer;
-                            text-decoration: none;
-                            color: $font-label-color;
-                            font-size: 1.125rem;
-                            display: flex;
-                            align-items: center;
-                            @media (max-width: 1396.98px) {
-                                font-size: 0.8rem;
-                            }
-                            @media (max-width: 1024.98px) {
-                                font-size: 0.75rem;
-                            }
-                            @media (max-width: 991.98px) {
-                                padding: inherit;
-                                &::after {
-                                display: none;
-                                }
-                            }
-                            .font-icon{
-                                width: 2rem;
-                                text-align: center;
-                                @media (max-width: 1024.98px) {
-                                    width: 1.7rem;
-                                }
-                                @media (max-width: 991.98px) {
-                                    width: 80%;
-                                }
-                                i, .image-i{
-                                    font-size: 1.3rem;
-                                    @media (max-width: 1024.98px) {
-                                        font-size: 1.15rem;
-                                    }
-                                    @media (max-width: 991.98px) {
-                                        padding: 10px;
-                                        background-color: $global-background-color;
-                                        display: flex;
-                                        align-items: center;
-                                        justify-content: center;
-                                        height: 50px;
-                                        border-radius: 5px;
-                                        margin:0 auto; 
-                                        padding: .5rem;
-                                    }
-                                }
-                            }
-                            span{
-                                font-size: 0.85rem;
-                                @media (max-width: 1024.98px) {
-                                    font-size: 0.8rem;
-                                }
-                                @media (max-width: 991.98px) {
-                                    display: none;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        //             }
+        //             @media (max-width: 991.98px) {
+        //                 display: none !important;
+        //             }
+        //         }
+        //         .icon-logo{
+        //             @media (min-width: 991.98px) {
+        //                 display: none;
+        //             }
+        //         }
+        //     }
+        //     // Sidebar profile
+        //     .profile-sidebar{
+        //         height: 120px;
+        //         @media (max-width: 991.98px) {
+        //             display: none !important;
+        //         }
+        //         .sidebar-profile{
+        //             background-color: $global-background-color;
+        //             border-bottom-right-radius: 12px;
+        //             border-top-right-radius: 12px;
+        //             left: 0;
+        //             bottom: 10px;
+        //             width: 85%;
+        //             position: absolute;
+        //             img.profile-pic{
+        //                 width: 50px;
+        //                 height: 50px;
+        //                 border-radius: 50%;
+        //                 object-fit: cover;
+        //                 background-repeat: no-repeat;
+        //                 background-position: center;
+        //             }
+        //             .profile-text{
+        //                 p.wish-text{
+        //                     color: $font-label-color;
+        //                     font-size: 0.85rem;
+        //                     line-height: 1;
+        //                 }
+        //                 p.profile-name{
+        //                     color: $global-font-color;
+        //                     font-size: 0.85rem;
+        //                     line-height: 1.5;
+        //                     max-width: 130px;
+        //                     overflow: hidden;
+        //                     text-overflow: ellipsis;
+        //                     white-space: nowrap;
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     .menu-items{
+        //         position: relative;
+        //         @media (max-width: 991.98px) {
+        //             margin: auto 0px;
+        //         }
+        //         .custom-list {
+        //             list-style-type: none;
+        //             @media (min-width: 1023.98px) {
+        //                 padding: .375rem 1.2rem;
+        //             }
+        //             .menu-list{
+        //                 margin-bottom: 0.8rem;
+        //                 border-radius: .3rem;
+        //                 @media (max-width:786.98) {
+        //                     padding: 10px;
+        //                 }
+        //                 @media (min-width: 991.98px) {
+        //                     &:hover, &:active{
+        //                         background-color: $border-color;
+        //                     }
+        //                 }
+        //                 a.nuxt-link-exact-active.nuxt-link-active{
+        //                     background-color: $border-color;
+        //                     border-radius: .3rem;
+        //                     @media (max-width: 991.98px) {
+        //                         padding: inherit;
+        //                         background-color: unset;
+        //                     }
+        //                     i, .image-i{
+        //                         @media (max-width: 991.98px) {
+        //                             background-color: $border-color;
+        //                         }
+        //                     }
+        //                 }
+        //                 .nav-link{
+        //                     cursor: pointer;
+        //                     text-decoration: none;
+        //                     color: $font-label-color;
+        //                     font-size: 1.125rem;
+        //                     display: flex;
+        //                     align-items: center;
+        //                     @media (max-width: 1396.98px) {
+        //                         font-size: 0.8rem;
+        //                     }
+        //                     @media (max-width: 1024.98px) {
+        //                         font-size: 0.75rem;
+        //                     }
+        //                     @media (max-width: 991.98px) {
+        //                         padding: inherit;
+        //                         &::after {
+        //                         display: none;
+        //                         }
+        //                     }
+        //                     .font-icon{
+        //                         width: 2rem;
+        //                         text-align: center;
+        //                         @media (max-width: 1024.98px) {
+        //                             width: 1.7rem;
+        //                         }
+        //                         @media (max-width: 991.98px) {
+        //                             width: 80%;
+        //                         }
+        //                         i, .image-i{
+        //                             font-size: 1.3rem;
+        //                             @media (max-width: 1024.98px) {
+        //                                 font-size: 1.15rem;
+        //                             }
+        //                             @media (max-width: 991.98px) {
+        //                                 padding: 10px;
+        //                                 background-color: $global-background-color;
+        //                                 display: flex;
+        //                                 align-items: center;
+        //                                 justify-content: center;
+        //                                 height: 50px;
+        //                                 border-radius: 5px;
+        //                                 margin:0 auto; 
+        //                                 padding: .5rem;
+        //                             }
+        //                         }
+        //                     }
+        //                     span{
+        //                         font-size: 0.85rem;
+        //                         @media (max-width: 1024.98px) {
+        //                             font-size: 0.8rem;
+        //                         }
+        //                         @media (max-width: 991.98px) {
+        //                             display: none;
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
 
-        }
+        // }
         .sidebar-opened{
             left: 0;
         }
@@ -3351,26 +3366,26 @@ img.dark-icon{
         // end Study 
         // teacher
         .teacher-section{
-            .text-color{
-                color: $theme-color;
-            }
+            // .text-color{
+            //     color: $theme-color;
+            // }
             .inner-teacher{
-                background-color: $global-sidebar-bg;
-                height: auto;
-                border-radius: 1rem;
-                font-size: .75rem;
-                @media (max-width:1155px) {
-                    font-size: .65rem;
-                }
+                // background-color: $global-sidebar-bg;
+                // height: auto;
+                // border-radius: 1rem;
+                // font-size: .75rem;
+                // @media (max-width:1155px) {
+                //     font-size: .65rem;
+                // }
                 .teacher-row{
-                    background-color: $Global-background-element;
-                    margin: auto;
-                    height: 100%;
-                    background-color: $Global-background-element;
-                    border-radius: .5rem;
-                    box-shadow: 
-                            0px 2px 8px $global-box-shadow;
-                    padding: 15px 0px;
+                    // background-color: $Global-background-element;
+                    // margin: auto;
+                    // height: 100%;
+                    // background-color: $Global-background-element;
+                    // border-radius: .5rem;
+                    // box-shadow: 
+                    //         0px 2px 8px $global-box-shadow;
+                    // padding: 15px 0px;
 
                     .custom-teacher-container{
                         display: flex;
@@ -3379,11 +3394,11 @@ img.dark-icon{
                             padding-top: 12px;
                         }
                         .inner-custom-teacher.text-light{
-                            height: 100%;
-                            background-color: $border-color;
-                            border-radius: .5rem;
-                            box-shadow: 
-                                    0px 2px 8px $global-box-shadow;
+                            // height: 100%;
+                            // background-color: $border-color;
+                            // border-radius: .5rem;
+                            // box-shadow: 
+                            //         0px 2px 8px $global-box-shadow;
                             //appointment cal
                             .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
                                 .fc-header-toolbar.fc-toolbar{
@@ -3529,14 +3544,14 @@ img.dark-icon{
                             }
                         }
                         .inner-custom-teacher{
-                            height: 100%;
-                            background-color: $Global-background-element;
-                            border-radius: .5rem;
-                            box-shadow: 
-                                    0px 2px 8px $global-box-shadow;
-                            h6{
-                                color:$theme-color;
-                            }
+                            // height: 100%;
+                            // background-color: $Global-background-element;
+                            // border-radius: .5rem;
+                            // box-shadow: 
+                            //         0px 2px 8px $global-box-shadow;
+                            // h6{
+                            //     color:$theme-color;
+                            // }
                             .inner-agenda{
                                 overflow: hidden;
                                 overflow-y: auto;
@@ -3687,11 +3702,11 @@ img.dark-icon{
                         padding-top: 12px;
                     }
                     .inner-custom-teacher.dashboard-cal{
-                        height: 100%;
-                        background-color: $Global-background-element;
-                        border-radius: .5rem;
-                        box-shadow: 
-                                0px 2px 8px $global-box-shadow;
+                        // height: 100%;
+                        // background-color: $Global-background-element;
+                        // border-radius: .5rem;
+                        // box-shadow: 
+                        //         0px 2px 8px $global-box-shadow;
                         //appointment cal
                         .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
                             .fc-header-toolbar.fc-toolbar{
@@ -3837,14 +3852,14 @@ img.dark-icon{
                         }
                     }
                     .inner-custom-teacher{
-                        height: 100%;
-                        background-color: $Global-background-element;
-                        border-radius: .5rem;
-                        box-shadow: 
-                                0px 2px 8px $global-box-shadow;
-                        h6{
-                            color:$theme-color;
-                        }
+                        // height: 100%;
+                        // background-color: $Global-background-element;
+                        // border-radius: .5rem;
+                        // box-shadow: 
+                        //         0px 2px 8px $global-box-shadow;
+                        // h6{
+                        //     color:$theme-color;
+                        // }
                         .inner-agenda{
                             overflow: hidden;
                             overflow-y: auto;
@@ -3912,22 +3927,22 @@ img.dark-icon{
                         }
                     }
                     .appointment-req{
-                        h6{
-                            color: $theme-color;
-                        }
+                        // h6{
+                        //     color: $theme-color;
+                        // }
                         // teacher req table
                         .table-req{
-                            overflow: hidden;
-                            overflow-x: auto;
-                            max-height: 30vh;
-                            overflow-y: auto;
+                            // overflow: hidden;
+                            // overflow-x: auto;
+                            // max-height: 30vh;
+                            // overflow-y: auto;
                             table{
                                 border-collapse: separate;
                                 border-spacing: 0 20px;
                                 thead{
                                     tr{
                                         td{
-                                            color: $global-font-color;
+                                            // color: $global-font-color;
                                             font-size: 0.8rem;
                                             border-top: none;
                                             border-bottom: 1px solid $border-color;
@@ -3937,25 +3952,25 @@ img.dark-icon{
                                 }
                                 tbody{
                                     tr{
-                                        background-color: $global-sidebar-bg;
+                                        // background-color: $global-sidebar-bg;
                                         td{
                                             text-transform: capitalize;
-                                            color: $global-font-color;
+                                            color: $text-dark;
                                             font-size: 0.7rem;
                                             padding: 10px;
-                                            border-bottom: 1px solid $border-color;
-                                            border-top: 1px solid $border-color;
+                                            // border-bottom: 1px solid $border-color;
+                                            // border-top: 1px solid $border-color;
                                             vertical-align: middle;
-                                            &:first-child{
-                                                border-left: 1px solid $border-color;
-                                                border-top-left-radius: 0.5rem;
-                                                border-bottom-left-radius: 0.5rem;
-                                            }
-                                            &:last-child{
-                                                border-right: 1px solid $border-color;
-                                                border-top-right-radius: 0.5rem;
-                                                border-bottom-right-radius: 0.5rem;
-                                            }
+                                            // &:first-child{
+                                            //     border-left: 1px solid $border-color;
+                                            //     border-top-left-radius: 0.5rem;
+                                            //     border-bottom-left-radius: 0.5rem;
+                                            // }
+                                            // &:last-child{
+                                            //     border-right: 1px solid $border-color;
+                                            //     border-top-right-radius: 0.5rem;
+                                            //     border-bottom-right-radius: 0.5rem;
+                                            // }
                                             .comment-icon{
                                                 font-size: 1.3rem;
                                                 color: $icon-color;
@@ -3989,15 +4004,15 @@ img.dark-icon{
                 }
                 .row{
                     .custom-teacher-container{
-                        display: flex;
-                        flex-direction: column;
+                        // display: flex;
+                        // flex-direction: column;
                     // avalability time badge
                         .time-slot{
-                            background-color: $Global-background-element;
-                            border-radius: .5rem;
-                            box-shadow: 
-                                    0px 2px 8px $global-box-shadow;
-                            height: 100%;
+                            // background-color: $Global-background-element;
+                            // border-radius: .5rem;
+                            // box-shadow: 
+                            //         0px 2px 8px $global-box-shadow;
+                            // height: 100%;
                                 // availability month calendar
                                 .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
                                     .fc-header-toolbar.fc-toolbar{
@@ -4720,12 +4735,12 @@ img.dark-icon{
                                 
                             }
                         }
-                        #text_color1{
-                            color: $theme-color;
-                        }
-                        #text_color2{
-                            color: $global-font-color;
-                        }
+                        // #text_color1{
+                        //     color: $theme-color;
+                        // }
+                        // #text_color2{
+                        //     color: $global-font-color;
+                        // }
                     }
                     
                 }
