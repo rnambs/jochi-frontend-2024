@@ -5,8 +5,12 @@
   <div class="main-section">
     <!-- teacher Page -->
     <section id="teacher-detail" class="">
-      <div class="teacher-section container-fluid  mt-4">
-        <h5 class="text-color m-0 p-3">Teacher Appointment</h5>
+      <div class="teacher-section jochi-components-light-bg
+      p-4
+      custom-margin-for-main-section custom-full-height
+      d-flex
+      flex-column custom-overflow">
+        <h3 class="text-color m-0 p-3">Teacher Appointment</h3>
         <div class="inner-teacher container-fluid p-3">
           <div class="row teacher-row container-fluid">
             
