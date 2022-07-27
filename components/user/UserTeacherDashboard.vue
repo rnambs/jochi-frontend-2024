@@ -9,18 +9,22 @@
     <div class="main-section">
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
-        <div class="teacher-section container-fluid mt-4">
-          <div class="inner-teacher container-fluid p-3">
+        <div class="teacher-section container-fluid">
+          <div class="inner-teacher jochi-components-light-bg
+          p-4
+          custom-margin-for-main-section custom-full-height
+          d-flex
+          flex-column">
             <div class="row">
               <!-- CALANDER -->
               <!-- AGENDA -->
-              <div class="col-md-7 container custom-teacher-container">
+              <div class="col-md-7 container custom-teacher-container d-flex flex-column">
                 <div class="container mb-2">
-                  <h5 class="mb-1" id="text_color1">Hello {{ firstName }}</h5>
-                  <h4 id="text_color2">Have a great day</h4>
+                  <h5 class="mb-1  color-dark font-semi-bold" >Hello {{ firstName }}</h5>
+                  <h2 class="color-primary font-semi-bold">Have a great day</h2>
                 </div>
 
-                <div class="time-slot container p-4">
+                <div class="time-slot container p-4 card card-primary rounded-22 h-100">
                   <h5 class="text-color mb-4 px-2">Meetings Today</h5>
                   <div class="inner-meeting-today p-2">
                     <div class="container">
@@ -61,13 +65,13 @@
               <!-- END AGENDA -->
               <div class="col-md-5 custom-teacher-container">
                 <!-- TABLE  -->
-                <div class="teacher-row container mb-3">
+                <div class="teacher-row container mb-3 card card-primary rounded-22">
                   <div class="appointment-req pb-2">
-                    <h6 class="text-center pt-3 mb-0">Meeting Requests</h6>
-                    <div class="table-req container py-0">
+                    <h6 class="text-center color-primary pt-3 mb-0">Meeting Requests</h6>
+                    <div class="table-req container py-0 custom-overflow">
                       <table class="table">
                         <thead>
-                          <tr>
+                          <tr class="color-dark">
                             <td scope="col"></td>
                             <td scope="col">Name</td>
                             <td scope="col">Date</td>
@@ -78,7 +82,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr v-for="teacher in teachersList" :key="teacher.id">
+                          <tr v-for="teacher in teachersList" :key="teacher.id" class="component-bg">
                             <td scope="row"></td>
                             <td>{{ teacher["title"] }}</td>
                             <td class="text-nowrap">{{ teacher["date"] }}</td>
@@ -145,7 +149,7 @@
                   </div>
                 </div>
                 <!-- END TABLE  -->
-                <div class="inner-custom-teacher dashboard-cal container p-2">
+                <div class="inner-custom-teacher dashboard-cal container p-2 card card-primary rounded-22">
                   <FullCalendar :options="calendarOptions" />
                 </div>
               </div>
