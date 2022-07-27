@@ -1,16 +1,16 @@
-$dark-theme:#FF4E71;
-$theme-color: #FF6D6D;
-$icon-bg-green:#4AC55E;
-$border-color:#a7a7a7;
-$selected-color:#FF6D6D;
-$head-theme-color:#FF6F69;
-$icon-color:#D7F9FF;
-$cal-border:#5B5B5E;
-$confirm-green: #86FD97;
-$white:#ffffff;
-$black:#000000;
-$text-dark:#431F1C;
-$text-secondary: #C5C0BD;
+$dark-theme        : #FF4E71;
+$theme-color       : #FF6D6D;
+$icon-bg-green     : #4AC55E;
+$border-color      : #f0f0f0;
+$selected-color    : #FF6D6D;
+$head-theme-color  : #FF6F69;
+$icon-color        : #D7F9FF;
+$cal-border        : #f0f0f0;
+$confirm-green     : #86FD97;
+$white             : #ffffff;
+$black             : #000000;
+$text-dark         : #431F1C;
+$text-secondary    : #C5C0BD;
 // element color
 @mixin jochi-components-light-bg{
     background-color: rgba($color: $white, $alpha: 0.45);
@@ -19,8 +19,7 @@ $text-secondary: #C5C0BD;
     border: 1px solid $white;
 }
 @mixin jochi-components-bg {
-    background-color: rgba($color: $white, $alpha: 0.45);
-    box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
+    box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
     border: 1px solid $white;
 }
 @mixin jochi-sub-components-light-bg{

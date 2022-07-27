@@ -9,12 +9,12 @@
     <div class="main-section">
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
-        <div class="teacher-section container-fluid">
+        <div class="teacher-section">
           <div class="inner-teacher jochi-components-light-bg
           p-4
           custom-margin-for-main-section custom-full-height
           d-flex
-          flex-column">
+          flex-column custom-overflow">
             <div class="row">
               <!-- CALANDER -->
               <!-- AGENDA -->
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="time-slot container p-4 card card-primary rounded-22 h-100">
-                  <h5 class="text-color mb-4 px-2">Meetings Today</h5>
+                  <h4 class="color-dark mb-4 px-2 font-semi-bold">Meetings Today</h4>
                   <div class="inner-meeting-today p-2">
                     <div class="container">
                       <div
@@ -53,7 +53,7 @@
                         </div>
                       </div>
                       <div v-if="listAgenda.length == 0" class="empty-shedule">
-                        <p>No meetings for the day</p>
+                        <p class="color-secondary  text-center">No meetings for the day</p>
                       </div>
                     </div>
                   </div>
@@ -65,13 +65,13 @@
               <!-- END AGENDA -->
               <div class="col-md-5 custom-teacher-container">
                 <!-- TABLE  -->
-                <div class="teacher-row container mb-3 card card-primary rounded-22">
-                  <div class="appointment-req pb-2">
+                <div class="teacher-row container mb-3 card card-primary rounded-22 p-0">
+                  <div class="appointment-req p-2">
                     <h6 class="text-center color-primary pt-3 mb-0">Meeting Requests</h6>
-                    <div class="table-req container py-0 custom-overflow">
+                    <div class="table-req container py-3 custom-overflow-x hidden-scroll">
                       <table class="table">
                         <thead>
-                          <tr class="color-dark">
+                          <tr class="color-dark font-semi-bold">
                             <td scope="col"></td>
                             <td scope="col">Name</td>
                             <td scope="col">Date</td>
@@ -82,7 +82,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr v-for="teacher in teachersList" :key="teacher.id" class="component-bg">
+                          <tr v-for="teacher in teachersList" :key="teacher.id">
                             <td scope="row"></td>
                             <td>{{ teacher["title"] }}</td>
                             <td class="text-nowrap">{{ teacher["date"] }}</td>
@@ -149,7 +149,7 @@
                   </div>
                 </div>
                 <!-- END TABLE  -->
-                <div class="inner-custom-teacher dashboard-cal container p-2 card card-primary rounded-22">
+                <div class="inner-custom-teacher dashboard-cal container p-3 card card-primary rounded-22 flex-fill">
                   <FullCalendar :options="calendarOptions" />
                 </div>
               </div>
