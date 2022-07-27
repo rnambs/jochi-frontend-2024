@@ -208,7 +208,7 @@
                   <p>Settings</p>
                 </a>
                 <div class="dropdown-menu">
-                  <nuxt-link  class="dropdown-item">
+                  <nuxt-link  class="dropdown-item" to="/">
                     <span>Reset Password</span>
                   </nuxt-link>
                   <a class="dropdown-item" href="#" 
