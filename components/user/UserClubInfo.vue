@@ -954,7 +954,7 @@
           <div class="modal-body no-overflow px-4">
             <!-- <div class="col-md-5 col-xs-12"> -->
             <div class="d-flex align-items-center flex-fill mr-2">
-              <croppa
+              <!-- <croppa
                 v-model="croppa"
                 :width="1200"
                 :height="800"
@@ -968,7 +968,14 @@
                 :show-loading="true"
                 :loading-size="50"
                 :loading-color="'#606060'"
-              ></croppa>
+              ></croppa> -->
+              <cropper
+                class="cropper"
+                src="~/assets/image/cover-pic.jpg"
+                :stencil-props="{
+                  aspectRatio: 1200 / 180,
+                }"
+              />
             </div>
 
             <!-- </div> -->
@@ -994,6 +1001,9 @@ import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import Multiselect from "vue-multiselect";
 import "vue-croppa/dist/vue-croppa.css";
+import { Cropper } from "vue-advanced-cropper";
+import "vue-advanced-cropper/dist/style.css";
+
 var headingName = "";
 var clubId = "";
 var list_data = [];
@@ -1003,6 +1013,7 @@ export default {
   components: {
     lottie,
     Multiselect,
+    Cropper,
   },
   data() {
     return {
@@ -1033,6 +1044,7 @@ export default {
       isLeaderView: false,
       tagColorMap: {},
       croppa: {},
+      img: "https://images.unsplash.com/photo-1600984575359-310ae7b6bdf2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
     };
   },
 
@@ -1421,7 +1433,7 @@ export default {
       $("#addLeaderModal").modal({ backdrop: true });
     },
     openAddBanner() {
-      $("#addBannerModal").modal({ backdrop: true });
+      // $("#addBannerModal").modal({ backdrop: true });
     },
     uploadCroppedImage() {
       this.croppa.generateBlob(
@@ -1435,3 +1447,11 @@ export default {
   },
 };
 </script>
+
+<style>
+.cropper {
+  height: 600px;
+  width: 600px;
+  background: #ddd;
+}
+</style>

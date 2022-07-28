@@ -2,38 +2,64 @@
   <div class="main-section">
     <!-- Study Page -->
     <!-- session  -->
-    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex hidden-scroll">
-      
+    <div
+      v-if="currentTab == 0"
+      class="
+        jochi-components-light-bg
+        p-4
+        custom-margin-for-main-section custom-full-height
+        d-flex
+        hidden-scroll
+      "
+    >
       <div class="study-section d-flex flex-column flex-fill">
         <div class="row h-100">
           <div class="col-lg-7 d-flex flex-column">
-              <div class="row card card-primary rounded-22 m-0 mb-4 p-4 flex-row">
-                  <div class="col-7">
-                      <h2 class="color-primary font-semi-bold mb-1">Complete An Assignment</h2>
-                      <p class="mb-0 color-dark font-semi-bold text-16">
-                        Tackle  your upcoming assignments
-                      </p>
-                  </div>
-                  <div class="col-5 d-flex justify-content-end">
-                      <img src="../../static/image/folder.png" alt="" class="card-img">
-                  </div>
+            <div
+              @click="setSessionType('assignment')"
+              class="row card card-primary rounded-22 m-0 mb-4 p-4 flex-row"
+            >
+              <div class="col-7">
+                <h2 class="color-primary font-semi-bold mb-1">
+                  Complete An Assignment
+                </h2>
+                <p class="mb-0 color-dark font-semi-bold text-16">
+                  Tackle your upcoming assignments
+                </p>
               </div>
-              <div class="row card card-primary rounded-22 p-4 m-0 flex-row">
-                  <div class="col-7">
-                      <h2 class="color-primary font-semi-bold mb-1">Start a new Study Session</h2>
-                      <p class="mb-0 color-dark font-semi-bold text-16">
-                        Stay focused while you study, and monitor your productivity
-                      </p>
-                  </div>
-                  <div class="col-5 d-flex justify-content-end">
-                      <img src="../../static/image/lamp.png" alt="" class="card-img">
-                  </div>
+              <div class="col-5 d-flex justify-content-end">
+                <img
+                  src="../../static/image/folder.png"
+                  alt=""
+                  class="card-img"
+                />
               </div>
+            </div>
+            <div
+              @click="setSessionType('study')"
+              class="row card card-primary rounded-22 p-4 m-0 flex-row"
+            >
+              <div class="col-7">
+                <h2 class="color-primary font-semi-bold mb-1">
+                  Start a new Study Session
+                </h2>
+                <p class="mb-0 color-dark font-semi-bold text-16">
+                  Stay focused while you study, and monitor your productivity
+                </p>
+              </div>
+              <div class="col-5 d-flex justify-content-end">
+                <img
+                  src="../../static/image/lamp.png"
+                  alt=""
+                  class="card-img"
+                />
+              </div>
+            </div>
           </div>
           <div class="col-lg-5 h-100">
-              <div class="card card-primary rounded-22 p-4 h-100">
-                <!-- default -->
-                  <!-- <div class="d-flex justify-content-between flex-column h-100">
+            <div class="card card-primary rounded-22 p-4 h-100">
+              <!-- default -->
+              <!-- <div class="d-flex justify-content-between flex-column h-100">
                       <div class="head-section">
                           <h2 class="color-primary font-semi-bold mb-1">Enhance your studying with research-backed technqiues</h2>
                           <button class="btn btn-dark my-2">Swipe to Learn More</button>
@@ -42,43 +68,164 @@
                           <img src="../../static/image/student_img.png" alt="" class="img-fluid">
                       </div>
                   </div> -->
-                  <!-- end -->
-                  <!-- listing -->
-                  <div class="d-flex flex-column h-100">
-                    <h2 class="color-primary font-semi-bold mb-2">Title</h2>
-                    <div class="custom-overflow pr-2 mr--2">
-                      <div class="d-flex card card-secondary p-3 d-flex flex-column mb-3">
-                        <h6 class="color-dark font-semi-bold mb-1">Title </h6>
-                        <p class="mb-0 color-secondary font-normal text-14"><span>02 Jan 2022 </span> <span>|</span><span>02:03 pm</span></p>
-                      </div>
-                      <div class="d-flex card card-secondary p-3 d-flex flex-column mb-3">
-                        <h6 class="color-dark font-semi-bold mb-1">Title </h6>
-                        <p class="mb-0 color-secondary font-normal text-14"><span>02 Jan 2022 </span> <span>|</span><span>02:03 pm</span></p>
-                      </div>
-                      <div class="d-flex card card-secondary p-3 d-flex flex-column mb-3">
-                        <h6 class="color-dark font-semi-bold mb-1">Title </h6>
-                        <p class="mb-0 color-secondary font-normal text-14"><span>02 Jan 2022 </span> <span>|</span><span>02:03 pm</span></p>
-                      </div>
-                      <div class="d-flex card card-secondary p-3 d-flex flex-column mb-3">
-                        <h6 class="color-dark font-semi-bold mb-1">Title </h6>
-                        <p class="mb-0 color-secondary font-normal text-14"><span>02 Jan 2022 </span> <span>|</span><span>02:03 pm</span></p>
-                      </div>
-                      <div class="d-flex card card-secondary p-3 d-flex flex-column mb-3">
-                        <h6 class="color-dark font-semi-bold mb-1">Title </h6>
-                        <p class="mb-0 color-secondary font-normal text-14"><span>02 Jan 2022 </span> <span>|</span><span>02:03 pm</span></p>
-                      </div>
-                      <div class="d-flex card card-secondary p-3 d-flex flex-column mb-3">
-                        <h6 class="color-dark font-semi-bold mb-1">Title </h6>
-                        <p class="mb-0 color-secondary font-normal text-14"><span>02 Jan 2022 </span> <span>|</span><span>02:03 pm</span></p>
-                      </div>
-                      <div class="d-flex card card-secondary p-3 d-flex flex-column mb-3">
-                        <h6 class="color-dark font-semi-bold mb-1">Title </h6>
-                        <p class="mb-0 color-secondary font-normal text-14"><span>02 Jan 2022 </span> <span>|</span><span>02:03 pm</span></p>
-                      </div>
+              <!-- end -->
+              <!-- listing -->
+              <div class="d-flex flex-column h-100">
+                <h2 class="color-primary font-semi-bold mb-2">
+                  Upcoming Sessions
+                </h2>
+                <div
+                  v-for="sessionItem in studySessions"
+                  :key="sessionItem.id"
+                  class="custom-overflow pr-2 mr--2"
+                >
+                  <div
+                    class="
+                      d-flex
+                      card card-secondary
+                      p-3
+                      d-flex
+                      flex-column
+                      mb-3
+                    "
+                  >
+                    <h6 class="color-dark font-semi-bold mb-1">
+                      {{ sessionItem }}
+                    </h6>
+                    <p class="mb-0 color-secondary font-normal text-14">
+                      <span>02 Jan 2022 </span> <span>|</span>
+                      <span>02:03 pm</span>
+                    </p>
+                  </div>
+                  <!-- <div
+                    class="
+                      d-flex
+                      card card-secondary
+                      p-3
+                      d-flex
+                      flex-column
+                      mb-3
+                    "
+                  >
+                    <h6 class="color-dark font-semi-bold mb-1">Title</h6>
+                    <p class="mb-0 color-secondary font-normal text-14">
+                      <span>02 Jan 2022 </span> <span>|</span
+                      ><span>02:03 pm</span>
+                    </p>
+                  </div>
+                  <div
+                    class="
+                      d-flex
+                      card card-secondary
+                      p-3
+                      d-flex
+                      flex-column
+                      mb-3
+                    "
+                  >
+                    <h6 class="color-dark font-semi-bold mb-1">Title</h6>
+                    <p class="mb-0 color-secondary font-normal text-14">
+                      <span>02 Jan 2022 </span> <span>|</span
+                      ><span>02:03 pm</span>
+                    </p>
+                  </div>
+                  <div
+                    class="
+                      d-flex
+                      card card-secondary
+                      p-3
+                      d-flex
+                      flex-column
+                      mb-3
+                    "
+                  >
+                    <h6 class="color-dark font-semi-bold mb-1">Title</h6>
+                    <p class="mb-0 color-secondary font-normal text-14">
+                      <span>02 Jan 2022 </span> <span>|</span
+                      ><span>02:03 pm</span>
+                    </p>
+                  </div>
+                  <div
+                    class="
+                      d-flex
+                      card card-secondary
+                      p-3
+                      d-flex
+                      flex-column
+                      mb-3
+                    "
+                  >
+                    <h6 class="color-dark font-semi-bold mb-1">Title</h6>
+                    <p class="mb-0 color-secondary font-normal text-14">
+                      <span>02 Jan 2022 </span> <span>|</span
+                      ><span>02:03 pm</span>
+                    </p>
+                  </div>
+                  <div
+                    class="
+                      d-flex
+                      card card-secondary
+                      p-3
+                      d-flex
+                      flex-column
+                      mb-3
+                    "
+                  >
+                    <h6 class="color-dark font-semi-bold mb-1">Title</h6>
+                    <p class="mb-0 color-secondary font-normal text-14">
+                      <span>02 Jan 2022 </span> <span>|</span
+                      ><span>02:03 pm</span>
+                    </p>
+                  </div>
+                  <div
+                    class="
+                      d-flex
+                      card card-secondary
+                      p-3
+                      d-flex
+                      flex-column
+                      mb-3
+                    "
+                  >
+                    <h6 class="color-dark font-semi-bold mb-1">Title</h6>
+                    <p class="mb-0 color-secondary font-normal text-14">
+                      <span>02 Jan 2022 </span> <span>|</span
+                      ><span>02:03 pm</span>
+                    </p>
+                  </div> -->
+                </div>
+                <div
+                  v-if="!studySessions || studySessions.length <= 0"
+                  class="custom-overflow pr-2 mr--2"
+                >
+                  <div class="custom-overflow pr-2 mr--2">
+                    <div
+                      class="
+                        d-flex
+                        card card-secondary
+                        p-3
+                        d-flex
+                        flex-column
+                        mb-3
+                      "
+                    >
+                      <h6 class="color-dark font-semi-bold mb-1"></h6>
+                      <p
+                        class="
+                          mb-0
+                          color-secondary
+                          font-normal
+                          text-14 text-center
+                        "
+                      >
+                        <span> No sessions configured yet!</span>
+                      </p>
                     </div>
                   </div>
-                  <!-- end -->
+                </div>
               </div>
+              <!-- end -->
+            </div>
           </div>
         </div>
       </div>
@@ -87,282 +234,357 @@
 
     <!-- step one -->
 
-    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll">
+    <div
+      v-if="currentTab == 1"
+      class="
+        jochi-components-light-bg
+        p-4
+        custom-margin-for-main-section custom-full-height
+        d-flex
+        flex-column
+        hidden-scroll
+      "
+    >
+      <div class="row">
+        <button @click="onBack()">Back</button>
+        <button @click="onNext()">Next</button>
+      </div>
       <h2 class="color-primary font-bold mb-1">Step One:</h2>
       <h2 class="color-primary font-bold mb-4">Choose An Assignment</h2>
+
       <div class="row">
-      <div class="col-md-6 col-lg-4">
-          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
-              <div class="assignment-tag-section d-flex align-items-center mb-2">
-                  <div class="assignment-tag red mr-2">Urgent</div>
-                  <div class="assignment-tag pink">AP French</div>
+        <div
+          v-for="detail in assignmentList"
+          :key="detail.id"
+          class="col-md-6 col-lg-4"
+        >
+          <div
+            @click="onAssignmentSelect(detail)"
+            class="
+              jochi-sub-components-light-bg
+              drag-drop
+              p-4
+              position-realtive
+            "
+          >
+            <div class="assignment-tag-section d-flex align-items-center mb-2">
+              <div
+                v-if="detail.priority == '1'"
+                class="assignment-tag red mr-2"
+              >
+                Urgent
               </div>
-              <div class="text-center">
-                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
-                  <div class="text-center px-3">
-                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
-                  </div>
+              <div v-if="detail.priority == '2'" class="assignment-tag pink">
+                AP French
               </div>
-              <div class="mb-3">
-                  <h6 class="color-primary">Sub-tasks</h6>
-                  <div class="pl-2 d-flex align-items-center">
+            </div>
+            <div class="text-center">
+              <h4 class="color-primary font-semi-bold mb-0">
+                <!-- French Oral Practice -->
+                {{ detail.task }}
+              </h4>
+              <div class="text-center px-3">
+                <p class="color-secondary text-16 line-height-1 font-semi-bold">
+                  <!-- Practice for mock oral exam in class -->
+                  {{ detail.subject }}
+                </p>
+              </div>
+            </div>
+            <div
+              v-if="detail.subTasks && detail.subTasks.length > 0"
+              class="mb-3"
+            >
+              <h6 class="color-primary">Sub-tasks</h6>
+              <div v-for="subtask in detail.subTasks" :key="subtask.id">
+                <div class="pl-2 d-flex align-items-center">
                   <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12">Study Vocab List</label>
-                  </div>
-                  <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12"
-                      >Start typing to add subtasks</label
-                  >
-                  </div>
-              </div>
-              <div class="">
-                  <h6 class="mb-1 color-primary">Additional Material</h6>
-                  <div
-                  class="
-                      d-flex
-                      align-items-center
-                      justify-content-between
-                  "
-                  >
-                  <div class="col-8 py-0 pl-0 material-link">
-                      Rubric: https://docs.google.com/document/...
-                  </div>
-                  <div class="col-4 material-date py-0 text-right">
-                      12/04/22
-                  </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
-              <div class="assignment-tag-section d-flex align-items-center mb-2">
-                  <div class="assignment-tag red mr-2">Urgent</div>
-                  <div class="assignment-tag pink">AP French</div>
-              </div>
-              <div class="text-center">
-                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
-                  <div class="text-center px-3">
-                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
-                  </div>
-              </div>
-              <div class="mb-3">
-                  <h6 class="color-primary">Sub-tasks</h6>
-                  <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12">Study Vocab List</label>
-                  </div>
-                  <div class="pl-2 d-flex align-items-center">
+                  <label for="" class="mb-0 text-12">{{ subtask.title }}</label>
+                </div>
+                <!-- <div class="pl-2 d-flex align-items-center">
                   <input type="radio" class="mr-2" />
                   <label for="" class="mb-0 text-12"
-                      >Start typing to add subtasks</label
+                    >Start typing to add subtasks</label
                   >
-                  </div>
+                </div> -->
               </div>
-              <div class="">
-                  <h6 class="mb-1 color-primary">Additional Material</h6>
-                  <div
-                  class="
-                      d-flex
-                      align-items-center
-                      justify-content-between
-                  "
-                  >
-                  <div class="col-8 py-0 pl-0 material-link">
-                      Rubric: https://docs.google.com/document/...
-                  </div>
-                  <div class="col-4 material-date py-0 text-right">
-                      12/04/22
-                  </div>
-                  </div>
+            </div>
+            <div class="">
+              <h6 class="mb-1 color-primary">Additional Material</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div
+                  v-if="detail.assignment_materials"
+                  class="col-8 py-0 pl-0 material-link"
+                >
+                  {{ detail.assignment_materials.file_type }}:{{
+                    detail.assignment_materials.file_name
+                  }}
+                </div>
+
+                <div v-else class="col-8 py-0 pl-0 material-link">
+                  No documents added!
+                </div>
+                <div class="col-4 material-date py-0 text-right">
+                  {{ detail.due_date }}
+                </div>
               </div>
+            </div>
           </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
-              <div class="assignment-tag-section d-flex align-items-center mb-2">
-                  <div class="assignment-tag red mr-2">Urgent</div>
-                  <div class="assignment-tag pink">AP French</div>
+        </div>
+        <!-- <div class="col-md-6 col-lg-4">
+          <div
+            class="
+              jochi-sub-components-light-bg
+              drag-drop
+              p-4
+              position-realtive
+            "
+          >
+            <div class="assignment-tag-section d-flex align-items-center mb-2">
+              <div class="assignment-tag red mr-2">Urgent</div>
+              <div class="assignment-tag pink">AP French</div>
+            </div>
+            <div class="text-center">
+              <h4 class="color-primary font-semi-bold mb-0">
+                French Oral Practice
+              </h4>
+              <div class="text-center px-3">
+                <p class="color-secondary text-16 line-height-1 font-semi-bold">
+                  Practice for mock oral exam in class
+                </p>
               </div>
-              <div class="text-center">
-                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
-                  <div class="text-center px-3">
-                  <p  class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
-                  </div>
+            </div>
+            <div class="mb-3">
+              <h6 class="color-primary">Sub-tasks</h6>
+              <div class="pl-2 d-flex align-items-center">
+                <input type="radio" class="mr-2" />
+                <label for="" class="mb-0 text-12">Study Vocab List</label>
               </div>
-              <div class="mb-3">
-                  <h6 class="color-primary">Sub-tasks</h6>
-                  <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12">Study Vocab List</label>
-                  </div>
-                  <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12"
-                      >Start typing to add subtasks</label
-                  >
-                  </div>
+              <div class="pl-2 d-flex align-items-center">
+                <input type="radio" class="mr-2" />
+                <label for="" class="mb-0 text-12"
+                  >Start typing to add subtasks</label
+                >
               </div>
-              <div class="">
-                  <h6 class="mb-1 color-primary">Additional Material</h6>
-                  <div
-                  class="
-                      d-flex
-                      align-items-center
-                      justify-content-between
-                  "
-                  >
-                  <div class="col-8 py-0 pl-0 material-link">
-                      Rubric: https://docs.google.com/document/...
-                  </div>
-                  <div class="col-4 material-date py-0 text-right">
-                      12/04/22
-                  </div>
-                  </div>
+            </div>
+            <div class="">
+              <h6 class="mb-1 color-primary">Additional Material</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="col-8 py-0 pl-0 material-link">
+                  Rubric: https://docs.google.com/document/...
+                </div>
+                <div class="col-4 material-date py-0 text-right">12/04/22</div>
               </div>
+            </div>
           </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
-              <div class="assignment-tag-section d-flex align-items-center mb-2">
-                  <div class="assignment-tag red mr-2">Urgent</div>
-                  <div class="assignment-tag pink">AP French</div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div
+            class="
+              jochi-sub-components-light-bg
+              drag-drop
+              p-4
+              position-realtive
+            "
+          >
+            <div class="assignment-tag-section d-flex align-items-center mb-2">
+              <div class="assignment-tag red mr-2">Urgent</div>
+              <div class="assignment-tag pink">AP French</div>
+            </div>
+            <div class="text-center">
+              <h4 class="color-primary font-semi-bold mb-0">
+                French Oral Practice
+              </h4>
+              <div class="text-center px-3">
+                <p class="color-secondary text-16 line-height-1 font-semi-bold">
+                  Practice for mock oral exam in class
+                </p>
               </div>
-              <div class="text-center">
-                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
-                  <div class="text-center px-3">
-                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
-                  </div>
+            </div>
+            <div class="mb-3">
+              <h6 class="color-primary">Sub-tasks</h6>
+              <div class="pl-2 d-flex align-items-center">
+                <input type="radio" class="mr-2" />
+                <label for="" class="mb-0 text-12">Study Vocab List</label>
               </div>
-              <div class="mb-3">
-                  <h6 class="color-primary">Sub-tasks</h6>
-                  <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12">Study Vocab List</label>
-                  </div>
-                  <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12"
-                      >Start typing to add subtasks</label
-                  >
-                  </div>
+              <div class="pl-2 d-flex align-items-center">
+                <input type="radio" class="mr-2" />
+                <label for="" class="mb-0 text-12"
+                  >Start typing to add subtasks</label
+                >
               </div>
-              <div class="">
-                  <h6 class="mb-1 color-primary">Additional Material</h6>
-                  <div
-                  class="
-                      d-flex
-                      align-items-center
-                      justify-content-between
-                  "
-                  >
-                  <div class="col-8 py-0 pl-0 material-link">
-                      Rubric: https://docs.google.com/document/...
-                  </div>
-                  <div class="col-4 material-date py-0 text-right">
-                      12/04/22
-                  </div>
-                  </div>
+            </div>
+            <div class="">
+              <h6 class="mb-1 color-primary">Additional Material</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="col-8 py-0 pl-0 material-link">
+                  Rubric: https://docs.google.com/document/...
+                </div>
+                <div class="col-4 material-date py-0 text-right">12/04/22</div>
               </div>
+            </div>
           </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
-              <div class="assignment-tag-section d-flex align-items-center mb-2">
-                  <div class="assignment-tag red mr-2">Urgent</div>
-                  <div class="assignment-tag pink">AP French</div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div
+            class="
+              jochi-sub-components-light-bg
+              drag-drop
+              p-4
+              position-realtive
+            "
+          >
+            <div class="assignment-tag-section d-flex align-items-center mb-2">
+              <div class="assignment-tag red mr-2">Urgent</div>
+              <div class="assignment-tag pink">AP French</div>
+            </div>
+            <div class="text-center">
+              <h4 class="color-primary font-semi-bold mb-0">
+                French Oral Practice
+              </h4>
+              <div class="text-center px-3">
+                <p class="color-secondary text-16 line-height-1 font-semi-bold">
+                  Practice for mock oral exam in class
+                </p>
               </div>
-              <div class="text-center">
-                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
-                  <div class="text-center px-3">
-                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
-                  </div>
+            </div>
+            <div class="mb-3">
+              <h6 class="color-primary">Sub-tasks</h6>
+              <div class="pl-2 d-flex align-items-center">
+                <input type="radio" class="mr-2" />
+                <label for="" class="mb-0 text-12">Study Vocab List</label>
               </div>
-              <div class="mb-3">
-                  <h6 class="color-primary">Sub-tasks</h6>
-                  <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12">Study Vocab List</label>
-                  </div>
-                  <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12"
-                      >Start typing to add subtasks</label
-                  >
-                  </div>
+              <div class="pl-2 d-flex align-items-center">
+                <input type="radio" class="mr-2" />
+                <label for="" class="mb-0 text-12"
+                  >Start typing to add subtasks</label
+                >
               </div>
-              <div class="">
-                  <h6 class="mb-1 color-primary">Additional Material</h6>
-                  <div
-                  class="
-                      d-flex
-                      align-items-center
-                      justify-content-between
-                  "
-                  >
-                  <div class="col-8 py-0 pl-0 material-link">
-                      Rubric: https://docs.google.com/document/...
-                  </div>
-                  <div class="col-4 material-date py-0 text-right">
-                      12/04/22
-                  </div>
-                  </div>
+            </div>
+            <div class="">
+              <h6 class="mb-1 color-primary">Additional Material</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="col-8 py-0 pl-0 material-link">
+                  Rubric: https://docs.google.com/document/...
+                </div>
+                <div class="col-4 material-date py-0 text-right">12/04/22</div>
               </div>
+            </div>
           </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-          <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
-              <div class="assignment-tag-section d-flex align-items-center mb-2">
-                  <div class="assignment-tag red mr-2">Urgent</div>
-                  <div class="assignment-tag pink">AP French</div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div
+            class="
+              jochi-sub-components-light-bg
+              drag-drop
+              p-4
+              position-realtive
+            "
+          >
+            <div class="assignment-tag-section d-flex align-items-center mb-2">
+              <div class="assignment-tag red mr-2">Urgent</div>
+              <div class="assignment-tag pink">AP French</div>
+            </div>
+            <div class="text-center">
+              <h4 class="color-primary font-semi-bold mb-0">
+                French Oral Practice
+              </h4>
+              <div class="text-center px-3">
+                <p class="color-secondary text-16 line-height-1 font-semi-bold">
+                  Practice for mock oral exam in class
+                </p>
               </div>
-              <div class="text-center">
-                  <h4 class="color-primary font-semi-bold mb-0">French Oral Practice</h4>
-                  <div class="text-center px-3">
-                  <p class="color-secondary text-16 line-height-1 font-semi-bold">Practice for mock oral exam in class</p>
-                  </div>
+            </div>
+            <div class="mb-3">
+              <h6 class="color-primary">Sub-tasks</h6>
+              <div class="pl-2 d-flex align-items-center">
+                <input type="radio" class="mr-2" />
+                <label for="" class="mb-0 text-12">Study Vocab List</label>
               </div>
-              <div class="mb-3">
-                  <h6 class="color-primary">Sub-tasks</h6>
-                  <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12">Study Vocab List</label>
-                  </div>
-                  <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12"
-                      >Start typing to add subtasks</label
-                  >
-                  </div>
+              <div class="pl-2 d-flex align-items-center">
+                <input type="radio" class="mr-2" />
+                <label for="" class="mb-0 text-12"
+                  >Start typing to add subtasks</label
+                >
               </div>
-              <div class="">
-                  <h6 class="mb-1 color-primary">Additional Material</h6>
-                  <div
-                  class="
-                      d-flex
-                      align-items-center
-                      justify-content-between
-                  "
-                  >
-                  <div class="col-8 py-0 pl-0 material-link">
-                      Rubric: https://docs.google.com/document/...
-                  </div>
-                  <div class="col-4 material-date py-0 text-right">
-                      12/04/22
-                  </div>
-                  </div>
+            </div>
+            <div class="">
+              <h6 class="mb-1 color-primary">Additional Material</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="col-8 py-0 pl-0 material-link">
+                  Rubric: https://docs.google.com/document/...
+                </div>
+                <div class="col-4 material-date py-0 text-right">12/04/22</div>
               </div>
+            </div>
           </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div
+            class="
+              jochi-sub-components-light-bg
+              drag-drop
+              p-4
+              position-realtive
+            "
+          >
+            <div class="assignment-tag-section d-flex align-items-center mb-2">
+              <div class="assignment-tag red mr-2">Urgent</div>
+              <div class="assignment-tag pink">AP French</div>
+            </div>
+            <div class="text-center">
+              <h4 class="color-primary font-semi-bold mb-0">
+                French Oral Practice
+              </h4>
+              <div class="text-center px-3">
+                <p class="color-secondary text-16 line-height-1 font-semi-bold">
+                  Practice for mock oral exam in class
+                </p>
+              </div>
+            </div>
+            <div class="mb-3">
+              <h6 class="color-primary">Sub-tasks</h6>
+              <div class="pl-2 d-flex align-items-center">
+                <input type="radio" class="mr-2" />
+                <label for="" class="mb-0 text-12">Study Vocab List</label>
+              </div>
+              <div class="pl-2 d-flex align-items-center">
+                <input type="radio" class="mr-2" />
+                <label for="" class="mb-0 text-12"
+                  >Start typing to add subtasks</label
+                >
+              </div>
+            </div>
+            <div class="">
+              <h6 class="mb-1 color-primary">Additional Material</h6>
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="col-8 py-0 pl-0 material-link">
+                  Rubric: https://docs.google.com/document/...
+                </div>
+                <div class="col-4 material-date py-0 text-right">12/04/22</div>
+              </div>
+            </div>
+          </div>
+        </div> -->
       </div>
     </div>
-  </div>
 
     <!-- end step one -->
 
     <!-- step two configure -->
-    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll">
-      <h2 class="color-primary font-semi-bold mb-3">Step Two: <br> Configure your Session</h2>
+    <!-- <div
+      class="
+        jochi-components-light-bg
+        p-4
+        custom-margin-for-main-section custom-full-height
+        d-flex
+        flex-column
+        hidden-scroll
+      "
+    >
+      <h2 class="color-primary font-semi-bold mb-3">
+        Step Two: <br />
+        Configure your Session
+      </h2>
       <div class="row h-40 flex-grow-1">
         <div class="col-lg-7 h-100 d-flex flex-column">
           <div class="card card-primary rounded-22 p-4 h-40 flex-fill mb-4">
@@ -373,7 +595,7 @@
             <div class="d-flex flex-row align-items-start">
               <div class="form-row mb-2 mx-0 mr-2">
                 <label class="form-label" for="name">Set goal</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" />
               </div>
               <div class="pt-4">
                 <button class="btn btn-primary btn-sm mt-2">Add</button>
@@ -382,31 +604,83 @@
             <div class="custom-overflow pr-2 mr--2 d-flex flex-column">
               <div class="card card-transparent show-icon p-1 mt-1">
                 <div class="d-flex align-items-center justify-content-between">
-                  <p class="mb-0 color-secondary text-16 font-regular text-truncate pr-3"><span><i class="far fa-circle"></i></span> study vocab list</p>
-                  <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt"></i></span>
+                  <p
+                    class="
+                      mb-0
+                      color-secondary
+                      text-16
+                      font-regular
+                      text-truncate
+                      pr-3
+                    "
+                  >
+                    <span><i class="far fa-circle"></i></span> study vocab list
+                  </p>
+                  <span class="color-primary fa-icon show-hover d-none btn p-0"
+                    ><i class="fas fa-trash-alt"></i
+                  ></span>
                 </div>
               </div>
               <div class="card card-transparent show-icon p-1 mt-1">
                 <div class="d-flex align-items-center justify-content-between">
-                  <p class="mb-0 color-secondary text-16 font-regular text-truncate pr-3"><span><i class="far fa-circle"></i></span> study vocab list</p>
-                  <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt"></i></span>
+                  <p
+                    class="
+                      mb-0
+                      color-secondary
+                      text-16
+                      font-regular
+                      text-truncate
+                      pr-3
+                    "
+                  >
+                    <span><i class="far fa-circle"></i></span> study vocab list
+                  </p>
+                  <span class="color-primary fa-icon show-hover d-none btn p-0"
+                    ><i class="fas fa-trash-alt"></i
+                  ></span>
                 </div>
               </div>
               <div class="card card-transparent show-icon p-1 mt-1">
                 <div class="d-flex align-items-center justify-content-between">
-                  <p class="mb-0 color-secondary text-16 font-regular text-truncate pr-3"><span><i class="far fa-circle"></i></span> study vocab list</p>
-                  <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt"></i></span>
+                  <p
+                    class="
+                      mb-0
+                      color-secondary
+                      text-16
+                      font-regular
+                      text-truncate
+                      pr-3
+                    "
+                  >
+                    <span><i class="far fa-circle"></i></span> study vocab list
+                  </p>
+                  <span class="color-primary fa-icon show-hover d-none btn p-0"
+                    ><i class="fas fa-trash-alt"></i
+                  ></span>
                 </div>
               </div>
               <div class="card card-transparent show-icon p-1 mt-1">
                 <div class="d-flex align-items-center justify-content-between">
-                  <p class="mb-0 color-secondary text-16 font-regular text-truncate pr-3"><span><i class="far fa-circle"></i></span> study vocab list</p>
-                  <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt"></i></span>
+                  <p
+                    class="
+                      mb-0
+                      color-secondary
+                      text-16
+                      font-regular
+                      text-truncate
+                      pr-3
+                    "
+                  >
+                    <span><i class="far fa-circle"></i></span> study vocab list
+                  </p>
+                  <span class="color-primary fa-icon show-hover d-none btn p-0"
+                    ><i class="fas fa-trash-alt"></i
+                  ></span>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <div class="card card-primary rounded-22 h-40 flex-fill p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
@@ -415,7 +689,7 @@
             <div class="d-flex flex-row align-items-start">
               <div class="form-row mb-2 mx-0 mr-2">
                 <label class="form-label" for="name">Invite peers</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" />
               </div>
               <div class="pt-4">
                 <button class="btn btn-primary btn-sm mt-2">Submit</button>
@@ -427,9 +701,7 @@
                   <div class="ld-img-holder"></div>
                 </div>
                 <div class="ld-details-section">
-                  <p class="ld-heading mb-1">
-                    Mark Jones, President
-                  </p>
+                  <p class="ld-heading mb-1">Mark Jones, President</p>
                 </div>
               </div>
               <div class="d-flex align-items-center my-2 mr-3">
@@ -437,9 +709,7 @@
                   <div class="ld-img-holder"></div>
                 </div>
                 <div class="ld-details-section">
-                  <p class="ld-heading mb-1">
-                    Mark Jones, President
-                  </p>
+                  <p class="ld-heading mb-1">Mark Jones, President</p>
                 </div>
               </div>
             </div>
@@ -450,7 +720,315 @@
             <div class="d-flex flex-column justify-content-between h-100">
               <div class="d-flex flex-column h-40 flex-fill">
                 <h2 class="color-dark font-semi-bold mb-1">Regular studying</h2>
-                <div class="d-flex flex-column align-items-start custom-overflow pr-2 mr--2 h-40 flex-fill">
+                <div
+                  class="
+                    d-flex
+                    flex-column
+                    align-items-start
+                    custom-overflow
+                    pr-2
+                    mr--2
+                    h-40
+                    flex-fill
+                  "
+                >
+                  <div class="form-row w-100 mb-2 mx-0 mr-2 pr-2 required">
+                   
+                    <label class="form-label">Subject</label>
+                    <select
+                      @change="UpdateSubject()"
+                      class="form-control"
+                      tabindex=""
+                      v-model="Subject"
+                      :class="{
+                        'is-invalid': submitted && $v.Subject.$error,
+                      }"
+                    >
+                      <option value="">Select Subject</option>
+                      <option
+                        v-bind:value="{
+                          id: subjects.id,
+                          text: subjects.subject_name,
+                        }"
+                        v-for="(subjects, index) in subjectsData"
+                        :key="index"
+                      >
+                        {{ subjects.subject_name }}
+                      </option>
+                      <option v-if="subjectsData.length == 0">No data</option>
+                    </select>
+                    <div
+                      v-if="submitted && $v.Subject.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.Subject.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                  <div class="form-row w-100 mb-2 mx-0 mr-2 pr-2">
+                    <label for="" class="form-label"
+                      >Number of repetitions</label
+                    >
+
+                    <select
+                      @change="UpdateSubject()"
+                      class="form-control"
+                      tabindex=""
+                      v-model="repetitionCount"
+                    >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
+                  <div class="form-row mb-2 mx-0 mr-2">
+                    <label class="form-label" for="name">lorem</label>
+                    <input type="text" class="form-control" />
+                  </div>
+                  <div class="py-1">
+                    <button class="btn btn-primary btn-sm">
+                      Start Session
+                    </button>
+                  </div>
+                  <div class="py-1">
+                    <button class="btn btn-dark btn-sm">
+                      Schedule for later
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end">
+                <img
+                  src="../../static/image/dashboard_img.png"
+                  alt=""
+                  class="img-fluid card-img"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <div
+      v-if="currentTab == 2"
+      class="
+        jochi-components-light-bg
+        p-4
+        custom-margin-for-main-section custom-full-height
+        d-flex
+        flex-column
+        hidden-scroll
+      "
+    >
+      <div class="row">
+        <button @click="onBack()">Back</button>
+        <button @click="onNext()">Next</button>
+      </div>
+      <h2 class="jochi-headings mb-1">
+        Step {{ sessionType == "study" ? "One" : "Two" }}:
+      </h2>
+      <h2 class="jochi-headings mb-4">Configure your Session</h2>
+      <div class="row h-75 align-items-center justify-content-center">
+        <div @click="onModeSelect('regular')" class="col-4">
+          <div
+            class="
+              jochi-sub-components-light-bg
+              drag-drop
+              p-4
+              position-realtive
+            "
+          >
+            <div class="p-4 text-center">
+              <h2 class="jochi-headings mb-4">Regular Studying</h2>
+              <p>Set your own timer, goals, and breaks.</p>
+            </div>
+          </div>
+        </div>
+        <div @click="onModeSelect('pomodoro')" class="col-4">
+          <div
+            class="
+              jochi-sub-components-light-bg
+              drag-drop
+              p-4
+              position-realtive
+            "
+          >
+            <div class="p-4 text-center">
+              <h2 class="jochi-headings mb-4">Pomodorro Technique</h2>
+              <p>Definition of this technique will go here...</p>
+              <button class="btn learn-more-btn">Click to Learn More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- end step two configure -->
+
+    <!-- step two configure -->
+    <div
+      v-if="currentTab == 3"
+      class="
+        jochi-components-light-bg
+        p-4
+        custom-margin-for-main-section custom-full-height
+        d-flex
+        flex-column
+        hidden-scroll
+      "
+    >
+      <div class="row">
+        <button @click="onBack()">Back</button>
+        <button @click="onNext()">Next</button>
+      </div>
+      <h2 class="color-primary font-semi-bold mb-3">
+        Step {{ sessionType == "study" ? "Two" : "Three" }}: <br />
+        Configure your Session
+      </h2>
+      <div class="row h-40 flex-grow-1">
+        <div class="col-lg-7 h-100 d-flex flex-column">
+          <div class="card card-primary rounded-22 p-4 h-40 flex-fill mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h3 class="color-dark font-semi-bold mb-0">Goals</h3>
+              <span class="color-secondary" @click="onAddGoalClick"
+                ><i class="fas fa-plus"></i
+              ></span>
+            </div>
+            <div v-if="addGoal" class="d-flex flex-row align-items-start">
+              <div class="form-row mb-2 mx-0 mr-2">
+                <label class="form-label" for="name">Set goal</label>
+                <input type="text" v-model="goalName" class="form-control" />
+              </div>
+              <div class="pt-4">
+                <button
+                  class="btn btn-primary btn-sm mt-2"
+                  @click="onAddNewGoal"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+            <div class="custom-overflow pr-2 mr--2 d-flex flex-column">
+              <div v-for="goal in goalsList" :key="goal">
+                <div class="card card-transparent show-icon p-1 mt-1">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <p
+                      class="
+                        mb-0
+                        color-secondary
+                        text-16
+                        font-regular
+                        text-truncate
+                        pr-3
+                      "
+                    >
+                      <span><i class="far fa-circle"></i></span> {{ goal }}
+                    </p>
+                    <span
+                      class="color-primary fa-icon show-hover d-none btn p-0"
+                      ><i class="fas fa-trash-alt"></i
+                    ></span>
+                  </div>
+                </div>
+              </div>
+              <div v-if="sessionType == 'assignment'">
+                <div v-for="task in selectedAssignment.subTasks" :key="task.id">
+                  <div class="card card-transparent show-icon p-1 mt-1">
+                    <div
+                      class="d-flex align-items-center justify-content-between"
+                    >
+                      <p
+                        class="
+                          mb-0
+                          color-secondary
+                          text-16
+                          font-regular
+                          text-truncate
+                          pr-3
+                        "
+                      >
+                        <span><i class="far fa-circle"></i></span>
+                        {{ task.title }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-primary rounded-22 h-40 flex-fill p-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
+              <span @click="onInviteClick" class="color-secondary"
+                ><i class="fas fa-plus"></i
+              ></span>
+            </div>
+            <div v-if="invitePeer" class="d-flex flex-row align-items-start">
+              <div class="form-row mb-2 mx-0 mr-2">
+                <label class="form-label" for="name">Invite peers</label>
+                <!-- <input type="text" class="form-control" /> -->
+                <multiselect
+                  class="form-control"
+                  v-model="peerSelected"
+                  :options="students"
+                  track-by="first_name"
+                  label="first_name"
+                  placeholder=" Select students"
+                >
+                  <span slot="noResult">No data found</span>
+                </multiselect>
+              </div>
+              <div class="pt-4">
+                <button
+                  @click="onInvitePeer"
+                  class="btn btn-primary btn-sm mt-2"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+            <div class="hidden-scroll p-3 row my-0">
+              <div class="d-flex align-items-center my-2 mr-3">
+                <div class="ld-img-section mr-3">
+                  <div class="ld-img-holder"></div>
+                </div>
+                <div class="ld-details-section">
+                  <p class="ld-heading mb-1">Mark Jones, President</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center my-2 mr-3">
+                <div class="ld-img-section mr-3">
+                  <div class="ld-img-holder"></div>
+                </div>
+                <div class="ld-details-section">
+                  <p class="ld-heading mb-1">Mark Jones, President</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 d-flex flex-column h-100">
+          <div class="card card-primary rounded-22 p-4 m-0 flex-column h-100">
+            <div class="d-flex flex-column justify-content-between h-100">
+              <div class="d-flex flex-column h-40 flex-fill">
+                <h2 class="color-dark font-semi-bold mb-1">Regular studying</h2>
+                <div
+                  class="
+                    d-flex
+                    flex-column
+                    align-items-start
+                    custom-overflow
+                    pr-2
+                    mr--2
+                    h-40
+                    flex-fill
+                  "
+                >
                   <div class="form-row w-100 mb-2 mx-0 mr-2 pr-2 required">
                     <!-- {{subjectsData}} -->
                     <label class="form-label">Subject</label>
@@ -486,7 +1064,9 @@
                     </div>
                   </div>
                   <div class="form-row w-100 mb-2 mx-0 mr-2 pr-2">
-                    <label for="" class="form-label">Number of repetitions</label>
+                    <label for="" class="form-label"
+                      >Number of repetitions</label
+                    >
 
                     <select
                       @change="UpdateSubject()"
@@ -501,18 +1081,26 @@
                   </div>
                   <div class="form-row mb-2 mx-0 mr-2">
                     <label class="form-label" for="name">lorem</label>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" />
                   </div>
                   <div class="py-1">
-                    <button class="btn btn-primary btn-sm">Start Session</button>
+                    <button class="btn btn-primary btn-sm">
+                      Start Session
+                    </button>
                   </div>
                   <div class="py-1">
-                    <button class="btn btn-dark btn-sm">Schedule for later</button>
+                    <button class="btn btn-dark btn-sm">
+                      Schedule for later
+                    </button>
                   </div>
                 </div>
               </div>
               <div class="d-flex justify-content-end">
-                <img src="../../static/image/dashboard_img.png" alt="" class="img-fluid card-img">
+                <img
+                  src="../../static/image/dashboard_img.png"
+                  alt=""
+                  class="img-fluid card-img"
+                />
               </div>
             </div>
           </div>
@@ -523,35 +1111,60 @@
 
     <!-- timer -->
 
-    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex hidden-scroll">
+    <div
+      v-if="currentTab == 4"
+      class="
+        jochi-components-light-bg
+        p-4
+        custom-margin-for-main-section custom-full-height
+        d-flex
+        hidden-scroll
+      "
+    >
       <div class="row">
-        <div class="col-lg-7 study-col d-flex flex-column justify-content-center flex-fill">
-          <div class="card card-light rounded-22 p-4 flex-fill mb-4 justify-content-center">
-            <div class=""><h1 class="color-primary font-bold mb-2">Working on</h1></div>
+        <div
+          class="
+            col-lg-7
+            study-col
+            d-flex
+            flex-column
+            justify-content-center
+            flex-fill
+          "
+        >
+          <div
+            class="
+              card card-light
+              rounded-22
+              p-4
+              flex-fill
+              mb-4
+              justify-content-center
+            "
+          >
+            <div class="">
+              <h1 class="color-primary font-bold mb-2">Working on</h1>
+            </div>
+            <p class="color-dark text-24 font-semi-bold mb-1">Subject Name</p>
             <p class="color-dark text-24 font-semi-bold mb-1">
-              Subject Name
+              {{ SubjectName }}
             </p>
-            <p class="color-dark text-24 font-semi-bold mb-1">{{ SubjectName }}</p>
-            <p
-              class="color-secondary text-16 font-regular mb-1"
-            >
+            <p class="color-secondary text-16 font-regular mb-1">
               Study Method : <span>Regular studying</span>
             </p>
-            
+
             <p
-            class="color-secondary text-16 font-regular mb-1"
-            v-if="studyTypes.id != 3"
-          >
-            Remaining Cycles :
-            10
-          </p>
-          <p
-            class="color-secondary text-16 font-regular mb-1"
-            v-if="studyTypes.id != 3"
-          >
-            Remaining Repetitions :
-            12
-          </p>
+              class="color-secondary text-16 font-regular mb-1"
+              v-if="studyTypes.id != 3"
+            >
+              Remaining Cycles : 10
+            </p>
+            <p
+              class="color-secondary text-16 font-regular mb-1"
+              v-if="studyTypes.id != 3"
+            >
+              Remaining Repetitions : 12
+            </p>
             <!-- <input type="text" v-model="remainingTime" id="remainingTime"> -->
             <button
               type="button"
@@ -570,17 +1183,32 @@
                   <div class="ld-img-holder"></div>
                 </div>
                 <div class="ld-details-section">
-                  <p class="ld-heading mb-1">
-                    Mark Jones, President
-                  </p>
+                  <p class="ld-heading mb-1">Mark Jones, President</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="col-lg-5 study-col d-flex justify-content-center align-items-center">
-          <div class=" card card-light rounded-22 p-4 flex-fill h-100 justify-constent-center">
+        <div
+          class="
+            col-lg-5
+            study-col
+            d-flex
+            justify-content-center
+            align-items-center
+          "
+        >
+          <div
+            class="
+              card card-light
+              rounded-22
+              p-4
+              flex-fill
+              h-100
+              justify-constent-center
+            "
+          >
             <div class="d-flex flex-column flex-fill justify-content-center">
               <div class="d-flex flex-column mb-4">
                 <h1 class="color-primary font-bold mb-0">Timer</h1>
@@ -616,22 +1244,21 @@
                     </g>
                   </svg>
                   <div class="inner-timer">
-                    <img src="../../static/image/alarm.png" alt="">
+                    <img src="../../static/image/alarm.png" alt="" />
                   </div>
                   <p class="mb-2">
-                    <span id="base-timer-label" class="color-dark text-24 font-semi-bold">12</span>
+                    <span
+                      id="base-timer-label"
+                      class="color-dark text-24 font-semi-bold"
+                      >12</span
+                    >
                     <span class="color-dark text-24 font-semi-bold">22</span>
                   </p>
                 </div>
               </div>
             </div>
             <div
-              class="
-                btn-area
-                d-flex
-                align-items-center
-                justify-content-center
-              "
+              class="btn-area d-flex align-items-center justify-content-center"
             >
               <!-- && !studyTimePaused -->
               <button
@@ -655,12 +1282,23 @@
 
     <!-- rating  -->
 
-    <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex align-items-center justify-content-center hidden-scroll">
-      <div class=" px-5 py-4 d-flex flex-column card card-light col-lg-7">
+    <div
+      v-if="currentTab == 5"
+      class="
+        jochi-components-light-bg
+        p-4
+        custom-margin-for-main-section custom-full-height
+        d-flex
+        align-items-center
+        justify-content-center
+        hidden-scroll
+      "
+    >
+      <div class="px-5 py-4 d-flex flex-column card card-light col-lg-7">
         <h2 class="color-primary font-semi-bold mb-1">Rate your session</h2>
         <div class="d-flex flex-column py-3 px-0">
           <div class="mb-3">
-            <h4 class=" color-dark font-semi-bold">Focus</h4>
+            <h4 class="color-dark font-semi-bold">Focus</h4>
             <div class="d-flex justify-content-between">
               <star-rating
                 class="mb-2"
@@ -675,13 +1313,11 @@
                 v-bind:rounded-corners="true"
                 v-bind:max-rating="5"
               ></star-rating>
-              <p class="total-value px-4">
-                {{ focusRating }}<sub>/5</sub>
-              </p>
+              <p class="total-value px-4">{{ focusRating }}<sub>/5</sub></p>
             </div>
           </div>
           <div class="mb-3">
-            <h4 class=" color-dark font-semi-bold">Efficiency</h4>
+            <h4 class="color-dark font-semi-bold">Efficiency</h4>
             <div class="d-flex justify-content-between">
               <star-rating
                 class="mb-2"
@@ -696,13 +1332,11 @@
                 v-bind:rounded-corners="true"
                 v-bind:max-rating="5"
               ></star-rating>
-              <p class="total-value px-4">
-                {{ focusEfficiency }}<sub>/5</sub>
-              </p>
+              <p class="total-value px-4">{{ focusEfficiency }}<sub>/5</sub></p>
             </div>
           </div>
           <div class="mb-3">
-            <h4 class=" color-dark font-semi-bold">Work Completed</h4>
+            <h4 class="color-dark font-semi-bold">Work Completed</h4>
             <div class="d-flex justify-content-between">
               <star-rating
                 class="mb-2"
@@ -723,7 +1357,11 @@
             </div>
           </div>
         </div>
-        <button type="button" @click.prevent="onLogSession()" class="btn btn-primary mb-3 mt-2 pl-3 pr-3">
+        <button
+          type="button"
+          @click.prevent="onLogSession()"
+          class="btn btn-primary mb-3 mt-2 pl-3 pr-3"
+        >
           Log Session
         </button>
       </div>
@@ -756,8 +1394,18 @@
                   class="container study-image"
                 /> -->
               </div>
-              <div class="study-col d-flex flex-column justify-content-center col-8 mx-auto py-0">
-                <div class="form-section study-room-form py-0 mx-5">  
+              <div
+                class="
+                  study-col
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  col-8
+                  mx-auto
+                  py-0
+                "
+              >
+                <div class="form-section study-room-form py-0 mx-5">
                   <form
                     @submit.prevent="StartStudySession"
                     ref="studyTimeForm"
@@ -931,7 +1579,15 @@
             v-if="!addedStudyTime && timerStatus == 1"
           >
             <div class="row study-row">
-              <div class="col-md-6 study-col d-flex flex-column justify-content-center">
+              <div
+                class="
+                  col-md-6
+                  study-col
+                  d-flex
+                  flex-column
+                  justify-content-center
+                "
+              >
                 <div class="m-5">
                   <div class="study-heading mb-2"><h1>Working on</h1></div>
                   <p class="subject-name mb-1">
@@ -964,7 +1620,15 @@
                 </div>
               </div>
 
-              <div class="col-md-6 study-col d-flex flex-column justify-content-center">
+              <div
+                class="
+                  col-md-6
+                  study-col
+                  d-flex
+                  flex-column
+                  justify-content-center
+                "
+              >
                 <div>
                   <div id="app" class="mb-3">
                     <div class="base-timer m-auto">
@@ -1254,12 +1918,35 @@ export default {
       currentCycle: 0,
       currentRepetitionNum: 0,
       startTime: new Date().getTime(),
+      currentTab: 0,
+      sessionType: "",
+      assignmentDetail: {
+        assignment_materials: {},
+        dateISOFormat: "",
+        due_date: "",
+        due_time: "",
+        id: 0,
+        priority: "",
+        subTasks: [],
+        subject: "",
+        task: "",
+      },
+      assignmentList: [],
+      sessionMode: "",
+      addGoal: false,
+      goalName: "",
+      goalsList: [],
+      selectedAssignment: {},
+      invitePeer: false,
+      peerSelected: {},
+      peerList: [],
     };
   },
 
   mounted() {
     this.GetSubjectList();
     this.GetStudyTypes();
+    this.getAllStudySessions();
   },
   validations: {
     Subject: { required },
@@ -1274,6 +1961,12 @@ export default {
       subjectsData: (state) => state.subjectsData,
       studyTypesData: (state) => state.studyTypesData,
       timerStatusData: (state) => state.timerStatusData,
+      studySessions: (state) => state.studySessions,
+      assignmentSessions: (state) => state.assignmentSessions,
+      assignments: (state) => state.assignments,
+    }),
+    ...mapState("teacherMeeting", {
+      students: (state) => state.students,
     }),
   },
   methods: {
@@ -1284,6 +1977,11 @@ export default {
       getStudyTypes: "getStudyTypes",
       addStudyTime: "addStudyTime",
       addRating: "addRating",
+      getStudySessions: "getStudySessions",
+      getAssignments: "getAssignments",
+    }),
+    ...mapActions("teacherMeeting", {
+      getStudents: "getStudents",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -1663,7 +2361,72 @@ export default {
       console.log(this.studyStatus + "custom interval cleared!");
       this.AddStudyTime("PAUSE");
     },
+    async getAllStudySessions() {
+      await this.getStudySessions({});
+      console.log(this.studySessions);
+    },
+    async onNext() {
+      this.currentTab++;
+    },
+    onBack() {
+      if (this.sessionType == "study" && this.currentTab == 2) {
+        this.currentTab = 0;
+        return;
+      }
+      this.currentTab--;
+    },
+    async setSessionType(type) {
+      this.sessionType = type;
+      if (this.sessionType == "study") {
+        this.currentTab = 2;
+        return;
+      }
+      this.currentTab++;
+      if (this.currentTab == 1) {
+        await this.getAssignments({});
+        console.log(this.assignments);
+        this.assignmentList = [];
+        if (this.assignments && this.assignments.length > 0) {
+          this.assignments.forEach((e) => {
+            this.assignmentDetail = e;
+            this.assignmentList.push(this.assignmentDetail);
+          });
+        }
+      }
+    },
+    onAssignmentSelect(detail) {
+      this.selectedAssignment = detail;
+      this.currentTab++;
+    },
+    onModeSelect(type) {
+      this.sessionMode = type;
+      this.currentTab++;
+    },
+    onAddGoalClick() {
+      this.addGoal = true;
+    },
+    onAddNewGoal() {
+      console.log(this.goalName);
+      this.goalsList.push(this.goalName);
+      this.addGoal = false;
+    },
+    onInviteClick() {
+      this.invitePeer = true;
+      this.GetStudents();
+    },
+    async GetStudents() {
+      await this.getStudents({
+        school_id: localStorage.getItem("school_id"),
+        studentId: localStorage.getItem("id"),
+      });
+    },
+    onInvitePeer() {
+      console.log(this.peerSelected);
+      this.peerList.push(this.peerSelected);
+      this.invitePeer = false;
+    },
   },
+
   beforeDestroy() {},
   destroyed() {},
 };

@@ -3,8 +3,16 @@
     <!-- <div class="text-center" v-if="loading && loadingMessage">
       {{ loadingMessage }}
     </div> -->
-    <img src="../static/image/login-bg.jpg" alt="" class="bg-img d-none d-md-block">
-    <img src="../static/image/login-bg-rotate.jpg" alt="" class="bg-img d-block d-md-none">
+    <img
+      src="../static/image/login-bg.jpg"
+      alt=""
+      class="bg-img d-none d-md-block"
+    />
+    <img
+      src="../static/image/login-bg-rotate.jpg"
+      alt=""
+      class="bg-img d-block d-md-none"
+    />
 
     <lottie
       v-if="loading"
@@ -32,27 +40,71 @@
       <div id="fountainTextG_4" class="fountainTextG animation">. &nbsp;</div>
     </div>
     <div class="row main-row align-items-center flex-row vh-100 m-0">
-      <div class="col-md-6 img-section login-cover d-flex flex-column align-items-center justify-content-between h-100 flex-fill">
-          <div class="logo-img d-flex align-items-center w-100">
-            <img src="../static/image/logo.png" alt="" class="logo-icon">
-          </div>
-          <img
-            src="../static/image/login-img.png"
-            alt="undraw"
-            class="img-responsive jump"
-          />
-          <p class="mb-0 color-white text-16 font-regular">FAQ's | Privacy Policy</p>
+      <div
+        class="
+          col-md-6
+          img-section
+          login-cover
+          d-flex
+          flex-column
+          align-items-center
+          justify-content-between
+          h-100
+          flex-fill
+        "
+      >
+        <div class="logo-img d-flex align-items-center w-100">
+          <img src="../static/image/logo.png" alt="" class="logo-icon" />
+        </div>
+        <img
+          src="../static/image/login-img.png"
+          alt="undraw"
+          class="img-responsive jump"
+        />
+        <p class="mb-0 color-white text-16 font-regular">
+          FAQ's | Privacy Policy
+        </p>
       </div>
-      <div class="col-md-6 form-section d-flex align-items-center justify-content-center h-100">
+      <div
+        class="
+          col-md-6
+          form-section
+          d-flex
+          align-items-center
+          justify-content-center
+          h-100
+        "
+      >
         <!-- Sign-Up -->
 
-        <section id="sign-up" class="login-box d-flex flex-column h-100 justify-content-between">
+        <section
+          id="sign-up"
+          class="login-box d-flex flex-column h-100 justify-content-between"
+        >
           <div class="d-flex flex-column h-100 justify-content-center p-3">
             <h1 class="heading mb-3 mt-5">Sign up</h1>
-            <div class="card rounded-22 p-5 d-flex flex-column justify-content-center align-items-center">
-              <img src="../static/image/school_passport.png" alt="" class="mb-4 passport-img">
+            <div
+              class="
+                card
+                rounded-22
+                p-5
+                d-flex
+                flex-column
+                justify-content-center
+                align-items-center
+              "
+            >
+              <img
+                src="../static/image/school_passport.png"
+                alt=""
+                class="mb-4 passport-img"
+              />
               <button class="btn btn-primary px-5">
-                Sign in with School Passport
+                <a
+                  href="https://sso.gg4l.com/oauth/auth?response_type=code&client_id=PTRQTIBSJC&redirect_uri=https://jochi.devateam.com/redirect-login"
+                >
+                  Sign in with School Passport
+                </a>
               </button>
               <!-- <form action="" class="sign-in" @submit.prevent="GetSignUp">
                 <div class="row mb-3">
@@ -170,17 +222,41 @@
                 </div>
               </form> -->
             </div>
-            <div class="login-icon-area d-flex align-items-center justify-content-between p-4">
-              <a class="btn" href=""><img src="../static/image/social-icon/Instagram logo.png" alt=""></a>
-              <a class="btn" href=""><img src="../static/image/social-icon/Twitter Png.png" alt=""></a>
-              <a class="btn" href=""><img src="../static/image/social-icon/TikTok Logo.png" alt=""></a>
-              <a class="btn" href=""><img src="../static/image/social-icon/Spotify Logo.png" alt=""></a>
-              <a class="btn" href=""><img src="../static/image/social-icon/YouTube Png.png" alt=""></a>
+            <div
+              class="
+                login-icon-area
+                d-flex
+                align-items-center
+                justify-content-between
+                p-4
+              "
+            >
+              <a class="btn" href=""
+                ><img
+                  src="../static/image/social-icon/Instagram logo.png"
+                  alt=""
+              /></a>
+              <a class="btn" href=""
+                ><img src="../static/image/social-icon/Twitter Png.png" alt=""
+              /></a>
+              <a class="btn" href=""
+                ><img src="../static/image/social-icon/TikTok Logo.png" alt=""
+              /></a>
+              <a class="btn" href=""
+                ><img src="../static/image/social-icon/Spotify Logo.png" alt=""
+              /></a>
+              <a class="btn" href=""
+                ><img src="../static/image/social-icon/YouTube Png.png" alt=""
+              /></a>
             </div>
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <a href="" class="text-center color-secondary font-regular text-16">www.jochi.info</a>
-            <a href="" class="text-center color-secondary font-regular text-16"> contact@jochi.info</a>
+            <a href="" class="text-center color-secondary font-regular text-16"
+              >www.jochi.info</a
+            >
+            <a href="" class="text-center color-secondary font-regular text-16">
+              contact@jochi.info</a
+            >
           </div>
         </section>
       </div>

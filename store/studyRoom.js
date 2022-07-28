@@ -9,6 +9,8 @@ const state = {
   timerStatusData: [],
   subjectsData: [],
   studyTypesData: [],
+  studySessions: [],
+  assignments: []
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -177,6 +179,52 @@ const actions = {
     }
   },
 
+  //Get all configured study sessions list
+  async getStudySessions({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$get(BASE_URL + `studyRoom/get_all_study_session`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      if (response.status == true) {
+        commit('setStudySessions', response.data);
+
+      } else {
+        commit('setStatusTimer', 'ended');
+
+      }
+    } catch (e) {
+
+    }
+  },
+  //Get all assignments list
+  async getAssignments({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$get(BASE_URL + `studyRoom/get_all_assignments`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      if (response.status == true) {
+        if (response.data && response.data.length > 0) {
+          response.data.forEach(e => {
+            e.due_date = moment(e.due_date).format("MM/DD/YY")
+          })
+        }
+        commit('setAssignments', response.data);
+
+      } else {
+        commit('setStatusTimer', 'ended');
+
+      }
+    } catch (e) {
+
+    }
+  },
+
 }
 const mutations = {
   setErrorMessage(state, data) {
@@ -199,6 +247,12 @@ const mutations = {
   },
   setStatusTimer(state, data) {
     state.timerStatusData = data;
+  },
+  setStudySessions(state, data) {
+    state.studySessions = data;
+  },
+  setAssignments(state, data) {
+    state.assignments = data;
   },
 
 
@@ -225,6 +279,12 @@ const getters = {
   },
   timerStatusData: () => {
     return state.timerStatusData;
+  },
+  studySessions: () => {
+    return state.studySessions;
+  },
+  assignments: () => {
+    return state.assignments;
   },
 
 
