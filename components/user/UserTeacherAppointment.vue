@@ -98,6 +98,11 @@
                               <i class="fa fa-times text-12 px-1" aria-hidden="true"></i>
                             </button>
                           </td>
+                          <td>
+                            <button class="d-flex btn border border-primary text-primary px-3 py-1">
+                              <i class="fas fa-eye text-12"></i>
+                            </button>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
