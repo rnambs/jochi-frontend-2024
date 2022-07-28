@@ -63,13 +63,13 @@
                 </div>
               </div>
               <!-- END AGENDA -->
-              <div class="col-md-5 custom-teacher-container">
+              <div class="col-md-5 custom-teacher-container d-flex flex-column">
                 <!-- TABLE  -->
                 <div class="teacher-row container mb-3 card card-primary rounded-22 p-0">
                   <div class="appointment-req p-2">
                     <h6 class="text-center color-primary pt-3 mb-0">Meeting Requests</h6>
-                    <div class="table-req container py-3 custom-overflow-x hidden-scroll">
-                      <table class="table">
+                    <div class="table-req container py-3 custom-overflow-x custom-overflow">
+                      <table class="table mb-0">
                         <thead>
                           <tr class="color-dark font-semi-bold">
                             <td scope="col"></td>
@@ -96,7 +96,7 @@
                                   border border-success
                                   text-success
                                   meet-req
-                                  px-3
+                                  px-3 py-1
                                 "
                                 @click="
                                   TeacherMeetingConfirm(
@@ -108,7 +108,7 @@
                                 "
                               >
                                 <i
-                                  class="fa fa-check px-1"
+                                  class="fa fa-check text-12 px-1"
                                   aria-hidden="true"
                                 ></i>
                               </button>
@@ -120,7 +120,7 @@
                                   btn
                                   border border-danger
                                   text-danger
-                                  px-3
+                                  px-3 py-1
                                 "
                                 @click="
                                   TeacherMeetingConfirm(
@@ -131,7 +131,7 @@
                                 "
                               >
                                 <i
-                                  class="fa fa-times px-1"
+                                  class="fa fa-times text-12 px-1"
                                   aria-hidden="true"
                                 ></i>
                               </button>

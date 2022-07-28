@@ -10,23 +10,23 @@
       custom-margin-for-main-section custom-full-height
       d-flex
       flex-column custom-overflow">
-        <h3 class="text-color m-0 p-3">Teacher Appointment</h3>
-        <div class="inner-teacher container-fluid p-3">
-          <div class="row teacher-row container-fluid">
+        <h2 class="color-primary font-semi-bold m-0 p-3">Teacher Appointment</h2>
+        <div class="inner-teacher p-3 d-flex flex-column flex-fill">
+          <div class="row teacher-row">
             
             <!-- CALANDER -->
-            <div class="col-md-5 custom-teacher-container">
-              <div class="inner-custom-teacher text-light container p-2">
+            <div class="col-md-5 custom-teacher-container d-flex flex-column">
+              <div class="inner-custom-teacher text-light  p-2 card card-primary rounded-22 flex-fill">
                 <FullCalendar :options="calendarOptions" />
               </div>
             </div>
             <!-- END CALANDER -->
 
             <!-- AGENDA -->
-            <div class="col-md-7 container custom-teacher-container">
-              <div class="inner-custom-teacher container p-2">
-                <h6 class="text-center">Meetings</h6>
-                <div class="inner-agenda">
+            <div class="col-md-7  custom-teacher-container d-flex flex-column">
+              <div class="inner-custom-teacher  p-3 card card-primary rounded-22 flex-fill">
+                <h6 class="font-semi-bold color-dark text-center">Meetings</h6>
+                <div class="inner-agenda flex-fill">
                   <div
                     class="row container m-0 p-0"
                     v-for="(list, index) in listAgenda"
@@ -53,10 +53,10 @@
           </div>
 
           <!-- TABLE  -->
-          <div class="teacher-row mt-3 p-0">
-            <div class="col-md-12 p-0 mt-3 custom-teacher-container">
+          <div class="teacher-row mt-4 p-0">
+            <div class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary rounded-22">
               <div class="appointment-req pb-2">
-                <h6 class="text-center pt-3 mb-0">Meeting Requests</h6>
+                <h6 class="text-center color-dark font-semi-bold pt-4 mb-0">Meeting Requests</h6>
                 <div class="table-req container py-0">
                   <table class="table">
                     <thead>
@@ -79,20 +79,20 @@
                         <td>30 Min</td>
                         <td>
                           <button
-                            class="d-flex btn border border-success text-success px-3"
+                            class="d-flex btn border border-success text-success px-3 py-1"
                             @click="
                               TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 1,teacher.selectableDate)"
                           >
-                            <i class="fa fa-check px-1" aria-hidden="true"></i>
+                            <i class="fa fa-check text-12 px-1" aria-hidden="true"></i>
                           </button>
                         </td>
                         <td>
                           <button
-                            class="d-flex btn border border-danger text-danger px-3"
+                            class="d-flex btn border border-danger text-danger px-3 py-1"
                             @click="
                               TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 2)"
                           >
-                            <i class="fa fa-times px-1" aria-hidden="true"></i>
+                            <i class="fa fa-times text-12 px-1" aria-hidden="true"></i>
                           </button>
                         </td>
                       </tr>

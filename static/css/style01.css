@@ -541,6 +541,35 @@ img.card-img {
   min-width: 100px;
 }
 
+@-webkit-keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(30px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(30px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+.jump {
+  transform-origin: 50% 50%;
+  -webkit-animation: jump 15s linear alternate infinite;
+          animation: jump 15s linear alternate infinite;
+}
+
 img.dark-icon {
   width: 24px;
 }
@@ -583,7 +612,7 @@ img.dark-icon {
   width: 100%;
 }
 .main-container.register section.login-box img.passport-img {
-  max-width: 260px;
+  max-width: 150px;
   width: 100%;
 }
 .main-container.register .login-icon-area a.btn img {
@@ -808,13 +837,6 @@ img.dark-icon {
     max-width: 400px;
     width: 100%;
   }
-}
-.main-container .form-section .sign-in .text-color {
-  color: #FF6D6D;
-}
-
-.text-color {
-  color: #FF6D6D;
 }
 
 .inner-section {
@@ -2116,10 +2138,6 @@ img.dark-icon {
 .inner-section .main-section .study-section .study-row .study-col .upload-image .pic-edit i.fa-pen input.rg-img-upload::-webkit-file-upload-button {
   cursor: pointer;
 }
-.inner-section .main-section .study-section .study-row .study-col .cal-image {
-  width: 170px;
-  height: 170px;
-}
 .inner-section .main-section .study-section .study-row .study-col .study-image {
   width: 400px;
   padding: 0px 60px 0px 60px;
@@ -2343,25 +2361,20 @@ img.dark-icon {
   right: 0;
   border-radius: 2rem;
 }
-.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container {
-  display: flex;
-  flex-direction: column;
-}
-@media (max-width: 979.89) {
-  .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container {
-    padding-top: 12px;
-  }
-}
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: center;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar h2.fc-toolbar-title {
-  font-size: 1.1em !important;
-  font-weight: 400;
+  font-size: 0.8em !important;
+  font-weight: 500;
   color: #F9F9F9;
   background-color: #FF6F69;
   padding: 0.4em 0.65em;
   min-height: 20px;
+  white-space: nowrap;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
   background-color: #f0f0f0;
@@ -2384,38 +2397,14 @@ img.dark-icon {
   min-height: 20px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active {
-  height: 331.185px !important;
-}
-@media (min-width: 1396.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active {
-    height: 191.185px !important;
-  }
-}
-@media (max-width: 1396.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active {
-    height: 185.185px !important;
-  }
-}
-@media (max-width: 1200.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active {
-    height: 178.185px !important;
-  }
-}
-@media (max-width: 1070.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active {
-    height: 165.185px !important;
-  }
-}
-@media (max-width: 786.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active {
-    height: 152.185px !important;
-  }
+  height: 40vh !important;
+  min-height: 276px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid {
   border: none;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th {
-  border: none;
+  border-right: none;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th .fc-scroller-harness .fc-scroller {
   overflow: unset !important;
@@ -2424,7 +2413,7 @@ img.dark-icon {
   border-bottom: hidden;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th .fc-scroller-harness table.fc-col-header th {
-  border-right: none !important;
+  border-right: 1px solid #f0f0f0 !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th .fc-scroller-harness table.fc-col-header th:nth-child(7) {
   border-right: none;
@@ -2464,6 +2453,7 @@ img.dark-icon {
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td table.fc-scrollgrid-sync-table {
   height: 133px !important;
+  display: inline-table !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td .fc-scroller.fc-scroller-liquid-absolute {
   overflow: hidden !important;
@@ -2581,36 +2571,25 @@ img.dark-icon {
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req table {
   border-collapse: separate;
-  border-spacing: 0 20px;
+  border-spacing: 0 12px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req table thead tr td {
-  color: #F9F9F9;
   font-size: 0.8rem;
   border-top: none;
   border-bottom: 1px solid #f0f0f0;
   padding: 5px 10px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req table tbody tr {
-  background-color: #2D2D2F;
+  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+  border: 1px solid #ffffff;
+  border-radius: 12px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req table tbody tr td {
   text-transform: capitalize;
-  color: #F9F9F9;
   font-size: 0.7rem;
   padding: 10px;
-  border-bottom: 1px solid #f0f0f0;
-  border-top: 1px solid #f0f0f0;
+  border-top: none;
   vertical-align: middle;
-}
-.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req table tbody tr td:first-child {
-  border-left: 1px solid #f0f0f0;
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-}
-.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req table tbody tr td:last-child {
-  border-right: 1px solid #f0f0f0;
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req table tbody tr td .comment-icon {
   font-size: 1.3rem;
@@ -2638,21 +2617,12 @@ img.dark-icon {
   color: #B4B4B4;
   font-size: 0.8rem;
 }
-.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container {
-  display: flex;
-  flex-direction: column;
-}
-@media (max-width: 979.89) {
-  .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container {
-    padding-top: 12px;
-  }
-}
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: center;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar h2.fc-toolbar-title {
-  font-size: 1.1em !important;
-  font-weight: 400;
+  font-size: 0.8em !important;
+  font-weight: 500;
   color: #F9F9F9;
   background-color: #FF6F69;
   padding: 0.4em 0.65em;
@@ -2661,7 +2631,6 @@ img.dark-icon {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  left: 40%;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
   background-color: #f0f0f0;
@@ -2684,32 +2653,8 @@ img.dark-icon {
   min-height: 20px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active {
-  height: 331.185px !important;
-}
-@media (min-width: 1396.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active {
-    height: 191.185px !important;
-  }
-}
-@media (max-width: 1396.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active {
-    height: 185.185px !important;
-  }
-}
-@media (max-width: 1200.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active {
-    height: 178.185px !important;
-  }
-}
-@media (max-width: 1070.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active {
-    height: 165.185px !important;
-  }
-}
-@media (max-width: 786.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active {
-    height: 152.185px !important;
-  }
+  height: 40vh !important;
+  min-height: 276px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid {
   border: none;
@@ -2764,6 +2709,7 @@ img.dark-icon {
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td table.fc-scrollgrid-sync-table {
   height: 133px !important;
+  display: inline-table !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td .fc-scroller.fc-scroller-liquid-absolute {
   overflow: hidden !important;
@@ -2872,6 +2818,7 @@ img.dark-icon {
   font-size: 0.8rem;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .appointment-req .table-req {
+  min-height: 30vh;
   max-height: 30vh;
   overflow-y: auto;
 }
@@ -2924,15 +2871,19 @@ img.dark-icon {
   font-size: 0.8rem;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
-  position: relative;
+  justify-content: center;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar h2.fc-toolbar-title {
-  font-size: 1.1em !important;
-  font-weight: 400;
+  font-size: 0.8em !important;
+  font-weight: 500;
   color: #F9F9F9;
   background-color: #FF6F69;
   padding: 0.4em 0.65em;
   min-height: 20px;
+  white-space: nowrap;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
   background-color: #f0f0f0;
@@ -2955,38 +2906,14 @@ img.dark-icon {
   min-height: 20px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active {
-  height: 331.185px !important;
-}
-@media (min-width: 1396.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active {
-    height: 333.185px !important;
-  }
-}
-@media (max-width: 1396.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active {
-    height: 350.185px !important;
-  }
-}
-@media (max-width: 1200.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active {
-    height: 330.185px !important;
-  }
-}
-@media (max-width: 1070.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active {
-    height: 294.185px !important;
-  }
-}
-@media (max-width: 786.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active {
-    height: 267.185px !important;
-  }
+  height: 40vh !important;
+  min-height: 276px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid {
   border: none;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th {
-  border: none;
+  border-right: none;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th .fc-scroller-harness .fc-scroller {
   overflow: unset !important;
@@ -3005,8 +2932,8 @@ img.dark-icon {
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th .fc-scroller-harness table.fc-col-header a.fc-col-header-cell-cushion {
   color: #B4B4B4;
-  font-size: 0.7rem;
-  font-weight: 500;
+  font-size: 0.65rem;
+  font-weight: 400;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid thead, .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody {
   color: #B4B4B4;
@@ -3030,20 +2957,24 @@ img.dark-icon {
   border-right: 1px solid #f0f0f0 !important;
   border-bottom: none !important;
 }
-.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day {
-  cursor: pointer;
-}
-.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day:hover {
-  background-color: #f0f0f0;
-}
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td:last-child {
   border-right: none !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td table.fc-scrollgrid-sync-table {
-  height: 244px !important;
+  height: 133px !important;
+  display: inline-table !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td .fc-scroller.fc-scroller-liquid-absolute {
   overflow: hidden !important;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
+  cursor: pointer;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td .fc-daygrid-day-frame.fc-scrollgrid-sync-inner:hover {
+  background-color: #f0f0f0 !important;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td .fc-daygrid-day-frame.fc-scrollgrid-sync-inner .fc-daygrid-day-events {
+  display: none;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td a.fc-daygrid-event.fc-daygrid-block-event.fc-h-event.fc-event.fc-event-start.fc-event-end.fc-event-past {
   background-color: #B4B4B4;
@@ -3058,14 +2989,6 @@ img.dark-icon {
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight {
   background: #B4B4B4 !important;
 }
-.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week {
-  background-color: rgba(255, 255, 255, 0.45);
-  border-radius: 0.5rem;
-  box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.45);
-  margin-bottom: 1rem;
-  height: 100%;
-  margin-bottom: 0;
-}
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: center;
 }
@@ -3079,7 +3002,7 @@ img.dark-icon {
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
   background-color: #f0f0f0;
-  color: #F9F9F9;
+  color: #000000;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary span.fc-icon {
   position: relative;
@@ -3094,32 +3017,8 @@ img.dark-icon {
   min-height: 20px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-  height: calc(100vh - 542px) !important;
-}
-@media (min-width: 1596.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-    height: calc(100vh - 800px) !important;
-  }
-}
-@media (max-width: 1596.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-    height: calc(100vh - 600px) !important;
-  }
-}
-@media (max-width: 1396.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-    height: calc(100vh - 600px) !important;
-  }
-}
-@media (max-width: 1200.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-    height: calc(100vh - 640px) !important;
-  }
-}
-@media (max-width: 1024.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-    height: calc(100vh - 546px) !important;
-  }
+  height: 22vh !important;
+  min-height: 160px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid {
   border: none !important;
@@ -3140,7 +3039,7 @@ img.dark-icon {
   border-right: hidden;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th .fc-scroller-harness table.fc-col-header a.fc-col-header-cell-cushion {
-  color: #B4B4B4;
+  color: #000000;
   font-size: 0.6rem;
   font-weight: 400;
 }
@@ -3161,7 +3060,7 @@ img.dark-icon {
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr th {
   border: none;
-  color: #B4B4B4 !important;
+  color: #000000 !important;
   font-weight: 500;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td {
@@ -3209,7 +3108,7 @@ img.dark-icon {
   cursor: pointer;
   content: attr(data-date);
   /* padding: 2px 10px; */
-  color: #2D2D2F;
+  color: #000000;
   position: absolute;
   left: 0px;
   right: 0;
@@ -3367,58 +3266,6 @@ img.dark-icon {
     height: 70px !important;
   }
 }
-.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .time-head {
-  color: #F9F9F9;
-  font-size: 1.125rem;
-  font-weight: 500;
-}
-@media (max-width: 1396.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .time-head {
-    font-size: 0.8rem;
-  }
-}
-@media (max-width: 1024.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .time-head {
-    font-size: 0.75rem;
-  }
-}
-@media (max-width: 767.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .time-head {
-    font-size: 1.125rem;
-  }
-}
-.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .time-head i {
-  color: #B4B4B4;
-  font-size: 0.9rem;
-}
-@media (max-width: 1396.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .time-head i {
-    font-size: 0.8rem;
-  }
-}
-@media (max-width: 1024.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .time-head i {
-    font-size: 0.7rem;
-  }
-}
-@media (max-width: 767.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .time-head i {
-    font-size: 0.9rem;
-  }
-}
-@media (max-width: 590.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .time-head i {
-    font-size: 0.7rem;
-  }
-}
-.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .text-color {
-  color: #F9F9F9;
-}
-.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot {
-  overflow: hidden;
-  overflow-y: auto;
-  max-height: 36vh;
-}
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span {
   display: inline-block;
   min-width: 25%;
@@ -3428,9 +3275,9 @@ img.dark-icon {
   margin: 0.3rem 0.1rem;
   font-size: 0.8rem;
   font-weight: 450;
-  color: #B4B4B4;
-  background-color: #2D2D2F;
-  border: 1px solid #f0f0f0;
+  color: #431F1C;
+  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+  border: 1px solid #ffffff;
   cursor: pointer;
 }
 @media (max-width: 1396.98px) {
@@ -3475,16 +3322,16 @@ img.dark-icon {
     margin: 0.4rem 0.2rem;
   }
 }
-.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color:hover {
-  background-color: #f0f0f0;
-}
-.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color.active {
-  color: rgba(255, 255, 255, 0.45);
-  background-color: #B4B4B4;
-}
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color.disabled {
-  color: #B4B4B4;
-  background-color: #2D2D2F;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+  border: 1px solid #ffffff;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color.active, .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color:hover {
+  color: #ffffff;
+  background-color: #FF6D6D;
+  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+  border: 1px solid #ffffff;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .slot-form {
   display: flex;
@@ -3570,17 +3417,6 @@ img.dark-icon {
     font-weight: 500;
   }
 }
-.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .slot-form .btn-color {
-  color: #F9F9F9;
-  background-color: #FF6D6D;
-  text-align: center;
-  margin: auto;
-  left: 0;
-  right: 0;
-  border-radius: 2rem;
-  padding: 2px;
-  font-size: 0.9rem;
-}
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-meeting-today {
   overflow: hidden;
   overflow-y: auto;
@@ -3659,10 +3495,6 @@ img.dark-icon {
   left: 0;
   right: 0;
 }
-.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-meeting-req .row .time-detail h6.text-color {
-  color: #B4B4B4;
-  font-size: 0.9rem;
-}
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-meeting-req .row .time-detail .club-i {
   color: #B4B4B4;
   font-size: 0.75rem;
@@ -3691,21 +3523,6 @@ img.dark-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.faq-head {
-  color: #FF6D6D;
-}
-.faq-head.text-center {
-  font-weight: 700;
-}
-
-.faq-text {
-  color: #F9F9F9;
-}
-
-.faq-link {
-  color: #B4B4B4;
 }
 
 /* width */

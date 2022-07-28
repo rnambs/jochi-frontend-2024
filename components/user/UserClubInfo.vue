@@ -57,7 +57,7 @@
                 >
                   <div
                     v-if="index == 0"
-                    class="col-md-6 col-xs-12 pr-0 pl-3 py-12"
+                    class="col-md-6 col-xs-12 pl-3 py-12"
                   >
                     <div class="inner-info-head mb-2">
                       <h4 class="color-dark mb-2 font-bold">

@@ -1234,7 +1234,7 @@ export default {
   padding: 5px;
 }
 
-.fc-view-harness.fc-view-harness-active {
+.planner-week .fc-view-harness.fc-view-harness-active {
   height: 75vh !important;
   margin-top: 20px;
 }

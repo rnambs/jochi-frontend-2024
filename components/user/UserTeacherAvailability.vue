@@ -10,26 +10,32 @@
     <div class="main-section">
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
-        <div class="teacher-section container-fluid mt-4">
-          <h5 class="text-color m-0 p-3">Custom Avaliability</h5>
-          <div class="inner-teacher container-fluid p-3">
-            <div class="row">
-              <div class="col-md-7 text-light custom-teacher-container">
-                <div class="time-slot container p-4 mb-3">
+        <div class="teacher-section jochi-components-light-bg
+        p-4
+        custom-margin-for-main-section custom-full-height
+        d-flex
+        flex-column custom-overflow">
+          <h2 class="color-primary font-semi-bold m-0 p-3">Custom Avaliability</h2>
+          <div class="inner-teacher container-fluid p-3 d-flex flex-column flex-fill h-40">
+            <div class="row h-100">
+              <div class="col-md-7 text-light custom-teacher-container d-flex flex-column h-100">
+                <div class="time-slot container card card-primary rounded-22 p-4 mb-3">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-                <div class="time-slot-week container p-4">
+                <div class="time-slot-week container card card-primary rounded-22 p-4 flex-fill">
                   <FullCalendar :options="calendar" />
                 </div>
               </div>
-              <div class="col-md-5 custom-teacher-container">
-                <div class="time-slot container p-4">
+              <div class="col-md-5 custom-teacher-container d-flex flex-column h-100">
+                <div class="time-slot container card card-primary rounded-22 p-4 flex-fill">
                   <p class="time-head pb-1">
-                    {{ date_string }} <span><i>30 Minute Slot</i></span>
+                    <span class="color-dark text-16 font-semi-bold">{{ date_string }}</span>
+                    <span class="color-secondary text-14 font-normal"><i>30 Minute Slot</i></span>
                   </p>
-                  <div class="inner-slot">
+                  <div class="inner-slot hidden-scroll h-40 flex-fill">
                     <span v-for="(slot, index) in slotsArrayShow" :key="index">
                       <div
+
                         :class="
                           slot.exist
                             ? 'badge badge-pill badge-color active'
@@ -116,7 +122,7 @@
                       <div class="form-group col-12">
                         <button
                           type="submit"
-                          class="btn btn-color my-2 pl-4 pr-4 float-right"
+                          class="btn btn-primary my-2 py-1 px-4 rounded-pill float-right"
                           @click.prevent="UpdateTeacherAvailability()"
                         >
                           Update

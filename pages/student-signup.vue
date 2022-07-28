@@ -39,7 +39,7 @@
       <div id="fountainTextG_3" class="fountainTextG animation">. &nbsp;</div>
       <div id="fountainTextG_4" class="fountainTextG animation">. &nbsp;</div>
     </div>
-    <div class="row main-row align-items-center flex-row vh-100 m-0">
+    <div class="row main-row flex-row vh-100 m-0">
       <div
         class="
           col-md-6
@@ -49,7 +49,7 @@
           flex-column
           align-items-center
           justify-content-between
-          h-100
+          h-md-100
           flex-fill
         "
       >
@@ -72,7 +72,7 @@
           d-flex
           align-items-center
           justify-content-center
-          h-100
+          h-md-100
         "
       >
         <!-- Sign-Up -->
@@ -82,7 +82,6 @@
           class="login-box d-flex flex-column h-100 justify-content-between"
         >
           <div class="d-flex flex-column h-100 justify-content-center p-3">
-            <h1 class="heading mb-3 mt-5">Sign up</h1>
             <div
               class="
                 card
@@ -97,14 +96,10 @@
               <img
                 src="../static/image/school_passport.png"
                 alt=""
-                class="mb-4 passport-img"
+                class="mb-4 passport-img py-4"
               />
-              <button class="btn btn-primary px-5">
-                <a
-                  href="https://sso.gg4l.com/oauth/auth?response_type=code&client_id=PTRQTIBSJC&redirect_uri=https://jochi.devateam.com/redirect-login"
-                >
-                  Sign in with School Passport
-                </a>
+              <button class="btn btn-primary font-semi-bold px-5">
+                Sign in with School Passport
               </button>
               <!-- <form action="" class="sign-in" @submit.prevent="GetSignUp">
                 <div class="row mb-3">
