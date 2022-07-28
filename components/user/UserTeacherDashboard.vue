@@ -63,7 +63,7 @@
                 </div>
               </div>
               <!-- END AGENDA -->
-              <div class="col-md-5 custom-teacher-container">
+              <div class="col-md-5 custom-teacher-container d-flex flex-column">
                 <!-- TABLE  -->
                 <div class="teacher-row container mb-3 card card-primary rounded-22 p-0">
                   <div class="appointment-req p-2">
