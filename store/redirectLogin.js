@@ -11,7 +11,7 @@ const actions = {
     // login using gg4l
     async loginUsingGg4l({ commit }, payLoad) {
         try {
-            const response = await this.$axios.$post(BASE_URL + 'users/gg4l_passport_auth', payLoad)
+            const response = await this.$axios.$post(BASE_URL + 'auth/gg4l_passport_auth', payLoad)
             console.log("login request", response)
             commit('setErrorMessage', "");
             commit('setErrorType', "");
