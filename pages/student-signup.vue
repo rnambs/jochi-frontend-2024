@@ -99,7 +99,11 @@
                 class="mb-4 passport-img py-4"
               />
               <button class="btn btn-primary font-semi-bold px-5">
-                Sign in with School Passport
+                <a
+                  href="https://sso.gg4l.com/oauth/auth?response_type=code&client_id=PTRQTIBSJC&redirect_uri=https://jochi.devateam.com/redirect-login"
+                >
+                  Sign in with School Passport
+                </a>
               </button>
               <!-- <form action="" class="sign-in" @submit.prevent="GetSignUp">
                 <div class="row mb-3">

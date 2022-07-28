@@ -269,13 +269,29 @@
           >
             <div class="assignment-tag-section d-flex align-items-center mb-2">
               <div
-                v-if="detail.priority == '1'"
-                class="assignment-tag red mr-2"
+                class="assignment-tag mr-2"
+                :class="
+                  detail.priority == '1'
+                    ? 'red'
+                    : detail.priority == '2'
+                    ? 'orange'
+                    : detail.priority == '3'
+                    ? 'yellow'
+                    : ''
+                "
               >
-                Urgent
+                {{
+                  detail.priority == "1"
+                    ? "Urgent"
+                    : detail.priority == "2"
+                    ? "Important"
+                    : detail.priority == "3"
+                    ? "Can Wait"
+                    : ""
+                }}
               </div>
-              <div v-if="detail.priority == '2'" class="assignment-tag pink">
-                AP French
+              <div class="assignment-tag pink">
+                {{ detail.subject }}
               </div>
             </div>
             <div class="text-center">
@@ -891,7 +907,14 @@
         <div class="col-lg-7 h-100 d-flex flex-column">
           <div class="card card-primary rounded-22 p-4 h-40 flex-fill mb-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
-              <h3 class="color-dark font-semi-bold mb-0">Goals</h3>
+              <h3 class="color-dark font-semi-bold mb-0">
+                Goals
+                {{
+                  sessionType == "assignment"
+                    ? "(" + selectedAssignment.task + ")"
+                    : null
+                }}
+              </h3>
               <span class="color-secondary" @click="onAddGoalClick"
                 ><i class="fas fa-plus"></i
               ></span>
@@ -1016,8 +1039,11 @@
           <div class="card card-primary rounded-22 p-4 m-0 flex-column h-100">
             <div class="d-flex flex-column justify-content-between h-100">
               <div class="d-flex flex-column h-40 flex-fill">
-                <h2 class="color-dark font-semi-bold mb-1">Regular studying</h2>
-                <div
+                <h2 class="color-dark font-semi-bold mb-1">
+                  {{ sessionMode == "regular" ? "Regular" : "Pomodoro" }}
+                  studying
+                </h2>
+                <!-- <div
                   class="
                     d-flex
                     flex-column
@@ -1030,7 +1056,7 @@
                   "
                 >
                   <div class="form-row w-100 mb-2 mx-0 mr-2 pr-2 required">
-                    <!-- {{subjectsData}} -->
+                    
                     <label class="form-label">Subject</label>
                     <select
                       @change="UpdateSubject()"
@@ -1093,14 +1119,183 @@
                       Schedule for later
                     </button>
                   </div>
+                </div> -->
+                <div class="form-section study-room-form py-0 mx-5">
+                  <form
+                    @submit.prevent="StartStudySession"
+                    ref="studyTimeForm"
+                    class="container"
+                  >
+                    <div
+                      v-if="sessionType == 'study'"
+                      class="form-group required"
+                    >
+                      <!-- {{subjectsData}} -->
+                      <label class="typo__label">Subject</label>
+                      <select
+                        @change="UpdateSubject()"
+                        class="form-control"
+                        tabindex=""
+                        v-model="Subject"
+                        :class="{
+                          'is-invalid': submitted && $v.Subject.$error,
+                        }"
+                      >
+                        <option value="">Select Subject</option>
+                        <option
+                          v-bind:value="{
+                            id: subjects.id,
+                            text: subjects.subject_name,
+                          }"
+                          v-for="(subjects, index) in subjectsData"
+                          :key="index"
+                        >
+                          {{ subjects.subject_name }}
+                        </option>
+                        <option v-if="subjectsData.length == 0">No data</option>
+                      </select>
+                      <div
+                        v-if="submitted && $v.Subject.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.Subject.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </div>
+                    <div v-else class="form-group required">
+                      <label class="typo__label">Subject</label>
+                      <input
+                        type="text"
+                        id="subjectName"
+                        v-model="subjectName"
+                        readonly
+                        class="form-control"
+                      />
+                      <div
+                        v-if="submitted && $v.Subject.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.Subject.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </div>
+
+                    <!-- <div class="form-group required">
+                      <label class="typo__label">Study Technique</label>
+                      <select
+                        @change="UpdateStudyTechnique()"
+                        class="form-control"
+                        tabindex=""
+                        v-model="studyTypes"
+                        :class="{
+                          'is-invalid': submitted && $v.studyTypes.$error,
+                        }"
+                      >
+                        <option value="">Select Study Technique</option>
+
+                        <option
+                          v-for="(studyTypes, index) in studyTypesData"
+                          :key="index"
+                          v-bind:value="{
+                            id: studyTypes.id,
+                            text: studyTypes.type,
+                            startTime: studyTypes.start_time,
+                            breakTime: studyTypes.break_time,
+                            cycle: studyTypes.cycle,
+                            long_break: studyTypes.long_break,
+                          }"
+                        >
+                          {{ studyTypes.type }}
+                        </option>
+                        <option v-if="studyTypesData.length == 0">
+                          No data
+                        </option>
+                      </select>
+                      <div
+                        v-if="submitted && $v.studyTypes.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.studyTypes.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </div> -->
+                    <div class="form-group" v-if="this.studyTypes.id != 3">
+                      <label for="">Number of repetitions</label>
+
+                      <select
+                        @change="UpdateSubject()"
+                        class="form-control"
+                        tabindex=""
+                        v-model="repetitionCount"
+                      >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group" v-show="this.studyTypes.id == 3">
+                      <label for="">Duration (In Minutes)</label>
+                      <input
+                        type="number"
+                        id="targetDuration"
+                        v-model="targetDuration"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group" v-show="this.studyTypes.id == 3">
+                      <label for="">Break Time At (In Minutes)</label>
+                      <input
+                        type="number"
+                        id="breakAt"
+                        v-model="breakAt"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group" v-show="this.studyTypes.id == 3">
+                      <label for="">Break Time (In Minutes)</label>
+                      <input
+                        type="number"
+                        id="breakTime"
+                        v-model="breakTime"
+                        class="form-control"
+                      />
+                    </div>
+                    <!-- <button
+                      type="submit"
+                      class="
+                        btn btn-color
+                        mb-2
+                        pl-3
+                        pr-3
+                        d-flex
+                        justify-conetent-center
+                      "
+                    >
+                      Start Session
+                    </button> -->
+                    <div class="py-1">
+                      <button type="submit" class="btn btn-primary btn-sm">
+                        Start Session
+                      </button>
+                    </div>
+                    <div class="py-1">
+                      <button class="btn btn-dark btn-sm">
+                        Schedule for later
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
               <div class="d-flex justify-content-end">
-                <img
+                <!-- <img
                   src="../../static/image/dashboard_img.png"
                   alt=""
                   class="img-fluid card-img"
-                />
+                /> -->
               </div>
             </div>
           </div>
@@ -1412,7 +1607,6 @@
                     class="container"
                   >
                     <div class="form-group required">
-                      <!-- {{subjectsData}} -->
                       <label class="typo__label">Subject</label>
                       <select
                         @change="UpdateSubject()"
@@ -1940,6 +2134,7 @@ export default {
       invitePeer: false,
       peerSelected: {},
       peerList: [],
+      subjectName: "",
     };
   },
 
@@ -2162,8 +2357,9 @@ export default {
     },
 
     async StartStudySession() {
+      // debugger;
+      console.log("start study session");
       this.submitted = true;
-      // this.timerStatus = 1;
       if (this.studyTypes.id == 3) {
         if (!this.targetDuration || !this.breakTime) {
           return this.$toast.open({
@@ -2217,7 +2413,6 @@ export default {
         return;
       } else {
         this.processing = true;
-
         await this.startStudySession({
           subject: this.Subject.id,
           targetDuration: this.targetDuration,
@@ -2378,6 +2573,7 @@ export default {
     async setSessionType(type) {
       this.sessionType = type;
       if (this.sessionType == "study") {
+        this.resetAssignment();
         this.currentTab = 2;
         return;
       }
@@ -2401,6 +2597,15 @@ export default {
     onModeSelect(type) {
       this.sessionMode = type;
       this.currentTab++;
+      if (this.sessionMode == "regular") {
+        this.studyTypes = this.studyTypesData.find((e) => e.id == 3);
+      } else {
+        this.studyTypes = this.studyTypesData.find((e) => e.id == 1);
+      }
+      if (this.sessionType == "assignment") {
+        this.subjectName = this.selectedAssignment.task;
+      }
+      this.UpdateStudyTechnique();
     },
     onAddGoalClick() {
       this.addGoal = true;
@@ -2408,6 +2613,7 @@ export default {
     onAddNewGoal() {
       console.log(this.goalName);
       this.goalsList.push(this.goalName);
+      this.goalName = "";
       this.addGoal = false;
     },
     onInviteClick() {
@@ -2423,7 +2629,13 @@ export default {
     onInvitePeer() {
       console.log(this.peerSelected);
       this.peerList.push(this.peerSelected);
+      this.peerSelected = "";
       this.invitePeer = false;
+    },
+    resetAssignment() {
+      this.selectedAssignment = {};
+      this.goalsList = [];
+      this.peerList = [];
     },
   },
 

@@ -32,7 +32,7 @@
               <a href="#" class="sb-settings-btn">Settings</a>
             </div>
             <div class="sb-buttons-section">
-              <div class="sb-expand-btn my-3"  @click="btnCollapse(1)">
+              <div class="sb-expand-btn my-3" @click="btnCollapse(1)">
                 <div class="sb-btn-head d-flex align-items-center">
                   <div class="sb-btn-icon mr-3">
                     <img
@@ -49,7 +49,7 @@
                   <div class="sb-btn">Monthly</div>
                 </div>
               </div>
-              <div class="sb-expand-btn my-3"  @click="btnCollapse(2)">
+              <div class="sb-expand-btn my-3" @click="btnCollapse(2)">
                 <div class="sb-btn-head d-flex align-items-center">
                   <div class="sb-btn-icon mr-3">
                     <img
@@ -66,7 +66,7 @@
                   <div class="sb-btn">Monthly</div>
                 </div>
               </div>
-              <div class="sb-expand-btn my-3"  @click="btnCollapse(3)">
+              <div class="sb-expand-btn my-3" @click="btnCollapse(3)">
                 <div class="sb-btn-head d-flex align-items-center">
                   <div class="sb-btn-icon mr-3">
                     <img
@@ -83,7 +83,7 @@
                   <div class="sb-btn">Monthly</div>
                 </div>
               </div>
-              <div class="sb-expand-btn my-3"  @click="btnCollapse(4)">
+              <div class="sb-expand-btn my-3" @click="btnCollapse(4)">
                 <div class="sb-btn-head d-flex align-items-center">
                   <div class="sb-btn-icon mr-3">
                     <img
@@ -103,40 +103,48 @@
             </div>
           </div>
         </div>
-        <div class="col-10 dashboard-main-content jochi-components-light-bg p-5">
+        <div
+          class="col-10 dashboard-main-content jochi-components-light-bg p-5"
+        >
           <div class="row">
             <div class="col-lg-7">
-                <div class="row jochi-components-light-bg mb-3 p-4">
-                    <div class="col-7">
-                        <h2 class="jochi-headings mb-1">Complete An Assignment</h2>
-                        Tackle  your upcoming assignments
-                    </div>
-                    <div class="col-5 d-flex justify-content-end">
-                        <img src="../static/image/folder.png" alt="" class="w-75">
-                    </div>
+              <div class="row jochi-components-light-bg mb-3 p-4">
+                <div class="col-7">
+                  <h2 class="jochi-headings mb-1">Complete An Assignment</h2>
+                  Tackle your upcoming assignments
                 </div>
-                <div class="row jochi-components-light-bg p-4">
-                    <div class="col-7">
-                        <h2 class="jochi-headings mb-1">Start a new Study Session</h2>
-                        Stay focused while you study, and monitor your productivity
-                    </div>
-                    <div class="col-5 d-flex justify-content-end">
-                        <img src="../static/image/lamp.png" alt="" class="w-50">
-                    </div>
+                <div class="col-5 d-flex justify-content-end">
+                  <img src="../static/image/folder.png" alt="" class="w-75" />
                 </div>
+              </div>
+              <div class="row jochi-components-light-bg p-4">
+                <div class="col-7">
+                  <h2 class="jochi-headings mb-1">Start a new Study Session</h2>
+                  Stay focused while you study, and monitor your productivity
+                </div>
+                <div class="col-5 d-flex justify-content-end">
+                  <img src="../static/image/lamp.png" alt="" class="w-50" />
+                </div>
+              </div>
             </div>
             <div class="col-lg-5 py-0">
-                <div class="jochi-components-light-bg p-4 h-100">
-                    <div class="d-flex justify-content-between flex-column h-100">
-                        <div class="head-section">
-                            <h2 class="jochi-headings mb-1">Enhance your studying with research-backed technqiues</h2>
-                            <button class="btn learn-more-btn">Learn More</button>
-                        </div>
-                        <div class="img-section">
-                            <img src="../static/image/student_img.png" alt="" class="img-fluid">
-                        </div>
-                    </div>
+              <div class="jochi-components-light-bg p-4 h-100">
+                <div class="d-flex justify-content-between flex-column h-100">
+                  <div class="head-section">
+                    <h2 class="jochi-headings mb-1">
+                      Enhance your studying with research-backed technqiues
+                    </h2>
+                    <button class="btn learn-more-btn">Learn More</button>
+                  </div>
+                  <div class="img-section">
+                    <img
+                      src="../static/image/student_img.png"
+                      alt=""
+                      class="img-fluid"
+                    />
+                  </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -146,116 +154,119 @@
 </template>
 
 <script>
-  import StudentDashboard from "~/components/StudentDashboard.vue";
-  import FullCalendar, { Calendar } from "@fullcalendar/vue";
-  import timeGridPlugin from "@fullcalendar/timegrid";
-  // import interact from 'interactjs';
-  import interactionPlugin from "@fullcalendar/interaction";
+import StudentDashboard from "~/components/StudentDashboard.vue";
+import FullCalendar, { Calendar } from "@fullcalendar/vue";
+import timeGridPlugin from "@fullcalendar/timegrid";
+// import interact from 'interactjs';
+import interactionPlugin from "@fullcalendar/interaction";
 
-  var eventList = [
-    {
-      id: 1,
-      title: "Meeting",
-      start: "2022-06-16T00:30:00",
-      end: "2022-06-16T02:30:00",
-    },
-    {
-      id: 2,
-      title: "Meeting",
-      start: "2022-06-16T12:30:00",
-      end: "2022-06-16T14:30:00",
-    },
-    {
-      id: 3,
-      title: "Birthday Party",
-      start: "2022-06-16T07:00:00",
-      extendedProps: { status: "wholeleel" },
-    },
-  ];
+var eventList = [
+  {
+    id: 1,
+    title: "Meeting",
+    start: "2022-06-16T00:30:00",
+    end: "2022-06-16T02:30:00",
+  },
+  {
+    id: 2,
+    title: "Meeting",
+    start: "2022-06-16T12:30:00",
+    end: "2022-06-16T14:30:00",
+  },
+  {
+    id: 3,
+    title: "Birthday Party",
+    start: "2022-06-16T07:00:00",
+    extendedProps: { status: "wholeleel" },
+  },
+];
 
-  export default {
-    name: "student-profile",
-    components: {
-      FullCalendar,
-    },
-    data() {
-      return {
-        calendarApi: Calendar,
-        calendarOptions: {
-          displayEventTime: false,
-          customButtons: {
-            prev: {
-              click: this.goPrev.bind(this),
-            },
-            next: {
-              click: this.goNext.bind(this),
-            },
+export default {
+  name: "student-profile",
+  components: {
+    FullCalendar,
+  },
+  data() {
+    return {
+      calendarApi: Calendar,
+      calendarOptions: {
+        displayEventTime: false,
+        customButtons: {
+          prev: {
+            click: this.goPrev.bind(this),
           },
-          allDaySlot: true,
-          minTime: 0,
-          maxTime: 24,
-          plugins: [timeGridPlugin, interactionPlugin],
-          headerToolbar: {
-            left: "prev",
-            center: "title",
-            right: "next",
-          },
-          initialView: "timeGridDay",
-          unselectAuto: false,
-          selectable: true,
-          datesSet: this.handleMonthChange,
-          events: eventList,
-          eventClick: this.eventClicked,
-          slotDuration: "00:15:00",
-          slotEventOverlap: false,
-          eventMaxStack: true, // for all non-TimeGrid views
-          views: {
-            timeGrid: {
-              dayMaxEventRows: 4, // adjust to 6 only for timeGridWeek/timeGridDay
-            },
+          next: {
+            click: this.goNext.bind(this),
           },
         },
-      };
-    },
-    mounted() {
+        allDaySlot: true,
+        minTime: 0,
+        maxTime: 24,
+        plugins: [timeGridPlugin, interactionPlugin],
+        headerToolbar: {
+          left: "prev",
+          center: "title",
+          right: "next",
+        },
+        initialView: "timeGridDay",
+        unselectAuto: false,
+        selectable: true,
+        datesSet: this.handleMonthChange,
+        events: eventList,
+        eventClick: this.eventClicked,
+        slotDuration: "00:15:00",
+        slotEventOverlap: false,
+        eventMaxStack: true, // for all non-TimeGrid views
+        views: {
+          timeGrid: {
+            dayMaxEventRows: 4, // adjust to 6 only for timeGridWeek/timeGridDay
+          },
+        },
+      },
+    };
+  },
+  mounted() {
     //   this.calendarApi = this.$refs.fullCalendar.getApi();
+  },
+  head() {
+    return {
+      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+    };
+  },
+  methods: {
+    addAssignment() {
+      // alert("inside add assignment");
+      //  event.target.className += " myClass";
+      this.$el
+        .querySelector(".pending-assignment-popup")
+        .classList.add("active");
     },
-    head() {
-      return {
-        link: [{ rel: "stylesheet", href: "/css/style01.css" }],
-      };
+    pendingPopupclose() {
+      this.$el
+        .querySelector(".pending-assignment-popup")
+        .classList.remove("active");
     },
-    methods: {
-      addAssignment() {
-        // alert("inside add assignment");
-        //  event.target.className += " myClass";
-        this.$el.querySelector(".pending-assignment-popup").classList.add('active');
-      },
-      pendingPopupclose() {
-        this.$el.querySelector(".pending-assignment-popup").classList.remove('active');
-      },
-      btnCollapse(id) {
-        this.$el.querySelector("#sbContent"+id).classList.toggle('active');
-      },
-      addSubtask() {
-        var x = document.createElement("INPUT");
-        x.setAttribute("type", "text");
-        x.setAttribute("name", "subTask");
-        x.setAttribute("class", "form-control mb-1");
-        document.getElementById("subTaskAdd").appendChild(x);
+    btnCollapse(id) {
+      this.$el.querySelector("#sbContent" + id).classList.toggle("active");
+    },
+    addSubtask() {
+      var x = document.createElement("INPUT");
+      x.setAttribute("type", "text");
+      x.setAttribute("name", "subTask");
+      x.setAttribute("class", "form-control mb-1");
+      document.getElementById("subTaskAdd").appendChild(x);
+    },
+    goPrev() {
+      this.calendarApi.prev(); // call a method on the Calendar object
+      // this.GetDailyPlanner();
+    },
 
-      },
-      goPrev() {
-        this.calendarApi.prev(); // call a method on the Calendar object
-        // this.GetDailyPlanner();
-      },
-
-      goNext() {
-        this.calendarApi.next();
-        // this.GetDailyPlanner();
-      },
+    goNext() {
+      this.calendarApi.next();
+      // this.GetDailyPlanner();
     },
-  };
+  },
+};
 </script>
 
 <style>
@@ -269,7 +280,7 @@ body {
 }
 
 .dashboard-main-content {
-    margin: 12px 0;
+  margin: 12px 0;
 }
 
 .jochi-sub-components-light-bg {
@@ -606,5 +617,4 @@ body {
   font-size: 32px;
   font-weight: 900;
 }
-
 </style>
