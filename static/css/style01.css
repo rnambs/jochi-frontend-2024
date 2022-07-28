@@ -2138,10 +2138,6 @@ img.dark-icon {
 .inner-section .main-section .study-section .study-row .study-col .upload-image .pic-edit i.fa-pen input.rg-img-upload::-webkit-file-upload-button {
   cursor: pointer;
 }
-.inner-section .main-section .study-section .study-row .study-col .cal-image {
-  width: 170px;
-  height: 170px;
-}
 .inner-section .main-section .study-section .study-row .study-col .study-image {
   width: 400px;
   padding: 0px 60px 0px 60px;
