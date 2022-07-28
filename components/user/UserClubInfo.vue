@@ -22,7 +22,7 @@
         <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
           <div class="position-absolute cover-button mr-3 mb-1">
-            <button class="btn p-1 m-2">
+            <button @click="openAddBanner" class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
             <button class="btn p-1 m-2">
@@ -55,7 +55,10 @@
                   v-for="(list, index) in list_data"
                   :key="index"
                 >
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 pl-3 py-12">
+                  <div
+                    v-if="index == 0"
+                    class="col-md-6 col-xs-12 pl-3 py-12"
+                  >
                     <div class="inner-info-head mb-2">
                       <h4 class="color-dark mb-2 font-bold">
                         About the {{ headingName }}
@@ -129,13 +132,25 @@
                   <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
-                        <div class="d-flex mb-3 justify-content-end align-items-center mb-2">
-                          <h4 class="color-dark mb-0 mr-2 font-bold">Leaders</h4>
+                        <div
+                          class="
+                            d-flex
+                            mb-3
+                            justify-content-end
+                            align-items-center
+                            mb-2
+                          "
+                        >
+                          <h4 class="color-dark mb-0 mr-2 font-bold">
+                            Leaders
+                          </h4>
                           <a
-                          href="#"
-                          class="btn p-1 color-secondary"
-                          ><span><i class="fas fa-plus-circle"></i></span
-                        ></a>
+                            v-if="enableEdit"
+                            href="#"
+                            class="btn p-1 color-secondary"
+                            ><span @click="openAddLeader"
+                              ><i class="fas fa-plus-circle"></i></span
+                          ></a>
                         </div>
                         <div class="row justify-content-end">
                           <div class="col-8">
@@ -179,7 +194,14 @@
                                     </div>
                                     <div class="col-8 p-0">
                                       <div class="ld-details-section">
-                                        <p class="mb-1 text-18 color-dark font-semi-bold">
+                                        <p
+                                          class="
+                                            mb-1
+                                            text-18
+                                            color-dark
+                                            font-semi-bold
+                                          "
+                                        >
                                           {{
                                             data.user_info.first_name +
                                             (data.user_info.last_name
@@ -193,7 +215,13 @@
                                           }}
                                         </p>
                                         <p
-                                          class="color-secondary text-16 font-regular mb-0 text-truncate"
+                                          class="
+                                            color-secondary
+                                            text-16
+                                            font-regular
+                                            mb-0
+                                            text-truncate
+                                          "
                                         >
                                           {{ data.user_info.email }}
                                         </p>
@@ -207,7 +235,11 @@
                                   @click="openViewMoreMembers(true)"
                                   class="btn btn-void mt-3 py-1 px-0"
                                 >
-                                  <span class="font-semi-bold mr-1">View More</span><span class="more-icon"><i class="fas fa-chevron-right"></i></span>
+                                  <span class="font-semi-bold mr-1"
+                                    >View More</span
+                                  ><span class="more-icon"
+                                    ><i class="fas fa-chevron-right"></i
+                                  ></span>
                                 </button>
 
                                 <!-- <li
@@ -237,7 +269,7 @@
                           </div>
                         </div>
                       </div>
-                      <div
+                      <!-- <div
                         class="col-12 text-right inner-col py-12"
                         v-if="enableEdit"
                       >
@@ -253,65 +285,14 @@
                             align-items-center
                             justify-content-end
                           "
-                        >
-                          <!-- <multiselect
-                              v-model="value"
-                              :options="taglist"
-                              track-by="name"
-                              label="name"
-                              placeholder="Select a tag"
-                              @input="EditTag"
-                            >
-                              <span slot="noResult">No data found</span>
-                            </multiselect> -->
-                          <!-- <multiselect
-                            v-model="value"
-                            deselect-label="Can't remove this value"
-                            track-by="name"
-                            label="name"
-                            placeholder="Select one"
-                            :options="options"
-                            :searchable="false"
-                            :allow-empty="false"
-                          >
-                            <template slot="singleLabel" slot-scope="{ option }"
-                              ><strong>{{ option.name }}</strong> is written
-                              in<strong>
-                                {{ option.language }}</strong
-                              ></template
-                            >
-                          </multiselect> -->
-                          <div class="d-flex align-items-center flex-fill mr-2">
-                            <multiselect
-                              v-model="leaderUpdate"
-                              :options="students"
-                              track-by="first_name"
-                              label="first_name"
-                              placeholder="
-                                Select students
-                              "
-                            >
-                              <!-- <span slot="maxElements"
-                              >Maximum of 4 students selected</span
-                            > -->
-                              <span slot="noResult">No data found</span>
-                            </multiselect>
-                          </div>
-                          <!-- <span class="input-icon custom-search-icon"
-                            ><i class="fa fa-search" aria-hidden="true"></i
-                          ></span> -->
-                          <button
-                            class="btn btn-primary"
-                            :disabled="!leaderUpdate"
-                            @click.prevent="addLeader()"
-                          >
-                            Update
-                          </button>
-                        </div>
-                      </div>
+                        ></div>
+                      </div> -->
                     </div>
                   </div>
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3 py-12">
+                  <div
+                    v-if="index == 0"
+                    class="col-md-6 col-xs-12 pr-0 pl-3 py-12"
+                  >
                     <div class="mb-2 mt-4">
                       <h4 class="color-dark mb-2 font-bold">Members</h4>
                     </div>
@@ -407,14 +388,22 @@
                   <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
-                        <div class="inner-info-head mb-2 d-flex align-items-center justify-content-end">
+                        <div
+                          class="
+                            inner-info-head
+                            mb-2
+                            d-flex
+                            align-items-center
+                            justify-content-end
+                          "
+                        >
                           <h4 class="color-dark mb-0 mr-2 font-bold">Tags</h4>
                           <a href="#" class="btn p-1 color-secondary">
                             <span><i class="fas fa-plus-circle"></i></span>
                           </a>
                         </div>
                         <div class="row justify-content-end">
-                          <div class="col-6 info-tag ">
+                          <div class="col-6 info-tag">
                             <div class="input-group mb-0 justify-content-end">
                               <div
                                 class="p-1"
@@ -731,7 +720,7 @@
         </div>
       </div>
     </div>
-    <!-- modal add assignment -->
+    <!-- modal add next meeting -->
 
     <!-- modal for view members and leaders -->
     <div
@@ -793,7 +782,15 @@
                               : "Teacher"
                           }}
                         </p>
-                        <p class="color-secondary text-16 font-regular mb-0  text-truncate">
+                        <p
+                          class="
+                            color-secondary
+                            text-16
+                            font-regular
+                            mb-0
+                            text-truncate
+                          "
+                        >
                           {{ data.user_info.email }}
                         </p>
                       </div>
@@ -845,7 +842,15 @@
                               : "Teacher"
                           }}
                         </p>
-                        <p class="color-secondary text-16 font-regular mb-0  text-truncate">
+                        <p
+                          class="
+                            color-secondary
+                            text-16
+                            font-regular
+                            mb-0
+                            text-truncate
+                          "
+                        >
                           {{ data.user_info.email }}
                         </p>
                       </div>
@@ -865,6 +870,129 @@
       </div>
     </div>
     <!--  modal for view members and leaders -->
+
+    <!-- modal for add leader -->
+    <div
+      class="modal fade"
+      id="addLeaderModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addLeaderModalModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title color-dark" id="addLeaderModalLongTitle">
+              Add Leaders
+            </h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body no-overflow px-4">
+            <!-- <div class="col-md-5 col-xs-12"> -->
+            <div class="d-flex align-items-center flex-fill mr-2">
+              <multiselect
+                v-model="leaderUpdate"
+                :options="students"
+                track-by="first_name"
+                label="first_name"
+                placeholder="
+                                Select students
+                              "
+              >
+                <span slot="noResult">No data found</span>
+              </multiselect>
+            </div>
+
+            <!-- </div> -->
+          </div>
+          <div class="modal-footer px-4">
+            <button
+              class="btn btn-primary"
+              :disabled="!leaderUpdate"
+              @click.prevent="addLeader()"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal add leaders -->
+
+    <!-- modal for add banner -->
+    <div
+      class="modal fade"
+      id="addBannerModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addBannerModalModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title color-dark" id="addBannerModalLongTitle">
+              Add Banner
+            </h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body no-overflow px-4">
+            <!-- <div class="col-md-5 col-xs-12"> -->
+            <div class="d-flex align-items-center flex-fill mr-2">
+              <!-- <croppa
+                v-model="croppa"
+                :width="1200"
+                :height="800"
+                placeholder="Yes, you can modify the text here"
+                placeholder-color="#000"
+                :placeholder-font-size="16"
+                canvas-color="transparent"
+                :show-remove-button="true"
+                remove-button-color="black"
+                :remove-button-size="5"
+                :show-loading="true"
+                :loading-size="50"
+                :loading-color="'#606060'"
+              ></croppa> -->
+              <cropper
+                class="cropper"
+                src="~/assets/image/cover-pic.jpg"
+                :stencil-props="{
+                  aspectRatio: 1200 / 180,
+                }"
+              />
+            </div>
+
+            <!-- </div> -->
+          </div>
+          <div class="modal-footer px-4">
+            <button
+              class="btn btn-primary"
+              :disabled="!leaderUpdate"
+              @click.prevent="addLeader()"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal add banner -->
   </div>
 </template>
 <script>
@@ -872,6 +1000,10 @@ import { mapState, mapActions } from "vuex";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import Multiselect from "vue-multiselect";
+import "vue-croppa/dist/vue-croppa.css";
+import { Cropper } from "vue-advanced-cropper";
+import "vue-advanced-cropper/dist/style.css";
+
 var headingName = "";
 var clubId = "";
 var list_data = [];
@@ -881,6 +1013,7 @@ export default {
   components: {
     lottie,
     Multiselect,
+    Cropper,
   },
   data() {
     return {
@@ -910,6 +1043,8 @@ export default {
       leaderUpdate: {},
       isLeaderView: false,
       tagColorMap: {},
+      croppa: {},
+      img: "https://images.unsplash.com/photo-1600984575359-310ae7b6bdf2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
     };
   },
 
@@ -1272,6 +1407,7 @@ export default {
         user_id: this.leaderUpdate ? this.leaderUpdate.id : "",
       });
       if (this.successMessage != "") {
+        $("#addLeaderModal").modal("hide");
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -1292,6 +1428,30 @@ export default {
       this.isLeaderView = isLeader;
       $("#viewMoreModal").modal({ backdrop: true });
     },
+    // add student leaders
+    openAddLeader() {
+      $("#addLeaderModal").modal({ backdrop: true });
+    },
+    openAddBanner() {
+      // $("#addBannerModal").modal({ backdrop: true });
+    },
+    uploadCroppedImage() {
+      this.croppa.generateBlob(
+        (blob) => {
+          // write code to upload the cropped image file (a file is a blob)
+        },
+        "image/jpeg",
+        0.8
+      ); // 80% compressed jpeg file
+    },
   },
 };
 </script>
+
+<style>
+.cropper {
+  height: 600px;
+  width: 600px;
+  background: #ddd;
+}
+</style>
