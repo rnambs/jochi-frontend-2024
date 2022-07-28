@@ -27,12 +27,12 @@
                 </div>
               </div>
               <div class="col-md-5 custom-teacher-container d-flex flex-column h-100">
-                <div class="time-slot container card card-primary rounded-22 p-4 flex-fill">
+                <div class="time-slot container card card-primary rounded-22 p-4 flex-fill h-40">
                   <p class="time-head pb-1">
                     <span class="color-dark text-16 font-semi-bold">{{ date_string }}</span>
                     <span class="color-secondary text-14 font-normal"><i>30 Minute Slot</i></span>
                   </p>
-                  <div class="inner-slot hidden-scroll h-40 flex-fill">
+                  <div class="inner-slot hidden-scroll h-40 flex-fill mb-5">
                     <span v-for="(slot, index) in slotsArrayShow" :key="index">
                       <div
 
@@ -48,7 +48,7 @@
                       </div>
                     </span>
                   </div>
-                  <form action="" class="mt-5">
+                  <form action="" class="">
                     <div class="row slot-form">
                       <div class="col">
                         <div class="custom-switch mb-3 switch-right">

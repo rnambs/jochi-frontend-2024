@@ -11,101 +11,105 @@
       d-flex
       flex-column custom-overflow">
         <h2 class="color-primary font-semi-bold m-0 p-3">Teacher Appointment</h2>
-        <div class="inner-teacher p-3 d-flex flex-column flex-fill h-40">
-          <div class="row teacher-row">
+        <div class="inner-teacher p-3 d-flex flex-column h-40 flex-fill">
+          <div class="d-flex h-100 flex-column">
+            <div>
+              <div class="row teacher-row">
+                
+                <!-- CALANDER -->
+                <div class="col-md-5 custom-teacher-container d-flex flex-column">
+                  <div class="inner-custom-teacher text-light  p-2 card card-primary rounded-22 flex-fill">
+                    <FullCalendar :options="calendarOptions" />
+                  </div>
+                </div>
+                <!-- END CALANDER -->
+    
+                <!-- AGENDA -->
+                <div class="col-md-7  custom-teacher-container d-flex flex-column">
+                  <div class="inner-custom-teacher  p-3 card card-primary rounded-22 flex-fill">
+                    <h4 class="font-semi-bold color-dark text-center">Meetings</h4>
+                    <div class="inner-agenda d-flex flex-column custom-overflow pr-2 mr--2">
+                      <div
+                        class="row container my-2 mx-0 p-0"
+                        v-for="(list, index) in listAgenda"
+                        :key="index"
+                      >
+                        <div class="col-3 time text-center py-0 d-flex align-items-center justify-content-center">
+                          <p class="time mb-0 p-2">{{ list["time"] }}</p>
+                        </div>
+                        <div class="col card card-white px-0 py-0">
+                          <p class="p-3 m-0">
+                            <span class="club-name color-dark font-semi-bold">{{ list["title"] }}</span>
+                            <span class="club-i"><i></i> </span>
+                          </p>
+                        </div>
+                      </div>
+                      <div v-if="listAgenda.length == 0" class="empty-shedule">
+                        <p>No meetings for the day</p>
+                      </div>
+                    </div>
+                  </div>
             
-            <!-- CALANDER -->
-            <div class="col-md-5 custom-teacher-container d-flex flex-column">
-              <div class="inner-custom-teacher text-light  p-2 card card-primary rounded-22 flex-fill">
-                <FullCalendar :options="calendarOptions" />
-              </div>
-            </div>
-            <!-- END CALANDER -->
-
-            <!-- AGENDA -->
-            <div class="col-md-7  custom-teacher-container d-flex flex-column">
-              <div class="inner-custom-teacher  p-3 card card-primary rounded-22 flex-fill">
-                <h4 class="font-semi-bold color-dark text-center">Meetings</h4>
-                <div class="inner-agenda d-flex flex-column custom-overflow pr-2 mr--2">
-                  <div
-                    class="row container my-2 mx-0 p-0"
-                    v-for="(list, index) in listAgenda"
-                    :key="index"
-                  >
-                    <div class="col-3 time text-center py-0 d-flex align-items-center justify-content-center">
-                      <p class="time mb-0 p-2">{{ list["time"] }}</p>
-                    </div>
-                    <div class="col card card-white px-0 py-0">
-                      <p class="p-3 m-0">
-                        <span class="club-name color-dark font-semi-bold">{{ list["title"] }}</span>
-                        <span class="club-i"><i></i> </span>
-                      </p>
-                    </div>
-                  </div>
-                  <div v-if="listAgenda.length == 0" class="empty-shedule">
-                    <p>No meetings for the day</p>
-                  </div>
                 </div>
+                <!-- END AGENDA -->
               </div>
-        
             </div>
-            <!-- END AGENDA -->
-          </div>
-
-          <!-- TABLE  -->
-          <div class="teacher-row d-flex flex-column flex-fill h-40 mt-4 p-0">
-            <div class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary rounded-22">
-              <div class="appointment-req d-flex flex-column h-100 pb-2">
-                <h4 class="text-center color-dark font-semi-bold pt-4 mb-3">Meeting Requests</h4>
-                <div class="table-req hidden-scroll custom-overflow-x container py-0">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <td scope="col"></td>
-                        <td scope="col">Name</td>
-                        <td scope="col">Date</td>
-                        <td scope="col">Time</td>
-                        <td scope="col">Duration</td>
-                        <td scope="col">Accept</td>
-                        <td scope="col">Reject</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr v-for="teacher in teachersList" :key="teacher.id">
-                        <td scope="row"></td>
-                        <td class="text-14">{{ teacher["title"] }}</td>
-                        <td>{{ teacher["date"] }}</td>
-                        <td>{{ teacher["time"] }}</td>
-                        <td>30 Min</td>
-                        <td>
-                          <button
-                            class="d-flex btn border border-success text-success px-3 py-1"
-                            @click="
-                              TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 1,teacher.selectableDate)"
-                          >
-                            <i class="fa fa-check text-12 px-1" aria-hidden="true"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button
-                            class="d-flex btn border border-danger text-danger px-3 py-1"
-                            @click="
-                              TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 2)"
-                          >
-                            <i class="fa fa-times text-12 px-1" aria-hidden="true"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div v-if="teachersList.length == 0" class="empty-shedule">
-                    <p>No data found</p>
+  
+            <!-- TABLE  -->
+            <div class="teacher-row d-flex flex-column flex-fill h-40 mt-4 p-0">
+              <div class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary rounded-22">
+                <div class="appointment-req d-flex flex-column h-100 pb-2">
+                  <h4 class="text-center color-dark font-semi-bold pt-4 mb-3">Meeting Requests</h4>
+                  <div class="table-req hidden-scroll custom-overflow-x container py-0">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <td scope="col"></td>
+                          <td scope="col" class="font-semi-bold text-14">Name</td>
+                          <td scope="col" class="font-semi-bold text-14">Date</td>
+                          <td scope="col" class="font-semi-bold text-14">Time</td>
+                          <td scope="col" class="font-semi-bold text-14">Duration</td>
+                          <td scope="col" class="font-semi-bold text-14">Accept</td>
+                          <td scope="col" class="font-semi-bold text-14">Reject</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="teacher in teachersList" :key="teacher.id">
+                          <td scope="row"></td>
+                          <td class="text-14">{{ teacher["title"] }}</td>
+                          <td class="text-14">{{ teacher["date"] }}</td>
+                          <td class="text-14">{{ teacher["time"] }}</td>
+                          <td class="text-14">30 Min</td>
+                          <td>
+                            <button
+                              class="d-flex btn border border-success text-success px-3 py-1"
+                              @click="
+                                TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 1,teacher.selectableDate)"
+                            >
+                              <i class="fa fa-check text-12 px-1" aria-hidden="true"></i>
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              class="d-flex btn border border-danger text-danger px-3 py-1"
+                              @click="
+                                TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 2)"
+                            >
+                              <i class="fa fa-times text-12 px-1" aria-hidden="true"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div v-if="teachersList.length == 0" class="empty-shedule">
+                      <p>No data found</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <!-- END TABLE  -->
           </div>
-          <!-- END TABLE  -->
         </div>
       </div>
     </section>
