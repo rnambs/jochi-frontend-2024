@@ -73,22 +73,22 @@
                       <table class="table mb-0">
                         <thead>
                           <tr class="color-dark font-semi-bold">
-                            <td scope="col"></td>
-                            <td scope="col">Name</td>
-                            <td scope="col">Date</td>
-                            <td scope="col">Time</td>
-                            <td scope="col">Duration</td>
-                            <td scope="col">Accept</td>
-                            <td scope="col">Reject</td>
+                            <td scope="col" class="font-semi-bold text-14"></td>
+                            <td scope="col" class="font-semi-bold text-14">Name</td>
+                            <td scope="col" class="font-semi-bold text-14">Date</td>
+                            <td scope="col" class="font-semi-bold text-14">Time</td>
+                            <td scope="col" class="font-semi-bold text-14">Duration</td>
+                            <td scope="col" class="font-semi-bold text-14">Accept</td>
+                            <td scope="col" class="font-semi-bold text-14">Reject</td>
                           </tr>
                         </thead>
                         <tbody>
                           <tr v-for="teacher in teachersList" :key="teacher.id">
                             <td scope="row"></td>
-                            <td>{{ teacher["title"] }}</td>
-                            <td class="text-nowrap">{{ teacher["date"] }}</td>
-                            <td class="text-nowrap">{{ teacher["time"] }}</td>
-                            <td>30 Min</td>
+                            <td class="text-12">{{ teacher["title"] }}</td>
+                            <td class="text-nowrap text-12">{{ teacher["date"] }}</td>
+                            <td class="text-nowrap text-12">{{ teacher["time"] }}</td>
+                            <td class="text-12">30 Min</td>
                             <td>
                               <button
                                 class="
