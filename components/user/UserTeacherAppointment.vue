@@ -11,7 +11,7 @@
       d-flex
       flex-column custom-overflow">
         <h2 class="color-primary font-semi-bold m-0 p-3">Teacher Appointment</h2>
-        <div class="inner-teacher p-3 d-flex flex-column flex-fill">
+        <div class="inner-teacher p-3 d-flex flex-column flex-fill h-40">
           <div class="row teacher-row">
             
             <!-- CALANDER -->
@@ -25,19 +25,19 @@
             <!-- AGENDA -->
             <div class="col-md-7  custom-teacher-container d-flex flex-column">
               <div class="inner-custom-teacher  p-3 card card-primary rounded-22 flex-fill">
-                <h6 class="font-semi-bold color-dark text-center">Meetings</h6>
-                <div class="inner-agenda flex-fill">
+                <h4 class="font-semi-bold color-dark text-center">Meetings</h4>
+                <div class="inner-agenda d-flex flex-column custom-overflow pr-2 mr--2">
                   <div
-                    class="row container m-0 p-0"
+                    class="row container my-2 mx-0 p-0"
                     v-for="(list, index) in listAgenda"
                     :key="index"
                   >
-                    <div class="col-3 time text-center py-0">
-                      <p class="time p-2">{{ list["time"] }}</p>
+                    <div class="col-3 time text-center py-0 d-flex align-items-center justify-content-center">
+                      <p class="time mb-0 p-2">{{ list["time"] }}</p>
                     </div>
-                    <div class="col time-detail px-2 py-0">
-                      <p class="p-2 m-0">
-                        <span class="club-name">{{ list["title"] }}</span>
+                    <div class="col card card-white px-0 py-0">
+                      <p class="p-3 m-0">
+                        <span class="club-name color-dark font-semi-bold">{{ list["title"] }}</span>
                         <span class="club-i"><i></i> </span>
                       </p>
                     </div>
@@ -53,11 +53,11 @@
           </div>
 
           <!-- TABLE  -->
-          <div class="teacher-row mt-4 p-0">
+          <div class="teacher-row d-flex flex-column flex-fill h-40 mt-4 p-0">
             <div class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary rounded-22">
-              <div class="appointment-req pb-2">
-                <h6 class="text-center color-dark font-semi-bold pt-4 mb-0">Meeting Requests</h6>
-                <div class="table-req container py-0">
+              <div class="appointment-req d-flex flex-column h-100 pb-2">
+                <h4 class="text-center color-dark font-semi-bold pt-4 mb-3">Meeting Requests</h4>
+                <div class="table-req hidden-scroll custom-overflow-x container py-0">
                   <table class="table">
                     <thead>
                       <tr>
@@ -73,7 +73,7 @@
                     <tbody>
                       <tr v-for="teacher in teachersList" :key="teacher.id">
                         <td scope="row"></td>
-                        <td>{{ teacher["title"] }}</td>
+                        <td class="text-14">{{ teacher["title"] }}</td>
                         <td>{{ teacher["date"] }}</td>
                         <td>{{ teacher["time"] }}</td>
                         <td>30 Min</td>
