@@ -1966,12 +1966,16 @@ img.dark-icon {
 }
 .inner-section .main-section .info-tab .tab-row .inner-tab {
   text-decoration: none;
-  color: #F9F9F9;
   background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
+  min-height: 56px;
 }
 .inner-section .main-section .info-tab .tab-row .inner-tab:hover, .inner-section .main-section .info-tab .tab-row .inner-tab.nuxt-link-exact-active.nuxt-link-active {
-  background-color: #ffffff;
+  background-color: #FF6D6D;
   box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
+}
+.inner-section .main-section .info-tab .tab-row .inner-tab:hover span, .inner-section .main-section .info-tab .tab-row .inner-tab.nuxt-link-exact-active.nuxt-link-active span {
+  color: #ffffff !important;
 }
 .inner-section .main-section .fig-section {
   position: relative;

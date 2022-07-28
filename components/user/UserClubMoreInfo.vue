@@ -41,6 +41,7 @@
               d-flex
               flex-column flex-fill
               h-40
+              custom-overflow
             "
           >
             <div
@@ -524,9 +525,9 @@
         </section>
 
         <section id="tab" class="">
-          <div class="info-tab container-fluid my-3 px-3">
+          <div class="info-tab container-fluid mb-3 px-3">
             <div class="row tab-row m-0">
-              <div class="col-md-4 col-xs-12 py-2 py-md-3">
+              <div class="col-md-4 col-xs-12 py-2 py-md-0">
                 <nuxt-link
                   :to="{
                     path: '/club-info',
@@ -537,7 +538,7 @@
                     d-flex
                     align-items-center
                     justify-content-center
-                    p-3
+                    p-2
                     rounded-10
                     h-100
                   "
@@ -548,7 +549,7 @@
                   >
                 </nuxt-link>
               </div>
-              <div class="col-md-4 col-xs-12 py-2 py-md-3">
+              <div class="col-md-4 col-xs-12 py-2 py-md-0">
                 <nuxt-link
                   :to="{
                     path: '/club-files',
@@ -559,7 +560,7 @@
                     d-flex
                     align-items-center
                     justify-content-center
-                    p-3
+                    p-2
                     rounded-10
                     h-100
                   "
@@ -572,7 +573,7 @@
               </div>
               <div
                 @click="onNextMeeting"
-                class="col-md-4 col-xs-12 py-2 py-md-3"
+                class="col-md-4 col-xs-12 py-2 py-md-0"
               >
                 <div
                   class="
@@ -582,7 +583,7 @@
                     flex-column
                     align-items-center
                     justify-content-center
-                    p-3
+                    p-2
                     rounded-10
                     h-100
                     cursor-pointer

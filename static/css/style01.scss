@@ -2301,11 +2301,16 @@ img.dark-icon{
             .tab-row{   
                 .inner-tab{
                     text-decoration: none;
-                    color: $global-font-color;
-                    background-color: $Global-background-element;
+                    background-color: rgba($color: $white, $alpha: 0.45);
+                    box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
+                    min-height: 56px;
                     &:hover, &.nuxt-link-exact-active.nuxt-link-active{
-                        background-color:$white;
+                        background-color: $theme-color;
                         box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
+                        span{
+                            
+                        color: $white !important;
+                        }
                     }
                 }
             }
