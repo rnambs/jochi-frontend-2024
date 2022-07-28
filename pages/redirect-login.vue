@@ -48,7 +48,7 @@ export default {
 
     async gg4lLogin() {
       await this.loginUsingGg4l({
-        code: "Os6Bh4",
+        code: this.$route.query.code,
       });
       if (this.errorMessage != "") {
         this.$toast.open({
