@@ -400,9 +400,9 @@
 
         <!-- End Club files -->
         <section id="tab" class="">
-          <div class="info-tab container-fluid my-3 px-3">
+          <div class="info-tab container-fluid mb-3 px-3">
             <div class="row tab-row m-0">
-              <div class="col-md-4 col-xs-12 py-2 py-md-3">
+              <div class="col-md-4 col-xs-12 py-2 py-md-0">
                 <!-- <nuxt-link
                   :to="{
                     path: '/club-info',
@@ -426,7 +426,7 @@
                     d-flex
                     align-items-center
                     justify-content-center
-                    p-3
+                    p-2
                     rounded-10
                     h-100
                   "
@@ -437,7 +437,7 @@
                   >
                 </nuxt-link>
               </div>
-              <div class="col-md-4 col-xs-12 py-2 py-md-3">
+              <div class="col-md-4 col-xs-12 py-2 py-md-0">
                 <nuxt-link
                   :to="{
                     path: '/club-info',
@@ -452,7 +452,7 @@
                     d-flex
                     align-items-center
                     justify-content-center
-                    p-3
+                    p-2
                     rounded-10
                     h-100
                   "
@@ -462,7 +462,7 @@
                   >
                 </nuxt-link>
               </div>
-              <div @click="onNextMeeting" class="col-md-4 col-xs-12 p-2">
+              <div @click="onNextMeeting" class="col-md-4 col-xs-12 py-2 py-md-0">
                 <div
                   class="
                     inner-tab
@@ -471,7 +471,7 @@
                     flex-column
                     align-items-center
                     justify-content-center
-                    p-4
+                    p-2
                     rounded-10
                     h-100
                   "

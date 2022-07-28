@@ -18,11 +18,11 @@
           <h2 class="color-primary font-semi-bold m-0 p-3">Custom Avaliability</h2>
           <div class="inner-teacher container-fluid p-3 d-flex flex-column flex-fill h-40">
             <div class="row h-100">
-              <div class="col-md-7 text-light custom-teacher-container d-flex flex-column h-100">
+              <div class="col-md-7 text-light custom-teacher-container d-flex flex-column ">
                 <div class="time-slot container card card-primary rounded-22 p-4 mb-3">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-                <div class="time-slot-week container card card-primary rounded-22 p-4 flex-fill">
+                <div class="time-slot-week container card card-primary rounded-22 p-4">
                   <FullCalendar :options="calendar" />
                 </div>
               </div>
