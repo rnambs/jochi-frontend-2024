@@ -15,34 +15,36 @@
           custom-margin-for-main-section custom-full-height
           d-flex
           flex-column custom-overflow">
+
+            
+          <div class="mb-2">
+            <h5 class="mb-1  color-dark font-semi-bold" >Hello {{ firstName }}</h5>
+            <h2 class="color-primary font-semi-bold">Have a great day</h2>
+          </div>
+
             <div class="row">
               <!-- CALANDER -->
               <!-- AGENDA -->
               <div class="col-md-7 container custom-teacher-container d-flex flex-column">
-                <div class="container mb-2">
-                  <h5 class="mb-1  color-dark font-semi-bold" >Hello {{ firstName }}</h5>
-                  <h2 class="color-primary font-semi-bold">Have a great day</h2>
-                </div>
 
                 <div class="time-slot container p-4 card card-primary rounded-22 h-100">
                   <h4 class="color-dark mb-4 px-2 font-semi-bold">Meetings Today</h4>
-                  <div class="inner-meeting-today p-2">
-                    <div class="container">
+                  <div class="h-40 flex-fill hidden-scroll">
                       <div
-                        class="row mb-2 p-2"
+                        class="card card-white d-flex flex-row align-items-center mb-2 p-2"
                         v-for="(list, index) in listAgenda"
                         :key="index"
                       >
-                        <div class="image-icon py-0">
+                        <span class="image-icon py-0 d-flex align-items-center justify-content-center bg-primary rounded-circle p-2">
                           <i
-                            class="fas fa-users inner-icon"
+                            class="fas fa-users color-white"
                             aria-hidden="true"
                           ></i>
-                        </div>
-                        <div class="col time-detail pl-4 py-0">
-                          <h6 class="club-name text-color">
+                        </span>
+                        <div class="time-detail pl-4 py-0">
+                          <h4 class="color-dark font-semi-bold text-18">
                             {{ list["title"] }}
-                          </h6>
+                          </h4>
                           <span class="club-i"
                             ><i
                               class="fa fa-clock-o pr-1"
@@ -55,7 +57,6 @@
                       <div v-if="listAgenda.length == 0" class="empty-shedule">
                         <p class="color-secondary  text-center">No meetings for the day</p>
                       </div>
-                    </div>
                   </div>
 
                   <!-- </div>

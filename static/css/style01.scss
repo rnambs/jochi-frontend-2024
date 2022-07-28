@@ -110,6 +110,9 @@ body{
     background-color: $white;
     background: $white;
 }
+.bg-primary{
+    background-color: $theme-color !important;
+}
 .component-bg{
     @include jochi-components-bg();
 }
@@ -4452,9 +4455,9 @@ img.dark-icon{
                             }
                             // teacher appoinment
                             .inner-meeting-today{
-                                overflow: hidden;
-                                overflow-y: auto;
-                                max-height: 45vh;
+                                // overflow: hidden;
+                                // overflow-y: auto;
+                                // max-height: 45vh;
                                 .row{
                                     background-color: $global-sidebar-bg;
                                     border: 1px solid $border-color;
