@@ -3529,21 +3529,6 @@ img.dark-icon {
   justify-content: center;
 }
 
-.faq-head {
-  color: #FF6D6D;
-}
-.faq-head.text-center {
-  font-weight: 700;
-}
-
-.faq-text {
-  color: #F9F9F9;
-}
-
-.faq-link {
-  color: #B4B4B4;
-}
-
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
