@@ -25,7 +25,7 @@
             <div class="row h-40 flex-fill">
               <!-- CALANDER -->
               <!-- AGENDA -->
-              <div class="col-md-7 container custom-teacher-container d-flex flex-column h-100">
+              <div class="col-md-6 container custom-teacher-container d-flex flex-column h-100">
 
                 <div class="time-slot container p-4 card card-primary rounded-22 h-100">
                   <h4 class="color-dark mb-4 px-2 font-semi-bold">Meetings Today</h4>
@@ -64,7 +64,7 @@
                 </div>
               </div>
               <!-- END AGENDA -->
-              <div class="col-md-5 custom-teacher-container d-flex flex-column h-100">
+              <div class="col-md-6 custom-teacher-container d-flex flex-column h-100">
                 <!-- TABLE  -->
                 <div class="teacher-row container mb-3 card card-primary rounded-22 p-0 h-40 flex-fill">
                   <div class="appointment-req d-flex flex-column h-100 p-2">
@@ -135,6 +135,11 @@
                                   class="fa fa-times text-12 px-1"
                                   aria-hidden="true"
                                 ></i>
+                              </button>
+                            </td>
+                            <td>
+                              <button class="d-flex btn border border-primary text-primary px-3 py-1">
+                                <i class="fas fa-eye text-12"></i>
                               </button>
                             </td>
                           </tr>

@@ -17,7 +17,7 @@
               <div class="row teacher-row">
                 
                 <!-- CALANDER -->
-                <div class="col-md-5 custom-teacher-container d-flex flex-column">
+                <div class="col-md-6 custom-teacher-container d-flex flex-column">
                   <div class="inner-custom-teacher text-light  p-2 card card-primary rounded-22 flex-fill">
                     <FullCalendar :options="calendarOptions" />
                   </div>
@@ -25,7 +25,7 @@
                 <!-- END CALANDER -->
     
                 <!-- AGENDA -->
-                <div class="col-md-7  custom-teacher-container d-flex flex-column">
+                <div class="col-md-6  custom-teacher-container d-flex flex-column">
                   <div class="inner-custom-teacher  p-3 card card-primary rounded-22 flex-fill">
                     <h4 class="font-semi-bold color-dark text-center">Meetings</h4>
                     <div class="inner-agenda d-flex flex-column custom-overflow pr-2 mr--2">
@@ -35,7 +35,7 @@
                         :key="index"
                       >
                         <div class="col-3 time text-center py-0 d-flex align-items-center justify-content-center">
-                          <p class="time mb-0 p-2">{{ list["time"] }}</p>
+                          <p class="time mb-0 p-2 text-14">{{ list["time"] }}</p>
                         </div>
                         <div class="col card card-white px-0 py-0">
                           <p class="p-3 m-0">
@@ -96,6 +96,11 @@
                                 TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 2)"
                             >
                               <i class="fa fa-times text-12 px-1" aria-hidden="true"></i>
+                            </button>
+                          </td>
+                          <td>
+                            <button class="d-flex btn border border-primary text-primary px-3 py-1">
+                              <i class="fas fa-eye text-12"></i>
                             </button>
                           </td>
                         </tr>
