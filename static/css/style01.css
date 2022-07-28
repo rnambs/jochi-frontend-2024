@@ -2536,25 +2536,6 @@ img.dark-icon {
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req table tbody tr td .btn {
   border-radius: 20px;
 }
-.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req .empty-shedule {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 20vh;
-  margin: auto;
-  left: 0;
-  right: 0;
-}
-@media (max-width: 767.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req .empty-shedule {
-    height: 10vh;
-  }
-}
-.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req .empty-shedule p {
-  color: #B4B4B4;
-  font-size: 0.8rem;
-}
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .image-icon {
   width: 40px;
   height: 40px;
