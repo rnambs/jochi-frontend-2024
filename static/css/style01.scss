@@ -446,6 +446,14 @@ body{
         background-color: rgba($color: $white, $alpha: 0.45);
         box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
     }
+    &.card-primary-void{
+        background-color: transparent;
+        box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
+    }
+    &.card-primary-sm{
+        background-color: rgba($color: $white, $alpha: 0.45);
+        box-shadow: 0px 0px 12px 7px rgba($color: #ff7c7c, $alpha: 0.1);
+    }
     &.card-secondary{
         background-color: $Global-background-element;
         box-shadow: 0.1rem 0.1rem 0.4rem $global-box-shadow;
