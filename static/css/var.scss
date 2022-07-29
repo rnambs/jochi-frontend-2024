@@ -5,7 +5,7 @@ $border-color      : #f0f0f0;
 $selected-color    : #FF6D6D;
 $head-theme-color  : #FF6F69;
 $icon-color        : #D7F9FF;
-$cal-border        : #f0f0f0;
+$cal-border        : #F5E4F0;
 $confirm-green     : #86FD97;
 $white             : #ffffff;
 $black             : #000000;
@@ -183,6 +183,8 @@ $sm-screen-h         : 767.98px;
             table.fc-scrollgrid.fc-scrollgrid-liquid{
                 tr.fc-scrollgrid-section.fc-scrollgrid-section-header{
                     th{
+                        background: rgba(138, 116, 225, 0.26);
+                        backdrop-filter: blur(9px);
                         border-right: none;
                         .fc-scroller-harness{
                             .fc-scroller{
@@ -191,7 +193,9 @@ $sm-screen-h         : 767.98px;
                             table.fc-col-header{
                                 border-bottom: hidden;
                                 th{
-                                    border-right: 1px solid $cal-border !important;
+                                    background: unset;
+                                    backdrop-filter: blur(0px);
+                                    // border-right: 1px solid $cal-border !important;
                                     &:nth-child(7){
                                         border-right: none;
                                     }
@@ -200,9 +204,9 @@ $sm-screen-h         : 767.98px;
                                     border-right: hidden;
                                 }
                                 a.fc-col-header-cell-cushion{
-                                    color: $text-dark;
+                                    color: #8A74E1;
                                     font-size: 0.8rem;
-                                    font-weight: 500;
+                                    font-weight: 600;
                                     @media (max-width:$lg-screen) {
                                         font-size: 0.65rem;
                                     }
@@ -249,12 +253,12 @@ $sm-screen-h         : 767.98px;
                             .fc-daygrid-day-frame.fc-scrollgrid-sync-inner{
                                 cursor: pointer;
                                 .fc-daygrid-day-number{
-                                    color: $text-dark !important;
+                                    color: #7E7EA0 !important;
                                 }
                                 &:hover{
                                     background-color: $cal-border !important;
                                     .fc-daygrid-day-number{
-                                        color: $text-dark !important;
+                                        color: #7E7EA0 !important;
                                     }
                                 }
                                 .fc-daygrid-day-events{
@@ -278,7 +282,7 @@ $sm-screen-h         : 767.98px;
                                 }
                                 &:hover{
                                     .fc-daygrid-day-number{
-                                        color: $text-dark !important;
+                                        color: #7E7EA0 !important;
                                     }
                                     
                                 }
@@ -320,6 +324,8 @@ $sm-screen-h         : 767.98px;
         table.fc-scrollgrid.fc-scrollgrid-liquid{
             tr.fc-scrollgrid-section.fc-scrollgrid-section-header{
                 th{
+                    background: rgba(138, 116, 225, 0.26);
+                    backdrop-filter: blur(9px);
                     border: none;
                     .fc-scroller-harness{
                         margin-bottom: 10px;
@@ -328,13 +334,17 @@ $sm-screen-h         : 767.98px;
                         }
                         table.fc-col-header{
                             border-bottom: hidden;
+                            th.fc-col-header-cell{
+                                background: unset;
+                                backdrop-filter: blur(0px);
+                            }
                             .fc-scroller{
                                 border-right: hidden;
                             }
                             a.fc-col-header-cell-cushion{
-                                color: #000000;
+                                color: #8A74E1;
                                 font-size: 0.8rem;
-                                font-weight: 400;
+                                font-weight: 600;
                                 @media (max-width:$xl-screen) {
                                     font-size: 0.6rem;
                                 }

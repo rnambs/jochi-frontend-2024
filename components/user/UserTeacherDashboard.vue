@@ -27,7 +27,7 @@
               <!-- AGENDA -->
               <div class="col-md-6 container custom-teacher-container d-flex flex-column h-100">
 
-                <div class="time-slot container p-4 card card-primary rounded-22 h-100">
+                <div class="time-slot container p-4 card card-primary-void rounded-22 h-100">
                   <h4 class="color-dark mb-4 px-2 font-semi-bold">Meetings Today</h4>
                   <div class="h-40 flex-fill hidden-scroll">
                       <div
@@ -66,7 +66,7 @@
               <!-- END AGENDA -->
               <div class="col-md-6 custom-teacher-container d-flex flex-column h-100">
                 <!-- TABLE  -->
-                <div class="teacher-row container mb-3 card card-primary rounded-22 p-0 h-40 flex-fill">
+                <div class="teacher-row container mb-3 card card-primary-void rounded-22 p-0 h-40 flex-fill">
                   <div class="appointment-req d-flex flex-column h-100 p-2">
                     <h6 class="text-center color-primary pt-3 mb-0">Meeting Requests</h6>
                     <div class="table-req container py-3 custom-overflow-x custom-overflow">
@@ -156,7 +156,7 @@
                   </div>
                 </div>
                 <!-- END TABLE  -->
-                <div class="inner-custom-teacher dashboard-cal container p-3 card card-primary rounded-22">
+                <div class="inner-custom-teacher dashboard-cal container p-3 card card-primary-void rounded-22">
                   <FullCalendar :options="calendarOptions" />
                 </div>
               </div>

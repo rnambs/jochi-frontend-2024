@@ -18,7 +18,7 @@
                 
                 <!-- CALANDER -->
                 <div class="col-md-6 custom-teacher-container d-flex flex-column">
-                  <div class="inner-custom-teacher text-light  p-2 card card-primary rounded-22 flex-fill">
+                  <div class="inner-custom-teacher text-light  p-2 card card-primary-void rounded-22 flex-fill">
                     <FullCalendar :options="calendarOptions" />
                   </div>
                 </div>
@@ -26,7 +26,7 @@
     
                 <!-- AGENDA -->
                 <div class="col-md-6  custom-teacher-container d-flex flex-column">
-                  <div class="inner-custom-teacher  p-3 card card-primary rounded-22 flex-fill">
+                  <div class="inner-custom-teacher  p-3 card card-primary-void rounded-22 flex-fill">
                     <h4 class="font-semi-bold color-dark text-center">Meetings</h4>
                     <div class="inner-agenda custom-overflow pr-2 mr--2">
                       <div
@@ -57,7 +57,7 @@
   
             <!-- TABLE  -->
             <div class="teacher-row d-flex flex-column flex-fill h-40 mt-4 p-0">
-              <div class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary rounded-22">
+              <div class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary-void rounded-22">
                 <div class="appointment-req d-flex flex-column h-100 pb-2">
                   <h4 class="text-center color-dark font-semi-bold pt-4 mb-3">Meeting Requests</h4>
                   <div class="table-req hidden-scroll custom-overflow-x container py-0">
