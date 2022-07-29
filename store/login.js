@@ -16,6 +16,7 @@ const actions = {
   async getLogin({ commit }, payLoad) {
     try {
       const response = await this.$axios.$post(BASE_URL + 'auth/login', payLoad)
+
       if (status = 200) {
         commit('setLoginStatus', true);
         commit('setUserToken', response.data.token);
