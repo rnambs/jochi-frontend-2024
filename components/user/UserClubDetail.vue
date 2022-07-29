@@ -105,7 +105,7 @@
                   <div
                     class="
                       club-list
-                      card card-secondary
+                      card card-primary-sm
                       justify-content-between
                       p-4
                       position-relative

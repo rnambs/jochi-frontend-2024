@@ -99,7 +99,8 @@
                             </button>
                           </td>
                           <td>
-                            <button class="d-flex btn border border-primary text-primary px-3 py-1">
+                            <button   data-toggle="modal"
+                            data-target="#mediumModal" class="d-flex btn border border-primary text-primary px-3 py-1">
                               <i class="fas fa-eye text-12"></i>
                             </button>
                           </td>
@@ -118,10 +119,104 @@
         </div>
       </div>
     </section>
-
+    <!-- modal pop up -->
+    <div
+    class="modal fade"
+    id="mediumModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="mediumModalLabel"
+    aria-hidden="true"
+    data-backdrop="static"
+    data-keyboard="false"
+    >
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+      <div class="modal-content h-auto">
+        <div class="modal-header text-dark">
+          <h5 class="modal-title" id="mediumModalLabel">
+            Meeting Request
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row py-1">
+            <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Name</p></div>
+            <div class="col">
+              <p class="mb-0 color-dark font-regular text-16 d-flex">
+                <span class="px-2"> : </span> 
+                <span>Miya</span> 
+              </p>
+            </div>
+          </div>
+          <div class="row py-1">
+            <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Date</p></div>
+            <div class="col">
+              <p class="mb-0 color-dark font-regular text-16 d-flex">
+                <span class="px-2"> : </span> 
+                <span>07-29-2022</span> 
+              </p>
+            </div>
+          </div>
+          <div class="row py-1">
+            <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Time</p></div>
+            <div class="col">
+              <p class="mb-0 color-dark font-regular text-16 d-flex">
+                <span class="px-2"> : </span> 
+                <span>12:00 PM</span> 
+              </p>
+            </div>
+          </div>
+          <div class="row py-1">
+            <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Duration</p></div>
+            <div class="col">
+              <p class="mb-0 color-dark font-regular text-16 d-flex">
+                <span class="px-2"> : </span> 
+                <span>30 Min</span> 
+              </p>
+            </div>
+          </div>
+          <div class="row py-1">
+            <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Discription</p></div>
+            <div class="col">
+              <p class="mb-0 color-dark font-regular text-16 d-flex">
+                <span class="px-2"> : </span> 
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas quibusdam enim, esse in maiores facere quis autem aperiam at laudantium mollitia accusantium, similique itaque repudiandae deserunt natus, rerum vero vel?</span> 
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-white text-dark">
+          <button
+          class="d-flex btn btn-secondary rounded-pill px-4 py-1 mx-2"
+          @click="
+            TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 2)"
+        >
+          <span class="text-16">Reject</span>
+        </button>
+          <button
+            class="d-flex btn btn-primary rounded-pill px-4 py-1"
+            @click="
+              TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 1,teacher.selectableDate)"
+          >
+            <span class="text-16">Accept</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- modal pop up end -->
     <!-- End teacher Page -->
   </div>
 </div>
+
 </template>
 <script>
 import FullCalendar from "@fullcalendar/vue";
