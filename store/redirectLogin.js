@@ -39,7 +39,7 @@ const actions = {
         }
     },
 
-    async getLogout({ commit }, payLoad) {
+    async logout({ commit }, payLoad) {
 
         const response = await this.$axios.$post(BASE_URL + 'auth/logOut', payLoad)
 
@@ -50,7 +50,7 @@ const actions = {
         commit('setUserType', '');
         window.localStorage.clear();
         window.$nuxt.$cookies.removeAll();
-        this.$router.push('/admin-login');
+        this.$router.push('/');
 
     }
 
