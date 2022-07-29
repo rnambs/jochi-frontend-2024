@@ -145,18 +145,6 @@ export default {
     password: { required },
   },
   mounted() {
-    console.log("this code >>>>>>>>>>>>>>>>>>", this.code, this.stateResp);
-    localStorage.setItem(
-      "token",
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tuZURhdGEiOnsiaWQiOjEyMSwiZW1haWwiOiJiYXRfenJpYmx1bUB0ZXN0LnRlc3QiLCJnZzRsX2lkIjoiYzNmNjQ4OGQtMTI0ZC00OTkwLWEzMmEtMThhNDNmYmNkMGRhIn0sImlhdCI6MTY1OTA5ODEzNH0.eBfqvglLzvTbc5LMhwxgpm6kP1bFbYrw93QC0p5ZvXU"
-    );
-    localStorage.setItem("user_type", "3");
-    localStorage.setItem("id", "121");
-
-    console.log(
-      localStorage.getItem("token"),
-      localStorage.getItem("user_type")
-    );
     if (this.code && this.stateResp) {
       this.redirectToPassport();
     }
