@@ -23,7 +23,7 @@ const actions = {
                 commit('setUserToken', response.data.auth_token);
                 commit('setUserEmail', response.data.email);
                 commit('setUserId', response.data.id);
-                commit('setUserType', response.data.user_type);
+                commit('setUserType', response.data.user_type_id);
                 commit('setFirstName', response.data.first_name);
                 commit('setLastName', response.data.last_name);
                 if (response.data.user_type == 1) {
