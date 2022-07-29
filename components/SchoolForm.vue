@@ -101,6 +101,118 @@
                     </div>
                   </div>
 
+                  <!-- GG4L details -->
+                  <div class="form-group required">
+                    <label for="contact-person" class="form-control-label"
+                      >GG4L Client Id</label
+                    ><input
+                      type="text"
+                      id="GG4L_client_id"
+                      class="form-control"
+                      v-model="GG4L_client_id"
+                      :class="{
+                        'is-invalid': submitted && $v.GG4L_client_id.$error,
+                      }"
+                    />
+                    <div
+                      v-if="submitted && $v.GG4L_client_id.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.GG4L_client_id.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="form-group required">
+                    <label for="contact-person" class="form-control-label"
+                      >GG4L Client Secret Key</label
+                    ><input
+                      type="text"
+                      id="GG4L_client_secret"
+                      class="form-control"
+                      v-model="GG4L_client_secret"
+                      :class="{
+                        'is-invalid': submitted && $v.GG4L_client_secret.$error,
+                      }"
+                    />
+                    <div
+                      v-if="submitted && $v.GG4L_client_secret.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.GG4L_client_secret.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="form-group required">
+                    <label for="contact-person" class="form-control-label"
+                      >GG4L School ID </label
+                    ><input
+                      type="text"
+                      id="GG4L_school_id"
+                      class="form-control"
+                      v-model="GG4L_school_id"
+                      :class="{
+                        'is-invalid': submitted && $v.GG4L_school_id.$error,
+                      }"
+                    />
+                    <div
+                      v-if="submitted && $v.GG4L_school_id.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.GG4L_school_id.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="form-group required">
+                    <label for="contact-person" class="form-control-label"
+                      >GG4L District ID</label
+                    ><input
+                      type="text"
+                      id="GG4L_district_id"
+                      class="form-control"
+                      v-model="GG4L_district_id"
+                      :class="{
+                        'is-invalid': submitted && $v.GG4L_district_id.$error,
+                      }"
+                    />
+                    <div
+                      v-if="submitted && $v.GG4L_district_id.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.ContactPerson.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="form-group required">
+                    <label for="contact-person" class="form-control-label"
+                      >GG4L Sis ID </label
+                    ><input
+                      type="text"
+                      id="GG4L_sis_id"
+                      class="form-control"
+                      v-model="GG4L_sis_id"
+                      :class="{
+                        'is-invalid': submitted && $v.GG4L_sis_id.$error,
+                      }"
+                    />
+                    <div
+                      v-if="submitted && $v.GG4L_sis_id.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.GG4L_sis_id.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                  <!-- GG4L details end -->
+
                   <div class="form-group required">
                     <label for="state" class="form-control-label"
                       >Select your State</label
@@ -235,6 +347,11 @@ export default {
       timezonelist: "",
       submitted: false,
       processing: false,
+      GG4L_client_id: "",
+      GG4L_client_secret: "",
+      GG4L_school_id: "",
+      GG4L_district_id: "",
+      GG4L_sis_id: "",
     };
   },
   validations: {
@@ -245,6 +362,11 @@ export default {
     statelist: { required },
     timezonelist: { required },
     Description: { required },
+    GG4L_client_id: { required },
+    GG4L_client_secret: { required },
+    GG4L_school_id: { required },
+    GG4L_district_id: { required },
+    GG4L_sis_id: { required },
   },
   mounted() {
     this.fetchStates();
@@ -290,6 +412,11 @@ export default {
           name: this.Schoolname,
           contact_person: this.ContactPerson,
           time_zone: this.timezonelist,
+          GG4L_client_id: this.GG4L_client_id,
+          GG4L_client_secret: this.GG4L_client_secret,
+          GG4L_school_id: this.GG4L_school_id,
+          GG4L_district_id: this.GG4L_district_id,
+          GG4L_sis_id: this.GG4L_sis_id,
         });
         if (this.successMessage != "") {
           this.$toast.open({

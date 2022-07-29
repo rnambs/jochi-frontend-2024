@@ -66,10 +66,11 @@
                     <th>School Name</th>
                     <th>Student Leader</th>
                     <th>Teacher</th>
-                    <th>Actions</th>
+                    <th>Action</th>
+                    <th>Status</th>
                   </tr>
                   <tr v-if="clubs.length == 0">
-                    <td colspan="5" class="text-center text-danger pt-3">
+                    <td colspan="6" class="text-center text-danger pt-3">
                       No data found
                     </td>
                   </tr>
@@ -98,6 +99,46 @@
                           ><i class="fas fa-pencil"></i
                         ></span>
                       </nuxt-link>
+                    </td>
+                    <td>
+                      <div class="d-flex w-100 justify-content-between">
+                        <div class="custom-control custom-switch">
+                          <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            :id="club.clubId"
+                            :value="club.status"
+                            v-model="club.status"
+                            true-value="active"
+                            false-value="inactive"
+                            @change="changeStatus(club.clubId, club.status)"
+                          />
+
+                          <label
+                            class="custom-control-label"
+                            :for="club.clubId"
+                          >
+                            <span>
+                              {{
+                                club.status == "active"
+                                  ? "Active"
+                                  : "Inactive"
+                              }}
+                            </span>
+                          </label>
+                        </div>
+
+                        <!-- <nuxt-link
+                          :to="{
+                            path: '/school-edit-form',
+                            query: { id: club.clubId },
+                          }"
+                        >
+                          <span class="ml-2 text-dark"
+                            ><i class="fas fa-pencil"></i
+                          ></span>
+                        </nuxt-link> -->
+                      </div>
                     </td>
                   </tr>
                 </table>
@@ -192,6 +233,68 @@
                 </div>
               </div>
               <!-- end table -->
+
+              <!-- modal pop up -->
+                <div
+                  class="modal fade"
+                  id="mediumModalStatus"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="mediumModalLabel"
+                  aria-hidden="true"
+                  data-backdrop="static"
+                  data-keyboard="false"
+                >
+                  <div class="modal-dialog modal-md" role="document">
+                    <div class="modal-content h-auto">
+                      <div class="modal-header bg-light text-dark">
+                        <h5 class="modal-title" id="mediumModalStatusLabel">
+                          Change status
+                        </h5>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                          @click="cancel()"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p class="text-left">
+                          Are you sure you want to change the status for this
+                          club?
+                        </p>
+                      </div>
+                      <div class="modal-footer bg-white text-dark">
+                        <button
+                          type="button"
+                          data-dismiss="modal"
+                          class="btn btn-primary color-white"
+                          @click="update()"
+                        >
+                          Yes
+                        </button>
+                        <button
+                          type="button"
+                          data-dismiss="modal"
+                          class="
+                            btn btn-light
+                            border border-secondary
+                            color-dark
+                          "
+                          @click="cancel()"
+                          aria-label="Close"
+                        >
+                          No
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end table -->
             </div>
           </div>
         </div>
@@ -219,6 +322,8 @@ export default {
       pageNumValue: 1,
       selectValue: 10,
       clublist: [],
+      updateId: 0,
+      updateStat: "",
     };
   },
   mounted() {
@@ -238,7 +343,37 @@ export default {
       getClubList: "getClubList", //list the clubs
       fetchClub: "fetchClub", //fetch the club details by id
       deleteClubs: "deleteClubs",
+      updateStatus: "updateStatus",
     }),
+    async update() {
+      await this.updateStatus({
+        id: this.updateId,
+        status: this.updateStat,
+      });
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+      }
+      if (this.errorMessage) {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      this.GetClubList();
+    },
+    async cancel() {
+      this.GetClubList();
+    },
+    async changeStatus(id, status) {
+      $("#mediumModalStatus").modal("show");
+      this.updateId = id;
+      this.updateStat = status;
+    },
     async GetClubList(pageNum = 0) {
       if (pageNum != 0) {
         pageNum = (pageNum - 1) * this.selectValue;
@@ -268,6 +403,7 @@ export default {
         clubArray["leaderName"] = leaderName;
         clubArray["teacherName"] = teacherName;
         clubArray["clubId"] = clubId;
+        clubArray["status"] = element.status;
         this.clublist.push(clubArray);
       });
 

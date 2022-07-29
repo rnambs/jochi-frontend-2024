@@ -71,6 +71,41 @@ const actions = {
 
   },
 
+  // update Active status
+  async updateStatus({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$put(BASE_URL + 'clubs/club_edit', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      if (response.message == "Success") {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', "Status updated successfully");
+        commit('setSuccessType', "success");
+      }
+      else if (response.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', "success");
+      }
+    } catch (e) {
+      if (e.response && e.response.status == 401) {
+        window.localStorage.clear();
+        this.$router.push('/admin-login');
+      }
+      else {
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+      }
+    }
+  },
+
 }
 const mutations = {
 
