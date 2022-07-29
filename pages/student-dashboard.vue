@@ -306,7 +306,7 @@ export default {
     handleAnimation: function (anim) {
       this.anim = anim;
     },
-    logoutSession() {
+    async logoutSession() {
       await this.logout({
         auth_token: localStorage.getItem("token").replace("Bearer ", ""),
       });
