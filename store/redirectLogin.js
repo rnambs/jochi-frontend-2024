@@ -9,6 +9,8 @@ const state = {
     errorMessage: '',
     id: '',
     user_type: '',
+    firstName: '',
+    lastName: '',
 }
 const actions = {
 
@@ -18,10 +20,12 @@ const actions = {
             const response = await this.$axios.$post(BASE_URL + 'auth/gg4l_passport_auth', payLoad)
             if (status = 200) {
                 commit('setLoginStatus', true);
-                commit('setUserToken', response.data.token);
+                commit('setUserToken', response.data.auth_token);
                 commit('setUserEmail', response.data.email);
                 commit('setUserId', response.data.id);
                 commit('setUserType', response.data.user_type);
+                commit('setFirstName', response.data.first_name);
+                commit('setLastName', response.data.last_name);
                 if (response.data.user_type == 1) {
                     this.$router.push('/dashboard');
                 }
@@ -83,6 +87,14 @@ const mutations = {
         state.id = data;
         localStorage.setItem('id', data);
     },
+    setFirstName(state, data) {
+        state.firstName = data;
+        localStorage.setItem('firstName', data);
+    },
+    setLastName(state, data) {
+        state.lastName = data;
+        localStorage.setItem('lastName', data);
+    },
 }
 const getters = {
 
@@ -105,6 +117,12 @@ const getters = {
     },
     errorMessage: () => {
         return state.errorMessage;
+    },
+    firstName: () => {
+        return state.firstName;
+    },
+    lastName: () => {
+        return state.lastName;
     },
 
 }
