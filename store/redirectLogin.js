@@ -26,7 +26,7 @@ const actions = {
                 commit('setUserType', response.data.user_type_id);
                 commit('setFirstName', response.data.first_name);
                 commit('setLastName', response.data.last_name);
-                if (response.data.user_type == 1) {
+                if (response.data.user_type_id == 1) {
                     this.$router.push('/dashboard');
                 }
 

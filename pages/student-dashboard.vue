@@ -282,6 +282,7 @@
 
 <script>
 import StudentDashboard from "~/components/StudentDashboard.vue";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "student-signup",
@@ -298,6 +299,7 @@ export default {
       errorType: (state) => state.errorType,
     }),
   },
+
   methods: {
     ...mapActions("redirectLogin", {
       logout: "logout",
@@ -306,6 +308,7 @@ export default {
     handleAnimation: function (anim) {
       this.anim = anim;
     },
+    mounted() {},
     async logoutSession() {
       await this.logout({
         auth_token: localStorage.getItem("token").replace("Bearer ", ""),
