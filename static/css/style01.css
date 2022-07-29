@@ -623,6 +623,7 @@ img.dark-icon {
 .bullet {
   width: 14px;
   height: 14px;
+  border-color: #431F1C !important;
 }
 
 .main-container {

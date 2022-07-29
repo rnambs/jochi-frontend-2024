@@ -496,7 +496,7 @@
 
         <section id="tab" class="">
           <div class="info-tab container-fluid mb-3 px-3">
-            <div class="row tab-row m-0">
+            <div class="row tab-row m-0 px-3">
               <div class="col-md-4 col-xs-12 py-2 py-md-0">
                 <nuxt-link
                   :to="{

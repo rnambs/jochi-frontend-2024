@@ -317,11 +317,12 @@
                               :key="index"
                               class="row m-0"
                             >
-                              <p class="mb-0 col-8 p-0 text-truncate">
-                                <span class="input-name color-dark">
-                                  {{ todos.todo_list }}</span
-                                >
-                              </p>
+                            <p class="mb-0 col-8 p-0 color-secondary font-regular text-16 d-flex align-items-center">
+                              <span class="d-flex rounded-circle border bullet mr-2"></span> 
+                              <span class="input-name color-dark text-truncate">
+                                {{ todos.todo_list }}</span
+                              >
+                            </p>
                               <p class="mb-0 col-4 p-0">
                                 <span
                                   class="input-icon color-secondary btn p-1 m-0"
@@ -526,7 +527,7 @@
 
         <section id="tab" class="">
           <div class="info-tab container-fluid mb-3 px-3">
-            <div class="row tab-row m-0">
+            <div class="row tab-row m-0 px-3">
               <div class="col-md-4 col-xs-12 py-2 py-md-0">
                 <nuxt-link
                   :to="{
