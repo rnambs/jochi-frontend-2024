@@ -28,18 +28,18 @@
                 <div class="col-md-6  custom-teacher-container d-flex flex-column">
                   <div class="inner-custom-teacher  p-3 card card-primary rounded-22 flex-fill">
                     <h4 class="font-semi-bold color-dark text-center">Meetings</h4>
-                    <div class="inner-agenda d-flex flex-column custom-overflow pr-2 mr--2">
+                    <div class="inner-agenda custom-overflow pr-2 mr--2">
                       <div
                         class="row container my-2 mx-0 p-0"
                         v-for="(list, index) in listAgenda"
                         :key="index"
                       >
-                        <div class="col-3 time text-center py-0 d-flex align-items-center justify-content-center">
-                          <p class="time mb-0 p-2 text-14">{{ list["time"] }}</p>
+                        <div class="col-3 time py-0">
+                          <p class="time text-center d-flex align-items-center justify-content-center mb-0 p-3 m-1 text-14">{{ list["time"] }}</p>
                         </div>
-                        <div class="col card card-white px-0 py-0">
-                          <p class="p-3 m-0">
-                            <span class="club-name color-dark font-semi-bold">{{ list["title"] }}</span>
+                        <div class="col px-0 py-0">
+                          <p class="p-3 card card-white m-0">
+                            <span class="club-name color-dark font-semi-bold text-truncate">{{ list["title"] }}</span>
                             <span class="club-i"><i></i> </span>
                           </p>
                         </div>
