@@ -225,16 +225,56 @@
                 </div>
               </div>
               <!-- Listing end -->
-              <!-- popup pannel -->
+              <!-- popup panel -->
               <div class="position-absolute w-100 h-100 top-0 left-0 p-3">
                 <div class="d-flex card card-primary-void flex-column h-100 p-3">
                   <div class="d-flex justify-content-between mb-2 border-bottom">
-                    <h5 class="color-dark font-semi-bold">Session</h5>
+                    <h3 class="color-primary font-semi-bold">Session</h3>
                     <p class="mb-0"><span><i class="fas fa-times"></i></span></p>
+                  </div>
+                  <div class="d-flex flex-column custom-overflow">
+                    <div class="d-flex flex-column mb-2">
+                      <h5 class="color-dark mb-1 font-semi-bold">Assignment details</h5>
+                      <p class="mb-0 color-secondary font-regular text-16">name/title</p>
+                      <p class="mb-0 color-secondary font-regular text-16">subject</p>
+                      <p class="mb-0 color-secondary font-regular text-16">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita perspiciatis, nesciunt corporis, nisi eius fugiat, minima blanditiis rem possimus itaque molestias modi nostrum eos veniam repellat mollitia quia vitae beatae.</p>
+                    </div>
+                    <div class="d-flex flex-column mb-2">
+                      <h5 class="color-dark mb-1 font-semi-bold">Goals</h5>
+                      <p class="mb-0 color-secondary font-regular text-16 d-flex align-items-center"><span class="d-flex rounded-circle border bullet mr-2"></span> Practice Welcome song</p>
+                      <p class="mb-0 color-secondary font-regular text-16 d-flex align-items-center"><span class="d-flex rounded-circle border bullet mr-2"></span> Invite friends</p>
+                    </div>
+                    <div class="d-flex flex-column mb-2">
+                      <h5 class="color-dark mb-1 font-semi-bold">Regular Study</h5>
+                      <p class="mb-0 color-secondary font-regular text-16">Subject : <span>Assignment</span></p>
+                      <p class="mb-0 color-secondary font-regular text-16">Duration : <span>30min</span></p>
+                      <p class="mb-0 color-secondary font-regular text-16">Breaktime : <span>2min</span></p>
+                    </div>
+                    <div class="d-flex flex-column mb-2">
+                      <h5 class="color-dark mb-1 font-semi-bold">Peers</h5>
+                      <div class="d-flex flex-column">
+                        <div class="d-flex align-items-center my-2 mr-3">
+                          <div class="ld-img-section mr-3">
+                            <div class="ld-img-holder"></div>
+                          </div>
+                          <div class="ld-details-section">
+                            <p class="ld-heading mb-1">Mark Jones, President</p>
+                          </div>
+                        </div>
+                        <div class="d-flex align-items-center my-2 mr-3">
+                          <div class="ld-img-section mr-3">
+                            <div class="ld-img-holder"></div>
+                          </div>
+                          <div class="ld-details-section">
+                            <p class="ld-heading mb-1">Mark Jones, President</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <!-- popup pannel end -->
+              <!-- popup panel end -->
             </div>
           </div>
         </div>
