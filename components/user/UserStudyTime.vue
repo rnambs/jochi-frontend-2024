@@ -57,7 +57,7 @@
             </div>
           </div>
           <div class="col-lg-5 h-100">
-            <div class="card card-primary rounded-22 p-4 h-100">
+            <div class="card card-primary rounded-22 p-4 h-100 position-realtive">
               <!-- default -->
               <!-- <div class="d-flex justify-content-between flex-column h-100">
                       <div class="head-section">
@@ -224,7 +224,17 @@
                   </div>
                 </div>
               </div>
-              <!-- end -->
+              <!-- Listing end -->
+              <!-- popup pannel -->
+              <div class="position-absolute w-100 h-100 top-0 left-0 p-3">
+                <div class="d-flex card card-primary-void flex-column h-100 p-3">
+                  <div class="d-flex justify-content-between mb-2 border-bottom">
+                    <h5 class="color-dark font-semi-bold">Session</h5>
+                    <p class="mb-0"><span><i class="fas fa-times"></i></span></p>
+                  </div>
+                </div>
+              </div>
+              <!-- popup pannel end -->
             </div>
           </div>
         </div>
@@ -245,12 +255,12 @@
         hidden-scroll
       "
     >
-      <div class="row">
-        <button @click="onBack()">Back</button>
-        <button @click="onNext()">Next</button>
-      </div>
       <h2 class="color-primary font-bold mb-1">Step One:</h2>
       <h2 class="color-primary font-bold mb-4">Choose An Assignment</h2>
+      <div class="d-flex">
+        <button @click="onBack()" class="btn color-secondary"><span class="mr-2 arrow"><i class="fas fa-long-arrow-alt-left"></i></span><span class="arrow-text">Back</span></button>
+        <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button>
+      </div>
 
       <div class="row">
         <div
@@ -838,43 +848,43 @@
         hidden-scroll
       "
     >
-      <div class="row">
-        <button @click="onBack()">Back</button>
-        <button @click="onNext()">Next</button>
+      <div class="d-flex">
+        <button @click="onBack()" class="btn color-secondary"><span class="mr-2 arrow"><i class="fas fa-long-arrow-alt-left"></i></span><span class="arrow-text">Back</span></button>
+        <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button>
       </div>
-      <h2 class="jochi-headings mb-1">
+      <h2 class="color-primary font-bold mb-1">
         Step {{ sessionType == "study" ? "One" : "Two" }}:
       </h2>
-      <h2 class="jochi-headings mb-4">Configure your Session</h2>
-      <div class="row h-75 align-items-center justify-content-center">
-        <div @click="onModeSelect('regular')" class="col-4">
-          <div
-            class="
-              jochi-sub-components-light-bg
-              drag-drop
-              p-4
-              position-realtive
-            "
-          >
-            <div class="p-4 text-center">
-              <h2 class="jochi-headings mb-4">Regular Studying</h2>
-              <p>Set your own timer, goals, and breaks.</p>
+      <h2 class="color-primary font-bold mb-1">Configure your Session</h2>
+      <div class="d-flex flex-column flex-fill justify-content-center">
+        <div>
+          <div class="row justify-content-center">
+            <div @click="onModeSelect('regular')" class="col-12 col-md-5 col-lg-4">
+              <div
+                class="
+                  jochi-sub-components-light-bg
+                  drag-drop
+                  px-4 py-5
+                  position-realtive h-100 d-flex align-items-center justify-content-center flex-column
+                "
+              >
+                  <h2 class="color-primary text-center font-bold mb-1">Regular Studying</h2>
+                  <p class="color-dark font-semi-bold text-center text-18">Set your own timer, goals, and breaks.</p>
+              </div>
             </div>
-          </div>
-        </div>
-        <div @click="onModeSelect('pomodoro')" class="col-4">
-          <div
-            class="
-              jochi-sub-components-light-bg
-              drag-drop
-              p-4
-              position-realtive
-            "
-          >
-            <div class="p-4 text-center">
-              <h2 class="jochi-headings mb-4">Pomodorro Technique</h2>
-              <p>Definition of this technique will go here...</p>
-              <button class="btn learn-more-btn">Click to Learn More</button>
+            <div @click="onModeSelect('pomodoro')" class="col-12 col-md-5 col-lg-4">
+              <div
+                class="
+                  jochi-sub-components-light-bg
+                  drag-drop
+                  px-4 py-5
+                  position-realtive d-flex align-items-center justify-content-center flex-column
+                "
+              >
+                  <h2 class="color-primary font-bold mb-1 text-center">Pomodorro Technique</h2>
+                  <p class="color-dark font-semi-bold text-18 text-center">Definition of this technique will go here...</p>
+                  <button class="btn btn-dark py-2 text-center">Click to Learn More</button>
+              </div>
             </div>
           </div>
         </div>
@@ -895,13 +905,13 @@
         hidden-scroll
       "
     >
-      <div class="row">
-        <button @click="onBack()">Back</button>
-        <button @click="onNext()">Next</button>
-      </div>
-      <h2 class="color-primary font-semi-bold mb-3">
-        Step {{ sessionType == "study" ? "Two" : "Three" }}: <br />
-        Configure your Session
+    <div class="d-flex">
+      <button @click="onBack()" class="btn color-secondary"><span class="mr-2 arrow"><i class="fas fa-long-arrow-alt-left"></i></span><span class="arrow-text">Back</span></button>
+      <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button>
+    </div>
+      <h2 class="color-primary font-bold mb-3">
+        <span>Step {{ sessionType == "study" ? "Two" : "Three" }}:</span>
+        <span>Configure your Session</span>
       </h2>
       <div class="row h-40 flex-grow-1">
         <div class="col-lg-7 h-100 d-flex flex-column">

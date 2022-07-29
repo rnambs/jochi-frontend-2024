@@ -214,6 +214,21 @@ body {
 .btn.btn-secondary:hover {
   background-color: #000000;
 }
+.btn span.arrow {
+  padding-left: 0.5rem;
+}
+.btn span.arrow-text {
+  padding-left: 0rem;
+}
+.btn:hover {
+  transition: ease-in-out all 0.3s;
+}
+.btn:hover span.arrow {
+  padding-left: 0rem;
+}
+.btn:hover span.arrow-text {
+  padding-left: 0.5rem;
+}
 
 .form-row label.form-label, .form-group label.form-label {
   color: #C5C0BD;
@@ -474,6 +489,8 @@ body {
 }
 .card.card-primary-void {
   background-color: transparent;
+  -webkit-backdrop-filter: blur(9px);
+          backdrop-filter: blur(9px);
   box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
 }
 .card.card-primary-sm {
@@ -522,6 +539,14 @@ body {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.left-0 {
+  left: 0;
 }
 
 .custom-overflow {
@@ -2521,7 +2546,7 @@ img.dark-icon {
   color: #7E7EA0 !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight {
-  background: #B4B4B4 !important;
+  background: #F5E4F0 !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight .fc-daygrid-day-number {
   color: #C5C0BD !important;
@@ -2701,7 +2726,7 @@ img.dark-icon {
   color: #7E7EA0 !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight {
-  background: #B4B4B4 !important;
+  background: #F5E4F0 !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight .fc-daygrid-day-number {
   color: #C5C0BD !important;
@@ -2900,7 +2925,7 @@ img.dark-icon {
   color: #7E7EA0 !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight {
-  background: #B4B4B4 !important;
+  background: #F5E4F0 !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight .fc-daygrid-day-number {
   color: #C5C0BD !important;
