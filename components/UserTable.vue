@@ -39,7 +39,7 @@
               </div>
               <!-- <div>LMS Id : <span class="text-muted m-b-15">32</span> <button class="btn btn-dark bg-secondary">edit</button></div> -->
 
-              <div class="form-row lms-form">
+              <!-- <div class="form-row lms-form">
                 <label class="form-label mt-1">LMS ID:</label>
                 <input
                   type="num"
@@ -53,7 +53,7 @@
                 >
                   Save And Verified
                 </button>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
