@@ -259,7 +259,7 @@
       <h2 class="color-primary font-bold mb-4">Choose An Assignment</h2>
       <div class="d-flex">
         <button @click="onBack()" class="btn color-secondary"><span class="mr-2 arrow"><i class="fas fa-long-arrow-alt-left"></i></span><span class="arrow-text">Back</span></button>
-        <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button>
+        <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
       </div>
 
       <div class="row">
@@ -848,14 +848,14 @@
         hidden-scroll
       "
     >
-      <div class="d-flex">
-        <button @click="onBack()" class="btn color-secondary"><span class="mr-2 arrow"><i class="fas fa-long-arrow-alt-left"></i></span><span class="arrow-text">Back</span></button>
-        <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button>
-      </div>
       <h2 class="color-primary font-bold mb-1">
         Step {{ sessionType == "study" ? "One" : "Two" }}:
       </h2>
       <h2 class="color-primary font-bold mb-1">Configure your Session</h2>
+      <div class="d-flex">
+        <button @click="onBack()" class="btn color-secondary"><span class="mr-2 arrow"><i class="fas fa-long-arrow-alt-left"></i></span><span class="arrow-text">Back</span></button>
+        <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
+      </div>
       <div class="d-flex flex-column flex-fill justify-content-center">
         <div>
           <div class="row justify-content-center">
@@ -905,14 +905,12 @@
         hidden-scroll
       "
     >
-    <div class="d-flex">
-      <button @click="onBack()" class="btn color-secondary"><span class="mr-2 arrow"><i class="fas fa-long-arrow-alt-left"></i></span><span class="arrow-text">Back</span></button>
-      <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button>
-    </div>
-      <h2 class="color-primary font-bold mb-3">
-        <span>Step {{ sessionType == "study" ? "Two" : "Three" }}:</span>
-        <span>Configure your Session</span>
-      </h2>
+      <h2 class="color-primary font-bold mb-3">Step {{ sessionType == "study" ? "Two" : "Three" }}:</h2>
+      <h2 class="color-primary font-bold mb-3">Configure your Session</h2>
+      <div class="d-flex">
+        <button @click="onBack()" class="btn color-secondary"><span class="mr-2 arrow"><i class="fas fa-long-arrow-alt-left"></i></span><span class="arrow-text">Back</span></button>
+        <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
+      </div>
       <div class="row h-40 flex-grow-1">
         <div class="col-lg-7 h-100 d-flex flex-column">
           <div class="card card-primary rounded-22 p-4 h-40 flex-fill mb-4">
@@ -1130,7 +1128,7 @@
                     </button>
                   </div>
                 </div> -->
-                <div class="form-section study-room-form py-0 mx-5">
+                <div class="form-section study-room-form py-0 d-flex flex-column h-40 flex-fill custom-overflow">
                   <form
                     @submit.prevent="StartStudySession"
                     ref="studyTimeForm"
@@ -1301,11 +1299,11 @@
                 </div>
               </div>
               <div class="d-flex justify-content-end">
-                <!-- <img
+                <img
                   src="../../static/image/dashboard_img.png"
                   alt=""
                   class="img-fluid card-img"
-                /> -->
+                />
               </div>
             </div>
           </div>
@@ -1610,7 +1608,7 @@
                   py-0
                 "
               >
-                <div class="form-section study-room-form py-0 mx-5">
+                <div class="form-section study-room-form py-0 d-flex flex-column h-40 flex-fill custom-overflow">
                   <form
                     @submit.prevent="StartStudySession"
                     ref="studyTimeForm"
