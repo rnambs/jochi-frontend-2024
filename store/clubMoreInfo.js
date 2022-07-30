@@ -363,7 +363,7 @@ const actions = {
   async updateAnnouncement({ commit }, payLoad) {
     try {
       const token = localStorage.getItem('token')
-      const response = await this.$axios.$post(BASE_URL + 'club/detail/create_announcement', payLoad, {
+      const response = await this.$axios.$put(BASE_URL + 'club/detail/update_announcement', payLoad, {
         headers: {
           'Authorization': ` ${token}`
         },

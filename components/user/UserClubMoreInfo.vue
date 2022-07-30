@@ -77,7 +77,16 @@
                     class="col-md-6 col-xs-12 h-100 d-flex"
                   >
                     <div
-                      class="inner-info container-fluid p-2 d-flex flex-column  card card-primary rounded-22 p-4"
+                      class="
+                        inner-info
+                        container-fluid
+                        p-2
+                        d-flex
+                        flex-column
+                        card card-primary
+                        rounded-22
+                        p-4
+                      "
                     >
                       <div
                         class="
@@ -98,7 +107,7 @@
                           data-toggle="modal"
                           @click="openActivityModal()"
                           ><span><i class="fas fa-plus-circle"></i></span
-                            ></a>
+                        ></a>
                       </div>
                       <div class="hidden-scroll p-2">
                         <div
@@ -109,89 +118,125 @@
                             v-if="item.session_type == 'Training'"
                             class="card card-void px-3 py-2 mb-3"
                           >
-                          <div class="d-flex flex-column">
-                            <div
-                              class="
-                                d-flex
-                                flex-row flex-sm-column flex-lg-row
-                                justify-content-between
-                                w-100
-                              "
-                            >
-                              <div
-                                @click="openEditSportsActivity(item)"
-                                class="left-side"
-                              >
-                                  <h4
-                                  @click="openEditSportsActivity(item)"
-                                  class="color-primary text-truncate mb-1 font-semi-bold text-18"
-                                >
-                                  {{ item.title }}
-                                </h4>
-                                <p
-                                  class="color-dark text-16 font-semi-bold mb-0"
-                                >
-                                  {{ item.first_name }}
-                                  <span>Robin</span> <span class="color-primary text-18 font-semi-bold">Vs</span> <span>Ronny</span>
-                                </p>
-                                <p
-                                  class="
-                                    color-secondary
-                                    text-14
-                                    font-regular
-                                    mb-1
-                                  "
-                                >
-                                  <span>{{ item.date }}</span><span>, </span><span>{{ item.time }}</span>
-                                </p>
-                              </div>
+                            <div class="d-flex flex-column">
                               <div
                                 class="
-                                  right-side
-                                  h-100
                                   d-flex
-                                  align-items-end
-                                  align-items-sm-center
+                                  flex-row flex-sm-column flex-lg-row
                                   justify-content-between
-                                  flex-column flex-sm-row
+                                  w-100
                                 "
                               >
-                                <p class="mb-0 color-secondary mr-2">
-                                  <span><i class="fas fa-map-marker-alt"></i></span>
-                                  <span>Location</span>
-                                </p>
-                                <div class="d-flex justify-content-end">
-                                  <!-- <div
+                                <div
+                                  @click="openEditSportsActivity(item)"
+                                  class="left-side"
+                                >
+                                  <h4
+                                    @click="openEditSportsActivity(item)"
+                                    class="
+                                      color-primary
+                                      text-truncate
+                                      mb-1
+                                      font-semi-bold
+                                      text-18
+                                    "
+                                  >
+                                    {{ item.title }}
+                                  </h4>
+                                  <p
+                                    class="
+                                      color-dark
+                                      text-16
+                                      font-semi-bold
+                                      mb-0
+                                    "
+                                  >
+                                    {{ item.first_name }}
+                                    <span>Robin</span>
+                                    <span
+                                      class="
+                                        color-primary
+                                        text-18
+                                        font-semi-bold
+                                      "
+                                      >Vs</span
+                                    >
+                                    <span>Ronny</span>
+                                  </p>
+                                  <p
+                                    class="
+                                      color-secondary
+                                      text-14
+                                      font-regular
+                                      mb-1
+                                    "
+                                  >
+                                    <span>{{ item.date }}</span
+                                    ><span>, </span><span>{{ item.time }}</span>
+                                  </p>
+                                </div>
+                                <div
+                                  class="
+                                    right-side
+                                    h-100
+                                    d-flex
+                                    align-items-end align-items-sm-center
+                                    justify-content-between
+                                    flex-column flex-sm-row
+                                  "
+                                >
+                                  <p class="mb-0 color-secondary mr-2">
+                                    <span
+                                      ><i class="fas fa-map-marker-alt"></i
+                                    ></span>
+                                    <span>Location</span>
+                                  </p>
+                                  <div class="d-flex justify-content-end">
+                                    <!-- <div
                                         :class="
                                           isRead == 1
                                             ? 'anc-status-btn green mr-3'
                                             : 'anc-status-btn red mr-3'
                                         "
                                       ></div> -->
-                                  <button
-                                    v-if="enableEdit"
-                                    @click="
-                                      onDeleteActivityClick(
-                                        item.id,
-                                        item.club_id
-                                      )
-                                    "
-                                    data-toggle="modal"
-                                    data-target="#mediumModal"
-                                    class="btn p-1 color-secondary"
-                                  >
-                                    <span>
-                                      <i
-                                        class="fa fa-trash"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </span>
-                                  </button>
+                                    <button
+                                      v-if="enableEdit"
+                                      @click="
+                                        onDeleteActivityClick(
+                                          item.id,
+                                          item.club_id
+                                        )
+                                      "
+                                      data-toggle="modal"
+                                      data-target="#mediumModal"
+                                      class="btn p-1 color-secondary"
+                                    >
+                                      <span>
+                                        <i
+                                          class="fa fa-trash"
+                                          aria-hidden="true"
+                                        ></i>
+                                      </span>
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
+                              <p
+                                class="
+                                  mb-0
+                                  color-secondary
+                                  text-14
+                                  font-regular
+                                "
+                              >
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Nobis unde laborum delectus
+                                praesentium porro doloremque, tempore aliquam
+                                iure soluta id similique corrupti maiores,
+                                provident vitae! Ut iure unde praesentium
+                                similique.
+                              </p>
                             </div>
-                            <p class="mb-0 color-secondary text-14 font-regular">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis unde laborum delectus praesentium porro doloremque, tempore aliquam iure soluta id similique corrupti maiores, provident vitae! Ut iure unde praesentium similique.</p>
-                          </div>
                           </div>
                           <div v-else class="card card-void px-3 py-2 mb-3">
                             <div
@@ -317,12 +362,33 @@
                               :key="index"
                               class="row m-0"
                             >
-                            <p class="mb-0 col-8 p-0 color-secondary font-regular text-16 d-flex align-items-center">
-                              <span class="d-flex rounded-circle border bullet mr-2"></span> 
-                              <span class="input-name color-dark text-truncate">
-                                {{ todos.todo_list }}</span
+                              <p
+                                class="
+                                  mb-0
+                                  col-8
+                                  p-0
+                                  color-secondary
+                                  font-regular
+                                  text-16
+                                  d-flex
+                                  align-items-center
+                                "
                               >
-                            </p>
+                                <span
+                                  class="
+                                    d-flex
+                                    rounded-circle
+                                    border
+                                    bullet
+                                    mr-2
+                                  "
+                                ></span>
+                                <span
+                                  class="input-name color-dark text-truncate"
+                                >
+                                  {{ todos.todo_list }}</span
+                                >
+                              </p>
                               <p class="mb-0 col-4 p-0">
                                 <span
                                   class="input-icon color-secondary btn p-1 m-0"
@@ -368,7 +434,18 @@
                     </div>
                   </div>
                   <div class="col-md-6 col-xs-12 h-100 d-flex">
-                    <div class="inner-info container p-2 d-flex flex-column card card-primary rounded-22 p-4">
+                    <div
+                      class="
+                        inner-info
+                        container
+                        p-2
+                        d-flex
+                        flex-column
+                        card card-primary
+                        rounded-22
+                        p-4
+                      "
+                    >
                       <!-- <p class="time">
                         Next meeting:
                         {{
@@ -413,7 +490,7 @@
                           data-toggle="modal"
                           @click="openModal()"
                           ><span><i class="fas fa-plus-circle"></i></span
-                            ></a>
+                        ></a>
                       </div>
                       <div class="hidden-scroll p-2">
                         <div
@@ -444,8 +521,7 @@
                                   class="
                                     color-secondary
                                     font-regular
-                                    text-nowrap
-                                    text-14
+                                    text-nowrap text-14
                                     mb-1
                                   "
                                 >
@@ -956,6 +1032,7 @@
                       format="MM/dd/yyyy"
                       :value="activity.activityDate"
                       v-model="activity.activityDate"
+                      :disabled-dates="disabledDates"
                       @change="onDateChange"
                       name="activityDate"
                       :class="{
@@ -1318,6 +1395,10 @@ export default {
         activityVenue: "",
         activityOpponentTeam: "",
       },
+      disabledDates: {
+        to: new Date(),
+      },
+      date_today: new Date(),
     };
   },
   validations: {
@@ -1336,6 +1417,12 @@ export default {
     },
   },
   mounted() {
+    this.disabledDates.to = new Date(
+      this.date_today.getFullYear(),
+      this.date_today.getMonth(),
+      this.date_today.getDate()
+    );
+    var user;
     var user = localStorage.getItem("user_type");
     this.getAnnouncement();
     this.getSportActivities();

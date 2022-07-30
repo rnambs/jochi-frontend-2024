@@ -104,6 +104,43 @@ const actions = {
       }
     }
   },
+  //   start study session
+  async saveStudySession({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$post(BASE_URL + 'studyRoom/invite_peers', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      commit('setErrorMessage', "");
+      commit('setErrorType', "");
+      commit('setSuccessMessage', "Session has started!");
+      commit('setSuccessType', "success");
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        window.localStorage.clear();
+        this.$router.push('/admin-login');
+      }
+
+      else if (e.response && e.response.status == 409) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
+      else if (e.response && e.response.status == 400) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
+    }
+  },
 
   async addStudyTime({ commit }, payLoad) {
     const token = localStorage.getItem('token')
@@ -188,7 +225,13 @@ const actions = {
           'Authorization': ` ${token}`
         },
       });
-      if (response.status == true) {
+      if (response.data) {
+        if (response.data && response.data > 0) {
+          response.data.forEach((e) => {
+            e["date"] = moment(e.date).format("MMMM Do, YYYY");
+          });
+
+        }
         commit('setStudySessions', response.data);
 
       } else {

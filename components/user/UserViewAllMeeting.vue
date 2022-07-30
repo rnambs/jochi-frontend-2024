@@ -267,6 +267,7 @@
                           format="MM/dd/yyyy"
                           :value="detailDate"
                           v-model="detailDate"
+                          :disabled-dates="disabledDates"
                           @selected="onDateChange($event)"
                         />
                         <!-- <div
@@ -652,7 +653,7 @@ export default {
       detailType: "",
       detailWith: "",
       detailMeetingWith: "",
-      detailDate: "",
+      detailDate: new Date(),
       detailTime: "",
       detailMeetingName: "",
       detailMeetingDesc: "",
@@ -665,6 +666,10 @@ export default {
       isDateChanged: false,
       selectedSlot: "",
       updatedDate: "",
+      disabledDates: {
+        to: new Date(),
+      },
+      date_today: new Date(),
     };
   },
   validations: {
@@ -674,6 +679,11 @@ export default {
     detailVenue: { required },
   },
   mounted() {
+    this.disabledDates.to = new Date(
+      this.date_today.getFullYear(),
+      this.date_today.getMonth(),
+      this.date_today.getDate()
+    );
     var user = localStorage.getItem("user_type");
 
     this.studentId = parseInt(localStorage.getItem("id"));

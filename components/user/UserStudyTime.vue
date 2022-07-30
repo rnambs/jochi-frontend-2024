@@ -57,7 +57,9 @@
             </div>
           </div>
           <div class="col-lg-5 h-100">
-            <div class="card card-primary rounded-22 p-4 h-100 position-realtive">
+            <div
+              class="card card-primary rounded-22 p-4 h-100 position-realtive"
+            >
               <!-- default -->
               <!-- <div class="d-flex justify-content-between flex-column h-100">
                       <div class="head-section">
@@ -89,12 +91,17 @@
                       mb-3
                     "
                   >
-                    <h6 class="color-dark font-semi-bold mb-1">
-                      {{ sessionItem }}
+                    <h6
+                      v-if="
+                        sessionItem.subject && sessionItem.subject.subject_name
+                      "
+                      class="color-dark font-semi-bold mb-1"
+                    >
+                      {{ sessionItem.subject.subject_name }}
                     </h6>
                     <p class="mb-0 color-secondary font-normal text-14">
-                      <span>02 Jan 2022 </span> <span>|</span>
-                      <span>02:03 pm</span>
+                      <span>{{ sessionItem.date }} </span> <span>|</span>
+                      <span>{{ sessionItem.time }}</span>
                     </p>
                   </div>
                   <!-- <div
@@ -226,29 +233,86 @@
               </div>
               <!-- Listing end -->
               <!-- popup panel -->
-              <div class="position-absolute w-100 h-100 top-0 left-0 p-3">
-                <div class="d-flex card card-primary-void flex-column h-100 p-3">
-                  <div class="d-flex justify-content-between mb-2 border-bottom">
+              <div
+                v-if="showSessionDetail"
+                class="position-absolute w-100 h-100 top-0 left-0 p-3"
+              >
+                <div
+                  class="d-flex card card-primary-void flex-column h-100 p-3"
+                >
+                  <div
+                    class="d-flex justify-content-between mb-2 border-bottom"
+                  >
                     <h3 class="color-primary font-semi-bold">Session</h3>
-                    <p class="mb-0"><span><i class="fas fa-times"></i></span></p>
+                    <p class="mb-0">
+                      <span><i class="fas fa-times"></i></span>
+                    </p>
                   </div>
                   <div class="d-flex flex-column custom-overflow">
                     <div class="d-flex flex-column mb-2">
-                      <h5 class="color-dark mb-1 font-semi-bold">Assignment details</h5>
-                      <p class="mb-0 color-secondary font-regular text-16">name/title</p>
-                      <p class="mb-0 color-secondary font-regular text-16">subject</p>
-                      <p class="mb-0 color-secondary font-regular text-16">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita perspiciatis, nesciunt corporis, nisi eius fugiat, minima blanditiis rem possimus itaque molestias modi nostrum eos veniam repellat mollitia quia vitae beatae.</p>
+                      <h5 class="color-dark mb-1 font-semi-bold">
+                        Assignment details
+                      </h5>
+                      <p class="mb-0 color-secondary font-regular text-16">
+                        name/title
+                      </p>
+                      <p class="mb-0 color-secondary font-regular text-16">
+                        subject
+                      </p>
+                      <p class="mb-0 color-secondary font-regular text-16">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Expedita perspiciatis, nesciunt corporis, nisi eius
+                        fugiat, minima blanditiis rem possimus itaque molestias
+                        modi nostrum eos veniam repellat mollitia quia vitae
+                        beatae.
+                      </p>
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">Goals</h5>
-                      <p class="mb-0 color-secondary font-regular text-16 d-flex align-items-center"><span class="d-flex rounded-circle border bullet mr-2"></span> Practice Welcome song</p>
-                      <p class="mb-0 color-secondary font-regular text-16 d-flex align-items-center"><span class="d-flex rounded-circle border bullet mr-2"></span> Invite friends</p>
+                      <p
+                        class="
+                          mb-0
+                          color-secondary
+                          font-regular
+                          text-16
+                          d-flex
+                          align-items-center
+                        "
+                      >
+                        <span
+                          class="d-flex rounded-circle border bullet mr-2"
+                        ></span>
+                        Practice Welcome song
+                      </p>
+                      <p
+                        class="
+                          mb-0
+                          color-secondary
+                          font-regular
+                          text-16
+                          d-flex
+                          align-items-center
+                        "
+                      >
+                        <span
+                          class="d-flex rounded-circle border bullet mr-2"
+                        ></span>
+                        Invite friends
+                      </p>
                     </div>
                     <div class="d-flex flex-column mb-2">
-                      <h5 class="color-dark mb-1 font-semi-bold">Regular Study</h5>
-                      <p class="mb-0 color-secondary font-regular text-16">Subject : <span>Assignment</span></p>
-                      <p class="mb-0 color-secondary font-regular text-16">Duration : <span>30min</span></p>
-                      <p class="mb-0 color-secondary font-regular text-16">Breaktime : <span>2min</span></p>
+                      <h5 class="color-dark mb-1 font-semi-bold">
+                        Regular Study
+                      </h5>
+                      <p class="mb-0 color-secondary font-regular text-16">
+                        Subject : <span>Assignment</span>
+                      </p>
+                      <p class="mb-0 color-secondary font-regular text-16">
+                        Duration : <span>30min</span>
+                      </p>
+                      <p class="mb-0 color-secondary font-regular text-16">
+                        Breaktime : <span>2min</span>
+                      </p>
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">Peers</h5>
@@ -298,7 +362,11 @@
       <h2 class="color-primary font-bold mb-1">Step One:</h2>
       <h2 class="color-primary font-bold mb-4">Choose An Assignment</h2>
       <div class="d-flex">
-        <button @click="onBack()" class="btn color-secondary"><span class="mr-2 arrow"><i class="fas fa-long-arrow-alt-left"></i></span><span class="arrow-text">Back</span></button>
+        <button @click="onBack()" class="btn color-secondary">
+          <span class="mr-2 arrow"
+            ><i class="fas fa-long-arrow-alt-left"></i></span
+          ><span class="arrow-text">Back</span>
+        </button>
         <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
       </div>
 
@@ -893,37 +961,68 @@
       </h2>
       <h2 class="color-primary font-bold mb-1">Configure your Session</h2>
       <div class="d-flex">
-        <button @click="onBack()" class="btn color-secondary"><span class="mr-2 arrow"><i class="fas fa-long-arrow-alt-left"></i></span><span class="arrow-text">Back</span></button>
+        <button @click="onBack()" class="btn color-secondary">
+          <span class="mr-2 arrow"
+            ><i class="fas fa-long-arrow-alt-left"></i></span
+          ><span class="arrow-text">Back</span>
+        </button>
         <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
       </div>
       <div class="d-flex flex-column flex-fill justify-content-center">
         <div>
           <div class="row justify-content-center">
-            <div @click="onModeSelect('regular')" class="col-12 col-md-5 col-lg-4">
+            <div
+              @click="onModeSelect('regular')"
+              class="col-12 col-md-5 col-lg-4"
+            >
               <div
                 class="
                   jochi-sub-components-light-bg
                   drag-drop
-                  px-4 py-5
-                  position-realtive h-100 d-flex align-items-center justify-content-center flex-column
+                  px-4
+                  py-5
+                  position-realtive
+                  h-100
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                  flex-column
                 "
               >
-                  <h2 class="color-primary text-center font-bold mb-1">Regular Studying</h2>
-                  <p class="color-dark font-semi-bold text-center text-18">Set your own timer, goals, and breaks.</p>
+                <h2 class="color-primary text-center font-bold mb-1">
+                  Regular Studying
+                </h2>
+                <p class="color-dark font-semi-bold text-center text-18">
+                  Set your own timer, goals, and breaks.
+                </p>
               </div>
             </div>
-            <div @click="onModeSelect('pomodoro')" class="col-12 col-md-5 col-lg-4">
+            <div
+              @click="onModeSelect('pomodoro')"
+              class="col-12 col-md-5 col-lg-4"
+            >
               <div
                 class="
                   jochi-sub-components-light-bg
                   drag-drop
-                  px-4 py-5
-                  position-realtive d-flex align-items-center justify-content-center flex-column
+                  px-4
+                  py-5
+                  position-realtive
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                  flex-column
                 "
               >
-                  <h2 class="color-primary font-bold mb-1 text-center">Pomodorro Technique</h2>
-                  <p class="color-dark font-semi-bold text-18 text-center">Definition of this technique will go here...</p>
-                  <button class="btn btn-dark py-2 text-center">Click to Learn More</button>
+                <h2 class="color-primary font-bold mb-1 text-center">
+                  Pomodorro Technique
+                </h2>
+                <p class="color-dark font-semi-bold text-18 text-center">
+                  Definition of this technique will go here...
+                </p>
+                <button class="btn btn-dark py-2 text-center">
+                  Click to Learn More
+                </button>
               </div>
             </div>
           </div>
@@ -945,10 +1044,16 @@
         hidden-scroll
       "
     >
-      <h2 class="color-primary font-bold mb-3">Step {{ sessionType == "study" ? "Two" : "Three" }}:</h2>
+      <h2 class="color-primary font-bold mb-3">
+        Step {{ sessionType == "study" ? "Two" : "Three" }}:
+      </h2>
       <h2 class="color-primary font-bold mb-3">Configure your Session</h2>
       <div class="d-flex">
-        <button @click="onBack()" class="btn color-secondary"><span class="mr-2 arrow"><i class="fas fa-long-arrow-alt-left"></i></span><span class="arrow-text">Back</span></button>
+        <button @click="onBack()" class="btn color-secondary">
+          <span class="mr-2 arrow"
+            ><i class="fas fa-long-arrow-alt-left"></i></span
+          ><span class="arrow-text">Back</span>
+        </button>
         <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
       </div>
       <div class="row h-40 flex-grow-1">
@@ -1044,13 +1149,17 @@
                 <label class="form-label" for="name">Invite peers</label>
                 <!-- <input type="text" class="form-control" /> -->
                 <multiselect
-                  class="form-control"
                   v-model="peerSelected"
                   :options="students"
                   track-by="first_name"
                   label="first_name"
-                  placeholder=" Select students"
+                  :placeholder="
+                    peerSelected.length > 3 ? '' : 'Select students'
+                  "
+                  :multiple="true"
+                  :max="4"
                 >
+                  <span slot="maxElements">Maximum of 4 students selected</span>
                   <span slot="noResult">No data found</span>
                 </multiselect>
               </div>
@@ -1059,25 +1168,21 @@
                   @click="onInvitePeer"
                   class="btn btn-primary btn-sm mt-2"
                 >
-                  Submit
+                  Add
                 </button>
               </div>
             </div>
-            <div class="hidden-scroll p-3 row my-0">
+            <div
+              v-for="peer of peerList"
+              :key="peer.id"
+              class="hidden-scroll p-3 row my-0"
+            >
               <div class="d-flex align-items-center my-2 mr-3">
                 <div class="ld-img-section mr-3">
                   <div class="ld-img-holder"></div>
                 </div>
                 <div class="ld-details-section">
-                  <p class="ld-heading mb-1">Mark Jones, President</p>
-                </div>
-              </div>
-              <div class="d-flex align-items-center my-2 mr-3">
-                <div class="ld-img-section mr-3">
-                  <div class="ld-img-holder"></div>
-                </div>
-                <div class="ld-details-section">
-                  <p class="ld-heading mb-1">Mark Jones, President</p>
+                  <p class="ld-heading mb-1">{{ peer.first_name }}</p>
                 </div>
               </div>
             </div>
@@ -1168,7 +1273,18 @@
                     </button>
                   </div>
                 </div> -->
-                <div class="form-section study-room-form py-0 d-flex flex-column h-40 flex-fill custom-overflow">
+                <div
+                  class="
+                    form-section
+                    study-room-form
+                    py-0
+                    d-flex
+                    flex-column
+                    h-40
+                    flex-fill
+                    custom-overflow
+                  "
+                >
                   <form
                     @submit.prevent="StartStudySession"
                     ref="studyTimeForm"
@@ -1330,12 +1446,15 @@
                         Start Session
                       </button>
                     </div>
-                    <div class="py-1">
-                      <button class="btn btn-dark btn-sm">
-                        Schedule for later
-                      </button>
-                    </div>
                   </form>
+                  <div class="py-1">
+                    <button
+                      @click="openScheduleForLater()"
+                      class="btn btn-dark btn-sm"
+                    >
+                      Schedule for later
+                    </button>
+                  </div>
                 </div>
               </div>
               <div class="d-flex justify-content-end">
@@ -1390,23 +1509,24 @@
             </div>
             <p class="color-dark text-24 font-semi-bold mb-1">Subject Name</p>
             <p class="color-dark text-24 font-semi-bold mb-1">
-              {{ SubjectName }}
+              {{ timerStatusData.subjectName }}
             </p>
             <p class="color-secondary text-16 font-regular mb-1">
-              Study Method : <span>Regular studying</span>
+              Study Method :
+              <span>{{
+                sessionMode == "regular"
+                  ? "Regular Studying"
+                  : "Pomodoro Studying"
+              }}</span>
             </p>
-
-            <p
-              class="color-secondary text-16 font-regular mb-1"
-              v-if="studyTypes.id != 3"
-            >
-              Remaining Cycles : 10
+            <!-- v-if="studyTypes.id != 3" -->
+            <p class="color-secondary text-16 font-regular mb-1">
+              Remaining Cycles : {{ this.totalCycles - this.currentCycle }}
             </p>
-            <p
-              class="color-secondary text-16 font-regular mb-1"
-              v-if="studyTypes.id != 3"
-            >
-              Remaining Repetitions : 12
+            <!-- v-if="studyTypes.id != 3" -->
+            <p class="color-secondary text-16 font-regular mb-1">
+              Remaining Repetitions :
+              {{ this.repetitionCount - this.currentRepetitionNum }}
             </p>
             <!-- <input type="text" v-model="remainingTime" id="remainingTime"> -->
             <button
@@ -1420,13 +1540,17 @@
           </div>
           <div class="card card-light rounded-22 p-4">
             <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
-            <div class="hidden-scroll p-3 row my-0">
+            <div
+              v-for="peer in peerList"
+              :key="peer.id"
+              class="hidden-scroll p-3 row my-0"
+            >
               <div class="d-flex align-items-center my-2 mr-3">
                 <div class="ld-img-section mr-3">
                   <div class="ld-img-holder"></div>
                 </div>
                 <div class="ld-details-section">
-                  <p class="ld-heading mb-1">Mark Jones, President</p>
+                  <p class="ld-heading mb-1">{{ peer.first_name }}</p>
                 </div>
               </div>
             </div>
@@ -1493,9 +1617,12 @@
                     <span
                       id="base-timer-label"
                       class="color-dark text-24 font-semi-bold"
-                      >12</span
+                      >{{ timerDurationDisplay }}</span
                     >
-                    <span class="color-dark text-24 font-semi-bold">22</span>
+                    <!-- <span class="color-dark text-24 font-semi-bold">22</span> -->
+                    <span class="color-dark base-timer-text">{{
+                      studyStatus == "break" ? "BREAK" : ""
+                    }}</span>
                   </p>
                 </div>
               </div>
@@ -1612,11 +1739,10 @@
 
     <!-- end rating -->
 
-    <section id="study-detail" class="">
+    <!-- <section id="study-detail" class="">
       <div class="study-section container-fluid">
         <h3 class="color-primary text-18 mb-2 mt-4">Study Room</h3>
         <div class="inner-study p-3">
-          <!-- Study Room -->
           <div
             class="
               study-row
@@ -1631,11 +1757,7 @@
           >
             <div class="d-flex flex-column w-100">
               <div class="study-col d-flex flex-column justify-content-center">
-                <!-- <img
-                  src="~/assets/images/undraw/studying.png"
-                  alt=""
-                  class="container study-image"
-                /> -->
+               
               </div>
               <div
                 class="
@@ -1648,7 +1770,18 @@
                   py-0
                 "
               >
-                <div class="form-section study-room-form py-0 d-flex flex-column h-40 flex-fill custom-overflow">
+                <div
+                  class="
+                    form-section
+                    study-room-form
+                    py-0
+                    d-flex
+                    flex-column
+                    h-40
+                    flex-fill
+                    custom-overflow
+                  "
+                >
                   <form
                     @submit.prevent="StartStudySession"
                     ref="studyTimeForm"
@@ -1814,8 +1947,8 @@
               </div>
             </div>
           </div>
-          <!-- Study Room End -->
-          <!-- Timer -->
+          Study Room End
+          Timer
           <form
             @submit.prevent="AddStudyTime('STOP')"
             v-if="!addedStudyTime && timerStatus == 1"
@@ -1850,7 +1983,6 @@
                     Remaining Repetitions :
                     {{ this.repetitionCount - this.currentRepetitionNum }}
                   </p>
-                  <!-- <input type="text" v-model="remainingTime" id="remainingTime"> -->
                   <button
                     type="button"
                     data-toggle="modal"
@@ -1917,7 +2049,7 @@
                       justify-content-center
                     "
                   >
-                    <!-- && !studyTimePaused -->
+                    
                     <button
                       v-show="this.studyTypes.id == 3 && studyStatus != 'break'"
                       @click.prevent="
@@ -1934,14 +2066,13 @@
               </div>
             </div>
           </form>
-          <!-- Timer End -->
-          <!-- Rating Section -->
+          Timer End
+          Rating Section
           <div v-show="addedStudyTime" class="container study-row">
             <div class="header-row containStarRating er">
               <div class="col-md-12 py-3">
                 <h4>Rate your session</h4>
-                <!-- <button type="button" @click.prevent="onBackClick()" class="btn btn-color mb-3 mt-2 pl-3 pr-3 text-right">Back</button> -->
-              </div>
+               </div>
             </div>
             <div class="inner-row mt-0 container">
               <div class="inner-col px-5 py-4 d-flex flex-column">
@@ -2030,10 +2161,10 @@
               </div>
             </div>
           </div>
-          <!-- Rating Section End -->
+          Rating Section End
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- Modal -->
     <div
       class="modal fade"
@@ -2097,6 +2228,75 @@
         recharging (Read more...)
       </p>
     </div>
+    <!-- schedule for later modal -->
+    <div
+      class="modal fade"
+      id="scheduleForLater"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="scheduleCenterModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="scheduleModalLongTitle">
+              Schedule Time
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group required">
+              <label class="typo__label">Date</label>
+              <date-picker
+                class="form-control bg-white"
+                placeholder="MM/DD/YYYY"
+                format="MM/dd/yyyy"
+                :value="scheduledDate"
+                v-model="scheduledDate"
+                :disabled-dates="disabledDates"
+                name="scheduleDate"
+              />
+            </div>
+            <div class="form-group required">
+              <label class="typo__label">Time</label>
+              <vue-timepicker
+                format="hh:mm A"
+                v-model="scheduledTime"
+                name="scheduledTime"
+                class="show-cursor form-white"
+              ></vue-timepicker>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-color-close"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-color-save"
+              data-dismiss="modal"
+              @click="StartStudySession(false)"
+              :disabled="processing"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- schedule later modal end-->
   </div>
 
   <!-- End Study Page -->
@@ -2108,10 +2308,13 @@ import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 // import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
+import VueTimepicker from "vue2-timepicker";
+
 export default {
   name: "ClubEditForm",
   components: {
     lottie,
+    VueTimepicker,
   },
   head() {
     return {
@@ -2180,13 +2383,26 @@ export default {
       goalsList: [],
       selectedAssignment: {},
       invitePeer: false,
-      peerSelected: {},
+      peerSelected: [],
       peerList: [],
       subjectName: "",
+      disabledDates: {
+        to: new Date(),
+      },
+      date_today: new Date(),
+      scheduledDate: "",
+      scheduledTime: "",
+      showSessionDetail: false,
+      studySessionList: [],
     };
   },
 
   mounted() {
+    this.disabledDates.to = new Date(
+      this.date_today.getFullYear(),
+      this.date_today.getMonth(),
+      this.date_today.getDate()
+    );
     this.GetSubjectList();
     this.GetStudyTypes();
     this.getAllStudySessions();
@@ -2222,6 +2438,7 @@ export default {
       addRating: "addRating",
       getStudySessions: "getStudySessions",
       getAssignments: "getAssignments",
+      saveStudySession: "saveStudySession",
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
@@ -2245,14 +2462,15 @@ export default {
     async UpdateStudyTechnique() {
       this.CustomMode = "active";
       if (this.studyTypes.id != 3) {
-        this.targetDuration = this.studyTypes.startTime;
-        this.breakTime = this.studyTypes.breakTime;
+        this.targetDuration = this.studyTypes.start_time;
+        this.breakTime = this.studyTypes.break_time;
         this.repeatLoopBy = this.studyTypes.cycle;
       } else {
         this.targetDuration = 5;
         this.breakTime = 2;
         this.breakAt = 2;
       }
+      console.log("update study tech", this.studyTypes, this.targetDuration);
     },
     async UpdateSubject() {
       this.SubjectName = this.Subject.subject_name;
@@ -2263,7 +2481,6 @@ export default {
       clearInterval(this.limitedInterval);
     },
     async Timer() {
-      // await this.clearInterval(this.limitedInterval);
       this.GetStatusTimer();
       this.timerStatus = 1;
       this.timerBreakDurationDisplay = this.breakTime * 60;
@@ -2404,78 +2621,64 @@ export default {
       }
     },
 
-    async StartStudySession() {
-      // debugger;
-      console.log("start study session");
+    async StartStudySession(scheduleNow = true) {
+      console.log("start study session", this.repeatLoopBy);
       this.submitted = true;
-      if (this.studyTypes.id == 3) {
-        if (!this.targetDuration || !this.breakTime) {
-          return this.$toast.open({
-            message: "Durartion and Breaktime is required",
-            type: this.errorType,
-            duration: 5000,
-          });
-        }
-        if (this.targetDuration < 0 || this.breakTime < 0) {
-          return this.$toast.open({
-            message: "Durartion and Breaktime must be greater than zero",
-            type: this.errorType,
-            duration: 5000,
-          });
-        }
 
-        if (this.breakTime < 2) {
-          return this.$toast.open({
-            message: "Breaktime must be greater than or equeal to 2 minutes",
-            type: this.errorType,
-            duration: 5000,
-          });
-        }
-        if (this.breakAt < 2) {
-          return this.$toast.open({
-            message: "Break Time At must be greater than or equal to 2 minutes",
-            type: this.errorType,
-            duration: 5000,
-          });
-        }
-
-        if (this.targetDuration < 5) {
-          return this.$toast.open({
-            message: "Duration must be greater than or equal to 5 minutes",
-            type: this.errorType,
-            duration: 5000,
-          });
-        }
-
-        if (this.breakAt < 2 || this.breakAt >= this.targetDuration) {
-          return this.$toast.open({
-            message: "Break At Time must be lesser than Study duration",
-            type: this.errorType,
-            duration: 5000,
-          });
-        }
+      let valid = this.checkValidations();
+      if (!valid) {
+        return;
       }
 
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;
       } else {
+        this.onNext();
         this.processing = true;
-        await this.startStudySession({
-          subject: this.Subject.id,
-          targetDuration: this.targetDuration,
-          type: this.studyTypes.id,
+        let peersSelected = [];
+        if (this.peerList.length > 0) {
+          this.peerList.forEach((e) => {
+            peersSelected.push(e.id);
+          });
+        }
+        await this.saveStudySession({
+          // subject: this.Subject.id,
+          // targetDuration: this.targetDuration,
+          // type: this.studyTypes.id,
+          // repeat: this.repeatLoopBy,
+
+          assignment_id:
+            this.sessionType == "assignment"
+              ? this.selectedAssignment.id
+              : null,
+          session_shared_user_id: peersSelected,
+          goals: this.sessionType != "assignment" ? this.goalsList : [],
+          date: this.scheduledDate
+            ? moment(this.scheduledDate).format("YYYY-MM-DD")
+            : "",
+          start_time: this.scheduledTime,
+          study_method: this.studyTypes.id,
+          subject: this.sessionType != "assignment" ? this.Subject.id : "",
+          target_duration:
+            this.sessionMode == "regular" ? this.targetDuration : null,
           repeat: this.repeatLoopBy,
+          scheduled_status: scheduleNow ? "Now" : "Later",
         });
         if (this.successMessage != "") {
+          if (!scheduleNow) {
+            this.closeScheduleForLater();
+          }
           this.$toast.open({
             message: this.successMessage,
             type: this.SuccessType,
             duration: 5000,
           });
+
           // this.$router.push("/club-list-table");
-          if (this.limitedInterval > 0)
+          if (this.limitedInterval > 0) {
             await this.clearInterval(this.limitedInterval);
+          }
           this.Timer();
         } else if (this.errorMessage != "") {
           this.$toast.open({
@@ -2487,10 +2690,100 @@ export default {
         this.processing = false;
       }
     },
+    checkValidations() {
+      let valid = true;
+      if (this.sessionType == "study" && (!this.Subject || !this.Subject.id)) {
+        this.$toast.open({
+          message: "Please add subject",
+          type: "warning",
+          duration: 5000,
+        });
+        valid = false;
+      }
+      if (this.studyTypes.id == 3) {
+        if (!this.targetDuration) {
+          this.$toast.open({
+            message: "Durartion is required",
+            type: "warning",
+            duration: 5000,
+          });
+          valid = false;
+        }
+        if (!this.breakTime) {
+          this.$toast.open({
+            message: "Breaktime is required",
+            type: "warning",
+            duration: 5000,
+          });
+          valid = false;
+        }
+        if (!this.breakAt) {
+          this.$toast.open({
+            message: "Break At is required",
+            type: "warning",
+            duration: 5000,
+          });
+          valid = false;
+        }
+
+        if (
+          this.targetDuration &&
+          this.breakTime &&
+          (this.targetDuration < 0 || this.breakTime < 0)
+        ) {
+          this.$toast.open({
+            message: "Durartion and Breaktime must be greater than zero",
+            type: "warning",
+            duration: 5000,
+          });
+          return false;
+        }
+
+        if (this.breakTime && this.breakTime < 2) {
+          this.$toast.open({
+            message: "Breaktime must be greater than or equal to 2 minutes",
+            type: "warning",
+            duration: 5000,
+          });
+          return false;
+        }
+        if (this.breakAt && this.breakAt < 2) {
+          this.$toast.open({
+            message: "Break Time At must be greater than or equal to 2 minutes",
+            type: "warning",
+            duration: 5000,
+          });
+          return false;
+        }
+
+        if (this.targetDuration && this.targetDuration < 5) {
+          this.$toast.open({
+            message: "Duration must be greater than or equal to 5 minutes",
+            type: "warning",
+            duration: 5000,
+          });
+          return false;
+        }
+
+        if (
+          this.breakAt &&
+          (this.breakAt < 2 || this.breakAt >= this.targetDuration)
+        ) {
+          this.$toast.open({
+            message: "Break At Time must be lesser than Study duration",
+            type: "warning",
+            duration: 5000,
+          });
+          return false;
+        }
+      }
+      return valid;
+    },
     async AddStudyTime(studyStatus) {
       this.submitted = true;
       if (studyStatus == "STOP") {
-        this.addedStudyTime = true;
+        // this.addedStudyTime = true;
+        this.onNext();
       }
       let totalTimeStudied = Math.floor(this.totalStudyTime / 60);
       this.Timersession_id = this.timerStatusData.session_id;
@@ -2569,7 +2862,7 @@ export default {
       this.repetitionCount = "1";
       this.targetDuration = 0;
       this.breakTime = 0;
-      this.$refs.studyTimeForm.reset();
+      // this.$refs.studyTimeForm.reset();
     },
     async onLogSession() {
       await this.addRating({
@@ -2579,6 +2872,7 @@ export default {
         workCompletes: this.focusWorkComplete,
       });
       if (this.successMessage != "") {
+        this.currentTab = 0;
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -2607,15 +2901,47 @@ export default {
     async getAllStudySessions() {
       await this.getStudySessions({});
       console.log(this.studySessions);
+      // // this.studySessionList = this.studySessions;
+      // if (this.studySessions && this.studySessions.length > 0) {
+      //   this.studySessions.forEach((e) => {
+      //     let dateFormat = moment(e.date).format("MMMM Do, YYYY");
+      //     var element = e;
+      //     element["date"] = dateFormat;
+      //     // e.date = moment(e.date).format("MMMM Do, YYYY");
+      //     this.studySessionList.push(element);
+      //   });
+      //   // this.studySessionList.forEach((e) => {
+      //   //   e.date = moment(e.date).format("MMMM Do, YYYY");
+      //   //   // this.studySessionList.push(e)
+      //   // });
+      // }
     },
     async onNext() {
+      let nextTab = this.currentTab + 1;
+      switch (nextTab) {
+        case 4:
+          this.timerPageInitialize();
+
+          break;
+
+        default:
+          "";
+      }
       this.currentTab++;
+    },
+    timerPageInitialize() {
+      if (this.limitedInterval && this.limitedInterval > 0) {
+        this.clearInterval(this.limitedInterval);
+      }
     },
     onBack() {
       if (this.sessionType == "study" && this.currentTab == 2) {
         this.currentTab = 0;
         return;
       }
+      // if (this.currentTab == 3) {
+      //   this.$refs.studyTimeForm.reset();
+      // }
       this.currentTab--;
     },
     async setSessionType(type) {
@@ -2625,7 +2951,7 @@ export default {
         this.currentTab = 2;
         return;
       }
-      this.currentTab++;
+      this.onNext();
       if (this.currentTab == 1) {
         await this.getAssignments({});
         console.log(this.assignments);
@@ -2640,11 +2966,11 @@ export default {
     },
     onAssignmentSelect(detail) {
       this.selectedAssignment = detail;
-      this.currentTab++;
+      this.onNext();
     },
     onModeSelect(type) {
       this.sessionMode = type;
-      this.currentTab++;
+      this.onNext();
       if (this.sessionMode == "regular") {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 3);
       } else {
@@ -2676,14 +3002,24 @@ export default {
     },
     onInvitePeer() {
       console.log(this.peerSelected);
-      this.peerList.push(this.peerSelected);
-      this.peerSelected = "";
+      this.peerList = this.peerSelected;
+      // this.peerSelected = ;
       this.invitePeer = false;
     },
     resetAssignment() {
       this.selectedAssignment = {};
       this.goalsList = [];
       this.peerList = [];
+    },
+    openScheduleForLater() {
+      if (this.checkValidations()) {
+        $("#scheduleForLater").modal({ backdrop: true });
+      }
+    },
+
+    closeScheduleForLater() {
+      $("#scheduleForLater").modal("hide");
+      $(".modal-backdrop").remove();
     },
   },
 
