@@ -620,6 +620,12 @@ img.dark-icon {
   padding-bottom: 12px;
 }
 
+.bullet {
+  width: 14px;
+  height: 14px;
+  border-color: #431F1C !important;
+}
+
 .main-container {
   color: #B4B4B4;
   background-image: url("./../image/jochi-light-bg.png");
