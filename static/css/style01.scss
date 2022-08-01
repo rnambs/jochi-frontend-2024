@@ -251,7 +251,7 @@ body{
     }
     .dropdown-menu{
         background-color: $white;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         padding: inherit;
         list-style-type: none;
         border: none;
@@ -298,7 +298,7 @@ body{
 
     .multiselect__tags {
         border-radius: 0.65rem;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         border: none;
         background-color: rgba($color: $white, $alpha: 0.2);
         color: $font-label-color;
@@ -3165,57 +3165,13 @@ img.dark-icon{
                     overflow: hidden;
                     overflow-y: auto;
                 }
-                &.profile-row{
-                    min-height: calc(100vh - 216px);
-                    max-height: calc(100vh - 216px);
-                    overflow: hidden;
-                    overflow-y: auto;
-                }
+                // &.profile-row{
+                //     min-height: calc(100vh - 216px);
+                //     max-height: calc(100vh - 216px);
+                //     overflow: hidden;
+                //     overflow-y: auto;
+                // }
                 .study-col{
-                    .upload-image{
-                        position: relative;
-                        .proof-img-wrp{
-                            position: relative;
-                            cursor: pointer;
-                            .profile-pic{
-                                width: 200px;
-                                height: 200px;
-                                background-color: $border-color;
-                                object-fit: cover;
-                            }
-                            .middle {
-                                transition: .5s ease;
-                                opacity: 0;
-                                top: 50%;
-                                left: 50%;
-                                transform: translate(-50%, -50%);
-                                -ms-transform: translate(-50%, -50%);
-                            }
-                            &:hover .profile-pic {
-                                opacity: 0.3;
-                            }
-                            &:hover .middle {
-                                opacity: 1;
-                            }
-                        }
-                        .pic-edit{
-                            bottom: 20px;
-                            right: 5px;
-                            i.fa-pen{
-                                background-color: $theme-color;
-                                padding: 10px;
-                                input.rg-img-upload{
-                                    left: 0;
-                                    top: 0;
-                                    opacity: 0;
-                                    &::-webkit-file-upload-button {
-                                        cursor:pointer;
-                                    }
-                                    
-                                }
-                            }
-                        }
-                    }
                     // .cal-image{
                     //     width: 170px;
                     //     height: 170px;
@@ -3246,147 +3202,147 @@ img.dark-icon{
                             width: 212px;
                         } 
                     }
-                    .form-section{
-                        padding: 30px 30px 30px 0px;
-                        border-radius: .75rem;
-                        &.study-room-form{
-                            padding: 5px;
-                        }
-                        &.form-bg{
-                            background-color: $Global-background-element;
-                            padding: 80px 30px 80px 30px;
-                        }
-                        .form-group{
-                            label{
-                                color: $font-label-color;
-                                font-size: .8rem;
-                            }
-                            .form-control{
-                                list-style-type: none;
-                                border: 2px solid $border-color;
-                                background-color: $global-background-color ;
-                                font-size: 1rem;
-                                color: $font-label-color;
-                                padding: .375rem .75rem;
-                                option{
-                                    font-size: 1rem;
-                                    color: $font-label-color;
-                                    padding: inherit;
-                                    border-radius: 0.3rem;
-                                    &:hover{
-                                        background-color:$theme-color;
-                                        color: $global-font-color;
-                                        padding: inherit;
-                                        border-radius: 0.3rem;
-                                    }
-                                }
-                            }
-                            .form-field{
-                                border: none;
-                                background-color: $border-color;
-                                font-size: 1rem;
-                                color: $global-font-color;
-                                padding: .65rem 1.5rem;
-                                border-radius: 12px;
-                                box-shadow: 0.1rem 0.2rem 0.6rem rgba(0, 0, 0, 0.29);
-                                min-height: 45px;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                cursor: default;
-                                &.change-pwd{
-                                    margin-top: 43px;
-                                    text-align: center;
-                                    padding: 0rem;
-                                    a{
-                                        text-decoration: none;
-                                        color: $global-font-color;
-                                        padding: .65rem 1.5rem;
-                                        display: block;
-                                    }
-                                }
-                            }
-                            .multiselect__tags {
-                                border-radius: 0.4rem;
-                                font-size: 1rem;
-                                border: 2px solid $border-color;
-                                background-color: $global-background-color ;
-                                color: $font-label-color;
-                                padding: 6px 40px 0 10px;
-                                height: calc(2.25rem + 2px);
-                                .multiselect__input, .multiselect__single {
-                                    background-color: unset;
-                                    border-radius: unset;
-                                    height: unset;
-                                    line-height: unset;color: $font-label-color;
-                                    &::placeholder{
-                                        color: rgba($color:$font-label-color,$alpha:0.4);
-                                    }
-                                }
-                            }
-                            .multiselect__content-wrapper{
-                                background-color: unset;
-                                list-style-type: none;
-                                z-index: 10;
-                                position: absolute;
-                                left: 0;
-                                width: 100%;
-                                top: calc(2.25rem + 2px);
-                                overflow: visible;
-                                border: none;
-                                ul{
-                                    border: 2px solid $border-color;
-                                    border-radius: 0.45rem;
-                                    background-color: $global-background-color;
-                                    padding: .375rem .75rem;
-                                    max-height: 200px;
-                                    overflow: hidden;
-                                    overflow-y: auto;
-                                    li{
-                                        color: $font-label-color;
-                                        .multiselect__option--highlight{
-                                            font-size: 1rem;
-                                            color: $global-font-color; background: $theme-color;
-                                            border-radius: 0.4rem;
-                                            &:target, &:visited, &:active{
-                                                background: #FF646F;
-                                            }
-                                        }
-                                        .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
-                                            background: #FF646F;
-                                            color: $global-font-color;
-                                            font-weight: 500;
-                                            border-radius: .4rem;
-                                        }
-                                        span{
-                                            &::after{
-                                                display: none !important;
-                                            }
-                                        }
+                    // .form-section{
+                    //     padding: 30px 30px 30px 0px;
+                    //     border-radius: .75rem;
+                    //     &.study-room-form{
+                    //         padding: 5px;
+                    //     }
+                    //     &.form-bg{
+                    //         background-color: $Global-background-element;
+                    //         padding: 80px 30px 80px 30px;
+                    //     }
+                    //     .form-group{
+                    //         label{
+                    //             color: $font-label-color;
+                    //             font-size: .8rem;
+                    //         }
+                    //         .form-control{
+                    //             list-style-type: none;
+                    //             border: 2px solid $border-color;
+                    //             background-color: $global-background-color ;
+                    //             font-size: 1rem;
+                    //             color: $font-label-color;
+                    //             padding: .375rem .75rem;
+                    //             option{
+                    //                 font-size: 1rem;
+                    //                 color: $font-label-color;
+                    //                 padding: inherit;
+                    //                 border-radius: 0.3rem;
+                    //                 &:hover{
+                    //                     background-color:$theme-color;
+                    //                     color: $global-font-color;
+                    //                     padding: inherit;
+                    //                     border-radius: 0.3rem;
+                    //                 }
+                    //             }
+                    //         }
+                    //         .form-field{
+                    //             border: none;
+                    //             background-color: $border-color;
+                    //             font-size: 1rem;
+                    //             color: $global-font-color;
+                    //             padding: .65rem 1.5rem;
+                    //             border-radius: 12px;
+                    //             box-shadow: 0.1rem 0.2rem 0.6rem rgba(0, 0, 0, 0.29);
+                    //             min-height: 45px;
+                    //             overflow: hidden;
+                    //             text-overflow: ellipsis;
+                    //             cursor: default;
+                    //             &.change-pwd{
+                    //                 margin-top: 43px;
+                    //                 text-align: center;
+                    //                 padding: 0rem;
+                    //                 a{
+                    //                     text-decoration: none;
+                    //                     color: $global-font-color;
+                    //                     padding: .65rem 1.5rem;
+                    //                     display: block;
+                    //                 }
+                    //             }
+                    //         }
+                    //         .multiselect__tags {
+                    //             border-radius: 0.4rem;
+                    //             font-size: 1rem;
+                    //             border: 2px solid $border-color;
+                    //             background-color: $global-background-color ;
+                    //             color: $font-label-color;
+                    //             padding: 6px 40px 0 10px;
+                    //             height: calc(2.25rem + 2px);
+                    //             .multiselect__input, .multiselect__single {
+                    //                 background-color: unset;
+                    //                 border-radius: unset;
+                    //                 height: unset;
+                    //                 line-height: unset;color: $font-label-color;
+                    //                 &::placeholder{
+                    //                     color: rgba($color:$font-label-color,$alpha:0.4);
+                    //                 }
+                    //             }
+                    //         }
+                    //         .multiselect__content-wrapper{
+                    //             background-color: unset;
+                    //             list-style-type: none;
+                    //             z-index: 10;
+                    //             position: absolute;
+                    //             left: 0;
+                    //             width: 100%;
+                    //             top: calc(2.25rem + 2px);
+                    //             overflow: visible;
+                    //             border: none;
+                    //             ul{
+                    //                 border: 2px solid $border-color;
+                    //                 border-radius: 0.45rem;
+                    //                 background-color: $global-background-color;
+                    //                 padding: .375rem .75rem;
+                    //                 max-height: 200px;
+                    //                 overflow: hidden;
+                    //                 overflow-y: auto;
+                    //                 li{
+                    //                     color: $font-label-color;
+                    //                     .multiselect__option--highlight{
+                    //                         font-size: 1rem;
+                    //                         color: $global-font-color; background: $theme-color;
+                    //                         border-radius: 0.4rem;
+                    //                         &:target, &:visited, &:active{
+                    //                             background: #FF646F;
+                    //                         }
+                    //                     }
+                    //                     .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
+                    //                         background: #FF646F;
+                    //                         color: $global-font-color;
+                    //                         font-weight: 500;
+                    //                         border-radius: .4rem;
+                    //                     }
+                    //                     span{
+                    //                         &::after{
+                    //                             display: none !important;
+                    //                         }
+                    //                     }
                                         
-                                    }
-                                    .vs__dropdown-option--highlight {
+                    //                 }
+                    //                 .vs__dropdown-option--highlight {
                                         
-                                        color: $global-font-color;
-                                    }
-                                }
-                            }
-                        }
-                        .add{
-                            color: $global-font-color;
-                            text-align: center;
-                        }
-                        .btn-color{
-                            color: $global-font-color;
-                            background-color: $theme-color;
-                            text-align: center;
-                            margin: auto;
-                            left: 0;
-                            right: 0;
-                            border-radius: 10px;
-                            font-size: 0.9rem;
-                            padding: 0.3rem 0.8rem;
-                        }
-                    }
+                    //                     color: $global-font-color;
+                    //                 }
+                    //             }
+                    //         }
+                    //     }
+                    //     .add{
+                    //         color: $global-font-color;
+                    //         text-align: center;
+                    //     }
+                    //     .btn-color{
+                    //         color: $global-font-color;
+                    //         background-color: $theme-color;
+                    //         text-align: center;
+                    //         margin: auto;
+                    //         left: 0;
+                    //         right: 0;
+                    //         border-radius: 10px;
+                    //         font-size: 0.9rem;
+                    //         padding: 0.3rem 0.8rem;
+                    //     }
+                    // }
                     .study-heading{
                         color: $theme-color;
                         h1{
@@ -3427,6 +3383,54 @@ img.dark-icon{
                             left: 0;
                             right: 0;
                             border-radius: 2rem;
+                        }
+                    }
+                }
+            }
+            
+            .upload-image{
+                // position: relative;
+                .proof-img-wrp{
+                    // position: relative;
+                    // cursor: pointer;
+                    .profile-pic{
+                        width: 140px;
+                        height: 140px;
+                        @include  jochi-sub-components-light-bg();
+                    }
+                    .middle {
+                        transition: .5s ease;
+                        opacity: 0;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        -ms-transform: translate(-50%, -50%);
+                    }
+                    &:hover .profile-pic {
+                        opacity: 0.3;
+                    }
+                    &:hover .middle {
+                        opacity: 1;
+                    }
+                }
+                .pic-edit{
+                    bottom: 20px;
+                    right: 5px;
+                    i.fa-pen{
+                        // background-color: $theme-color;
+                        // padding: 10px;
+                        width: 34px;
+                        height: 34px;
+                        input.rg-img-upload{
+                            width: 24px;
+                            height: 24px;
+                            left: 0;
+                            top: 0;
+                            opacity: 0;
+                            &::-webkit-file-upload-button {
+                                cursor:pointer;
+                            }
+                            
                         }
                     }
                 }
