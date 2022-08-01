@@ -10,7 +10,10 @@ const state = {
   subjectsData: [],
   studyTypesData: [],
   studySessions: [],
-  assignments: []
+  assignmentSessions: [],
+  sharedSessions: [],
+  assignments: [],
+  sessionData: {}
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -113,10 +116,13 @@ const actions = {
           'Authorization': ` ${token}`
         },
       });
-      commit('setErrorMessage', "");
-      commit('setErrorType', "");
-      commit('setSuccessMessage', "Session has started!");
-      commit('setSuccessType', "success");
+      if (response.data) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', "Session has started!");
+        commit('setSuccessType', "success");
+        commit('setSessionData', response.data)
+      }
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
         commit('setErrorMessage', "");
@@ -220,24 +226,28 @@ const actions = {
   async getStudySessions({ commit }, payLoad) {
     const token = localStorage.getItem('token')
     try {
-      const response = await this.$axios.$get(BASE_URL + `studyRoom/get_all_study_session`, {
+      const response = await this.$axios.$get(BASE_URL + `studyRoom/get_scheduled_sessions`, {
         headers: {
           'Authorization': ` ${token}`
         },
       });
-      if (response.data) {
-        if (response.data && response.data > 0) {
-          response.data.forEach((e) => {
-            e["date"] = moment(e.date).format("MMMM Do, YYYY");
-          });
+      // if (response.data) {
+      //   if (response.data && response.data > 0) {
+      //     response.data.forEach((e) => {
+      //       e["date"] = moment(e.date).format("MMMM Do, YYYY");
+      //     });
 
-        }
-        commit('setStudySessions', response.data);
+      let sessions = [];
+      sessions.concat(response.assignment_session, response.shared_sessions, response.study_session)
+      commit('setStudySessions', response.study_session);
+      commit('setSharedSessions', response.shared_sessions);
+      commit('setAssignmentSessions', response.assignment_session);
+      // }
 
-      } else {
-        commit('setStatusTimer', 'ended');
+      //   } else {
+      // commit('setStatusTimer', 'ended');
 
-      }
+      // }
     } catch (e) {
 
     }
@@ -294,8 +304,17 @@ const mutations = {
   setStudySessions(state, data) {
     state.studySessions = data;
   },
+  setAssignmentSessions(state, data) {
+    state.assignmentSessions = data;
+  },
+  setSharedSessions(state, data) {
+    state.sharedSessions = data;
+  },
   setAssignments(state, data) {
     state.assignments = data;
+  },
+  setSessionData(state, data) {
+    state.sessionData = data;
   },
 
 
@@ -326,8 +345,17 @@ const getters = {
   studySessions: () => {
     return state.studySessions;
   },
+  assignmentSessions: () => {
+    return state.assignmentSessions;
+  },
+  sharedSessions: () => {
+    return state.sharedSessions;
+  },
   assignments: () => {
     return state.assignments;
+  },
+  sessionData: () => {
+    return state.sessionData;
   },
 
 
