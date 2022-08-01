@@ -77,11 +77,15 @@
                   Upcoming Sessions
                 </h2>
                 <div
-                  v-for="sessionItem in studySessions"
+                  v-for="sessionItem in studySessionList"
                   :key="sessionItem.id"
                   class="custom-overflow pr-2 mr--2"
                 >
                   <div
+                    @click="
+                      showSessionDetail = true;
+                      setDetail(sessionItem);
+                    "
                     class="
                       d-flex
                       card card-secondary
@@ -202,7 +206,7 @@
                   </div> -->
                 </div>
                 <div
-                  v-if="!studySessions || studySessions.length <= 0"
+                  v-if="!studySessionList || studySessionList.length <= 0"
                   class="custom-overflow pr-2 mr--2"
                 >
                   <div class="custom-overflow pr-2 mr--2">
@@ -244,7 +248,7 @@
                     class="d-flex justify-content-between mb-2 border-bottom"
                   >
                     <h3 class="color-primary font-semi-bold">Session</h3>
-                    <p class="mb-0">
+                    <p @click="showSessionDetail = false" class="mb-0">
                       <span><i class="fas fa-times"></i></span>
                     </p>
                   </div>
@@ -2394,7 +2398,12 @@ export default {
       scheduledTime: "",
       showSessionDetail: false,
       studySessionList: [],
+      sessionDetail: {},
     };
+  },
+
+  beforeMount() {
+    window.addEventListener("beforeunload", this.preventNav);
   },
 
   mounted() {
@@ -2407,6 +2416,15 @@ export default {
     this.GetStudyTypes();
     this.getAllStudySessions();
   },
+  beforeRouteLeave(to, from, next) {
+    if (this.isEditing) {
+      if (!window.confirm("Leave without saving?")) {
+        return;
+      }
+    }
+    next();
+  },
+
   validations: {
     Subject: { required },
     studyTypes: { required },
@@ -2421,8 +2439,11 @@ export default {
       studyTypesData: (state) => state.studyTypesData,
       timerStatusData: (state) => state.timerStatusData,
       studySessions: (state) => state.studySessions,
+      sharedSessions: (state) => state.sharedSessions,
+      assignmentSessions: (state) => state.assignmentSessions,
       assignmentSessions: (state) => state.assignmentSessions,
       assignments: (state) => state.assignments,
+      sessionData: (state) => state.sessionData,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -2448,6 +2469,12 @@ export default {
     },
     nameWithLang({ name, language }) {
       return `${name} — [${language}]`;
+    },
+
+    preventNav(event) {
+      if (this.limitedInterval <= 0) return;
+      event.preventDefault();
+      event.returnValue = "";
     },
 
     async GetStatusTimer() {
@@ -2622,81 +2649,74 @@ export default {
     },
 
     async StartStudySession(scheduleNow = true) {
-      console.log("start study session", this.repeatLoopBy);
       this.submitted = true;
-
+      console.log("start");
       let valid = this.checkValidations();
       if (!valid) {
         return;
       }
 
-      this.$v.$touch();
-      if (this.$v.$invalid) {
-        return;
-      } else {
-        this.onNext();
-        this.processing = true;
-        let peersSelected = [];
-        if (this.peerList.length > 0) {
-          this.peerList.forEach((e) => {
-            peersSelected.push(e.id);
-          });
-        }
-        let today, todayTime;
-
-        if (scheduleNow) {
-          today = moment().format("YYYY-MM-DD");
-          todayTime = moment().format("LT");
-        }
-        await this.saveStudySession({
-          // subject: this.Subject.id,
-          // targetDuration: this.targetDuration,
-          // type: this.studyTypes.id,
-          // repeat: this.repeatLoopBy,
-
-          assignment_id:
-            this.sessionType == "assignment"
-              ? this.selectedAssignment.id
-              : null,
-          session_shared_user_id: peersSelected,
-          goals: this.sessionType != "assignment" ? this.goalsList : [],
-          date: scheduleNow
-            ? today
-            : this.scheduledDate
-            ? moment(this.scheduledDate).format("YYYY-MM-DD")
-            : "",
-          start_time: scheduleNow ? todayTime : this.scheduledTime,
-          study_method: this.studyTypes.id,
-          subject: this.sessionType != "assignment" ? this.Subject.id : "",
-          target_duration:
-            this.sessionMode == "regular" ? this.targetDuration : null,
-          repeat: this.repeatLoopBy,
-          scheduled_status: scheduleNow ? "Now" : "Later",
+      // this.$v.$touch();
+      // if (this.$v.$invalid) {
+      //   return;
+      // } else {
+      this.onNext();
+      this.processing = true;
+      let peersSelected = [];
+      if (this.peerList.length > 0) {
+        this.peerList.forEach((e) => {
+          peersSelected.push(e.id);
         });
-        if (this.successMessage != "") {
-          if (!scheduleNow) {
-            this.closeScheduleForLater();
-          }
-          this.$toast.open({
-            message: this.successMessage,
-            type: this.SuccessType,
-            duration: 5000,
-          });
-
-          // this.$router.push("/club-list-table");
-          if (this.limitedInterval > 0) {
-            await this.clearInterval(this.limitedInterval);
-          }
-          this.Timer();
-        } else if (this.errorMessage != "") {
-          this.$toast.open({
-            message: this.errorMessage,
-            type: this.errorType,
-            duration: 5000,
-          });
-        }
-        this.processing = false;
       }
+
+      let today, todayTime;
+
+      if (scheduleNow) {
+        today = moment().format("YYYY-MM-DD");
+        todayTime = moment().format("LT");
+      }
+      await this.saveStudySession({
+        assignment_id:
+          this.sessionType == "assignment" ? this.selectedAssignment.id : null,
+        session_shared_user_id: peersSelected,
+        goals: this.goalsList,
+        date: scheduleNow
+          ? today
+          : this.scheduledDate
+          ? moment(this.scheduledDate).format("YYYY-MM-DD")
+          : "",
+        start_time: scheduleNow ? todayTime : this.scheduledTime,
+        study_method: this.studyTypes.id,
+        subject: this.sessionType != "assignment" ? this.Subject.id : "",
+        target_duration:
+          this.sessionMode == "regular" ? this.targetDuration : null,
+        repeat: this.repeatLoopBy,
+        scheduled_status: scheduleNow ? "Now" : "Later",
+      });
+      if (this.successMessage != "") {
+        if (!scheduleNow) {
+          this.closeScheduleForLater();
+        }
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+
+        // this.$router.push("/club-list-table");
+        if (this.limitedInterval > 0) {
+          await clearInterval(this.limitedInterval);
+        }
+        this.Timer();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      this.processing = false;
+      // }
     },
     checkValidations() {
       let valid = true;
@@ -2794,13 +2814,13 @@ export default {
         this.onNext();
       }
       let totalTimeStudied = Math.floor(this.totalStudyTime / 60);
-      this.Timersession_id = this.timerStatusData.session_id;
+      this.Timersession_id = this.timerStatusData.id;
       this.Timertotal_time = Math.floor(this.totalStudyTime / 60);
       this.Timerrepeat = this.timerStatusData.repeat;
 
       // targetDuration // live time data
       await this.addStudyTime({
-        sessionId: this.Timersession_id,
+        sessionId: this.sessionData.id,
         min: totalTimeStudied,
         status: studyStatus,
       });
@@ -2874,13 +2894,14 @@ export default {
     },
     async onLogSession() {
       await this.addRating({
-        session_id: this.Timersession_id,
+        session_id: this.sessionData.id,
         focus: this.focusRating,
         efficiency: this.focusEfficiency,
         workCompletes: this.focusWorkComplete,
       });
       if (this.successMessage != "") {
         this.currentTab = 0;
+        this.resetData();
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -2909,6 +2930,18 @@ export default {
     async getAllStudySessions() {
       await this.getStudySessions({});
       console.log(this.studySessions);
+      console.log(this.sharedSessions);
+      console.log(this.assignmentSessions);
+
+      this.studySessionList = this.assignmentSessions;
+
+      this.assignmentSessions.forEach((e) => {
+        let session = {};
+        session.type = "assignment";
+        session.id = e.id;
+        session.name = e.assignments[0].task;
+      });
+
       // // this.studySessionList = this.studySessions;
       // if (this.studySessions && this.studySessions.length > 0) {
       //   this.studySessions.forEach((e) => {
@@ -2939,7 +2972,7 @@ export default {
     },
     timerPageInitialize() {
       if (this.limitedInterval && this.limitedInterval > 0) {
-        this.clearInterval(this.limitedInterval);
+        clearInterval(this.limitedInterval);
       }
     },
     onBack() {
@@ -3029,9 +3062,33 @@ export default {
       $("#scheduleForLater").modal("hide");
       $(".modal-backdrop").remove();
     },
+
+    resetData() {
+      this.sessionType = "";
+      this.assignmentDetail = {};
+      this.assignmentList = [];
+      this.sessionMode = "";
+      this.addGoal = false;
+      this.goalName = "";
+      this.goalsList = [];
+      this.selectedAssignment = {};
+      this.invitePeer = false;
+      this.peerSelected = [];
+      this.peerList = [];
+      this.subjectName = "";
+      this.showSessionDetail = false;
+      this.studySessionList = [];
+      this.sessionDetail = {};
+    },
+    setDetail(session) {
+      this.sessionDetail = session;
+    },
   },
 
-  beforeDestroy() {},
+  beforeDestroy() {
+    // this.preventNav();
+    window.removeEventListener("beforeunload", this.preventNav);
+  },
   destroyed() {},
 };
 </script>
