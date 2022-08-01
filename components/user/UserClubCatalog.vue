@@ -170,6 +170,7 @@
                             min-w-100
                             d-flex
                             justify-content-center
+                            bg-theme
                           "
                           :style="{
                             'background-color': tagColorMap[todos]
@@ -445,7 +446,7 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-color-close"
+                  class="btn btn-secondary px-4 py-1 rounded-pill"
                   data-dismiss="modal"
                   @click="resetClubData"
                 >
@@ -454,7 +455,7 @@
                 <button
                   type="button"
                   @click="createNewClub"
-                  class="btn btn-color-save"
+                  class="btn btn-primary px-4 py-1 rounded-pill"
                 >
                   Save
                 </button>

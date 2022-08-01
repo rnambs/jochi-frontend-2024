@@ -2,10 +2,15 @@
   <div class="main-section">
     <!-- profile Page -->
     <section id="study-detail" class="">
-      <div class="study-section container">
-        <div class="inner-study container p-3 mt-4">
+      <div class="study-section 
+      jochi-components-light-bg
+      custom-margin-for-main-section 
+      custom-full-height
+      d-flex
+      flex-column">
+        <div class="inner-study p-3 mt-4">
           <div class="col-12 px-4 d-flex justify-content-between">
-            <h4>Profile</h4>
+            <h2  class="color-primary font-bold">Profile</h2>
           </div>
           <div class="row profile-row study-row px-5">
             <div class="col-md-6 study-col profile-col d-flex flex-column justify-content-center align-items-center">

@@ -21,13 +21,16 @@
         <!-- Club info -->
         <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
-          <div class="position-absolute cover-button mr-3 mb-1">
+          <div class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center">
             <button @click="openAddBanner" class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
-            <button class="btn p-1 m-2">
-              <i class="fas fa-info-circle color-white"></i>
-            </button>
+            <div class="d-flex align-items-center">
+              <button class="btn p-1 m-2">
+                <i class="fas fa-info-circle color-white"></i>
+              </button>
+              <p class="mb-0 color-secondary text-14 font-regular">1200 X 180</p>
+            </div>
           </div>
         </div>
 
@@ -44,6 +47,7 @@
                 pr-3
                 py-0
                 pl-0
+                custom-overflow
               "
             >
               <div class="my-2 px-2">
@@ -98,8 +102,7 @@
                         class="
                           btn btn-dark
                           custom-theme-color-btn
-                          pl-4
-                          pr-4
+                          px-4
                           mb-0
                           mt-3
                         "
@@ -434,6 +437,7 @@
                                     justify-content-center
                                     min-w-100
                                     text-14
+                                    bg-theme
                                     align-items-center
                                   "
                                   >{{ value.name }}
@@ -621,7 +625,7 @@
             <!-- <div class="col-md-5 col-xs-12"> -->
             <div class="inner-info container">
               <div class="inner-info-head mb-3">
-                <h6 class="color-dark">Meeting Time</h6>
+                <h6 class="color-dark mb-0">Meeting Time</h6>
               </div>
               <p class="color-secondary text-14 font-regular">
                 Next meeting:
@@ -896,7 +900,7 @@
           </div>
           <div class="modal-body no-overflow px-4">
             <!-- <div class="col-md-5 col-xs-12"> -->
-            <div class="d-flex align-items-center flex-fill mr-2">
+            <div class="d-flex align-items-center flex-fill mr-2 form-row">
               <multiselect
                 v-model="leaderUpdate"
                 :options="students"
@@ -914,7 +918,7 @@
           </div>
           <div class="modal-footer px-4">
             <button
-              class="btn btn-primary"
+              class="btn btn-primary py-1 rounded-pill px-4"
               :disabled="!leaderUpdate"
               @click.prevent="addLeader()"
             >

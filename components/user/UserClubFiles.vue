@@ -41,13 +41,16 @@
         <!-- Club files -->
         <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
-          <div class="position-absolute cover-button mr-3 mb-1">
+          <div class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center">
             <button class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
-            <button class="btn p-1 m-2">
-              <i class="fas fa-info-circle color-white"></i>
-            </button>
+            <div class="d-flex align-items-center">
+              <button class="btn p-1 m-2">
+                <i class="fas fa-info-circle color-white"></i>
+              </button>
+              <p class="mb-0 color-secondary text-14 font-regular">1200 X 180</p>
+            </div>
           </div>
         </div>
 
@@ -548,9 +551,9 @@
             <!-- <div class="col-md-5 col-xs-12"> -->
             <div class="inner-info container p-4">
               <div class="inner-info-head mb-3">
-                <h6>Meeting Time</h6>
+                <h6 class="mb-0">Meeting Time</h6>
               </div>
-              <p class="time">
+              <p class="color-secondary text-14 font-regular">
                 Next meeting:
                 {{
                   clubMoreDetails.announcement == null
@@ -563,7 +566,7 @@
                 <div class="col-lg-4 col-md-12 inner-info-head">
                   <h6>Choose time</h6>
                 </div>
-                <div class="col-lg-8 col-md-12 input-icon-area">
+                <div class="col-lg-8 col-md-12 input-icon-area form-row">
                   <multiselect
                     v-model="valueMeeting"
                     track-by="start_time"

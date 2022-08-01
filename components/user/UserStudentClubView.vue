@@ -21,13 +21,16 @@
         <!-- Club info -->
         <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
-          <div class="position-absolute cover-button mr-3 mb-1">
+          <div class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center">
             <button class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
-            <button class="btn p-1 m-2">
-              <i class="fas fa-info-circle color-white"></i>
-            </button>
+             <div class="d-flex align-items-center">
+              <button class="btn p-1 m-2">
+                <i class="fas fa-info-circle color-white"></i>
+              </button>
+              <p class="mb-0 color-secondary text-14 font-regular">1200 X 180</p>
+            </div>
           </div>
         </div>
 
@@ -44,6 +47,7 @@
                 pr-3
                 py-0
                 pl-0
+                custom-overflow
               "
             >
               <div class="info-head my-2">
@@ -461,7 +465,7 @@
                                       ? tagColorMap[value.name]
                                       : red,
                                   }"
-                                  class="pl"
+                                  class="pl bg-theme"
                                   >{{ value.name }}</span
                                 >
                                 <span
