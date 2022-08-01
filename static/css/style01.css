@@ -285,7 +285,7 @@ body {
 }
 .form-row .dropdown-menu, .form-group .dropdown-menu {
   background-color: #ffffff;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   padding: inherit;
   list-style-type: none;
   border: none;
@@ -303,6 +303,7 @@ body {
   padding: 0.75rem 1rem;
   font-size: 0.8rem;
   color: #431F1C;
+  cursor: pointer;
 }
 .form-row .dropdown-menu .item:hover, .form-group .dropdown-menu .item:hover {
   color: #ffffff;
@@ -328,7 +329,7 @@ body {
 }
 .form-row .multiselect__tags, .form-group .multiselect__tags {
   border-radius: 0.65rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   border: none;
   background-color: rgba(255, 255, 255, 0.2);
   color: #B4B4B4;
@@ -2152,56 +2153,6 @@ img.dark-icon {
   overflow: hidden;
   overflow-y: auto;
 }
-.inner-section .main-section .study-section .study-row.profile-row {
-  min-height: calc(100vh - 216px);
-  max-height: calc(100vh - 216px);
-  overflow: hidden;
-  overflow-y: auto;
-}
-.inner-section .main-section .study-section .study-row .study-col .upload-image {
-  position: relative;
-}
-.inner-section .main-section .study-section .study-row .study-col .upload-image .proof-img-wrp {
-  position: relative;
-  cursor: pointer;
-}
-.inner-section .main-section .study-section .study-row .study-col .upload-image .proof-img-wrp .profile-pic {
-  width: 200px;
-  height: 200px;
-  background-color: #f0f0f0;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.inner-section .main-section .study-section .study-row .study-col .upload-image .proof-img-wrp .middle {
-  transition: 0.5s ease;
-  opacity: 0;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-}
-.inner-section .main-section .study-section .study-row .study-col .upload-image .proof-img-wrp:hover .profile-pic {
-  opacity: 0.3;
-}
-.inner-section .main-section .study-section .study-row .study-col .upload-image .proof-img-wrp:hover .middle {
-  opacity: 1;
-}
-.inner-section .main-section .study-section .study-row .study-col .upload-image .pic-edit {
-  bottom: 20px;
-  right: 5px;
-}
-.inner-section .main-section .study-section .study-row .study-col .upload-image .pic-edit i.fa-pen {
-  background-color: #FF6D6D;
-  padding: 10px;
-}
-.inner-section .main-section .study-section .study-row .study-col .upload-image .pic-edit i.fa-pen input.rg-img-upload {
-  left: 0;
-  top: 0;
-  opacity: 0;
-}
-.inner-section .main-section .study-section .study-row .study-col .upload-image .pic-edit i.fa-pen input.rg-img-upload::-webkit-file-upload-button {
-  cursor: pointer;
-}
 .inner-section .main-section .study-section .study-row .study-col .study-image {
   width: 400px;
   padding: 0px 60px 0px 60px;
@@ -2239,149 +2190,6 @@ img.dark-icon {
     margin: 0px auto 0;
     width: 212px;
   }
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section {
-  padding: 30px 30px 30px 0px;
-  border-radius: 0.75rem;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section.study-room-form {
-  padding: 5px;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section.form-bg {
-  background-color: rgba(255, 255, 255, 0.45);
-  padding: 80px 30px 80px 30px;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group label {
-  color: #B4B4B4;
-  font-size: 0.8rem;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .form-control {
-  list-style-type: none;
-  border: 2px solid #f0f0f0;
-  background-color: rgba(255, 255, 255, 0.45);
-  font-size: 1rem;
-  color: #B4B4B4;
-  padding: 0.375rem 0.75rem;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .form-control option {
-  font-size: 1rem;
-  color: #B4B4B4;
-  padding: inherit;
-  border-radius: 0.3rem;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .form-control option:hover {
-  background-color: #FF6D6D;
-  color: #F9F9F9;
-  padding: inherit;
-  border-radius: 0.3rem;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .form-field {
-  border: none;
-  background-color: #f0f0f0;
-  font-size: 1rem;
-  color: #F9F9F9;
-  padding: 0.65rem 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0.1rem 0.2rem 0.6rem rgba(0, 0, 0, 0.29);
-  min-height: 45px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  cursor: default;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .form-field.change-pwd {
-  margin-top: 43px;
-  text-align: center;
-  padding: 0rem;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .form-field.change-pwd a {
-  text-decoration: none;
-  color: #F9F9F9;
-  padding: 0.65rem 1.5rem;
-  display: block;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__tags {
-  border-radius: 0.4rem;
-  font-size: 1rem;
-  border: 2px solid #f0f0f0;
-  background-color: rgba(255, 255, 255, 0.45);
-  color: #B4B4B4;
-  padding: 6px 40px 0 10px;
-  height: calc(2.25rem + 2px);
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__tags .multiselect__input, .inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__tags .multiselect__single {
-  background-color: unset;
-  border-radius: unset;
-  height: unset;
-  line-height: unset;
-  color: #B4B4B4;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__tags .multiselect__input::-moz-placeholder, .inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__tags .multiselect__single::-moz-placeholder {
-  color: rgba(180, 180, 180, 0.4);
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__tags .multiselect__input:-ms-input-placeholder, .inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__tags .multiselect__single:-ms-input-placeholder {
-  color: rgba(180, 180, 180, 0.4);
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__tags .multiselect__input::placeholder, .inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__tags .multiselect__single::placeholder {
-  color: rgba(180, 180, 180, 0.4);
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper {
-  background-color: unset;
-  list-style-type: none;
-  z-index: 10;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  top: calc(2.25rem + 2px);
-  overflow: visible;
-  border: none;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper ul {
-  border: 2px solid #f0f0f0;
-  border-radius: 0.45rem;
-  background-color: rgba(255, 255, 255, 0.45);
-  padding: 0.375rem 0.75rem;
-  max-height: 200px;
-  overflow: hidden;
-  overflow-y: auto;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper ul li {
-  color: #B4B4B4;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper ul li .multiselect__option--highlight {
-  font-size: 1rem;
-  color: #F9F9F9;
-  background: #FF6D6D;
-  border-radius: 0.4rem;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper ul li .multiselect__option--highlight:target, .inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper ul li .multiselect__option--highlight:visited, .inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper ul li .multiselect__option--highlight:active {
-  background: #FF646F;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper ul li .multiselect__option--selected, .inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper ul li .multiselect__option--select, .inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper ul li .multiselect__option--deselect {
-  background: #FF646F;
-  color: #F9F9F9;
-  font-weight: 500;
-  border-radius: 0.4rem;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper ul li span::after {
-  display: none !important;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .form-group .multiselect__content-wrapper ul .vs__dropdown-option--highlight {
-  color: #F9F9F9;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .add {
-  color: #F9F9F9;
-  text-align: center;
-}
-.inner-section .main-section .study-section .study-row .study-col .form-section .btn-color {
-  color: #F9F9F9;
-  background-color: #FF6D6D;
-  text-align: center;
-  margin: auto;
-  left: 0;
-  right: 0;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  padding: 0.3rem 0.8rem;
 }
 .inner-section .main-section .study-section .study-row .study-col .study-heading {
   color: #FF6D6D;
@@ -2424,6 +2232,45 @@ img.dark-icon {
   left: 0;
   right: 0;
   border-radius: 2rem;
+}
+.inner-section .main-section .study-section .upload-image .proof-img-wrp .profile-pic {
+  width: 140px;
+  height: 140px;
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0px 0px 32px -4px rgba(0, 1, 0, 0.09);
+  border-radius: 22px;
+}
+.inner-section .main-section .study-section .upload-image .proof-img-wrp .middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+.inner-section .main-section .study-section .upload-image .proof-img-wrp:hover .profile-pic {
+  opacity: 0.3;
+}
+.inner-section .main-section .study-section .upload-image .proof-img-wrp:hover .middle {
+  opacity: 1;
+}
+.inner-section .main-section .study-section .upload-image .pic-edit {
+  bottom: 20px;
+  right: 5px;
+}
+.inner-section .main-section .study-section .upload-image .pic-edit i.fa-pen {
+  width: 34px;
+  height: 34px;
+}
+.inner-section .main-section .study-section .upload-image .pic-edit i.fa-pen input.rg-img-upload {
+  width: 24px;
+  height: 24px;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+.inner-section .main-section .study-section .upload-image .pic-edit i.fa-pen input.rg-img-upload::-webkit-file-upload-button {
+  cursor: pointer;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: center;

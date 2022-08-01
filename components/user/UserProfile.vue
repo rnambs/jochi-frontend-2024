@@ -8,19 +8,27 @@
       custom-full-height
       d-flex
       flex-column">
-        <div class="inner-study p-3 mt-4">
-          <div class="col-12 px-4 d-flex justify-content-between">
+        <div class="inner-study p-4 d-flex flex-column flex-fill">
+          <div class="d-flex justify-content-between align-items-center">
             <h2  class="color-primary font-bold">Profile</h2>
+            <button
+                    id="clckPrevent"
+                    type="submit"
+                    class="btn btn-primary "
+                    :disabled="!profileImageUrl || loading"
+                  >
+                  <span class="mr-2"><i class="fas fa-save"></i></span> <span>Save Changes</span>
+                  </button>
           </div>
-          <div class="row profile-row study-row px-5">
-            <div class="col-md-6 study-col profile-col d-flex flex-column justify-content-center align-items-center">
+          <div class="profile-row study-row px-2 d-flex flex-column flex-fill justify-content-center">
+            <div class="study-col profile-col d-flex flex-column justify-content-center align-items-center">
               <form
                 method="post"
                 @submit.prevent="UploadProfile"
                 id="form"
                 enctype="multipart/form-data"
               >
-                <div class="upload-area">
+                <div class="">
                   <div class="upload-image position-relative">
                     <div class="proof-img-wrp position-relative cursor-pointer">
                       <img
@@ -32,7 +40,7 @@
                       <img
                         v-if="!profileImageUrl"
                         :src="profile ? profile : defaultImage"
-                        class="profile-pic"
+                        class="profile-pic rounded-circle"
                         alt=""
                       />
                       <!-- @error="$event.target.src=(awsPath + 'images/avatar/man_green.svg')" -->
@@ -69,7 +77,7 @@
                     </div>
                     <div v-if="profileImageUrl">
                       <span class="pic-edit w-100 d-flex flex-row-reverse position-absolute">
-                        <i class="fas fa-pen rounded-circle color-dark position-relative text-16">
+                        <i class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-theme text-white">
                           <!-- accept=".png,.jpeg,.jpg,.doc,.docx,.pdf" -->
                           <input
                             type="file"
@@ -85,7 +93,7 @@
                     </div>
                     <div v-else class="custom-upload-with-msg text-center">
                       <span class="pic-edit w-100 d-flex flex-row-reverse position-absolute">
-                        <i class="fas fa-pen rounded-circle color-dark position-relative text-16">
+                        <i class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-theme text-white">
                           <input
                             id="actual-btn"
                             type="file"
@@ -101,42 +109,55 @@
                     </div>
                   </div>
                 </div>
-                <h6 class="text-center color-dark">{{ name }}</h6>
-                <button
-                  id="clckPrevent"
-                  type="submit"
-                  class="btn btn-primary "
-                  :disabled="!profileImageUrl || loading"
-                >
-                  <i class="far fa-save pr-1 font-regular"></i>Save Changes
-                </button>
+                <h4 class="text-center color-dark font-semi-bold">
+                  <!-- <span><i class="fas fa-user"></i></span> -->
+                  {{ name }}</h4>
               </form>
             </div>
-            <div class="col-md-6 study-col d-flex flex-column justify-content-center">
+            <div class="study-col d-flex flex-column justify-content-end flex-fill">
               <div
-                class="form-section mt-4 mb-4 mx-auto w-100 py-4 px-0 pr-md-5"
+                class="form-section mx-auto w-100 py-3"
               >
                 <form action="" class="container">
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="">Email</label>
                     <div class="form-field">{{ email }}</div>
+                  </div> -->
+                  <div class="row">
+                    <div class="col-12 col-md-4">
+                      <div class="card card-primary p-3 h-100 d-flex flex-column">
+                        <p class="mb-0 text-16 color-secondary d-flex flex-column">
+                          <span class="text-30"><i class="fas fa-envelope"></i></span>
+                          <span>{{ email }}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <div class="card card-primary p-3 h-100">
+                        <p class="mb-0 text-16 color-secondary d-flex flex-column">
+                          <span class="text-30"><i class="fas fa-school"></i></span>
+                          <span>{{ schoolName }}</span>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <div class="card card-primary h-100 ">
+                            <nuxt-link to="/user-reset-password" class="btn btn-void d-flex flex-column align-items-start">
+                              <span class="mr-2 text-30"><i class="fas fa-lock"></i></span>
+                              <span>Change Password</span>
+                            </nuxt-link>
+                      </div>
+                    </div>
+
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="">Name of school</label>
                     <div class="form-field">{{ schoolName }}</div>
-                  </div>
+                  </div> -->
                   <!-- <div class="form-group">
                                         <label for="">Class</label>
                                         <div class="form-field">IX</div>
                                    </div> -->
-                  <div class="form-group">
-                    <div class="form-field change-pwd">
-                      <nuxt-link to="/user-reset-password">
-                        <span><i class="fas fa-lock"></i></span>
-                        <span>Change Password</span>
-                      </nuxt-link>
-                    </div>
-                  </div>
                 </form>
               </div>
             </div>
