@@ -2642,6 +2642,12 @@ export default {
             peersSelected.push(e.id);
           });
         }
+        let today, todayTime;
+
+        if (scheduleNow) {
+          today = moment().format("YYYY-MM-DD");
+          todayTime = moment().format("LT");
+        }
         await this.saveStudySession({
           // subject: this.Subject.id,
           // targetDuration: this.targetDuration,
@@ -2654,10 +2660,12 @@ export default {
               : null,
           session_shared_user_id: peersSelected,
           goals: this.sessionType != "assignment" ? this.goalsList : [],
-          date: this.scheduledDate
+          date: scheduleNow
+            ? today
+            : this.scheduledDate
             ? moment(this.scheduledDate).format("YYYY-MM-DD")
             : "",
-          start_time: this.scheduledTime,
+          start_time: scheduleNow ? todayTime : this.scheduledTime,
           study_method: this.studyTypes.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:

@@ -52,7 +52,17 @@
         </div>
 
         <section id="club-detail" class="flex-fill d-flex flex-column h-40">
-          <div class="club-section container-fluid pt-2 d-flex flex-column custom-overflow flex-fill">
+          <div
+            class="
+              club-section
+              container-fluid
+              pt-2
+              d-flex
+              flex-column
+              custom-overflow
+              flex-fill
+            "
+          >
             <div class="row my-0 flex-fill">
               <div class="col-md-8 d-flex h-100">
                 <div
@@ -70,7 +80,14 @@
                       {{ headingName }}
                     </h3>
                   </div>
-                  <div class="custom-overflow image-overflow d-flex flex-column flex-fill">
+                  <div
+                    class="
+                      custom-overflow
+                      image-overflow
+                      d-flex
+                      flex-column flex-fill
+                    "
+                  >
                     <div class="row info-row container-fluid my-0 mx-auto">
                       <div
                         class="col-md-3 col-sm-6 p-2"
@@ -290,7 +307,18 @@
                     d-flex
                   "
                 >
-                  <div class="container-fluid p-2 text-center d-flex flex-column justify-content-center align-items-center flex-fill">
+                  <div
+                    class="
+                      container-fluid
+                      p-2
+                      text-center
+                      d-flex
+                      flex-column
+                      justify-content-center
+                      align-items-center
+                      flex-fill
+                    "
+                  >
                     <form
                       method="post"
                       @submit.prevent="UploadFile"
@@ -462,7 +490,10 @@
                   >
                 </nuxt-link>
               </div>
-              <div @click="onNextMeeting" class="col-md-4 col-xs-12 py-2 py-md-0">
+              <div
+                @click="onNextMeeting"
+                class="col-md-4 col-xs-12 py-2 py-md-0"
+              >
                 <div
                   class="
                     inner-tab
@@ -638,6 +669,7 @@ export default {
       dateArray: [],
       dayArrVal: [],
       daysArray: [],
+      valueMeeting: "",
     };
   },
   mounted() {
@@ -662,10 +694,10 @@ export default {
     ...mapState("clubMoreInfo", {
       clubMoreDetails: (state) => state.clubMoreDetails,
       slots: (state) => state.slots,
-      // successMessageClub: (state) => state.successMessage,
-      // SuccessTypeClub: (state) => state.SuccessType,
-      // errorMessageClub: (state) => state.errorMessage,
-      // errorTypeClub: (state) => state.errorType,
+      successMessageClub: (state) => state.successMessage,
+      SuccessTypeClub: (state) => state.SuccessType,
+      errorMessageClub: (state) => state.errorMessage,
+      errorTypeClub: (state) => state.errorType,
     }),
   },
   methods: {
@@ -677,6 +709,7 @@ export default {
     ...mapActions("clubMoreInfo", {
       clubMoreInfo: "clubMoreInfo",
       slotswithId: "slotswithId",
+      updateTime: "updateTime",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -684,14 +717,59 @@ export default {
     async SlotswithId() {
       await this.slotswithId({});
     },
+    UpdateDays(value) {
+      this.daysArray.push(value);
+      this.dayArrVal = [];
+      this.daysArray.forEach((element) => {
+        this.dayArrVal.push(element);
+      });
+    },
     UpdateSlots(val) {
       this.valueId = val.id;
     },
+
     async getClubMoreInfo() {
       await this.clubMoreInfo({
         club_id: this.$route.query.id,
         user_id: localStorage.getItem("id"),
       });
+    },
+    async UpdateTime() {
+      this.dayArrVal = [];
+      let activeElements = document.getElementsByClassName(
+        "badge badge-pill badge-color active"
+      );
+      let tempArray = [];
+      Array.prototype.forEach.call(activeElements, function (element) {
+        tempArray.push(element.id);
+      });
+      this.dayArrVal = tempArray;
+      this.loading = true;
+      await this.updateTime({
+        club_id: this.clubId,
+        user_id: localStorage.getItem("id"),
+        week: this.dayArrVal,
+        slot_id: this.valueId,
+      });
+
+      this.loading = false;
+
+      if (this.successMessageClub != "") {
+        $("#nextMeetingModal").modal("hide");
+        this.$toast.open({
+          message: this.successMessageClub,
+          type: this.SuccessTypeClub,
+          duration: 5000,
+        });
+      } else if (this.errorMessageClub != "") {
+        this.$toast.open({
+          message: this.errorMessageClub,
+          type: this.errorTypeClub,
+          duration: 5000,
+        });
+      }
+      this.valueMeeting = "";
+      this.getClubMoreInfo();
     },
     checkSlot(day) {
       if (this.dateArray.includes(day)) {
@@ -731,6 +809,7 @@ export default {
       if (this.profilePic) {
         this.loading = true;
         const data = new FormData();
+        console.log(this.profilePic);
         data.append("file", this.profilePic);
         data.append("club_id", this.$route.query.id);
         data.append("user_id", localStorage.getItem("id"));

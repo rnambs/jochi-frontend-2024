@@ -30,6 +30,10 @@
           </div>
         </div>
 
+        <!-- image upload -->
+        <VueCropper></VueCropper>
+        <!-- image upload end -->
+
         <!-- Club info -->
 
         <section id="club-detail" class="d-flex flex-column flex-fill h-40">
@@ -115,7 +119,7 @@
                           :key="index"
                         >
                           <div
-                            v-if="item.session_type == 'Training'"
+                            v-if="item.session_type == 'Match'"
                             class="card card-void px-3 py-2 mb-3"
                           >
                             <div class="d-flex flex-column">
@@ -152,7 +156,7 @@
                                     "
                                   >
                                     {{ item.first_name }}
-                                    <span>Robin</span>
+                                    <span>{{ headingName }}</span>
                                     <span
                                       class="
                                         color-primary
@@ -161,7 +165,7 @@
                                       "
                                       >Vs</span
                                     >
-                                    <span>Ronny</span>
+                                    <span>{{ item.opponent_team }}</span>
                                   </p>
                                   <p
                                     class="
@@ -189,7 +193,7 @@
                                     <span
                                       ><i class="fas fa-map-marker-alt"></i
                                     ></span>
-                                    <span>Location</span>
+                                    <span>{{ item.venue }}</span>
                                   </p>
                                   <div class="d-flex justify-content-end">
                                     <!-- <div
@@ -229,12 +233,7 @@
                                   font-regular
                                 "
                               >
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Nobis unde laborum delectus
-                                praesentium porro doloremque, tempore aliquam
-                                iure soluta id similique corrupti maiores,
-                                provident vitae! Ut iure unde praesentium
-                                similique.
+                                {{ item.desc }}
                               </p>
                             </div>
                           </div>
@@ -1330,6 +1329,8 @@ import * as animationData from "~/assets/animation.json";
 import { required, requiredUnless } from "vuelidate/lib/validators";
 import Multiselect from "vue-multiselect";
 import VueTimepicker from "vue2-timepicker";
+import vueCropper from "vue-cropperjs";
+import VueCropper from "./VueCropper.vue";
 
 var today = new Date();
 var activityDate = "";
@@ -1341,6 +1342,8 @@ export default {
     lottie,
     Multiselect,
     VueTimepicker,
+    vueCropper,
+    VueCropper,
   },
   data() {
     return {
@@ -1413,7 +1416,13 @@ export default {
       activityDate: { required },
       activityTime: { required },
       activityVenue: { required },
-      // activityOpponentTeam: { required },
+      activityOpponentTeam: {
+        required: requiredUnless((vm) => {
+          return vm.activity
+            ? vm.activity.activityOpponentTeam === "Match"
+            : false;
+        }),
+      },
     },
   },
   mounted() {
@@ -1799,6 +1808,7 @@ export default {
     },
     async addNewActivity() {
       console.log(this.activity);
+      let act = this.activity;
       this.submittedActivity = true;
       this.$v.activity.activityTitle.$touch();
       this.$v.activity.activityDesc.$touch();
@@ -1806,7 +1816,9 @@ export default {
       this.$v.activity.activityDate.$touch();
       this.$v.activity.activityTime.$touch();
       this.$v.activity.activityVenue.$touch();
-      // this.$v.activity.activityOpponentTeam.$touch();
+      if (act.activityType == "Match") {
+        this.$v.activity.activityOpponentTeam.$touch();
+      }
       if (this.$v.activity.$invalid) {
         return;
       } else {
