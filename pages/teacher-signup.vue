@@ -113,6 +113,7 @@
                         type="password"
                         id="eyeSpan"
                         @click="toggleVisiblity()"
+                        class="cursor-pointer"
                       >
                         <i class="eye-icon"></i>
                       </span>
