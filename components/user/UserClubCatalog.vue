@@ -172,7 +172,9 @@
                             justify-content-center
                           "
                           :style="{
-                            'background-color': tagColorMap[todos],
+                            'background-color': tagColorMap[todos]
+                              ? tagColorMap[todos]
+                              : red,
                           }"
                         >
                           {{ todos }}
@@ -256,7 +258,13 @@
                       path: '/student-club-view',
                       query: { id: list.id, name: list.activity_type },
                     }"
-                    class="btn btn-primary py-1 mt-2 h-fit-content px-lg-3 px-xl-4"
+                    class="
+                      btn btn-primary
+                      py-1
+                      mt-2
+                      h-fit-content
+                      px-lg-3 px-xl-4
+                    "
                   >
                     View More
                   </nuxt-link>

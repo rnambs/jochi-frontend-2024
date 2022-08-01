@@ -55,10 +55,7 @@
                   v-for="(list, index) in list_data"
                   :key="index"
                 >
-                  <div
-                    v-if="index == 0"
-                    class="col-md-6 col-xs-12 pl-3 py-12"
-                  >
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 pl-3 py-12">
                     <div class="inner-info-head mb-2">
                       <h4 class="color-dark mb-2 font-bold">
                         About the {{ headingName }}
@@ -424,7 +421,9 @@
                                 />{{ value.name }} -->
                                 <span
                                   :style="{
-                                    'background-color': tagColorMap[value.name],
+                                    'background-color': tagColorMap[value.name]
+                                      ? tagColorMap[value.name]
+                                      : red,
                                   }"
                                   class="
                                     px-4
