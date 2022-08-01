@@ -95,13 +95,8 @@
                       mb-3
                     "
                   >
-                    <h6
-                      v-if="
-                        sessionItem.subject && sessionItem.subject.subject_name
-                      "
-                      class="color-dark font-semi-bold mb-1"
-                    >
-                      {{ sessionItem.subject.subject_name }}
+                    <h6 class="color-dark font-semi-bold mb-1">
+                      {{ sessionItem.name }}
                     </h6>
                     <p class="mb-0 color-secondary font-normal text-14">
                       <span>{{ sessionItem.date }} </span> <span>|</span>
@@ -255,25 +250,27 @@
                   <div class="d-flex flex-column custom-overflow">
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">
-                        Assignment details
+                        Session details
                       </h5>
                       <p class="mb-0 color-secondary font-regular text-16">
-                        name/title
+                        {{ sessionDetail.name }}
                       </p>
                       <p class="mb-0 color-secondary font-regular text-16">
-                        subject
+                        <!-- subject -->
                       </p>
-                      <p class="mb-0 color-secondary font-regular text-16">
+                      <!-- <p class="mb-0 color-secondary font-regular text-16">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Expedita perspiciatis, nesciunt corporis, nisi eius
                         fugiat, minima blanditiis rem possimus itaque molestias
                         modi nostrum eos veniam repellat mollitia quia vitae
                         beatae.
-                      </p>
+                      </p> -->
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">Goals</h5>
                       <p
+                        v-for="goal in sessionDetail.goals"
+                        :key="goal"
                         class="
                           mb-0
                           color-secondary
@@ -286,9 +283,9 @@
                         <span
                           class="d-flex rounded-circle border bullet mr-2"
                         ></span>
-                        Practice Welcome song
+                        {{ goal }}
                       </p>
-                      <p
+                      <!-- <p
                         class="
                           mb-0
                           color-secondary
@@ -302,7 +299,7 @@
                           class="d-flex rounded-circle border bullet mr-2"
                         ></span>
                         Invite friends
-                      </p>
+                      </p> -->
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">
@@ -312,31 +309,38 @@
                         Subject : <span>Assignment</span>
                       </p>
                       <p class="mb-0 color-secondary font-regular text-16">
-                        Duration : <span>30min</span>
+                        Duration : <span>{{ sessionDetail.duration }}</span>
                       </p>
                       <p class="mb-0 color-secondary font-regular text-16">
-                        Breaktime : <span>2min</span>
+                        Breaktime : <span>{{ sessionDetail.break }}</span>
+                      </p>
+                      <p class="mb-0 color-secondary font-regular text-16">
+                        Repetitions : <span>{{ sessionDetail.repeat }}</span>
                       </p>
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">Peers</h5>
                       <div class="d-flex flex-column">
-                        <div class="d-flex align-items-center my-2 mr-3">
+                        <div
+                          v-for="peer in invitedPeers"
+                          :key="peer.id"
+                          class="d-flex align-items-center my-2 mr-3"
+                        >
+                          <div class="ld-img-section mr-3">
+                            <div class="ld-img-holder"></div>
+                          </div>
+                          <div class="ld-details-section">
+                            <p class="ld-heading mb-1">{{ peer.first_name }}</p>
+                          </div>
+                        </div>
+                        <!-- <div class="d-flex align-items-center my-2 mr-3">
                           <div class="ld-img-section mr-3">
                             <div class="ld-img-holder"></div>
                           </div>
                           <div class="ld-details-section">
                             <p class="ld-heading mb-1">Mark Jones, President</p>
                           </div>
-                        </div>
-                        <div class="d-flex align-items-center my-2 mr-3">
-                          <div class="ld-img-section mr-3">
-                            <div class="ld-img-holder"></div>
-                          </div>
-                          <div class="ld-details-section">
-                            <p class="ld-heading mb-1">Mark Jones, President</p>
-                          </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -2947,7 +2951,7 @@ export default {
         session.breakTime = e.break_time;
         session.repeat = e.repeat;
         session.peers = e.peers;
-        session.date = e.date;
+        session.date = moment(e.date).format("MMMM Do, YYYY");
         session.time = e.time;
         session.breakTimeAt = e.break_time_at;
 
@@ -2959,12 +2963,12 @@ export default {
         session.type = "study";
         session.id = e.id;
         session.name = e.subject?.subject_name;
-        session.goals = e.subTasks;
+        session.goals = e.study_goals;
         session.duration = e.duration;
         session.breakTime = e.break_time;
         session.repeat = e.repeat;
         session.peers = e.peers;
-        session.date = e.date;
+        session.date = moment(e.date).format("MMMM Do, YYYY");
         session.time = e.time;
         session.breakTimeAt = e.break_time_at;
 
@@ -2973,35 +2977,22 @@ export default {
 
       this.sharedSessions.forEach((e) => {
         let session = {};
-        session.type = "assignment";
+        session.type = e.assignment_id ? "assignment" : "study";
         session.id = e.id;
-        session.name = e.assignments[0]?.task;
-        session.goals = e.subTasks;
+        session.name = e.assignment_id
+          ? e.assignments?.task
+          : e.subject?.subject_name;
+        session.goals = e.assignment_id ? e.subTasks : e.study_goals;
         session.duration = e.duration;
         session.breakTime = e.break_time;
         session.repeat = e.repeat;
         session.peers = e.peers;
-        session.date = e.date;
+        session.date = moment(e.date).format("MMMM Do, YYYY");
         session.time = e.time;
         session.breakTimeAt = e.break_time_at;
 
         this.studySessionList.push(session);
       });
-
-      // // this.studySessionList = this.studySessions;
-      // if (this.studySessions && this.studySessions.length > 0) {
-      //   this.studySessions.forEach((e) => {
-      //     let dateFormat = moment(e.date).format("MMMM Do, YYYY");
-      //     var element = e;
-      //     element["date"] = dateFormat;
-      //     // e.date = moment(e.date).format("MMMM Do, YYYY");
-      //     this.studySessionList.push(element);
-      //   });
-      //   // this.studySessionList.forEach((e) => {
-      //   //   e.date = moment(e.date).format("MMMM Do, YYYY");
-      //   //   // this.studySessionList.push(e)
-      //   // });
-      // }
     },
     async onNext() {
       let nextTab = this.currentTab + 1;
