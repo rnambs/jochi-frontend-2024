@@ -691,14 +691,14 @@
                   <div class="modal-footer">
                     <button
                       type="button"
-                      class="btn btn-color-close"
+                      class="btn btn-secondary py-1 px-4 rounded-pill"
                       data-dismiss="modal"
                     >
                       Close
                     </button>
                     <button
                       type="button"
-                      class="btn btn-color-save"
+                      class="btn btn-primary py-1 px-4 rounded-pill"
                       @click="ScheduleConfirm()"
                     >
                       Confirm
