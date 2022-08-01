@@ -621,9 +621,9 @@ img.dark-icon {
 }
 
 .bullet {
-  width: 14px;
-  height: 14px;
-  border-color: #431F1C !important;
+  width: 12px;
+  height: 12px;
+  border-color: #C5C0BD !important;
 }
 
 .main-container {
@@ -2129,6 +2129,11 @@ img.dark-icon {
   padding: 0.3rem 1.5rem;
   font-size: 0.8rem;
 }
+.inner-section .main-section .to-do-list {
+  max-height: 76px;
+  min-height: 76px;
+  overflow: hidden;
+}
 .inner-section .main-section .study-section .study-row {
   overflow: hidden;
   overflow-y: auto;
@@ -3603,7 +3608,7 @@ switch to violet when it is active*/
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.modal .modal-dialog .modal-content .modal-body p, .modal .modal-dialog .modal-content .modal-body .col-form-label {
+.modal .modal-dialog .modal-content .modal-body .col-form-label {
   color: #f0f0f0;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group .form-control {

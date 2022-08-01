@@ -622,7 +622,7 @@
             <!-- <div class="col-md-5 col-xs-12"> -->
             <div class="inner-info container">
               <div class="inner-info-head mb-3">
-                <h6 class="color-dark">Meeting Time</h6>
+                <h6 class="color-dark mb-0">Meeting Time</h6>
               </div>
               <p class="color-secondary text-14 font-regular">
                 Next meeting:
@@ -897,7 +897,7 @@
           </div>
           <div class="modal-body no-overflow px-4">
             <!-- <div class="col-md-5 col-xs-12"> -->
-            <div class="d-flex align-items-center flex-fill mr-2">
+            <div class="d-flex align-items-center flex-fill mr-2 form-row">
               <multiselect
                 v-model="leaderUpdate"
                 :options="students"
@@ -915,7 +915,7 @@
           </div>
           <div class="modal-footer px-4">
             <button
-              class="btn btn-primary"
+              class="btn btn-primary py-1 rounded-pill px-4"
               :disabled="!leaderUpdate"
               @click.prevent="addLeader()"
             >

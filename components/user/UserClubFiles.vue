@@ -517,9 +517,9 @@
             <!-- <div class="col-md-5 col-xs-12"> -->
             <div class="inner-info container p-4">
               <div class="inner-info-head mb-3">
-                <h6>Meeting Time</h6>
+                <h6 class="mb-0">Meeting Time</h6>
               </div>
-              <p class="time">
+              <p class="color-secondary text-14 font-regular">
                 Next meeting:
                 {{
                   clubMoreDetails.announcement == null
@@ -532,7 +532,7 @@
                 <div class="col-lg-4 col-md-12 inner-info-head">
                   <h6>Choose time</h6>
                 </div>
-                <div class="col-lg-8 col-md-12 input-icon-area">
+                <div class="col-lg-8 col-md-12 input-icon-area form-row">
                   <multiselect
                     v-model="valueMeeting"
                     track-by="start_time"

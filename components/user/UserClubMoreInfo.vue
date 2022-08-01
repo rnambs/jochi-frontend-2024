@@ -310,7 +310,7 @@
                         <div class="inner-info-head mb-2">
                           <h5 class="color-dark mb-2 font-bold">To do!</h5>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group ml-4">
                           <ul class="list-unstyled">
                             <li
                               v-for="(todos, index) in clubMoreDetails.todo"
@@ -1145,9 +1145,9 @@
             <!-- <div class="col-md-5 col-xs-12"> -->
             <div class="inner-info container">
               <div class="inner-info-head mb-3">
-                <h6 class="color-dark">Meeting Time</h6>
+                <h6 class="color-dark mb-0">Meeting Time</h6>
               </div>
-              <p class="color-secondary text-16 font-regular">
+              <p class="color-secondary text-14 font-regular">
                 Next meeting:
                 {{
                   clubMoreDetails.announcement == null

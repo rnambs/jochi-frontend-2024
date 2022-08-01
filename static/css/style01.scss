@@ -582,9 +582,9 @@ img.dark-icon{
 }
 
 .bullet{
-    width: 14px;
-    height: 14px;
-    border-color: $text-dark !important;
+    width: 12px;
+    height: 12px;
+    border-color: $text-secondary !important;
 }
 
 // SIGN-IN
@@ -2464,6 +2464,11 @@ img.dark-icon{
             background-color: $cal-border;
             padding: 0.3rem 1.5rem;
             font-size: 0.8rem;
+        }
+        .to-do-list{
+            max-height: 76px;
+            min-height: 76px;
+            overflow: hidden;
         }
         // end club info tab.
 
@@ -4828,7 +4833,7 @@ switch to violet when it is active*/
                     white-space: nowrap;
                     text-overflow: ellipsis;
                 }
-                p,.col-form-label{
+                .col-form-label{
                     color: $border-color;
                     // font-size: 0.95rem;
                     // @media (max-width:1024.98px) {
