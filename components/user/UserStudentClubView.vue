@@ -47,6 +47,7 @@
                 pr-3
                 py-0
                 pl-0
+                custom-overflow
               "
             >
               <div class="info-head my-2">

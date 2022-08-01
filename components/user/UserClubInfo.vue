@@ -47,6 +47,7 @@
                 pr-3
                 py-0
                 pl-0
+                custom-overflow
               "
             >
               <div class="my-2 px-2">

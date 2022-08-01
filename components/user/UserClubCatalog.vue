@@ -170,6 +170,7 @@
                             min-w-100
                             d-flex
                             justify-content-center
+                            bg-theme
                           "
                           :style="{
                             'background-color': tagColorMap[todos]
