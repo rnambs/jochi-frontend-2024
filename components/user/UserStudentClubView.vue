@@ -71,7 +71,10 @@
                   v-for="(list, index) in list_data"
                   :key="index"
                 >
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3 py-12">
+                  <div
+                    v-if="index == 0"
+                    class="col-md-6 col-xs-12 pr-0 pl-3 py-12"
+                  >
                     <div class="inner-info-head mb-2">
                       <h4 class="color-dark mb-2 font-bold">
                         About the {{ headingName }}
@@ -188,7 +191,14 @@
                                     </div>
                                     <div class="col-8 p-0">
                                       <div class="ld-details-section">
-                                        <p class="mb-1 color-dark text-18 font-semi-bold">
+                                        <p
+                                          class="
+                                            mb-1
+                                            color-dark
+                                            text-18
+                                            font-semi-bold
+                                          "
+                                        >
                                           {{
                                             data.user_info.first_name +
                                             (data.user_info.last_name
@@ -202,7 +212,12 @@
                                           }}
                                         </p>
                                         <p
-                                          class="text-16 color-secondary mb-0 text-truncate"
+                                          class="
+                                            text-16
+                                            color-secondary
+                                            mb-0
+                                            text-truncate
+                                          "
                                         >
                                           {{ data.user_info.email }}
                                         </p>
@@ -445,7 +460,9 @@
                                 > -->
                                 <span
                                   :style="{
-                                    'background-color': tagColorMap[value.name],
+                                    'background-color': tagColorMap[value.name]
+                                      ? tagColorMap[value.name]
+                                      : red,
                                   }"
                                   class="pl bg-theme"
                                   >{{ value.name }}</span
