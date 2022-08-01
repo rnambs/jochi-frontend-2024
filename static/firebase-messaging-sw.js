@@ -1,9 +1,9 @@
 
 importScripts(
-  'https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js'
+  'https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js'
 )
 importScripts(
-  'https://www.gstatic.com/firebasejs/9.6.1/firebase-messaging-compat.js'
+  'https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js'
 )
 firebase.initializeApp({"apiKey":"AIzaSyB7G1KkUjOSmoZhauukZpH1nRhJvsfQfQo","authDomain":"jochi-ff725.firebaseapp.com","projectId":"jochi-ff725","storageBucket":"jochi-ff725.appspot.com","messagingSenderId":"273788357446","appId":"1:273788357446:web:91c1c88a2b0640b3f57347","measurementId":"G-K3M3QC31SE"})
 
