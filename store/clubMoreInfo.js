@@ -431,6 +431,11 @@ const actions = {
 
       });
       if (response.message == "Success") {
+        if (response.data && response.data.length > 0) {
+          response.data.forEach(e => {
+            e['formattedDate'] = moment(e.date).format('MMMM Do, YYYY')
+          })
+        }
         commit('setSportsActivities', response.data);
         commit('setEnableEdit', response.enable_edit);
       }

@@ -2444,6 +2444,7 @@ export default {
       assignmentSessions: (state) => state.assignmentSessions,
       assignments: (state) => state.assignments,
       sessionData: (state) => state.sessionData,
+      invitedPeers: (state) => state.invitedPeers,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -2460,6 +2461,7 @@ export default {
       getStudySessions: "getStudySessions",
       getAssignments: "getAssignments",
       saveStudySession: "saveStudySession",
+      getInvitedPeers: "getInvitedPeers",
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
@@ -2933,13 +2935,57 @@ export default {
       console.log(this.sharedSessions);
       console.log(this.assignmentSessions);
 
-      this.studySessionList = this.assignmentSessions;
+      // this.studySessionList = this.assignmentSessions;
 
       this.assignmentSessions.forEach((e) => {
         let session = {};
         session.type = "assignment";
         session.id = e.id;
-        session.name = e.assignments[0].task;
+        session.name = e.assignments[0]?.task;
+        session.goals = e.subTasks;
+        session.duration = e.duration;
+        session.breakTime = e.break_time;
+        session.repeat = e.repeat;
+        session.peers = e.peers;
+        session.date = e.date;
+        session.time = e.time;
+        session.breakTimeAt = e.break_time_at;
+
+        this.studySessionList.push(session);
+      });
+
+      this.studySessions.forEach((e) => {
+        let session = {};
+        session.type = "study";
+        session.id = e.id;
+        session.name = e.subject?.subject_name;
+        session.goals = e.subTasks;
+        session.duration = e.duration;
+        session.breakTime = e.break_time;
+        session.repeat = e.repeat;
+        session.peers = e.peers;
+        session.date = e.date;
+        session.time = e.time;
+        session.breakTimeAt = e.break_time_at;
+
+        this.studySessionList.push(session);
+      });
+
+      this.sharedSessions.forEach((e) => {
+        let session = {};
+        session.type = "assignment";
+        session.id = e.id;
+        session.name = e.assignments[0]?.task;
+        session.goals = e.subTasks;
+        session.duration = e.duration;
+        session.breakTime = e.break_time;
+        session.repeat = e.repeat;
+        session.peers = e.peers;
+        session.date = e.date;
+        session.time = e.time;
+        session.breakTimeAt = e.break_time_at;
+
+        this.studySessionList.push(session);
       });
 
       // // this.studySessionList = this.studySessions;
@@ -3080,8 +3126,9 @@ export default {
       this.studySessionList = [];
       this.sessionDetail = {};
     },
-    setDetail(session) {
+    async setDetail(session) {
       this.sessionDetail = session;
+      await this.getInvitedPeers(this.sessionDetail.id);
     },
   },
 

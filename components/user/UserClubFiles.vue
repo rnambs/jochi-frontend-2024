@@ -41,15 +41,26 @@
         <!-- Club files -->
         <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
-          <div class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center">
-            <button class="btn p-1 m-2">
+          <div
+            class="
+              position-absolute
+              cover-button
+              mr-3
+              mb-1
+              d-flex
+              align-items-center
+            "
+          >
+            <button @click="openAddBanner" class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
             <div class="d-flex align-items-center">
               <button class="btn p-1 m-2">
                 <i class="fas fa-info-circle color-white"></i>
               </button>
-              <p class="mb-0 color-secondary text-14 font-regular">1200 X 180</p>
+              <p class="mb-0 color-secondary text-14 font-regular">
+                1200 X 180
+              </p>
             </div>
           </div>
         </div>
@@ -637,12 +648,101 @@
       </div>
     </div>
     <!-- modal add assignment -->
+
+    <!-- modal for add banner -->
+    <div
+      class="modal fade"
+      id="addBannerModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addBannerModalModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title color-dark" id="addBannerModalLongTitle">
+              Add Banner
+            </h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body no-overflow px-4">
+            <div>
+              <div size="120" class="user">
+                <!-- <v-img :src="image_name" class="profile-img"></v-img> -->
+                <v-icon
+                  class="icon primary white--text"
+                  @click="$refs.FileInput.click()"
+                  >mdi-upload</v-icon
+                >
+                <input
+                  ref="FileInput"
+                  type="file"
+                  style="display: none"
+                  @change="onFileSelect"
+                />
+              </div>
+              <!-- <v-dialog v-model="dialog" width="500"> -->
+              <v-card>
+                <v-card-text>
+                  <VueCropper
+                    v-show="selectedFile"
+                    ref="cropper"
+                    :src="selectedFile"
+                    alt="Source Image"
+                    :aspect-ratio="20 / 3"
+                  ></VueCropper>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn class="primary" @click="saveImage(), (dialog = false)"
+                    >Crop</v-btn
+                  >
+                  <v-btn color="primary" text @click="dialog = false"
+                    >Cancel</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+              <!-- </v-dialog> -->
+            </div>
+          </div>
+
+          <div class="modal-footer px-4">
+            <!-- <button
+              class="btn btn-primary"
+              :disabled="!leaderUpdate"
+              @click.prevent="addLeader()"
+            >
+              Update
+            </button> -->
+            <button
+              class="btn btn-primary"
+              @click="saveImage(), (dialog = false)"
+            >
+              Crop
+            </button>
+            <button class="btn btn-primary" text @click="dialog = false">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal add banner -->
   </div>
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
+import VueCropper from "vue-cropperjs";
+
 var fileCheck = false;
 var filepptCheck = false;
 var headingName = "";
@@ -651,6 +751,7 @@ export default {
   name: "UserClubFiles",
   components: {
     lottie,
+    VueCropper,
   },
   data() {
     return {
@@ -673,6 +774,13 @@ export default {
       dayArrVal: [],
       daysArray: [],
       valueMeeting: "",
+      mime_type: "",
+      cropedImage: "",
+      autoCrop: false,
+      selectedFile: "",
+      image: "",
+      dialog: false,
+      files: "",
     };
   },
   mounted() {
@@ -922,6 +1030,97 @@ export default {
     onNextMeeting() {
       if (this.enableEdit) {
         $("#nextMeetingModal").modal();
+      }
+    },
+    openAddBanner() {
+      $("#addBannerModal").modal({ backdrop: true });
+    },
+    saveImage() {
+      const userId = this.$route.params.user_id;
+      this.cropedImage = this.$refs.cropper.getCroppedCanvas().toDataURL();
+      this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
+        const formData = new FormData();
+
+        if (blob) {
+          var file = new File([blob], "name");
+
+          console.log("consoling image outputs ", blob, file);
+          formData.append("file", file);
+          formData.append("club_id", this.$route.query.id);
+          formData.append("user_id", localStorage.getItem("id"));
+          formData.append("club_banner", "1");
+
+          this.uploadFile(formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            club_id: this.$route.query.id,
+          });
+          //   this.loading = false;
+          if (this.successMessage != "") {
+            this.$toast.open({
+              message: this.successMessage,
+              type: this.SuccessType,
+              duration: 5000,
+            });
+          } else if (this.errorMessage != "") {
+            this.$toast.open({
+              message: this.errorMessage,
+              type: this.errorType,
+              duration: 5000,
+            });
+          }
+          //   this.profileImageUrl = "";
+          // this.ClubFiles();
+        }
+      }, this.mime_type);
+    },
+    //  async UploadFile() {
+    //   if (this.profilePic) {
+    //     this.loading = true;
+    //     const data = new FormData();
+    //     data.append("file", this.profilePic);
+    //     data.append("club_id", this.$route.query.id);
+    //     data.append("user_id", localStorage.getItem("id"));
+
+    //     await this.uploadFile(data, {
+    //       headers: {
+    //         "Content-Type": "multipart/form-data",
+    //       },
+    //       club_id: this.$route.query.id,
+    //     });
+    //     this.loading = false;
+    //     if (this.successMessage != "") {
+    //       this.$toast.open({
+    //         message: this.successMessage,
+    //         type: this.SuccessType,
+    //         duration: 5000,
+    //       });
+    //     } else if (this.errorMessage != "") {
+    //       this.$toast.open({
+    //         message: this.errorMessage,
+    //         type: this.errorType,
+    //         duration: 5000,
+    //       });
+    //     }
+    //     this.profileImageUrl = "";
+    //     this.ClubFiles();
+    //   }
+    // },
+    onFileSelect(e) {
+      const file = e.target.files[0];
+      this.mime_type = file.type;
+      console.log(this.mime_type);
+      if (typeof FileReader === "function") {
+        this.dialog = true;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          this.selectedFile = event.target.result;
+          this.$refs.cropper.replace(this.selectedFile);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert("Sorry, FileReader API not supported");
       }
     },
   },

@@ -20,21 +20,32 @@
 
         <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
-          <div class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center">
-            <button class="btn p-1 m-2">
+          <div
+            class="
+              position-absolute
+              cover-button
+              mr-3
+              mb-1
+              d-flex
+              align-items-center
+            "
+          >
+            <button @click="openAddBanner" class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
             <div class="d-flex align-items-center">
               <button class="btn p-1 m-2">
                 <i class="fas fa-info-circle color-white"></i>
               </button>
-              <p class="mb-0 color-secondary text-14 font-regular">1200 X 180</p>
+              <p class="mb-0 color-secondary text-14 font-regular">
+                1200 X 180
+              </p>
             </div>
           </div>
         </div>
 
         <!-- image upload -->
-        <VueCropper></VueCropper>
+        <!-- <VueCropper></VueCropper> -->
         <!-- image upload end -->
 
         <!-- Club info -->
@@ -178,7 +189,7 @@
                                       mb-1
                                     "
                                   >
-                                    <span>{{ item.date }}</span
+                                    <span>{{ item.formattedDate }}</span
                                     ><span>, </span><span>{{ item.time }}</span>
                                   </p>
                                 </div>
@@ -266,7 +277,7 @@
                                     mb-1
                                   "
                                 >
-                                  {{ item.date }}
+                                  {{ item.formattedDate }}
                                 </p>
                                 <p
                                   class="
@@ -521,7 +532,13 @@
                                 </p>
                                 <p
                                   @click="openEdit(item)"
-                                  class="color-primary word-break cursor-pointer mb-0 font-semi-bold"
+                                  class="
+                                    color-primary
+                                    word-break
+                                    cursor-pointer
+                                    mb-0
+                                    font-semi-bold
+                                  "
                                 >
                                   {{ item.title }}
                                 </p>
@@ -537,30 +554,32 @@
                                   justify-content-between
                                   flex-column flex-sm-row flex-lg-column
                                 "
-                              > 
-                              <div class="d-flex flex-wrap justify-content-end">
-                                <p
-                                  class="
-                                    color-secondary
-                                    font-regular
-                                    text-nowrap text-14
-                                    mb-1
-                                  "
+                              >
+                                <div
+                                  class="d-flex flex-wrap justify-content-end"
                                 >
-                                  {{ item.date }}<span>, </span>
-                                </p>
-                                <p
-                                  class="
-                                    color-secondary
-                                    text-nowrap
-                                    font-regular
-                                    text-14
-                                    mb-0
-                                  "
-                                >
-                                  {{ item.time }}
-                                </p>
-                              </div>
+                                  <p
+                                    class="
+                                      color-secondary
+                                      font-regular
+                                      text-nowrap text-14
+                                      mb-1
+                                    "
+                                  >
+                                    {{ item.date }}<span>, </span>
+                                  </p>
+                                  <p
+                                    class="
+                                      color-secondary
+                                      text-nowrap
+                                      font-regular
+                                      text-14
+                                      mb-0
+                                    "
+                                  >
+                                    {{ item.time }}
+                                  </p>
+                                </div>
                                 <div class="d-flex justify-content-end mb-2">
                                   <div class="d-flex align-items-center">
                                     <div></div>
@@ -776,7 +795,9 @@
             <form name="announcement">
               <fieldset :disabled="!enableEdit">
                 <div class="form-group">
-                  <label for="recipient-name" class="col-form-label color-secondary"
+                  <label
+                    for="recipient-name"
+                    class="col-form-label color-secondary"
                     >Title<em>*</em></label
                   >
 
@@ -809,7 +830,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="message-text" class="col-form-label color-secondary"
+                  <label
+                    for="message-text"
+                    class="col-form-label color-secondary"
                     >Description<em>*</em></label
                   >
                   <textarea
@@ -1080,11 +1103,11 @@
                       }"
                     /> -->
                     <vue-timepicker
+                      close-on-complete
                       format="hh:mm A"
                       v-model="activity.activityTime"
                       name="activityTime"
                       class="show-cursor form-white"
-                      :value="activity.activityTime"
                       :class="{
                         'is-invalid':
                           submittedActivity && $v.activity.activityTime.$error,
@@ -1325,17 +1348,103 @@
       </div>
     </div>
     <!-- modal add assignment -->
+
+    <!-- modal for add banner -->
+    <div
+      class="modal fade"
+      id="addBannerModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addBannerModalModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title color-dark" id="addBannerModalLongTitle">
+              Add Banner
+            </h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body no-overflow px-4">
+            <div>
+              <div size="120" class="user">
+                <!-- <v-img :src="image_name" class="profile-img"></v-img> -->
+                <v-icon
+                  class="icon primary white--text"
+                  @click="$refs.FileInput.click()"
+                  >mdi-upload</v-icon
+                >
+                <input
+                  ref="FileInput"
+                  type="file"
+                  style="display: none"
+                  @change="onFileSelect"
+                />
+              </div>
+              <!-- <v-dialog v-model="dialog" width="500"> -->
+              <v-card>
+                <v-card-text>
+                  <VueCropper
+                    v-show="selectedFile"
+                    ref="cropper"
+                    :src="selectedFile"
+                    alt="Source Image"
+                    :aspect-ratio="20 / 3"
+                  ></VueCropper>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn class="primary" @click="saveImage(), (dialog = false)"
+                    >Crop</v-btn
+                  >
+                  <v-btn color="primary" text @click="dialog = false"
+                    >Cancel</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+              <!-- </v-dialog> -->
+            </div>
+          </div>
+
+          <div class="modal-footer px-4">
+            <!-- <button
+              class="btn btn-primary"
+              :disabled="!leaderUpdate"
+              @click.prevent="addLeader()"
+            >
+              Update
+            </button> -->
+            <button
+              class="btn btn-primary"
+              @click="saveImage(), (dialog = false)"
+            >
+              Crop
+            </button>
+            <button class="btn btn-primary" text @click="dialog = false">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal add banner -->
   </div>
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
-import { required, requiredUnless } from "vuelidate/lib/validators";
+import { required, requiredIf } from "vuelidate/lib/validators";
 import Multiselect from "vue-multiselect";
 import VueTimepicker from "vue2-timepicker";
-import vueCropper from "vue-cropperjs";
-import VueCropper from "./VueCropper.vue";
+import VueCropper from "vue-cropperjs";
 
 var today = new Date();
 var activityDate = "";
@@ -1347,7 +1456,6 @@ export default {
     lottie,
     Multiselect,
     VueTimepicker,
-    vueCropper,
     VueCropper,
   },
   data() {
@@ -1407,6 +1515,13 @@ export default {
         to: new Date(),
       },
       date_today: new Date(),
+      mime_type: "",
+      cropedImage: "",
+      autoCrop: false,
+      selectedFile: "",
+      image: "",
+      dialog: false,
+      files: "",
     };
   },
   validations: {
@@ -1422,10 +1537,11 @@ export default {
       activityTime: { required },
       activityVenue: { required },
       activityOpponentTeam: {
-        required: requiredUnless((vm) => {
-          return vm.activity
-            ? vm.activity.activityOpponentTeam === "Match"
-            : false;
+        required: requiredIf(function (model) {
+          if (this.activity.activityType === "Match") {
+            return true;
+          }
+          return false;
         }),
       },
     },
@@ -1485,6 +1601,11 @@ export default {
       addActivities: "addActivities",
       updateActivities: "updateActivities",
       deleteActivity: "deleteActivity",
+    }),
+    ...mapActions("clubFiles", {
+      clubFiles: "clubFiles",
+      uploadFile: "uploadFile",
+      fileRemove: "fileRemove",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -1784,7 +1905,11 @@ export default {
       this.activity.activityType = "";
       this.activity.activityDesc = "";
       this.activity.activityDate = "";
-      this.activity.activityTime = "";
+      this.activity.activityTime = {
+        hh: "00",
+        MM: "00",
+        A: "am",
+      };
       this.activity.activityVenue = "";
       this.activity.activityOpponentTeam = "";
     },
@@ -1803,6 +1928,7 @@ export default {
         club_id: this.clubId,
       });
       this.loading = false;
+      console.log(this.sportsActivities);
       // this.announcementList = [];
       // this.announcements.forEach((e) => {
       //   e["date"] = moment(e.createdAt).format("MMMM Do, YYYY");
@@ -1812,7 +1938,7 @@ export default {
       // });
     },
     async addNewActivity() {
-      console.log(this.activity);
+      console.log(this.$v.activity.$invalid, this.$v.activity, this.$v);
       let act = this.activity;
       this.submittedActivity = true;
       this.$v.activity.activityTitle.$touch();
@@ -1821,9 +1947,9 @@ export default {
       this.$v.activity.activityDate.$touch();
       this.$v.activity.activityTime.$touch();
       this.$v.activity.activityVenue.$touch();
-      if (act.activityType == "Match") {
-        this.$v.activity.activityOpponentTeam.$touch();
-      }
+      // if (act.activityType == "Match") {
+      this.$v.activity.activityOpponentTeam.$touch();
+      // }
       if (this.$v.activity.$invalid) {
         return;
       } else {
@@ -1959,6 +2085,65 @@ export default {
         "YYYY-MM-DD"
       );
       console.log(this.activity.activityDate);
+    },
+    openAddBanner() {
+      $("#addBannerModal").modal({ backdrop: true });
+    },
+    saveImage() {
+      const userId = this.$route.params.user_id;
+      this.cropedImage = this.$refs.cropper.getCroppedCanvas().toDataURL();
+      this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
+        const formData = new FormData();
+
+        if (blob) {
+          var file = new File([blob], "name");
+
+          console.log("consoling image outputs ", blob, file);
+          formData.append("file", file);
+          formData.append("club_id", this.$route.query.id);
+          formData.append("user_id", localStorage.getItem("id"));
+          formData.append("club_banner", "1");
+
+          this.uploadFile(formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            club_id: this.$route.query.id,
+          });
+          //   this.loading = false;
+          if (this.successMessage != "") {
+            this.$toast.open({
+              message: this.successMessage,
+              type: this.SuccessType,
+              duration: 5000,
+            });
+          } else if (this.errorMessage != "") {
+            this.$toast.open({
+              message: this.errorMessage,
+              type: this.errorType,
+              duration: 5000,
+            });
+          }
+          //   this.profileImageUrl = "";
+          // this.ClubFiles();
+        }
+      }, this.mime_type);
+    },
+    onFileSelect(e) {
+      const file = e.target.files[0];
+      this.mime_type = file.type;
+      console.log(this.mime_type);
+      if (typeof FileReader === "function") {
+        this.dialog = true;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          this.selectedFile = event.target.result;
+          this.$refs.cropper.replace(this.selectedFile);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert("Sorry, FileReader API not supported");
+      }
     },
   },
 };

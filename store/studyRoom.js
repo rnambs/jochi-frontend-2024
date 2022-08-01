@@ -13,7 +13,8 @@ const state = {
   assignmentSessions: [],
   sharedSessions: [],
   assignments: [],
-  sessionData: {}
+  sessionData: {},
+  invitedPeers: []
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -277,6 +278,22 @@ const actions = {
 
     }
   },
+  // Get invited peers
+  async getInvitedPeers({ commit }, id) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$get(BASE_URL + `studyRoom/shared_peers_list/${id}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+      commit('setInvitedPeers', response.data);
+
+    } catch (e) {
+
+    }
+  },
 
 }
 const mutations = {
@@ -315,6 +332,9 @@ const mutations = {
   },
   setSessionData(state, data) {
     state.sessionData = data;
+  },
+  setInvitedPeers(state, data) {
+    state.invitedPeers = data;
   },
 
 
@@ -357,7 +377,9 @@ const getters = {
   sessionData: () => {
     return state.sessionData;
   },
-
+  invitedPeers: () => {
+    return state.invited;
+  },
 
 
 }

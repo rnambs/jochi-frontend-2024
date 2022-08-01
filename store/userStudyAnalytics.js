@@ -7,6 +7,7 @@ const state = {
     successMessage: "",
     successType: "",
     mySession: [],
+    goal: {},
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -24,6 +25,55 @@ const actions = {
             commit('setMySession', response);
             // commit('setappointmentsData', response.appointments);
             // commit('setusersData', response.users);
+        } catch (e) {
+            if (e.response.data.message == "Unauthorized") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                window.localStorage.clear();
+                this.$router.push('/');
+            }
+        }
+    },
+
+    //Set daily study goa;
+    async setGoal({ commit }, payLoad) {
+        const token = localStorage.getItem('token')
+        try {
+
+            const response = await this.$axios.$post(BASE_URL + 'studyRoom/set_daily_goals', payLoad, {
+                headers: {
+                    'Authorization': ` ${token}`
+                },
+            });
+            if (response.message) {
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                commit('setSuccessMessage', response.message);
+                commit('setSuccessType', "success");
+            }
+        } catch (e) {
+            if (e.response.data.message) {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', e.response.data.message);
+                commit('setErrorType', "error");
+            }
+        }
+    },
+
+    // get configured goal
+    async getGoal({ commit }, payLoad) {
+        const token = localStorage.getItem('token')
+        try {
+            const response = await this.$axios.$get(BASE_URL + `studyRoom/get_daily_goals`, {
+                headers: {
+                    'Authorization': ` ${token}`
+                },
+            });
+            commit('setGoal', response.data);
+
         } catch (e) {
             if (e.response.data.message == "Unauthorized") {
                 commit('setSuccessMessage', "");
@@ -54,9 +104,9 @@ const mutations = {
     setMySession(state, data) {
         state.mySession = data;
     },
-    // setEmail(state, data) {
-    //     state.Email = data;
-    // },
+    setGoal(state, data) {
+        state.goal = data;
+    },
 
 
 }
@@ -76,9 +126,9 @@ const getters = {
     mySession: () => {
         return state.mySession;
     },
-    // Email: () => {
-    //     return state.Email;
-    // },
+    goal: () => {
+        return state.goal;
+    },
 
 }
 

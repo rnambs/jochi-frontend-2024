@@ -75,23 +75,10 @@ export default {
       this.cropedImage = this.$refs.cropper.getCroppedCanvas().toDataURL();
       this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
         const formData = new FormData();
-        // formData.append("profile_photo", blob, "name.jpeg");
-        // axios
-        //   .post("/api/user/" + userId + "/profile-photo", formData)
-        //   .then((response) => {})
-        //   .catch(function (error) {
-        //     console.log(error);
-        //   });
+
         if (blob) {
-          //   this.loading = true;
-          // const data = new FormData();
           var file = new File([blob], "name");
-          //   file.type = blob.type;
-          blob.lastModifiedDate = new Date();
-          blob.name = "name";
-          if (!file.type) {
-            file.type = this.mime_type;
-          }
+
           console.log("consoling image outputs ", blob, file);
           formData.append("file", file);
           formData.append("club_id", this.$route.query.id);

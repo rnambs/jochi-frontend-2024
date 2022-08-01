@@ -21,7 +21,16 @@
         <!-- Club info -->
         <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
-          <div class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center">
+          <div
+            class="
+              position-absolute
+              cover-button
+              mr-3
+              mb-1
+              d-flex
+              align-items-center
+            "
+          >
             <button @click="openAddBanner" class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
@@ -29,7 +38,9 @@
               <button class="btn p-1 m-2">
                 <i class="fas fa-info-circle color-white"></i>
               </button>
-              <p class="mb-0 color-secondary text-14 font-regular">1200 X 180</p>
+              <p class="mb-0 color-secondary text-14 font-regular">
+                1200 X 180
+              </p>
             </div>
           </div>
         </div>
@@ -955,34 +966,45 @@
             </button>
           </div>
           <div class="modal-body no-overflow px-4">
-            <!-- <div class="col-md-5 col-xs-12"> -->
-            <div class="d-flex align-items-center flex-fill mr-2">
-              <!-- <croppa
-                v-model="croppa"
-                :width="1200"
-                :height="800"
-                placeholder="Yes, you can modify the text here"
-                placeholder-color="#000"
-                :placeholder-font-size="16"
-                canvas-color="transparent"
-                :show-remove-button="true"
-                remove-button-color="black"
-                :remove-button-size="5"
-                :show-loading="true"
-                :loading-size="50"
-                :loading-color="'#606060'"
-              ></croppa> -->
-              <cropper
-                class="cropper"
-                src="~/assets/image/cover-pic.jpg"
-                :stencil-props="{
-                  aspectRatio: 1200 / 180,
-                }"
-              />
+            <div>
+              <div size="120" class="user">
+                <v-img :src="image_name" class="profile-img"></v-img>
+                <v-icon
+                  class="icon primary white--text"
+                  @click="$refs.FileInput.click()"
+                  >mdi-upload</v-icon
+                >
+                <input
+                  ref="FileInput"
+                  type="file"
+                  style="display: none"
+                  @change="onFileSelect"
+                />
+              </div>
+              <!-- <v-dialog v-model="dialog" width="500"> -->
+              <v-card>
+                <v-card-text>
+                  <VueCropper
+                    v-show="selectedFile"
+                    ref="cropper"
+                    :src="selectedFile"
+                    alt="Source Image"
+                    :aspect-ratio="20 / 3"
+                  ></VueCropper>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn class="primary" @click="saveImage(), (dialog = false)"
+                    >Crop</v-btn
+                  >
+                  <v-btn color="primary" text @click="dialog = false"
+                    >Cancel</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+              <!-- </v-dialog> -->
             </div>
-
-            <!-- </div> -->
           </div>
+
           <div class="modal-footer px-4">
             <button
               class="btn btn-primary"
@@ -1006,6 +1028,7 @@ import Multiselect from "vue-multiselect";
 import "vue-croppa/dist/vue-croppa.css";
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
+import VueCropper from "vue-cropperjs";
 
 var headingName = "";
 var clubId = "";
@@ -1017,6 +1040,7 @@ export default {
     lottie,
     Multiselect,
     Cropper,
+    VueCropper,
   },
   data() {
     return {
@@ -1048,6 +1072,13 @@ export default {
       tagColorMap: {},
       croppa: {},
       img: "https://images.unsplash.com/photo-1600984575359-310ae7b6bdf2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+      mime_type: "",
+      cropedImage: "",
+      autoCrop: false,
+      selectedFile: "",
+      image: "",
+      dialog: false,
+      files: "",
     };
   },
 
@@ -1105,6 +1136,11 @@ export default {
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
+    }),
+    ...mapActions("clubFiles", {
+      clubFiles: "clubFiles",
+      uploadFile: "uploadFile",
+      fileRemove: "fileRemove",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -1436,7 +1472,63 @@ export default {
       $("#addLeaderModal").modal({ backdrop: true });
     },
     openAddBanner() {
-      // $("#addBannerModal").modal({ backdrop: true });
+      $("#addBannerModal").modal({ backdrop: true });
+    },
+    saveImage() {
+      const userId = this.$route.params.user_id;
+      this.cropedImage = this.$refs.cropper.getCroppedCanvas().toDataURL();
+      this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
+        const formData = new FormData();
+
+        if (blob) {
+          var file = new File([blob], "name");
+
+          console.log("consoling image outputs ", blob, file);
+          formData.append("file", file);
+          formData.append("club_id", this.$route.query.id);
+          formData.append("user_id", localStorage.getItem("id"));
+          formData.append("club_banner", "1");
+
+          this.uploadFile(formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            club_id: this.$route.query.id,
+          });
+          //   this.loading = false;
+          if (this.successMessage != "") {
+            this.$toast.open({
+              message: this.successMessage,
+              type: this.SuccessType,
+              duration: 5000,
+            });
+          } else if (this.errorMessage != "") {
+            this.$toast.open({
+              message: this.errorMessage,
+              type: this.errorType,
+              duration: 5000,
+            });
+          }
+          //   this.profileImageUrl = "";
+          // this.ClubFiles();
+        }
+      }, this.mime_type);
+    },
+    onFileSelect(e) {
+      const file = e.target.files[0];
+      this.mime_type = file.type;
+      console.log(this.mime_type);
+      if (typeof FileReader === "function") {
+        this.dialog = true;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          this.selectedFile = event.target.result;
+          this.$refs.cropper.replace(this.selectedFile);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert("Sorry, FileReader API not supported");
+      }
     },
     uploadCroppedImage() {
       this.croppa.generateBlob(
