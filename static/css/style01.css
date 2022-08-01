@@ -86,6 +86,10 @@ body {
   line-height: 2.25rem;
 }
 
+.word-break {
+  word-break: break-all;
+}
+
 .font-black {
   font-weight: 800;
 }
@@ -137,6 +141,10 @@ body {
 
 .bg-primary {
   background-color: #FF6D6D !important;
+}
+
+.bg-theme {
+  background-color: #FF6D6D;
 }
 
 .component-bg {
@@ -3609,7 +3617,7 @@ switch to violet when it is active*/
   text-overflow: ellipsis;
 }
 .modal .modal-dialog .modal-content .modal-body .col-form-label {
-  color: #f0f0f0;
+  color: #C5C0BD;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group .form-control {
   border-radius: 0.4rem;

@@ -72,6 +72,10 @@ body{
     font-size: 1.875rem;
     line-height: 2.25rem;
 }
+.word-break{
+    word-break: break-all;
+}
+
 
 // FONT WEIGHT
 .font-black{
@@ -116,6 +120,9 @@ body{
 }
 .bg-primary{
     background-color: $theme-color !important;
+}
+.bg-theme{
+    background-color: $theme-color;
 }
 .component-bg{
     @include jochi-components-bg();
@@ -4834,7 +4841,7 @@ switch to violet when it is active*/
                     text-overflow: ellipsis;
                 }
                 .col-form-label{
-                    color: $border-color;
+                    color: $text-secondary;
                     // font-size: 0.95rem;
                     // @media (max-width:1024.98px) {
                     //     font-size: 0.85rem;

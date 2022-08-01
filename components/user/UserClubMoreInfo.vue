@@ -20,13 +20,16 @@
 
         <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
-          <div class="position-absolute cover-button mr-3 mb-1">
+          <div class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center">
             <button class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
-            <button class="btn p-1 m-2">
-              <i class="fas fa-info-circle color-white"></i>
-            </button>
+            <div class="d-flex align-items-center">
+              <button class="btn p-1 m-2">
+                <i class="fas fa-info-circle color-white"></i>
+              </button>
+              <p class="mb-0 color-secondary text-14 font-regular">1200 X 180</p>
+            </div>
           </div>
         </div>
 
@@ -510,12 +513,32 @@
                                 w-100
                               "
                             >
-                              <div @click="openEdit(item)" class="left-side">
+                              <div class="left-side">
                                 <p
                                   class="color-dark mb-0 font-semi-bold text-16"
                                 >
                                   {{ item.first_name }}
                                 </p>
+                                <p
+                                  @click="openEdit(item)"
+                                  class="color-primary word-break cursor-pointer mb-0 font-semi-bold"
+                                >
+                                  {{ item.title }}
+                                </p>
+                              </div>
+                              <div
+                                class="
+                                  right-side
+                                  h-100
+                                  d-flex
+                                  align-items-end
+                                  align-items-sm-center
+                                  align-items-lg-end
+                                  justify-content-between
+                                  flex-column flex-sm-row flex-lg-column
+                                "
+                              > 
+                              <div class="d-flex flex-wrap justify-content-end">
                                 <p
                                   class="
                                     color-secondary
@@ -524,7 +547,7 @@
                                     mb-1
                                   "
                                 >
-                                  {{ item.date }}
+                                  {{ item.date }}<span>, </span>
                                 </p>
                                 <p
                                   class="
@@ -538,24 +561,6 @@
                                   {{ item.time }}
                                 </p>
                               </div>
-                              <div
-                                class="
-                                  right-side
-                                  h-100
-                                  d-flex
-                                  align-items-end
-                                  align-items-sm-start
-                                  align-items-lg-end
-                                  justify-content-between
-                                  flex-column flex-sm-row flex-lg-column
-                                "
-                              >
-                                <p
-                                  @click="openEdit(item)"
-                                  class="color-primary text-right mb-0"
-                                >
-                                  {{ item.title }}
-                                </p>
                                 <div class="d-flex justify-content-end mb-2">
                                   <div class="d-flex align-items-center">
                                     <div></div>
@@ -718,7 +723,15 @@
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-primary color-white px-4 py-2"
+              class="btn btn-secondary px-4 py-1 rounded-pill"
+              aria-label="Close"
+            >
+              No
+            </button>
+            <button
+              type="button"
+              data-dismiss="modal"
+              class="btn btn-primary color-white px-4 py-1 rounded-pill"
               @click="
                 deleteActivityClickId
                   ? onDeleteActivity()
@@ -726,14 +739,6 @@
               "
             >
               Yes
-            </button>
-            <button
-              type="button"
-              data-dismiss="modal"
-              class="btn btn-secondary px-4 py-2"
-              aria-label="Close"
-            >
-              No
             </button>
           </div>
         </div>
@@ -771,7 +776,7 @@
             <form name="announcement">
               <fieldset :disabled="!enableEdit">
                 <div class="form-group">
-                  <label for="recipient-name" class="col-form-label"
+                  <label for="recipient-name" class="col-form-label color-secondary"
                     >Title<em>*</em></label
                   >
 
@@ -804,7 +809,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="message-text" class="col-form-label"
+                  <label for="message-text" class="col-form-label color-secondary"
                     >Description<em>*</em></label
                   >
                   <textarea
