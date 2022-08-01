@@ -558,52 +558,57 @@
                       </tr>-->
                 </table>
               </fieldset>
-              <div
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div
                 v-if="
                   detailType == 'Peer' &&
                   detailMeetingRequest == 0 &&
                   detailTeacherId != studentId
                 "
-                class="row text-center"
+                class="row text-center justify-content-end p-3"
               >
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-4 rounded-pill mr-2"
+                data-dismiss="modal"
+                @click="acceptOrReject(2)"
+              >
+                Reject
+              </button>
                 <button
                   type="button"
-                  class="btn btn-color-save"
+                  class="btn btn-primary py-1 px-4 rounded-pill"
                   data-dismiss="modal"
                   @click="acceptOrReject(1)"
                 >
                   Accept
                 </button>
-                <button
-                  type="button"
-                  class="btn btn-color-close"
-                  data-dismiss="modal"
-                  @click="acceptOrReject(2)"
-                >
-                  Reject
-                </button>
               </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-color-close"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-color-save"
-              @click="updateDetails()"
-              v-if="
+              <div
+                v-if="
                 (detailTeacherId == studentId || detailType == 'Teacher') &&
                 detailMeetingRequest == 1
               "
-            >
-              Update
-            </button>
+                  class="row text-center justify-content-end p-3"
+                >
+                <button
+                  type="button"
+                  class="btn btn-secondary py-1 px-4 rounded-pill mr-2"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary py-1 px-4 rounded-pill"
+                  @click="updateDetails()"
+                
+                >
+                  Update
+                </button>
+              </div>
           </div>
         </div>
       </div>

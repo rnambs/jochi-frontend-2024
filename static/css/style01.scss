@@ -268,6 +268,7 @@ body{
             padding: 0.75rem 1rem;
             font-size: 0.8rem;
             color: $text-dark;
+            cursor: pointer;
             &:hover{
                 color: $white;
                 background: $theme-color;

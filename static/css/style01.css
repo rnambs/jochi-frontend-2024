@@ -303,6 +303,7 @@ body {
   padding: 0.75rem 1rem;
   font-size: 0.8rem;
   color: #431F1C;
+  cursor: pointer;
 }
 .form-row .dropdown-menu .item:hover, .form-group .dropdown-menu .item:hover {
   color: #ffffff;
