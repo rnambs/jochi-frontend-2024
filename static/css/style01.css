@@ -3485,8 +3485,32 @@ switch to violet when it is active*/
 .modal .modal-dialog .modal-content .modal-body .form-group .form-control {
   font-size: 0.9rem;
 }
+.modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker {
+  position: relative;
+  cursor: pointer;
+  padding: 0.6rem 0.75rem;
+}
+.modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker::before {
+  content: "\f073";
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 5 Pro";
+  position: absolute;
+  right: 12px;
+  top: 9px;
+  font-size: 14px;
+}
 .modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker input {
   width: 100%;
+}
+.modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker.is-invalid::after {
+  display: none;
+}
+.modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker input[type=text] {
+  line-height: 0;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group select.form-control {
   cursor: pointer;
@@ -3950,6 +3974,7 @@ switch to violet when it is active*/
   border: 1px solid #ddd;
   z-index: 99999 !important;
   padding: 8px 8px 16px;
+  overflow: hidden;
 }
 .vdp-datepicker__calendar header {
   line-height: 25px;

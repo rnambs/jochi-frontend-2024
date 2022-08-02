@@ -4911,33 +4911,33 @@ switch to violet when it is active*/
                         //     color: $font-label-color;
                         // } 
                         &.vdp-datepicker{
-                        //     position: relative;
-                        //     cursor: pointer;
-                        //     padding: 0.6rem 0.75rem;
-                        //     &::before{
-                        //         content: "\f073";
-                        //         display: inline-block;
-                        //         font-style: normal;
-                        //         font-variant: normal;
-                        //         text-rendering: auto;
-                        //         -webkit-font-smoothing: antialiased;
-                        //         font-family: 'Font Awesome 5 Pro';
-                        //         position: absolute;
-                        //         right:12px;
-                        //         top: 9px;
-                        //         font-size: 14px;
-                        //     }
+                            position: relative;
+                            cursor: pointer;
+                            padding: 0.6rem 0.75rem;
+                            &::before{
+                                content: "\f073";
+                                display: inline-block;
+                                font-style: normal;
+                                font-variant: normal;
+                                text-rendering: auto;
+                                -webkit-font-smoothing: antialiased;
+                                font-family: 'Font Awesome 5 Pro';
+                                position: absolute;
+                                right:12px;
+                                top: 9px;
+                                font-size: 14px;
+                            }
                             input{
                                 width: 100%;
                             }
-                        //     &.is-invalid{
-                        //         &::after{
-                        //             display: none;
-                        //         }
-                        //     }
-                        //     input[type="text"]{
-                        //         line-height: 0;
-                        //     }
+                            &.is-invalid{
+                                &::after{
+                                    display: none;
+                                }
+                            }
+                            input[type="text"]{
+                                line-height: 0;
+                            }
                         }
                     }
                     select.form-control{
@@ -5507,6 +5507,7 @@ switch to violet when it is active*/
     border: 1px solid #ddd;
     z-index: 99999 !important;
     padding: 8px 8px 16px;
+    overflow: hidden;
     header{
         line-height: 25px;
         span.prev{

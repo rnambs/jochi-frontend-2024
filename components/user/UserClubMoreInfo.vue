@@ -930,7 +930,7 @@
           <div class="modal-body d-flex flex-column px-4">
             <div class="custom-overflow pr-2 mr--2">
               <form>
-                <fieldset :disabled="!enableEdit">
+                <!-- <fieldset :disabled="!enableEdit"> -->
                   <div class="form-row">
                     <label for="recipient-name" class="col-form-label"
                       >Type<em>*</em></label
@@ -1205,7 +1205,7 @@
                       >
                     </div>
                   </div>
-                </fieldset>
+                <!-- </fieldset> -->
               </form>
             </div>
           </div>
