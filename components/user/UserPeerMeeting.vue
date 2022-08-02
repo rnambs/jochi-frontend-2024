@@ -62,7 +62,10 @@
                       @change="UpdateStudentTimeSchedule()"
                       v-on:click="weekToggle()"
                     />
-                    <label class="custom-control-label" for="custom-Switches"
+                    <label class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14" for="custom-Switches"
                       >Include weekends</label
                     >
                   </div>
@@ -75,7 +78,10 @@
                       @change="UpdateStudentTimeSchedule()"
                       v-on:click="availabilityToggle()"
                     />
-                    <label class="custom-control-label" for="customSwitches"
+                    <label class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14" for="customSwitches"
                       >Show options based on my availability</label
                     >
                   </div>

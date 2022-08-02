@@ -115,7 +115,10 @@
                           />
 
                           <label
-                            class="custom-control-label"
+                            class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14"
                             :for="club.clubId"
                           >
                             <span>

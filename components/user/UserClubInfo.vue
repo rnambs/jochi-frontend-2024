@@ -135,7 +135,10 @@
                         @change="ShowClubInCatalog()"
                         v-on:click="availabilityToggle()"
                       />
-                      <label class="custom-control-label" for="custom-Switches"
+                      <label class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14" for="custom-Switches"
                         >Show club in catalog
                       </label>
                     </div> -->

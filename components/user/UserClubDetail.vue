@@ -58,7 +58,10 @@
                       v-model="availability"
                       @change="SyncClub()"
                     />
-                    <label class="custom-control-label" for="custom-Switches"
+                    <label class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14" for="custom-Switches"
                       >Sync to Planner
                     </label>
                   </div>
