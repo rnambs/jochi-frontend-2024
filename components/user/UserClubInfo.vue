@@ -409,9 +409,9 @@
                           "
                         >
                           <h4 class="color-dark mb-0 mr-2 font-bold">Tags</h4>
-                          <a href="#" class="btn p-1 color-secondary">
+                          <!-- <a href="#" class="btn p-1 color-secondary">
                             <span><i class="fas fa-plus-circle"></i></span>
-                          </a>
+                          </a> -->
                         </div>
                         <div class="row justify-content-end">
                           <div class="col-6 info-tag">

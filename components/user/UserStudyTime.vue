@@ -77,11 +77,11 @@
                   Upcoming Sessions
                 </h2>
                 <div
-                  v-for="sessionItem in studySessionList"
-                  :key="sessionItem.id"
                   class="custom-overflow pr-2 mr--2"
                 >
                   <div
+                  v-for="sessionItem in studySessionList"
+                  :key="sessionItem.id"
                     @click="
                       showSessionDetail = true;
                       setDetail(sessionItem);
@@ -391,6 +391,7 @@
               drag-drop
               p-4
               position-realtive
+              h-100
             "
           >
             <div class="assignment-tag-section d-flex align-items-center mb-2">
