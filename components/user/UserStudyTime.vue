@@ -438,17 +438,19 @@
               class="mb-3"
             >
               <h6 class="color-primary">Sub-tasks</h6>
-              <div v-for="subtask in detail.subTasks" :key="subtask.id">
-                <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12">{{ subtask.title }}</label>
+              <div class="to-do-list">
+                <div v-for="subtask in detail.subTasks" :key="subtask.id">
+                  <div class="pl-2 d-flex align-items-center">
+                    <input type="radio" class="mr-2" />
+                    <label for="" class="mb-0 text-12">{{ subtask.title }}</label>
+                  </div>
+                  <!-- <div class="pl-2 d-flex align-items-center">
+                    <input type="radio" class="mr-2" />
+                    <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                    >
+                  </div> -->
                 </div>
-                <!-- <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12"
-                    >Start typing to add subtasks</label
-                  >
-                </div> -->
               </div>
             </div>
             <div class="">
@@ -1077,9 +1079,11 @@
                     : null
                 }}
               </h3>
-              <span class="color-secondary" @click="onAddGoalClick"
-                ><i class="fas fa-plus"></i
-              ></span>
+              <a  @click="onAddGoalClick" class="btn p-0">
+                <span class="color-secondary"
+                  ><i class="fas fa-plus-circle"></i
+                ></span>
+              </a>
             </div>
             <div v-if="addGoal" class="d-flex flex-row align-items-start">
               <div class="form-row mb-2 mx-0 mr-2">
@@ -1149,9 +1153,11 @@
           <div class="card card-primary rounded-22 h-40 flex-fill p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
-              <span @click="onInviteClick" class="color-secondary"
-                ><i class="fas fa-plus"></i
-              ></span>
+              <a @click="onInviteClick"  class="btn p-0">
+                <span class="color-secondary"
+                  ><i class="fas fa-plus-circle"></i
+                ></span>
+              </a>
             </div>
             <div v-if="invitePeer" class="d-flex flex-row align-items-start">
               <div class="form-row mb-2 mx-0 mr-2">
@@ -1172,12 +1178,14 @@
                   <span slot="noResult">No data found</span>
                 </multiselect>
               </div>
+              <div class="pt-4">
                 <button
                   @click="onInvitePeer"
                   class="btn btn-primary btn-sm mt-2"
                 >
                   Add
                 </button>
+              </div>
             </div>
             <div
               class="hidden-scroll p-3 row my-0"
@@ -1509,7 +1517,6 @@
               p-4
               flex-fill
               mb-4
-              justify-content-center
             "
           >
             <div class="">
