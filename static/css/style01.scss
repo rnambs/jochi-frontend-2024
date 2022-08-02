@@ -239,6 +239,22 @@ body{
             }
         }
     }
+    select.form-control{
+        // -moz-appearance: none !important;
+        // -webkit-appearance: none !important;
+        // appearance: none !important;
+        // &::before{
+        //     content: "\f078";
+        //     display: inline-block;
+        //     font-style: normal;
+        //     font-variant: normal;
+        //     text-rendering: auto;
+        //     -webkit-font-smoothing: antialiased;
+        //     font-family: 'Font Awesome 5 Pro';
+        //     font-weight: 900;
+        // }
+        // background: url("../../static/image/chevron-down-solid.svg") no-repeat right #000000;
+    }
     textarea.form-control{
         border: none;
         background-color: rgba(255, 255, 255, 0.5);
@@ -452,7 +468,17 @@ body{
         } 
     } 
 }
-
+.dropdown{
+    &.show{
+        span.caret{
+            transform: rotate(180deg);
+            transition: ease-in-out all 0.5s;
+        }
+    }
+    span.caret{
+        transition: ease-in-out all 0.5s;
+    }
+}
 
 
 // Card
@@ -4878,7 +4904,7 @@ switch to violet when it is active*/
                             position: relative;
                             cursor: pointer;
                             padding: 0.6rem 0.75rem;
-                            &::after{
+                            &::before{
                                 content: "\f073";
                                 display: inline-block;
                                 font-style: normal;
@@ -4887,9 +4913,12 @@ switch to violet when it is active*/
                                 -webkit-font-smoothing: antialiased;
                                 font-family: 'Font Awesome 5 Pro';
                                 position: absolute;
-                                right: 6px;
-                                top: 6px;
+                                right:12px;
+                                top: 9px;
                                 font-size: 14px;
+                            }
+                            input{
+                                width: 100%;
                             }
                             &.is-invalid{
                                 &::after{

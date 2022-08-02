@@ -102,7 +102,7 @@
                     ></span>
                   </div>
                 </div>
-                <div class="col-md-6 col-lg-3 px-2">
+                <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
                     class="
                       form-row
@@ -428,7 +428,7 @@
                         <tr>
                           <td class="tmodal-data">Date</td>
                           <td class="tmodal-data">
-                            <span class="pr-2"></span>
+                            
                             {{ popupValue[0] }}
                           </td>
                         </tr>
@@ -436,7 +436,7 @@
                         <tr>
                           <td class="tmodal-data">Time</td>
                           <td class="tmodal-data">
-                            <span class="pr-2"></span>
+                            
                             <!-- {{ popupFrom[0] }} to {{ popupEnd[0] }} -->
                             {{ popupFrom[0] }}
                             {{ popupEnd[0] ? "to " + popupEnd[0] : "" }}
@@ -453,6 +453,7 @@
                                 align-items-center
                                 form-row
                                 py-0
+                                px-1
                               "
                             >
                               <p
@@ -463,7 +464,7 @@
                                   align-items-center
                                 "
                               >
-                                <span class="pr-2"></span>
+                                
                                 <!-- <span v-if="value">
                                 {{
                                   value.first_name +
@@ -510,6 +511,7 @@
                                 align-items-center
                                 form-row
                                 py-0
+                                px-1
                               "
                             >
                               <p
@@ -520,7 +522,7 @@
                                   align-items-center
                                 "
                               >
-                                <span class="pr-2"></span>
+                                
                                 <!-- <span v-if="value">
                                 {{
                                   value.first_name +
@@ -573,6 +575,7 @@
                                 align-items-center
                                 form-row
                                 py-0
+                                px-1
                               "
                             >
                               <p
@@ -583,9 +586,9 @@
                                   align-items-center
                                 "
                               >
-                                <span class="pr-2"></span>
+                                
                                 <select
-                                  class="form-control bg-white mb-3"
+                                  class="form-control bg-white mb-0"
                                   tabindex=""
                                   name="conversation_type"
                                   v-model="conversation_type"
@@ -628,6 +631,7 @@
                                 align-items-center
                                 form-row
                                 py-0
+                                px-1
                               "
                             >
                               <p
@@ -638,7 +642,7 @@
                                   align-items-center
                                 "
                               >
-                                <span class="pr-2"></span>
+                                
                                 <!-- <span v-if="value">
                               {{
                                 value.first_name +
@@ -651,7 +655,7 @@
                                   name="venue"
                                   autocomplete="off"
                                   maxlength="200"
-                                  class="form-control custom-form-control"
+                                  class="form-control custom-form-control bg-white"
                                   v-model="venue"
                                   :class="{
                                     'is-invalid': submitted && $v.venue.$error,

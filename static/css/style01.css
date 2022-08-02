@@ -483,6 +483,14 @@ body {
   color: #ffffff;
 }
 
+.dropdown.show span.caret {
+  transform: rotate(180deg);
+  transition: ease-in-out all 0.5s;
+}
+.dropdown span.caret {
+  transition: ease-in-out all 0.5s;
+}
+
 .card {
   border-radius: 0.5rem;
   border: none;
@@ -3495,7 +3503,7 @@ switch to violet when it is active*/
   cursor: pointer;
   padding: 0.6rem 0.75rem;
 }
-.modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker::after {
+.modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker::before {
   content: "\f073";
   display: inline-block;
   font-style: normal;
@@ -3504,9 +3512,12 @@ switch to violet when it is active*/
   -webkit-font-smoothing: antialiased;
   font-family: "Font Awesome 5 Pro";
   position: absolute;
-  right: 6px;
-  top: 6px;
+  right: 12px;
+  top: 9px;
   font-size: 14px;
+}
+.modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker input {
+  width: 100%;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker.is-invalid::after {
   display: none;
