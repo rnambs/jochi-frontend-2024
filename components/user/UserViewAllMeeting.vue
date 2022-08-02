@@ -19,8 +19,8 @@
         "
       >
         <section id="tab" class="">
-          <div class="tab-section container-fluid mt-4">
-            <h3 class="color-primary font-bold px-3">My Meetings</h3>
+          <div class="tab-section container-fluid">
+            <h2 class="color-primary font-semi-bold ">My Meetings</h2>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0 mb-3">
                 <!-- <div class="col-md-4">
@@ -40,7 +40,7 @@
                     ></span>
                   </div>
                 </div> -->
-                <div class="col-md-4 p-0 px-3 mx-1">
+                <div class="col-md-4 p-0  mx-1">
                   <div class="dropdown form-row custom-sort-by-btn">
                     <div
                      
@@ -86,7 +86,6 @@
           <div
             class="
               meeting-section
-              container-fluid
               d-flex
               custom-overflow
               pe-2

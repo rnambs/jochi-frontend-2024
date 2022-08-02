@@ -382,7 +382,7 @@
                   <div class="mb-0 d-flex">
                     <button
                       class="
-                        btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block
+                        btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block px-0
                         text-left
                         collapsed
                         justify-content-start
@@ -417,7 +417,7 @@
                   <div class="mb-0 d-flex">
                     <button
                       class="
-                        btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block
+                        btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block px-0
                         text-left
                         collapsed
                         justify-content-start

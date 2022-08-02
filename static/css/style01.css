@@ -506,8 +506,8 @@ body {
 }
 .card.card-primary-void {
   background-color: transparent;
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
   box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
 }
 .card.card-primary-sm {
@@ -597,6 +597,10 @@ img.card-img {
 
 .min-w-100 {
   min-width: 100px;
+}
+
+.min-w-200 {
+  min-width: 200px;
 }
 
 @-webkit-keyframes jump {
@@ -3340,6 +3344,13 @@ img.dark-icon {
   background: #f49196;
 }
 
+.custom-switch .custom-control-label::before {
+  top: 0.025rem;
+}
+.custom-switch .custom-control-label::after {
+  top: calc(0.0375rem + 2px);
+}
+
 .custom-control-input:focus ~ .custom-control-label::before {
   /* when the button is toggled off 
   it is still in focus and a violet border will appear */
@@ -4242,7 +4253,7 @@ select.form-control.is-invalid {
   right: -12px;
 }
 .approved-tag .approved-status {
-  width: 30px;
+  width: 34px;
 }
 .approved-tag .approved-status.pending .pending-img {
   display: block;

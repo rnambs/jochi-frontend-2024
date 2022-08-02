@@ -497,7 +497,7 @@ body{
     }
     &.card-primary-void{
         background-color: transparent;
-        backdrop-filter: blur(9px);
+        backdrop-filter: blur(30px);
         box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
     }
     &.card-primary-sm{
@@ -585,6 +585,9 @@ img.card-img{
 
 .min-w-100{
     min-width: 100px;
+}
+.min-w-200{
+    min-width: 200px;
 }
 
 // @keyframes jump {
@@ -4720,7 +4723,14 @@ img.dark-icon{
 ::-webkit-scrollbar-thumb:hover {
     background: #f49196;
 }
-
+.custom-switch{
+    .custom-control-label::before {
+        top: 0.025rem;
+    }
+    .custom-control-label::after {
+        top: calc(0.0375rem + 2px);
+    }
+}
 .custom-control-input:focus ~ 
 .custom-control-label::before {
       /* when the button is toggled off 
@@ -5843,7 +5853,7 @@ select.form-control{
     top: -12px;
     right: -12px;
     .approved-status {
-        width: 30px;
+        width: 34px;
         &.pending {
             .pending-img {
                 display: block;

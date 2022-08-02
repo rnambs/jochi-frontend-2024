@@ -19,8 +19,8 @@
         "
       >
         <section id="tab" class="">
-          <div class="tab-section container-fluid mt-4 w-100">
-            <h3 class="color-primary font-bold">Schedule a Meeting!</h3>
+          <div class="tab-section container-fluid w-100">
+            <h2 class="color-primary font-semi-bold">Schedule a Meeting!</h2>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0">
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
@@ -35,7 +35,7 @@
                     <multiselect
                       v-model="meetingType"
                       :options="types"
-                      placeholder="Types of Meeting"
+                      placeholder="Type of Meeting"
                     >
                       <span slot="noResult">No data found</span>
                     </multiselect>
@@ -126,7 +126,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 px-2 justify-content-md-end">
-                  <div class="custom-switch pb-2">
+                  <div class="custom-switch pb-1">
                     <input
                       type="checkbox"
                       class="custom-control-input color-primary"
@@ -212,7 +212,7 @@
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary font-medium">Step 1</h6>
                       <p class="color-secondary text-12">
-                        Search & Select Your Teacher
+                        Search & Select Meeting Participants
                       </p>
                     </div>
                   </div>
@@ -242,7 +242,7 @@
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary font-medium">Step 3</h6>
                       <p class="color-secondary text-12">
-                        Select Your Time and Confirm
+                        Confirm Meeting Details
                       </p>
                     </div>
                   </div>

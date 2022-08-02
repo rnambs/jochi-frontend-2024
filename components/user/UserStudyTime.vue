@@ -1172,21 +1172,20 @@
                   <span slot="noResult">No data found</span>
                 </multiselect>
               </div>
-              <div class="pt-4">
                 <button
                   @click="onInvitePeer"
                   class="btn btn-primary btn-sm mt-2"
                 >
                   Add
                 </button>
-              </div>
             </div>
             <div
-              v-for="peer of peerList"
-              :key="peer.id"
               class="hidden-scroll p-3 row my-0"
             >
-              <div class="d-flex align-items-center my-2 mr-3">
+              <div 
+                v-for="peer of peerList"
+                :key="peer.id"
+                class="d-flex align-items-center my-2 mr-3 min-w-200">
                 <div class="ld-img-section mr-3">
                   <div class="ld-img-holder"></div>
                 </div>
@@ -1455,15 +1454,15 @@
                         Start Session
                       </button>
                     </div>
+                    <div class="py-1">
+                      <button
+                        @click="openScheduleForLater()"
+                        class="btn btn-dark btn-sm"
+                      >
+                        Schedule for later
+                      </button>
+                    </div>
                   </form>
-                  <div class="py-1">
-                    <button
-                      @click="openScheduleForLater()"
-                      class="btn btn-dark btn-sm"
-                    >
-                      Schedule for later
-                    </button>
-                  </div>
                 </div>
               </div>
               <div class="d-flex justify-content-end">
@@ -1550,11 +1549,12 @@
           <div class="card card-light rounded-22 p-4">
             <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
             <div
-              v-for="peer in peerList"
-              :key="peer.id"
               class="hidden-scroll p-3 row my-0"
             >
-              <div class="d-flex align-items-center my-2 mr-3">
+              <div
+                v-for="peer in peerList"
+                :key="peer.id"
+               class="d-flex align-items-center my-2 mr-3 min-w-200">
                 <div class="ld-img-section mr-3">
                   <div class="ld-img-holder"></div>
                 </div>
@@ -1585,14 +1585,14 @@
               justify-constent-center
             "
           >
-            <div class="d-flex flex-column flex-fill justify-content-center">
+            <div class="d-flex flex-column flex-fill justify-content-between">
               <div class="d-flex flex-column mb-4">
                 <h1 class="color-primary font-bold mb-0">Timer</h1>
                 <p class="color-dark text-24 font-semi-bold mb-1">
                   Concentrate on session
                 </p>
               </div>
-              <div id="app" class="mb-3">
+              <div id="app" class="mb-3 flex-fill d-flex align-items-center justify-content-center">
                 <div class="base-timer m-auto">
                   <svg
                     class="base-timer__svg"
@@ -1645,10 +1645,10 @@
                 @click.prevent="
                   showResume ? onResumeSession() : onPauseSession()
                 "
-                class="btn btn-color mb-2 mt-2 pl-3 pr-3"
+                class="btn btn-primary mb-2 mt-2 px-4"
                 id="pause-button"
               >
-                <i class="fa fa-pause color-dark"></i>
+                <i class="fa fa-pause color-white mr-2"></i>
                 {{ showResume ? "Resume" : "Pause" }}
               </button>
             </div>
@@ -2205,14 +2205,14 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-color-close"
+              class="btn btn-secondary px-4 py-1 rounded-pill"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-color-save"
+              class="btn btn-primary px-4 py-1 rounded-pill"
               data-dismiss="modal"
               @click="onEndSession()"
               :disabled="processing"
@@ -2287,14 +2287,14 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-color-close"
+              class="btn btn-secondary px-4 py-1 rounded-pill"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-color-save"
+              class="btn btn-primary rounded-pill px-4 py-1" 
               data-dismiss="modal"
               @click="StartStudySession(false)"
               :disabled="processing"
