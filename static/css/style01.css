@@ -445,7 +445,7 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
   border-radius: 0.4rem;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: #B4B4B4;
   padding: 0.375rem 0.75rem;
   height: calc(2.25rem + 2px);
@@ -3422,9 +3422,6 @@ switch to violet when it is active*/
     max-width: 400px;
   }
 }
-.modal .modal-dialog.add-assmt {
-  top: -30px;
-}
 .modal .modal-dialog .modal-content {
   height: auto;
   border: none;
@@ -3475,55 +3472,10 @@ switch to violet when it is active*/
   color: #C5C0BD;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group .form-control {
-  border-radius: 0.4rem;
-  font-size: 0.75rem;
-  color: #B4B4B4;
-  padding: 0.375rem 0.75rem;
-  height: calc(2.25rem + 2px);
-  text-align: left;
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .form-control:focus {
-  border: none;
-  background: rgba(255, 255, 255, 0.45);
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .form-control::-moz-placeholder {
-  color: rgba(180, 180, 180, 0.4);
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .form-control:-ms-input-placeholder {
-  color: rgba(180, 180, 180, 0.4);
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .form-control::placeholder {
-  color: rgba(180, 180, 180, 0.4);
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .form-control .dropdown-input {
-  color: #B4B4B4;
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker {
-  position: relative;
-  cursor: pointer;
-  padding: 0.6rem 0.75rem;
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker::before {
-  content: "\f073";
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  font-family: "Font Awesome 5 Pro";
-  position: absolute;
-  right: 12px;
-  top: 9px;
-  font-size: 14px;
+  font-size: 0.9rem;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker input {
   width: 100%;
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker.is-invalid::after {
-  display: none;
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker input[type=text] {
-  line-height: 0;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group select.form-control {
   cursor: pointer;
@@ -3550,23 +3502,6 @@ switch to violet when it is active*/
   position: absolute;
   right: 6px;
   font-size: 14px;
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .dropdown .dropdown-menu {
-  background-color: #2D2D2F;
-  font-size: 0.8rem;
-  padding: inherit;
-  border-radius: 0.3rem;
-  list-style-type: none;
-  border: 2px solid #f0f0f0;
-  border-radius: 0.45rem;
-  padding: 0.375rem 0.75rem;
-  z-index: 10;
-  position: absolute;
-  left: 0;
-  width: 100%;
-  top: calc(2.25rem + 2px) !important;
-  max-height: 200px;
-  overflow: auto;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group .dropdown .dropdown-menu .item {
   cursor: pointer;
@@ -3988,7 +3923,7 @@ switch to violet when it is active*/
   }
 }
 .vdp-datepicker.form-control input[type=text] {
-  color: #B4B4B4;
+  color: #C5C0BD;
   cursor: pointer;
   padding-top: 0.15em;
 }
@@ -4026,6 +3961,7 @@ switch to violet when it is active*/
   border-width: 0 2px 2px 0;
 }
 .vdp-datepicker__calendar header span.day__month_btn.up {
+  color: #431F1C;
   font-weight: 600;
   font-size: 13px;
 }
@@ -4047,10 +3983,12 @@ switch to violet when it is active*/
   border-width: 0 2px 2px 0;
 }
 .vdp-datepicker__calendar span.cell.day-header {
+  color: #C5C0BD;
   font-weight: 600;
   font-size: 12px;
 }
 .vdp-datepicker__calendar span.cell.day {
+  color: #431F1C;
   font-size: 12px;
   white-space: nowrap;
   text-align: center;
@@ -4065,7 +4003,7 @@ switch to violet when it is active*/
 }
 .vdp-datepicker__calendar span.cell.day.selected {
   background-color: #FF6D6D;
-  color: #F9F9F9;
+  color: #ffffff;
 }
 .vdp-datepicker__calendar span.cell.day:hover {
   border: none !important;
@@ -4076,7 +4014,7 @@ switch to violet when it is active*/
 }
 .vdp-datepicker__calendar span.cell.month.selected {
   background-color: #FF6D6D;
-  color: #F9F9F9;
+  color: #ffffff;
 }
 .vdp-datepicker__calendar span.cell.month:hover {
   border: none !important;
@@ -4087,7 +4025,7 @@ switch to violet when it is active*/
 }
 .vdp-datepicker__calendar span.cell.year.selected {
   background-color: #FF6D6D;
-  color: #F9F9F9;
+  color: #ffffff;
 }
 .vdp-datepicker__calendar span.cell.year:hover {
   border: none !important;
