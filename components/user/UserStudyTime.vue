@@ -1193,12 +1193,14 @@
               <div 
                 v-for="peer of peerList"
                 :key="peer.id"
-                class="d-flex align-items-center my-2 mr-3 min-w-200">
-                <div class="ld-img-section mr-3">
-                  <div class="ld-img-holder"></div>
-                </div>
-                <div class="ld-details-section">
-                  <p class="ld-heading mb-1">{{ peer.first_name }}</p>
+                class="h-fit-content">
+                <div class="d-flex align-items-center my-2 mr-3 min-w-200">
+                  <div class="ld-img-section mr-3">
+                    <div class="ld-img-holder"></div>
+                  </div>
+                  <div class="ld-details-section">
+                    <p class="ld-heading mb-1">{{ peer.first_name }}</p>
+                  </div>
                 </div>
               </div>
             </div>

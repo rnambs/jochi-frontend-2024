@@ -1213,9 +1213,9 @@ export default {
   top: 8px;
 }
 
-.fc-scrollgrid-sync-table{
+/* .fc-scrollgrid-sync-table{
   display: none;
-}
+} */
 
 .fc .fc-cell-shaded,
 .fc .fc-day-disabled {

@@ -3694,12 +3694,10 @@ switch to violet when it is active*/
 .base-timer {
   position: relative;
   width: 300px;
-  height: 300px;
 }
 @media (max-width: 767.98px) {
   .base-timer {
     width: 245px;
-    height: 245px;
   }
 }
 
@@ -3734,19 +3732,17 @@ switch to violet when it is active*/
 
 .inner-timer {
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 100%;
+  height: calc(100% - 40px);
   top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-@media (max-width: 767.98px) {
-  .inner-timer {
-    width: 245px;
-    height: 245px;
-  }
+.inner-timer img {
+  max-width: 130px;
+  width: 100%;
 }
 .inner-timer .base-timer__label {
   color: #F9F9F9;

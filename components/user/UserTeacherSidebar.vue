@@ -315,7 +315,18 @@
                 <span class="ml-3 color-secondary text-capitalize font-medium">Club Catalog</span>
               </nuxt-link>
             </li>
-
+            <li class="menu-list nav-item">
+              <nuxt-link
+                to="/teacher-advisor"
+                data-toggle="collapse"
+                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
+              >
+                <div class="font-icon d-inline-block">
+                  <img src="../../static/image/advisor.png" alt="">
+                </div>
+                <span class="ml-3 color-secondary text-capitalize font-medium">Advisor</span>
+              </nuxt-link>
+            </li>
             <!-- <li class="menu-list nav-item">
               <div class="card mb-2">
                 <div class="card-header p-1" id="headingThree">
