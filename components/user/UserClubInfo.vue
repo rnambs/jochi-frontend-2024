@@ -58,7 +58,7 @@
                 pr-3
                 py-0
                 pl-0
-                custom-overflow
+                
               "
             >
               <div class="my-2 px-2">
@@ -135,7 +135,10 @@
                         @change="ShowClubInCatalog()"
                         v-on:click="availabilityToggle()"
                       />
-                      <label class="custom-control-label" for="custom-Switches"
+                      <label class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14" for="custom-Switches"
                         >Show club in catalog
                       </label>
                     </div> -->
@@ -409,9 +412,9 @@
                           "
                         >
                           <h4 class="color-dark mb-0 mr-2 font-bold">Tags</h4>
-                          <a href="#" class="btn p-1 color-secondary">
+                          <!-- <a href="#" class="btn p-1 color-secondary">
                             <span><i class="fas fa-plus-circle"></i></span>
-                          </a>
+                          </a> -->
                         </div>
                         <div class="row justify-content-end">
                           <div class="col-6 info-tag">

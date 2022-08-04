@@ -77,11 +77,11 @@
                   Upcoming Sessions
                 </h2>
                 <div
-                  v-for="sessionItem in studySessionList"
-                  :key="sessionItem.id"
                   class="custom-overflow pr-2 mr--2"
                 >
                   <div
+                  v-for="sessionItem in studySessionList"
+                  :key="sessionItem.id"
                     @click="
                       showSessionDetail = true;
                       setDetail(sessionItem);
@@ -391,6 +391,7 @@
               drag-drop
               p-4
               position-realtive
+              h-100
             "
           >
             <div class="assignment-tag-section d-flex align-items-center mb-2">
@@ -437,17 +438,19 @@
               class="mb-3"
             >
               <h6 class="color-primary">Sub-tasks</h6>
-              <div v-for="subtask in detail.subTasks" :key="subtask.id">
-                <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12">{{ subtask.title }}</label>
+              <div class="to-do-list">
+                <div v-for="subtask in detail.subTasks" :key="subtask.id">
+                  <div class="pl-2 d-flex align-items-center">
+                    <input type="radio" class="mr-2" />
+                    <label for="" class="mb-0 text-12">{{ subtask.title }}</label>
+                  </div>
+                  <!-- <div class="pl-2 d-flex align-items-center">
+                    <input type="radio" class="mr-2" />
+                    <label for="" class="mb-0 text-12"
+                      >Start typing to add subtasks</label
+                    >
+                  </div> -->
                 </div>
-                <!-- <div class="pl-2 d-flex align-items-center">
-                  <input type="radio" class="mr-2" />
-                  <label for="" class="mb-0 text-12"
-                    >Start typing to add subtasks</label
-                  >
-                </div> -->
               </div>
             </div>
             <div class="">
@@ -1076,9 +1079,11 @@
                     : null
                 }}
               </h3>
-              <span class="color-secondary" @click="onAddGoalClick"
-                ><i class="fas fa-plus"></i
-              ></span>
+              <a  @click="onAddGoalClick" class="btn p-0">
+                <span class="color-secondary"
+                  ><i class="fas fa-plus-circle"></i
+                ></span>
+              </a>
             </div>
             <div v-if="addGoal" class="d-flex flex-row align-items-start">
               <div class="form-row mb-2 mx-0 mr-2">
@@ -1148,9 +1153,11 @@
           <div class="card card-primary rounded-22 h-40 flex-fill p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
-              <span @click="onInviteClick" class="color-secondary"
-                ><i class="fas fa-plus"></i
-              ></span>
+              <a @click="onInviteClick"  class="btn p-0">
+                <span class="color-secondary"
+                  ><i class="fas fa-plus-circle"></i
+                ></span>
+              </a>
             </div>
             <div v-if="invitePeer" class="d-flex flex-row align-items-start">
               <div class="form-row mb-2 mx-0 mr-2">
@@ -1181,16 +1188,19 @@
               </div>
             </div>
             <div
-              v-for="peer of peerList"
-              :key="peer.id"
               class="hidden-scroll p-3 row my-0"
             >
-              <div class="d-flex align-items-center my-2 mr-3">
-                <div class="ld-img-section mr-3">
-                  <div class="ld-img-holder"></div>
-                </div>
-                <div class="ld-details-section">
-                  <p class="ld-heading mb-1">{{ peer.first_name }}</p>
+              <div 
+                v-for="peer of peerList"
+                :key="peer.id"
+                class="h-fit-content">
+                <div class="d-flex align-items-center my-2 mr-3 min-w-200">
+                  <div class="ld-img-section mr-3">
+                    <div class="ld-img-holder"></div>
+                  </div>
+                  <div class="ld-details-section">
+                    <p class="ld-heading mb-1">{{ peer.first_name }}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1454,15 +1464,15 @@
                         Start Session
                       </button>
                     </div>
+                    <div class="py-1">
+                      <button
+                        @click="openScheduleForLater()"
+                        class="btn btn-dark btn-sm"
+                      >
+                        Schedule for later
+                      </button>
+                    </div>
                   </form>
-                  <div class="py-1">
-                    <button
-                      @click="openScheduleForLater()"
-                      class="btn btn-dark btn-sm"
-                    >
-                      Schedule for later
-                    </button>
-                  </div>
                 </div>
               </div>
               <div class="d-flex justify-content-end">
@@ -1509,7 +1519,6 @@
               p-4
               flex-fill
               mb-4
-              justify-content-center
             "
           >
             <div class="">
@@ -1549,11 +1558,12 @@
           <div class="card card-light rounded-22 p-4">
             <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
             <div
-              v-for="peer in peerList"
-              :key="peer.id"
               class="hidden-scroll p-3 row my-0"
             >
-              <div class="d-flex align-items-center my-2 mr-3">
+              <div
+                v-for="peer in peerList"
+                :key="peer.id"
+               class="d-flex align-items-center my-2 mr-3 min-w-200">
                 <div class="ld-img-section mr-3">
                   <div class="ld-img-holder"></div>
                 </div>
@@ -1584,14 +1594,14 @@
               justify-constent-center
             "
           >
-            <div class="d-flex flex-column flex-fill justify-content-center">
+            <div class="d-flex flex-column flex-fill justify-content-between">
               <div class="d-flex flex-column mb-4">
                 <h1 class="color-primary font-bold mb-0">Timer</h1>
                 <p class="color-dark text-24 font-semi-bold mb-1">
                   Concentrate on session
                 </p>
               </div>
-              <div id="app" class="mb-3">
+              <div id="app" class="mb-3 flex-fill d-flex align-items-center justify-content-center">
                 <div class="base-timer m-auto">
                   <svg
                     class="base-timer__svg"
@@ -1644,10 +1654,10 @@
                 @click.prevent="
                   showResume ? onResumeSession() : onPauseSession()
                 "
-                class="btn btn-color mb-2 mt-2 pl-3 pr-3"
+                class="btn btn-primary mb-2 mt-2 px-4"
                 id="pause-button"
               >
-                <i class="fa fa-pause color-dark"></i>
+                <i class="fa fa-pause color-white mr-2"></i>
                 {{ showResume ? "Resume" : "Pause" }}
               </button>
             </div>
@@ -2204,14 +2214,14 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-color-close"
+              class="btn btn-secondary px-4 py-1 rounded-pill"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-color-save"
+              class="btn btn-primary px-4 py-1 rounded-pill"
               data-dismiss="modal"
               @click="onEndSession()"
               :disabled="processing"
@@ -2286,14 +2296,14 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-color-close"
+              class="btn btn-secondary px-4 py-1 rounded-pill"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-color-save"
+              class="btn btn-primary rounded-pill px-4 py-1" 
               data-dismiss="modal"
               @click="StartStudySession(false)"
               :disabled="processing"

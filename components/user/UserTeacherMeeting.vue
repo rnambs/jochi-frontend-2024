@@ -19,8 +19,8 @@
         "
       >
         <section id="tab" class="">
-          <div class="tab-section container-fluid mt-4 w-100">
-            <h3 class="color-primary font-bold">Schedule a Meeting!</h3>
+          <div class="tab-section container-fluid w-100">
+            <h2 class="color-primary font-semi-bold">Schedule a Meeting!</h2>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0">
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
@@ -35,7 +35,7 @@
                     <multiselect
                       v-model="meetingType"
                       :options="types"
-                      placeholder="Types of Meeting"
+                      placeholder="Type of Meeting"
                     >
                       <span slot="noResult">No data found</span>
                     </multiselect>
@@ -102,7 +102,7 @@
                     ></span>
                   </div>
                 </div>
-                <div class="col-md-6 col-lg-3 px-2">
+                <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
                     class="
                       form-row
@@ -126,7 +126,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 px-2 justify-content-md-end">
-                  <div class="custom-switch pb-2">
+                  <div class="custom-switch pb-1">
                     <input
                       type="checkbox"
                       class="custom-control-input color-primary"
@@ -212,7 +212,7 @@
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary font-medium">Step 1</h6>
                       <p class="color-secondary text-12">
-                        Search & Select Your Teacher
+                        Search & Select Meeting Participants
                       </p>
                     </div>
                   </div>
@@ -242,7 +242,7 @@
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary font-medium">Step 3</h6>
                       <p class="color-secondary text-12">
-                        Select Your Time and Confirm
+                        Confirm Meeting Details
                       </p>
                     </div>
                   </div>
@@ -428,7 +428,7 @@
                         <tr>
                           <td class="tmodal-data">Date</td>
                           <td class="tmodal-data">
-                            <span class="pr-2"></span>
+                            
                             {{ popupValue[0] }}
                           </td>
                         </tr>
@@ -436,7 +436,7 @@
                         <tr>
                           <td class="tmodal-data">Time</td>
                           <td class="tmodal-data">
-                            <span class="pr-2"></span>
+                            
                             <!-- {{ popupFrom[0] }} to {{ popupEnd[0] }} -->
                             {{ popupFrom[0] }}
                             {{ popupEnd[0] ? "to " + popupEnd[0] : "" }}
@@ -453,6 +453,7 @@
                                 align-items-center
                                 form-row
                                 py-0
+                                px-1
                               "
                             >
                               <p
@@ -463,7 +464,7 @@
                                   align-items-center
                                 "
                               >
-                                <span class="pr-2"></span>
+                                
                                 <!-- <span v-if="value">
                                 {{
                                   value.first_name +
@@ -510,6 +511,7 @@
                                 align-items-center
                                 form-row
                                 py-0
+                                px-1
                               "
                             >
                               <p
@@ -520,7 +522,7 @@
                                   align-items-center
                                 "
                               >
-                                <span class="pr-2"></span>
+                                
                                 <!-- <span v-if="value">
                                 {{
                                   value.first_name +
@@ -573,6 +575,7 @@
                                 align-items-center
                                 form-row
                                 py-0
+                                px-1
                               "
                             >
                               <p
@@ -583,9 +586,9 @@
                                   align-items-center
                                 "
                               >
-                                <span class="pr-2"></span>
+                                
                                 <select
-                                  class="form-control bg-white mb-3"
+                                  class="form-control bg-white mb-0"
                                   tabindex=""
                                   name="conversation_type"
                                   v-model="conversation_type"
@@ -628,6 +631,7 @@
                                 align-items-center
                                 form-row
                                 py-0
+                                px-1
                               "
                             >
                               <p
@@ -638,7 +642,7 @@
                                   align-items-center
                                 "
                               >
-                                <span class="pr-2"></span>
+                                
                                 <!-- <span v-if="value">
                               {{
                                 value.first_name +
@@ -651,7 +655,7 @@
                                   name="venue"
                                   autocomplete="off"
                                   maxlength="200"
-                                  class="form-control custom-form-control"
+                                  class="form-control custom-form-control bg-white"
                                   v-model="venue"
                                   :class="{
                                     'is-invalid': submitted && $v.venue.$error,

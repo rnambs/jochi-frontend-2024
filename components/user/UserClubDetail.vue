@@ -58,7 +58,10 @@
                       v-model="availability"
                       @change="SyncClub()"
                     />
-                    <label class="custom-control-label" for="custom-Switches"
+                    <label class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14" for="custom-Switches"
                       >Sync to Planner
                     </label>
                   </div>
@@ -131,9 +134,9 @@
                       />
                     </div>
                     <div class="d-flex flex-column">
-                      <h6 class="list-title mb-3 color-primary font-medium">
+                      <h5 class="list-title mb-3 color-primary font-semi-bold pr-3">
                         {{ list["description"] }}
-                      </h6>
+                      </h5>
                       <div class="to-do-list">
                         <ul class="list-unstyled">
                           <li

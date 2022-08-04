@@ -239,6 +239,22 @@ body{
             }
         }
     }
+    select.form-control{
+        // -moz-appearance: none !important;
+        // -webkit-appearance: none !important;
+        // appearance: none !important;
+        // &::before{
+        //     content: "\f078";
+        //     display: inline-block;
+        //     font-style: normal;
+        //     font-variant: normal;
+        //     text-rendering: auto;
+        //     -webkit-font-smoothing: antialiased;
+        //     font-family: 'Font Awesome 5 Pro';
+        //     font-weight: 900;
+        // }
+        // background: url("../../static/image/chevron-down-solid.svg") no-repeat right #000000;
+    }
     textarea.form-control{
         border: none;
         background-color: rgba(255, 255, 255, 0.5);
@@ -405,7 +421,7 @@ body{
             background-color: rgba(255, 255, 255, 0.5);
             box-shadow: 0 0 5px rgb(0 0 0 / 5%);
             border-radius: 0.4rem;
-            font-size: 0.75rem;
+            font-size: 0.9rem;
             color: $font-label-color;
             padding: .375rem .75rem;
             height: calc(2.25rem + 2px);
@@ -452,7 +468,17 @@ body{
         } 
     } 
 }
-
+.dropdown{
+    &.show{
+        span.caret{
+            transform: rotate(180deg);
+            transition: ease-in-out all 0.5s;
+        }
+    }
+    span.caret{
+        transition: ease-in-out all 0.5s;
+    }
+}
 
 
 // Card
@@ -471,7 +497,7 @@ body{
     }
     &.card-primary-void{
         background-color: transparent;
-        backdrop-filter: blur(9px);
+        backdrop-filter: blur(30px);
         box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
     }
     &.card-primary-sm{
@@ -559,6 +585,9 @@ img.card-img{
 
 .min-w-100{
     min-width: 100px;
+}
+.min-w-200{
+    min-width: 200px;
 }
 
 // @keyframes jump {
@@ -2474,8 +2503,8 @@ img.dark-icon{
             font-size: 0.8rem;
         }
         .to-do-list{
-            max-height: 76px;
-            min-height: 76px;
+            max-height: 74px;
+            min-height: 74px;
             overflow: hidden;
         }
         // end club info tab.
@@ -4694,7 +4723,14 @@ img.dark-icon{
 ::-webkit-scrollbar-thumb:hover {
     background: #f49196;
 }
-
+.custom-switch{
+    .custom-control-label::before {
+        top: 0.025rem;
+    }
+    .custom-control-label::after {
+        top: calc(0.0375rem + 2px);
+    }
+}
 .custom-control-input:focus ~ 
 .custom-control-label::before {
       /* when the button is toggled off 
@@ -4800,9 +4836,9 @@ switch to violet when it is active*/
         @media (max-width:1024.98px) {
             max-width: 400px;
         }
-        &.add-assmt{
-            top: -30px;
-        }
+        // &.add-assmt{
+        //     top: -30px;
+        // }
         .modal-content{
             height: auto;
             border: none;
@@ -4856,29 +4892,29 @@ switch to violet when it is active*/
                     .form-control{
                         // border: 2px solid $border-color;
                         // background-color: $global-sidebar-bg;
-                        border-radius: 0.4rem;
-                        font-size: 0.75rem;
-                        color: $font-label-color;
-                        padding: .375rem .75rem;
-                        height: calc(2.25rem + 2px);
-                        text-align: left;
-                        &:focus{
-                            border: none;
-                            background: $global-background-color ;
-                            // box-shadow: -4px -4px 6px #202021,
-                            //             4px 4px 7px #3a3a3d;
-                        } 
-                        &::placeholder{
-                            color: rgba($color:$font-label-color,$alpha:0.4);
-                        }
-                        .dropdown-input{
-                            color: $font-label-color;
-                        } 
+                        // border-radius: 0.4rem;
+                        font-size: 0.9rem;
+                        // color: $font-label-color;
+                        // padding: .375rem .75rem;
+                        // height: calc(2.25rem + 2px);
+                        // text-align: left;
+                        // &:focus{
+                        //     border: none;
+                        //     background: $global-background-color ;
+                        //     box-shadow: -4px -4px 6px #202021,
+                        //                 4px 4px 7px #3a3a3d;
+                        // } 
+                        // &::placeholder{
+                        //     color: rgba($color:$font-label-color,$alpha:0.4);
+                        // }
+                        // .dropdown-input{
+                        //     color: $font-label-color;
+                        // } 
                         &.vdp-datepicker{
                             position: relative;
                             cursor: pointer;
                             padding: 0.6rem 0.75rem;
-                            &::after{
+                            &::before{
                                 content: "\f073";
                                 display: inline-block;
                                 font-style: normal;
@@ -4887,9 +4923,12 @@ switch to violet when it is active*/
                                 -webkit-font-smoothing: antialiased;
                                 font-family: 'Font Awesome 5 Pro';
                                 position: absolute;
-                                right: 6px;
-                                top: 6px;
+                                right:12px;
+                                top: 9px;
                                 font-size: 14px;
+                            }
+                            input{
+                                width: 100%;
                             }
                             &.is-invalid{
                                 &::after{
@@ -4927,21 +4966,21 @@ switch to violet when it is active*/
                             }
                         }
                         .dropdown-menu{
-                            background-color: $global-sidebar-bg ;
-                            font-size: 0.8rem;
-                            padding: inherit;
-                            border-radius: 0.3rem;
-                            list-style-type: none;
-                            border: 2px solid $border-color;
-                            border-radius: 0.45rem;
-                            padding: .375rem .75rem;
-                            z-index: 10;
-                            position: absolute;
-                            left: 0;
-                            width: 100%;
-                            top: calc(2.25rem + 2px) !important;
-                            max-height: 200px;
-                            overflow: auto;
+                            // background-color: $global-sidebar-bg ;
+                            // font-size: 0.8rem;
+                            // padding: inherit;
+                            // border-radius: 0.3rem;
+                            // list-style-type: none;
+                            // border: 2px solid $border-color;
+                            // border-radius: 0.45rem;
+                            // padding: .375rem .75rem;
+                            // z-index: 10;
+                            // position: absolute;
+                            // left: 0;
+                            // width: 100%;
+                            // top: calc(2.25rem + 2px) !important;
+                            // max-height: 200px;
+                            // overflow: auto;
                             .item{
                                 cursor: pointer;
                                 display: flex;
@@ -5150,10 +5189,10 @@ switch to violet when it is active*/
   .base-timer {
     position: relative;
     width: 300px;
-    height: 300px;
+    // height: 300px;
     @media (max-width: 767.98px) {
         width: 245px;
-        height: 245px;
+        // height: 245px;
     }
   }
   
@@ -5187,16 +5226,20 @@ switch to violet when it is active*/
   }
   .inner-timer{
     position: absolute;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: calc(100% - 40px);
     top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    @media (max-width: 767.98px) {
-        width: 245px;
-        height: 245px;
+    // @media (max-width: $lg-screen ) {
+    //     width: 245px;
+    //     height: 245px;
+    // }
+    img{
+        max-width: 130px;
+        width: 100%;
     }
     .base-timer__label {
         color: $global-font-color;
@@ -5452,7 +5495,7 @@ switch to violet when it is active*/
 // time Picker Add Assignment
 .vdp-datepicker.form-control{
     input[type="text"]{
-        color: $font-label-color;
+        color: $text-secondary;
         cursor: pointer;
         padding-top: 0.15em;
     }
@@ -5468,6 +5511,7 @@ switch to violet when it is active*/
     border: 1px solid #ddd;
     z-index: 99999 !important;
     padding: 8px 8px 16px;
+    overflow: hidden;
     header{
         line-height: 25px;
         span.prev{
@@ -5490,6 +5534,7 @@ switch to violet when it is active*/
             }
         }
         span.day__month_btn.up{
+            color: $text-dark;
             font-weight: 600;
             font-size: 13px;
         }
@@ -5515,10 +5560,12 @@ switch to violet when it is active*/
     }
     // week head
     span.cell.day-header{
+        color: $text-secondary;
         font-weight: 600;
         font-size: 12px;
     }
     span.cell.day{
+        color: $text-dark;
         font-size: 12px;
         white-space: nowrap;
         text-align: center;
@@ -5532,7 +5579,7 @@ switch to violet when it is active*/
         cursor: pointer;
         &.selected{
             background-color: $theme-color;
-            color: $global-font-color;
+            color: $white;
         }
         &:hover{
             border: none !important;
@@ -5543,7 +5590,7 @@ switch to violet when it is active*/
         border-radius: 4px;
         &.selected{
             background-color: $theme-color;
-            color: $global-font-color;
+            color: $white;
         }
         &:hover{
             border: none !important;
@@ -5554,7 +5601,7 @@ switch to violet when it is active*/
         border-radius: 4px;
         &.selected{
             background-color: $theme-color;
-            color: $global-font-color;
+            color: $white;
         }
         &:hover{
             border: none !important;
@@ -5811,7 +5858,7 @@ select.form-control{
     top: -12px;
     right: -12px;
     .approved-status {
-        width: 30px;
+        width: 34px;
         &.pending {
             .pending-img {
                 display: block;

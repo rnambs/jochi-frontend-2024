@@ -146,7 +146,6 @@
                                 "
                               >
                                 <div
-                                  @click="openEditSportsActivity(item)"
                                   class="left-side"
                                 >
                                   <h4
@@ -157,16 +156,19 @@
                                       mb-1
                                       font-semi-bold
                                       text-18
+                                      cursor-pointer
                                     "
                                   >
                                     {{ item.title }}
                                   </h4>
                                   <p
+                                    @click="openEditSportsActivity(item)"
                                     class="
                                       color-dark
                                       text-16
                                       font-semi-bold
                                       mb-0
+                                      cursor-pointer
                                     "
                                   >
                                     {{ item.first_name }}
@@ -198,12 +200,14 @@
                                     right-side
                                     h-100
                                     d-flex
-                                    align-items-end align-items-sm-center
+                                    align-items-end
+                                    align-items-sm-center
+                                    align-items-lg-end
                                     justify-content-between
-                                    flex-column flex-sm-row
+                                    flex-column flex-sm-row flex-lg-column
                                   "
                                 >
-                                  <p class="mb-0 color-secondary mr-2">
+                                  <p class="mb-0 color-secondary text-right">
                                     <span
                                       ><i class="fas fa-map-marker-alt"></i
                                     ></span>
@@ -270,24 +274,14 @@
                                   {{ item.first_name }}
                                 </p>
                                 <p
-                                  class="
-                                    color-secondary
-                                    text-14
-                                    font-regular
-                                    mb-1
-                                  "
+                                  @click="openEditSportsActivity(item)"
+                                  class="color-primary
+                                  word-break
+                                  cursor-pointer
+                                  mb-0
+                                  font-semi-bold"
                                 >
-                                  {{ item.formattedDate }}
-                                </p>
-                                <p
-                                  class="
-                                    color-secondary
-                                    text-14
-                                    font-regular
-                                    mb-0
-                                  "
-                                >
-                                  {{ item.time }}
+                                  {{ item.title }}
                                 </p>
                               </div>
                               <div
@@ -296,18 +290,34 @@
                                   h-100
                                   d-flex
                                   align-items-end
-                                  align-items-sm-start
+                                  align-items-sm-center
                                   align-items-lg-end
                                   justify-content-between
                                   flex-column flex-sm-row flex-lg-column
                                 "
                               >
-                                <p
-                                  @click="openEditSportsActivity(item)"
-                                  class="color-primary text-truncate mb-0"
-                                >
-                                  {{ item.title }}
-                                </p>
+                                <div class="d-flex flex-wrap justify-content-end">
+                                  <p
+                                    class="
+                                      color-secondary
+                                      text-14
+                                      font-regular
+                                      mb-1
+                                    "
+                                  >
+                                    {{ item.formattedDate }}
+                                  </p>
+                                  <p
+                                    class="
+                                      color-secondary
+                                      text-14
+                                      font-regular
+                                      mb-0
+                                    "
+                                  >
+                                    {{ item.time }}
+                                  </p>
+                                </div>
                                 <div class="d-flex justify-content-end mb-2">
                                   <!-- <div
                                         :class="
@@ -920,7 +930,7 @@
           <div class="modal-body d-flex flex-column px-4">
             <div class="custom-overflow pr-2 mr--2">
               <form>
-                <fieldset :disabled="!enableEdit">
+                <!-- <fieldset :disabled="!enableEdit"> -->
                   <div class="form-row">
                     <label for="recipient-name" class="col-form-label"
                       >Type<em>*</em></label
@@ -1195,7 +1205,7 @@
                       >
                     </div>
                   </div>
-                </fieldset>
+                <!-- </fieldset> -->
               </form>
             </div>
           </div>

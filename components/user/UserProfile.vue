@@ -21,7 +21,7 @@
                   </button>
           </div>
           <div class="profile-row study-row px-2 d-flex flex-column flex-fill justify-content-center">
-            <div class="study-col profile-col d-flex flex-column justify-content-center align-items-center">
+            <div class="study-col profile-col d-flex flex-column justify-content-center align-items-center flex-fill">
               <form
                 method="post"
                 @submit.prevent="UploadProfile"

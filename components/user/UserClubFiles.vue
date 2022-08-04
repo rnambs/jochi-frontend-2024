@@ -574,8 +574,8 @@
               </p>
 
               <div class="row inner-col" v-if="enableEdit">
-                <div class="col-lg-4 col-md-12 inner-info-head">
-                  <h6>Choose time</h6>
+                <div class="col-lg-4 col-md-12 inner-info-head d-flex align-items-center">
+                  <h6 class="mb-0">Choose time</h6>
                 </div>
                 <div class="col-lg-8 col-md-12 input-icon-area form-row">
                   <multiselect

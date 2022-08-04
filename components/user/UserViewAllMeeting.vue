@@ -19,8 +19,8 @@
         "
       >
         <section id="tab" class="">
-          <div class="tab-section container-fluid mt-4">
-            <h3 class="color-primary font-bold px-3">My Meetings</h3>
+          <div class="tab-section container-fluid">
+            <h2 class="color-primary font-semi-bold ">My Meetings</h2>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0 mb-3">
                 <!-- <div class="col-md-4">
@@ -40,10 +40,10 @@
                     ></span>
                   </div>
                 </div> -->
-                <div class="col-md-4 p-0 px-3 mx-1">
+                <div class="col-md-4 p-0  mx-1">
                   <div class="dropdown form-row custom-sort-by-btn">
-                    <button
-                      id="dLabel"
+                    <div
+                     
                       class="
                         dropdown-select
                         btn btn-void
@@ -58,12 +58,12 @@
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <span class="mr-2 color-secondary"> Sort by</span>
-                    </button>
+                      <span  id="dLabel" class="mr-2 color-secondary"> Sort by</span>
+                      <span class="caret color-secondary"
+                        ><i class="fas fa-chevron-down font-medium"></i
+                      ></span>
+                  </div>
 
-                    <span class="caret color-secondary"
-                      ><i class="fas fa-chevron-down"></i
-                    ></span>
                     <!-- <span class="input-icon"
                       ><i class="fa fa-filter" aria-hidden="true"></i
                     ></span> -->
@@ -86,7 +86,6 @@
           <div
             class="
               meeting-section
-              container-fluid
               d-flex
               custom-overflow
               pe-2
@@ -94,7 +93,7 @@
               flex-fill
             "
           >
-            <div class="inner-meeting m-auto container-fluid p-0">
+            <div class="inner-meeting container-fluid p-0">
               <div class="row Meeting-row pl-0 pr-3 pt-0">
                 <div
                   @click="onCardClick(list)"
@@ -149,9 +148,9 @@
                     </p>
                   </div>
                 </div>
-                <div v-if="slot_date.length == 0" class="empty-schedule">
-                  <p>No meetings found</p>
-                </div>
+              </div>
+              <div v-if="slot_date.length == 0" class="empty-schedule  d-flex align-items-center justify-content-center h-100">
+                <p>No meetings found</p>
               </div>
             </div>
           </div>

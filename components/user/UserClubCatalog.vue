@@ -18,7 +18,7 @@
         "
       >
         <section id="tab" class="">
-          <div class="tab-section container-fluid mt-4">
+          <div class="tab-section container-fluid">
             <div class="d-flex justify-content-between align-item-center">
               <div class="d-flex flex-column">
                 <h2 class="color-primary font-semi-bold">Club Catalog</h2>
@@ -30,7 +30,7 @@
                 data-target="#createNewModal" -->
               <button
                 type="button"
-                class="btn btn-primary py-2 mt-2 h-fit-content"
+                class="btn btn-primary py-2 mt-1 h-fit-content"
                 @click="openCreateNewModal"
               >
                 Create New

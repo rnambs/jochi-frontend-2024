@@ -77,7 +77,10 @@
                             @change="weekToggle"
                           />
                           <label
-                            class="custom-control-label form-label"
+                            class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14 form-label"
                             for="switch_week"
                             >Apply for the week</label
                           >
@@ -93,7 +96,10 @@
                             @change="defaultToggle"
                           />
                           <label
-                            class="custom-control-label form-label"
+                            class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14 form-label"
                             for="switch_time"
                             >set default time
                           </label>
@@ -111,7 +117,10 @@
                             v-model="weekend"
                           />
                           <label
-                            class="custom-control-label form-label"
+                            class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14 form-label"
                             for="switch_day"
                             >Include weekends</label
                           >
