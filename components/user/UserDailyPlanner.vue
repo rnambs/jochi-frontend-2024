@@ -10,459 +10,206 @@
       <!-- Daily Calander -->
 
       <section id="Daily-Calander" class="">
-        <div class="element-section container-fluid">
-          <div class="row mt-4">
-            <div class="col-md-7 col-sm-12">
-              <div class="planner-daily p-4">
-                <div class="planner-head mb-3">
-                  <h5>Daily Planner</h5>
-                  <a
-                    href="#"
-                    class="btn add-assignment"
-                    data-toggle="modal"
-                    @click="
-                      resetAssignment();
-                      openModal();
+        <div class="row">
+          <div class="col-lg-5 col-md-12">
+            <div
+              class="dashboard-main-content jochi-components-light-bg p-4 pl-5"
+            >
+              <h3 class="jochi-headings mb-1">Today,</h3>
+              <FullCalendar ref="fullCalendar" :options="calendarOptions" />
+            </div>
+          </div>
+          <div class="col-lg-7 col-md-12 position-realtive">
+            <div
+              class="dashboard-main-content jochi-components-light-bg p-4 pl-5"
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                <h3 class="jochi-headings">Pending</h3>
+                <button class="add-assignment-btn btn">Add Assignment</button>
+              </div>
+              <div class="col-6 px-0">
+                <div
+                  class="
+                    jochi-sub-components-light-bg
+                    drag-drop
+                    p-4
+                    position-realtive
+                  "
+                  @click="addAssignment()"
+                >
+                  <div
+                    class="
+                      assignment-tag-section
+                      d-flex
+                      align-items-center
+                      mb-2
                     "
-                    >Add Assignment</a
                   >
+                    <div class="assignment-tag red mr-2">Urgent</div>
+                    <div class="assignment-tag pink">AP French</div>
+                  </div>
+                  <div class="assignment-add-section">
+                    <h4 class="mb-0">French Oral Practice</h4>
+                    <div class="text-center px-3">
+                      <p>Practice for mock oral exam in class</p>
+                    </div>
+                  </div>
+                  <div class="sub-task-section mb-3">
+                    <h6>Sub-tasks</h6>
+                    <div class="pl-2 d-flex align-items-center">
+                      <input type="radio" class="mr-2" />
+                      <label for="" class="mb-0">Study Vocab List</label>
+                    </div>
+                    <div class="pl-2 d-flex align-items-center">
+                      <input type="radio" class="mr-2" />
+                      <label for="" class="mb-0"
+                        >Start typing to add subtasks</label
+                      >
+                    </div>
+                  </div>
+                  <div class="addition-material-section">
+                    <h6 class="mb-1">Additional Material</h6>
+                    <div
+                      class="d-flex align-items-center justify-content-between"
+                    >
+                      <div class="col-8 py-0 pl-0 material-link">
+                        Rubric: https://docs.google.com/document/...
+                      </div>
+                      <div class="col-4 material-date py-0 text-right">
+                        12/04/22
+                      </div>
+                    </div>
+                  </div>
+                  <div class="upload-file-section mt-2">
+                    <div class="d-flex align-items-center">
+                      <div class="col-2 p-0">
+                        <select
+                          class="form-select form-control"
+                          aria-label="Default select example"
+                        >
+                          <option selected>Type</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
+                      </div>
+                      <div class="col-8 py-0 px-1">
+                        <input
+                          type="text"
+                          class="form-control px-2"
+                          placeholder="Paste Link or Upload File"
+                        />
+                      </div>
+                      <div class="col-2 p-0">
+                        <input type="submit" class="form-control" value="Add" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="add-person-section position-absolute">
+                    <div class="ap-img-section"></div>
+                    <div class="ap-img-add">
+                      <img src="~/static/image/add-btn.png" alt="" />
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <FullCalendar ref="fullCalendar" :options="calendarOptions" />
+              </div>
+              <h3 class="jochi-headings">Completed</h3>
+              <div class="row mt-1">
+                <div class="col-6">
+                  <div
+                    class="
+                      jochi-sub-components-light-bg
+                      py-4
+                      px-2
+                      completed-assignments
+                      text-center
+                    "
+                  >
+                    <h4 class="mb-0 blue">Art History Reading</h4>
+                    <p class="mb-0">Read Chapters #1 & #2</p>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div
+                    class="
+                      jochi-sub-components-light-bg
+                      py-4
+                      px-2
+                      completed-assignments
+                      text-center
+                    "
+                  >
+                    <h4 class="mb-0 green">AP Calculus Problem</h4>
+                    <p class="mb-0">Homework #5</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-5 col-sm-12">
-              <div class="planner-daily p-4 mt-3 mt-md-0 assignment">
-                <h5>Assignments</h5>
-                <div class="assignment-section w-100">
-                  <div class="container-fluid mb-1">
-                    <div
-                      class="assignment-col mt-2 mb-3"
-                      v-for="(list, index) in assignmentList"
-                      :key="index"
-                    >
-                      <p class="assignment-head">{{ list.title }}</p>
-                      <p class="assignment-discription">
-                        {{ list.assignment }}
-                      </p>
-                      <div
-                        class="
-                          d-flex
-                          justify-content-between
-                          align-items-end
-                          view-section
-                        "
-                      >
-                        <div class="float-left">
-                          <p class="due-date">
-                            Due date: {{ list.date }} <br />Time :
-                            {{ list.time }}
-                          </p>
-                        </div>
-                        <div class="float-right">
-                          <button
-                            class="btn-view-more p-2 float-right"
-                            data-target="#exampleModalView"
-                            data-toggle="modal"
-                            @click="GetAssignment(list.id)"
-                          >
-                            View more
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      v-if="assignmentList.length == 0"
-                      class="w-100 text-center py-5"
-                    >
-                      <p class="no-data">No assignments available</p>
-                    </div>
+            <div
+              class="
+                jochi-components-light-bg
+                p-4
+                pl-5
+                position-absolute
+                pending-assignment-popup
+                overflow-auto
+              "
+            >
+              <div class="d-flex justify-content-between align-items-center">
+                <h4 class="jochi-headings mb-0">Edit Assignment</h4>
+                <button
+                  class="btn pending-popup-close-btn"
+                  @click="pendingPopupclose()"
+                >
+                  x
+                </button>
+              </div>
+              <div class="edit-assignment-form-section col-9">
+                <label for="">Assignment Name</label>
+                <input type="text" class="form-control mb-1" />
+                <label for="">Assignment Description</label>
+                <textarea
+                  name=""
+                  id=""
+                  cols="20"
+                  rows="5"
+                  class="form-control mb-1"
+                ></textarea>
+                <div
+                  class="d-flex justify-content-between align-items-center mb-2"
+                >
+                  <label for="" class="mb-0">Add Subtask</label>
+                  <button @click="addSubtask()" class="add-sub-task-btn">
+                    +
+                  </button>
+                </div>
+                <input type="text" class="form-control mb-1" />
+                <form id="subTaskAdd"></form>
+                <label for="">Additional Material</label>
+                <select
+                  class="form-select form-control mb-2"
+                  aria-label="Default select example"
+                >
+                  <option selected>Type</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                <div class="row m-0">
+                  <div class="col-9 py-0 pl-0">
+                    <input
+                      type="text"
+                      class="form-control px-2"
+                      placeholder="Paste Link or Upload File"
+                    />
+                  </div>
+                  <div class="col-3 p-0">
+                    <input type="submit" class="form-control" value="Add" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Modal -->
-
-          <!-- Modal -->
-          <div
-            class="modal fade"
-            id="exampleModalView"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">
-                    Assignment Details
-                  </h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body px-4">
-                  <p class="data-overflow">
-                    Subject:<span>{{ assignment.subject }} </span>
-                  </p>
-                  <p class="data-overflow">
-                    Task :<span>{{ assignment.task }}</span>
-                  </p>
-                  <p>
-                    Priority :<span>{{ priorityVal }}</span>
-                  </p>
-                  <p>
-                    Date :<span>{{ assignment.due_date }}</span>
-                  </p>
-                  <p>
-                    Time :<span>{{ assignment.due_time }}</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- modal for add assignment -->
-          <div
-            class="modal fade"
-            id="exampleModalCenter"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true"
-          >
-            <div
-              class="modal-dialog modal-dialog-centered add-assmt"
-              role="document"
-            >
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">
-                    {{ isAssignmentEdit ? "Edit" : "Add" }} Assignment
-                  </h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body no-overflow px-4">
-                  <form>
-                    <div class="form-group">
-                      <label for="recipient-name" class="col-form-label"
-                        >Subject<em>*</em></label
-                      >
-                      <select
-                        class="form-control"
-                        tabindex=""
-                        v-model="subject"
-                        :class="{
-                          'is-invalid': submitted && $v.subject.$error,
-                        }"
-                      >
-                        <option value="">Select subject</option>
-                        <option
-                          v-bind:value="{
-                            id: subjects.id,
-                            text: subjects.subject_name,
-                          }"
-                          v-for="(subjects, index) in subjectsData"
-                          :key="index"
-                        >
-                          {{ subjects.subject_name }}
-                        </option>
-                        <option v-if="subjectsData.length == 0">No data</option>
-                      </select>
-                      <div
-                        v-if="submitted && $v.subject.$error"
-                        class="invalid-feedback"
-                      >
-                        <span v-if="!$v.subject.required"
-                          >This field is required</span
-                        >
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="message-text" class="col-form-label"
-                        >Task<em>*</em></label
-                      >
-                      <textarea
-                        class="form-control"
-                        id="message-text"
-                        v-model="task"
-                        maxlength="125"
-                        placeholder="Enter task description"
-                        :class="{
-                          'is-invalid': submitted && $v.task.$error,
-                        }"
-                      ></textarea>
-                      <div
-                        v-if="submitted && $v.task.$error"
-                        class="invalid-feedback"
-                      >
-                        <span v-if="!$v.task.required"
-                          >This field is required</span
-                        >
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6 ml-auto">
-                        <div class="form-group mb-0">
-                          <label for="recipient-name" class="col-form-label"
-                            >Priority<em>*</em></label
-                          >
-                          <div class="dropdown input-icon-area">
-                            <button
-                              id="dLabel"
-                              class="dropdown-select form-control"
-                              type="button"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                              requ
-                            >
-                              <span class="caret">
-                                {{
-                                  priorityVal ? priorityVal : "Select priority"
-                                }}</span
-                              >
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dLabel">
-                              <li class="item">
-                                <div class="low-color"></div>
-                                Low
-                              </li>
-                              <li class="item">
-                                <div class="medium-color"></div>
-                                Medium
-                              </li>
-                              <li class="item">
-                                <div class="high-color"></div>
-                                High
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                        <div
-                          v-if="
-                            submitted &&
-                            priorityVal != '1' &&
-                            priorityVal != '2' &&
-                            priorityVal != '3'
-                          "
-                        >
-                          <span
-                            v-if="
-                              priorityVal != '1' &&
-                              priorityVal != '2' &&
-                              priorityVal != '3'
-                            "
-                            class="required-button"
-                            >This field is required</span
-                          >
-                        </div>
-                      </div>
-                      <div class="col-md-6 ml-auto">
-                        <div class="form-group">
-                          <label for="recipient-name" class="col-form-label"
-                            >Date<em>*</em></label
-                          >
-                          <date-picker
-                            class="form-control"
-                            placeholder="MM/DD/YYYY"
-                            format="MM/dd/yyyy"
-                            v-model="dateValue"
-                            :class="{
-                              'is-invalid': submitted && $v.dateValue.$error,
-                            }"
-                            :disabled-dates="disabledDates"
-                          />
-                          <div
-                            v-if="submitted && $v.dateValue.$error"
-                            class="invalid-feedback"
-                          >
-                            <span v-if="!$v.dateValue.required"
-                              >This field is required</span
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-6">
-                        <div class="form-group">
-                          <label for="recipient-name" class="col-form-label"
-                            >Time<em>*</em></label
-                          >
-                          <div>
-                            <vue-timepicker
-                              format="hh:mm A"
-                              v-model="timeValue"
-                              name="timeValue"
-                              class="show-cursor"
-                              :value="timeValue"
-                              :class="{
-                                'is-invalid': submitted && $v.timeValue.$error,
-                              }"
-                            ></vue-timepicker>
-                            <div
-                              v-if="submitted && $v.timeValue.$error"
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.timeValue.required"
-                                >This field is required</span
-                              >
-                            </div>
-                          </div>
-                          <!-- <input type="text" class="form-control"> -->
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-color-close"
-                    data-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-color-save"
-                    :disabled="processing"
-                    @click="
-                      isAssignmentEdit ? UpdateAssignment() : AddAssignment()
-                    "
-                  >
-                    Confirm
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- meeing detil pop up -->
-
-          <div
-            class="modal fade"
-            id="MeetingModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">
-                    Meeting Details
-                  </h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-
-                <div class="modal-body px-4">
-                  <table class="table-modal w-100">
-                    <tr>
-                      <td class="tmodal-data mb-2 text-nowrap">Meeting With</td>
-                      <td class="tmodal-data">
-                        <p class="mb-0 tdata-overflow">
-                          <span class="px-2">:</span>
-                          <span>
-                            {{ popTitle }}
-                          </span>
-                        </p>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td class="tmodal-data text-nowrap">Meeting Type</td>
-                      <td class="tmodal-data">
-                        <span class="px-2">:</span>
-                        <span>
-                          {{ popMeeting }}
-                        </span>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td class="tmodal-data">Date</td>
-                      <td class="tmodal-data">
-                        <span class="px-2">:</span>
-                        {{ popDate }}
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td class="tmodal-data">Time</td>
-                      <td class="tmodal-data">
-                        <span class="px-2">:</span>
-                        {{ popTime }}
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Welcome Pop Up -->
-          <div
-            class="customModal d-flex flex-column m-auto w-100"
-            id="welcomeModal"
-            v-if="isShowing && isShowQuote"
-          >
-            <!-- quots -->
-            <section
-              id="Welcome"
-              class="
-                position-absolute
-                d-flex
-                flex-column
-                align-items-center
-                justify-content-center
-                text-center
-                w-100
-              "
-            >
-              <h4 class="mb-5 color-primary">Welcome</h4>
-              <div class="quotes-section mb-4 color-dark">
-                {{ quoteMessage }}
-              </div>
-              <!-- <div class="auther-section color-secondary mb-4">- A P J Abdul Kalam -</div> -->
-
-              <div class="skip-button-section">
-                <button
-                  action=""
-                  class="btn btn-primary px-4"
-                  @click="isShowing = false"
-                >
-                  <strong>Skip</strong>
-                </button>
-              </div>
-            </section>
-
-            <!-- end quots -->
-          </div>
-          <!-- End Welcome Pop Up -->
         </div>
       </section>
 
@@ -485,7 +232,7 @@ var fromDate = "";
 var endDate = "";
 var eventList = [];
 export default {
-  name: "UserPlanner",
+  name: "UserDailyPlanner",
   components: {
     lottie,
     VueTimepicker,

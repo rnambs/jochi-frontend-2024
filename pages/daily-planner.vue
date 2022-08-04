@@ -2,7 +2,7 @@
   <div class="container-fluid main-container student-dashboard-main">
     <div class="col-12">
       <div class="row">
-        <div class="col-2">
+        <!-- <div class="col-2">
           <div class="sd-sidebar jochi-components-light-bg p-4">
             <div class="sb-head-section">
               <div
@@ -102,27 +102,53 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="col-10">
           <div class="row">
             <div class="col-lg-5 col-md-12">
               <div
-                class="dashboard-main-content jochi-components-light-bg p-4 pl-5">
+                class="
+                  dashboard-main-content
+                  jochi-components-light-bg
+                  p-4
+                  pl-5
+                "
+              >
                 <h3 class="jochi-headings mb-1">Today,</h3>
                 <FullCalendar ref="fullCalendar" :options="calendarOptions" />
               </div>
             </div>
             <div class="col-lg-7 col-md-12 position-realtive">
-              <div class="dashboard-main-content jochi-components-light-bg p-4 pl-5">
+              <div
+                class="
+                  dashboard-main-content
+                  jochi-components-light-bg
+                  p-4
+                  pl-5
+                "
+              >
                 <div class="d-flex justify-content-between align-items-center">
                   <h3 class="jochi-headings">Pending</h3>
-                  <button class="add-assignment-btn btn">
-                    Add Assignment
-                  </button>
+                  <button class="add-assignment-btn btn">Add Assignment</button>
                 </div>
                 <div class="col-6 px-0">
-                  <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive" @click="addAssignment()">
-                    <div class="assignment-tag-section d-flex align-items-center mb-2">
+                  <div
+                    class="
+                      jochi-sub-components-light-bg
+                      drag-drop
+                      p-4
+                      position-realtive
+                    "
+                    @click="addAssignment()"
+                  >
+                    <div
+                      class="
+                        assignment-tag-section
+                        d-flex
+                        align-items-center
+                        mb-2
+                      "
+                    >
                       <div class="assignment-tag red mr-2">Urgent</div>
                       <div class="assignment-tag pink">AP French</div>
                     </div>
@@ -165,7 +191,10 @@
                     <div class="upload-file-section mt-2">
                       <div class="d-flex align-items-center">
                         <div class="col-2 p-0">
-                          <select class="form-select form-control" aria-label="Default select example">
+                          <select
+                            class="form-select form-control"
+                            aria-label="Default select example"
+                          >
                             <option selected>Type</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -228,37 +257,73 @@
                   </div>
                 </div>
               </div>
-              <div class="jochi-components-light-bg p-4 pl-5 position-absolute pending-assignment-popup overflow-auto">
+              <div
+                class="
+                  jochi-components-light-bg
+                  p-4
+                  pl-5
+                  position-absolute
+                  pending-assignment-popup
+                  overflow-auto
+                "
+              >
                 <div class="d-flex justify-content-between align-items-center">
                   <h4 class="jochi-headings mb-0">Edit Assignment</h4>
-                  <button class="btn pending-popup-close-btn" @click="pendingPopupclose()">x</button>
+                  <button
+                    class="btn pending-popup-close-btn"
+                    @click="pendingPopupclose()"
+                  >
+                    x
+                  </button>
                 </div>
                 <div class="edit-assignment-form-section col-9">
                   <label for="">Assignment Name</label>
-                  <input type="text" class="form-control mb-1">
+                  <input type="text" class="form-control mb-1" />
                   <label for="">Assignment Description</label>
-                  <textarea name="" id="" cols="20" rows="5" class="form-control mb-1"></textarea>
-                  <div class="d-flex justify-content-between align-items-center mb-2">
+                  <textarea
+                    name=""
+                    id=""
+                    cols="20"
+                    rows="5"
+                    class="form-control mb-1"
+                  ></textarea>
+                  <div
+                    class="
+                      d-flex
+                      justify-content-between
+                      align-items-center
+                      mb-2
+                    "
+                  >
                     <label for="" class="mb-0">Add Subtask</label>
-                    <button @click="addSubtask()" class="add-sub-task-btn">+</button>
+                    <button @click="addSubtask()" class="add-sub-task-btn">
+                      +
+                    </button>
                   </div>
-                  <input type="text" class="form-control mb-1">
+                  <input type="text" class="form-control mb-1" />
                   <form id="subTaskAdd"></form>
                   <label for="">Additional Material</label>
-                    <select class="form-select form-control mb-2" aria-label="Default select example">
-                      <option selected>Type</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                    <div class="row m-0">
-                      <div class="col-9 py-0 pl-0">
-                          <input type="text" class="form-control px-2" placeholder="Paste Link or Upload File"/>
-                        </div>
-                        <div class="col-3 p-0">
-                          <input type="submit" class="form-control" value="Add"/>
-                        </div>
+                  <select
+                    class="form-select form-control mb-2"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Type</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  <div class="row m-0">
+                    <div class="col-9 py-0 pl-0">
+                      <input
+                        type="text"
+                        class="form-control px-2"
+                        placeholder="Paste Link or Upload File"
+                      />
                     </div>
+                    <div class="col-3 p-0">
+                      <input type="submit" class="form-control" value="Add" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -270,116 +335,119 @@
 </template>
 
 <script>
-  import StudentDashboard from "~/components/StudentDashboard.vue";
-  import FullCalendar, { Calendar } from "@fullcalendar/vue";
-  import timeGridPlugin from "@fullcalendar/timegrid";
-  // import interact from 'interactjs';
-  import interactionPlugin from "@fullcalendar/interaction";
+import StudentDashboard from "~/components/StudentDashboard.vue";
+import FullCalendar, { Calendar } from "@fullcalendar/vue";
+import timeGridPlugin from "@fullcalendar/timegrid";
+// import interact from 'interactjs';
+import interactionPlugin from "@fullcalendar/interaction";
 
-  var eventList = [
-    {
-      id: 1,
-      title: "Meeting",
-      start: "2022-06-16T00:30:00",
-      end: "2022-06-16T02:30:00",
-    },
-    {
-      id: 2,
-      title: "Meeting",
-      start: "2022-06-16T12:30:00",
-      end: "2022-06-16T14:30:00",
-    },
-    {
-      id: 3,
-      title: "Birthday Party",
-      start: "2022-06-16T07:00:00",
-      extendedProps: { status: "wholeleel" },
-    },
-  ];
+var eventList = [
+  {
+    id: 1,
+    title: "Meeting",
+    start: "2022-06-16T00:30:00",
+    end: "2022-06-16T02:30:00",
+  },
+  {
+    id: 2,
+    title: "Meeting",
+    start: "2022-06-16T12:30:00",
+    end: "2022-06-16T14:30:00",
+  },
+  {
+    id: 3,
+    title: "Birthday Party",
+    start: "2022-06-16T07:00:00",
+    extendedProps: { status: "wholeleel" },
+  },
+];
 
-  export default {
-    name: "student-profile",
-    components: {
-      FullCalendar,
-    },
-    data() {
-      return {
-        calendarApi: Calendar,
-        calendarOptions: {
-          displayEventTime: false,
-          customButtons: {
-            prev: {
-              click: this.goPrev.bind(this),
-            },
-            next: {
-              click: this.goNext.bind(this),
-            },
+export default {
+  name: "student-profile",
+  components: {
+    FullCalendar,
+  },
+  data() {
+    return {
+      calendarApi: Calendar,
+      calendarOptions: {
+        displayEventTime: false,
+        customButtons: {
+          prev: {
+            click: this.goPrev.bind(this),
           },
-          allDaySlot: true,
-          minTime: 0,
-          maxTime: 24,
-          plugins: [timeGridPlugin, interactionPlugin],
-          headerToolbar: {
-            left: "prev",
-            center: "title",
-            right: "next",
-          },
-          initialView: "timeGridDay",
-          unselectAuto: false,
-          selectable: true,
-          datesSet: this.handleMonthChange,
-          events: eventList,
-          eventClick: this.eventClicked,
-          slotDuration: "00:15:00",
-          slotEventOverlap: false,
-          eventMaxStack: true, // for all non-TimeGrid views
-          views: {
-            timeGrid: {
-              dayMaxEventRows: 4, // adjust to 6 only for timeGridWeek/timeGridDay
-            },
+          next: {
+            click: this.goNext.bind(this),
           },
         },
-      };
-    },
-    mounted() {
-      this.calendarApi = this.$refs.fullCalendar.getApi();
-    },
-    head() {
-      return {
-        link: [{ rel: "stylesheet", href: "/css/style01.css" }],
-      };
-    },
-    methods: {
-      addAssignment() {
-        // alert("inside add assignment");
-        //  event.target.className += " myClass";
-        this.$el.querySelector(".pending-assignment-popup").classList.add('active');
+        allDaySlot: true,
+        minTime: 0,
+        maxTime: 24,
+        plugins: [timeGridPlugin, interactionPlugin],
+        headerToolbar: {
+          left: "prev",
+          center: "title",
+          right: "next",
+        },
+        initialView: "timeGridDay",
+        unselectAuto: false,
+        selectable: true,
+        datesSet: this.handleMonthChange,
+        events: eventList,
+        eventClick: this.eventClicked,
+        slotDuration: "00:15:00",
+        slotEventOverlap: false,
+        eventMaxStack: true, // for all non-TimeGrid views
+        views: {
+          timeGrid: {
+            dayMaxEventRows: 4, // adjust to 6 only for timeGridWeek/timeGridDay
+          },
+        },
       },
-      pendingPopupclose() {
-        this.$el.querySelector(".pending-assignment-popup").classList.remove('active');
-      },
-      btnCollapse(id) {
-        this.$el.querySelector("#sbContent"+id).classList.toggle('active');
-      },
-      addSubtask() {
-        var x = document.createElement("INPUT");
-        x.setAttribute("type", "text");
-        x.setAttribute("name", "subTask");
-        x.setAttribute("class", "form-control mb-1");
-        document.getElementById("subTaskAdd").appendChild(x);
+    };
+  },
+  mounted() {
+    this.calendarApi = this.$refs.fullCalendar.getApi();
+  },
+  head() {
+    return {
+      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+    };
+  },
+  methods: {
+    addAssignment() {
+      // alert("inside add assignment");
+      //  event.target.className += " myClass";
+      this.$el
+        .querySelector(".pending-assignment-popup")
+        .classList.add("active");
+    },
+    pendingPopupclose() {
+      this.$el
+        .querySelector(".pending-assignment-popup")
+        .classList.remove("active");
+    },
+    btnCollapse(id) {
+      this.$el.querySelector("#sbContent" + id).classList.toggle("active");
+    },
+    addSubtask() {
+      var x = document.createElement("INPUT");
+      x.setAttribute("type", "text");
+      x.setAttribute("name", "subTask");
+      x.setAttribute("class", "form-control mb-1");
+      document.getElementById("subTaskAdd").appendChild(x);
+    },
+    goPrev() {
+      this.calendarApi.prev(); // call a method on the Calendar object
+      // this.GetDailyPlanner();
+    },
 
-      },
-      goPrev() {
-        this.calendarApi.prev(); // call a method on the Calendar object
-        // this.GetDailyPlanner();
-      },
-
-      goNext() {
-        this.calendarApi.next();
-        // this.GetDailyPlanner();
-      },
+    goNext() {
+      this.calendarApi.next();
+      // this.GetDailyPlanner();
     },
-  };
+  },
+};
 </script>
 
 <style>
@@ -726,5 +794,4 @@ body {
   font-size: 32px;
   font-weight: 900;
 }
-
 </style>
