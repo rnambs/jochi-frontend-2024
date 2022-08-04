@@ -281,7 +281,7 @@
                         <span
                           class="d-flex rounded-circle border bullet mr-2"
                         ></span>
-                        {{ goal.goal }}
+                        {{ goal }}
                       </p>
 
                       <p
