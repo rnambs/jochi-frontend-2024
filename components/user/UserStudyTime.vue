@@ -3080,7 +3080,14 @@ export default {
         session.type = "study";
         session.id = e.id;
         session.name = e.subject?.subject_name;
-        session.goals = e.study_goals;
+        if (e.study_goals && e.study_goals.length > 0) {
+          e.study_goals.forEach((element) => {
+            if (element.goal) {
+              session.goals.push(element.goal);
+            }
+          });
+        }
+        // session.goals = e.study_goals;
         session.duration = e.duration;
         session.breakTime = e.break_time;
         session.repeat = e.repeat;
