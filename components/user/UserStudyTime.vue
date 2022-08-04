@@ -76,12 +76,10 @@
                 <h2 class="color-primary font-semi-bold mb-2">
                   Upcoming Sessions
                 </h2>
-                <div
-                  class="custom-overflow pr-2 mr--2"
-                >
+                <div class="custom-overflow pr-2 mr--2">
                   <div
-                  v-for="sessionItem in studySessionList"
-                  :key="sessionItem.id"
+                    v-for="sessionItem in studySessionList"
+                    :key="sessionItem.id"
                     @click="
                       showSessionDetail = true;
                       setDetail(sessionItem);
@@ -283,7 +281,24 @@
                         <span
                           class="d-flex rounded-circle border bullet mr-2"
                         ></span>
-                        {{ goal }}
+                        {{ goal.goal }}
+                      </p>
+
+                      <p
+                        v-if="
+                          !sessionDetail.goals ||
+                          sessionDetail.goals.length <= 0
+                        "
+                        class="
+                          mb-0
+                          color-secondary
+                          font-regular
+                          text-16
+                          d-flex
+                          align-items-center
+                        "
+                      >
+                        No goals set!
                       </p>
                       <!-- <p
                         class="
@@ -303,7 +318,14 @@
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">
-                        Regular Study
+                        {{
+                          sessionDetail.studyMethod == "1"
+                            ? "Pomodoro"
+                            : sessionDetail.studyMethod == "3"
+                            ? "Regular"
+                            : ""
+                        }}
+                        Study Method
                       </h5>
                       <p class="mb-0 color-secondary font-regular text-16">
                         Subject : <span>Assignment</span>
@@ -322,16 +344,32 @@
                       <h5 class="color-dark mb-1 font-semi-bold">Peers</h5>
                       <div class="d-flex flex-column">
                         <div
-                          v-for="peer in invitedPeers"
+                          v-for="peer in invitedPeerList"
                           :key="peer.id"
                           class="d-flex align-items-center my-2 mr-3"
                         >
                           <div class="ld-img-section mr-3">
-                            <div class="ld-img-holder"></div>
+                            <div class="ld-img-holder">
+                              <img
+                                v-if="peer.proPic"
+                                :src="peer.proPic"
+                                alt="image"
+                              />
+                            </div>
                           </div>
                           <div class="ld-details-section">
-                            <p class="ld-heading mb-1">{{ peer.first_name }}</p>
+                            <p class="ld-heading mb-1">
+                              {{ peer.firstName ? peer.firstName : "" }}&nbsp;{{
+                                peer.lastName ? peer.lastName : ""
+                              }}
+                            </p>
                           </div>
+                        </div>
+                        <div
+                          v-if="!invitedPeerList || invitedPeerList.length <= 0"
+                          class="d-flex align-items-center my-2 mr-3"
+                        >
+                          No peers invited!
                         </div>
                         <!-- <div class="d-flex align-items-center my-2 mr-3">
                           <div class="ld-img-section mr-3">
@@ -442,7 +480,9 @@
                 <div v-for="subtask in detail.subTasks" :key="subtask.id">
                   <div class="pl-2 d-flex align-items-center">
                     <input type="radio" class="mr-2" />
-                    <label for="" class="mb-0 text-12">{{ subtask.title }}</label>
+                    <label for="" class="mb-0 text-12">{{
+                      subtask.title
+                    }}</label>
                   </div>
                   <!-- <div class="pl-2 d-flex align-items-center">
                     <input type="radio" class="mr-2" />
@@ -1079,7 +1119,7 @@
                     : null
                 }}
               </h3>
-              <a  @click="onAddGoalClick" class="btn p-0">
+              <a @click="onAddGoalClick" class="btn p-0">
                 <span class="color-secondary"
                   ><i class="fas fa-plus-circle"></i
                 ></span>
@@ -1088,7 +1128,12 @@
             <div v-if="addGoal" class="d-flex flex-row align-items-start">
               <div class="form-row mb-2 mx-0 mr-2">
                 <label class="form-label" for="name">Set goal</label>
-                <input type="text" v-model="goalName" class="form-control" />
+                <input
+                  type="text"
+                  maxlength="100"
+                  v-model="goalName"
+                  class="form-control"
+                />
               </div>
               <div class="pt-4">
                 <button
@@ -1118,6 +1163,7 @@
                       <span><i class="far fa-circle"></i></span> {{ goal }}
                     </p>
                     <span
+                      @click="deleteGoal(goal)"
                       class="color-primary fa-icon show-hover d-none btn p-0"
                       ><i class="fas fa-trash-alt"></i
                     ></span>
@@ -1153,7 +1199,7 @@
           <div class="card card-primary rounded-22 h-40 flex-fill p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
-              <a @click="onInviteClick"  class="btn p-0">
+              <a @click="onInviteClick" class="btn p-0">
                 <span class="color-secondary"
                   ><i class="fas fa-plus-circle"></i
                 ></span>
@@ -1187,13 +1233,12 @@
                 </button>
               </div>
             </div>
-            <div
-              class="hidden-scroll p-3 row my-0"
-            >
-              <div 
+            <div class="hidden-scroll p-3 row my-0">
+              <div
                 v-for="peer of peerList"
                 :key="peer.id"
-                class="h-fit-content">
+                class="h-fit-content"
+              >
                 <div class="d-flex align-items-center my-2 mr-3 min-w-200">
                   <div class="ld-img-section mr-3">
                     <div class="ld-img-holder"></div>
@@ -1304,7 +1349,7 @@
                   "
                 >
                   <form
-                    @submit.prevent="StartStudySession"
+                    @submit.prevent="StartStudySession()"
                     ref="studyTimeForm"
                     class="container"
                   >
@@ -1466,6 +1511,7 @@
                     </div>
                     <div class="py-1">
                       <button
+                        type="button"
                         @click="openScheduleForLater()"
                         class="btn btn-dark btn-sm"
                       >
@@ -1512,21 +1558,17 @@
             flex-fill
           "
         >
-          <div
-            class="
-              card card-light
-              rounded-22
-              p-4
-              flex-fill
-              mb-4
-            "
-          >
+          <div class="card card-light rounded-22 p-4 flex-fill mb-4">
             <div class="">
               <h1 class="color-primary font-bold mb-2">Working on</h1>
             </div>
-            <p class="color-dark text-24 font-semi-bold mb-1">Subject Name</p>
+            <p class="color-dark text-24 font-semi-bold mb-1">Subject Name :</p>
             <p class="color-dark text-24 font-semi-bold mb-1">
-              {{ timerStatusData.subjectName }}
+              {{
+                sessionType == "assignment"
+                  ? subjectName
+                  : timerStatusData.subjectName
+              }}
             </p>
             <p class="color-secondary text-16 font-regular mb-1">
               Study Method :
@@ -1557,13 +1599,12 @@
           </div>
           <div class="card card-light rounded-22 p-4">
             <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
-            <div
-              class="hidden-scroll p-3 row my-0"
-            >
+            <div class="hidden-scroll p-3 row my-0">
               <div
                 v-for="peer in peerList"
                 :key="peer.id"
-               class="d-flex align-items-center my-2 mr-3 min-w-200">
+                class="d-flex align-items-center my-2 mr-3 min-w-200"
+              >
                 <div class="ld-img-section mr-3">
                   <div class="ld-img-holder"></div>
                 </div>
@@ -1601,7 +1642,16 @@
                   Concentrate on session
                 </p>
               </div>
-              <div id="app" class="mb-3 flex-fill d-flex align-items-center justify-content-center">
+              <div
+                id="app"
+                class="
+                  mb-3
+                  flex-fill
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                "
+              >
                 <div class="base-timer m-auto">
                   <svg
                     class="base-timer__svg"
@@ -2286,6 +2336,7 @@
             <div class="form-group required">
               <label class="typo__label">Time</label>
               <vue-timepicker
+                close-on-complete
                 format="hh:mm A"
                 v-model="scheduledTime"
                 name="scheduledTime"
@@ -2303,7 +2354,7 @@
             </button>
             <button
               type="button"
-              class="btn btn-primary rounded-pill px-4 py-1" 
+              class="btn btn-primary rounded-pill px-4 py-1"
               data-dismiss="modal"
               @click="StartStudySession(false)"
               :disabled="processing"
@@ -2413,6 +2464,7 @@ export default {
       showSessionDetail: false,
       studySessionList: [],
       sessionDetail: {},
+      invitedPeerList: [],
     };
   },
 
@@ -2459,6 +2511,7 @@ export default {
       assignments: (state) => state.assignments,
       sessionData: (state) => state.sessionData,
       invitedPeers: (state) => state.invitedPeers,
+      ownerDetail: (state) => state.ownerDetail,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -2676,14 +2729,15 @@ export default {
       // if (this.$v.$invalid) {
       //   return;
       // } else {
-      this.onNext();
       this.processing = true;
-      let peersSelected = [];
+      const peersSelected = [];
       if (this.peerList.length > 0) {
         this.peerList.forEach((e) => {
           peersSelected.push(e.id);
         });
       }
+
+      console.log("consoling peer list", peersSelected);
 
       let today, todayTime;
 
@@ -2691,38 +2745,68 @@ export default {
         today = moment().format("YYYY-MM-DD");
         todayTime = moment().format("LT");
       }
-      await this.saveStudySession({
-        assignment_id:
-          this.sessionType == "assignment" ? this.selectedAssignment.id : null,
-        session_shared_user_id: peersSelected,
-        goals: this.goalsList,
-        date: scheduleNow
-          ? today
-          : this.scheduledDate
-          ? moment(this.scheduledDate).format("YYYY-MM-DD")
-          : "",
-        start_time: scheduleNow ? todayTime : this.scheduledTime,
-        study_method: this.studyTypes.id,
-        subject: this.sessionType != "assignment" ? this.Subject.id : "",
-        target_duration:
-          this.sessionMode == "regular" ? this.targetDuration : null,
-        repeat: this.repeatLoopBy,
-        scheduled_status: scheduleNow ? "Now" : "Later",
-      });
+      let payLoad = {};
+      if (this.sessionType == "assignment") {
+        payLoad = {
+          assignment_id:
+            this.sessionType == "assignment"
+              ? this.selectedAssignment.id
+              : null,
+          session_shared_user_id: peersSelected,
+          goals: this.goalsList,
+          date: scheduleNow
+            ? today
+            : this.scheduledDate
+            ? moment(this.scheduledDate).format("YYYY-MM-DD")
+            : "",
+          start_time: scheduleNow ? todayTime : this.scheduledTime,
+          study_method: this.studyTypes.id,
+          subject: this.sessionType != "assignment" ? this.Subject.id : "",
+          target_duration:
+            this.sessionMode == "regular" ? this.targetDuration : null,
+          repeat: this.repeatLoopBy,
+          scheduled_status: scheduleNow ? "Now" : "Later",
+          break_time_at: this.breakAt,
+          break_time: this.breakTime,
+        };
+      } else {
+        payLoad = {
+          session_shared_user_id: peersSelected,
+          goals: this.goalsList,
+          date: scheduleNow
+            ? today
+            : this.scheduledDate
+            ? moment(this.scheduledDate).format("YYYY-MM-DD")
+            : "",
+          start_time: scheduleNow ? todayTime : this.scheduledTime,
+          study_method: this.studyTypes.id,
+          subject: this.sessionType != "assignment" ? this.Subject.id : "",
+          target_duration:
+            this.sessionMode == "regular" ? this.targetDuration : null,
+          repeat: this.repeatLoopBy,
+          scheduled_status: scheduleNow ? "Now" : "Later",
+          break_time_at: this.breakAt,
+          break_time: this.breakTime,
+        };
+      }
+      await this.saveStudySession(payLoad);
       if (this.successMessage != "") {
-        if (!scheduleNow) {
-          this.closeScheduleForLater();
-        }
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
           duration: 5000,
         });
-
-        // this.$router.push("/club-list-table");
         if (this.limitedInterval > 0) {
           await clearInterval(this.limitedInterval);
         }
+
+        if (!scheduleNow) {
+          this.currentTab = 0;
+          this.resetData();
+          return this.closeScheduleForLater();
+        }
+        // this.$router.push("/club-list-table");
+        this.onNext();
         this.Timer();
       } else if (this.errorMessage != "") {
         this.$toast.open({
@@ -2783,7 +2867,11 @@ export default {
           return false;
         }
 
-        if (this.breakTime && this.breakTime < 2) {
+        if (
+          Number(this.breakTime) &&
+          !isNaN(Number(this.breakAt)) &&
+          Number(this.breakTime) < 2
+        ) {
           this.$toast.open({
             message: "Breaktime must be greater than or equal to 2 minutes",
             type: "warning",
@@ -2791,7 +2879,11 @@ export default {
           });
           return false;
         }
-        if (this.breakAt && this.breakAt < 2) {
+        if (
+          Number(this.breakAt) &&
+          !isNaN(Number(this.breakAt)) &&
+          Number(this.breakAt) < 2
+        ) {
           this.$toast.open({
             message: "Break Time At must be greater than or equal to 2 minutes",
             type: "warning",
@@ -2800,7 +2892,11 @@ export default {
           return false;
         }
 
-        if (this.targetDuration && this.targetDuration < 5) {
+        if (
+          Number(this.targetDuration) &&
+          !isNaN(Number(this.targetDuration)) &&
+          Number(this.targetDuration) < 5
+        ) {
           this.$toast.open({
             message: "Duration must be greater than or equal to 5 minutes",
             type: "warning",
@@ -2810,9 +2906,19 @@ export default {
         }
 
         if (
-          this.breakAt &&
-          (this.breakAt < 2 || this.breakAt >= this.targetDuration)
+          Number(this.breakAt) &&
+          Number(this.targetDuration) &&
+          !isNaN(Number(this.breakAt)) &&
+          !isNaN(Number(this.targetDuration)) &&
+          (Number(this.breakAt) < 2 ||
+            Number(this.breakAt) >= Number(this.targetDuration))
         ) {
+          console.log(
+            typeof this.breakAt,
+            typeof this.targetDuration,
+            this.breakAt < 2,
+            this.breakAt >= this.targetDuration
+          );
           this.$toast.open({
             message: "Break At Time must be lesser than Study duration",
             type: "warning",
@@ -2964,6 +3070,7 @@ export default {
         session.date = moment(e.date).format("MMMM Do, YYYY");
         session.time = e.time;
         session.breakTimeAt = e.break_time_at;
+        session.studyMethod = e.study_method;
 
         this.studySessionList.push(session);
       });
@@ -2981,6 +3088,7 @@ export default {
         session.date = moment(e.date).format("MMMM Do, YYYY");
         session.time = e.time;
         session.breakTimeAt = e.break_time_at;
+        session.studyMethod = e.study_method;
 
         this.studySessionList.push(session);
       });
@@ -2998,8 +3106,9 @@ export default {
         session.repeat = e.repeat;
         session.peers = e.peers;
         session.date = moment(e.date).format("MMMM Do, YYYY");
-        session.time = e.time;
+        session.time = e.start_time;
         session.breakTimeAt = e.break_time_at;
+        session.studyMethod = e.study_method;
 
         this.studySessionList.push(session);
       });
@@ -3073,10 +3182,20 @@ export default {
       this.addGoal = true;
     },
     onAddNewGoal() {
-      console.log(this.goalName);
-      this.goalsList.push(this.goalName);
+      if (this.goalName) {
+        this.goalsList.push(this.goalName);
+      } else {
+        this.$toast.open({
+          message: "Please add a valid goal ",
+          type: "warning",
+          duration: 5000,
+        });
+      }
       this.goalName = "";
       this.addGoal = false;
+    },
+    deleteGoal(goal) {
+      this.goalsList = this.goalsList.filter((e) => e != goal);
     },
     onInviteClick() {
       this.invitePeer = true;
@@ -3100,6 +3219,7 @@ export default {
       this.peerList = [];
     },
     openScheduleForLater() {
+      this.processing = false;
       if (this.checkValidations()) {
         $("#scheduleForLater").modal({ backdrop: true });
       }
@@ -3126,10 +3246,39 @@ export default {
       this.showSessionDetail = false;
       this.studySessionList = [];
       this.sessionDetail = {};
+      this.scheduledTime = "";
+      this.scheduledDate = "";
+      this.Subject = "";
+      if (this.currentTab == 0) {
+        this.getAllStudySessions();
+      }
     },
     async setDetail(session) {
       this.sessionDetail = session;
       await this.getInvitedPeers(this.sessionDetail.id);
+      console.log("invitedPeers", this.invitedPeers);
+      console.log("ownerDetail", this.ownerDetail);
+      this.invitedPeerList = [];
+      if (this.invitedPeers && this.invitedPeers.length > 0) {
+        this.invitedPeers.forEach((e) => {
+          let peer = {};
+          peer["id"] = e[0]?.users?.id;
+          peer["firstName"] = e?.users?.first_name;
+          peer["last_name"] = e?.users?.last_name;
+          peer["proPic"] = e?.users?.profile_pic;
+          this.invitedPeerList.push(peer);
+        });
+      }
+      if (this.ownerDetail && this.ownerDetail.length > 0) {
+        this.ownerDetail.forEach((e) => {
+          let peer = {};
+          peer["id"] = e[0]?.users?.id;
+          peer["firstName"] = e?.users?.first_name;
+          peer["last_name"] = e?.users?.last_name;
+          peer["proPic"] = e?.users?.profile_pic;
+          this.invitedPeerList.push(peer);
+        });
+      }
     },
   },
 

@@ -14,7 +14,8 @@ const state = {
   sharedSessions: [],
   assignments: [],
   sessionData: {},
-  invitedPeers: []
+  invitedPeers: [],
+  ownerDetail: []
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -144,6 +145,12 @@ const actions = {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
+      else if (e.response && e.response.error) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.error);
         commit('setErrorType', "error");
       }
     }
@@ -282,13 +289,14 @@ const actions = {
   async getInvitedPeers({ commit }, id) {
     const token = localStorage.getItem('token')
     try {
-      const response = await this.$axios.$get(BASE_URL + `studyRoom/shared_peers_list/${id}`, {
+      const response = await this.$axios.$get(BASE_URL + `studyRoom/shared_peers_list?session_id=${id}`, {
         headers: {
           'Authorization': ` ${token}`
         },
       });
 
-      commit('setInvitedPeers', response.data);
+      commit('setInvitedPeers', response.members);
+      commit('setOwnerDetail', response.owner);
 
     } catch (e) {
 
@@ -336,6 +344,9 @@ const mutations = {
   setInvitedPeers(state, data) {
     state.invitedPeers = data;
   },
+  setOwnerDetail(state, data) {
+    state.ownerDetail = data;
+  },
 
 
 
@@ -379,6 +390,9 @@ const getters = {
   },
   invitedPeers: () => {
     return state.invited;
+  },
+  ownerDetail: () => {
+    return state.ownerDetail;
   },
 
 
