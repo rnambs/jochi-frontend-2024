@@ -12,6 +12,7 @@ const state = {
   assignment: [],
   meetingList: [],
   subjectsData: [],
+  assignmentsList: [],
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -86,6 +87,34 @@ const actions = {
       });
       commit('setPlannerList', response.data);
       commit('setMeetingList', response.meeting);
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else {
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+      }
+    }
+
+
+  },
+  async getAssignments({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$get(BASE_URL + `planner/all_assignments`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      commit('setAssignmentsList', response.assignments);
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -301,6 +330,9 @@ const mutations = {
   setSubjectsList(state, data) {
     state.subjectsData = data;
   },
+  setAssignmentsList(state, data) {
+    state.assignmentsList = data;
+  },
 }
 const getters = {
 
@@ -336,6 +368,9 @@ const getters = {
   },
   subjectsData: () => {
     return state.subjectsData;
+  },
+  assignmentsList: () => {
+    return state.assignmentsList;
   },
 }
 

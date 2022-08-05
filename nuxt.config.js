@@ -83,7 +83,8 @@ export default {
         { src: '~/plugins/vue-google-oauth2', mode: 'client' },
         { src: '~/plugins/vue-datepicker', ssr: false },
         { src: '~/plugins/croppa', ssr: false },
-        { src: '~/plugins/vuetify', ssr: false }
+        { src: '~/plugins/vuetify', ssr: false },
+        { src: '~/plugins/vue-drag-drop', ssr: false }
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
