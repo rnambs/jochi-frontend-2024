@@ -8,34 +8,26 @@
     />
     <div class="main-section">
       <!-- Weekly Calander -->
-      <div class="jochi-components-light-bg custom-margin-for-main-section custom-full-height position-realtive">
-
+      <div
+        class="
+          jochi-components-light-bg
+          custom-margin-for-main-section custom-full-height
+          position-realtive
+        "
+      >
         <section id="Weekly-Calander" class="">
-          <div class="element-section container-fluid">
+          <!-- <div class="element-section container-fluid">
             
             <div class="row mt-2">
               <div class="col-12 p-0">
                 <div class="planner-week p-4 pr-5">
-                  <!-- <div class="planner-head mb-3">
-                    <h5>Weekly Planner</h5>
-                    <a
-                      href="#"
-                      class="btn add-assignment"
-                      data-toggle="modal"
-                      @click="
-                        resetAssignment();
-                        openModal();
-                      "
-                      >Add Assignment</a
-                    >
-                  </div> -->
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- Modal -->
-          <div
+          <!-- <div
             class="modal fade"
             id="exampleModalCenter"
             tabindex="-1"
@@ -226,9 +218,7 @@
                                 >This field is required</span
                               >
                             </div>
-                          </div>
-                          <!-- <input type="text" class="form-control"> -->
-                        </div>
+                          </div> </div>
                       </div>
                     </div>
                   </form>
@@ -321,26 +311,296 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- edit modal -->
+
+          <div class="col-12 jochi-main-content-container">
+            <div class="row">
+              <div class="col-12 position-realtive">
+                <div
+                  class="
+                    dashboard-main-content
+                    jochi-components-light-bg
+                    py-4
+                    px-5
+                    position-relative
+                  "
+                >
+                  <FullCalendar ref="fullCalendar" :options="calendarOptions" />
+                  <div
+                    class="
+                      planner-action-btns
+                      d-flex
+                      align-items-center
+                      position-absolute
+                    "
+                  >
+                    <button
+                      class="pa-btn btn filter-btn mr-3"
+                      @click="filterPlanner()"
+                      id="filterPlanner"
+                    >
+                      Filter Planner
+                    </button>
+                    <button
+                      class="pa-btn assignment-f-btn btn"
+                      @click="assignmentPlanner()"
+                      id="assignmentPlanner"
+                    >
+                      Assignment Planner
+                    </button>
+                  </div>
+                  <div
+                    class="
+                      col-lg-8 col-md-12
+                      p-0
+                      position-absolute
+                      assignment-planner-section
+                    "
+                    id="assignPlanSection"
+                  >
+                    <div class="position-realtive h-100">
+                      <div
+                        class="
+                          dashboard-main-content
+                          jochi-components-light-bg
+                          p-4
+                          pl-5
+                        "
+                      >
+                        <div
+                          class="
+                            d-flex
+                            justify-content-between
+                            align-items-center
+                          "
+                        >
+                          <h3 class="jochi-headings">Pending</h3>
+                          <button class="add-assignment-btn btn">
+                            Add Assignment
+                          </button>
+                        </div>
+                        <div class="col-6 px-0">
+                          <div
+                            class="
+                              jochi-sub-components-light-bg
+                              drag-drop
+                              p-4
+                              position-realtive
+                            "
+                            @click="addAssignment()"
+                          >
+                            <div
+                              class="
+                                assignment-tag-section
+                                d-flex
+                                align-items-center
+                                mb-2
+                              "
+                            >
+                              <div class="assignment-tag red mr-2">Urgent</div>
+                              <div class="assignment-tag pink">AP French</div>
+                            </div>
+                            <div class="assignment-add-section">
+                              <h4 class="mb-0">French Oral Practice</h4>
+                              <div class="text-center px-3">
+                                <p>Practice for mock oral exam in class</p>
+                              </div>
+                            </div>
+                            <div class="sub-task-section mb-3">
+                              <h6>Sub-tasks</h6>
+                              <div class="pl-2 d-flex align-items-center">
+                                <input type="radio" class="mr-2" />
+                                <label for="" class="mb-0"
+                                  >Study Vocab List</label
+                                >
+                              </div>
+                              <div class="pl-2 d-flex align-items-center">
+                                <input type="radio" class="mr-2" />
+                                <label for="" class="mb-0"
+                                  >Start typing to add subtasks</label
+                                >
+                              </div>
+                            </div>
+                            <div class="addition-material-section">
+                              <h6 class="mb-1">Additional Material</h6>
+                              <div
+                                class="
+                                  d-flex
+                                  align-items-center
+                                  justify-content-between
+                                "
+                              >
+                                <div class="col-8 py-0 pl-0 material-link">
+                                  Rubric: https://docs.google.com/document/...
+                                </div>
+                                <div
+                                  class="col-4 material-date py-0 text-right"
+                                >
+                                  12/04/22
+                                </div>
+                              </div>
+                            </div>
+                            <div class="upload-file-section mt-2">
+                              <div class="d-flex align-items-center">
+                                <div class="col-2 p-0">
+                                  <select
+                                    class="form-select form-control"
+                                    aria-label="Default select example"
+                                  >
+                                    <option selected>Type</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                  </select>
+                                </div>
+                                <div class="col-8 py-0 px-1">
+                                  <input
+                                    type="text"
+                                    class="form-control px-2"
+                                    placeholder="Paste Link or Upload File"
+                                  />
+                                </div>
+                                <div class="col-2 p-0">
+                                  <input
+                                    type="submit"
+                                    class="form-control"
+                                    value="Add"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="add-person-section position-absolute">
+                              <div class="ap-img-section"></div>
+                              <div class="ap-img-add">
+                                <img src="~/static/image/add-btn.png" alt="" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <h3 class="jochi-headings">Completed</h3>
+                        <div class="row mt-1">
+                          <div class="col-6">
+                            <div
+                              class="
+                                jochi-sub-components-light-bg
+                                py-4
+                                px-2
+                                completed-assignments
+                                text-center
+                              "
+                            >
+                              <h4 class="mb-0 blue">Art History Reading</h4>
+                              <p class="mb-0">Read Chapters #1 & #2</p>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div
+                              class="
+                                jochi-sub-components-light-bg
+                                py-4
+                                px-2
+                                completed-assignments
+                                text-center
+                              "
+                            >
+                              <h4 class="mb-0 green">AP Calculus Problem</h4>
+                              <p class="mb-0">Homework #5</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="
+                          jochi-components-light-bg
+                          p-4
+                          pl-5
+                          position-absolute
+                          pending-assignment-popup
+                        "
+                      >
+                        <div
+                          class="
+                            d-flex
+                            justify-content-between
+                            align-items-center
+                          "
+                        >
+                          <h1>Test</h1>
+                          <button
+                            class="btn pending-popup-close-btn"
+                            @click="pendingPopupclose()"
+                          >
+                            x
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <div class="planner-action-btns d-flex align-items-center position-absolute">
-          <button class="pa-btn btn filter-btn mr-3" @click="filterPlanner()" id="filterPlanner">Filter Planner</button>
-          <button class="pa-btn assignment-f-btn btn" @click="assignmentPlanner()" id="assignmentPlanner">Assignment Planner</button>
+        <!-- <div
+          class="
+            planner-action-btns
+            d-flex
+            align-items-center
+            position-absolute
+          "
+        >
+          <button
+            class="pa-btn btn filter-btn mr-3"
+            @click="filterPlanner()"
+            id="filterPlanner"
+          >
+            Filter Planner
+          </button>
+          <button
+            class="pa-btn assignment-f-btn btn"
+            @click="assignmentPlanner()"
+            id="assignmentPlanner"
+          >
+            Assignment Planner
+          </button>
         </div>
-        <div class="col-lg-8 col-md-12 p-0 position-absolute assignment-planner-section" id="assignPlanSection">
+        <div
+          class="
+            col-lg-8 col-md-12
+            p-0
+            position-absolute
+            assignment-planner-section
+          "
+          id="assignPlanSection"
+        >
           <div class="position-realtive h-100">
-            <div class="dashboard-main-content jochi-components-light-bg p-4 pl-5">
+            <div
+              class="dashboard-main-content jochi-components-light-bg p-4 pl-5"
+            >
               <div class="d-flex justify-content-between align-items-center">
                 <h3 class="jochi-headings">Pending</h3>
-                <button class="add-assignment-btn btn">
-                  Add Assignment
-                </button>
+                <button class="add-assignment-btn btn">Add Assignment</button>
               </div>
               <div class="col-6 px-0">
-                <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive" @click="addAssignment()">
-                  <div class="assignment-tag-section d-flex align-items-center mb-2">
+                <div
+                  class="
+                    jochi-sub-components-light-bg
+                    drag-drop
+                    p-4
+                    position-realtive
+                  "
+                  @click="addAssignment()"
+                >
+                  <div
+                    class="
+                      assignment-tag-section
+                      d-flex
+                      align-items-center
+                      mb-2
+                    "
+                  >
                     <div class="assignment-tag red mr-2">Urgent</div>
                     <div class="assignment-tag pink">AP French</div>
                   </div>
@@ -366,11 +626,7 @@
                   <div class="addition-material-section">
                     <h6 class="mb-1">Additional Material</h6>
                     <div
-                      class="
-                        d-flex
-                        align-items-center
-                        justify-content-between
-                      "
+                      class="d-flex align-items-center justify-content-between"
                     >
                       <div class="col-8 py-0 pl-0 material-link">
                         Rubric: https://docs.google.com/document/...
@@ -401,11 +657,7 @@
                         />
                       </div>
                       <div class="col-2 p-0">
-                        <input
-                          type="submit"
-                          class="form-control"
-                          value="Add"
-                        />
+                        <input type="submit" class="form-control" value="Add" />
                       </div>
                     </div>
                   </div>
@@ -449,15 +701,27 @@
                 </div>
               </div>
             </div>
-            <div class="jochi-components-light-bg p-4 pl-5 position-absolute pending-assignment-popup">
+            <div
+              class="
+                jochi-components-light-bg
+                p-4
+                pl-5
+                position-absolute
+                pending-assignment-popup
+              "
+            >
               <div class="d-flex justify-content-between align-items-center">
                 <h1>Test</h1>
-                <button class="btn pending-popup-close-btn" @click="pendingPopupclose()">x</button>
+                <button
+                  class="btn pending-popup-close-btn"
+                  @click="pendingPopupclose()"
+                >
+                  x
+                </button>
               </div>
             </div>
           </div>
-        </div>
-
+        </div> -->
       </div>
 
       <!-- End Weekly Calander -->
@@ -1009,7 +1273,7 @@ export default {
 };
 </script>
 
-<style>
+<!-- <style>
 .material-link {
   font-size: 10px;
   white-space: nowrap;
@@ -1306,6 +1570,475 @@ export default {
   transform: rotate(-90deg);
   top: 50vh;
   right: -139px;
+}
+
+.planner-action-btns .pa-btn {
+  padding: 5px 20px;
+  background-color: #b8b8b8;
+  color: #ffffff;
+  border-radius: 14px 14px 0 0;
+  transition: background-color 0.5s ease;
+}
+
+.planner-action-btns .pa-btn.active {
+  background-color: #ffffff;
+  color: #b8b8b8;
+  border: 1px solid #b8b8b8;
+  transition: background-color 0.5s ease;
+}
+
+.assignment-planner-section {
+  top: 0;
+  right: 3rem;
+  bottom: 0;
+  z-index: 5;
+  display: none;
+}
+
+.assignment-planner-section.active {
+  display: block;
+}
+
+.assignment-planner-section .jochi-components-light-bg {
+  background-color: #ffffff;
+  height: 100%;
+}
+</style> -->
+
+<style>
+body {
+  background-color: #ffffff !important;
+}
+
+.student-dashboard-main {
+  min-height: 100vh;
+  margin: 0;
+}
+
+.jochi-sub-components-light-bg {
+  background-color: rgba(255, 255, 255, 0.45);
+  -webkit-box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 9%);
+  box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 9%);
+  border-radius: 22px;
+}
+
+.jochi-headings {
+  color: #ff6d6d;
+}
+
+.sd-sidebar {
+  height: 100%;
+}
+.sd-sidebar,
+.dashboard-main-content {
+  min-height: calc(100vh - 1.8rem);
+}
+
+.sb-btn-icon {
+  width: 30px;
+}
+
+.sb-btn-icon img {
+  width: 100%;
+}
+
+.sb-btn-head {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.sb-expand-btn {
+  cursor: pointer;
+}
+
+.sb-btn-content {
+  padding-left: 4rem;
+  font-size: 14px;
+}
+
+.display-picture-holder {
+  width: 80px;
+  height: 80px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.sb-user-name {
+  font-size: 26px;
+  color: #ff6d6d;
+  font-weight: 700;
+}
+
+.sb-settings-btn {
+  color: #b4b4b4;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.add-assignment-btn {
+  font-size: 12px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+.add-assignment-btn:hover {
+  font-size: 12px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+.notification-section {
+  cursor: pointer;
+}
+
+.notification-section svg {
+  fill: #b4b4b4;
+  width: 25px;
+  height: 25px;
+}
+
+.notification-count-section {
+  background-color: #ea2626;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  top: 3px;
+  right: 0;
+}
+
+.assignment-tag {
+  font-size: 10px;
+  padding: 2px 10px;
+  border-radius: 18px;
+  color: #ffffff;
+}
+
+.assignment-tag.red {
+  background-color: #ea2626;
+}
+
+.assignment-tag.pink {
+  background-color: #fb3e80;
+}
+
+.assignment-add-section h4 {
+  color: #000000;
+  font-weight: 700;
+}
+
+.assignment-add-section p {
+  color: #b4b4b4;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.sub-task-section h6 {
+  color: #e48194;
+}
+
+.sub-task-section label {
+  font-size: 12px;
+}
+
+.material-link {
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.material-date {
+  font-size: 10px;
+}
+
+.addition-material-section h6 {
+  color: #000000;
+}
+
+.form-control {
+  background-color: #b4b4b4;
+  border-block-color: #b4b4b4;
+  color: #ffffff;
+}
+
+.upload-file-section .form-control {
+  height: 18px;
+  font-size: 8px;
+  padding: 0;
+}
+
+.upload-file-section .form-control::placeholder {
+  color: #ffffff;
+}
+
+.completed-assignments h4 {
+  font-weight: 700;
+}
+
+.completed-assignments h4.blue {
+  color: #9d00df;
+}
+
+.completed-assignments h4.green {
+  color: #1d9c00;
+}
+
+.completed-assignments p {
+  color: #c7c1c1;
+  font-size: 12px;
+}
+
+.add-person-section {
+  top: -5px;
+  display: flex;
+  right: 25px;
+}
+
+.ap-img-add,
+.ap-img-section {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.ap-img-add {
+  margin-left: -15px;
+  cursor: pointer;
+}
+
+.ap-img-section {
+  background-color: #ffffff;
+}
+
+.fc .fc-scrollgrid {
+  border-radius: 12px;
+  overflow: hidden;
+  border: none;
+}
+
+.fc-timegrid-body {
+  padding-top: 25px;
+}
+
+.fc-theme-standard .fc-popover {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.fc .fc-more-popover .fc-popover-header {
+  background: #ff6f69;
+  color: #ffffff;
+  border-radius: 12px 12px 0 0;
+  font-weight: 700;
+}
+
+.fc .fc-more-popover .fc-popover-body {
+  background: none;
+  padding: 0;
+}
+
+.fc .fc-more-popover .fc-popover-body .fc-timegrid-event {
+  border-radius: 0 0 12px 12px;
+}
+
+.fc-toolbar-chunk .fc-toolbar-title {
+  position: absolute;
+  font-size: 20px;
+  color: #000000;
+  font-weight: 700;
+  z-index: 999;
+}
+
+.fc-toolbar-chunk button {
+  display: none !important;
+}
+
+/* .fc .fc-button .fc-icon {
+    color: #a28cf6;
+    font-size: 1em;
+    line-height: 1em;
+    margin: 0;
+}
+
+.fc-toolbar-chunk .fc-next-button.fc-button,
+.fc-toolbar-chunk .fc-prev-button.fc-button {
+    background: none;
+    border: 1px solid #b4b4b4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fc-toolbar-chunk .fc-next-button.fc-button {
+    position: relative;
+    top: 1.065rem;
+}
+
+.fc .fc-day-disabled {
+    background: none;
+}
+
+.fc .fc-daygrid-day-number {
+    color: #8c8bac !important;
+    font-weight: 600;
+}
+
+.fc-theme-standard th {
+    border-right: none;
+    border-left: none;
+    background-color: #f0deeb;
+    padding: 5px;
+}
+
+.fc-theme-standard th .fc-col-header-cell-cushion {
+    color: #a995ef;
+}
+
+.fc-theme-standard td {
+  border-color: #e9d7ee;
+} */
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border: none;
+}
+
+/* .fc-button.fc-button-primary {
+  display: none;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+  border: none;
+} */
+
+.fc .fc-daygrid-day.fc-day-today,
+.fc .fc-timegrid-col.fc-day-today {
+  background-color: transparent;
+}
+
+.fc .fc-timegrid-slot-minor {
+  border-top: none;
+}
+
+/* .fc-media-screen .fc-timegrid-cols {
+  position: unset;
+} */
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+  text-align: center;
+  background-color: #c6c5c5;
+  color: #ffffff;
+  border-radius: 7px;
+  font-size: 12px;
+  position: relative;
+}
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame::after {
+  content: "";
+  background-color: #c6c5c5;
+  width: 100vw;
+  height: 1px;
+  position: absolute;
+  top: 8px;
+}
+
+/* .fc-scrollgrid-sync-table{
+  display: none;
+} */
+
+.fc .fc-cell-shaded,
+.fc .fc-day-disabled {
+  background: none;
+}
+
+.fc-toolbar-chunk .fc-toolbar-title {
+  position: absolute;
+  left: 42%;
+  right: 42%;
+  top: -5px;
+  font-size: 14px;
+  color: #ffffff;
+  background: #ff6f69;
+  border-radius: 12px;
+  padding: 5px;
+}
+
+.fc-view-harness.fc-view-harness-active {
+  height: 75vh !important;
+  margin-top: 20px;
+}
+
+.fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar {
+  width: 3px;
+}
+
+.fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-track {
+  background: none;
+}
+
+.fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-thumb {
+  background: #ff6d6d;
+}
+
+.fc-timegrid-event-harness > .fc-timegrid-event {
+  left: 15px;
+}
+
+.fc-v-event {
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 15%) !important;
+  box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 15%) !important;
+  border-radius: 22px;
+  border: none;
+  padding: 15px 20px;
+}
+
+.fc-v-event .fc-event-main {
+  color: #000000;
+}
+
+.fc-timegrid-col-events .fc-timegrid-more-link.fc-more-link {
+  bottom: unset !important;
+  background: #ff6f69;
+  color: #ffffff !important;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.fc-v-event .fc-event-title {
+  font-weight: 800;
+  font-size: 18px;
+  word-break: break-all;
+}
+
+.jochi-components-light-bg.pending-assignment-popup {
+  top: 12px;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background-color: #ffffff;
+  transform: scale(0);
+  transition: transform 1s ease;
+}
+
+.jochi-components-light-bg.pending-assignment-popup.active {
+  transform: scale(1);
+  transition: transform 1s ease;
+}
+
+.planner-action-btns {
+  transform: rotate(-90deg);
+  top: 50vh;
+  right: -164px;
 }
 
 .planner-action-btns .pa-btn {

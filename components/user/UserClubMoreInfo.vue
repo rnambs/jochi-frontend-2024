@@ -145,9 +145,7 @@
                                   w-100
                                 "
                               >
-                                <div
-                                  class="left-side"
-                                >
+                                <div class="left-side">
                                   <h4
                                     @click="openEditSportsActivity(item)"
                                     class="
@@ -275,11 +273,13 @@
                                 </p>
                                 <p
                                   @click="openEditSportsActivity(item)"
-                                  class="color-primary
-                                  word-break
-                                  cursor-pointer
-                                  mb-0
-                                  font-semi-bold"
+                                  class="
+                                    color-primary
+                                    word-break
+                                    cursor-pointer
+                                    mb-0
+                                    font-semi-bold
+                                  "
                                 >
                                   {{ item.title }}
                                 </p>
@@ -296,7 +296,9 @@
                                   flex-column flex-sm-row flex-lg-column
                                 "
                               >
-                                <div class="d-flex flex-wrap justify-content-end">
+                                <div
+                                  class="d-flex flex-wrap justify-content-end"
+                                >
                                   <p
                                     class="
                                       color-secondary
@@ -931,109 +933,109 @@
             <div class="custom-overflow pr-2 mr--2">
               <form>
                 <!-- <fieldset :disabled="!enableEdit"> -->
-                  <div class="form-row">
-                    <label for="recipient-name" class="col-form-label"
-                      >Type<em>*</em></label
-                    >
+                <div class="form-row">
+                  <label for="recipient-name" class="col-form-label"
+                    >Type<em>*</em></label
+                  >
 
-                    <select
-                      class="form-control bg-white mb-3"
-                      tabindex=""
-                      name="activityType"
-                      v-model="activity.activityType"
-                      :class="{
-                        'is-invalid':
-                          submittedActivity &&
-                          isActivity &&
-                          $v.activity.activityType.$error,
-                      }"
-                    >
-                      <option value="Match">Match</option>
-                      <option value="Training">Training</option>
-                    </select>
-                    <div
-                      v-if="
+                  <select
+                    class="form-control bg-white mb-3"
+                    tabindex=""
+                    name="activityType"
+                    v-model="activity.activityType"
+                    :class="{
+                      'is-invalid':
                         submittedActivity &&
                         isActivity &&
-                        $v.activity.activityType.$error
-                      "
-                      class="invalid-feedback"
+                        $v.activity.activityType.$error,
+                    }"
+                  >
+                    <option value="Match">Match</option>
+                    <option value="Training">Training</option>
+                  </select>
+                  <div
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityType.$error
+                    "
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.activity.activityType.required"
+                      >This field is required</span
                     >
-                      <span v-if="!$v.activity.activityType.required"
-                        >This field is required</span
-                      >
-                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label"
-                      >Title<em>*</em></label
-                    >
+                </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Title<em>*</em></label
+                  >
 
-                    <input
-                      type="text"
-                      id="club"
-                      placeholder="Enter the title"
-                      class="form-control bg-white"
-                      v-model="activity.activityTitle"
-                      name="activityTitle"
-                      maxlength="100"
-                      :class="{
-                        'is-invalid':
-                          submittedActivity &&
-                          isActivity &&
-                          $v.activity.activityTitle.$error,
-                      }"
-                    />
-                    <div
-                      v-if="
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the title"
+                    class="form-control bg-white"
+                    v-model="activity.activityTitle"
+                    name="activityTitle"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
                         submittedActivity &&
                         isActivity &&
-                        $v.activity.activityTitle.$error
-                      "
-                      class="invalid-feedback"
+                        $v.activity.activityTitle.$error,
+                    }"
+                  />
+                  <div
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityTitle.$error
+                    "
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.activity.activityTitle.required"
+                      >This field is required</span
                     >
-                      <span v-if="!$v.activity.activityTitle.required"
-                        >This field is required</span
-                      >
-                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="message-text" class="col-form-label"
-                      >Description<em>*</em></label
-                    >
-                    <textarea
-                      class="form-control bg-white"
-                      id="message-text"
-                      v-model="activity.activityDesc"
-                      name="activityDesc"
-                      maxlength="800"
-                      placeholder="Enter description"
-                      :class="{
-                        'is-invalid':
-                          submittedActivity &&
-                          isActivity &&
-                          $v.activity.activityDesc.$error,
-                      }"
-                    ></textarea>
-                    <div
-                      v-if="
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label"
+                    >Description<em>*</em></label
+                  >
+                  <textarea
+                    class="form-control bg-white"
+                    id="message-text"
+                    v-model="activity.activityDesc"
+                    name="activityDesc"
+                    maxlength="800"
+                    placeholder="Enter description"
+                    :class="{
+                      'is-invalid':
                         submittedActivity &&
                         isActivity &&
-                        $v.activity.activityDesc.$error
-                      "
-                      class="invalid-feedback"
+                        $v.activity.activityDesc.$error,
+                    }"
+                  ></textarea>
+                  <div
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityDesc.$error
+                    "
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.activity.activityDesc.required"
+                      >This field is required</span
                     >
-                      <span v-if="!$v.activity.activityDesc.required"
-                        >This field is required</span
-                      >
-                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label"
-                      >Date<em>*</em></label
-                    >
+                </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Date<em>*</em></label
+                  >
 
-                    <!-- <input
+                  <!-- <input
                       type="text"
                       id="club"
                       placeholder="Enter the date"
@@ -1048,7 +1050,7 @@
                           $v.activity.activityDate.$error,
                       }"
                     /> -->
-                    <!-- <input
+                  <!-- <input
                       type="text"
                       name="daterange"
                       @change="onDateChange($event)"
@@ -1063,41 +1065,41 @@
                           $v.activity.activityDate.$error,
                       }"
                     /> -->
-                    <date-picker
-                      class="form-control bg-white"
-                      placeholder="MM/DD/YYYY"
-                      format="MM/dd/yyyy"
-                      :value="activity.activityDate"
-                      v-model="activity.activityDate"
-                      :disabled-dates="disabledDates"
-                      @change="onDateChange"
-                      name="activityDate"
-                      :class="{
-                        'is-invalid':
-                          submittedActivity &&
-                          isActivity &&
-                          $v.activity.activityDate.$error,
-                      }"
-                    />
-                    <div
-                      v-if="
+                  <date-picker
+                    class="form-control bg-white"
+                    placeholder="MM/DD/YYYY"
+                    format="MM/dd/yyyy"
+                    :value="activity.activityDate"
+                    v-model="activity.activityDate"
+                    :disabled-dates="disabledDates"
+                    @change="onDateChange"
+                    name="activityDate"
+                    :class="{
+                      'is-invalid':
                         submittedActivity &&
                         isActivity &&
-                        $v.activity.activityDate.$error
-                      "
-                      class="invalid-feedback"
+                        $v.activity.activityDate.$error,
+                    }"
+                  />
+                  <div
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityDate.$error
+                    "
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.activity.activityDate.required"
+                      >This field is required</span
                     >
-                      <span v-if="!$v.activity.activityDate.required"
-                        >This field is required</span
-                      >
-                    </div>
                   </div>
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label"
-                      >Time<em>*</em></label
-                    >
+                </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Time<em>*</em></label
+                  >
 
-                    <!-- <input
+                  <!-- <input
                       type="text"
                       id="club"
                       placeholder="Enter the time"
@@ -1112,99 +1114,96 @@
                           $v.activity.activityTime.$error,
                       }"
                     /> -->
-                    <vue-timepicker
-                      close-on-complete
-                      format="hh:mm A"
-                      v-model="activity.activityTime"
-                      name="activityTime"
-                      class="show-cursor form-white"
-                      :class="{
-                        'is-invalid':
-                          submittedActivity && $v.activity.activityTime.$error,
-                      }"
-                    ></vue-timepicker>
-                    <div
-                      v-if="
-                        submittedActivity &&
-                        isActivity &&
-                        $v.activity.activityTime.$error
-                      "
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.activity.activityTime.required"
-                        >This field is required</span
-                      >
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label"
-                      >Venue<em>*</em></label
-                    >
-
-                    <input
-                      type="text"
-                      id="club"
-                      placeholder="Enter the venue"
-                      class="form-control bg-white"
-                      v-model="activity.activityVenue"
-                      name="activityVenue"
-                      maxlength="100"
-                      :class="{
-                        'is-invalid':
-                          submittedActivity &&
-                          isActivity &&
-                          $v.activity.activityVenue.$error,
-                      }"
-                    />
-                    <div
-                      v-if="
-                        submittedActivity &&
-                        isActivity &&
-                        $v.activity.activityVenue.$error
-                      "
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.activity.activityVenue.required"
-                        >This field is required</span
-                      >
-                    </div>
-                  </div>
+                  <vue-timepicker
+                    close-on-complete
+                    format="hh:mm A"
+                    v-model="activity.activityTime"
+                    name="activityTime"
+                    class="show-cursor form-white"
+                    :class="{
+                      'is-invalid':
+                        submittedActivity && $v.activity.activityTime.$error,
+                    }"
+                  ></vue-timepicker>
                   <div
-                    v-if="activity.activityType == 'Match'"
-                    class="form-group"
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityTime.$error
+                    "
+                    class="invalid-feedback"
                   >
-                    <label for="recipient-name" class="col-form-label"
-                      >Opponent Team<em>*</em></label
+                    <span v-if="!$v.activity.activityTime.required"
+                      >This field is required</span
                     >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Venue<em>*</em></label
+                  >
 
-                    <input
-                      type="text"
-                      id="club"
-                      placeholder="Enter the opponent team name"
-                      class="form-control bg-white"
-                      v-model="activity.activityOpponentTeam"
-                      name="activityOpponentTeam"
-                      maxlength="100"
-                      :class="{
-                        'is-invalid':
-                          submittedActivity &&
-                          isActivity &&
-                          $v.activity.activityOpponentTeam.$error,
-                      }"
-                    />
-                    <div
-                      v-if="
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the venue"
+                    class="form-control bg-white"
+                    v-model="activity.activityVenue"
+                    name="activityVenue"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
                         submittedActivity &&
                         isActivity &&
-                        $v.activity.activityOpponentTeam.$error
-                      "
-                      class="invalid-feedback"
+                        $v.activity.activityVenue.$error,
+                    }"
+                  />
+                  <div
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityVenue.$error
+                    "
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.activity.activityVenue.required"
+                      >This field is required</span
                     >
-                      <span v-if="!$v.activity.activityOpponentTeam.required"
-                        >This field is required</span
-                      >
-                    </div>
                   </div>
+                </div>
+                <div v-if="activity.activityType == 'Match'" class="form-group">
+                  <label for="recipient-name" class="col-form-label"
+                    >Opponent Team<em>*</em></label
+                  >
+
+                  <input
+                    type="text"
+                    id="club"
+                    placeholder="Enter the opponent team name"
+                    class="form-control bg-white"
+                    v-model="activity.activityOpponentTeam"
+                    name="activityOpponentTeam"
+                    maxlength="100"
+                    :class="{
+                      'is-invalid':
+                        submittedActivity &&
+                        isActivity &&
+                        $v.activity.activityOpponentTeam.$error,
+                    }"
+                  />
+                  <div
+                    v-if="
+                      submittedActivity &&
+                      isActivity &&
+                      $v.activity.activityOpponentTeam.$error
+                    "
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.activity.activityOpponentTeam.required"
+                      >This field is required</span
+                    >
+                  </div>
+                </div>
                 <!-- </fieldset> -->
               </form>
             </div>
@@ -1616,6 +1615,7 @@ export default {
       clubFiles: "clubFiles",
       uploadFile: "uploadFile",
       fileRemove: "fileRemove",
+      uploadBanner: "uploadBanner",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -2109,12 +2109,12 @@ export default {
           var file = new File([blob], "name");
 
           console.log("consoling image outputs ", blob, file);
-          formData.append("file", file);
+          formData.append("file", blob);
           formData.append("club_id", this.$route.query.id);
           formData.append("user_id", localStorage.getItem("id"));
           formData.append("club_banner", "1");
 
-          this.uploadFile(formData, {
+          this.uploadBanner(formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },

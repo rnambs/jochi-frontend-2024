@@ -25,9 +25,14 @@
             >
               <div class="d-flex justify-content-between align-items-center">
                 <h3 class="jochi-headings">Pending</h3>
-                <button class="add-assignment-btn btn">Add Assignment</button>
+                <button
+                  @click="openAddAssignmentModal"
+                  class="add-assignment-btn btn"
+                >
+                  Add Assignment
+                </button>
               </div>
-              <div class="col-6 px-0">
+              <!-- <div class="col-6 px-0">
                 <div
                   class="
                     jochi-sub-components-light-bg
@@ -112,8 +117,130 @@
                     </div>
                   </div>
                 </div>
+              </div> -->
+              <!-- drag -->
+              <div v-for="item in assignmentsList" :key="item.id">
+                <drag class="drag" :transfer-data="{ item }">
+                  <div class="col-6 px-0">
+                    <div
+                      class="
+                        jochi-sub-components-light-bg
+                        drag-drop
+                        p-4
+                        position-realtive
+                      "
+                    >
+                      <div
+                        class="
+                          assignment-tag-section
+                          d-flex
+                          align-items-center
+                          mb-2
+                        "
+                      >
+                        <div class="assignment-tag red mr-2">
+                          {{
+                            item.priority == "1"
+                              ? "Urgent"
+                              : item.priority == "2"
+                              ? "Important"
+                              : item.priority == "3"
+                              ? "Can Wait"
+                              : ""
+                          }}
+                        </div>
+                        <div class="assignment-tag pink">
+                          {{ item.subject }}
+                        </div>
+                      </div>
+                      <div class="assignment-add-section">
+                        <h4 class="mb-0">{{ item.task }}</h4>
+                        <div class="text-center px-3">
+                          <p>{{ item.assignment_description }}</p>
+                        </div>
+                      </div>
+                      <div class="sub-task-section mb-3">
+                        <h6>Sub-tasks</h6>
+                        <div
+                          v-for="sub in item.subTasks"
+                          :key="sub.id"
+                          class="pl-2 d-flex align-items-center"
+                        >
+                          <input type="radio" class="mr-2" />
+                          <label for="" class="mb-0">{{ sub.title }}</label>
+                        </div>
+                        <div
+                          v-if="!item.subTasks || item.subTasks.length <= 0"
+                          class="pl-2 d-flex align-items-center"
+                        >
+                          No sub tasks added!
+                        </div>
+                        <!-- <div class="pl-2 d-flex align-items-center">
+                          <input type="radio" class="mr-2" />
+                          <label for="" class="mb-0"
+                            >Start typing to add subtasks</label
+                          >
+                        </div> -->
+                      </div>
+                      <div class="addition-material-section">
+                        <h6 class="mb-1">Additional Material</h6>
+                        <div
+                          class="
+                            d-flex
+                            align-items-center
+                            justify-content-between
+                          "
+                        >
+                          <div class="col-8 py-0 pl-0 material-link">
+                            Rubric: https://docs.google.com/document/...
+                          </div>
+                          <div class="col-4 material-date py-0 text-right">
+                            12/04/22
+                          </div>
+                        </div>
+                      </div>
+                      <div class="upload-file-section mt-2">
+                        <div class="d-flex align-items-center">
+                          <div class="col-2 p-0">
+                            <select
+                              class="form-select form-control"
+                              aria-label="Default select example"
+                            >
+                              <option selected>Type</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+                          </div>
+                          <div class="col-8 py-0 px-1">
+                            <input
+                              type="text"
+                              class="form-control px-2"
+                              placeholder="Paste Link or Upload File"
+                            />
+                          </div>
+                          <div class="col-2 p-0">
+                            <input
+                              type="submit"
+                              class="form-control"
+                              value="Add"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="add-person-section position-absolute">
+                        <div class="ap-img-section"></div>
+                        <div class="ap-img-add">
+                          <img src="~/static/image/add-btn.png" alt="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </drag>
               </div>
+              <!-- drag end -->
               <h3 class="jochi-headings">Completed</h3>
+              <drop class="drop" @drop="handleDrop">Dropzone</drop>
               <div class="row mt-1">
                 <div class="col-6">
                   <div
@@ -151,10 +278,12 @@
                 p-4
                 pl-5
                 position-absolute
-                pending-assignment-popup
                 overflow-auto
+                d-block
+                pending-assignment-popup
               "
             >
+              <!-- pending-assignment-popup -->
               <div class="d-flex justify-content-between align-items-center">
                 <h4 class="jochi-headings mb-0">Edit Assignment</h4>
                 <button
@@ -215,6 +344,362 @@
 
       <!-- End Daily Calander -->
     </div>
+
+    <!-- modal add assignment -->
+    <div
+      class="modal fade"
+      id="addAssignmentModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="addAssignmentModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addAssignmentModalLongTitle">
+              {{ isAssignmentEdit ? "Edit" : "Add" }} Assignment
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body no-overflow px-4">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label"
+                  >Subject<em>*</em></label
+                >
+                <select
+                  class="form-control"
+                  tabindex=""
+                  v-model="subject"
+                  :class="{
+                    'is-invalid': submitted && $v.subject.$error,
+                  }"
+                >
+                  <option value="">Select subject</option>
+                  <option
+                    v-bind:value="{
+                      id: subjects.id,
+                      text: subjects.subject_name,
+                    }"
+                    v-for="(subjects, index) in subjectsData"
+                    :key="index"
+                  >
+                    {{ subjects.subject_name }}
+                  </option>
+                  <option v-if="subjectsData.length == 0">No data</option>
+                </select>
+                <div
+                  v-if="submitted && $v.subject.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.subject.required"
+                    >This field is required</span
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label"
+                  >Assignment Name<em>*</em></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="message-text"
+                  v-model="assignmentName"
+                  maxlength="125"
+                  placeholder="Enter assignment name"
+                  :class="{
+                    'is-invalid': submitted && $v.assignmentName.$error,
+                  }"
+                />
+                <div
+                  v-if="submitted && $v.assignmentName.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.assignmentName.required"
+                    >This field is required</span
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label"
+                  >Task<em>*</em></label
+                >
+                <textarea
+                  class="form-control"
+                  id="message-text"
+                  v-model="assignmentDescription"
+                  maxlength="500"
+                  placeholder="Enter assignement description"
+                  :class="{
+                    'is-invalid': submitted && $v.assignmentDescription.$error,
+                  }"
+                ></textarea>
+                <div
+                  v-if="submitted && $v.assignmentDescription.$error"
+                  class="invalid-feedback"
+                >
+                  <span v-if="!$v.assignmentDescription.required"
+                    >This field is required</span
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 ml-auto">
+                  <div class="form-group mb-0">
+                    <label for="recipient-name" class="col-form-label"
+                      >Priority<em>*</em></label
+                    >
+                    <div class="dropdown input-icon-area">
+                      <button
+                        id="dLabel"
+                        class="dropdown-select form-control"
+                        type="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        requ
+                      >
+                        <span class="caret">
+                          {{
+                            priorityVal ? priorityVal : "Select priority"
+                          }}</span
+                        >
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dLabel">
+                        <li class="item">
+                          <div class="low-color"></div>
+                          Can Wait
+                        </li>
+                        <li class="item">
+                          <div class="medium-color"></div>
+                          Important
+                        </li>
+                        <li class="item">
+                          <div class="high-color"></div>
+                          Urgent
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div
+                    v-if="
+                      submitted &&
+                      priorityVal != '1' &&
+                      priorityVal != '2' &&
+                      priorityVal != '3'
+                    "
+                  >
+                    <span
+                      v-if="
+                        priorityVal != '1' &&
+                        priorityVal != '2' &&
+                        priorityVal != '3'
+                      "
+                      class="required-button"
+                      >This field is required</span
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 ml-auto">
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label"
+                      >Date<em>*</em></label
+                    >
+                    <date-picker
+                      class="form-control"
+                      placeholder="MM/DD/YYYY"
+                      format="MM/dd/yyyy"
+                      v-model="dateValue"
+                      :class="{
+                        'is-invalid': submitted && $v.dateValue.$error,
+                      }"
+                      :disabled-dates="disabledDates"
+                    />
+                    <div
+                      v-if="submitted && $v.dateValue.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.dateValue.required"
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label"
+                      >Time<em>*</em></label
+                    >
+                    <div>
+                      <vue-timepicker
+                        format="hh:mm A"
+                        v-model="timeValue"
+                        name="timeValue"
+                        class="show-cursor"
+                        :value="timeValue"
+                        :class="{
+                          'is-invalid': submitted && $v.timeValue.$error,
+                        }"
+                      ></vue-timepicker>
+                      <div
+                        v-if="submitted && $v.timeValue.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.timeValue.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <h3 class="color-dark font-semi-bold mb-0">Sub Tasks</h3>
+                <a @click="onAddSubTaskClick" class="btn p-0">
+                  <span class="color-secondary"
+                    ><i class="fas fa-plus-circle"></i
+                  ></span>
+                </a>
+              </div>
+              <div v-if="addSubTask" class="d-flex flex-row align-items-start">
+                <div class="form-row mb-2 mx-0 mr-2">
+                  <label class="form-label" for="name">Add a sub task</label>
+                  <input
+                    type="text"
+                    maxlength="100"
+                    v-model="subTaskName"
+                    class="form-control"
+                  />
+                </div>
+                <div class="pt-4">
+                  <button
+                    class="btn btn-primary btn-sm mt-2"
+                    @click="onAddNewSubTask"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+              <div class="custom-overflow pr-2 mr--2 d-flex flex-column">
+                <div v-for="subTask in subTasksList" :key="subTask">
+                  <div class="card card-transparent show-icon p-1 mt-1">
+                    <div
+                      class="d-flex align-items-center justify-content-between"
+                    >
+                      <p
+                        class="
+                          mb-0
+                          color-secondary
+                          text-16
+                          font-regular
+                          text-truncate
+                          pr-3
+                        "
+                      >
+                        <span><i class="far fa-circle"></i></span> {{ subTask }}
+                      </p>
+                      <span
+                        @click="deleteSubTask(subTask)"
+                        class="color-primary fa-icon show-hover d-none btn p-0"
+                        ><i class="fas fa-trash-alt"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
+                <a @click="onInviteClick" class="btn p-0">
+                  <span class="color-secondary"
+                    ><i class="fas fa-plus-circle"></i
+                  ></span>
+                </a>
+              </div>
+              <div v-if="invitePeer" class="d-flex flex-row align-items-start">
+                <div class="form-row mb-2 mx-0 mr-2">
+                  <label class="form-label" for="name">Invite peers</label>
+                  <!-- <input type="text" class="form-control" /> -->
+                  <multiselect
+                    v-model="peerSelected"
+                    :options="students"
+                    track-by="first_name"
+                    label="first_name"
+                    :placeholder="
+                      peerSelected.length > 3 ? '' : 'Select students'
+                    "
+                    :multiple="true"
+                    :max="4"
+                  >
+                    <span slot="maxElements"
+                      >Maximum of 4 students selected</span
+                    >
+                    <span slot="noResult">No data found</span>
+                  </multiselect>
+                </div>
+                <div class="pt-4">
+                  <button
+                    @click="onInvitePeer"
+                    class="btn btn-primary btn-sm mt-2"
+                  >
+                    Add
+                  </button>
+                </div>
+              </div>
+              <div class="hidden-scroll p-3 row my-0">
+                <div
+                  v-for="peer of peerList"
+                  :key="peer.id"
+                  class="h-fit-content"
+                >
+                  <div class="d-flex align-items-center my-2 mr-3 min-w-200">
+                    <div class="ld-img-section mr-3">
+                      <div class="ld-img-holder"></div>
+                    </div>
+                    <div class="ld-details-section">
+                      <p class="ld-heading mb-1">{{ peer.first_name }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-color-close"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-color-save"
+              :disabled="processing"
+              @click="isAssignmentEdit ? UpdateAssignment() : AddAssignment()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal add assignment end -->
   </div>
 </template>
 <script>
@@ -304,6 +789,15 @@ export default {
           },
         },
       },
+      draggable: "Drag Me",
+      assignmentName: "",
+      assignmentDescription: "",
+      addSubTask: false,
+      subTaskName: "",
+      subTasksList: [],
+      invitePeer: false,
+      peerSelected: [],
+      peerList: [],
     };
   },
   mounted() {
@@ -314,6 +808,7 @@ export default {
     );
     this.ShowQuotedMessage();
     this.getSubjectsList();
+    this.getAssignmentsList();
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.GetDailyPlanner();
     //priority dropdown
@@ -374,9 +869,10 @@ export default {
   },
   validations: {
     subject: { required },
-    task: { required },
     dateValue: { required },
     timeValue: { required },
+    assignmentName: { required },
+    assignmentDescription: { required },
   },
   computed: {
     ...mapState("quotedMessage", {
@@ -390,6 +886,10 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
       subjectsData: (state) => state.subjectsData,
+      assignmentsList: (state) => state.assignmentsList,
+    }),
+    ...mapState("teacherMeeting", {
+      students: (state) => state.students,
     }),
   },
   methods: {
@@ -400,9 +900,16 @@ export default {
       getAssignment: "getAssignment",
       updateAssignment: "updateAssignment",
       getSubjectsList: "getSubjectsList",
+      getAssignments: "getAssignments",
+    }),
+    ...mapActions("teacherMeeting", {
+      getStudents: "getStudents",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
+    },
+    handleDrop(data, event) {
+      alert(`You dropped with data: ${JSON.stringify(data)}`);
     },
     async ShowQuotedMessage() {
       this.loading = true;
@@ -534,11 +1041,11 @@ export default {
       this.dateValue = date;
       this.timeValue = this.assignment.due_time;
       if (this.assignment.priority == 1) {
-        this.priorityVal = "High";
+        this.priorityVal = "Urgent";
       } else if (this.assignment.priority == 2) {
-        this.priorityVal = "Medium";
+        this.priorityVal = "Important";
       } else if (this.assignment.priority == 3) {
-        this.priorityVal = "Low";
+        this.priorityVal = "Can Wait";
       }
       $(".dropdown-select").text(this.priorityVal);
     },
@@ -551,17 +1058,37 @@ export default {
       this.processing = true;
       const df = moment(this.dateValue).format("YYYY-MM-DD");
       this.loading = true;
+      const peersSelected = [];
+      if (this.peerList.length > 0) {
+        this.peerList.forEach((e) => {
+          peersSelected.push(e.id);
+        });
+      }
       await this.addAssignment({
+        // user_id: localStorage.getItem("id"),
+        // task: this.task,
+        // subject: this.subject?.id,
+        // due_time: this.timeValue,
+        // due_date: df,
+        // priority: this.priorityVal,
         user_id: localStorage.getItem("id"),
-        task: this.task,
+        task: this.assignmentName,
+        assignment_description: this.assignmentDescription,
         subject: this.subject?.id,
         due_time: this.timeValue,
         due_date: df,
         priority: this.priorityVal,
+        shared_users_ids: peersSelected,
+        assignment_materials: [
+          "https://jochi-live.s3.amazonaws.com/assignmentDoc/1659508306402.pdf",
+          "https://jochi-live.s3.amazonaws.com/assignmentImages/1659508771473.png",
+        ],
+        subTasks: this.subTasksList,
       });
       this.loading = false;
 
       if (this.successMessage != "") {
+        this.GetAssignment();
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -589,11 +1116,11 @@ export default {
         return;
       }
 
-      if (this.priorityVal == "High") {
+      if (this.priorityVal == "Urgent") {
         this.priorityVal = "1";
-      } else if (this.priorityVal == "Medium") {
+      } else if (this.priorityVal == "Important") {
         this.priorityVal = "2";
-      } else if (this.priorityVal == "Low") {
+      } else if (this.priorityVal == "Can Wait") {
         this.priorityVal = "3";
       }
 
@@ -737,9 +1264,9 @@ export default {
       return strTime;
     },
     filterOption(val) {
-      var high = /High/g;
-      var med = /Medium/g;
-      var low = /Low/g;
+      var high = /Urgent/g;
+      var med = /Important/g;
+      var low = /Can Wait/g;
       if (high.test(val)) {
         this.priorityVal = "1";
       } else if (med.test(val)) {
@@ -832,6 +1359,50 @@ export default {
       this.calendarApi.next();
       this.GetDailyPlanner();
     },
+    openAddAssignmentModal() {
+      $("#addAssignmentModal").modal({ backdrop: true });
+    },
+    onAddSubTaskClick() {
+      this.addSubTask = true;
+    },
+    onAddNewSubTask() {
+      if (this.subTaskName) {
+        this.subTasksList.push(this.subTaskName);
+      } else {
+        this.$toast.open({
+          message: "Please add a valid subTask ",
+          type: "warning",
+          duration: 5000,
+        });
+      }
+      this.subTaskName = "";
+      this.addSubTask = false;
+    },
+    deleteSubTask(subTask) {
+      this.subTasksList = this.subTasksList.filter((e) => e != subTask);
+    },
+    onInviteClick() {
+      this.invitePeer = true;
+      this.GetStudents();
+    },
+    async GetStudents() {
+      await this.getStudents({
+        school_id: localStorage.getItem("school_id"),
+        studentId: localStorage.getItem("id"),
+      });
+    },
+    onInvitePeer() {
+      console.log(this.peerSelected);
+      this.peerList = this.peerSelected;
+      this.invitePeer = false;
+    },
+    async getAssignmentsList() {
+      await this.getAssignments();
+      console.log(this.assignmentsList);
+    },
   },
 };
 </script>
+
+<style>
+</style>

@@ -3087,7 +3087,6 @@ export default {
             }
           });
         }
-        // session.goals = e.study_goals;
         session.duration = e.duration;
         session.breakTime = e.break_time;
         session.repeat = e.repeat;
