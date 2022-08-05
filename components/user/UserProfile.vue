@@ -11,17 +11,9 @@
         <div class="inner-study p-4 d-flex flex-column flex-fill">
           <div class="d-flex justify-content-between align-items-center">
             <h2  class="color-primary font-bold">Profile</h2>
-            <button
-                    id="clckPrevent"
-                    type="submit"
-                    class="btn btn-primary "
-                    :disabled="!profileImageUrl || loading"
-                  >
-                  <span class="mr-2"><i class="fas fa-save"></i></span> <span>Save Changes</span>
-                  </button>
           </div>
           <div class="profile-row study-row px-2 d-flex flex-column flex-fill justify-content-center">
-            <div class="study-col profile-col d-flex flex-column justify-content-center align-items-center flex-fill">
+            <div class="study-col profile-col d-flex flex-column justify-content-end align-items-center flex-fill">
               <form
                 method="post"
                 @submit.prevent="UploadProfile"
@@ -30,7 +22,7 @@
               >
                 <div class="">
                   <div class="upload-image position-relative">
-                    <div class="proof-img-wrp position-relative cursor-pointer">
+                    <div class="proof-img-wrp position-relative cursor-pointer d-flex justify-content-center">
                       <img
                         v-if="profileImageUrl"
                         :src="profileImageUrl"
@@ -112,9 +104,18 @@
                 <h4 class="text-center color-dark font-semi-bold">
                   <!-- <span><i class="fas fa-user"></i></span> -->
                   {{ name }}</h4>
+                  
+            <!-- <button
+            id="clckPrevent"
+            type="submit"
+            class="btn btn-primary "
+            :disabled="!profileImageUrl || loading"
+          >
+          <span class="mr-2"><i class="fas fa-save"></i></span> <span>Save Changes</span>
+          </button> -->
               </form>
             </div>
-            <div class="study-col d-flex flex-column justify-content-end flex-fill">
+            <div class="study-col d-flex flex-column justify-content-start flex-fill">
               <div
                 class="form-section mx-auto w-100 py-3"
               >
@@ -123,31 +124,57 @@
                     <label for="">Email</label>
                     <div class="form-field">{{ email }}</div>
                   </div> -->
-                  <div class="row">
+                  <div>
+                    <div class="row justify-content-center">
+                      <div class="col-12 col-md-4">
+                        <div class="card card-primary p-3 h-100 d-flex flex-column">
+                          <p class="mb-0 text-16 color-secondary d-flex flex-row align-items-baseline">
+                            <span class="text-24"><i class="fas fa-envelope"></i></span>
+                            <span class="ml-2">{{ email }}</span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-4">
+                        <div class="card card-primary p-3 h-100">
+                          <p class="mb-0 text-16 color-secondary d-flex flex-row align-items-baseline">
+                            <span class="text-24"><i class="fas fa-school"></i></span>
+                            <span class="ml-2">{{ schoolName }}</span>
+                          </p>
+                        </div>
+                      </div>
+                      <!-- <div class="col-12 col-md-4">
+                        <div class="card card-primary h-100 ">
+                              <nuxt-link to="/user-reset-password" class="btn btn-void d-flex flex-column align-items-start">
+                                <span class="mr-2 text-30"><i class="fas fa-lock"></i></span>
+                                <span>Change Password</span>
+                              </nuxt-link>
+                        </div>
+                      </div> -->
+  
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
                     <div class="col-12 col-md-4">
                       <div class="card card-primary p-3 h-100 d-flex flex-column">
-                        <p class="mb-0 text-16 color-secondary d-flex flex-column">
-                          <span class="text-30"><i class="fas fa-envelope"></i></span>
-                          <span>{{ email }}</span>
-                        </p>
+                        <h4 class="color-dark font-semi-bold">Your Advisor</h4>
+                        <div class="d-flex align-items-center my-2 mr-3 min-w-200">
+                          <div class="ld-img-section mr-3">
+                            <div class="ld-img-holder"></div>
+                          </div>
+                          <div class="ld-details-section">
+                            <p class="ld-heading mb-1">Advisor Name</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <!-- <div class="col-12 col-md-4">
                       <div class="card card-primary p-3 h-100">
                         <p class="mb-0 text-16 color-secondary d-flex flex-column">
                           <span class="text-30"><i class="fas fa-school"></i></span>
                           <span>{{ schoolName }}</span>
                         </p>
                       </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <div class="card card-primary h-100 ">
-                            <nuxt-link to="/user-reset-password" class="btn btn-void d-flex flex-column align-items-start">
-                              <span class="mr-2 text-30"><i class="fas fa-lock"></i></span>
-                              <span>Change Password</span>
-                            </nuxt-link>
-                      </div>
-                    </div>
+                    </div> -->
 
                   </div>
                   <!-- <div class="form-group">
@@ -158,6 +185,12 @@
                                         <label for="">Class</label>
                                         <div class="form-field">IX</div>
                                    </div> -->
+                  
+                  <div class="row justify-content-end">
+                    <div class="col-4">
+                      <img src="../../static/image/student_img.png" alt=" img-fluid card-img">
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>

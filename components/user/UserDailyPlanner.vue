@@ -169,7 +169,7 @@
                               <div
                                 v-for="sub in item.subTasks"
                                 :key="sub.id"
-                                class="pl-2 d-flex align-items-center"
+                                class="pl-2 d-flex align-items-center color-secondary"
                               >
                                 <input type="radio" class="mr-2" />
                                 <label for="" class="mb-0">{{ sub.title }}</label>
@@ -178,7 +178,7 @@
                                 v-if="!item.subTasks || item.subTasks.length <= 0"
                                 class="pl-2 d-flex align-items-center"
                               >
-                                No sub tasks added!
+                                <span class="color-secondary text-12">No sub tasks added!</span>
                               </div>
                               <!-- <div class="pl-2 d-flex align-items-center">
                                 <input type="radio" class="mr-2" />
@@ -188,7 +188,7 @@
                               </div> -->
                             </div>
                             <div class="addition-material-section">
-                              <h6 class="mb-1">Additional Material</h6>
+                              <h6 class="mb-1 font-medium">Additional Material</h6>
                               <div
                                 class="
                                   d-flex
@@ -197,7 +197,7 @@
                                 "
                               >
                                 <div class="col-8 py-0 pl-0 material-link">
-                                  Rubric: https://docs.google.com/document/...
+                                  <span class="color-secondary">Rubric: https://docs.google.com/document/...</span>
                                 </div>
                                 <div class="col-4 material-date py-0 text-right">
                                   12/04/22
