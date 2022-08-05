@@ -10,118 +10,31 @@
       <!-- Daily Calander -->
 
       <section id="Daily-Calander" class="">
-        <div class="row">
-          <div class="col-lg-5 col-md-12">
-            <div
-              class="dashboard-main-content jochi-components-light-bg p-4 pl-5"
-            >
-              <h3 class="jochi-headings mb-1">Today,</h3>
-              <FullCalendar ref="fullCalendar" :options="calendarOptions" />
-            </div>
-          </div>
-          <div class="col-lg-7 col-md-12 position-realtive">
-            <div
-              class="dashboard-main-content jochi-components-light-bg p-4 pl-5"
-            >
-              <div class="d-flex justify-content-between align-items-center">
-                <h3 class="jochi-headings">Pending</h3>
-                <button
-                  @click="openAddAssignmentModal"
-                  class="add-assignment-btn btn"
-                >
-                  Add Assignment
-                </button>
-              </div>
-              <!-- <div class="col-6 px-0">
+        <div class="custom-margin-for-main-section custom-full-height d-flex">
+          <div class="d-flex flex-column flex-fill">
+            <div class="row h-100">
+              <div class="col-lg-5 col-md-12 h-100">
                 <div
-                  class="
-                    jochi-sub-components-light-bg
-                    drag-drop
-                    p-4
-                    position-realtive
-                  "
-                  @click="addAssignment()"
+                  class="jochi-components-light-bg p-4 pl-5 h-100"
                 >
-                  <div
-                    class="
-                      assignment-tag-section
-                      d-flex
-                      align-items-center
-                      mb-2
-                    "
-                  >
-                    <div class="assignment-tag red mr-2">Urgent</div>
-                    <div class="assignment-tag pink">AP French</div>
-                  </div>
-                  <div class="assignment-add-section">
-                    <h4 class="mb-0">French Oral Practice</h4>
-                    <div class="text-center px-3">
-                      <p>Practice for mock oral exam in class</p>
-                    </div>
-                  </div>
-                  <div class="sub-task-section mb-3">
-                    <h6>Sub-tasks</h6>
-                    <div class="pl-2 d-flex align-items-center">
-                      <input type="radio" class="mr-2" />
-                      <label for="" class="mb-0">Study Vocab List</label>
-                    </div>
-                    <div class="pl-2 d-flex align-items-center">
-                      <input type="radio" class="mr-2" />
-                      <label for="" class="mb-0"
-                        >Start typing to add subtasks</label
-                      >
-                    </div>
-                  </div>
-                  <div class="addition-material-section">
-                    <h6 class="mb-1">Additional Material</h6>
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
-                      <div class="col-8 py-0 pl-0 material-link">
-                        Rubric: https://docs.google.com/document/...
-                      </div>
-                      <div class="col-4 material-date py-0 text-right">
-                        12/04/22
-                      </div>
-                    </div>
-                  </div>
-                  <div class="upload-file-section mt-2">
-                    <div class="d-flex align-items-center">
-                      <div class="col-2 p-0">
-                        <select
-                          class="form-select form-control"
-                          aria-label="Default select example"
-                        >
-                          <option selected>Type</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                        </select>
-                      </div>
-                      <div class="col-8 py-0 px-1">
-                        <input
-                          type="text"
-                          class="form-control px-2"
-                          placeholder="Paste Link or Upload File"
-                        />
-                      </div>
-                      <div class="col-2 p-0">
-                        <input type="submit" class="form-control" value="Add" />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="add-person-section position-absolute">
-                    <div class="ap-img-section"></div>
-                    <div class="ap-img-add">
-                      <img src="~/static/image/add-btn.png" alt="" />
-                    </div>
-                  </div>
+                  <h2 class="color-primary font-semi-bold mb-1">Today,</h2>
+                  <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-              </div> -->
-              <!-- drag -->
-              <div v-for="item in assignmentsList" :key="item.id">
-                <drag class="drag" :transfer-data="{ item }">
-                  <div class="col-6 px-0">
+              </div>
+              <div class="col-lg-7 col-md-12 position-realtive h-100">
+                <div
+                  class="jochi-components-light-bg py-4 h-100 d-flex flex-column"
+                >
+                  <div class="d-flex justify-content-between align-items-center px-5 pb-3">
+                    <h2 class="color-primary font-semi-bold">Pending</h2>
+                    <button
+                      @click="openAddAssignmentModal"
+                      class="btn btn-dark py-1 px-3"
+                    >
+                      Add Assignment
+                    </button>
+                  </div>
+                  <!-- <div class="col-6 px-0">
                     <div
                       class="
                         jochi-sub-components-light-bg
@@ -129,6 +42,7 @@
                         p-4
                         position-realtive
                       "
+                      @click="addAssignment()"
                     >
                       <div
                         class="
@@ -138,58 +52,32 @@
                           mb-2
                         "
                       >
-                        <div class="assignment-tag red mr-2">
-                          {{
-                            item.priority == "1"
-                              ? "Urgent"
-                              : item.priority == "2"
-                              ? "Important"
-                              : item.priority == "3"
-                              ? "Can Wait"
-                              : ""
-                          }}
-                        </div>
-                        <div class="assignment-tag pink">
-                          {{ item.subject }}
-                        </div>
+                        <div class="assignment-tag red mr-2">Urgent</div>
+                        <div class="assignment-tag pink">AP French</div>
                       </div>
                       <div class="assignment-add-section">
-                        <h4 class="mb-0">{{ item.task }}</h4>
+                        <h4 class="mb-0">French Oral Practice</h4>
                         <div class="text-center px-3">
-                          <p>{{ item.assignment_description }}</p>
+                          <p>Practice for mock oral exam in class</p>
                         </div>
                       </div>
                       <div class="sub-task-section mb-3">
                         <h6>Sub-tasks</h6>
-                        <div
-                          v-for="sub in item.subTasks"
-                          :key="sub.id"
-                          class="pl-2 d-flex align-items-center"
-                        >
+                        <div class="pl-2 d-flex align-items-center">
                           <input type="radio" class="mr-2" />
-                          <label for="" class="mb-0">{{ sub.title }}</label>
+                          <label for="" class="mb-0">Study Vocab List</label>
                         </div>
-                        <div
-                          v-if="!item.subTasks || item.subTasks.length <= 0"
-                          class="pl-2 d-flex align-items-center"
-                        >
-                          No sub tasks added!
-                        </div>
-                        <!-- <div class="pl-2 d-flex align-items-center">
+                        <div class="pl-2 d-flex align-items-center">
                           <input type="radio" class="mr-2" />
                           <label for="" class="mb-0"
                             >Start typing to add subtasks</label
                           >
-                        </div> -->
+                        </div>
                       </div>
                       <div class="addition-material-section">
                         <h6 class="mb-1">Additional Material</h6>
                         <div
-                          class="
-                            d-flex
-                            align-items-center
-                            justify-content-between
-                          "
+                          class="d-flex align-items-center justify-content-between"
                         >
                           <div class="col-8 py-0 pl-0 material-link">
                             Rubric: https://docs.google.com/document/...
@@ -220,11 +108,7 @@
                             />
                           </div>
                           <div class="col-2 p-0">
-                            <input
-                              type="submit"
-                              class="form-control"
-                              value="Add"
-                            />
+                            <input type="submit" class="form-control" value="Add" />
                           </div>
                         </div>
                       </div>
@@ -235,105 +119,234 @@
                         </div>
                       </div>
                     </div>
+                  </div> -->
+                  <!-- drag -->
+                  <div class="d-flex flex-column h-40 flex-fill hidden-scroll py-4 px-5">
+                    <div class="row">
+                      
+                        <div class="col-6 py-4" v-for="item in assignmentsList" :key="item.id">
+                          <drag class="drag h-100" :transfer-data="{ item }">
+                          <div
+                            class="
+                              jochi-sub-components-light-bg
+                              drag-drop
+                              p-4
+                              position-realtive
+                              h-100
+                            "
+                          >
+                            <div
+                              class="
+                                assignment-tag-section
+                                d-flex
+                                align-items-center
+                                mb-2
+                              "
+                            >
+                              <div class="assignment-tag red mr-2">
+                                {{
+                                  item.priority == "1"
+                                    ? "Urgent"
+                                    : item.priority == "2"
+                                    ? "Important"
+                                    : item.priority == "3"
+                                    ? "Can Wait"
+                                    : ""
+                                }}
+                              </div>
+                              <div class="assignment-tag pink">
+                                {{ item.subject }}
+                              </div>
+                            </div>
+                            <div class="assignment-add-section">
+                              <h4 class="mb-0">{{ item.task }}</h4>
+                              <div class="text-center px-3">
+                                <p>{{ item.assignment_description }}</p>
+                              </div>
+                            </div>
+                            <div class="sub-task-section mb-3">
+                              <h6>Sub-tasks</h6>
+                              <div
+                                v-for="sub in item.subTasks"
+                                :key="sub.id"
+                                class="pl-2 d-flex align-items-center"
+                              >
+                                <input type="radio" class="mr-2" />
+                                <label for="" class="mb-0">{{ sub.title }}</label>
+                              </div>
+                              <div
+                                v-if="!item.subTasks || item.subTasks.length <= 0"
+                                class="pl-2 d-flex align-items-center"
+                              >
+                                No sub tasks added!
+                              </div>
+                              <!-- <div class="pl-2 d-flex align-items-center">
+                                <input type="radio" class="mr-2" />
+                                <label for="" class="mb-0"
+                                  >Start typing to add subtasks</label
+                                >
+                              </div> -->
+                            </div>
+                            <div class="addition-material-section">
+                              <h6 class="mb-1">Additional Material</h6>
+                              <div
+                                class="
+                                  d-flex
+                                  align-items-center
+                                  justify-content-between
+                                "
+                              >
+                                <div class="col-8 py-0 pl-0 material-link">
+                                  Rubric: https://docs.google.com/document/...
+                                </div>
+                                <div class="col-4 material-date py-0 text-right">
+                                  12/04/22
+                                </div>
+                              </div>
+                            </div>
+                            <div class="upload-file-section mt-2">
+                              <div class="d-flex align-items-center">
+                                <div class="col-2 p-0">
+                                  <select
+                                    class="form-select form-control"
+                                    aria-label="Default select example"
+                                  >
+                                    <option selected>Type</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                  </select>
+                                </div>
+                                <div class="col-8 py-0 px-1">
+                                  <input
+                                    type="text"
+                                    class="form-control px-2"
+                                    placeholder="Paste Link or Upload File"
+                                  />
+                                </div>
+                                <div class="col-2 p-0">
+                                  <input
+                                    type="submit"
+                                    class="form-control"
+                                    value="Add"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="add-person-section position-absolute top-0">
+                              <div class="ap-img-section"></div>
+                              <div class="ap-img-add">
+                                <img src="~/static/image/add-btn.png" alt="" />
+                              </div>
+                            </div>
+                          </div>
+                        </drag>
+                        </div>
+                    </div>
+                  
                   </div>
-                </drag>
-              </div>
-              <!-- drag end -->
-              <h3 class="jochi-headings">Completed</h3>
-              <drop class="drop" @drop="handleDrop">Dropzone</drop>
-              <div class="row mt-1">
-                <div class="col-6">
-                  <div
-                    class="
-                      jochi-sub-components-light-bg
-                      py-4
-                      px-2
-                      completed-assignments
-                      text-center
-                    "
-                  >
-                    <h4 class="mb-0 blue">Art History Reading</h4>
-                    <p class="mb-0">Read Chapters #1 & #2</p>
+                  <!-- drag end -->
+                  <div class="d-flex flex-column px-5 pt-3">
+                    <h2 class="color-primary font-semi-bold">Completed</h2>
+                    <drop class="drop color-secondary text-16" @drop="handleDrop">Dropzone</drop>
+                    <div>
+                      <div class="row mt-1">
+                        <div class="col-6">
+                          <div
+                            class="
+                              jochi-sub-components-light-bg
+                              py-4
+                              px-2
+                              completed-assignments
+                              text-center
+                            "
+                          >
+                            <h4 class="mb-0 blue">Art History Reading</h4>
+                            <p class="mb-0">Read Chapters #1 & #2</p>
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div
+                            class="
+                              jochi-sub-components-light-bg
+                              py-4
+                              px-2
+                              completed-assignments
+                              text-center
+                            "
+                          >
+                            <h4 class="mb-0 green">AP Calculus Problem</h4>
+                            <p class="mb-0">Homework #5</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="col-6">
-                  <div
-                    class="
-                      jochi-sub-components-light-bg
-                      py-4
-                      px-2
-                      completed-assignments
-                      text-center
-                    "
-                  >
-                    <h4 class="mb-0 green">AP Calculus Problem</h4>
-                    <p class="mb-0">Homework #5</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="
-                jochi-components-light-bg
-                p-4
-                pl-5
-                position-absolute
-                overflow-auto
-                d-block
-                pending-assignment-popup
-              "
-            >
-              <!-- pending-assignment-popup -->
-              <div class="d-flex justify-content-between align-items-center">
-                <h4 class="jochi-headings mb-0">Edit Assignment</h4>
-                <button
-                  class="btn pending-popup-close-btn"
-                  @click="pendingPopupclose()"
-                >
-                  x
-                </button>
-              </div>
-              <div class="edit-assignment-form-section col-9">
-                <label for="">Assignment Name</label>
-                <input type="text" class="form-control mb-1" />
-                <label for="">Assignment Description</label>
-                <textarea
-                  name=""
-                  id=""
-                  cols="20"
-                  rows="5"
-                  class="form-control mb-1"
-                ></textarea>
                 <div
-                  class="d-flex justify-content-between align-items-center mb-2"
+                  class="
+                    jochi-components-light-bg
+                    p-4
+                    pl-5
+                    position-absolute
+                    overflow-auto
+                    d-block
+                    pending-assignment-popup
+                  "
                 >
-                  <label for="" class="mb-0">Add Subtask</label>
-                  <button @click="addSubtask()" class="add-sub-task-btn">
-                    +
-                  </button>
-                </div>
-                <input type="text" class="form-control mb-1" />
-                <form id="subTaskAdd"></form>
-                <label for="">Additional Material</label>
-                <select
-                  class="form-select form-control mb-2"
-                  aria-label="Default select example"
-                >
-                  <option selected>Type</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-                <div class="row m-0">
-                  <div class="col-9 py-0 pl-0">
-                    <input
-                      type="text"
-                      class="form-control px-2"
-                      placeholder="Paste Link or Upload File"
-                    />
+                  <!-- pending-assignment-popup -->
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h4 class="jochi-headings mb-0">Edit Assignment</h4>
+                    <button
+                      class="btn pending-popup-close-btn"
+                      @click="pendingPopupclose()"
+                    >
+                      x
+                    </button>
                   </div>
-                  <div class="col-3 p-0">
-                    <input type="submit" class="form-control" value="Add" />
+                  <div class="edit-assignment-form-section col-9">
+                    <label for="">Assignment Name</label>
+                    <input type="text" class="form-control mb-1" />
+                    <label for="">Assignment Description</label>
+                    <textarea
+                      name=""
+                      id=""
+                      cols="20"
+                      rows="5"
+                      class="form-control mb-1"
+                    ></textarea>
+                    <div
+                      class="d-flex justify-content-between align-items-center mb-2"
+                    >
+                      <label for="" class="mb-0">Add Subtask</label>
+                      <button @click="addSubtask()" class="add-sub-task-btn">
+                        +
+                      </button>
+                    </div>
+                    <input type="text" class="form-control mb-1" />
+                    <form id="subTaskAdd"></form>
+                    <label for="">Additional Material</label>
+                    <select
+                      class="form-select form-control mb-2"
+                      aria-label="Default select example"
+                    >
+                      <option selected>Type</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                    <div class="row m-0">
+                      <div class="col-9 py-0 pl-0">
+                        <input
+                          type="text"
+                          class="form-control px-2"
+                          placeholder="Paste Link or Upload File"
+                        />
+                      </div>
+                      <div class="col-3 p-0">
+                        <input type="submit" class="form-control" value="Add" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
