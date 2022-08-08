@@ -675,6 +675,15 @@ img.dark-icon {
   background-color: #e8e8e8;
 }
 
+.position-md-absolute {
+  position: relative;
+}
+@media (min-width: 991.98px) {
+  .position-md-absolute {
+    position: absolute;
+  }
+}
+
 .main-container {
   color: #B4B4B4;
   background-image: url("./../image/jochi-light-bg.png");

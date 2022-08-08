@@ -653,6 +653,15 @@ img.dark-icon{
     }
 }
 
+// POSITION
+
+.position-md-absolute{
+    position: relative;
+    @media (min-width:$md-screen) {
+        position: absolute;
+    }
+}
+
 // SIGN-IN
 
 .main-container{

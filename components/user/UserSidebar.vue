@@ -46,7 +46,7 @@
           </div> -->
           <div class="position-relative profile-sidebar">
             <div
-              class="user-icon  d-flex notification-icon-section align-items-center justify-content-end"
+              class="user-icon d-flex flex-column flex-lg-row notification-icon-section align-items-center justify-content-end position-md-absolute mb-3 mb-lg-0"
             >
               <a class="position-relative p-2" href="#">
                 <img src="../../static/image/Jochi Icons/home_hires.png" alt="" class="dark-icon">
@@ -114,20 +114,26 @@
                 </div>
               </div>
             </div>
-            <nuxt-link to="/user-profile" class="pr-4">
+            <nuxt-link to="/user-profile" class="pr-0 pr-lg-4 d-flex flex-column align-items-center align-items-lg-start">
               <img
                 v-bind:src="
                   profile && profile != 'null' ? profile : defaultImage
                 "
-                class="rounded-circle img-profile"
+                class="rounded-circle img-profile mb-2"
                 alt=""
                 id="profileImage"
               />
               <!-- <img v-else src="../../assets/images/avatar/man_green.svg" class="rounded-circle img-profile" alt="" > -->
-              <h4 class="color-primary mb-0 mt-2 font-semi-bold text-18 text-center text-lg-left">{{ firstName }}</h4>
+              <div class="d-flex flex-column flex-lg-row align-items-center justify-cotent-center">
+                <h4 class="color-primary mb-0 font-semi-bold text-18 text-center text-lg-left">{{ firstName }}</h4>
+                <a class="btn color-secondary p-0 ml-2" href="#" @click="GetLogout()"
+                      >
+                      <i class="fas fa-sign-out-alt color-dark"></i></a
+                    >
+              </div>
             </nuxt-link>
 
-            <div class="user-icon mr-3 settings-icon-section position-absolute">
+            <!-- <div class="user-icon mr-3 settings-icon-section position-absolute">
               <div class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">
                   <p>Settings</p>
@@ -141,7 +147,7 @@
                   >
                 </div>
               </div>
-            </div>
+            </div> -->
             <!-- <div class="sidebar-profile p-2 d-flex align-items-center">
               <img
                 v-bind:src="
