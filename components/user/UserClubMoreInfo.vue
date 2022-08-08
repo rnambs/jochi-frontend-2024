@@ -1972,7 +1972,12 @@ export default {
           date: this.activity.activityDate
             ? moment(this.activity.activityDate).format("YYYY-MM-DD")
             : "",
-          time: this.activity.activityTime,
+          time:
+            this.activity.activityTime.hh +
+            ":" +
+            this.activity.activityTime.mm +
+            " " +
+            this.activity.activityTime.A,
           venue: this.activity.activityVenue,
           opponent_team: this.activity.activityOpponentTeam,
         });

@@ -334,7 +334,11 @@
                         Duration : <span>{{ sessionDetail.duration }}</span>
                       </p>
                       <p class="mb-0 color-secondary font-regular text-16 mb-1">
-                        Breaktime : <span>{{ sessionDetail.break }}</span>
+                        Breaktime : <span>{{ sessionDetail.breakTime }}</span>
+                      </p>
+                      <p class="mb-0 color-secondary font-regular text-16 mb-1">
+                        Breaktime At :
+                        <span>{{ sessionDetail.breakTimeAt }}</span>
                       </p>
                       <p class="mb-0 color-secondary font-regular text-16 mb-1">
                         Repetitions : <span>{{ sessionDetail.repeat }}</span>
