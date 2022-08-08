@@ -1052,14 +1052,14 @@ export default {
     overflow: hidden;
 }
 
-.fc-toolbar-chunk .fc-toolbar-title {
+/* .fc-toolbar-chunk .fc-toolbar-title {
     position: absolute;
     left: 3rem;
     top: 3rem;
     font-size: 20px;
     color: #000000;
     font-weight: 700;
-}
+} */
 
 .fc-toolbar-chunk .fc-prev-button.fc-button {
     position: absolute;
