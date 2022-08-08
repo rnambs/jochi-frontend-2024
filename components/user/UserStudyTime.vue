@@ -279,7 +279,7 @@
                         "
                       >
                         <span
-                          class="d-flex rounded-circle border bullet mr-2"
+                          class="d-flex rounded-circle border bullet mr-2 my-1"
                         ></span>
                         {{ goal }}
                       </p>
@@ -311,7 +311,7 @@
                         "
                       >
                         <span
-                          class="d-flex rounded-circle border bullet mr-2"
+                          class="d-flex rounded-circle border bullet mr-2 my-1"
                         ></span>
                         Invite friends
                       </p> -->
@@ -327,20 +327,20 @@
                         }}
                         Study Method
                       </h5>
-                      <p class="mb-0 color-secondary font-regular text-16">
+                      <p class="mb-0 color-secondary font-regular text-16 mb-1">
                         Subject : <span>Assignment</span>
                       </p>
-                      <p class="mb-0 color-secondary font-regular text-16">
+                      <p class="mb-0 color-secondary font-regular text-16 mb-1">
                         Duration : <span>{{ sessionDetail.duration }}</span>
                       </p>
-                      <p class="mb-0 color-secondary font-regular text-16">
+                      <p class="mb-0 color-secondary font-regular text-16 mb-1">
                         Breaktime : <span>{{ sessionDetail.breakTime }}</span>
                       </p>
-                      <p class="mb-0 color-secondary font-regular text-16">
+                      <p class="mb-0 color-secondary font-regular text-16 mb-1">
                         Breaktime At :
                         <span>{{ sessionDetail.breakTimeAt }}</span>
                       </p>
-                      <p class="mb-0 color-secondary font-regular text-16">
+                      <p class="mb-0 color-secondary font-regular text-16 mb-1">
                         Repetitions : <span>{{ sessionDetail.repeat }}</span>
                       </p>
                     </div>
@@ -373,7 +373,7 @@
                           v-if="!invitedPeerList || invitedPeerList.length <= 0"
                           class="d-flex align-items-center my-2 mr-3"
                         >
-                          No peers invited!
+                          <span class="color-secondary">No peers invited!</span>
                         </div>
                         <!-- <div class="d-flex align-items-center my-2 mr-3">
                           <div class="ld-img-section mr-3">
@@ -434,66 +434,71 @@
               p-4
               position-realtive
               h-100
+              d-flex
+              flex-column
+              justify-content-between
             "
           >
-            <div class="assignment-tag-section d-flex align-items-center mb-2">
-              <div
-                class="assignment-tag mr-2"
-                :class="
-                  detail.priority == '1'
-                    ? 'red'
-                    : detail.priority == '2'
-                    ? 'orange'
-                    : detail.priority == '3'
-                    ? 'yellow'
-                    : ''
-                "
-              >
-                {{
-                  detail.priority == "1"
-                    ? "Urgent"
-                    : detail.priority == "2"
-                    ? "Important"
-                    : detail.priority == "3"
-                    ? "Can Wait"
-                    : ""
-                }}
-              </div>
-              <div class="assignment-tag pink">
-                {{ detail.subject }}
-              </div>
-            </div>
-            <div class="text-center">
-              <h4 class="color-primary font-semi-bold mb-0">
-                <!-- French Oral Practice -->
-                {{ detail.task }}
-              </h4>
-              <div class="text-center px-3">
-                <p class="color-secondary text-16 line-height-1 font-semi-bold">
-                  <!-- Practice for mock oral exam in class -->
+            <div class="d-flex flex-column">
+              <div class="assignment-tag-section d-flex align-items-center mb-2">
+                <div
+                  class="assignment-tag mr-2"
+                  :class="
+                    detail.priority == '1'
+                      ? 'red'
+                      : detail.priority == '2'
+                      ? 'orange'
+                      : detail.priority == '3'
+                      ? 'yellow'
+                      : ''
+                  "
+                >
+                  {{
+                    detail.priority == "1"
+                      ? "Urgent"
+                      : detail.priority == "2"
+                      ? "Important"
+                      : detail.priority == "3"
+                      ? "Can Wait"
+                      : ""
+                  }}
+                </div>
+                <div class="assignment-tag pink">
                   {{ detail.subject }}
-                </p>
+                </div>
               </div>
-            </div>
-            <div
-              v-if="detail.subTasks && detail.subTasks.length > 0"
-              class="mb-3"
-            >
-              <h6 class="color-primary">Sub-tasks</h6>
-              <div class="to-do-list">
-                <div v-for="subtask in detail.subTasks" :key="subtask.id">
-                  <div class="pl-2 d-flex align-items-center">
-                    <input type="radio" class="mr-2" />
-                    <label for="" class="mb-0 text-12">{{
-                      subtask.title
-                    }}</label>
+              <div class="text-center">
+                <h4 class="color-primary font-semi-bold mb-0">
+                  <!-- French Oral Practice -->
+                  {{ detail.task }}
+                </h4>
+                <div class="text-center px-3">
+                  <p class="color-secondary text-16 line-height-1 font-semi-bold">
+                    <!-- Practice for mock oral exam in class -->
+                    {{ detail.subject }}
+                  </p>
+                </div>
+              </div>
+              <div
+                v-if="detail.subTasks && detail.subTasks.length > 0"
+                class="mb-3"
+              >
+                <h6 class="color-primary">Sub-tasks</h6>
+                <div class="to-do-list">
+                  <div v-for="subtask in detail.subTasks" :key="subtask.id">
+                    <div class="pl-2 d-flex align-items-center">
+                      <input type="radio" class="mr-2" />
+                      <label for="" class="mb-0 text-12">{{
+                        subtask.title
+                      }}</label>
+                    </div>
+                    <!-- <div class="pl-2 d-flex align-items-center">
+                      <input type="radio" class="mr-2" />
+                      <label for="" class="mb-0 text-12"
+                        >Start typing to add subtasks</label
+                      >
+                    </div> -->
                   </div>
-                  <!-- <div class="pl-2 d-flex align-items-center">
-                    <input type="radio" class="mr-2" />
-                    <label for="" class="mb-0 text-12"
-                      >Start typing to add subtasks</label
-                    >
-                  </div> -->
                 </div>
               </div>
             </div>
@@ -510,7 +515,7 @@
                 </div>
 
                 <div v-else class="col-8 py-0 pl-0 material-link">
-                  No documents added!
+                  <span class="color-secondary">No documents added!</span>
                 </div>
                 <div class="col-4 material-date py-0 text-right">
                   {{ detail.due_date }}
@@ -1186,12 +1191,13 @@
                           color-secondary
                           text-16
                           font-regular
-                          text-truncate
                           pr-3
+                          d-flex
+                          w-100
                         "
                       >
                         <span><i class="far fa-circle"></i></span>
-                        {{ task.title }}
+                        <span class="ml-2 w-100">{{ task.title }}</span>
                       </p>
                     </div>
                   </div>
@@ -2334,7 +2340,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body overflow-initial">
             <div class="form-group required">
               <label class="typo__label">Date</label>
               <date-picker

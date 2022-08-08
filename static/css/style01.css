@@ -152,6 +152,22 @@ body {
   border: 1px solid #ffffff;
 }
 
+.assignment-tag {
+  font-size: 10px;
+  padding: 2px 10px;
+  border-radius: 18px;
+  color: #ffffff;
+}
+.assignment-tag.red {
+  background-color: #ea2626;
+}
+.assignment-tag.pink {
+  background-color: #fb3e80;
+}
+.assignment-tag.orange {
+  background-color: #FF6F69;
+}
+
 .rounded-6 {
   border-radius: 6px;
 }
@@ -588,6 +604,10 @@ body {
 
 .left-0 {
   left: 0;
+}
+
+.overflow-initial {
+  overflow: initial;
 }
 
 .custom-overflow {
