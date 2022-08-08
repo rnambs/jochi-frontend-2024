@@ -1468,6 +1468,8 @@
                       <label for="">Duration (In Minutes)</label>
                       <input
                         type="number"
+                        min="0"
+                        max="1440"
                         id="targetDuration"
                         v-model="targetDuration"
                         class="form-control"
@@ -1477,6 +1479,8 @@
                       <label for="">Break Time At (In Minutes)</label>
                       <input
                         type="number"
+                        min="0"
+                        max="1440"
                         id="breakAt"
                         v-model="breakAt"
                         class="form-control"
@@ -1486,6 +1490,8 @@
                       <label for="">Break Time (In Minutes)</label>
                       <input
                         type="number"
+                        min="0"
+                        max="1440"
                         id="breakTime"
                         v-model="breakTime"
                         class="form-control"
