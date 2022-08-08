@@ -1107,6 +1107,9 @@ img.dark-icon {
     transition: 0.3s ease all;
   }
 }
+.inner-section .header-section .sidebar-section .text-logout:hover .d-block-hover {
+  display: block !important;
+}
 .inner-section .header-section .sidebar-section .menu-items {
   position: relative;
   overflow: hidden;

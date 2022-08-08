@@ -1126,6 +1126,13 @@ img.dark-icon{
                 left: -7rem;
                 transition: 0.3s ease all;
             }
+            .text-logout{
+                &:hover{
+                    .d-block-hover{
+                        display: block !important;
+                    }
+                }
+            }
             // .logo-section{
             //     display: flex;
             //     text-align: center;

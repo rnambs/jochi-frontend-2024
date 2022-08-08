@@ -124,9 +124,9 @@
                 id="profileImage"
               />
               <!-- <img v-else src="../../assets/images/avatar/man_green.svg" class="rounded-circle img-profile" alt="" > -->
-              <div class="d-flex flex-column flex-lg-row align-items-center justify-cotent-center">
+              <div class="d-flex flex-column flex-lg-row align-items-center justify-cotent-center text-logout">
                 <h4 class="color-primary mb-0 font-semi-bold text-18 text-center text-lg-left">{{ firstName }}</h4>
-                <a class="btn color-secondary p-0 ml-2" href="#" @click="GetLogout()"
+                <a class="btn color-secondary p-0 ml-2 d-none d-block-hover" href="#" @click="GetLogout()"
                       >
                       <i class="fas fa-sign-out-alt color-dark"></i></a
                     >
