@@ -472,7 +472,7 @@
                 </div>
               </div>
               <div class="text-center">
-                <h4 class="color-dark font-semi-bold mb-0">
+                <h4 class="color-dark font-semi-bold mb-1">
                   <!-- French Oral Practice -->
                   {{ detail.task }}
                 </h4>
@@ -1737,8 +1737,9 @@
                   class="btn btn-primary mb-2 mt-2 px-4"
                   id="pause-button"
                 >
-                  <i class="fa fa-pause color-white mr-2"></i>
-                  <i class="fas fa-play color-white mr-2"></i>
+                 
+                  <i v-if="!showResume" class="fa fa-pause color-white mr-2"></i>
+                  <i v-if="showResume" class="fas fa-play color-white mr-2"></i>
                   {{ showResume ? "Resume" : "Pause" }}
                 </button>
               </div>

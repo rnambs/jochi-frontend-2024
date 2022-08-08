@@ -8,13 +8,6 @@
     />
     <div class="main-section">
       <!-- Weekly Calander -->
-      <div
-        class="
-          jochi-components-light-bg
-          custom-margin-for-main-section custom-full-height
-          position-realtive
-        "
-      >
         <section id="Weekly-Calander" class="">
           <!-- <div class="element-section container-fluid">
             
@@ -314,7 +307,7 @@
           </div> -->
           <!-- edit modal -->
 
-          <div class="col-12 jochi-main-content-container">
+          <div class="custom-margin-for-main-section custom-full-height d-flex jochi-main-content-container">
             <div class="row">
               <div class="col-12 position-realtive">
                 <div
@@ -725,7 +718,6 @@
       </div>
 
       <!-- End Weekly Calander -->
-    </div>
   </div>
 </template>
 <script>
@@ -2038,7 +2030,12 @@ body {
 .planner-action-btns {
   transform: rotate(-90deg);
   top: 50vh;
-  right: -164px;
+  right: -160px;
+}
+@media (max-width:991.98px) {
+  .planner-action-btns{
+    right: -145px;
+  }
 }
 
 .planner-action-btns .pa-btn {
