@@ -828,10 +828,10 @@
                 <li v-for="(data, index) in membersInfo" :key="index">
                   <!-- <span class="input-name">{{ data }}</span> -->
                   <div
-                    class="d-flex align-items-center justify-content-end mt-3"
+                    class="d-flex align-items-center mt-3"
                   >
-                    <div class="col-4 d-flex justify-content-end p-0">
-                      <div class="ld-img-section">
+                    <div class="d-flex justify-content-end p-0">
+                      <div class="ld-img-section mr-3">
                         <div class="ld-img-holder">
                           <img
                             v-if="data.user_info.profile_pic"
@@ -844,7 +844,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-8 p-0">
+                    <div class="p-0">
                       <div class="ld-details-section">
                         <p class="mb-0 text-18 color-dark font-semi-bold">
                           {{

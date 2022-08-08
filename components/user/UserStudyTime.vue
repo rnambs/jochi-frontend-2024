@@ -419,6 +419,8 @@
         </button>
         <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
       </div>
+      <div>
+        
 
       <div class="row">
         <div
@@ -468,7 +470,7 @@
                 </div>
               </div>
               <div class="text-center">
-                <h4 class="color-primary font-semi-bold mb-0">
+                <h4 class="color-dark font-semi-bold mb-0">
                   <!-- French Oral Practice -->
                   {{ detail.task }}
                 </h4>
@@ -487,8 +489,8 @@
                 <div class="to-do-list">
                   <div v-for="subtask in detail.subTasks" :key="subtask.id">
                     <div class="pl-2 d-flex align-items-center">
-                      <input type="radio" class="mr-2" />
-                      <label for="" class="mb-0 text-12">{{
+                      <input type="radio" class="mr-2 color-secondary" />
+                      <label for="" class="mb-0 text-12 color-secondary">{{
                         subtask.title
                       }}</label>
                     </div>
@@ -759,6 +761,7 @@
             </div>
           </div>
         </div> -->
+      </div>
       </div>
     </div>
 
@@ -1567,169 +1570,174 @@
         hidden-scroll
       "
     >
-      <div class="row">
-        <div
-          class="
-            col-lg-7
-            study-col
-            d-flex
-            flex-column
-            justify-content-center
-            flex-fill
-          "
-        >
-          <div class="card card-light rounded-22 p-4 flex-fill mb-4">
-            <div class="">
-              <h1 class="color-primary font-bold mb-2">Working on</h1>
-            </div>
-            <p class="color-dark text-24 font-semi-bold mb-1">Subject Name :</p>
-            <p class="color-dark text-24 font-semi-bold mb-1">
-              {{
-                sessionType == "assignment"
-                  ? subjectName
-                  : timerStatusData.subjectName
-              }}
-            </p>
-            <p class="color-secondary text-16 font-regular mb-1">
-              Study Method :
-              <span>{{
-                sessionMode == "regular"
-                  ? "Regular Studying"
-                  : "Pomodoro Studying"
-              }}</span>
-            </p>
-            <!-- v-if="studyTypes.id != 3" -->
-            <p class="color-secondary text-16 font-regular mb-1">
-              Remaining Cycles : {{ this.totalCycles - this.currentCycle }}
-            </p>
-            <!-- v-if="studyTypes.id != 3" -->
-            <p class="color-secondary text-16 font-regular mb-1">
-              Remaining Repetitions :
-              {{ this.repetitionCount - this.currentRepetitionNum }}
-            </p>
-            <!-- <input type="text" v-model="remainingTime" id="remainingTime"> -->
-            <button
-              type="button"
-              data-toggle="modal"
-              data-target="#exampleModalCenter"
-              class="btn btn-primary mb-2 mt-2 pl-3 pr-3"
-            >
-              End Session
-            </button>
-          </div>
-          <div class="card card-light rounded-22 p-4">
-            <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
-            <div class="hidden-scroll p-3 row my-0">
-              <div
-                v-for="peer in peerList"
-                :key="peer.id"
-                class="d-flex align-items-center my-2 mr-3 min-w-200"
-              >
-                <div class="ld-img-section mr-3">
-                  <div class="ld-img-holder"></div>
-                </div>
-                <div class="ld-details-section">
-                  <p class="ld-heading mb-1">{{ peer.first_name }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="
-            col-lg-5
-            study-col
-            d-flex
-            justify-content-center
-            align-items-center
-          "
-        >
+      <div class="d-flex flex-column flex-fill">
+        <div class="row">
           <div
             class="
-              card card-light
-              rounded-22
-              p-4
+              col-lg-7
+              study-col
+              d-flex
+              flex-column
+              justify-content-center
               flex-fill
-              h-100
-              justify-constent-center
             "
           >
-            <div class="d-flex flex-column flex-fill justify-content-between">
-              <div class="d-flex flex-column mb-4">
-                <h1 class="color-primary font-bold mb-0">Timer</h1>
-                <p class="color-dark text-24 font-semi-bold mb-1">
-                  Concentrate on session
-                </p>
+            <div class="card card-light rounded-22 p-4 flex-fill mb-4">
+              <div class="">
+                <h1 class="color-primary font-bold mb-2">Working on</h1>
               </div>
-              <div
-                id="app"
-                class="
-                  mb-3
-                  flex-fill
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                "
+              <p class="color-dark text-24 font-semi-bold mb-1 line-break-anywhere">
+                <span>Subject Name :</span>
+                <span>
+                  {{
+                    sessionType == "assignment"
+                      ? subjectName
+                      : timerStatusData.subjectName
+                  }}
+                </span>
+              </p>
+              <p class="color-secondary text-16 font-regular mb-1">
+                Study Method :
+                <span>{{
+                  sessionMode == "regular"
+                    ? "Regular Studying"
+                    : "Pomodoro Studying"
+                }}</span>
+              </p>
+              <!-- v-if="studyTypes.id != 3" -->
+              <p class="color-secondary text-16 font-regular mb-1">
+                Remaining Cycles : {{ this.totalCycles - this.currentCycle }}
+              </p>
+              <!-- v-if="studyTypes.id != 3" -->
+              <p class="color-secondary text-16 font-regular mb-1">
+                Remaining Repetitions :
+                {{ this.repetitionCount - this.currentRepetitionNum }}
+              </p>
+              <!-- <input type="text" v-model="remainingTime" id="remainingTime"> -->
+              <button
+                type="button"
+                data-toggle="modal"
+                data-target="#exampleModalCenter"
+                class="btn btn-primary mb-2 mt-2 pl-3 pr-3"
               >
-                <div class="base-timer m-auto">
-                  <svg
-                    class="base-timer__svg"
-                    viewBox="0 0 100 100"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g class="base-timer__circle">
-                      <circle
-                        class="base-timer__path-elapsed"
-                        cx="50"
-                        cy="50"
-                        r="45"
-                      ></circle>
-                      <path
-                        id="base-timer-path-remaining"
-                        stroke-dasharray="283"
-                        class="base-timer__path-remaining arc"
-                        d="
-                                M 50, 50
-                                m -45, 0
-                                a 45,45 0 1,0 90,0
-                                a 45,45 0 1,0 -90,0
-                                "
-                      ></path>
-                    </g>
-                  </svg>
-                  <div class="inner-timer">
-                    <img src="../../static/image/alarm.png" alt="" />
+                End Session
+              </button>
+            </div>
+            <div class="card card-light rounded-22 p-4">
+              <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
+              <div class="hidden-scroll p-3 row my-0">
+                <div
+                  v-for="peer in peerList"
+                  :key="peer.id"
+                  class="d-flex align-items-center my-2 mr-3 min-w-200"
+                >
+                  <div class="ld-img-section mr-3">
+                    <div class="ld-img-holder"></div>
                   </div>
-                  <p class="mb-2">
-                    <span
-                      id="base-timer-label"
-                      class="color-dark text-24 font-semi-bold"
-                      >{{ timerDurationDisplay }}</span
-                    >
-                    <!-- <span class="color-dark text-24 font-semi-bold">22</span> -->
-                    <span class="color-dark base-timer-text">{{
-                      studyStatus == "break" ? "BREAK" : ""
-                    }}</span>
-                  </p>
+                  <div class="ld-details-section">
+                    <p class="ld-heading mb-1">{{ peer.first_name }}</p>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+  
+          <div
+            class="
+              col-lg-5
+              study-col
+              d-flex
+              justify-content-center
+              align-items-center
+            "
+          >
             <div
-              class="btn-area d-flex align-items-center justify-content-center"
+              class="
+                card card-light
+                rounded-22
+                p-4
+                flex-fill
+                h-100
+                justify-constent-center
+              "
             >
-              <!-- && !studyTimePaused -->
-              <button
-                v-show="this.studyTypes.id == 3 && studyStatus != 'break'"
-                @click.prevent="
-                  showResume ? onResumeSession() : onPauseSession()
-                "
-                class="btn btn-primary mb-2 mt-2 px-4"
-                id="pause-button"
+              <div class="d-flex flex-column flex-fill justify-content-between">
+                <div class="d-flex flex-column mb-4">
+                  <h1 class="color-primary font-bold mb-0">Timer</h1>
+                  <p class="color-dark text-24 font-semi-bold mb-1">
+                    Concentrate on session
+                  </p>
+                </div>
+                <div
+                  id="app"
+                  class="
+                    mb-3
+                    flex-fill
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                  "
+                >
+                  <div class="base-timer m-auto">
+                    <svg
+                      class="base-timer__svg"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g class="base-timer__circle">
+                        <circle
+                          class="base-timer__path-elapsed"
+                          cx="50"
+                          cy="50"
+                          r="45"
+                        ></circle>
+                        <path
+                          id="base-timer-path-remaining"
+                          stroke-dasharray="283"
+                          class="base-timer__path-remaining arc"
+                          d="
+                                  M 50, 50
+                                  m -45, 0
+                                  a 45,45 0 1,0 90,0
+                                  a 45,45 0 1,0 -90,0
+                                  "
+                        ></path>
+                      </g>
+                    </svg>
+                    <div class="inner-timer">
+                      <img src="../../static/image/alarm.png" alt="" />
+                    </div>
+                    <p class="mb-2">
+                      <span
+                        id="base-timer-label"
+                        class="color-dark text-24 font-semi-bold"
+                        >{{ timerDurationDisplay }}</span
+                      >
+                      <!-- <span class="color-dark text-24 font-semi-bold">22</span> -->
+                      <span class="color-dark base-timer-text">{{
+                        studyStatus == "break" ? "BREAK" : ""
+                      }}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="btn-area d-flex align-items-center justify-content-center"
               >
-                <i class="fa fa-pause color-white mr-2"></i>
-                {{ showResume ? "Resume" : "Pause" }}
-              </button>
+                <!-- && !studyTimePaused -->
+                <button
+                  v-show="this.studyTypes.id == 3 && studyStatus != 'break'"
+                  @click.prevent="
+                    showResume ? onResumeSession() : onPauseSession()
+                  "
+                  class="btn btn-primary mb-2 mt-2 px-4"
+                  id="pause-button"
+                >
+                  <i class="fa fa-pause color-white mr-2"></i>
+                  <i class="fas fa-play color-white mr-2"></i>
+                  {{ showResume ? "Resume" : "Pause" }}
+                </button>
+              </div>
             </div>
           </div>
         </div>
