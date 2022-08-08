@@ -228,9 +228,8 @@
                   </div>
                   <div class="modal-body">
                     <p>
-                      Are you sure you want to delete this
+                      Are you sure you want to delete this file?
                       <!-- {{ remove_name }}  -->
-                      file?
                     </p>
                   </div>
                   <div class="modal-footer">
