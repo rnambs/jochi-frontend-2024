@@ -280,7 +280,7 @@
               class="btn btn-color-save"
               data-dismiss="modal"
               @click="configureGoal()"
-              :disabled="submitted"
+              :disabled="processing"
             >
               Configure
             </button>
@@ -326,6 +326,7 @@ export default {
       formatted_session_status_week: "",
       // :''
       submitted: false,
+      processing: false,
       hours: 0,
       minutes: 0,
       duration: 0,
@@ -605,6 +606,7 @@ export default {
     },
     openModal() {
       this.submitted = false;
+      this.processing = false;
       $("#goalModal").modal({ backdrop: true });
     },
     closeModal() {
@@ -613,6 +615,8 @@ export default {
     },
     async configureGoal() {
       this.submitted = true;
+      this.processing = true;
+
       let duration = 0;
       if (this.hours && this.minutes) {
         if (
@@ -625,6 +629,8 @@ export default {
         }
 
         if (duration <= 0) {
+          this.processing = false;
+
           return this.$toast.open({
             message: "Please configure valid times",
             type: "warning",
@@ -656,6 +662,7 @@ export default {
           });
         }
       }
+      this.processing = false;
     },
 
     async getConfiguredGoal() {

@@ -327,8 +327,16 @@
                         }}
                         Study Method
                       </h5>
-                      <p class="mb-0 color-secondary font-regular text-16 mb-1">
-                        Subject : <span>Assignment</span>
+                      <p
+                        v-if="sessionDetail.name"
+                        class="mb-0 color-secondary font-regular text-16 mb-1"
+                      >
+                        {{
+                          sessionDetail.type == "assignment"
+                            ? "Assignment Name"
+                            : "Subject"
+                        }}
+                        : <span>{{ sessionDetail.name }}</span>
                       </p>
                       <p class="mb-0 color-secondary font-regular text-16 mb-1">
                         Duration : <span>{{ sessionDetail.duration }}</span>
@@ -1527,7 +1535,7 @@
                     <div class="py-1">
                       <button
                         type="submit"
-                        :disabled="submitted"
+                        :disabled="processingStudySession"
                         class="btn btn-primary btn-sm"
                       >
                         Start Session
@@ -1604,12 +1612,12 @@
             </p>
             <!-- v-if="studyTypes.id != 3" -->
             <p class="color-secondary text-16 font-regular mb-1">
-              Remaining Cycles : {{ this.totalCycles - this.currentCycle }}
+              Remaining Cycles : {{ totalCycles - currentCycle }}
             </p>
             <!-- v-if="studyTypes.id != 3" -->
             <p class="color-secondary text-16 font-regular mb-1">
               Remaining Repetitions :
-              {{ this.repetitionCount - this.currentRepetitionNum }}
+              {{ repetitionCount - currentRepetitionNum }}
             </p>
             <!-- <input type="text" v-model="remainingTime" id="remainingTime"> -->
             <button
@@ -2381,7 +2389,7 @@
               class="btn btn-primary rounded-pill px-4 py-1"
               data-dismiss="modal"
               @click="StartStudySession(false)"
-              :disabled="submitted"
+              :disabled="processingStudySession"
             >
               Confirm
             </button>
@@ -2436,6 +2444,7 @@ export default {
       lottieOptions: { animationData: animationData.default },
       submitted: false,
       processing: false,
+      processingStudySession: false,
       timeCompleted: 0,
       timerStatus: 0, // Not started = 0 , started =1
       timerDurationDisplay: 0,
@@ -2589,6 +2598,8 @@ export default {
         this.targetDuration = 5;
         this.breakTime = 2;
         this.breakAt = 2;
+        this.repeatLoopBy = 1;
+        this.totalCycles = 1;
       }
       console.log("update study tech", this.studyTypes, this.targetDuration);
     },
@@ -2743,9 +2754,12 @@ export default {
 
     async StartStudySession(scheduleNow = true) {
       this.submitted = true;
+      this.processingStudySession = true;
       console.log("start");
       let valid = this.checkValidations();
       if (!valid) {
+        this.processingStudySession = false;
+
         return;
       }
 
@@ -2847,6 +2861,7 @@ export default {
       }
       this.processing = false;
       // }
+      this.processingStudySession = false;
     },
     checkValidations() {
       let valid = true;
@@ -3138,7 +3153,7 @@ export default {
         session.id = e.id;
         session.name = e.assignment_id
           ? e.assignments?.task
-          : e.subject?.subject_name;
+          : e.studyroom?.subjectName;
         session.goals = e.assignment_id ? e.subTasks : e.study_goals;
         session.duration = e.duration;
         session.breakTime = e.studyroom?.break_time;

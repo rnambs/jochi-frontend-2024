@@ -1223,7 +1223,7 @@
             <button
               type="button"
               class="btn btn-primary px-3 py-1 rounded-pill"
-              :disabled="submittedActivity && !$v.activity.$invalid"
+              :disabled="processingActivity && !$v.activity.$invalid"
               @click="isActivityEdit ? updateActivity() : addNewActivity()"
             >
               {{ (isActivityEdit ? "Update" : "Add") + " Training/Match" }}
@@ -1500,6 +1500,7 @@ export default {
       announcementId: 0,
       submitted: false,
       submittedActivity: false,
+      processingActivity: false,
       announcementList: [],
       activityId: "",
       activityType: "",
@@ -1955,6 +1956,7 @@ export default {
       console.log(this.$v.activity.$invalid, this.$v.activity, this.$v);
       let act = this.activity;
       this.submittedActivity = true;
+      this.processingActivity = true;
       this.$v.activity.activityTitle.$touch();
       this.$v.activity.activityDesc.$touch();
       this.$v.activity.activityType.$touch();
@@ -1965,8 +1967,24 @@ export default {
       this.$v.activity.activityOpponentTeam.$touch();
       // }
       if (this.$v.activity.$invalid) {
+        this.processingActivity = false;
+
         return;
       } else {
+        let time =
+          this.activity.activityTime.hh +
+          ":" +
+          this.activity.activityTime.mm +
+          " " +
+          this.activity.activityTime.A;
+
+        let isValid = moment(time, "hh:mm A", true).isValid();
+
+        if (!isValid) {
+          this.activity.activityTimeError = true;
+          return;
+        }
+
         this.loading = true;
         await this.addActivities({
           club_id: this.clubId,
@@ -1997,6 +2015,7 @@ export default {
           });
           this.getSportActivities();
         }
+        this.processingActivity = false;
       }
     },
     async updateActivity() {
