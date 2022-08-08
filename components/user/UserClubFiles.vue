@@ -280,12 +280,12 @@
                     <div class="modal-body">
                       <p class="confirm-text d-flex text-nowrap">
                         <span class="w-100"
-                          >Are you sure you want to delete this
+                          >Are you sure you want to delete this file?
                         </span>
                         <!-- <span class="delete-text w-100 pl-1">
                           {{ remove_name }}</span
                         > -->
-                        <span class="w-100"> file?</span>
+                        <!-- <span class="w-100"> file?</span> -->
                       </p>
                     </div>
                     <div class="modal-footer">
@@ -574,7 +574,14 @@
               </p>
 
               <div class="row inner-col" v-if="enableEdit">
-                <div class="col-lg-4 col-md-12 inner-info-head d-flex align-items-center">
+                <div
+                  class="
+                    col-lg-4 col-md-12
+                    inner-info-head
+                    d-flex
+                    align-items-center
+                  "
+                >
                   <h6 class="mb-0">Choose time</h6>
                 </div>
                 <div class="col-lg-8 col-md-12 input-icon-area form-row">

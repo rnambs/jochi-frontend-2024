@@ -2367,7 +2367,7 @@
               class="btn btn-primary rounded-pill px-4 py-1"
               data-dismiss="modal"
               @click="StartStudySession(false)"
-              :disabled="processing"
+              :disabled="submitted"
             >
               Confirm
             </button>
@@ -2802,7 +2802,9 @@ export default {
       await this.saveStudySession(payLoad);
       if (this.successMessage != "") {
         this.$toast.open({
-          message: this.successMessage,
+          message: scheduleNow
+            ? this.successMessage
+            : "Session details saved successfully",
           type: this.SuccessType,
           duration: 5000,
         });
@@ -2812,14 +2814,16 @@ export default {
         this.submitted = false;
         this.processing = false;
         if (!scheduleNow) {
-          this.currentTab = 0;
           this.resetData();
-          return this.closeScheduleForLater();
+          this.closeScheduleForLater();
+          this.currentTab = 0;
+          return;
+        } else {
+          console.log("next 1");
+          this.onNext();
+          this.Timer();
         }
         // this.$router.push("/club-list-table");
-        this.onNext();
-
-        this.Timer();
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -2945,6 +2949,8 @@ export default {
       this.submitted = true;
       if (studyStatus == "STOP") {
         // this.addedStudyTime = true;
+        console.log("next 2");
+
         this.onNext();
       }
       let totalTimeStudied = Math.floor(this.totalStudyTime / 60);
@@ -3092,6 +3098,7 @@ export default {
         session.type = "study";
         session.id = e.id;
         session.name = e.subject?.subject_name;
+        session.goals = [];
         if (e.study_goals && e.study_goals.length > 0) {
           e.study_goals.forEach((element) => {
             if (element.goal) {
@@ -3166,6 +3173,8 @@ export default {
         this.currentTab = 2;
         return;
       }
+      console.log("next 3");
+
       this.onNext();
       if (this.currentTab == 1) {
         await this.getAssignments({});
@@ -3181,10 +3190,14 @@ export default {
     },
     onAssignmentSelect(detail) {
       this.selectedAssignment = detail;
+      console.log("next 4");
+
       this.onNext();
     },
     onModeSelect(type) {
       this.sessionMode = type;
+      console.log("next 5");
+
       this.onNext();
       if (this.sessionMode == "regular") {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 3);
