@@ -440,7 +440,9 @@
             "
           >
             <div class="d-flex flex-column">
-              <div class="assignment-tag-section d-flex align-items-center mb-2">
+              <div
+                class="assignment-tag-section d-flex align-items-center mb-2"
+              >
                 <div
                   class="assignment-tag mr-2"
                   :class="
@@ -473,7 +475,9 @@
                   {{ detail.task }}
                 </h4>
                 <div class="text-center px-3">
-                  <p class="color-secondary text-16 line-height-1 font-semi-bold">
+                  <p
+                    class="color-secondary text-16 line-height-1 font-semi-bold"
+                  >
                     <!-- Practice for mock oral exam in class -->
                     {{ detail.subject }}
                   </p>
@@ -3137,12 +3141,12 @@ export default {
           : e.subject?.subject_name;
         session.goals = e.assignment_id ? e.subTasks : e.study_goals;
         session.duration = e.duration;
-        session.breakTime = e.break_time;
+        session.breakTime = e.studyroom?.break_time;
         session.repeat = e.repeat;
         session.peers = e.peers;
         session.date = moment(e.date).format("MMMM Do, YYYY");
         session.time = e.start_time;
-        session.breakTimeAt = e.break_time_at;
+        session.breakTimeAt = e.studyroom?.break_time_at;
         session.studyMethod = e.study_method;
 
         this.studySessionList.push(session);
