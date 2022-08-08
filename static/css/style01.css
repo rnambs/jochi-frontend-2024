@@ -675,6 +675,15 @@ img.dark-icon {
   background-color: #e8e8e8;
 }
 
+.position-md-absolute {
+  position: relative;
+}
+@media (min-width: 991.98px) {
+  .position-md-absolute {
+    position: absolute;
+  }
+}
+
 .main-container {
   color: #B4B4B4;
   background-image: url("./../image/jochi-light-bg.png");
@@ -1097,6 +1106,9 @@ img.dark-icon {
     left: -7rem;
     transition: 0.3s ease all;
   }
+}
+.inner-section .header-section .sidebar-section .text-logout:hover .d-block-hover {
+  display: block !important;
 }
 .inner-section .header-section .sidebar-section .menu-items {
   position: relative;

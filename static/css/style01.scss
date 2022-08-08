@@ -653,6 +653,15 @@ img.dark-icon{
     }
 }
 
+// POSITION
+
+.position-md-absolute{
+    position: relative;
+    @media (min-width:$md-screen) {
+        position: absolute;
+    }
+}
+
 // SIGN-IN
 
 .main-container{
@@ -1116,6 +1125,13 @@ img.dark-icon{
             @media (max-width: 510.98px) {
                 left: -7rem;
                 transition: 0.3s ease all;
+            }
+            .text-logout{
+                &:hover{
+                    .d-block-hover{
+                        display: block !important;
+                    }
+                }
             }
             // .logo-section{
             //     display: flex;
