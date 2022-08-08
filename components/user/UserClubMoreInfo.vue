@@ -309,6 +309,7 @@
                                   >
                                     {{ item.formattedDate }}
                                   </p>
+                                  ,
                                   <p
                                     class="
                                       color-secondary
