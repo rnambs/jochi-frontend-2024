@@ -331,7 +331,10 @@
                                   <button
                                     v-if="enableEdit"
                                     @click="
-                                      onDeleteClick(item.id, item.club_id)
+                                      onDeleteActivityClick(
+                                        item.id,
+                                        item.club_id
+                                      )
                                     "
                                     data-toggle="modal"
                                     data-target="#mediumModal"
