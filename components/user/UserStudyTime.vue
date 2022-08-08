@@ -1511,7 +1511,11 @@
                       Start Session
                     </button> -->
                     <div class="py-1">
-                      <button type="submit" class="btn btn-primary btn-sm">
+                      <button
+                        type="submit"
+                        :disabled="submitted"
+                        class="btn btn-primary btn-sm"
+                      >
                         Start Session
                       </button>
                     </div>
@@ -2805,7 +2809,8 @@ export default {
         if (this.limitedInterval > 0) {
           await clearInterval(this.limitedInterval);
         }
-
+        this.submitted = false;
+        this.processing = false;
         if (!scheduleNow) {
           this.currentTab = 0;
           this.resetData();
@@ -2813,6 +2818,7 @@ export default {
         }
         // this.$router.push("/club-list-table");
         this.onNext();
+
         this.Timer();
       } else if (this.errorMessage != "") {
         this.$toast.open({
