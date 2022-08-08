@@ -598,6 +598,10 @@ body{
 }
 // HIDDEN SCROLL
 
+.overflow-initial{
+    overflow: initial;
+}
+
 .custom-overflow{
     overflow: hidden;
     overflow-y: auto;

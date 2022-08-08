@@ -2340,7 +2340,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body overflow-initial">
             <div class="form-group required">
               <label class="typo__label">Date</label>
               <date-picker
