@@ -42,7 +42,7 @@
                 1200 X 180
               </p>
             </div> -->
-            <button class="btn p-0 tooltip01 right-tip" CustomTitle="1200 X 1802">
+            <button class="btn p-0 tooltip01 right-tip" CustomTitle="1200 X 180">
               <i class="fas fa-info-circle color-white"></i>
             </button>
           </div>
@@ -973,10 +973,10 @@
           </div>
           <div class="modal-body no-overflow px-4">
             <div>
-              <div size="120" class="user">
+              <div size="120" class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-void mb-3">
                 <v-img :src="image_name" class="profile-img"></v-img>
                 <v-icon
-                  class="icon primary white--text"
+                  class="icon primary white--text text-30 color-secondary"
                   @click="$refs.FileInput.click()"
                   >mdi-upload</v-icon
                 >
@@ -988,22 +988,23 @@
                 />
               </div>
               <!-- <v-dialog v-model="dialog" width="500"> -->
-              <v-card>
-                <v-card-text>
+              <v-card class="bg-transparent shadow-none">
+                <v-card-text class="p-0">
                   <VueCropper
                     v-show="selectedFile"
                     ref="cropper"
                     :src="selectedFile"
                     alt="Source Image"
                     :aspect-ratio="20 / 3"
+                    class="card card-primary mb-3"
                   ></VueCropper>
                 </v-card-text>
-                <v-card-actions>
-                  <v-btn class="primary" @click="saveImage(), (dialog = false)"
-                    >Crop</v-btn
-                  >
-                  <v-btn color="primary" text @click="dialog = false"
+                <v-card-actions class="justify-content-end">
+                  <v-btn color="primary" class="btn btn-secondary color-white mr-2 py-1 px-3 rounded-pill text-capitalize" text @click="dialog = false"
                     >Cancel</v-btn
+                  >
+                  <v-btn class="btn btn-primary bg-primary color-white py-1 px-3 rounded-pill text-capitalize shadow-none" @click="saveImage(), (dialog = false)"
+                    >Crop</v-btn
                   >
                 </v-card-actions>
               </v-card>
@@ -1011,7 +1012,7 @@
             </div>
           </div>
 
-          <div class="modal-footer px-4">
+          <!-- <div class="modal-footer px-4">
             <button
               class="btn btn-primary"
               :disabled="!leaderUpdate"
@@ -1019,7 +1020,7 @@
             >
               Update
             </button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

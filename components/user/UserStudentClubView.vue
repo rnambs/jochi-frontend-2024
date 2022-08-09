@@ -31,7 +31,7 @@
               </button>
               <p class="mb-0 color-secondary text-14 font-regular">1200 X 180</p>
             </div> -->
-            <button class="btn p-0 tooltip01 right-tip" CustomTitle="1200 X 1802">
+            <button class="btn p-0 tooltip01 right-tip" CustomTitle="1200 X 180">
               <i class="fas fa-info-circle color-white"></i>
             </button>
           </div>

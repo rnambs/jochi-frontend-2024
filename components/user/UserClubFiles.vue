@@ -62,7 +62,7 @@
             <button @click="openAddBanner" class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
-            <button class="btn p-0 tooltip01 right-tip" CustomTitle="1200 X 1802">
+            <button class="btn p-0 tooltip01 right-tip" CustomTitle="1200 X 180">
               <i class="fas fa-info-circle color-white"></i>
             </button>
           </div>
