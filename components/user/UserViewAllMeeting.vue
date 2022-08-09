@@ -914,6 +914,8 @@ export default {
         }
         this.loading = true;
         console.log(
+          "date formats",
+          this.detailDateFormat,
           this.isDateChanged,
           this.updatedDate,
           this.detail,
@@ -925,7 +927,7 @@ export default {
           // student_id: localStorage.getItem("id"),
           schedule_id: this.detailScheduleId,
           slot_id: this.isDateChanged ? this.selectedSlot : this.detailSlotId,
-          date: this.isDateChanged ? this.updatedDate : detailDateFormat,
+          date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
           // : moment(this.detailDate).format("YYYY-MM-DD"),
           conversation_type: this.detailConversationType,
           meeting_name: this.detailMeetingName,
