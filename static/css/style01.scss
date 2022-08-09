@@ -593,10 +593,10 @@ body{
     height: fit-content;
 }
 .top-0{
-    top: 0;
+    top: 0 !important;
 }
 .left-0{
-    left: 0;
+    left: 0 !important;
 }
 // HIDDEN SCROLL
 
@@ -623,6 +623,12 @@ body{
     &::-webkit-scrollbar {
         display: none;
     }
+}
+
+// margin,padding Negative
+
+.mr--3{
+    margin-right: -16px;
 }
 
 img.card-img{

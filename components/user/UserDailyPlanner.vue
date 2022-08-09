@@ -15,7 +15,7 @@
             <div class="row h-100">
               <div class="col-lg-5 col-md-12 h-100">
                 <div
-                  class="jochi-components-light-bg p-4 pl-5 h-100"
+                  class="jochi-components-light-bg p-4 h-100"
                 >
                   <h2 class="color-primary font-semi-bold mb-1">Today,</h2>
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
@@ -234,10 +234,13 @@
                               </div>
                             </div>
                             <div class="add-person-section position-absolute top-0">
-                              <div class="ap-img-section"></div>
-                              <div class="ap-img-add">
+                              <div class="ap-img-section mr--3 shadow-sm"></div>
+                              <div class="ap-img-section mr--3 shadow-sm"></div>
+                              <div class="ap-img-section mr--3 shadow-sm"></div>
+                              <div class="ap-img-section shadow-sm"></div>
+                              <!-- <div class="ap-img-add">
                                 <img src="~/static/image/add-btn.png" alt="" />
-                              </div>
+                              </div> -->
                             </div>
                           </div>
                         </drag>
@@ -382,7 +385,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body no-overflow px-4">
+          <div class="modal-body px-4">
             <form>
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label"
@@ -548,7 +551,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <div class="row mt-0">
                 <div class="col-6">
                   <div class="form-group">
                     <label for="recipient-name" class="col-form-label"
@@ -580,7 +583,7 @@
               <div
                 class="d-flex justify-content-between align-items-center mb-2"
               >
-                <h3 class="color-dark font-semi-bold mb-0">Sub Tasks</h3>
+                <h6 class="color-dark font-semi-bold mb-0">Sub Tasks</h6>
                 <a @click="onAddSubTaskClick" class="btn p-0">
                   <span class="color-secondary"
                     ><i class="fas fa-plus-circle"></i
@@ -588,7 +591,7 @@
                 </a>
               </div>
               <div v-if="addSubTask" class="d-flex flex-row align-items-start">
-                <div class="form-row mb-2 mx-0 mr-2">
+                <div class="form-row mb-2 mx-0 mr-2 w-100">
                   <label class="form-label" for="name">Add a sub task</label>
                   <input
                     type="text"
@@ -608,7 +611,7 @@
               </div>
               <div class="custom-overflow pr-2 mr--2 d-flex flex-column">
                 <div v-for="subTask in subTasksList" :key="subTask">
-                  <div class="card card-transparent show-icon p-1 mt-1">
+                  <div class="card card-transparent show-icon p-1 mb-1">
                     <div
                       class="d-flex align-items-center justify-content-between"
                     >
@@ -637,7 +640,7 @@
               <div
                 class="d-flex justify-content-between align-items-center mb-2"
               >
-                <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
+                <h6 class="color-dark font-semi-bold mb-0">Invite Peers</h6>
                 <a @click="onInviteClick" class="btn p-0">
                   <span class="color-secondary"
                     ><i class="fas fa-plus-circle"></i
@@ -645,7 +648,7 @@
                 </a>
               </div>
               <div v-if="invitePeer" class="d-flex flex-row align-items-start">
-                <div class="form-row mb-2 mx-0 mr-2">
+                <div class="form-row mb-2 mx-0 mr-2 w-100">
                   <label class="form-label" for="name">Invite peers</label>
                   <!-- <input type="text" class="form-control" /> -->
                   <multiselect
@@ -695,14 +698,14 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-color-close"
+              class="btn btn-secondary py-1 px-3 rounded-pill"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-color-save"
+              class="btn  btn-primary py-1 px-3 rounded-pill"
               :disabled="processing"
               @click="isAssignmentEdit ? UpdateAssignment() : AddAssignment()"
             >
