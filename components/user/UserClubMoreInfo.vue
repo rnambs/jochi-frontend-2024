@@ -1126,19 +1126,26 @@
                     class="show-cursor form-white"
                     :class="{
                       'is-invalid':
-                        submittedActivity && $v.activity.activityTime.$error,
+                        submittedActivity &&
+                        ($v.activity.activityTime.$error ||
+                          activity.activityTimeError),
                     }"
+                    @change="timeChangeHandler"
                   ></vue-timepicker>
                   <div
                     v-if="
                       submittedActivity &&
                       isActivity &&
-                      $v.activity.activityTime.$error
+                      ($v.activity.activityTime.$error ||
+                        activity.activityTimeError)
                     "
                     class="invalid-feedback"
                   >
                     <span v-if="!$v.activity.activityTime.required"
                       >This field is required</span
+                    >
+                    <span v-if="activity.activityTimeError"
+                      >Add a valid time</span
                     >
                   </div>
                 </div>
@@ -1524,6 +1531,7 @@ export default {
         activityTime: "",
         activityVenue: "",
         activityOpponentTeam: "",
+        activityTimeError: false,
       },
       disabledDates: {
         to: new Date(),
@@ -1927,6 +1935,7 @@ export default {
       };
       this.activity.activityVenue = "";
       this.activity.activityOpponentTeam = "";
+      this.activity.activityTimeError = false;
     },
     async markAnnouncementAsRead(id) {
       this.loading = true;
@@ -1954,7 +1963,9 @@ export default {
     },
     async addNewActivity() {
       console.log(this.$v.activity.$invalid, this.$v.activity, this.$v);
-      let act = this.activity;
+
+      let isValid = this.timeChangeHandler();
+
       this.submittedActivity = true;
       this.processingActivity = true;
       this.$v.activity.activityTitle.$touch();
@@ -1966,25 +1977,11 @@ export default {
       // if (act.activityType == "Match") {
       this.$v.activity.activityOpponentTeam.$touch();
       // }
-      if (this.$v.activity.$invalid) {
+      if (this.$v.activity.$invalid || !isValid) {
         this.processingActivity = false;
 
         return;
       } else {
-        let time =
-          this.activity.activityTime.hh +
-          ":" +
-          this.activity.activityTime.mm +
-          " " +
-          this.activity.activityTime.A;
-
-        let isValid = moment(time, "hh:mm A", true).isValid();
-
-        if (!isValid) {
-          this.activity.activityTimeError = true;
-          return;
-        }
-
         this.loading = true;
         await this.addActivities({
           club_id: this.clubId,
@@ -2182,6 +2179,23 @@ export default {
       } else {
         alert("Sorry, FileReader API not supported");
       }
+    },
+    timeChangeHandler() {
+      let time =
+        this.activity.activityTime.hh +
+        ":" +
+        this.activity.activityTime.mm +
+        " " +
+        this.activity.activityTime.A;
+
+      let isValid = moment(time, "hh:mm A", true).isValid();
+      if (!isValid) {
+        this.activity.activityTimeError = true;
+        console.log("is valid", this.activity.activityTimeError);
+      } else {
+        this.activity.activityTimeError = false;
+      }
+      return isValid;
     },
   },
 };
