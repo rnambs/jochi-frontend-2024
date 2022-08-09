@@ -764,7 +764,7 @@ img.dark-icon {
   position: absolute;
   width: 9px;
   height: 6px;
-  background-image: url("data:image/svg+xml,%3Csvg width='9' height='6' viewBox='0 0 9 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L4.5 5.5L9 0L0 0Z' fill='%23FF7E00'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='9' height='6' viewBox='0 0 9 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L4.5 5.5L9 0H0Z' fill='%23FF4E71'/%3E%3C/svg%3E");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;

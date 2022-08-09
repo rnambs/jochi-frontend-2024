@@ -33,14 +33,17 @@
             <button @click="openAddBanner" class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
-            <div class="d-flex align-items-center">
+            <!-- <div class="d-flex align-items-center">
               <button class="btn p-1 m-2">
                 <i class="fas fa-info-circle color-white"></i>
               </button>
               <p class="mb-0 color-secondary text-14 font-regular">
                 1200 X 180
               </p>
-            </div>
+            </div> -->
+            <button class="btn p-0 tooltip01 right-tip" CustomTitle="1200 X 1802">
+              <i class="fas fa-info-circle color-white"></i>
+            </button>
           </div>
         </div>
 

@@ -51,14 +51,14 @@
               align-items-center
             "
           >
-          <div class="d-flex align-items-center hover-area">
+          <!-- <div class="d-flex align-items-center hover-area">
             <p class="mb-0 color-secondary text-14 font-regular">
               1200 X 1802
             </p>
             <button class="btn p-1 m-2">
               <i class="fas fa-info-circle color-white"></i>
             </button>
-          </div>
+          </div> -->
             <button @click="openAddBanner" class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
