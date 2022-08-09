@@ -8,6 +8,7 @@
       <input
         ref="FileInput"
         type="file"
+        accept="image/*"
         style="display: none"
         @change="onFileSelect"
       />
@@ -69,6 +70,7 @@ export default {
       clubFiles: "clubFiles",
       uploadFile: "uploadFile",
       fileRemove: "fileRemove",
+      uploadBanner: "uploadBanner",
     }),
     saveImage() {
       const userId = this.$route.params.user_id;
@@ -80,12 +82,12 @@ export default {
           var file = new File([blob], "name");
 
           console.log("consoling image outputs ", blob, file);
-          formData.append("file", file);
+          formData.append("file", blob, this.fileName);
           formData.append("club_id", this.$route.query.id);
           formData.append("user_id", localStorage.getItem("id"));
           formData.append("club_banner", "1");
 
-          this.uploadFile(formData, {
+          this.uploadBanner(formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },

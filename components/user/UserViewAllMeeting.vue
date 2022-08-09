@@ -20,7 +20,7 @@
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid">
-            <h2 class="color-primary font-semi-bold ">My Meetings</h2>
+            <h2 class="color-primary font-semi-bold">My Meetings</h2>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0 mb-3">
                 <!-- <div class="col-md-4">
@@ -40,10 +40,9 @@
                     ></span>
                   </div>
                 </div> -->
-                <div class="col-md-4 p-0  mx-1">
+                <div class="col-md-4 p-0 mx-1">
                   <div class="dropdown form-row custom-sort-by-btn">
                     <div
-                     
                       class="
                         dropdown-select
                         btn btn-void
@@ -58,11 +57,13 @@
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <span  id="dLabel" class="mr-2 color-secondary"> Sort by</span>
+                      <span id="dLabel" class="mr-2 color-secondary">
+                        Sort by</span
+                      >
                       <span class="caret color-secondary"
                         ><i class="fas fa-chevron-down font-medium"></i
                       ></span>
-                  </div>
+                    </div>
 
                     <!-- <span class="input-icon"
                       ><i class="fa fa-filter" aria-hidden="true"></i
@@ -84,14 +85,7 @@
 
         <section id="view-all-section" class="d-flex h-40 flex-fill">
           <div
-            class="
-              meeting-section
-              d-flex
-              custom-overflow
-              pe-2
-              mr--2
-              flex-fill
-            "
+            class="meeting-section d-flex custom-overflow pe-2 mr--2 flex-fill"
           >
             <div class="inner-meeting container-fluid p-0">
               <div class="row Meeting-row pl-0 pr-3 pt-0">
@@ -149,7 +143,16 @@
                   </div>
                 </div>
               </div>
-              <div v-if="slot_date.length == 0" class="empty-schedule  d-flex align-items-center justify-content-center h-100">
+              <div
+                v-if="slot_date.length == 0"
+                class="
+                  empty-schedule
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                  h-100
+                "
+              >
                 <p>No meetings found</p>
               </div>
             </div>
@@ -561,13 +564,13 @@
           </div>
           <div class="modal-footer">
             <div
-                v-if="
-                  detailType == 'Peer' &&
-                  detailMeetingRequest == 0 &&
-                  detailTeacherId != studentId
-                "
-                class="row text-center justify-content-end p-3"
-              >
+              v-if="
+                detailType == 'Peer' &&
+                detailMeetingRequest == 0 &&
+                detailTeacherId != studentId
+              "
+              class="row text-center justify-content-end p-3"
+            >
               <button
                 type="button"
                 class="btn btn-secondary py-1 px-4 rounded-pill mr-2"
@@ -576,38 +579,37 @@
               >
                 Reject
               </button>
-                <button
-                  type="button"
-                  class="btn btn-primary py-1 px-4 rounded-pill"
-                  data-dismiss="modal"
-                  @click="acceptOrReject(1)"
-                >
-                  Accept
-                </button>
-              </div>
-              <div
-                v-if="
+              <button
+                type="button"
+                class="btn btn-primary py-1 px-4 rounded-pill"
+                data-dismiss="modal"
+                @click="acceptOrReject(1)"
+              >
+                Accept
+              </button>
+            </div>
+            <div
+              v-if="
                 (detailTeacherId == studentId || detailType == 'Teacher') &&
                 detailMeetingRequest == 1
               "
-                  class="row text-center justify-content-end p-3"
-                >
-                <button
-                  type="button"
-                  class="btn btn-secondary py-1 px-4 rounded-pill mr-2"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-primary py-1 px-4 rounded-pill"
-                  @click="updateDetails()"
-                
-                >
-                  Update
-                </button>
-              </div>
+              class="row text-center justify-content-end p-3"
+            >
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-4 rounded-pill mr-2"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary py-1 px-4 rounded-pill"
+                @click="updateDetails()"
+              >
+                Update
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -658,6 +660,7 @@ export default {
       detailWith: "",
       detailMeetingWith: "",
       detailDate: new Date(),
+      detailDateFormat: new Date(),
       detailTime: "",
       detailMeetingName: "",
       detailMeetingDesc: "",
@@ -844,6 +847,7 @@ export default {
           date.format("MM") +
           "-" +
           date.format("DD");
+        console.log(Scheduleobj);
         this.slot_date.push(Scheduleobj);
         Allarray.push(Scheduleobj);
         if (this.meetingType == "Teacher") {
@@ -867,6 +871,7 @@ export default {
     onCardClick(list) {
       $("#meetingDetailModal").modal();
       this.detailDate = list.date;
+      this.detailDateFormat = list.date_formatted;
       this.detailTime = list.from + " to " + list.end;
       this.detailMeetingName = list.meeting_name;
       this.detailMeetingDesc = list.meeting_description;
@@ -908,16 +913,20 @@ export default {
           });
         }
         this.loading = true;
-
+        console.log(
+          this.isDateChanged,
+          this.updatedDate,
+          this.detail,
+          moment(this.detailDate).format("YYYY-MM-DD")
+        );
         await this.updateMeeting({
           id: this.detailMeetingId,
           // teacher_id: this.value?.id,
           // student_id: localStorage.getItem("id"),
           schedule_id: this.detailScheduleId,
           slot_id: this.isDateChanged ? this.selectedSlot : this.detailSlotId,
-          date: this.isDateChanged
-            ? this.updatedDate
-            : moment(this.detail).format("YYYY-MM-DD"),
+          date: this.isDateChanged ? this.updatedDate : detailDateFormat,
+          // : moment(this.detailDate).format("YYYY-MM-DD"),
           conversation_type: this.detailConversationType,
           meeting_name: this.detailMeetingName,
           meeting_description: this.detailMeetingDesc,
@@ -951,7 +960,6 @@ export default {
     },
     resetValues() {
       this.isDateChanged = false;
-      this.detailMeetingId = "";
       this.detailMeetingId = "";
       // teacher_id: this.value?.id,
       // student_id: localStorage.getItem("id"),
