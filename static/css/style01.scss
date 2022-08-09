@@ -75,6 +75,9 @@ body{
 .word-break{
     word-break: break-all;
 }
+.line-break-anywhere{
+    line-break: anywhere;
+}
 
 
 // FONT WEIGHT
@@ -133,12 +136,11 @@ body{
 .assignment-tag {
     font-size: 10px;
     padding: 2px 10px;
-    border-radius: 18px;
+    border-radius: 8px !important;
     color: #ffffff;
   &.red {
     background-color: #ea2626;
   }
-  
   &.pink {
     background-color: #fb3e80;
   }
@@ -624,9 +626,12 @@ body{
 }
 
 img.card-img{
-    max-width: 130px;
+    max-width: 160px;
     object-fit: contain;
     width: 100%;
+    @media (max-width:$lg-screen) {
+        max-width: 130px;
+    }
 }
 
 .min-w-100{
@@ -684,6 +689,96 @@ img.dark-icon{
         position: absolute;
     }
 }
+
+/* tooltip */
+.tooltip01 {
+    position: relative;
+  }
+  .tooltip01::before {
+    content: attr(CustomTitle);
+    display: none;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: auto;
+    padding: 0.438rem;
+    height: auto;
+    background-color: $dark-theme;
+    border: 1px solid $dark-theme;
+    -webkit-box-shadow: 0px 4px 20px rgb(90 114 123 / 11%);
+    box-shadow: 0px 4px 20px rgb(90 114 123 / 11%);
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-size: 0.813rem;
+    line-height: 0.813rem;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 2;
+    word-break: break-all;
+    white-space: unset;
+    text-align: justify;
+  }
+  .tooltip01.need-width::before {
+    width: 256px !important;
+    line-height: 14px;
+  }
+  @media (max-width: 767px){
+    .tooltip01.need-width::before {
+      width: 176px !important;
+      line-height: 14px;
+    }
+  }
+  .tooltip01::after {
+    content: "";
+    display: none;
+    position: absolute;
+    width: 9px;
+    height: 6px;
+    background-image: url("data:image/svg+xml,%3Csvg width='9' height='6' viewBox='0 0 9 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L4.5 5.5L9 0L0 0Z' fill='%23FF7E00'/%3E%3C/svg%3E");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+  .tooltip01:hover:after {
+    display: block;
+  }
+  .tooltip01:hover::before {
+    display: flex;
+  }
+  .tooltip01.left-tip::before {
+    left: 0;
+    transform: none;
+  }
+  .tooltip01.left-tip::after {
+    left: 5px;
+    transform: none;
+  }
+  .tooltip01.right-tip::before {
+    right: 0;
+    transform: none;
+    left: unset;
+  }
+  .tooltip01.right-tip::after {
+    right: 5px;
+    left: unset;
+    transform: none;
+  }
+
 
 // SIGN-IN
 
@@ -5475,6 +5570,9 @@ switch to violet when it is active*/
         &:hover{
             border: none !important;
             background-color: #eee;
+        }
+        &.disabled{
+            color: $text-secondary;
         }
     }
     span.cell.month{

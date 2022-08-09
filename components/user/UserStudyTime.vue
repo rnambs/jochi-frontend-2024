@@ -427,116 +427,121 @@
         </button>
         <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
       </div>
-
-      <div class="row">
-        <div
-          v-for="detail in assignmentList"
-          :key="detail.id"
-          class="col-md-6 col-lg-4"
-        >
+      <div>
+        <div class="row">
           <div
-            @click="onAssignmentSelect(detail)"
-            class="
-              jochi-sub-components-light-bg
-              drag-drop
-              p-4
-              position-realtive
-              h-100
-              d-flex
-              flex-column
-              justify-content-between
-            "
+            v-for="detail in assignmentList"
+            :key="detail.id"
+            class="col-md-6 col-lg-4"
           >
-            <div class="d-flex flex-column">
-              <div
-                class="assignment-tag-section d-flex align-items-center mb-2"
-              >
+            <div
+              @click="onAssignmentSelect(detail)"
+              class="
+                jochi-sub-components-light-bg
+                drag-drop
+                p-4
+                position-realtive
+                h-100
+                d-flex
+                flex-column
+                justify-content-between
+              "
+            >
+              <div class="d-flex flex-column">
                 <div
-                  class="assignment-tag mr-2"
-                  :class="
-                    detail.priority == '1'
-                      ? 'red'
-                      : detail.priority == '2'
-                      ? 'orange'
-                      : detail.priority == '3'
-                      ? 'yellow'
-                      : ''
-                  "
+                  class="assignment-tag-section d-flex align-items-center mb-2"
                 >
-                  {{
-                    detail.priority == "1"
-                      ? "Urgent"
-                      : detail.priority == "2"
-                      ? "Important"
-                      : detail.priority == "3"
-                      ? "Can Wait"
-                      : ""
-                  }}
-                </div>
-                <div class="assignment-tag pink">
-                  {{ detail.subject }}
-                </div>
-              </div>
-              <div class="text-center">
-                <h4 class="color-primary font-semi-bold mb-0">
-                  <!-- French Oral Practice -->
-                  {{ detail.task }}
-                </h4>
-                <div class="text-center px-3">
-                  <p
-                    class="color-secondary text-16 line-height-1 font-semi-bold"
+                  <div
+                    class="assignment-tag mr-2"
+                    :class="
+                      detail.priority == '1'
+                        ? 'red'
+                        : detail.priority == '2'
+                        ? 'orange'
+                        : detail.priority == '3'
+                        ? 'yellow'
+                        : ''
+                    "
                   >
-                    <!-- Practice for mock oral exam in class -->
+                    {{
+                      detail.priority == "1"
+                        ? "Urgent"
+                        : detail.priority == "2"
+                        ? "Important"
+                        : detail.priority == "3"
+                        ? "Can Wait"
+                        : ""
+                    }}
+                  </div>
+                  <div class="assignment-tag pink">
                     {{ detail.subject }}
-                  </p>
+                  </div>
                 </div>
-              </div>
-              <div
-                v-if="detail.subTasks && detail.subTasks.length > 0"
-                class="mb-3"
-              >
-                <h6 class="color-primary">Sub-tasks</h6>
-                <div class="to-do-list">
-                  <div v-for="subtask in detail.subTasks" :key="subtask.id">
-                    <div class="pl-2 d-flex align-items-center">
-                      <input type="radio" class="mr-2" />
-                      <label for="" class="mb-0 text-12">{{
-                        subtask.title
-                      }}</label>
-                    </div>
-                    <!-- <div class="pl-2 d-flex align-items-center">
+                <div class="text-center">
+                  <h4 class="color-dark font-semi-bold mb-1">
+                    <!-- French Oral Practice -->
+                    {{ detail.task }}
+                  </h4>
+                  <div class="text-center px-3">
+                    <p
+                      class="
+                        color-secondary
+                        text-16
+                        line-height-1
+                        font-semi-bold
+                      "
+                    >
+                      <!-- Practice for mock oral exam in class -->
+                      {{ detail.subject }}
+                    </p>
+                  </div>
+                </div>
+                <div
+                  v-if="detail.subTasks && detail.subTasks.length > 0"
+                  class="mb-3"
+                >
+                  <h6 class="color-primary">Sub-tasks</h6>
+                  <div class="to-do-list">
+                    <div v-for="subtask in detail.subTasks" :key="subtask.id">
+                      <div class="pl-2 d-flex align-items-center">
+                        <input type="radio" class="mr-2 color-secondary" />
+                        <label for="" class="mb-0 text-12 color-secondary">{{
+                          subtask.title
+                        }}</label>
+                      </div>
+                      <!-- <div class="pl-2 d-flex align-items-center">
                       <input type="radio" class="mr-2" />
                       <label for="" class="mb-0 text-12"
                         >Start typing to add subtasks</label
                       >
                     </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <h6 class="mb-1 color-primary">Additional Material</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div
+                    v-if="detail.assignment_materials"
+                    class="col-8 py-0 pl-0 material-link"
+                  >
+                    {{ detail.assignment_materials.file_type }}:{{
+                      detail.assignment_materials.file_name
+                    }}
+                  </div>
+
+                  <div v-else class="col-8 py-0 pl-0 material-link">
+                    <span class="color-secondary">No documents added!</span>
+                  </div>
+                  <div class="col-4 material-date py-0 text-right">
+                    {{ detail.due_date }}
                   </div>
                 </div>
               </div>
             </div>
-            <div class="">
-              <h6 class="mb-1 color-primary">Additional Material</h6>
-              <div class="d-flex align-items-center justify-content-between">
-                <div
-                  v-if="detail.assignment_materials"
-                  class="col-8 py-0 pl-0 material-link"
-                >
-                  {{ detail.assignment_materials.file_type }}:{{
-                    detail.assignment_materials.file_name
-                  }}
-                </div>
-
-                <div v-else class="col-8 py-0 pl-0 material-link">
-                  <span class="color-secondary">No documents added!</span>
-                </div>
-                <div class="col-4 material-date py-0 text-right">
-                  {{ detail.due_date }}
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-        <!-- <div class="col-md-6 col-lg-4">
+          <!-- <div class="col-md-6 col-lg-4">
           <div
             class="
               jochi-sub-components-light-bg
@@ -771,6 +776,7 @@
             </div>
           </div>
         </div> -->
+        </div>
       </div>
     </div>
 
@@ -1579,169 +1585,182 @@
         hidden-scroll
       "
     >
-      <div class="row">
-        <div
-          class="
-            col-lg-7
-            study-col
-            d-flex
-            flex-column
-            justify-content-center
-            flex-fill
-          "
-        >
-          <div class="card card-light rounded-22 p-4 flex-fill mb-4">
-            <div class="">
-              <h1 class="color-primary font-bold mb-2">Working on</h1>
-            </div>
-            <p class="color-dark text-24 font-semi-bold mb-1">Subject Name :</p>
-            <p class="color-dark text-24 font-semi-bold mb-1">
-              {{
-                sessionType == "assignment"
-                  ? subjectName
-                  : timerStatusData.subjectName
-              }}
-            </p>
-            <p class="color-secondary text-16 font-regular mb-1">
-              Study Method :
-              <span>{{
-                sessionMode == "regular"
-                  ? "Regular Studying"
-                  : "Pomodoro Studying"
-              }}</span>
-            </p>
-            <!-- v-if="studyTypes.id != 3" -->
-            <p class="color-secondary text-16 font-regular mb-1">
-              Remaining Cycles : {{ totalCycles - currentCycle }}
-            </p>
-            <!-- v-if="studyTypes.id != 3" -->
-            <p class="color-secondary text-16 font-regular mb-1">
-              Remaining Repetitions :
-              {{ repetitionCount - currentRepetitionNum }}
-            </p>
-            <!-- <input type="text" v-model="remainingTime" id="remainingTime"> -->
-            <button
-              type="button"
-              data-toggle="modal"
-              data-target="#exampleModalCenter"
-              class="btn btn-primary mb-2 mt-2 pl-3 pr-3"
-            >
-              End Session
-            </button>
-          </div>
-          <div class="card card-light rounded-22 p-4">
-            <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
-            <div class="hidden-scroll p-3 row my-0">
-              <div
-                v-for="peer in peerList"
-                :key="peer.id"
-                class="d-flex align-items-center my-2 mr-3 min-w-200"
-              >
-                <div class="ld-img-section mr-3">
-                  <div class="ld-img-holder"></div>
-                </div>
-                <div class="ld-details-section">
-                  <p class="ld-heading mb-1">{{ peer.first_name }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="
-            col-lg-5
-            study-col
-            d-flex
-            justify-content-center
-            align-items-center
-          "
-        >
+      <div class="d-flex flex-column flex-fill">
+        <div class="row">
           <div
             class="
-              card card-light
-              rounded-22
-              p-4
+              col-lg-7
+              study-col
+              d-flex
+              flex-column
+              justify-content-center
               flex-fill
-              h-100
-              justify-constent-center
             "
           >
-            <div class="d-flex flex-column flex-fill justify-content-between">
-              <div class="d-flex flex-column mb-4">
-                <h1 class="color-primary font-bold mb-0">Timer</h1>
-                <p class="color-dark text-24 font-semi-bold mb-1">
-                  Concentrate on session
-                </p>
+            <div class="card card-light rounded-22 p-4 flex-fill mb-4">
+              <div class="">
+                <h1 class="color-primary font-bold mb-2">Working on</h1>
+              </div>
+              <p class="color-dark text-24 font-semi-bold mb-1">
+                Subject Name :
+              </p>
+              <p class="color-dark text-24 font-semi-bold mb-1">
+                {{
+                  sessionType == "assignment"
+                    ? subjectName
+                    : timerStatusData.subjectName
+                }}
+              </p>
+              <p class="color-secondary text-16 font-regular mb-1">
+                Study Method :
+                <span>{{
+                  sessionMode == "regular"
+                    ? "Regular Studying"
+                    : "Pomodoro Studying"
+                }}</span>
+              </p>
+              <!-- v-if="studyTypes.id != 3" -->
+              <p class="color-secondary text-16 font-regular mb-1">
+                Remaining Cycles : {{ totalCycles - currentCycle }}
+              </p>
+              <!-- v-if="studyTypes.id != 3" -->
+              <p class="color-secondary text-16 font-regular mb-1">
+                Remaining Repetitions :
+                {{ repetitionCount - currentRepetitionNum }}
+              </p>
+              <!-- <input type="text" v-model="remainingTime" id="remainingTime"> -->
+              <button
+                type="button"
+                data-toggle="modal"
+                data-target="#exampleModalCenter"
+                class="btn btn-primary mb-2 mt-2 pl-3 pr-3"
+              >
+                End Session
+              </button>
+            </div>
+            <div class="card card-light rounded-22 p-4">
+              <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
+              <div class="hidden-scroll p-3 row my-0">
+                <div
+                  v-for="peer in peerList"
+                  :key="peer.id"
+                  class="d-flex align-items-center my-2 mr-3 min-w-200"
+                >
+                  <div class="ld-img-section mr-3">
+                    <div class="ld-img-holder"></div>
+                  </div>
+                  <div class="ld-details-section">
+                    <p class="ld-heading mb-1">{{ peer.first_name }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="
+              col-lg-5
+              study-col
+              d-flex
+              justify-content-center
+              align-items-center
+            "
+          >
+            <div
+              class="
+                card card-light
+                rounded-22
+                p-4
+                flex-fill
+                h-100
+                justify-constent-center
+              "
+            >
+              <div class="d-flex flex-column flex-fill justify-content-between">
+                <div class="d-flex flex-column mb-4">
+                  <h1 class="color-primary font-bold mb-0">Timer</h1>
+                  <p class="color-dark text-24 font-semi-bold mb-1">
+                    Concentrate on session
+                  </p>
+                </div>
+                <div
+                  id="app"
+                  class="
+                    mb-3
+                    flex-fill
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                  "
+                >
+                  <div class="base-timer m-auto">
+                    <svg
+                      class="base-timer__svg"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g class="base-timer__circle">
+                        <circle
+                          class="base-timer__path-elapsed"
+                          cx="50"
+                          cy="50"
+                          r="45"
+                        ></circle>
+                        <path
+                          id="base-timer-path-remaining"
+                          stroke-dasharray="283"
+                          class="base-timer__path-remaining arc"
+                          d="
+                                  M 50, 50
+                                  m -45, 0
+                                  a 45,45 0 1,0 90,0
+                                  a 45,45 0 1,0 -90,0
+                                  "
+                        ></path>
+                      </g>
+                    </svg>
+                    <div class="inner-timer">
+                      <img src="../../static/image/alarm.png" alt="" />
+                    </div>
+                    <p class="mb-2">
+                      <span
+                        id="base-timer-label"
+                        class="color-dark text-24 font-semi-bold"
+                        >{{ timerDurationDisplay }}</span
+                      >
+                      <!-- <span class="color-dark text-24 font-semi-bold">22</span> -->
+                      <span class="color-dark base-timer-text">{{
+                        studyStatus == "break" ? "BREAK" : ""
+                      }}</span>
+                    </p>
+                  </div>
+                </div>
               </div>
               <div
-                id="app"
                 class="
-                  mb-3
-                  flex-fill
+                  btn-area
                   d-flex
                   align-items-center
                   justify-content-center
                 "
               >
-                <div class="base-timer m-auto">
-                  <svg
-                    class="base-timer__svg"
-                    viewBox="0 0 100 100"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g class="base-timer__circle">
-                      <circle
-                        class="base-timer__path-elapsed"
-                        cx="50"
-                        cy="50"
-                        r="45"
-                      ></circle>
-                      <path
-                        id="base-timer-path-remaining"
-                        stroke-dasharray="283"
-                        class="base-timer__path-remaining arc"
-                        d="
-                                M 50, 50
-                                m -45, 0
-                                a 45,45 0 1,0 90,0
-                                a 45,45 0 1,0 -90,0
-                                "
-                      ></path>
-                    </g>
-                  </svg>
-                  <div class="inner-timer">
-                    <img src="../../static/image/alarm.png" alt="" />
-                  </div>
-                  <p class="mb-2">
-                    <span
-                      id="base-timer-label"
-                      class="color-dark text-24 font-semi-bold"
-                      >{{ timerDurationDisplay }}</span
-                    >
-                    <!-- <span class="color-dark text-24 font-semi-bold">22</span> -->
-                    <span class="color-dark base-timer-text">{{
-                      studyStatus == "break" ? "BREAK" : ""
-                    }}</span>
-                  </p>
-                </div>
+                <!-- && !studyTimePaused -->
+                <button
+                  v-show="this.studyTypes.id == 3 && studyStatus != 'break'"
+                  @click.prevent="
+                    showResume ? onResumeSession() : onPauseSession()
+                  "
+                  class="btn btn-primary mb-2 mt-2 px-4"
+                  id="pause-button"
+                >
+                  <i
+                    v-if="!showResume"
+                    class="fa fa-pause color-white mr-2"
+                  ></i>
+                  <i v-if="showResume" class="fas fa-play color-white mr-2"></i>
+                  {{ showResume ? "Resume" : "Pause" }}
+                </button>
               </div>
-            </div>
-            <div
-              class="btn-area d-flex align-items-center justify-content-center"
-            >
-              <!-- && !studyTimePaused -->
-              <button
-                v-show="this.studyTypes.id == 3 && studyStatus != 'break'"
-                @click.prevent="
-                  showResume ? onResumeSession() : onPauseSession()
-                "
-                class="btn btn-primary mb-2 mt-2 px-4"
-                id="pause-button"
-              >
-                <i class="fa fa-pause color-white mr-2"></i>
-                {{ showResume ? "Resume" : "Pause" }}
-              </button>
             </div>
           </div>
         </div>
