@@ -1,6 +1,6 @@
 <template>
   <section id="header" class="">
-    <div class="header-section position-fixed top-0">
+    <div class="header-section position-fixed top-0 position-relative">
       <!-- <span class="menu-bar-icon" v-on:click="clickableIcon()"
         ><i class="fas fa-bars"></i
       ></span> -->
@@ -62,7 +62,7 @@
                     notificationCount
                   }}</span>
                 </a>
-                <div class="dropdown-menu notify">
+                <div class="dropdown-menu notify border-0">
                   <!-- notification -->
                   <div
                     class="notifications dropdown-item px-2"
@@ -74,31 +74,30 @@
                         justify-content-between
                         align-items-center
                         px-3
-                        mt-2
-                        mb-3
+                        my-2
                       "
                     >
-                      <h5 class="notify-head">Notificaitons</h5>
+                      <h5 class="color-primary font-semi-bold mb-0">Notificaitons</h5>
                       <button
-                        class="btn btn-sm notify-btn mb-3"
+                        class="btn btn-secondary py-1 px-4 rounded-pill"
                         @click="clearNotifications()"
                       >
                         Clear all
                       </button>
                     </div>
-                    <div class="notification-text px-3">
+                    <div class="notification-text px-3 py-1 hidden-scroll">
                       <p
                         :class="
                           data.isViewed
-                            ? 'unread d-flex flex-column p-3'
-                            : 'read d-flex flex-column p-3'
+                            ? 'unread d-flex flex-column p-3 card card-primary-sm rounded-22 my-3 cursor-pointer'
+                            : 'read d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer'
                         "
                         v-for="(data, index) in notificationList"
                         :key="index"
                         @click="onNotificationClick(data.id, data.title)"
                       >
-                        <span class="notify-text">{{ data.message }}</span>
-                        <span class="notify-time d-flex justify-content-end">{{
+                        <span class="color-dark font-semi-bold text-14 text-wrap">{{ data.message }}</span>
+                        <span class="color-secondary text-12 font-regulat d-flex justify-content-end">{{
                           data.timestamp
                         }}</span>
                       </p>

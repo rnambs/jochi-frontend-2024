@@ -1,6 +1,6 @@
 <template>
   <section id="header" class="">
-    <div class="header-section position-fixed top-0">
+    <div class="header-section position-fixed top-0 position-relative">
       <div
         class="
           sidebar-section

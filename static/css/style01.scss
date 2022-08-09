@@ -311,6 +311,7 @@ body{
     }
     .dropdown-menu{
         background-color: $white;
+        box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
         font-size: 0.9rem;
         padding: inherit;
         list-style-type: none;
@@ -522,6 +523,83 @@ body{
     span.caret{
         transition: ease-in-out all 0.5s;
     }
+}
+
+.dropdown{
+    .dropdown-toggle{
+        font-size: 1.25rem;
+        &::after{
+            display: none;
+        }
+        .notify-span{
+            position: absolute;
+            top: 0;
+            font-size: 12px;
+            background: $theme-color;
+            color: $global-font-color;
+            border-radius: 50%;
+            padding: 3px;
+            text-align: center;
+            line-height: 1;
+            left: 20px;
+            height: 19px;
+            min-width: 19px;
+        }
+    }
+    
+    .dropdown-menu.notify{
+        background-color: transparent;
+        backdrop-filter: blur(60px);
+        box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
+        @include borderRadius(20);
+        right: 0 !important;
+        top: 25px !important;
+        @media (max-width: $md-screen) {
+            left: 50px !important;
+            top: -8px !important;
+        }
+        @media (max-width: $sm-screen) {
+            font-size: .75rem;
+        }
+        &.notify{
+            max-width: 400px;
+            min-width: 400px;
+        }
+        .dropdown-item{
+            &.notifications{
+                &:hover, &:active{
+                    background-color: unset;
+                }
+                &.no-notify{
+                    color: $font-label-color;
+                    text-align: center;
+                }
+                .notification-text{
+                    max-height: calc(100vh - 190px);
+                    // p{
+                        // cursor: pointer;
+                        // background-color: $global-background-color;
+                        // max-width: 100%;
+                        // white-space: break-spaces;
+                        // border-radius: 8px;
+                        // box-shadow: 3px 3px 6px #202021;
+                        // &.unread{
+                        //     background-color: $Global-background-element;
+                        // }
+                        // span.notify-text{
+                        //     font-size: 0.9rem;
+                        //     color: $global-font-color;
+                        // }
+                        // span.notify-time{
+                        //     font-size: 0.75rem;
+                        //     color: $font-label-color;
+                        // }
+                    // }
+                }
+            }
+        } 
+    }
+   
 }
 
 
@@ -1102,6 +1180,7 @@ img.dark-icon{
         align-items: center;
         justify-content: flex-end;
         background: #f49196;
+        z-index: 9;
         background: -moz-linear-gradient(-45deg,  #f49196 0%, #ff4e71 100%);
         background: -webkit-linear-gradient(-45deg,  #f49196 0%,#ff4e71 100%);
         background: linear-gradient(135deg,  #f49196 0%,#ff4e71 100%);
@@ -1127,90 +1206,6 @@ img.dark-icon{
                 font-weight: 400;
                 text-align: center;
             }
-        }
-        .dropdown{
-            .dropdown-toggle{
-                font-size: 1.25rem;
-                &::after{
-                    display: none;
-                }
-                .notify-span{
-                    position: absolute;
-                    top: 0;
-                    font-size: 12px;
-                    background: $theme-color;
-                    color: $global-font-color;
-                    border-radius: 50%;
-                    padding: 3px;
-                    text-align: center;
-                    line-height: 1;
-                    left: 20px;
-                    height: 19px;
-                    min-width: 19px;
-                }
-            }
-            
-            .dropdown-menu{
-                background-color: $global-sidebar-bg;
-                box-shadow: 3px 3px 6px #202021;
-                right: 0 !important;
-                top: 25px !important;
-                border-radius: 5px;
-                @media (max-width: 767.98px) {
-                    font-size: .75rem;
-                    top:45px !important;
-                }
-                &.notify{
-                    max-width: 400px;
-                    min-width: 400px;
-                }
-                .dropdown-item{
-                    &:hover, &:active{
-                        background-color: $theme-color;
-                    }
-                    &.notifications{
-                        &:hover, &:active{
-                            background-color: $global-sidebar-bg;
-                        }
-                        &.no-notify{
-                            color: $font-label-color;
-                            text-align: center;
-                        }
-                        .notify-head{
-                            color: $theme-color;
-                        }
-                        .notify-btn{
-                            color: $global-font-color;
-                            background-color: $theme-color;
-                        }
-                        .notification-text{
-                            max-height: calc(100vh - 190px);
-                            overflow: hidden;
-                            overflow-y: auto;
-                            p{
-                                cursor: pointer;
-                                background-color: $global-background-color;
-                                max-width: 100%;
-                                white-space: break-spaces;
-                                border-radius: 8px;
-                                box-shadow: 3px 3px 6px #202021;
-                                &.unread{
-                                    background-color: $Global-background-element;
-                                }
-                                span.notify-text{
-                                    font-size: 0.9rem;
-                                    color: $global-font-color;
-                                }
-                                span.notify-time{
-                                    font-size: 0.75rem;
-                                    color: $font-label-color;
-                                }
-                            }
-                        }
-                    }
-                } 
-            }
-           
         }
         a{
             text-decoration: none;
@@ -5893,6 +5888,9 @@ select.form-control{
             box-shadow: 0 0 12px rgba($color: $black, $alpha: 0.15);
             border-radius: 8px;
             height: unset;
+            &.selected{
+                box-shadow: 0px 0px 12px 7px rgba($color: #ff7c7c, $alpha: 0.1);
+            }
         }
     }
 }
