@@ -851,7 +851,7 @@ export default {
           date.format("MM") +
           "-" +
           date.format("DD");
-        console.log(Scheduleobj);
+
         this.slot_date.push(Scheduleobj);
         Allarray.push(Scheduleobj);
         if (this.meetingType == "Teacher") {
@@ -874,6 +874,8 @@ export default {
 
     onCardClick(list) {
       $("#meetingDetailModal").modal();
+      this.selectedSlot = "";
+      this.slot_date_selection = [];
       this.detailDate = list.date;
       this.detailDateFormat = list.date_formatted;
       this.detailTime = list.from + " to " + list.end;
@@ -917,14 +919,7 @@ export default {
           });
         }
         this.loading = true;
-        console.log(
-          "date formats",
-          this.detailDateFormat,
-          this.isDateChanged,
-          this.updatedDate,
-          this.detail,
-          moment(this.detailDate).format("YYYY-MM-DD")
-        );
+
         await this.updateMeeting({
           id: this.detailMeetingId,
           // teacher_id: this.value?.id,
@@ -979,11 +974,6 @@ export default {
     },
 
     onDateChange(event) {
-      console.log(
-        event,
-        moment(event).format("YYYY-MM-DD"),
-        this.date_formatted
-      );
       if (moment(event).format("YYYY-MM-DD") == this.date_formatted) {
         // alert("matching");
         this.isDateChanged = false;
@@ -1024,7 +1014,6 @@ export default {
           this.dateConversionSlot();
         }
       } else {
-        console.log(dateSelected);
         if (this.invitedMembers && this.invitedMembers.length > 0) {
           this.studentsValue = [];
           this.students_name = [];
