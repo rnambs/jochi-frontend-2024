@@ -131,7 +131,7 @@ body{
     @include jochi-components-bg();
 }
 .border-theme{
-    border: 1px solid $dark-theme;
+    border: 1px solid $dark-theme !important;
 }
 
 // LABEL COLOR
