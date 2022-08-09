@@ -285,6 +285,53 @@
                       </div>
                     </div>
                   </div>
+                  <div class="position-absolute w-100 h-100 top-0 left-0 p-3">
+                    <div class="d-flex card card-primary-void flex-column h-100 p-4 rounded-22">
+                      <div class="d-flex justify-content-between mb-2 border-bottom">
+                        <h3 class="color-primary font-semi-bold">Assignment</h3> 
+                        <p class="mb-0">
+                          <span><i class="fas fa-times"></i></span>
+                        </p>
+                      </div>
+                      <div class="d-flex flex-column custom-overflow">
+                        <div class="d-flex flex-column mb-2">
+                          <h5 class="color-dark mb-1 font-semi-bold">Assignment details</h5> 
+                          <p class="mb-0 color-secondary font-regular text-16">Mathematics</p> 
+                          <p class="mb-0 color-secondary font-regular text-16"></p>
+                        </div> 
+                        <div class="d-flex flex-column mb-2">
+                          <h5 class="color-dark mb-1 font-semi-bold">Sub-task</h5>  
+                          <p class="mb-0 color-secondary font-regular text-16 d-flex align-items-center">No sub tasks added!</p>
+                        </div> 
+                        <div class="d-flex flex-column mb-2"><h5 class="color-dark mb-1 font-semi-bold">
+                        Additional Materials
+                        </h5> 
+                        <p class="mb-0 color-secondary font-regular text-16 mb-1">Material-link : <span>Mathematics</span></p> 
+                        <p class="mb-0 color-secondary font-regular text-16 mb-1">Material-date : <span>12/04/22</span></p> 
+                      </div> 
+                      <div class="d-flex flex-column mb-2">
+                        <h5 class="color-dark mb-1 font-semi-bold">Labels</h5> 
+                        <div class="d-flex flex-column"> 
+                          <div
+                              class="
+                                assignment-tag-section
+                                d-flex
+                                align-items-center
+                                mb-2
+                              "
+                            >
+                              <div class="assignment-tag red mr-2">
+                                Urgent
+                              </div>
+                              <div class="assignment-tag pink">
+                                Other
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
                 </div>
                 <div
                   class="
