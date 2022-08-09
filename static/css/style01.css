@@ -156,6 +156,10 @@ body {
   border: 1px solid #ffffff;
 }
 
+.border-theme {
+  border: 1px solid #FF4E71;
+}
+
 .assignment-tag {
   font-size: 10px;
   padding: 2px 10px;
