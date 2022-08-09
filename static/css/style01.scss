@@ -130,6 +130,9 @@ body{
 .component-bg{
     @include jochi-components-bg();
 }
+.border-theme{
+    border: 1px solid $dark-theme;
+}
 
 // LABEL COLOR
 
