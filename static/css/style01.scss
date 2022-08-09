@@ -541,7 +541,7 @@ body{
     }
     &.card-primary-void{
         background-color: transparent;
-        backdrop-filter: blur(30px);
+        backdrop-filter: blur(60px);
         box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
     }
     &.card-primary-sm{
@@ -593,10 +593,10 @@ body{
     height: fit-content;
 }
 .top-0{
-    top: 0;
+    top: 0 !important;
 }
 .left-0{
-    left: 0;
+    left: 0 !important;
 }
 // HIDDEN SCROLL
 
@@ -623,6 +623,12 @@ body{
     &::-webkit-scrollbar {
         display: none;
     }
+}
+
+// margin,padding Negative
+
+.mr--3{
+    margin-right: -16px;
 }
 
 img.card-img{
