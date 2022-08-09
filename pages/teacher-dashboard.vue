@@ -1,6 +1,6 @@
 <template>
   <div class="inner-section">
-    <UserTeacherSidebar />
+    <UserSidebarTeacher />
 
     <!-- sidebar -->
     <UserTeacherDashboard />
@@ -12,7 +12,9 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
-import UserSidebar from "~/components/user/UserTeacherSidebar.vue";
+// import UserSidebar from "~/components/user/UserTeacherSidebar.vue";
+import UserSidebarTeacher from "~/components/user/UserSidebarTeacher.vue";
+
 import UserTeacherDashboard from "~/components/user/UserTeacherDashboard.vue";
 export default {
   // middleware: "authenticated",
