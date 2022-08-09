@@ -18,8 +18,12 @@
       >
         <!-- end tab for club info -->
 
-        <!-- Club info -->
-        <div class="cd-cover-pic-section position-relative">
+        <!-- Club info -->check
+        <img :src="clubDetails.club_banner_image" alt="" />
+        <div
+          class="cd-cover-pic-section position-relative"
+          :style="{ 'background-image': clubDetails.club_banner_image }"
+        >
           <div class="black-grad"></div>
           <div
             class="
@@ -42,7 +46,10 @@
                 1200 X 180
               </p>
             </div> -->
-            <button class="btn p-0 tooltip01 right-tip" CustomTitle="1200 X 180">
+            <button
+              class="btn p-0 tooltip01 right-tip"
+              CustomTitle="1200 X 180"
+            >
               <i class="fas fa-info-circle color-white"></i>
             </button>
           </div>
@@ -61,7 +68,6 @@
                 pr-3
                 py-0
                 pl-0
-                
               "
             >
               <div class="my-2 px-2">
@@ -830,9 +836,7 @@
               <ul class="mb-0 leader-list-style">
                 <li v-for="(data, index) in membersInfo" :key="index">
                   <!-- <span class="input-name">{{ data }}</span> -->
-                  <div
-                    class="d-flex align-items-center mt-3"
-                  >
+                  <div class="d-flex align-items-center mt-3">
                     <div class="d-flex justify-content-end p-0">
                       <div class="ld-img-section mr-3">
                         <div class="ld-img-holder">
@@ -973,8 +977,20 @@
           </div>
           <div class="modal-body no-overflow px-4">
             <div>
-              <div size="120" class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-void mb-3">
-                <v-img :src="image_name" class="profile-img"></v-img>
+              <div
+                size="120"
+                class="
+                  user
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                  py-4
+                  rounded
+                  card card-primary-void
+                  mb-3
+                "
+              >
+                <!-- <v-img :src="image_name" class="profile-img"></v-img> -->
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"
                   @click="$refs.FileInput.click()"
@@ -983,6 +999,7 @@
                 <input
                   ref="FileInput"
                   type="file"
+                  accept="image/*"
                   style="display: none"
                   @change="onFileSelect"
                 />
@@ -1000,10 +1017,33 @@
                   ></VueCropper>
                 </v-card-text>
                 <v-card-actions class="justify-content-end">
-                  <v-btn color="primary" class="btn btn-secondary color-white mr-2 py-1 px-3 rounded-pill text-capitalize" text @click="dialog = false"
+                  <v-btn
+                    color="primary"
+                    class="
+                      btn btn-secondary
+                      color-white
+                      mr-2
+                      py-1
+                      px-3
+                      rounded-pill
+                      text-capitalize
+                    "
+                    text
+                    @click="dialog = false"
                     >Cancel</v-btn
                   >
-                  <v-btn class="btn btn-primary bg-primary color-white py-1 px-3 rounded-pill text-capitalize shadow-none" @click="saveImage(), (dialog = false)"
+                  <v-btn
+                    class="
+                      btn btn-primary
+                      bg-primary
+                      color-white
+                      py-1
+                      px-3
+                      rounded-pill
+                      text-capitalize
+                      shadow-none
+                    "
+                    @click="saveImage(), (dialog = false)"
                     >Crop</v-btn
                   >
                 </v-card-actions>
@@ -1080,6 +1120,7 @@ export default {
       croppa: {},
       img: "https://images.unsplash.com/photo-1600984575359-310ae7b6bdf2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
       mime_type: "",
+      fileName: "",
       cropedImage: "",
       autoCrop: false,
       selectedFile: "",
@@ -1148,6 +1189,7 @@ export default {
       clubFiles: "clubFiles",
       uploadFile: "uploadFile",
       fileRemove: "fileRemove",
+      uploadBanner: "uploadBanner",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -1489,14 +1531,14 @@ export default {
 
         if (blob) {
           var file = new File([blob], "name");
-
+          blob.fileName = this.fileName;
           console.log("consoling image outputs ", blob, file);
-          formData.append("file", file);
+          formData.append("file", blob, this.fileName);
           formData.append("club_id", this.$route.query.id);
           formData.append("user_id", localStorage.getItem("id"));
           formData.append("club_banner", "1");
 
-          this.uploadFile(formData, {
+          this.uploadBanner(formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
@@ -1524,7 +1566,8 @@ export default {
     onFileSelect(e) {
       const file = e.target.files[0];
       this.mime_type = file.type;
-      console.log(this.mime_type);
+      this.fileName = file.name;
+      console.log(this.mime_type, file);
       if (typeof FileReader === "function") {
         this.dialog = true;
         const reader = new FileReader();

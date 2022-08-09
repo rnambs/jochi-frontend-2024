@@ -51,7 +51,7 @@
               align-items-center
             "
           >
-          <!-- <div class="d-flex align-items-center hover-area">
+            <!-- <div class="d-flex align-items-center hover-area">
             <p class="mb-0 color-secondary text-14 font-regular">
               1200 X 1802
             </p>
@@ -62,7 +62,10 @@
             <button @click="openAddBanner" class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
-            <button class="btn p-0 tooltip01 right-tip" CustomTitle="1200 X 180">
+            <button
+              class="btn p-0 tooltip01 right-tip"
+              CustomTitle="1200 X 180"
+            >
               <i class="fas fa-info-circle color-white"></i>
             </button>
           </div>
@@ -685,7 +688,19 @@
           </div>
           <div class="modal-body no-overflow px-4">
             <div>
-              <div size="120" class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-void mb-3">
+              <div
+                size="120"
+                class="
+                  user
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                  py-4
+                  rounded
+                  card card-primary-void
+                  mb-3
+                "
+              >
                 <!-- <v-img :src="image_name" class="profile-img"></v-img> -->
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"
@@ -695,6 +710,7 @@
                 <input
                   ref="FileInput"
                   type="file"
+                  accept="image/*"
                   style="display: none"
                   @change="onFileSelect"
                 />
@@ -712,10 +728,33 @@
                   ></VueCropper>
                 </v-card-text>
                 <v-card-actions class="justify-content-end">
-                  <v-btn color="primary" class="btn btn-secondary color-white mr-2 py-1 px-3 rounded-pill text-capitalize" text @click="dialog = false"
+                  <v-btn
+                    color="primary"
+                    class="
+                      btn btn-secondary
+                      color-white
+                      mr-2
+                      py-1
+                      px-3
+                      rounded-pill
+                      text-capitalize
+                    "
+                    text
+                    @click="dialog = false"
                     >Cancel</v-btn
                   >
-                  <v-btn class="btn btn-primary bg-primary color-white py-1 px-3 rounded-pill text-capitalize shadow-none" @click="saveImage(), (dialog = false)"
+                  <v-btn
+                    class="
+                      btn btn-primary
+                      bg-primary
+                      color-white
+                      py-1
+                      px-3
+                      rounded-pill
+                      text-capitalize
+                      shadow-none
+                    "
+                    @click="saveImage(), (dialog = false)"
                     >Crop</v-btn
                   >
                 </v-card-actions>
@@ -820,6 +859,7 @@ export default {
       clubFiles: "clubFiles",
       uploadFile: "uploadFile",
       fileRemove: "fileRemove",
+      uploadBanner: "uploadBanner",
     }),
     ...mapActions("clubMoreInfo", {
       clubMoreInfo: "clubMoreInfo",
@@ -1049,12 +1089,12 @@ export default {
           var file = new File([blob], "name");
 
           console.log("consoling image outputs ", blob, file);
-          formData.append("file", file);
+          formData.append("file", blob, this.fileName);
           formData.append("club_id", this.$route.query.id);
           formData.append("user_id", localStorage.getItem("id"));
           formData.append("club_banner", "1");
 
-          this.uploadFile(formData, {
+          this.uploadBanner(formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
