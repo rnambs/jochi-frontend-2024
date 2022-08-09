@@ -393,6 +393,14 @@
                         </div> -->
                       </div>
                     </div>
+                    <div class="d-flex flex-column mb-2">
+                      <button
+                        v-if="sessionDetail.isToday"
+                        @click="goToSession()"
+                      >
+                        Go To Session
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -3161,6 +3169,9 @@ export default {
         session.time = e.time;
         session.breakTimeAt = e.break_time_at;
         session.studyMethod = e.study_method;
+        const d = new Date();
+
+        session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
 
         this.studySessionList.push(session);
       });
@@ -3186,6 +3197,8 @@ export default {
         session.time = e.time;
         session.breakTimeAt = e.break_time_at;
         session.studyMethod = e.study_method;
+        const d = new Date();
+        session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
 
         this.studySessionList.push(session);
       });
@@ -3206,6 +3219,8 @@ export default {
         session.time = e.start_time;
         session.breakTimeAt = e.studyroom?.break_time_at;
         session.studyMethod = e.study_method;
+        const d = new Date();
+        session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
 
         this.studySessionList.push(session);
       });
@@ -3356,8 +3371,22 @@ export default {
         this.getAllStudySessions();
       }
     },
+    async checkTime() {
+      // var beginningTime = moment(this.sessionDetail.date, "hh:mm A");
+      // var d = new Date();
+      // var endTime = moment(d, "hh:mm A");
+      // console.log(beginningTime.isBefore(endTime)); // true
+      // console.log(beginningTime.toDate()); // Mon May 12 2014 08:45:00
+      // console.log(endTime.toDate()); // Mon May 12 2014 09:00:00
+      console.log(this.sessionDetail);
+      if (this.sessionDetail.isToday) {
+        let diffe = moment().diff(this.sessionDetail.date, "minutes");
+        console.log(diffe);
+      }
+    },
     async setDetail(session) {
       this.sessionDetail = session;
+      this.checkTime();
       await this.getInvitedPeers(this.sessionDetail.id);
       console.log("invitedPeers", this.invitedPeers);
       console.log("ownerDetail", this.ownerDetail);
@@ -3382,6 +3411,9 @@ export default {
           this.invitedPeerList.push(peer);
         });
       }
+    },
+    async goToSession() {
+      console.log("inside go to session");
     },
   },
 
