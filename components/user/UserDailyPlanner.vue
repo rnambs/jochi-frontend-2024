@@ -122,136 +122,140 @@
                   </div> -->
                   <!-- drag -->
                   <div class="d-flex flex-column h-40 flex-fill hidden-scroll py-4 px-5">
+
+                  <div>
+                    
                     <div class="row">
                       
-                        <div class="col-6 py-4" v-for="item in assignmentsList" :key="item.id">
-                          <drag class="drag h-100" :transfer-data="{ item }">
+                      <div class="col-6 py-4" v-for="item in assignmentsList" :key="item.id">
+                        <drag class="drag h-100" :transfer-data="{ item }">
+                        <div
+                          class="
+                            jochi-sub-components-light-bg
+                            drag-drop
+                            p-4
+                            position-realtive
+                            h-100
+                          "
+                        >
                           <div
                             class="
-                              jochi-sub-components-light-bg
-                              drag-drop
-                              p-4
-                              position-realtive
-                              h-100
+                              assignment-tag-section
+                              d-flex
+                              align-items-center
+                              mb-2
                             "
                           >
-                            <div
-                              class="
-                                assignment-tag-section
-                                d-flex
-                                align-items-center
-                                mb-2
-                              "
-                            >
-                              <div class="assignment-tag red mr-2">
-                                {{
-                                  item.priority == "1"
-                                    ? "Urgent"
-                                    : item.priority == "2"
-                                    ? "Important"
-                                    : item.priority == "3"
-                                    ? "Can Wait"
-                                    : ""
-                                }}
-                              </div>
-                              <div class="assignment-tag pink">
-                                {{ item.subject }}
-                              </div>
+                            <div class="assignment-tag red mr-2">
+                              {{
+                                item.priority == "1"
+                                  ? "Urgent"
+                                  : item.priority == "2"
+                                  ? "Important"
+                                  : item.priority == "3"
+                                  ? "Can Wait"
+                                  : ""
+                              }}
                             </div>
-                            <div class="assignment-add-section">
-                              <h4 class="mb-0">{{ item.task }}</h4>
-                              <div class="text-center px-3">
-                                <p>{{ item.assignment_description }}</p>
-                              </div>
-                            </div>
-                            <div class="sub-task-section mb-3">
-                              <h6>Sub-tasks</h6>
-                              <div
-                                v-for="sub in item.subTasks"
-                                :key="sub.id"
-                                class="pl-2 d-flex align-items-center color-secondary"
-                              >
-                                <input type="radio" class="mr-2" />
-                                <label for="" class="mb-0">{{ sub.title }}</label>
-                              </div>
-                              <div
-                                v-if="!item.subTasks || item.subTasks.length <= 0"
-                                class="pl-2 d-flex align-items-center"
-                              >
-                                <span class="color-secondary text-12">No sub tasks added!</span>
-                              </div>
-                              <!-- <div class="pl-2 d-flex align-items-center">
-                                <input type="radio" class="mr-2" />
-                                <label for="" class="mb-0"
-                                  >Start typing to add subtasks</label
-                                >
-                              </div> -->
-                            </div>
-                            <div class="addition-material-section">
-                              <h6 class="mb-1 font-medium">Additional Material</h6>
-                              <div
-                                class="
-                                  d-flex
-                                  align-items-center
-                                  justify-content-between
-                                "
-                              >
-                                <div class="col-8 py-0 pl-0 material-link">
-                                  <span class="color-secondary">Rubric: https://docs.google.com/document/...</span>
-                                </div>
-                                <div class="col-4 material-date py-0 text-right">
-                                  12/04/22
-                                </div>
-                              </div>
-                            </div>
-                            <div class="upload-file-section mt-2">
-                              <div class="d-flex align-items-center">
-                                <div class="col-2 p-0">
-                                  <select
-                                    class="form-select form-control"
-                                    aria-label="Default select example"
-                                  >
-                                    <option selected>Type</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                  </select>
-                                </div>
-                                <div class="col-8 py-0 px-1">
-                                  <input
-                                    type="text"
-                                    class="form-control px-2"
-                                    placeholder="Paste Link or Upload File"
-                                  />
-                                </div>
-                                <div class="col-2 p-0">
-                                  <input
-                                    type="submit"
-                                    class="form-control"
-                                    value="Add"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <div class="add-person-section position-absolute top-0">
-                              <div class="ap-img-section mr--3 shadow-sm"></div>
-                              <div class="ap-img-section mr--3 shadow-sm"></div>
-                              <div class="ap-img-section mr--3 shadow-sm"></div>
-                              <div class="ap-img-section shadow-sm"></div>
-                              <!-- <div class="ap-img-add">
-                                <img src="~/static/image/add-btn.png" alt="" />
-                              </div> -->
+                            <div class="assignment-tag pink">
+                              {{ item.subject }}
                             </div>
                           </div>
-                        </drag>
+                          <div class="assignment-add-section">
+                            <h4 class="mb-0">{{ item.task }}</h4>
+                            <div class="text-center px-3">
+                              <p>{{ item.assignment_description }}</p>
+                            </div>
+                          </div>
+                          <div class="sub-task-section mb-3">
+                            <h6>Sub-tasks</h6>
+                            <div
+                              v-for="sub in item.subTasks"
+                              :key="sub.id"
+                              class="pl-2 d-flex align-items-center color-secondary"
+                            >
+                              <input type="radio" class="mr-2" />
+                              <label for="" class="mb-0">{{ sub.title }}</label>
+                            </div>
+                            <div
+                              v-if="!item.subTasks || item.subTasks.length <= 0"
+                              class="pl-2 d-flex align-items-center"
+                            >
+                              <span class="color-secondary text-12">No sub tasks added!</span>
+                            </div>
+                            <!-- <div class="pl-2 d-flex align-items-center">
+                              <input type="radio" class="mr-2" />
+                              <label for="" class="mb-0"
+                                >Start typing to add subtasks</label
+                              >
+                            </div> -->
+                          </div>
+                          <div class="addition-material-section">
+                            <h6 class="mb-1 font-medium">Additional Material</h6>
+                            <div
+                              class="
+                                d-flex
+                                align-items-center
+                                justify-content-between
+                              "
+                            >
+                              <div class="col-8 py-0 pl-0 material-link">
+                                <span class="color-secondary">Rubric: https://docs.google.com/document/...</span>
+                              </div>
+                              <div class="col-4 material-date py-0 text-right">
+                                12/04/22
+                              </div>
+                            </div>
+                          </div>
+                          <div class="upload-file-section mt-2">
+                            <div class="d-flex align-items-center">
+                              <div class="col-2 p-0">
+                                <select
+                                  class="form-select form-control"
+                                  aria-label="Default select example"
+                                >
+                                  <option selected>Type</option>
+                                  <option value="1">One</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                                </select>
+                              </div>
+                              <div class="col-8 py-0 px-1">
+                                <input
+                                  type="text"
+                                  class="form-control px-2"
+                                  placeholder="Paste Link or Upload File"
+                                />
+                              </div>
+                              <div class="col-2 p-0">
+                                <input
+                                  type="submit"
+                                  class="form-control"
+                                  value="Add"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="add-person-section position-absolute top-0">
+                            <div class="ap-img-section mr--3 shadow-sm"></div>
+                            <div class="ap-img-section mr--3 shadow-sm"></div>
+                            <div class="ap-img-section mr--3 shadow-sm"></div>
+                            <div class="ap-img-section shadow-sm"></div>
+                            <!-- <div class="ap-img-add">
+                              <img src="~/static/image/add-btn.png" alt="" />
+                            </div> -->
+                          </div>
                         </div>
-                    </div>
+                      </drag>
+                      </div>
+                  </div>
+                  </div>
                   
                   </div>
                   <!-- drag end -->
                   <div class="d-flex flex-column px-5 pt-3">
                     <h2 class="color-primary font-semi-bold">Completed</h2>
-                    <drop class="drop color-secondary text-16" @drop="handleDrop">Dropzone</drop>
+                    <drop class="drop color-secondary text-16" @drop="handleDrop">Drag and drop your assignment here when it is completed</drop>
                     <div>
                       <div class="row mt-1">
                         <div class="col-6">

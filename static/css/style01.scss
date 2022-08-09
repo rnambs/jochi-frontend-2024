@@ -629,6 +629,9 @@ body{
         background-color: rgba($color: $white, $alpha: 0.45);
         box-shadow: 0px 0px 12px 7px rgba($color: #ff7c7c, $alpha: 0.1);
     }
+    &.card-secondary-sm{
+        @include jochi-sub-components-bg();
+    }
     &.card-secondary{
         background-color: $Global-background-element;
         box-shadow: 0.1rem 0.1rem 0.4rem $global-box-shadow;
@@ -2368,7 +2371,7 @@ img.dark-icon{
                 .inner-tab{
                     text-decoration: none;
                     background-color: rgba($color: $white, $alpha: 0.45);
-                    box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
+                    box-shadow: 0px 0px 32px -4px rgba($color: #000100, $alpha: 0.09);
                     min-height: 56px;
                     &:hover, &.nuxt-link-exact-active.nuxt-link-active{
                         background-color: $theme-color;

@@ -618,6 +618,10 @@ body {
   background-color: rgba(255, 255, 255, 0.45);
   box-shadow: 0px 0px 12px 7px rgba(255, 124, 124, 0.1);
 }
+.card.card-secondary-sm {
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0px 0px 32px -4px rgba(0, 1, 0, 0.09);
+}
 .card.card-secondary {
   background-color: rgba(255, 255, 255, 0.45);
   box-shadow: 0.1rem 0.1rem 0.4rem rgba(255, 255, 255, 0.45);
@@ -2178,7 +2182,7 @@ img.dark-icon {
 .inner-section .main-section .info-tab .tab-row .inner-tab {
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
+  box-shadow: 0px 0px 32px -4px rgba(0, 1, 0, 0.09);
   min-height: 56px;
 }
 .inner-section .main-section .info-tab .tab-row .inner-tab:hover, .inner-section .main-section .info-tab .tab-row .inner-tab.nuxt-link-exact-active.nuxt-link-active {
