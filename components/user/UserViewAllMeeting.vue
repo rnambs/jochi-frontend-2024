@@ -314,12 +314,16 @@
                               class="col-6 text-center modal-time-schedules"
                               v-for="(Schedule, index) in slot_date_selection"
                               :key="index"
-                              :class="{
-                                selected: Schedule.slot_id == selectedSlot,
-                              }"
                               @click="slotClick(Schedule.slot_id)"
                             >
-                              <div class="meeting-list p-3">
+                              <div
+                                class="p-3"
+                                :class="
+                                  Schedule.slot_id == selectedSlot
+                                    ? 'card card-primary-sm border-theme'
+                                    : 'card card-white'
+                                "
+                              >
                                 <h6>{{ Schedule["dateFormat"] }}</h6>
                                 <p class="time">
                                   <!-- {{ Schedule["from"] }} to
@@ -990,7 +994,7 @@ export default {
         // } else {
         this.isDateChanged = true;
         this.updatedDate = moment(event).format("YYYY-MM-DD");
-        this.UpdateTimeSchedule(event);
+        this.UpdateTimeSchedule(moment(event).format("YYYY-MM-DD"));
         // }
       }
     },
@@ -1003,14 +1007,14 @@ export default {
         //   this.slot_date = [];
         // }
 
-        if (this.date) {
+        if (dateSelected) {
           // this.isMounted = true;
           this.loading = true;
           await this.updateTimeSchedule({
             student_id: parseInt(localStorage.getItem("id")),
             teacher_id: this.detailTeacherId ? this.detailTeacherId : "",
-            from_date: this.date,
-            to_date: this.date,
+            from_date: dateSelected,
+            to_date: dateSelected,
             include_weekends: 1,
             options_based_on_my_availability: 1,
           });
