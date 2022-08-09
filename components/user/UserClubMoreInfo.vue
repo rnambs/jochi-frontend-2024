@@ -107,7 +107,7 @@
                         p-2
                         d-flex
                         flex-column
-                        card card-primary
+                        card card-secondary-sm
                         rounded-22
                         p-4
                       "
@@ -476,7 +476,7 @@
                         p-2
                         d-flex
                         flex-column
-                        card card-primary
+                        card card-secondary-sm
                         rounded-22
                         p-4
                       "

@@ -1610,14 +1610,14 @@
                 <h1 class="color-primary font-bold mb-2">Working on</h1>
               </div>
               <p class="color-dark text-24 font-semi-bold mb-1">
-                Subject Name :
-              </p>
-              <p class="color-dark text-24 font-semi-bold mb-1">
-                {{
-                  sessionType == "assignment"
-                    ? subjectName
-                    : timerStatusData.subjectName
-                }}
+                <span>Subject Name: </span>
+                <span class="word-break">
+                  {{
+                    sessionType == "assignment"
+                      ? subjectName
+                      : timerStatusData.subjectName
+                  }}
+                </span>
               </p>
               <p class="color-secondary text-16 font-regular mb-1">
                 Study Method :
@@ -1655,7 +1655,7 @@
                   class="d-flex align-items-center my-2 mr-3 min-w-200"
                 >
                   <div class="ld-img-section mr-3">
-                    <div class="ld-img-holder"></div>
+                    <div class="ld-img-holder shadow-none"></div>
                   </div>
                   <div class="ld-details-section">
                     <p class="ld-heading mb-1">{{ peer.first_name }}</p>
