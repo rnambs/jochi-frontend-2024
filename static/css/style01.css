@@ -157,7 +157,7 @@ body {
 }
 
 .border-theme {
-  border: 1px solid #FF4E71;
+  border: 1px solid #FF4E71 !important;
 }
 
 .assignment-tag {
