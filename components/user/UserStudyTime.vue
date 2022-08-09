@@ -2406,7 +2406,6 @@
             <button
               type="button"
               class="btn btn-primary rounded-pill px-4 py-1"
-              data-dismiss="modal"
               @click="StartStudySession(false)"
               :disabled="processingStudySession"
             >
@@ -2771,11 +2770,35 @@ export default {
       }
     },
 
+    checkScheduleLaterValidations() {
+      let valid = true;
+      if (!this.scheduledTime) {
+        this.$toast.open({
+          message: "Please add scheduled time",
+          type: "warning",
+          duration: 5000,
+        });
+        valid = false;
+      }
+      if (!this.scheduledDate) {
+        this.$toast.open({
+          message: "Please add scheduled date",
+          type: "warning",
+          duration: 5000,
+        });
+        valid = false;
+      }
+      return valid;
+    },
+
     async StartStudySession(scheduleNow = true) {
       this.submitted = true;
       this.processingStudySession = true;
       console.log("start");
       let valid = this.checkValidations();
+      if (valid && !scheduleNow) {
+        valid = this.checkScheduleLaterValidations();
+      }
       if (!valid) {
         this.processingStudySession = false;
 
@@ -2864,6 +2887,7 @@ export default {
           this.resetData();
           this.closeScheduleForLater();
           this.currentTab = 0;
+          this.getAllStudySessions();
           return;
         } else {
           console.log("next 1");

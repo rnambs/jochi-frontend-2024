@@ -893,7 +893,7 @@
             <button
               type="button"
               class="btn btn-primary px-3 py-1 rounded-pill"
-              :disabled="submitted && !$v.announcement.$invalid"
+              :disabled="processing && !$v.announcement.$invalid"
               @click="
                 isAnnouncementEdit
                   ? updateAnnouncementId()
@@ -1506,6 +1506,7 @@ export default {
       announceDesc: "",
       announcementId: 0,
       submitted: false,
+      processing: false,
       submittedActivity: false,
       processingActivity: false,
       announcementList: [],
@@ -1851,9 +1852,11 @@ export default {
     },
     async addNewAnnouncement() {
       this.submitted = true;
+      this.processing = true;
       this.$v.announcement.announceTitle.$touch();
       this.$v.announcement.announceDesc.$touch();
       if (this.$v.announcement.$invalid) {
+        this.processing = false;
         return;
       } else {
         this.loading = true;
@@ -1878,6 +1881,7 @@ export default {
           });
           this.getAnnouncement();
         }
+        this.processing = false;
       }
     },
     async updateAnnouncementId() {
