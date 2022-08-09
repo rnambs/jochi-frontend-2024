@@ -6,7 +6,7 @@
     </div>
 
     <div v-if="userType == '2'">
-      <UserTeacherSidebar />
+      <UserSidebarTeacher />
     </div>
     <!-- sidebar -->
     <PrivacyPolicy />
@@ -14,7 +14,9 @@
 </template>
 <script>
 import UserSidebar from "~/components/user/UserSidebar.vue";
-import UserTeacherSidebar from "~/components/user/UserTeacherSidebar.vue";
+// import UserTeacherSidebar from "~/components/user/UserTeacherSidebar.vue";
+import UserSidebarTeacher from "~/components/user/UserSidebarTeacher.vue";
+
 import PrivacyPolicy from "~/components/PrivacyPolicy.vue";
 export default {
   // middleware: "authenticated",

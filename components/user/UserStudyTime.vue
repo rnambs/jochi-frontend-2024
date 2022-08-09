@@ -3159,7 +3159,7 @@ export default {
         let session = {};
         session.type = "assignment";
         session.id = e.id;
-        session.name = e.assignments[0]?.task;
+        session.name = e.assignments?.task;
         session.goals = e.subTasks;
         session.duration = e.duration;
         session.breakTime = e.break_time;

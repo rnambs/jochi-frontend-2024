@@ -2,7 +2,7 @@
   <div class="inner-section">
     <!-- header -->
 
-    <UserTeacherSidebar />
+    <UserSidebarTeacher />
 
     <!-- end section -->
 
@@ -15,7 +15,9 @@
 </template>
 
 <script>
-import UserTeacherSidebar from "~/components/user/UserTeacherSidebar.vue";
+// import UserTeacherSidebar from "~/components/user/UserTeacherSidebar.vue";
+import UserSidebarTeacher from "~/components/user/UserSidebarTeacher.vue";
+
 import UserTeacherClubFiles from "~/components/user/UserTeacherClubFiles.vue";
 export default {
   // middleware: "authenticated",
