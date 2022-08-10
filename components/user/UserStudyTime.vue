@@ -1552,7 +1552,14 @@
                     >
                       Start Session
                     </button> -->
-                    <div class="d-flex flex-column flex-sm-row flex-lg-column flex-xl-row justify-content-between position-relative">
+                    <div
+                      class="
+                        d-flex
+                        flex-column flex-sm-row flex-lg-column flex-xl-row
+                        justify-content-between
+                        position-relative
+                      "
+                    >
                       <div class="d-flex flex-column">
                         <div class="py-1">
                           <button
@@ -1573,7 +1580,7 @@
                           </button>
                         </div>
                       </div>
-                      
+
                       <div class="d-flex justify-content-end mt-4">
                         <img
                           src="../../static/image/dashboard_img.png"
@@ -1583,7 +1590,6 @@
                       </div>
                     </div>
                   </form>
-                  
                 </div>
               </div>
             </div>
@@ -2448,7 +2454,6 @@ import * as animationData from "~/assets/animation.json";
 // import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
 import VueTimepicker from "vue2-timepicker";
-var startSession = false;
 export default {
   name: "ClubEditForm",
   components: {
@@ -3395,18 +3400,9 @@ export default {
       }
     },
     async checkTime() {
-      startSession = false;
-      // if (this.sessionDetail.isToday) {
-      // let timeDiff = moment().diff(
-      //   moment(this.sessionDetail.time, "hh:mm A"),
-      //   "minutes"
-      // );
-      // console.log(timeDiff);
       if (this.checkStartSession()) {
         this.sessionDetail.startSession = true;
-        startSession = true;
       } else {
-        // this.timerCountDown = 0 - timeDiff;
         this.sessionDetail.startSession = false;
         let time = this.sessionDetail.time;
         this.intervalCountDown = await setInterval(() => {
@@ -3416,28 +3412,8 @@ export default {
             this.sessionDetail.startSession = true;
             clearInterval(this.intervalCountDown);
           }
-          // console.log(
-          //   "inside count down timer",
-          //   timeDiff,
-          //   this.timerCountDown
-          // );
-          // debugger;
-          // if (this.counter === false) {
-          //   var n = this.timerCountDown;
-          //   this.counter = true;
-          // } else if (n > 0) {
-          //   n -= 1;
-          //   this.countDown();
-          //   console.log("You have " + n + "seconds left.");
-          // } else {
-          //   clearInterval(this.intervalCountDown);
-          //   this.counter = false;
-          //   console.log("Your time is up!");
-          // }
         }, 1000);
-        // this.countDown();
       }
-      // }
     },
     checkStartSession() {
       let timeDiff = moment().diff(
@@ -3487,7 +3463,69 @@ export default {
       }
     },
     async goToSession() {
-      console.log("inside go to session");
+      console.log("inside go to session", this.sessionDetail);
+      if (Number(this.sessionDetail.studyMethod) == 3) {
+        this.studyTypes = this.studyTypesData.find((e) => e.id == 3);
+      } else {
+        this.studyTypes = this.studyTypesData.find((e) => e.id == 1);
+      }
+      if (this.sessionDetail.type == "assignment") {
+        this.subjectName = this.selectedAssignment.task;
+      }
+      this.UpdateStudyTechnique();
+      let payLoad = {};
+      if (this.sessionDetail.type == "assignment") {
+        payLoad = {
+          assignment_id: this.sessionDetail.id,
+          session_shared_user_id: this.sessionDetail.peers,
+          goals: this.sessionDetail.goals,
+          date: this.sessionDetail.scheduledDate,
+          start_time: this.sessionDetail.time,
+          study_method: this.sessionDetail.studyMethod,
+          subject: this.sessionType != "assignment" ? this.Subject.id : "",
+          target_duration: this.sessionDetail.duration,
+          repeat: this.sessionDetail.repeat,
+          scheduled_status: "Now",
+          break_time_at: this.sessionDetail.breakTimeAt,
+          break_time: this.sessionDetail.breakTime,
+        };
+      } else {
+        payLoad = {
+          session_shared_user_id: this.sessionDetail.peers,
+          goals: this.sessionDetail.goals,
+          date: this.sessionDetail.scheduledDate,
+          start_time: this.sessionDetail.time,
+          study_method: this.sessionDetail.studyMethod,
+          subject: this.sessionType != "assignment" ? this.Subject.id : "",
+          target_duration: this.sessionDetail.duration,
+          repeat: this.sessionDetail.repeat,
+          scheduled_status: "Now",
+          break_time_at: this.sessionDetail.breakTimeAt,
+          break_time: this.sessionDetail.breakTime,
+        };
+      }
+      await this.saveStudySession(payLoad);
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        if (this.limitedInterval > 0) {
+          await clearInterval(this.limitedInterval);
+        }
+        this.submitted = false;
+        this.processing = false;
+
+        this.currentTab = 4;
+        this.Timer();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
     },
   },
 
