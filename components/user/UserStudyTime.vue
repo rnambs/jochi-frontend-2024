@@ -2647,7 +2647,6 @@ export default {
         this.repeatLoopBy = 1;
         this.totalCycles = 1;
       }
-      console.log("update study tech", this.studyTypes, this.targetDuration);
     },
     async UpdateSubject() {
       this.SubjectName = this.Subject.subject_name;
@@ -2664,7 +2663,6 @@ export default {
       this.totalCycles = this.repeatLoopBy;
       this.customBreakStarted = false;
       this.breakAtMinutes = this.breakAt * 60;
-      console.log("timer started");
       if (this.studyTypes.id == 3) {
         this.timeCompleted = 0;
       }
@@ -2772,7 +2770,7 @@ export default {
                     (presentTime - this.studyTimeStart) / 1000;
                 }
                 clearInterval(this.limitedInterval);
-                console.log(this.studyStatus + "interval cleared!");
+
                 if (isPending) {
                   this.AddStudyTime("STOP");
                 }
@@ -2822,7 +2820,7 @@ export default {
     async StartStudySession(scheduleNow = true) {
       this.submitted = true;
       this.processingStudySession = true;
-      console.log("start");
+
       let valid = this.checkValidations();
       if (valid && !scheduleNow) {
         valid = this.checkScheduleLaterValidations();
@@ -2833,10 +2831,6 @@ export default {
         return;
       }
 
-      // this.$v.$touch();
-      // if (this.$v.$invalid) {
-      //   return;
-      // } else {
       this.processing = true;
       const peersSelected = [];
       if (this.peerList.length > 0) {
@@ -2844,8 +2838,6 @@ export default {
           peersSelected.push(e.id);
         });
       }
-
-      console.log("consoling peer list", peersSelected);
 
       let today, todayTime;
 
@@ -2918,11 +2910,9 @@ export default {
           this.getAllStudySessions();
           return;
         } else {
-          console.log("next 1");
           this.onNext();
           this.Timer();
         }
-        // this.$router.push("/club-list-table");
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -2931,7 +2921,7 @@ export default {
         });
       }
       this.processing = false;
-      // }
+
       this.processingStudySession = false;
     },
     checkValidations() {
@@ -3029,12 +3019,6 @@ export default {
           (Number(this.breakAt) < 2 ||
             Number(this.breakAt) >= Number(this.targetDuration))
         ) {
-          console.log(
-            typeof this.breakAt,
-            typeof this.targetDuration,
-            this.breakAt < 2,
-            this.breakAt >= this.targetDuration
-          );
           this.$toast.open({
             message: "Break At Time must be lesser than Study duration",
             type: "warning",
@@ -3048,9 +3032,6 @@ export default {
     async AddStudyTime(studyStatus) {
       this.submitted = true;
       if (studyStatus == "STOP") {
-        // this.addedStudyTime = true;
-        console.log("next 2");
-
         this.onNext();
       }
       let totalTimeStudied = Math.floor(this.totalStudyTime / 60);
@@ -3058,7 +3039,6 @@ export default {
       this.Timertotal_time = Math.floor(this.totalStudyTime / 60);
       this.Timerrepeat = this.timerStatusData.repeat;
 
-      // targetDuration // live time data
       await this.addStudyTime({
         sessionId: this.sessionData.id,
         min: totalTimeStudied,
@@ -3130,7 +3110,6 @@ export default {
       this.repetitionCount = "1";
       this.targetDuration = 0;
       this.breakTime = 0;
-      // this.$refs.studyTimeForm.reset();
     },
     async onLogSession() {
       await this.addRating({
@@ -3164,16 +3143,11 @@ export default {
       var presentTime = new Date().getTime();
       this.totalStudyTime += (presentTime - this.studyTimeStart) / 1000;
       clearInterval(this.limitedInterval);
-      console.log(this.studyStatus + "custom interval cleared!");
+
       this.AddStudyTime("PAUSE");
     },
     async getAllStudySessions() {
       await this.getStudySessions({});
-      console.log(this.studySessions);
-      console.log(this.sharedSessions);
-      console.log(this.assignmentSessions);
-
-      // this.studySessionList = this.assignmentSessions;
 
       this.assignmentSessions.forEach((e) => {
         let session = {};
@@ -3274,9 +3248,7 @@ export default {
         this.currentTab = 0;
         return;
       }
-      // if (this.currentTab == 3) {
-      //   this.$refs.studyTimeForm.reset();
-      // }
+
       this.currentTab--;
     },
     async setSessionType(type) {
@@ -3286,12 +3258,10 @@ export default {
         this.currentTab = 2;
         return;
       }
-      console.log("next 3");
 
       this.onNext();
       if (this.currentTab == 1) {
         await this.getAssignments({});
-        console.log(this.assignments);
         this.assignmentList = [];
         if (this.assignments && this.assignments.length > 0) {
           this.assignments.forEach((e) => {
@@ -3303,13 +3273,11 @@ export default {
     },
     onAssignmentSelect(detail) {
       this.selectedAssignment = detail;
-      console.log("next 4");
 
       this.onNext();
     },
     onModeSelect(type) {
       this.sessionMode = type;
-      console.log("next 5");
 
       this.onNext();
       if (this.sessionMode == "regular") {
@@ -3352,9 +3320,7 @@ export default {
       });
     },
     onInvitePeer() {
-      console.log(this.peerSelected);
       this.peerList = this.peerSelected;
-      // this.peerSelected = ;
       this.invitePeer = false;
     },
     resetAssignment() {
@@ -3407,7 +3373,6 @@ export default {
         let time = this.sessionDetail.time;
         this.intervalCountDown = await setInterval(() => {
           let timeDiff = moment().diff(moment(time, "hh:mm A"), "minutes");
-          console.log(timeDiff);
           if (timeDiff >= 0) {
             this.sessionDetail.startSession = true;
             clearInterval(this.intervalCountDown);
@@ -3420,7 +3385,6 @@ export default {
         moment(this.sessionDetail.time, "hh:mm A"),
         "minutes"
       );
-      console.log(timeDiff);
       if (timeDiff < 0) {
         return false;
       }
@@ -3438,8 +3402,6 @@ export default {
         this.checkTime();
       }
       await this.getInvitedPeers(this.sessionDetail.id);
-      console.log("invitedPeers", this.invitedPeers);
-      console.log("ownerDetail", this.ownerDetail);
       this.invitedPeerList = [];
       if (this.invitedPeers && this.invitedPeers.length > 0) {
         this.invitedPeers.forEach((e) => {
@@ -3463,7 +3425,6 @@ export default {
       }
     },
     async goToSession() {
-      console.log("inside go to session", this.sessionDetail);
       if (Number(this.sessionDetail.studyMethod) == 3) {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 3);
       } else {
