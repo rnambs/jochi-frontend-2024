@@ -241,7 +241,13 @@
                     class="d-flex justify-content-between mb-2 border-bottom"
                   >
                     <h3 class="color-primary font-semi-bold">Session</h3>
-                    <p @click="showSessionDetail = false" class="mb-0">
+                    <p
+                      @click="
+                        showSessionDetail = false;
+                        clearCountDownInterval();
+                      "
+                      class="mb-0"
+                    >
                       <span><i class="fas fa-times"></i></span>
                     </p>
                   </div>
@@ -395,10 +401,10 @@
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <button
-                        v-if="sessionDetail.isToday"
+                        v-if="sessionDetail.startSession"
                         @click="goToSession()"
                       >
-                        Go To Session
+                        Start Session Now
                       </button>
                     </div>
                   </div>
@@ -2436,7 +2442,7 @@ import * as animationData from "~/assets/animation.json";
 // import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
 import VueTimepicker from "vue2-timepicker";
-
+var startSession = false;
 export default {
   name: "ClubEditForm",
   components: {
@@ -2524,6 +2530,9 @@ export default {
       studySessionList: [],
       sessionDetail: {},
       invitedPeerList: [],
+      timerCountDown: 0,
+      counter: false,
+      intervalCountDown: null,
     };
   },
 
@@ -3166,12 +3175,14 @@ export default {
         session.repeat = e.repeat;
         session.peers = e.peers;
         session.date = moment(e.date).format("MMMM Do, YYYY");
+        session.scheduledDate = e.date;
         session.time = e.time;
         session.breakTimeAt = e.break_time_at;
         session.studyMethod = e.study_method;
         const d = new Date();
 
         session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
+        session.startSession = false;
 
         this.studySessionList.push(session);
       });
@@ -3194,11 +3205,13 @@ export default {
         session.repeat = e.repeat;
         session.peers = e.peers;
         session.date = moment(e.date).format("MMMM Do, YYYY");
+        session.scheduledDate = e.date;
         session.time = e.time;
         session.breakTimeAt = e.break_time_at;
         session.studyMethod = e.study_method;
         const d = new Date();
         session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
+        session.startSession = false;
 
         this.studySessionList.push(session);
       });
@@ -3216,11 +3229,13 @@ export default {
         session.repeat = e.repeat;
         session.peers = e.peers;
         session.date = moment(e.date).format("MMMM Do, YYYY");
+        session.scheduledDate = e.date;
         session.time = e.start_time;
         session.breakTimeAt = e.studyroom?.break_time_at;
         session.studyMethod = e.study_method;
         const d = new Date();
         session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
+        session.startSession = false;
 
         this.studySessionList.push(session);
       });
@@ -3338,6 +3353,8 @@ export default {
     },
     openScheduleForLater() {
       this.processing = false;
+      this.processingStudySession = false;
+      this.scheduledTime = "";
       if (this.checkValidations()) {
         $("#scheduleForLater").modal({ backdrop: true });
       }
@@ -3372,21 +3389,72 @@ export default {
       }
     },
     async checkTime() {
-      // var beginningTime = moment(this.sessionDetail.date, "hh:mm A");
-      // var d = new Date();
-      // var endTime = moment(d, "hh:mm A");
-      // console.log(beginningTime.isBefore(endTime)); // true
-      // console.log(beginningTime.toDate()); // Mon May 12 2014 08:45:00
-      // console.log(endTime.toDate()); // Mon May 12 2014 09:00:00
-      console.log(this.sessionDetail);
-      if (this.sessionDetail.isToday) {
-        let diffe = moment().diff(this.sessionDetail.date, "minutes");
-        console.log(diffe);
+      startSession = false;
+      // if (this.sessionDetail.isToday) {
+      // let timeDiff = moment().diff(
+      //   moment(this.sessionDetail.time, "hh:mm A"),
+      //   "minutes"
+      // );
+      // console.log(timeDiff);
+      if (this.checkStartSession()) {
+        this.sessionDetail.startSession = true;
+        startSession = true;
+      } else {
+        // this.timerCountDown = 0 - timeDiff;
+        this.sessionDetail.startSession = false;
+        let time = this.sessionDetail.time;
+        this.intervalCountDown = await setInterval(() => {
+          let timeDiff = moment().diff(moment(time, "hh:mm A"), "minutes");
+          console.log(timeDiff);
+          if (timeDiff >= 0) {
+            this.sessionDetail.startSession = true;
+            clearInterval(this.intervalCountDown);
+          }
+          // console.log(
+          //   "inside count down timer",
+          //   timeDiff,
+          //   this.timerCountDown
+          // );
+          // debugger;
+          // if (this.counter === false) {
+          //   var n = this.timerCountDown;
+          //   this.counter = true;
+          // } else if (n > 0) {
+          //   n -= 1;
+          //   this.countDown();
+          //   console.log("You have " + n + "seconds left.");
+          // } else {
+          //   clearInterval(this.intervalCountDown);
+          //   this.counter = false;
+          //   console.log("Your time is up!");
+          // }
+        }, 1000);
+        // this.countDown();
       }
+      // }
+    },
+    checkStartSession() {
+      let timeDiff = moment().diff(
+        moment(this.sessionDetail.time, "hh:mm A"),
+        "minutes"
+      );
+      console.log(timeDiff);
+      if (timeDiff < 0) {
+        return false;
+      }
+      return true;
+    },
+
+    clearCountDownInterval() {
+      clearInterval(this.intervalCountDown);
     },
     async setDetail(session) {
       this.sessionDetail = session;
-      this.checkTime();
+      clearInterval(this.intervalCountDown);
+      this.counter = false;
+      if (this.sessionDetail.isToday) {
+        this.checkTime();
+      }
       await this.getInvitedPeers(this.sessionDetail.id);
       console.log("invitedPeers", this.invitedPeers);
       console.log("ownerDetail", this.ownerDetail);

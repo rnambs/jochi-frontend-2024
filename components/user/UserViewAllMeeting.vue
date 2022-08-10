@@ -138,7 +138,9 @@
                       {{ list["from"] }}
                       {{ list["end"] ? "to " + list["end"] : "" }}
 
-                      {{ timeZones.timeZone }}
+                      <span v-if="timeZones && timeZones.timeZone">
+                        {{ timeZones.timeZone }}
+                      </span>
                     </p>
                   </div>
                 </div>
@@ -314,7 +316,7 @@
                               class="col-6 text-center modal-time-schedules"
                               v-for="(Schedule, index) in slot_date_selection"
                               :key="index"
-                              @click="slotClick(Schedule.slot_id)"
+                              @click="slotClick(Schedule.slot_id, Schedule.id)"
                             >
                               <div
                                 class="p-3"
@@ -676,6 +678,7 @@ export default {
       studentId: 0,
       isDateChanged: false,
       selectedSlot: "",
+      selectedScheduleId: "",
       updatedDate: "",
       disabledDates: {
         to: new Date(),
@@ -766,6 +769,7 @@ export default {
         search_id: selectValue,
         student_id: localStorage.getItem("id"),
       });
+      console.log("consoling time zones ", this.timeZones);
       this.loading = false;
       this.dateConversion();
     },
@@ -922,12 +926,16 @@ export default {
 
         await this.updateMeeting({
           id: this.detailMeetingId,
-          // teacher_id: this.value?.id,
-          // student_id: localStorage.getItem("id"),
-          schedule_id: this.detailScheduleId,
-          slot_id: this.isDateChanged ? this.selectedSlot : this.detailSlotId,
+          schedule_id: this.isDateChanged
+            ? this.selectedScheduleId
+            : this.detailScheduleId,
+          slot_id:
+            this.detailType != "Teacher" && this.isDateChanged
+              ? this.selectedSlot
+              : this.detailType != "Teacher" && !this.isDateChanged
+              ? this.detailSlotId
+              : null,
           date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
-          // : moment(this.detailDate).format("YYYY-MM-DD"),
           conversation_type: this.detailConversationType,
           meeting_name: this.detailMeetingName,
           meeting_description: this.detailMeetingDesc,
@@ -1083,6 +1091,7 @@ export default {
           Scheduleobj["dateValue"] = dateValue;
           Scheduleobj["date"] = dateValue;
           Scheduleobj["slot_id"] = element.slot_id;
+          Scheduleobj["id"] = element.id;
           this.slot_date_selection.push(Scheduleobj);
         });
       } else {
@@ -1156,8 +1165,9 @@ export default {
       });
       this.loading = false;
     },
-    slotClick(id) {
-      this.selectedSlot = id;
+    slotClick(slot, id) {
+      this.selectedSlot = slot;
+      this.selectedScheduleId = id;
     },
   },
 
