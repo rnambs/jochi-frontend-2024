@@ -292,6 +292,40 @@ const actions = {
 
     }
   },
+  async completeTask({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$put(BASE_URL + 'planner/add_task_status', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+      if (response.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', "success");
+      }
+
+    } catch (e) {
+      if (e.response && e.response.status == 401) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else {
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+      }
+    }
+
+  },
 
 
 }
