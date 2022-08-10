@@ -3304,6 +3304,10 @@ switch to violet when it is active*/
           backdrop-filter: blur(1.4px);
 }
 
+.z-index-9 {
+  z-index: 9;
+}
+
 .daterangepicker {
   z-index: 999999;
 }

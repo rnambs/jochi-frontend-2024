@@ -22,11 +22,15 @@
                 </div>
               </div>
               <div class="col-lg-7 col-md-12 position-realtive h-100">
-                
-              <iframe src="https://embed.lottiefiles.com/animation/108242"></iframe>
                 <div
-                  class="jochi-components-light-bg py-4 h-100 d-flex flex-column"
+                  class="jochi-components-light-bg py-4 h-100 d-flex flex-column position-relative"
                 >
+                    <lottie
+                    v-if="!loading"
+                    :options="lottieOptionsSuccess"
+                    v-on:animCreated="handleAnimation"
+                    class="position-absolute top-0 w-100 h-100 z-index-9"
+                  />
                   <div class="d-flex justify-content-between align-items-center px-5 pb-3">
                     <h2 class="color-primary font-semi-bold">Pending</h2>
                     <button
@@ -780,6 +784,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
+import * as animationDataSuccess from "~/assets/success.json";
 import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
 var fromDate = "";
@@ -823,6 +828,7 @@ export default {
       loading: false,
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
+      lottieOptionsSuccess: { animationData: animationDataSuccess.default },
       calendarApi: Calendar,
       calendarOptions: {
         displayEventTime: false,
