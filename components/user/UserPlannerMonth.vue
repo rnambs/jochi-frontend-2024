@@ -107,11 +107,21 @@
                                     </div>
                                   </div>
                                 </div>
-                                <div class="add-person-section position-absolute">
-                                  <div class="ap-img-section"></div>
-                                  <div class="ap-img-add">
+                                <div class="add-person-section position-absolute top-0">
+                                  <div
+                                    class="ap-img-section mr--3 shadow-sm"
+                                  ></div>
+                                  <div
+                                    class="ap-img-section mr--3 shadow-sm"
+                                  ></div>
+                                  <div
+                                    class="ap-img-section mr--3 shadow-sm"
+                                  ></div>
+                                  <div class="ap-img-section shadow-sm"></div>
+                                  
+                                  <!-- <div class="ap-img-add">
                                     <img src="~/static/image/add-btn.png" alt="" />
-                                  </div>
+                                  </div> -->
                                 </div>
                               </div>
                             </div>
