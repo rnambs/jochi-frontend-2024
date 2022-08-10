@@ -1673,7 +1673,7 @@ img.dark-icon {
 }
 .inner-section .main-section #Monthly-Calander .fc-toolbar-chunk .fc-prev-button.fc-button {
   position: absolute;
-  right: 6rem;
+  right: 5.25rem;
 }
 .inner-section .main-section #Monthly-Calander .fc .fc-button .fc-icon {
   color: #a28cf6;
@@ -1684,10 +1684,12 @@ img.dark-icon {
 .inner-section .main-section #Monthly-Calander .fc-toolbar-chunk .fc-next-button.fc-button,
 .inner-section .main-section #Monthly-Calander .fc-toolbar-chunk .fc-prev-button.fc-button {
   background: none;
-  border: 1px solid #b4b4b4;
+  border: 1px solid #f0deeb;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 8px;
+  border-radius: 10px;
 }
 .inner-section .main-section #Monthly-Calander .fc-toolbar-chunk .fc-next-button.fc-button {
   position: relative;

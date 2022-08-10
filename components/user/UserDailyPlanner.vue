@@ -23,7 +23,7 @@
               </div>
               <div class="col-lg-7 col-md-12 position-realtive h-100">
                 
-              <!-- <iframe src="https://embed.lottiefiles.com/animation/108242"></iframe> -->
+              <iframe src="https://embed.lottiefiles.com/animation/108242"></iframe>
                 <div
                   class="jochi-components-light-bg py-4 h-100 d-flex flex-column"
                 >
