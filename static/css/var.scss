@@ -110,6 +110,9 @@ $sm-screen-h         : 767.98px;
     @else if $br==20 {
         border-radius: 20px;
     }
+    @else if $br==22 {
+        border-radius: 22px;
+    }
     @else if $br==25 {
         border-radius: 25px;
     }
@@ -129,36 +132,49 @@ $sm-screen-h         : 767.98px;
     .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
         .fc-header-toolbar.fc-toolbar{
             justify-content: center;
+            position: absolute;
+            top: -12px;
+            width: 93%;
             h2.fc-toolbar-title{
-                font-size: 0.8em !important;
+                font-size: 12px !important;
                 font-weight: 500;
                 color: $global-font-color;
                 background-color: $head-theme-color;
                 padding: 0.4em 1.65em;
-                border-radius: 6px;
+                border-radius: 0px;
                 min-height: 20px;
                 white-space: nowrap;
                 width: fit-content;
+                position: unset;
+                border-bottom: 2px solid $head-theme-color;
             }
             button.fc-button.fc-button-primary{
-                background-color: $border-color;
-                color: $global-font-color;
+                background-color: $head-theme-color;
+                border: none;
                 &:hover{
                     border: none;
                     color: $theme-color;
                 }
                 span.fc-icon{
                     position: relative;
-                    top: -0.35rem;
+                    line-height: 6px;
+                    font-size: 16px;
+                    color: $white;
                 }
             }
             button.fc-next-button.fc-button.fc-button-primary{
-                border-radius: 0px 50px 50px 0px;
+                position: unset;
+                border-radius: 0px 6px 6px 0px;
                 min-height: 20px;
+                height: 26px;
+                padding: 3px;
             }
             button.fc-prev-button.fc-button.fc-button-primary{
-                border-radius:50px 0px 0px 50px;
+                position: unset;
+                border-radius:6px 0px 0px 6px;
                 min-height: 20px;
+                height: 26px;
+                padding: 3px;
             }
         }
     }
@@ -196,6 +212,7 @@ $sm-screen-h         : 767.98px;
                             }
                             table.fc-col-header{
                                 border-bottom: hidden;
+                                width: 100% !important;
                                 th{
                                     background: unset;
                                     backdrop-filter: blur(0px);
@@ -302,6 +319,43 @@ $sm-screen-h         : 767.98px;
                 }
             }
         }
+    }
+}
+@mixin calendar-lg-head {
+    .fc-header-toolbar.fc-toolbar.fc-toolbar-ltr{
+        justify-content: space-between;
+        h2.fc-toolbar-title{
+            position: absolute;
+            left: 38px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+    }
+    .fc-toolbar-chunk .fc-prev-button.fc-button {
+        position: absolute;
+        right: 5.25rem;
+    }
+    
+    .fc .fc-button .fc-icon {
+        color: #a28cf6;
+        font-size: 1em;
+        line-height: 12px;
+        margin: 0;
+    }
+    .fc-toolbar-chunk .fc-next-button.fc-button,
+    .fc-toolbar-chunk .fc-prev-button.fc-button {
+        background: none;
+        border: 1px solid #f0deeb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        @include borderRadius(10);
+    }
+    
+    .fc-toolbar-chunk .fc-next-button.fc-button {
+        position: relative;
+        top: 1.065rem;
     }
 }
 @mixin calendar-sm-week {
@@ -636,17 +690,18 @@ $sm-screen-h         : 767.98px;
 @mixin plannerDaily {
     .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
         .fc-header-toolbar.fc-toolbar{
-            justify-content: center;
+            justify-content: start;
             h2.fc-toolbar-title{
                 background-color: unset;
                 color: $text-secondary;
                 font-size: medium;
                 font-weight: 700;
                 white-space: nowrap;
-                position: absolute;
-                left: 62px;
-                top: 78px;
+                position: unset;
+                left: unset;
+                top: unset;
                 right: unset;
+                z-index: 0;
             }
             button.fc-button.fc-button-primary{
                 background-color: $border-color;
@@ -656,19 +711,28 @@ $sm-screen-h         : 767.98px;
                     color: $theme-color;
                 }
                 span.fc-icon{
-                    position: relative;
                     top: -0.35rem;
+                    position: unset;
+                    line-height: 4px;
+                    font-size: 1rem;
+                    color: $text-secondary;
                 }
             }
             button.fc-next-button.fc-button.fc-button-primary{
-                border-radius: 0px 50px 50px 0px;
                 min-height: 20px;
                 font-size: 0.75rem;
+                position: unset;
+                right: unset;
+                border: none;
+                background-color: unset;
             }
             button.fc-prev-button.fc-button.fc-button-primary{
-                border-radius:50px 0px 0px 50px;
                 min-height: 20px;
                 font-size: 0.75rem;
+                position: unset;
+                right: unset;
+                border: none;
+                background-color: unset;
             }
         }
         .fc-view-harness.fc-view-harness-active{
@@ -771,6 +835,7 @@ $sm-screen-h         : 767.98px;
                             .fc-timegrid-event-harness > .fc-timegrid-event{
                                 transform: translateY(1px);
                                 border-radius: 3px;
+                                @include borderRadius(22);
                             }
                             .fc-scroller.fc-scroller-liquid-absolute{
                                 overflow: hidden !important;

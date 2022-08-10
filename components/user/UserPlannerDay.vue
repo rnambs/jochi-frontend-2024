@@ -1312,9 +1312,9 @@ body {
   border: none;
 }
 
-.fc-button.fc-button-primary {
+/* .fc-button.fc-button-primary {
   display: none;
-}
+} */
 
 .fc-theme-standard .fc-scrollgrid {
   border: none;
@@ -1351,22 +1351,22 @@ body {
   top: 8px;
 }
 
-.fc-scrollgrid-sync-table,
+/* .fc-scrollgrid-sync-table,
 .fc-scrollgrid-section.fc-scrollgrid-section-header {
   display: none;
-}
+} */
 
 .fc .fc-cell-shaded,
 .fc .fc-day-disabled {
   background: none;
 }
 
-.fc-toolbar-chunk .fc-toolbar-title {
+/* .fc-toolbar-chunk .fc-toolbar-title {
   position: absolute;
   left: 62px;
   top: 78px;
   font-size: 14px;
-}
+} */
 
 .fc-view-harness.fc-view-harness-active {
   height: 75vh !important;

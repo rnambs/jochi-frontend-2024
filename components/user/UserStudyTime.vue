@@ -1552,33 +1552,39 @@
                     >
                       Start Session
                     </button> -->
-                    <div class="py-1">
-                      <button
-                        type="submit"
-                        :disabled="processingStudySession"
-                        class="btn btn-primary btn-sm"
-                      >
-                        Start Session
-                      </button>
-                    </div>
-                    <div class="py-1">
-                      <button
-                        type="button"
-                        @click="openScheduleForLater()"
-                        class="btn btn-dark btn-sm"
-                      >
-                        Schedule for later
-                      </button>
+                    <div class="d-flex flex-column flex-sm-row flex-lg-column flex-xl-row justify-content-between position-relative">
+                      <div class="d-flex flex-column">
+                        <div class="py-1">
+                          <button
+                            type="submit"
+                            :disabled="processingStudySession"
+                            class="btn btn-primary btn-sm"
+                          >
+                            Start Session
+                          </button>
+                        </div>
+                        <div class="py-1">
+                          <button
+                            type="button"
+                            @click="openScheduleForLater()"
+                            class="btn btn-dark btn-sm"
+                          >
+                            Schedule for later
+                          </button>
+                        </div>
+                      </div>
+                      
+                      <div class="d-flex justify-content-end mt-4">
+                        <img
+                          src="../../static/image/dashboard_img.png"
+                          alt=""
+                          class="img-fluid card-img"
+                        />
+                      </div>
                     </div>
                   </form>
+                  
                 </div>
-              </div>
-              <div class="d-flex justify-content-end">
-                <img
-                  src="../../static/image/dashboard_img.png"
-                  alt=""
-                  class="img-fluid card-img"
-                />
               </div>
             </div>
           </div>

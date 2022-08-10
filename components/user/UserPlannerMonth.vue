@@ -13,7 +13,7 @@
       <!-- Monthly Calander -->
       <div class="jochi-components-light-bg custom-margin-for-main-section custom-full-height position-realtive">
 
-        <section id="Weekly-Calander" class="">
+        <section id="Monthly-Calander" class="">
           <div class="element-section container-fluid">
             <div class="row mt-2">
               <div class="col-12">
@@ -1061,7 +1061,7 @@ export default {
     font-weight: 700;
 } */
 
-.fc-toolbar-chunk .fc-prev-button.fc-button {
+/* .fc-toolbar-chunk .fc-prev-button.fc-button {
     position: absolute;
     right: 6rem;
 }
@@ -1071,16 +1071,16 @@ export default {
     font-size: 1em;
     line-height: 1em;
     margin: 0;
-}
+} */
 
-.fc-toolbar-chunk .fc-next-button.fc-button,
+/* .fc-toolbar-chunk .fc-next-button.fc-button,
 .fc-toolbar-chunk .fc-prev-button.fc-button {
     background: none;
     border: 1px solid #b4b4b4;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .fc-toolbar-chunk .fc-next-button.fc-button {
     position: relative;

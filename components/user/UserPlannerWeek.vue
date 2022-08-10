@@ -1837,17 +1837,17 @@ body {
   border-radius: 0 0 12px 12px;
 }
 
-.fc-toolbar-chunk .fc-toolbar-title {
+/* .fc-toolbar-chunk .fc-toolbar-title {
   position: absolute;
   font-size: 20px;
   color: #000000;
   font-weight: 700;
   z-index: 999;
-}
+} */
 
-.fc-toolbar-chunk button {
+/* .fc-toolbar-chunk button {
   display: none !important;
-}
+} */
 
 /* .fc .fc-button .fc-icon {
     color: #a28cf6;
@@ -1947,7 +1947,7 @@ body {
   background: none;
 }
 
-.fc-toolbar-chunk .fc-toolbar-title {
+/* .fc-toolbar-chunk .fc-toolbar-title {
   position: absolute;
   left: 42%;
   right: 42%;
@@ -1957,7 +1957,7 @@ body {
   background: #ff6f69;
   border-radius: 12px;
   padding: 5px;
-}
+} */
 
 .fc-view-harness.fc-view-harness-active {
   height: 75vh !important;
