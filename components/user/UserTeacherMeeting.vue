@@ -16,6 +16,7 @@
           custom-margin-for-main-section custom-full-height
           d-flex
           flex-column
+          position-realtive
         "
       >
         <section id="tab" class="">
@@ -713,6 +714,13 @@
             </div>
           </div>
         </section>
+        <div class="d-flex position-absolute end-0 bottom-0 meeting-celebration">
+          <lottie
+            :options="lottieOptionsSuccess"
+            v-on:animCreated="handleAnimation"
+            class="position-absolute w-100 h-100 z-index-9"
+          />
+        </div>
       </div>
 
       <!-- end element secton -->
@@ -725,6 +733,7 @@ import { mapState, mapActions } from "vuex";
 import Multiselect from "vue-multiselect";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
+import * as animationDataSuccess from "~/assets/decoration.json";
 import { required } from "vuelidate/lib/validators";
 
 var fromDate = "";
@@ -765,6 +774,10 @@ export default {
       loading: false,
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
+      lottieOptionsSuccess: {
+        animationData: animationDataSuccess.default,
+        loop: true,
+      },
       types: ["Teachers", "Peer"],
       meetingType: "",
       selectedStudents: [],

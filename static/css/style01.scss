@@ -869,6 +869,12 @@ img.dark-icon{
     transform: none;
   }
 
+.meeting-celebration{
+    width: 20%;
+    height: 40%;
+    right: 24px;
+    bottom: 12px;
+}
 
 // SIGN-IN
 
@@ -2505,6 +2511,7 @@ img.dark-icon{
         }
         //meeting
         .meeting-section{
+            
             img.img-illustrate{
                 padding: 0.5rem;
                 padding-bottom: 2rem;

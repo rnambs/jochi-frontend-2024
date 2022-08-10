@@ -872,6 +872,13 @@ img.dark-icon {
   transform: none;
 }
 
+.meeting-celebration {
+  width: 20%;
+  height: 40%;
+  right: 24px;
+  bottom: 12px;
+}
+
 .main-container {
   color: #B4B4B4;
   background-image: url("./../image/jochi-light-bg.png");
