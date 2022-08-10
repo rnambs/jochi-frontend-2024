@@ -22,6 +22,8 @@
                 </div>
               </div>
               <div class="col-lg-7 col-md-12 position-realtive h-100">
+                
+              <!-- <iframe src="https://embed.lottiefiles.com/animation/108242"></iframe> -->
                 <div
                   class="jochi-components-light-bg py-4 h-100 d-flex flex-column"
                 >
@@ -289,7 +291,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="position-absolute w-100 h-100 top-0 left-0 p-3">
+                  <!-- <div class="position-absolute w-100 h-100 top-0 left-0 p-3">
                     <div class="d-flex card card-primary-void flex-column h-100 p-4 rounded-22">
                       <div class="d-flex justify-content-between mb-2 border-bottom">
                         <h3 class="color-primary font-semi-bold">Assignment</h3> 
@@ -335,7 +337,7 @@
                       </div>
                     </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div
                   class="
