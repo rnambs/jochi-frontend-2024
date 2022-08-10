@@ -241,7 +241,13 @@
                     class="d-flex justify-content-between mb-2 border-bottom"
                   >
                     <h3 class="color-primary font-semi-bold">Session</h3>
-                    <p @click="showSessionDetail = false" class="mb-0">
+                    <p
+                      @click="
+                        showSessionDetail = false;
+                        clearCountDownInterval();
+                      "
+                      class="mb-0"
+                    >
                       <span><i class="fas fa-times"></i></span>
                     </p>
                   </div>
@@ -395,10 +401,10 @@
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <button
-                        v-if="sessionDetail.isToday"
+                        v-if="sessionDetail.startSession"
                         @click="goToSession()"
                       >
-                        Go To Session
+                        Start Session Now
                       </button>
                     </div>
                   </div>
@@ -1546,7 +1552,14 @@
                     >
                       Start Session
                     </button> -->
-                    <div class="d-flex flex-column flex-sm-row flex-lg-column flex-xl-row justify-content-between position-relative">
+                    <div
+                      class="
+                        d-flex
+                        flex-column flex-sm-row flex-lg-column flex-xl-row
+                        justify-content-between
+                        position-relative
+                      "
+                    >
                       <div class="d-flex flex-column">
                         <div class="py-1">
                           <button
@@ -1567,7 +1580,7 @@
                           </button>
                         </div>
                       </div>
-                      
+
                       <div class="d-flex justify-content-end mt-4">
                         <img
                           src="../../static/image/dashboard_img.png"
@@ -1577,7 +1590,6 @@
                       </div>
                     </div>
                   </form>
-                  
                 </div>
               </div>
             </div>
@@ -2442,7 +2454,6 @@ import * as animationData from "~/assets/animation.json";
 // import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
 import VueTimepicker from "vue2-timepicker";
-
 export default {
   name: "ClubEditForm",
   components: {
@@ -2530,6 +2541,9 @@ export default {
       studySessionList: [],
       sessionDetail: {},
       invitedPeerList: [],
+      timerCountDown: 0,
+      counter: false,
+      intervalCountDown: null,
     };
   },
 
@@ -2633,7 +2647,6 @@ export default {
         this.repeatLoopBy = 1;
         this.totalCycles = 1;
       }
-      console.log("update study tech", this.studyTypes, this.targetDuration);
     },
     async UpdateSubject() {
       this.SubjectName = this.Subject.subject_name;
@@ -2650,7 +2663,6 @@ export default {
       this.totalCycles = this.repeatLoopBy;
       this.customBreakStarted = false;
       this.breakAtMinutes = this.breakAt * 60;
-      console.log("timer started");
       if (this.studyTypes.id == 3) {
         this.timeCompleted = 0;
       }
@@ -2758,7 +2770,7 @@ export default {
                     (presentTime - this.studyTimeStart) / 1000;
                 }
                 clearInterval(this.limitedInterval);
-                console.log(this.studyStatus + "interval cleared!");
+
                 if (isPending) {
                   this.AddStudyTime("STOP");
                 }
@@ -2808,7 +2820,7 @@ export default {
     async StartStudySession(scheduleNow = true) {
       this.submitted = true;
       this.processingStudySession = true;
-      console.log("start");
+
       let valid = this.checkValidations();
       if (valid && !scheduleNow) {
         valid = this.checkScheduleLaterValidations();
@@ -2819,10 +2831,6 @@ export default {
         return;
       }
 
-      // this.$v.$touch();
-      // if (this.$v.$invalid) {
-      //   return;
-      // } else {
       this.processing = true;
       const peersSelected = [];
       if (this.peerList.length > 0) {
@@ -2830,8 +2838,6 @@ export default {
           peersSelected.push(e.id);
         });
       }
-
-      console.log("consoling peer list", peersSelected);
 
       let today, todayTime;
 
@@ -2904,11 +2910,9 @@ export default {
           this.getAllStudySessions();
           return;
         } else {
-          console.log("next 1");
           this.onNext();
           this.Timer();
         }
-        // this.$router.push("/club-list-table");
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -2917,7 +2921,7 @@ export default {
         });
       }
       this.processing = false;
-      // }
+
       this.processingStudySession = false;
     },
     checkValidations() {
@@ -3015,12 +3019,6 @@ export default {
           (Number(this.breakAt) < 2 ||
             Number(this.breakAt) >= Number(this.targetDuration))
         ) {
-          console.log(
-            typeof this.breakAt,
-            typeof this.targetDuration,
-            this.breakAt < 2,
-            this.breakAt >= this.targetDuration
-          );
           this.$toast.open({
             message: "Break At Time must be lesser than Study duration",
             type: "warning",
@@ -3034,9 +3032,6 @@ export default {
     async AddStudyTime(studyStatus) {
       this.submitted = true;
       if (studyStatus == "STOP") {
-        // this.addedStudyTime = true;
-        console.log("next 2");
-
         this.onNext();
       }
       let totalTimeStudied = Math.floor(this.totalStudyTime / 60);
@@ -3044,7 +3039,6 @@ export default {
       this.Timertotal_time = Math.floor(this.totalStudyTime / 60);
       this.Timerrepeat = this.timerStatusData.repeat;
 
-      // targetDuration // live time data
       await this.addStudyTime({
         sessionId: this.sessionData.id,
         min: totalTimeStudied,
@@ -3116,7 +3110,6 @@ export default {
       this.repetitionCount = "1";
       this.targetDuration = 0;
       this.breakTime = 0;
-      // this.$refs.studyTimeForm.reset();
     },
     async onLogSession() {
       await this.addRating({
@@ -3150,16 +3143,11 @@ export default {
       var presentTime = new Date().getTime();
       this.totalStudyTime += (presentTime - this.studyTimeStart) / 1000;
       clearInterval(this.limitedInterval);
-      console.log(this.studyStatus + "custom interval cleared!");
+
       this.AddStudyTime("PAUSE");
     },
     async getAllStudySessions() {
       await this.getStudySessions({});
-      console.log(this.studySessions);
-      console.log(this.sharedSessions);
-      console.log(this.assignmentSessions);
-
-      // this.studySessionList = this.assignmentSessions;
 
       this.assignmentSessions.forEach((e) => {
         let session = {};
@@ -3172,12 +3160,14 @@ export default {
         session.repeat = e.repeat;
         session.peers = e.peers;
         session.date = moment(e.date).format("MMMM Do, YYYY");
+        session.scheduledDate = e.date;
         session.time = e.time;
         session.breakTimeAt = e.break_time_at;
         session.studyMethod = e.study_method;
         const d = new Date();
 
         session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
+        session.startSession = false;
 
         this.studySessionList.push(session);
       });
@@ -3200,11 +3190,13 @@ export default {
         session.repeat = e.repeat;
         session.peers = e.peers;
         session.date = moment(e.date).format("MMMM Do, YYYY");
+        session.scheduledDate = e.date;
         session.time = e.time;
         session.breakTimeAt = e.break_time_at;
         session.studyMethod = e.study_method;
         const d = new Date();
         session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
+        session.startSession = false;
 
         this.studySessionList.push(session);
       });
@@ -3222,11 +3214,13 @@ export default {
         session.repeat = e.repeat;
         session.peers = e.peers;
         session.date = moment(e.date).format("MMMM Do, YYYY");
+        session.scheduledDate = e.date;
         session.time = e.start_time;
         session.breakTimeAt = e.studyroom?.break_time_at;
         session.studyMethod = e.study_method;
         const d = new Date();
         session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
+        session.startSession = false;
 
         this.studySessionList.push(session);
       });
@@ -3254,9 +3248,7 @@ export default {
         this.currentTab = 0;
         return;
       }
-      // if (this.currentTab == 3) {
-      //   this.$refs.studyTimeForm.reset();
-      // }
+
       this.currentTab--;
     },
     async setSessionType(type) {
@@ -3266,12 +3258,10 @@ export default {
         this.currentTab = 2;
         return;
       }
-      console.log("next 3");
 
       this.onNext();
       if (this.currentTab == 1) {
         await this.getAssignments({});
-        console.log(this.assignments);
         this.assignmentList = [];
         if (this.assignments && this.assignments.length > 0) {
           this.assignments.forEach((e) => {
@@ -3283,13 +3273,11 @@ export default {
     },
     onAssignmentSelect(detail) {
       this.selectedAssignment = detail;
-      console.log("next 4");
 
       this.onNext();
     },
     onModeSelect(type) {
       this.sessionMode = type;
-      console.log("next 5");
 
       this.onNext();
       if (this.sessionMode == "regular") {
@@ -3332,9 +3320,7 @@ export default {
       });
     },
     onInvitePeer() {
-      console.log(this.peerSelected);
       this.peerList = this.peerSelected;
-      // this.peerSelected = ;
       this.invitePeer = false;
     },
     resetAssignment() {
@@ -3344,6 +3330,8 @@ export default {
     },
     openScheduleForLater() {
       this.processing = false;
+      this.processingStudySession = false;
+      this.scheduledTime = "";
       if (this.checkValidations()) {
         $("#scheduleForLater").modal({ backdrop: true });
       }
@@ -3378,24 +3366,42 @@ export default {
       }
     },
     async checkTime() {
-      // var beginningTime = moment(this.sessionDetail.date, "hh:mm A");
-      // var d = new Date();
-      // var endTime = moment(d, "hh:mm A");
-      // console.log(beginningTime.isBefore(endTime)); // true
-      // console.log(beginningTime.toDate()); // Mon May 12 2014 08:45:00
-      // console.log(endTime.toDate()); // Mon May 12 2014 09:00:00
-      console.log(this.sessionDetail);
-      if (this.sessionDetail.isToday) {
-        let diffe = moment().diff(this.sessionDetail.date, "minutes");
-        console.log(diffe);
+      if (this.checkStartSession()) {
+        this.sessionDetail.startSession = true;
+      } else {
+        this.sessionDetail.startSession = false;
+        let time = this.sessionDetail.time;
+        this.intervalCountDown = await setInterval(() => {
+          let timeDiff = moment().diff(moment(time, "hh:mm A"), "minutes");
+          if (timeDiff >= 0) {
+            this.sessionDetail.startSession = true;
+            clearInterval(this.intervalCountDown);
+          }
+        }, 1000);
       }
+    },
+    checkStartSession() {
+      let timeDiff = moment().diff(
+        moment(this.sessionDetail.time, "hh:mm A"),
+        "minutes"
+      );
+      if (timeDiff < 0) {
+        return false;
+      }
+      return true;
+    },
+
+    clearCountDownInterval() {
+      clearInterval(this.intervalCountDown);
     },
     async setDetail(session) {
       this.sessionDetail = session;
-      this.checkTime();
+      clearInterval(this.intervalCountDown);
+      this.counter = false;
+      if (this.sessionDetail.isToday) {
+        this.checkTime();
+      }
       await this.getInvitedPeers(this.sessionDetail.id);
-      console.log("invitedPeers", this.invitedPeers);
-      console.log("ownerDetail", this.ownerDetail);
       this.invitedPeerList = [];
       if (this.invitedPeers && this.invitedPeers.length > 0) {
         this.invitedPeers.forEach((e) => {
@@ -3419,7 +3425,68 @@ export default {
       }
     },
     async goToSession() {
-      console.log("inside go to session");
+      if (Number(this.sessionDetail.studyMethod) == 3) {
+        this.studyTypes = this.studyTypesData.find((e) => e.id == 3);
+      } else {
+        this.studyTypes = this.studyTypesData.find((e) => e.id == 1);
+      }
+      if (this.sessionDetail.type == "assignment") {
+        this.subjectName = this.selectedAssignment.task;
+      }
+      this.UpdateStudyTechnique();
+      let payLoad = {};
+      if (this.sessionDetail.type == "assignment") {
+        payLoad = {
+          assignment_id: this.sessionDetail.id,
+          session_shared_user_id: this.sessionDetail.peers,
+          goals: this.sessionDetail.goals,
+          date: this.sessionDetail.scheduledDate,
+          start_time: this.sessionDetail.time,
+          study_method: this.sessionDetail.studyMethod,
+          subject: this.sessionType != "assignment" ? this.Subject.id : "",
+          target_duration: this.sessionDetail.duration,
+          repeat: this.sessionDetail.repeat,
+          scheduled_status: "Now",
+          break_time_at: this.sessionDetail.breakTimeAt,
+          break_time: this.sessionDetail.breakTime,
+        };
+      } else {
+        payLoad = {
+          session_shared_user_id: this.sessionDetail.peers,
+          goals: this.sessionDetail.goals,
+          date: this.sessionDetail.scheduledDate,
+          start_time: this.sessionDetail.time,
+          study_method: this.sessionDetail.studyMethod,
+          subject: this.sessionType != "assignment" ? this.Subject.id : "",
+          target_duration: this.sessionDetail.duration,
+          repeat: this.sessionDetail.repeat,
+          scheduled_status: "Now",
+          break_time_at: this.sessionDetail.breakTimeAt,
+          break_time: this.sessionDetail.breakTime,
+        };
+      }
+      await this.saveStudySession(payLoad);
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        if (this.limitedInterval > 0) {
+          await clearInterval(this.limitedInterval);
+        }
+        this.submitted = false;
+        this.processing = false;
+
+        this.currentTab = 4;
+        this.Timer();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
     },
   },
 

@@ -14,25 +14,38 @@
           <div class="d-flex flex-column flex-fill">
             <div class="row h-100">
               <div class="col-lg-5 col-md-12 h-100">
-                <div
-                  class="jochi-components-light-bg p-4 h-100"
-                >
+                <div class="jochi-components-light-bg p-4 h-100">
                   <h2 class="color-primary font-semi-bold mb-1">Today,</h2>
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
               </div>
               <div class="col-lg-7 col-md-12 position-realtive h-100">
                 <div
-                  class="jochi-components-light-bg py-4 h-100 d-flex flex-column position-relative"
+                  class="
+                    jochi-components-light-bg
+                    py-4
+                    h-100
+                    d-flex
+                    flex-column
+                    position-relative
+                  "
                 >
-                    <lottie
-                    v-if="!loading"
+                  <lottie
+                    v-if="playCelebration"
                     :options="lottieOptionsSuccess"
                     v-on:animCreated="handleAnimation"
                     loop="1"
                     class="position-absolute top-0 w-100 h-100 z-index-9"
                   />
-                  <div class="d-flex justify-content-between align-items-center px-5 pb-3">
+                  <div
+                    class="
+                      d-flex
+                      justify-content-between
+                      align-items-center
+                      px-5
+                      pb-3
+                    "
+                  >
                     <h2 class="color-primary font-semi-bold">Pending</h2>
                     <button
                       @click="openAddAssignmentModal"
@@ -128,173 +141,218 @@
                     </div>
                   </div> -->
                   <!-- drag -->
-                  <div class="d-flex flex-column h-40 flex-fill hidden-scroll py-4 px-5">
-
-                  <div>
-                    
-                    <div class="row">
-                      
-                      <div class="col-6 py-4" v-for="item in assignmentsList" :key="item.id">
-                        <drag class="drag h-100" :transfer-data="{ item }">
+                  <div
+                    class="
+                      d-flex
+                      flex-column
+                      h-40
+                      flex-fill
+                      hidden-scroll
+                      py-4
+                      px-5
+                    "
+                  >
+                    <div>
+                      <div class="row">
                         <div
-                          class="
-                            jochi-sub-components-light-bg
-                            drag-drop
-                            p-4
-                            position-realtive
-                            h-100
-                          "
+                          class="col-6 py-4"
+                          v-for="item in assignmentsList"
+                          :key="item.id"
                         >
-                          <div
-                            class="
-                              assignment-tag-section
-                              d-flex
-                              align-items-center
-                              mb-2
-                            "
-                          >
-                            <div class="assignment-tag red mr-2">
-                              {{
-                                item.priority == "1"
-                                  ? "Urgent"
-                                  : item.priority == "2"
-                                  ? "Important"
-                                  : item.priority == "3"
-                                  ? "Can Wait"
-                                  : ""
-                              }}
-                            </div>
-                            <div class="assignment-tag pink">
-                              {{ item.subject }}
-                            </div>
-                          </div>
-                          <div class="assignment-add-section">
-                            <h4 class="mb-0">{{ item.task }}</h4>
-                            <div class="text-center px-3">
-                              <p>{{ item.assignment_description }}</p>
-                            </div>
-                          </div>
-                          <div class="sub-task-section mb-3">
-                            <h6>Sub-tasks</h6>
+                          <drag class="drag h-100" :transfer-data="{ item }">
                             <div
-                              v-for="sub in item.subTasks"
-                              :key="sub.id"
-                              class="pl-2 d-flex align-items-center color-secondary"
+                              class="
+                                jochi-sub-components-light-bg
+                                drag-drop
+                                p-4
+                                position-realtive
+                                h-100
+                              "
                             >
-                              <input type="radio" class="mr-2" />
-                              <label for="" class="mb-0">{{ sub.title }}</label>
-                            </div>
-                            <div
-                              v-if="!item.subTasks || item.subTasks.length <= 0"
-                              class="pl-2 d-flex align-items-center"
-                            >
-                              <span class="color-secondary text-12">No sub tasks added!</span>
-                            </div>
-                            <!-- <div class="pl-2 d-flex align-items-center">
+                              <div
+                                class="
+                                  assignment-tag-section
+                                  d-flex
+                                  align-items-center
+                                  mb-2
+                                "
+                              >
+                                <div class="assignment-tag red mr-2">
+                                  {{
+                                    item.priority == "1"
+                                      ? "Urgent"
+                                      : item.priority == "2"
+                                      ? "Important"
+                                      : item.priority == "3"
+                                      ? "Can Wait"
+                                      : ""
+                                  }}
+                                </div>
+                                <div class="assignment-tag pink">
+                                  {{ item.subject }}
+                                </div>
+                              </div>
+                              <div class="assignment-add-section">
+                                <h4 class="mb-0">{{ item.task }}</h4>
+                                <div class="text-center px-3">
+                                  <p>{{ item.assignment_description }}</p>
+                                </div>
+                              </div>
+                              <div class="sub-task-section mb-3">
+                                <h6>Sub-tasks</h6>
+                                <div
+                                  v-for="sub in item.subTasks"
+                                  :key="sub.id"
+                                  class="
+                                    pl-2
+                                    d-flex
+                                    align-items-center
+                                    color-secondary
+                                  "
+                                >
+                                  <input type="radio" class="mr-2" />
+                                  <label for="" class="mb-0">{{
+                                    sub.title
+                                  }}</label>
+                                </div>
+                                <div
+                                  v-if="
+                                    !item.subTasks || item.subTasks.length <= 0
+                                  "
+                                  class="pl-2 d-flex align-items-center"
+                                >
+                                  <span class="color-secondary text-12"
+                                    >No sub tasks added!</span
+                                  >
+                                </div>
+                                <!-- <div class="pl-2 d-flex align-items-center">
                               <input type="radio" class="mr-2" />
                               <label for="" class="mb-0"
                                 >Start typing to add subtasks</label
                               >
                             </div> -->
-                          </div>
-                          <div class="addition-material-section">
-                            <h6 class="mb-1 font-medium">Additional Material</h6>
-                            <div
-                              class="
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                              "
-                            >
-                              <div class="col-8 py-0 pl-0 material-link">
-                                <span class="color-secondary">Rubric: https://docs.google.com/document/...</span>
                               </div>
-                              <div class="col-4 material-date py-0 text-right">
-                                12/04/22
-                              </div>
-                            </div>
-                          </div>
-                          <div class="upload-file-section mt-2">
-                            <div class="d-flex align-items-center">
-                              <div class="col-2 p-0">
-                                <select
-                                  class="form-select form-control"
-                                  aria-label="Default select example"
+                              <div class="addition-material-section">
+                                <h6 class="mb-1 font-medium">
+                                  Additional Material
+                                </h6>
+                                <div
+                                  class="
+                                    d-flex
+                                    align-items-center
+                                    justify-content-between
+                                  "
                                 >
-                                  <option selected>Type</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                </select>
+                                  <div class="col-8 py-0 pl-0 material-link">
+                                    <span class="color-secondary"
+                                      >Rubric:
+                                      https://docs.google.com/document/...</span
+                                    >
+                                  </div>
+                                  <div
+                                    class="col-4 material-date py-0 text-right"
+                                  >
+                                    12/04/22
+                                  </div>
+                                </div>
                               </div>
-                              <div class="col-8 py-0 px-1">
-                                <input
-                                  type="text"
-                                  class="form-control px-2"
-                                  placeholder="Paste Link or Upload File"
-                                />
+                              <div class="upload-file-section mt-2">
+                                <div class="d-flex align-items-center">
+                                  <div class="col-2 p-0">
+                                    <select
+                                      class="form-select form-control"
+                                      aria-label="Default select example"
+                                    >
+                                      <option selected>Type</option>
+                                      <option value="1">One</option>
+                                      <option value="2">Two</option>
+                                      <option value="3">Three</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-8 py-0 px-1">
+                                    <input
+                                      type="text"
+                                      class="form-control px-2"
+                                      placeholder="Paste Link or Upload File"
+                                    />
+                                  </div>
+                                  <div class="col-2 p-0">
+                                    <input
+                                      type="submit"
+                                      class="form-control"
+                                      value="Add"
+                                    />
+                                  </div>
+                                </div>
                               </div>
-                              <div class="col-2 p-0">
-                                <input
-                                  type="submit"
-                                  class="form-control"
-                                  value="Add"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="add-person-section position-absolute top-0">
-                            <div class="ap-img-section mr--3 shadow-sm"></div>
-                            <div class="ap-img-section mr--3 shadow-sm"></div>
-                            <div class="ap-img-section mr--3 shadow-sm"></div>
-                            <div class="ap-img-section shadow-sm"></div>
-                            <!-- <div class="ap-img-add">
+                              <div
+                                class="
+                                  add-person-section
+                                  position-absolute
+                                  top-0
+                                "
+                              >
+                                <div
+                                  class="ap-img-section mr--3 shadow-sm"
+                                ></div>
+                                <div
+                                  class="ap-img-section mr--3 shadow-sm"
+                                ></div>
+                                <div
+                                  class="ap-img-section mr--3 shadow-sm"
+                                ></div>
+                                <div class="ap-img-section shadow-sm"></div>
+                                <!-- <div class="ap-img-add">
                               <img src="~/static/image/add-btn.png" alt="" />
                             </div> -->
-                          </div>
-                        </div>
-                      </drag>
-                      </div>
-                  </div>
-                  </div>
-                  
-                  </div>
-                  <!-- drag end -->
-                  <div class="d-flex flex-column px-5 pt-3">
-                    <h2 class="color-primary font-semi-bold">Completed</h2>
-                    <drop class="drop color-secondary text-16" @drop="handleDrop">Drag and drop your assignment here when it is completed</drop>
-                    <div>
-                      <div class="row mt-1">
-                        <div class="col-6">
-                          <div
-                            class="
-                              jochi-sub-components-light-bg
-                              py-4
-                              px-2
-                              completed-assignments
-                              text-center
-                            "
-                          >
-                            <h4 class="mb-0 blue">Art History Reading</h4>
-                            <p class="mb-0">Read Chapters #1 & #2</p>
-                          </div>
-                        </div>
-                        <div class="col-6">
-                          <div
-                            class="
-                              jochi-sub-components-light-bg
-                              py-4
-                              px-2
-                              completed-assignments
-                              text-center
-                            "
-                          >
-                            <h4 class="mb-0 green">AP Calculus Problem</h4>
-                            <p class="mb-0">Homework #5</p>
-                          </div>
+                              </div>
+                            </div>
+                          </drag>
                         </div>
                       </div>
                     </div>
+                  </div>
+                  <!-- drag end -->
+                  <div class="d-flex flex-column px-5 pt-3">
+                    <drop
+                      class="drop color-secondary text-16"
+                      @drop="handleDrop"
+                    >
+                      <h2 class="color-primary font-semi-bold">Completed</h2>
+                      Drag and drop your assignment here when it is completed
+                      <div>
+                        <div class="row mt-1">
+                          <div class="col-6">
+                            <div
+                              class="
+                                jochi-sub-components-light-bg
+                                py-4
+                                px-2
+                                completed-assignments
+                                text-center
+                              "
+                            >
+                              <h4 class="mb-0 blue">Art History Reading</h4>
+                              <p class="mb-0">Read Chapters #1 & #2</p>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div
+                              class="
+                                jochi-sub-components-light-bg
+                                py-4
+                                px-2
+                                completed-assignments
+                                text-center
+                              "
+                            >
+                              <h4 class="mb-0 green">AP Calculus Problem</h4>
+                              <p class="mb-0">Homework #5</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </drop>
                   </div>
                   <!-- <div class="position-absolute w-100 h-100 top-0 left-0 p-3">
                     <div class="d-flex card card-primary-void flex-column h-100 p-4 rounded-22">
@@ -356,7 +414,9 @@
                   "
                 >
                   <!-- pending-assignment-popup -->
-                  <div class="d-flex justify-content-between align-items-center">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
                     <h4 class="jochi-headings mb-0">Edit Assignment</h4>
                     <button
                       class="btn pending-popup-close-btn"
@@ -377,7 +437,12 @@
                       class="form-control mb-1"
                     ></textarea>
                     <div
-                      class="d-flex justify-content-between align-items-center mb-2"
+                      class="
+                        d-flex
+                        justify-content-between
+                        align-items-center
+                        mb-2
+                      "
                     >
                       <label for="" class="mb-0">Add Subtask</label>
                       <button @click="addSubtask()" class="add-sub-task-btn">
@@ -444,7 +509,7 @@
             </button>
           </div>
           <div class="modal-body px-4">
-            <form>
+            <form ref="assignmentForm" id="assignmentForm">
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label"
                   >Subject<em>*</em></label
@@ -763,9 +828,56 @@
             </button>
             <button
               type="button"
-              class="btn  btn-primary py-1 px-3 rounded-pill"
+              class="btn btn-primary py-1 px-3 rounded-pill"
               :disabled="processing"
               @click="isAssignmentEdit ? UpdateAssignment() : AddAssignment()"
+            >
+              {{ isAssignmentEdit ? "Update" : "Add" }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal add assignment end -->
+
+    <!-- Assignment completion confirmation  -->
+    <div
+      class="modal fade"
+      id="completeConfirm"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="completeConfirmModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="completeConfirmModalLongTitle">
+              Complete Assignment Confirmation
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body px-4">Mark assignment as completed?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-pill"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary py-1 px-3 rounded-pill"
+              :disabled="processingCompleteAssignment"
+              @click="completeAssignment()"
             >
               Confirm
             </button>
@@ -773,7 +885,7 @@
         </div>
       </div>
     </div>
-    <!-- modal add assignment end -->
+    <!-- Assignment completion confirmation end  -->
   </div>
 </template>
 <script>
@@ -807,6 +919,7 @@ export default {
       },
       submitted: false,
       processing: false,
+      processingCompleteAssignment: false,
       subject: "",
       task: "",
       priorityVal: "",
@@ -829,7 +942,10 @@ export default {
       loading: false,
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
-      lottieOptionsSuccess: { animationData: animationDataSuccess.default },
+      lottieOptionsSuccess: {
+        animationData: animationDataSuccess.default,
+        loop: false,
+      },
       calendarApi: Calendar,
       calendarOptions: {
         displayEventTime: false,
@@ -874,6 +990,9 @@ export default {
       invitePeer: false,
       peerSelected: [],
       peerList: [],
+      completeAsstId: 0,
+      playCelebration: false,
+      completeSubTasktId: 0,
     };
   },
   mounted() {
@@ -977,6 +1096,7 @@ export default {
       updateAssignment: "updateAssignment",
       getSubjectsList: "getSubjectsList",
       getAssignments: "getAssignments",
+      completeTask: "completeTask",
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
@@ -984,9 +1104,7 @@ export default {
     handleAnimation: function (anim) {
       this.anim = anim;
     },
-    handleDrop(data, event) {
-      alert(`You dropped with data: ${JSON.stringify(data)}`);
-    },
+
     async ShowQuotedMessage() {
       this.loading = true;
       await this.showQuotedMessage({
@@ -1436,6 +1554,8 @@ export default {
       this.GetDailyPlanner();
     },
     openAddAssignmentModal() {
+      this.processing = false;
+      this.$refs.assignmentForm.reset();
       $("#addAssignmentModal").modal({ backdrop: true });
     },
     onAddSubTaskClick() {
@@ -1475,6 +1595,66 @@ export default {
     async getAssignmentsList() {
       await this.getAssignments();
       console.log(this.assignmentsList);
+    },
+    handleDrop(data, event) {
+      $("#completeConfirm").modal({ backdrop: true });
+
+      let assignment = data.item;
+      this.completeAsstId = assignment.id;
+    },
+    async completeAssignment() {
+      this.processingCompleteAssignment = true;
+      await this.completeTask({
+        assignment_id: this.completeAsstId,
+        status: "Completed",
+      });
+      this.processingCompleteAssignment = false;
+      if (this.successMessage != "") {
+        this.completeAsstId = 0;
+        this.playCelebration = true;
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      this.GetDailyPlanner();
+    },
+    async completeSubTask() {
+      this.processingCompleteAssignment = true;
+      await this.completeTask({
+        task_id: this.completeSubTasktId,
+        status: "Completed",
+      });
+      this.processingCompleteAssignment = false;
+      if (this.successMessage != "") {
+        this.completeSubTasktId = 0;
+        this.playCelebration = true;
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      this.GetDailyPlanner();
     },
   },
 };
