@@ -326,14 +326,18 @@ $sm-screen-h         : 767.98px;
         justify-content: space-between;
         h2.fc-toolbar-title{
             position: absolute;
-            left: 38px;
+            left: 60px;
             font-size: 24px;
             font-weight: 600;
+            @media (max-width:$max-xs-screen) {
+                left: 32px;
+                top: 18px;
+            }
         }
     }
     .fc-toolbar-chunk .fc-prev-button.fc-button {
         position: absolute;
-        right: 5.25rem;
+        right: 6rem;
     }
     
     .fc .fc-button .fc-icon {
@@ -691,6 +695,7 @@ $sm-screen-h         : 767.98px;
     .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
         .fc-header-toolbar.fc-toolbar{
             justify-content: start;
+            margin-bottom: 0rem;
             h2.fc-toolbar-title{
                 background-color: unset;
                 color: $text-secondary;

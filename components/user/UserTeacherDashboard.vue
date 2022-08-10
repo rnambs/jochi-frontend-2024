@@ -66,7 +66,7 @@
               <!-- END AGENDA -->
               <div class="col-md-6 custom-teacher-container d-flex flex-column h-100">
                 <!-- TABLE  -->
-                <div class="teacher-row container mb-3 card card-primary-void rounded-22 p-0 h-40 flex-fill">
+                <div class="teacher-row container mb-4 card card-primary-void rounded-22 p-0 h-40 flex-fill">
                   <div class="appointment-req d-flex flex-column h-100 p-2">
                     <h6 class="text-center color-primary pt-3 mb-0">Meeting Requests</h6>
                     <div class="table-req container py-3 custom-overflow-x custom-overflow">

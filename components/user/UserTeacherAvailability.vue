@@ -19,7 +19,7 @@
           <div class="inner-teacher container-fluid p-3 d-flex flex-column flex-fill h-40">
             <div class="row h-100">
               <div class="col-md-7 text-light custom-teacher-container d-flex flex-column ">
-                <div class="time-slot container card card-primary-void rounded-22 p-4 mb-3">
+                <div class="time-slot container card card-primary-void rounded-22 p-4 mb-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
                 <div class="time-slot-week container card card-primary-void rounded-22 p-4">
