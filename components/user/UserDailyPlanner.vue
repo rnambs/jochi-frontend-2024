@@ -29,6 +29,7 @@
                     v-if="!loading"
                     :options="lottieOptionsSuccess"
                     v-on:animCreated="handleAnimation"
+                    loop="1"
                     class="position-absolute top-0 w-100 h-100 z-index-9"
                   />
                   <div class="d-flex justify-content-between align-items-center px-5 pb-3">

@@ -1399,8 +1399,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body no-overflow px-4">
-            <div>
+          <div class="modal-body px-4 d-flex flex-column h-100">
+            <div class="d-flex flex-column h-40 flex-fill overflow-hidden">
               <div
                 size="120"
                 class="
@@ -1412,6 +1412,7 @@
                   rounded
                   card card-primary-void
                   mb-3
+                  overflow-hidden
                 "
               >
                 <!-- <v-img :src="image_name" class="profile-img"></v-img> -->
@@ -1429,8 +1430,8 @@
                 />
               </div>
               <!-- <v-dialog v-model="dialog" width="500"> -->
-              <v-card class="bg-transparent shadow-none">
-                <v-card-text class="p-0">
+              <v-card class="bg-transparent shadow-none d-flex flex-column  h-40 flex-fill overflow-hidden">
+                <v-card-text class="p-0 h-100 overflow-hidden">
                   <VueCropper
                     v-show="selectedFile"
                     ref="cropper"

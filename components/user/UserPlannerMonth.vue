@@ -15,10 +15,155 @@
 
         <section id="Monthly-Calander" class="">
           <div class="element-section container-fluid">
-            <div class="row mt-2">
-              <div class="col-12">
-                <div class="planner-Month p-4">
+            <div class="row mt-0">
+              <div class="col-12 position-realtive">
+                <div class="planner-Month p-4 px-3 px-md-5">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
+                </div>
+                <div class="planner-action-btns d-flex align-items-center position-absolute">
+                  <button class="pa-btn btn filter-btn mr-3" @click="filterPlanner()" id="filterPlanner">Filter Planner</button>
+                  <button class="pa-btn assignment-f-btn btn" @click="assignmentPlanner()" id="assignmentPlanner">Assignment Planner</button>
+                </div>
+                <div class="col-10 col-md-11 col-lg-8 p-0 position-absolute assignment-planner-section" id="assignPlanSection">
+                  <div class="position-realtive h-100">
+                    <div class="dashboard-main-content jochi-components-light-bg py-4 h-100 d-flex flex-column">
+                      <div class="d-flex justify-content-between align-items-center px-5 pb-3">
+                        <h3 class="color-primary font-semi-bold">Pending</h3>
+                        <button class="btn btn-dark py-1 px-3">
+                          Add Assignment
+                        </button>
+                      </div>
+                      <div class="d-flex flex-column h-40 flex-fill hidden-scroll py-4 px-5">
+                        <div>
+                          <div class="row">
+                            <div class="col-6 px-0">
+                              <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100" @click="addAssignment()">
+                                <div class="assignment-tag-section d-flex align-items-center mb-2">
+                                  <div class="assignment-tag red mr-2">Urgent</div>
+                                  <div class="assignment-tag pink">AP French</div>
+                                </div>
+                                <div class="assignment-add-section">
+                                  <h4 class="mb-0 text-center">French Oral Practice</h4>
+                                  <div class="text-center px-3">
+                                    <p>Practice for mock oral exam in class</p>
+                                  </div>
+                                </div>
+                                <div class="sub-task-section mb-3">
+                                  <h6>Sub-tasks</h6>
+                                  <div class="pl-2 d-flex align-items-center color-secondary">
+                                    <input type="radio" class="mr-2" />
+                                    <label for="" class="mb-0">Study Vocab List</label>
+                                  </div>
+                                  <div class="pl-2 d-flex align-items-center color-secondary">
+                                    <input type="radio" class="mr-2" />
+                                    <label for="" class="mb-0"
+                                      >Start typing to add subtasks</label
+                                    >
+                                  </div>
+                                </div>
+                                <div class="addition-material-section">
+                                  <h6 class="mb-1 font-medium">Additional Material</h6>
+                                  <div
+                                    class="
+                                      d-flex
+                                      align-items-center
+                                      justify-content-between
+                                    "
+                                  >
+                                    <div class="col-8 py-0 pl-0 material-link">
+                                      <span class="color-secondary">Rubric: https://docs.google.com/document/...</span>
+                                    </div>
+                                    <div class="col-4 material-date py-0 text-right">
+                                      12/04/22
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="upload-file-section mt-2">
+                                  <div class="d-flex align-items-center">
+                                    <div class="col-2 p-0">
+                                      <select
+                                        class="form-select form-control"
+                                        aria-label="Default select example"
+                                      >
+                                        <option selected>Type</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                      </select>
+                                    </div>
+                                    <div class="col-8 py-0 px-1">
+                                      <input
+                                        type="text"
+                                        class="form-control px-2"
+                                        placeholder="Paste Link or Upload File"
+                                      />
+                                    </div>
+                                    <div class="col-2 p-0">
+                                      <input
+                                        type="submit"
+                                        class="form-control"
+                                        value="Add"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="add-person-section position-absolute">
+                                  <div class="ap-img-section"></div>
+                                  <div class="ap-img-add">
+                                    <img src="~/static/image/add-btn.png" alt="" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    <div class="d-flex flex-column px-5 pt-3"> 
+                      <h3 class="color-primary font-semi-bold">Completed</h3>
+                      <span class="drop color-secondary text-16">Drag and drop your assignment here when it is completed</span>
+                      <div>
+                        <div class="row mt-1">
+                          <div class="col-6">
+                            <div
+                              class="
+                                jochi-sub-components-light-bg
+                                py-4
+                                px-2
+                                completed-assignments
+                                text-center
+                              "
+                            >
+                              <h4 class="mb-0 blue">Art History Reading</h4>
+                              <p class="mb-0">Read Chapters #1 & #2</p>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div
+                              class="
+                                jochi-sub-components-light-bg
+                                py-4
+                                px-2
+                                completed-assignments
+                                text-center
+                              "
+                            >
+                              <h4 class="mb-0 green">AP Calculus Problem</h4>
+                              <p class="mb-0">Homework #5</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </div>
+                    <div class="jochi-components-light-bg p-4 pl-5 position-absolute pending-assignment-popup">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <h1>Test</h1>
+                        <button class="btn pending-popup-close-btn" @click="pendingPopupclose()">x</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -504,6 +649,10 @@ export default {
     }),
   },
   methods: {
+    assignmentPlanner() {
+      this.$el.querySelector('#assignmentPlanner').classList.toggle('active');
+      this.$el.querySelector('#assignPlanSection').classList.toggle('active');
+    },
     ...mapActions("plannerMonth", {
       getMonthlyPlanner: "getMonthlyPlanner",
       addAssignment: "addAssignment",
