@@ -116,6 +116,13 @@ const actions = {
       }
     } catch (e) {
 
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
+
     }
 
 

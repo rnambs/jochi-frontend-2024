@@ -1,247 +1,477 @@
 <template>
-<div>
-   <lottie v-if="loading" :options="lottieOptions" v-on:animCreated="handleAnimation" class="lottie-loader"  />
+  <div>
+    <lottie
+      v-if="loading"
+      :options="lottieOptions"
+      v-on:animCreated="handleAnimation"
+      class="lottie-loader"
+    />
 
-  <div class="main-section">
-    <!-- teacher Page -->
-    <section id="teacher-detail" class="">
-      <div class="teacher-section jochi-components-light-bg
-      p-4
-      custom-margin-for-main-section custom-full-height
-      d-flex
-      flex-column custom-overflow">
-        <h2 class="color-primary font-semi-bold m-0 p-3">Teacher Appointment</h2>
-        <div class="inner-teacher p-3 d-flex flex-column h-40 flex-fill">
-          <div class="d-flex h-100 flex-column">
-            <div>
-              <div class="row teacher-row">
-                
-                <!-- CALANDER -->
-                <div class="col-md-6 custom-teacher-container d-flex flex-column">
-                  <div class="inner-custom-teacher text-light  p-2 card card-primary-void rounded-22 flex-fill">
-                    <FullCalendar :options="calendarOptions" />
-                  </div>
-                </div>
-                <!-- END CALANDER -->
-    
-                <!-- AGENDA -->
-                <div class="col-md-6  custom-teacher-container d-flex flex-column">
-                  <div class="inner-custom-teacher  p-3 card card-primary-void rounded-22 flex-fill">
-                    <h4 class="font-semi-bold color-dark text-center">Meetings</h4>
-                    <div class="inner-agenda custom-overflow pr-2 mr--2">
-                      <div
-                        class="row container my-2 mx-0 p-0"
-                        v-for="(list, index) in listAgenda"
-                        :key="index"
-                      >
-                        <div class="col-3 time py-0">
-                          <p class="time text-center d-flex align-items-center justify-content-center mb-0 p-3 m-1 text-14">{{ list["time"] }}</p>
-                        </div>
-                        <div class="col px-0 py-0">
-                          <p class="p-3 card card-white m-0">
-                            <span class="club-name color-dark font-semi-bold text-truncate">{{ list["title"] }}</span>
-                            <span class="club-i"><i></i> </span>
-                          </p>
-                        </div>
-                      </div>
-                      <div v-if="listAgenda.length == 0" class="empty-shedule">
-                        <p>No meetings for the day</p>
-                      </div>
-                    </div>
-                  </div>
-            
-                </div>
-                <!-- END AGENDA -->
-              </div>
-            </div>
-  
-            <!-- TABLE  -->
-            <div class="teacher-row d-flex flex-column flex-fill h-40 mt-4 p-0">
-              <div class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary-void rounded-22">
-                <div class="appointment-req d-flex flex-column h-100 pb-2">
-                  <h4 class="text-center color-dark font-semi-bold pt-4 mb-3">Meeting Requests</h4>
-                  <div class="table-req hidden-scroll custom-overflow-x container py-0">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <td scope="col"></td>
-                          <td scope="col" class="font-semi-bold text-14">Name</td>
-                          <td scope="col" class="font-semi-bold text-14">Date</td>
-                          <td scope="col" class="font-semi-bold text-14">Time</td>
-                          <td scope="col" class="font-semi-bold text-14">Duration</td>
-                          <td scope="col" class="font-semi-bold text-14">Accept</td>
-                          <td scope="col" class="font-semi-bold text-14">Reject</td>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="teacher in teachersList" :key="teacher.id">
-                          <td scope="row"></td>
-                          <td class="text-14">{{ teacher["title"] }}</td>
-                          <td class="text-14">{{ teacher["date"] }}</td>
-                          <td class="text-14">{{ teacher["time"] }}</td>
-                          <td class="text-14">30 Min</td>
-                          <td>
-                            <button
-                              class="d-flex btn border border-success text-success px-3 py-1"
-                              @click="
-                                TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 1,teacher.selectableDate)"
-                            >
-                              <i class="fa fa-check text-12 px-1" aria-hidden="true"></i>
-                            </button>
-                          </td>
-                          <td>
-                            <button
-                              class="d-flex btn border border-danger text-danger px-3 py-1"
-                              @click="
-                                TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 2)"
-                            >
-                              <i class="fa fa-times text-12 px-1" aria-hidden="true"></i>
-                            </button>
-                          </td>
-                          <td>
-                            <button   data-toggle="modal"
-                            data-target="#mediumModal" class="d-flex btn border border-primary text-primary px-3 py-1">
-                              <i class="fas fa-eye text-12"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <div v-if="teachersList.length == 0" class="empty-shedule">
-                      <p>No data found</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- END TABLE  -->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- modal pop up -->
-    <div
-    class="modal fade"
-    id="mediumModal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="mediumModalLabel"
-    aria-hidden="true"
-    data-backdrop="static"
-    data-keyboard="false"
-    >
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-      <div class="modal-content h-auto">
-        <div class="modal-header text-dark">
-          <h5 class="modal-title" id="mediumModalLabel">
-            Meeting Request
-          </h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row py-1">
-            <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Name</p></div>
-            <div class="col">
-              <p class="mb-0 color-dark font-regular text-16 d-flex">
-                <span class="px-2"> : </span> 
-                <span>Miya</span> 
-              </p>
-            </div>
-          </div>
-          <div class="row py-1">
-            <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Date</p></div>
-            <div class="col">
-              <p class="mb-0 color-dark font-regular text-16 d-flex">
-                <span class="px-2"> : </span> 
-                <span>07-29-2022</span> 
-              </p>
-            </div>
-          </div>
-          <div class="row py-1">
-            <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Time</p></div>
-            <div class="col">
-              <p class="mb-0 color-dark font-regular text-16 d-flex">
-                <span class="px-2"> : </span> 
-                <span>12:00 PM</span> 
-              </p>
-            </div>
-          </div>
-          <div class="row py-1">
-            <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Duration</p></div>
-            <div class="col">
-              <p class="mb-0 color-dark font-regular text-16 d-flex">
-                <span class="px-2"> : </span> 
-                <span>30 Min</span> 
-              </p>
-            </div>
-          </div>
-          <div class="row py-1">
-            <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Discription</p></div>
-            <div class="col">
-              <p class="mb-0 color-dark font-regular text-16 d-flex">
-                <span class="px-2"> : </span> 
-                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas quibusdam enim, esse in maiores facere quis autem aperiam at laudantium mollitia accusantium, similique itaque repudiandae deserunt natus, rerum vero vel?</span> 
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer bg-white text-dark">
-          <button
-          class="d-flex btn btn-secondary rounded-pill px-4 py-1 mx-2"
-          @click="
-            TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 2)"
+    <div class="main-section">
+      <!-- teacher Page -->
+      <section id="teacher-detail" class="">
+        <div
+          class="
+            teacher-section
+            jochi-components-light-bg
+            p-4
+            custom-margin-for-main-section custom-full-height
+            d-flex
+            flex-column
+            custom-overflow
+          "
         >
-          <span class="text-16">Reject</span>
-        </button>
-          <button
-            class="d-flex btn btn-primary rounded-pill px-4 py-1"
-            @click="
-              TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 1,teacher.selectableDate)"
-          >
-            <span class="text-16">Accept</span>
-          </button>
+          <h2 class="color-primary font-semi-bold m-0 p-3">
+            Teacher Appointment
+          </h2>
+          <div class="inner-teacher p-3 d-flex flex-column h-40 flex-fill">
+            <div class="d-flex h-100 flex-column">
+              <div>
+                <div class="row teacher-row">
+                  <!-- CALANDER -->
+                  <div
+                    class="col-md-6 custom-teacher-container d-flex flex-column"
+                  >
+                    <div
+                      class="
+                        inner-custom-teacher
+                        text-light
+                        p-2
+                        card card-primary-void
+                        rounded-22
+                        flex-fill
+                      "
+                    >
+                      <FullCalendar :options="calendarOptions" />
+                    </div>
+                  </div>
+                  <!-- END CALANDER -->
+
+                  <!-- AGENDA -->
+                  <div
+                    class="col-md-6 custom-teacher-container d-flex flex-column"
+                  >
+                    <div
+                      class="
+                        inner-custom-teacher
+                        p-3
+                        card card-primary-void
+                        rounded-22
+                        flex-fill
+                      "
+                    >
+                      <h4 class="font-semi-bold color-dark text-center">
+                        Meetings
+                      </h4>
+                      <div class="inner-agenda custom-overflow pr-2 mr--2">
+                        <div
+                          class="row container my-2 mx-0 p-0"
+                          v-for="(list, index) in listAgenda"
+                          :key="index"
+                        >
+                          <div class="col-3 time py-0">
+                            <p
+                              class="
+                                time
+                                text-center
+                                d-flex
+                                align-items-center
+                                justify-content-center
+                                mb-0
+                                p-3
+                                m-1
+                                text-14
+                              "
+                            >
+                              {{ list["time"] }}
+                            </p>
+                          </div>
+                          <div class="col px-0 py-0">
+                            <p class="p-3 card card-white m-0">
+                              <span
+                                class="
+                                  club-name
+                                  color-dark
+                                  font-semi-bold
+                                  text-truncate
+                                "
+                                >{{ list["title"] }}</span
+                              >
+                              <span class="club-i"><i></i> </span>
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          v-if="listAgenda.length == 0"
+                          class="empty-shedule"
+                        >
+                          <p>No meetings for the day</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- END AGENDA -->
+                </div>
+              </div>
+
+              <!-- TABLE  -->
+              <div
+                class="teacher-row d-flex flex-column flex-fill h-40 mt-4 p-0"
+              >
+                <div
+                  class="
+                    col-md-12
+                    p-0
+                    custom-teacher-container
+                    d-flex
+                    flex-column
+                    card card-primary-void
+                    rounded-22
+                  "
+                >
+                  <div class="appointment-req d-flex flex-column h-100 pb-2">
+                    <h4 class="text-center color-dark font-semi-bold pt-4 mb-3">
+                      Meeting Requests
+                    </h4>
+                    <div
+                      class="
+                        table-req
+                        hidden-scroll
+                        custom-overflow-x
+                        container
+                        py-0
+                      "
+                    >
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <td scope="col"></td>
+                            <td scope="col" class="font-semi-bold text-14">
+                              Name
+                            </td>
+                            <td scope="col" class="font-semi-bold text-14">
+                              Date
+                            </td>
+                            <td scope="col" class="font-semi-bold text-14">
+                              Time
+                            </td>
+                            <td scope="col" class="font-semi-bold text-14">
+                              Duration
+                            </td>
+                            <td scope="col" class="font-semi-bold text-14">
+                              Accept
+                            </td>
+                            <td scope="col" class="font-semi-bold text-14">
+                              Reject
+                            </td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="teacher in teachersList" :key="teacher.id">
+                            <td scope="row"></td>
+                            <td class="text-14">{{ teacher["title"] }}</td>
+                            <td class="text-14">{{ teacher["date"] }}</td>
+                            <td class="text-14">{{ teacher["time"] }}</td>
+                            <td class="text-14">30 Min</td>
+                            <td>
+                              <button
+                                class="
+                                  d-flex
+                                  btn
+                                  border border-success
+                                  text-success
+                                  px-3
+                                  py-1
+                                "
+                                @click="
+                                  TeacherMeetingConfirm(
+                                    teacher.studentId,
+                                    teacher.reqId,
+                                    1,
+                                    teacher.selectableDate
+                                  )
+                                "
+                              >
+                                <i
+                                  class="fa fa-check text-12 px-1"
+                                  aria-hidden="true"
+                                ></i>
+                              </button>
+                            </td>
+                            <td>
+                              <button
+                                class="
+                                  d-flex
+                                  btn
+                                  border border-danger
+                                  text-danger
+                                  px-3
+                                  py-1
+                                "
+                                @click="
+                                  TeacherMeetingConfirm(
+                                    teacher.studentId,
+                                    teacher.reqId,
+                                    2
+                                  )
+                                "
+                              >
+                                <i
+                                  class="fa fa-times text-12 px-1"
+                                  aria-hidden="true"
+                                ></i>
+                              </button>
+                            </td>
+                            <td>
+                              <button
+                                @click="setMeeting(teacher)"
+                                class="
+                                  d-flex
+                                  btn
+                                  border border-primary
+                                  text-primary
+                                  px-3
+                                  py-1
+                                "
+                              >
+                                <i class="fas fa-eye text-12"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div
+                        v-if="teachersList.length == 0"
+                        class="empty-shedule"
+                      >
+                        <p>No data found</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- END TABLE  -->
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- modal pop up -->
+      <div
+        class="modal fade"
+        id="mediumModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="mediumModalLabel"
+        aria-hidden="true"
+        data-backdrop="static"
+        data-keyboard="false"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered modal-md"
+          role="document"
+        >
+          <div class="modal-content h-auto">
+            <div class="modal-header text-dark">
+              <h5 class="modal-title" id="mediumModalLabel">Meeting Request</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row py-1">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Name</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span v-if="meetingDetail && meetingDetail.meeting_name">{{
+                      meetingDetail.meeting_name
+                    }}</span>
+                  </p>
+                </div>
+              </div>
+              <div class="row py-1">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">With</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span v-if="meetingDetail && meetingDetail.title">{{
+                      meetingDetail.title
+                    }}</span>
+                  </p>
+                </div>
+              </div>
+              <div class="row py-1">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Date</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span v-if="meetingDetail && meetingDetail.date">{{
+                      meetingDetail.date
+                    }}</span>
+                  </p>
+                </div>
+              </div>
+              <div class="row py-1">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Time</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span
+                      v-if="
+                        meetingDetail &&
+                        meetingDetail.default_slots &&
+                        meetingDetail.default_slots.start_time &&
+                        meetingDetail.default_slots.end_time
+                      "
+                      >{{ meetingDetail.default_slots.start_time }} -
+                      {{ meetingDetail.default_slots.end_time }}</span
+                    >
+                  </p>
+                </div>
+              </div>
+
+              <div class="row py-1">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">
+                    Description
+                  </p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span
+                      v-if="meetingDetail && meetingDetail.meeting_description"
+                      >{{ meetingDetail.meeting_description }}</span
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="row py-1">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Type</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span
+                      v-if="meetingDetail && meetingDetail.conversation_type"
+                      >{{ meetingDetail.conversation_type }}</span
+                    >
+                  </p>
+                </div>
+              </div>
+              <div
+                v-if="meetingDetail && meetingDetail.meeting_link"
+                class="row py-1"
+              >
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Link</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span>{{ meetingDetail.meeting_link }}</span>
+                  </p>
+                </div>
+              </div>
+              <div
+                v-if="meetingDetail && meetingDetail.meeting_location"
+                class="row py-1"
+              >
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Location</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span>{{ meetingDetail.meeting_location }}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer bg-white text-dark">
+              <button
+                v-if="
+                  meetingDetail &&
+                  meetingDetail.studentId &&
+                  meetingDetail.reqId
+                "
+                class="d-flex btn btn-secondary rounded-pill px-4 py-1 mx-2"
+                @click="
+                  TeacherMeetingConfirm(
+                    meetingDetail.studentId,
+                    meetingDetail.reqId,
+                    2
+                  )
+                "
+              >
+                <span class="text-16">Reject</span>
+              </button>
+              <button
+                v-if="
+                  meetingDetail &&
+                  meetingDetail.studentId &&
+                  meetingDetail.reqId &&
+                  meetingDetail.selectableDate
+                "
+                class="d-flex btn btn-primary rounded-pill px-4 py-1"
+                @click="
+                  TeacherMeetingConfirm(
+                    meetingDetail.studentId,
+                    meetingDetail.reqId,
+                    1,
+                    meetingDetail.selectableDate
+                  )
+                "
+              >
+                <span class="text-16">Accept</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+      <!-- modal pop up end -->
+      <!-- End teacher Page -->
     </div>
-    </div>
-    <!-- modal pop up end -->
-    <!-- End teacher Page -->
   </div>
-</div>
-
 </template>
 <script>
 import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { mapState, mapActions } from "vuex";
-import lottie from 'vue-lottie/src/lottie.vue'
+import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 var dateStr = "";
 var ismounted = false;
 var isAccepted = false;
 var selectDate = "";
 var teachersList = [];
-var dateSelectValue ="";
+var dateSelectValue = "";
 
 export default {
   name: "UserTeacherAppointment",
   components: {
     FullCalendar,
-    lottie
+    lottie,
   },
   data() {
     return {
       listAgenda: [],
-      teachersList:[],
+      teachersList: [],
       loading: false,
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
@@ -257,12 +487,12 @@ export default {
         dayClick: this.clickedDay,
         dateClick: this.handleDateClick,
         selectable: true,
-    
       },
+      meetingDetail: {},
     };
   },
   mounted() {
-    ismounted = true
+    ismounted = true;
     this.ListTeacherAgenda();
     this.TeacherMeetingList();
   },
@@ -290,13 +520,13 @@ export default {
       await this.teacherMeetingList({
         teacher_id: localStorage.getItem("id"),
       });
-      this.teachersList=[];
-       this.teachers.forEach(element => {
+      this.teachersList = [];
+      this.teachers.forEach((element) => {
         var Scheduleobj = {};
         var title = element.title;
         var time = element.default_slots.start_time;
         var studentId = element.student_id;
-        var reqId =  element.request_id;
+        var reqId = element.request_id;
         var selectableDate = element.date;
         Scheduleobj["date"] = this.formatDate(element.date);
         Scheduleobj["title"] = title;
@@ -304,43 +534,55 @@ export default {
         Scheduleobj["studentId"] = studentId;
         Scheduleobj["reqId"] = reqId;
         Scheduleobj["selectableDate"] = selectableDate;
+
+        Scheduleobj["conversation_type"] = element.conversation_type;
+        Scheduleobj["dateSelected"] = element.date;
+        Scheduleobj["default_slots"] = element.default_slots;
+        Scheduleobj["meeting_description"] = element.meeting_description;
+        Scheduleobj["meeting_location"] = element.meeting_location;
+        Scheduleobj["meeting_link"] = element.meeting_link;
+        Scheduleobj["meeting_name"] = element.meeting_name;
         this.teachersList.push(Scheduleobj);
       });
-   
     },
-     async ListTeacherAgenda() {
+    async ListTeacherAgenda() {
       await this.listTeacherAgenda({
         teacher_id: localStorage.getItem("id"),
       });
-if(ismounted){
-  let argVal = {};
-    let today = new Date();
-    this.currentTime = this.formatAMPM(today);
-    
-  dateStr = today.toISOString().split("T")[0];
+      if (ismounted) {
+        let argVal = {};
+        let today = new Date();
+        this.currentTime = this.formatAMPM(today);
 
-    argVal = { dateStr: dateStr };
-    this.handleDateClick(argVal);
-    }
-    if(isAccepted){
-isAccepted = false;
-    let argVal = { dateStr: dateStr };
-    
-    this.handleDateClick(argVal);
-    }
+        dateStr = today.toISOString().split("T")[0];
+
+        argVal = { dateStr: dateStr };
+        this.handleDateClick(argVal);
+      }
+      if (isAccepted) {
+        isAccepted = false;
+        let argVal = { dateStr: dateStr };
+
+        this.handleDateClick(argVal);
+      }
     },
-    async TeacherMeetingConfirm(student_value, request_value, value,dateSelect = null) {
+    async TeacherMeetingConfirm(
+      student_value,
+      request_value,
+      value,
+      dateSelect = null
+    ) {
       this.loading = true;
       isAccepted = true;
       var numValue = value;
-       selectDate = dateSelect;
+      selectDate = dateSelect;
       await this.teacherMeetingConfirm({
         request_id: request_value,
         student_id: student_value,
-        
-        meeting_request:numValue.toString(),
+
+        meeting_request: numValue.toString(),
       });
-    this.loading = false;
+      this.loading = false;
       if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -348,68 +590,70 @@ isAccepted = false;
           duration: 5000,
         });
       } else if (this.successMessage != "") {
+        if ($("#mediumModal").hasClass("show")) {
+          $("#mediumModal").modal("hide");
+          $(".modal").modal("hide");
+          $(".modal-backdrop").remove();
+        }
+
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
           duration: 5000,
         });
-        if(dateSelect){
-        if(dateSelectValue){
-           let today = new Date();
-    this.currentTime = this.formatAMPM(today);
-    
-  var todayStr = today.toISOString().split("T")[0];
-          if(dateSelectValue==todayStr){
-            
-            $('.fc-day[data-date="'+dateSelectValue+'"]').css('background-color', '#F49196');
-          }else{
-$('.fc-day[data-date="'+dateSelectValue+'"]').css('background-color', '#424246');
+        if (dateSelect) {
+          if (dateSelectValue) {
+            let today = new Date();
+            this.currentTime = this.formatAMPM(today);
+
+            var todayStr = today.toISOString().split("T")[0];
+            if (dateSelectValue == todayStr) {
+              $('.fc-day[data-date="' + dateSelectValue + '"]').css(
+                "background-color",
+                "#F49196"
+              );
+            } else {
+              $('.fc-day[data-date="' + dateSelectValue + '"]').css(
+                "background-color",
+                "#424246"
+              );
+            }
           }
-          
-          
-        }  
 
-$('.fc-day[data-date="'+dateSelect+'"]').css('background-color', '#5B5B5E');
-        dateSelectValue=dateSelect;
-
+          $('.fc-day[data-date="' + dateSelect + '"]').css(
+            "background-color",
+            "#5B5B5E"
+          );
+          dateSelectValue = dateSelect;
         }
-        
-        
-          if(dateSelect){
-          dateStr = dateSelect
-          }
-        this.TeacherMeetingList();
-        this.ListTeacherAgenda();
 
+        if (dateSelect) {
+          dateStr = dateSelect;
+        }
       }
+      this.TeacherMeetingList();
+      this.ListTeacherAgenda();
     },
-   
 
     handleDateClick: function (arg) {
       this.listAgenda = [];
 
       this.agendaList.forEach((element) => {
-       
         var listObj = {};
         if (element.date == arg.dateStr) {
-          
           listObj["time"] = element.default_slots.start_time;
           listObj["title"] = element.title;
           this.listAgenda.push(listObj);
         }
-
       });
-      if(!ismounted){
+      if (!ismounted) {
         this.ListTeacherAgenda();
       }
-      ismounted = false
+      ismounted = false;
     },
-    
-     clickedDay:function(date) {
-      
-       
-    },
-   
+
+    clickedDay: function (date) {},
+
     formatAMPM(date) {
       var hours = date.getHours();
       var minutes = date.getMinutes();
@@ -421,13 +665,20 @@ $('.fc-day[data-date="'+dateSelect+'"]').css('background-color', '#5B5B5E');
       return strTime;
     },
 
-  formatDate (input) {
-  var datePart = input.match(/\d+/g),
-  year = datePart[0], // get only two digits
-  month = datePart[1], day = datePart[2];
+    formatDate(input) {
+      var datePart = input.match(/\d+/g),
+        year = datePart[0], // get only two digits
+        month = datePart[1],
+        day = datePart[2];
 
-  return month+'-'+day+'-'+year;
-},
+      return month + "-" + day + "-" + year;
+    },
+
+    setMeeting(teacher) {
+      $("#mediumModal").modal("show");
+      console.log(teacher);
+      this.meetingDetail = teacher;
+    },
   },
 };
 </script>

@@ -429,7 +429,6 @@
                         <tr>
                           <td class="tmodal-data">Date</td>
                           <td class="tmodal-data">
-                            
                             {{ popupValue[0] }}
                           </td>
                         </tr>
@@ -437,7 +436,6 @@
                         <tr>
                           <td class="tmodal-data">Time</td>
                           <td class="tmodal-data">
-                            
                             <!-- {{ popupFrom[0] }} to {{ popupEnd[0] }} -->
                             {{ popupFrom[0] }}
                             {{ popupEnd[0] ? "to " + popupEnd[0] : "" }}
@@ -465,7 +463,6 @@
                                   align-items-center
                                 "
                               >
-                                
                                 <!-- <span v-if="value">
                                 {{
                                   value.first_name +
@@ -523,7 +520,6 @@
                                   align-items-center
                                 "
                               >
-                                
                                 <!-- <span v-if="value">
                                 {{
                                   value.first_name +
@@ -587,7 +583,6 @@
                                   align-items-center
                                 "
                               >
-                                
                                 <select
                                   class="form-control bg-white mb-0"
                                   tabindex=""
@@ -643,7 +638,6 @@
                                   align-items-center
                                 "
                               >
-                                
                                 <!-- <span v-if="value">
                               {{
                                 value.first_name +
@@ -656,7 +650,11 @@
                                   name="venue"
                                   autocomplete="off"
                                   maxlength="200"
-                                  class="form-control custom-form-control bg-white"
+                                  class="
+                                    form-control
+                                    custom-form-control
+                                    bg-white
+                                  "
                                   v-model="venue"
                                   :class="{
                                     'is-invalid': submitted && $v.venue.$error,
@@ -714,7 +712,9 @@
             </div>
           </div>
         </section>
-        <div class="d-flex position-absolute end-0 bottom-0 meeting-celebration">
+        <div
+          class="d-flex position-absolute end-0 bottom-0 meeting-celebration"
+        >
           <lottie
             :options="lottieOptionsSuccess"
             v-on:animCreated="handleAnimation"
@@ -1051,6 +1051,14 @@ export default {
           this.loading = false;
 
           if (this.successMessage != "") {
+            $('input[name="daterange"]').val("");
+            fromDate = "";
+            endDate = "";
+            this.slot_date = [];
+            this.isShowing = true;
+            this.isMounted = false;
+            this.value = "";
+
             $(".modal-backdrop").remove();
             $("#meetingDetailModal").modal("hide");
             this.resetValues();
@@ -1085,6 +1093,13 @@ export default {
           this.loading = false;
 
           if (this.successMessage != "") {
+            $('input[name="daterange"]').val("");
+            fromDate = "";
+            endDate = "";
+            this.slot_date = [];
+            this.isShowing = true;
+            this.isMounted = false;
+            this.value = "";
             $(".modal-backdrop").remove();
             $("#meetingDetailModal").modal("hide");
             this.resetValues();
@@ -1102,15 +1117,6 @@ export default {
             });
           }
         }
-        this.value = "";
-
-        $('input[name="daterange"]').val("");
-        fromDate = "";
-        endDate = "";
-        this.slot_date = [];
-        this.isShowing = true;
-        this.isMounted = false;
-        this.value = "";
       }
     },
     resetValues() {
