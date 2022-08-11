@@ -17,9 +17,15 @@
           flex-column custom-overflow">
 
             
-          <div class="mb-2">
-            <h5 class="mb-1  color-dark font-semi-bold" >Hello {{ firstName }}</h5>
-            <h2 class="color-primary font-semi-bold">Have a great day</h2>
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div class="d-flex flex-column">
+              <h5 class="mb-1  color-dark font-semi-bold" >Hello {{ firstName }}</h5>
+              <h2 class="color-primary font-semi-bold">Have a great day</h2>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="btn color-dark font-semi-bold mr-3">FAQs</div>
+              <div class="btn color-dark font-semi-bold mr-4">Privacy Policy</div>
+            </div>
           </div>
 
             <div class="row h-40 flex-fill">

@@ -132,7 +132,7 @@
                           class="study-status-img-section position-relative my-4"
                         >
                           <div class="study-status-img">
-                            <img src="/static/image/alarm.png" alt="" />
+                            <img src="~/static/image/alarm.png" alt="" />
                           </div>
                           <div
                             class="study-status-progress position-absolute"

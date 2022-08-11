@@ -14,7 +14,7 @@
           class="d-flex align-items-center justify-content-between mb-4 px-2"
         >
           <h2 class="color-primary font-semi-bold mb-0">Study Analytics</h2>
-          <div @click="openModal" class="d-flex align-items-center">
+          <div @click="openModal" class="d-flex align-items-center cursor-pointer">
             <p class="mb-0 d-flex flex-column text-right">
               <span class="color-dark text-16 font-semi-bold"
                 >{{ duration }} Minutes Studied Today</span

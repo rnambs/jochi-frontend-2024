@@ -376,7 +376,7 @@
           </div>
         </div>
         <div>
-          <div class="menu-items  position-relative py-0">
+          <!-- <div class="menu-items  position-relative py-0">
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
                 <div class="card-header bg-transparent border-0 p-1" id="headingOne">
@@ -403,15 +403,15 @@
                           <i class="fas fa-comments"></i>
                         </div>
                         <span class="ml-3 color-secondary text-capitalize font-medium">FAQ</span>
-                      </div>
+                      </div> -->
                       <!-- <a href="https://www.jochi.info/faqs">FAQ</a> -->
-                    </button>
+                    <!--</button>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="menu-items  position-relative py-0">
+          </div> -->
+          <!-- <div class="menu-items  position-relative py-0">
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
                 <div class="card-header bg-transparent border-0 p-1" id="headingOne">
@@ -441,7 +441,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="menu-items  position-relative py-0">
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
