@@ -181,7 +181,11 @@
                         py-4
                       "
                     >
-                      <div class="row">
+                      <div
+                        v-for="(list, index) in slot_date"
+                        :key="index"
+                        class="row"
+                      >
                         <div class="col-12 faculty-availability-card mb-2">
                           <div class="row">
                             <div class="col-3 py-0">
@@ -197,8 +201,10 @@
                                   p-3
                                 "
                               >
-                                <p class="fac-day mb-1">MON</p>
-                                <p class="fac-date mb-0">11</p>
+                                <p class="fac-day mb-1">{{ list.date_day }}</p>
+                                <p class="fac-date mb-0">
+                                  {{ list.date_number }}
+                                </p>
                               </div>
                             </div>
                             <div class="col-9">
@@ -208,14 +214,18 @@
                                   justify-content-between
                                   align-items-center
                                 "
-                                @click="openMeetingDetail"
+                                @click="onCardClick(list)"
                               >
                                 <div class="fa-meeting-faculty-details">
                                   <p class="mb-1 faculty-meeting-text">
                                     Faculty Meeting
                                   </p>
-                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
-                                  <div class="fa-time-section">6:00 pm</div>
+                                  <p class="mb-1 faculty-name">
+                                    {{ list.new_title }}
+                                  </p>
+                                  <div class="fa-time-section">
+                                    {{ list.start_time }}
+                                  </div>
                                 </div>
                                 <i class="arrow right"></i>
                               </div>
@@ -223,48 +233,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="row">
-                        <div class="col-12 faculty-availability-card mb-2">
-                          <div class="row">
-                            <div class="col-3 py-0">
-                              <div
-                                class="
-                                  jochi-sub-components-light-bg
-                                  fa-card-date
-                                  d-flex
-                                  flex-column
-                                  align-items-center
-                                  justify-content-center
-                                  w-100
-                                  p-3
-                                "
-                              >
-                                <p class="fac-day mb-1">MON</p>
-                                <p class="fac-date mb-0">11</p>
-                              </div>
-                            </div>
-                            <div class="col-9">
-                              <div
-                                class="
-                                  d-flex
-                                  justify-content-between
-                                  align-items-center
-                                "
-                              >
-                                <div class="fa-meeting-faculty-details">
-                                  <p class="mb-1 faculty-meeting-text">
-                                    Faculty Meeting
-                                  </p>
-                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
-                                  <div class="fa-time-section">6:00 pm</div>
-                                </div>
-                                <i class="arrow right"></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
+                      <!-- <div class="row">
                         <div class="col-12 faculty-availability-card mb-2">
                           <div class="row">
                             <div class="col-3 py-0">
@@ -387,6 +356,47 @@
                           </div>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="col-12 faculty-availability-card mb-2">
+                          <div class="row">
+                            <div class="col-3 py-0">
+                              <div
+                                class="
+                                  jochi-sub-components-light-bg
+                                  fa-card-date
+                                  d-flex
+                                  flex-column
+                                  align-items-center
+                                  justify-content-center
+                                  w-100
+                                  p-3
+                                "
+                              >
+                                <p class="fac-day mb-1">MON</p>
+                                <p class="fac-date mb-0">11</p>
+                              </div>
+                            </div>
+                            <div class="col-9">
+                              <div
+                                class="
+                                  d-flex
+                                  justify-content-between
+                                  align-items-center
+                                "
+                              >
+                                <div class="fa-meeting-faculty-details">
+                                  <p class="mb-1 faculty-meeting-text">
+                                    Faculty Meeting
+                                  </p>
+                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
+                                  <div class="fa-time-section">6:00 pm</div>
+                                </div>
+                                <i class="arrow right"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -421,18 +431,21 @@
 
     <div
       class="modal fade"
-      id="MeetingModal"
+      id="meetingDetailModal"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="exampleModalCenterTitle"
+      aria-labelledby="meetingDetailModalCenterTitle"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content px-4">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">
+            <h5 class="modal-title" id="meetingDetailModalLongTitle">
               Meeting Details
             </h5>
+            <!-- <button type="button" class="close">
+              <span aria-hidden="true">Edit</span>
+            </button> -->
             <button
               type="button"
               class="close"
@@ -442,47 +455,212 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          <div class="modal-body">
+            <form action="">
+              <table class="w-100 table-modal custom-row-table">
+                <tr>
+                  <td class="tmodal-data">Type</td>
+                  <td class="tmodal-data">
+                    <span class="pr-2"></span>
+                    {{ meetingDetail.type }}
+                  </td>
+                </tr>
 
-          <div class="modal-body px-4">
-            <table class="table-modal w-100">
-              <tr>
-                <td class="tmodal-data mb-2 text-nowrap">Meeting With</td>
-                <td class="tmodal-data">
-                  <p class="mb-0 tdata-overflow">
-                    <span class="px-2">:</span>
-                    <span>
-                      {{ popTitle }}
+                <tr>
+                  <td class="tmodal-data">With</td>
+                  <td class="tmodal-data d-flex align-items-center flex-wrap">
+                    <span class="pr-2"></span>
+                    <span v-if="meetingDetail.type == 'Teacher'"
+                      >{{ meetingDetail.new_title }}
                     </span>
-                  </p>
-                </td>
-              </tr>
+                    <div
+                      class="invited-members-status mr-2"
+                      v-else
+                      v-for="(item, index) of invitedMembers"
+                      :key="index"
+                    >
+                      <span
+                        v-if="item.student_id != studentId"
+                        :class="
+                          item.student_id == item.teacher_id
+                            ? 'accepted-meeting i-member-status'
+                            : item.meeting_request == 0
+                            ? 'pending-meeting i-member-status'
+                            : item.meeting_request == 1
+                            ? 'accepted-meeting i-member-status'
+                            : item.meeting_request == 2
+                            ? 'rejected-meeting i-member-status'
+                            : ''
+                        "
+                        >{{ item.name }}</span
+                      >
+                    </div>
+                  </td>
+                </tr>
 
-              <tr>
-                <td class="tmodal-data text-nowrap">Meeting Type</td>
-                <td class="tmodal-data">
-                  <span class="px-2">:</span>
-                  <span>
-                    {{ popMeeting }}
-                  </span>
-                </td>
-              </tr>
+                <tr>
+                  <td class="tmodal-data">Date</td>
+                  <td class="tmodal-data">
+                    <div
+                      class="
+                        mb-0
+                        col-12 col-md-8 col-lg-7
+                        d-flex
+                        align-items-center
+                        form-row
+                        py-0
+                      "
+                    >
+                      <span class="pr-2"></span>
 
-              <tr>
-                <td class="tmodal-data">Date</td>
-                <td class="tmodal-data">
-                  <span class="px-2">:</span>
-                  {{ popDate }}
-                </td>
-              </tr>
+                      {{ meetingDetail.dateFormat }}
+                    </div>
+                  </td>
+                </tr>
 
-              <tr>
-                <td class="tmodal-data">Time</td>
-                <td class="tmodal-data">
-                  <span class="px-2">:</span>
-                  {{ popTime }}
-                </td>
-              </tr>
-            </table>
+                <tr>
+                  <td class="tmodal-data">Time</td>
+                  <td class="tmodal-data">
+                    <span class="pr-2"></span>
+                    {{ meetingDetail.start_time }}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tmodal-data text-nowrap">Meeting Name</td>
+                  <td class="tmodal-data">
+                    <p
+                      class="
+                        mb-0
+                        col-12 col-md-8 col-lg-7
+                        d-flex
+                        align-items-center
+                        form-row
+                        py-0
+                      "
+                    >
+                      <span class="pr-2"></span>
+
+                      {{ meetingDetail.meeting_name }}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tmodal-data text-nowrap">Description</td>
+                  <td class="tmodal-data">
+                    <p
+                      class="
+                        mb-0
+                        col-12 col-md-8 col-lg-7
+                        d-flex
+                        align-items-center
+                        form-row
+                        py-0
+                      "
+                    >
+                      <span class="pr-2"></span>
+
+                      {{ meetingDetail.meeting_description }}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tmodal-data text-nowrap">Type of Meeting</td>
+                  <td class="tmodal-data">
+                    <p
+                      class="
+                        mb-0
+                        col-12 col-md-8 col-lg-7
+                        d-flex
+                        align-items-center
+                        form-row
+                        py-0
+                      "
+                    >
+                      <span class="pr-2"></span>
+                      {{ meetingDetail.conversation_type }}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tmodal-data text-nowrap">
+                    {{
+                      meetingDetail.conversation_type == "Video Conference"
+                        ? "Meeting Link"
+                        : "Meeting Location"
+                    }}
+                  </td>
+                  <td class="tmodal-data">
+                    <p
+                      class="
+                        mb-0
+                        col-12 col-md-8 col-lg-7
+                        d-flex
+                        align-items-center
+                        form-row
+                        py-0
+                      "
+                    >
+                      <span class="pr-2"> </span>
+
+                      {{
+                        meetingDetail.conversation_type == "Video Conference"
+                          ? meetingDetail.meeting_link
+                          : meetingDetail.meeting_location
+                      }}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <!-- <div
+              v-if="
+                detailType == 'Peer' &&
+                detailMeetingRequest == 0 &&
+                detailTeacherId != studentId
+              "
+              class="row text-center justify-content-end p-3"
+            >
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-4 rounded-pill mr-2"
+                data-dismiss="modal"
+                @click="acceptOrReject(2)"
+              >
+                Reject
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary py-1 px-4 rounded-pill"
+                data-dismiss="modal"
+                @click="acceptOrReject(1)"
+              >
+                Accept
+              </button>
+            </div>
+            <div
+              v-if="
+                (detailTeacherId == studentId || detailType == 'Teacher') &&
+                detailMeetingRequest == 1
+              "
+              class="row text-center justify-content-end p-3"
+            >
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-4 rounded-pill mr-2"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary py-1 px-4 rounded-pill"
+                @click="updateDetails()"
+              >
+                Update
+              </button>
+            </div> -->
           </div>
         </div>
       </div>
@@ -506,7 +684,9 @@ import interactionPlugin from "@fullcalendar/interaction";
 // import { VueEllipseProgress } from "vue-ellipse-progress";
 
 var eventList = [];
-
+var Peerarray = [];
+var Teacherarray = [];
+var Allarray = [];
 export default {
   name: "UserStudentDashBoard",
   components: {
@@ -521,13 +701,7 @@ export default {
   },
   data() {
     return {
-      data: [
-        {
-          progress: 50, // required for each circle
-          color: "red", // will overwrite global progress color
-          // other options will be merged with global
-        },
-      ],
+      slot_date: [],
       progress: 50,
       calendarApi: Calendar,
       calendarOptions: {
@@ -570,6 +744,7 @@ export default {
       duration: 0,
       durationRemaining: 0,
       dailyTimerId: 0,
+      meetingDetail: {},
     };
   },
   computed: {
@@ -579,12 +754,21 @@ export default {
     ...mapState("userStudyAnalytics", {
       goal: (state) => state.goal,
     }),
+    ...mapState("viewAllMeeting", {
+      allList: (state) => state.allList,
+      allData: (state) => state.allData,
+      timeZones: (state) => state.timeZones,
+    }),
+    ...mapState("teacherMeeting", {
+      invitedMembers: (state) => state.invitedMembers,
+    }),
   },
   mounted() {
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.ShowQuotedMessage();
     this.firstName = localStorage.getItem("first_name");
     this.getConfiguredGoal();
+    this.ListAllMeeting();
   },
   methods: {
     ...mapActions("quotedMessage", {
@@ -592,6 +776,13 @@ export default {
     }),
     ...mapActions("userStudyAnalytics", {
       getGoal: "getGoal",
+    }),
+    ...mapActions("viewAllMeeting", {
+      listAllMeeting: "listAllMeeting",
+      getAll: "getAll",
+    }),
+    ...mapActions("teacherMeeting", {
+      getInvitedMembers: "getInvitedMembers",
     }),
     goPrev() {
       this.calendarApi.prev(); // call a method on the Calendar object
@@ -637,6 +828,156 @@ export default {
     },
     openMeetingDetail() {
       $("#MeetingModal").modal({ backdrop: true });
+    },
+    async ListAllMeeting() {
+      this.loading = true;
+      await this.listAllMeeting({
+        search_id: "",
+        student_id: localStorage.getItem("id"),
+      });
+      console.log("consoling time zones ", this.timeZones);
+      this.loading = false;
+      this.dateConversion();
+    },
+    dateConversion() {
+      this.slot_date = [];
+      Teacherarray = [];
+      Peerarray = [];
+      Allarray = [];
+      var days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      this.allList.forEach((element) => {
+        var Scheduleobj = {};
+        const monthNames = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        this.meetingType = element.meeting_type;
+        var title = element.new_title;
+        var from = element.start_time;
+        var end = element.end_time;
+
+        var date = moment(element.date, "YYYY-MM-DD");
+        // var date = moment(element.date, "YYYY-MM-DD");
+        var dateFormat =
+          date.format("dddd") +
+          ", " +
+          date.format("D") +
+          " " +
+          date.format("MMMM");
+        var splitDate = element.date.split("-");
+
+        Scheduleobj["type"] = this.meetingType;
+        Scheduleobj["title"] = title;
+        Scheduleobj["dateFormat"] = dateFormat;
+        Scheduleobj["from"] = from;
+        Scheduleobj["end"] = end;
+        Scheduleobj["date"] = new Date(
+          splitDate[0],
+          splitDate[1] - 1,
+          splitDate[2]
+        );
+        Scheduleobj["meeting_description"] = element.meeting_description;
+        Scheduleobj["meeting_link"] = element.meeting_link;
+        Scheduleobj["meeting_location"] = element.meeting_location;
+        Scheduleobj["meeting_request"] = element.meeting_request;
+        Scheduleobj["meeting_name"] = element.meeting_name;
+        Scheduleobj["conversation_type"] = element.conversation_type;
+        Scheduleobj["new_title"] = element.new_title;
+        Scheduleobj["meeting_with"] =
+          this.meetingType == "Teacher"
+            ? element.new_title
+            : element.new_title
+            ? element.new_title.split(",")
+            : "";
+
+        Scheduleobj["meeting_id"] = element.id;
+        Scheduleobj["group_id"] = element.group_id;
+        Scheduleobj["request_id"] = element.request_id;
+        Scheduleobj["student_id"] = element.student_id;
+        Scheduleobj["schedule_id"] = element.schedule_id;
+        Scheduleobj["slot_id"] = element.slot_id;
+        Scheduleobj["teacher_id"] = element.teacher_id;
+        Scheduleobj["start_time"] = element.start_time;
+        Scheduleobj["date"] = element.date;
+        Scheduleobj["date_formatted"] =
+          date.format("YYYY") +
+          "-" +
+          date.format("MM") +
+          "-" +
+          date.format("DD");
+        let datesSplit = dateFormat.split(",");
+        let day = datesSplit[0].slice(0, 3);
+        let date_num = datesSplit[1];
+        Scheduleobj["date_day"] = day.toUpperCase();
+        Scheduleobj["date_number"] = date_num.split(" ")[1];
+
+        this.slot_date.push(Scheduleobj);
+        Allarray.push(Scheduleobj);
+        if (this.meetingType == "Teacher") {
+          Teacherarray.push(Scheduleobj);
+        } else if (this.meetingType == "Peer") {
+          Peerarray.push(Scheduleobj);
+        }
+      });
+    },
+    onCardClick(list) {
+      $("#meetingDetailModal").modal();
+      this.meetingDetail = list;
+      // this.selectedSlot = "";
+      // this.slot_date_selection = [];
+      // this.detailDate = list.date;
+      // this.detailDateFormat = list.date_formatted;
+      // this.detailTime = list.from + " to " + list.end;
+      // this.detailMeetingName = list.meeting_name;
+      // this.detailMeetingDesc = list.meeting_description;
+      // this.detailConversationType = list.conversation_type;
+      // this.detailVenue =
+      //   list.conversation_type == "In Person"
+      //     ? list.meeting_location
+      //     : list.meeting_link;
+      // this.detailType = list.type;
+      // this.detailWith = list.title;
+      // this.detailMeetingWith = list.meeting_with;
+      // this.detailMeetingId = list.meeting_id;
+      // this.detailMeetingId = list.meeting_id;
+      // this.detailGroupId = list.group_id;
+      // this.detailStudentId = list.student_id;
+      // this.detailRequestId = list.request_id;
+      // this.detailMeetingRequest = list.meeting_request;
+      // this.detailScheduleId = list.schedule_id;
+      // this.detailTeacherId = list.teacher_id;
+      // this.detailSlotId = list.slot_id;
+      // this.date_formatted = list.date_formatted;
+      // var dateF = list.date.split("-");
+      this.date = new Date(moment(list.date));
+      if (this.detailType != "Teacher") {
+        this.getMemberDetails();
+      }
+    },
+    async getMemberDetails() {
+      this.loading = true;
+      await this.getInvitedMembers({
+        group_id: this.detailGroupId,
+      });
+      this.loading = false;
     },
   },
 };
