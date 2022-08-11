@@ -1,286 +1,36 @@
 <template>
-  <div class="container-fluid main-container student-dashboard-main">
-    <div class="col-12">
-      <div class="row">
-        <div class="col-2">
-          <div class="sd-sidebar jochi-components-light-bg p-4">
-            <div class="sb-head-section">
-              <div class="display-picture-holder mb-3">
-                <img src="" alt="" />
-              </div>
-              <p class="sb-user-name mb-1">Hannah Scott</p>
-              <a href="#" class="sb-settings-btn">Settings</a>
-            </div>
-            <div class="sb-buttons-section">
-              <div class="sb-expand-btn my-3">
-                <div class="sb-btn-head d-flex align-items-center">
-                  <div class="sb-btn-icon mr-3">
-                    <img
-                      src="../static/image/Calendar.png"
-                      alt=""
-                      class="planner"
-                    />
-                  </div>
-                  Planner
-                </div>
-                <div class="sb-btn-content">
-                  <div class="sb-btn">Daily</div>
-                  <div class="sb-btn">Weekly</div>
-                  <div class="sb-btn">Monthly</div>
-                </div>
-              </div>
-              <div class="sb-expand-btn my-3">
-                <div class="sb-btn-head d-flex align-items-center">
-                  <div class="sb-btn-icon mr-3">
-                    <img
-                      src="../static/image/Call.png"
-                      alt=""
-                      class="meetings"
-                    />
-                  </div>
-                  Meetings
-                </div>
-              </div>
-              <div class="sb-expand-btn my-3">
-                <div class="sb-btn-head d-flex align-items-center">
-                  <div class="sb-btn-icon mr-3">
-                    <img
-                      src="../static/image/Football.png"
-                      alt=""
-                      class="teams-clubs"
-                    />
-                  </div>
-                  Teams & Clubs
-                </div>
-              </div>
-              <div class="sb-expand-btn my-3">
-                <div class="sb-btn-head d-flex align-items-center">
-                  <div class="sb-btn-icon mr-3">
-                    <img
-                      src="../static/image/Lot_of_book.png"
-                      alt=""
-                      class="study-room"
-                    />
-                  </div>
-                  Study Room
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-10">
-          <div
-            class="dashboard-main-content jochi-components-light-bg p-4 pl-5"
-          >
-            <div
-              class="dmc-head d-flex justify-content-between align-items-start"
-            >
-              <div class="greet-with-name-sec">
-                <p class="hello">Hello,</p>
-                <p class="name-section">Hannah</p>
-              </div>
-              <div class="faq-section d-flex align-items-center">
-                <div class="faq-btn mr-4">FAQs</div>
-                <div class="privacy-btn mr-4">Privacy Policy</div>
-                <div @click="logoutSession" class="privacy-btn mr-4">
-                  Logout
-                </div>
-              </div>
-            </div>
-            <div class="col-12 p-0">
-              <div class="row">
-                <div class="col-8">
-                  <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1">
-                    <div class="row position-relative">
-                      <div class="col-7"></div>
-                      <div
-                        class="dashboard-text-content-section position-absolute"
-                      >
-                        <p class="dashboard-head">Dashboard</p>
-                        <p class="dashboard-text-content">
-                          “Education is the passport to the future, for tomorrow
-                          belongs To those who prepare for it today.”<br />
-                          — Malcolm X
-                        </p>
-                      </div>
-                      <div class="col-5 p-0">
-                        <img
-                          src="../static/image/dashboard_img.png"
-                          alt=""
-                          class="img-fluid mt-4"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row mt-1">
-                    <div class="col-4">
-                      <div class="jochi-sub-components-light-bg h-100">
-                        <div
-                          class="
-                            study-status-card
-                            d-flex
-                            flex-column
-                            justify-content-between
-                            align-items-center
-                            h-100
-                          "
-                        >
-                          <div
-                            class="
-                              study-status-img-section
-                              position-relative
-                              my-4
-                            "
-                          >
-                            <div class="study-status-img">
-                              <img src="../static/image/alarm.png" alt="" />
-                            </div>
-                            <div
-                              class="study-status-progress position-absolute"
-                            ></div>
-                          </div>
-                          <div class="study-status-text text-center mb-2">
-                            <p class="study-status-studied mb-1">
-                              149 Minutes Studied Today
-                            </p>
-                            <p class="study-status-time-left">
-                              102 Minutes Left
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-8">
-                      <div class="col-12 faculty-availability-card mb-1">
-                        <div class="row">
-                          <div class="col-3 py-0">
-                            <div
-                              class="
-                                jochi-sub-components-light-bg
-                                fa-card-date
-                                d-flex
-                                flex-column
-                                align-items-center
-                                justify-content-center
-                                w-100
-                                p-3
-                              "
-                            >
-                              <p class="fac-day mb-1">MON</p>
-                              <p class="fac-date mb-0">11</p>
-                            </div>
-                          </div>
-                          <div class="col-9">
-                            <div
-                              class="
-                                d-flex
-                                justify-content-between
-                                align-items-center
-                              "
-                            >
-                              <div class="fa-meeting-faculty-details">
-                                <p class="mb-1 faculty-meeting-text">
-                                  Faculty Meeting
-                                </p>
-                                <p class="mb-1 faculty-name">Mr. Ronald</p>
-                                <div class="fa-time-section">6:00 pm</div>
-                              </div>
-                              <i class="arrow right"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 faculty-availability-card mb-1">
-                        <div class="row">
-                          <div class="col-3 py-0">
-                            <div
-                              class="
-                                jochi-sub-components-light-bg
-                                fa-card-date
-                                d-flex
-                                flex-column
-                                align-items-center
-                                justify-content-center
-                                w-100
-                                p-3
-                              "
-                            >
-                              <p class="fac-day mb-1">MON</p>
-                              <p class="fac-date mb-0">11</p>
-                            </div>
-                          </div>
-                          <div class="col-9">
-                            <div
-                              class="
-                                d-flex
-                                justify-content-between
-                                align-items-center
-                              "
-                            >
-                              <div class="fa-meeting-faculty-details">
-                                <p class="mb-1 faculty-meeting-text">
-                                  Faculty Meeting
-                                </p>
-                                <p class="mb-1 faculty-name">Mr. Ronald</p>
-                                <div class="fa-time-section">6:00 pm</div>
-                              </div>
-                              <i class="arrow right"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 faculty-availability-card mb-1">
-                        <div class="row">
-                          <div class="col-3 py-0">
-                            <div
-                              class="
-                                jochi-sub-components-light-bg
-                                fa-card-date
-                                d-flex
-                                flex-column
-                                align-items-center
-                                justify-content-center
-                                w-100
-                                p-3
-                              "
-                            >
-                              <p class="fac-day mb-1">MON</p>
-                              <p class="fac-date mb-0">11</p>
-                            </div>
-                          </div>
-                          <div class="col-9">
-                            <div
-                              class="
-                                d-flex
-                                justify-content-between
-                                align-items-center
-                              "
-                            >
-                              <div class="fa-meeting-faculty-details">
-                                <p class="mb-1 faculty-meeting-text">
-                                  Faculty Meeting
-                                </p>
-                                <p class="mb-1 faculty-name">Mr. Ronald</p>
-                                <div class="fa-time-section">6:00 pm</div>
-                              </div>
-                              <i class="arrow right"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="inner-section">
+    <!-- header -->
+
+    <!-- end section -->
+
+    <!-- sidebar -->
+
+    <div><UserSidebar /></div>
+
+    <!-- sidebar -->
+
+    <UserStudentDashboard />
   </div>
 </template>
-
 <script>
+import UserSidebar from "~/components/user/UserSidebar.vue";
+
+import UserStudentDashboard from "~/components/user/UserStudentDashboard.vue";
+export default {
+  // middleware: "authenticated",
+  head() {
+    return {
+      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+    };
+  },
+  data() {
+    return {};
+  },
+  mounted() {},
+};
+</script>
+<!-- <script>
 import StudentDashboard from "~/components/StudentDashboard.vue";
 import { mapState, mapActions } from "vuex";
 
@@ -316,7 +66,7 @@ export default {
     },
   },
 };
-</script>
+</script> -->
 
 <style>
 body {
