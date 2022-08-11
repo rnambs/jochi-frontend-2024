@@ -716,6 +716,7 @@
           class="d-flex position-absolute end-0 bottom-0 meeting-celebration"
         >
           <lottie
+            v-if="playCelebration"
             :options="lottieOptionsSuccess"
             v-on:animCreated="handleAnimation"
             class="position-absolute w-100 h-100 z-index-9"
@@ -788,6 +789,7 @@ export default {
       meeting_description: "",
       venue: "",
       submitted: false,
+      playCelebration: false,
     };
   },
   validations: {
@@ -1051,6 +1053,7 @@ export default {
           this.loading = false;
 
           if (this.successMessage != "") {
+            this.playCelebration = true;
             $('input[name="daterange"]').val("");
             fromDate = "";
             endDate = "";
@@ -1061,6 +1064,9 @@ export default {
 
             $(".modal-backdrop").remove();
             $("#meetingDetailModal").modal("hide");
+            const myTimeout = setTimeout(() => {
+              this.playCelebration = false;
+            }, 5000);
             this.resetValues();
             this.resetSelection();
             this.$toast.open({
@@ -1093,6 +1099,8 @@ export default {
           this.loading = false;
 
           if (this.successMessage != "") {
+            this.playCelebration = true;
+
             $('input[name="daterange"]').val("");
             fromDate = "";
             endDate = "";
@@ -1102,6 +1110,9 @@ export default {
             this.value = "";
             $(".modal-backdrop").remove();
             $("#meetingDetailModal").modal("hide");
+            const myTimeout = setTimeout(() => {
+              this.playCelebration = false;
+            }, 5000);
             this.resetValues();
             this.resetSelection();
             this.$toast.open({

@@ -46,18 +46,40 @@
           </div> -->
           <div class="position-relative profile-sidebar">
             <div
-              class="user-icon d-flex flex-column flex-lg-row notification-icon-section align-items-center justify-content-end position-md-absolute mb-3 mb-lg-0"
+              class="
+                user-icon
+                d-flex
+                flex-column flex-lg-row
+                notification-icon-section
+                align-items-center
+                justify-content-end
+                position-md-absolute
+                mb-3 mb-lg-0
+              "
             >
-              <a class="position-relative p-2" href="#">
-                <img src="../../static/image/Jochi Icons/home_hires.png" alt="" class="dark-icon">
-              </a>
+              <nuxt-link
+                to="/student-dashboard"
+                @click="$event.target.classList.toggle('active')"
+                class="nav-link btn p-0"
+                ><a class="position-relative p-2" href="#">
+                  <img
+                    src="../../static/image/Jochi Icons/home_hires.png"
+                    alt=""
+                    class="dark-icon"
+                  /> </a
+              ></nuxt-link>
+
               <div class="dropdown">
                 <a
                   class="dropdown-toggle position-relative p-2"
                   href="#"
                   data-toggle="dropdown"
                 >
-                  <img src="../../static/image/Jochi Icons/bell_hires.png" alt="" class="dark-icon">
+                  <img
+                    src="../../static/image/Jochi Icons/bell_hires.png"
+                    alt=""
+                    class="dark-icon"
+                  />
                   <span v-if="notificationCount > 0" class="notify-span">{{
                     notificationCount
                   }}</span>
@@ -77,7 +99,9 @@
                         my-2
                       "
                     >
-                      <h5 class="color-primary font-semi-bold mb-0">Notificaitons</h5>
+                      <h5 class="color-primary font-semi-bold mb-0">
+                        Notificaitons
+                      </h5>
                       <button
                         class="btn btn-secondary py-1 px-4 rounded-pill"
                         @click="clearNotifications()"
@@ -96,10 +120,20 @@
                         :key="index"
                         @click="onNotificationClick(data.id, data.title)"
                       >
-                        <span class="color-dark font-semi-bold text-14 text-wrap">{{ data.message }}</span>
-                        <span class="color-secondary text-12 font-regulat d-flex justify-content-end">{{
-                          data.timestamp
-                        }}</span>
+                        <span
+                          class="color-dark font-semi-bold text-14 text-wrap"
+                          >{{ data.message }}</span
+                        >
+                        <span
+                          class="
+                            color-secondary
+                            text-12
+                            font-regulat
+                            d-flex
+                            justify-content-end
+                          "
+                          >{{ data.timestamp }}</span
+                        >
                       </p>
                     </div>
                   </div>
@@ -113,7 +147,15 @@
                 </div>
               </div>
             </div>
-            <nuxt-link to="/user-profile" class="pr-0 pr-lg-4 d-flex flex-column align-items-center align-items-lg-start">
+            <nuxt-link
+              to="/user-profile"
+              class="
+                pr-0 pr-lg-4
+                d-flex
+                flex-column
+                align-items-center align-items-lg-start
+              "
+            >
               <img
                 v-bind:src="
                   profile && profile != 'null' ? profile : defaultImage
@@ -123,8 +165,24 @@
                 id="profileImage"
               />
               <!-- <img v-else src="../../assets/images/avatar/man_green.svg" class="rounded-circle img-profile" alt="" > -->
-              <div class="d-flex flex-column flex-lg-row align-items-center justify-cotent-center">
-                <h4 class="color-primary mb-0 font-semi-bold text-18 text-center text-lg-left">{{ firstName }}</h4>
+              <div
+                class="
+                  d-flex
+                  flex-column flex-lg-row
+                  align-items-center
+                  justify-cotent-center
+                "
+              >
+                <h4
+                  class="
+                    color-primary
+                    mb-0
+                    font-semi-bold
+                    text-18 text-center text-lg-left
+                  "
+                >
+                  {{ firstName }}
+                </h4>
               </div>
             </nuxt-link>
 
@@ -158,13 +216,40 @@
               </div>
             </div> -->
           </div>
-          <div class="menu-items  position-relative py-4 custom-scroll-for-side-menus d-flex flex-column flex-fill h-40">
+          <div
+            class="
+              menu-items
+              position-relative
+              py-4
+              custom-scroll-for-side-menus
+              d-flex
+              flex-column flex-fill
+              h-40
+            "
+          >
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
-                <div class="card-header bg-transparent border-0 p-1" id="headingOne">
+                <div
+                  class="card-header bg-transparent border-0 p-1"
+                  id="headingOne"
+                >
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
+                      class="
+                        btn btn-link
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        bg-transparent
+                        text-decoration-none text-18
+                        color-secondary
+                        btn-block
+                        text-left
+                        collapsed
+                        flex-fill
+                        px-0
+                        py-2 py-lg-2
+                      "
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -179,7 +264,10 @@
                           class="planner"
                         />
                       </div>
-                      <span class="ml-3 color-secondary text-capitalize font-medium">Planner</span>
+                      <span
+                        class="ml-3 color-secondary text-capitalize font-medium"
+                        >Planner</span
+                      >
                       <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
                   </div>
@@ -221,10 +309,27 @@
                 </div>
               </div>
               <div class="card bg-transparent shadow-none border-0mb-2">
-                <div class="card-header bg-transparent border-0 p-1" id="headingTwo">
+                <div
+                  class="card-header bg-transparent border-0 p-1"
+                  id="headingTwo"
+                >
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
+                      class="
+                        btn btn-link
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        bg-transparent
+                        text-decoration-none text-18
+                        color-secondary
+                        btn-block
+                        text-left
+                        collapsed
+                        flex-fill
+                        px-0
+                        py-2 py-lg-2
+                      "
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -239,7 +344,10 @@
                           class="meetings"
                         />
                       </div>
-                      <span class="ml-3 color-secondary text-capitalize font-medium">Meeting</span>
+                      <span
+                        class="ml-3 color-secondary text-capitalize font-medium"
+                        >Meeting</span
+                      >
                       <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
                   </div>
@@ -281,10 +389,27 @@
                 </div>
               </div>
               <div class="card bg-transparent shadow-none border-0 mb-2">
-                <div class="card-header bg-transparent border-0 p-1" id="headingThree">
+                <div
+                  class="card-header bg-transparent border-0 p-1"
+                  id="headingThree"
+                >
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
+                      class="
+                        btn btn-link
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        bg-transparent
+                        text-decoration-none text-18
+                        color-secondary
+                        btn-block
+                        text-left
+                        collapsed
+                        flex-fill
+                        px-0
+                        py-2 py-lg-2
+                      "
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -299,7 +424,10 @@
                           class="teams-clubs"
                         />
                       </div>
-                      <span class="ml-3 color-secondary text-capitalize font-medium">REVTernships</span>
+                      <span
+                        class="ml-3 color-secondary text-capitalize font-medium"
+                        >REVTernships</span
+                      >
                       <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
                   </div>
@@ -327,10 +455,27 @@
                 </div>
               </div>
               <div class="card bg-transparent shadow-none border-0 mb-2">
-                <div class="card-header bg-transparent border-0 p-1" id="headingFour">
+                <div
+                  class="card-header bg-transparent border-0 p-1"
+                  id="headingFour"
+                >
                   <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
+                      class="
+                        btn btn-link
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        bg-transparent
+                        text-decoration-none text-18
+                        color-secondary
+                        btn-block
+                        text-left
+                        collapsed
+                        flex-fill
+                        px-0
+                        py-2 py-lg-2
+                      "
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -345,7 +490,10 @@
                           class="study-room"
                         />
                       </div>
-                      <span class="ml-3 color-secondary text-capitalize font-medium">Study Room</span>
+                      <span
+                        class="ml-3 color-secondary text-capitalize font-medium"
+                        >Study Room</span
+                      >
                       <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
                   </div>
@@ -404,8 +552,8 @@
                         </div>
                         <span class="ml-3 color-secondary text-capitalize font-medium">FAQ</span>
                       </div> -->
-                      <!-- <a href="https://www.jochi.info/faqs">FAQ</a> -->
-                    <!--</button>
+          <!-- <a href="https://www.jochi.info/faqs">FAQ</a> -->
+          <!--</button>
                   </div>
                 </div>
               </div>
@@ -442,14 +590,25 @@
               </div>
             </div>
           </div> -->
-          <div class="menu-items  position-relative py-0">
+          <div class="menu-items position-relative py-0">
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
-                <div class="card-header bg-transparent border-0 p-1" id="headingOne">
+                <div
+                  class="card-header bg-transparent border-0 p-1"
+                  id="headingOne"
+                >
                   <div class="mb-0 d-flex">
                     <button
                       class="
-                        btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block px-0
+                        btn btn-link
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        bg-transparent
+                        text-decoration-none text-18
+                        color-secondary
+                        btn-block
+                        px-0
                         text-left
                         collapsed
                         justify-content-start
@@ -461,22 +620,20 @@
                       aria-expanded="false"
                       aria-controls="collapseOne"
                     >
-                    <a href="#" @click="GetLogout()" class="bottum-btn">
-                        
-                      <div class="font-icon d-inline-block">
-                        <i class="fas fa-sign-out-alt"></i
-                          >
-                      </div>
-                      <span
-                        class="
-                          ml-3
-                          color-secondary
-                          text-capitalize
-                          font-medium
-                        "
-                        >Logout</span
-                      >
-                    </a>
+                      <a href="#" @click="GetLogout()" class="bottum-btn">
+                        <div class="font-icon d-inline-block">
+                          <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <span
+                          class="
+                            ml-3
+                            color-secondary
+                            text-capitalize
+                            font-medium
+                          "
+                          >Logout</span
+                        >
+                      </a>
                     </button>
                   </div>
                 </div>

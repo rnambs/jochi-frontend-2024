@@ -13,6 +13,7 @@ const state = {
   meetingList: [],
   subjectsData: [],
   assignmentsList: [],
+  sharedAssignmentsList: [],
   completedAssignments: []
 
 }
@@ -116,6 +117,7 @@ const actions = {
         },
       });
       commit('setAssignmentsList', response.assignments);
+      commit('setSharedAssignmentsList', response.shared_assignments);
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -388,6 +390,9 @@ const mutations = {
   setAssignmentsList(state, data) {
     state.assignmentsList = data;
   },
+  setSharedAssignmentsList(state, data) {
+    state.sharedAssignmentsList = data;
+  },
   setCompletedAssignments(state, data) {
     state.completedAssignments = data;
   },
@@ -429,6 +434,9 @@ const getters = {
   },
   assignmentsList: () => {
     return state.assignmentsList;
+  },
+  sharedAssignmentsList: () => {
+    return state.sharedAssignmentsList;
   },
   completedAssignments: () => {
     return state.completedAssignments;

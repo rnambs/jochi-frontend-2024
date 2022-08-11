@@ -158,7 +158,7 @@
                       <div class="row">
                         <div
                           class="col-6 py-4"
-                          v-for="item in assignmentsList"
+                          v-for="item in pendingAssignments"
                           :key="item.id"
                         >
                           <drag class="drag h-100" :transfer-data="{ item }">
@@ -293,22 +293,24 @@
                                 </div>
                               </div> -->
                               <div
+                                v-for="peer in item.peers"
+                                :key="peer"
                                 class="
                                   add-person-section
                                   position-absolute
                                   top-0
                                 "
                               >
-                                <div
+                                <div class="ap-img-section mr--3 shadow-sm">
+                                  <img :src="peer.profile_pic" alt="" />
+                                </div>
+                                <!-- <div
                                   class="ap-img-section mr--3 shadow-sm"
                                 ></div>
                                 <div
                                   class="ap-img-section mr--3 shadow-sm"
                                 ></div>
-                                <div
-                                  class="ap-img-section mr--3 shadow-sm"
-                                ></div>
-                                <div class="ap-img-section shadow-sm"></div>
+                                <div class="ap-img-section shadow-sm"></div> -->
                                 <!-- <div class="ap-img-add">
                               <img src="~/static/image/add-btn.png" alt="" />
                             </div> -->
@@ -322,10 +324,17 @@
                   <!-- drag end -->
                   <div class="d-flex flex-column pt-3 h-40 flex-fill">
                     <drop
-                      class="drop color-secondary text-16 h-100 d-flex flex-column"
+                      class="
+                        drop
+                        color-secondary
+                        text-16
+                        h-100
+                        d-flex
+                        flex-column
+                      "
                       @drop="handleDrop"
                     >
-                      <h2 class="color-primary font-semi-bold px-5 ">
+                      <h2 class="color-primary font-semi-bold px-5">
                         Completed Today
                       </h2>
                       <p class="mb-0 px-5 color-secondary font-regular">
@@ -484,7 +493,9 @@
                           </div>
                         </div>
                       </div> -->
-                      <div class="d-flex flex-column custom-overflow pr-3 me--3">
+                      <div
+                        class="d-flex flex-column custom-overflow pr-3 me--3"
+                      >
                         <form ref="assignmentForm" id="assignmentForm">
                           <div class="form-group">
                             <label for="recipient-name" class="col-form-label"
@@ -563,7 +574,9 @@
                               }"
                             ></textarea>
                             <div
-                              v-if="submitted && $v.assignmentDescription.$error"
+                              v-if="
+                                submitted && $v.assignmentDescription.$error
+                              "
                               class="invalid-feedback"
                             >
                               <span v-if="!$v.assignmentDescription.required"
@@ -574,7 +587,9 @@
                           <div class="row">
                             <div class="col-md-6 ml-auto">
                               <div class="form-group mb-0">
-                                <label for="recipient-name" class="col-form-label"
+                                <label
+                                  for="recipient-name"
+                                  class="col-form-label"
                                   >Priority<em>*</em></label
                                 >
                                 <div class="dropdown input-icon-area">
@@ -634,7 +649,9 @@
                             </div>
                             <div class="col-md-6 ml-auto">
                               <div class="form-group">
-                                <label for="recipient-name" class="col-form-label"
+                                <label
+                                  for="recipient-name"
+                                  class="col-form-label"
                                   >Date<em>*</em></label
                                 >
                                 <date-picker
@@ -662,7 +679,9 @@
                           <div class="row mt-0">
                             <div class="col-6">
                               <div class="form-group">
-                                <label for="recipient-name" class="col-form-label"
+                                <label
+                                  for="recipient-name"
+                                  class="col-form-label"
                                   >Time<em>*</em></label
                                 >
                                 <div>
@@ -731,7 +750,13 @@
                             </div>
                           </div>
                           <div
-                            class="custom-overflow pr-2 mr--2 d-flex flex-column"
+                            class="
+                              custom-overflow
+                              pr-2
+                              mr--2
+                              d-flex
+                              flex-column
+                            "
                           >
                             <div v-for="subTask in subTasksList" :key="subTask">
                               <div
@@ -773,7 +798,7 @@
                               </div>
                             </div>
                           </div>
-  
+
                           <div
                             class="
                               d-flex
@@ -806,7 +831,9 @@
                                 track-by="first_name"
                                 label="first_name"
                                 :placeholder="
-                                  peerSelected.length > 3 ? '' : 'Select students'
+                                  peerSelected.length > 3
+                                    ? ''
+                                    : 'Select students'
                                 "
                                 :multiple="true"
                                 :max="4"
@@ -1461,6 +1488,7 @@ export default {
       completeSubTasktId: 0,
       openAssignment: false,
       isAddAssignment: true,
+      pendingAssignments: [],
     };
   },
   mounted() {
@@ -1551,9 +1579,11 @@ export default {
       errorType: (state) => state.errorType,
       subjectsData: (state) => state.subjectsData,
       assignmentsList: (state) => state.assignmentsList,
+      sharedAssignmentsList: (state) => state.sharedAssignmentsList,
       completedAssignments: (state) => state.completedAssignments,
     }),
     ...mapState("teacherMeeting", {
+      students: (state) => state.students,
       students: (state) => state.students,
     }),
   },
@@ -2064,8 +2094,46 @@ export default {
       this.invitePeer = false;
     },
     async getAssignmentsList() {
+      this.pendingAssignments = [];
       await this.getAssignments();
       console.log(this.assignmentsList);
+      console.log(this.sharedAssignmentsList);
+      this.mapAssignments();
+    },
+    mapAssignments() {
+      if (this.assignmentsList && this.assignmentsList.length > 0) {
+        this.assignmentsList.forEach((e) => {
+          let item = {};
+          item.assignment_description = e.assignment_description;
+          item.assignment_materials = e.assignment_materials;
+          item.completed_date = e.completed_date;
+          item.dueTimeFormat = e.dueTimeFormat;
+          item.due_date = e.due_date;
+          item.due_time = e.due_time;
+          item.id = e.id;
+          item.priority = e.priority;
+          item.schoologyAssignment = e.schoologyAssignment;
+          item.schoologyAssignmentId = e.schoologyAssignmentId;
+          item.subTasks = e.subTasks;
+          item.subject = e.subject;
+          item.subjects = e.subjects;
+          item.task = e.task;
+          item.task_status = e.task_status;
+          item.updatedAt = e.updatedAt;
+          item.user_id = e.user_id;
+          item.peers = this.mapPeers(e.id);
+          this.pendingAssignments.push(item);
+        });
+      }
+    },
+    mapPeers(id) {
+      let peers = [];
+      if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
+        this.peers = this.sharedAssignmentsList.filter(
+          (e) => e.assignment_id == id
+        );
+      }
+      return peers;
     },
     handleDrop(data, event) {
       $("#completeConfirm").modal({ backdrop: true });
