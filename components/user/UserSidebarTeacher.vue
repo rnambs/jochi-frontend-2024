@@ -92,6 +92,7 @@
                       </p>
                     </div>
                   </div>
+
                   <div
                     class="notifications dropdown-item px-2 no-notify"
                     v-if="!notificationList || notificationList.length == 0"
@@ -137,7 +138,6 @@
                 >
                   {{ firstName }}
                 </h4>
-               
               </div>
             </nuxt-link>
           </div>
@@ -732,10 +732,8 @@
                       aria-controls="collapseOne"
                     >
                       <a href="#" @click="GetLogout()" class="bottum-btn">
-                        
                         <div class="font-icon d-inline-block">
-                          <i class="fas fa-sign-out-alt"></i
-                            >
+                          <i class="fas fa-sign-out-alt"></i>
                         </div>
                         <span
                           class="
@@ -861,9 +859,11 @@ export default {
     async onNotificationClick(id, type) {
       await this.markNotificationAsRead(id);
       if (type == "Club Meeting") {
-        this.$router.push("/club-detail");
-      } else {
-        this.$router.push("/viewall-meeting");
+        this.$router.push("/clubs");
+      } else if (type == "Student Meeting") {
+        this.$router.push("/teacher-appointment");
+      } else if (type == "Meeting Request") {
+        this.$router.push("/teacher-appointment");
       }
       this.getNotificationsList();
     },
