@@ -1,6 +1,5 @@
 <template>
-  <div class="container-fluid main-container student-dashboard-main">
-    <div class="col-12">
+  <div class="main-section">
       <!-- <div class="row"> -->
       <!-- <div class="col-2">
           <div class="sd-sidebar jochi-components-light-bg p-4">
@@ -69,7 +68,15 @@
           </div>
         </div> -->
       <!-- <div class="col-10"> -->
-      <div class="dashboard-main-content jochi-components-light-bg p-4 pl-5">
+      <div class="
+      jochi-components-light-bg
+      p-4
+      custom-margin-for-main-section custom-full-height
+      d-flex
+      flex-column
+      position-realtive
+      custom-overflow
+    ">
         <div class="dmc-head d-flex justify-content-between align-items-start">
           <div class="greet-with-name-sec">
             <p class="hello">Hello,</p>
@@ -81,9 +88,12 @@
             <div @click="logoutSession" class="privacy-btn mr-4">Logout</div>
           </div>
         </div>
-        <div class="col-12 p-0">
-          <div class="row">
-            <div class="col-8">
+        <div class="d-flex flex-column h-40 flex-fill">
+          
+          <div class="row h-100">
+            <div class="col-8 h-100">
+              <div class="d-flex flex-column h-100">
+                
               <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1">
                 <div class="row position-relative">
                   <div class="col-7"></div>
@@ -104,165 +114,261 @@
                   </div>
                 </div>
               </div>
-              <div class="row mt-1">
-                <div class="col-4">
-                  <div class="jochi-sub-components-light-bg h-100">
-                    <div
-                      class="
-                        study-status-card
-                        d-flex
-                        flex-column
-                        justify-content-between
-                        align-items-center
-                        h-100
-                      "
-                    >
+              <div class="d-flex flex-column h-40 flex-fill">
+                <div class="row mt-1 h-100">
+                  <div class="col-4">
+                    <div class="jochi-sub-components-light-bg ">
                       <div
-                        class="study-status-img-section position-relative my-4"
+                        class="
+                          study-status-card
+                          d-flex
+                          flex-column
+                          justify-content-center
+                          align-items-center
+                          h-100
+                        "
                       >
-                        <div class="study-status-img">
-                          <img src="/static/image/alarm.png" alt="" />
-                        </div>
                         <div
-                          class="study-status-progress position-absolute"
-                        ></div>
-                      </div>
-                      <div class="study-status-text text-center mb-2">
-                        <p class="study-status-studied mb-1">
-                          149 Minutes Studied Today
-                        </p>
-                        <p class="study-status-time-left">102 Minutes Left</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-8">
-                  <div class="col-12 faculty-availability-card mb-1">
-                    <div class="row">
-                      <div class="col-3 py-0">
-                        <div
-                          class="
-                            jochi-sub-components-light-bg
-                            fa-card-date
-                            d-flex
-                            flex-column
-                            align-items-center
-                            justify-content-center
-                            w-100
-                            p-3
-                          "
+                          class="study-status-img-section position-relative my-4"
                         >
-                          <p class="fac-day mb-1">MON</p>
-                          <p class="fac-date mb-0">11</p>
-                        </div>
-                      </div>
-                      <div class="col-9">
-                        <div
-                          class="
-                            d-flex
-                            justify-content-between
-                            align-items-center
-                          "
-                        >
-                          <div class="fa-meeting-faculty-details">
-                            <p class="mb-1 faculty-meeting-text">
-                              Faculty Meeting
-                            </p>
-                            <p class="mb-1 faculty-name">Mr. Ronald</p>
-                            <div class="fa-time-section">6:00 pm</div>
+                          <div class="study-status-img">
+                            <img src="/static/image/alarm.png" alt="" />
                           </div>
-                          <i class="arrow right"></i>
+                          <div
+                            class="study-status-progress position-absolute"
+                          ></div>
+                        </div>
+                        <div class="study-status-text text-center mb-2">
+                          <p class="study-status-studied mb-1">
+                            149 Minutes Studied Today
+                          </p>
+                          <p class="study-status-time-left">102 Minutes Left</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-12 faculty-availability-card mb-1">
-                    <div class="row">
-                      <div class="col-3 py-0">
-                        <div
-                          class="
-                            jochi-sub-components-light-bg
-                            fa-card-date
-                            d-flex
-                            flex-column
-                            align-items-center
-                            justify-content-center
-                            w-100
-                            p-3
-                          "
-                        >
-                          <p class="fac-day mb-1">MON</p>
-                          <p class="fac-date mb-0">11</p>
+                  <div class="col-8 h-100 px-0">
+                    <div class="d-flex flex-column hidden-scroll  faculty-availability-card-outer h-100 p-3 py-4">
+                      <div class="row">
+                        <div class="col-12 faculty-availability-card mb-2">
+                          <div class="row">
+                            <div class="col-3 py-0">
+                              <div
+                                class="
+                                  jochi-sub-components-light-bg
+                                  fa-card-date
+                                  d-flex
+                                  flex-column
+                                  align-items-center
+                                  justify-content-center
+                                  w-100
+                                  p-3
+                                "
+                              >
+                                <p class="fac-day mb-1">MON</p>
+                                <p class="fac-date mb-0">11</p>
+                              </div>
+                            </div>
+                            <div class="col-9">
+                              <div
+                                class="
+                                  d-flex
+                                  justify-content-between
+                                  align-items-center
+                                "
+                              >
+                                <div class="fa-meeting-faculty-details">
+                                  <p class="mb-1 faculty-meeting-text">
+                                    Faculty Meeting
+                                  </p>
+                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
+                                  <div class="fa-time-section">6:00 pm</div>
+                                </div>
+                                <i class="arrow right"></i>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div class="col-9">
-                        <div
-                          class="
-                            d-flex
-                            justify-content-between
-                            align-items-center
-                          "
-                        >
-                          <div class="fa-meeting-faculty-details">
-                            <p class="mb-1 faculty-meeting-text">
-                              Faculty Meeting
-                            </p>
-                            <p class="mb-1 faculty-name">Mr. Ronald</p>
-                            <div class="fa-time-section">6:00 pm</div>
+                      <div class="row">
+                        <div class="col-12 faculty-availability-card mb-2">
+                          <div class="row">
+                            <div class="col-3 py-0">
+                              <div
+                                class="
+                                  jochi-sub-components-light-bg
+                                  fa-card-date
+                                  d-flex
+                                  flex-column
+                                  align-items-center
+                                  justify-content-center
+                                  w-100
+                                  p-3
+                                "
+                              >
+                                <p class="fac-day mb-1">MON</p>
+                                <p class="fac-date mb-0">11</p>
+                              </div>
+                            </div>
+                            <div class="col-9">
+                              <div
+                                class="
+                                  d-flex
+                                  justify-content-between
+                                  align-items-center
+                                "
+                              >
+                                <div class="fa-meeting-faculty-details">
+                                  <p class="mb-1 faculty-meeting-text">
+                                    Faculty Meeting
+                                  </p>
+                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
+                                  <div class="fa-time-section">6:00 pm</div>
+                                </div>
+                                <i class="arrow right"></i>
+                              </div>
+                            </div>
                           </div>
-                          <i class="arrow right"></i>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 faculty-availability-card mb-2">
+                          <div class="row">
+                            <div class="col-3 py-0">
+                              <div
+                                class="
+                                  jochi-sub-components-light-bg
+                                  fa-card-date
+                                  d-flex
+                                  flex-column
+                                  align-items-center
+                                  justify-content-center
+                                  w-100
+                                  p-3
+                                "
+                              >
+                                <p class="fac-day mb-1">MON</p>
+                                <p class="fac-date mb-0">11</p>
+                              </div>
+                            </div>
+                            <div class="col-9">
+                              <div
+                                class="
+                                  d-flex
+                                  justify-content-between
+                                  align-items-center
+                                "
+                              >
+                                <div class="fa-meeting-faculty-details">
+                                  <p class="mb-1 faculty-meeting-text">
+                                    Faculty Meeting
+                                  </p>
+                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
+                                  <div class="fa-time-section">6:00 pm</div>
+                                </div>
+                                <i class="arrow right"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 faculty-availability-card mb-2">
+                          <div class="row">
+                            <div class="col-3 py-0">
+                              <div
+                                class="
+                                  jochi-sub-components-light-bg
+                                  fa-card-date
+                                  d-flex
+                                  flex-column
+                                  align-items-center
+                                  justify-content-center
+                                  w-100
+                                  p-3
+                                "
+                              >
+                                <p class="fac-day mb-1">MON</p>
+                                <p class="fac-date mb-0">11</p>
+                              </div>
+                            </div>
+                            <div class="col-9">
+                              <div
+                                class="
+                                  d-flex
+                                  justify-content-between
+                                  align-items-center
+                                "
+                              >
+                                <div class="fa-meeting-faculty-details">
+                                  <p class="mb-1 faculty-meeting-text">
+                                    Faculty Meeting
+                                  </p>
+                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
+                                  <div class="fa-time-section">6:00 pm</div>
+                                </div>
+                                <i class="arrow right"></i>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 faculty-availability-card mb-2">
+                          <div class="row">
+                            <div class="col-3 py-0">
+                              <div
+                                class="
+                                  jochi-sub-components-light-bg
+                                  fa-card-date
+                                  d-flex
+                                  flex-column
+                                  align-items-center
+                                  justify-content-center
+                                  w-100
+                                  p-3
+                                "
+                              >
+                                <p class="fac-day mb-1">MON</p>
+                                <p class="fac-date mb-0">11</p>
+                              </div>
+                            </div>
+                            <div class="col-9">
+                              <div
+                                class="
+                                  d-flex
+                                  justify-content-between
+                                  align-items-center
+                                "
+                              >
+                                <div class="fa-meeting-faculty-details">
+                                  <p class="mb-1 faculty-meeting-text">
+                                    Faculty Meeting
+                                  </p>
+                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
+                                  <div class="fa-time-section">6:00 pm</div>
+                                </div>
+                                <i class="arrow right"></i>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-12 faculty-availability-card mb-1">
-                    <div class="row">
-                      <div class="col-3 py-0">
-                        <div
-                          class="
-                            jochi-sub-components-light-bg
-                            fa-card-date
-                            d-flex
-                            flex-column
-                            align-items-center
-                            justify-content-center
-                            w-100
-                            p-3
-                          "
-                        >
-                          <p class="fac-day mb-1">MON</p>
-                          <p class="fac-date mb-0">11</p>
-                        </div>
-                      </div>
-                      <div class="col-9">
-                        <div
-                          class="
-                            d-flex
-                            justify-content-between
-                            align-items-center
-                          "
-                        >
-                          <div class="fa-meeting-faculty-details">
-                            <p class="mb-1 faculty-meeting-text">
-                              Faculty Meeting
-                            </p>
-                            <p class="mb-1 faculty-name">Mr. Ronald</p>
-                            <div class="fa-time-section">6:00 pm</div>
-                          </div>
-                          <i class="arrow right"></i>
-                        </div>
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               </div>
+              </div>
             </div>
-          </div>
+            <div class="col-4">
+              yes
+            </div>
+        </div>
         </div>
         <!-- </div> -->
       </div>
       <!-- </div> -->
-    </div>
   </div>
 </template>
 

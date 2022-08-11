@@ -879,6 +879,10 @@ img.dark-icon {
   bottom: 12px;
 }
 
+.faculty-availability-card-outer {
+  min-height: 274px;
+}
+
 .main-container {
   color: #B4B4B4;
   background-image: url("./../image/jochi-light-bg.png");
