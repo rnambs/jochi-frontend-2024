@@ -8,8 +8,8 @@
     />
     <div class="main-section">
       <!-- Weekly Calander -->
-        <section id="Weekly-Calander" class="">
-          <!-- <div class="element-section container-fluid">
+      <section id="Weekly-Calander" class="">
+        <!-- <div class="element-section container-fluid">
             
             <div class="row mt-2">
               <div class="col-12 p-0">
@@ -19,8 +19,8 @@
               </div>
             </div>
           </div> -->
-          <!-- Modal -->
-          <!-- <div
+        <!-- Modal -->
+        <!-- <div
             class="modal fade"
             id="exampleModalCenter"
             tabindex="-1"
@@ -305,153 +305,253 @@
               </div>
             </div>
           </div> -->
-          <!-- edit modal -->
+        <!-- edit modal -->
 
-          <div class="custom-margin-for-main-section custom-full-height d-flex jochi-main-content-container">
-            <div class="row">
-              <div class="col-12 position-realtive">
-                <div
-                  class="
-                    dashboard-main-content
-                    jochi-components-light-bg
-                    position-relative
-                  "
-                >
+        <div
+          class="
+            custom-margin-for-main-section custom-full-height
+            d-flex
+            jochi-main-content-container
+          "
+        >
+          <div class="row">
+            <div class="col-12 position-realtive">
+              <div
+                class="
+                  dashboard-main-content
+                  jochi-components-light-bg
+                  position-relative
+                "
+              >
                 <div class="planner-week p-4 px-3 px-sm-5">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-                 
-                  <div
-                    class="
-                      planner-action-btns
-                      d-flex
-                      align-items-center
-                      position-absolute
-                    "
+
+                <div
+                  class="
+                    planner-action-btns
+                    d-flex
+                    align-items-center
+                    position-absolute
+                  "
+                >
+                  <button
+                    class="pa-btn btn filter-btn mr-3"
+                    @click="filterPlanner()"
+                    id="filterPlanner"
                   >
-                    <button
-                      class="pa-btn btn filter-btn mr-3"
-                      @click="filterPlanner()"
-                      id="filterPlanner"
+                    Filter Planner
+                  </button>
+                  <button
+                    class="pa-btn assignment-f-btn btn"
+                    @click="assignmentPlanner()"
+                    id="assignmentPlanner"
+                  >
+                    Assignment Planner
+                  </button>
+                </div>
+                <div
+                  class="
+                    col-10 col-md-11 col-lg-8
+                    p-0
+                    position-absolute
+                    assignment-planner-section
+                  "
+                  id="assignPlanSection"
+                >
+                  <div class="position-realtive h-100">
+                    <div
+                      class="
+                        dashboard-main-content
+                        jochi-components-light-bg
+                        py-4
+                        h-100
+                        d-flex
+                        flex-column
+                      "
                     >
-                      Filter Planner
-                    </button>
-                    <button
-                      class="pa-btn assignment-f-btn btn"
-                      @click="assignmentPlanner()"
-                      id="assignmentPlanner"
-                    >
-                      Assignment Planner
-                    </button>
-                  </div>
-                  <div class="col-10 col-md-11 col-lg-8 p-0 position-absolute assignment-planner-section" id="assignPlanSection">
-                    <div class="position-realtive h-100">
-                      <div class="dashboard-main-content jochi-components-light-bg py-4 h-100 d-flex flex-column">
-                        <div class="d-flex justify-content-between align-items-center px-5 pb-3">
-                          <h3 class="color-primary font-semi-bold">Pending</h3>
-                          <button class="btn btn-dark py-1 px-3">
-                            Add Assignment
-                          </button>
-                        </div>
-                        <div class="d-flex flex-column h-40 flex-fill hidden-scroll py-4 px-5">
-                          <div>
-                            <div class="row">
-                              <div class="col-6 px-0">
-                                <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100" @click="addAssignment()">
-                                  <div class="assignment-tag-section d-flex align-items-center mb-2">
-                                    <div class="assignment-tag red mr-2">Urgent</div>
-                                    <div class="assignment-tag pink">AP French</div>
+                      <div
+                        class="
+                          d-flex
+                          justify-content-between
+                          align-items-center
+                          px-5
+                          pb-3
+                        "
+                      >
+                        <h3 class="color-primary font-semi-bold">Pending</h3>
+                        <button class="btn btn-dark py-1 px-3">
+                          Add Assignment
+                        </button>
+                      </div>
+                      <div
+                        class="
+                          d-flex
+                          flex-column
+                          h-40
+                          flex-fill
+                          hidden-scroll
+                          py-4
+                          px-5
+                        "
+                      >
+                        <div>
+                          <div class="row">
+                            <div class="col-6 px-0">
+                              <div
+                                class="
+                                  jochi-sub-components-light-bg
+                                  drag-drop
+                                  p-4
+                                  position-realtive
+                                  h-100
+                                "
+                                @click="addAssignment()"
+                              >
+                                <div
+                                  class="
+                                    assignment-tag-section
+                                    d-flex
+                                    align-items-center
+                                    mb-2
+                                  "
+                                >
+                                  <div class="assignment-tag red mr-2">
+                                    Urgent
                                   </div>
-                                  <div class="assignment-add-section">
-                                    <h4 class="mb-0 text-center">French Oral Practice</h4>
-                                    <div class="text-center px-3">
-                                      <p>Practice for mock oral exam in class</p>
-                                    </div>
+                                  <div class="assignment-tag pink">
+                                    AP French
                                   </div>
-                                  <div class="sub-task-section mb-3">
-                                    <h6>Sub-tasks</h6>
-                                    <div class="pl-2 d-flex align-items-center color-secondary">
-                                      <input type="radio" class="mr-2" />
-                                      <label for="" class="mb-0">Study Vocab List</label>
-                                    </div>
-                                    <div class="pl-2 d-flex align-items-center color-secondary">
-                                      <input type="radio" class="mr-2" />
-                                      <label for="" class="mb-0"
-                                        >Start typing to add subtasks</label
+                                </div>
+                                <div class="assignment-add-section">
+                                  <h4 class="mb-0 text-center">
+                                    French Oral Practice
+                                  </h4>
+                                  <div class="text-center px-3">
+                                    <p>Practice for mock oral exam in class</p>
+                                  </div>
+                                </div>
+                                <div class="sub-task-section mb-3">
+                                  <h6>Sub-tasks</h6>
+                                  <div
+                                    class="
+                                      pl-2
+                                      d-flex
+                                      align-items-center
+                                      color-secondary
+                                    "
+                                  >
+                                    <input type="radio" class="mr-2" />
+                                    <label for="" class="mb-0"
+                                      >Study Vocab List</label
+                                    >
+                                  </div>
+                                  <div
+                                    class="
+                                      pl-2
+                                      d-flex
+                                      align-items-center
+                                      color-secondary
+                                    "
+                                  >
+                                    <input type="radio" class="mr-2" />
+                                    <label for="" class="mb-0"
+                                      >Start typing to add subtasks</label
+                                    >
+                                  </div>
+                                </div>
+                                <div class="addition-material-section">
+                                  <h6 class="mb-1 font-medium">
+                                    Additional Material
+                                  </h6>
+                                  <div
+                                    class="
+                                      d-flex
+                                      align-items-center
+                                      justify-content-between
+                                    "
+                                  >
+                                    <div class="col-8 py-0 pl-0 material-link">
+                                      <span class="color-secondary"
+                                        >Rubric:
+                                        https://docs.google.com/document/...</span
                                       >
                                     </div>
-                                  </div>
-                                  <div class="addition-material-section">
-                                    <h6 class="mb-1 font-medium">Additional Material</h6>
                                     <div
                                       class="
-                                        d-flex
-                                        align-items-center
-                                        justify-content-between
+                                        col-4
+                                        material-date
+                                        py-0
+                                        text-right
                                       "
                                     >
-                                      <div class="col-8 py-0 pl-0 material-link">
-                                        <span class="color-secondary">Rubric: https://docs.google.com/document/...</span>
-                                      </div>
-                                      <div class="col-4 material-date py-0 text-right">
-                                        12/04/22
-                                      </div>
+                                      12/04/22
                                     </div>
                                   </div>
-                                  <div class="upload-file-section mt-2">
-                                    <div class="d-flex align-items-center">
-                                      <div class="col-2 p-0">
-                                        <select
-                                          class="form-select form-control"
-                                          aria-label="Default select example"
-                                        >
-                                          <option selected>Type</option>
-                                          <option value="1">One</option>
-                                          <option value="2">Two</option>
-                                          <option value="3">Three</option>
-                                        </select>
-                                      </div>
-                                      <div class="col-8 py-0 px-1">
-                                        <input
-                                          type="text"
-                                          class="form-control px-2"
-                                          placeholder="Paste Link or Upload File"
-                                        />
-                                      </div>
-                                      <div class="col-2 p-0">
-                                        <input
-                                          type="submit"
-                                          class="form-control"
-                                          value="Add"
-                                        />
-                                      </div>
+                                </div>
+                                <div class="upload-file-section mt-2">
+                                  <div class="d-flex align-items-center">
+                                    <div class="col-2 p-0">
+                                      <select
+                                        class="form-select form-control"
+                                        aria-label="Default select example"
+                                      >
+                                        <option selected>Type</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                      </select>
+                                    </div>
+                                    <div class="col-8 py-0 px-1">
+                                      <input
+                                        type="text"
+                                        class="form-control px-2"
+                                        placeholder="Paste Link or Upload File"
+                                      />
+                                    </div>
+                                    <div class="col-2 p-0">
+                                      <input
+                                        type="submit"
+                                        class="form-control"
+                                        value="Add"
+                                      />
                                     </div>
                                   </div>
-                                  <div class="add-person-section position-absolute top-0">
-                                    <div
-                                      class="ap-img-section mr--3 shadow-sm"
-                                    ></div>
-                                    <div
-                                      class="ap-img-section mr--3 shadow-sm"
-                                    ></div>
-                                    <div
-                                      class="ap-img-section mr--3 shadow-sm"
-                                    ></div>
-                                    <div class="ap-img-section shadow-sm"></div>
-                                    
-                                    <!-- <div class="ap-img-add">
+                                </div>
+                                <div
+                                  class="
+                                    add-person-section
+                                    position-absolute
+                                    top-0
+                                  "
+                                >
+                                  <div
+                                    class="ap-img-section mr--3 shadow-sm"
+                                  ></div>
+                                  <div
+                                    class="ap-img-section mr--3 shadow-sm"
+                                  ></div>
+                                  <div
+                                    class="ap-img-section mr--3 shadow-sm"
+                                  ></div>
+                                  <div class="ap-img-section shadow-sm"></div>
+
+                                  <!-- <div class="ap-img-add">
                                       <img src="~/static/image/add-btn.png" alt="" />
                                     </div> -->
-                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        
-                      <div class="d-flex flex-column px-5 pt-3"> 
+                      </div>
+
+                      <div class="d-flex flex-column px-5 pt-3">
                         <h3 class="color-primary font-semi-bold">Completed</h3>
-                        <span class="drop color-secondary text-16">Drag and drop your assignment here when it is completed</span>
+                        <span class="drop color-secondary text-16"
+                          >Drag and drop your assignment here when it is
+                          completed</span
+                        >
                         <div>
                           <div class="row mt-1">
                             <div class="col-6">
@@ -485,13 +585,30 @@
                           </div>
                         </div>
                       </div>
-                      
-                      </div>
-                      <div class="jochi-components-light-bg p-4 pl-5 position-absolute pending-assignment-popup">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <h1>Test</h1>
-                          <button class="btn pending-popup-close-btn" @click="pendingPopupclose()">x</button>
-                        </div>
+                    </div>
+                    <div
+                      class="
+                        jochi-components-light-bg
+                        p-4
+                        pl-5
+                        position-absolute
+                        pending-assignment-popup
+                      "
+                    >
+                      <div
+                        class="
+                          d-flex
+                          justify-content-between
+                          align-items-center
+                        "
+                      >
+                        <h1>Test</h1>
+                        <button
+                          class="btn pending-popup-close-btn"
+                          @click="pendingPopupclose()"
+                        >
+                          x
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -499,9 +616,10 @@
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- <div
+      <!-- <div
           class="
             planner-action-btns
             d-flex
@@ -680,9 +798,54 @@
             </div>
           </div>
         </div> -->
-      </div>
+    </div>
 
-      <!-- End Weekly Calander -->
+    <!-- filter modal -->
+    <div
+      class="modal fade"
+      id="filterModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              Choose Filter
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body px-4">
+            <select
+              class="form-control"
+              tabindex=""
+              v-model="filterType"
+              :class="{
+                'is-invalid': submitted && $v.Subject.$error,
+              }"
+            >
+              <option value="">Select Filter</option>
+
+              <option>Meeting</option>
+              <option>Meeting</option>
+              <option>Meeting</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- filter modal end -->
+
+    <!-- End Weekly Calander -->
   </div>
 </template>
 <script>
@@ -770,6 +933,7 @@ export default {
           },
         },
       },
+      filterType: "",
     };
   },
 
@@ -858,8 +1022,8 @@ export default {
   },
   methods: {
     assignmentPlanner() {
-      this.$el.querySelector('#assignmentPlanner').classList.toggle('active');
-      this.$el.querySelector('#assignPlanSection').classList.toggle('active');
+      this.$el.querySelector("#assignmentPlanner").classList.toggle("active");
+      this.$el.querySelector("#assignPlanSection").classList.toggle("active");
     },
     ...mapActions("plannerWeek", {
       getWeeklyPlanner: "getWeeklyPlanner",
@@ -1229,6 +1393,9 @@ export default {
     goNext() {
       this.calendarApi.next();
       this.GetWeeklyPlanner();
+    },
+    filterPlanner() {
+      $("#filterModal").modal("show");
     },
   },
 };
@@ -2001,8 +2168,8 @@ body {
   top: 50vh;
   right: -160px;
 }
-@media (max-width:991.98px) {
-  .planner-action-btns{
+@media (max-width: 991.98px) {
+  .planner-action-btns {
     right: -145px;
   }
 }
