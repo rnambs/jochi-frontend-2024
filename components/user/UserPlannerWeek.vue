@@ -357,7 +357,7 @@
                           <div>
                             <div class="row">
                               <div class="col-6 px-0">
-                                <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100" @click="addAssignment()">
+                                <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 cursor-pointer" @click="addAssignment()">
                                   <div class="assignment-tag-section d-flex align-items-center mb-2">
                                     <div class="assignment-tag red mr-2">Urgent</div>
                                     <div class="assignment-tag pink">AP French</div>

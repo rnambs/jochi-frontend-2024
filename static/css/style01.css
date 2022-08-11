@@ -881,6 +881,7 @@ img.dark-icon {
 
 .faculty-availability-card-outer {
   min-height: 274px;
+  max-height: 300px;
 }
 
 .main-container {
