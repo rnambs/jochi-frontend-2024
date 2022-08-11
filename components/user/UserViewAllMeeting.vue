@@ -924,28 +924,53 @@ export default {
         }
         this.loading = true;
 
-        await this.updateMeeting({
-          id: this.detailMeetingId,
-          schedule_id: this.isDateChanged
-            ? this.selectedScheduleId
-            : this.detailScheduleId,
-          slot_id:
-            this.detailType != "Teacher" && this.isDateChanged
-              ? this.selectedSlot
-              : this.detailType != "Teacher" && !this.isDateChanged
-              ? this.detailSlotId
-              : null,
-          date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
-          conversation_type: this.detailConversationType,
-          meeting_name: this.detailMeetingName,
-          meeting_description: this.detailMeetingDesc,
-          meeting_link:
-            this.detailConversationType == "Video Conference"
-              ? this.detailVenue
-              : "",
-          meeting_location:
-            this.detailConversationType == "In Person" ? this.detailVenue : "",
-        });
+        let payLoad = {};
+        if (this.detailType == "Teacher") {
+          payLoad = {
+            id: this.detailMeetingId,
+            schedule_id: this.isDateChanged
+              ? this.selectedScheduleId
+              : this.detailScheduleId,
+
+            date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
+            conversation_type: this.detailConversationType,
+            meeting_name: this.detailMeetingName,
+            meeting_description: this.detailMeetingDesc,
+            meeting_link:
+              this.detailConversationType == "Video Conference"
+                ? this.detailVenue
+                : "",
+            meeting_location:
+              this.detailConversationType == "In Person"
+                ? this.detailVenue
+                : "",
+          };
+        } else {
+          payLoad = {
+            id: this.detailMeetingId,
+
+            slot_id:
+              this.detailType != "Teacher" && this.isDateChanged
+                ? this.selectedSlot
+                : this.detailType != "Teacher" && !this.isDateChanged
+                ? this.detailSlotId
+                : null,
+            date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
+            conversation_type: this.detailConversationType,
+            meeting_name: this.detailMeetingName,
+            meeting_description: this.detailMeetingDesc,
+            meeting_link:
+              this.detailConversationType == "Video Conference"
+                ? this.detailVenue
+                : "",
+            meeting_location:
+              this.detailConversationType == "In Person"
+                ? this.detailVenue
+                : "",
+          };
+        }
+
+        await this.updateMeeting(payLoad);
 
         this.loading = false;
         if (this.successMessages != "") {

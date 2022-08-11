@@ -346,7 +346,13 @@
                               "
                             >
                               <h4 class="mb-0 blue">{{ item.task }}</h4>
-                              <!-- <p class="mb-0">Read Chapters #1 & #2</p> -->
+                              <p
+                                v-for="sub in item.subTasks"
+                                class="mb-0"
+                                :key="sub.id"
+                              >
+                                {{ sub.title }}
+                              </p>
                             </div>
                           </div>
                           <!-- <div class="col-6">
