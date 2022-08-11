@@ -79,22 +79,22 @@
     ">
         <div class="dmc-head d-flex justify-content-between align-items-start">
           <div class="greet-with-name-sec">
-            <p class="hello">Hello,</p>
-            <p class="name-section">Hannah</p>
+            <p class="text-24 color-black font-semi-bold mb-2">Hello,</p>
+            <p class="name-section mb-4">Hannah</p>
           </div>
           <div class="faq-section d-flex align-items-center">
-            <div class="faq-btn mr-4">FAQs</div>
-            <div class="privacy-btn mr-4">Privacy Policy</div>
-            <div @click="logoutSession" class="privacy-btn mr-4">Logout</div>
+            <div class="faq-btn color-dark font-semi-bold mr-4">FAQs</div>
+            <div class="privacy-btn mr-4 color-dark font-semi-bold">Privacy Policy</div>
+            <!-- <div @click="logoutSession" class="privacy-btn mr-4">Logout</div> -->
           </div>
         </div>
         <div class="d-flex flex-column h-40 flex-fill">
           
           <div class="row h-100">
-            <div class="col-8 h-100">
-              <div class="d-flex flex-column h-100">
+            <div class="col-xl-8">
+              <div class="d-flex flex-column">
                 
-              <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1">
+              <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 flex-fill">
                 <div class="row position-relative">
                   <div class="col-7"></div>
                   <div class="dashboard-text-content-section position-absolute">
@@ -115,8 +115,8 @@
                 </div>
               </div>
               <div class="d-flex flex-column h-40 flex-fill">
-                <div class="row mt-1 h-100">
-                  <div class="col-4">
+                <div class="row mt-1">
+                  <div class="col-12 col-lg-4">
                     <div class="jochi-sub-components-light-bg ">
                       <div
                         class="
@@ -147,7 +147,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-8 h-100 px-0">
+                  <div class="col-12 col-lg-8 px-0">
                     <div class="d-flex flex-column hidden-scroll  faculty-availability-card-outer h-100 p-3 py-4">
                       <div class="row">
                         <div class="col-12 faculty-availability-card mb-2">
@@ -361,8 +361,21 @@
               </div>
               </div>
             </div>
-            <div class="col-4">
-              yes
+            <div class="col-xl-4">
+              <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 h-100">
+                <h4 class="color-black font-semi-bold">All Assignments</h4>
+                <div class="d-flex flex-column">
+                  <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
+                    .
+                  </div>
+                  <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
+                    .
+                  </div>
+                  <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
+                    .
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
         </div>
