@@ -26,7 +26,7 @@
             <img
               src="../../static/image/alarm.png"
               alt=""
-              class="img-fluid icon-img ml-2"
+              class="img-fluid icon-img ml-2 clock-icon"
             />
           </div>
         </div>
