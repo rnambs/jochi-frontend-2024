@@ -350,7 +350,7 @@
                     Assignment Planner
                   </button>
                 </div>
-                <div
+                  <div
                   class="
                     col-10 col-md-11 col-lg-8
                     p-0
@@ -825,7 +825,8 @@
             </button>
           </div>
           <div class="modal-body px-4">
-            <select
+            <div class="form-row">
+              <select
               class="form-control"
               tabindex=""
               v-model="filterType"
@@ -839,8 +840,10 @@
               <option>Meeting</option>
               <option>Meeting</option>
             </select>
-
-            <button>Apply Filter</button>
+            </div>
+          </div>
+          <div class="modal-footer px-4">
+            <button class="btn btn-primary px-4 py-1 rounded-pill ">Apply Filter</button>
           </div>
         </div>
       </div>
@@ -2193,15 +2196,18 @@ body {
 
 .assignment-planner-section {
   top: 0;
-  right: 3rem;
+  right: -80rem;
   bottom: 0;
   z-index: 5;
-  display: none;
+  transition: ease-in-out all 0.8s;
+  pointer-events: none;
+}
+.assignment-planner-section.active {
+  pointer-events: visible;
+  right: 3rem;
+  transition: ease-in-out all 0.8s;
 }
 
-.assignment-planner-section.active {
-  display: block;
-}
 
 .assignment-planner-section .jochi-components-light-bg {
   background-color: #ffffff;

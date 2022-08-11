@@ -1308,14 +1308,17 @@ export default {
 
 .assignment-planner-section {
   top: 0;
-  right: 3rem;
+  right: -80rem;
   bottom: 0;
   z-index: 5;
-  display: none;
+  transition: ease-in-out all 0.8s;
+  pointer-events: none;
 }
 
 .assignment-planner-section.active {
-  display: block;
+  pointer-events: visible;
+  right: 3rem;
+  transition: ease-in-out all 0.8s;
 }
 
 .assignment-planner-section .jochi-components-light-bg {

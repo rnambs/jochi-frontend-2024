@@ -651,7 +651,44 @@ body {
   -o-object-fit: contain;
      object-fit: contain;
 }
+.icon-img.clock-icon {
+  -webkit-animation-name: bell-ring;
+          animation-name: bell-ring;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
 
+@-webkit-keyframes bell-ring {
+  5%, 15% {
+    transform: rotate(25deg);
+  }
+  10%, 20% {
+    transform: rotate(-25deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes bell-ring {
+  5%, 15% {
+    transform: rotate(25deg);
+  }
+  10%, 20% {
+    transform: rotate(-25deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 .cursor-pointer {
   cursor: pointer;
 }

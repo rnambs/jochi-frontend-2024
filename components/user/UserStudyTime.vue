@@ -1201,11 +1201,12 @@
                         color-secondary
                         text-16
                         font-regular
-                        text-truncate
                         pr-3
+                        d-flex
                       "
                     >
-                      <span><i class="far fa-circle"></i></span> {{ goal }}
+                      <span><i class="far fa-circle"></i></span>
+                      <span class="word-break ml-2">{{ goal }}</span>
                     </p>
                     <span
                       @click="deleteGoal(goal)"
