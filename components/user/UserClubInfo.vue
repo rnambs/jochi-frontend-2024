@@ -1011,7 +1011,7 @@
                     v-show="selectedFile"
                     ref="cropper"
                     :src="selectedFile"
-                    alt="Source Image"
+                    alt=""
                     :aspect-ratio="20 / 3"
                     class="card card-primary mb-3"
                   ></VueCropper>
@@ -1029,7 +1029,8 @@
                       text-capitalize
                     "
                     text
-                    @click="dialog = false"
+                    data-dismiss="modal"
+                    @click="clearCrop"
                     >Cancel</v-btn
                   >
                   <v-btn
@@ -1164,6 +1165,12 @@ export default {
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
+    }),
+    ...mapState("clubFiles", {
+      successMessageClubFile: (state) => state.successMessage,
+      SuccessTypeClubFile: (state) => state.SuccessType,
+      errorMessageClubFile: (state) => state.errorMessage,
+      errorTypeClubFile: (state) => state.errorType,
     }),
   },
   methods: {
@@ -1544,22 +1551,21 @@ export default {
             },
             club_id: this.$route.query.id,
           });
-          //   this.loading = false;
-          if (this.successMessage != "") {
+          if (this.successMessageClubFile != "") {
+            $(".modal").modal("hide");
+            $(".modal-backdrop").remove();
             this.$toast.open({
-              message: this.successMessage,
-              type: this.SuccessType,
+              message: this.successMessageClubFile,
+              type: this.SuccessTypeClubFile,
               duration: 5000,
             });
-          } else if (this.errorMessage != "") {
+          } else if (this.errorMessageClubFile != "") {
             this.$toast.open({
-              message: this.errorMessage,
-              type: this.errorType,
+              message: this.errorMessageClubFile,
+              type: this.errorTypeClubFile,
               duration: 5000,
             });
           }
-          //   this.profileImageUrl = "";
-          // this.ClubFiles();
         }
       }, this.mime_type);
     },
@@ -1580,14 +1586,10 @@ export default {
         alert("Sorry, FileReader API not supported");
       }
     },
-    uploadCroppedImage() {
-      this.croppa.generateBlob(
-        (blob) => {
-          // write code to upload the cropped image file (a file is a blob)
-        },
-        "image/jpeg",
-        0.8
-      ); // 80% compressed jpeg file
+
+    clearCrop() {
+      this.selectedFile = "";
+      this.$refs.cropper.destroy();
     },
   },
 };

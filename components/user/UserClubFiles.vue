@@ -740,7 +740,8 @@
                       text-capitalize
                     "
                     text
-                    @click="dialog = false"
+                    data-dismiss="modal"
+                    @click="clearCrop"
                     >Cancel</v-btn
                   >
                   <v-btn
@@ -1102,6 +1103,8 @@ export default {
           });
           //   this.loading = false;
           if (this.successMessage != "") {
+            $(".modal").modal("hide");
+            $(".modal-backdrop").remove();
             this.$toast.open({
               message: this.successMessage,
               type: this.SuccessType,
@@ -1166,6 +1169,10 @@ export default {
       } else {
         alert("Sorry, FileReader API not supported");
       }
+    },
+    clearCrop() {
+      this.selectedFile = "";
+      this.$refs.cropper.destroy();
     },
   },
 };

@@ -2,18 +2,41 @@
   <div class="main-section">
     <!-- profile Page -->
     <section id="study-detail" class="">
-      <div class="study-section 
-      jochi-components-light-bg
-      custom-margin-for-main-section 
-      custom-full-height
-      d-flex
-      flex-column">
+      <div
+        class="
+          study-section
+          jochi-components-light-bg
+          custom-margin-for-main-section custom-full-height
+          d-flex
+          flex-column
+        "
+      >
         <div class="inner-study p-4 d-flex flex-column flex-fill h-100">
           <div class="d-flex justify-content-between align-items-center">
-            <h2  class="color-primary font-bold">Profile</h2>
+            <h2 class="color-primary font-bold">Profile</h2>
           </div>
-          <div class="profile-row study-row px-2 d-flex flex-column flex-fill justify-content-start pt-3">
-            <div class="study-col profile-col d-flex flex-column justify-content-end align-items-center flex-fill">
+          <div
+            class="
+              profile-row
+              study-row
+              px-2
+              d-flex
+              flex-column flex-fill
+              justify-content-start
+              pt-3
+            "
+          >
+            <div
+              class="
+                study-col
+                profile-col
+                d-flex
+                flex-column
+                justify-content-end
+                align-items-center
+                flex-fill
+              "
+            >
               <form
                 method="post"
                 @submit.prevent="UploadProfile"
@@ -22,7 +45,15 @@
               >
                 <div class="">
                   <div class="upload-image position-relative">
-                    <div class="proof-img-wrp position-relative cursor-pointer d-flex justify-content-center">
+                    <div
+                      class="
+                        proof-img-wrp
+                        position-relative
+                        cursor-pointer
+                        d-flex
+                        justify-content-center
+                      "
+                    >
                       <img
                         v-if="profileImageUrl"
                         :src="profileImageUrl"
@@ -45,9 +76,20 @@
                         "
                         class="middle position-absolute text-center"
                       >
-                        <div class="text-30 color-dark" @click="ProfileRemove()">
+                        <div
+                          class="text-30 color-dark"
+                          @click="ProfileRemove()"
+                        >
                           <i class="far fa-trash-alt"></i>
-                          <p class="text-remove color-secondary text-14 text-nowrap">Remove profile</p>
+                          <p
+                            class="
+                              text-remove
+                              color-secondary
+                              text-14 text-nowrap
+                            "
+                          >
+                            Remove profile
+                          </p>
                         </div>
                       </div>
 
@@ -68,15 +110,44 @@
                       </div>
                     </div>
                     <div v-if="profileImageUrl">
-                      <span class="pic-edit w-100 d-flex flex-row-reverse position-absolute">
-                        <i class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-theme text-white">
+                      <span
+                        class="
+                          pic-edit
+                          w-100
+                          d-flex
+                          flex-row-reverse
+                          position-absolute
+                        "
+                      >
+                        <i
+                          class="
+                            fas
+                            fa-pen
+                            rounded-circle
+                            position-relative
+                            text-16
+                            d-flex
+                            align-items-center
+                            justify-content-center
+                            bg-theme
+                            text-white
+                          "
+                        >
                           <!-- accept=".png,.jpeg,.jpg,.doc,.docx,.pdf" -->
                           <input
                             type="file"
                             :v-model="profilePic"
                             ref="profilePic"
                             name="profilePic"
-                            class="rg-img-upload img-up-two cursor-pointer position-absolute w-100 h-100 rounded-circle"
+                            class="
+                              rg-img-upload
+                              img-up-two
+                              cursor-pointer
+                              position-absolute
+                              w-100
+                              h-100
+                              rounded-circle
+                            "
                             @change="onFileChange"
                             accept=".jpeg,.jpg,.png"
                           />
@@ -84,15 +155,44 @@
                       ><br />
                     </div>
                     <div v-else class="custom-upload-with-msg text-center">
-                      <span class="pic-edit w-100 d-flex flex-row-reverse position-absolute">
-                        <i class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-theme text-white">
+                      <span
+                        class="
+                          pic-edit
+                          w-100
+                          d-flex
+                          flex-row-reverse
+                          position-absolute
+                        "
+                      >
+                        <i
+                          class="
+                            fas
+                            fa-pen
+                            rounded-circle
+                            position-relative
+                            text-16
+                            d-flex
+                            align-items-center
+                            justify-content-center
+                            bg-theme
+                            text-white
+                          "
+                        >
                           <input
                             id="actual-btn"
                             type="file"
                             :v-model="profilePic"
                             ref="profilePic"
                             name="profilePic"
-                            class="rg-img-upload img-up-two cursor-pointer position-absolute w-100 h-100 rounded-circle"
+                            class="
+                              rg-img-upload
+                              img-up-two
+                              cursor-pointer
+                              position-absolute
+                              w-100
+                              h-100
+                              rounded-circle
+                            "
                             @change="onFileChange"
                             accept=".jpeg,.jpg,.png"
                           />
@@ -103,9 +203,10 @@
                 </div>
                 <h4 class="text-center color-dark font-semi-bold">
                   <!-- <span><i class="fas fa-user"></i></span> -->
-                  {{ name }}</h4>
-                  
-            <!-- <button
+                  {{ name }}
+                </h4>
+
+                <!-- <button
             id="clckPrevent"
             type="submit"
             class="btn btn-primary "
@@ -115,29 +216,66 @@
           </button> -->
               </form>
             </div>
-            <div class="study-col d-flex flex-column justify-content-start flex-fill">
-              <div
-                class="form-section mx-auto w-100 py-3"
-              >
+            <div
+              class="
+                study-col
+                d-flex
+                flex-column
+                justify-content-start
+                flex-fill
+              "
+            >
+              <div class="form-section mx-auto w-100 py-3">
                 <form action="" class="container">
                   <!-- <div class="form-group">
                     <label for="">Email</label>
                     <div class="form-field">{{ email }}</div>
                   </div> -->
                   <div>
-                    <div class="row flex-column justify-content-center align-items-center">
+                    <div
+                      class="
+                        row
+                        flex-column
+                        justify-content-center
+                        align-items-center
+                      "
+                    >
                       <div class="col-12 col-md-7">
-                        <div class="card card-primary p-3 h-100 d-flex flex-column">
-                          <p class="mb-0 text-16 color-secondary d-flex flex-row align-items-baseline">
-                            <span class="text-24"><i class="fas fa-envelope"></i></span>
+                        <div
+                          class="card card-primary p-3 h-100 d-flex flex-column"
+                        >
+                          <p
+                            class="
+                              mb-0
+                              text-16
+                              color-secondary
+                              d-flex
+                              flex-row
+                              align-items-baseline
+                            "
+                          >
+                            <span class="text-24"
+                              ><i class="fas fa-envelope"></i
+                            ></span>
                             <span class="ml-2">{{ email }}</span>
                           </p>
                         </div>
                       </div>
                       <div class="col-12 col-md-7">
                         <div class="card card-primary p-3 h-100">
-                          <p class="mb-0 text-16 color-secondary d-flex flex-row align-items-baseline">
-                            <span class="text-24"><i class="fas fa-school"></i></span>
+                          <p
+                            class="
+                              mb-0
+                              text-16
+                              color-secondary
+                              d-flex
+                              flex-row
+                              align-items-baseline
+                            "
+                          >
+                            <span class="text-24"
+                              ><i class="fas fa-school"></i
+                            ></span>
                             <span class="ml-2">{{ schoolName }}</span>
                           </p>
                         </div>
@@ -150,11 +288,23 @@
                               </nuxt-link>
                         </div>
                       </div> -->
-                      
+
                       <div class="col-12 col-md-7">
-                        <div class="card card-primary p-3 h-100 d-flex flex-column">
-                          <h4 class="color-dark font-semi-bold">Your Advisor</h4>
-                          <div class="d-flex align-items-center my-2 mr-3 min-w-200">
+                        <div
+                          class="card card-primary p-3 h-100 d-flex flex-column"
+                        >
+                          <h4 class="color-dark font-semi-bold">
+                            Your Advisor
+                          </h4>
+                          <div
+                            class="
+                              d-flex
+                              align-items-center
+                              my-2
+                              mr-3
+                              min-w-200
+                            "
+                          >
                             <div class="ld-img-section mr-3">
                               <div class="ld-img-holder"></div>
                             </div>
@@ -175,7 +325,6 @@
                         </p>
                       </div>
                     </div> -->
-
                   </div>
                   <!-- <div class="form-group">
                     <label for="">Name of school</label>
@@ -185,7 +334,7 @@
                                         <label for="">Class</label>
                                         <div class="form-field">IX</div>
                                    </div> -->
-                  
+
                   <!-- <div class="row justify-content-end">
                     <div class="col-4">
                       <img src="../../static/image/student_img.png" alt=" img-fluid card-img">
@@ -331,7 +480,7 @@ export default {
       this.profilePic = this.$refs.profilePic.files[0];
       const file = e.target.files[0];
       this.profileImageUrl = URL.createObjectURL(file);
-
+      this.UploadProfile();
       //
     },
     removeFile() {
