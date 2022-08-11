@@ -229,55 +229,66 @@
             </button>
           </div>
           <div class="modal-body">
-            <input
-              type="number"
-              min="0"
-              max="24"
-              id="hours"
-              v-model="hours"
-              class="form-control"
-              @change="submitted = submitted ? !submitted : submitted"
-              :class="{
-                'is-invalid': submitted && (hours < 0 || hours > 24),
-              }"
-            />
-            <div
-              v-if="submitted && (hours < 0 || hours > 24)"
-              class="invalid-feedback"
-            >
-              <span>Please enter a valid value</span>
-            </div>
-
-            <input
-              type="number"
-              min="0"
-              max="60"
-              id="minutes"
-              v-model="minutes"
-              @change="submitted = submitted ? !submitted : submitted"
-              class="form-control"
-              :class="{
-                'is-invalid': submitted && (minutes < 0 || minutes > 60),
-              }"
-            />
-            <div
-              v-if="submitted && (minutes < 0 || minutes > 60)"
-              class="invalid-feedback"
-            >
-              <span>Please enter a valid value</span>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-row">
+                  <label for="" class="form-label">Hours</label>
+                  <input
+                  type="number"
+                  min="0"
+                  max="24"
+                  id="hours"
+                  v-model="hours"
+                  class="form-control"
+                  @change="submitted = submitted ? !submitted : submitted"
+                  :class="{
+                    'is-invalid': submitted && (hours < 0 || hours > 24),
+                  }"
+                />
+                  <div
+                    v-if="submitted && (hours < 0 || hours > 24)"
+                    class="invalid-feedback"
+                  >
+                    <span>Please enter a valid value</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-row">
+                  <label for="" class="form-label">Minutes</label>
+                  <input
+                  type="number"
+                  min="0"
+                  max="60"
+                  id="minutes"
+                  v-model="minutes"
+                  @change="submitted = submitted ? !submitted : submitted"
+                  class="form-control"
+                  :class="{
+                    'is-invalid': submitted && (minutes < 0 || minutes > 60),
+                  }"
+                />
+                  <div
+                    v-if="submitted && (minutes < 0 || minutes > 60)"
+                    class="invalid-feedback"
+                  >
+                    <span>Please enter a valid value</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-color-close"
+              class="btn btn-secondary rounded-pill px-4 py-1"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-color-save"
+              class="btn btn-primary rounded-pill px-4 py-1"
               data-dismiss="modal"
               @click="configureGoal()"
               :disabled="processing"

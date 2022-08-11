@@ -34,7 +34,6 @@
                     v-if="playCelebration"
                     :options="lottieOptionsSuccess"
                     v-on:animCreated="handleAnimation"
-                    loop="1"
                     class="position-absolute top-0 w-100 h-100 z-index-9"
                   />
                   <div
@@ -171,6 +170,7 @@
                                 p-4
                                 position-realtive
                                 h-100
+                                cursor-pointer
                               "
                             >
                               <div
@@ -320,16 +320,18 @@
                     </div>
                   </div>
                   <!-- drag end -->
-                  <div class="d-flex flex-column px-5 pt-3">
+                  <div class="d-flex flex-column pt-3 h-40 flex-fill">
                     <drop
-                      class="drop color-secondary text-16"
+                      class="drop color-secondary text-16 h-100 d-flex flex-column"
                       @drop="handleDrop"
                     >
-                      <h2 class="color-primary font-semi-bold">
+                      <h2 class="color-primary font-semi-bold px-5 ">
                         Completed Today
                       </h2>
-                      Drag and drop your assignment here when it is completed
-                      <div>
+                      <p class="mb-0 px-5 color-secondary font-regular">
+                        Drag and drop your assignment here when it is completed
+                      </p>
+                      <div class="d-flex flex-column h-100 hidden-scroll px-5">
                         <div class="row mt-1">
                           <div
                             v-for="item in completedAssignments"
@@ -343,6 +345,7 @@
                                 px-2
                                 completed-assignments
                                 text-center
+                                h-100
                               "
                             >
                               <h4 class="mb-0 blue">{{ item.task }}</h4>
@@ -1754,7 +1757,7 @@ export default {
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
-          duration: 5000,
+          duration: 4000,
         });
         this.resetAssignment();
         $(".modal").modal("hide");
@@ -2089,6 +2092,9 @@ export default {
 
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
+        const myTimeout = setTimeout(() => {
+          this.playCelebration = false;
+        }, 5000);
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
