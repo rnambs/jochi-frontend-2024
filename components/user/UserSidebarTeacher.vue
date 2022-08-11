@@ -598,7 +598,7 @@
           </div>
         </div>
         <div>
-          <div class="menu-items position-relative py-0">
+          <!-- <div class="menu-items position-relative py-0">
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
                 <div
@@ -700,7 +700,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="menu-items position-relative py-0">
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">

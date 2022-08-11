@@ -17,7 +17,7 @@
           <div class="col-lg-7 d-flex flex-column">
             <div
               @click="setSessionType('assignment')"
-              class="row card card-primary rounded-22 m-0 mb-4 p-4 flex-row"
+              class="row card card-primary rounded-22 m-0 mb-4 p-4 flex-row cursor-pointer"
             >
               <div class="col-7">
                 <h2 class="color-primary font-semi-bold mb-1">
@@ -37,7 +37,7 @@
             </div>
             <div
               @click="setSessionType('study')"
-              class="row card card-primary rounded-22 p-4 m-0 flex-row"
+              class="row card card-primary rounded-22 p-4 m-0 flex-row cursor-pointer"
             >
               <div class="col-7">
                 <h2 class="color-primary font-semi-bold mb-1">
@@ -91,6 +91,7 @@
                       d-flex
                       flex-column
                       mb-3
+                      cursor-pointer
                     "
                   >
                     <h6 class="color-dark font-semi-bold mb-1">
@@ -246,7 +247,7 @@
                         showSessionDetail = false;
                         clearCountDownInterval();
                       "
-                      class="mb-0"
+                      class="mb-0 cursor-pointer"
                     >
                       <span><i class="fas fa-times"></i></span>
                     </p>
@@ -459,6 +460,7 @@
                 d-flex
                 flex-column
                 justify-content-between
+                cursor-pointer
               "
             >
               <div class="d-flex flex-column">
@@ -1079,6 +1081,7 @@
                   align-items-center
                   justify-content-center
                   flex-column
+                  cursor-pointer
                 "
               >
                 <h2 class="color-primary text-center font-bold mb-1">
@@ -1104,6 +1107,7 @@
                   align-items-center
                   justify-content-center
                   flex-column
+                  cursor-pointer
                 "
               >
                 <h2 class="color-primary font-bold mb-1 text-center">
