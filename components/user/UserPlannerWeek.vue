@@ -839,6 +839,8 @@
               <option>Meeting</option>
               <option>Meeting</option>
             </select>
+
+            <button>Apply Filter</button>
           </div>
         </div>
       </div>
