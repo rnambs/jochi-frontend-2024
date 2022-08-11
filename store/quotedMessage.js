@@ -13,6 +13,7 @@ const state = {
   meetingList: [],
   subjectsData: [],
   assignmentsList: [],
+  completedAssignments: []
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -326,6 +327,25 @@ const actions = {
     }
 
   },
+  //subjectsList list
+  async getCompletedAssignments({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$get(BASE_URL + `planner/all_completed_assignments?user_id=${payLoad.userId}&date=${payLoad.date}&type=${payLoad.type}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      commit('setCompletedAssignments', response.data);
+    } catch (e) {
+
+      commit('setErrorMessage', e.response.data.message);
+      commit('setErrorType', "error");
+      commit('setSuccessMessage', "");
+      commit('setSuccessType', "")
+
+    }
+  },
 
 
 }
@@ -364,8 +384,12 @@ const mutations = {
   setSubjectsList(state, data) {
     state.subjectsData = data;
   },
+
   setAssignmentsList(state, data) {
     state.assignmentsList = data;
+  },
+  setCompletedAssignments(state, data) {
+    state.completedAssignments = data;
   },
 }
 const getters = {
@@ -405,6 +429,9 @@ const getters = {
   },
   assignmentsList: () => {
     return state.assignmentsList;
+  },
+  completedAssignments: () => {
+    return state.completedAssignments;
   },
 }
 

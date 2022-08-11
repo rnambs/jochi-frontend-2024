@@ -48,7 +48,10 @@
                   >
                     <h2 class="color-primary font-semi-bold">Pending</h2>
                     <button
-                      @click="openAssignment = true"
+                      @click="
+                        openAssignment = true;
+                        isAddAssignment = true;
+                      "
                       class="btn btn-dark py-1 px-3"
                     >
                       Add Assignment
@@ -161,6 +164,7 @@
                         >
                           <drag class="drag h-100" :transfer-data="{ item }">
                             <div
+                              @click="onCardClick()"
                               class="
                                 jochi-sub-components-light-bg
                                 drag-drop
@@ -232,7 +236,10 @@
                               >
                             </div> -->
                               </div>
-                              <div class="addition-material-section">
+                              <div
+                                v-if="item.assignment_materials"
+                                class="addition-material-section"
+                              >
                                 <h6 class="mb-1 font-medium">
                                   Additional Material
                                 </h6>
@@ -244,9 +251,9 @@
                                   "
                                 >
                                   <div class="col-8 py-0 pl-0 material-link">
-                                    <span class="color-secondary"
-                                      >Rubric:
-                                      {{ item.assignment_materials }}
+                                    <span class="color-secondary">
+                                      <!-- Rubric: -->
+                                      {{ item.assignment_materials.material }}
                                     </span>
                                   </div>
                                   <div
@@ -376,9 +383,15 @@
                           border-bottom
                         "
                       >
-                        <h3 class="color-primary font-semi-bold">Assignment</h3>
+                        <h3 class="color-primary font-semi-bold">
+                          {{ isAddAssignment ? "Add" : "Edit" }} Assignment
+                        </h3>
                         <p class="mb-0">
-                          <span @click="openAssignment = false"
+                          <span
+                            @click="
+                              openAssignment = false;
+                              isAddAssignment = true;
+                            "
                             ><i class="fas fa-times"></i
                           ></span>
                         </p>
@@ -556,7 +569,6 @@
                                   data-toggle="dropdown"
                                   aria-haspopup="true"
                                   aria-expanded="false"
-                                  requ
                                 >
                                   <span class="caret">
                                     {{
@@ -825,6 +837,17 @@
                           </div>
                         </div>
                       </form>
+
+                      <button
+                        type="button"
+                        class="btn btn-primary py-1 px-3 rounded-pill"
+                        :disabled="processing"
+                        @click="
+                          isAddAssignment ? AddAssignment() : UpdateAssignment()
+                        "
+                      >
+                        {{ isAddAssignment ? "Add" : "Update" }}
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1420,6 +1443,7 @@ export default {
       playCelebration: false,
       completeSubTasktId: 0,
       openAssignment: false,
+      isAddAssignment: true,
     };
   },
   mounted() {
@@ -1431,6 +1455,7 @@ export default {
     this.ShowQuotedMessage();
     this.getSubjectsList();
     this.getAssignmentsList();
+    this.getAllCompletedAssignments();
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.GetDailyPlanner();
     //priority dropdown
@@ -1509,6 +1534,7 @@ export default {
       errorType: (state) => state.errorType,
       subjectsData: (state) => state.subjectsData,
       assignmentsList: (state) => state.assignmentsList,
+      completedAssignments: (state) => state.completedAssignments,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -1524,6 +1550,7 @@ export default {
       getSubjectsList: "getSubjectsList",
       getAssignments: "getAssignments",
       completeTask: "completeTask",
+      getCompletedAssignments: "getCompletedAssignments",
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
@@ -2082,6 +2109,25 @@ export default {
         });
       }
       this.GetDailyPlanner();
+    },
+    onCardClick() {
+      this.isAddAssignment = false;
+      this.openAssignment = true;
+      // this.subject
+      // this.assignmentName
+      // this.assignmentDescription
+      // this.priorityVal
+      // this.timeValue
+      // this.subTasksList
+      // this.peerSelected
+    },
+    async getAllCompletedAssignments() {
+      await this.getCompletedAssignments({
+        userId: localStorage.getItem("id"),
+        date: moment().format("YYYY-MM-DD"),
+        type: "Daily",
+      });
+      console.log(this.completedAssignments);
     },
   },
 };
