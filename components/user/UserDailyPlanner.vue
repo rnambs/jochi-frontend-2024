@@ -325,11 +325,17 @@
                       class="drop color-secondary text-16"
                       @drop="handleDrop"
                     >
-                      <h2 class="color-primary font-semi-bold">Completed</h2>
+                      <h2 class="color-primary font-semi-bold">
+                        Completed Today
+                      </h2>
                       Drag and drop your assignment here when it is completed
                       <div>
                         <div class="row mt-1">
-                          <div class="col-6">
+                          <div
+                            v-for="item in completedAssignments"
+                            :key="item.id"
+                            class="col-6"
+                          >
                             <div
                               class="
                                 jochi-sub-components-light-bg
@@ -339,11 +345,11 @@
                                 text-center
                               "
                             >
-                              <h4 class="mb-0 blue">Art History Reading</h4>
-                              <p class="mb-0">Read Chapters #1 & #2</p>
+                              <h4 class="mb-0 blue">{{ item.task }}</h4>
+                              <!-- <p class="mb-0">Read Chapters #1 & #2</p> -->
                             </div>
                           </div>
-                          <div class="col-6">
+                          <!-- <div class="col-6">
                             <div
                               class="
                                 jochi-sub-components-light-bg
@@ -356,7 +362,7 @@
                               <h4 class="mb-0 green">AP Calculus Problem</h4>
                               <p class="mb-0">Homework #5</p>
                             </div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </drop>
@@ -2064,6 +2070,7 @@ export default {
       });
       this.processingCompleteAssignment = false;
       if (this.successMessage != "") {
+        this.getAllCompletedAssignments();
         this.completeAsstId = 0;
         this.playCelebration = true;
         this.$toast.open({

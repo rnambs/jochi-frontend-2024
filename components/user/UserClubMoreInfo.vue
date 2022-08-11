@@ -196,7 +196,8 @@
                                     "
                                   >
                                     <span>{{ item.formattedDate }}</span
-                                    ><span>, </span><span>{{ item.time }}</span>
+                                    ><span> &nbsp; </span
+                                    ><span>{{ item.time }}</span>
                                   </p>
                                 </div>
                                 <div
@@ -315,7 +316,7 @@
                                   >
                                     {{ item.formattedDate }}
                                   </p>
-                                  ,
+                                  &nbsp;
                                   <p
                                     class="
                                       color-secondary
@@ -588,7 +589,7 @@
                                       mb-1
                                     "
                                   >
-                                    {{ item.date }}<span>, </span>
+                                    {{ item.date }}<span> &nbsp; </span>
                                   </p>
                                   <p
                                     class="
@@ -1430,7 +1431,17 @@
                 />
               </div>
               <!-- <v-dialog v-model="dialog" width="500"> -->
-              <v-card class="bg-transparent shadow-none d-flex flex-column  h-40 flex-fill overflow-hidden">
+              <v-card
+                class="
+                  bg-transparent
+                  shadow-none
+                  d-flex
+                  flex-column
+                  h-40
+                  flex-fill
+                  overflow-hidden
+                "
+              >
                 <v-card-text class="p-0 h-100 overflow-hidden">
                   <VueCropper
                     v-show="selectedFile"
@@ -1453,7 +1464,8 @@
                       text-capitalize
                     "
                     text
-                    @click="dialog = false"
+                    data-dismiss="modal"
+                    @click="clearCrop"
                     >Cancel</v-btn
                   >
                   <v-btn
@@ -1637,6 +1649,12 @@ export default {
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
+    }),
+    ...mapState("clubFiles", {
+      successMessageClubFile: (state) => state.successMessage,
+      SuccessTypeClubFile: (state) => state.SuccessType,
+      errorMessageClubFile: (state) => state.errorMessage,
+      errorTypeClubFile: (state) => state.errorType,
     }),
     checkIsAnnouncement() {
       return this.isAnnouncement; // some conditional logic here...
@@ -2186,17 +2204,19 @@ export default {
             },
             club_id: this.$route.query.id,
           });
-          //   this.loading = false;
-          if (this.successMessage != "") {
+
+          if (this.successMessageClubFile != "") {
+            $(".modal").modal("hide");
+            $(".modal-backdrop").remove();
             this.$toast.open({
-              message: this.successMessage,
-              type: this.SuccessType,
+              message: this.successMessageClubFile,
+              type: this.SuccessTypeClubFile,
               duration: 5000,
             });
-          } else if (this.errorMessage != "") {
+          } else if (this.errorMessageClubFile != "") {
             this.$toast.open({
-              message: this.errorMessage,
-              type: this.errorType,
+              message: this.errorMessageClubFile,
+              type: this.errorTypeClubFile,
               duration: 5000,
             });
           }
@@ -2238,6 +2258,10 @@ export default {
         this.activity.activityTimeError = false;
       }
       return isValid;
+    },
+    clearCrop() {
+      this.selectedFile = "";
+      this.$refs.cropper.destroy();
     },
   },
 };
