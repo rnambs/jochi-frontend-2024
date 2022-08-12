@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid main-container jochi-main-bg-light">
     <lottie
-      v-if="loading"
+      v-show="loading"
       :options="lottieOptions"
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
@@ -14,7 +14,7 @@
           class="img-responsive"
         />
       </div>
-      <div class="col-md-5 col-lg-4 form-section" v-if="!isLoggedIn">
+      <div class="col-md-5 col-lg-4 form-section" v-show="!isLoggedIn">
         <h1 class="heading mb-5">Sign in</h1>
         <div class="jochi-components-light-bg p-5">
           <form action="" class="sign-in" @submit.prevent="GetSignIn">
@@ -30,11 +30,11 @@
                     maxlength="320"
                   />
                   <div
-                    v-if="submitted && $v.Email.$error"
+                    v-show="submitted && $v.Email.$error"
                     class="invalid-feedback"
                   >
-                    <span v-if="!$v.Email.required">Email is required</span>
-                    <span v-if="!$v.Email.email">Email is invalid</span>
+                    <span v-show="!$v.Email.required">Email is required</span>
+                    <span v-show="!$v.Email.email">Email is invalid</span>
                   </div>
                 </div>
               </div>
@@ -67,13 +67,13 @@
                   </div>
                   <br />
                   <div
-                    v-if="submitted && $v.password.$error"
+                    v-show="submitted && $v.password.$error"
                     class="invalid-feedback"
                   >
-                    <span v-if="!$v.password.required"
+                    <span v-show="!$v.password.required"
                       >Password is required</span
                     >
-                    <!-- <span v-if="!$v.password.minLength"
+                    <!-- <span v-show="!$v.password.minLength"
                       >Password must be at least 8 characters</span
                     > -->
                   </div>
