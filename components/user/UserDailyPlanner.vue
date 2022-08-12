@@ -205,6 +205,7 @@
                               <div class="sub-task-section mb-3">
                                 <h6>Sub-tasks</h6>
                                 <div
+                                  @click="confirmComplete"
                                   v-for="sub in item.subTasks"
                                   :key="sub.id"
                                   class="
@@ -613,15 +614,24 @@
                                     class="dropdown-menu"
                                     aria-labelledby="dLabel"
                                   >
-                                    <li class="item">
+                                    <li
+                                      @click="priorityVal = 'Can Wait'"
+                                      class="item"
+                                    >
                                       <div class="low-color"></div>
                                       Can Wait
                                     </li>
-                                    <li class="item">
+                                    <li
+                                      @click="priorityVal = 'Important'"
+                                      class="item"
+                                    >
                                       <div class="medium-color"></div>
                                       Important
                                     </li>
-                                    <li class="item">
+                                    <li
+                                      @click="priorityVal = 'Urgent'"
+                                      class="item"
+                                    >
                                       <div class="high-color"></div>
                                       Urgent
                                     </li>
@@ -631,16 +641,16 @@
                               <div
                                 v-if="
                                   submitted &&
-                                  priorityVal != '1' &&
-                                  priorityVal != '2' &&
-                                  priorityVal != '3'
+                                  priorityVal != 'Urgent' &&
+                                  priorityVal != 'Important' &&
+                                  priorityVal != 'Can Wait'
                                 "
                               >
                                 <span
                                   v-if="
-                                    priorityVal != '1' &&
-                                    priorityVal != '2' &&
-                                    priorityVal != '3'
+                                    priorityVal != 'Urgent' &&
+                                    priorityVal != 'Important' &&
+                                    priorityVal != 'Can Wait'
                                   "
                                   class="required-button"
                                   >This field is required</span
@@ -719,7 +729,7 @@
                             <h6 class="color-dark font-semi-bold mb-0">
                               Sub Tasks
                             </h6>
-                            <a @click="onAddSubTaskClick" class="btn p-0">
+                            <a @click="onAddSubTaskClick;" class="btn p-0">
                               <span class="color-secondary"
                                 ><i class="fas fa-plus-circle"></i
                               ></span>
@@ -1772,7 +1782,14 @@ export default {
         subject: this.subject?.id,
         due_time: this.timeValue,
         due_date: df,
-        priority: this.priorityVal,
+        priority:
+          this.priorityVal == "Urgent"
+            ? 1
+            : this.priorityVal == "Important"
+            ? 2
+            : this.priorityVal == "Can Wait"
+            ? 3
+            : "",
         shared_users_ids: peersSelected,
         assignment_materials: [
           "https://jochi-live.s3.amazonaws.com/assignmentDoc/1659508306402.pdf",
@@ -2149,6 +2166,7 @@ export default {
       });
       this.processingCompleteAssignment = false;
       if (this.successMessage != "") {
+        this.getAssignmentsList();
         this.getAllCompletedAssignments();
         this.completeAsstId = 0;
         this.playCelebration = true;
@@ -2217,6 +2235,10 @@ export default {
         type: "Daily",
       });
       console.log(this.completedAssignments);
+    },
+    confirmComplete(event) {
+      event.preventDefault();
+      event.stopPropagation();
     },
   },
 };

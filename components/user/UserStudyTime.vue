@@ -17,7 +17,16 @@
           <div class="col-lg-7 d-flex flex-column">
             <div
               @click="setSessionType('assignment')"
-              class="row card card-primary rounded-22 m-0 mb-4 p-4 flex-row cursor-pointer"
+              class="
+                row
+                card card-primary
+                rounded-22
+                m-0
+                mb-4
+                p-4
+                flex-row
+                cursor-pointer
+              "
             >
               <div class="col-7">
                 <h2 class="color-primary font-semi-bold mb-1">
@@ -37,7 +46,15 @@
             </div>
             <div
               @click="setSessionType('study')"
-              class="row card card-primary rounded-22 p-4 m-0 flex-row cursor-pointer"
+              class="
+                row
+                card card-primary
+                rounded-22
+                p-4
+                m-0
+                flex-row
+                cursor-pointer
+              "
             >
               <div class="col-7">
                 <h2 class="color-primary font-semi-bold mb-1">
@@ -1111,13 +1128,21 @@
                 "
               >
                 <h2 class="color-primary font-bold mb-1 text-center">
-                  Pomodorro Technique
+                  Pomodoro Technique
                 </h2>
                 <p class="color-dark font-semi-bold text-18 text-center">
                   Definition of this technique will go here...
                 </p>
-                <button class="btn btn-dark py-2 text-center">
-                  Click to Learn More
+                <button
+                  @click="event.preventDefault()"
+                  class="btn btn-dark py-2 text-center"
+                >
+                  <a
+                    style="color: #ffffff"
+                    href="https://www.jochi.info/post/what-is-the-pomodoro-technique"
+                  >
+                    Click to Learn More</a
+                  >
                 </button>
               </div>
             </div>
@@ -1678,13 +1703,13 @@
                   class="d-flex align-items-center my-2 mr-3 min-w-200"
                 >
                   <div class="ld-img-section mr-3">
-                    <img v-if="peer.profile_pic"
+                    <img
+                      v-if="peer.profile_pic"
                       class="ld-img-holder shadow-none"
                       :src="peer.profile_pic"
                       alt=""
                     />
                     <div v-else class="ld-img-holder shadow-none"></div>
-
                   </div>
                   <div class="ld-details-section">
                     <p class="ld-heading mb-1">{{ peer.first_name }}</p>

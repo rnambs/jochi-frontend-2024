@@ -85,9 +85,19 @@
           <p class="name-section mb-4">{{ firstName }}</p>
         </div>
         <div class="faq-section d-flex align-items-center">
-          <div class="faq-btn color-dark font-semi-bold mr-4">FAQs</div>
+          <div class="faq-btn color-dark font-semi-bold mr-4">
+            <a style="color: #000000" href="https://www.jochi.info/faqs"
+              >FAQs</a
+            >
+          </div>
           <div class="privacy-btn mr-4 color-dark font-semi-bold">
-            Privacy Policy
+            <nuxt-link
+              style="color: #000000"
+              to="/privacy-policy"
+              class="bottum-btn"
+            >
+              Privacy Policy
+            </nuxt-link>
           </div>
           <!-- <div @click="logoutSession" class="privacy-btn mr-4">Logout</div> -->
         </div>
