@@ -2218,7 +2218,7 @@ export default {
       this.sharedSessionList.forEach((element) => {
         var meetingobj = {};
         var listobj = {};
-
+        let title = "";
         if (element.assignment_id) {
           title =
             "Study Session For Assignment: " +
@@ -2678,6 +2678,8 @@ export default {
     },
     async applyFilter() {
       if (!this.filterType) {
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
         return this.GetWeeklyPlanner();
       }
       eventList = [];
@@ -2695,9 +2697,10 @@ export default {
       $(".modal").modal("hide");
       $(".modal-backdrop").remove();
       this.meetingDetails = [];
+      console.log("planner list",this.plannerList)
       this.plannerList.forEach((element) => {
         var plannerObj = {};
-        var title = element.subject;
+        var title = element.assignment_description;
         if (element.priority == "1") {
           var color = "#EF382E";
         } else if (element.priority == "2") {
@@ -2708,6 +2711,7 @@ export default {
         var dateMeeting = element.due_date;
         var tmeMeeting = this.formatAMPM(element.due_time);
         var start = dateMeeting + "T" + tmeMeeting;
+        // var start = element.dateISOFormat;
         var id = element.id;
         plannerObj["title"] = title;
         plannerObj["color"] = color;
@@ -2787,7 +2791,7 @@ export default {
       this.sharedSessionList.forEach((element) => {
         var meetingobj = {};
         var listobj = {};
-
+        let title = "";
         if (element.assignment_id) {
           title =
             "Study Session For Assignment: " +

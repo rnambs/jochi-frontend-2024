@@ -26,7 +26,7 @@ const actions = {
       commit('setPlannerList', response.data);
       commit('setMeetingList', response.meeting);
       commit('setsessionList', response.session);
-      commit('setsharedSessionList', response.shared_sessions);
+      commit('setSharedSessionList', response.shared_sessions);
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -54,23 +54,30 @@ const actions = {
           'Authorization': ` ${token}`
         },
       });
-      commit('setPlannerList', []);
+      // commit('setPlannerList', []);
 
+      // commit('setMeetingList', []);
+
+      // commit('setsessionList', []);
+
+      // commit('setSharedSessionList', []);
+
+
+      if (payLoad.filter == 'Assignments') {
+
+        commit('setPlannerList', response.data[0]);
+      }
+      if (payLoad.filter == 'Meetings')
+        commit('setMeetingList', response.data[0]);
+      if (payLoad.filter == 'Session')
+        commit('setsessionList', response.data[0]);
+      if (payLoad.filter == 'Session')
+        commit('setSharedSessionList', response.data[1]);
       commit('setMeetingList', []);
 
       commit('setsessionList', []);
 
-      commit('setsharedSessionList', []);
-
-
-      if (payLoad.filter == 'Assignments')
-        commit('setPlannerList', response.data[0]);
-      if (payLoad.filter == 'Meetings')
-        commit('setMeetingList', response.data[0]);
-      if (payLoad.filter == 'Sessions')
-        commit('setsessionList', response.data[0]);
-      if (payLoad.filter == 'Sessions')
-        commit('setsharedSessionList', response.data[1]);
+      commit('setSharedSessionList', []);
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
         commit('setSuccessMessage', "");
