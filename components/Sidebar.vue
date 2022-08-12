@@ -21,8 +21,8 @@
           </li>
           <li>
             <nuxt-link to="/club-list-table"
-              ><i class="fa fa-futbol-o mr-2 menu-icon" aria-hidden="true"></i
-              ><span class="menu-title-text">Club Details</span>
+              ><i class="fa fa-futbol mr-2 menu-icon" aria-hidden="true"></i
+              ><span class="menu-title-text">Teams and Clubs</span>
             </nuxt-link>
           </li>
           <li>
