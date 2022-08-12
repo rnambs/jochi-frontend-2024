@@ -57,24 +57,15 @@
                 mb-3 mb-lg-0
               "
             >
-              <!-- <nuxt-link
-                to="/student-dashboard"
-                @click="$event.target.classList.toggle('active')"
-                class="nav-link btn p-0"
+              <nuxt-link to="/student-dashboard" class="nav-link btn p-0"
                 ><a class="position-relative p-2" href="#">
                   <img
                     src="../../static/image/Jochi Icons/home_hires.png"
                     alt=""
                     class="dark-icon"
                   /> </a
-              ></nuxt-link> -->
-              <a class="position-relative p-2" href="#">
-                <img
-                  src="../../static/image/Jochi Icons/home_hires.png"
-                  alt=""
-                  class="dark-icon"
-                />
-              </a>
+              ></nuxt-link>
+
               <div class="dropdown">
                 <a
                   class="dropdown-toggle position-relative p-2"
