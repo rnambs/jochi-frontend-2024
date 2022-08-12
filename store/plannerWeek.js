@@ -54,30 +54,26 @@ const actions = {
           'Authorization': ` ${token}`
         },
       });
-      // commit('setPlannerList', []);
+      commit('setPlannerList', []);
 
-      // commit('setMeetingList', []);
-
-      // commit('setsessionList', []);
-
-      // commit('setSharedSessionList', []);
-
-
-      if (payLoad.filter == 'Assignments') {
-
-        commit('setPlannerList', response.data[0]);
-      }
-      if (payLoad.filter == 'Meetings')
-        commit('setMeetingList', response.data[0]);
-      if (payLoad.filter == 'Session')
-        commit('setsessionList', response.data[0]);
-      if (payLoad.filter == 'Session')
-        commit('setSharedSessionList', response.data[1]);
       commit('setMeetingList', []);
 
       commit('setsessionList', []);
 
       commit('setSharedSessionList', []);
+
+
+      if (payLoad.filter == 'Assignments') {
+
+        commit('setPlannerList', response.data);
+      }
+      if (payLoad.filter == 'Meetings')
+        commit('setMeetingList', response.data);
+      if (payLoad.filter == 'Session')
+        commit('setsessionList', response.data);
+      if (payLoad.filter == 'Session') { }
+      // commit('setSharedSessionList', response.data);
+
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
         commit('setSuccessMessage', "");

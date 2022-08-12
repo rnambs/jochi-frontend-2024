@@ -2061,8 +2061,8 @@ export default {
     ...mapState("quotedMessage", {
       quoteMessage: (state) => state.quoteMessage,
       viewed: (state) => state.viewed,
-      plannerList: (state) => state.plannerList,
-      meetingList: (state) => state.meetingList,
+      // plannerList: (state) => state.plannerList,
+      // meetingList: (state) => state.meetingList,
       assignment: (state) => state.assignment,
       successMessage: (state) => state.successMessage,
       SuccessType: (state) => state.SuccessType,
@@ -2128,7 +2128,7 @@ export default {
       this.meetingDetails = [];
       this.plannerList.forEach((element) => {
         var plannerObj = {};
-        var title = element.subject;
+        var title = element.assignment_description;
         if (element.priority == "1") {
           var color = "#EF382E";
         } else if (element.priority == "2") {
@@ -2697,7 +2697,10 @@ export default {
       $(".modal").modal("hide");
       $(".modal-backdrop").remove();
       this.meetingDetails = [];
-      console.log("planner list",this.plannerList)
+      console.log("planner list", this.plannerList);
+      console.log("meeting list", this.meetingList);
+      console.log("session list", this.sessionList);
+      console.log("shared list", this.sharedSessionList);
       this.plannerList.forEach((element) => {
         var plannerObj = {};
         var title = element.assignment_description;
