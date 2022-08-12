@@ -2045,6 +2045,8 @@ export default {
   computed: {
     ...mapState("plannerWeek", {
       plannerList: (state) => state.plannerList,
+      sessionList: (state) => state.sessionList,
+      sharedSessionList: (state) => state.sharedSessionList,
       assignment: (state) => state.assignment,
       meetingList: (state) => state.meetingList,
       successMessage: (state) => state.successMessage,
@@ -2174,7 +2176,69 @@ export default {
         this.meetingDetails.push(listobj);
         eventList.push(meetingobj);
       });
+      this.sessionList.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
 
+        const title = "Study Session " + element.subject?.subject_name;
+
+        // var meeting = element.meeting_type;
+        // if (meeting == "Peer") {
+        // var color = "#64B5FC";
+        // } else if (meeting == "Club") {
+        //   var color = "#07BEB8";
+        // } else if (meeting == "Teacher") {
+        const color = element.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.time;
+        var tmeMeeting = this.formatAMPM(element.time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        // meetingobj["groupId"] = "Meeting";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+      this.sharedSessionList.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+
+        const title = "Study Session " + element.subject?.subject_name;
+
+        // var meeting = element.meeting_type;
+        // if (meeting == "Peer") {
+        // var color = "#64B5FC";
+        // } else if (meeting == "Club") {
+        //   var color = "#07BEB8";
+        // } else if (meeting == "Teacher") {
+        const color = element.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.time;
+        var tmeMeeting = this.formatAMPM(element.time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        // meetingobj["groupId"] = "Meeting";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+      console.log("events console", eventList);
       this.calendarOptions.events = eventList;
       this.loading = false;
     },
@@ -2367,18 +2431,20 @@ export default {
       // return dt+'/'+month+'/'+year
     },
     formatAMPM(input) {
-      var time = input;
-      var hours = Number(time.match(/^(\d+)/)[1]);
-      var minutes = Number(time.match(/:(\d+)/)[1]);
-      var AMPM = time.match(/\s(.*)$/)[1];
-      if (AMPM == "PM" && hours < 12) hours = hours + 12;
-      if (AMPM == "AM" && hours == 12) hours = hours - 12;
-      var sHours = hours.toString();
-      var sMinutes = minutes.toString();
-      if (hours < 10) sHours = "0" + sHours;
-      if (minutes < 10) sMinutes = "0" + sMinutes;
-      var strTime = sHours + ":" + sMinutes;
-      return strTime;
+      if (input) {
+        var time = input;
+        var hours = Number(time.match(/^(\d+)/)[1]);
+        var minutes = Number(time.match(/:(\d+)/)[1]);
+        var AMPM = time.match(/\s(.*)$/)[1];
+        if (AMPM == "PM" && hours < 12) hours = hours + 12;
+        if (AMPM == "AM" && hours == 12) hours = hours - 12;
+        var sHours = hours.toString();
+        var sMinutes = minutes.toString();
+        if (hours < 10) sHours = "0" + sHours;
+        if (minutes < 10) sMinutes = "0" + sMinutes;
+        var strTime = sHours + ":" + sMinutes;
+        return strTime;
+      }
     },
     eventClicked(info) {
       var idVal = info.event;

@@ -8,6 +8,8 @@ const state = {
   successType: "",
   assignment: [],
   meetingList: [],
+  sessionList: [],
+  sharedSessionList: [],
   subjectsData: [],
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -23,6 +25,8 @@ const actions = {
       });
       commit('setPlannerList', response.data);
       commit('setMeetingList', response.meeting);
+      commit('setsessionList', response.session);
+      commit('setsharedSessionList', response.shared_sessions);
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -212,6 +216,12 @@ const mutations = {
   setMeetingList(state, data) {
     state.meetingList = data;
   },
+  setsessionList(state, data) {
+    state.sessionList = data;
+  },
+  setSharedSessionList(state, data) {
+    state.sharedSessionList = data;
+  },
   setAssignmentList(state, data) {
     state.assignment = data;
   },
@@ -239,6 +249,12 @@ const getters = {
   },
   meetingList: () => {
     return state.meetingList;
+  },
+  sessionList: () => {
+    return state.sessionList;
+  },
+  sharedSessionList: () => {
+    return state.sharedSessionList;
   },
   assignment: () => {
     return state.assignment;
