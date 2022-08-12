@@ -10,6 +10,8 @@ import { BASE_URL } from "../assets/js/constants"; const state = {
   assignmentValue: [],
   meetingList: [],
   subjectsData: [],
+  sessionList: [],
+  sharedSessionList: [],
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -24,6 +26,8 @@ const actions = {
       });
       commit('setPlannerList', response.data);
       commit('setMeetingList', response.meeting);
+      commit('setsessionList', response.session);
+      commit('setSharedSessionList', response.shared_sessions);
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -208,6 +212,54 @@ const actions = {
     }
   },
 
+  async getWeeklyPlannerFilter({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$get(BASE_URL + `planner/get_filter?date=${payLoad.date}&type=${payLoad.plannerType}&filter=${payLoad.filter}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      commit('setPlannerList', []);
+
+      commit('setMeetingList', []);
+
+      commit('setsessionList', []);
+
+      commit('setSharedSessionList', []);
+
+
+      if (payLoad.filter == 'Assignments') {
+
+        commit('setPlannerList', response.data);
+      }
+      if (payLoad.filter == 'Meetings')
+        commit('setMeetingList', response.meeting);
+      if (payLoad.filter == 'Session')
+        commit('setsessionList', response.session);
+      if (payLoad.filter == 'Session')
+        commit('setSharedSessionList', response.shared_sessions);
+
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else {
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+      }
+    }
+
+
+  },
+
 }
 const mutations = {
   setPlannerList(state, data) {
@@ -236,6 +288,12 @@ const mutations = {
   },
   setSubjectsList(state, data) {
     state.subjectsData = data;
+  },
+  setsessionList(state, data) {
+    state.sessionList = data;
+  },
+  setSharedSessionList(state, data) {
+    state.sharedSessionList = data;
   },
 
 }
@@ -266,6 +324,12 @@ const getters = {
   },
   subjectsData: () => {
     return state.subjectsData;
+  },
+  sessionList: () => {
+    return state.sessionList;
+  },
+  sharedSessionList: () => {
+    return state.sharedSessionList;
   },
 }
 

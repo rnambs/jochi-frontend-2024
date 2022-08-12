@@ -1515,6 +1515,61 @@
         </section>
       </div>
 
+      <!-- filter modal -->
+      <div
+        class="modal fade"
+        id="filterModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Choose Filter
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body px-4">
+              <div class="form-row">
+                <select
+                  class="form-control"
+                  tabindex=""
+                  v-model="filterType"
+                  :class="{
+                    'is-invalid': submitted && $v.Subject.$error,
+                  }"
+                >
+                  <option value="">All</option>
+
+                  <option value="Assignments">Assignment</option>
+                  <option value="Meetings">Meeting</option>
+                  <option value="Session">Study Session</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer px-4">
+              <button
+                @click="applyFilter"
+                class="btn btn-primary px-4 py-1 rounded-pill"
+              >
+                Apply Filter
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- filter modal end -->
+
       <!-- End Monthly Calander -->
     </div>
   </div>
@@ -1627,6 +1682,7 @@ export default {
       openAssignment: false,
       isAddAssignment: true,
       pendingAssignments: [],
+      filterType: "",
     };
   },
   mounted() {
@@ -1713,12 +1769,14 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
       subjectsData: (state) => state.subjectsData,
+      sessionList: (state) => state.sessionList,
+      sharedSessionList: (state) => state.sharedSessionList,
     }),
     ...mapState("quotedMessage", {
       quoteMessage: (state) => state.quoteMessage,
       viewed: (state) => state.viewed,
-      plannerList: (state) => state.plannerList,
-      meetingList: (state) => state.meetingList,
+      // plannerList: (state) => state.plannerList,
+      // meetingList: (state) => state.meetingList,
       assignment: (state) => state.assignment,
       successMessage: (state) => state.successMessage,
       SuccessType: (state) => state.SuccessType,
@@ -1748,6 +1806,7 @@ export default {
       getAssignment: "getAssignment",
       updateAssignment: "updateAssignment",
       getSubjectsList: "getSubjectsList",
+      getWeeklyPlannerFilter: "getWeeklyPlannerFilter",
     }),
     ...mapActions("quotedMessage", {
       showQuotedMessage: "showQuotedMessage",
@@ -1845,6 +1904,80 @@ export default {
         listobj["timeValNum"] = timeValNum;
         this.meetingDetails.push(listobj);
 
+        eventList.push(meetingobj);
+      });
+      this.sessionList.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+        let title = "";
+        if (element.assignment_id) {
+          title = "Study Session " + element.assignments?.task;
+        } else {
+          title = "Study Session " + element.subject?.subject_name;
+        }
+
+        // var meeting = element.meeting_type;
+        // if (meeting == "Peer") {
+        // var color = "#64B5FC";
+        // } else if (meeting == "Club") {
+        //   var color = "#07BEB8";
+        // } else if (meeting == "Teacher") {
+        const color = element.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.time;
+        var tmeMeeting = this.formatAMPM(element.time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        // meetingobj["groupId"] = "Meeting";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+      this.sharedSessionList.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+        let title = "";
+        if (element.assignment_id) {
+          title =
+            "Study Session For Assignment: " +
+            element.studyroom?.assignments?.task;
+        } else {
+          title =
+            "Study Session For Regular Study: " +
+            element.studyroom.subject?.subject_name;
+        }
+
+        // var meeting = element.meeting_type;
+        // if (meeting == "Peer") {
+        // var color = "#64B5FC";
+        // } else if (meeting == "Club") {
+        //   var color = "#07BEB8";
+        // } else if (meeting == "Teacher") {
+        const color = element.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.time;
+        var tmeMeeting = this.formatAMPM(element.start_time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        // meetingobj["groupId"] = "Meeting";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
         eventList.push(meetingobj);
       });
 
@@ -2263,6 +2396,167 @@ export default {
     confirmComplete(event) {
       event.preventDefault();
       event.stopPropagation();
+    },
+    filterPlanner() {
+      $("#filterModal").modal("show");
+    },
+    async applyFilter() {
+      if (!this.filterType) {
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+        return this.GetWeeklyPlanner();
+      }
+      eventList = [];
+      this.loading = true;
+      const format = "YYYY-MM-DD";
+      this.calendarDate = moment(this.calendarApi.view.activeStart).format(
+        format
+      );
+
+      await this.getWeeklyPlannerFilter({
+        plannerType: "Monthly",
+        date: this.calendarDate,
+        filter: this.filterType,
+      });
+      $(".modal").modal("hide");
+      $(".modal-backdrop").remove();
+      this.meetingDetails = [];
+      console.log("planner list", this.plannerList);
+      console.log("meeting list", this.meetingList);
+      console.log("session list", this.sessionList);
+      console.log("shared list", this.sharedSessionList);
+      this.plannerList.forEach((element) => {
+        var plannerObj = {};
+        var title = element.assignment_description;
+        if (element.priority == "1") {
+          var color = "#EF382E";
+        } else if (element.priority == "2") {
+          var color = "#00CCA0";
+        } else {
+          var color = "#F6D73C";
+        }
+        var dateMeeting = element.due_date;
+        var tmeMeeting = this.formatAMPM(element.due_time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        // var start = element.dateISOFormat;
+        var id = element.id;
+        plannerObj["title"] = title;
+        plannerObj["color"] = color;
+        plannerObj["start"] = start;
+        plannerObj["id"] = id;
+        eventList.push(plannerObj);
+      });
+      this.meetingList.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+        if (element.title != null) {
+          var title = "Meeting with " + element.title;
+        }
+        if (element.club_name != null) {
+          var title = element.club_name + " Meeting";
+        }
+        var meeting = element.meeting_type;
+        if (meeting == "Peer") {
+          var color = "#64B5FC";
+        } else if (meeting == "Club") {
+          var color = "#07BEB8";
+        } else if (meeting == "Teacher") {
+          var color = "#073BBF";
+        }
+        var dateMeeting = element.date;
+        var timeValNum = element.start_time;
+        var tmeMeeting = this.formatAMPM(element.start_time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        meetingobj["groupId"] = "Meeting";
+
+        listobj["title"] = title;
+        listobj["meeting"] = meeting;
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+      this.sessionList.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+        let title = "";
+        if (element.assignment_id) {
+          title = "Study Session " + element.assignments?.task;
+        } else {
+          title = "Study Session " + element.subject?.subject_name;
+        }
+
+        // var meeting = element.meeting_type;
+        // if (meeting == "Peer") {
+        // var color = "#64B5FC";
+        // } else if (meeting == "Club") {
+        //   var color = "#07BEB8";
+        // } else if (meeting == "Teacher") {
+        const color = element.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.time;
+        var tmeMeeting = this.formatAMPM(element.time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        // meetingobj["groupId"] = "Meeting";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+      this.sharedSessionList.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+        let title = "";
+        if (element.assignment_id) {
+          title =
+            "Study Session For Assignment: " +
+            element.studyroom?.assignments?.task;
+        } else {
+          title =
+            "Study Session For Regular Study: " +
+            element.studyroom.subject?.subject_name;
+        }
+
+        // var meeting = element.meeting_type;
+        // if (meeting == "Peer") {
+        // var color = "#64B5FC";
+        // } else if (meeting == "Club") {
+        //   var color = "#07BEB8";
+        // } else if (meeting == "Teacher") {
+        const color = element.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.time;
+        var tmeMeeting = this.formatAMPM(element.start_time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        // meetingobj["groupId"] = "Meeting";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+      console.log("events console", eventList);
+      this.calendarOptions.events = eventList;
+      this.loading = false;
     },
   },
 };
