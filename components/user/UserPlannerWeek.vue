@@ -2179,8 +2179,12 @@ export default {
       this.sessionList.forEach((element) => {
         var meetingobj = {};
         var listobj = {};
-
-        const title = "Study Session " + element.subject?.subject_name;
+        let title = "";
+        if (element.assignment_id) {
+          title = "Study Session " + element.assignments?.task;
+        } else {
+          title = "Study Session " + element.subject?.subject_name;
+        }
 
         // var meeting = element.meeting_type;
         // if (meeting == "Peer") {
@@ -2211,7 +2215,15 @@ export default {
         var meetingobj = {};
         var listobj = {};
 
-        const title = "Study Session " + element.subject?.subject_name;
+        if (element.assignment_id) {
+          title =
+            "Study Session For Assignment: " +
+            element.studyroom?.assignments?.task;
+        } else {
+          title =
+            "Study Session For Regular Study: " +
+            element.studyroom.subject?.subject_name;
+        }
 
         // var meeting = element.meeting_type;
         // if (meeting == "Peer") {
