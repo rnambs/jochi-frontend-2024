@@ -1844,16 +1844,19 @@
                   'is-invalid': submitted && $v.Subject.$error,
                 }"
               >
-                <option value="">Select Filter</option>
+                <option value="">All</option>
 
-                <option>Meeting</option>
-                <option>Meeting</option>
-                <option>Meeting</option>
+                <option value="Assignments">Assignment</option>
+                <option value="Meetings">Meeting</option>
+                <option value="Session">Study Session</option>
               </select>
             </div>
           </div>
           <div class="modal-footer px-4">
-            <button class="btn btn-primary px-4 py-1 rounded-pill">
+            <button
+              @click="applyFilter"
+              class="btn btn-primary px-4 py-1 rounded-pill"
+            >
               Apply Filter
             </button>
           </div>
@@ -2086,6 +2089,7 @@ export default {
       updateAssignment: "updateAssignment",
       getAssignment: "getAssignment",
       getSubjectsList: "getSubjectsList",
+      getWeeklyPlannerFilter: "getWeeklyPlannerFilter",
     }),
     ...mapActions("quotedMessage", {
       showQuotedMessage: "showQuotedMessage",
@@ -2671,6 +2675,157 @@ export default {
     confirmComplete(event) {
       event.preventDefault();
       event.stopPropagation();
+    },
+    async applyFilter() {
+      if (!this.filterType) {
+        return this.GetWeeklyPlanner();
+      }
+      eventList = [];
+      this.loading = true;
+      const format = "YYYY-MM-DD";
+      this.calendarDate = moment(this.calendarApi.view.activeStart).format(
+        format
+      );
+
+      await this.getWeeklyPlannerFilter({
+        plannerType: "Weekly",
+        date: this.calendarDate,
+        filter: this.filterType,
+      });
+      $(".modal").modal("hide");
+      $(".modal-backdrop").remove();
+      this.meetingDetails = [];
+      this.plannerList.forEach((element) => {
+        var plannerObj = {};
+        var title = element.subject;
+        if (element.priority == "1") {
+          var color = "#EF382E";
+        } else if (element.priority == "2") {
+          var color = "#00CCA0";
+        } else {
+          var color = "#F6D73C";
+        }
+        var dateMeeting = element.due_date;
+        var tmeMeeting = this.formatAMPM(element.due_time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        var id = element.id;
+        plannerObj["title"] = title;
+        plannerObj["color"] = color;
+        plannerObj["start"] = start;
+        plannerObj["id"] = id;
+        eventList.push(plannerObj);
+      });
+      this.meetingList.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+        if (element.title != null) {
+          var title = "Meeting with " + element.title;
+        }
+        if (element.club_name != null) {
+          var title = element.club_name + " Meeting";
+        }
+        var meeting = element.meeting_type;
+        if (meeting == "Peer") {
+          var color = "#64B5FC";
+        } else if (meeting == "Club") {
+          var color = "#07BEB8";
+        } else if (meeting == "Teacher") {
+          var color = "#073BBF";
+        }
+        var dateMeeting = element.date;
+        var timeValNum = element.start_time;
+        var tmeMeeting = this.formatAMPM(element.start_time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        meetingobj["groupId"] = "Meeting";
+
+        listobj["title"] = title;
+        listobj["meeting"] = meeting;
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+      this.sessionList.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+        let title = "";
+        if (element.assignment_id) {
+          title = "Study Session " + element.assignments?.task;
+        } else {
+          title = "Study Session " + element.subject?.subject_name;
+        }
+
+        // var meeting = element.meeting_type;
+        // if (meeting == "Peer") {
+        // var color = "#64B5FC";
+        // } else if (meeting == "Club") {
+        //   var color = "#07BEB8";
+        // } else if (meeting == "Teacher") {
+        const color = element.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.time;
+        var tmeMeeting = this.formatAMPM(element.time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        // meetingobj["groupId"] = "Meeting";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+      this.sharedSessionList.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+
+        if (element.assignment_id) {
+          title =
+            "Study Session For Assignment: " +
+            element.studyroom?.assignments?.task;
+        } else {
+          title =
+            "Study Session For Regular Study: " +
+            element.studyroom.subject?.subject_name;
+        }
+
+        // var meeting = element.meeting_type;
+        // if (meeting == "Peer") {
+        // var color = "#64B5FC";
+        // } else if (meeting == "Club") {
+        //   var color = "#07BEB8";
+        // } else if (meeting == "Teacher") {
+        const color = element.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.time;
+        var tmeMeeting = this.formatAMPM(element.time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        // meetingobj["groupId"] = "Meeting";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+      console.log("events console", eventList);
+      this.calendarOptions.events = eventList;
+      this.loading = false;
     },
   },
 };

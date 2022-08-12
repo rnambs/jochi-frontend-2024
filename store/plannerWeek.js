@@ -46,6 +46,50 @@ const actions = {
 
 
   },
+  async getWeeklyPlannerFilter({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$get(BASE_URL + `planner/get_filter?date=${payLoad.date}&type=${payLoad.plannerType}&filter=${payLoad.filter}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      commit('setPlannerList', []);
+
+      commit('setMeetingList', []);
+
+      commit('setsessionList', []);
+
+      commit('setsharedSessionList', []);
+
+
+      if (payLoad.filter == 'Assignments')
+        commit('setPlannerList', response.data[0]);
+      if (payLoad.filter == 'Meetings')
+        commit('setMeetingList', response.data[0]);
+      if (payLoad.filter == 'Sessions')
+        commit('setsessionList', response.data[0]);
+      if (payLoad.filter == 'Sessions')
+        commit('setsharedSessionList', response.data[1]);
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else {
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+      }
+    }
+
+
+  },
   async addAssignment({ commit }, payLoad) {
     const token = localStorage.getItem('token')
     try {
