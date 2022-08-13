@@ -306,6 +306,7 @@
                           >
                           <div>
                             <vue-timepicker
+                              close-on-complete
                               format="hh:mm A"
                               v-model="timeValue"
                               name="timeValue"

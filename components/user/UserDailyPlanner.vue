@@ -645,6 +645,8 @@
                                   priorityVal != 'Important' &&
                                   priorityVal != 'Can Wait'
                                 "
+                                class="invalid-feedback"
+                                style="display: block"
                               >
                                 <span
                                   v-if="
@@ -652,7 +654,6 @@
                                     priorityVal != 'Important' &&
                                     priorityVal != 'Can Wait'
                                   "
-                                  class="required-button"
                                   >This field is required</span
                                 >
                               </div>
@@ -696,6 +697,7 @@
                                 >
                                 <div>
                                   <vue-timepicker
+                                    close-on-complete
                                     format="hh:mm A"
                                     v-model="timeValue"
                                     name="timeValue"
@@ -1139,6 +1141,7 @@
                       priorityVal != '2' &&
                       priorityVal != '3'
                     "
+                    class="invalid-feedback"
                   >
                     <span
                       v-if="
@@ -1146,7 +1149,6 @@
                         priorityVal != '2' &&
                         priorityVal != '3'
                       "
-                      class="required-button"
                       >This field is required</span
                     >
                   </div>
@@ -1185,6 +1187,7 @@
                     >
                     <div>
                       <vue-timepicker
+                        close-on-complete
                         format="hh:mm A"
                         v-model="timeValue"
                         name="timeValue"

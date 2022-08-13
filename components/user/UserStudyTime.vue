@@ -1134,7 +1134,7 @@
                   Definition of this technique will go here...
                 </p>
                 <button
-                  @click="event.preventDefault()"
+                  @click="$event.stopPropagation()"
                   class="btn btn-dark py-2 text-center"
                 >
                   <a
