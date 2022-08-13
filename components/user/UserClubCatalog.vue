@@ -267,7 +267,7 @@
                       px-lg-3 px-xl-4
                     "
                   >
-                    View More
+                    Learn More
                   </nuxt-link>
                 </div>
               </div>

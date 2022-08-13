@@ -1313,7 +1313,13 @@
               >
                 <div class="d-flex align-items-center my-2 mr-3 min-w-200">
                   <div class="ld-img-section mr-3">
-                    <div class="ld-img-holder"></div>
+                    <!-- <div class="ld-img-holder"></div> -->
+                    <img
+                      v-if="peer.profile_pic"
+                      class="ld-img-holder shadow-none"
+                      :src="peer.profile_pic"
+                      alt=""
+                    />
                   </div>
                   <div class="ld-details-section">
                     <p class="ld-heading mb-1">{{ peer.first_name }}</p>
@@ -1329,7 +1335,7 @@
               <div class="d-flex flex-column h-40 flex-fill">
                 <h2 class="color-dark font-semi-bold mb-1">
                   {{ sessionMode == "regular" ? "Regular" : "Pomodoro" }}
-                  studying
+                  Studying
                 </h2>
                 <!-- <div
                   class="
@@ -1685,14 +1691,39 @@
                 {{ repetitionCount - currentRepetitionNum }}
               </p>
               <!-- <input type="text" v-model="remainingTime" id="remainingTime"> -->
-              <button
+              <!-- <button
                 type="button"
                 data-toggle="modal"
                 data-target="#exampleModalCenter"
                 class="btn btn-primary mb-2 mt-2 pl-3 pr-3"
               >
                 End Session
-              </button>
+              </button> -->
+              <h3 class="color-dark font-semi-bold mb-0">Goals</h3>
+              <div v-for="goal in goalsList" :key="goal">
+                <div class="card card-transparent show-icon p-1 mt-1">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <p
+                      class="
+                        mb-0
+                        color-secondary
+                        text-16
+                        font-regular
+                        pr-3
+                        d-flex
+                      "
+                    >
+                      <span><i class="far fa-circle"></i></span>
+                      <span class="word-break ml-2">{{ goal }}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div v-if="!goalsList || goalsList.length <= 0">
+                No goals listed
+              </div>
             </div>
             <div class="card card-light rounded-22 p-4">
               <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
@@ -1714,6 +1745,12 @@
                   <div class="ld-details-section">
                     <p class="ld-heading mb-1">{{ peer.first_name }}</p>
                   </div>
+                </div>
+                <div
+                  v-if="!peerList || peerList.length <= 0"
+                  class="d-flex align-items-center my-2 mr-3 min-w-200"
+                >
+                  No peers invited!
                 </div>
               </div>
             </div>
@@ -1742,7 +1779,7 @@
                 <div class="d-flex flex-column mb-4">
                   <h1 class="color-primary font-bold mb-0">Timer</h1>
                   <p class="color-dark text-24 font-semi-bold mb-1">
-                    Concentrate on session
+                    You got this!
                   </p>
                 </div>
                 <div
@@ -1807,8 +1844,9 @@
                 "
               >
                 <!-- && !studyTimePaused -->
+                <!-- this.studyTypes.id == 3 && -->
                 <button
-                  v-show="this.studyTypes.id == 3 && studyStatus != 'break'"
+                  v-show="studyStatus != 'break'"
                   @click.prevent="
                     showResume ? onResumeSession() : onPauseSession()
                   "
@@ -1821,6 +1859,15 @@
                   ></i>
                   <i v-if="showResume" class="fas fa-play color-white mr-2"></i>
                   {{ showResume ? "Resume" : "Pause" }}
+                </button>
+                &nbsp;
+                <button
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#exampleModalCenter"
+                  class="btn btn-primary mb-2 mt-2 pl-3 pr-3"
+                >
+                  End Session
                 </button>
               </div>
             </div>
@@ -3120,20 +3167,20 @@ export default {
       this.AddStudyTime("STOP");
     },
     async onPauseSession() {
-      if (this.studyTypes.id == 3) {
-        this.studyTimePaused = true;
-        var presentTime = new Date().getTime();
-        this.totalStudyTime = (presentTime - this.studyTimeStart) / 1000;
-        this.showResume = true;
-      }
+      // if (this.studyTypes.id == 3) {
+      this.studyTimePaused = true;
+      var presentTime = new Date().getTime();
+      this.totalStudyTime = (presentTime - this.studyTimeStart) / 1000;
+      this.showResume = true;
+      // }
     },
     async onResumeSession() {
-      if (this.studyTypes.id == 3) {
-        (this.startTime = new Date().getTime()), (this.studyTimePaused = false);
-        this.studyTimeStart = new Date().getTime();
-        this.showResume = false;
-        this.studyStatus = "study";
-      }
+      // if (this.studyTypes.id == 3) {
+      (this.startTime = new Date().getTime()), (this.studyTimePaused = false);
+      this.studyTimeStart = new Date().getTime();
+      this.showResume = false;
+      this.studyStatus = "study";
+      // }
     },
 
     async onBackClick() {

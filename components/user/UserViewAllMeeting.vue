@@ -69,8 +69,8 @@
                       ><i class="fa fa-filter" aria-hidden="true"></i
                     ></span> -->
                     <ul class="dropdown-menu" aria-labelledby="dLabel">
-                      <li class="item">Teacher</li>
-                      <li class="item">Student</li>
+                      <li class="item">Teacher Meeting</li>
+                      <li class="item">Peer Meeting</li>
                       <li class="item">All</li>
                     </ul>
                   </div>
@@ -867,9 +867,9 @@ export default {
     },
 
     filterOption(value) {
-      if (value == "Teacher") {
+      if (value == "Teacher Meeting") {
         this.slot_date = Teacherarray;
-      } else if (value == "Student") {
+      } else if (value == "Peer Meeting") {
         this.slot_date = Peerarray;
       } else if (value == "All") {
         this.slot_date = Allarray;
