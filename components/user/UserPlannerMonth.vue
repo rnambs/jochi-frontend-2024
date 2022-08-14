@@ -2408,7 +2408,7 @@ export default {
       if (!this.filterType) {
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
-        return this.GetWeeklyPlanner();
+        return this.GetMonthlyPlanner();
       }
       eventList = [];
       this.loading = true;

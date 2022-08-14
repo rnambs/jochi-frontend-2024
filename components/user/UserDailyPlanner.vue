@@ -1689,7 +1689,7 @@ export default {
         eventList.push(plannerObj);
         this.assignmentList.push(scheduleObject);
       });
-      this.meetingList.forEach((element) => {
+      this.meetingList?.forEach((element) => {
         var meetingobj = {};
         var listobj = {};
         if (element.title != null) {
@@ -2005,7 +2005,7 @@ export default {
         var titleVal = info.event.title;
         var meetingVal = info.event.backgroundColor;
         var dateNum = info.event.start;
-        let time = this.meetingList.find((e) => e.id == idVal.id).start_time;
+        let time = this.meetingList?.find((e) => e.id == idVal.id).start_time;
         this.popupmodal(titleVal, meetingVal, dateNum, time);
       }
     },

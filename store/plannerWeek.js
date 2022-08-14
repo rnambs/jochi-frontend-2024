@@ -68,11 +68,11 @@ const actions = {
         commit('setPlannerList', response.data);
       }
       if (payLoad.filter == 'Meetings')
-        commit('setMeetingList', response.data);
+        commit('setMeetingList', response.meeting);
       if (payLoad.filter == 'Session')
-        commit('setsessionList', response.data);
-      if (payLoad.filter == 'Session') { }
-      // commit('setSharedSessionList', response.data);
+        commit('setsessionList', response.session);
+      if (payLoad.filter == 'Session')
+        commit('setSharedSessionList', response.shared_sessions);
 
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
