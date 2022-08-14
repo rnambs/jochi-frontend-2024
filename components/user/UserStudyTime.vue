@@ -1683,7 +1683,8 @@
               </p>
               <!-- v-if="studyTypes.id != 3" -->
               <p class="color-secondary text-16 font-regular mb-1">
-                Remaining Cycles : {{ totalCycles - currentCycle }}
+                Remaining Cycles :
+                {{ totalCycles - currentCycle }}
               </p>
               <!-- v-if="studyTypes.id != 3" -->
               <p class="color-secondary text-16 font-regular mb-1">
@@ -2619,7 +2620,11 @@ export default {
       },
       date_today: new Date(),
       scheduledDate: "",
-      scheduledTime: "",
+      scheduledTime: {
+        hh: "00",
+        MM: "00",
+        A: "am",
+      },
       showSessionDetail: false,
       studySessionList: [],
       sessionDetail: {},
@@ -2728,7 +2733,7 @@ export default {
         this.breakTime = 2;
         this.breakAt = 2;
         this.repeatLoopBy = 1;
-        this.totalCycles = 1;
+        // this.totalCycles = 1;
       }
     },
     async UpdateSubject() {
@@ -2780,6 +2785,8 @@ export default {
           }
         }
       } else {
+        this.currentRepetitionNum = 1;
+        this.currentCycle = 1;
         if (this.targetDuration > 0 && this.breakAt > 0 && this.breakTime > 0) {
           this.studyStatus = "study";
           await this.runTimer(this.targetDuration * 60);
@@ -2942,7 +2949,13 @@ export default {
             : this.scheduledDate
             ? moment(this.scheduledDate).format("YYYY-MM-DD")
             : "",
-          start_time: scheduleNow ? todayTime : this.scheduledTime,
+          start_time: scheduleNow
+            ? todayTime
+            : this.scheduledTime.hh +
+              ":" +
+              this.scheduledTime.mm +
+              " " +
+              this.scheduledTime.A,
           study_method: this.studyTypes.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
@@ -2961,7 +2974,13 @@ export default {
             : this.scheduledDate
             ? moment(this.scheduledDate).format("YYYY-MM-DD")
             : "",
-          start_time: scheduleNow ? todayTime : this.scheduledTime,
+          start_time: scheduleNow
+            ? todayTime
+            : this.scheduledTime.hh +
+              ":" +
+              this.scheduledTime.mm +
+              " " +
+              this.scheduledTime.A,
           study_method: this.studyTypes.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
@@ -3333,6 +3352,9 @@ export default {
       }
 
       this.currentTab--;
+      if (this.currentTab == 2) {
+        this.resetTab3();
+      }
     },
     async setSessionType(type) {
       this.sessionType = type;
@@ -3390,7 +3412,8 @@ export default {
       this.addGoal = false;
     },
     deleteGoal(goal) {
-      this.goalsList = this.goalsList.filter((e) => e != goal);
+      let index = this.goalsList.findIndex((e) => e == goal);
+      this.goalsList.splice(index, 1);
     },
     onInviteClick() {
       this.invitePeer = true;
@@ -3414,7 +3437,12 @@ export default {
     openScheduleForLater() {
       this.processing = false;
       this.processingStudySession = false;
-      this.scheduledTime = "";
+      this.scheduledTime = {
+        hh: "00",
+        MM: "00",
+        A: "am",
+      };
+      this.scheduledDate = "";
       if (this.checkValidations()) {
         $("#scheduleForLater").modal({ backdrop: true });
       }
@@ -3429,11 +3457,11 @@ export default {
       this.sessionType = "";
       this.assignmentDetail = {};
       this.assignmentList = [];
-      this.sessionMode = "";
+
       this.addGoal = false;
       this.goalName = "";
       this.goalsList = [];
-      this.selectedAssignment = {};
+
       this.invitePeer = false;
       this.peerSelected = [];
       this.peerList = [];
@@ -3441,7 +3469,11 @@ export default {
       this.showSessionDetail = false;
       this.studySessionList = [];
       this.sessionDetail = {};
-      this.scheduledTime = "";
+      this.scheduledTime = {
+        hh: "00",
+        MM: "00",
+        A: "am",
+      };
       this.scheduledDate = "";
       this.Subject = "";
       if (this.currentTab == 0) {
@@ -3570,6 +3602,24 @@ export default {
           duration: 5000,
         });
       }
+    },
+    resetTab3() {
+      this.sessionMode = "";
+      this.addGoal = false;
+      this.goalName = "";
+      this.goalsList = [];
+      this.selectedAssignment = {};
+      this.invitePeer = false;
+      this.peerSelected = [];
+      this.peerList = [];
+      this.scheduledTime = {
+        hh: "00",
+        MM: "00",
+        A: "am",
+      };
+      this.scheduledDate = "";
+      this.Subject = "";
+      this.repetitionCount = 1;
     },
   },
 
