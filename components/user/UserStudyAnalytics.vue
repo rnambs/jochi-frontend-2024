@@ -14,7 +14,10 @@
           class="d-flex align-items-center justify-content-between mb-4 px-2"
         >
           <h2 class="color-primary font-semi-bold mb-0">Study Analytics</h2>
-          <div @click="openModal" class="d-flex align-items-center cursor-pointer">
+          <div
+            @click="openModal"
+            class="d-flex align-items-center cursor-pointer"
+          >
             <p class="mb-0 d-flex flex-column text-right">
               <span class="color-dark text-16 font-semi-bold"
                 >{{ duration }} Minutes Studied Today</span
@@ -234,17 +237,17 @@
                 <div class="form-row">
                   <label for="" class="form-label">Hours</label>
                   <input
-                  type="number"
-                  min="0"
-                  max="24"
-                  id="hours"
-                  v-model="hours"
-                  class="form-control"
-                  @change="submitted = submitted ? !submitted : submitted"
-                  :class="{
-                    'is-invalid': submitted && (hours < 0 || hours > 24),
-                  }"
-                />
+                    type="number"
+                    min="0"
+                    max="24"
+                    id="hours"
+                    v-model="hours"
+                    class="form-control"
+                    @change="submitted = submitted ? !submitted : submitted"
+                    :class="{
+                      'is-invalid': submitted && (hours < 0 || hours > 24),
+                    }"
+                  />
                   <div
                     v-if="submitted && (hours < 0 || hours > 24)"
                     class="invalid-feedback"
@@ -257,17 +260,17 @@
                 <div class="form-row">
                   <label for="" class="form-label">Minutes</label>
                   <input
-                  type="number"
-                  min="0"
-                  max="60"
-                  id="minutes"
-                  v-model="minutes"
-                  @change="submitted = submitted ? !submitted : submitted"
-                  class="form-control"
-                  :class="{
-                    'is-invalid': submitted && (minutes < 0 || minutes > 60),
-                  }"
-                />
+                    type="number"
+                    min="0"
+                    max="60"
+                    id="minutes"
+                    v-model="minutes"
+                    @change="submitted = submitted ? !submitted : submitted"
+                    class="form-control"
+                    :class="{
+                      'is-invalid': submitted && (minutes < 0 || minutes > 60),
+                    }"
+                  />
                   <div
                     v-if="submitted && (minutes < 0 || minutes > 60)"
                     class="invalid-feedback"
@@ -289,7 +292,6 @@
             <button
               type="button"
               class="btn btn-primary rounded-pill px-4 py-1"
-              data-dismiss="modal"
               @click="configureGoal()"
               :disabled="processing"
             >
@@ -396,10 +398,10 @@ export default {
         let percentageVal = obj.percentage ? obj.percentage : 0;
         subject.push(percentageVal?.toFixed(2) + "% " + obj.subject_name);
         percentage.push(percentageVal?.toFixed(2));
-        bgColor.push("#" + obj.subjectColor.toString().substr(4));
+        bgColor.push("#" + obj.subjectColor?.toString().substr(4));
         this.legends.push({
           value: percentageVal?.toFixed(2) + "% " + obj.subject_name,
-          color: "#" + obj.subjectColor.toString().substr(4),
+          color: "#" + obj.subjectColor?.toString().substr(4),
         });
       }
 
@@ -444,10 +446,10 @@ export default {
         let percentageVal = obj.percentage ? obj.percentage : 0;
         subjectTotal.push(percentageVal?.toFixed(2) + "% " + obj.subject_name);
         percentageTotal.push(percentageVal?.toFixed(2));
-        bgColorTotal.push("#" + obj.subjectColor.toString().substr(4));
+        bgColorTotal.push("#" + obj.subjectColor?.toString().substr(4));
         this.legendsTotal.push({
           value: percentageVal?.toFixed(2) + "% " + obj.subject_name,
-          color: "#" + obj.subjectColor.toString().substr(4),
+          color: "#" + obj.subjectColor?.toString().substr(4),
         });
       }
 
@@ -628,73 +630,85 @@ export default {
       this.submitted = true;
       this.processing = true;
 
+      console.log(
+        this.hours,
+        this.minutes,
+        Number(this.hours),
+        Number(this.minutes)
+      );
+
       let duration = 0;
-      if (this.hours && this.minutes) {
-        if (
-          this.hours > 0 &&
-          this.hours < 24 &&
-          this.minutes > 0 &&
-          this.minutes < 60
-        ) {
-          duration = this.hours * 60 + this.minutes;
-        }
+      duration = Number(this.hours) * 60 + Number(this.minutes);
 
-        if (duration <= 0) {
-          this.processing = false;
+      // if (Number(this.hours) && Number(this.minutes)) {
+      // if (
+      //   Number(this.hours) > 0 &&
+      //   Number(this.hours) < 24 &&
+      //   Number(this.minutes) > 0 &&
+      //   Number(this.minutes) < 60
+      // ) {
+      //   duration = Number(this.hours) * 60 + Number(this.minutes);
+      // }
 
-          return this.$toast.open({
-            message: "Please configure valid times",
-            type: "warning",
-            duration: 5000,
-          });
-        }
+      if (duration <= 0 || duration > 1440) {
+        this.processing = false;
 
-        await this.setGoal({
-          daily_timer_id: this.dailyTimerId > 0 ? this.dailyTimerId : null,
-          duration: duration,
+        this.$toast.open({
+          message: "Please configure valid times",
+          type: "warning",
+          duration: 5000,
         });
-        if (this.successMessage != "") {
-          this.submitted = false;
-          this.closeModal();
-          this.getConfiguredGoal();
-          this.$toast.open({
-            message: this.successMessage,
-            type: this.SuccessType,
-            duration: 5000,
-          });
-
-          this.hours = 0;
-          this.minutes = 0;
-        } else if (this.errorMessage != "") {
-          this.$toast.open({
-            message: this.errorMessage,
-            type: this.errorType,
-            duration: 5000,
-          });
-        }
+        return;
       }
+
+      await this.setGoal({
+        daily_timer_id: this.dailyTimerId > 0 ? this.dailyTimerId : null,
+        duration: duration,
+      });
+      if (this.successMessage != "") {
+        this.submitted = false;
+        this.closeModal();
+        this.getConfiguredGoal();
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+
+        this.hours = 0;
+        this.minutes = 0;
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      // }
       this.processing = false;
     },
 
     async getConfiguredGoal() {
       await this.getGoal();
-      this.dailyTimerId = this.goal.id ? this.goal.id : 0;
-      this.duration = !isNaN(Number(this.goal.total_duration_covered))
-        ? Number(this.goal.total_duration_covered)
-        : 0;
-      this.durationRemaining =
-        !isNaN(Number(this.goal.duration)) &&
-        !isNaN(Number(this.goal.total_duration_covered))
-          ? Number(this.goal.duration) -
-            Number(this.goal.total_duration_covered)
+      if (this.goal) {
+        this.dailyTimerId = this.goal.id ? this.goal.id : 0;
+        this.duration = !isNaN(Number(this.goal.total_duration_covered))
+          ? Number(this.goal.total_duration_covered)
           : 0;
-      let goal =
-        Number(this.goal.duration) > 0 ? Number(this.goal.duration) : 0;
-      var h = Math.floor(goal / 60);
-      var m = goal % 60;
+        this.durationRemaining =
+          !isNaN(Number(this.goal.duration)) &&
+          !isNaN(Number(this.goal.total_duration_covered))
+            ? Number(this.goal.duration) -
+              Number(this.goal.total_duration_covered)
+            : 0;
+        let goal =
+          Number(this.goal.duration) > 0 ? Number(this.goal.duration) : 0;
+        var h = Math.floor(goal / 60);
+        var m = goal % 60;
 
-      this.hours = h;
-      this.minutes = m;
+        this.hours = h;
+        this.minutes = m;
+      }
     },
   },
 };

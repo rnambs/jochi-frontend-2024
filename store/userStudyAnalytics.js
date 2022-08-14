@@ -54,10 +54,10 @@ const actions = {
                 commit('setSuccessType', "success");
             }
         } catch (e) {
-            if (e.response.data.message) {
+            if (e.response.data.error) {
                 commit('setSuccessMessage', "");
                 commit('setSuccessType', "");
-                commit('setErrorMessage', e.response.data.message);
+                commit('setErrorMessage', e.response.data.error);
                 commit('setErrorType', "error");
             }
         }

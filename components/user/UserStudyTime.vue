@@ -2638,8 +2638,19 @@ export default {
   beforeMount() {
     window.addEventListener("beforeunload", this.preventNav);
   },
+  watch: {
+    $route() {
+      console.log("route change");
+    },
+  },
 
   mounted() {
+    window.addEventListener("beforeunload", function (e) {
+      // Cancel the event
+      e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+      // Chrome requires returnValue to be set
+      e.returnValue = "";
+    });
     this.disabledDates.to = new Date(
       this.date_today.getFullYear(),
       this.date_today.getMonth(),
@@ -3621,6 +3632,15 @@ export default {
       this.Subject = "";
       this.repetitionCount = 1;
     },
+  },
+  beforeRouteLeave: function (to, from, next) {
+    console.log("In beforeRouteLeave of AnotherComponent");
+    alert("dknfklashd");
+    // Indicate to the SubComponent that we are leaving the route
+    // this.$refs.mySubComponent.prepareToExit();
+    // Make sure to always call the next function, otherwise the hook will never be resolved
+    // Ref: https://router.vuejs.org/en/advanced/navigation-guards.html
+    next();
   },
 
   beforeDestroy() {
