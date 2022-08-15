@@ -682,6 +682,7 @@ export default {
       updatedDate: "",
       disabledDates: {
         to: new Date(),
+        from: new Date(),
       },
       date_today: new Date(),
     };
@@ -696,6 +697,11 @@ export default {
     this.disabledDates.to = new Date(
       this.date_today.getFullYear(),
       this.date_today.getMonth(),
+      this.date_today.getDate()
+    );
+    this.disabledDates.from = new Date(
+      this.date_today.getFullYear(),
+      this.date_today.getMonth() + 1,
       this.date_today.getDate()
     );
     var user = localStorage.getItem("user_type");
