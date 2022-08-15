@@ -35,7 +35,11 @@
               align-items-center
             "
           >
-            <button @click="openAddBanner" class="btn p-1 m-2">
+            <button
+              v-if="enableEdit"
+              @click="openAddBanner"
+              class="btn p-1 m-2"
+            >
               <i class="fas fa-pen color-white"></i>
             </button>
             <!-- <div class="d-flex align-items-center">
@@ -47,6 +51,7 @@
               </p>
             </div> -->
             <button
+              v-if="enableEdit"
               class="btn p-0 tooltip01 right-tip"
               CustomTitle="1200 X 180"
             >

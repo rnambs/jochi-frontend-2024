@@ -59,10 +59,15 @@
               <i class="fas fa-info-circle color-white"></i>
             </button>
           </div> -->
-            <button @click="openAddBanner" class="btn p-1 m-2">
+            <button
+              v-if="enableEdit"
+              @click="openAddBanner"
+              class="btn p-1 m-2"
+            >
               <i class="fas fa-pen color-white"></i>
             </button>
             <button
+              v-if="enableEdit"
               class="btn p-0 tooltip01 right-tip"
               CustomTitle="1200 X 180"
             >

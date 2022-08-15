@@ -2172,7 +2172,6 @@ export default {
         this.getAssignmentsList();
         this.getAllCompletedAssignments();
         this.completeAsstId = 0;
-        this.playCelebration = true;
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -2181,6 +2180,8 @@ export default {
 
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
+        await this.GetDailyPlanner();
+        this.playCelebration = true;
         const myTimeout = setTimeout(() => {
           this.playCelebration = false;
         }, 5000);
@@ -2190,8 +2191,8 @@ export default {
           type: this.errorType,
           duration: 5000,
         });
+        await this.GetDailyPlanner();
       }
-      this.GetDailyPlanner();
     },
     async completeSubTask() {
       this.processingCompleteAssignment = true;

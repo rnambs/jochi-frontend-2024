@@ -3646,6 +3646,7 @@ export default {
   beforeDestroy() {
     // this.preventNav();
     window.removeEventListener("beforeunload", this.preventNav);
+    //  window.removeEventListener("scroll", handler, false);
   },
   destroyed() {},
 };
