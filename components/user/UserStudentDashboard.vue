@@ -422,17 +422,23 @@
               <div>
                 <FullCalendar ref="fullCalendar" :options="calendarOptions" />
               </div>
-              <h4 class="color-black font-semi-bold">All Assignments</h4>
+              <h4 class="color-black font-semi-bold">Assignments List</h4>
               <div class="d-flex flex-column">
-                <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
+                <div
+                  v-for="item in plannerList"
+                  :key="item.id"
+                  class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                >
+                  {{ item.task }}
+                  {{ item.due_date }}
+                  {{ item.due_time }}
+                </div>
+                <!-- <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
                   .
                 </div>
                 <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
                   .
-                </div>
-                <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
-                  .
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -717,36 +723,84 @@ export default {
       progress: 50,
       calendarApi: Calendar,
       calendarOptions: {
-        displayEventTime: false,
+        plugins: [dayGridPlugin, interactionPlugin],
+        // headerToolbar: {
+        //   left: "prev",
+        //   center: "title",
+        //   right: "next",
+        // },
         customButtons: {
           prev: {
+            icon: "chevron-left",
             click: this.goPrev.bind(this),
           },
           next: {
+            icon: "chevron-right",
             click: this.goNext.bind(this),
           },
         },
-        allDaySlot: true,
-        minTime: 0,
-        maxTime: 24,
-        plugins: [dayGridPlugin, interactionPlugin],
-        headerToolbar: {
-          left: "prev",
-          center: "title",
-          right: "next",
-        },
+        datesRender: this.handleDatesRender,
         initialView: "dayGridMonth",
         unselectAuto: false,
         selectable: true,
-        datesSet: this.handleMonthChange,
-        events: eventList,
+        events: [
+          {
+            title: "All Day Event",
+            start: "2022-08-01",
+          },
+          {
+            title: "Long Event",
+            start: "2022-08-07",
+            end: "2022-08-10",
+            color: "purple", // override!
+          },
+          {
+            groupId: "999",
+            title: "Repeating Event",
+            start: "2022-08-09T16:00:00",
+          },
+          {
+            groupId: "999",
+            title: "Repeating Event",
+            start: "2022-08-16T16:00:00",
+          },
+          {
+            title: "Conference",
+            start: "2022-08-11",
+            end: "2022-08-13",
+            color: "purple", // override!
+          },
+          {
+            title: "Meeting",
+            start: "2022-08-12T10:30:00",
+            end: "2022-08-12T12:30:00",
+          },
+          {
+            title: "Lunch",
+            start: "2022-08-12T12:00:00",
+          },
+          {
+            title: "Meeting",
+            start: "2022-08-12T14:30:00",
+          },
+          {
+            title: "Birthday Party",
+            start: "2022-08-13T07:00:00",
+          },
+          {
+            title: "Click for Google",
+            url: "http://google.com/",
+            start: "2022-08-28",
+          },
+        ],
         eventClick: this.eventClicked,
-        slotDuration: "00:15:00",
-        slotEventOverlap: false,
-        eventMaxStack: true, // for all non-TimeGrid views
+        datesSet: this.handleMonthChange,
+        dayMaxEventRows: true, // for all non-TimeGrid views
         views: {
-          timeGrid: {
+          dayGrid: {
             dayMaxEventRows: 4, // adjust to 6 only for timeGridWeek/timeGridDay
+            //
+            // },
           },
         },
       },
@@ -760,6 +814,9 @@ export default {
     };
   },
   computed: {
+    ...mapState("plannerMonth", {
+      plannerList: (state) => state.plannerList,
+    }),
     ...mapState("quotedMessage", {
       quoteMessage: (state) => state.quoteMessage,
     }),
@@ -781,6 +838,7 @@ export default {
     this.firstName = localStorage.getItem("first_name");
     this.getConfiguredGoal();
     this.ListAllMeeting();
+    this.GetMonthlyPlanner();
   },
   methods: {
     ...mapActions("quotedMessage", {
@@ -796,15 +854,9 @@ export default {
     ...mapActions("teacherMeeting", {
       getInvitedMembers: "getInvitedMembers",
     }),
-    goPrev() {
-      this.calendarApi.prev(); // call a method on the Calendar object
-      // this.GetDailyPlanner();
-    },
-
-    goNext() {
-      this.calendarApi.next();
-      // this.GetDailyPlanner();
-    },
+    ...mapActions("plannerMonth", {
+      getMonthlyPlanner: "getMonthlyPlanner",
+    }),
 
     async ShowQuotedMessage() {
       this.loading = true;
@@ -820,23 +872,25 @@ export default {
     },
     async getConfiguredGoal() {
       await this.getGoal();
-      this.dailyTimerId = this.goal.id ? this.goal.id : 0;
-      this.duration = !isNaN(Number(this.goal.total_duration_covered))
-        ? Number(this.goal.total_duration_covered)
-        : 0;
-      this.durationRemaining =
-        !isNaN(Number(this.goal.duration)) &&
-        !isNaN(Number(this.goal.total_duration_covered))
-          ? Number(this.goal.duration) -
-            Number(this.goal.total_duration_covered)
+      if (this.goal) {
+        this.dailyTimerId = this.goal.id ? this.goal.id : 0;
+        this.duration = !isNaN(Number(this.goal.total_duration_covered))
+          ? Number(this.goal.total_duration_covered)
           : 0;
-      let goal =
-        Number(this.goal.duration) > 0 ? Number(this.goal.duration) : 0;
-      var h = Math.floor(goal / 60);
-      var m = goal % 60;
+        this.durationRemaining =
+          !isNaN(Number(this.goal.duration)) &&
+          !isNaN(Number(this.goal.total_duration_covered))
+            ? Number(this.goal.duration) -
+              Number(this.goal.total_duration_covered)
+            : 0;
+        let goal =
+          Number(this.goal.duration) > 0 ? Number(this.goal.duration) : 0;
+        var h = Math.floor(goal / 60);
+        var m = goal % 60;
 
-      this.hours = h;
-      this.minutes = m;
+        this.hours = h;
+        this.minutes = m;
+      }
     },
     openMeetingDetail() {
       $("#MeetingModal").modal({ backdrop: true });
@@ -990,6 +1044,74 @@ export default {
         group_id: this.detailGroupId,
       });
       this.loading = false;
+    },
+    handleDateClick: function (arg) {
+      this.listAgenda = [];
+
+      this.agendaList.forEach((element) => {
+        var listObj = {};
+        if (element.date == arg.dateStr) {
+          listObj["time"] = element.default_slots.start_time;
+          listObj["title"] = element.title;
+          this.listAgenda.push(listObj);
+        }
+      });
+      if (!ismounted) {
+        this.ListTeacherAgenda();
+      }
+      ismounted = false;
+    },
+    async GetMonthlyPlanner() {
+      eventList = [];
+      this.loading = true;
+      const format = "YYYY-MM-DD";
+
+      this.calendarDate = moment(this.calendarApi.view.activeStart).format(
+        format
+      );
+
+      await this.getMonthlyPlanner({
+        user_id: localStorage.getItem("id"),
+        type: "Monthly",
+        date: this.calendarDate,
+      });
+      this.meetingDetails = [];
+      console.log(this.plannerList);
+      this.plannerList.forEach((element) => {
+        var plannerObj = {};
+        var title = element.subject;
+        if (element.priority == "1") {
+          var color = "#EF382E";
+        } else if (element.priority == "2") {
+          var color = "#00CCA0";
+        } else {
+          var color = "#F6D73C";
+        }
+        var start = element.due_date;
+        var date = this.dateValue;
+        var id = element.id;
+        plannerObj["title"] = title;
+        plannerObj["color"] = color;
+        plannerObj["start"] = start;
+        plannerObj["id"] = id;
+        plannerObj["date"] = date;
+        eventList.push(plannerObj);
+        console.log(plannerObj);
+      });
+
+      this.calendarOptions.events = eventList;
+      this.loading = false;
+
+      console.log("event list", eventList);
+    },
+    goPrev() {
+      this.calendarApi.prev(); // call a method on the Calendar object
+      this.GetMonthlyPlanner();
+    },
+
+    goNext() {
+      this.calendarApi.next();
+      this.GetMonthlyPlanner();
     },
   },
 };
