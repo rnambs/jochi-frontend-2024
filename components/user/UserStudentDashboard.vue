@@ -228,7 +228,11 @@
                               >
                                 <div class="fa-meeting-faculty-details">
                                   <p class="mb-1 faculty-meeting-text">
-                                    Faculty Meeting
+                                    {{
+                                      list.type == "Teacher"
+                                        ? "Faculty Meeting"
+                                        : "Peer Meeting"
+                                    }}
                                   </p>
                                   <p class="mb-1 faculty-name">
                                     {{ list.new_title }}
@@ -480,10 +484,8 @@
                   <td class="tmodal-data">With</td>
                   <td class="tmodal-data d-flex align-items-center flex-wrap">
                     <span class="pr-2"></span>
-                    <span v-if="meetingDetail.type == 'Teacher'"
-                      >{{ meetingDetail.new_title }}
-                    </span>
-                    <div
+                    <span>{{ meetingDetail.new_title }} </span>
+                    <!-- <div
                       class="invited-members-status mr-2"
                       v-else
                       v-for="(item, index) of invitedMembers"
@@ -504,7 +506,7 @@
                         "
                         >{{ item.name }}</span
                       >
-                    </div>
+                    </div> -->
                   </td>
                 </tr>
 
