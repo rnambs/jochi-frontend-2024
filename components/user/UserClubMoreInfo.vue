@@ -396,6 +396,15 @@
                         <div class="inner-info-head mb-2">
                           <h5 class="color-dark mb-2 font-bold">To do!</h5>
                         </div>
+                        <div
+                          class="form-group ml-4"
+                          v-if="
+                            !clubMoreDetails.todo ||
+                            clubMoreDetails.todo.length <= 0
+                          "
+                        >
+                          No To-dos added!
+                        </div>
                         <div class="form-group ml-4">
                           <ul class="list-unstyled">
                             <li
