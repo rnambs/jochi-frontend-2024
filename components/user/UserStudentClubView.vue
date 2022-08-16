@@ -386,12 +386,10 @@
                               v-if="
                                 membersInfo[index - 1] &&
                                 membersInfo[index - 1].user_info &&
-                                membersInfo[index - 1].user_info
-                                  .proPic_file_name
+                                membersInfo[index - 1].user_info.profile_pic
                               "
                               :src="
-                                membersInfo[index - 1].user_info
-                                  .proPic_file_name
+                                membersInfo[index - 1].user_info.profile_pic
                               "
                               alt=""
                             />
@@ -424,12 +422,10 @@
                             <img
                               v-if="
                                 membersInfo[index + 3] &&
-                                membersInfo[index + 3].user_info
-                                  .proPic_file_name
+                                membersInfo[index + 3].user_info.profile_pic
                               "
                               :src="
-                                membersInfo[index + 3].user_info
-                                  .proPic_file_name
+                                membersInfo[index + 3].user_info.profile_pic
                               "
                               alt=""
                             />
