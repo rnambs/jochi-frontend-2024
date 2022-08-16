@@ -29,6 +29,7 @@
               <!-- data-toggle="modal"
                 data-target="#createNewModal" -->
               <button
+                v-if="user_type == 3"
                 type="button"
                 class="btn btn-primary py-2 mt-1 h-fit-content"
                 @click="openCreateNewModal"
@@ -487,6 +488,7 @@ export default {
   },
   data() {
     return {
+      user_type: 0,
       list_data: [],
       value: "",
       loading: false,
@@ -511,6 +513,7 @@ export default {
     description: { required },
   },
   mounted() {
+    this.user_type = localStorage.getItem("user_type");
     SelectValue = "";
     this.GetTag();
     this.ClubCatalogue();

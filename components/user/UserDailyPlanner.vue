@@ -986,6 +986,8 @@
                                     type="file"
                                     class="form-control px-2"
                                     placeholder="Upload File"
+                                    @change="onFileChange"
+                                    accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
                                   />
                                 </div>
                                 <div class="col-9 py-0 pl-0">
@@ -994,20 +996,22 @@
                                     type="text"
                                     class="form-control px-2"
                                     placeholder="Paste Link"
+                                    v-model="link"
                                   />
                                 </div>
                                 <div class="col-3 p-0">
-                                  <input
+                                  <!-- <input
                                     type="submit"
                                     class="form-control"
                                     value="Add"
-                                  />
+                                  /> -->
                                 </div>
                               </div>
                             </div>
                             <div class="pt-4">
                               <button
-                                @click="onInvitePeer"
+                                type="button"
+                                @click="UploadAttachment"
                                 class="btn btn-primary btn-sm mt-2"
                               >
                                 Add
@@ -1021,6 +1025,7 @@
                               class="h-fit-content"
                             >
                               <div
+                                v-if="item.link"
                                 class="
                                   d-flex
                                   align-items-center
@@ -1029,13 +1034,27 @@
                                   min-w-200
                                 "
                               >
-                                <div class="ld-img-section mr-3">
-                                  <div class="ld-img-holder"></div>
-                                </div>
                                 <div class="ld-details-section">
                                   <p class="ld-heading mb-1">
                                     <!-- {{ peer.first_name }} -->
-                                    {{item}}
+                                    {{ item.link }}
+                                  </p>
+                                </div>
+                              </div>
+                              <div
+                                v-else
+                                class="
+                                  d-flex
+                                  align-items-center
+                                  my-2
+                                  mr-3
+                                  min-w-200
+                                "
+                              >
+                                <div class="ld-details-section">
+                                  <p class="ld-heading mb-1">
+                                    <!-- {{ peer.first_name }} -->
+                                    {{ item.material }}
                                   </p>
                                 </div>
                               </div>
@@ -1656,6 +1675,8 @@ export default {
       additionalMaterial: false,
       materialType: "",
       additionalMaterialList: [],
+      link: "",
+      file: "",
     };
   },
   mounted() {
@@ -1748,10 +1769,11 @@ export default {
       assignmentsList: (state) => state.assignmentsList,
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
       completedAssignments: (state) => state.completedAssignments,
+      newAdditionalMaterial: (state) => state.newAdditionalMaterial,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
-      students: (state) => state.students,
+      // students: (state) => state.students,
     }),
   },
   methods: {
@@ -1765,6 +1787,7 @@ export default {
       getAssignments: "getAssignments",
       completeTask: "completeTask",
       getCompletedAssignments: "getCompletedAssignments",
+      uploadAdditionalMaterial: "uploadAdditionalMaterial",
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
@@ -1926,13 +1949,20 @@ export default {
           peersSelected.push(e.id);
         });
       }
+
+      let assignment_materials = [];
+      if (
+        this.additionalMaterialList &&
+        this.additionalMaterialList.length > 0
+      ) {
+        this.additionalMaterialList.forEach((e) => {
+          assignment_materials.push(e.link ? e.link : e.material);
+        });
+      }
+
+      console.log(assignment_materials);
+
       await this.addAssignment({
-        // user_id: localStorage.getItem("id"),
-        // task: this.task,
-        // subject: this.subject?.id,
-        // due_time: this.timeValue,
-        // due_date: df,
-        // priority: this.priorityVal,
         user_id: localStorage.getItem("id"),
         task: this.assignmentName,
         assignment_description: this.assignmentDescription,
@@ -1948,16 +1978,16 @@ export default {
             ? 3
             : "",
         shared_users_ids: peersSelected,
-        assignment_materials: [
-          "https://jochi-live.s3.amazonaws.com/assignmentDoc/1659508306402.pdf",
-          "https://jochi-live.s3.amazonaws.com/assignmentImages/1659508771473.png",
-        ],
+        assignment_materials: assignment_materials,
         subTasks: this.subTasksList,
       });
       this.loading = false;
 
       if (this.successMessage != "") {
         this.GetAssignment();
+        this.getAssignmentsList();
+        this.openAssignment = false;
+
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -2423,6 +2453,57 @@ export default {
     },
     onAdditionalMatClick() {
       this.additionalMaterial = true;
+    },
+    onFileChange(e) {
+      if (e.target.files[0]) {
+        this.file = e.target.files[0];
+
+        // if (this.file_type.includes("pdf")) {
+        //   this.fileCheck = true;
+        //   this.filepptCheck = false;
+        //   this.profileImageUrl = "pdf-upload.png";
+        // } else if (this.file_type.includes("ppt")) {
+        //   this.filepptCheck = true;
+        //   this.fileCheck = false;
+        //   this.profileImageUrl = "ppt.jpg";
+        // } else if (this.file_type.includes("pptx")) {
+        //   this.filepptCheck = true;
+        //   this.fileCheck = false;
+        //   this.profileImageUrl = "ppt.jpg";
+        // } else {
+        //   this.filepptCheck = false;
+        //   this.fileCheck = false;
+        //   this.profileImageUrl = URL.createObjectURL(file);
+        // }
+      }
+    },
+    async UploadAttachment() {
+      console.log("attachment");
+      const data = new FormData();
+      if (this.materialType == "file") {
+        data.append("file", this.file);
+      } else {
+        this.additionalMaterialList.push({
+          id: Math.random(),
+          link: this.link,
+        });
+        return;
+      }
+
+      await this.uploadAdditionalMaterial(data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log(this.newAdditionalMaterial);
+      this.additionalMaterialList.push({
+        id: this.newAdditionalMaterial.id,
+        material: this.newAdditionalMaterial.material,
+      });
+      this.file = "";
+      this.link = "";
+      // this.ClubFiles();
     },
   },
 };

@@ -166,7 +166,7 @@ const actions = {
       });
       commit('setErrorMessage', "");
       commit('setErrorType', "");
-      commit('setSuccessMessage', "Ended the timer!");
+      commit('setSuccessMessage', "Timer Ended!");
       commit('setSuccessType', "success");
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
