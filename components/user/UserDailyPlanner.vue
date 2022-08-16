@@ -163,7 +163,7 @@
                         >
                           <drag class="drag h-100" :transfer-data="{ item }">
                             <div
-                              @click="onCardClick()"
+                              @click="onCardClick(item)"
                               class="
                                 jochi-sub-components-light-bg
                                 drag-drop
@@ -731,7 +731,7 @@
                             <h6 class="color-dark font-semi-bold mb-0">
                               Sub Tasks
                             </h6>
-                            <a @click="onAddSubTaskClick;" class="btn p-0">
+                            <a @click="onAddSubTaskClick" class="btn p-0">
                               <span class="color-secondary"
                                 ><i class="fas fa-plus-circle"></i
                               ></span>
@@ -762,6 +762,7 @@
                             </div>
                           </div>
                           <div
+                            v-if="isAddAssignment"
                             class="
                               custom-overflow
                               pr-2
@@ -793,6 +794,56 @@
                                   >
                                     <span><i class="far fa-circle"></i></span>
                                     {{ subTask }}
+                                  </p>
+                                  <span
+                                    @click="deleteSubTask(subTask)"
+                                    class="
+                                      color-primary
+                                      fa-icon
+                                      show-hover
+                                      d-none
+                                      btn
+                                      p-0
+                                    "
+                                    ><i class="fas fa-trash-alt"></i
+                                  ></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            v-else
+                            class="
+                              custom-overflow
+                              pr-2
+                              mr--2
+                              d-flex
+                              flex-column
+                            "
+                          >
+                            <div v-for="subTask in subTasksList" :key="subTask">
+                              <div
+                                class="card card-transparent show-icon p-1 mb-1"
+                              >
+                                <div
+                                  class="
+                                    d-flex
+                                    align-items-center
+                                    justify-content-between
+                                  "
+                                >
+                                  <p
+                                    class="
+                                      mb-0
+                                      color-secondary
+                                      text-16
+                                      font-regular
+                                      text-truncate
+                                      pr-3
+                                    "
+                                  >
+                                    <span><i class="far fa-circle"></i></span>
+                                    {{ subTask.title }}
                                   </p>
                                   <span
                                     @click="deleteSubTask(subTask)"
@@ -891,6 +942,106 @@
                               </div>
                             </div>
                           </div>
+
+                          <!-- Additional Material Add -->
+                          <div
+                            class="
+                              d-flex
+                              justify-content-between
+                              align-items-center
+                              mb-2
+                            "
+                          >
+                            <h6 class="color-dark font-semi-bold mb-0">
+                              Additional Material
+                            </h6>
+                            <a @click="onAdditionalMatClick" class="btn p-0">
+                              <span class="color-secondary"
+                                ><i class="fas fa-plus-circle"></i
+                              ></span>
+                            </a>
+                          </div>
+                          <div
+                            v-if="additionalMaterial"
+                            class="d-flex flex-row align-items-start"
+                          >
+                            <div class="form-row mb-2 mx-0 mr-2 w-100">
+                              <label class="form-label" for="name"
+                                >Add Additional Material</label
+                              >
+                              <!-- <input type="text" class="form-control" /> -->
+                              <select
+                                v-model="materialType"
+                                class="form-select form-control mb-2"
+                                aria-label="Default select example"
+                              >
+                                <option value="">Choose material type</option>
+                                <option value="file">File</option>
+                                <option value="link">Link</option>
+                              </select>
+                              <div class="row m-0">
+                                <div class="col-9 py-0 pl-0">
+                                  <input
+                                    v-if="materialType == 'file'"
+                                    type="file"
+                                    class="form-control px-2"
+                                    placeholder="Upload File"
+                                  />
+                                </div>
+                                <div class="col-9 py-0 pl-0">
+                                  <input
+                                    v-if="materialType == 'link'"
+                                    type="text"
+                                    class="form-control px-2"
+                                    placeholder="Paste Link"
+                                  />
+                                </div>
+                                <div class="col-3 p-0">
+                                  <input
+                                    type="submit"
+                                    class="form-control"
+                                    value="Add"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="pt-4">
+                              <button
+                                @click="onInvitePeer"
+                                class="btn btn-primary btn-sm mt-2"
+                              >
+                                Add
+                              </button>
+                            </div>
+                          </div>
+                          <div class="hidden-scroll p-3 row my-0">
+                            <div
+                              v-for="item of additionalMaterialList"
+                              :key="item.id"
+                              class="h-fit-content"
+                            >
+                              <div
+                                class="
+                                  d-flex
+                                  align-items-center
+                                  my-2
+                                  mr-3
+                                  min-w-200
+                                "
+                              >
+                                <div class="ld-img-section mr-3">
+                                  <div class="ld-img-holder"></div>
+                                </div>
+                                <div class="ld-details-section">
+                                  <p class="ld-heading mb-1">
+                                    <!-- {{ peer.first_name }} -->
+                                    {{item}}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Additional Material Add End -->
                         </form>
                       </div>
 
@@ -1212,7 +1363,7 @@
               <div
                 class="d-flex justify-content-between align-items-center mb-2"
               >
-                <h6 class="color-dark font-semi-bold mb-0">Sub Tasks</h6>
+                <h6 class="color-dark font-semi-bold mb-0">Sub Tasks.</h6>
                 <a @click="onAddSubTaskClick" class="btn p-0">
                   <span class="color-secondary"
                     ><i class="fas fa-plus-circle"></i
@@ -1502,6 +1653,9 @@ export default {
       openAssignment: false,
       isAddAssignment: true,
       pendingAssignments: [],
+      additionalMaterial: false,
+      materialType: "",
+      additionalMaterialList: [],
     };
   },
   mounted() {
@@ -2221,9 +2375,10 @@ export default {
       }
       this.GetDailyPlanner();
     },
-    onCardClick() {
+    onCardClick(data) {
       this.isAddAssignment = false;
       this.openAssignment = true;
+      this.mapAssignmentDetail(data);
       // this.subject
       // this.assignmentName
       // this.assignmentDescription
@@ -2231,6 +2386,28 @@ export default {
       // this.timeValue
       // this.subTasksList
       // this.peerSelected
+    },
+    mapAssignmentDetail(data) {
+      this.assignmentName = data.task;
+      this.assignmentDescription = data.assignment_description;
+      this.priorityVal =
+        data.priority == "1"
+          ? "Urgent"
+          : data.priority == "2"
+          ? "Important"
+          : data.priority == "3"
+          ? "Can Wait"
+          : "";
+      this.subject = {
+        id: data.subjects.id,
+        text: data.subjects.subject_name,
+      };
+      this.dateValue = data.due_date;
+      this.timeValue = data.due_time;
+      this.subTasksList = data.subTasks;
+      this.peerList = data.peers;
+      this.additionalMaterialList = data.assignment_materials;
+      console.log("map ", data);
     },
     async getAllCompletedAssignments() {
       await this.getCompletedAssignments({
@@ -2243,6 +2420,9 @@ export default {
     confirmComplete(event) {
       event.preventDefault();
       event.stopPropagation();
+    },
+    onAdditionalMatClick() {
+      this.additionalMaterial = true;
     },
   },
 };

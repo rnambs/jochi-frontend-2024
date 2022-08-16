@@ -21,17 +21,29 @@
         <!-- Club info -->
         <div class="cd-cover-pic-section position-relative">
           <div class="black-grad"></div>
-          <div class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center">
+          <div
+            class="
+              position-absolute
+              cover-button
+              mr-3
+              mb-1
+              d-flex
+              align-items-center
+            "
+          >
             <button class="btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
-             <!-- <div class="d-flex align-items-center">
+            <!-- <div class="d-flex align-items-center">
               <button class="btn p-1 m-2">
                 <i class="fas fa-info-circle color-white"></i>
               </button>
               <p class="mb-0 color-secondary text-14 font-regular">1200 X 180</p>
             </div> -->
-            <button class="btn p-0 tooltip01 right-tip" CustomTitle="1200 X 180">
+            <button
+              class="btn p-0 tooltip01 right-tip"
+              CustomTitle="1200 X 180"
+            >
               <i class="fas fa-info-circle color-white"></i>
             </button>
           </div>
@@ -640,9 +652,7 @@
               <ul class="mb-0 leader-list-style">
                 <li v-for="(data, index) in membersInfo" :key="index">
                   <!-- <span class="input-name">{{ data }}</span> -->
-                  <div
-                    class="d-flex align-items-center mt-3"
-                  >
+                  <div class="d-flex align-items-center mt-3">
                     <div class="d-flex justify-content-end p-0">
                       <div class="ld-img-section mr-3">
                         <div class="ld-img-holder">
@@ -1082,7 +1092,6 @@ export default {
     availabilityToggle() {},
     check() {
       this.editDescription = true;
-      alert("inside alert");
     },
     onNextMeeting() {
       if (this.enableEdit) {

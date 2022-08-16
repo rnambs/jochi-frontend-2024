@@ -84,7 +84,8 @@ export default {
         { src: '~/plugins/vue-datepicker', ssr: false },
         { src: '~/plugins/croppa', ssr: false },
         { src: '~/plugins/vuetify', ssr: false },
-        { src: '~/plugins/vue-drag-drop', ssr: false }
+        { src: '~/plugins/vue-drag-drop', ssr: false },
+        { src: '~/plugins/vuejs-progress-bar', ssr: false }
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

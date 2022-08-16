@@ -1487,7 +1487,6 @@ export default {
     availabilityToggle() {},
     check() {
       this.editDescription = true;
-      alert("inside alert");
     },
     onNextMeeting() {
       if (this.enableEdit) {

@@ -2639,8 +2639,9 @@ export default {
     window.addEventListener("beforeunload", this.preventNav);
   },
   watch: {
-    $route() {
-      console.log("route change");
+    $route(to, from) {
+      console.log("route change to", to);
+      console.log("route change from", from);
     },
   },
 
@@ -2661,11 +2662,10 @@ export default {
     this.getAllStudySessions();
   },
   beforeRouteLeave(to, from, next) {
-    if (this.isEditing) {
-      if (!window.confirm("Leave without saving?")) {
-        return;
-      }
+    if (!window.confirm("Leave without saving?")) {
+      return;
     }
+
     next();
   },
 
@@ -3635,7 +3635,7 @@ export default {
   },
   beforeRouteLeave: function (to, from, next) {
     console.log("In beforeRouteLeave of AnotherComponent");
-    alert("dknfklashd");
+
     // Indicate to the SubComponent that we are leaving the route
     // this.$refs.mySubComponent.prepareToExit();
     // Make sure to always call the next function, otherwise the hook will never be resolved
@@ -3643,12 +3643,39 @@ export default {
     next();
   },
 
-  beforeDestroy() {
-    // this.preventNav();
-    window.removeEventListener("beforeunload", this.preventNav);
-    //  window.removeEventListener("scroll", handler, false);
+  beforeRouteLeave(to, from, next) {
+    const answer = (window.confirm = function (e) {
+      return "Do you really want to leave? you have unsaved changes!";
+    });
+    if (answer) {
+      return next();
+    } else {
+      return next(false);
+    }
+
+    // return next();
   },
-  destroyed() {},
+  beforeDestroy() {
+    const answer = confirm(
+      "Do you really want to leave? you have unsaved changes!"
+    );
+    return;
+    // if (!answer) {
+    //   return;
+    // }
+  },
+  beforeRouteLeave(to, from, next) {
+    // const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
+    // if (answer) {
+    //   next()
+    // } else {
+    //   next(false)
+    // }
+    alert("destroy");
+  },
+  destroyed() {
+    window.removeEventListener("beforeunload", this.preventNav);
+  },
 };
 </script>
 

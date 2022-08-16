@@ -168,6 +168,7 @@
                           dot="10 white"
                           ><span>dkjsfajh</span>
                         </vue-ellipse-progress> -->
+                        <progress-bar :options="options" :value="value" />
                         <div class="study-status-text text-center mb-2">
                           <p class="study-status-studied mb-1">
                             {{ duration }} Minutes Studied Today
@@ -723,6 +724,7 @@ export default {
       progress: 50,
       calendarApi: Calendar,
       calendarOptions: {
+        showNonCurrentDates: false,
         plugins: [dayGridPlugin, interactionPlugin],
         // headerToolbar: {
         //   left: "prev",
@@ -743,56 +745,7 @@ export default {
         initialView: "dayGridMonth",
         unselectAuto: false,
         selectable: true,
-        events: [
-          {
-            title: "All Day Event",
-            start: "2022-08-01",
-          },
-          {
-            title: "Long Event",
-            start: "2022-08-07",
-            end: "2022-08-10",
-            color: "purple", // override!
-          },
-          {
-            groupId: "999",
-            title: "Repeating Event",
-            start: "2022-08-09T16:00:00",
-          },
-          {
-            groupId: "999",
-            title: "Repeating Event",
-            start: "2022-08-16T16:00:00",
-          },
-          {
-            title: "Conference",
-            start: "2022-08-11",
-            end: "2022-08-13",
-            color: "purple", // override!
-          },
-          {
-            title: "Meeting",
-            start: "2022-08-12T10:30:00",
-            end: "2022-08-12T12:30:00",
-          },
-          {
-            title: "Lunch",
-            start: "2022-08-12T12:00:00",
-          },
-          {
-            title: "Meeting",
-            start: "2022-08-12T14:30:00",
-          },
-          {
-            title: "Birthday Party",
-            start: "2022-08-13T07:00:00",
-          },
-          {
-            title: "Click for Google",
-            url: "http://google.com/",
-            start: "2022-08-28",
-          },
-        ],
+        events: eventList,
         eventClick: this.eventClicked,
         datesSet: this.handleMonthChange,
         dayMaxEventRows: true, // for all non-TimeGrid views
@@ -811,6 +764,33 @@ export default {
       durationRemaining: 0,
       dailyTimerId: 0,
       meetingDetail: {},
+      options: {
+        text: {
+          color: "#FFFFFF",
+          shadowEnable: true,
+          shadowColor: "#000000",
+          fontSize: 14,
+          fontFamily: "Helvetica",
+          dynamicPosition: false,
+          hideText: false,
+        },
+        progress: {
+          color: "#ff6d6d",
+          backgroundColor: "#000000",
+          inverted: false,
+        },
+        layout: {
+          height: 35,
+          width: 140,
+          verticalTextAlign: 61,
+          horizontalTextAlign: 43,
+          zeroOffset: 0,
+          strokeWidth: 30,
+          progressPadding: 0,
+          type: "circle",
+        },
+      },
+      value: 0,
     };
   },
   computed: {
@@ -890,6 +870,11 @@ export default {
 
         this.hours = h;
         this.minutes = m;
+        var percentageStudied =
+          Number(this.goal.duration) / Number(this.goal.total_duration_covered);
+        percentageStudied = percentageStudied * 100;
+        var percentage = percentageStudied.toFixed(2);
+        this.value = percentage;
       }
     },
     openMeetingDetail() {
@@ -904,6 +889,20 @@ export default {
       console.log("consoling time zones ", this.timeZones);
       this.loading = false;
       this.dateConversion();
+    },
+    formatAMPM(input) {
+      var time = input;
+      var hours = Number(time.match(/^(\d+)/)[1]);
+      var minutes = Number(time.match(/:(\d+)/)[1]);
+      var AMPM = time.match(/\s(.*)$/)[1];
+      if (AMPM == "PM" && hours < 12) hours = hours + 12;
+      if (AMPM == "AM" && hours == 12) hours = hours - 12;
+      var sHours = hours.toString();
+      var sMinutes = minutes.toString();
+      if (hours < 10) sHours = "0" + sHours;
+      if (minutes < 10) sMinutes = "0" + sMinutes;
+      var strTime = sHours + ":" + sMinutes;
+      return strTime;
     },
     dateConversion() {
       this.slot_date = [];
@@ -1078,31 +1077,53 @@ export default {
       this.meetingDetails = [];
       console.log(this.plannerList);
       this.plannerList.forEach((element) => {
+        var scheduleObject = {};
         var plannerObj = {};
-        var title = element.subject;
+        var id = element.id;
+        var assignment = element.subject;
+        var time = element.due_time;
+        var date = this.dateConversion(element.due_date);
+
+        var title = element.task;
+
         if (element.priority == "1") {
           var color = "#EF382E";
         } else if (element.priority == "2") {
           var color = "#00CCA0";
-        } else {
+        } else if (element.priority == "3") {
           var color = "#F6D73C";
         }
-        var start = element.due_date;
-        var date = this.dateValue;
-        var id = element.id;
+        var dateMeeting = element.due_date;
+        var tmeMeeting = this.formatAMPM(element.due_time);
+        var start = dateMeeting + "T" + tmeMeeting;
+
+        scheduleObject["assignment"] = assignment;
+        scheduleObject["time"] = time;
+        scheduleObject["date"] = date;
+        scheduleObject["title"] = title;
+        scheduleObject["id"] = id;
+
         plannerObj["title"] = title;
         plannerObj["color"] = color;
         plannerObj["start"] = start;
         plannerObj["id"] = id;
-        plannerObj["date"] = date;
         eventList.push(plannerObj);
-        console.log(plannerObj);
+        // plannerList.push(scheduleObject);
       });
 
       this.calendarOptions.events = eventList;
       this.loading = false;
 
       console.log("event list", eventList);
+    },
+    handleMonthChange(dateInfo) {
+      var dateStr = dateInfo.startStr;
+      var date = new Date(dateStr);
+      date.setDate(date.getDate());
+      var dateval = new Date(date),
+        mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+        day = ("0" + date.getDate()).slice(-2);
+      this.calendarDate = [date.getFullYear(), mnth, day].join("-");
     },
     goPrev() {
       this.calendarApi.prev(); // call a method on the Calendar object
