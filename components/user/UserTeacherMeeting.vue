@@ -877,13 +877,14 @@
           </div>
         </section>
         <div
-          class="d-flex position-absolute end-0 bottom-0 meeting-celebration"
+          class=""
         >
+       
           <lottie
             v-if="playCelebration"
             :options="lottieOptionsSuccess"
             v-on:animCreated="handleAnimation"
-            class="position-absolute w-100 h-100 z-index-9"
+            class="d-flex position-absolute end-0 bottom-0 meeting-celebration z-index-9"
           />
         </div>
       </div>

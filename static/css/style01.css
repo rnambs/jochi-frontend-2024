@@ -930,8 +930,8 @@ img.dark-icon {
 }
 
 .meeting-celebration {
-  width: 20%;
-  height: 40%;
+  width: 20% !important;
+  height: 40% !important;
   right: 24px;
   bottom: 12px;
 }
@@ -3340,11 +3340,9 @@ img.dark-icon {
 
 .custom-switch .custom-control-label::before {
   top: 0.025rem;
-  cursor: pointer;
 }
 .custom-switch .custom-control-label::after {
   top: calc(0.0375rem + 2px);
-  cursor: pointer;
 }
 
 .custom-control-input:focus ~ .custom-control-label::before {
