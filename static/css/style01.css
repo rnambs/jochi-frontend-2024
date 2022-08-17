@@ -3340,9 +3340,11 @@ img.dark-icon {
 
 .custom-switch .custom-control-label::before {
   top: 0.025rem;
+  cursor: pointer;
 }
 .custom-switch .custom-control-label::after {
   top: calc(0.0375rem + 2px);
+  cursor: pointer;
 }
 
 .custom-control-input:focus ~ .custom-control-label::before {

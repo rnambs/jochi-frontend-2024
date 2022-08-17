@@ -68,7 +68,7 @@
                     <!-- <span class="input-icon"
                       ><i class="fa fa-filter" aria-hidden="true"></i
                     ></span> -->
-                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    <ul class="dropdown-menu w-50 rounded-12" aria-labelledby="dLabel">
                       <li class="item">Teacher Meeting</li>
                       <li class="item">Peer Meeting</li>
                       <li class="item">All</li>
