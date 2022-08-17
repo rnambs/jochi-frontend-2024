@@ -19,7 +19,7 @@
               @click="setSessionType('assignment')"
               class="
                 row
-                card card-primary
+                card card-void
                 rounded-22
                 m-0
                 mb-4
@@ -48,7 +48,7 @@
               @click="setSessionType('study')"
               class="
                 row
-                card card-primary
+                card card-void
                 rounded-22
                 p-4
                 m-0
@@ -75,7 +75,7 @@
           </div>
           <div class="col-lg-5 h-100">
             <div
-              class="card card-primary rounded-22 p-4 h-100 position-realtive"
+              class="card card-void rounded-22 py-4 h-100 position-realtive"
             >
               <!-- default -->
               <!-- <div class="d-flex justify-content-between flex-column h-100">
@@ -90,10 +90,10 @@
               <!-- end -->
               <!-- listing -->
               <div class="d-flex flex-column h-100">
-                <h2 class="color-primary font-semi-bold mb-2">
+                <h2 class="color-primary font-semi-bold mb-2 px-4">
                   Upcoming Sessions
                 </h2>
-                <div class="custom-overflow pr-2 mr--2">
+                <div class="custom-overflow px-4 pt-2">
                   <div
                     v-for="sessionItem in studySessionList"
                     :key="sessionItem.id"
@@ -103,7 +103,7 @@
                     "
                     class="
                       d-flex
-                      card card-secondary
+                      card card-void
                       p-3
                       d-flex
                       flex-column
@@ -1165,7 +1165,7 @@
         hidden-scroll
       "
     >
-      <h2 class="color-primary font-bold mb-3">
+      <h2 class="color-primary font-bold mb-0">
         Step {{ sessionType == "study" ? "Two" : "Three" }}:
       </h2>
       <h2 class="color-primary font-bold mb-3">Configure your Session</h2>
@@ -1179,7 +1179,7 @@
       </div>
       <div class="row h-40 flex-grow-1">
         <div class="col-lg-7 h-100 d-flex flex-column">
-          <div class="card card-primary rounded-22 p-4 h-40 flex-fill mb-4">
+          <div class="card card-void rounded-22 p-4 h-40 flex-fill mb-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">
                 Goals
@@ -1214,7 +1214,7 @@
                 </button>
               </div>
             </div>
-            <div class="custom-overflow pr-2 mr--2 d-flex flex-column">
+            <div class="custom-overflow pr-2 mr--2 d-flex flex-column pl-3">
               <div v-for="goal in goalsList" :key="goal">
                 <div class="card card-transparent show-icon p-1 mt-1">
                   <div
@@ -1268,7 +1268,7 @@
             </div>
           </div>
 
-          <div class="card card-primary rounded-22 h-40 flex-fill p-4">
+          <div class="card card-void rounded-22 h-40 flex-fill p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
               <a @click="onInviteClick" class="btn p-0">
@@ -1305,7 +1305,7 @@
                 </button>
               </div>
             </div>
-            <div class="hidden-scroll p-3 row my-0">
+            <div class="hidden-scroll p-3 row my-0 pl-4">
               <div
                 v-for="peer of peerList"
                 :key="peer.id"
@@ -1330,7 +1330,7 @@
           </div>
         </div>
         <div class="col-lg-5 d-flex flex-column h-100">
-          <div class="card card-primary rounded-22 p-4 m-0 flex-column h-100">
+          <div class="card card-void rounded-22 p-4 m-0 flex-column h-100">
             <div class="d-flex flex-column justify-content-between h-100">
               <div class="d-flex flex-column h-40 flex-fill">
                 <h2 class="color-dark font-semi-bold mb-1">
@@ -1659,7 +1659,7 @@
               flex-fill
             "
           >
-            <div class="card card-light rounded-22 p-4 flex-fill mb-4">
+            <div class="card card-void rounded-22 p-4 flex-fill mb-4">
               <div class="">
                 <h1 class="color-primary font-bold mb-2">Working on</h1>
               </div>
@@ -1723,12 +1723,12 @@
                 </div>
               </div>
               <div v-if="!goalsList || goalsList.length <= 0">
-                No goals listed
+                <span class="color-secondary text-16 font-regular">No goals listed</span>
               </div>
             </div>
-            <div class="card card-light rounded-22 p-4">
+            <div class="card card-void rounded-22 p-4">
               <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
-              <div class="hidden-scroll p-3 row my-0">
+              <div class="hidden-scroll p-3 pl-4 row my-0">
                 <div
                   v-for="peer in peerList"
                   :key="peer.id"
@@ -1751,7 +1751,7 @@
                   v-if="!peerList || peerList.length <= 0"
                   class="d-flex align-items-center my-2 mr-3 min-w-200"
                 >
-                  No peers invited!
+                  <span class="color-secondary text-16 font-regular">No peers invited!</span>
                 </div>
               </div>
             </div>
@@ -1768,7 +1768,7 @@
           >
             <div
               class="
-                card card-light
+                card card-void
                 rounded-22
                 p-4
                 flex-fill
@@ -1893,7 +1893,7 @@
         hidden-scroll
       "
     >
-      <div class="px-5 py-4 d-flex flex-column card card-light col-lg-7">
+      <div class="px-5 py-4 d-flex flex-column card card-void rounded-22 col-lg-7">
         <h2 class="color-primary font-semi-bold mb-1">Rate your session</h2>
         <div class="d-flex flex-column py-3 px-0">
           <div class="mb-3">

@@ -133,6 +133,9 @@ body{
 .border-theme{
     border: 1px solid $dark-theme !important;
 }
+.border-white{
+    border: 1px solid $white !important;
+}
 
 // LABEL COLOR
 
@@ -157,7 +160,9 @@ body{
 .rounded-6{
     @include borderRadius(6);
 }
-
+.rounded-12{
+    border-radius: 12px !important;
+}
 // BUTTON
 .btn{
     text-transform: capitalize;
@@ -211,6 +216,13 @@ body{
         color: $text-secondary;
         &:hover{
             color: $text-dark;
+        }
+    }
+    &.btn-success{
+        background-color: $confirm-green !important;
+        color: $black;
+        &:hover{
+            background-color: $icon-bg-green !important;
         }
     }
     &.btn-secondary{
@@ -270,7 +282,7 @@ body{
         border: none;
         background-color: rgba(255, 255, 255, 0.5);
         box-shadow: 0 0 5px rgb(0 0 0 / 5%);
-        border-radius: 0.4rem;
+        @include borderRadius(12);
         font-size: 1rem;
         color: #B4B4B4;
         padding: 0.375rem 0.75rem;
@@ -284,6 +296,10 @@ body{
             &::placeholder{
                 font-size: 14px;
             }
+        }
+        &.bg-transparent{
+            background-color: transparent;
+            box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
         }
     }
     select.form-control{
@@ -306,7 +322,7 @@ body{
         border: none;
         background-color: rgba(255, 255, 255, 0.5);
         box-shadow: 0 0 5px rgb(0 0 0 / 5%);
-        border-radius: 0.4rem;
+        @include borderRadius(12);
         font-size: 1rem;
         color: #B4B4B4;
         padding: 0.375rem 0.75rem;
@@ -314,7 +330,7 @@ body{
     }
     .dropdown-menu{
         background-color: $white;
-        box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
+        box-shadow: 0px 0px 15px -3px rgb(0 1 0 / 14%);
         font-size: 0.9rem;
         padding: inherit;
         list-style-type: none;
@@ -361,7 +377,7 @@ body{
     }
 
     .multiselect__tags {
-        border-radius: 0.65rem;
+        @include borderRadius(12);
         font-size: 0.9rem;
         border: none;
         background-color: rgba($color: $white, $alpha: 0.2);
@@ -435,6 +451,7 @@ body{
                     border-radius: .6rem;
                     &:target, &:visited, &:active{
                         background: #FF646F;
+                        color: $global-font-color;
                     }
                 }
                 .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
@@ -638,7 +655,8 @@ body{
     }
     &.card-void{
         background-color: transparent;
-        box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+        // box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+        box-shadow: 0px 0px 15px -3px rgb(0 1 0 / 14%)
     }
     &.card-transparent{
         background-color: transparent;
@@ -5044,6 +5062,9 @@ switch to violet when it is active*/
     }
 }
 
+.modal-backdrop.fade.show{
+    opacity: 0;
+}
 
 // common popUp
 .modal{
@@ -5060,14 +5081,21 @@ switch to violet when it is active*/
             height: auto;
             border: none;
             border-radius: 0.5rem;
-            background: url("./../image/jochi-light-bg.png");
-            background-position:center;
-            background-repeat:no-repeat;
+            // background: url("./../image/jochi-light-bg.png");
+            border: 1px solid $white;
+            // background-position:center;
+            // background-repeat:no-repeat;
             background-size:cover;
-            background-color: $white;
+            backdrop-filter: blur(16px);
+            background-color: transparent;
+            -webkit-box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
+            -moz-box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
+            box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
+            border-radius: 22px;
             .modal-header{
                 background-color: transparent;
                 border-radius: 6px 6px 0px 0px;
+                border: none;
                 .modal-title{
                     color: $global-sidebar-bg;
                     font-weight: 700;
@@ -5089,6 +5117,7 @@ switch to violet when it is active*/
             .modal-body{
                 background-color: transparent;
                 max-height: 75vh;
+                padding: 4px 16px;
                 &.no-overflow{
                     overflow: unset !important;
                 }
@@ -5247,7 +5276,7 @@ switch to violet when it is active*/
                         }
                         .tdata-overflow{
                             width: 250px;
-                            overflow: hidden;
+                            // overflow: hidden;
                             white-space: nowrap;
                             text-overflow: ellipsis;
                         }
@@ -5275,6 +5304,7 @@ switch to violet when it is active*/
                 // background-color: $global-box-shadow;
                 // border-radius: 0px 0px 10px 10px;
                 background-color: transparent !important;
+                border: none;
                 // .btn-color-close{
                 //     color: $white;
                 //     background-color: $theme-color;
@@ -5906,8 +5936,9 @@ select.form-control{
 }
 
 .modal.fade {
-    backdrop-filter: blur(4px) !important;
-    background: rgba($color: $white, $alpha: 0.3) !important;
+    // backdrop-filter: blur(4px) !important;
+    // background: rgba($color: $white, $alpha: 0.3) !important;
+    background-color: transparent !important;
 }
 
 

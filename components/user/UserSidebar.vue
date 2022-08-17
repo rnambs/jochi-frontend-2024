@@ -469,7 +469,8 @@
                         collapsed
                         flex-fill
                         px-0
-                        py-2 py-lg-2
+                        pt-0 pt-lg-0
+                        pb-2 pb-lg-2
                       "
                       @click="$event.target.classList.toggle('active')"
                       type="button"

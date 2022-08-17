@@ -158,7 +158,7 @@
                     <div>
                       <div class="row">
                         <div
-                          class="col-6 py-4"
+                          class="col-6 py-3"
                           v-for="item in pendingAssignments"
                           :key="item.id"
                         >
@@ -166,7 +166,9 @@
                             <div
                               @click="onCardClick(item)"
                               class="
-                                jochi-sub-components-light-bg
+                                card 
+                                card-void
+                                rounded-22
                                 drag-drop
                                 p-4
                                 position-realtive
@@ -198,7 +200,7 @@
                                 </div>
                               </div>
                               <div class="assignment-add-section">
-                                <h4 class="mb-0">{{ item.task }}</h4>
+                                <h3 class="mb-0 text-center font-semi-bold text-24 mb-2">{{ item.task }}</h3>
                                 <div class="text-center px-3">
                                   <p>{{ item.assignment_description }}</p>
                                 </div>
@@ -350,8 +352,8 @@
                       <p class="mb-0 px-5 color-secondary font-regular">
                         Drag and drop your assignment here when it is completed
                       </p>
-                      <div class="d-flex flex-column h-100 hidden-scroll px-5">
-                        <div class="row mt-1">
+                      <div class="d-flex flex-column hidden-scroll px-5">
+                        <div class="row mt-1 mb-3">
                           <div
                             v-for="item in completedAssignments"
                             :key="item.id"
@@ -359,7 +361,7 @@
                           >
                             <div
                               class="
-                                jochi-sub-components-light-bg
+                                card card-void rounded-22
                                 py-4
                                 px-2
                                 completed-assignments

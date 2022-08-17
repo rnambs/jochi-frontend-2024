@@ -11,7 +11,7 @@
     >
       <div class="study-section d-flex flex-column">
         <div
-          class="d-flex align-items-center justify-content-between mb-4 px-2"
+          class="d-flex align-items-center justify-content-between mb-1 px-2"
         >
           <h2 class="color-primary font-semi-bold mb-0">Study Analytics</h2>
           <div
