@@ -206,7 +206,13 @@
                               <div class="sub-task-section mb-3">
                                 <h6>Sub-tasks</h6>
                                 <div
-                                  @click="confirmSubTaskComplete(sub.id)"
+                                  @click="
+                                    confirmSubTaskComplete(
+                                      $event,
+                                      sub.id,
+                                      item.id
+                                    )
+                                  "
                                   v-for="sub in item.subTasks"
                                   :key="sub.id"
                                   class="
@@ -217,10 +223,12 @@
                                   "
                                 >
                                   <input
+                                    :id="sub.title"
+                                    v-model="sub.title"
                                     :value="
-                                      item.task_status == 'Completed'
-                                        ? true
-                                        : false
+                                      sub.task_status == 'Completed'
+                                        ? sub.title
+                                        : ''
                                     "
                                     type="radio"
                                     class="mr-2"
@@ -261,15 +269,23 @@
                                   "
                                 >
                                   <div class="col-8 py-0 pl-0 material-link">
-                                    <span class="color-secondary">
+                                    <span
+                                      v-for="material in item.assignment_materials"
+                                      :key="material.id"
+                                      class="color-secondary"
+                                    >
                                       <!-- Rubric: -->
-                                      {{ item.assignment_materials.material }}
+                                      {{
+                                        material.file_type == "link"
+                                          ? material.material
+                                          : material.file_name
+                                      }}
                                     </span>
                                   </div>
                                   <div
                                     class="col-4 material-date py-0 text-right"
                                   >
-                                    12/04/22
+                                    {{ item.formattedDate }}
                                   </div>
                                 </div>
                               </div>
@@ -770,7 +786,7 @@
                               </button>
                             </div>
                           </div>
-                          <div
+                          <!-- <div
                             v-if="isAddAssignment"
                             class="
                               custom-overflow
@@ -819,9 +835,9 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
+                          <!-- v-else -->
                           <div
-                            v-else
                             class="
                               custom-overflow
                               pr-2
@@ -851,7 +867,13 @@
                                       pr-3
                                     "
                                   >
-                                    <span><i class="far fa-circle"></i></span>
+                                    <span
+                                      :class="{
+                                        selected:
+                                          subTask.task_status == 'Completed',
+                                      }"
+                                      ><i class="far fa-circle"></i
+                                    ></span>
                                     {{ subTask.title }}
                                   </p>
                                   <span
@@ -1730,7 +1752,7 @@ export default {
       peerList: [],
       completeAsstId: 0,
       playCelebration: false,
-      completeSubTasktId: 0,
+      completeSubTaskId: 0,
       openAssignment: false,
       isAddAssignment: true,
       pendingAssignments: [],
@@ -1739,6 +1761,7 @@ export default {
       additionalMaterialList: [],
       link: "",
       file: "",
+      assignmentId: 0,
     };
   },
   mounted() {
@@ -2011,7 +2034,7 @@ export default {
         (e) => e.subject_name == this.assignment.subject
       );
       this.subject = {
-        id: subject.id,
+        id: subject?.id,
         text: subject.subject_name,
       };
       this.task = this.assignment.task;
@@ -2053,6 +2076,10 @@ export default {
           assignment_materials.push(e.link ? e.link : e.material);
         });
       }
+      let subTaskLists = [];
+      this.subTasksList.forEach((e) => {
+        subTaskLists.push(e.title);
+      });
 
       console.log(assignment_materials);
 
@@ -2073,7 +2100,7 @@ export default {
             : "",
         shared_users_ids: peersSelected,
         assignment_materials: assignment_materials,
-        subTasks: this.subTasksList,
+        subTasks: subTaskLists,
       });
       this.loading = false;
 
@@ -2120,19 +2147,52 @@ export default {
       this.processing = true;
       this.loading = true;
       const dfE = moment(this.dateValue).format("YYYY-MM-DD");
+      //  this.$v.$touch();
+      // if (this.$v.$invalid) {
+      //   return;
+      // }
+      // this.processing = true;
+      // const df = moment(this.dateValue).format("YYYY-MM-DD");
+
+      const peersSelected = [];
+      if (this.peerList.length > 0) {
+        this.peerList.forEach((e) => {
+          peersSelected.push(e.id);
+        });
+      }
+
+      let assignment_materials = [];
+      if (
+        this.additionalMaterialList &&
+        this.additionalMaterialList.length > 0
+      ) {
+        this.additionalMaterialList.forEach((e) => {
+          assignment_materials.push(e.link ? e.link : e.material);
+        });
+      }
+      let subTaskLists = [];
+      this.subTasksList.forEach((e) => {
+        subTaskLists.push(e.title);
+      });
       await this.updateAssignment({
+        assignment_id: this.assignmentId,
         user_id: localStorage.getItem("id"),
-        assignment_id: this.idNum,
-        task: this.task,
+        task: this.assignmentName,
+        assignment_description: this.assignmentDescription,
         subject: this.subject?.id,
         due_time: this.timeValue,
         due_date: dfE,
-        priority: this.priorityVal
-          ? this.priorityVal
-          : this.assignment.priority,
+        priority: this.priorityVal,
+        shared_users_ids: peersSelected,
+        assignment_materials: assignment_materials,
+        subTasks: subTaskLists,
       });
       this.loading = false;
       if (this.successMessage != "") {
+        this.GetAssignment();
+        this.getAssignmentsList();
+        this.openAssignment = false;
+
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -2376,7 +2436,9 @@ export default {
     },
     onAddNewSubTask() {
       if (this.subTaskName) {
-        this.subTasksList.push(this.subTaskName);
+        let sub = {};
+        sub.title = this.subTaskName;
+        this.subTasksList.push(sub);
       } else {
         this.$toast.open({
           message: "Please add a valid subTask ",
@@ -2411,6 +2473,7 @@ export default {
       console.log(this.assignmentsList);
       console.log(this.sharedAssignmentsList);
       this.mapAssignments();
+      this.mapSharedAssignments();
     },
     mapAssignments() {
       if (this.assignmentsList && this.assignmentsList.length > 0) {
@@ -2434,6 +2497,34 @@ export default {
           item.updatedAt = e.updatedAt;
           item.user_id = e.user_id;
           item.peers = this.mapPeers(e.id);
+          item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+          this.pendingAssignments.push(item);
+        });
+      }
+    },
+    mapSharedAssignments() {
+      if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
+        this.sharedAssignmentsList.forEach((e) => {
+          let item = {};
+          item.assignment_description = e.assignments.assignment_description;
+          item.assignment_materials = e.assignment_materials;
+          item.completed_date = e.assignments.completed_date;
+          item.dueTimeFormat = e.assignments.dueTimeFormat;
+          item.due_date = e.assignments.due_date;
+          item.due_time = e.assignments.due_time;
+          item.id = e.assignments.id;
+          item.priority = e.assignments.priority;
+          item.schoologyAssignment = e.assignments.schoologyAssignment;
+          item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+          item.subTasks = e.subTasks;
+          item.subject = e.assignments.subject;
+          item.subjects = e.subjects;
+          item.task = e.assignments.task;
+          item.task_status = e.assignments.task_status;
+          item.updatedAt = e.assignments.updatedAt;
+          item.user_id = e.assignments.user_id;
+          item.peers = e.users;
+          item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
           this.pendingAssignments.push(item);
         });
       }
@@ -2489,18 +2580,20 @@ export default {
     async completeSubTask() {
       this.processingCompleteAssignment = true;
       await this.completeTask({
-        task_id: this.completeSubTasktId,
+        task_id: this.completeSubTaskId,
         status: "Completed",
       });
       this.processingCompleteAssignment = false;
       await this.GetDailyPlanner();
-      this.playCelebration = true;
-      const myTimeout = setTimeout(() => {
-        this.playCelebration = false;
-      }, 5000);
+
       if (this.successMessage != "") {
-        this.completeSubTasktId = 0;
-        this.playCelebration = true;
+        await this.getAssignmentsList();
+        await this.getAllCompletedAssignments();
+        if (this.checkAllCompleted()) {
+          await this.completeAssignment();
+        }
+        this.completeSubTaskId = 0;
+        this.completeAsstId = 0;
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -2518,6 +2611,22 @@ export default {
       }
       this.GetDailyPlanner();
     },
+    checkAllCompleted() {
+      let asst = this.pendingAssignments.find(
+        (e) => e.id == this.completeAsstId
+      );
+      console.log(asst);
+      let sub = asst.subTasks;
+      console.log(sub);
+      let incomplete = false;
+      sub.forEach((e) => {
+        if (!incomplete && e.task_status != "Completed") {
+          incomplete = true;
+        }
+      });
+      console.log(incomplete);
+      return !incomplete;
+    },
     onCardClick(data) {
       this.isAddAssignment = false;
       this.openAssignment = true;
@@ -2531,6 +2640,7 @@ export default {
       // this.peerSelected
     },
     mapAssignmentDetail(data) {
+      this.assignmentId = data.id;
       this.assignmentName = data.task;
       this.assignmentDescription = data.assignment_description;
       this.priorityVal =
@@ -2547,7 +2657,14 @@ export default {
       };
       this.dateValue = data.due_date;
       this.timeValue = data.due_time;
-      this.subTasksList = data.subTasks;
+      if (data.subTasks && data.subTasks.length > 0) {
+        data.subTasks.forEach((e) => {
+          let item = {};
+          item = e;
+          this.subTasksList.push(item);
+        });
+      }
+      // this.subTasksList = data.subTasks;
       this.peerList = data.peers;
       this.additionalMaterialList = data.assignment_materials;
       console.log("map ", data);
@@ -2567,12 +2684,13 @@ export default {
       // event.preventDefault();
       // event.stopPropagation();
     },
-    confirmSubTaskComplete(id) {
-      this.completeSubTasktId = id;
+    confirmSubTaskComplete(event, id, asstId) {
+      this.completeAsstId = asstId;
+      this.completeSubTaskId = id;
       $("#completeSubTaskConfirm").modal({ backdrop: true });
 
-      // event.preventDefault();
-      // event.stopPropagation();
+      event.preventDefault();
+      event.stopPropagation();
     },
     onAdditionalMatClick() {
       this.additionalMaterial = true;
