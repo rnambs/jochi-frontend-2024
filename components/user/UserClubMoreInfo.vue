@@ -391,8 +391,8 @@
                     </div>
                   </div>
                   <div v-else class="col-md-6 col-xs-12 h-100 d-flex">
-                    <div class="inner-info container-fluid p-2">
-                      <div class="">
+                    <div class="inner-info container-fluid p-2 d-flex flex-column">
+                      <div class="h-40 flex-fill custom-overflow">
                         <div class="inner-info-head mb-2">
                           <h5 class="color-dark mb-2 font-bold">To do!</h5>
                         </div>

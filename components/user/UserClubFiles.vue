@@ -239,12 +239,19 @@
                           </figure>
                           <!-- The Modal -->
                           <div id="myModal" class="modal">
-                            <span class="close" @click="spanClose()"
-                              >&times;</span
-                            >
-                            <img class="modal-content" id="img01" />
-                            <div id="caption"></div>
+                            <div class="d-flex align-items-center justify-content-center h-100">
+                              <div class="d-flex flex-column w-50 align-items-end">
+                                <span class="close" @click="spanClose()"
+                                  >&times;</span
+                                >
+                                <div class="modal-content h-100 border-white card card-white rounded-22">
+                                  <img id="img01" class="img-preview" />
+                                  <div id="caption" class="pl-3 py-2"></div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
+
                         </div>
                       </div>
                       <div

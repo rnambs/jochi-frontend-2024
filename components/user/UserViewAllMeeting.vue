@@ -177,9 +177,9 @@
       <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content px-4">
           <div class="modal-header">
-            <h5 class="modal-title" id="meetingDetailModalLongTitle">
+            <h3 class="modal-title" id="meetingDetailModalLongTitle">
               Meeting Details
-            </h5>
+            </h3>
             <!-- <button type="button" class="close">
               <span aria-hidden="true">Edit</span>
             </button> -->

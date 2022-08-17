@@ -6027,6 +6027,21 @@ select.form-control{
         text-transform: uppercase;
     }
 }
+.img-preview{
+    max-height: 60vh;
+    object-fit: contain;
+    @include borderRadius(22);
+}
+.close{
+    color: $theme-color;
+    &:hover{
+        color: $theme-color !important;
+    }
+    span{
+        border: none;
+        text-shadow: none;
+    }
+}
 
 // .ld-heading {
 //     font-size: 16px;
