@@ -505,593 +505,597 @@
                           </div>
                         </div>
                       </div> -->
-                      <div
-                        class="d-flex flex-column custom-overflow pr-3 me--3"
-                      >
-                        <form ref="assignmentForm" id="assignmentForm">
-                          <div class="form-group">
-                            <label for="recipient-name" class="col-form-label"
-                              >Subject<em>*</em></label
-                            >
-                            <select
-                              class="form-control"
-                              tabindex=""
-                              v-model="subject"
-                              :class="{
-                                'is-invalid': submitted && $v.subject.$error,
-                              }"
-                            >
-                              <option value="">Select subject</option>
-                              <option
-                                v-bind:value="{
-                                  id: subjects.id,
-                                  text: subjects.subject_name,
+                      <div class="d-flex flex-column justify-content-between h-40 flex-fill">
+                          <div
+                          class="d-flex flex-column custom-overflow pr-3 me--3 h-100"
+                        >
+                          <form ref="assignmentForm" id="assignmentForm">
+                            <div class="form-group">
+                              <label for="recipient-name" class="col-form-label"
+                                >Subject<em>*</em></label
+                              >
+                              <select
+                                class="form-control"
+                                tabindex=""
+                                v-model="subject"
+                                :class="{
+                                  'is-invalid': submitted && $v.subject.$error,
                                 }"
-                                v-for="(subjects, index) in subjectsData"
-                                :key="index"
                               >
-                                {{ subjects.subject_name }}
-                              </option>
-                              <option v-if="subjectsData.length == 0">
-                                No data
-                              </option>
-                            </select>
-                            <div
-                              v-if="submitted && $v.subject.$error"
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.subject.required"
-                                >This field is required</span
-                              >
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="message-text" class="col-form-label"
-                              >Assignment Name<em>*</em></label
-                            >
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="message-text"
-                              v-model="assignmentName"
-                              maxlength="125"
-                              placeholder="Enter assignment name"
-                              :class="{
-                                'is-invalid':
-                                  submitted && $v.assignmentName.$error,
-                              }"
-                            />
-                            <div
-                              v-if="submitted && $v.assignmentName.$error"
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.assignmentName.required"
-                                >This field is required</span
-                              >
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="message-text" class="col-form-label"
-                              >Task<em>*</em></label
-                            >
-                            <textarea
-                              class="form-control"
-                              id="message-text"
-                              v-model="assignmentDescription"
-                              maxlength="500"
-                              placeholder="Enter assignement description"
-                              :class="{
-                                'is-invalid':
-                                  submitted && $v.assignmentDescription.$error,
-                              }"
-                            ></textarea>
-                            <div
-                              v-if="
-                                submitted && $v.assignmentDescription.$error
-                              "
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.assignmentDescription.required"
-                                >This field is required</span
-                              >
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6 ml-auto">
-                              <div class="form-group mb-0">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label"
-                                  >Priority<em>*</em></label
+                                <option value="">Select subject</option>
+                                <option
+                                  v-bind:value="{
+                                    id: subjects.id,
+                                    text: subjects.subject_name,
+                                  }"
+                                  v-for="(subjects, index) in subjectsData"
+                                  :key="index"
                                 >
-                                <div class="dropdown input-icon-area">
-                                  <button
-                                    id="dLabel"
-                                    class="dropdown-select form-control"
-                                    type="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                  >
-                                    <span class="caret">
-                                      {{
-                                        priorityVal
-                                          ? priorityVal
-                                          : "Select priority"
-                                      }}</span
-                                    >
-                                  </button>
-                                  <ul
-                                    class="dropdown-menu"
-                                    aria-labelledby="dLabel"
-                                  >
-                                    <li
-                                      @click="priorityVal = 'Can Wait'"
-                                      class="item"
-                                    >
-                                      <div class="low-color"></div>
-                                      Can Wait
-                                    </li>
-                                    <li
-                                      @click="priorityVal = 'Important'"
-                                      class="item"
-                                    >
-                                      <div class="medium-color"></div>
-                                      Important
-                                    </li>
-                                    <li
-                                      @click="priorityVal = 'Urgent'"
-                                      class="item"
-                                    >
-                                      <div class="high-color"></div>
-                                      Urgent
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
+                                  {{ subjects.subject_name }}
+                                </option>
+                                <option v-if="subjectsData.length == 0">
+                                  No data
+                                </option>
+                              </select>
                               <div
-                                v-if="
-                                  submitted &&
-                                  priorityVal != 'Urgent' &&
-                                  priorityVal != 'Important' &&
-                                  priorityVal != 'Can Wait'
-                                "
+                                v-if="submitted && $v.subject.$error"
                                 class="invalid-feedback"
-                                style="display: block"
                               >
-                                <span
-                                  v-if="
-                                    priorityVal != 'Urgent' &&
-                                    priorityVal != 'Important' &&
-                                    priorityVal != 'Can Wait'
-                                  "
+                                <span v-if="!$v.subject.required"
                                   >This field is required</span
                                 >
                               </div>
                             </div>
-                            <div class="col-md-6 ml-auto">
-                              <div class="form-group">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label"
-                                  >Date<em>*</em></label
+                            <div class="form-group">
+                              <label for="message-text" class="col-form-label"
+                                >Assignment Name<em>*</em></label
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="message-text"
+                                v-model="assignmentName"
+                                maxlength="125"
+                                placeholder="Enter assignment name"
+                                :class="{
+                                  'is-invalid':
+                                    submitted && $v.assignmentName.$error,
+                                }"
+                              />
+                              <div
+                                v-if="submitted && $v.assignmentName.$error"
+                                class="invalid-feedback"
+                              >
+                                <span v-if="!$v.assignmentName.required"
+                                  >This field is required</span
                                 >
-                                <date-picker
-                                  class="form-control"
-                                  placeholder="MM/DD/YYYY"
-                                  format="MM/dd/yyyy"
-                                  v-model="dateValue"
-                                  :class="{
-                                    'is-invalid':
-                                      submitted && $v.dateValue.$error,
-                                  }"
-                                  :disabled-dates="disabledDates"
-                                />
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="message-text" class="col-form-label"
+                                >Task<em>*</em></label
+                              >
+                              <textarea
+                                class="form-control"
+                                id="message-text"
+                                v-model="assignmentDescription"
+                                maxlength="500"
+                                placeholder="Enter assignement description"
+                                :class="{
+                                  'is-invalid':
+                                    submitted && $v.assignmentDescription.$error,
+                                }"
+                              ></textarea>
+                              <div
+                                v-if="
+                                  submitted && $v.assignmentDescription.$error
+                                "
+                                class="invalid-feedback"
+                              >
+                                <span v-if="!$v.assignmentDescription.required"
+                                  >This field is required</span
+                                >
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6 ml-auto">
+                                <div class="form-group mb-0">
+                                  <label
+                                    for="recipient-name"
+                                    class="col-form-label"
+                                    >Priority<em>*</em></label
+                                  >
+                                  <div class="dropdown input-icon-area">
+                                    <button
+                                      id="dLabel"
+                                      class="dropdown-select form-control"
+                                      type="button"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                    >
+                                      <span class="caret">
+                                        {{
+                                          priorityVal
+                                            ? priorityVal
+                                            : "Select priority"
+                                        }}</span
+                                      >
+                                    </button>
+                                    <ul
+                                      class="dropdown-menu"
+                                      aria-labelledby="dLabel"
+                                    >
+                                      <li
+                                        @click="priorityVal = 'Can Wait'"
+                                        class="item"
+                                      >
+                                        <div class="low-color"></div>
+                                        Can Wait
+                                      </li>
+                                      <li
+                                        @click="priorityVal = 'Important'"
+                                        class="item"
+                                      >
+                                        <div class="medium-color"></div>
+                                        Important
+                                      </li>
+                                      <li
+                                        @click="priorityVal = 'Urgent'"
+                                        class="item"
+                                      >
+                                        <div class="high-color"></div>
+                                        Urgent
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
                                 <div
-                                  v-if="submitted && $v.dateValue.$error"
+                                  v-if="
+                                    submitted &&
+                                    priorityVal != 'Urgent' &&
+                                    priorityVal != 'Important' &&
+                                    priorityVal != 'Can Wait'
+                                  "
                                   class="invalid-feedback"
+                                  style="display: block"
                                 >
-                                  <span v-if="!$v.dateValue.required"
+                                  <span
+                                    v-if="
+                                      priorityVal != 'Urgent' &&
+                                      priorityVal != 'Important' &&
+                                      priorityVal != 'Can Wait'
+                                    "
                                     >This field is required</span
                                   >
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                          <div class="row mt-0">
-                            <div class="col-6">
-                              <div class="form-group">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label"
-                                  >Time<em>*</em></label
-                                >
-                                <div>
-                                  <vue-timepicker
-                                    close-on-complete
-                                    format="hh:mm A"
-                                    v-model="timeValue"
-                                    name="timeValue"
-                                    class="show-cursor"
-                                    :value="timeValue"
+                              <div class="col-md-6 ml-auto">
+                                <div class="form-group">
+                                  <label
+                                    for="recipient-name"
+                                    class="col-form-label"
+                                    >Date<em>*</em></label
+                                  >
+                                  <date-picker
+                                    class="form-control"
+                                    placeholder="MM/DD/YYYY"
+                                    format="MM/dd/yyyy"
+                                    v-model="dateValue"
                                     :class="{
                                       'is-invalid':
-                                        submitted && $v.timeValue.$error,
+                                        submitted && $v.dateValue.$error,
                                     }"
-                                  ></vue-timepicker>
+                                    :disabled-dates="disabledDates"
+                                  />
                                   <div
-                                    v-if="submitted && $v.timeValue.$error"
+                                    v-if="submitted && $v.dateValue.$error"
                                     class="invalid-feedback"
                                   >
-                                    <span v-if="!$v.timeValue.required"
+                                    <span v-if="!$v.dateValue.required"
                                       >This field is required</span
                                     >
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div
-                            class="
-                              d-flex
-                              justify-content-between
-                              align-items-center
-                              mb-2
-                            "
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Sub Tasks
-                            </h6>
-                            <a @click="onAddSubTaskClick" class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
-                          <div
-                            v-if="addSubTask"
-                            class="d-flex flex-row align-items-start"
-                          >
-                            <div class="form-row mb-2 mx-0 mr-2 w-100">
-                              <label class="form-label" for="name"
-                                >Add a sub task</label
-                              >
-                              <input
-                                type="text"
-                                maxlength="100"
-                                v-model="subTaskName"
-                                class="form-control"
-                              />
+                            <div class="row mt-0">
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <label
+                                    for="recipient-name"
+                                    class="col-form-label"
+                                    >Time<em>*</em></label
+                                  >
+                                  <div>
+                                    <vue-timepicker
+                                      close-on-complete
+                                      format="hh:mm A"
+                                      v-model="timeValue"
+                                      name="timeValue"
+                                      class="show-cursor"
+                                      :value="timeValue"
+                                      :class="{
+                                        'is-invalid':
+                                          submitted && $v.timeValue.$error,
+                                      }"
+                                    ></vue-timepicker>
+                                    <div
+                                      v-if="submitted && $v.timeValue.$error"
+                                      class="invalid-feedback"
+                                    >
+                                      <span v-if="!$v.timeValue.required"
+                                        >This field is required</span
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                            <div class="pt-4">
-                              <button
-                                class="btn btn-primary btn-sm mt-2"
-                                @click="onAddNewSubTask"
-                              >
-                                Add
-                              </button>
+                            <div
+                              class="
+                                d-flex
+                                justify-content-between
+                                align-items-center
+                                mb-2
+                              "
+                            >
+                              <h6 class="color-dark font-semi-bold mb-0">
+                                Sub Tasks
+                              </h6>
+                              <a @click="onAddSubTaskClick" class="btn p-0">
+                                <span class="color-secondary"
+                                  ><i class="fas fa-plus-circle"></i
+                                ></span>
+                              </a>
                             </div>
-                          </div>
-                          <div
-                            v-if="isAddAssignment"
-                            class="
-                              custom-overflow
-                              pr-2
-                              mr--2
-                              d-flex
-                              flex-column
-                            "
-                          >
-                            <div v-for="subTask in subTasksList" :key="subTask">
+                            <div
+                              v-if="addSubTask"
+                              class="d-flex flex-row align-items-start"
+                            >
+                              <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                <label class="form-label" for="name"
+                                  >Add a sub task</label
+                                >
+                                <input
+                                  type="text"
+                                  maxlength="100"
+                                  v-model="subTaskName"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="pt-4">
+                                <button
+                                  class="btn btn-primary btn-sm mt-2"
+                                  @click="onAddNewSubTask"
+                                >
+                                  Add
+                                </button>
+                              </div>
+                            </div>
+                            <div
+                              v-if="isAddAssignment"
+                              class="
+                                custom-overflow
+                                pr-2
+                                mr--2
+                                d-flex
+                                flex-column
+                              "
+                            >
+                              <div v-for="subTask in subTasksList" :key="subTask">
+                                <div
+                                  class="card card-transparent show-icon p-1 mb-1"
+                                >
+                                  <div
+                                    class="
+                                      d-flex
+                                      align-items-center
+                                      justify-content-between
+                                    "
+                                  >
+                                    <p
+                                      class="
+                                        mb-0
+                                        color-secondary
+                                        text-16
+                                        font-regular
+                                        text-truncate
+                                        pr-3
+                                      "
+                                    >
+                                      <span><i class="far fa-circle"></i></span>
+                                      {{ subTask }}
+                                    </p>
+                                    <span
+                                      @click="deleteSubTask(subTask)"
+                                      class="
+                                        color-primary
+                                        fa-icon
+                                        show-hover
+                                        d-none
+                                        btn
+                                        p-0
+                                      "
+                                      ><i class="fas fa-trash-alt"></i
+                                    ></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              v-else
+                              class="
+                                custom-overflow
+                                pr-2
+                                mr--2
+                                d-flex
+                                flex-column
+                              "
+                            >
+                              <div v-for="subTask in subTasksList" :key="subTask">
+                                <div
+                                  class="card card-transparent show-icon p-1 mb-1"
+                                >
+                                  <div
+                                    class="
+                                      d-flex
+                                      align-items-center
+                                      justify-content-between
+                                    "
+                                  >
+                                    <p
+                                      class="
+                                        mb-0
+                                        color-secondary
+                                        text-16
+                                        font-regular
+                                        text-truncate
+                                        pr-3
+                                      "
+                                    >
+                                      <span><i class="far fa-circle"></i></span>
+                                      {{ subTask.title }}
+                                    </p>
+                                    <span
+                                      @click="deleteSubTask(subTask)"
+                                      class="
+                                        color-primary
+                                        fa-icon
+                                        show-hover
+                                        d-none
+                                        btn
+                                        p-0
+                                      "
+                                      ><i class="fas fa-trash-alt"></i
+                                    ></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div
+                              class="
+                                d-flex
+                                justify-content-between
+                                align-items-center
+                                mb-2
+                              "
+                            >
+                              <h6 class="color-dark font-semi-bold mb-0">
+                                Invite Peers
+                              </h6>
+                              <a @click="onInviteClick" class="btn p-0">
+                                <span class="color-secondary"
+                                  ><i class="fas fa-plus-circle"></i
+                                ></span>
+                              </a>
+                            </div>
+                            <div
+                              v-if="invitePeer"
+                              class="d-flex flex-row align-items-start"
+                            >
+                              <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                <label class="form-label" for="name"
+                                  >Invite peers</label
+                                >
+                                <!-- <input type="text" class="form-control" /> -->
+                                <multiselect
+                                  v-model="peerSelected"
+                                  :options="students"
+                                  track-by="first_name"
+                                  label="first_name"
+                                  :placeholder="
+                                    peerSelected.length > 3
+                                      ? ''
+                                      : 'Select students'
+                                  "
+                                  :multiple="true"
+                                  :max="4"
+                                >
+                                  <span slot="maxElements"
+                                    >Maximum of 4 students selected</span
+                                  >
+                                  <span slot="noResult">No data found</span>
+                                </multiselect>
+                              </div>
+                              <div class="pt-4">
+                                <button
+                                  @click="onInvitePeer"
+                                  class="btn btn-primary btn-sm mt-2"
+                                >
+                                  Add
+                                </button>
+                              </div>
+                            </div>
+                            <div class="hidden-scroll p-3 row my-0">
                               <div
-                                class="card card-transparent show-icon p-1 mb-1"
+                                v-for="peer of peerList"
+                                :key="peer.id"
+                                class="h-fit-content"
                               >
                                 <div
                                   class="
                                     d-flex
                                     align-items-center
-                                    justify-content-between
+                                    my-2
+                                    mr-3
+                                    min-w-200
                                   "
                                 >
-                                  <p
-                                    class="
-                                      mb-0
-                                      color-secondary
-                                      text-16
-                                      font-regular
-                                      text-truncate
-                                      pr-3
-                                    "
-                                  >
-                                    <span><i class="far fa-circle"></i></span>
-                                    {{ subTask }}
-                                  </p>
-                                  <span
-                                    @click="deleteSubTask(subTask)"
-                                    class="
-                                      color-primary
-                                      fa-icon
-                                      show-hover
-                                      d-none
-                                      btn
-                                      p-0
-                                    "
-                                    ><i class="fas fa-trash-alt"></i
-                                  ></span>
+                                  <div class="ld-img-section mr-3">
+                                    <div class="ld-img-holder"></div>
+                                  </div>
+                                  <div class="ld-details-section">
+                                    <p class="ld-heading mb-1">
+                                      {{ peer.first_name }}
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div
-                            v-else
-                            class="
-                              custom-overflow
-                              pr-2
-                              mr--2
-                              d-flex
-                              flex-column
-                            "
-                          >
-                            <div v-for="subTask in subTasksList" :key="subTask">
+
+                            <!-- Additional Material Add -->
+                            <div
+                              class="
+                                d-flex
+                                justify-content-between
+                                align-items-center
+                                mb-2
+                              "
+                            >
+                              <h6 class="color-dark font-semi-bold mb-0">
+                                Additional Material
+                              </h6>
+                              <a @click="onAdditionalMatClick" class="btn p-0">
+                                <span class="color-secondary"
+                                  ><i class="fas fa-plus-circle"></i
+                                ></span>
+                              </a>
+                            </div>
+                            <div
+                              v-if="additionalMaterial"
+                              class="d-flex flex-row align-items-start"
+                            >
+                              <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                <label class="form-label" for="name"
+                                  >Add Additional Material</label
+                                >
+                                <!-- <input type="text" class="form-control" /> -->
+                                <select
+                                  v-model="materialType"
+                                  class="form-select form-control mb-2"
+                                  aria-label="Default select example"
+                                >
+                                  <option value="">Choose material type</option>
+                                  <option value="file">File</option>
+                                  <option value="link">Link</option>
+                                </select>
+                                <div class="row m-0">
+                                  <div class="col-9 py-0 pl-0">
+                                    <input
+                                      v-if="materialType == 'file'"
+                                      type="file"
+                                      class="form-control px-2"
+                                      placeholder="Upload File"
+                                      @change="onFileChange"
+                                      accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
+                                    />
+                                  </div>
+                                  <div class="col-9 py-0 pl-0">
+                                    <input
+                                      v-if="materialType == 'link'"
+                                      type="text"
+                                      class="form-control px-2"
+                                      placeholder="Paste Link"
+                                      v-model="link"
+                                    />
+                                  </div>
+                                  <div class="col-3 p-0">
+                                    <!-- <input
+                                      type="submit"
+                                      class="form-control"
+                                      value="Add"
+                                    /> -->
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pt-4">
+                                <button
+                                  type="button"
+                                  @click="UploadAttachment"
+                                  class="btn btn-primary btn-sm mt-2"
+                                >
+                                  Add
+                                </button>
+                              </div>
+                            </div>
+                            <div class="hidden-scroll p-3 row my-0">
                               <div
-                                class="card card-transparent show-icon p-1 mb-1"
+                                v-for="item of additionalMaterialList"
+                                :key="item.id"
+                                class="h-fit-content"
                               >
                                 <div
+                                  v-if="item.link"
                                   class="
                                     d-flex
                                     align-items-center
-                                    justify-content-between
+                                    my-2
+                                    mr-3
+                                    min-w-200
                                   "
                                 >
-                                  <p
-                                    class="
-                                      mb-0
-                                      color-secondary
-                                      text-16
-                                      font-regular
-                                      text-truncate
-                                      pr-3
-                                    "
-                                  >
-                                    <span><i class="far fa-circle"></i></span>
-                                    {{ subTask.title }}
-                                  </p>
-                                  <span
-                                    @click="deleteSubTask(subTask)"
-                                    class="
-                                      color-primary
-                                      fa-icon
-                                      show-hover
-                                      d-none
-                                      btn
-                                      p-0
-                                    "
-                                    ><i class="fas fa-trash-alt"></i
-                                  ></span>
+                                  <div class="ld-details-section">
+                                    <p class="ld-heading mb-1">
+                                      <!-- {{ peer.first_name }} -->
+                                      {{ item.link }}
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div
-                            class="
-                              d-flex
-                              justify-content-between
-                              align-items-center
-                              mb-2
-                            "
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Invite Peers
-                            </h6>
-                            <a @click="onInviteClick" class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
-                          <div
-                            v-if="invitePeer"
-                            class="d-flex flex-row align-items-start"
-                          >
-                            <div class="form-row mb-2 mx-0 mr-2 w-100">
-                              <label class="form-label" for="name"
-                                >Invite peers</label
-                              >
-                              <!-- <input type="text" class="form-control" /> -->
-                              <multiselect
-                                v-model="peerSelected"
-                                :options="students"
-                                track-by="first_name"
-                                label="first_name"
-                                :placeholder="
-                                  peerSelected.length > 3
-                                    ? ''
-                                    : 'Select students'
-                                "
-                                :multiple="true"
-                                :max="4"
-                              >
-                                <span slot="maxElements"
-                                  >Maximum of 4 students selected</span
+                                <div
+                                  v-else
+                                  class="
+                                    d-flex
+                                    align-items-center
+                                    my-2
+                                    mr-3
+                                    min-w-200
+                                  "
                                 >
-                                <span slot="noResult">No data found</span>
-                              </multiselect>
-                            </div>
-                            <div class="pt-4">
-                              <button
-                                @click="onInvitePeer"
-                                class="btn btn-primary btn-sm mt-2"
-                              >
-                                Add
-                              </button>
-                            </div>
-                          </div>
-                          <div class="hidden-scroll p-3 row my-0">
-                            <div
-                              v-for="peer of peerList"
-                              :key="peer.id"
-                              class="h-fit-content"
-                            >
-                              <div
-                                class="
-                                  d-flex
-                                  align-items-center
-                                  my-2
-                                  mr-3
-                                  min-w-200
-                                "
-                              >
-                                <div class="ld-img-section mr-3">
-                                  <div class="ld-img-holder"></div>
-                                </div>
-                                <div class="ld-details-section">
-                                  <p class="ld-heading mb-1">
-                                    {{ peer.first_name }}
-                                  </p>
+                                  <div class="ld-details-section">
+                                    <p class="ld-heading mb-1">
+                                      <!-- {{ peer.first_name }} -->
+                                      {{ item.material }}
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
+                            <!-- Additional Material Add End -->
+                          </form>
+                        </div>
 
-                          <!-- Additional Material Add -->
-                          <div
-                            class="
-                              d-flex
-                              justify-content-between
-                              align-items-center
-                              mb-2
-                            "
+                        <div class="d-flex align-items-center justify-content-end py-2">
+                          <button
+                            type="button"
+                            class="btn btn-secondary py-1 px-3 rounded-pill mr-2 px-4"
+                            @click="openAssignment = false"
                           >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Additional Material
-                            </h6>
-                            <a @click="onAdditionalMatClick" class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
-                          <div
-                            v-if="additionalMaterial"
-                            class="d-flex flex-row align-items-start"
-                          >
-                            <div class="form-row mb-2 mx-0 mr-2 w-100">
-                              <label class="form-label" for="name"
-                                >Add Additional Material</label
-                              >
-                              <!-- <input type="text" class="form-control" /> -->
-                              <select
-                                v-model="materialType"
-                                class="form-select form-control mb-2"
-                                aria-label="Default select example"
-                              >
-                                <option value="">Choose material type</option>
-                                <option value="file">File</option>
-                                <option value="link">Link</option>
-                              </select>
-                              <div class="row m-0">
-                                <div class="col-9 py-0 pl-0">
-                                  <input
-                                    v-if="materialType == 'file'"
-                                    type="file"
-                                    class="form-control px-2"
-                                    placeholder="Upload File"
-                                    @change="onFileChange"
-                                    accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
-                                  />
-                                </div>
-                                <div class="col-9 py-0 pl-0">
-                                  <input
-                                    v-if="materialType == 'link'"
-                                    type="text"
-                                    class="form-control px-2"
-                                    placeholder="Paste Link"
-                                    v-model="link"
-                                  />
-                                </div>
-                                <div class="col-3 p-0">
-                                  <!-- <input
-                                    type="submit"
-                                    class="form-control"
-                                    value="Add"
-                                  /> -->
-                                </div>
-                              </div>
-                            </div>
-                            <div class="pt-4">
-                              <button
-                                type="button"
-                                @click="UploadAttachment"
-                                class="btn btn-primary btn-sm mt-2"
-                              >
-                                Add
-                              </button>
-                            </div>
-                          </div>
-                          <div class="hidden-scroll p-3 row my-0">
-                            <div
-                              v-for="item of additionalMaterialList"
-                              :key="item.id"
-                              class="h-fit-content"
-                            >
-                              <div
-                                v-if="item.link"
-                                class="
-                                  d-flex
-                                  align-items-center
-                                  my-2
-                                  mr-3
-                                  min-w-200
-                                "
-                              >
-                                <div class="ld-details-section">
-                                  <p class="ld-heading mb-1">
-                                    <!-- {{ peer.first_name }} -->
-                                    {{ item.link }}
-                                  </p>
-                                </div>
-                              </div>
-                              <div
-                                v-else
-                                class="
-                                  d-flex
-                                  align-items-center
-                                  my-2
-                                  mr-3
-                                  min-w-200
-                                "
-                              >
-                                <div class="ld-details-section">
-                                  <p class="ld-heading mb-1">
-                                    <!-- {{ peer.first_name }} -->
-                                    {{ item.material }}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- Additional Material Add End -->
-                        </form>
+                            Close
+                          </button>
+                          <button
+                          type="button"
+                          class="btn btn-primary py-1 px-3 rounded-pill px-4"
+                          :disabled="processing"
+                          @click="
+                            isAddAssignment ? AddAssignment() : UpdateAssignment()
+                          "
+                        >
+                          {{ isAddAssignment ? "Save" : "Update" }}
+                        </button>
+                        </div>
                       </div>
-
-                      <button
-                        type="button"
-                        class="btn btn-primary py-1 px-3 rounded-pill"
-                        :disabled="processing"
-                        @click="
-                          isAddAssignment ? AddAssignment() : UpdateAssignment()
-                        "
-                      >
-                        {{ isAddAssignment ? "Add" : "Update" }}
-                      </button>
-                      <button
-                        type="button"
-                        class="btn btn-primary py-1 px-3 rounded-pill"
-                        @click="openAssignment = false"
-                      >
-                        Close
-                      </button>
                     </div>
                   </div>
                 </div>

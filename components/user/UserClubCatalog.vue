@@ -21,7 +21,7 @@
           <div class="tab-section container-fluid">
             <div class="d-flex justify-content-between align-item-center">
               <div class="d-flex flex-column">
-                <h2 class="color-primary font-semi-bold">Club Catalog</h2>
+                <h2 class="color-primary font-semi-bold mb-1">Club Catalog</h2>
                 <h4 class="mb-2 color-dark font-semi-bold">
                   Find your People!
                 </h4>
@@ -31,7 +31,7 @@
               <button
                 v-if="user_type == 3"
                 type="button"
-                class="btn btn-primary py-2 mt-1 h-fit-content"
+                class="btn btn-dark py-2 mt-1 h-fit-content px-4"
                 @click="openCreateNewModal"
               >
                 Create New

@@ -1805,6 +1805,7 @@ img.dark-icon{
             @include plannerDaily();
         }
         #Weekly-Calander{
+            @include head-right();
             @include calendar-sm-head();
         }
         #Monthly-Calander{
@@ -5097,14 +5098,14 @@ switch to violet when it is active*/
                 border-radius: 6px 6px 0px 0px;
                 border: none;
                 .modal-title{
-                    color: $global-sidebar-bg;
+                    color: $theme-color;
                     font-weight: 700;
                     @media (max-width:1024.98px) {
                         font-size: 1rem;
                     }
                 }
                 .close{
-                    color: $global-sidebar-bg;
+                    color: $theme-color;
                     &:hover{
                         color: $theme-color;
                     }

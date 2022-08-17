@@ -2405,7 +2405,7 @@
     >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header">
+          <!-- <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">End Session</h5>
             <button
               type="button"
@@ -2415,9 +2415,10 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          <div class="modal-body">
-            <p>
+          </div> -->
+          <div class="modal-body p-4">
+            <h3 class="modal-title color-primary font-semi-bold" id="exampleModalLongTitle">End Session</h3>
+            <p class="mb-0">
               If you exit timer, remaining time will not be recorded and the
               session will be lost. Are you sure you want to exit?
             </p>
@@ -2425,14 +2426,14 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-pill"
+              class="btn btn-secondary px-4 py-1 rounded-12"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-primary px-4 py-1 rounded-pill"
+              class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
               data-dismiss="modal"
               @click="onEndSession()"
               :disabled="processing"

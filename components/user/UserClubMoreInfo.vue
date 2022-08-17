@@ -756,8 +756,8 @@
     >
       <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content h-auto">
-          <div class="modal-header text-dark">
-            <h5 class="modal-title" id="mediumModalLabel">Delete</h5>
+          <!-- <div class="modal-header text-dark">
+            <h2 class="modal-title" id="mediumModalLabel">Delete</h5>
             <button
               type="button"
               class="close"
@@ -766,15 +766,16 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          <div class="modal-body">
-            <p class="text-left">Are you sure you want to delete this item?</p>
+          </div> -->
+          <div class="modal-body px-4 pt-4">
+            <h3 class="modal-title color-primary" id="mediumModalLabel">Delete</h3>
+            <p class="text-left mb-0">Are you sure you want to delete this item?</p>
           </div>
           <div class="modal-footer bg-white text-dark">
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-secondary px-4 py-1 rounded-pill"
+              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
               aria-label="Close"
             >
               No
@@ -782,7 +783,7 @@
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-primary color-white px-4 py-1 rounded-pill"
+              class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
               @click="
                 deleteActivityClickId
                   ? onDeleteActivity()
@@ -809,10 +810,10 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="announcementModalLongTitle">
+            <h3 class="color-primary font-semi-bold" id="announcementModalLongTitle">
               {{ enableEdit ? (isAnnouncementEdit ? "Edit" : "Add") : "" }}
               Announcement
-            </h5>
+            </h3>
             <button
               type="button"
               class="close"
@@ -827,16 +828,16 @@
             <form name="announcement">
               <fieldset v-if="enableEdit">
                 <div class="form-group">
-                  <label
+                  <!-- <label
                     for="recipient-name"
                     class="col-form-label color-secondary"
                     >Title<em>*</em></label
-                  >
+                  > -->
 
                   <input
                     type="text"
                     id="club"
-                    placeholder="Enter your club name"
+                    placeholder="Title *"
                     class="form-control"
                     v-model="announcement.announceTitle"
                     name="announceTitle"
@@ -862,18 +863,18 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label
+                  <!-- <label
                     for="message-text"
                     class="col-form-label color-secondary"
                     >Description<em>*</em></label
-                  >
+                  > -->
                   <textarea
                     class="form-control"
                     id="message-text"
                     v-model="announcement.announceDesc"
                     name="announceDesc"
                     maxlength="800"
-                    placeholder="Enter task description"
+                    placeholder="Description *"
                     :class="{
                       'is-invalid':
                         submitted &&
@@ -919,7 +920,7 @@
           <div v-if="enableEdit" class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary px-3 py-1 rounded-pill"
+              class="btn btn-secondary px-3 py-1 rounded-12 font-semi-bold"
               data-dismiss="modal"
               @click="resetAnnouncement"
             >
@@ -927,7 +928,7 @@
             </button>
             <button
               type="button"
-              class="btn btn-primary px-3 py-1 rounded-pill"
+              class="btn btn-success px-3 py-1 rounded-12 font-semi-bold"
               :disabled="processing && !$v.announcement.$invalid"
               @click="
                 isAnnouncementEdit
@@ -955,10 +956,10 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="activityModalLongTitle">
+            <h3 class="color-primary font-semi-bold" id="activityModalLongTitle">
               {{ enableEdit ? (isActivityEdit ? "Edit" : "Add") : "" }}
               Training/Match
-            </h5>
+            </h3>
             <button
               type="button"
               class="close"
@@ -968,17 +969,17 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body d-flex flex-column px-4">
-            <div class="custom-overflow pr-2 mr--2">
+          <div class="modal-body d-flex flex-column px-0">
+            <div class="custom-overflow  px-4">
               <form>
                 <fieldset v-if="enableEdit">
-                  <div class="form-row">
-                    <label for="recipient-name" class="col-form-label"
+                  <div class="form-group">
+                    <!-- <label for="recipient-name" class="col-form-label"
                       >Type<em>*</em></label
-                    >
+                    > -->
 
                     <select
-                      class="form-control bg-white mb-3"
+                      class="form-control bg-transparent mb-3"
                       tabindex=""
                       name="activityType"
                       v-model="activity.activityType"
@@ -989,6 +990,7 @@
                           $v.activity.activityType.$error,
                       }"
                     >
+                    <option value="" selected disabled>Type *</option>
                       <option value="Match">Match</option>
                       <option value="Training">Training</option>
                     </select>
@@ -1006,15 +1008,15 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="recipient-name" class="col-form-label"
+                    <!-- <label for="recipient-name" class="col-form-label"
                       >Title<em>*</em></label
-                    >
+                    > -->
 
                     <input
                       type="text"
                       id="club"
-                      placeholder="Enter the title"
-                      class="form-control bg-white"
+                      placeholder="Title *"
+                      class="form-control bg-transparent"
                       v-model="activity.activityTitle"
                       name="activityTitle"
                       maxlength="100"
@@ -1039,16 +1041,16 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="message-text" class="col-form-label"
+                    <!-- <label for="message-text" class="col-form-label"
                       >Description<em>*</em></label
-                    >
+                    > -->
                     <textarea
-                      class="form-control bg-white"
+                      class="form-control bg-transparent"
                       id="message-text"
                       v-model="activity.activityDesc"
                       name="activityDesc"
                       maxlength="800"
-                      placeholder="Enter description"
+                      placeholder="Description *"
                       :class="{
                         'is-invalid':
                           submittedActivity &&
@@ -1070,9 +1072,9 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="recipient-name" class="col-form-label"
+                    <!-- <label for="recipient-name" class="col-form-label"
                       >Date<em>*</em></label
-                    >
+                    > -->
 
                     <!-- <input
                       type="text"
@@ -1105,8 +1107,8 @@
                       }"
                     /> -->
                     <date-picker
-                      class="form-control bg-white"
-                      placeholder="MM/DD/YYYY"
+                      class="form-control bg-transparent"
+                      placeholder="Date *"
                       format="MM/dd/yyyy"
                       :value="activity.activityDate"
                       v-model="activity.activityDate"
@@ -1134,9 +1136,9 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="recipient-name" class="col-form-label"
+                    <!-- <label for="recipient-name" class="col-form-label"
                       >Time<em>*</em></label
-                    >
+                    > -->
 
                     <!-- <input
                       type="text"
@@ -1157,6 +1159,7 @@
                       close-on-complete
                       format="hh:mm A"
                       v-model="activity.activityTime"
+                      placeholder="Time *"
                       name="activityTime"
                       class="show-cursor form-white"
                       :class="{
@@ -1185,15 +1188,15 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="recipient-name" class="col-form-label"
+                    <!-- <label for="recipient-name" class="col-form-label"
                       >Venue<em>*</em></label
-                    >
+                    > -->
 
                     <input
                       type="text"
                       id="club"
-                      placeholder="Enter the venue"
-                      class="form-control bg-white"
+                      placeholder="Venue *"
+                      class="form-control bg-transparent"
                       v-model="activity.activityVenue"
                       name="activityVenue"
                       maxlength="100"
@@ -1229,7 +1232,7 @@
                       type="text"
                       id="club"
                       placeholder="Enter the opponent team name"
-                      class="form-control bg-white"
+                      class="form-control bg-transparent"
                       v-model="activity.activityOpponentTeam"
                       name="activityOpponentTeam"
                       maxlength="100"
@@ -1255,7 +1258,7 @@
                   </div>
                 </fieldset>
                 <fieldset v-else>
-                  <div class="form-row">
+                  <div class="form-group">
                     <label for="recipient-name" class="col-form-label"
                       >Type<em>*</em></label
                     >
@@ -1313,14 +1316,14 @@
           <div v-if="enableEdit" class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary px-3 py-1 rounded-pill"
+              class="btn btn-secondary px-3 py-1 rounded-12 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-primary px-3 py-1 rounded-pill"
+              class="btn btn-success px-3 py-1 rounded-12 font-semi-bold"
               :disabled="processingActivity && !$v.activity.$invalid"
               @click="isActivityEdit ? updateActivity() : addNewActivity()"
             >
@@ -1343,10 +1346,10 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title color-dark" id="nextMeetingModalLongTitle">
+          <!-- <div class="modal-header">
+            <h3 class="modal-title" id="nextMeetingModalLongTitle">
               Configure Meeting Days
-            </h5>
+            </h3>
             <button
               type="button"
               class="close"
@@ -1355,14 +1358,17 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          <div class="modal-body no-overflow px-4">
+          </div> -->
+          <div class="modal-body no-overflow px-4 pt-4">
             <!-- <div class="col-md-5 col-xs-12"> -->
-            <div class="inner-info container">
-              <div class="inner-info-head mb-3">
+              <h3 class="modal-title color-primary font-semi-bold" id="nextMeetingModalLongTitle">
+                Configure Meeting Days
+              </h3>
+            <div class="inner-info">
+              <!-- <div class="inner-info-head mb-3">
                 <h6 class="color-dark mb-0">Meeting Time</h6>
-              </div>
-              <p class="color-secondary text-14 font-regular">
+              </div> -->
+              <p class="color-dark text-24 font-semi-bold">
                 Next meeting:
                 {{
                   clubMoreDetails.announcement == null
@@ -1372,7 +1378,7 @@
               </p>
 
               <div class="row inner-col mb-3" v-if="enableEdit">
-                <div
+                <!-- <div
                   class="
                     col-lg-4 col-md-12
                     inner-info-head
@@ -1381,13 +1387,13 @@
                   "
                 >
                   <h6 class="color-dark mb-0">Choose time</h6>
-                </div>
+                </div> -->
                 <div class="col-lg-8 col-md-12 input-icon-area form-row">
                   <multiselect
                     v-model="value"
                     track-by="start_time"
                     label="start_time"
-                    placeholder="Select the time"
+                    placeholder="Choose time"
                     :options="slots"
                     @input="UpdateSlots"
                   >
@@ -1447,8 +1453,15 @@
               Cancel
             </button> -->
             <button
+              type="button"
+              class="btn btn-secondary px-4 py-1 rounded-12"
+              data-dismiss="modal"
+            >
+              Cencel
+            </button>
+            <button
               v-if="enableEdit"
-              class="btn btn-primary rounded-pill mt-2 py-1 px-4"
+              class="btn btn-success rounded-12 mt-2 py-1 px-4 font-semi-bold"
               :disabled="!value"
               @click.prevent="UpdateTime"
             >

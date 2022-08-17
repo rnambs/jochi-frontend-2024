@@ -579,7 +579,7 @@
             >
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-pill mr-2"
+                class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
                 data-dismiss="modal"
                 @click="acceptOrReject(2)"
               >
@@ -587,7 +587,7 @@
               </button>
               <button
                 type="button"
-                class="btn btn-primary py-1 px-4 rounded-pill"
+                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
                 data-dismiss="modal"
                 @click="acceptOrReject(1)"
               >
@@ -603,14 +603,14 @@
             >
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-pill mr-2"
+                class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
                 data-dismiss="modal"
               >
                 Close
               </button>
               <button
                 type="button"
-                class="btn btn-primary py-1 px-4 rounded-pill"
+                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
                 @click="updateDetails()"
               >
                 Update

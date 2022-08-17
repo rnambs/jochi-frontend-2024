@@ -429,7 +429,7 @@
                       <button
                         id="clckPrevent"
                         type="submit"
-                        class="btn upload-btn mt-3"
+                        class="btn btn-primary mt-3 px-4 py-1"
                         :disabled="!profileImageUrl"
                       >
                         <i class="fas fa-file-upload pr-1"></i>Upload
@@ -438,7 +438,7 @@
                     <button
                       id="clckPrevent"
                       type=""
-                      class="btn delete-btn mt-3"
+                      class="btn btn-secondary mt-3 px-4 py-1"
                       @click="deleteFunction()"
                       :disabled="!profileImageUrl"
                     >
@@ -556,10 +556,10 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="nextMeetingModalLongTitle">
+          <!-- <div class="modal-header">
+            <h3 class="modal-title" id="nextMeetingModalLongTitle">
               Configure Meeting Days
-            </h5>
+            </h3>
             <button
               type="button"
               class="close"
@@ -568,14 +568,17 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          <div class="modal-body no-overflow px-4">
+          </div> -->
+          <div class="modal-body no-overflow px-4 pt-4">
             <!-- <div class="col-md-5 col-xs-12"> -->
-            <div class="inner-info container p-4">
-              <div class="inner-info-head mb-3">
-                <h6 class="mb-0">Meeting Time</h6>
-              </div>
-              <p class="color-secondary text-14 font-regular">
+              <h3 class="modal-title color-primary font-semi-bold" id="nextMeetingModalLongTitle">
+                Configure Meeting Days
+              </h3>
+            <div class="inner-info">
+              <!-- <div class="inner-info-head mb-3">
+                <h6 class="color-dark mb-0">Meeting Time</h6>
+              </div> -->
+              <p class="color-dark text-24 font-semi-bold">
                 Next meeting:
                 {{
                   clubMoreDetails.announcement == null
@@ -585,7 +588,7 @@
               </p>
 
               <div class="row inner-col" v-if="enableEdit">
-                <div
+                <!-- <div
                   class="
                     col-lg-4 col-md-12
                     inner-info-head
@@ -594,13 +597,13 @@
                   "
                 >
                   <h6 class="mb-0">Choose time</h6>
-                </div>
+                </div> -->
                 <div class="col-lg-8 col-md-12 input-icon-area form-row">
                   <multiselect
                     v-model="valueMeeting"
                     track-by="start_time"
                     label="start_time"
-                    placeholder="Select the time"
+                    placeholder="Choose time"
                     :options="slots"
                     @input="UpdateSlots"
                   >
@@ -654,8 +657,15 @@
               Cancel
             </button> -->
             <button
+              type="button"
+              class="btn btn-secondary px-4 py-1 rounded-12"
+              data-dismiss="modal"
+            >
+              Cencel
+            </button>
+            <button
               v-if="enableEdit"
-              class="btn btn-primary rounded-pill mt-2 py-1 px-4"
+              class="btn btn-success rounded-12 mt-2 py-1 px-4 font-semi-bold"
               :disabled="!valueMeeting"
               @click.prevent="UpdateTime"
             >
