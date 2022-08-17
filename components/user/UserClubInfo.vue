@@ -18,7 +18,7 @@
       >
         <!-- end tab for club info -->
 
-        <!-- Club info -->check
+        <!-- Club info -->
         <img :src="clubDetails.club_banner_image" alt="" />
         <div
           class="cd-cover-pic-section position-relative"
@@ -632,10 +632,10 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title color-dark" id="nextMeetingModalLongTitle">
+          <!-- <div class="modal-header">
+            <h3 class="modal-title" id="nextMeetingModalLongTitle">
               Configure Meeting Days
-            </h4>
+            </h3>
             <button
               type="button"
               class="close"
@@ -644,14 +644,17 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          <div class="modal-body no-overflow px-4">
+          </div> -->
+          <div class="modal-body no-overflow px-4 pt-4">
             <!-- <div class="col-md-5 col-xs-12"> -->
-            <div class="inner-info container">
-              <div class="inner-info-head mb-3">
+              <h3 class="modal-title color-primary font-semi-bold" id="nextMeetingModalLongTitle">
+                Configure Meeting Days
+              </h3>
+            <div class="inner-info">
+              <!-- <div class="inner-info-head mb-3">
                 <h6 class="color-dark mb-0">Meeting Time</h6>
-              </div>
-              <p class="color-secondary text-14 font-regular">
+              </div> -->
+              <p class="color-dark text-24 font-semi-bold">
                 Next meeting:
                 {{
                   clubMoreDetails.announcement == null
@@ -661,7 +664,7 @@
               </p>
 
               <div class="row inner-col mb-3" v-if="enableEdit">
-                <div
+                <!-- <div
                   class="
                     col-lg-4 col-md-12
                     inner-inner-info-head
@@ -670,13 +673,13 @@
                   "
                 >
                   <h6 class="color-dark mb-0">Choose time</h6>
-                </div>
+                </div> -->
                 <div class="col-lg-8 col-md-12 input-icon-area form-row">
                   <multiselect
                     v-model="valueMeeting"
                     track-by="start_time"
                     label="start_time"
-                    placeholder="Select the time"
+                    placeholder="Choose time"
                     :options="slots"
                     @input="UpdateSlots"
                   >
@@ -736,8 +739,15 @@
               Cancel
             </button> -->
             <button
+            type="button"
+            class="btn btn-secondary px-4 py-1 rounded-12"
+            data-dismiss="modal"
+          >
+            Cencel
+          </button>
+            <button
               v-if="enableEdit"
-              class="btn btn-primary rounded-pill mt-2 py-1 px-4"
+              class="btn btn-success rounded-12 mt-2 py-1 px-4 font-semi-bold"
               :disabled="!valueMeeting"
               @click.prevent="UpdateTime"
             >
@@ -761,9 +771,9 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="viewMoreModalLongTitle">
+            <h3 class="modal-title" id="viewMoreModalLongTitle">
               View {{ isLeaderView ? "Leaders" : "Members" }}
-            </h4>
+            </h3>
             <button
               type="button"
               class="close"
@@ -907,7 +917,7 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-header">
+          <!-- <div class="modal-header">
             <h4 class="modal-title color-dark" id="addLeaderModalLongTitle">
               Add Leaders
             </h4>
@@ -919,9 +929,12 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          <div class="modal-body no-overflow px-4">
+          </div> -->
+          <div class="modal-body no-overflow px-4 pt-4">
             <!-- <div class="col-md-5 col-xs-12"> -->
+            <h3 class="modal-title color-primary font-semi-bold" id="addLeaderModalLongTitle">
+              Add Leaders
+            </h3>
             <div class="d-flex align-items-center flex-fill mr-2 form-row">
               <multiselect
                 v-model="leaderUpdate"
@@ -940,7 +953,15 @@
           </div>
           <div class="modal-footer px-4">
             <button
-              class="btn btn-primary py-1 rounded-pill px-4"
+              type="button"
+              data-dismiss="modal"
+              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              aria-label="Close"
+            >
+              Close
+            </button>
+            <button
+              class="btn btn-success py-1 rounded-12 font-semi-bold px-4"
               :disabled="!leaderUpdate"
               @click.prevent="addLeader()"
             >

@@ -128,13 +128,33 @@ $sm-screen-h         : 767.98px;
 }
 
 // Calendar
-@mixin calendar-sm-head {
+@mixin head-center {
     .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
         .fc-header-toolbar.fc-toolbar{
             justify-content: center;
             position: absolute;
             top: -12px;
             width: 93%;
+        }
+    }
+}
+@mixin head-right {
+    .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
+        .fc-header-toolbar.fc-toolbar{
+            justify-content: right;
+            position: absolute;
+            top: 20px;
+            width: 93%;
+            right: 46px;
+            @media (max-width:$max-xs-screen ) {
+                right: 24px;
+            }
+        }
+    }
+}
+@mixin calendar-sm-head {
+    .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
+        .fc-header-toolbar.fc-toolbar{
             h2.fc-toolbar-title{
                 font-size: 12px !important;
                 font-weight: 500;
@@ -361,6 +381,9 @@ $sm-screen-h         : 767.98px;
         position: relative;
         top: 1.065rem;
     }
+}
+@mixin calendar-lg-week-head {
+    
 }
 @mixin calendar-sm-week {
     .fc-view-harness.fc-view-harness-active{
@@ -634,6 +657,7 @@ $sm-screen-h         : 767.98px;
 }
 
 @mixin calendar-sm{
+    @include head-center();
     @include calendar-sm-head();
     @include calendar-sm-body();
 }
@@ -741,7 +765,7 @@ $sm-screen-h         : 767.98px;
             }
         }
         .fc-view-harness.fc-view-harness-active{
-            height: 75vh !important;
+            height: 82vh !important;
             // @media (max-width:1536.98px) {
             //     height: 731.185px !important;
             // }

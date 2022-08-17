@@ -82,7 +82,7 @@
                         font-normal
                         color-dark
                         text-14" for="customSwitches"
-                      >Show options based on my availability</label
+                      >Based on my availability</label
                     >
                   </div>
                 </div>

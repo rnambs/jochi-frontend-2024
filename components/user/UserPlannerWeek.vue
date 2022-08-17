@@ -323,7 +323,7 @@
                   position-relative
                 "
               >
-                <div class="planner-week p-4 px-3 px-sm-5">
+                <div class="planner-week p-4 pt-5 px-3 px-sm-5">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
 
@@ -3535,7 +3535,7 @@ body {
 } */
 
 .fc-view-harness.fc-view-harness-active {
-  height: 75vh !important;
+  height: 82vh !important;
   margin-top: 20px;
 }
 
