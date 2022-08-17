@@ -50,6 +50,7 @@
                       @click="
                         openAssignment = true;
                         isAddAssignment = true;
+                        resetAssignment();
                       "
                       class="btn btn-dark py-1 px-3"
                     >
@@ -205,7 +206,7 @@
                               <div class="sub-task-section mb-3">
                                 <h6>Sub-tasks</h6>
                                 <div
-                                  @click="confirmComplete"
+                                  @click="confirmSubTaskComplete(sub.id)"
                                   v-for="sub in item.subTasks"
                                   :key="sub.id"
                                   class="
@@ -215,7 +216,15 @@
                                     color-secondary
                                   "
                                 >
-                                  <input type="radio" class="mr-2" />
+                                  <input
+                                    :value="
+                                      item.task_status == 'Completed'
+                                        ? true
+                                        : false
+                                    "
+                                    type="radio"
+                                    class="mr-2"
+                                  />
                                   <label for="" class="mb-0">{{
                                     sub.title
                                   }}</label>
@@ -1074,6 +1083,13 @@
                       >
                         {{ isAddAssignment ? "Add" : "Update" }}
                       </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary py-1 px-3 rounded-pill"
+                        @click="openAssignment = false"
+                      >
+                        Close
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1562,6 +1578,52 @@
       </div>
     </div>
     <!-- Assignment completion confirmation end  -->
+    <!-- Sub task completion confirmation  -->
+    <div
+      class="modal fade"
+      id="completeSubTaskConfirm"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="completeConfirmModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="completeConfirmModalLongTitle">
+              Complete Sub Task Confirmation
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body px-4">Mark sub task as completed?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-pill"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary py-1 px-3 rounded-pill"
+              :disabled="processingCompleteAssignment"
+              @click="completeSubTask()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sub task completion confirmation end  -->
   </div>
 </template>
 <script>
@@ -1770,6 +1832,9 @@ export default {
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
       completedAssignments: (state) => state.completedAssignments,
       newAdditionalMaterial: (state) => state.newAdditionalMaterial,
+      sessionList: (state) => state.sessionList,
+      sharedAstList: (state) => state.sharedAstList,
+      sharedSessionList: (state) => state.sharedSessionList,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -1899,6 +1964,35 @@ export default {
         listobj["dateMeeting"] = dateMeeting;
         listobj["timeValNum"] = timeValNum;
         this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+      this.sessionList?.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+        let title = "";
+        if (element.assignment_id) {
+          title = "Study Session " + element.assignments?.task;
+        } else {
+          title = "Study Session " + element.subject?.subject_name;
+        }
+
+        const color = element.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.time;
+        var tmeMeeting = this.formatAMPM(element.time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        meetingobj["groupId"] = "Study";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        // this.meetingDetails.push(listobj);
         eventList.push(meetingobj);
       });
       this.calendarOptions.events = eventList;
@@ -2059,9 +2153,23 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
+      this.subject = "";
+      this.assignmentName = "";
+      this.assignmentDescription = "";
+      this.priorityVal = "";
+      this.dateValue = "";
+      this.timeValue = "";
+      this.subTasksList = [];
+      this.peerList = [];
+      this.additionalMaterialList = [];
+      this.invitePeer = false;
+      this.materialType = "";
+      this.additionalMaterial = false;
+      this.addSubTask = false;
       this.submitted = false;
       this.value = "";
       this.dateValue = "";
+
       $('input[name="daterange"]').val("");
       fromDate = "";
       $(".dropdown-select").text("Select priority");
@@ -2385,6 +2493,11 @@ export default {
         status: "Completed",
       });
       this.processingCompleteAssignment = false;
+      await this.GetDailyPlanner();
+      this.playCelebration = true;
+      const myTimeout = setTimeout(() => {
+        this.playCelebration = false;
+      }, 5000);
       if (this.successMessage != "") {
         this.completeSubTasktId = 0;
         this.playCelebration = true;
@@ -2447,9 +2560,19 @@ export default {
       });
       console.log(this.completedAssignments);
     },
-    confirmComplete(event) {
-      event.preventDefault();
-      event.stopPropagation();
+    confirmComplete() {
+      // this.completeAsstId = id;
+      $("#completeConfirm").modal({ backdrop: true });
+
+      // event.preventDefault();
+      // event.stopPropagation();
+    },
+    confirmSubTaskComplete(id) {
+      this.completeSubTasktId = id;
+      $("#completeSubTaskConfirm").modal({ backdrop: true });
+
+      // event.preventDefault();
+      // event.stopPropagation();
     },
     onAdditionalMatClick() {
       this.additionalMaterial = true;
