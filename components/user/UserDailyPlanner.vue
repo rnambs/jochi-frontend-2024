@@ -281,6 +281,15 @@
                                           : material.file_name
                                       }}
                                     </span>
+                                    <span
+                                      v-if="
+                                        !item.assignment_materials ||
+                                        item.assignment_materials.length <= 0
+                                      "
+                                      class="color-secondary"
+                                    >
+                                      No additional materials added
+                                    </span>
                                   </div>
                                   <div
                                     class="col-4 material-date py-0 text-right"
@@ -319,15 +328,18 @@
                                 </div>
                               </div> -->
                               <div
-                                v-for="peer in item.peers"
-                                :key="peer"
                                 class="
                                   add-person-section
                                   position-absolute
                                   top-0
                                 "
                               >
-                                <div class="ap-img-section mr--3 shadow-sm">
+                                <div
+                                  v-for="peer in item.peers"
+                                  :key="peer"
+                                  class="ap-img-section mr--3 shadow-sm"
+                                >
+                                  <!-- {{ peer }} -->
                                   <img :src="peer.profile_pic" alt="" />
                                 </div>
                                 <!-- <div
@@ -519,10 +531,17 @@
                           </div>
                         </div>
                       </div> -->
-                      <div class="d-flex flex-column justify-content-between h-40 flex-fill">
-                        
-                          <div
-                          class="d-flex flex-column  custom-overflow pr-3 me--3"
+                      <div
+                        class="
+                          d-flex
+                          flex-column
+                          justify-content-between
+                          h-40
+                          flex-fill
+                        "
+                      >
+                        <div
+                          class="d-flex flex-column custom-overflow pr-3 me--3"
                         >
                           <form ref="assignmentForm" id="assignmentForm">
                             <div class="form-group">
@@ -598,7 +617,8 @@
                                 placeholder="Enter assignement description"
                                 :class="{
                                   'is-invalid':
-                                    submitted && $v.assignmentDescription.$error,
+                                    submitted &&
+                                    $v.assignmentDescription.$error,
                                 }"
                               ></textarea>
                               <div
@@ -848,9 +868,17 @@
                                 flex-column
                               "
                             >
-                              <div v-for="subTask in subTasksList" :key="subTask">
+                              <div
+                                v-for="subTask in subTasksList"
+                                :key="subTask"
+                              >
                                 <div
-                                  class="card card-transparent show-icon p-1 mb-1"
+                                  class="
+                                    card card-transparent
+                                    show-icon
+                                    p-1
+                                    mb-1
+                                  "
                                 >
                                   <div
                                     class="
@@ -1100,21 +1128,29 @@
                         <div class="d-flex justify-content-end">
                           <button
                             type="button"
-                            class="btn btn-secondary py-1 px-3 rounded-pill mr-2"
+                            class="
+                              btn btn-secondary
+                              py-1
+                              px-3
+                              rounded-pill
+                              mr-2
+                            "
                             @click="openAssignment = false"
                           >
                             Close
                           </button>
                           <button
-                          type="button"
-                          class="btn btn-primary py-1 px-3 rounded-pill"
-                          :disabled="processing"
-                          @click="
-                            isAddAssignment ? AddAssignment() : UpdateAssignment()
-                          "
-                        >
-                          {{ isAddAssignment ? "Add" : "Update" }}
-                        </button>
+                            type="button"
+                            class="btn btn-primary py-1 px-3 rounded-pill"
+                            :disabled="processing"
+                            @click="
+                              isAddAssignment
+                                ? AddAssignment()
+                                : UpdateAssignment()
+                            "
+                          >
+                            {{ isAddAssignment ? "Add" : "Update" }}
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -2014,7 +2050,7 @@ export default {
         meetingobj["color"] = color;
         meetingobj["start"] = start;
         meetingobj["id"] = element.id;
-        meetingobj["groupId"] = "Study";
+        meetingobj["groupId"] = "study";
 
         listobj["title"] = title;
         listobj["meeting"] = "Study Session";
@@ -2349,6 +2385,12 @@ export default {
     },
     eventClicked(info) {
       var idVal = info.event;
+      // console.log(idVal.)
+      if (idVal.groupId == "study") {
+        console.log("study session");
+        return this.$router.push(`/study-time?id=${idVal.id}`);
+      }
+
       var idValue = idVal.id;
       var groupId = idVal.groupId;
       if (!groupId) {
@@ -2501,7 +2543,7 @@ export default {
           item.task_status = e.task_status;
           item.updatedAt = e.updatedAt;
           item.user_id = e.user_id;
-          item.peers = this.mapPeers(e.id);
+          item.peers = this.mapPeers(e);
           item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
           this.pendingAssignments.push(item);
         });
@@ -2511,35 +2553,43 @@ export default {
       if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
         this.sharedAssignmentsList.forEach((e) => {
           let item = {};
-          item.assignment_description = e.assignments.assignment_description;
-          item.assignment_materials = e.assignment_materials;
-          item.completed_date = e.assignments.completed_date;
-          item.dueTimeFormat = e.assignments.dueTimeFormat;
-          item.due_date = e.assignments.due_date;
-          item.due_time = e.assignments.due_time;
-          item.id = e.assignments.id;
-          item.priority = e.assignments.priority;
-          item.schoologyAssignment = e.assignments.schoologyAssignment;
-          item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
-          item.subTasks = e.subTasks;
-          item.subject = e.assignments.subject;
-          item.subjects = e.subjects;
-          item.task = e.assignments.task;
-          item.task_status = e.assignments.task_status;
-          item.updatedAt = e.assignments.updatedAt;
-          item.user_id = e.assignments.user_id;
-          item.peers = e.users;
-          item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-          this.pendingAssignments.push(item);
+          if (e.assignments) {
+            item.assignment_description = e.assignments.assignment_description;
+            item.assignment_materials = e.assignment_materials;
+            item.completed_date = e.assignments.completed_date;
+            item.dueTimeFormat = e.assignments.dueTimeFormat;
+            item.due_date = e.assignments.due_date;
+            item.due_time = e.assignments.due_time;
+            item.id = e.assignments.id;
+            item.priority = e.assignments.priority;
+            item.schoologyAssignment = e.assignments.schoologyAssignment;
+            item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+            item.subTasks = e.subTasks;
+            item.subject = e.assignments.subject;
+            item.subjects = e.subjects;
+            item.task = e.assignments.task;
+            item.task_status = e.assignments.task_status;
+            item.updatedAt = e.assignments.updatedAt;
+            item.user_id = e.assignments.user_id;
+            item.peers = this.mapPeers(e);
+            item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+            this.pendingAssignments.push(item);
+          }
         });
       }
     },
-    mapPeers(id) {
+    mapPeers(e) {
+      let user_id = localStorage.getItem("id");
       let peers = [];
-      if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
-        this.peers = this.sharedAssignmentsList.filter(
-          (e) => e.assignment_id == id
-        );
+      if (e.assignment_shared_users && e.assignment_shared_users.length > 0) {
+        e.assignment_shared_users.forEach((item) => {
+          if (item.shared_users_id != user_id) {
+            peers.push(item.users);
+          }
+        });
+      }
+      if (e.users) {
+        peers.push(e.users);
       }
       return peers;
     },

@@ -74,9 +74,7 @@
             </div>
           </div>
           <div class="col-lg-5 h-100">
-            <div
-              class="card card-void rounded-22 py-4 h-100 position-realtive"
-            >
+            <div class="card card-void rounded-22 py-4 h-100 position-realtive">
               <!-- default -->
               <!-- <div class="d-flex justify-content-between flex-column h-100">
                       <div class="head-section">
@@ -1723,7 +1721,9 @@
                 </div>
               </div>
               <div v-if="!goalsList || goalsList.length <= 0">
-                <span class="color-secondary text-16 font-regular">No goals listed</span>
+                <span class="color-secondary text-16 font-regular"
+                  >No goals listed</span
+                >
               </div>
             </div>
             <div class="card card-void rounded-22 p-4">
@@ -1751,7 +1751,9 @@
                   v-if="!peerList || peerList.length <= 0"
                   class="d-flex align-items-center my-2 mr-3 min-w-200"
                 >
-                  <span class="color-secondary text-16 font-regular">No peers invited!</span>
+                  <span class="color-secondary text-16 font-regular"
+                    >No peers invited!</span
+                  >
                 </div>
               </div>
             </div>
@@ -1893,7 +1895,9 @@
         hidden-scroll
       "
     >
-      <div class="px-5 py-4 d-flex flex-column card card-void rounded-22 col-lg-7">
+      <div
+        class="px-5 py-4 d-flex flex-column card card-void rounded-22 col-lg-7"
+      >
         <h2 class="color-primary font-semi-bold mb-1">Rate your session</h2>
         <div class="d-flex flex-column py-3 px-0">
           <div class="mb-3">
@@ -2417,7 +2421,12 @@
             </button>
           </div> -->
           <div class="modal-body p-4">
-            <h3 class="modal-title color-primary font-semi-bold" id="exampleModalLongTitle">End Session</h3>
+            <h3
+              class="modal-title color-primary font-semi-bold"
+              id="exampleModalLongTitle"
+            >
+              End Session
+            </h3>
             <p class="mb-0">
               If you exit timer, remaining time will not be recorded and the
               session will be lost. Are you sure you want to exit?
@@ -2633,6 +2642,7 @@ export default {
       timerCountDown: 0,
       counter: false,
       intervalCountDown: null,
+      sessionRedirectId: this.$route.query.id,
     };
   },
 
@@ -2646,7 +2656,12 @@ export default {
     },
   },
 
-  mounted() {
+  async mounted() {
+    if (this.sessionRedirectId) {
+      await this.getDetail(this.sessionRedirectId);
+      this.redirectMap(this.studySessionDetail);
+      this.currentTab = 3;
+    }
     window.addEventListener("beforeunload", function (e) {
       // Cancel the event
       e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
@@ -2686,11 +2701,11 @@ export default {
       studySessions: (state) => state.studySessions,
       sharedSessions: (state) => state.sharedSessions,
       assignmentSessions: (state) => state.assignmentSessions,
-      assignmentSessions: (state) => state.assignmentSessions,
       assignments: (state) => state.assignments,
       sessionData: (state) => state.sessionData,
       invitedPeers: (state) => state.invitedPeers,
       ownerDetail: (state) => state.ownerDetail,
+      studySessionDetail: (state) => state.studySessionDetail,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -2708,6 +2723,7 @@ export default {
       getAssignments: "getAssignments",
       saveStudySession: "saveStudySession",
       getInvitedPeers: "getInvitedPeers",
+      getSessionDetail: "getSessionDetail",
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
@@ -2724,7 +2740,31 @@ export default {
       event.preventDefault();
       event.returnValue = "";
     },
+    redirectMap(e) {
+      let session = {};
+      session.type = "assignment";
+      session.id = e.id;
+      session.name = e.assignments?.task;
+      session.goals = e.subTasks;
+      session.duration = e.duration;
+      session.breakTime = e.break_time;
+      session.repeat = e.repeat;
+      session.peers = e.peers;
+      session.date = moment(e.date).format("MMMM Do, YYYY");
+      session.scheduledDate = e.date;
+      session.time = e.time;
+      session.breakTimeAt = e.break_time_at;
+      session.studyMethod = e.study_method;
+      const d = new Date();
 
+      session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
+      session.startSession = false;
+      this.sessionDetail = session;
+    },
+    async getDetail(id) {
+      await this.getSessionDetail({ id });
+      console.log("session details", this.studySessionDetail);
+    },
     async GetStatusTimer() {
       await this.getStatusTimer({});
     },

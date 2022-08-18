@@ -15,7 +15,8 @@ const state = {
   assignments: [],
   sessionData: {},
   invitedPeers: [],
-  ownerDetail: []
+  ownerDetail: [],
+  studySessionDetail: {}
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -303,6 +304,25 @@ const actions = {
     }
   },
 
+  // get session details by id
+  //Get all configured study sessions list
+  async getSessionDetail({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$get(BASE_URL + `studyRoom/session_details?session_id=${payLoad.id}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+      commit('setSessionDetail', response.data);
+
+
+    } catch (e) {
+
+    }
+  },
+
 }
 const mutations = {
   setErrorMessage(state, data) {
@@ -346,6 +366,9 @@ const mutations = {
   },
   setOwnerDetail(state, data) {
     state.ownerDetail = data;
+  },
+  setSessionDetail(state, data) {
+    state.studySessionDetail = data;
   },
 
 
@@ -393,6 +416,9 @@ const getters = {
   },
   ownerDetail: () => {
     return state.ownerDetail;
+  },
+  studySessionDetail: () => {
+    return state.studySessionDetail;
   },
 
 
