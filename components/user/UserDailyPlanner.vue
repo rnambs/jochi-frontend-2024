@@ -2588,8 +2588,8 @@ export default {
           }
         });
       }
-      if (e.users) {
-        peers.push(e.users);
+      if (e.assignments?.users) {
+        peers.push(e.assignments?.users);
       }
       return peers;
     },
