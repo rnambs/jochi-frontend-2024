@@ -2401,7 +2401,6 @@ export default {
           `/viewall-meeting?id=${idVal.id}&type=${idVal.groupId}`
         );
       } else if (idVal.groupId == "assignment") {
-        alert("assignment");
         this.onCardClick(idVal);
       }
 
@@ -2704,7 +2703,6 @@ export default {
       return !incomplete;
     },
     onCardClick(data) {
-      alert("inside");
       this.isAddAssignment = false;
       this.openAssignment = true;
       this.mapAssignmentDetail(data);
@@ -2729,8 +2727,8 @@ export default {
           ? "Can Wait"
           : "";
       this.subject = {
-        id: data.subjects.id,
-        text: data.subjects.subject_name,
+        id: data.subjects?.id,
+        text: data.subjects?.subject_name,
       };
       this.dateValue = data.due_date;
       this.timeValue = data.due_time;
