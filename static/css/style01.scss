@@ -1799,18 +1799,39 @@ img.dark-icon{
             padding-left: 0;
             padding-top: 4rem;
         }
-        // planner
+
+        // planner Assignment
+
+        #Daily-Calander, #Weekly-Calander, #Monthly-Calander{
+            @include plannerAssignment();
+        }
+
+        // Planner Calendar
 
         #Daily-Calander{
             @include plannerDaily();
+            @include plannerCommonMonth();
         }
         #Weekly-Calander{
             @include head-right();
             @include calendar-sm-head();
+            @include plannerCommonMonth();
             @include plannerCommon();
+            .fc-timegrid-col-events{
+                .fc-timegrid-event-harness.fc-timegrid-event-harness-inset{
+                    min-height: 100px;
+                }
+            }
         }
         #Monthly-Calander{
+             .fc-view-harness.fc-view-harness-active{
+                height: 76vh !important;
+            }
+            .fc-scroller.fc-scroller-liquid-absolute{
+                margin-right: -8px;
+            }
             @include calendar-lg-head();
+            @include plannerCommonMonth();
             // .fc-view-harness.fc-view-harness-active{
                 //     height: calc(100vh - 300px) !important;
                 //     .fc-daygrid.fc-dayGridMonth-view.fc-view{
@@ -2315,8 +2336,8 @@ img.dark-icon{
             //planner-Month
             .planner-Month{
                 background-color: transparent;
-                max-height: calc(100vh - 154px);
-                min-height: calc(100vh - 154px);
+                // max-height: calc(100vh - 154px);
+                // min-height: calc(100vh - 154px);
                 overflow: hidden;
                 border-radius: 1rem;
                 display: flex;

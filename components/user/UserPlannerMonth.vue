@@ -18,9 +18,9 @@
           position-realtive
         "
       >
-        <section id="Monthly-Calander" class="">
-          <div class="element-section container-fluid">
-            <div class="row mt-0">
+        <section id="Monthly-Calander" class="h-100">
+          <div class="element-section container-fluid h-100">
+            <div class="row mt-0 h-100">
               <div class="col-12 position-realtive">
                 <div class="planner-Month p-4 px-3 px-md-5">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
@@ -2567,7 +2567,7 @@ export default {
 </script>
 
 <style>
-.display-picture-holder {
+/* .display-picture-holder {
   width: 80px;
   height: 80px;
   background-color: #ffffff;
@@ -2722,12 +2722,12 @@ export default {
 
 .ap-img-section {
   background-color: #ffffff;
-}
+} */
 
-.fc .fc-scrollgrid {
+/* .fc .fc-scrollgrid {
   border-radius: 12px;
   overflow: hidden;
-}
+} */
 
 /* .fc-toolbar-chunk .fc-toolbar-title {
     position: absolute;
@@ -2759,7 +2759,7 @@ export default {
     align-items: center;
 } */
 
-.fc-toolbar-chunk .fc-next-button.fc-button {
+/* .fc-toolbar-chunk .fc-next-button.fc-button {
   position: relative;
   top: 1.065rem;
 }
@@ -2786,9 +2786,9 @@ export default {
 
 .fc-theme-standard td {
   border-color: #e9d7ee;
-}
+} */
 
-.jochi-components-light-bg.pending-assignment-popup {
+/* .jochi-components-light-bg.pending-assignment-popup {
   top: 12px;
   bottom: 12px;
   left: 12px;
@@ -2842,5 +2842,5 @@ export default {
 .assignment-planner-section .jochi-components-light-bg {
   background-color: #ffffff;
   height: 100%;
-}
+} */
 </style>

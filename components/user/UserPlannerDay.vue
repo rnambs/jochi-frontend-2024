@@ -1417,7 +1417,7 @@ body {
   transform: scale(1);
   transition: transform 1s ease;
 }
- 
+
 .add-sub-task-btn {
   width: 20px;
   height: 20px;

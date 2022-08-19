@@ -153,6 +153,10 @@ $sm-screen-h         : 767.98px;
     }
 }
 @mixin calendar-sm-head {
+    .fc .fc-scrollgrid {
+        border-radius: 12px;
+        overflow: hidden;
+      }
     .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
         .fc-header-toolbar.fc-toolbar{
             h2.fc-toolbar-title{
@@ -167,6 +171,7 @@ $sm-screen-h         : 767.98px;
                 width: fit-content;
                 position: unset;
                 border-bottom: 2px solid $head-theme-color;
+                text-transform: uppercase;
             }
             button.fc-button.fc-button-primary{
                 background-color: $head-theme-color;
@@ -382,9 +387,8 @@ $sm-screen-h         : 767.98px;
         top: 1.065rem;
     }
 }
-@mixin calendar-lg-week-head {
-}
 @mixin calendar-sm-week {
+    @include head-center();
     .fc-view-harness.fc-view-harness-active{
         height: 16vh !important;
         min-height: 160px;
@@ -777,11 +781,54 @@ $sm-screen-h         : 767.98px;
         word-break: break-all;
       }
 }
+@mixin plannerCommonMonth{
+    // .fc-view-harness.fc-view-harness-active{
+    //     height: 76vh !important;
+    // }
+    // .fc-scroller.fc-scroller-liquid-absolute{
+    //     margin-right: -8px;
+    // }
+    .fc .fc-scrollgrid {
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      
+      .fc-toolbar-chunk .fc-next-button.fc-button {
+        position: relative;
+        top: 1.065rem;
+      }
+      
+      .fc .fc-day-disabled {
+        background: none;
+      }
+      
+      .fc .fc-daygrid-day-number {
+        color: #8c8bac !important;
+        font-weight: 600;
+      }
+      
+      .fc-theme-standard th {
+        border-bottom: none;
+        border-right: none;
+        border-left: none;
+        background-color: #f0deeb;
+        padding: 5px;
+      }
+      
+      .fc-theme-standard th .fc-col-header-cell-cushion {
+        color: #a995ef;
+      }
+      
+      .fc-theme-standard td {
+        border-color: #e9d7ee;
+      }
+}
 
 @mixin calendar-sm{
     @include head-center();
     @include calendar-sm-head();
     @include calendar-sm-body();
+    @include plannerCommonMonth();
 }
 
 // table
@@ -1035,3 +1082,213 @@ $sm-screen-h         : 767.98px;
     @include plannerCommon();
 }
 
+
+// Add Assignment
+
+@mixin plannerAssignment {
+    .display-picture-holder {
+        width: 80px;
+        height: 80px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+      
+      .sb-user-name {
+        font-size: 26px;
+        color: #ff6d6d;
+        font-weight: 700;
+      }
+      
+      .sb-settings-btn {
+        color: #b4b4b4;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      
+      .add-assignment-btn {
+        font-size: 12px;
+        background-color: #000000;
+        color: #ffffff;
+        border-radius: 10px;
+      }
+      
+      .add-assignment-btn:hover {
+        font-size: 12px;
+        background-color: #000000;
+        color: #ffffff;
+        border-radius: 10px;
+      }
+      
+      .notification-section {
+        cursor: pointer;
+      }
+      
+      .notification-section svg {
+        fill: #b4b4b4;
+        width: 25px;
+        height: 25px;
+      }
+      
+      .notification-count-section {
+        background-color: #ea2626;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        top: 3px;
+        right: 0;
+      }
+      
+      .assignment-tag {
+        font-size: 10px;
+        padding: 2px 10px;
+        border-radius: 18px;
+        color: #ffffff;
+      }
+      
+      .assignment-tag.red {
+        background-color: #ea2626;
+      }
+      
+      .assignment-tag.pink {
+        background-color: #fb3e80;
+      }
+      
+      .assignment-add-section h4 {
+        color: #000000;
+        font-weight: 700;
+      }
+      
+      .assignment-add-section p {
+        color: #b4b4b4;
+        font-weight: 600;
+        line-height: 16px;
+      }
+      
+      .sub-task-section h6 {
+        color: #e48194;
+      }
+      
+      .sub-task-section label {
+        font-size: 12px;
+      }
+      
+      .material-link {
+        font-size: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      .material-date {
+        font-size: 10px;
+      }
+      
+      .addition-material-section h6 {
+        color: #000000;
+      }
+      
+      .upload-file-section .form-control {
+        height: 18px;
+        font-size: 8px;
+        padding: 0;
+      }
+      
+      .upload-file-section .form-control::placeholder {
+        color: #ffffff;
+      }
+      
+      .completed-assignments h4 {
+        font-weight: 700;
+      }
+      
+      .completed-assignments h4.blue {
+        color: #9d00df;
+      }
+      
+      .completed-assignments h4.green {
+        color: #1d9c00;
+      }
+      
+      .completed-assignments p {
+        color: #c7c1c1;
+        font-size: 12px;
+      }
+      
+      .add-person-section {
+        top: -5px;
+        display: flex;
+        right: 25px;
+      }
+      
+      .ap-img-add,
+      .ap-img-section {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      
+      .ap-img-add {
+        margin-left: -15px;
+        cursor: pointer;
+      }
+      
+      .ap-img-section {
+        background-color: #ffffff;
+      }
+      .jochi-components-light-bg.pending-assignment-popup {
+        top: 12px;
+        bottom: 12px;
+        left: 12px;
+        right: 12px;
+        background-color: #ffffff;
+        transform: scale(0);
+        transition: transform 1s ease;
+      }
+      
+      .jochi-components-light-bg.pending-assignment-popup.active {
+        transform: scale(1);
+        transition: transform 1s ease;
+      }
+      
+      .planner-action-btns {
+        transform: rotate(-90deg);
+        top: 50vh;
+        right: -160px;
+      }
+      
+      .planner-action-btns .pa-btn {
+        padding: 5px 20px;
+        background-color: #b8b8b8;
+        color: #ffffff;
+        border-radius: 14px 14px 0 0;
+        transition: background-color 0.5s ease;
+      }
+      
+      .planner-action-btns .pa-btn.active {
+        background-color: #ffffff;
+        color: #b8b8b8;
+        border: 1px solid #b8b8b8;
+        transition: background-color 0.5s ease;
+      }
+      
+      .assignment-planner-section {
+        top: 0;
+        right: -80rem;
+        bottom: 0;
+        z-index: 5;
+        transition: ease-in-out all 0.8s;
+        pointer-events: none;
+      }
+      
+      .assignment-planner-section.active {
+        pointer-events: visible;
+        right: 3rem;
+        transition: ease-in-out all 0.8s;
+      }
+      
+      .assignment-planner-section .jochi-components-light-bg {
+        background-color: #ffffff;
+        height: 100%;
+      }
+}

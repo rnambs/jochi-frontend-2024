@@ -1507,6 +1507,185 @@ img.dark-icon {
     padding-top: 4rem;
   }
 }
+.inner-section .main-section #Daily-Calander .display-picture-holder, .inner-section .main-section #Weekly-Calander .display-picture-holder, .inner-section .main-section #Monthly-Calander .display-picture-holder {
+  width: 80px;
+  height: 80px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.inner-section .main-section #Daily-Calander .sb-user-name, .inner-section .main-section #Weekly-Calander .sb-user-name, .inner-section .main-section #Monthly-Calander .sb-user-name {
+  font-size: 26px;
+  color: #ff6d6d;
+  font-weight: 700;
+}
+.inner-section .main-section #Daily-Calander .sb-settings-btn, .inner-section .main-section #Weekly-Calander .sb-settings-btn, .inner-section .main-section #Monthly-Calander .sb-settings-btn {
+  color: #b4b4b4;
+  font-size: 13px;
+  font-weight: 500;
+}
+.inner-section .main-section #Daily-Calander .add-assignment-btn, .inner-section .main-section #Weekly-Calander .add-assignment-btn, .inner-section .main-section #Monthly-Calander .add-assignment-btn {
+  font-size: 12px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 10px;
+}
+.inner-section .main-section #Daily-Calander .add-assignment-btn:hover, .inner-section .main-section #Weekly-Calander .add-assignment-btn:hover, .inner-section .main-section #Monthly-Calander .add-assignment-btn:hover {
+  font-size: 12px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 10px;
+}
+.inner-section .main-section #Daily-Calander .notification-section, .inner-section .main-section #Weekly-Calander .notification-section, .inner-section .main-section #Monthly-Calander .notification-section {
+  cursor: pointer;
+}
+.inner-section .main-section #Daily-Calander .notification-section svg, .inner-section .main-section #Weekly-Calander .notification-section svg, .inner-section .main-section #Monthly-Calander .notification-section svg {
+  fill: #b4b4b4;
+  width: 25px;
+  height: 25px;
+}
+.inner-section .main-section #Daily-Calander .notification-count-section, .inner-section .main-section #Weekly-Calander .notification-count-section, .inner-section .main-section #Monthly-Calander .notification-count-section {
+  background-color: #ea2626;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  top: 3px;
+  right: 0;
+}
+.inner-section .main-section #Daily-Calander .assignment-tag, .inner-section .main-section #Weekly-Calander .assignment-tag, .inner-section .main-section #Monthly-Calander .assignment-tag {
+  font-size: 10px;
+  padding: 2px 10px;
+  border-radius: 18px;
+  color: #ffffff;
+}
+.inner-section .main-section #Daily-Calander .assignment-tag.red, .inner-section .main-section #Weekly-Calander .assignment-tag.red, .inner-section .main-section #Monthly-Calander .assignment-tag.red {
+  background-color: #ea2626;
+}
+.inner-section .main-section #Daily-Calander .assignment-tag.pink, .inner-section .main-section #Weekly-Calander .assignment-tag.pink, .inner-section .main-section #Monthly-Calander .assignment-tag.pink {
+  background-color: #fb3e80;
+}
+.inner-section .main-section #Daily-Calander .assignment-add-section h4, .inner-section .main-section #Weekly-Calander .assignment-add-section h4, .inner-section .main-section #Monthly-Calander .assignment-add-section h4 {
+  color: #000000;
+  font-weight: 700;
+}
+.inner-section .main-section #Daily-Calander .assignment-add-section p, .inner-section .main-section #Weekly-Calander .assignment-add-section p, .inner-section .main-section #Monthly-Calander .assignment-add-section p {
+  color: #b4b4b4;
+  font-weight: 600;
+  line-height: 16px;
+}
+.inner-section .main-section #Daily-Calander .sub-task-section h6, .inner-section .main-section #Weekly-Calander .sub-task-section h6, .inner-section .main-section #Monthly-Calander .sub-task-section h6 {
+  color: #e48194;
+}
+.inner-section .main-section #Daily-Calander .sub-task-section label, .inner-section .main-section #Weekly-Calander .sub-task-section label, .inner-section .main-section #Monthly-Calander .sub-task-section label {
+  font-size: 12px;
+}
+.inner-section .main-section #Daily-Calander .material-link, .inner-section .main-section #Weekly-Calander .material-link, .inner-section .main-section #Monthly-Calander .material-link {
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.inner-section .main-section #Daily-Calander .material-date, .inner-section .main-section #Weekly-Calander .material-date, .inner-section .main-section #Monthly-Calander .material-date {
+  font-size: 10px;
+}
+.inner-section .main-section #Daily-Calander .addition-material-section h6, .inner-section .main-section #Weekly-Calander .addition-material-section h6, .inner-section .main-section #Monthly-Calander .addition-material-section h6 {
+  color: #000000;
+}
+.inner-section .main-section #Daily-Calander .upload-file-section .form-control, .inner-section .main-section #Weekly-Calander .upload-file-section .form-control, .inner-section .main-section #Monthly-Calander .upload-file-section .form-control {
+  height: 18px;
+  font-size: 8px;
+  padding: 0;
+}
+.inner-section .main-section #Daily-Calander .upload-file-section .form-control::-moz-placeholder, .inner-section .main-section #Weekly-Calander .upload-file-section .form-control::-moz-placeholder, .inner-section .main-section #Monthly-Calander .upload-file-section .form-control::-moz-placeholder {
+  color: #ffffff;
+}
+.inner-section .main-section #Daily-Calander .upload-file-section .form-control:-ms-input-placeholder, .inner-section .main-section #Weekly-Calander .upload-file-section .form-control:-ms-input-placeholder, .inner-section .main-section #Monthly-Calander .upload-file-section .form-control:-ms-input-placeholder {
+  color: #ffffff;
+}
+.inner-section .main-section #Daily-Calander .upload-file-section .form-control::placeholder, .inner-section .main-section #Weekly-Calander .upload-file-section .form-control::placeholder, .inner-section .main-section #Monthly-Calander .upload-file-section .form-control::placeholder {
+  color: #ffffff;
+}
+.inner-section .main-section #Daily-Calander .completed-assignments h4, .inner-section .main-section #Weekly-Calander .completed-assignments h4, .inner-section .main-section #Monthly-Calander .completed-assignments h4 {
+  font-weight: 700;
+}
+.inner-section .main-section #Daily-Calander .completed-assignments h4.blue, .inner-section .main-section #Weekly-Calander .completed-assignments h4.blue, .inner-section .main-section #Monthly-Calander .completed-assignments h4.blue {
+  color: #9d00df;
+}
+.inner-section .main-section #Daily-Calander .completed-assignments h4.green, .inner-section .main-section #Weekly-Calander .completed-assignments h4.green, .inner-section .main-section #Monthly-Calander .completed-assignments h4.green {
+  color: #1d9c00;
+}
+.inner-section .main-section #Daily-Calander .completed-assignments p, .inner-section .main-section #Weekly-Calander .completed-assignments p, .inner-section .main-section #Monthly-Calander .completed-assignments p {
+  color: #c7c1c1;
+  font-size: 12px;
+}
+.inner-section .main-section #Daily-Calander .add-person-section, .inner-section .main-section #Weekly-Calander .add-person-section, .inner-section .main-section #Monthly-Calander .add-person-section {
+  top: -5px;
+  display: flex;
+  right: 25px;
+}
+.inner-section .main-section #Daily-Calander .ap-img-add,
+.inner-section .main-section #Daily-Calander .ap-img-section, .inner-section .main-section #Weekly-Calander .ap-img-add,
+.inner-section .main-section #Weekly-Calander .ap-img-section, .inner-section .main-section #Monthly-Calander .ap-img-add,
+.inner-section .main-section #Monthly-Calander .ap-img-section {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.inner-section .main-section #Daily-Calander .ap-img-add, .inner-section .main-section #Weekly-Calander .ap-img-add, .inner-section .main-section #Monthly-Calander .ap-img-add {
+  margin-left: -15px;
+  cursor: pointer;
+}
+.inner-section .main-section #Daily-Calander .ap-img-section, .inner-section .main-section #Weekly-Calander .ap-img-section, .inner-section .main-section #Monthly-Calander .ap-img-section {
+  background-color: #ffffff;
+}
+.inner-section .main-section #Daily-Calander .jochi-components-light-bg.pending-assignment-popup, .inner-section .main-section #Weekly-Calander .jochi-components-light-bg.pending-assignment-popup, .inner-section .main-section #Monthly-Calander .jochi-components-light-bg.pending-assignment-popup {
+  top: 12px;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background-color: #ffffff;
+  transform: scale(0);
+  transition: transform 1s ease;
+}
+.inner-section .main-section #Daily-Calander .jochi-components-light-bg.pending-assignment-popup.active, .inner-section .main-section #Weekly-Calander .jochi-components-light-bg.pending-assignment-popup.active, .inner-section .main-section #Monthly-Calander .jochi-components-light-bg.pending-assignment-popup.active {
+  transform: scale(1);
+  transition: transform 1s ease;
+}
+.inner-section .main-section #Daily-Calander .planner-action-btns, .inner-section .main-section #Weekly-Calander .planner-action-btns, .inner-section .main-section #Monthly-Calander .planner-action-btns {
+  transform: rotate(-90deg);
+  top: 50vh;
+  right: -160px;
+}
+.inner-section .main-section #Daily-Calander .planner-action-btns .pa-btn, .inner-section .main-section #Weekly-Calander .planner-action-btns .pa-btn, .inner-section .main-section #Monthly-Calander .planner-action-btns .pa-btn {
+  padding: 5px 20px;
+  background-color: #b8b8b8;
+  color: #ffffff;
+  border-radius: 14px 14px 0 0;
+  transition: background-color 0.5s ease;
+}
+.inner-section .main-section #Daily-Calander .planner-action-btns .pa-btn.active, .inner-section .main-section #Weekly-Calander .planner-action-btns .pa-btn.active, .inner-section .main-section #Monthly-Calander .planner-action-btns .pa-btn.active {
+  background-color: #ffffff;
+  color: #b8b8b8;
+  border: 1px solid #b8b8b8;
+  transition: background-color 0.5s ease;
+}
+.inner-section .main-section #Daily-Calander .assignment-planner-section, .inner-section .main-section #Weekly-Calander .assignment-planner-section, .inner-section .main-section #Monthly-Calander .assignment-planner-section {
+  top: 0;
+  right: -80rem;
+  bottom: 0;
+  z-index: 5;
+  transition: ease-in-out all 0.8s;
+  pointer-events: none;
+}
+.inner-section .main-section #Daily-Calander .assignment-planner-section.active, .inner-section .main-section #Weekly-Calander .assignment-planner-section.active, .inner-section .main-section #Monthly-Calander .assignment-planner-section.active {
+  pointer-events: visible;
+  right: 3rem;
+  transition: ease-in-out all 0.8s;
+}
+.inner-section .main-section #Daily-Calander .assignment-planner-section .jochi-components-light-bg, .inner-section .main-section #Weekly-Calander .assignment-planner-section .jochi-components-light-bg, .inner-section .main-section #Monthly-Calander .assignment-planner-section .jochi-components-light-bg {
+  background-color: #ffffff;
+  height: 100%;
+}
 .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: start;
   margin-bottom: 0rem;
@@ -1784,6 +1963,34 @@ img.dark-icon {
   font-size: 18px;
   word-break: break-all;
 }
+.inner-section .main-section #Daily-Calander .fc .fc-scrollgrid {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.inner-section .main-section #Daily-Calander .fc-toolbar-chunk .fc-next-button.fc-button {
+  position: relative;
+  top: 1.065rem;
+}
+.inner-section .main-section #Daily-Calander .fc .fc-day-disabled {
+  background: none;
+}
+.inner-section .main-section #Daily-Calander .fc .fc-daygrid-day-number {
+  color: #8c8bac !important;
+  font-weight: 600;
+}
+.inner-section .main-section #Daily-Calander .fc-theme-standard th {
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  background-color: #f0deeb;
+  padding: 5px;
+}
+.inner-section .main-section #Daily-Calander .fc-theme-standard th .fc-col-header-cell-cushion {
+  color: #a995ef;
+}
+.inner-section .main-section #Daily-Calander .fc-theme-standard td {
+  border-color: #e9d7ee;
+}
 .inner-section .main-section #Weekly-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: right;
   position: absolute;
@@ -1795,6 +2002,10 @@ img.dark-icon {
   .inner-section .main-section #Weekly-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
     right: 24px;
   }
+}
+.inner-section .main-section #Weekly-Calander .fc .fc-scrollgrid {
+  border-radius: 12px;
+  overflow: hidden;
 }
 .inner-section .main-section #Weekly-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar h2.fc-toolbar-title {
   font-size: 12px !important;
@@ -1810,6 +2021,7 @@ img.dark-icon {
   width: fit-content;
   position: unset;
   border-bottom: 2px solid #FF6F69;
+  text-transform: uppercase;
 }
 .inner-section .main-section #Weekly-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
   background-color: #FF6F69;
@@ -1838,6 +2050,34 @@ img.dark-icon {
   min-height: 20px;
   height: 26px;
   padding: 3px;
+}
+.inner-section .main-section #Weekly-Calander .fc .fc-scrollgrid {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.inner-section .main-section #Weekly-Calander .fc-toolbar-chunk .fc-next-button.fc-button {
+  position: relative;
+  top: 1.065rem;
+}
+.inner-section .main-section #Weekly-Calander .fc .fc-day-disabled {
+  background: none;
+}
+.inner-section .main-section #Weekly-Calander .fc .fc-daygrid-day-number {
+  color: #8c8bac !important;
+  font-weight: 600;
+}
+.inner-section .main-section #Weekly-Calander .fc-theme-standard th {
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  background-color: #f0deeb;
+  padding: 5px;
+}
+.inner-section .main-section #Weekly-Calander .fc-theme-standard th .fc-col-header-cell-cushion {
+  color: #a995ef;
+}
+.inner-section .main-section #Weekly-Calander .fc-theme-standard td {
+  border-color: #e9d7ee;
 }
 .inner-section .main-section #Weekly-Calander .fc .fc-scrollgrid {
   border-radius: 12px;
@@ -1939,6 +2179,15 @@ img.dark-icon {
   font-size: 18px;
   word-break: break-all;
 }
+.inner-section .main-section #Weekly-Calander .fc-timegrid-col-events .fc-timegrid-event-harness.fc-timegrid-event-harness-inset {
+  min-height: 100px;
+}
+.inner-section .main-section #Monthly-Calander .fc-view-harness.fc-view-harness-active {
+  height: 76vh !important;
+}
+.inner-section .main-section #Monthly-Calander .fc-scroller.fc-scroller-liquid-absolute {
+  margin-right: -8px;
+}
 .inner-section .main-section #Monthly-Calander .fc-header-toolbar.fc-toolbar.fc-toolbar-ltr {
   justify-content: space-between;
 }
@@ -1977,6 +2226,34 @@ img.dark-icon {
 .inner-section .main-section #Monthly-Calander .fc-toolbar-chunk .fc-next-button.fc-button {
   position: relative;
   top: 1.065rem;
+}
+.inner-section .main-section #Monthly-Calander .fc .fc-scrollgrid {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.inner-section .main-section #Monthly-Calander .fc-toolbar-chunk .fc-next-button.fc-button {
+  position: relative;
+  top: 1.065rem;
+}
+.inner-section .main-section #Monthly-Calander .fc .fc-day-disabled {
+  background: none;
+}
+.inner-section .main-section #Monthly-Calander .fc .fc-daygrid-day-number {
+  color: #8c8bac !important;
+  font-weight: 600;
+}
+.inner-section .main-section #Monthly-Calander .fc-theme-standard th {
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  background-color: #f0deeb;
+  padding: 5px;
+}
+.inner-section .main-section #Monthly-Calander .fc-theme-standard th .fc-col-header-cell-cushion {
+  color: #a995ef;
+}
+.inner-section .main-section #Monthly-Calander .fc-theme-standard td {
+  border-color: #e9d7ee;
 }
 .inner-section .main-section .element-section {
   height: 95vh;
@@ -2094,8 +2371,6 @@ img.dark-icon {
 }
 .inner-section .main-section .element-section .planner-Month {
   background-color: transparent;
-  max-height: calc(100vh - 154px);
-  min-height: calc(100vh - 154px);
   overflow: hidden;
   border-radius: 1rem;
   display: flex;
@@ -2436,6 +2711,10 @@ img.dark-icon {
   top: -12px;
   width: 93%;
 }
+.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc .fc-scrollgrid {
+  border-radius: 12px;
+  overflow: hidden;
+}
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar h2.fc-toolbar-title {
   font-size: 12px !important;
   font-weight: 500;
@@ -2450,6 +2729,7 @@ img.dark-icon {
   width: fit-content;
   position: unset;
   border-bottom: 2px solid #FF6F69;
+  text-transform: uppercase;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
   background-color: #FF6F69;
@@ -2589,6 +2869,34 @@ img.dark-icon {
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight .fc-daygrid-day-number {
   color: #C5C0BD !important;
 }
+.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc .fc-scrollgrid {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-toolbar-chunk .fc-next-button.fc-button {
+  position: relative;
+  top: 1.065rem;
+}
+.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc .fc-day-disabled {
+  background: none;
+}
+.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc .fc-daygrid-day-number {
+  color: #8c8bac !important;
+  font-weight: 600;
+}
+.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-theme-standard th {
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  background-color: #f0deeb;
+  padding: 5px;
+}
+.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-theme-standard th .fc-col-header-cell-cushion {
+  color: #a995ef;
+}
+.inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc-theme-standard td {
+  border-color: #e9d7ee;
+}
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req h6 {
   color: #FF6D6D;
 }
@@ -2630,6 +2938,10 @@ img.dark-icon {
   top: -12px;
   width: 93%;
 }
+.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc .fc-scrollgrid {
+  border-radius: 12px;
+  overflow: hidden;
+}
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar h2.fc-toolbar-title {
   font-size: 12px !important;
   font-weight: 500;
@@ -2644,6 +2956,7 @@ img.dark-icon {
   width: fit-content;
   position: unset;
   border-bottom: 2px solid #FF6F69;
+  text-transform: uppercase;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
   background-color: #FF6F69;
@@ -2783,6 +3096,34 @@ img.dark-icon {
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight .fc-daygrid-day-number {
   color: #C5C0BD !important;
 }
+.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc .fc-scrollgrid {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-toolbar-chunk .fc-next-button.fc-button {
+  position: relative;
+  top: 1.065rem;
+}
+.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc .fc-day-disabled {
+  background: none;
+}
+.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc .fc-daygrid-day-number {
+  color: #8c8bac !important;
+  font-weight: 600;
+}
+.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-theme-standard th {
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  background-color: #f0deeb;
+  padding: 5px;
+}
+.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-theme-standard th .fc-col-header-cell-cushion {
+  color: #a995ef;
+}
+.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal .fc-theme-standard td {
+  border-color: #e9d7ee;
+}
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher .inner-agenda {
   height: 29vh !important;
   min-height: 276px;
@@ -2843,6 +3184,10 @@ img.dark-icon {
   top: -12px;
   width: 93%;
 }
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc .fc-scrollgrid {
+  border-radius: 12px;
+  overflow: hidden;
+}
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar h2.fc-toolbar-title {
   font-size: 12px !important;
   font-weight: 500;
@@ -2857,6 +3202,7 @@ img.dark-icon {
   width: fit-content;
   position: unset;
   border-bottom: 2px solid #FF6F69;
+  text-transform: uppercase;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
   background-color: #FF6F69;
@@ -2996,6 +3342,38 @@ img.dark-icon {
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight .fc-daygrid-day-number {
   color: #C5C0BD !important;
 }
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc .fc-scrollgrid {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-toolbar-chunk .fc-next-button.fc-button {
+  position: relative;
+  top: 1.065rem;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc .fc-day-disabled {
+  background: none;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc .fc-daygrid-day-number {
+  color: #8c8bac !important;
+  font-weight: 600;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-theme-standard th {
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  background-color: #f0deeb;
+  padding: 5px;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-theme-standard th .fc-col-header-cell-cushion {
+  color: #a995ef;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .fc-theme-standard td {
+  border-color: #e9d7ee;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc .fc-scrollgrid {
+  border-radius: 12px;
+  overflow: hidden;
+}
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar h2.fc-toolbar-title {
   font-size: 12px !important;
   font-weight: 500;
@@ -3010,6 +3388,7 @@ img.dark-icon {
   width: fit-content;
   position: unset;
   border-bottom: 2px solid #FF6F69;
+  text-transform: uppercase;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar button.fc-button.fc-button-primary {
   background-color: #FF6F69;
@@ -3038,6 +3417,12 @@ img.dark-icon {
   min-height: 20px;
   height: 26px;
   padding: 3px;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
+  justify-content: center;
+  position: absolute;
+  top: -12px;
+  width: 93%;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active {
   height: 16vh !important;
