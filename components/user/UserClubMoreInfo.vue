@@ -391,7 +391,9 @@
                     </div>
                   </div>
                   <div v-else class="col-md-6 col-xs-12 h-100 d-flex">
-                    <div class="inner-info container-fluid p-2 d-flex flex-column">
+                    <div
+                      class="inner-info container-fluid p-2 d-flex flex-column"
+                    >
                       <div class="h-40 flex-fill custom-overflow">
                         <div class="inner-info-head mb-2">
                           <h5 class="color-dark mb-2 font-bold">To do!</h5>
@@ -768,8 +770,12 @@
             </button>
           </div> -->
           <div class="modal-body px-4 pt-4">
-            <h3 class="modal-title color-primary" id="mediumModalLabel">Delete</h3>
-            <p class="text-left mb-0">Are you sure you want to delete this item?</p>
+            <h3 class="modal-title color-primary" id="mediumModalLabel">
+              Delete
+            </h3>
+            <p class="text-left mb-0">
+              Are you sure you want to delete this item?
+            </p>
           </div>
           <div class="modal-footer bg-white text-dark">
             <button
@@ -810,7 +816,10 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="color-primary font-semi-bold" id="announcementModalLongTitle">
+            <h3
+              class="color-primary font-semi-bold"
+              id="announcementModalLongTitle"
+            >
               {{ enableEdit ? (isAnnouncementEdit ? "Edit" : "Add") : "" }}
               Announcement
             </h3>
@@ -956,7 +965,10 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="color-primary font-semi-bold" id="activityModalLongTitle">
+            <h3
+              class="color-primary font-semi-bold"
+              id="activityModalLongTitle"
+            >
               {{ enableEdit ? (isActivityEdit ? "Edit" : "Add") : "" }}
               Training/Match
             </h3>
@@ -970,7 +982,7 @@
             </button>
           </div>
           <div class="modal-body d-flex flex-column px-0">
-            <div class="custom-overflow  px-4">
+            <div class="custom-overflow px-4">
               <form>
                 <fieldset v-if="enableEdit">
                   <div class="form-group">
@@ -990,7 +1002,7 @@
                           $v.activity.activityType.$error,
                       }"
                     >
-                    <option value="" selected disabled>Type *</option>
+                      <option value="" selected disabled>Type *</option>
                       <option value="Match">Match</option>
                       <option value="Training">Training</option>
                     </select>
@@ -1361,9 +1373,12 @@
           </div> -->
           <div class="modal-body no-overflow px-4 pt-4">
             <!-- <div class="col-md-5 col-xs-12"> -->
-              <h3 class="modal-title color-primary font-semi-bold" id="nextMeetingModalLongTitle">
-                Configure Meeting Days
-              </h3>
+            <h3
+              class="modal-title color-primary font-semi-bold"
+              id="nextMeetingModalLongTitle"
+            >
+              Configure Meeting Days
+            </h3>
             <div class="inner-info">
               <!-- <div class="inner-info-head mb-3">
                 <h6 class="color-dark mb-0">Meeting Time</h6>
@@ -1539,9 +1554,11 @@
                   overflow-hidden
                 "
               >
-                <v-card-text class="p-0 h-100 overflow-hidden">
+                <v-card-text
+                  v-show="selectedFile"
+                  class="p-0 h-100 overflow-hidden"
+                >
                   <VueCropper
-                    v-show="selectedFile"
                     ref="cropper"
                     :src="selectedFile"
                     alt="Source Image"
