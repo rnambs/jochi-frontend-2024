@@ -748,6 +748,7 @@ export default {
         events: eventList,
         eventClick: this.eventClicked,
         datesSet: this.handleMonthChange,
+        dateClick: this.handleDateClick,
         dayMaxEventRows: true, // for all non-TimeGrid views
         views: {
           dayGrid: {
@@ -794,11 +795,9 @@ export default {
     };
   },
   computed: {
-    ...mapState("plannerMonth", {
-      plannerList: (state) => state.plannerList,
-    }),
     ...mapState("quotedMessage", {
       quoteMessage: (state) => state.quoteMessage,
+      plannerList: (state) => state.plannerList,
     }),
     ...mapState("userStudyAnalytics", {
       goal: (state) => state.goal,
@@ -818,11 +817,12 @@ export default {
     this.firstName = localStorage.getItem("first_name");
     this.getConfiguredGoal();
     this.ListAllMeeting();
-    this.GetMonthlyPlanner();
+    this.GetDailyPlanner(this.calendarApi.getDate());
   },
   methods: {
     ...mapActions("quotedMessage", {
       showQuotedMessage: "showQuotedMessage",
+      getDailyPlanner: "getDailyPlanner",
     }),
     ...mapActions("userStudyAnalytics", {
       getGoal: "getGoal",
@@ -833,9 +833,6 @@ export default {
     }),
     ...mapActions("teacherMeeting", {
       getInvitedMembers: "getInvitedMembers",
-    }),
-    ...mapActions("plannerMonth", {
-      getMonthlyPlanner: "getMonthlyPlanner",
     }),
 
     async ShowQuotedMessage() {
@@ -1044,38 +1041,36 @@ export default {
       });
       this.loading = false;
     },
-    handleDateClick: function (arg) {
-      this.listAgenda = [];
+    // handleDateClick: function (arg) {
+    //   this.listAgenda = [];
 
-      this.agendaList.forEach((element) => {
-        var listObj = {};
-        if (element.date == arg.dateStr) {
-          listObj["time"] = element.default_slots.start_time;
-          listObj["title"] = element.title;
-          this.listAgenda.push(listObj);
-        }
-      });
-      if (!ismounted) {
-        this.ListTeacherAgenda();
-      }
-      ismounted = false;
-    },
-    async GetMonthlyPlanner() {
+    //   this.agendaList.forEach((element) => {
+    //     var listObj = {};
+    //     if (element.date == arg.dateStr) {
+    //       listObj["time"] = element.default_slots.start_time;
+    //       listObj["title"] = element.title;
+    //       this.listAgenda.push(listObj);
+    //     }
+    //   });
+    //   if (!ismounted) {
+    //     this.ListTeacherAgenda();
+    //   }
+    //   ismounted = false;
+    // },
+    async GetDailyPlanner(date) {
       eventList = [];
       this.loading = true;
       const format = "YYYY-MM-DD";
-
-      this.calendarDate = moment(this.calendarApi.view.activeStart).format(
-        format
-      );
-
-      await this.getMonthlyPlanner({
+      this.calendarDate = moment(date).format(format);
+      await this.getDailyPlanner({
         user_id: localStorage.getItem("id"),
-        type: "Monthly",
+        type: "Daily",
         date: this.calendarDate,
       });
+
+      this.loading = false;
+      this.assignmentList = [];
       this.meetingDetails = [];
-      console.log(this.plannerList);
       this.plannerList.forEach((element) => {
         var scheduleObject = {};
         var plannerObj = {};
@@ -1107,14 +1102,79 @@ export default {
         plannerObj["color"] = color;
         plannerObj["start"] = start;
         plannerObj["id"] = id;
+        plannerObj["groupId"] = "assignment";
         eventList.push(plannerObj);
-        // plannerList.push(scheduleObject);
+        this.assignmentList.push(scheduleObject);
       });
+      this.meetingList?.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+        if (element.title != null) {
+          var title = "Meeting with " + element.title;
+        }
+        if (element.club_name != null) {
+          var title = element.club_name + " Meeting";
+        }
 
-      this.calendarOptions.events = eventList;
-      this.loading = false;
+        var meeting = element.meeting_type;
+        if (meeting == "Peer") {
+          var color = "#64B5FC";
+          meetingobj["groupId"] = "peer-meeting";
+        } else if (meeting == "Club") {
+          var color = "#07BEB8";
+          meetingobj["groupId"] = "club-meeting";
+        } else if (meeting == "Teacher") {
+          meetingobj["groupId"] = "teacher-meeting";
+          var color = "#073BBF";
+        }
+        var dateMeeting = element.date;
+        var timeValNum = element.start_time;
+        var tmeMeeting = this.formatAMPM(element.start_time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        // meetingobj["groupId"] = "Meeting";
 
-      console.log("event list", eventList);
+        listobj["title"] = title;
+        listobj["meeting"] = meeting;
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+      this.sessionList?.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+        let title = "";
+        if (element.assignment_id) {
+          title = "Study Session " + element.assignments?.task;
+        } else {
+          title = "Study Session " + element.subject?.subject_name;
+        }
+
+        const color = element.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.time;
+        var tmeMeeting = this.formatAMPM(element.time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        meetingobj["groupId"] = "study";
+        // meetingobj["type"] = "study";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        // this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+      // this.calendarOptions.events = eventList;
     },
     handleMonthChange(dateInfo) {
       var dateStr = dateInfo.startStr;
@@ -1125,14 +1185,18 @@ export default {
         day = ("0" + date.getDate()).slice(-2);
       this.calendarDate = [date.getFullYear(), mnth, day].join("-");
     },
+    handleDateClick: function (arg) {
+      console.log("arg", arg);
+      this.GetDailyPlanner(arg.date);
+    },
     goPrev() {
       this.calendarApi.prev(); // call a method on the Calendar object
-      this.GetMonthlyPlanner();
+      this.GetDailyPlanner(this.calendarApi.view.activeStart);
     },
 
     goNext() {
       this.calendarApi.next();
-      this.GetMonthlyPlanner();
+      this.GetDailyPlanner(this.calendarApi.view.activeStart);
     },
   },
 };
