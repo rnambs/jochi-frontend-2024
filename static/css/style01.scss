@@ -1807,6 +1807,7 @@ img.dark-icon{
         #Weekly-Calander{
             @include head-right();
             @include calendar-sm-head();
+            @include plannerCommon();
         }
         #Monthly-Calander{
             @include calendar-lg-head();

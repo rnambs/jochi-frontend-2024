@@ -3172,8 +3172,8 @@ export default {
 }
 </style> -->
 
-<style>
-body {
+<!-- <style>
+/* body {
   background-color: #ffffff !important;
 }
 
@@ -3274,7 +3274,7 @@ body {
   border-radius: 50%;
   top: 3px;
   right: 0;
-}
+} */
 
 .assignment-tag {
   font-size: 10px;
@@ -3646,4 +3646,4 @@ body {
   background-color: #ffffff;
   height: 100%;
 }
-</style>
+</style> -->

@@ -1091,7 +1091,7 @@ export default {
 </script>
 
 
-<style>
+<!-- <style>
 body {
   background-color: #ffffff !important;
 }
@@ -1346,7 +1346,7 @@ body {
 .fc-direction-ltr .fc-timegrid-slot-label-frame::after {
   content: "";
   background-color: #c6c5c5;
-  width: 50vw;
+  width: 100vw;
   height: 1px;
   position: absolute;
   top: 8px;
@@ -1369,10 +1369,10 @@ body {
   font-size: 14px;
 } */
 
-.fc-view-harness.fc-view-harness-active {
+/* .fc-view-harness.fc-view-harness-active {
   height: 75vh !important;
   margin-top: 20px;
-}
+} */
 
 .fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar {
   width: 3px;
@@ -1417,7 +1417,7 @@ body {
   transform: scale(1);
   transition: transform 1s ease;
 }
-
+ 
 .add-sub-task-btn {
   width: 20px;
   height: 20px;
@@ -1435,4 +1435,4 @@ body {
   font-size: 32px;
   font-weight: 900;
 }
-</style>
+</style> -->
