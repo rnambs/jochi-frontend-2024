@@ -104,12 +104,12 @@
       </div>
       <div class="d-flex flex-column h-40 flex-fill">
         <div class="row h-100">
-          <div class="col-xl-8">
-            <div class="d-flex flex-column">
+          <div class="col-xl-8 h-100">
+            <div class="d-flex flex-column h-100">
               <div
-                class="jochi-sub-components-light-bg p-4 pr-1 pb-1 flex-fill"
+                class="jochi-sub-components-light-bg p-4 pr-1 pb-1"
               >
-                <div class="row position-relative">
+                <div class="row position-relative justify-content-between">
                   <div class="col-7"></div>
                   <div class="dashboard-text-content-section position-absolute">
                     <p class="dashboard-head">Dashboard</p>
@@ -119,7 +119,7 @@
                       <!-- — Malcolm X -->
                     </p>
                   </div>
-                  <div class="col-5 p-0">
+                  <div class="col-4 p-0">
                     <img
                       src="~/static/image/dashboard_img.png"
                       alt=""
@@ -129,9 +129,9 @@
                 </div>
               </div>
               <div class="d-flex flex-column h-40 flex-fill">
-                <div class="row mt-1">
-                  <div class="col-12 col-lg-4">
-                    <div class="jochi-sub-components-light-bg">
+                <div class="row mt-1 h-100">
+                  <div class="col-12 col-md-4 h-100">
+                    <div class="jochi-sub-components-light-bg h-100">
                       <div
                         class="
                           study-status-card
@@ -142,7 +142,7 @@
                           h-100
                         "
                       >
-                        <div
+                        <!-- <div
                           class="
                             study-status-img-section
                             position-relative
@@ -155,7 +155,7 @@
                           <div
                             class="study-status-progress position-absolute"
                           ></div>
-                        </div>
+                        </div> -->
                         <!-- <vue-ellipse-progress
                           :progress="progress"
                           :angle="-90"
@@ -168,7 +168,12 @@
                           dot="10 white"
                           ><span>dkjsfajh</span>
                         </vue-ellipse-progress> -->
-                        <progress-bar :options="options" :value="value" />
+                        <div class="position-relative d-flex">
+                          <progress-bar :options="options" :value="value" class="d-flex justify-content-center w-100" />
+                          <div class="study-status-img position-absolute d-flex w-100 h-100 align-items-center justify-content-center">
+                            <img src="~/static/image/alarm.png" alt=""  />
+                          </div>
+                        </div>
                         <div class="study-status-text text-center mb-2">
                           <p class="study-status-studied mb-1">
                             {{ duration }} Minutes Studied Today
@@ -180,7 +185,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-12 col-lg-8 px-0">
+                  <div class="col-12 col-md-8 px-0 h-100">
                     <div
                       class="
                         d-flex
@@ -212,8 +217,8 @@
                                   p-3
                                 "
                               >
-                                <p class="fac-day mb-1">{{ list.date_day }}</p>
-                                <p class="fac-date mb-0">
+                                <p class="color-primary text-12 mb-1">{{ list.date_day }}</p>
+                                <p class="color-primary font-regular text-30 mb-0">
                                   {{ list.date_number }}
                                 </p>
                               </div>
@@ -228,17 +233,17 @@
                                 @click="onCardClick(list)"
                               >
                                 <div class="fa-meeting-faculty-details">
-                                  <p class="mb-1 faculty-meeting-text">
+                                  <p class="mb-1 color-seccondary text-14 font-regular">
                                     {{
                                       list.type == "Teacher"
                                         ? "Faculty Meeting"
                                         : "Peer Meeting"
                                     }}
                                   </p>
-                                  <p class="mb-1 faculty-name">
+                                  <p class="mb-1 color-dark text-18 font-bold">
                                     {{ list.new_title }}
                                   </p>
-                                  <div class="fa-time-section">
+                                  <div class="w-fit-content text-12 px-3 py-1 bg-theme rounded-pill color-white">
                                     {{ list.start_time }}
                                   </div>
                                 </div>
@@ -418,28 +423,30 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4">
-            <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 h-100">
-              <div>
+          <div class="col-xl-4 h-100">
+            <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 h-100 d-flex flex-column">
+              <div class="calendar-sm">
                 <FullCalendar ref="fullCalendar" :options="calendarOptions" />
               </div>
-              <h4 class="color-black font-semi-bold">Assignments List</h4>
-              <div class="d-flex flex-column">
-                <div
-                  v-for="item in plannerList"
-                  :key="item.id"
-                  class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
-                >
-                  {{ item.task }}
-                  {{ item.due_date }}
-                  {{ item.due_time }}
+              <div class="d-flex flex-column h-40 flex-fill">
+                <h4 class="color-black font-semi-bold">Assignments List</h4>
+                <div class="d-flex flex-column h-40 flex-fill hidden-scroll">
+                  <div
+                    v-for="item in plannerList"
+                    :key="item.id"
+                    class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                  >
+                    {{ item.task }}
+                    {{ item.due_date }}
+                    {{ item.due_time }}
+                  </div>
+                  <!-- <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
+                    .
+                  </div>
+                  <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
+                    .
+                  </div> -->
                 </div>
-                <!-- <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
-                  .
-                </div>
-                <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
-                  .
-                </div> -->
               </div>
             </div>
           </div>
@@ -773,7 +780,7 @@ export default {
           fontSize: 14,
           fontFamily: "Helvetica",
           dynamicPosition: false,
-          hideText: false,
+          hideText: true,
         },
         progress: {
           color: "#ff6d6d",
@@ -781,12 +788,12 @@ export default {
           inverted: false,
         },
         layout: {
-          height: 35,
-          width: 140,
+          height: 150,
+          width: 150,
           verticalTextAlign: 61,
           horizontalTextAlign: 43,
           zeroOffset: 0,
-          strokeWidth: 30,
+          strokeWidth: 8,
           progressPadding: 0,
           type: "circle",
         },

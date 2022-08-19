@@ -177,8 +177,9 @@ body {
   align-items: center;
 }
 
-.study-status-img {
+.study-status-img img {
   width: 80px;
+  height: auto;
 }
 
 .study-status-progress {
@@ -204,18 +205,18 @@ body {
   -webkit-transform: rotate(-45deg);
 }
 
-.fac-day {
+/* .fac-day {
   color: #ff6d6d;
   font-size: 12px;
-}
+} */
 
-.fac-date {
+/* .fac-date {
   color: #ff6d6d;
   font-size: 50px;
   line-height: 41px;
-}
+} */
 
-.faculty-meeting-text {
+/* .faculty-meeting-text {
   font-size: 14px;
 }
 
@@ -223,14 +224,14 @@ body {
   font-size: 28px;
   font-weight: 700;
   color: #000000;
-}
+} */
 
-.fa-time-section {
+/* .fa-time-section {
   font-size: 12px;
   padding: 2px 15px;
   background-color: #ff6d6d;
   width: fit-content;
   border-radius: 12px;
   color: #ffffff;
-}
+} */
 </style>
