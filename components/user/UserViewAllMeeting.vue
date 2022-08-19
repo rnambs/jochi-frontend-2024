@@ -714,7 +714,7 @@ export default {
   },
   mounted() {
     if (this.redirectId && this.redirectType) {
-      alert(this.redirectId + this.redirectType);
+      // alert(this.redirectId + this.redirectType);
     }
 
     this.disabledDates.to = new Date(
