@@ -204,6 +204,11 @@ body {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
+@media (min-width:991.98px) {
+  .h-lg-100{
+    height: 100% !important;
+  }
+}
 
 /* .fac-day {
   color: #ff6d6d;

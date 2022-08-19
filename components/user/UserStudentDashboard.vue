@@ -76,7 +76,7 @@
         d-flex
         flex-column
         position-realtive
-        custom-overflow
+        hidden-scroll
       "
     >
       <div class="dmc-head d-flex justify-content-between align-items-start">
@@ -129,8 +129,8 @@
                 </div>
               </div>
               <div class="d-flex flex-column h-40 flex-fill">
-                <div class="row mt-1 h-100">
-                  <div class="col-12 col-md-4 h-100">
+                <div class="row mt-1 h-100 flex-column flex-lg-row">
+                  <div class="col-12 col-md-4 h-40 h-lg-100  flex-fill">
                     <div class="jochi-sub-components-light-bg h-100">
                       <div
                         class="
@@ -185,7 +185,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-12 col-md-8 px-0 h-100">
+                  <div class="col-12 col-md-8 px-0 h-40 h-lg-100  flex-fill">
                     <div
                       class="
                         d-flex
@@ -423,7 +423,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4 h-100">
+          <div class="col-xl-4 h-100 mt-3 mt-xl-0">
             <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 h-100 d-flex flex-column">
               <div class="calendar-sm">
                 <FullCalendar ref="fullCalendar" :options="calendarOptions" />
