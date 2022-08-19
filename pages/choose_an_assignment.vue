@@ -105,7 +105,7 @@
         </div>
         <div class="col-10 dashboard-main-content jochi-components-light-bg p-5">
             <h2 class="jochi-headings mb-1">Step One:</h2>
-            <h2 class="jochi-headings mb-4">Choose An Assignment</h2>
+            <h2 class="jochi-headings mb-1">Choose An Assignment</h2>
             <div><div class="row">
               <div class="col-4">
                   <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
