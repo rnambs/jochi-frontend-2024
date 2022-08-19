@@ -886,12 +886,12 @@ export default {
           date.format("DD");
 
         this.slot_date.push(Scheduleobj);
+
         if (
           this.redirectId &&
           this.redirectType &&
-          this.redirectId == Scheduleobj.id
+          Number(this.redirectId) == Number(Scheduleobj.meeting_id)
         ) {
-          alert("inside redirect");
           this.onCardClick(Scheduleobj);
         }
         Allarray.push(Scheduleobj);
