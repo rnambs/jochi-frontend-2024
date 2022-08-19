@@ -1627,6 +1627,7 @@ import { required, requiredIf } from "vuelidate/lib/validators";
 import Multiselect from "vue-multiselect";
 import VueTimepicker from "vue2-timepicker";
 import VueCropper from "vue-cropperjs";
+import "cropperjs/dist/cropper.css";
 
 var today = new Date();
 var activityDate = "";
