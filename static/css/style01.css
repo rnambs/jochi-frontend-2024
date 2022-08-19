@@ -3818,6 +3818,7 @@ img.dark-icon {
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .slot-form .col .custom-switch.switch-right .custom-control-label::after {
   left: unset;
   right: calc(-2.25rem + 14px);
+  top: calc(0.0375rem + 1px);
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .slot-form .form-label {
   color: #B4B4B4;

@@ -36,7 +36,8 @@
                       class="
                         inner-custom-teacher
                         text-light
-                        p-2
+                        p-3
+                        pt-4
                         card card-primary-void
                         rounded-22
                         flex-fill

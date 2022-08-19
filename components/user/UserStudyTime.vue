@@ -448,7 +448,7 @@
       "
     >
       <h2 class="color-primary font-bold mb-1">Step One:</h2>
-      <h2 class="color-primary font-bold mb-4">Choose An Assignment</h2>
+      <h2 class="color-primary font-bold mb-1">Choose An Assignment</h2>
       <div class="d-flex">
         <button @click="onBack()" class="btn color-secondary">
           <span class="mr-2 arrow"
@@ -1163,10 +1163,10 @@
         hidden-scroll
       "
     >
-      <h2 class="color-primary font-bold mb-0">
+      <h2 class="color-primary font-bold mb-1">
         Step {{ sessionType == "study" ? "Two" : "Three" }}:
       </h2>
-      <h2 class="color-primary font-bold mb-3">Configure your Session</h2>
+      <h2 class="color-primary font-bold mb-1">Configure your Session</h2>
       <div class="d-flex">
         <button @click="onBack()" class="btn color-secondary">
           <span class="mr-2 arrow"
