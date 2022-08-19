@@ -745,7 +745,7 @@ export default {
         initialView: "dayGridMonth",
         unselectAuto: false,
         selectable: true,
-        events: eventList,
+        // events: eventList,
         eventClick: this.eventClicked,
         datesSet: this.handleMonthChange,
         dateClick: this.handleDateClick,
