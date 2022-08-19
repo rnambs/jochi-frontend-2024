@@ -1992,6 +1992,7 @@ export default {
         plannerObj["color"] = color;
         plannerObj["start"] = start;
         plannerObj["id"] = id;
+        plannerObj["groupId"] = "assignment";
         eventList.push(plannerObj);
         this.assignmentList.push(scheduleObject);
       });
@@ -2008,9 +2009,12 @@ export default {
         var meeting = element.meeting_type;
         if (meeting == "Peer") {
           var color = "#64B5FC";
+          meetingobj["groupId"] = "peer-meeting";
         } else if (meeting == "Club") {
           var color = "#07BEB8";
+          meetingobj["groupId"] = "club-meeting";
         } else if (meeting == "Teacher") {
+          meetingobj["groupId"] = "teacher-meeting";
           var color = "#073BBF";
         }
         var dateMeeting = element.date;
@@ -2021,7 +2025,7 @@ export default {
         meetingobj["color"] = color;
         meetingobj["start"] = start;
         meetingobj["id"] = element.id;
-        meetingobj["groupId"] = "Meeting";
+        // meetingobj["groupId"] = "Meeting";
 
         listobj["title"] = title;
         listobj["meeting"] = meeting;
@@ -2051,6 +2055,7 @@ export default {
         meetingobj["start"] = start;
         meetingobj["id"] = element.id;
         meetingobj["groupId"] = "study";
+        // meetingobj["type"] = "study";
 
         listobj["title"] = title;
         listobj["meeting"] = "Study Session";
@@ -2385,10 +2390,19 @@ export default {
     },
     eventClicked(info) {
       var idVal = info.event;
-      // console.log(idVal.)
+      console.log("idVal", idVal);
       if (idVal.groupId == "study") {
-        console.log("study session");
         return this.$router.push(`/study-time?id=${idVal.id}`);
+      } else if (
+        idVal.groupId == "peer-meeting" ||
+        idVal.groupId == "teacher-meeting"
+      ) {
+        return this.$router.push(
+          `/viewall-meeting?id=${idVal.id}&type=${idVal.groupId}`
+        );
+      } else if (idVal.groupId == "assignment") {
+        alert("assignment");
+        this.onCardClick(idVal);
       }
 
       var idValue = idVal.id;
@@ -2510,8 +2524,9 @@ export default {
       });
     },
     onInvitePeer() {
-      console.log(this.peerSelected);
-      this.peerList = this.peerSelected;
+      this.peerSelected.forEach((e) => {
+        this.peerList.push(e);
+      });
       this.invitePeer = false;
     },
     async getAssignmentsList() {
@@ -2583,13 +2598,19 @@ export default {
       let peers = [];
       if (e.assignment_shared_users && e.assignment_shared_users.length > 0) {
         e.assignment_shared_users.forEach((item) => {
+          let peer = {};
           if (item.shared_users_id != user_id) {
-            peers.push(item.users);
+            peer = item.users;
+            peer.id = item.shared_users_id;
+            peers.push(peer);
           }
         });
       }
       if (e.assignments?.users) {
-        peers.push(e.assignments?.users);
+        let user = {};
+        user = e.assignments?.users;
+        user.id = e.user_id;
+        peers.push(user);
       }
       return peers;
     },
@@ -2683,6 +2704,7 @@ export default {
       return !incomplete;
     },
     onCardClick(data) {
+      alert("inside");
       this.isAddAssignment = false;
       this.openAssignment = true;
       this.mapAssignmentDetail(data);

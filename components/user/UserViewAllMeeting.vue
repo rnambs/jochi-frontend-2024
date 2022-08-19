@@ -68,7 +68,10 @@
                     <!-- <span class="input-icon"
                       ><i class="fa fa-filter" aria-hidden="true"></i
                     ></span> -->
-                    <ul class="dropdown-menu w-50 rounded-12" aria-labelledby="dLabel">
+                    <ul
+                      class="dropdown-menu w-50 rounded-12"
+                      aria-labelledby="dLabel"
+                    >
                       <li class="item">Teacher Meeting</li>
                       <li class="item">Peer Meeting</li>
                       <li class="item">All</li>
@@ -579,7 +582,14 @@
             >
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+                class="
+                  btn btn-secondary
+                  py-1
+                  px-4
+                  rounded-12
+                  mr-2
+                  font-semi-bold
+                "
                 data-dismiss="modal"
                 @click="acceptOrReject(2)"
               >
@@ -603,7 +613,14 @@
             >
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+                class="
+                  btn btn-secondary
+                  py-1
+                  px-4
+                  rounded-12
+                  mr-2
+                  font-semi-bold
+                "
                 data-dismiss="modal"
               >
                 Close
@@ -685,6 +702,8 @@ export default {
         from: new Date(),
       },
       date_today: new Date(),
+      redirectId: this.$route.query.id,
+      redirectType: this.$route.query.type,
     };
   },
   validations: {
@@ -694,6 +713,10 @@ export default {
     detailVenue: { required },
   },
   mounted() {
+    if (this.redirectId && this.redirectType) {
+      alert(this.redirectId + this.redirectType);
+    }
+
     this.disabledDates.to = new Date(
       this.date_today.getFullYear(),
       this.date_today.getMonth(),
@@ -863,6 +886,14 @@ export default {
           date.format("DD");
 
         this.slot_date.push(Scheduleobj);
+        if (
+          this.redirectId &&
+          this.redirectType &&
+          this.redirectId == Scheduleobj.id
+        ) {
+          alert("inside redirect");
+          this.onCardClick(Scheduleobj);
+        }
         Allarray.push(Scheduleobj);
         if (this.meetingType == "Teacher") {
           Teacherarray.push(Scheduleobj);
