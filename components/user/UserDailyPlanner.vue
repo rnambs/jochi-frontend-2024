@@ -543,7 +543,11 @@
                         <div
                           class="d-flex flex-column custom-overflow pr-3 me--3"
                         >
-                          <form ref="assignmentForm" id="assignmentForm">
+                          <form
+                            v-if="!isSharedAssignment"
+                            ref="assignmentForm"
+                            id="assignmentForm"
+                          >
                             <div class="form-group">
                               <label for="recipient-name" class="col-form-label"
                                 >Subject<em>*</em></label
@@ -939,6 +943,393 @@
                                   ><i class="fas fa-plus-circle"></i
                                 ></span>
                               </a>
+                            </div>
+                            <div
+                              v-if="invitePeer"
+                              class="d-flex flex-row align-items-start"
+                            >
+                              <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                <label class="form-label" for="name"
+                                  >Invite peers</label
+                                >
+                                <!-- <input type="text" class="form-control" /> -->
+                                <multiselect
+                                  v-model="peerSelected"
+                                  :options="students"
+                                  track-by="first_name"
+                                  label="first_name"
+                                  :placeholder="
+                                    peerSelected.length > 3
+                                      ? ''
+                                      : 'Select students'
+                                  "
+                                  :multiple="true"
+                                  :max="4"
+                                >
+                                  <span slot="maxElements"
+                                    >Maximum of 4 students selected</span
+                                  >
+                                  <span slot="noResult">No data found</span>
+                                </multiselect>
+                              </div>
+                              <div class="pt-4">
+                                <button
+                                  @click="onInvitePeer"
+                                  class="btn btn-primary btn-sm mt-2"
+                                >
+                                  Add
+                                </button>
+                              </div>
+                            </div>
+                            <div class="hidden-scroll p-3 row my-0">
+                              <div
+                                v-for="peer of peerList"
+                                :key="peer.id"
+                                class="h-fit-content"
+                              >
+                                <div
+                                  class="
+                                    d-flex
+                                    align-items-center
+                                    my-2
+                                    mr-3
+                                    min-w-200
+                                  "
+                                >
+                                  <div class="ld-img-section mr-3">
+                                    <div class="ld-img-holder"></div>
+                                  </div>
+                                  <div class="ld-details-section">
+                                    <p class="ld-heading mb-1">
+                                      {{ peer.first_name }}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Additional Material Add -->
+                            <div
+                              class="
+                                d-flex
+                                justify-content-between
+                                align-items-center
+                                mb-2
+                              "
+                            >
+                              <h6 class="color-dark font-semi-bold mb-0">
+                                Additional Material
+                              </h6>
+                              <a @click="onAdditionalMatClick" class="btn p-0">
+                                <span class="color-secondary"
+                                  ><i class="fas fa-plus-circle"></i
+                                ></span>
+                              </a>
+                            </div>
+                            <div
+                              v-if="additionalMaterial"
+                              class="d-flex flex-row align-items-start"
+                            >
+                              <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                <label class="form-label" for="name"
+                                  >Add Additional Material</label
+                                >
+                                <!-- <input type="text" class="form-control" /> -->
+                                <select
+                                  v-model="materialType"
+                                  class="form-select form-control mb-2"
+                                  aria-label="Default select example"
+                                >
+                                  <option value="">Choose material type</option>
+                                  <option value="file">File</option>
+                                  <option value="link">Link</option>
+                                </select>
+                                <div class="row m-0">
+                                  <div class="col-9 py-0 pl-0">
+                                    <input
+                                      v-if="materialType == 'file'"
+                                      type="file"
+                                      class="form-control px-2"
+                                      placeholder="Upload File"
+                                      @change="onFileChange"
+                                      accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
+                                    />
+                                  </div>
+                                  <div class="col-9 py-0 pl-0">
+                                    <input
+                                      v-if="materialType == 'link'"
+                                      type="text"
+                                      class="form-control px-2"
+                                      placeholder="Paste Link"
+                                      v-model="link"
+                                    />
+                                  </div>
+                                  <div class="col-3 p-0">
+                                    <!-- <input
+                                      type="submit"
+                                      class="form-control"
+                                      value="Add"
+                                    /> -->
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="pt-4">
+                                <button
+                                  type="button"
+                                  @click="UploadAttachment"
+                                  class="btn btn-primary btn-sm mt-2"
+                                >
+                                  Add
+                                </button>
+                              </div>
+                            </div>
+                            <div class="hidden-scroll p-3 row my-0">
+                              <div
+                                v-for="item of additionalMaterialList"
+                                :key="item.id"
+                                class="h-fit-content"
+                              >
+                                <div
+                                  v-if="item.link"
+                                  class="
+                                    d-flex
+                                    align-items-center
+                                    my-2
+                                    mr-3
+                                    min-w-200
+                                  "
+                                >
+                                  <div class="ld-details-section">
+                                    <p class="ld-heading mb-1">
+                                      <!-- {{ peer.first_name }} -->
+                                      {{ item.link }}
+                                    </p>
+                                  </div>
+                                </div>
+                                <div
+                                  v-else
+                                  class="
+                                    d-flex
+                                    align-items-center
+                                    my-2
+                                    mr-3
+                                    min-w-200
+                                  "
+                                >
+                                  <div class="ld-details-section">
+                                    <p class="ld-heading mb-1">
+                                      <!-- {{ peer.first_name }} -->
+                                      {{ item.material }}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Additional Material Add End -->
+                          </form>
+
+                          <form
+                            v-if="isSharedAssignment"
+                            ref="assignmentForm"
+                            id="assignmentForm"
+                          >
+                            <div class="form-group">
+                              <label for="recipient-name" class="col-form-label"
+                                >Subject</label
+                              >
+                              {{ subject }}
+                              <!-- <select
+                                class="form-control"
+                                tabindex=""
+                                v-model="subject"
+                                :class="{
+                                  'is-invalid': submitted && $v.subject.$error,
+                                }"
+                              >
+                                <option value="">Select subject</option>
+                                <option
+                                  v-bind:value="{
+                                    id: subjects.id,
+                                    text: subjects.subject_name,
+                                  }"
+                                  v-for="(subjects, index) in subjectsData"
+                                  :key="index"
+                                >
+                                  {{ subjects.subject_name }}
+                                </option>
+                                <option v-if="subjectsData.length == 0">
+                                  No data
+                                </option>
+                              </select> -->
+                            </div>
+                            <div class="form-group">
+                              <label for="message-text" class="col-form-label"
+                                >Assignment Name</label
+                              >
+                              {{ assignmentName }}
+                            </div>
+                            <div class="form-group">
+                              <label for="message-text" class="col-form-label"
+                                >Task</label
+                              >
+                              {{ assignmentDescription }}
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6 ml-auto">
+                                <div class="form-group mb-0">
+                                  <label
+                                    for="recipient-name"
+                                    class="col-form-label"
+                                    >Priority</label
+                                  >{{ priorityVal }}
+                                </div>
+                              </div>
+                              <div class="col-md-6 ml-auto">
+                                <div class="form-group">
+                                  <label
+                                    for="recipient-name"
+                                    class="col-form-label"
+                                    >Date</label
+                                  >
+                                  {{ dateValue }}
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row mt-0">
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <label
+                                    for="recipient-name"
+                                    class="col-form-label"
+                                    >Time</label
+                                  >
+                                  <div>
+                                    {{ timeValue }}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="
+                                d-flex
+                                justify-content-between
+                                align-items-center
+                                mb-2
+                              "
+                            >
+                              <h6 class="color-dark font-semi-bold mb-0">
+                                Sub Tasks
+                              </h6>
+                              <a @click="onAddSubTaskClick" class="btn p-0">
+                                <span class="color-secondary"
+                                  ><i class="fas fa-plus-circle"></i
+                                ></span>
+                              </a>
+                            </div>
+                            <div
+                              v-if="addSubTask"
+                              class="d-flex flex-row align-items-start"
+                            >
+                              <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                <label class="form-label" for="name"
+                                  >Add a sub task</label
+                                >
+                                <input
+                                  type="text"
+                                  maxlength="100"
+                                  v-model="subTaskName"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="pt-4">
+                                <button
+                                  class="btn btn-primary btn-sm mt-2"
+                                  @click="onAddNewSubTask"
+                                >
+                                  Add
+                                </button>
+                              </div>
+                            </div>
+                            <div
+                              class="
+                                custom-overflow
+                                pr-2
+                                mr--2
+                                d-flex
+                                flex-column
+                              "
+                            >
+                              <div
+                                v-for="subTask in subTasksList"
+                                :key="subTask"
+                              >
+                                <div
+                                  class="
+                                    card card-transparent
+                                    show-icon
+                                    p-1
+                                    mb-1
+                                  "
+                                >
+                                  <div
+                                    class="
+                                      d-flex
+                                      align-items-center
+                                      justify-content-between
+                                    "
+                                  >
+                                    <p
+                                      class="
+                                        mb-0
+                                        color-secondary
+                                        text-16
+                                        font-regular
+                                        text-truncate
+                                        pr-3
+                                      "
+                                    >
+                                      <span
+                                        :class="{
+                                          selected:
+                                            subTask.task_status == 'Completed',
+                                        }"
+                                        ><i class="far fa-circle"></i
+                                      ></span>
+                                      {{ subTask.title }}
+                                    </p>
+                                    <span
+                                      @click="deleteSubTask(subTask)"
+                                      class="
+                                        color-primary
+                                        fa-icon
+                                        show-hover
+                                        d-none
+                                        btn
+                                        p-0
+                                      "
+                                      ><i class="fas fa-trash-alt"></i
+                                    ></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div
+                              class="
+                                d-flex
+                                justify-content-between
+                                align-items-center
+                                mb-2
+                              "
+                            >
+                              <h6 class="color-dark font-semi-bold mb-0">
+                                Invited Peers
+                              </h6>
+                              <!-- <a @click="onInviteClick" class="btn p-0">
+                                <span class="color-secondary"
+                                  ><i class="fas fa-plus-circle"></i
+                                ></span>
+                              </a> -->
                             </div>
                             <div
                               v-if="invitePeer"
@@ -1803,6 +2194,7 @@ export default {
       link: "",
       file: "",
       assignmentId: 0,
+      isSharedAssignment: false,
     };
   },
   mounted() {
@@ -2259,6 +2651,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
+      this.isSharedAssignment = false;
       this.subject = "";
       this.assignmentName = "";
       this.assignmentDescription = "";
@@ -2559,6 +2952,7 @@ export default {
           item.user_id = e.user_id;
           item.peers = this.mapPeers(e);
           item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+          item.isShared = false;
           this.pendingAssignments.push(item);
         });
       }
@@ -2579,7 +2973,7 @@ export default {
             item.schoologyAssignment = e.assignments.schoologyAssignment;
             item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
             item.subTasks = e.subTasks;
-            item.subject = e.assignments.subject;
+            item.subject = e.assignments?.subjects?.subject_name;
             item.subjects = e.subjects;
             item.task = e.assignments.task;
             item.task_status = e.assignments.task_status;
@@ -2587,6 +2981,7 @@ export default {
             item.user_id = e.assignments.user_id;
             item.peers = this.mapPeers(e);
             item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+            item.isShared = true;
             this.pendingAssignments.push(item);
           }
         });
@@ -2715,6 +3110,8 @@ export default {
       // this.peerSelected
     },
     mapAssignmentDetail(data) {
+      this.isSharedAssignment = data.isShared;
+
       this.assignmentId = data.id;
       this.assignmentName = data.task;
       this.assignmentDescription = data.assignment_description;
@@ -2726,10 +3123,15 @@ export default {
           : data.priority == "3"
           ? "Can Wait"
           : "";
-      this.subject = {
-        id: data.subjects?.id,
-        text: data.subjects?.subject_name,
-      };
+
+      if (data.isShared) {
+        this.subject = data.subject;
+      } else {
+        this.subject = {
+          id: data.subjects?.id,
+          text: data.subjects?.subject_name,
+        };
+      }
       this.dateValue = data.due_date;
       this.timeValue = data.due_time;
       if (data.subTasks && data.subTasks.length > 0) {
