@@ -2416,7 +2416,7 @@ export default {
         meetingobj["title"] = title;
         meetingobj["color"] = color;
         meetingobj["start"] = start;
-        meetingobj["id"] = element.id;
+        meetingobj["id"] = element.meeting_id;
         // meetingobj["groupId"] = "Meeting";
 
         listobj["title"] = title;
