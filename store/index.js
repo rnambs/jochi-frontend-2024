@@ -42,7 +42,7 @@ import { studyRoom } from './studyRoom';
 import { dashBoard } from './dashBoard';
 import { teacherDashboard } from './teacherDashboard';
 import { userStudyAnalytics } from './userStudyAnalytics';
-import { teacherSyncCalendar } from './teacherSyncCalendar'
+import { teacherSyncCalendar } from './teacherSyncCalendar';
 
 Vue.use(Vuex);
 export const store = new Vuex.Store({
@@ -102,14 +102,14 @@ export const store = new Vuex.Store({
 //         body: 'firebase is awesome',
 //         click_action: 'http://localhost:3000/',
 //         icon: 'http://localhost:3000/assets/images/brand-logo.png'
-//       }, 
+//       },
 //       to: currentToken
 //     })
 //     const config = {
 //       method: 'post',
 //       url: 'https://fcm.googleapis.com/fcm/send',
-//       headers: { 
-//         'Content-Type': 'application/json', 
+//       headers: {
+//         'Content-Type': 'application/json',
 //         'Authorization': 'key=<yourServerKey>'
 //       },
 //       data

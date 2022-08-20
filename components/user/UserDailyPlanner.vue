@@ -336,7 +336,7 @@
                               >
                                 <div
                                   v-for="peer in item.peers"
-                                  :key="peer"
+                                  :key="peer.profile_pic"
                                   class="ap-img-section mr--3 shadow-sm"
                                 >
                                   <!-- {{ peer }} -->
@@ -1547,7 +1547,9 @@
                     </div>
                   </div>
                 </div>
-                <div
+                <!-- pending-assignment-popup -->
+
+                <!-- <div
                   class="
                     jochi-components-light-bg
                     p-4
@@ -1558,7 +1560,6 @@
                     pending-assignment-popup
                   "
                 >
-                  <!-- pending-assignment-popup -->
                   <div
                     class="d-flex justify-content-between align-items-center"
                   >
@@ -1619,7 +1620,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -2456,6 +2457,72 @@ export default {
         // this.meetingDetails.push(listobj);
         eventList.push(meetingobj);
       });
+      this.sharedAstList.forEach((element) => {
+        var scheduleObject = {};
+        var plannerObj = {};
+        var id = element.id;
+        var assignment = element.subject;
+        var time = element.due_time;
+        var date = this.dateConversion(element.due_date);
+
+        var title = element.task;
+
+        if (element.priority == "1") {
+          var color = "#EF382E";
+        } else if (element.priority == "2") {
+          var color = "#00CCA0";
+        } else if (element.priority == "3") {
+          var color = "#F6D73C";
+        }
+        var dateMeeting = element.due_date;
+        var tmeMeeting = this.formatAMPM(element.due_time);
+        var start = dateMeeting + "T" + tmeMeeting;
+
+        scheduleObject["assignment"] = assignment;
+        scheduleObject["time"] = time;
+        scheduleObject["date"] = date;
+        scheduleObject["title"] = title;
+        scheduleObject["id"] = id;
+
+        plannerObj["title"] = title;
+        plannerObj["color"] = color;
+        plannerObj["start"] = start;
+        plannerObj["id"] = id;
+        plannerObj["groupId"] = "assignment";
+        eventList.push(plannerObj);
+        this.assignmentList.push(scheduleObject);
+      });
+      this.sharedSessionList?.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+        let title = "";
+        if (element.studyroom.assignment_id) {
+          title = "Study Session " + element.studyroom.assignments?.task;
+        } else {
+          title = "Study Session " + element.studyroom.subject?.subject_name;
+        }
+
+        const color = element.studyroom.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.start_time;
+        var tmeMeeting = this.formatAMPM(element.start_time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.id;
+        meetingobj["groupId"] = "study";
+        // meetingobj["type"] = "study";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        // this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+
       this.calendarOptions.events = eventList;
     },
 

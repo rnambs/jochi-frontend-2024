@@ -1,17 +1,19 @@
 import { BASE_URL } from "../assets/js/constants"; const state = {
 
 
-  plannerList: [],
+
   errorMessage: "",
   errorType: "",
   successMessage: "",
   successType: "",
   assignment: [],
   assignmentValue: [],
-  meetingList: [],
   subjectsData: [],
+  plannerList: [],
+  meetingList: [],
   sessionList: [],
-  sharedSessionList: [],
+  sharedAstList: [],
+  sharedSessionList: []
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -26,8 +28,11 @@ const actions = {
       });
       commit('setPlannerList', response.data);
       commit('setMeetingList', response.meeting);
-      commit('setsessionList', response.session);
+      commit('setSessionList', response.session);
+      commit('setSharedAstList', response.shared_assignments);
       commit('setSharedSessionList', response.shared_sessions);
+
+
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -221,24 +226,21 @@ const actions = {
         },
       });
       commit('setPlannerList', []);
-
       commit('setMeetingList', []);
-
-      commit('setsessionList', []);
-
+      commit('setSessionList', []);
       commit('setSharedSessionList', []);
-
+      commit('setSharedAstList', []);
 
       if (payLoad.filter == 'Assignments') {
-
         commit('setPlannerList', response.data);
+        commit('setSharedAstList', response.shared_assignments);
       }
       if (payLoad.filter == 'Meetings')
         commit('setMeetingList', response.meeting);
-      if (payLoad.filter == 'Session')
-        commit('setsessionList', response.session);
-      if (payLoad.filter == 'Session')
+      if (payLoad.filter == 'Session') {
+        commit('setSessionList', response.session);
         commit('setSharedSessionList', response.shared_sessions);
+      }
 
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
@@ -268,6 +270,15 @@ const mutations = {
   setMeetingList(state, data) {
     state.meetingList = data;
   },
+  setSharedSessionList(state, data) {
+    state.sharedSessionList = data;
+  },
+  setSessionList(state, data) {
+    state.sessionList = data;
+  },
+  setSharedAstList(state, data) {
+    state.sharedAstList = data;
+  },
   setAssignmentList(state, data) {
     state.assignment = data;
   },
@@ -288,13 +299,7 @@ const mutations = {
   },
   setSubjectsList(state, data) {
     state.subjectsData = data;
-  },
-  setsessionList(state, data) {
-    state.sessionList = data;
-  },
-  setSharedSessionList(state, data) {
-    state.sharedSessionList = data;
-  },
+  }
 
 }
 const getters = {
@@ -303,6 +308,15 @@ const getters = {
   },
   meetingList: () => {
     return state.meetingList;
+  },
+  sharedSessionList: () => {
+    return state.sharedSessionList;
+  },
+  sessionList: () => {
+    return state.sessionList;
+  },
+  sharedAstList: () => {
+    return state.sharedAstList;
   },
   assignment: () => {
     return state.assignment;
@@ -324,12 +338,6 @@ const getters = {
   },
   subjectsData: () => {
     return state.subjectsData;
-  },
-  sessionList: () => {
-    return state.sessionList;
-  },
-  sharedSessionList: () => {
-    return state.sharedSessionList;
   },
 }
 

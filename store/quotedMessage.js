@@ -8,14 +8,14 @@ const state = {
   successType: "",
   errorMessage: "",
   errorType: "",
-  plannerList: [],
   assignment: [],
-  meetingList: [],
   subjectsData: [],
   assignmentsList: [],
   sharedAssignmentsList: [],
   completedAssignments: [],
   newAdditionalMaterial: {},
+  plannerList: [],
+  meetingList: [],
   sessionList: [],
   sharedAstList: [],
   sharedSessionList: []
@@ -446,7 +446,7 @@ const mutations = {
     state.meetingList = data;
   },
   setSharedSessionList(state, data) {
-    state.setSharedSessionList = data;
+    state.sharedSessionList = data;
   },
   setSessionList(state, data) {
     state.sessionList = data;
@@ -503,8 +503,8 @@ const getters = {
   meetingList: () => {
     return state.meetingList;
   },
-  setSharedSessionList: () => {
-    return state.setSharedSessionList;
+  sharedSessionList: () => {
+    return state.sharedSessionList;
   },
   sessionList: () => {
     return state.sessionList;
