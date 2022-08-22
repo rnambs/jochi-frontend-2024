@@ -387,11 +387,11 @@
                                     </div>
                                   </div>
                                   <div class="assignment-add-section">
-                                    <h4 class="mb-0 text-center">
+                                    <h4 class="mb-0 text-center word-break">
                                       {{ item.task }}
                                     </h4>
                                     <div class="text-center px-3">
-                                      <p>{{ item.assignment_description }}</p>
+                                      <p class="word-break">{{ item.assignment_description }}</p>
                                     </div>
                                   </div>
                                   <div class="sub-task-section mb-3">
@@ -424,7 +424,7 @@
                                         type="radio"
                                         class="mr-2"
                                       />
-                                      <label for="" class="mb-0">{{
+                                      <label for="" class="mb-0 text-truncate">{{
                                         sub.title
                                       }}</label>
                                     </div>
@@ -598,10 +598,10 @@
                                     h-100
                                   "
                                 >
-                                  <h4 class="mb-0 blue">{{ item.task }}</h4>
+                                  <h4 class="mb-0 blue word-break">{{ item.task }}</h4>
                                   <p
                                     v-for="sub in item.subTasks"
-                                    class="mb-0"
+                                    class="mb-0 word-break"
                                     :key="sub.id"
                                   >
                                     {{ sub.title }}

@@ -397,10 +397,10 @@
                                 h-100
                               "
                             >
-                              <h4 class="mb-0 blue">{{ item.task }}</h4>
+                              <h4 class="mb-0 blue word-break">{{ item.task }}</h4>
                               <p
                                 v-for="sub in item.subTasks"
-                                class="mb-0"
+                                class="mb-0 word-break"
                                 :key="sub.id"
                               >
                                 {{ sub.title }}
