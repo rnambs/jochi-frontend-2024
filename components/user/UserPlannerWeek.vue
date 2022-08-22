@@ -794,7 +794,7 @@
                                     </div>
                                   </div>
                                   <div class="assignment-add-section">
-                                    <h4 class="mb-0">{{ item.task }}</h4>
+                                    <h4 class="mb-0 text-center">{{ item.task }}</h4>
                                     <div class="text-center px-3">
                                       <p>{{ item.assignment_description }}</p>
                                     </div>
@@ -1526,14 +1526,12 @@
                                             pr-3
                                           "
                                         >
-                                          <span
-                                            :class="{
-                                              selected:
-                                                subTask.task_status ==
-                                                'Completed',
-                                            }"
-                                            ><i class="far fa-circle"></i
-                                          ></span>
+                                          <span class="subtask-btn"
+                                        :class="{
+                                          selected:
+                                            subTask.task_status == 'Completed',
+                                        }"
+                                        ><i></i></span>
                                           {{ subTask.title }}
                                         </p>
                                         <span
@@ -1925,14 +1923,12 @@
                                             pr-3
                                           "
                                         >
-                                          <span
-                                            :class="{
-                                              selected:
-                                                subTask.task_status ==
-                                                'Completed',
-                                            }"
-                                            ><i class="far fa-circle"></i
-                                          ></span>
+                                          <span class="subtask-btn"
+                                        :class="{
+                                          selected:
+                                            subTask.task_status == 'Completed',
+                                        }"
+                                        ><i></i></span>
                                           {{ subTask.title }}
                                         </p>
                                         <span
