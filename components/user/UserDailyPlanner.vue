@@ -11,7 +11,7 @@
 
       <section id="Daily-Calander" class="">
         <div class="custom-margin-for-main-section custom-full-height d-flex">
-          <div class="d-flex flex-column flex-fill">
+          <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
               <div class="col-lg-5 col-md-12 h-100">
                 <div class="jochi-components-light-bg p-4 h-100">
@@ -198,11 +198,11 @@
                                 </div>
                               </div>
                               <div class="assignment-add-section">
-                                <h4 class="mb-0 text-center">
+                                <h4 class="mb-0 text-center word-break">
                                   {{ item.task }}
                                 </h4>
                                 <div class="text-center px-3">
-                                  <p>{{ item.assignment_description }}</p>
+                                  <p class="word-break">{{ item.assignment_description }}</p>
                                 </div>
                               </div>
                               <div class="sub-task-section mb-3">
@@ -235,7 +235,7 @@
                                     type="radio"
                                     class="mr-2"
                                   />
-                                  <label for="" class="mb-0">{{
+                                  <label for="" class="mb-0 text-truncate">{{
                                     sub.title
                                   }}</label>
                                 </div>

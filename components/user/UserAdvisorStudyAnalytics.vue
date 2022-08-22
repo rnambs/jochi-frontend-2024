@@ -1,17 +1,9 @@
 <template>
-  <div class="main-section">
+  <div class=" pl-0 h-100">
     <!-- Study Page -->
-    <div
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-      "
-    >
-      <div class="study-section d-flex flex-column">
+      <div class="study-section d-flex flex-column h-100">
         <div
-          class="d-flex align-items-center justify-content-between mb-1 px-2"
+          class="d-flex align-items-center justify-content-between mb-2 px-2"
         >
           <h2 class="color-primary font-semi-bold mb-0">Study Analytics</h2>
           <div
@@ -33,177 +25,178 @@
             />
           </div>
         </div>
-        <div class="study-row d-flex flex-column px-2">
-          <div class="row header-row mb-1">
-            <div class="col-md-6 pt-2 pb-0">
-              <h4 class="color-dark font-semi-bold mb-0">Weekly Dashboard</h4>
-            </div>
-            <div class="col-md-6 pt-2 pb-0">
-              <h4 class="color-dark font-semi-bold mb-0">Dashboard</h4>
-            </div>
-          </div>
-          <div class="row inner-row mt-0 text-center mb-2">
-            <div class="col-md-3 py-2">
-              <div class="inner-col card card-white p-2">
-                <h6 class="color-dark font-semi-bold">Total Minutes</h6>
-                <p class="total-value text-24 color-dark font-semi-bold">
-                  {{
-                    mySession.total_minutes_week
-                      ? mySession.total_minutes_week
-                      : 0
-                  }}<sup class="color-label-green font-light text-16"
-                    >{{
-                      formatted_minute_status_week
-                        ? formatted_minute_status_week >= 0
-                          ? "+" + formatted_minute_status_week
-                          : formatted_minute_status_week
-                        : "+0"
-                    }}%</sup
-                  >
-                </p>
+        <div class="d-flex flex-column hidden-scroll h-100">
+          <div class="study-row d-flex flex-column px-2 overflow-unset">
+            <div class="row header-row mb-1">
+              <div class="col-md-6 pt-2 pb-0">
+                <h4 class="color-dark font-semi-bold mb-0">Weekly Dashboard</h4>
+              </div>
+              <div class="col-md-6 pt-2 pb-0">
+                <h4 class="color-dark font-semi-bold mb-0">Dashboard</h4>
               </div>
             </div>
-            <div class="col-md-3 py-2">
-              <div class="inner-col card card-white p-2">
-                <h6 class="color-dark font-semi-bold">Total Session</h6>
-                <p class="total-value text-24 color-dark font-semi-bold">
-                  {{
-                    mySession.total_sessions_week
-                      ? mySession.total_sessions_week
-                      : 0
-                  }}<sup class="color-label-green font-light text-16"
-                    >{{
-                      formatted_session_status_week
-                        ? formatted_session_status_week >= 0
-                          ? "+" + formatted_session_status_week
-                          : formatted_session_status_week
-                        : "+0"
-                    }}%</sup
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="col-md-3 py-2">
-              <div class="inner-col card card-white p-2">
-                <h6 class="color-dark font-semi-bold">Total Minutes</h6>
-                <p class="total-value text-24 color-dark">
-                  {{ mySession.total_minutes ? mySession.total_minutes : 0 }}
-                </p>
-              </div>
-            </div>
-            <div class="col-md-3 py-2">
-              <div class="inner-col card card-white p-2">
-                <h6 class="color-dark font-semi-bold">Total Session</h6>
-                <p class="total-value text-24 color-dark">
-                  {{ mySession.total_sessions ? mySession.total_sessions : 0 }}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="row inner-row mt-0 mb-2">
-            <div class="col-md-6 py-2">
-              <div
-                class="
-                  inner-col
-                  card card-white
-                  p-3
-                  h-100
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                "
-              >
-                <!-- {{mySession.weekly_pi_chart}} -->
-                <div class="d-flex">
-                  <div class="d-flex flex-column justify-content-center">
-                    <div
-                      v-for="item in legends"
-                      :key="item.value"
-                      class="d-flex chart-discription"
+            <div class="row inner-row mt-0 text-center mb-2">
+              <div class="col-md-3 py-2">
+                <div class="inner-col card card-white p-2">
+                  <h6 class="color-dark font-semi-bold">Total Minutes</h6>
+                  <p class="total-value text-24 color-dark font-semi-bold">
+                    {{
+                      mySession.total_minutes_week
+                        ? mySession.total_minutes_week
+                        : 0
+                    }}<sup class="color-label-green font-light text-16"
+                      >{{
+                        formatted_minute_status_week
+                          ? formatted_minute_status_week >= 0
+                            ? "+" + formatted_minute_status_week
+                            : formatted_minute_status_week
+                          : "+0"
+                      }}%</sup
                     >
-                      <span
-                        v-bind:style="{ backgroundColor: item.color }"
-                        class="chart-color mx-2"
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-3 py-2">
+                <div class="inner-col card card-white p-2">
+                  <h6 class="color-dark font-semi-bold">Total Session</h6>
+                  <p class="total-value text-24 color-dark font-semi-bold">
+                    {{
+                      mySession.total_sessions_week
+                        ? mySession.total_sessions_week
+                        : 0
+                    }}<sup class="color-label-green font-light text-16"
+                      >{{
+                        formatted_session_status_week
+                          ? formatted_session_status_week >= 0
+                            ? "+" + formatted_session_status_week
+                            : formatted_session_status_week
+                          : "+0"
+                      }}%</sup
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-3 py-2">
+                <div class="inner-col card card-white p-2">
+                  <h6 class="color-dark font-semi-bold">Total Minutes</h6>
+                  <p class="total-value text-24 color-dark">
+                    {{ mySession.total_minutes ? mySession.total_minutes : 0 }}
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-3 py-2">
+                <div class="inner-col card card-white p-2">
+                  <h6 class="color-dark font-semi-bold">Total Session</h6>
+                  <p class="total-value text-24 color-dark">
+                    {{ mySession.total_sessions ? mySession.total_sessions : 0 }}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="row inner-row mt-0 mb-2">
+              <div class="col-md-6 py-2">
+                <div
+                  class="
+                    inner-col
+                    card card-white
+                    p-3
+                    h-100
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                  "
+                >
+                  <!-- {{mySession.weekly_pi_chart}} -->
+                  <div class="d-flex">
+                    <div class="d-flex flex-column justify-content-center">
+                      <div
+                        v-for="item in legends"
+                        :key="item.value"
+                        class="d-flex chart-discription"
                       >
-                      </span>
-                      <span class="chart-text color-dark">
-                        {{ item.value }}
-                      </span>
+                        <span
+                          v-bind:style="{ backgroundColor: item.color }"
+                          class="chart-color mx-2"
+                        >
+                        </span>
+                        <span class="chart-text color-dark">
+                          {{ item.value }}
+                        </span>
+                      </div>
+                    </div>
+                    <div id="weeklyContainer" class="chart color-secondary">
+                      <canvas
+                        id="weekly"
+                        width="600"
+                        height="380"
+                        class="w-auto h-auto"
+                      ></canvas>
                     </div>
                   </div>
-                  <div id="weeklyContainer" class="chart color-secondary">
-                    <canvas
-                      id="weekly"
-                      width="600"
-                      height="380"
-                      class="w-auto h-auto"
-                    ></canvas>
+                </div>
+              </div>
+              <div class="col-md-6 py-2">
+                <div
+                  class="
+                    inner-col
+                    card card-white
+                    p-3
+                    h-100
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                  "
+                >
+                  <div class="d-flex">
+                    <div class="d-flex flex-column justify-content-center">
+                      <div
+                        v-for="item in legendsTotal"
+                        :key="item.value"
+                        class="d-flex chart-discription"
+                      >
+                        <span
+                          v-bind:style="{ backgroundColor: item.color }"
+                          class="chart-color mx-2"
+                        >
+                        </span>
+                        <span class="chart-text">
+                          {{ item.value }}
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      id="totalPieContainer"
+                      class="chart p-2 text-center text-white"
+                    >
+                      <canvas
+                        id="totalPie"
+                        width="600"
+                        height="380"
+                        class="w-auto h-auto"
+                      ></canvas>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6 py-2">
-              <div
-                class="
-                  inner-col
-                  card card-white
-                  p-3
-                  h-100
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                "
-              >
-                <div class="d-flex">
-                  <div class="d-flex flex-column justify-content-center">
-                    <div
-                      v-for="item in legendsTotal"
-                      :key="item.value"
-                      class="d-flex chart-discription"
-                    >
-                      <span
-                        v-bind:style="{ backgroundColor: item.color }"
-                        class="chart-color mx-2"
-                      >
-                      </span>
-                      <span class="chart-text">
-                        {{ item.value }}
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    id="totalPieContainer"
-                    class="chart p-2 text-center text-white"
-                  >
-                    <canvas
-                      id="totalPie"
-                      width="600"
-                      height="380"
-                      class="w-auto h-auto"
-                    ></canvas>
-                  </div>
+            <div class="row inner-row mt-0">
+              <div class="col-md-12 pt-2 pb-0">
+                <h4 class="color-dark font-semi-bold mb-0">Progress Chart</h4>
+              </div>
+              <div class="col-md-6 mb-0">
+                <div class="inner-col card card-white p-2">
+                  <canvas id="progress1" width="600" height="380"></canvas>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="row inner-row mt-0">
-            <div class="col-md-12 pt-2 pb-0">
-              <h4 class="color-dark font-semi-bold mb-0">Progress Chart</h4>
-            </div>
-            <div class="col-md-6 mb-2">
-              <div class="inner-col card card-white p-2">
-                <canvas id="progress1" width="600" height="380"></canvas>
-              </div>
-            </div>
-            <div class="col-md-6 mb-2">
-              <div class="inner-col card card-white p-2">
-                <canvas id="progress2" width="600" height="380"></canvas>
+              <div class="col-md-6 mb-0">
+                <div class="inner-col card card-white p-2">
+                  <canvas id="progress2" width="600" height="380"></canvas>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
     <!-- End Study Page -->
 

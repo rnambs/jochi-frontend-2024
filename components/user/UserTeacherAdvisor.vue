@@ -169,18 +169,38 @@
                   <!-- end rounded black button -->
                 </div>
               </div>
-              <div class="col-12 col-md-7 col-lg-8 col-xl-9">
+              <div class="col-12 col-md-7 col-lg-8 col-xl-9 h-100">
                 <div
                   v-if="showStudentAnalytics || showStudentProfile"
                   class="
                     card card-primary-void
                     rounded-22
                     p-4
+                    pt-5
                     h-100
                     position-realtive
                   "
                 >
-                  <div v-if="showStudentProfile">
+
+                <div
+                  class="tab-btns d-flex align-items-center position-absolute"
+                >
+                  <button
+                    @click="onTabClick(1)"
+                    class="tab-btn mr-3"
+                    id="filterPlanner"
+                  >
+                    profile
+                  </button>
+                  <button
+                    @click="onTabClick(2)"
+                    class="btn tab-btn"
+                    id="assignmentPlanner"
+                  >
+                    Study Analytics
+                  </button>
+                </div>
+                  <div v-if="showStudentProfile" class="d-flex flex-column h-40 flex-fill">
                     <div class="d-flex py-4 px-0 px-xl-4">
                       <div class="ld-img-section mr-3 mb-3">
                         <div class="ld-img-holder img-holder-lg">
@@ -285,139 +305,143 @@
                         </div>
                       </div>
                     </div>
-                    <div class="card card-primary-void rounded-22 p-4 h-100">
-                      <h2 class="color-primary font-semi-bold">Assignment</h2>
-                      <div class="row">
-                        <div
-                          v-for="detail in pendingAssignments"
-                          :key="detail.id"
-                          class="col-md-6 col-lg-4"
-                        >
-                          <!-- @click="onAssignmentSelect(detail)" -->
+                    <div class="card card-primary-void rounded-22 h-40 flex-fill">
+                      <h2 class="color-primary font-semi-bold px-4 pt-4 mb-2">Assignment</h2>
+                      <div class="hidden-scroll px-4 pt-3 mb-3">
+                        <div class="row">
                           <div
-                            class="
-                              jochi-sub-components-light-bg
-                              drag-drop
-                              p-4
-                              position-realtive
-                              h-100
-                              d-flex
-                              flex-column
-                              justify-content-between
-                              cursor-pointer
-                            "
+                            v-for="detail in pendingAssignments"
+                            :key="detail.id"
+                            class="col-md-6 col-xxl-4"
                           >
-                            <div class="d-flex flex-column">
-                              <div
-                                class="
-                                  assignment-tag-section
-                                  d-flex
-                                  align-items-center
-                                  mb-2
-                                "
-                              >
+                            <!-- @click="onAssignmentSelect(detail)" -->
+                            <div
+                              class="
+                                jochi-sub-components-light-bg
+                                drag-drop
+                                p-4
+                                position-realtive
+                                h-100
+                                d-flex
+                                flex-column
+                                justify-content-between
+                                cursor-pointer
+                              "
+                            >
+                              <div class="d-flex flex-column">
                                 <div
-                                  class="assignment-tag mr-2"
-                                  :class="
-                                    detail.priority == '1'
-                                      ? 'red'
-                                      : detail.priority == '2'
-                                      ? 'orange'
-                                      : detail.priority == '3'
-                                      ? 'yellow'
-                                      : ''
+                                  class="
+                                    assignment-tag-section
+                                    d-flex
+                                    align-items-center
+                                    mb-2
                                   "
                                 >
-                                  {{
-                                    detail.priority == "1"
-                                      ? "Urgent"
-                                      : detail.priority == "2"
-                                      ? "Important"
-                                      : detail.priority == "3"
-                                      ? "Can Wait"
-                                      : ""
-                                  }}
-                                </div>
-                                <div class="assignment-tag pink">
-                                  {{ detail.subject }}
-                                </div>
-                              </div>
-                              <div class="text-center">
-                                <h4 class="color-dark font-semi-bold mb-1">
-                                  {{ detail.task }}
-                                </h4>
-                                <div class="text-center px-3">
-                                  <p
-                                    class="
-                                      color-secondary
-                                      text-16
-                                      line-height-1
-                                      font-semi-bold
+                                  <div
+                                    class="assignment-tag mr-2"
+                                    :class="
+                                      detail.priority == '1'
+                                        ? 'red'
+                                        : detail.priority == '2'
+                                        ? 'orange'
+                                        : detail.priority == '3'
+                                        ? 'yellow'
+                                        : ''
                                     "
                                   >
+                                    {{
+                                      detail.priority == "1"
+                                        ? "Urgent"
+                                        : detail.priority == "2"
+                                        ? "Important"
+                                        : detail.priority == "3"
+                                        ? "Can Wait"
+                                        : ""
+                                    }}
+                                  </div>
+                                  <div class="assignment-tag pink">
                                     {{ detail.subject }}
-                                  </p>
+                                  </div>
                                 </div>
-                              </div>
-                              <div
-                                v-if="
-                                  detail.subTasks && detail.subTasks.length > 0
-                                "
-                                class="mb-3"
-                              >
-                                <h6 class="color-primary">Sub-tasks</h6>
-                                <div class="to-do-list">
-                                  <div
-                                    v-for="subtask in detail.subTasks"
-                                    :key="subtask.id"
-                                  >
-                                    <div class="pl-2 d-flex align-items-center">
-                                      <input
-                                        type="radio"
-                                        class="mr-2 color-secondary"
-                                      />
-                                      <label
-                                        for=""
-                                        class="mb-0 text-12 color-secondary"
-                                        >{{ subtask.title }}</label
-                                      >
+                                <div class="text-center">
+                                  <h4 class="color-dark font-semi-bold mb-1">
+                                    {{ detail.task }}
+                                  </h4>
+                                  <div class="text-center px-3">
+                                    <p
+                                      class="
+                                        color-secondary
+                                        text-16
+                                        line-height-1
+                                        font-semi-bold
+                                      "
+                                    >
+                                      {{ detail.subject }}
+                                    </p>
+                                  </div>
+                                </div>
+                                <div
+                                  v-if="
+                                    detail.subTasks && detail.subTasks.length > 0
+                                  "
+                                  class="mb-3"
+                                >
+                                  <h6 class="color-primary font-semi-bold">Sub-tasks</h6>
+                                  <div class="to-do-list">
+                                    <div
+                                      v-for="subtask in detail.subTasks"
+                                      :key="subtask.id"
+                                    >
+                                      <div class="pl-2 d-flex align-items-center">
+                                        <input
+                                          type="radio"
+                                          class="mr-2 color-secondary"
+                                        />
+                                        <label
+                                          for=""
+                                          class="mb-0 text-12 color-secondary"
+                                          >{{ subtask.title }}</label
+                                        >
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="">
-                              <h6 class="mb-1 color-primary">
-                                Additional Material
-                              </h6>
-                              <div
-                                class="
-                                  d-flex
-                                  align-items-center
-                                  justify-content-between
-                                "
-                              >
+                              <div class="">
+                                <h6 class="mb-1 color-primary font-semi-bold">
+                                  Additional Material
+                                </h6>
                                 <div
-                                  v-if="detail.assignment_materials"
-                                  class="col-8 py-0 pl-0 material-link"
+                                  class="
+                                    d-flex
+                                    align-items-center
+                                    justify-content-between
+                                  "
                                 >
-                                  {{ detail.assignment_materials.file_type }}:{{
-                                    detail.assignment_materials.file_name
-                                  }}
-                                </div>
-
-                                <div
-                                  v-else
-                                  class="col-8 py-0 pl-0 material-link"
-                                >
-                                  <span class="color-secondary"
-                                    >No documents added!</span
+                                  <div
+                                    v-if="detail.assignment_materials"
+                                    class="col-8 py-0 pl-0 material-link"
                                   >
-                                </div>
-                                <div
-                                  class="col-4 material-date py-0 text-right"
-                                >
-                                  {{ detail.due_date }}
+                                    <span class="text-12">
+                                      {{ detail.assignment_materials.file_type }}:{{
+                                        detail.assignment_materials.file_name
+                                      }}
+                                  </span>
+                                  </div>
+
+                                  <div
+                                    v-else
+                                    class="col-8 py-0 pl-0 material-link"
+                                  >
+                                    <span class="color-secondary text-12"
+                                      >No documents added!</span
+                                    >
+                                  </div>
+                                  <div
+                                    class="col-4 material-date py-0 text-right pr-0"
+                                  >
+                                    <span class="text-12">{{ detail.due_date }}</span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -427,34 +451,13 @@
                     </div>
                   </div>
                   <!-- analytics -->
-                  <div v-if="showStudentAnalytics">
-                    <h2 class="color-primary font-semi-bold">Analytics</h2>
-                    <div>
-                      <UserStudyAnalytics
+                  <div v-if="showStudentAnalytics" class="h-100">
+                    <!-- <h2 class="color-primary font-semi-bold">Analytics</h2> -->
+                      <UserAdvisorStudyAnalytics
                         :studentId="studentDetail.id"
-                      ></UserStudyAnalytics>
-                    </div>
+                      ></UserAdvisorStudyAnalytics>
                   </div>
                   <!-- end analytics -->
-
-                  <div
-                    class="tab-btns d-flex align-items-center position-absolute"
-                  >
-                    <button
-                      @click="onTabClick(1)"
-                      class="tab-btn mr-3"
-                      id="filterPlanner"
-                    >
-                      profile
-                    </button>
-                    <button
-                      @click="onTabClick(2)"
-                      class="btn tab-btn"
-                      id="assignmentPlanner"
-                    >
-                      Study Analytics
-                    </button>
-                  </div>
                 </div>
                 <div
                   v-else
@@ -464,10 +467,12 @@
                     p-4
                     h-100
                     position-realtive
+                    align-items-center
+                    justify-content-center
                   "
                 >
-                  Select a student to show details
-                  <div class="position-absolute right-0 col-3">
+                  <h6 class="color-secondary">Select a student to show details</h6>
+                  <div class="position-absolute advisor-image col-3">
                     <img src="../../static/image/advisor-image.png" alt="">
                   </div>
                 </div>
@@ -555,13 +560,13 @@ import { mapState, mapActions } from "vuex";
 import VueToast from "vue-toast-notification";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
-import UserStudyAnalytics from "./UserStudyAnalytics.vue";
+import UserAdvisorStudyAnalytics from "./UserAdvisorStudyAnalytics.vue";
 
 export default {
   name: "UserTeacherAdvisor",
   components: {
     lottie,
-    UserStudyAnalytics,
+    UserAdvisorStudyAnalytics,
   },
   data() {
     return {

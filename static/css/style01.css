@@ -289,7 +289,7 @@ body {
   right: 1.5rem;
   width: 40px;
   height: 40px;
-  box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.39);
+  box-shadow: 0px 2px 15px 0px rgba(194, 132, 132, 0.39);
 }
 .btn.btn-rounded:hover {
   transform: rotate(90deg);
@@ -297,15 +297,13 @@ body {
 }
 
 .tab-btns {
-  transform: rotate(-90deg);
-  top: 50vh;
-  right: -114px;
+  top: 0;
 }
 .tab-btns button.tab-btn {
   padding: 5px 20px;
   background-color: #b8b8b8;
   color: #ffffff;
-  border-radius: 14px 14px 0 0;
+  border-radius: 0 0 14px 14px;
   transition: background-color 0.5s ease;
 }
 
@@ -769,6 +767,10 @@ input[type=radio] {
 
 .overflow-initial {
   overflow: initial;
+}
+
+.overflow-unset {
+  overflow: unset !important;
 }
 
 .custom-overflow {
@@ -1432,7 +1434,6 @@ img.dark-icon {
 .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .bottum-btn {
   display: flex;
   flex: 1 0 auto;
-  padding: 7px 0px;
   border-radius: 4px;
 }
 @media (max-width: 991.98px) {
@@ -2737,6 +2738,10 @@ img.dark-icon {
 }
 .inner-section .main-section .study-section .upload-image .pic-edit i.fa-pen input.rg-img-upload::-webkit-file-upload-button {
   cursor: pointer;
+}
+.inner-section .main-section .teacher-section .advisor-image {
+  right: -54px;
+  bottom: 0px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: center;
