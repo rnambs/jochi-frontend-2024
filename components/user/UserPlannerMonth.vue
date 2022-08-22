@@ -461,12 +461,12 @@
                                       "
                                     >
                                       <div
-                                        class="col-8 py-0 pl-0 material-link"
+                                        class="col-8 py-0 pl-0 d-flex flex-column"
                                       >
                                         <span
                                           v-for="material in item.assignment_materials"
                                           :key="material.id"
-                                          class="color-secondary"
+                                          class="color-secondary w-100 text-truncate text-12"
                                         >
                                           <!-- Rubric: -->
                                           {{
@@ -481,7 +481,7 @@
                                             item.assignment_materials.length <=
                                               0
                                           "
-                                          class="color-secondary"
+                                          class="color-secondary text-12"
                                         >
                                           No additional materials added
                                         </span>

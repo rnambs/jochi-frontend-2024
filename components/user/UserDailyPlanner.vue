@@ -270,11 +270,11 @@
                                     justify-content-between
                                   "
                                 >
-                                  <div class="col-8 py-0 pl-0 material-link">
+                                  <div class="col-8 py-0 pl-0 text-12 d-flex flex-column">
                                     <span
                                       v-for="material in item.assignment_materials"
                                       :key="material.id"
-                                      class="color-secondary"
+                                      class="color-secondary text-truncate w-100"
                                     >
                                       <!-- Rubric: -->
                                       {{
@@ -288,7 +288,7 @@
                                         !item.assignment_materials ||
                                         item.assignment_materials.length <= 0
                                       "
-                                      class="color-secondary"
+                                      class="color-secondary text-12"
                                     >
                                       No additional materials added
                                     </span>
