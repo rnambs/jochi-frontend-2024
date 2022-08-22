@@ -82,7 +82,7 @@
       <div class="dmc-head d-flex justify-content-between align-items-start">
         <div class="greet-with-name-sec">
           <p class="text-24 color-black font-semi-bold mb-2">Hello,</p>
-          <p class="name-section mb-4">{{ firstName }}</p>
+          <p class="color-primary text-40 font-bold mb-4">{{ firstName }}</p>
         </div>
         <div class="faq-section d-flex align-items-center">
           <div class="faq-btn color-dark font-semi-bold mr-4">
@@ -107,7 +107,7 @@
           <div class="col-xl-8 h-100">
             <div class="d-flex flex-column h-100">
               <div
-                class="jochi-sub-components-light-bg p-4 pr-1 pb-1"
+                class="jochi-sub-components-light-bg p-4 pr-1 pb-1 h-fit-content"
               >
                 <div class="row position-relative justify-content-between">
                   <div class="col-7"></div>
@@ -424,13 +424,13 @@
             </div>
           </div>
           <div class="col-xl-4 h-100 mt-3 mt-xl-0">
-            <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 h-100 d-flex flex-column">
-              <div class="calendar-sm">
+            <div class="jochi-sub-components-light-bg h-100 d-flex flex-column">
+              <div class="calendar-sm px-4 pt-4">
                 <FullCalendar ref="fullCalendar" :options="calendarOptions" />
               </div>
               <div class="d-flex flex-column h-40 flex-fill">
-                <h4 class="color-black font-semi-bold">Assignments List</h4>
-                <div class="d-flex flex-column h-40 flex-fill hidden-scroll">
+                <h4 class="color-black font-semi-bold px-4">Assignments List</h4>
+                <div class="d-flex flex-column h-40 flex-fill hidden-scroll px-4 mb-3 pt-2">
                   <div
                     v-for="item in plannerList"
                     :key="item.id"
@@ -465,12 +465,12 @@
       aria-labelledby="meetingDetailModalCenterTitle"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content px-4">
-          <div class="modal-header">
-            <h5 class="modal-title" id="meetingDetailModalLongTitle">
-              Meeting Details
-            </h5>
+          <div class="modal-header pb-0">
+            <h1 class="modal-title color-primary font-semi-bold mb-0" id="meetingDetailModalLongTitle">
+              <span>{{ meetingDetail.type }}</span> Meeting with <span>{{ meetingDetail.new_title }}</span>
+            </h1>
             <!-- <button type="button" class="close">
               <span aria-hidden="true">Edit</span>
             </button> -->
@@ -484,21 +484,24 @@
             </button>
           </div>
           <div class="modal-body">
+            <h3 class="color-black font-semi-bold">{{ meetingDetail.dateFormat }}</h3>
+            <h4 class="color-primary font-regular mb-2">{{ meetingDetail.start_time }}</h4>
+            <h4 class="color-primary font-regular mb-2"></h4>
             <form action="">
               <table class="w-100 table-modal custom-row-table">
-                <tr>
+                <!-- <tr>
                   <td class="tmodal-data">Type</td>
                   <td class="tmodal-data">
                     <span class="pr-2"></span>
                     {{ meetingDetail.type }}
                   </td>
-                </tr>
+                </tr> -->
 
-                <tr>
+                <!-- <tr>
                   <td class="tmodal-data">With</td>
                   <td class="tmodal-data d-flex align-items-center flex-wrap">
                     <span class="pr-2"></span>
-                    <span>{{ meetingDetail.new_title }} </span>
+                    <span>{{ meetingDetail.new_title }} </span> -->
                     <!-- <div
                       class="invited-members-status mr-2"
                       v-else
@@ -521,10 +524,10 @@
                         >{{ item.name }}</span
                       >
                     </div> -->
-                  </td>
-                </tr>
+                  <!-- </td>
+                </tr> -->
 
-                <tr>
+                <!-- <tr>
                   <td class="tmodal-data">Date</td>
                   <td class="tmodal-data">
                     <div
@@ -542,22 +545,22 @@
                       {{ meetingDetail.dateFormat }}
                     </div>
                   </td>
-                </tr>
+                </tr> -->
 
-                <tr>
+                <!-- <tr>
                   <td class="tmodal-data">Time</td>
                   <td class="tmodal-data">
                     <span class="pr-2"></span>
                     {{ meetingDetail.start_time }}
                   </td>
-                </tr>
+                </tr> -->
                 <tr>
                   <td class="tmodal-data text-nowrap">Meeting Name</td>
                   <td class="tmodal-data">
                     <p
                       class="
                         mb-0
-                        col-12 col-md-8 col-lg-7
+                        col-12 col-md-10 col-lg-9
                         d-flex
                         align-items-center
                         form-row
@@ -576,7 +579,7 @@
                     <p
                       class="
                         mb-0
-                        col-12 col-md-8 col-lg-7
+                        col-12 col-md-11 col-lg-10
                         d-flex
                         align-items-center
                         form-row
@@ -595,7 +598,7 @@
                     <p
                       class="
                         mb-0
-                        col-12 col-md-8 col-lg-7
+                        col-12 col-md-10 col-lg-9
                         d-flex
                         align-items-center
                         form-row
@@ -619,7 +622,7 @@
                     <p
                       class="
                         mb-0
-                        col-12 col-md-8 col-lg-7
+                        col-12 col-md-10 col-lg-9
                         d-flex
                         align-items-center
                         form-row

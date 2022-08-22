@@ -136,11 +136,11 @@ body {
   margin-left: 2px;
 }
 
-.greet-with-name-sec .name-section {
+/* .greet-with-name-sec .name-section {
   font-size: 38px;
   font-weight: 700;
   color: #ff6d6d;
-}
+} */
 
 .faq-section {
   font-weight: 700;
