@@ -342,13 +342,15 @@
                             :key="advisor.id"
                             class="
                               d-flex
+                              flex-column
+                              flex-md-row
                               align-items-center
                               my-2
                               mr-3
                               min-w-200
                             "
                           >
-                            <div class="ld-img-section mr-3">
+                            <div class="ld-img-section mr-0  mr-md-3 mb-2  mb-md-0">
                               <div class="ld-img-holder">
                                 <img
                                   v-if="advisor.teacher.profile_pic"
@@ -357,22 +359,26 @@
                                 />
                               </div>
                             </div>
-                            <div class="ld-details-section">
-                              <p class="ld-heading mb-1">
-                                {{
-                                  advisor.teacher.first_name +
-                                  " " +
-                                  advisor.teacher.last_name
-                                }}
-                              </p>
+                            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between w-100">
+                              <div class="ld-details-section">
+                                <p class="ld-heading mb-1">
+                                  {{
+                                    advisor.teacher.first_name +
+                                    " " +
+                                    advisor.teacher.last_name
+                                  }}
+                                </p>
+                              </div>
+  
+                              <div class="d-flex align-items-center justify-content-center">
+                                <button class="btn btn-secondary px-4 py-1 rounded-pill mr-2" @click="respondRequest(0, advisor)">
+                                  Reject
+                                </button>
+                                <button class="btn btn-primary px-4 py-1 rounded-pill" @click="respondRequest(1, advisor)">
+                                  Accept
+                                </button>
+                              </div>
                             </div>
-
-                            <button @click="respondRequest(1, advisor)">
-                              Accept
-                            </button>
-                            <button @click="respondRequest(0, advisor)">
-                              Reject
-                            </button>
                           </div>
                         </div>
                       </div>
