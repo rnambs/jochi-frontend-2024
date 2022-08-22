@@ -40,6 +40,7 @@
 
         <!-- Club files -->
         <div class="cd-cover-pic-section position-relative">
+          <img :src="clubDetails.club_banner_image" alt="" />
           <div class="black-grad"></div>
           <div
             class="
@@ -239,19 +240,35 @@
                           </figure>
                           <!-- The Modal -->
                           <div id="myModal" class="modal">
-                            <div class="d-flex align-items-center justify-content-center h-100">
-                              <div class="d-flex flex-column w-50 align-items-end">
+                            <div
+                              class="
+                                d-flex
+                                align-items-center
+                                justify-content-center
+                                h-100
+                              "
+                            >
+                              <div
+                                class="d-flex flex-column w-50 align-items-end"
+                              >
                                 <span class="close" @click="spanClose()"
                                   >&times;</span
                                 >
-                                <div class="modal-content h-100 border-white card card-white rounded-22">
+                                <div
+                                  class="
+                                    modal-content
+                                    h-100
+                                    border-white
+                                    card card-white
+                                    rounded-22
+                                  "
+                                >
                                   <img id="img01" class="img-preview" />
                                   <div id="caption" class="pl-3 py-2"></div>
                                 </div>
                               </div>
                             </div>
                           </div>
-
                         </div>
                       </div>
                       <div
@@ -578,9 +595,12 @@
           </div> -->
           <div class="modal-body no-overflow px-4 pt-4">
             <!-- <div class="col-md-5 col-xs-12"> -->
-              <h3 class="modal-title color-primary font-semi-bold" id="nextMeetingModalLongTitle">
-                Configure Meeting Days
-              </h3>
+            <h3
+              class="modal-title color-primary font-semi-bold"
+              id="nextMeetingModalLongTitle"
+            >
+              Configure Meeting Days
+            </h3>
             <div class="inner-info">
               <!-- <div class="inner-info-head mb-3">
                 <h6 class="color-dark mb-0">Meeting Time</h6>

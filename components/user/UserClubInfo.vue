@@ -19,11 +19,8 @@
         <!-- end tab for club info -->
 
         <!-- Club info -->
-        <img :src="clubDetails.club_banner_image" alt="" />
-        <div
-          class="cd-cover-pic-section position-relative"
-          :style="{ 'background-image': clubDetails.club_banner_image }"
-        >
+        <div class="cd-cover-pic-section position-relative">
+          <img :src="clubDetails.club_banner_image" alt="" />
           <div class="black-grad"></div>
           <div
             class="
@@ -647,9 +644,12 @@
           </div> -->
           <div class="modal-body no-overflow px-4 pt-4">
             <!-- <div class="col-md-5 col-xs-12"> -->
-              <h3 class="modal-title color-primary font-semi-bold" id="nextMeetingModalLongTitle">
-                Configure Meeting Days
-              </h3>
+            <h3
+              class="modal-title color-primary font-semi-bold"
+              id="nextMeetingModalLongTitle"
+            >
+              Configure Meeting Days
+            </h3>
             <div class="inner-info">
               <!-- <div class="inner-info-head mb-3">
                 <h6 class="color-dark mb-0">Meeting Time</h6>
@@ -739,12 +739,12 @@
               Cancel
             </button> -->
             <button
-            type="button"
-            class="btn btn-secondary px-4 py-1 rounded-12"
-            data-dismiss="modal"
-          >
-            Cencel
-          </button>
+              type="button"
+              class="btn btn-secondary px-4 py-1 rounded-12"
+              data-dismiss="modal"
+            >
+              Cencel
+            </button>
             <button
               v-if="enableEdit"
               class="btn btn-success rounded-12 mt-2 py-1 px-4 font-semi-bold"
@@ -932,7 +932,10 @@
           </div> -->
           <div class="modal-body no-overflow px-4 pt-4">
             <!-- <div class="col-md-5 col-xs-12"> -->
-            <h3 class="modal-title color-primary font-semi-bold" id="addLeaderModalLongTitle">
+            <h3
+              class="modal-title color-primary font-semi-bold"
+              id="addLeaderModalLongTitle"
+            >
               Add Leaders
             </h3>
             <div class="d-flex align-items-center flex-fill mr-2 form-row">
