@@ -1,7 +1,7 @@
 import { BASE_URL } from "../assets/js/constants";
 
 const state = {
-    agendaList: [],
+    assignmentList: [],
     studentsList: [],
     studentsListAdvisor: [],
     errorMessage: "",
@@ -22,7 +22,13 @@ const actions = {
                 },
             });
 
-            commit('setAgendaList', response.data);
+            if (response.message) {
+                commit('setSuccessMessage', response.message);
+                commit('setSuccessType', "success");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+            }
+
 
         } catch (e) {
             if (e.response.data.message == "Unauthorized") {
@@ -112,12 +118,34 @@ const actions = {
         }
 
     },
+    async getAssignmentsList({ commit }) {
+        const token = localStorage.getItem('token')
+        try {
+            const response = await this.$axios.$get(BASE_URL + `teacher/get_all_students_under_advisor`, {
+                headers: {
+                    'Authorization': ` ${token}`
+                },
+            });
+            commit('setAssignmentList', response.data);
+        } catch (e) {
+            if (e.response.data.message == "Unauthorized") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                window.localStorage.clear();
+                this.$router.push('/');
+            }
+
+        }
+
+    },
 
 }
 
 const mutations = {
-    setAgendaList(state, data) {
-        state.agendaList = data;
+    setAssignmentList(state, data) {
+        state.assignmentList = data;
     },
     setStudentsList(state, data) {
         state.studentsList = data;
@@ -140,8 +168,8 @@ const mutations = {
 
 }
 const getters = {
-    agendaList: () => {
-        return state.agendaList;
+    assignmentList: () => {
+        return state.assignmentList;
     },
     studentsList: () => {
         return state.studentsList;

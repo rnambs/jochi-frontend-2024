@@ -349,6 +349,7 @@ export default {
     };
   },
   mounted() {
+    console.log("mounting student id", this.studentId);
     this.GetMySession();
     this.getConfiguredGoal();
     // this.InitPieChart();

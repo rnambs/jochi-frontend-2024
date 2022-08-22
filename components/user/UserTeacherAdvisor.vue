@@ -252,11 +252,12 @@
                             </div>
                             <div class="col-7 col-md-11 col-lg-8 p-1">
                               <p class="mb-0 color-dark text-16 font-semi-bold">
-                                <span>Southside Middle School</span>
+                                <!-- <span>Southside Middle School</span> -->
+                                <span>{{ studentDetail.schools.name }}</span>
                               </p>
                             </div>
                           </div>
-                          <div class="row m-0">
+                          <!-- <div class="row m-0">
                             <div class="col-12 col-sm-3 col-md-12 col-lg-2 p-1">
                               <p class="mb-0 color-dark text-16 font-regular">
                                 <span>Class</span>
@@ -280,12 +281,149 @@
                                 <span>7</span>
                               </p>
                             </div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </div>
                     <div class="card card-primary-void rounded-22 p-4 h-100">
                       <h2 class="color-primary font-semi-bold">Assignment</h2>
+                      <div class="row">
+                        <div
+                          v-for="detail in assignmentList"
+                          :key="detail.id"
+                          class="col-md-6 col-lg-4"
+                        >
+                          <!-- @click="onAssignmentSelect(detail)" -->
+                          <div
+                            class="
+                              jochi-sub-components-light-bg
+                              drag-drop
+                              p-4
+                              position-realtive
+                              h-100
+                              d-flex
+                              flex-column
+                              justify-content-between
+                              cursor-pointer
+                            "
+                          >
+                            <div class="d-flex flex-column">
+                              <div
+                                class="
+                                  assignment-tag-section
+                                  d-flex
+                                  align-items-center
+                                  mb-2
+                                "
+                              >
+                                <div
+                                  class="assignment-tag mr-2"
+                                  :class="
+                                    detail.priority == '1'
+                                      ? 'red'
+                                      : detail.priority == '2'
+                                      ? 'orange'
+                                      : detail.priority == '3'
+                                      ? 'yellow'
+                                      : ''
+                                  "
+                                >
+                                  {{
+                                    detail.priority == "1"
+                                      ? "Urgent"
+                                      : detail.priority == "2"
+                                      ? "Important"
+                                      : detail.priority == "3"
+                                      ? "Can Wait"
+                                      : ""
+                                  }}
+                                </div>
+                                <div class="assignment-tag pink">
+                                  {{ detail.subject }}
+                                </div>
+                              </div>
+                              <div class="text-center">
+                                <h4 class="color-dark font-semi-bold mb-1">
+                                  {{ detail.task }}
+                                </h4>
+                                <div class="text-center px-3">
+                                  <p
+                                    class="
+                                      color-secondary
+                                      text-16
+                                      line-height-1
+                                      font-semi-bold
+                                    "
+                                  >
+                                    {{ detail.subject }}
+                                  </p>
+                                </div>
+                              </div>
+                              <div
+                                v-if="
+                                  detail.subTasks && detail.subTasks.length > 0
+                                "
+                                class="mb-3"
+                              >
+                                <h6 class="color-primary">Sub-tasks</h6>
+                                <div class="to-do-list">
+                                  <div
+                                    v-for="subtask in detail.subTasks"
+                                    :key="subtask.id"
+                                  >
+                                    <div class="pl-2 d-flex align-items-center">
+                                      <input
+                                        type="radio"
+                                        class="mr-2 color-secondary"
+                                      />
+                                      <label
+                                        for=""
+                                        class="mb-0 text-12 color-secondary"
+                                        >{{ subtask.title }}</label
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="">
+                              <h6 class="mb-1 color-primary">
+                                Additional Material
+                              </h6>
+                              <div
+                                class="
+                                  d-flex
+                                  align-items-center
+                                  justify-content-between
+                                "
+                              >
+                                <div
+                                  v-if="detail.assignment_materials"
+                                  class="col-8 py-0 pl-0 material-link"
+                                >
+                                  {{ detail.assignment_materials.file_type }}:{{
+                                    detail.assignment_materials.file_name
+                                  }}
+                                </div>
+
+                                <div
+                                  v-else
+                                  class="col-8 py-0 pl-0 material-link"
+                                >
+                                  <span class="color-secondary"
+                                    >No documents added!</span
+                                  >
+                                </div>
+                                <div
+                                  class="col-4 material-date py-0 text-right"
+                                >
+                                  {{ detail.due_date }}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <!-- analytics -->
@@ -442,6 +580,11 @@ export default {
     ...mapState("teacherAdvisor", {
       studentsList: (state) => state.studentsList,
       studentsListAdvisor: (state) => state.studentsListAdvisor,
+      successMessage: (state) => state.successMessage,
+      successType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+      assignmentList: (state) => state.assignmentList,
     }),
   },
   methods: {
@@ -449,6 +592,7 @@ export default {
       inviteStudent: "inviteStudent",
       getStudents: "getStudents",
       getStudentsList: "getStudentsList",
+      getAssignmentsList: "getAssignmentsList",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -481,24 +625,26 @@ export default {
           $(".modal").modal("hide");
           $(".modal-backdrop").remove();
           this.$toast.open({
-            message: this.errorMessage,
-            type: this.errorType,
-            duration: 5000,
-          });
-        } else {
-          this.$toast.open({
-            message: "Please select student before proceeding",
-            type: "warning",
+            message: this.successMessage,
+            type: this.successType,
             duration: 5000,
           });
         }
+        this.selectedStudent = "";
         this.submitted = false;
+      } else {
+        this.$toast.open({
+          message: "Please select student before proceeding",
+          type: "warning",
+          duration: 5000,
+        });
       }
     },
     onStudentClick(student) {
       this.showStudentProfile = true;
       this.showStudentAnalytics = false;
       this.studentDetail = student;
+      this.getAssignments();
     },
     onTabClick(tab) {
       if (tab == 1) {
@@ -508,6 +654,9 @@ export default {
         this.showStudentProfile = false;
         this.showStudentAnalytics = true;
       }
+    },
+    async getAssignments() {
+      await this.getAssignmentsList();
     },
   },
 };
