@@ -249,7 +249,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-xl-10 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
+              <div class="col-12 p-0">
                 <div class="row Meeting-row pl-0 pr-3 pt-3">
                   <div
                     class="col-md-3 mb-4 py-0"

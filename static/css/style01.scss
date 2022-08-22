@@ -72,6 +72,10 @@ body{
     font-size: 1.875rem;
     line-height: 2.25rem;
 }
+.text-40{
+    font-size: 2.5rem;
+    line-height: 2.75rem;
+}
 .word-break{
     word-break: break-all;
 }
@@ -775,7 +779,7 @@ body{
 }
 
 img.card-img{
-    max-width: 160px;
+    max-width: 180px;
     object-fit: contain;
     width: 100%;
     @media (max-width:$lg-screen) {
