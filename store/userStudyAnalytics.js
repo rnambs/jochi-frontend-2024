@@ -17,7 +17,11 @@ const actions = {
     async getMySession({ commit }, payLoad) {
         const token = localStorage.getItem('token')
         try {
-            const response = await this.$axios.$get(BASE_URL + `studyRoom/mySession`, {
+            let endpoint = 'studyRoom/mySession'
+            if (payLoad.student_id) {
+                endpoint + `?student_id=${payLoad.student_id}`
+            }
+            const response = await this.$axios.$get(BASE_URL + endpoint, {
                 headers: {
                     'Authorization': ` ${token}`
                 },
@@ -67,7 +71,11 @@ const actions = {
     async getGoal({ commit }, payLoad) {
         const token = localStorage.getItem('token')
         try {
-            const response = await this.$axios.$get(BASE_URL + `studyRoom/get_daily_goals`, {
+            let endpoint = 'studyRoom/get_daily_goals'
+            if (payLoad.student_id) {
+                endpoint + `?student_id=${payLoad.student_id}`
+            }
+            const response = await this.$axios.$get(BASE_URL + endpoint, {
                 headers: {
                     'Authorization': ` ${token}`
                 },

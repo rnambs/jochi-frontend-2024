@@ -311,6 +311,7 @@ import * as animationData from "~/assets/animation.json";
 // import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
 export default {
+  props: ["studentId"],
   name: "dashBoard",
   components: {
     lottie,
@@ -380,9 +381,10 @@ export default {
     },
 
     async GetMySession() {
-      await this.getMySession({
+      await this.getMySession(
         //   filterBy: 'Last Week'
-      });
+        { student_id: this.studentId }
+      );
       this.InitPieChart();
       this.roundDecimal();
     },
@@ -689,7 +691,7 @@ export default {
     },
 
     async getConfiguredGoal() {
-      await this.getGoal();
+      await this.getGoal({ student_id: this.studentId });
       if (this.goal) {
         this.dailyTimerId = this.goal.id ? this.goal.id : 0;
         this.duration = !isNaN(Number(this.goal.total_duration_covered))

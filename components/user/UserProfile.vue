@@ -291,6 +291,7 @@
 
                       <div class="col-12 col-md-7">
                         <div
+                          v-if="advisorDetail"
                           class="card card-primary p-3 h-100 d-flex flex-column"
                         >
                           <h4 class="color-dark font-semi-bold">
@@ -306,11 +307,72 @@
                             "
                           >
                             <div class="ld-img-section mr-3">
-                              <div class="ld-img-holder"></div>
+                              <div class="ld-img-holder">
+                                <img
+                                  v-if="advisorDetail.profile_pic"
+                                  :src="advisorDetail.profile_pic"
+                                  alt=""
+                                />
+                              </div>
                             </div>
                             <div class="ld-details-section">
-                              <p class="ld-heading mb-1">Advisor Name</p>
+                              <p class="ld-heading mb-1">
+                                {{
+                                  advisorDetail.first_name +
+                                  " " +
+                                  advisorDetail.last_name
+                                }}
+                              </p>
                             </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        v-if="requestList.length > 0"
+                        class="col-12 col-md-7"
+                      >
+                        <div
+                          class="card card-primary p-3 h-100 d-flex flex-column"
+                        >
+                          <h4 class="color-dark font-semi-bold">
+                            Advisor Requests
+                          </h4>
+                          <div
+                            v-for="advisor in requestList"
+                            :key="advisor.id"
+                            class="
+                              d-flex
+                              align-items-center
+                              my-2
+                              mr-3
+                              min-w-200
+                            "
+                          >
+                            <div class="ld-img-section mr-3">
+                              <div class="ld-img-holder">
+                                <img
+                                  v-if="advisor.teacher.profile_pic"
+                                  :src="advisor.teacher.profile_pic"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                            <div class="ld-details-section">
+                              <p class="ld-heading mb-1">
+                                {{
+                                  advisor.teacher.first_name +
+                                  " " +
+                                  advisor.teacher.last_name
+                                }}
+                              </p>
+                            </div>
+
+                            <button @click="respondRequest(1, advisor)">
+                              Accept
+                            </button>
+                            <button @click="respondRequest(0, advisor)">
+                              Reject
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -380,20 +442,25 @@ export default {
       filepptCheck: false,
       profile: "",
       defaultImage: defaultImage,
+      submitted: false,
     };
   },
 
   mounted() {
     this.UserDetails();
+    this.getAllAdvisors();
+    this.getAdvisor();
   },
   computed: {
     ...mapState("profilePage", {
       allList: (state) => state.allList,
+      requestList: (state) => state.requestList,
       successMessage: (state) => state.successMessage,
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
       profileImage: (state) => state.profile,
+      advisorDetail: (state) => state.advisorDetail,
     }),
   },
   methods: {
@@ -401,6 +468,9 @@ export default {
       userDetails: "userDetails",
       uploadProfile: "uploadProfile",
       profileRemove: "profileRemove",
+      getAdvisorRequests: "getAdvisorRequests",
+      respondAdvisorRequest: "respondAdvisorRequest",
+      getAdvisorDetail: "getAdvisorDetail",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -497,6 +567,35 @@ export default {
     modalPopUp(valId, valName) {
       this.remove_id = valId;
       this.remove_name = valName;
+    },
+    async getAllAdvisors() {
+      await this.getAdvisorRequests();
+    },
+    async respondRequest(status, advisor) {
+      this.submitted = true;
+      await this.respondAdvisorRequest({
+        teacher_id: advisor.teacher_id,
+        response: status,
+        token: advisor.advisor_token,
+      });
+      this.submitted = false;
+      this.getAllAdvisors();
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.successType,
+          duration: 5000,
+        });
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+    },
+    async getAdvisor() {
+      await this.getAdvisorDetail();
     },
   },
   // // middleware: "authenticated",
