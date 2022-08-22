@@ -192,9 +192,9 @@
                   <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content h-auto">
                       <div class="modal-header bg-light text-dark">
-                        <h5 class="modal-title" id="mediumModalLabel">
+                        <h3 class="modal-title font-bold" id="mediumModalLabel">
                           Delete
-                        </h5>
+                        </h3>
                         <button
                           type="button"
                           class="close"
@@ -205,7 +205,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <p class="text-left">
+                        <p class="text-left color-dark font-semi-bold">
                           Are you sure you want to delete this item?
                         </p>
                       </div>
