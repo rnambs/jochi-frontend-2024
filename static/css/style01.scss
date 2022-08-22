@@ -279,6 +279,40 @@ body{
     }
 }
 
+.subtask-btn{
+    i{
+        &::after{
+            content: "\f111";
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Font Awesome 5 Pro';
+        }
+    }
+    &.selected{
+        i{
+            &::after{
+                content: "\f192";
+                display: inline-block;
+                font-style: normal;
+                font-variant: normal;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                font-family: 'Font Awesome 5 Pro';
+                color: $theme-color;
+            }
+        }
+    }
+}
+
+// Input radio
+
+input[type="radio"]{
+    accent-color: #dd6d81;
+}
+
 // Form control
 
 .form-row,.form-group{
@@ -1828,8 +1862,9 @@ img.dark-icon{
             }
         }
         #Weekly-Calander{
-            @include head-right();
-            @include calendar-sm-head();
+            // @include head-right();
+            // @include calendar-sm-head();
+            @include calendar-lg-head();
             @include plannerCommonMonth();
             @include plannerCommon();
             .fc-timegrid-col-events{

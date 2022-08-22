@@ -198,7 +198,7 @@
                                 </div>
                               </div>
                               <div class="assignment-add-section">
-                                <h4 class="mb-0">{{ item.task }}</h4>
+                                <h4 class="mb-0 text-center">{{ item.task }}</h4>
                                 <div class="text-center px-3">
                                   <p>{{ item.assignment_description }}</p>
                                 </div>
@@ -901,13 +901,12 @@
                                         pr-3
                                       "
                                     >
-                                      <span
+                                      <span class="subtask-btn"
                                         :class="{
                                           selected:
                                             subTask.task_status == 'Completed',
                                         }"
-                                        ><i class="far fa-circle"></i
-                                      ></span>
+                                        ><i></i></span>
                                       {{ subTask.title }}
                                     </p>
                                     <span
@@ -1288,13 +1287,12 @@
                                         pr-3
                                       "
                                     >
-                                      <span
-                                        :class="{
-                                          selected:
-                                            subTask.task_status == 'Completed',
-                                        }"
-                                        ><i class="far fa-circle"></i
-                                      ></span>
+                                    <span class="subtask-btn"
+                                    :class="{
+                                      selected:
+                                        subTask.task_status == 'Completed',
+                                    }"
+                                    ><i></i></span>
                                       {{ subTask.title }}
                                     </p>
                                     <span
@@ -2044,10 +2042,10 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="completeConfirmModalLongTitle">
+          <!-- <div class="modal-header pb-0">
+            <h4 class="modal-title" id="completeConfirmModalLongTitle">
               Complete Sub Task Confirmation
-            </h5>
+            </h4>
             <button
               type="button"
               class="close"
@@ -2056,19 +2054,24 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
+          </div> -->
+          <div class="modal-body px-4">
+            <h3 class="modal-title color-primary font-bold mt-3" id="completeConfirmModalLongTitle">
+              Complete Sub Task Confirmation
+            </h3>
+            <h5 class="color-dark font-semi-bold">Mark sub task as completed?</h5>
           </div>
-          <div class="modal-body px-4">Mark sub task as completed?</div>
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-pill"
+              class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-primary py-1 px-3 rounded-pill"
+              class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
               :disabled="processingCompleteAssignment"
               @click="completeSubTask()"
             >

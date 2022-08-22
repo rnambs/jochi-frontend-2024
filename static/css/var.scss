@@ -348,10 +348,12 @@ $sm-screen-h         : 767.98px;
 }
 @mixin calendar-lg-head {
     .fc-header-toolbar.fc-toolbar.fc-toolbar-ltr{
-        justify-content: space-between;
+        justify-content: start;
+        align-items: baseline;
+        gap: 0.5rem;
         h2.fc-toolbar-title{
-            position: absolute;
-            left: 60px;
+            // position: absolute;
+            // left: 60px;
             font-size: 24px;
             font-weight: 600;
             @media (max-width:$max-xs-screen) {
@@ -359,10 +361,21 @@ $sm-screen-h         : 767.98px;
                 top: 18px;
             }
         }
+        .fc-toolbar-chunk{
+            &:first-child{
+                order: 1;
+            }
+            &:nth-child(2){
+                order: 0;
+            }
+            &:nth-child(3){
+                order: 2;
+            }
+        }
     }
     .fc-toolbar-chunk .fc-prev-button.fc-button {
-        position: absolute;
-        right: 6rem;
+        // position: absolute;
+        // right: 6rem;
     }
     
     .fc .fc-button .fc-icon {
@@ -382,10 +395,10 @@ $sm-screen-h         : 767.98px;
         @include borderRadius(10);
     }
     
-    .fc-toolbar-chunk .fc-next-button.fc-button {
-        position: relative;
-        top: 1.065rem;
-    }
+    // .fc-toolbar-chunk .fc-next-button.fc-button {
+    //     position: relative;
+    //     top: 1.065rem;
+    // }
 }
 @mixin calendar-sm-week {
     @include head-center();
@@ -732,7 +745,7 @@ $sm-screen-h         : 767.98px;
       
       .fc-view-harness.fc-view-harness-active {
         height: 82vh !important;
-        margin-top: 20px;
+        // margin-top: 20px;
       }
       
       .fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar {
@@ -758,6 +771,9 @@ $sm-screen-h         : 767.98px;
         border-radius: 22px;
         border: none;
         padding: 15px 20px;
+        @media (max-width:$md-screen) {
+            padding: 6px 8px;
+        }
       }
       
       .fc-v-event .fc-event-main {
@@ -781,6 +797,10 @@ $sm-screen-h         : 767.98px;
         font-weight: 800;
         font-size: 18px;
         word-break: break-all;
+        @media (max-width:$md-screen) {
+            font-weight: 500;
+            font-size: 16px;
+        }
       }
 }
 @mixin plannerCommonMonth{
@@ -795,10 +815,10 @@ $sm-screen-h         : 767.98px;
         overflow: hidden;
       }
       
-      .fc-toolbar-chunk .fc-next-button.fc-button {
-        position: relative;
-        top: 1.065rem;
-      }
+    //   .fc-toolbar-chunk .fc-next-button.fc-button {
+    //     position: relative;
+    //     top: 1.065rem;
+    //   }
       
       .fc .fc-day-disabled {
         background: none;
@@ -887,57 +907,58 @@ $sm-screen-h         : 767.98px;
 }
 
 @mixin plannerDaily {
+    @include calendar-lg-head();
     .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard{
-        .fc-header-toolbar.fc-toolbar{
-            justify-content: start;
-            margin-bottom: 0rem;
-            h2.fc-toolbar-title{
-                background-color: unset;
-                color: $text-secondary;
-                font-size: medium;
-                font-weight: 700;
-                white-space: nowrap;
-                position: unset;
-                left: unset;
-                top: unset;
-                right: unset;
-                z-index: 0;
-            }
-            button.fc-button.fc-button-primary{
-                background-color: $border-color;
-                color: $global-font-color;
-                &:hover{
-                    border: none;
-                    color: $theme-color;
-                }
-                span.fc-icon{
-                    top: -0.35rem;
-                    position: unset;
-                    line-height: 4px;
-                    font-size: 1rem;
-                    color: $text-secondary;
-                }
-            }
-            button.fc-next-button.fc-button.fc-button-primary{
-                min-height: 20px;
-                font-size: 0.75rem;
-                position: unset;
-                right: unset;
-                border: none;
-                background-color: unset;
-            }
-            button.fc-prev-button.fc-button.fc-button-primary{
-                min-height: 20px;
-                font-size: 0.75rem;
-                position: unset;
-                right: unset;
-                border: none;
-                background-color: unset;
-            }
-        }
+        // .fc-header-toolbar.fc-toolbar{
+        //     justify-content: start;
+        //     margin-bottom: 0rem;
+        //     h2.fc-toolbar-title{
+        //         background-color: unset;
+        //         color: $text-secondary;
+        //         font-size: medium;
+        //         font-weight: 700;
+        //         white-space: nowrap;
+        //         position: unset;
+        //         left: unset;
+        //         top: unset;
+        //         right: unset;
+        //         z-index: 0;
+        //     }
+        //     button.fc-button.fc-button-primary{
+        //         background-color: $border-color;
+        //         color: $global-font-color;
+        //         &:hover{
+        //             border: none;
+        //             color: $theme-color;
+        //         }
+        //         span.fc-icon{
+        //             top: -0.35rem;
+        //             position: unset;
+        //             line-height: 4px;
+        //             font-size: 1rem;
+        //             color: $text-secondary;
+        //         }
+        //     }
+        //     button.fc-next-button.fc-button.fc-button-primary{
+        //         min-height: 20px;
+        //         font-size: 0.75rem;
+        //         position: unset;
+        //         right: unset;
+        //         border: none;
+        //         background-color: unset;
+        //     }
+        //     button.fc-prev-button.fc-button.fc-button-primary{
+        //         min-height: 20px;
+        //         font-size: 0.75rem;
+        //         position: unset;
+        //         right: unset;
+        //         border: none;
+        //         background-color: unset;
+        //     }
+        // }
         .fc-view-harness.fc-view-harness-active{
             height: 75vh !important;
-            margin-top: 20px;
+            // margin-top: 20px;
             table.fc-scrollgrid.fc-scrollgrid-liquid{
                 border: none !important;
                 thead,tbody{
