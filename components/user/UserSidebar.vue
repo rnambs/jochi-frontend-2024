@@ -98,38 +98,51 @@
                         Notificaitons
                       </h5>
                       <button
-                        class="btn btn-secondary py-1 px-4 rounded-pill"
+                        class="color-dark font-semi-bold text-18"
                         @click="clearNotifications()"
                       >
                         Clear all
                       </button>
                     </div>
                     <div class="notification-text px-3 py-1 hidden-scroll">
-                      <p
-                        :class="
+                      <!-- :class="
                           data.isViewed
-                            ? 'unread d-flex flex-column p-3 card card-primary-sm rounded-22 my-3 cursor-pointer'
+                            ? 'unread d-flex flex-column p-3 card card-primary-sm bg-white rounded-22 my-3 cursor-pointer'
                             : 'read d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer'
-                        "
+                        " -->
+                      <div
+                        class="d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer"
                         v-for="(data, index) in notificationList"
                         :key="index"
                         @click="onNotificationClick(data.id, data.title)"
                       >
-                        <span
-                          class="color-dark font-semi-bold text-14 text-wrap"
-                          >{{ data.message }}</span
+                        <p
+                          class="color-dark font-semi-bold text-14 text-wrap mb-0"
+                          >{{ data.message }}</p
                         >
-                        <span
+                        <p
                           class="
                             color-secondary
                             text-12
                             font-regulat
+                            mb-0
                             d-flex
-                            justify-content-end
+                            justify-content-end align-items-center
                           "
-                          >{{ data.timestamp }}</span
+                          >
+                          
+                          <span class="mr-2">{{ data.timestamp }}</span>
+                          
+                          <span :class="
+                              data.isViewed
+                                ? 'unread bg-transparent '
+                                : 'read bg-primary d-block notify-span-icon rounded-circle'
+                              "
+                          >
+                          </span>
+                          </p
                         >
-                      </p>
+                        </div>
                     </div>
                   </div>
                   <div
