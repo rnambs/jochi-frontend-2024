@@ -2,6 +2,7 @@ import { BASE_URL } from "../assets/js/constants";
 
 const state = {
     assignmentList: [],
+    sharedAssignmentsList: [],
     studentsList: [],
     studentsListAdvisor: [],
     errorMessage: "",
@@ -118,15 +119,16 @@ const actions = {
         }
 
     },
-    async getAssignmentsList({ commit }) {
-        const token = localStorage.getItem('token')
+    async getAssignmentsList({ commit }, payLoad) {
         try {
-            const response = await this.$axios.$get(BASE_URL + `teacher/get_all_students_under_advisor`, {
+            const token = localStorage.getItem('token')
+            const response = await this.$axios.$get(BASE_URL + `planner/all_assignments?all_assignments=1&student_id=${payLoad.id}`, {
                 headers: {
                     'Authorization': ` ${token}`
                 },
             });
-            commit('setAssignmentList', response.data);
+            commit('setAssignmentList', response.assignments);
+            commit('setSharedAssignmentsList', response.shared_assignments);
         } catch (e) {
             if (e.response.data.message == "Unauthorized") {
                 commit('setSuccessMessage', "");
@@ -136,7 +138,12 @@ const actions = {
                 window.localStorage.clear();
                 this.$router.push('/');
             }
-
+            else {
+                commit('setErrorMessage', e.response.data.message);
+                commit('setErrorType', "error");
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+            }
         }
 
     },
@@ -146,6 +153,9 @@ const actions = {
 const mutations = {
     setAssignmentList(state, data) {
         state.assignmentList = data;
+    },
+    setSharedAssignmentsList(state, data) {
+        state.sharedAssignmentsList = data;
     },
     setStudentsList(state, data) {
         state.studentsList = data;
@@ -170,6 +180,9 @@ const mutations = {
 const getters = {
     assignmentList: () => {
         return state.assignmentList;
+    },
+    sharedAssignmentsList: () => {
+        return state.sharedAssignmentsList;
     },
     studentsList: () => {
         return state.studentsList;

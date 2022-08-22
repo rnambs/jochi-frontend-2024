@@ -289,7 +289,7 @@
                       <h2 class="color-primary font-semi-bold">Assignment</h2>
                       <div class="row">
                         <div
-                          v-for="detail in assignmentList"
+                          v-for="detail in pendingAssignments"
                           :key="detail.id"
                           class="col-md-6 col-lg-4"
                         >
@@ -570,6 +570,7 @@ export default {
       selectedStudent: "",
       submitted: false,
       studentDetail: {},
+      pendingAssignments: [],
     };
   },
   mounted() {
@@ -585,6 +586,7 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
       assignmentList: (state) => state.assignmentList,
+      sharedAssignmentsList: (state) => state.sharedAssignmentsList,
     }),
   },
   methods: {
@@ -656,7 +658,88 @@ export default {
       }
     },
     async getAssignments() {
-      await this.getAssignmentsList();
+      await this.getAssignmentsList({ id: this.studentDetail.id });
+      this.mapAssignments();
+      this.mapSharedAssignments();
+    },
+    mapAssignments() {
+      if (this.assignmentList && this.assignmentList.length > 0) {
+        this.assignmentList.forEach((e) => {
+          let item = {};
+          item.assignment_description = e.assignment_description;
+          item.assignment_materials = e.assignment_materials;
+          item.completed_date = e.completed_date;
+          item.dueTimeFormat = e.dueTimeFormat;
+          item.due_date = e.due_date;
+          item.due_time = e.due_time;
+          item.id = e.id;
+          item.priority = e.priority;
+          item.schoologyAssignment = e.schoologyAssignment;
+          item.schoologyAssignmentId = e.schoologyAssignmentId;
+          item.subTasks = e.subTasks;
+          item.subject = e.subject;
+          item.subjects = e.subjects;
+          item.task = e.task;
+          item.task_status = e.task_status;
+          item.updatedAt = e.updatedAt;
+          item.user_id = e.user_id;
+          item.peers = this.mapPeers(e);
+          item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+          item.isShared = false;
+          this.pendingAssignments.push(item);
+        });
+      }
+    },
+    mapSharedAssignments() {
+      if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
+        this.sharedAssignmentsList.forEach((e) => {
+          let item = {};
+          if (e.assignments) {
+            item.assignment_description = e.assignments.assignment_description;
+            item.assignment_materials = e.assignment_materials;
+            item.completed_date = e.assignments.completed_date;
+            item.dueTimeFormat = e.assignments.dueTimeFormat;
+            item.due_date = e.assignments.due_date;
+            item.due_time = e.assignments.due_time;
+            item.id = e.assignments.id;
+            item.priority = e.assignments.priority;
+            item.schoologyAssignment = e.assignments.schoologyAssignment;
+            item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+            item.subTasks = e.subTasks;
+            item.subject = e.assignments?.subjects?.subject_name;
+            item.subjects = e.subjects;
+            item.task = e.assignments.task;
+            item.task_status = e.assignments.task_status;
+            item.updatedAt = e.assignments.updatedAt;
+            item.user_id = e.assignments.user_id;
+            item.peers = this.mapPeers(e);
+            item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+            item.isShared = true;
+            this.pendingAssignments.push(item);
+          }
+        });
+      }
+    },
+    mapPeers(e) {
+      let user_id = localStorage.getItem("id");
+      let peers = [];
+      if (e.assignment_shared_users && e.assignment_shared_users.length > 0) {
+        e.assignment_shared_users.forEach((item) => {
+          let peer = {};
+          if (item.shared_users_id != user_id) {
+            peer = item.users;
+            peer.id = item.shared_users_id;
+            peers.push(peer);
+          }
+        });
+      }
+      if (e.assignments?.users) {
+        let user = {};
+        user = e.assignments?.users;
+        user.id = e.user_id;
+        peers.push(user);
+      }
+      return peers;
     },
   },
 };
