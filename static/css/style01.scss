@@ -157,6 +157,9 @@ body{
   &.orange{
     background-color: #FF6F69;
   }
+  &.yellow{
+    background-color: #daa112;
+  }
 }
 
 // BORDER RADIUS{
@@ -1818,6 +1821,11 @@ img.dark-icon{
         #Daily-Calander{
             @include plannerDaily();
             @include plannerCommonMonth();
+            .fc-timegrid-col-events{
+                .fc-timegrid-event-harness.fc-timegrid-event-harness-inset{
+                    min-height: 100px;
+                }
+            }
         }
         #Weekly-Calander{
             @include head-right();
@@ -5123,7 +5131,7 @@ switch to violet when it is active*/
             // background-position:center;
             // background-repeat:no-repeat;
             background-size:cover;
-            backdrop-filter: blur(16px);
+            backdrop-filter: blur(22px);
             background-color: transparent;
             -webkit-box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
             -moz-box-shadow: 0 0px 12px rgb(0 0 0 / 12%);

@@ -184,6 +184,9 @@ body {
 .assignment-tag.orange {
   background-color: #FF6F69;
 }
+.assignment-tag.yellow {
+  background-color: #daa112;
+}
 
 .rounded-6 {
   border-radius: 6px;
@@ -1846,9 +1849,7 @@ img.dark-icon {
   overflow-y: auto !important;
 }
 .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active .fc-popover.fc-more-popover {
-  background-color: #2D2D2F;
-  border-radius: 8px;
-  border: 1px solid #f0f0f0;
+  border-radius: 12px;
   right: 45px;
   left: unset !important;
 }
@@ -1893,9 +1894,10 @@ img.dark-icon {
   box-shadow: none;
 }
 .inner-section .main-section #Daily-Calander .fc .fc-more-popover .fc-popover-header {
+  border: 1px solid rgba(255, 255, 255, 0.5019607843);
   background: #ff6f69;
   color: #ffffff;
-  border-radius: 12px 12px 0 0;
+  border-radius: 8px;
   font-weight: 700;
 }
 .inner-section .main-section #Daily-Calander .fc .fc-more-popover .fc-popover-body {
@@ -1903,7 +1905,8 @@ img.dark-icon {
   padding: 0;
 }
 .inner-section .main-section #Daily-Calander .fc .fc-more-popover .fc-popover-body .fc-timegrid-event {
-  border-radius: 0 0 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5019607843) !important;
 }
 .inner-section .main-section #Daily-Calander .fc-theme-standard td,
 .inner-section .main-section #Daily-Calander .fc-theme-standard th {
@@ -2007,6 +2010,9 @@ img.dark-icon {
 .inner-section .main-section #Daily-Calander .fc-theme-standard td {
   border-color: #e9d7ee;
 }
+.inner-section .main-section #Daily-Calander .fc-timegrid-col-events .fc-timegrid-event-harness.fc-timegrid-event-harness-inset {
+  min-height: 100px;
+}
 .inner-section .main-section #Weekly-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: right;
   position: absolute;
@@ -2109,9 +2115,10 @@ img.dark-icon {
   box-shadow: none;
 }
 .inner-section .main-section #Weekly-Calander .fc .fc-more-popover .fc-popover-header {
+  border: 1px solid rgba(255, 255, 255, 0.5019607843);
   background: #ff6f69;
   color: #ffffff;
-  border-radius: 12px 12px 0 0;
+  border-radius: 8px;
   font-weight: 700;
 }
 .inner-section .main-section #Weekly-Calander .fc .fc-more-popover .fc-popover-body {
@@ -2119,7 +2126,8 @@ img.dark-icon {
   padding: 0;
 }
 .inner-section .main-section #Weekly-Calander .fc .fc-more-popover .fc-popover-body .fc-timegrid-event {
-  border-radius: 0 0 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5019607843) !important;
 }
 .inner-section .main-section #Weekly-Calander .fc-theme-standard td,
 .inner-section .main-section #Weekly-Calander .fc-theme-standard th {
@@ -4239,8 +4247,8 @@ switch to violet when it is active*/
   border-radius: 0.5rem;
   border: 1px solid #ffffff;
   background-size: cover;
-  -webkit-backdrop-filter: blur(16px);
-          backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(22px);
+          backdrop-filter: blur(22px);
   background-color: transparent;
   box-shadow: 0 0px 12px rgba(0, 0, 0, 0.12);
   border-radius: 22px;

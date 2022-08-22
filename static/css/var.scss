@@ -676,9 +676,10 @@ $sm-screen-h         : 767.98px;
       }
       
       .fc .fc-more-popover .fc-popover-header {
+        border: 1px solid #ffffff80 ;
         background: #ff6f69;
         color: #ffffff;
-        border-radius: 12px 12px 0 0;
+        border-radius: 8px;
         font-weight: 700;
       }
       
@@ -688,7 +689,8 @@ $sm-screen-h         : 767.98px;
       }
       
       .fc .fc-more-popover .fc-popover-body .fc-timegrid-event {
-        border-radius: 0 0 12px 12px;
+        border-radius: 12px;
+        border: 1px solid #ffffff80 !important;
       }
       
       .fc-theme-standard td,
@@ -1042,9 +1044,9 @@ $sm-screen-h         : 767.98px;
                 }
             }
             .fc-popover.fc-more-popover{
-                background-color: $global-sidebar-bg;
-                border-radius: 8px;
-                border: 1px solid $border-color;
+                // background-color: $global-sidebar-bg;
+                border-radius: 12px;
+                // border: 1px solid $border-color;
                 right: 45px;
                 left: unset !important;
                 span.fc-popover-title{
