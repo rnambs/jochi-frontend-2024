@@ -17,9 +17,18 @@
         "
       >
         <!-- end tab for club info -->
-
-        <div class="cd-cover-pic-section position-relative">
-          <img :src="clubDetails.club_banner_image" alt="" />
+        {{ clubBannerImage }}
+        <div
+          class="cd-cover-pic-section position-relative"
+          v-bind:style="{
+            'background-image':
+              'url(' +
+              (clubBannerImage
+                ? clubBannerImage
+                : '../../image/cover-pic.jpg') +
+              ')',
+          }"
+        >
           <div class="black-grad"></div>
           <div
             class="
@@ -771,7 +780,10 @@
             </button>
           </div> -->
           <div class="modal-body px-4 pt-4">
-            <h3 class="modal-title color-primary font-bold" id="mediumModalLabel">
+            <h3
+              class="modal-title color-primary font-bold"
+              id="mediumModalLabel"
+            >
               Delete
             </h3>
             <p class="text-left color-dark mb-0 font-semi-bold">
@@ -1473,7 +1485,7 @@
               class="btn btn-secondary px-4 py-1 rounded-12"
               data-dismiss="modal"
             >
-              Cencel
+              Cancel
             </button>
             <button
               v-if="enableEdit"
@@ -1543,15 +1555,8 @@
                 />
               </div>
               <!-- <v-dialog v-model="dialog" width="500"> -->
-              <v-card
-                class="
-                bg-transparent shadow-none
-                "
-              >
-                <v-card-text
-                  v-show="selectedFile"
-                  class="p-0"
-                >
+              <v-card class="bg-transparent shadow-none">
+                <v-card-text v-show="selectedFile" class="p-0">
                   <VueCropper
                     ref="cropper"
                     :src="selectedFile"
@@ -1759,6 +1764,7 @@ export default {
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
+      clubBannerImage: (state) => state.clubBannerImage,
     }),
     ...mapState("clubFiles", {
       successMessageClubFile: (state) => state.successMessage,

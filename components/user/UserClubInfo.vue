@@ -18,9 +18,20 @@
       >
         <!-- end tab for club info -->
 
+        <!-- :style="{ 'background-image': clubDetails.club_banner_image }" -->
         <!-- Club info -->
-        <div class="cd-cover-pic-section position-relative">
-          <img :src="clubDetails.club_banner_image" alt="" />
+
+        <div
+          class="cd-cover-pic-section position-relative"
+          v-bind:style="{
+            'background-image':
+              'url(' +
+              (clubBannerImage
+                ? clubBannerImage
+                : '../../image/cover-pic.jpg') +
+              ')',
+          }"
+        >
           <div class="black-grad"></div>
           <div
             class="
@@ -743,7 +754,7 @@
               class="btn btn-secondary px-4 py-1 rounded-12"
               data-dismiss="modal"
             >
-              Cencel
+              Cancel
             </button>
             <button
               v-if="enableEdit"
@@ -1179,6 +1190,7 @@ export default {
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
+      clubBannerImage: (state) => state.clubBannerImage,
     }),
     ...mapState("clubMoreInfo", {
       clubMoreDetails: (state) => state.clubMoreDetails,

@@ -387,7 +387,9 @@
                                     </div>
                                   </div>
                                   <div class="assignment-add-section">
-                                    <h4 class="mb-0 text-center">{{ item.task }}</h4>
+                                    <h4 class="mb-0 text-center">
+                                      {{ item.task }}
+                                    </h4>
                                     <div class="text-center px-3">
                                       <p>{{ item.assignment_description }}</p>
                                     </div>
@@ -1012,7 +1014,7 @@
                                 >
                                   <div class="form-row mb-2 mx-0 mr-2 w-100">
                                     <label class="form-label" for="name"
-                                      >Add a sub task</label
+                                      >Add a sub-task</label
                                     >
                                     <input
                                       type="text"
@@ -1119,12 +1121,15 @@
                                             pr-3
                                           "
                                         >
-                                          <span class="subtask-btn"
-                                        :class="{
-                                          selected:
-                                            subTask.task_status == 'Completed',
-                                        }"
-                                        ><i></i></span>
+                                          <span
+                                            class="subtask-btn"
+                                            :class="{
+                                              selected:
+                                                subTask.task_status ==
+                                                'Completed',
+                                            }"
+                                            ><i></i
+                                          ></span>
                                           {{ subTask.title }}
                                         </p>
                                         <span
@@ -1460,7 +1465,7 @@
                                 >
                                   <div class="form-row mb-2 mx-0 mr-2 w-100">
                                     <label class="form-label" for="name"
-                                      >Add a sub task</label
+                                      >Add a sub-task</label
                                     >
                                     <input
                                       type="text"
@@ -1516,12 +1521,15 @@
                                             pr-3
                                           "
                                         >
-                                         <span class="subtask-btn"
-                                        :class="{
-                                          selected:
-                                            subTask.task_status == 'Completed',
-                                        }"
-                                        ><i></i></span>
+                                          <span
+                                            class="subtask-btn"
+                                            :class="{
+                                              selected:
+                                                subTask.task_status ==
+                                                'Completed',
+                                            }"
+                                            ><i></i
+                                          ></span>
                                           {{ subTask.title }}
                                         </p>
                                         <span

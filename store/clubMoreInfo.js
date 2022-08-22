@@ -11,6 +11,7 @@ const state = {
   successMessage: "",
   successType: "",
   enableEdit: '',
+  clubBannerImage: '',
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -29,6 +30,7 @@ const actions = {
       if (response.message == "Success") {
         commit('setClubMoreDetails', response.data);
         commit('setEnableEdit', response.enable_edit);
+        commit('setClubBannerImage', response.data.club_banner_image);
       }
       else if (response.message == "No club found") {
         commit('setSuccessMessage', "");
@@ -580,6 +582,9 @@ const mutations = {
   setEnableEdit(state, data) {
     state.enableEdit = data;
   },
+  setClubBannerImage(state, data) {
+    state.clubBannerImage = data;
+  },
   setAvailableSlot(state, data) {
     state.slots = data;
   },
@@ -613,6 +618,9 @@ const getters = {
   },
   enableEdit: () => {
     return state.enableEdit;
+  },
+  clubBannerImage: () => {
+    return state.clubBannerImage;
   },
   slots: () => {
     return state.slots;
