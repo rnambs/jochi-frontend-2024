@@ -3745,28 +3745,28 @@ export default {
       this.repetitionCount = 1;
     },
   },
-  beforeRouteLeave: function (to, from, next) {
-    console.log("In beforeRouteLeave of AnotherComponent");
+  // beforeRouteLeave: function (to, from, next) {
+  //   console.log("In beforeRouteLeave of AnotherComponent");
 
-    // Indicate to the SubComponent that we are leaving the route
-    // this.$refs.mySubComponent.prepareToExit();
-    // Make sure to always call the next function, otherwise the hook will never be resolved
-    // Ref: https://router.vuejs.org/en/advanced/navigation-guards.html
-    next();
-  },
+  //   // Indicate to the SubComponent that we are leaving the route
+  //   // this.$refs.mySubComponent.prepareToExit();
+  //   // Make sure to always call the next function, otherwise the hook will never be resolved
+  //   // Ref: https://router.vuejs.org/en/advanced/navigation-guards.html
+  //   next();
+  // },
 
-  beforeRouteLeave(to, from, next) {
-    const answer = (window.confirm = function (e) {
-      return "Do you really want to leave? you have unsaved changes!";
-    });
-    if (answer) {
-      return next();
-    } else {
-      return next(false);
-    }
+  // beforeRouteLeave(to, from, next) {
+  //   const answer = (window.confirm = function (e) {
+  //     return "Do you really want to leave? you have unsaved changes!";
+  //   });
+  //   if (answer) {
+  //     return next();
+  //   } else {
+  //     return next(false);
+  //   }
 
-    // return next();
-  },
+  //   // return next();
+  // },
   beforeDestroy() {
     const answer = confirm(
       "Do you really want to leave? you have unsaved changes!"
@@ -3776,15 +3776,15 @@ export default {
     //   return;
     // }
   },
-  beforeRouteLeave(to, from, next) {
-    // const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
-    // if (answer) {
-    //   next()
-    // } else {
-    //   next(false)
-    // }
-    alert("destroy");
-  },
+  // beforeRouteLeave(to, from, next) {
+  //   // const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
+  //   // if (answer) {
+  //   //   next()
+  //   // } else {
+  //   //   next(false)
+  //   // }
+  //   alert("destroy");
+  // },
   destroyed() {
     window.removeEventListener("beforeunload", this.preventNav);
   },

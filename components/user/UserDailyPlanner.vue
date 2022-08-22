@@ -198,7 +198,9 @@
                                 </div>
                               </div>
                               <div class="assignment-add-section">
-                                <h4 class="mb-0 text-center">{{ item.task }}</h4>
+                                <h4 class="mb-0 text-center">
+                                  {{ item.task }}
+                                </h4>
                                 <div class="text-center px-3">
                                   <p>{{ item.assignment_description }}</p>
                                 </div>
@@ -794,7 +796,7 @@
                             >
                               <div class="form-row mb-2 mx-0 mr-2 w-100">
                                 <label class="form-label" for="name"
-                                  >Add a sub task</label
+                                  >Add a sub-task</label
                                 >
                                 <input
                                   type="text"
@@ -901,12 +903,14 @@
                                         pr-3
                                       "
                                     >
-                                      <span class="subtask-btn"
+                                      <span
+                                        class="subtask-btn"
                                         :class="{
                                           selected:
                                             subTask.task_status == 'Completed',
                                         }"
-                                        ><i></i></span>
+                                        ><i></i
+                                      ></span>
                                       {{ subTask.title }}
                                     </p>
                                     <span
@@ -1231,7 +1235,7 @@
                             >
                               <div class="form-row mb-2 mx-0 mr-2 w-100">
                                 <label class="form-label" for="name"
-                                  >Add a sub task</label
+                                  >Add a sub-task</label
                                 >
                                 <input
                                   type="text"
@@ -1287,12 +1291,14 @@
                                         pr-3
                                       "
                                     >
-                                    <span class="subtask-btn"
-                                    :class="{
-                                      selected:
-                                        subTask.task_status == 'Completed',
-                                    }"
-                                    ><i></i></span>
+                                      <span
+                                        class="subtask-btn"
+                                        :class="{
+                                          selected:
+                                            subTask.task_status == 'Completed',
+                                        }"
+                                        ><i></i
+                                      ></span>
                                       {{ subTask.title }}
                                     </p>
                                     <span
@@ -1860,7 +1866,7 @@
               </div>
               <div v-if="addSubTask" class="d-flex flex-row align-items-start">
                 <div class="form-row mb-2 mx-0 mr-2 w-100">
-                  <label class="form-label" for="name">Add a sub task</label>
+                  <label class="form-label" for="name">Add a sub-task</label>
                   <input
                     type="text"
                     maxlength="100"
@@ -2044,7 +2050,7 @@
         <div class="modal-content">
           <!-- <div class="modal-header pb-0">
             <h4 class="modal-title" id="completeConfirmModalLongTitle">
-              Complete Sub Task Confirmation
+              Complete Sub-Task Confirmation
             </h4>
             <button
               type="button"
@@ -2056,10 +2062,15 @@
             </button>
           </div> -->
           <div class="modal-body px-4">
-            <h3 class="modal-title color-primary font-bold mt-3" id="completeConfirmModalLongTitle">
-              Complete Sub Task Confirmation
+            <h3
+              class="modal-title color-primary font-bold mt-3"
+              id="completeConfirmModalLongTitle"
+            >
+              Complete Sub-Task Confirmation
             </h3>
-            <h5 class="color-dark font-semi-bold">Mark sub task as completed?</h5>
+            <h5 class="color-dark font-semi-bold">
+              Mark sub-task as completed?
+            </h5>
           </div>
           <div class="modal-footer">
             <button
