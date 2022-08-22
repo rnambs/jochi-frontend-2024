@@ -794,11 +794,11 @@
                                     </div>
                                   </div>
                                   <div class="assignment-add-section">
-                                    <h4 class="mb-0 text-center">
+                                    <h4 class="mb-0 text-center word-break">
                                       {{ item.task }}
                                     </h4>
                                     <div class="text-center px-3">
-                                      <p>{{ item.assignment_description }}</p>
+                                      <p class="word-break">{{ item.assignment_description }}</p>
                                     </div>
                                   </div>
                                   <div class="sub-task-section mb-3">
@@ -868,12 +868,12 @@
                                       "
                                     >
                                       <div
-                                        class="col-8 py-0 pl-0 material-link"
+                                        class="col-8 py-0 pl-0 d-flex flex-column"
                                       >
                                         <span
                                           v-for="material in item.assignment_materials"
                                           :key="material.id"
-                                          class="color-secondary"
+                                          class="color-secondary w-100 text-truncate text-12"
                                         >
                                           <!-- Rubric: -->
                                           {{
@@ -888,7 +888,7 @@
                                             item.assignment_materials.length <=
                                               0
                                           "
-                                          class="color-secondary"
+                                          class="color-secondary text-12"
                                         >
                                           No additional materials added
                                         </span>
@@ -1005,10 +1005,10 @@
                                     h-100
                                   "
                                 >
-                                  <h4 class="mb-0 blue">{{ item.task }}</h4>
+                                  <h4 class="mb-0 blue word-break">{{ item.task }}</h4>
                                   <p
                                     v-for="sub in item.subTasks"
-                                    class="mb-0"
+                                    class="mb-0 word-break"
                                     :key="sub.id"
                                   >
                                     {{ sub.title }}

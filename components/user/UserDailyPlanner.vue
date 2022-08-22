@@ -270,11 +270,11 @@
                                     justify-content-between
                                   "
                                 >
-                                  <div class="col-8 py-0 pl-0 material-link">
+                                  <div class="col-8 py-0 pl-0 text-12 d-flex flex-column">
                                     <span
                                       v-for="material in item.assignment_materials"
                                       :key="material.id"
-                                      class="color-secondary"
+                                      class="color-secondary text-truncate w-100"
                                     >
                                       <!-- Rubric: -->
                                       {{
@@ -288,7 +288,7 @@
                                         !item.assignment_materials ||
                                         item.assignment_materials.length <= 0
                                       "
-                                      class="color-secondary"
+                                      class="color-secondary text-12"
                                     >
                                       No additional materials added
                                     </span>
@@ -397,10 +397,10 @@
                                 h-100
                               "
                             >
-                              <h4 class="mb-0 blue">{{ item.task }}</h4>
+                              <h4 class="mb-0 blue word-break">{{ item.task }}</h4>
                               <p
                                 v-for="sub in item.subTasks"
-                                class="mb-0"
+                                class="mb-0 word-break"
                                 :key="sub.id"
                               >
                                 {{ sub.title }}
