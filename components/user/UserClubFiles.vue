@@ -99,7 +99,7 @@
             "
           >
             <div class="row my-0 flex-fill">
-              <div class="col-md-8 d-flex h-100">
+              <div class="col d-flex h-100">
                 <div
                   class="
                     inner-club
@@ -308,22 +308,22 @@
               >
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">
+                    <div class="modal-header pb-0">
+                      <h2 class="modal-title font-bold" id="exampleModalLongTitle">
                         Confirmation
-                      </h5>
-                      <button
+                      </h2>
+                      <!-- <button
                         type="button"
                         class="close"
                         data-dismiss="modal"
                         aria-label="Close"
                       >
                         <span aria-hidden="true">&times;</span>
-                      </button>
+                      </button> -->
                     </div>
                     <div class="modal-body">
                       <p class="confirm-text d-flex text-nowrap">
-                        <span class="w-100"
+                        <span class="w-100 color-dark font-semi-bold"
                           >Are you sure you want to delete this file?
                         </span>
                         <!-- <span class="delete-text w-100 pl-1">
@@ -335,14 +335,14 @@
                     <div class="modal-footer">
                       <button
                         type="button"
-                        class="btn btn-secondary px-3 py-1 rounded-pill"
+                        class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
                         data-dismiss="modal"
                       >
                         No
                       </button>
                       <button
                         type="button"
-                        class="btn btn-primary px-3 py-1 rounded-pill"
+                        class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
                         data-dismiss="modal"
                         @click="FileRemove"
                       >

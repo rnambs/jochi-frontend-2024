@@ -635,6 +635,10 @@ input[type="radio"]{
                     color: $font-label-color;
                     text-align: center;
                 }
+                .notify-span-icon{
+                    width: 12px;
+                    height: 12px;
+                }
                 .notification-text{
                     max-height: calc(100vh - 190px);
                     // p{

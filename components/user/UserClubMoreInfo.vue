@@ -780,10 +780,10 @@
             </button>
           </div> -->
           <div class="modal-body px-4 pt-4">
-            <h3 class="modal-title color-primary" id="mediumModalLabel">
+            <h3 class="modal-title color-primary font-bold" id="mediumModalLabel">
               Delete
             </h3>
-            <p class="text-left mb-0">
+            <p class="text-left color-dark mb-0 font-semi-bold">
               Are you sure you want to delete this item?
             </p>
           </div>
