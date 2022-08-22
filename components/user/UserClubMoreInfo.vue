@@ -19,6 +19,7 @@
         <!-- end tab for club info -->
 
         <div class="cd-cover-pic-section position-relative">
+          <img :src="clubDetails.club_banner_image" alt="" />
           <div class="black-grad"></div>
           <div
             class="

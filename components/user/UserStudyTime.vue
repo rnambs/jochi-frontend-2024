@@ -418,7 +418,7 @@
                     <div class="d-flex flex-column mb-2">
                       <button
                         v-if="sessionDetail.startSession"
-                        @click="goToSession()"
+                        @click="checkIfCompletedAsst()"
                       >
                         Start Session Now
                       </button>
@@ -2536,6 +2536,55 @@
       </div>
     </div>
     <!-- schedule later modal end-->
+
+    <!-- confirm completed assignment start modal -->
+    <div
+      class="modal fade"
+      id="confirmAsstStartModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="confirmAsstStartModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirmAsstStartModalLongTitle">
+              Confirm completed assignment start
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body overflow-initial">
+            This assignment has already been completed. Do you want to continue?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary px-4 py-1 rounded-pill"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              data-dismiss="modal"
+              class="btn btn-primary rounded-pill px-4 py-1"
+              @click="goToSession()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- confirm completed assignment start modal end -->
   </div>
 
   <!-- End Study Page -->
@@ -3194,7 +3243,9 @@ export default {
       this.Timerrepeat = this.timerStatusData.repeat;
 
       await this.addStudyTime({
-        sessionId: this.sessionData.id,
+        sessionId: this.sessionData.id
+          ? this.sessionData.id
+          : this.sessionDetail.id,
         min: totalTimeStudied,
         status: studyStatus,
       });
@@ -3267,7 +3318,9 @@ export default {
     },
     async onLogSession() {
       await this.addRating({
-        session_id: this.sessionData.id,
+        session_id: this.sessionData.id
+          ? this.sessionData.id
+          : this.sessionDetail.id,
         focus: this.focusRating,
         efficiency: this.focusEfficiency,
         workCompletes: this.focusWorkComplete,
@@ -3307,6 +3360,7 @@ export default {
         let session = {};
         session.type = "assignment";
         session.id = e.id;
+        session.assignment_id = e.assignment_id;
         session.name = e.assignments?.task;
         session.goals = e.subTasks;
         session.duration = e.duration;
@@ -3318,6 +3372,7 @@ export default {
         session.time = e.time;
         session.breakTimeAt = e.break_time_at;
         session.studyMethod = e.study_method;
+        session.status = e.assignments?.task_status;
         const d = new Date();
 
         session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
@@ -3591,6 +3646,22 @@ export default {
         });
       }
     },
+    checkIfCompletedAsst() {
+      let valid = true;
+      if (this.sessionDetail.type == "assignment") {
+        if (this.sessionDetail.status == "Completed") {
+          this.showConfirmSessionStart();
+          valid = false;
+          return;
+        }
+      }
+      if (valid) {
+        this.goToSession();
+      }
+    },
+    showConfirmSessionStart() {
+      $("#confirmAsstStartModal").modal({ backdrop: true });
+    },
     async goToSession() {
       if (Number(this.sessionDetail.studyMethod) == 3) {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 3);
@@ -3601,44 +3672,44 @@ export default {
         this.subjectName = this.selectedAssignment.task;
       }
       this.UpdateStudyTechnique();
-      let payLoad = {};
-      if (this.sessionDetail.type == "assignment") {
-        payLoad = {
-          assignment_id: this.sessionDetail.id,
-          session_shared_user_id: this.sessionDetail.peers,
-          goals: this.sessionDetail.goals,
-          date: this.sessionDetail.scheduledDate,
-          start_time: this.sessionDetail.time,
-          study_method: this.sessionDetail.studyMethod,
-          subject: this.sessionType != "assignment" ? this.Subject.id : "",
-          target_duration: this.sessionDetail.duration,
-          repeat: this.sessionDetail.repeat,
-          scheduled_status: "Now",
-          break_time_at: this.sessionDetail.breakTimeAt,
-          break_time: this.sessionDetail.breakTime,
-        };
-      } else {
-        payLoad = {
-          session_shared_user_id: this.sessionDetail.peers,
-          goals: this.sessionDetail.goals,
-          date: this.sessionDetail.scheduledDate,
-          start_time: this.sessionDetail.time,
-          study_method: this.sessionDetail.studyMethod,
-          subject: this.sessionType != "assignment" ? this.Subject.id : "",
-          target_duration: this.sessionDetail.duration,
-          repeat: this.sessionDetail.repeat,
-          scheduled_status: "Now",
-          break_time_at: this.sessionDetail.breakTimeAt,
-          break_time: this.sessionDetail.breakTime,
-        };
-      }
-      await this.saveStudySession(payLoad);
-      if (this.successMessage != "") {
-        this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
-          duration: 5000,
-        });
+      // let payLoad = {};
+      // if (this.sessionDetail.type == "assignment") {
+      //   payLoad = {
+      //     assignment_id: this.sessionDetail.assignment_id,
+      //     session_shared_user_id: this.sessionDetail.peers,
+      //     goals: this.sessionDetail.goals,
+      //     date: this.sessionDetail.scheduledDate,
+      //     start_time: this.sessionDetail.time,
+      //     study_method: this.sessionDetail.studyMethod,
+      //     subject: this.sessionType != "assignment" ? this.Subject.id : "",
+      //     target_duration: this.sessionDetail.duration,
+      //     repeat: this.sessionDetail.repeat,
+      //     scheduled_status: "Now",
+      //     break_time_at: this.sessionDetail.breakTimeAt,
+      //     break_time: this.sessionDetail.breakTime,
+      //   };
+      // } else {
+      //   payLoad = {
+      //     session_shared_user_id: this.sessionDetail.peers,
+      //     goals: this.sessionDetail.goals,
+      //     date: this.sessionDetail.scheduledDate,
+      //     start_time: this.sessionDetail.time,
+      //     study_method: this.sessionDetail.studyMethod,
+      //     subject: this.sessionType != "assignment" ? this.Subject.id : "",
+      //     target_duration: this.sessionDetail.duration,
+      //     repeat: this.sessionDetail.repeat,
+      //     scheduled_status: "Now",
+      //     break_time_at: this.sessionDetail.breakTimeAt,
+      //     break_time: this.sessionDetail.breakTime,
+      //   };
+      // }
+      // await this.saveStudySession(payLoad);
+      // if (this.successMessage != "") {
+      //   this.$toast.open({
+      //     message: this.successMessage,
+      //     type: this.SuccessType,
+      //     duration: 5000,
+      //   });
         if (this.limitedInterval > 0) {
           await clearInterval(this.limitedInterval);
         }
@@ -3647,13 +3718,13 @@ export default {
 
         this.currentTab = 4;
         this.Timer();
-      } else if (this.errorMessage != "") {
-        this.$toast.open({
-          message: this.errorMessage,
-          type: this.errorType,
-          duration: 5000,
-        });
-      }
+      // } else if (this.errorMessage != "") {
+      //   this.$toast.open({
+      //     message: this.errorMessage,
+      //     type: this.errorType,
+      //     duration: 5000,
+      //   });
+      // }
     },
     resetTab3() {
       this.sessionMode = "";
