@@ -444,6 +444,7 @@
         custom-margin-for-main-section custom-full-height
         d-flex
         flex-column
+        hidden-scroll
       "
     >
       <h2 class="color-primary font-bold mb-1">Step One:</h2>
@@ -456,8 +457,8 @@
         </button>
         <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
       </div>
-      <div class="d-flex flex-column h-40 flex-fill custom-overflow">
-        <div class="row h-100">
+      <div>
+        <div class="row">
           <div
             v-for="detail in assignmentList"
             :key="detail.id"
