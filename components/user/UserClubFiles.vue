@@ -39,8 +39,17 @@
         <!-- end tab for club files -->
 
         <!-- Club files -->
-        <div class="cd-cover-pic-section position-relative">
-          <img :src="clubDetails.club_banner_image" alt="" />
+        <div
+          class="cd-cover-pic-section position-relative"
+          v-bind:style="{
+            'background-image':
+              'url(' +
+              (clubBannerImage
+                ? clubBannerImage
+                : '../../image/cover-pic.jpg') +
+              ')',
+          }"
+        >
           <div class="black-grad"></div>
           <div
             class="
@@ -887,6 +896,7 @@ export default {
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
+      clubBannerImage: (state) => state.clubBannerImage,
     }),
     ...mapState("clubMoreInfo", {
       clubMoreDetails: (state) => state.clubMoreDetails,
