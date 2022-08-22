@@ -2598,6 +2598,24 @@ import * as animationData from "~/assets/animation.json";
 import { mapState, mapActions } from "vuex";
 import VueTimepicker from "vue2-timepicker";
 export default {
+  beforeRouteLeave(to, from, next) {
+    // if (!window.confirm("Leave without saving?")) {
+    //   next(false);
+    //   return;
+    // }
+
+    // next();
+    console.log(`from ${from.name} to ${to.name} next ${next.name} `);
+    const answer = confirm(
+      "Do you really want to leave? you have unsaved changes!"
+    );
+    if (answer) {
+      next();
+    } else {
+      next(false);
+    }
+  },
+
   name: "ClubEditForm",
   components: {
     lottie,
@@ -2725,13 +2743,6 @@ export default {
     this.GetSubjectList();
     this.GetStudyTypes();
     this.getAllStudySessions();
-  },
-  beforeRouteLeave(to, from, next) {
-    if (!window.confirm("Leave without saving?")) {
-      return;
-    }
-
-    next();
   },
 
   validations: {
@@ -3710,14 +3721,14 @@ export default {
       //     type: this.SuccessType,
       //     duration: 5000,
       //   });
-        if (this.limitedInterval > 0) {
-          await clearInterval(this.limitedInterval);
-        }
-        this.submitted = false;
-        this.processing = false;
+      if (this.limitedInterval > 0) {
+        await clearInterval(this.limitedInterval);
+      }
+      this.submitted = false;
+      this.processing = false;
 
-        this.currentTab = 4;
-        this.Timer();
+      this.currentTab = 4;
+      this.Timer();
       // } else if (this.errorMessage != "") {
       //   this.$toast.open({
       //     message: this.errorMessage,
@@ -3767,14 +3778,15 @@ export default {
 
   //   // return next();
   // },
-  beforeDestroy() {
+  beforeDestroy(e) {
     const answer = confirm(
       "Do you really want to leave? you have unsaved changes!"
     );
-    return;
-    // if (!answer) {
-    //   return;
-    // }
+    console.log(e);
+    // return;
+    if (!answer) {
+      e.preventDefault();
+    }
   },
   // beforeRouteLeave(to, from, next) {
   //   // const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
