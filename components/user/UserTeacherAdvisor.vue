@@ -467,6 +467,9 @@
                   "
                 >
                   Select a student to show details
+                  <div class="position-absolute right-0 col-3">
+                    <img src="../../static/image/advisor-image.png" alt="">
+                  </div>
                 </div>
               </div>
             </div>
