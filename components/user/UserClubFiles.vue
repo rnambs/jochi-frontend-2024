@@ -697,7 +697,7 @@
               class="btn btn-secondary px-4 py-1 rounded-12"
               data-dismiss="modal"
             >
-              Cencel
+              Cancel
             </button>
             <button
               v-if="enableEdit"

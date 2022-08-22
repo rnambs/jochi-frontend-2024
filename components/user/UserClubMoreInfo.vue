@@ -780,7 +780,10 @@
             </button>
           </div> -->
           <div class="modal-body px-4 pt-4">
-            <h3 class="modal-title color-primary font-bold" id="mediumModalLabel">
+            <h3
+              class="modal-title color-primary font-bold"
+              id="mediumModalLabel"
+            >
               Delete
             </h3>
             <p class="text-left color-dark mb-0 font-semi-bold">
@@ -1482,7 +1485,7 @@
               class="btn btn-secondary px-4 py-1 rounded-12"
               data-dismiss="modal"
             >
-              Cencel
+              Cancel
             </button>
             <button
               v-if="enableEdit"
