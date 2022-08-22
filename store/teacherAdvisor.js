@@ -1,7 +1,8 @@
 import { BASE_URL } from "../assets/js/constants";
 
 const state = {
-    agendaList: [],
+    assignmentList: [],
+    sharedAssignmentsList: [],
     studentsList: [],
     studentsListAdvisor: [],
     errorMessage: "",
@@ -22,7 +23,13 @@ const actions = {
                 },
             });
 
-            commit('setAgendaList', response.data);
+            if (response.message) {
+                commit('setSuccessMessage', response.message);
+                commit('setSuccessType', "success");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+            }
+
 
         } catch (e) {
             if (e.response.data.message == "Unauthorized") {
@@ -112,12 +119,43 @@ const actions = {
         }
 
     },
+    async getAssignmentsList({ commit }, payLoad) {
+        try {
+            const token = localStorage.getItem('token')
+            const response = await this.$axios.$get(BASE_URL + `planner/all_assignments?all_assignments=1&student_id=${payLoad.id}`, {
+                headers: {
+                    'Authorization': ` ${token}`
+                },
+            });
+            commit('setAssignmentList', response.assignments);
+            commit('setSharedAssignmentsList', response.shared_assignments);
+        } catch (e) {
+            if (e.response.data.message == "Unauthorized") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                window.localStorage.clear();
+                this.$router.push('/');
+            }
+            else {
+                commit('setErrorMessage', e.response.data.message);
+                commit('setErrorType', "error");
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+            }
+        }
+
+    },
 
 }
 
 const mutations = {
-    setAgendaList(state, data) {
-        state.agendaList = data;
+    setAssignmentList(state, data) {
+        state.assignmentList = data;
+    },
+    setSharedAssignmentsList(state, data) {
+        state.sharedAssignmentsList = data;
     },
     setStudentsList(state, data) {
         state.studentsList = data;
@@ -140,8 +178,11 @@ const mutations = {
 
 }
 const getters = {
-    agendaList: () => {
-        return state.agendaList;
+    assignmentList: () => {
+        return state.assignmentList;
+    },
+    sharedAssignmentsList: () => {
+        return state.sharedAssignmentsList;
     },
     studentsList: () => {
         return state.studentsList;

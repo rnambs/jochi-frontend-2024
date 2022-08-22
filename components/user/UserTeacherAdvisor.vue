@@ -252,11 +252,12 @@
                             </div>
                             <div class="col-7 col-md-11 col-lg-8 p-1">
                               <p class="mb-0 color-dark text-16 font-semi-bold">
-                                <span>Southside Middle School</span>
+                                <!-- <span>Southside Middle School</span> -->
+                                <span>{{ studentDetail.schools.name }}</span>
                               </p>
                             </div>
                           </div>
-                          <div class="row m-0">
+                          <!-- <div class="row m-0">
                             <div class="col-12 col-sm-3 col-md-12 col-lg-2 p-1">
                               <p class="mb-0 color-dark text-16 font-regular">
                                 <span>Class</span>
@@ -280,12 +281,149 @@
                                 <span>7</span>
                               </p>
                             </div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </div>
                     <div class="card card-primary-void rounded-22 p-4 h-100">
                       <h2 class="color-primary font-semi-bold">Assignment</h2>
+                      <div class="row">
+                        <div
+                          v-for="detail in pendingAssignments"
+                          :key="detail.id"
+                          class="col-md-6 col-lg-4"
+                        >
+                          <!-- @click="onAssignmentSelect(detail)" -->
+                          <div
+                            class="
+                              jochi-sub-components-light-bg
+                              drag-drop
+                              p-4
+                              position-realtive
+                              h-100
+                              d-flex
+                              flex-column
+                              justify-content-between
+                              cursor-pointer
+                            "
+                          >
+                            <div class="d-flex flex-column">
+                              <div
+                                class="
+                                  assignment-tag-section
+                                  d-flex
+                                  align-items-center
+                                  mb-2
+                                "
+                              >
+                                <div
+                                  class="assignment-tag mr-2"
+                                  :class="
+                                    detail.priority == '1'
+                                      ? 'red'
+                                      : detail.priority == '2'
+                                      ? 'orange'
+                                      : detail.priority == '3'
+                                      ? 'yellow'
+                                      : ''
+                                  "
+                                >
+                                  {{
+                                    detail.priority == "1"
+                                      ? "Urgent"
+                                      : detail.priority == "2"
+                                      ? "Important"
+                                      : detail.priority == "3"
+                                      ? "Can Wait"
+                                      : ""
+                                  }}
+                                </div>
+                                <div class="assignment-tag pink">
+                                  {{ detail.subject }}
+                                </div>
+                              </div>
+                              <div class="text-center">
+                                <h4 class="color-dark font-semi-bold mb-1">
+                                  {{ detail.task }}
+                                </h4>
+                                <div class="text-center px-3">
+                                  <p
+                                    class="
+                                      color-secondary
+                                      text-16
+                                      line-height-1
+                                      font-semi-bold
+                                    "
+                                  >
+                                    {{ detail.subject }}
+                                  </p>
+                                </div>
+                              </div>
+                              <div
+                                v-if="
+                                  detail.subTasks && detail.subTasks.length > 0
+                                "
+                                class="mb-3"
+                              >
+                                <h6 class="color-primary">Sub-tasks</h6>
+                                <div class="to-do-list">
+                                  <div
+                                    v-for="subtask in detail.subTasks"
+                                    :key="subtask.id"
+                                  >
+                                    <div class="pl-2 d-flex align-items-center">
+                                      <input
+                                        type="radio"
+                                        class="mr-2 color-secondary"
+                                      />
+                                      <label
+                                        for=""
+                                        class="mb-0 text-12 color-secondary"
+                                        >{{ subtask.title }}</label
+                                      >
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="">
+                              <h6 class="mb-1 color-primary">
+                                Additional Material
+                              </h6>
+                              <div
+                                class="
+                                  d-flex
+                                  align-items-center
+                                  justify-content-between
+                                "
+                              >
+                                <div
+                                  v-if="detail.assignment_materials"
+                                  class="col-8 py-0 pl-0 material-link"
+                                >
+                                  {{ detail.assignment_materials.file_type }}:{{
+                                    detail.assignment_materials.file_name
+                                  }}
+                                </div>
+
+                                <div
+                                  v-else
+                                  class="col-8 py-0 pl-0 material-link"
+                                >
+                                  <span class="color-secondary"
+                                    >No documents added!</span
+                                  >
+                                </div>
+                                <div
+                                  class="col-4 material-date py-0 text-right"
+                                >
+                                  {{ detail.due_date }}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <!-- analytics -->
@@ -432,6 +570,7 @@ export default {
       selectedStudent: "",
       submitted: false,
       studentDetail: {},
+      pendingAssignments: [],
     };
   },
   mounted() {
@@ -442,6 +581,12 @@ export default {
     ...mapState("teacherAdvisor", {
       studentsList: (state) => state.studentsList,
       studentsListAdvisor: (state) => state.studentsListAdvisor,
+      successMessage: (state) => state.successMessage,
+      successType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+      assignmentList: (state) => state.assignmentList,
+      sharedAssignmentsList: (state) => state.sharedAssignmentsList,
     }),
   },
   methods: {
@@ -449,6 +594,7 @@ export default {
       inviteStudent: "inviteStudent",
       getStudents: "getStudents",
       getStudentsList: "getStudentsList",
+      getAssignmentsList: "getAssignmentsList",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -481,24 +627,26 @@ export default {
           $(".modal").modal("hide");
           $(".modal-backdrop").remove();
           this.$toast.open({
-            message: this.errorMessage,
-            type: this.errorType,
-            duration: 5000,
-          });
-        } else {
-          this.$toast.open({
-            message: "Please select student before proceeding",
-            type: "warning",
+            message: this.successMessage,
+            type: this.successType,
             duration: 5000,
           });
         }
+        this.selectedStudent = "";
         this.submitted = false;
+      } else {
+        this.$toast.open({
+          message: "Please select student before proceeding",
+          type: "warning",
+          duration: 5000,
+        });
       }
     },
     onStudentClick(student) {
       this.showStudentProfile = true;
       this.showStudentAnalytics = false;
       this.studentDetail = student;
+      this.getAssignments();
     },
     onTabClick(tab) {
       if (tab == 1) {
@@ -508,6 +656,90 @@ export default {
         this.showStudentProfile = false;
         this.showStudentAnalytics = true;
       }
+    },
+    async getAssignments() {
+      await this.getAssignmentsList({ id: this.studentDetail.id });
+      this.mapAssignments();
+      this.mapSharedAssignments();
+    },
+    mapAssignments() {
+      if (this.assignmentList && this.assignmentList.length > 0) {
+        this.assignmentList.forEach((e) => {
+          let item = {};
+          item.assignment_description = e.assignment_description;
+          item.assignment_materials = e.assignment_materials;
+          item.completed_date = e.completed_date;
+          item.dueTimeFormat = e.dueTimeFormat;
+          item.due_date = e.due_date;
+          item.due_time = e.due_time;
+          item.id = e.id;
+          item.priority = e.priority;
+          item.schoologyAssignment = e.schoologyAssignment;
+          item.schoologyAssignmentId = e.schoologyAssignmentId;
+          item.subTasks = e.subTasks;
+          item.subject = e.subject;
+          item.subjects = e.subjects;
+          item.task = e.task;
+          item.task_status = e.task_status;
+          item.updatedAt = e.updatedAt;
+          item.user_id = e.user_id;
+          item.peers = this.mapPeers(e);
+          item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+          item.isShared = false;
+          this.pendingAssignments.push(item);
+        });
+      }
+    },
+    mapSharedAssignments() {
+      if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
+        this.sharedAssignmentsList.forEach((e) => {
+          let item = {};
+          if (e.assignments) {
+            item.assignment_description = e.assignments.assignment_description;
+            item.assignment_materials = e.assignment_materials;
+            item.completed_date = e.assignments.completed_date;
+            item.dueTimeFormat = e.assignments.dueTimeFormat;
+            item.due_date = e.assignments.due_date;
+            item.due_time = e.assignments.due_time;
+            item.id = e.assignments.id;
+            item.priority = e.assignments.priority;
+            item.schoologyAssignment = e.assignments.schoologyAssignment;
+            item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+            item.subTasks = e.subTasks;
+            item.subject = e.assignments?.subjects?.subject_name;
+            item.subjects = e.subjects;
+            item.task = e.assignments.task;
+            item.task_status = e.assignments.task_status;
+            item.updatedAt = e.assignments.updatedAt;
+            item.user_id = e.assignments.user_id;
+            item.peers = this.mapPeers(e);
+            item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+            item.isShared = true;
+            this.pendingAssignments.push(item);
+          }
+        });
+      }
+    },
+    mapPeers(e) {
+      let user_id = localStorage.getItem("id");
+      let peers = [];
+      if (e.assignment_shared_users && e.assignment_shared_users.length > 0) {
+        e.assignment_shared_users.forEach((item) => {
+          let peer = {};
+          if (item.shared_users_id != user_id) {
+            peer = item.users;
+            peer.id = item.shared_users_id;
+            peers.push(peer);
+          }
+        });
+      }
+      if (e.assignments?.users) {
+        let user = {};
+        user = e.assignments?.users;
+        user.id = e.user_id;
+        peers.push(user);
+      }
+      return peers;
     },
   },
 };

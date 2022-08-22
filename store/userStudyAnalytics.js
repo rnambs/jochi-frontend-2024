@@ -19,7 +19,7 @@ const actions = {
         try {
             let endpoint = 'studyRoom/mySession'
             if (payLoad.student_id) {
-                endpoint + `?student_id=${payLoad.student_id}`
+                endpoint += `?student_id=${payLoad.student_id}`
             }
             const response = await this.$axios.$get(BASE_URL + endpoint, {
                 headers: {
@@ -73,7 +73,7 @@ const actions = {
         try {
             let endpoint = 'studyRoom/get_daily_goals'
             if (payLoad.student_id) {
-                endpoint + `?student_id=${payLoad.student_id}`
+                endpoint += `?student_id=${payLoad.student_id}`
             }
             const response = await this.$axios.$get(BASE_URL + endpoint, {
                 headers: {
