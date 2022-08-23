@@ -366,91 +366,95 @@
                                     justify-content-between
                                   "
                                 >
-                                <div class="d-flex flex-column">
-                                  <div
-                                    class="
-                                      assignment-tag-section
-                                      d-flex
-                                      align-items-center
-                                      mb-2
-                                    "
-                                  >
-                                    <div class="assignment-tag red mr-2">
-                                      {{
-                                        item.priority == "1"
-                                          ? "Urgent"
-                                          : item.priority == "2"
-                                          ? "Important"
-                                          : item.priority == "3"
-                                          ? "Can Wait"
-                                          : ""
-                                      }}
-                                    </div>
-                                    <div class="assignment-tag pink">
-                                      {{ item.subject }}
-                                    </div>
-                                  </div>
-                                  <div class="assignment-add-section">
-                                    <h4 class="mb-0 text-center word-break">
-                                      {{ item.task }}
-                                    </h4>
-                                    <div class="text-center px-3">
-                                      <p class="word-break">{{ item.assignment_description }}</p>
-                                    </div>
-                                  </div>
-                                  <div class="sub-task-section mb-3">
-                                    <h6>Sub-tasks</h6>
+                                  <div class="d-flex flex-column">
                                     <div
-                                      @click="
-                                        confirmSubTaskComplete(
-                                          $event,
-                                          sub.id,
-                                          item.id
-                                        )
-                                      "
-                                      v-for="sub in item.subTasks"
-                                      :key="sub.id"
                                       class="
-                                        pl-2
+                                        assignment-tag-section
                                         d-flex
                                         align-items-center
-                                        color-secondary
+                                        mb-2
                                       "
                                     >
-                                      <input
-                                        :id="sub.title"
-                                        v-model="sub.title"
-                                        :value="
-                                          sub.task_status == 'Completed'
-                                            ? sub.title
-                                            : ''
+                                      <div class="assignment-tag red mr-2">
+                                        {{
+                                          item.priority == "1"
+                                            ? "Urgent"
+                                            : item.priority == "2"
+                                            ? "Important"
+                                            : item.priority == "3"
+                                            ? "Can Wait"
+                                            : ""
+                                        }}
+                                      </div>
+                                      <div class="assignment-tag pink">
+                                        {{ item.subject }}
+                                      </div>
+                                    </div>
+                                    <div class="assignment-add-section">
+                                      <h4 class="mb-0 text-center word-break">
+                                        {{ item.task }}
+                                      </h4>
+                                      <div class="text-center px-3">
+                                        <p class="word-break">
+                                          {{ item.assignment_description }}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div class="sub-task-section mb-3">
+                                      <h6>Sub-tasks</h6>
+                                      <div
+                                        @click="
+                                          confirmSubTaskComplete(
+                                            $event,
+                                            sub.id,
+                                            item.id
+                                          )
                                         "
-                                        type="radio"
-                                        class="mr-2"
-                                      />
-                                      <label for="" class="mb-0 text-truncate">{{
-                                        sub.title
-                                      }}</label>
-                                    </div>
-                                    <div
-                                      v-if="
-                                        !item.subTasks ||
-                                        item.subTasks.length <= 0
-                                      "
-                                      class="pl-2 d-flex align-items-center"
-                                    >
-                                      <span class="color-secondary text-12"
-                                        >No sub tasks added!</span
+                                        v-for="sub in item.subTasks"
+                                        :key="sub.id"
+                                        class="
+                                          pl-2
+                                          d-flex
+                                          align-items-center
+                                          color-secondary
+                                        "
                                       >
+                                        <input
+                                          :id="sub.title"
+                                          v-model="sub.title"
+                                          :value="
+                                            sub.task_status == 'Completed'
+                                              ? sub.title
+                                              : ''
+                                          "
+                                          type="radio"
+                                          class="mr-2"
+                                        />
+                                        <label
+                                          for=""
+                                          class="mb-0 text-truncate"
+                                          >{{ sub.title }}</label
+                                        >
+                                      </div>
+                                      <div
+                                        v-if="
+                                          !item.subTasks ||
+                                          item.subTasks.length <= 0
+                                        "
+                                        class="pl-2 d-flex align-items-center"
+                                      >
+                                        <span class="color-secondary text-12"
+                                          >No sub tasks added!</span
+                                        >
+                                      </div>
+                                      <!-- <div class="pl-2 d-flex align-items-center">
+                              <input type="radio" class="mr-2" />
+                              <label for="" class="mb-0"
+                                >Start typing to add subtasks</label
+                              >
+                            </div> -->
                                     </div>
-                                    <!-- <div class="pl-2 d-flex align-items-center">
-                                    <input type="radio" class="mr-2" />
-                                    <label for="" class="mb-0"
-                                      >Start typing to add subtasks</label
-                                    >
-                                  </div> -->
                                   </div>
-                                </div>
                                   <div
                                     v-if="item.assignment_materials"
                                     class="addition-material-section"
@@ -466,12 +470,22 @@
                                       "
                                     >
                                       <div
-                                        class="col-8 py-0 pl-0 d-flex flex-column"
+                                        class="
+                                          col-8
+                                          py-0
+                                          pl-0
+                                          d-flex
+                                          flex-column
+                                        "
                                       >
                                         <span
                                           v-for="material in item.assignment_materials"
                                           :key="material.id"
-                                          class="color-secondary w-100 text-truncate text-12"
+                                          class="
+                                            color-secondary
+                                            w-100
+                                            text-truncate text-12
+                                          "
                                         >
                                           <!-- Rubric: -->
                                           {{
@@ -603,7 +617,9 @@
                                     h-100
                                   "
                                 >
-                                  <h4 class="mb-0 blue word-break">{{ item.task }}</h4>
+                                  <h4 class="mb-0 blue word-break">
+                                    {{ item.task }}
+                                  </h4>
                                   <p
                                     v-for="sub in item.subTasks"
                                     class="mb-0 word-break"
@@ -870,7 +886,11 @@
                                       <div class="dropdown input-icon-area">
                                         <button
                                           id="dLabel"
-                                          class="dropdown-select form-control text-left"
+                                          class="
+                                            dropdown-select
+                                            form-control
+                                            text-left
+                                          "
                                           type="button"
                                           data-toggle="dropdown"
                                           aria-haspopup="true"
@@ -1320,6 +1340,7 @@
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
                                     class="h-fit-content"
+                                    @click="openLink(item)"
                                   >
                                     <div
                                       v-if="item.link"
@@ -1351,7 +1372,11 @@
                                       <div class="ld-details-section">
                                         <p class="ld-heading mb-1">
                                           <!-- {{ peer.first_name }} -->
-                                          {{ item.material }}
+                                          {{
+                                            item.file_type
+                                              ? item.file_name
+                                              : item.material
+                                          }}
                                         </p>
                                       </div>
                                     </div>
@@ -1720,6 +1745,7 @@
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
                                     class="h-fit-content"
+                                    @click="openLink(item)"
                                   >
                                     <div
                                       v-if="item.link"
@@ -1751,7 +1777,11 @@
                                       <div class="ld-details-section">
                                         <p class="ld-heading mb-1">
                                           <!-- {{ peer.first_name }} -->
-                                          {{ item.material }}
+                                          {{
+                                            item.file_type
+                                              ? item.file_name
+                                              : item.material
+                                          }}
                                         </p>
                                       </div>
                                     </div>
@@ -2348,6 +2378,7 @@ export default {
       assignmentId: 0,
       isSharedAssignment: false,
       assignmentList: [],
+      assignmentMaterials: [],
     };
   },
   mounted() {
@@ -2989,7 +3020,12 @@ export default {
         this.additionalMaterialList.length > 0
       ) {
         this.additionalMaterialList.forEach((e) => {
-          assignment_materials.push(e.link ? e.link : e.material);
+          // assignment_materials.push(e.link ? e.link : e.material);
+          if (e) {
+            assignment_materials.push(
+              e.link ? e.link : e.name ? e.name : e.material
+            );
+          }
         });
       }
       let subTaskLists = [];
@@ -3083,7 +3119,12 @@ export default {
         this.additionalMaterialList.length > 0
       ) {
         this.additionalMaterialList.forEach((e) => {
-          assignment_materials.push(e.link ? e.link : e.material);
+          // assignment_materials.push(e.link ? e.link : e.material);
+          if (e) {
+            assignment_materials.push(
+              e.link ? e.link : e.name ? e.name : e.material
+            );
+          }
         });
       }
       let subTaskLists = [];
@@ -3146,6 +3187,8 @@ export default {
       this.submitted = false;
       this.value = "";
       this.dateValue = "";
+      this.file = "";
+      this.link = "";
 
       $('input[name="daterange"]').val("");
       fromDate = "";
@@ -3753,7 +3796,15 @@ export default {
         this.assignmentsList.forEach((e) => {
           let item = {};
           item.assignment_description = e.assignment_description;
-          item.assignment_materials = e.assignment_materials;
+          // item.assignment_materials = e.assignment_materials;
+          if (e.assignment_materials && e.assignment_materials.length > 0) {
+            e.assignment_materials.forEach((m) => {
+              let data = {};
+              data = m;
+              this.assignmentMaterials.push(data);
+            });
+          }
+          item.assignment_materials = this.assignmentMaterials;
           item.completed_date = e.completed_date;
           item.dueTimeFormat = e.dueTimeFormat;
           item.due_date = e.due_date;
@@ -3782,7 +3833,15 @@ export default {
           let item = {};
           if (e.assignments) {
             item.assignment_description = e.assignments.assignment_description;
-            item.assignment_materials = e.assignment_materials;
+            // item.assignment_materials = e.assignment_materials;
+            if (e.assignment_materials && e.assignment_materials.length > 0) {
+              e.assignment_materials.forEach((m) => {
+                let data = {};
+                data = m;
+                this.assignmentMaterials.push(data);
+              });
+            }
+            item.assignment_materials = this.assignmentMaterials;
             item.completed_date = e.assignments.completed_date;
             item.dueTimeFormat = e.assignments.dueTimeFormat;
             item.due_date = e.assignments.due_date;
@@ -3981,6 +4040,9 @@ export default {
       // event.stopPropagation();
     },
     confirmSubTaskComplete(event, id, asstId) {
+      if (status == "Completed") {
+        return;
+      }
       this.completeAsstId = asstId;
       this.completeSubTaskId = id;
       $("#completeSubTaskConfirm").modal({ backdrop: true });
@@ -4041,6 +4103,21 @@ export default {
       this.file = "";
       this.link = "";
       // this.ClubFiles();
+    },
+    openLink(material) {
+      console.log(material);
+      let link = material.link
+        ? material.link
+        : material.name
+        ? material.name
+        : material.file_name;
+      if (material.file_type) {
+        link = material.material;
+      }
+      window.open(
+        link,
+        "_blank" // <- This is what makes it open in a new window.
+      );
     },
   },
 };
