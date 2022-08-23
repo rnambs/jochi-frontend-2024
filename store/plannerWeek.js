@@ -168,7 +168,7 @@ const actions = {
         this.$router.push('/');
       }
       else {
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e.response.data.error);
         commit('setErrorType', "error");
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");

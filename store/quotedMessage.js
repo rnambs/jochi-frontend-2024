@@ -192,7 +192,7 @@ const actions = {
         commit('setErrorType', "error");
       }
       else {
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e.response.data.error);
         commit('setErrorType', "error");
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
