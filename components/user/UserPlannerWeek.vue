@@ -1651,7 +1651,9 @@
                                       "
                                     >
                                       <div class="ld-img-section mr-3">
-                                        <div class="ld-img-holder"></div>
+                                        <div class="ld-img-holder">
+                                          <img :src="peer.profile_pic" alt="" />
+                                        </div>
                                       </div>
                                       <div class="ld-details-section">
                                         <p class="ld-heading mb-1">
@@ -2056,7 +2058,9 @@
                                       "
                                     >
                                       <div class="ld-img-section mr-3">
-                                        <div class="ld-img-holder"></div>
+                                        <div class="ld-img-holder">
+                                          <img :src="peer.profile_pic" alt="" />
+                                        </div>
                                       </div>
                                       <div class="ld-details-section">
                                         <p class="ld-heading mb-1">
@@ -4051,6 +4055,7 @@ export default {
       });
     },
     onInvitePeer() {
+      this.peerList = [];
       this.peerSelected.forEach((e) => {
         this.peerList.push(e);
       });
