@@ -1,18 +1,23 @@
 <template>
-  <div class="container-fluid main-container jochi-main-bg-light">
+  <div class="container-fluid main-container jochi-main-bg-light vh-100 d-flex align-items-center justify-content-center">
     <lottie
       v-if="loading"
       :options="lottieOptions"
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     />
-    <h2 v-if="!processed">
-      Your request for {{ response == 1 ? "approving" : "rejecting" }} the club
-      is in progress...
-    </h2>
-    <h2 v-else>
-      Club details successfully {{ response == 1 ? "approved" : "rejected" }}
-    </h2>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <div class="col-7 col-sm-6 col-md-5 col-lg-3">
+        <img src="../static/image/process-image.png" alt="" class="img-responsive jump">
+      </div>
+      <h5 v-if="!processed" class="border-top pt-2 color-black">
+        Your request for {{ response == 1 ? "approving" : "rejecting" }} the club
+        is in progress...
+      </h5>
+      <h5 v-else  class="border-top pt-2 color-black">
+        Club details successfully {{ response == 1 ? "approved" : "rejected" }}
+      </h5>
+    </div>
   </div>
 </template>
 <script>
