@@ -228,7 +228,7 @@
                           justify-content-between
                           align-items-center
                           px-5
-                          pb-3
+                          pb-2
                         "
                       >
                         <h2 class="color-primary font-semi-bold">Pending</h2>
@@ -337,7 +337,7 @@
                           h-40
                           flex-fill
                           hidden-scroll
-                          py-4
+                          py-3
                           px-5
                         "
                       >
@@ -361,8 +361,12 @@
                                     position-realtive
                                     h-100
                                     cursor-pointer
+                                    d-flex
+                                    flex-column
+                                    justify-content-between
                                   "
                                 >
+                                <div class="d-flex flex-column">
                                   <div
                                     class="
                                       assignment-tag-section
@@ -440,12 +444,13 @@
                                       >
                                     </div>
                                     <!-- <div class="pl-2 d-flex align-items-center">
-                              <input type="radio" class="mr-2" />
-                              <label for="" class="mb-0"
-                                >Start typing to add subtasks</label
-                              >
-                            </div> -->
+                                    <input type="radio" class="mr-2" />
+                                    <label for="" class="mb-0"
+                                      >Start typing to add subtasks</label
+                                    >
+                                  </div> -->
                                   </div>
+                                </div>
                                   <div
                                     v-if="item.assignment_materials"
                                     class="addition-material-section"
@@ -865,7 +870,7 @@
                                       <div class="dropdown input-icon-area">
                                         <button
                                           id="dLabel"
-                                          class="dropdown-select form-control"
+                                          class="dropdown-select form-control text-left"
                                           type="button"
                                           data-toggle="dropdown"
                                           aria-haspopup="true"
@@ -1203,7 +1208,7 @@
                                     </button>
                                   </div>
                                 </div>
-                                <div class="hidden-scroll p-3 row my-0">
+                                <div class="hidden-scroll px-3 row my-0">
                                   <div
                                     v-for="peer of peerList"
                                     :key="peer.id"
@@ -1310,7 +1315,7 @@
                                     </button>
                                   </div>
                                 </div>
-                                <div class="hidden-scroll p-3 row my-0">
+                                <div class="hidden-scroll px-3 row my-0">
                                   <div
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
@@ -1603,7 +1608,7 @@
                                     </button>
                                   </div>
                                 </div>
-                                <div class="hidden-scroll p-3 row my-0">
+                                <div class="hidden-scroll px-3 row my-0">
                                   <div
                                     v-for="peer of peerList"
                                     :key="peer.id"
@@ -1710,7 +1715,7 @@
                                     </button>
                                   </div>
                                 </div>
-                                <div class="hidden-scroll p-3 row my-0">
+                                <div class="hidden-scroll px-3 row my-0">
                                   <div
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
@@ -1971,7 +1976,7 @@
                           <div class="dropdown input-icon-area">
                             <button
                               id="dLabel"
-                              class="dropdown-select form-control"
+                              class="dropdown-select form-control text-left"
                               type="button"
                               data-toggle="dropdown"
                               aria-haspopup="true"

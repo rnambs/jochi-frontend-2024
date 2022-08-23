@@ -224,7 +224,7 @@
                           <div class="dropdown input-icon-area">
                             <button
                               id="dLabel"
-                              class="dropdown-select form-control"
+                              class="dropdown-select form-control text-left"
                               type="button"
                               data-toggle="dropdown"
                               aria-haspopup="true"
