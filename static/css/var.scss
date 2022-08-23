@@ -1042,7 +1042,8 @@ $sm-screen-h         : 767.98px;
                                 border-radius: 3px;
                             }
                             a.fc-timegrid-more-link.fc-more-link{
-                                background-color: $global-background-color;
+                                background-color: rgb(167 167 167 / 45%);
+                                backdrop-filter: blur(6px);
                                 color: $global-font-color;
                                 transform: translateY(1px);
                                 border: 1px solid $border-color;

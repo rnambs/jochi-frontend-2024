@@ -5199,6 +5199,7 @@ switch to violet when it is active*/
                 }
                 .close{
                     color: $theme-color;
+
                     &:hover{
                         color: $theme-color;
                     }
@@ -6127,6 +6128,9 @@ select.form-control{
 }
 .close{
     color: $theme-color;
+    width: 24px;
+    height: 24px;
+    opacity: 0.8;
     &:hover{
         color: $theme-color !important;
     }

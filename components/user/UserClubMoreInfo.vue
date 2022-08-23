@@ -17,7 +17,7 @@
         "
       >
         <!-- end tab for club info -->
-        {{ clubBannerImage }}
+        <!-- {{ clubBannerImage }} -->
         <div
           class="cd-cover-pic-section position-relative"
           v-bind:style="{
