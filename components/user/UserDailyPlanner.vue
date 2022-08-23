@@ -290,6 +290,7 @@
                                         text-truncate
                                         w-100
                                       "
+                                      @click="openLink(material)"
                                     >
                                       <!-- Rubric: -->
                                       {{
@@ -1069,6 +1070,7 @@
                                 <div class="row m-0">
                                   <div class="col-9 py-0 pl-0">
                                     <input
+                                      id="fileUpload"
                                       v-if="materialType == 'file'"
                                       type="file"
                                       class="form-control px-2"
@@ -1100,6 +1102,7 @@
                                   type="button"
                                   @click="UploadAttachment"
                                   class="btn btn-primary btn-sm mt-2"
+                                  :disabled="processingUpload"
                                 >
                                   Add
                                 </button>
@@ -1110,6 +1113,7 @@
                                 v-for="item of additionalMaterialList"
                                 :key="item.id"
                                 class="h-fit-content"
+                                @click="openLink(item)"
                               >
                                 <div
                                   v-if="item.link"
@@ -2145,6 +2149,7 @@ export default {
       },
       submitted: false,
       processing: false,
+      processingUpload: false,
       processingCompleteAssignment: false,
       subject: "",
       task: "",
@@ -2611,7 +2616,9 @@ export default {
         this.additionalMaterialList.length > 0
       ) {
         this.additionalMaterialList.forEach((e) => {
-          assignment_materials.push(e.link ? e.link : e.material);
+          assignment_materials.push(
+            e.link ? e.link : e.name ? e.name : e.material
+          );
         });
       }
       let subTaskLists = [];
@@ -3275,6 +3282,7 @@ export default {
     onFileChange(e) {
       if (e.target.files[0]) {
         this.file = e.target.files[0];
+        e.target.files[0].value = "";
 
         // if (this.file_type.includes("pdf")) {
         //   this.fileCheck = true;
@@ -3297,31 +3305,50 @@ export default {
     },
     async UploadAttachment() {
       console.log("attachment");
+
+      this.processingUpload = true;
       const data = new FormData();
       if (this.materialType == "file") {
         data.append("file", this.file);
+        await this.uploadAdditionalMaterial(data, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        console.log(this.newAdditionalMaterial);
+        this.additionalMaterialList.push({
+          id: this.newAdditionalMaterial.id,
+          name: this.newAdditionalMaterial.material,
+          material: this.file.name,
+        });
+        this.processingUpload = false;
+        this.file = "";
+        document.querySelector("#fileUpload").value = "";
       } else {
         this.additionalMaterialList.push({
           id: Math.random(),
           link: this.link,
         });
+        this.link = "";
+        this.processingUpload = false;
         return;
       }
 
-      await this.uploadAdditionalMaterial(data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      console.log(this.newAdditionalMaterial);
-      this.additionalMaterialList.push({
-        id: this.newAdditionalMaterial.id,
-        material: this.newAdditionalMaterial.material,
-      });
-      this.file = "";
-      this.link = "";
       // this.ClubFiles();
+    },
+
+    openLink(material) {
+      let link =
+        material.file_type == "link"
+          ? material.material
+          : material.name
+          ? material.name
+          : material.file_name;
+      window.open(
+        link,
+        "_blank" // <- This is what makes it open in a new window.
+      );
     },
   },
 };
