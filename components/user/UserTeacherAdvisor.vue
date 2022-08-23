@@ -74,6 +74,7 @@
                         p-3
                         student-list
                         border-bottom
+                        cursor-pointer
                       "
                     >
                       <div class="ld-img-section mr-3">
@@ -217,7 +218,7 @@
                         class="
                           d-flex
                           flex-column flex-fill
-                          justify-content-center
+                          justify-content-center w-50
                         "
                       >
                         <h2 class="color-primary font-semi-bold">
@@ -332,6 +333,8 @@
                                 flex-column
                                 justify-content-between
                                 cursor-pointer
+                                assignment-status
+                                position-relative
                               "
                               :class="{
                                 selected: detail.task_status == 'Completed',
@@ -467,6 +470,10 @@
                                     }}</span>
                                   </div>
                                 </div>
+                              </div>
+                              <div class="position-absolute w-100 h-100 d-flex align-items-start justify-content-end success-image">
+                                <!-- <img src="../../static/image/done.png" alt="" class="position-absolute"> -->
+                                <span class="color-primary text-30 check position-absolute"><i class="fas fa-check-circle"></i></span>
                               </div>
                             </div>
                           </div>

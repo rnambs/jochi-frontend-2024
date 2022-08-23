@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <div class="sufee-login d-flex align-content-center flex-wrap">
+  <div class="inner-section">
+    <div class="main-section sufee-login d-flex vh-100 align-content-center flex-wrap">
       <div class="container">
-        <div class="login-content">
+        <div class="login-content d-flex flex-column align-items-center justify-content-center">
           <div class="login-logo">
             <img
               class="align-content"
@@ -10,8 +10,8 @@
               alt=""
             />
           </div>
-          <div class="login-form">
-            Please wait! Your credentials are being verified!
+          <div class="">
+            <span class="text-center">Please wait! Your credentials are being verified!</span>
           </div>
         </div>
       </div>
