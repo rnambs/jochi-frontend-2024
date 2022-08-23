@@ -497,48 +497,50 @@
         >
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="inviteStudentModalLongTitle">
+              <h3 class="modal-title" id="inviteStudentModalLongTitle">
                 Choose Student
-              </h5>
-              <button
+              </h3>
+              <!-- <button
                 type="button"
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
               >
                 <span aria-hidden="true">&times;</span>
-              </button>
+              </button> -->
             </div>
             <div class="modal-body no-overflow px-4">
-              <select
-                class="custom-select custom-select-sm mb-3"
-                tabindex=""
-                v-model="selectedStudent"
-                :class="{
-                  'is-invalid': submitted && !selectedStudent,
-                }"
-              >
-                <option
-                  :value="Student.id"
-                  v-for="(Student, index) in studentsList"
-                  :key="index"
+              <div class="form-row">
+                <select
+                  class="custom-select custom-select-sm form-control mb-3"
+                  tabindex=""
+                  v-model="selectedStudent"
+                  :class="{
+                    'is-invalid': submitted && !selectedStudent,
+                  }"
                 >
-                  {{ Student.first_name }}
-                </option>
-                <option v-if="studentsList.length == 0">No data</option>
-              </select>
+                  <option
+                    :value="Student.id"
+                    v-for="(Student, index) in studentsList"
+                    :key="index"
+                  >
+                    {{ Student.first_name }}
+                  </option>
+                  <option v-if="studentsList.length == 0">No data</option>
+                </select>
+              </div>
             </div>
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-color-close"
+                class="btn btn-secondary font-semi-bold rounded-12 py-1 px-4"
                 data-dismiss="modal"
               >
                 Cancel
               </button>
               <button
                 type="button"
-                class="btn btn-color-save"
+                class="btn btn-success color-black rounded-12 font-semi-bold py-1 px-4"
                 @click="inviteStudentAdv"
                 :disabled="submitted"
               >
