@@ -50,7 +50,7 @@
                 </div>
                 <div
                   class="
-                    col-10 col-md-11 col-lg-8
+                    col-10 col-md-11
                     p-0
                     position-absolute
                     assignment-planner-section
@@ -344,7 +344,7 @@
                         <div>
                           <div class="row">
                             <div
-                              class="col-6 py-4"
+                              class="col-12 col-md-6 py-4"
                               v-for="item in pendingAssignments"
                               :key="item.id"
                             >
