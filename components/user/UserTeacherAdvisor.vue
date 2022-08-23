@@ -181,26 +181,28 @@
                     position-realtive
                   "
                 >
-
-                <div
-                  class="tab-btns d-flex align-items-center position-absolute"
-                >
-                  <button
-                    @click="onTabClick(1)"
-                    class="tab-btn mr-3"
-                    id="filterPlanner"
+                  <div
+                    class="tab-btns d-flex align-items-center position-absolute"
                   >
-                    profile
-                  </button>
-                  <button
-                    @click="onTabClick(2)"
-                    class="btn tab-btn"
-                    id="assignmentPlanner"
+                    <button
+                      @click="onTabClick(1)"
+                      class="tab-btn mr-3"
+                      id="filterPlanner"
+                    >
+                      Profile
+                    </button>
+                    <button
+                      @click="onTabClick(2)"
+                      class="btn tab-btn"
+                      id="assignmentPlanner"
+                    >
+                      Study Analytics
+                    </button>
+                  </div>
+                  <div
+                    v-if="showStudentProfile"
+                    class="d-flex flex-column h-40 flex-fill"
                   >
-                    Study Analytics
-                  </button>
-                </div>
-                  <div v-if="showStudentProfile" class="d-flex flex-column h-40 flex-fill">
                     <div class="d-flex py-4 px-0 px-xl-4">
                       <div class="ld-img-section mr-3 mb-3">
                         <div class="ld-img-holder img-holder-lg">
@@ -305,8 +307,12 @@
                         </div>
                       </div>
                     </div>
-                    <div class="card card-primary-void rounded-22 h-40 flex-fill">
-                      <h2 class="color-primary font-semi-bold px-4 pt-4 mb-2">Assignment</h2>
+                    <div
+                      class="card card-primary-void rounded-22 h-40 flex-fill"
+                    >
+                      <h2 class="color-primary font-semi-bold px-4 pt-4 mb-2">
+                        Assignment
+                      </h2>
                       <div class="hidden-scroll px-4 pt-3 mb-3">
                         <div class="row">
                           <div
@@ -327,6 +333,9 @@
                                 justify-content-between
                                 cursor-pointer
                               "
+                              :class="{
+                                selected: detail.task_status == 'Completed',
+                              }"
                             >
                               <div class="d-flex flex-column">
                                 <div
@@ -382,17 +391,22 @@
                                 </div>
                                 <div
                                   v-if="
-                                    detail.subTasks && detail.subTasks.length > 0
+                                    detail.subTasks &&
+                                    detail.subTasks.length > 0
                                   "
                                   class="mb-3"
                                 >
-                                  <h6 class="color-primary font-semi-bold">Sub-tasks</h6>
+                                  <h6 class="color-primary font-semi-bold">
+                                    Sub-tasks
+                                  </h6>
                                   <div class="to-do-list">
                                     <div
                                       v-for="subtask in detail.subTasks"
                                       :key="subtask.id"
                                     >
-                                      <div class="pl-2 d-flex align-items-center">
+                                      <div
+                                        class="pl-2 d-flex align-items-center"
+                                      >
                                         <input
                                           type="radio"
                                           class="mr-2 color-secondary"
@@ -423,10 +437,12 @@
                                     class="col-8 py-0 pl-0 material-link"
                                   >
                                     <span class="text-12">
-                                      {{ detail.assignment_materials.file_type }}:{{
+                                      {{
+                                        detail.assignment_materials.file_type
+                                      }}:{{
                                         detail.assignment_materials.file_name
                                       }}
-                                  </span>
+                                    </span>
                                   </div>
 
                                   <div
@@ -438,9 +454,17 @@
                                     >
                                   </div>
                                   <div
-                                    class="col-4 material-date py-0 text-right pr-0"
+                                    class="
+                                      col-4
+                                      material-date
+                                      py-0
+                                      text-right
+                                      pr-0
+                                    "
                                   >
-                                    <span class="text-12">{{ detail.due_date }}</span>
+                                    <span class="text-12">{{
+                                      detail.due_date
+                                    }}</span>
                                   </div>
                                 </div>
                               </div>
@@ -453,9 +477,9 @@
                   <!-- analytics -->
                   <div v-if="showStudentAnalytics" class="h-100">
                     <!-- <h2 class="color-primary font-semi-bold">Analytics</h2> -->
-                      <UserAdvisorStudyAnalytics
-                        :studentId="studentDetail.id"
-                      ></UserAdvisorStudyAnalytics>
+                    <UserAdvisorStudyAnalytics
+                      :studentId="studentDetail.id"
+                    ></UserAdvisorStudyAnalytics>
                   </div>
                   <!-- end analytics -->
                 </div>
@@ -471,9 +495,11 @@
                     justify-content-center
                   "
                 >
-                  <h6 class="color-secondary">Select a student to show details</h6>
+                  <h6 class="color-secondary">
+                    Select a student to show details
+                  </h6>
                   <div class="position-absolute advisor-image col-3">
-                    <img src="../../static/image/advisor-image.png" alt="">
+                    <img src="../../static/image/advisor-image.png" alt="" />
                   </div>
                 </div>
               </div>
