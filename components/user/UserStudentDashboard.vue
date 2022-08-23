@@ -436,9 +436,8 @@
                     :key="item.id"
                     class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                   >
-                    {{ item.task }}
-                    {{ item.due_date }}
-                    {{ item.due_time }}
+                    <p class="mb-2 word-break text-16 font-semi-bold color-dark">{{ item.task }}</p>
+                    <p class="mb-0 text-14"><span>{{ item.due_date }}</span><span>{{ item.due_time }}</span></p>
                   </div>
                   <!-- <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
                     .

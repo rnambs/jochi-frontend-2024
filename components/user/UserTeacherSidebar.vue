@@ -46,7 +46,7 @@
                   mb-3
                 "
               >
-                <h5 class="notify-head">Notificaitons</h5>
+                <h5 class="notify-head">Notifications</h5>
                 <button
                   class="btn btn-sm notify-btn mb-3"
                   @click="clearNotifications()"
@@ -151,7 +151,7 @@
                         mb-3
                       "
                     >
-                      <h5 class="notify-head">Notificaitons</h5>
+                      <h5 class="notify-head">Notifications</h5>
                       <button
                         class="btn btn-sm notify-btn mb-3"
                         @click="clearNotifications()"

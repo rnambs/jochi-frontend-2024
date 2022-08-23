@@ -831,7 +831,7 @@
                                         type="radio"
                                         class="mr-2"
                                       />
-                                      <label for="" class="mb-0">{{
+                                      <label for="" class="mb-0 text-truncate">{{
                                         sub.title
                                       }}</label>
                                     </div>
@@ -1272,7 +1272,7 @@
                                       <div class="dropdown input-icon-area">
                                         <button
                                           id="dLabel"
-                                          class="dropdown-select form-control"
+                                          class="dropdown-select form-control text-left"
                                           type="button"
                                           data-toggle="dropdown"
                                           aria-haspopup="true"
@@ -1610,7 +1610,7 @@
                                     </button>
                                   </div>
                                 </div>
-                                <div class="hidden-scroll p-3 row my-0">
+                                <div class="hidden-scroll px-3 row my-0">
                                   <div
                                     v-for="peer of peerList"
                                     :key="peer.id"
@@ -1717,7 +1717,7 @@
                                     </button>
                                   </div>
                                 </div>
-                                <div class="hidden-scroll p-3 row my-0">
+                                <div class="hidden-scroll px-3 row my-0">
                                   <div
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
@@ -2010,7 +2010,7 @@
                                     </button>
                                   </div>
                                 </div>
-                                <div class="hidden-scroll p-3 row my-0">
+                                <div class="hidden-scroll px-3 row my-0">
                                   <div
                                     v-for="peer of peerList"
                                     :key="peer.id"
@@ -2117,7 +2117,7 @@
                                     </button>
                                   </div>
                                 </div>
-                                <div class="hidden-scroll p-3 row my-0">
+                                <div class="hidden-scroll px-3 row my-0">
                                   <div
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"

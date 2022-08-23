@@ -95,7 +95,7 @@
                       "
                     >
                       <h5 class="color-primary font-semi-bold mb-0">
-                        Notificaitons
+                        Notifications
                       </h5>
                       <button
                         class="color-dark font-semi-bold text-18"
