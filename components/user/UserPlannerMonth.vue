@@ -839,7 +839,7 @@
                                     id="message-text"
                                     v-model="assignmentDescription"
                                     maxlength="500"
-                                    placeholder="Enter assignement description"
+                                    placeholder="Enter assignment description"
                                     :class="{
                                       'is-invalid':
                                         submitted &&
