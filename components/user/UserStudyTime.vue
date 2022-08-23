@@ -509,7 +509,7 @@
                   </div>
                 </div>
                 <div class="text-center">
-                  <h4 class="color-dark font-semi-bold mb-1 word-break">
+                  <h4 class="color-dark font-semi-bold mb-1">
                     <!-- French Oral Practice -->
                     {{ detail.task }}
                   </h4>
@@ -520,7 +520,6 @@
                         text-16
                         line-height-1
                         font-semi-bold
-                        word-break
                       "
                     >
                       <!-- Practice for mock oral exam in class -->
@@ -532,12 +531,12 @@
                   v-if="detail.subTasks && detail.subTasks.length > 0"
                   class="mb-3"
                 >
-                  <h6 class="color-primary font-semi-bold">Sub-tasks</h6>
+                  <h6 class="color-primary">Sub-tasks</h6>
                   <div class="to-do-list">
                     <div v-for="subtask in detail.subTasks" :key="subtask.id">
                       <div class="pl-2 d-flex align-items-center">
                         <input type="radio" class="mr-2 color-secondary" />
-                        <label for="" class="mb-0 text-12 color-secondary text-truncate">{{
+                        <label for="" class="mb-0 text-12 color-secondary">{{
                           subtask.title
                         }}</label>
                       </div>
@@ -552,11 +551,11 @@
                 </div>
               </div>
               <div class="">
-                <h6 class="mb-1 color-primary font-semi-bold">Additional Material</h6>
+                <h6 class="mb-1 color-primary">Additional Material</h6>
                 <div class="d-flex align-items-center justify-content-between">
                   <div
                     v-if="detail.assignment_materials"
-                    class="col-8 py-0 pl-0 material-link text-12 text-truncate"
+                    class="col-8 py-0 pl-0 material-link"
                   >
                     {{ detail.assignment_materials.file_type }}:{{
                       detail.assignment_materials.file_name
@@ -564,10 +563,10 @@
                   </div>
 
                   <div v-else class="col-8 py-0 pl-0 material-link">
-                    <span class="color-secondary text-12">No documents added!</span>
+                    <span class="color-secondary">No documents added!</span>
                   </div>
                   <div class="col-4 material-date py-0 text-right">
-                    <span class="text-12">{{ detail.due_date }}</span>
+                    {{ detail.due_date }}
                   </div>
                 </div>
               </div>

@@ -202,7 +202,9 @@
                                   {{ item.task }}
                                 </h4>
                                 <div class="text-center px-3">
-                                  <p class="word-break">{{ item.assignment_description }}</p>
+                                  <p class="word-break">
+                                    {{ item.assignment_description }}
+                                  </p>
                                 </div>
                               </div>
                               <div class="sub-task-section mb-3">
@@ -270,11 +272,24 @@
                                     justify-content-between
                                   "
                                 >
-                                  <div class="col-8 py-0 pl-0 text-12 d-flex flex-column">
+                                  <div
+                                    class="
+                                      col-8
+                                      py-0
+                                      pl-0
+                                      text-12
+                                      d-flex
+                                      flex-column
+                                    "
+                                  >
                                     <span
                                       v-for="material in item.assignment_materials"
                                       :key="material.id"
-                                      class="color-secondary text-truncate w-100"
+                                      class="
+                                        color-secondary
+                                        text-truncate
+                                        w-100
+                                      "
                                     >
                                       <!-- Rubric: -->
                                       {{
@@ -397,7 +412,9 @@
                                 h-100
                               "
                             >
-                              <h4 class="mb-0 blue word-break">{{ item.task }}</h4>
+                              <h4 class="mb-0 blue word-break">
+                                {{ item.task }}
+                              </h4>
                               <p
                                 v-for="sub in item.subTasks"
                                 class="mb-0 word-break"
@@ -1000,7 +1017,9 @@
                                   "
                                 >
                                   <div class="ld-img-section mr-3">
-                                    <div class="ld-img-holder"></div>
+                                    <div class="ld-img-holder">
+                                      <img :src="peer.profile_pic" alt="" />
+                                    </div>
                                   </div>
                                   <div class="ld-details-section">
                                     <p class="ld-heading mb-1">
