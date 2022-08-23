@@ -158,7 +158,7 @@
                     <div>
                       <div class="row">
                         <div
-                          class="col-6 py-4"
+                          class="col-12 col-md-6 py-4"
                           v-for="item in pendingAssignments"
                           :key="item.id"
                         >
@@ -645,7 +645,7 @@
                                 id="message-text"
                                 v-model="assignmentDescription"
                                 maxlength="500"
-                                placeholder="Enter assignement description"
+                                placeholder="Enter assignment description"
                                 :class="{
                                   'is-invalid':
                                     submitted &&
@@ -1765,7 +1765,7 @@
                   id="message-text"
                   v-model="assignmentDescription"
                   maxlength="500"
-                  placeholder="Enter assignement description"
+                  placeholder="Enter assignment description"
                   :class="{
                     'is-invalid': submitted && $v.assignmentDescription.$error,
                   }"
