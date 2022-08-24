@@ -1353,7 +1353,7 @@
                                   <div
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
-                                    class="h-fit-content cursor-pointer"
+                                    class="h-fit-content cursor-pointer w-100"
                                     @click="openLink(item)"
                                   >
                                     <div
@@ -1364,10 +1364,11 @@
                                         my-2
                                         mr-3
                                         min-w-200
+                                        w-100
                                       "
                                     >
-                                      <div class="ld-details-section">
-                                        <p class="ld-heading mb-1">
+                                      <div class="ld-details-section w-100">
+                                        <p class="ld-heading mb-1 text-link">
                                           <!-- {{ peer.first_name }} -->
                                           {{ item.link }}
                                         </p>
@@ -1381,10 +1382,11 @@
                                         my-2
                                         mr-3
                                         min-w-200
+                                        w-100
                                       "
                                     >
-                                      <div class="ld-details-section">
-                                        <p class="ld-heading mb-1">
+                                      <div class="ld-details-section w-100">
+                                        <p class="ld-heading mb-1 text-link">
                                           <!-- {{ peer.first_name }} -->
                                           {{
                                             item.file_type
@@ -1760,7 +1762,7 @@
                                   <div
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
-                                    class="h-fit-content cursor-pointer"
+                                    class="h-fit-content cursor-pointer w-100"
                                     @click="openLink(item)"
                                   >
                                     <div
@@ -1771,10 +1773,11 @@
                                         my-2
                                         mr-3
                                         min-w-200
+                                        w-100
                                       "
                                     >
-                                      <div class="ld-details-section">
-                                        <p class="ld-heading mb-1">
+                                      <div class="ld-details-section w-100">
+                                        <p class="ld-heading mb-1 text-link">
                                           <!-- {{ peer.first_name }} -->
                                           {{ item.link }}
                                         </p>

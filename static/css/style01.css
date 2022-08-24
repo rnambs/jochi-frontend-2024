@@ -1766,6 +1766,9 @@ img.dark-icon {
   max-height: 36px;
   overflow: hidden;
 }
+.inner-section .main-section #Daily-Calander .text-link:hover, .inner-section .main-section #Weekly-Calander .text-link:hover, .inner-section .main-section #Monthly-Calander .text-link:hover {
+  color: #000000 !important;
+}
 .inner-section .main-section #Daily-Calander .fc-header-toolbar.fc-toolbar.fc-toolbar-ltr {
   justify-content: start;
   align-items: baseline;

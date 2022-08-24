@@ -1327,4 +1327,9 @@ $sm-screen-h         : 767.98px;
         max-height: 36px;
         overflow: hidden;
       }
+      .text-link{
+        &:hover{
+            color: #000000 !important;
+        }
+      }
 }
