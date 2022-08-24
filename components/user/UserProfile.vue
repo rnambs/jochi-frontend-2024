@@ -289,7 +289,7 @@
                         </div>
                       </div> -->
 
-                      <div class="col-12 col-md-7">
+                      <div v-if="user_type == '3'" class="col-12 col-md-7">
                         <div
                           v-if="advisorDetail"
                           class="card card-primary p-3 h-100 d-flex flex-column"
@@ -342,15 +342,16 @@
                             :key="advisor.id"
                             class="
                               d-flex
-                              flex-column
-                              flex-md-row
+                              flex-column flex-md-row
                               align-items-center
                               my-2
                               mr-3
                               min-w-200
                             "
                           >
-                            <div class="ld-img-section mr-0  mr-md-3 mb-2  mb-md-0">
+                            <div
+                              class="ld-img-section mr-0 mr-md-3 mb-2 mb-md-0"
+                            >
                               <div class="ld-img-holder">
                                 <img
                                   v-if="advisor.teacher.profile_pic"
@@ -359,7 +360,15 @@
                                 />
                               </div>
                             </div>
-                            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between w-100">
+                            <div
+                              class="
+                                d-flex
+                                flex-column flex-md-row
+                                align-items-center
+                                justify-content-between
+                                w-100
+                              "
+                            >
                               <div class="ld-details-section">
                                 <p class="ld-heading mb-1">
                                   {{
@@ -369,12 +378,30 @@
                                   }}
                                 </p>
                               </div>
-  
-                              <div class="d-flex align-items-center justify-content-center">
-                                <button class="btn btn-secondary px-4 py-1 rounded-pill mr-2" @click="respondRequest(0, advisor)">
+
+                              <div
+                                class="
+                                  d-flex
+                                  align-items-center
+                                  justify-content-center
+                                "
+                              >
+                                <button
+                                  class="
+                                    btn btn-secondary
+                                    px-4
+                                    py-1
+                                    rounded-pill
+                                    mr-2
+                                  "
+                                  @click="respondRequest(0, advisor)"
+                                >
                                   Reject
                                 </button>
-                                <button class="btn btn-primary px-4 py-1 rounded-pill" @click="respondRequest(1, advisor)">
+                                <button
+                                  class="btn btn-primary px-4 py-1 rounded-pill"
+                                  @click="respondRequest(1, advisor)"
+                                >
                                   Accept
                                 </button>
                               </div>
@@ -449,13 +476,18 @@ export default {
       profile: "",
       defaultImage: defaultImage,
       submitted: false,
+      user_type: "",
     };
   },
 
   mounted() {
     this.UserDetails();
-    this.getAllAdvisors();
-    this.getAdvisor();
+    this.user_type = localStorage.getItem("user_type");
+    console.log(this.user_type, typeof this.user_type);
+    if (this.user_type == "3") {
+      this.getAllAdvisors();
+      this.getAdvisor();
+    }
   },
   computed: {
     ...mapState("profilePage", {
