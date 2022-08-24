@@ -998,18 +998,18 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title color-dark" id="addBannerModalLongTitle">
+          <div class="modal-header px-4">
+            <h3 class="modal-title color-primary" id="addBannerModalLongTitle">
               Add Banner
-            </h4>
-            <button
+            </h3>
+            <!-- <button
               type="button"
               class="close"
               data-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
-            </button>
+            </button> -->
           </div>
           <div class="modal-body no-overflow px-4">
             <div>
@@ -1056,32 +1056,34 @@
                   <v-btn
                     color="primary"
                     class="
-                      btn btn-secondary
-                      color-white
-                      mr-2
-                      py-1
-                      px-3
-                      rounded-pill
-                      text-capitalize
+                    btn btn-secondary
+                    color-white
+                    font-semi-bold
+                    mr-2
+                    py-1
+                    px-3
+                    rounded-12
+                    text-capitalize
                     "
                     text
                     data-dismiss="modal"
                     @click="clearCrop"
-                    >Cancel</v-btn
+                    ><span class="font-semi-bold">Cancel</span></v-btn
                   >
                   <v-btn
                     class="
-                      btn btn-primary
-                      bg-primary
-                      color-white
-                      py-1
-                      px-3
-                      rounded-pill
-                      text-capitalize
-                      shadow-none
+                    btn btn-success
+                    font-semi-bold
+                    bg-primary
+                    color-dark
+                    py-1
+                    px-3
+                    rounded-12
+                    text-capitalize
+                    shadow-none
                     "
                     @click="saveImage(), (dialog = false)"
-                    >Crop</v-btn
+                    ><span class="font-semi-bold">Crop</span></v-btn
                   >
                 </v-card-actions>
               </v-card>
