@@ -8,6 +8,7 @@ const state = {
   successType: "",
   taglist: [],
   enableEdit: '',
+  students: [],
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -545,7 +546,34 @@ const actions = {
 
       }
     }
-  }
+  },
+  async getStudents({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$get(BASE_URL + `users/student_list_for_leaders?club_id=${payLoad.clubId}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      commit('setStudents', response.data);
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
+    }
+
+  },
 }
 const mutations = {
   setTagList(state, data) {
@@ -569,6 +597,9 @@ const mutations = {
   },
   setSuccessType(state, data) {
     state.successType = data;
+  },
+  setStudents(state, data) {
+    state.students = data;
   },
 
 }
@@ -594,6 +625,9 @@ const getters = {
   },
   successType: () => {
     return state.successType;
+  },
+  students: () => {
+    return state.students;
   },
 
 }

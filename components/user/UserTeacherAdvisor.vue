@@ -714,6 +714,7 @@ export default {
             type: this.successType,
             duration: 5000,
           });
+          this.getStudentsList();
         }
         this.selectedStudent = "";
       } else {
