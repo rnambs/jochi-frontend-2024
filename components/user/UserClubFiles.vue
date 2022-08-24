@@ -238,7 +238,12 @@
                                 id="myImg"
                                 :src="list.original_file_name"
                                 alt=""
-                                @click="imagePopUP(list.original_file_name,list.file_name)"
+                                @click="
+                                  imagePopUP(
+                                    list.original_file_name,
+                                    list.file_name
+                                  )
+                                "
                               />
                             </div>
                             <figcaption class="figure-caption">
@@ -260,7 +265,23 @@
                               <div
                                 class="d-flex flex-column w-50 align-items-end"
                               >
-                                <span class="close d-flex align-items-center justify-content-center rounded-circle bg-white color-primary mb-1 font-regular position-absolute z-index-9 mr-2 mt-2" @click="spanClose()"
+                                <span
+                                  class="
+                                    close
+                                    d-flex
+                                    align-items-center
+                                    justify-content-center
+                                    rounded-circle
+                                    bg-white
+                                    color-primary
+                                    mb-1
+                                    font-regular
+                                    position-absolute
+                                    z-index-9
+                                    mr-2
+                                    mt-2
+                                  "
+                                  @click="spanClose()"
                                   >&times;</span
                                 >
                                 <div
@@ -309,7 +330,10 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header pb-0">
-                      <h2 class="modal-title font-bold" id="exampleModalLongTitle">
+                      <h2
+                        class="modal-title font-bold"
+                        id="exampleModalLongTitle"
+                      >
                         Confirmation
                       </h2>
                       <!-- <button
@@ -335,14 +359,26 @@
                     <div class="modal-footer">
                       <button
                         type="button"
-                        class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+                        class="
+                          btn btn-secondary
+                          px-4
+                          py-1
+                          rounded-12
+                          font-semi-bold
+                        "
                         data-dismiss="modal"
                       >
                         No
                       </button>
                       <button
                         type="button"
-                        class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+                        class="
+                          btn btn-success
+                          px-4
+                          py-1
+                          rounded-12
+                          font-semi-bold
+                        "
                         data-dismiss="modal"
                         @click="FileRemove"
                       >
@@ -896,7 +932,6 @@ export default {
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
-      clubBannerImage: (state) => state.clubBannerImage,
     }),
     ...mapState("clubMoreInfo", {
       clubMoreDetails: (state) => state.clubMoreDetails,
@@ -905,6 +940,7 @@ export default {
       SuccessTypeClub: (state) => state.SuccessType,
       errorMessageClub: (state) => state.errorMessage,
       errorTypeClub: (state) => state.errorType,
+      clubBannerImage: (state) => state.clubBannerImage,
     }),
   },
   methods: {
@@ -1103,7 +1139,7 @@ export default {
       this.profilePic = null;
       $("#ElectionDocChange").remove();
     },
-    imagePopUP(src,name) {
+    imagePopUP(src, name) {
       var modal = document.getElementById("myModal");
 
       // Get the image and insert it inside the modal - use its "alt" text as a caption

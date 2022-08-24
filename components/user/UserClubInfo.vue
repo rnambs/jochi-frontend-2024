@@ -1190,7 +1190,6 @@ export default {
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
-      clubBannerImage: (state) => state.clubBannerImage,
     }),
     ...mapState("clubMoreInfo", {
       clubMoreDetails: (state) => state.clubMoreDetails,
@@ -1199,6 +1198,7 @@ export default {
       SuccessTypeClub: (state) => state.SuccessType,
       errorMessageClub: (state) => state.errorMessage,
       errorTypeClub: (state) => state.errorType,
+      clubBannerImage: (state) => state.clubBannerImage,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
