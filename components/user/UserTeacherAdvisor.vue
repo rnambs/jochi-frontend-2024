@@ -74,6 +74,7 @@
                         p-3
                         student-list
                         border-bottom
+                        cursor-pointer
                       "
                     >
                       <div class="ld-img-section mr-3">
@@ -217,7 +218,7 @@
                         class="
                           d-flex
                           flex-column flex-fill
-                          justify-content-center
+                          justify-content-center w-50
                         "
                       >
                         <h2 class="color-primary font-semi-bold">
@@ -332,6 +333,8 @@
                                 flex-column
                                 justify-content-between
                                 cursor-pointer
+                                assignment-status
+                                position-relative
                               "
                               :class="{
                                 selected: detail.task_status == 'Completed',
@@ -468,6 +471,10 @@
                                   </div>
                                 </div>
                               </div>
+                              <div class="position-absolute w-100 h-100 d-flex align-items-start justify-content-end success-image">
+                                <!-- <img src="../../static/image/done.png" alt="" class="position-absolute"> -->
+                                <span class="color-primary text-30 check position-absolute"><i class="fas fa-check-circle"></i></span>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -523,48 +530,50 @@
         >
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="inviteStudentModalLongTitle">
+              <h3 class="modal-title" id="inviteStudentModalLongTitle">
                 Choose Student
-              </h5>
-              <button
+              </h3>
+              <!-- <button
                 type="button"
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
               >
                 <span aria-hidden="true">&times;</span>
-              </button>
+              </button> -->
             </div>
             <div class="modal-body no-overflow px-4">
-              <select
-                class="custom-select custom-select-sm mb-3"
-                tabindex=""
-                v-model="selectedStudent"
-                :class="{
-                  'is-invalid': submitted && !selectedStudent,
-                }"
-              >
-                <option
-                  :value="Student.id"
-                  v-for="(Student, index) in studentsList"
-                  :key="index"
+              <div class="form-row">
+                <select
+                  class="custom-select custom-select-sm form-control mb-3"
+                  tabindex=""
+                  v-model="selectedStudent"
+                  :class="{
+                    'is-invalid': submitted && !selectedStudent,
+                  }"
                 >
-                  {{ Student.first_name }}
-                </option>
-                <option v-if="studentsList.length == 0">No data</option>
-              </select>
+                  <option
+                    :value="Student.id"
+                    v-for="(Student, index) in studentsList"
+                    :key="index"
+                  >
+                    {{ Student.first_name }}
+                  </option>
+                  <option v-if="studentsList.length == 0">No data</option>
+                </select>
+              </div>
             </div>
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-color-close"
+                class="btn btn-secondary font-semi-bold rounded-12 py-1 px-4"
                 data-dismiss="modal"
               >
                 Cancel
               </button>
               <button
                 type="button"
-                class="btn btn-color-save"
+                class="btn btn-success color-black rounded-12 font-semi-bold py-1 px-4"
                 @click="inviteStudentAdv"
                 :disabled="submitted"
               >

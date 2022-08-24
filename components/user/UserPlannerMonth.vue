@@ -344,7 +344,7 @@
                         <div>
                           <div class="row">
                             <div
-                              class="col-12 col-md-6 py-4"
+                              class="col-12 col-md-6 py-3"
                               v-for="item in pendingAssignments"
                               :key="item.id"
                             >
@@ -401,7 +401,7 @@
                                       </div>
                                     </div>
                                     <div class="sub-task-section mb-3">
-                                      <h6>Sub-tasks</h6>
+                                      <h6 class="mb-1">Sub-tasks</h6>
                                       <div
                                         @click="
                                           confirmSubTaskComplete(
@@ -417,6 +417,7 @@
                                           d-flex
                                           align-items-center
                                           color-secondary
+                                          cursor-pointer
                                         "
                                       >
                                         <input

@@ -3787,6 +3787,21 @@ img.dark-icon{
                 right: -54px;
                 bottom: 0px;
             }
+            .assignment-status{
+                position: relative;
+                &.selected{
+                    .success-image{
+                        background-color: rgb(187 118 118 / 35%);
+                        @include borderRadius(22);
+                        top: 0;
+                        left: 0;
+                        span.check{
+                            right: -10px;
+                            top: -10px
+                        }
+                    }
+                }
+            }
             // .text-color{
             //     color: $theme-color;
             // }
@@ -5199,6 +5214,7 @@ switch to violet when it is active*/
                 }
                 .close{
                     color: $theme-color;
+
                     &:hover{
                         color: $theme-color;
                     }
@@ -6127,6 +6143,9 @@ select.form-control{
 }
 .close{
     color: $theme-color;
+    width: 24px;
+    height: 24px;
+    opacity: 0.8;
     &:hover{
         color: $theme-color !important;
     }

@@ -1852,7 +1852,9 @@ img.dark-icon {
   border-radius: 3px;
 }
 .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td a.fc-timegrid-more-link.fc-more-link {
-  background-color: rgba(255, 255, 255, 0.45);
+  background-color: rgba(167, 167, 167, 0.45);
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
   color: #F9F9F9;
   transform: translateY(1px);
   border: 1px solid #f0f0f0;
@@ -2744,6 +2746,19 @@ img.dark-icon {
 .inner-section .main-section .teacher-section .advisor-image {
   right: -54px;
   bottom: 0px;
+}
+.inner-section .main-section .teacher-section .assignment-status {
+  position: relative;
+}
+.inner-section .main-section .teacher-section .assignment-status.selected .success-image {
+  background-color: rgba(187, 118, 118, 0.35);
+  border-radius: 22px;
+  top: 0;
+  left: 0;
+}
+.inner-section .main-section .teacher-section .assignment-status.selected .success-image span.check {
+  right: -10px;
+  top: -10px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .inner-custom-teacher.text-light .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: center;
@@ -5035,6 +5050,9 @@ select.form-control.is-invalid {
 
 .close {
   color: #FF6D6D;
+  width: 24px;
+  height: 24px;
+  opacity: 0.8;
 }
 .close:hover {
   color: #FF6D6D !important;

@@ -238,7 +238,7 @@
                                 id="myImg"
                                 :src="list.original_file_name"
                                 alt=""
-                                @click="imagePopUP(list.original_file_name)"
+                                @click="imagePopUP(list.original_file_name,list.file_name)"
                               />
                             </div>
                             <figcaption class="figure-caption">
@@ -260,7 +260,7 @@
                               <div
                                 class="d-flex flex-column w-50 align-items-end"
                               >
-                                <span class="close" @click="spanClose()"
+                                <span class="close d-flex align-items-center justify-content-center rounded-circle bg-white color-primary mb-1 font-regular position-absolute z-index-9 mr-2 mt-2" @click="spanClose()"
                                   >&times;</span
                                 >
                                 <div
@@ -1103,7 +1103,7 @@ export default {
       this.profilePic = null;
       $("#ElectionDocChange").remove();
     },
-    imagePopUP(src) {
+    imagePopUP(src,name) {
       var modal = document.getElementById("myModal");
 
       // Get the image and insert it inside the modal - use its "alt" text as a caption
@@ -1112,7 +1112,7 @@ export default {
       var captionText = document.getElementById("caption");
       modal.style.display = "block";
       modalImg.src = src;
-      captionText.innerHTML = this.alt;
+      captionText.innerHTML = name;
     },
 
     spanClose() {
