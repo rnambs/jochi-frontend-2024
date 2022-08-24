@@ -107,7 +107,13 @@
           <div class="col-xl-8 h-100">
             <div class="d-flex flex-column h-100">
               <div
-                class="jochi-sub-components-light-bg p-4 pr-1 pb-1 h-fit-content"
+                class="
+                  jochi-sub-components-light-bg
+                  p-4
+                  pr-1
+                  pb-1
+                  h-fit-content
+                "
               >
                 <div class="row position-relative justify-content-between">
                   <div class="col-7"></div>
@@ -130,7 +136,7 @@
               </div>
               <div class="d-flex flex-column h-40 flex-fill">
                 <div class="row mt-1 h-100 flex-column flex-lg-row">
-                  <div class="col-12 col-md-4 h-40 h-lg-100  flex-fill">
+                  <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                     <div class="jochi-sub-components-light-bg h-100">
                       <div
                         class="
@@ -169,9 +175,23 @@
                           ><span>dkjsfajh</span>
                         </vue-ellipse-progress> -->
                         <div class="position-relative d-flex">
-                          <progress-bar :options="options" :value="value" class="d-flex justify-content-center w-100" />
-                          <div class="study-status-img position-absolute d-flex w-100 h-100 align-items-center justify-content-center">
-                            <img src="~/static/image/alarm.png" alt=""  />
+                          <progress-bar
+                            :options="options"
+                            :value="value"
+                            class="d-flex justify-content-center w-100"
+                          />
+                          <div
+                            class="
+                              study-status-img
+                              position-absolute
+                              d-flex
+                              w-100
+                              h-100
+                              align-items-center
+                              justify-content-center
+                            "
+                          >
+                            <img src="~/static/image/alarm.png" alt="" />
                           </div>
                         </div>
                         <div class="study-status-text text-center mb-2">
@@ -185,7 +205,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-12 col-md-8 px-0 h-40 h-lg-100  flex-fill">
+                  <div class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill">
                     <div
                       class="
                         d-flex
@@ -217,8 +237,17 @@
                                   p-3
                                 "
                               >
-                                <p class="color-primary text-12 mb-1">{{ list.date_day }}</p>
-                                <p class="color-primary font-regular text-30 mb-0">
+                                <p class="color-primary text-12 mb-1">
+                                  {{ list.date_day }}
+                                </p>
+                                <p
+                                  class="
+                                    color-primary
+                                    font-regular
+                                    text-30
+                                    mb-0
+                                  "
+                                >
                                   {{ list.date_number }}
                                 </p>
                               </div>
@@ -233,7 +262,14 @@
                                 @click="onCardClick(list)"
                               >
                                 <div class="fa-meeting-faculty-details">
-                                  <p class="mb-1 color-seccondary text-14 font-regular">
+                                  <p
+                                    class="
+                                      mb-1
+                                      color-seccondary
+                                      text-14
+                                      font-regular
+                                    "
+                                  >
                                     {{
                                       list.type == "Teacher"
                                         ? "Faculty Meeting"
@@ -243,7 +279,17 @@
                                   <p class="mb-1 color-dark text-18 font-bold">
                                     {{ list.new_title }}
                                   </p>
-                                  <div class="w-fit-content text-12 px-3 py-1 bg-theme rounded-pill color-white">
+                                  <div
+                                    class="
+                                      w-fit-content
+                                      text-12
+                                      px-3
+                                      py-1
+                                      bg-theme
+                                      rounded-pill
+                                      color-white
+                                    "
+                                  >
                                     {{ list.start_time }}
                                   </div>
                                 </div>
@@ -429,15 +475,35 @@
                 <FullCalendar ref="fullCalendar" :options="calendarOptions" />
               </div>
               <div class="d-flex flex-column h-40 flex-fill">
-                <h4 class="color-black font-semi-bold px-4">Assignments List</h4>
-                <div class="d-flex flex-column h-40 flex-fill hidden-scroll px-4 mb-3 pt-2">
+                <h4 class="color-black font-semi-bold px-4">
+                  Assignments List
+                </h4>
+                <div
+                  class="
+                    d-flex
+                    flex-column
+                    h-40
+                    flex-fill
+                    hidden-scroll
+                    px-4
+                    mb-3
+                    pt-2
+                  "
+                >
                   <div
                     v-for="item in plannerList"
                     :key="item.id"
                     class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                   >
-                    <p class="mb-2 word-break text-16 font-semi-bold color-dark">{{ item.task }}</p>
-                    <p class="mb-0 text-14"><span>{{ item.due_date }}</span><span>{{ item.due_time }}</span></p>
+                    <p
+                      class="mb-2 word-break text-16 font-semi-bold color-dark"
+                    >
+                      {{ item.task }}
+                    </p>
+                    <p class="mb-0 text-14">
+                      <span>{{ item.due_date }}</span
+                      ><span>{{ item.due_time }}</span>
+                    </p>
                   </div>
                   <!-- <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
                     .
@@ -467,8 +533,12 @@
       <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content px-4">
           <div class="modal-header pb-0">
-            <h1 class="modal-title color-primary font-semi-bold mb-0" id="meetingDetailModalLongTitle">
-              <span>{{ meetingDetail.type }}</span> Meeting with <span>{{ meetingDetail.new_title }}</span>
+            <h1
+              class="modal-title color-primary font-semi-bold mb-0"
+              id="meetingDetailModalLongTitle"
+            >
+              <span>{{ meetingDetail.type }}</span> Meeting with
+              <span>{{ meetingDetail.new_title }}</span>
             </h1>
             <!-- <button type="button" class="close">
               <span aria-hidden="true">Edit</span>
@@ -483,8 +553,12 @@
             </button>
           </div>
           <div class="modal-body">
-            <h3 class="color-black font-semi-bold">{{ meetingDetail.dateFormat }}</h3>
-            <h4 class="color-primary font-regular mb-2">{{ meetingDetail.start_time }}</h4>
+            <h3 class="color-black font-semi-bold">
+              {{ meetingDetail.dateFormat }}
+            </h3>
+            <h4 class="color-primary font-regular mb-2">
+              {{ meetingDetail.start_time }}
+            </h4>
             <h4 class="color-primary font-regular mb-2"></h4>
             <form action="">
               <table class="w-100 table-modal custom-row-table">
@@ -501,7 +575,7 @@
                   <td class="tmodal-data d-flex align-items-center flex-wrap">
                     <span class="pr-2"></span>
                     <span>{{ meetingDetail.new_title }} </span> -->
-                    <!-- <div
+                <!-- <div
                       class="invited-members-status mr-2"
                       v-else
                       v-for="(item, index) of invitedMembers"
@@ -523,7 +597,7 @@
                         >{{ item.name }}</span
                       >
                     </div> -->
-                  <!-- </td>
+                <!-- </td>
                 </tr> -->
 
                 <!-- <tr>
@@ -823,10 +897,10 @@ export default {
   mounted() {
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.ShowQuotedMessage();
-    this.firstName = localStorage.getItem("first_name");
     this.getConfiguredGoal();
     this.ListAllMeeting();
     this.GetDailyPlanner(this.calendarApi.getDate());
+    this.firstName = localStorage.getItem("first_name");
   },
   methods: {
     ...mapActions("quotedMessage", {
@@ -857,30 +931,48 @@ export default {
       }
     },
     async getConfiguredGoal() {
-      await this.getGoal();
-      if (this.goal) {
-        this.dailyTimerId = this.goal.id ? this.goal.id : 0;
-        this.duration = !isNaN(Number(this.goal.total_duration_covered))
-          ? Number(this.goal.total_duration_covered)
-          : 0;
-        this.durationRemaining =
-          !isNaN(Number(this.goal.duration)) &&
-          !isNaN(Number(this.goal.total_duration_covered))
-            ? Number(this.goal.duration) -
-              Number(this.goal.total_duration_covered)
-            : 0;
-        let goal =
-          Number(this.goal.duration) > 0 ? Number(this.goal.duration) : 0;
-        var h = Math.floor(goal / 60);
-        var m = goal % 60;
+      await this.getGoal({ student_id: this.studentId });
 
-        this.hours = h;
-        this.minutes = m;
-        var percentageStudied =
-          Number(this.goal.duration) / Number(this.goal.total_duration_covered);
-        percentageStudied = percentageStudied * 100;
-        var percentage = percentageStudied.toFixed(2);
-        this.value = percentage;
+      if (this.goal) {
+        let total_duration = 0;
+        let duration = 0;
+
+        if (this.goal.duration && !isNaN(Number(this.goal.duration))) {
+          duration = Number(this.goal.duration);
+        }
+        if (
+          this.goal.total_duration_covered &&
+          !isNaN(Number(this.goal.total_duration_covered))
+        ) {
+          total_duration = Number(this.goal.total_duration_covered);
+          this.duration = total_duration;
+        }
+        this.durationRemaining = duration - total_duration;
+
+        this.value = (total_duration / duration) * 100;
+
+        // this.dailyTimerId = this.goal.id ? this.goal.id : 0;
+        // this.duration = !isNaN(Number(this.goal.total_duration_covered))
+        //   ? Number(this.goal.total_duration_covered)
+        //   : 0;
+        // this.durationRemaining =
+        //   !isNaN(Number(this.goal.duration)) &&
+        //   !isNaN(Number(this.goal.total_duration_covered))
+        //     ? Number(this.goal.duration) -
+        //       Number(this.goal.total_duration_covered)
+        //     : 0;
+        // let goal =
+        //   Number(this.goal.duration) > 0 ? Number(this.goal.duration) : 0;
+        // var h = Math.floor(goal / 60);
+        // var m = goal % 60;
+
+        // this.hours = h;
+        // this.minutes = m;
+        // var percentageStudied =
+        //   Number(this.goal.duration) / Number(this.goal.total_duration_covered);
+        // percentageStudied = percentageStudied * 100;
+        // var percentage = percentageStudied.toFixed(2);
+        // this.value = percentage;
       }
     },
     openMeetingDetail() {
