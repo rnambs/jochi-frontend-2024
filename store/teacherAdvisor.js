@@ -73,7 +73,8 @@ const actions = {
     },
     async getStudentsList({ commit }, payLoad) {
         const token = localStorage.getItem('token')
-        const response = await this.$axios.$get(BASE_URL + `users/get_students?school_id=${payLoad.school_id}&studentId=${payLoad.studentId}`, {
+        // const response = await this.$axios.$get(BASE_URL + `users/get_students?school_id=${payLoad.school_id}&studentId=${payLoad.studentId}`, {
+        const response = await this.$axios.$get(BASE_URL + `users/student_list_for_advisors?school_id=${payLoad.school_id}`, {
             headers: {
                 'Authorization': ` ${token}`
             },
