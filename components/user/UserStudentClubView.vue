@@ -49,8 +49,8 @@
           </div>
         </div>
 
-        <section id="club-detail" class="custom-height-for-club-detail-section">
-          <div class="club-section container-fluid mt-2">
+        <section id="club-detail" class="custom-height-for-club-detail-section h-40 flex-fill">
+          <div class="club-section container-fluid h-100">
             <div
               class="
                 inner-club
@@ -63,9 +63,10 @@
                 py-0
                 pl-0
                 custom-overflow
+                h-100
               "
             >
-              <div class="info-head my-2">
+              <div class="info-head my-2 mt-4">
                 <div
                   class="d-flex align-items-center justify-content-between mb-3"
                 >
