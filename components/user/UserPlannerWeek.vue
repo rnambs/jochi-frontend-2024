@@ -3621,6 +3621,11 @@ export default {
         );
       } else if (idVal.groupId == "assignment") {
         this.onCardClick(idVal);
+      }else if (idVal.groupId == "club-meeting") {
+        let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
+        return this.$router.push(
+          `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.meeting_type}`
+        );
       }
 
       var idValue = idVal.id;
