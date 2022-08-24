@@ -661,6 +661,7 @@
                             h-100
                             p-4
                             rounded-22
+                            col-12 col-md-8 float-right
                           "
                         >
                           <div
@@ -912,24 +913,24 @@
                                         >
                                           <li
                                             @click="priorityVal = 'Can Wait'"
-                                            class="item"
+                                            class="item low-color"
                                           >
-                                            <div class="low-color"></div>
-                                            Can Wait
+                                            <!-- <div class="low-color priority-color"></div> -->
+                                            <span>Can Wait</span>
                                           </li>
                                           <li
                                             @click="priorityVal = 'Important'"
-                                            class="item"
+                                            class="item medium-color"
                                           >
-                                            <div class="medium-color"></div>
-                                            Important
+                                            <!-- <div class="medium-color priority-color"></div> -->
+                                            <span>Important</span>
                                           </li>
                                           <li
                                             @click="priorityVal = 'Urgent'"
-                                            class="item"
+                                            class="item high-color"
                                           >
-                                            <div class="high-color"></div>
-                                            Urgent
+                                            <!-- <div class="high-color priority-color"></div> -->
+                                            <span>Urgent</span>
                                           </li>
                                         </ul>
                                       </div>
@@ -962,7 +963,7 @@
                                         >Date<em>*</em></label
                                       >
                                       <date-picker
-                                        class="form-control"
+                                        class="form-control dropdown-menu-top"
                                         placeholder="MM/DD/YYYY"
                                         format="MM/dd/yyyy"
                                         v-model="dateValue"
@@ -997,7 +998,7 @@
                                           format="hh:mm A"
                                           v-model="timeValue"
                                           name="timeValue"
-                                          class="show-cursor"
+                                          class="show-cursor dropdown-menu-top"
                                           :value="timeValue"
                                           :class="{
                                             'is-invalid':
@@ -2227,17 +2228,17 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
+              <h3 class="modal-title" id="exampleModalLongTitle">
                 Choose Filter
-              </h5>
-              <button
+              </h3>
+              <!-- <button
                 type="button"
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
               >
                 <span aria-hidden="true">&times;</span>
-              </button>
+              </button> -->
             </div>
             <div class="modal-body px-4">
               <div class="form-row">
@@ -2252,8 +2253,14 @@
             </div>
             <div class="modal-footer px-4">
               <button
+                data-dismiss="modal"
+                class="btn btn-secondary px-4 py-1 rounded-12"
+              >
+                Cancel
+              </button>
+              <button
                 @click="applyFilter"
-                class="btn btn-primary px-4 py-1 rounded-pill"
+                class="btn btn-success px-4 py-1 rounded-12"
               >
                 Apply Filter
               </button>

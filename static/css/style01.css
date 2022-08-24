@@ -401,7 +401,18 @@ input[type=radio] {
   padding: 0.75rem 1rem;
   font-size: 0.8rem;
   color: #431F1C;
+  display: flex;
+  align-items: center;
   cursor: pointer;
+}
+.form-row .dropdown-menu .item.low-color:hover, .form-group .dropdown-menu .item.low-color:hover {
+  background-color: #00CCA0;
+}
+.form-row .dropdown-menu .item.medium-color:hover, .form-group .dropdown-menu .item.medium-color:hover {
+  background-color: #F6D73C;
+}
+.form-row .dropdown-menu .item.high-color:hover, .form-group .dropdown-menu .item.high-color:hover {
+  background-color: #EF382E;
 }
 .form-row .dropdown-menu .item:hover, .form-group .dropdown-menu .item:hover {
   color: #ffffff;
@@ -540,6 +551,11 @@ input[type=radio] {
 .form-row span.vue__time-picker.time-picker.form-white input.display-time, .form-group span.vue__time-picker.time-picker.form-white input.display-time {
   background-color: #ffffff;
 }
+.form-row span.vue__time-picker.time-picker.dropdown-menu-top .dropdown.drop-down, .form-group span.vue__time-picker.time-picker.dropdown-menu-top .dropdown.drop-down {
+  top: unset;
+  bottom: calc(2.2em + 2px);
+  border-radius: 15px;
+}
 .form-row span.vue__time-picker.time-picker input.display-time, .form-group span.vue__time-picker.time-picker input.display-time {
   border: none;
   background-color: rgba(255, 255, 255, 0.5);
@@ -565,7 +581,7 @@ input[type=radio] {
 }
 .form-row span.vue__time-picker.time-picker .dropdown.drop-down .select-list, .form-group span.vue__time-picker.time-picker .dropdown.drop-down .select-list {
   width: 13.3em;
-  border-radius: 5px;
+  border-radius: 15px;
   background-color: #ffffff;
 }
 .form-row span.vue__time-picker.time-picker .dropdown.drop-down .select-list ul, .form-group span.vue__time-picker.time-picker .dropdown.drop-down .select-list ul {
@@ -4785,6 +4801,10 @@ switch to violet when it is active*/
   cursor: pointer;
   padding-top: 0.15em;
 }
+.vdp-datepicker.form-control.dropdown-menu-top .vdp-datepicker__calendar {
+  top: unset;
+  bottom: 42px;
+}
 
 .vdp-datepicker__calendar {
   top: 38px;
@@ -4793,8 +4813,8 @@ switch to violet when it is active*/
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   line-height: 1em;
-  border-radius: 4px;
-  border: 1px solid #ddd;
+  border-radius: 15px;
+  border: 1px solid #ddd !important;
   z-index: 99999 !important;
   padding: 8px 8px 16px;
   overflow: hidden;

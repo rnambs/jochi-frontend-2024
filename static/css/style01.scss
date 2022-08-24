@@ -390,7 +390,24 @@ input[type="radio"]{
             padding: 0.75rem 1rem;
             font-size: 0.8rem;
             color: $text-dark;
+            display: flex;
+            align-items: center;
             cursor: pointer;
+            &.low-color{
+                &:hover{
+                    background-color: $priority-medium;
+                }
+            }   
+            &.medium-color{
+                &:hover{
+                    background-color: $priority-low;
+                }
+            }
+            &.high-color{
+                &:hover{
+                    background-color: $priority-high;
+                }
+            }
             &:hover{
                 color: $white;
                 background: $theme-color;
@@ -524,6 +541,13 @@ input[type="radio"]{
                 background-color: $white;
             }
         }
+        &.dropdown-menu-top{
+            .dropdown.drop-down{
+                top: unset;
+                bottom: calc(2.2em + 2px);
+                @include borderRadius(15);
+            }
+        }
         input.display-time{
             border: none;
             background-color: rgba(255, 255, 255, 0.5);
@@ -556,7 +580,7 @@ input[type="radio"]{
             background-color: $white;
             .select-list{
                 width: 13.3em;
-                border-radius: 5px;
+                @include borderRadius(15);
                 background-color: $white;
                 ul{
                     background-color: rgba(255, 255, 255, 0.5);
@@ -5856,6 +5880,12 @@ switch to violet when it is active*/
         cursor: pointer;
         padding-top: 0.15em;
     }
+    &.dropdown-menu-top{
+        .vdp-datepicker__calendar{
+            top: unset;
+            bottom: 42px;
+        }
+    }
 }
 .vdp-datepicker__calendar{
     top: 38px;
@@ -5864,8 +5894,8 @@ switch to violet when it is active*/
     font-family: $text-style;
     font-size: 14px;
     line-height: 1em;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+    @include borderRadius(15);
+    border: 1px solid #ddd !important;
     z-index: 99999 !important;
     padding: 8px 8px 16px;
     overflow: hidden;

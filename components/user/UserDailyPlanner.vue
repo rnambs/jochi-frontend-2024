@@ -699,24 +699,24 @@
                                     >
                                       <li
                                         @click="priorityVal = 'Can Wait'"
-                                        class="item"
+                                        class="item low-color"
                                       >
-                                        <div class="low-color"></div>
-                                        Can Wait
+                                        <!-- <div class="low-color priority-color"></div> -->
+                                        <span>Can Wait</span>
                                       </li>
                                       <li
                                         @click="priorityVal = 'Important'"
-                                        class="item"
+                                        class="item medium-color"
                                       >
-                                        <div class="medium-color"></div>
-                                        Important
+                                        <!-- <div class="medium-color priority-color"></div> -->
+                                        <span>Important</span>
                                       </li>
                                       <li
                                         @click="priorityVal = 'Urgent'"
-                                        class="item"
+                                        class="item high-color"
                                       >
-                                        <div class="high-color"></div>
-                                        Urgent
+                                        <!-- <div class="high-color priority-color"></div> -->
+                                        <span>Urgent</span>
                                       </li>
                                     </ul>
                                   </div>
@@ -749,7 +749,7 @@
                                     >Date<em>*</em></label
                                   >
                                   <date-picker
-                                    class="form-control"
+                                    class="form-control dropdown-menu-top"
                                     placeholder="MM/DD/YYYY"
                                     format="MM/dd/yyyy"
                                     v-model="dateValue"
@@ -784,7 +784,7 @@
                                       format="hh:mm A"
                                       v-model="timeValue"
                                       name="timeValue"
-                                      class="show-cursor"
+                                      class="show-cursor dropdown-menu-top"
                                       :value="timeValue"
                                       :class="{
                                         'is-invalid':
@@ -1805,17 +1805,17 @@
                         >
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dLabel">
-                        <li class="item">
-                          <div class="low-color"></div>
-                          Can Wait
+                        <li class="item low-color">
+                          <!-- <div class="low-color priority-color"></div> -->
+                          <span>Can Wait</span>
                         </li>
-                        <li class="item">
-                          <div class="medium-color"></div>
-                          Important
+                        <li class="item medium-color">
+                          <!-- <div class="medium-color priority-color"></div> -->
+                          <span>Important</span>
                         </li>
-                        <li class="item">
-                          <div class="high-color"></div>
-                          Urgent
+                        <li class="item high-color">
+                          <!-- <div class="high-color priority-color"></div> -->
+                          <span>Urgent</span>
                         </li>
                       </ul>
                     </div>
@@ -1845,7 +1845,7 @@
                       >Date<em>*</em></label
                     >
                     <date-picker
-                      class="form-control"
+                      class="form-control dropdown-menu-top"
                       placeholder="MM/DD/YYYY"
                       format="MM/dd/yyyy"
                       v-model="dateValue"
@@ -1877,7 +1877,7 @@
                         format="hh:mm A"
                         v-model="timeValue"
                         name="timeValue"
-                        class="show-cursor"
+                        class="show-cursor dropdown-menu-top"
                         :value="timeValue"
                         :class="{
                           'is-invalid': submitted && $v.timeValue.$error,
