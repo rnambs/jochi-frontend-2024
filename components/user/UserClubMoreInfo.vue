@@ -836,7 +836,7 @@
               {{ enableEdit ? (isAnnouncementEdit ? "Edit" : "Add") : "" }}
               Announcement
             </h3>
-            <button
+            <!-- <button
               type="button"
               class="close"
               data-dismiss="modal"
@@ -844,7 +844,7 @@
               @click="resetAnnouncement"
             >
               <span aria-hidden="true">&times;</span>
-            </button>
+            </button> -->
           </div>
           <div class="modal-body no-overflow px-4">
             <form name="announcement">

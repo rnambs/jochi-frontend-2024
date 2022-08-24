@@ -214,6 +214,7 @@
                         d-flex
                         flex-column
                         position-relative
+                        bg-light
                       "
                     >
                       <lottie
