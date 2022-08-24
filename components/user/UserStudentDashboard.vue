@@ -502,7 +502,7 @@
                     </p>
                     <p class="mb-0 text-14">
                       <span>{{ item.due_date }}</span
-                      ><span>{{ item.due_time }}</span>
+                      >&nbsp;<span>{{ item.due_time }}</span>
                     </p>
                   </div>
                   <!-- <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
