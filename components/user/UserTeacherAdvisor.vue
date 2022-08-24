@@ -471,10 +471,10 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="position-absolute w-100 h-100 d-flex align-items-start justify-content-end success-image">
+                              <!-- <div class="position-absolute w-100 h-100 d-flex align-items-start justify-content-end success-image"> -->
                                 <!-- <img src="../../static/image/done.png" alt="" class="position-absolute"> -->
-                                <span class="color-primary text-30 check position-absolute"><i class="fas fa-check-circle"></i></span>
-                              </div>
+                                <!-- <span class="color-primary text-30 check position-absolute"><i class="fas fa-check-circle"></i></span> -->
+                              <!-- </div> -->
                             </div>
                           </div>
                         </div>
