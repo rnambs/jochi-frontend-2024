@@ -3364,6 +3364,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
+      this.peerSelected=[];
       this.isSharedAssignment = false;
       this.subject = "";
       this.assignmentName = "";
