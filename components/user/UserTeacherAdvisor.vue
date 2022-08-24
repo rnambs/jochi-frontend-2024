@@ -719,7 +719,6 @@ export default {
           });
         }
         this.selectedStudent = "";
-        this.submitted = false;
       } else {
         this.$toast.open({
           message: "Please select student before proceeding",
@@ -727,6 +726,7 @@ export default {
           duration: 5000,
         });
       }
+      this.submitted = false;
     },
     onStudentClick(student) {
       this.showStudentProfile = true;

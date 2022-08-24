@@ -39,6 +39,11 @@ const actions = {
                 commit('setErrorType', "");
                 window.localStorage.clear();
                 this.$router.push('/');
+            } else if (e.response.data.message) {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', e.response.data.message);
+                commit('setErrorType', "error");
             }
 
         }
