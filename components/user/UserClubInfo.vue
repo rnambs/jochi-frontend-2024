@@ -1192,6 +1192,7 @@ export default {
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
+      students: (state) => state.students,
     }),
     ...mapState("clubMoreInfo", {
       clubMoreDetails: (state) => state.clubMoreDetails,
@@ -1203,7 +1204,7 @@ export default {
       clubBannerImage: (state) => state.clubBannerImage,
     }),
     ...mapState("teacherMeeting", {
-      students: (state) => state.students,
+      // students: (state) => state.students,
     }),
     ...mapState("clubFiles", {
       successMessageClubFile: (state) => state.successMessage,
@@ -1222,6 +1223,7 @@ export default {
       removeLeader: "removeLeader",
       removeTag: "removeTag",
       addStudentLeader: "addStudentLeader",
+      getStudents: "getStudents",
     }),
     ...mapActions("clubMoreInfo", {
       clubMoreInfo: "clubMoreInfo",
@@ -1229,7 +1231,7 @@ export default {
       slotswithId: "slotswithId",
     }),
     ...mapActions("teacherMeeting", {
-      getStudents: "getStudents",
+      // getStudents: "getStudents",
     }),
     ...mapActions("clubFiles", {
       clubFiles: "clubFiles",
@@ -1530,8 +1532,9 @@ export default {
     // adding student leader
     async GetStudents() {
       await this.getStudents({
-        school_id: localStorage.getItem("school_id"),
-        studentId: localStorage.getItem("id"),
+        // school_id: localStorage.getItem("school_id"),
+        // studentId: localStorage.getItem("id"),
+        clubId: this.$route.query.id,
       });
     },
     async addLeader() {
@@ -1548,6 +1551,7 @@ export default {
         });
         this.leaderUpdate = "";
         this.ClubInfo();
+        this.GetStudents();
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
