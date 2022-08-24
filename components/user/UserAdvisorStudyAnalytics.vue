@@ -4,7 +4,7 @@
     <div class="study-section d-flex flex-column h-100">
       <div class="d-flex align-items-center justify-content-between mb-2 px-2">
         <h2 class="color-primary font-semi-bold mb-0">Study Analytics</h2>
-        <div class="d-flex align-items-center">
+        <!-- <div class="d-flex align-items-center">
           <p class="mb-0 d-flex flex-column text-right">
             <span class="color-dark text-16 font-semi-bold"
               >{{ duration }} Minutes Studied Today</span
@@ -18,7 +18,7 @@
             alt=""
             class="img-fluid icon-img ml-2 clock-icon"
           />
-        </div>
+        </div> -->
       </div>
       <div class="d-flex flex-column hidden-scroll h-100">
         <div class="study-row d-flex flex-column px-2 overflow-unset">

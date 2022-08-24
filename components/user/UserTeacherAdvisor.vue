@@ -77,19 +77,23 @@
                         cursor-pointer
                       "
                     >
-                      <div class="ld-img-section mr-3">
-                        <div class="ld-img-holder">
-                          <img
-                            v-if="student.profile_pic"
-                            :src="student.profile_pic"
-                            alt=""
-                          />
+                      <div
+                        :class="{ selected: student.id == studentDetail.id }"
+                      >
+                        <div class="ld-img-section mr-3">
+                          <div class="ld-img-holder">
+                            <img
+                              v-if="student.profile_pic"
+                              :src="student.profile_pic"
+                              alt=""
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div class="ld-details-section">
-                        <p class="ld-heading mb-1">
-                          {{ student.first_name + " " + student.last_name }}
-                        </p>
+                        <div class="ld-details-section">
+                          <p class="ld-heading mb-1">
+                            {{ student.first_name + " " + student.last_name }}
+                          </p>
+                        </div>
                       </div>
                     </div>
                     <!-- <div
@@ -189,6 +193,7 @@
                       @click="onTabClick(1)"
                       class="tab-btn mr-3"
                       id="filterPlanner"
+                      :class="{ selected: showStudentProfile }"
                     >
                       Profile
                     </button>
@@ -196,6 +201,7 @@
                       @click="onTabClick(2)"
                       class="btn tab-btn"
                       id="assignmentPlanner"
+                      :class="{ selected: showStudentAnalytics }"
                     >
                       Study Analytics
                     </button>
@@ -218,7 +224,8 @@
                         class="
                           d-flex
                           flex-column flex-fill
-                          justify-content-center w-50
+                          justify-content-center
+                          w-50
                         "
                       >
                         <h2 class="color-primary font-semi-bold">
@@ -471,9 +478,27 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="position-absolute w-100 h-100 d-flex align-items-start justify-content-end success-image">
+                              <div
+                                class="
+                                  position-absolute
+                                  w-100
+                                  h-100
+                                  d-flex
+                                  align-items-start
+                                  justify-content-end
+                                  success-image
+                                "
+                              >
                                 <!-- <img src="../../static/image/done.png" alt="" class="position-absolute"> -->
-                                <span class="color-primary text-30 check position-absolute"><i class="fas fa-check-circle"></i></span>
+                                <span
+                                  class="
+                                    color-primary
+                                    text-30
+                                    check
+                                    position-absolute
+                                  "
+                                  ><i class="fas fa-check-circle"></i
+                                ></span>
                               </div>
                             </div>
                           </div>
@@ -544,7 +569,7 @@
             </div>
             <div class="modal-body no-overflow px-4">
               <div class="form-row">
-                <select
+                <!-- <select
                   class="custom-select custom-select-sm form-control mb-3"
                   tabindex=""
                   v-model="selectedStudent"
@@ -560,7 +585,18 @@
                     {{ Student.first_name }}
                   </option>
                   <option v-if="studentsList.length == 0">No data</option>
-                </select>
+                </select> -->
+                <multiselect
+                  v-model="selectedStudent"
+                  :options="studentsList"
+                  track-by="first_name"
+                  label="first_name"
+                  placeholder="
+                                Select students
+                              "
+                >
+                  <span slot="noResult">No data found</span>
+                </multiselect>
               </div>
             </div>
             <div class="modal-footer">
@@ -573,7 +609,14 @@
               </button>
               <button
                 type="button"
-                class="btn btn-success color-black rounded-12 font-semi-bold py-1 px-4"
+                class="
+                  btn btn-success
+                  color-black
+                  rounded-12
+                  font-semi-bold
+                  py-1
+                  px-4
+                "
                 @click="inviteStudentAdv"
                 :disabled="submitted"
               >
@@ -658,7 +701,7 @@ export default {
     async inviteStudentAdv() {
       this.submitted = true;
       if (this.selectedStudent) {
-        await this.inviteStudent({ id: this.selectedStudent });
+        await this.inviteStudent({ id: this.selectedStudent.id });
         if (this.errorMessage != "") {
           this.$toast.open({
             message: this.errorMessage,
