@@ -1056,14 +1056,14 @@
                   <v-btn
                     color="primary"
                     class="
-                    btn btn-secondary
-                    color-white
-                    font-semi-bold
-                    mr-2
-                    py-1
-                    px-3
-                    rounded-12
-                    text-capitalize
+                      btn btn-secondary
+                      color-white
+                      font-semi-bold
+                      mr-2
+                      py-1
+                      px-3
+                      rounded-12
+                      text-capitalize
                     "
                     text
                     data-dismiss="modal"
@@ -1072,15 +1072,15 @@
                   >
                   <v-btn
                     class="
-                    btn btn-success
-                    font-semi-bold
-                    bg-primary
-                    color-dark
-                    py-1
-                    px-3
-                    rounded-12
-                    text-capitalize
-                    shadow-none
+                      btn btn-success
+                      font-semi-bold
+                      bg-primary
+                      color-dark
+                      py-1
+                      px-3
+                      rounded-12
+                      text-capitalize
+                      shadow-none
                     "
                     @click="saveImage(), (dialog = false)"
                     ><span class="font-semi-bold">Crop</span></v-btn
@@ -1608,6 +1608,15 @@ export default {
       }, this.mime_type);
     },
     onFileSelect(e) {
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
       const file = e.target.files[0];
       this.mime_type = file.type;
       this.fileName = file.name;

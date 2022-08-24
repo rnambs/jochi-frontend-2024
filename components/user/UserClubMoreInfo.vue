@@ -2344,6 +2344,15 @@ export default {
       }, this.mime_type);
     },
     onFileSelect(e) {
+      
+
+       if (e?.target?.files[0]?.size && e.target.files[0]?.size > 5 * 1024 * 1024) {
+            return this.$toast.open({
+              message: "File size must be lesser than 5 MB",
+              type: "warning",
+            });
+          }
+
       const file = e.target.files[0];
       this.mime_type = file.type;
       this.fileName = file.name;
