@@ -2999,7 +2999,7 @@ export default {
         console.log(club, this.clubMeetings);
         // this.onCardClick(idVal); club-moreInfo?id=32&name=mailactivitySports&type=Sports
         return this.$router.push(
-          `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.meeting_type}`
+          `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
         );
       }
 

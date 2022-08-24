@@ -3239,7 +3239,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
-      this.peerSelected=[];
+      this.peerSelected = [];
       this.isSharedAssignment = false;
       this.subject = "";
       this.assignmentName = "";
@@ -3403,7 +3403,7 @@ export default {
         return this.$router.push(
           `/viewall-meeting?id=${idVal.id}&type=${idVal.groupId}`
         );
-      }else if (
+      } else if (
         idVal.groupId == "assignment" ||
         idVal.groupId == "shared-assignment"
       ) {
@@ -3414,10 +3414,11 @@ export default {
         if (idVal.groupId == "shared-assignment") {
           data = this.sharedAstList.find((e) => e.id == idVal.id);
         }
-        this.onCardClick(data);} else if (idVal.groupId == "club-meeting") {
+        this.onCardClick(data);
+      } else if (idVal.groupId == "club-meeting") {
         let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
         return this.$router.push(
-          `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.meeting_type}`
+          `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
         );
       }
 
@@ -4071,7 +4072,7 @@ export default {
       // this.subTasksList
       // this.peerSelected
     },
-     mapPeerInvited(data) {
+    mapPeerInvited(data) {
       console.log("map peer ", data, this.students);
       this.peerSelected = [];
       if (data.peers && data.peers?.length > 0 && this.students.length > 0) {

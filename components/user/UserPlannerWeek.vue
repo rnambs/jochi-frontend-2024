@@ -3364,7 +3364,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
-      this.peerSelected=[];
+      this.peerSelected = [];
       this.isSharedAssignment = false;
       this.subject = "";
       this.assignmentName = "";
@@ -3651,7 +3651,7 @@ export default {
       } else if (idVal.groupId == "club-meeting") {
         let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
         return this.$router.push(
-          `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.meeting_type}`
+          `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
         );
       }
 
