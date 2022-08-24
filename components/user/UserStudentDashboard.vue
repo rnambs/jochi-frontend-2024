@@ -809,11 +809,11 @@ export default {
       calendarOptions: {
         showNonCurrentDates: false,
         plugins: [dayGridPlugin, interactionPlugin],
-        // headerToolbar: {
-        //   left: "prev",
-        //   center: "title",
-        //   right: "next",
-        // },
+        headerToolbar: {
+          left: "prev",
+          center: "title",
+          right: "next",
+        },
         customButtons: {
           prev: {
             icon: "chevron-left",
