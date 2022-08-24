@@ -49,7 +49,7 @@
                     ></span> -->
                   </div>
                 </div>
-                <div class="col-md-4 px-0">
+                <div v-if="user == '3'" class="col-md-4 px-0">
                   <div class="custom-switch pb-2 float-right">
                     <input
                       type="checkbox"

@@ -486,6 +486,7 @@
                                             color-secondary
                                             w-100
                                             text-truncate text-12
+                                            cursor-pointer
                                           "
                                         >
                                           <!-- Rubric: -->
@@ -1342,7 +1343,7 @@
                                   <div
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
-                                    class="h-fit-content"
+                                    class="h-fit-content cursor-pointer"
                                     @click="openLink(item)"
                                   >
                                     <div
@@ -1749,7 +1750,7 @@
                                   <div
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
-                                    class="h-fit-content"
+                                    class="h-fit-content cursor-pointer"
                                     @click="openLink(item)"
                                   >
                                     <div
@@ -2474,6 +2475,7 @@ export default {
       sessionList: (state) => state.sessionList,
       sharedAstList: (state) => state.sharedAstList,
       sharedSessionList: (state) => state.sharedSessionList,
+      clubMeetings: (state) => state.clubMeetings,
     }),
     ...mapState("quotedMessage", {
       quoteMessage: (state) => state.quoteMessage,
@@ -2754,6 +2756,45 @@ export default {
         eventList.push(plannerObj);
         this.assignmentList.push(scheduleObject);
       });
+      this.clubMeetings?.forEach((element) => {
+        var meetingobj = {};
+        var listobj = {};
+        if (element.title != null) {
+          var title = "Meeting with " + element.title;
+        }
+        if (element.club_name != null) {
+          var title = element.club_name + " Meeting";
+        }
+
+        // var meeting = element.meeting_type;
+        // if (meeting == "Peer") {
+        //   var color = "#64B5FC";
+        //   meetingobj["groupId"] = "peer-meeting";
+        // } else if (meeting == "Club") {
+        var color = "#07BEB8";
+        meetingobj["groupId"] = "club-meeting";
+        // } else if (meeting == "Teacher") {
+        //   meetingobj["groupId"] = "teacher-meeting";
+        //   var color = "#073BBF";
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.default_slot?.start_time;
+        var tmeMeeting = this.formatAMPM(element.default_slot?.start_time);
+        var start = dateMeeting + "T" + tmeMeeting;
+        meetingobj["title"] = title;
+        meetingobj["color"] = color;
+        meetingobj["start"] = start;
+        meetingobj["id"] = element.clubs?.id;
+        // meetingobj["groupId"] = "Meeting";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Club";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        eventList.push(meetingobj);
+      });
+
       this.meetingList?.forEach((element) => {
         var meetingobj = {};
         var listobj = {};
