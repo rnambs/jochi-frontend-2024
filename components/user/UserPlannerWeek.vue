@@ -3043,20 +3043,15 @@ export default {
       this.meetingList?.forEach((element) => {
         var meetingobj = {};
         var listobj = {};
-        if (element.title != null) {
-          var title = "Meeting with " + element.title;
-        }
-        if (element.club_name != null) {
-          var title = element.club_name + " Meeting";
-        }
+
+        // if (element.club_name != null) {
+        var title = element.meeting_name;
+        // }
 
         var meeting = element.meeting_type;
         if (meeting == "Peer") {
           var color = "#64B5FC";
           meetingobj["groupId"] = "peer-meeting";
-        } else if (meeting == "Club") {
-          var color = "#07BEB8";
-          meetingobj["groupId"] = "club-meeting";
         } else if (meeting == "Teacher") {
           meetingobj["groupId"] = "teacher-meeting";
           var color = "#073BBF";
@@ -3068,7 +3063,7 @@ export default {
         meetingobj["title"] = title;
         meetingobj["color"] = color;
         meetingobj["start"] = start;
-        meetingobj["id"] = element.meeting_id;
+        meetingobj["id"] = element.id;
         // meetingobj["groupId"] = "Meeting";
 
         listobj["title"] = title;
@@ -3789,7 +3784,7 @@ export default {
         meetingobj["title"] = title;
         meetingobj["color"] = color;
         meetingobj["start"] = start;
-        meetingobj["id"] = element.meeting_id;
+        meetingobj["id"] = element.id;
         // meetingobj["groupId"] = "Meeting";
 
         listobj["title"] = title;
