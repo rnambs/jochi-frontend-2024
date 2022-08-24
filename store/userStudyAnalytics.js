@@ -83,13 +83,24 @@ const actions = {
             commit('setGoal', response.data);
 
         } catch (e) {
-            if (e.response.data.message == "Unauthorized") {
+            if (e.response?.data?.message == "Unauthorized") {
                 commit('setSuccessMessage', "");
                 commit('setSuccessType', "");
                 commit('setErrorMessage', "");
                 commit('setErrorType', "");
                 window.localStorage.clear();
                 this.$router.push('/');
+            } else if (e.response?.data?.message) {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', e.response?.data?.message);
+                commit('setErrorType', "error");
+
+            } else if (e.response) {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', e.response);
+                commit('setErrorType', "error");
             }
         }
     },

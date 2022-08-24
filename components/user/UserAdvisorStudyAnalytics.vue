@@ -2,8 +2,8 @@
   <div class="pl-0 h-100">
     <!-- Study Page -->
     <div class="study-section d-flex flex-column h-100">
-      <div class="d-flex align-items-center justify-content-start mb-2 px-2">
-        <h2 class="color-primary font-semi-bold mb-1">Study Analytics</h2>
+      <div class="d-flex align-items-center justify-content-between mb-2 px-2">
+        <h2 class="color-primary font-semi-bold mb-0">Study Analytics</h2>
         <!-- <div class="d-flex align-items-center">
           <p class="mb-0 d-flex flex-column text-right">
             <span class="color-dark text-16 font-semi-bold"
