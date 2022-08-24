@@ -67,6 +67,7 @@
                       @click="onStudentClick(student)"
                       v-for="student in studentsListAdvisor"
                       :key="student.id"
+                      :class="{ 'bg-gray' : student.id == studentDetail.id }"
                       class="
                         d-flex
                         align-items-center
@@ -77,9 +78,6 @@
                         cursor-pointer
                       "
                     >
-                      <div
-                        :class="{ selected: student.id == studentDetail.id }"
-                      >
                         <div class="ld-img-section mr-3">
                           <div class="ld-img-holder">
                             <img
@@ -94,7 +92,6 @@
                             {{ student.first_name + " " + student.last_name }}
                           </p>
                         </div>
-                      </div>
                     </div>
                     <!-- <div
                       class="
