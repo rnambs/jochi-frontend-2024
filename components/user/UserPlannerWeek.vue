@@ -799,11 +799,11 @@
                                       </div>
                                     </div>
                                     <div class="assignment-add-section">
-                                      <h4 class="mb-0 text-center word-break">
+                                      <h4 class="mb-1 text-center word-break">
                                         {{ item.task }}
                                       </h4>
                                       <div class="text-center px-3">
-                                        <p class="word-break">
+                                        <p class="text-truncate pb-3 mb-0">
                                           {{ item.assignment_description }}
                                         </p>
                                       </div>
@@ -887,23 +887,30 @@
                                           flex-column
                                         "
                                       >
-                                        <span
+                                      <div class="d-flex flex-column lext-limited">
+                                        <div 
+                                          class="d-flex w-100"
                                           v-for="material in item.assignment_materials"
                                           :key="material.id"
-                                          class="
-                                            cursor-pointer
-                                            color-secondary
-                                            w-100
-                                            text-truncate text-12
-                                          "
-                                        >
-                                          <!-- Rubric: -->
-                                          {{
-                                            material.file_type == "link"
-                                              ? material.material
-                                              : material.file_name
-                                          }}
-                                        </span>
+                                          >
+                                          <span
+                                            class="
+                                              cursor-pointer
+                                              color-secondary
+                                              w-100
+                                              text-truncate text-12
+                                            "
+                                          >
+                                            <!-- Rubric: -->
+                                            {{
+                                              material.file_type == "link"
+                                                ? material.material
+                                                : material.file_name
+                                            }}
+                                          </span>
+                                        </div>
+                                      </div>
+                                      <span class="color-secondary text-12">+3 more</span>
                                         <span
                                           v-if="
                                             !item.assignment_materials ||
@@ -2549,6 +2556,7 @@
           <div class="modal-footer px-4">
             <button
               aria-label="Close"
+              data-dismiss="modal"
               class="btn btn-secondary px-4 py-1 rounded-12"
             >
               Cancel

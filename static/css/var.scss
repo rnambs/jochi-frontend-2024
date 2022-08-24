@@ -1306,7 +1306,7 @@ $sm-screen-h         : 767.98px;
       
       .assignment-planner-section {
         top: 0;
-        right: -80rem;
+        right: -120rem;
         bottom: 0;
         z-index: 5;
         transition: ease-in-out all 0.8s;
@@ -1322,5 +1322,9 @@ $sm-screen-h         : 767.98px;
       .assignment-planner-section .jochi-components-light-bg {
         background-color: #ffffff;
         height: 100%;
+      }
+      .lext-limited{
+        max-height: 36px;
+        overflow: hidden;
       }
 }

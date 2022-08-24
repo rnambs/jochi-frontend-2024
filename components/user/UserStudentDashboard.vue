@@ -471,7 +471,7 @@
           </div>
           <div class="col-xl-4 h-100 mt-3 mt-xl-0">
             <div class="jochi-sub-components-light-bg h-100 d-flex flex-column">
-              <div class="calendar-sm px-4 pt-4">
+              <div class="calendar-dashboard px-4 pt-4">
                 <FullCalendar ref="fullCalendar" :options="calendarOptions" />
               </div>
               <div class="d-flex flex-column h-40 flex-fill">

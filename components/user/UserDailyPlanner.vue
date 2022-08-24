@@ -202,11 +202,11 @@
                                   </div>
                                 </div>
                                 <div class="assignment-add-section">
-                                  <h4 class="mb-0 text-center word-break">
+                                  <h4 class="mb-1 text-center word-break">
                                     {{ item.task }}
                                   </h4>
                                   <div class="text-center px-3">
-                                    <p class="word-break">
+                                    <p class="text-truncate pb-3 mb-0">
                                       {{ item.assignment_description }}
                                     </p>
                                   </div>
@@ -290,23 +290,30 @@
                                       flex-column
                                     "
                                   >
-                                    <span
-                                      v-for="material in item.assignment_materials"
-                                      :key="material.id"
-                                      class="
-                                        color-secondary
-                                        text-truncate
-                                        w-100
-                                      "
-                                      @click="openLink(material)"
-                                    >
-                                      <!-- Rubric: -->
-                                      {{
-                                        material.file_type == "link"
-                                          ? material.material
-                                          : material.file_name
-                                      }}
-                                    </span>
+                                    <div class="d-flex flex-column lext-limited">
+                                      <div 
+                                          class="d-flex w-100"
+                                          v-for="material in item.assignment_materials"
+                                          :key="material.id"
+                                          @click="openLink(material)"
+                                          >
+                                        <span
+                                        class="
+                                          color-secondary
+                                          text-truncate
+                                          w-100
+                                        "
+                                      >
+                                        <!-- Rubric: -->
+                                        {{
+                                          material.file_type == "link"
+                                            ? material.material
+                                            : material.file_name
+                                        }}
+                                      </span>
+                                      </div>
+                                    </div>
+                                    <span class="color-secondary text-12">+3 more</span>
                                     <span
                                       v-if="
                                         !item.assignment_materials ||
