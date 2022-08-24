@@ -1733,6 +1733,7 @@
                                           class="form-control px-2"
                                           placeholder="Upload File"
                                           @change="onFileChange"
+                                          id="fileUpload"
                                           accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
                                         />
                                       </div>
@@ -2141,6 +2142,7 @@
                                           type="file"
                                           class="form-control px-2"
                                           placeholder="Upload File"
+                                          id="fileUpload"
                                           @change="onFileChange"
                                           accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
                                         />
@@ -4423,6 +4425,17 @@ export default {
       this.additionalMaterial = true;
     },
     onFileChange(e) {
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        document.querySelector("#fileUpload").value = "";
+
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
       if (e.target.files[0]) {
         this.file = e.target.files[0];
 
@@ -4471,6 +4484,8 @@ export default {
       });
       this.file = "";
       this.link = "";
+      document.querySelector("#fileUpload").value = "";
+
       // this.ClubFiles();
     },
     openLink(material) {

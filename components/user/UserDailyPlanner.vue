@@ -3409,6 +3409,18 @@ export default {
       this.additionalMaterial = true;
     },
     onFileChange(e) {
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        document.querySelector("#fileUpload").value = "";
+
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
+
       if (e.target.files[0]) {
         this.file = e.target.files[0];
         e.target.files[0].value = "";

@@ -1321,6 +1321,7 @@
                                     <div class="row m-0">
                                       <div class="col-9 py-0 pl-0">
                                         <input
+                                          id="fileUpload"
                                           v-if="materialType == 'file'"
                                           type="file"
                                           class="form-control px-2"
@@ -4150,6 +4151,17 @@ export default {
       this.additionalMaterial = true;
     },
     onFileChange(e) {
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        document.querySelector("#fileUpload").value = "";
+
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
       if (e.target.files[0]) {
         this.file = e.target.files[0];
 
@@ -4198,6 +4210,8 @@ export default {
       });
       this.file = "";
       this.link = "";
+      document.querySelector("#fileUpload").value = "";
+
       // this.ClubFiles();
     },
     openLink(material) {
