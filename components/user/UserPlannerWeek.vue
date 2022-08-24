@@ -1068,7 +1068,8 @@
                             h-100
                             p-4
                             rounded-22
-                            col-12 col-md-8 float-right
+                            col-12 col-md-8
+                            float-right
                           "
                         >
                           <div
@@ -3621,7 +3622,7 @@ export default {
         );
       } else if (idVal.groupId == "assignment") {
         this.onCardClick(idVal);
-      }else if (idVal.groupId == "club-meeting") {
+      } else if (idVal.groupId == "club-meeting") {
         let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
         return this.$router.push(
           `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.meeting_type}`
@@ -3765,21 +3766,20 @@ export default {
         plannerObj["id"] = id;
         eventList.push(plannerObj);
       });
-      this.meetingList.forEach((element) => {
+      this.meetingList?.forEach((element) => {
         var meetingobj = {};
         var listobj = {};
-        if (element.title != null) {
-          var title = "Meeting with " + element.title;
-        }
-        if (element.club_name != null) {
-          var title = element.club_name + " Meeting";
-        }
+
+        // if (element.club_name != null) {
+        var title = element.meeting_name;
+        // }
+
         var meeting = element.meeting_type;
         if (meeting == "Peer") {
           var color = "#64B5FC";
-        } else if (meeting == "Club") {
-          var color = "#07BEB8";
+          meetingobj["groupId"] = "peer-meeting";
         } else if (meeting == "Teacher") {
+          meetingobj["groupId"] = "teacher-meeting";
           var color = "#073BBF";
         }
         var dateMeeting = element.date;
@@ -3789,8 +3789,8 @@ export default {
         meetingobj["title"] = title;
         meetingobj["color"] = color;
         meetingobj["start"] = start;
-        meetingobj["id"] = element.id;
-        meetingobj["groupId"] = "Meeting";
+        meetingobj["id"] = element.meeting_id;
+        // meetingobj["groupId"] = "Meeting";
 
         listobj["title"] = title;
         listobj["meeting"] = meeting;

@@ -2491,17 +2491,14 @@ export default {
         var meetingobj = {};
         var listobj = {};
 
-        if (element.club_name != null) {
-          var title = element.club_name + " Meeting";
-        }
+        // if (element.club_name != null) {
+        var title = element.meeting_name;
+        // }
 
         var meeting = element.meeting_type;
         if (meeting == "Peer") {
           var color = "#64B5FC";
           meetingobj["groupId"] = "peer-meeting";
-        } else if (meeting == "Club") {
-          var color = "#07BEB8";
-          meetingobj["groupId"] = "club-meeting";
         } else if (meeting == "Teacher") {
           meetingobj["groupId"] = "teacher-meeting";
           var color = "#073BBF";
