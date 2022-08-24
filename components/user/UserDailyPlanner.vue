@@ -2969,6 +2969,13 @@ export default {
         );
       } else if (idVal.groupId == "assignment") {
         this.onCardClick(idVal);
+      } else if (idVal.groupId == "club-meeting") {
+        let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
+        console.log(club, this.clubMeetings);
+        // this.onCardClick(idVal); club-moreInfo?id=32&name=mailactivitySports&type=Sports
+        return this.$router.push(
+          `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.meeting_type}`
+        );
       }
 
       var idValue = idVal.id;
