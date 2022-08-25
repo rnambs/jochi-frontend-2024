@@ -24,13 +24,13 @@ body {
 }
 
 .small-device .main-section {
-  height: calc(100vh - 76px) !important;
+  height: calc(100vh - 86px) !important;
 }
 .small-device .header-section .sidebar-section {
-  height: calc(100vh - 76px - 24px) !important;
+  height: calc(100vh - 86px - 24px) !important;
 }
 .small-device .custom-full-height {
-  height: calc(100vh - 76px - 24px) !important;
+  height: calc(100vh - 86px - 24px) !important;
 }
 
 * {
@@ -1395,7 +1395,11 @@ img.dark-icon {
 @media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .font-icon {
     width: 100%;
+    padding: 0px 14px;
   }
+}
+.inner-section .header-section .sidebar-section .menu-items .font-icon img {
+  width: 2rem;
 }
 .inner-section .header-section .sidebar-section .menu-items span {
   color: #C5C0BD;

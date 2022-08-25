@@ -536,7 +536,7 @@
                     <div v-for="subtask in detail.subTasks" :key="subtask.id">
                       <div class="pl-2 d-flex align-items-center">
                         <input type="radio" class="mr-2 color-secondary" />
-                        <label for="" class="mb-0 text-12 color-secondary">{{
+                        <label for="" class="mb-0 text-14 color-secondary">{{
                           subtask.title
                         }}</label>
                       </div>
@@ -565,7 +565,7 @@
                   <div v-else class="col-8 py-0 pl-0 material-link">
                     <span class="color-secondary">No documents added!</span>
                   </div>
-                  <div class="col-4 material-date py-0 text-right">
+                  <div class="col-4 material-date color-secondary py-0 text-right">
                     {{ detail.due_date }}
                   </div>
                 </div>
