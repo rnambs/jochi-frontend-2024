@@ -949,7 +949,11 @@ export default {
         }
         this.durationRemaining = duration - total_duration;
 
-        this.value = (total_duration / duration) * 100;
+        if (total_duration > 0 || duration > 0) {
+          this.value = (total_duration / duration) * 100;
+        } else {
+          this.value = 0;
+        }
 
         // this.dailyTimerId = this.goal.id ? this.goal.id : 0;
         // this.duration = !isNaN(Number(this.goal.total_duration_covered))

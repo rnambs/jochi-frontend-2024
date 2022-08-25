@@ -231,10 +231,11 @@ export default {
       todoVal: [],
       availability: "",
       tags: [],
+      user: "",
     };
   },
   mounted() {
-    var user = localStorage.getItem("user_type");
+    this.user = localStorage.getItem("user_type");
     // if (user == 3) {
     this.GetTag();
     this.MyClubList();
