@@ -704,6 +704,11 @@ $sm-screen-h         : 767.98px;
       .fc .fc-more-popover .fc-popover-body .fc-timegrid-event {
         border-radius: 12px;
         border: 1px solid #ffffff80 !important;
+        padding: 6px;
+        .fc-event-title{
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
       }
       
       .fc-theme-standard td,

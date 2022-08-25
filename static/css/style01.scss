@@ -1890,6 +1890,46 @@ img.dark-icon{
 
         #Daily-Calander, #Weekly-Calander, #Monthly-Calander{
             @include plannerAssignment();
+            .fc-popover.fc-more-popover{
+                &.fc-day-sat{
+                    right: 0 !important;
+                    left: unset !important;
+                }
+                &.fc-day.fc-day-fri{
+                    right: 147px !important;
+                    left: unset !important;
+                }
+                span.fc-popover-title{
+                    color: $text-dark;
+                    font-size: 0.85rem;
+                    border-top-left-radius: 6px;
+                    border-top-right-radius: 6px;
+                }
+                span.fc-popover-close.fc-icon.fc-icon-x{
+                    &::after{
+                        content: "\D7";
+                        color: $text-dark;
+                        font-size: 14px;
+                    }
+                    &::before{
+                        color: $text-dark;
+                    }
+                }
+                .fc-popover-body{
+                    max-height: 140px;
+                    overflow: hidden;
+                    overflow-y: auto;
+                    margin-bottom: 10px;
+                    padding-right: 6px !important;
+                    margin-right: -6px;
+                    .fc-event-title{
+                        width: 100%;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        cursor: pointer;
+                    }
+                }
+            }
         }
 
         // Planner Calendar
@@ -1914,6 +1954,24 @@ img.dark-icon{
                     min-height: 100px;
                 }
             }
+            .fc-popover.fc-more-popover{
+                span.fc-popover-title{
+                    color: $white;
+                    font-size: 0.85rem;
+                    border-top-left-radius: 6px;
+                    border-top-right-radius: 6px;
+                }
+                span.fc-popover-close.fc-icon.fc-icon-x{
+                    &::after{
+                        content: "\D7";
+                        color: $white;
+                        font-size: 14px;
+                    }
+                    &::before{
+                        color: $white;
+                    }
+                }
+            }
         }
         #Monthly-Calander{
              .fc-view-harness.fc-view-harness-active{
@@ -1925,16 +1983,16 @@ img.dark-icon{
             @include calendar-lg-head();
             @include plannerCommonMonth();
             .fc-popover.fc-more-popover{
-                &.fc-day-sat{
-                    right: 0 !important;
-                    left: unset !important;
-                }
+                // &.fc-day-sat{
+                //     right: 0 !important;
+                //     left: unset !important;
+                // }
                 // &.fc-day.fc-day-fri{
                 //     right: 147px !important;
                 //     left: unset !important;
                 // }
                 // span.fc-popover-title{
-                //     color: $global-font-color;
+                //     color: $text-dark;
                 //     font-size: 0.85rem;
                 //     border-top-left-radius: 6px;
                 //     border-top-right-radius: 6px;
@@ -1942,11 +2000,11 @@ img.dark-icon{
                 // span.fc-popover-close.fc-icon.fc-icon-x{
                 //     &::after{
                 //         content: "\D7";
-                //         color: $global-font-color;
+                //         color: $text-dark;
                 //         font-size: 14px;
                 //     }
                 //     &::before{
-                //         color: $global-font-color;
+                //         color: $text-dark;
                 //     }
                 // }
                 .fc-popover-body{
@@ -1954,6 +2012,8 @@ img.dark-icon{
                     overflow: hidden;
                     overflow-y: auto;
                     margin-bottom: 10px;
+                    padding-right: 12px !important;
+                    margin-right: unset;
                     .fc-event-title{
                         width: 100%;
                         overflow: hidden;
