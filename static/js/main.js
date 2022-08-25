@@ -92,7 +92,7 @@ jQuery(document).ready(function($) {
 	// Load Resize 
 	$(window).on("load resize", function(event) { 
 		var windowWidth = $(window).width();  		 
-		if (windowWidth<1010) {
+		if (windowWidth<1200) {
 			$('body').addClass('small-device'); 
 		} else {
 			$('body').removeClass('small-device');  

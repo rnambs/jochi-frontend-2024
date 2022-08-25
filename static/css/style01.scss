@@ -17,6 +17,22 @@ body{
     font-size: 1rem;
     color: #000000;
 }
+
+// responsie small device
+
+
+.small-device{
+    .main-section{
+        height: 96vh !important;
+    }
+    .header-section .sidebar-section{
+        height: calc(96vh - 24px) !important;
+    }
+    .custom-full-height{
+        height: calc(96vh - 24px);
+    }
+}
+
 *{
     box-sizing: border-box;
     // outline: none;
@@ -1330,7 +1346,7 @@ img.dark-icon{
 .inner-section{
     position: relative;
     background-color: transparent;
-    height: 100vh;
+    // height: 100vh;
 
     // header
 
