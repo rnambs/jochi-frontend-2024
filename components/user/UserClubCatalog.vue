@@ -292,13 +292,13 @@
           aria-hidden="true"
         >
           <div
-            class="modal-dialog modal-lg modal-dialog-centered"
+            class="modal-dialog modal-md modal-dialog-centered"
             role="document"
           >
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create New</h5>
-                <button
+              <div class="modal-header pb-1">
+                <h3 class="modal-title" id="exampleModalLabel">Create New</h3>
+                <!-- <button
                   type="button"
                   class="close"
                   data-dismiss="modal"
@@ -306,51 +306,13 @@
                   @click="resetClubData"
                 >
                   <span aria-hidden="true">&times;</span>
-                </button>
+                </button> -->
               </div>
-              <div class="modal-body">
+              <div class="modal-body px-4">
                 <form action="">
                   <table class="w-100 table-modal custom-row-table">
                     <tr>
-                      <td class="tmodal-data text-nowrap">Type</td>
-                      <td class="tmodal-data d-flex">
-                        <p
-                          class="
-                            mb-0
-                            tdata-overflow
-                            d-flex
-                            align-items-center
-                            form-row
-                            col-8
-                            px-0
-                            py-1
-                          "
-                        >
-                          <span class="pr-2"></span>
-                          <select
-                            v-model="activity_type"
-                            class="custom-select form-control bg-white"
-                            :class="{
-                              'is-invalid':
-                                submitted && $v.activity_type.$error,
-                            }"
-                          >
-                            <option value="Clubs">Club</option>
-                            <option value="Sports">Team</option>
-                          </select>
-                        </p>
-                        <div
-                          v-if="submitted && $v.activity_type.$error"
-                          class="invalid-feedback"
-                        >
-                          <span v-if="!$v.activity_type.required"
-                            >This field is required</span
-                          >
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="tmodal-data text-nowrap">Name</td>
+                      <!-- <td class="tmodal-data text-nowrap">Name</td> -->
                       <td class="tmodal-data d-flex">
                         <p
                           class="
@@ -361,7 +323,7 @@
                             form-row
                             px-0
                             py-1
-                            col-8
+                            col-12 col-md-10 col-lg-9
                           "
                         >
                           <span class="pr-2"></span>
@@ -371,6 +333,7 @@
                             autocomplete="off"
                             maxlength="100"
                             class="form-control bg-white custom-form-control"
+                            placeholder="Name"
                             :class="{
                               'is-invalid': submitted && $v.name.$error,
                             }"
@@ -387,7 +350,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td class="tmodal-data text-nowrap">Description</td>
+                      <!-- <td class="tmodal-data text-nowrap">Description</td> -->
                       <td class="tmodal-data d-flex">
                         <p
                           class="
@@ -396,7 +359,7 @@
                             d-flex
                             align-items-center
                             form-row
-                            col-8
+                            col-12 col-md-11 col-lg-10
                             px-0
                             py-1
                           "
@@ -405,6 +368,7 @@
                           <textarea
                             rows="3"
                             v-model="description"
+                            placeholder="Description"
                             type="text"
                             autocomplete="off"
                             maxlength="700"
@@ -419,6 +383,45 @@
                           class="invalid-feedback"
                         >
                           <span v-if="!$v.description.required"
+                            >This field is required</span
+                          >
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <!-- <td class="tmodal-data text-nowrap">Type</td> -->
+                      <td class="tmodal-data d-flex">
+                        <p
+                          class="
+                            mb-0
+                            tdata-overflow
+                            d-flex
+                            align-items-center
+                            form-row
+                            col-12 col-md-7 col-lg-6
+                            px-0
+                            py-1
+                          "
+                        >
+                          <span class="pr-2"></span>
+                          <select
+                            v-model="activity_type"
+                            class="custom-select form-control bg-white"
+                            :class="{
+                              'is-invalid':
+                                submitted && $v.activity_type.$error,
+                            }"
+                          >
+                            <option value="" selected disabled>Type</option>
+                            <option value="Clubs">Club</option>
+                            <option value="Sports">Team</option>
+                          </select>
+                        </p>
+                        <div
+                          v-if="submitted && $v.activity_type.$error"
+                          class="invalid-feedback"
+                        >
+                          <span v-if="!$v.activity_type.required"
                             >This field is required</span
                           >
                         </div>
@@ -447,7 +450,7 @@
               <div class="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary px-4 py-1 rounded-pill"
+                  class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
                   data-dismiss="modal"
                   @click="resetClubData"
                 >
@@ -456,7 +459,7 @@
                 <button
                   type="button"
                   @click="createNewClub"
-                  class="btn btn-primary px-4 py-1 rounded-pill"
+                  class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
                 >
                   Save
                 </button>

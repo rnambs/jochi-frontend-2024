@@ -177,9 +177,9 @@
       aria-labelledby="meetingDetailModalCenterTitle"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content px-4">
-          <div class="modal-header">
+          <div class="modal-header pb-2">
             <h3 class="modal-title" id="meetingDetailModalLongTitle">
               Meeting Details
             </h3>
@@ -250,7 +250,7 @@
                       <div
                         class="
                           mb-0
-                          col-12 col-md-8 col-lg-7
+                          col-12
                           d-flex
                           align-items-center
                           form-row
@@ -380,7 +380,7 @@
                       <p
                         class="
                           mb-0
-                          col-12 col-md-8 col-lg-7
+                          col-12
                           d-flex
                           align-items-center
                           form-row
@@ -424,7 +424,7 @@
                       <p
                         class="
                           mb-0
-                          col-12 col-md-8 col-lg-7
+                          col-12
                           d-flex
                           align-items-center
                           form-row
@@ -468,7 +468,7 @@
                       <p
                         class="
                           mb-0
-                          col-12 col-md-8 col-lg-7
+                          col-12
                           d-flex
                           align-items-center
                           form-row
@@ -514,7 +514,7 @@
                       <p
                         class="
                           mb-0
-                          col-12 col-md-8 col-lg-7
+                          col-12 
                           d-flex
                           align-items-center
                           form-row
