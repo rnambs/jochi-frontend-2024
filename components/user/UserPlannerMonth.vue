@@ -376,7 +376,14 @@
                                         mb-2
                                       "
                                     >
-                                      <div class="assignment-tag red mr-2">
+                                      <div
+                                        class="assignment-tag mr-2"
+                                        :class="{
+                                          red: item.priority == '1',
+                                          yellow: item.priority == '2',
+                                          green: item.priority == '3',
+                                        }"
+                                      >
                                         {{
                                           item.priority == "1"
                                             ? "Urgent"
