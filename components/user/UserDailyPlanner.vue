@@ -163,187 +163,194 @@
                           :key="item.id"
                         >
                           <drag class="drag h-100" :transfer-data="{ item }">
-                            <div
-                              @touchstart="onCardClick(item)"
-                              @click="onCardClick(item)"
-                              class="
-                                jochi-sub-components-light-bg
-                                drag-drop
-                                p-4
-                                position-realtive
-                                h-100
-                                cursor-pointer
-                                d-flex
-                                flex-column
-                                justify-content-between
-                              "
-                            >
-                              <div class="d-flex flex-column">
-                                <div
-                                  class="
-                                    assignment-tag-section
-                                    d-flex
-                                    align-items-center
-                                    mb-2
-                                  "
-                                >
+                            <div>
+                              <div
+                                @click="onCardClick(item)"
+                                class="
+                                  jochi-sub-components-light-bg
+                                  drag-drop
+                                  p-4
+                                  position-realtive
+                                  h-100
+                                  cursor-pointer
+                                  d-flex
+                                  flex-column
+                                  justify-content-between
+                                "
+                              >
+                                <div class="d-flex flex-column">
                                   <div
-                                    class="assignment-tag mr-2"
-                                    :class="{
-                                      red: item.priority == '1',
-                                      yellow: item.priority == '2',
-                                      green: item.priority == '3',
-                                    }"
-                                  >
-                                    {{
-                                      item.priority == "1"
-                                        ? "Urgent"
-                                        : item.priority == "2"
-                                        ? "Important"
-                                        : item.priority == "3"
-                                        ? "Can Wait"
-                                        : ""
-                                    }}
-                                  </div>
-                                  <div class="assignment-tag pink">
-                                    {{ item.subject }}
-                                  </div>
-                                </div>
-                                <div class="assignment-add-section">
-                                  <h4 class="mb-1 text-center word-break">
-                                    {{ item.task }}
-                                  </h4>
-                                  <div class="text-center px-3">
-                                    <p class="text-truncate pb-3 mb-0">
-                                      {{ item.assignment_description }}
-                                    </p>
-                                  </div>
-                                </div>
-                                <div class="sub-task-section mb-3">
-                                  <h6 class="mb-1">Sub-tasks</h6>
-                                  <div
-                                    @click="
-                                      confirmSubTaskComplete(
-                                        $event,
-                                        sub.id,
-                                        item.id,
-                                        sub.task_status
-                                      )
-                                    "
-                                    v-for="sub in item.subTasks"
-                                    :key="sub.id"
                                     class="
-                                      pl-2
+                                      assignment-tag-section
                                       d-flex
                                       align-items-center
-                                      color-secondary
-                                      cursor-pointer
+                                      mb-2
                                     "
                                   >
-                                    <input
-                                      :id="sub.title"
-                                      v-model="sub.title"
-                                      :value="
-                                        sub.task_status == 'Completed'
-                                          ? sub.title
-                                          : ''
-                                      "
-                                      type="radio"
-                                      class="mr-2"
-                                    />
-                                    <label for="" class="mb-0 text-truncate">{{
-                                      sub.title
-                                    }}</label>
-                                  </div>
-                                  <div
-                                    v-if="
-                                      !item.subTasks ||
-                                      item.subTasks.length <= 0
-                                    "
-                                    class="pl-2 d-flex align-items-center"
-                                  >
-                                    <span class="color-secondary text-12"
-                                      >No sub tasks added!</span
+                                    <div
+                                      class="assignment-tag mr-2"
+                                      :class="{
+                                        red: item.priority == '1',
+                                        yellow: item.priority == '2',
+                                        green: item.priority == '3',
+                                      }"
                                     >
+                                      {{
+                                        item.priority == "1"
+                                          ? "Urgent"
+                                          : item.priority == "2"
+                                          ? "Important"
+                                          : item.priority == "3"
+                                          ? "Can Wait"
+                                          : ""
+                                      }}
+                                    </div>
+                                    <div class="assignment-tag pink">
+                                      {{ item.subject }}
+                                    </div>
                                   </div>
-                                  <!-- <div class="pl-2 d-flex align-items-center">
+                                  <div class="assignment-add-section">
+                                    <h4 class="mb-1 text-center word-break">
+                                      {{ item.task }}
+                                    </h4>
+                                    <div class="text-center px-3">
+                                      <p class="text-truncate pb-3 mb-0">
+                                        {{ item.assignment_description }}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <div class="sub-task-section mb-3">
+                                    <h6 class="mb-1">Sub-tasks</h6>
+                                    <div
+                                      @click="
+                                        confirmSubTaskComplete(
+                                          $event,
+                                          sub.id,
+                                          item.id,
+                                          sub.task_status
+                                        )
+                                      "
+                                      v-for="sub in item.subTasks"
+                                      :key="sub.id"
+                                      class="
+                                        pl-2
+                                        d-flex
+                                        align-items-center
+                                        color-secondary
+                                        cursor-pointer
+                                      "
+                                    >
+                                      <input
+                                        :id="sub.title"
+                                        v-model="sub.title"
+                                        :value="
+                                          sub.task_status == 'Completed'
+                                            ? sub.title
+                                            : ''
+                                        "
+                                        type="radio"
+                                        class="mr-2"
+                                      />
+                                      <label
+                                        for=""
+                                        class="mb-0 text-truncate"
+                                        >{{ sub.title }}</label
+                                      >
+                                    </div>
+                                    <div
+                                      v-if="
+                                        !item.subTasks ||
+                                        item.subTasks.length <= 0
+                                      "
+                                      class="pl-2 d-flex align-items-center"
+                                    >
+                                      <span class="color-secondary text-12"
+                                        >No sub tasks added!</span
+                                      >
+                                    </div>
+                                    <!-- <div class="pl-2 d-flex align-items-center">
                               <input type="radio" class="mr-2" />
                               <label for="" class="mb-0"
                                 >Start typing to add subtasks</label
                               >
                             </div> -->
+                                  </div>
                                 </div>
-                              </div>
-                              <div
-                                v-if="item.assignment_materials"
-                                class="addition-material-section"
-                              >
-                                <h6 class="mb-1 font-medium">
-                                  Additional Material
-                                </h6>
                                 <div
-                                  class="
-                                    d-flex
-                                    align-items-center
-                                    justify-content-between
-                                  "
+                                  v-if="item.assignment_materials"
+                                  class="addition-material-section"
                                 >
+                                  <h6 class="mb-1 font-medium">
+                                    Additional Material
+                                  </h6>
                                   <div
                                     class="
-                                      col-8
-                                      py-0
-                                      pl-0
-                                      text-12
                                       d-flex
-                                      flex-column
+                                      align-items-center
+                                      justify-content-between
                                     "
                                   >
                                     <div
-                                      class="d-flex flex-column lext-limited"
+                                      class="
+                                        col-8
+                                        py-0
+                                        pl-0
+                                        text-12
+                                        d-flex
+                                        flex-column
+                                      "
                                     >
                                       <div
-                                        class="d-flex w-100"
-                                        v-for="material in item.assignment_materials"
-                                        :key="material.id"
-                                        @click="openLink(material)"
+                                        class="d-flex flex-column lext-limited"
                                       >
-                                        <span
-                                          class="
-                                            color-secondary
-                                            text-truncate
-                                            w-100
-                                          "
+                                        <div
+                                          class="d-flex w-100"
+                                          v-for="material in item.assignment_materials"
+                                          :key="material.id"
+                                          @click="openLink(material)"
                                         >
-                                          <!-- Rubric: -->
-                                          {{
-                                            material.file_type == "link"
-                                              ? material.material
-                                              : material.file_name
-                                          }}
-                                        </span>
+                                          <span
+                                            class="
+                                              color-secondary
+                                              text-truncate
+                                              w-100
+                                            "
+                                          >
+                                            <!-- Rubric: -->
+                                            {{
+                                              material.file_type == "link"
+                                                ? material.material
+                                                : material.file_name
+                                            }}
+                                          </span>
+                                        </div>
                                       </div>
+                                      <span class="color-secondary text-12"
+                                        >+3 more</span
+                                      >
+                                      <span
+                                        v-if="
+                                          !item.assignment_materials ||
+                                          item.assignment_materials.length <= 0
+                                        "
+                                        class="color-secondary text-12"
+                                      >
+                                        No additional materials added
+                                      </span>
                                     </div>
-                                    <span class="color-secondary text-12"
-                                      >+3 more</span
-                                    >
-                                    <span
-                                      v-if="
-                                        !item.assignment_materials ||
-                                        item.assignment_materials.length <= 0
+                                    <div
+                                      class="
+                                        col-4
+                                        material-date
+                                        py-0
+                                        text-right
                                       "
-                                      class="color-secondary text-12"
                                     >
-                                      No additional materials added
-                                    </span>
-                                  </div>
-                                  <div
-                                    class="col-4 material-date py-0 text-right"
-                                  >
-                                    {{ item.formattedDate }}
+                                      {{ item.formattedDate }}
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                              <!-- <div class="upload-file-section mt-2">
+                                <!-- <div class="upload-file-section mt-2">
                                 <div class="d-flex align-items-center">
                                   <div class="col-2 p-0">
                                     <select
@@ -372,31 +379,32 @@
                                   </div>
                                 </div>
                               </div> -->
-                              <div
-                                class="
-                                  add-person-section
-                                  position-absolute
-                                  top-0
-                                "
-                              >
                                 <div
-                                  v-for="peer in item.peers"
-                                  :key="peer.profile_pic"
-                                  class="ap-img-section mr--3 shadow-sm"
+                                  class="
+                                    add-person-section
+                                    position-absolute
+                                    top-0
+                                  "
                                 >
-                                  <!-- {{ peer }} -->
-                                  <img :src="peer.profile_pic" alt="" />
-                                </div>
-                                <!-- <div
+                                  <div
+                                    v-for="peer in item.peers"
+                                    :key="peer.profile_pic"
+                                    class="ap-img-section mr--3 shadow-sm"
+                                  >
+                                    <!-- {{ peer }} -->
+                                    <img :src="peer.profile_pic" alt="" />
+                                  </div>
+                                  <!-- <div
                                   class="ap-img-section mr--3 shadow-sm"
                                 ></div>
                                 <div
                                   class="ap-img-section mr--3 shadow-sm"
                                 ></div>
                                 <div class="ap-img-section shadow-sm"></div> -->
-                                <!-- <div class="ap-img-add">
+                                  <!-- <div class="ap-img-add">
                               <img src="~/static/image/add-btn.png" alt="" />
                             </div> -->
+                                </div>
                               </div>
                             </div>
                           </drag>
