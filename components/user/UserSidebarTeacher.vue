@@ -50,7 +50,7 @@
                     notificationCount
                   }}</span>
                 </a>
-                <div class="dropdown-menu notify">
+                <div class="dropdown-menu notify border-0">
                   <!-- notification -->
                   <div
                     class="notifications dropdown-item px-2"
@@ -62,34 +62,49 @@
                         justify-content-between
                         align-items-center
                         px-3
-                        mt-2
-                        mb-3
+                        my-2
                       "
                     >
-                      <h5 class="notify-head">Notifications</h5>
+                      <h5 class="color-primary font-semi-bold mb-0">Notifications</h5>
                       <button
-                        class="btn btn-sm notify-btn mb-3"
+                        class="color-dark font-semi-bold text-18"
                         @click="clearNotifications()"
                       >
                         Clear all
                       </button>
                     </div>
-                    <div class="notification-text px-3">
-                      <p
+                    <div class="notification-text px-3 py-1 hidden-scroll">
+                      <div
                         :class="
                           data.isViewed
-                            ? 'unread d-flex flex-column p-3'
-                            : 'read d-flex flex-column p-3'
+                            ? 'unread d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer'
+                            : 'read d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer'
                         "
                         v-for="(data, index) in notificationList"
                         :key="index"
                         @click="onNotificationClick(data.id, data.title)"
                       >
-                        <span class="notify-text">{{ data.message }}</span>
-                        <span class="notify-time d-flex justify-content-end">{{
+                        <p class="color-dark font-semi-bold text-14 text-wrap mb-0">{{ data.message }}</p>
+                        <p 
+                          class="color-secondary
+                          text-12
+                          font-regulat
+                          mb-0
+                          d-flex
+                          justify-content-end align-items-center" 
+                        >
+                        <span class="mr-2">{{
                           data.timestamp
                         }}</span>
+                        <span :class="
+                              data.isViewed
+                                ? 'unread bg-transparent '
+                                : 'read bg-primary d-block notify-span-icon rounded-circle'
+                              "
+                          >
+                        </span>
                       </p>
+                      </div>
                     </div>
                   </div>
 
