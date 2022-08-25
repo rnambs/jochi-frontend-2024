@@ -887,30 +887,38 @@
                                           flex-column
                                         "
                                       >
-                                      <div class="d-flex flex-column lext-limited">
-                                        <div 
-                                          class="d-flex w-100"
-                                          v-for="material in item.assignment_materials"
-                                          :key="material.id"
+                                        <div
+                                          class="
+                                            d-flex
+                                            flex-column
+                                            lext-limited
+                                          "
+                                        >
+                                          <div
+                                            class="d-flex w-100"
+                                            v-for="material in item.assignment_materials"
+                                            :key="material.id"
                                           >
-                                          <span
-                                            class="
-                                              cursor-pointer
-                                              color-secondary
-                                              w-100
-                                              text-truncate text-12
-                                            "
-                                          >
-                                            <!-- Rubric: -->
-                                            {{
-                                              material.file_type == "link"
-                                                ? material.material
-                                                : material.file_name
-                                            }}
-                                          </span>
+                                            <span
+                                              class="
+                                                cursor-pointer
+                                                color-secondary
+                                                w-100
+                                                text-truncate text-12
+                                              "
+                                            >
+                                              <!-- Rubric: -->
+                                              {{
+                                                material.file_type == "link"
+                                                  ? material.material
+                                                  : material.file_name
+                                              }}
+                                            </span>
+                                          </div>
                                         </div>
-                                      </div>
-                                      <span class="color-secondary text-12">+3 more</span>
+                                        <span class="color-secondary text-12"
+                                          >+3 more</span
+                                        >
                                         <span
                                           v-if="
                                             !item.assignment_materials ||
@@ -1725,6 +1733,7 @@
                                           class="form-control px-2"
                                           placeholder="Upload File"
                                           @change="onFileChange"
+                                          id="fileUpload"
                                           accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
                                         />
                                       </div>
@@ -2133,6 +2142,7 @@
                                           type="file"
                                           class="form-control px-2"
                                           placeholder="Upload File"
+                                          id="fileUpload"
                                           @change="onFileChange"
                                           accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
                                         />
@@ -2693,6 +2703,7 @@ export default {
   },
 
   mounted() {
+    this.GetStudents();
     this.disabledDates.to = new Date(
       this.date_today.getFullYear(),
       this.date_today.getMonth(),
@@ -3145,7 +3156,7 @@ export default {
         plannerObj["color"] = color;
         plannerObj["start"] = start;
         plannerObj["id"] = id;
-        plannerObj["groupId"] = "assignment";
+        plannerObj["groupId"] = "shared-assignment";
         eventList.push(plannerObj);
         this.assignmentList.push(scheduleObject);
       });
@@ -3355,6 +3366,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
+      this.peerSelected = [];
       this.isSharedAssignment = false;
       this.subject = "";
       this.assignmentName = "";
@@ -3626,31 +3638,41 @@ export default {
         return this.$router.push(
           `/viewall-meeting?id=${idVal.id}&type=${idVal.groupId}`
         );
-      } else if (idVal.groupId == "assignment") {
-        this.onCardClick(idVal);
+      } else if (
+        idVal.groupId == "assignment" ||
+        idVal.groupId == "shared-assignment"
+      ) {
+        let data = {};
+        if (idVal.groupId == "assignment") {
+          data = this.plannerList.find((e) => e.id == idVal.id);
+        }
+        if (idVal.groupId == "shared-assignment") {
+          data = this.sharedAstList.find((e) => e.id == idVal.id);
+        }
+        this.onCardClick(data);
       } else if (idVal.groupId == "club-meeting") {
         let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
         return this.$router.push(
-          `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.meeting_type}`
+          `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
         );
       }
 
-      var idValue = idVal.id;
-      var groupId = idVal.groupId;
-      if (!groupId) {
-        this.isAssignmentEdit = true;
-        // $("#editModalCenter").modal("show");
-        $("#exampleModalCenter").modal("show");
+      // var idValue = idVal.id;
+      // var groupId = idVal.groupId;
+      // if (!groupId) {
+      //   this.isAssignmentEdit = true;
+      //   // $("#editModalCenter").modal("show");
+      //   $("#exampleModalCenter").modal("show");
 
-        this.GetAssignment(idValue);
-      } else {
-        $("#MeetingModal").modal("show");
-        var titleVal = info.event.title;
-        var meetingVal = info.event.backgroundColor;
-        var dateNum = info.event.start;
-        let time = this.meetingList?.find((e) => e.id == idVal.id).start_time;
-        this.popupmodal(titleVal, meetingVal, dateNum, time);
-      }
+      //   this.GetAssignment(idValue);
+      // } else {
+      //   $("#MeetingModal").modal("show");
+      //   var titleVal = info.event.title;
+      //   var meetingVal = info.event.backgroundColor;
+      //   var dateNum = info.event.start;
+      //   let time = this.meetingList?.find((e) => e.id == idVal.id).start_time;
+      //   this.popupmodal(titleVal, meetingVal, dateNum, time);
+      // }
     },
     popupmodal(titleData, meetingData, dateData, time) {
       var timestandard = new Date(dateData).toLocaleString();
@@ -4106,7 +4128,6 @@ export default {
     },
     onInviteClick() {
       this.invitePeer = true;
-      this.GetStudents();
     },
     async GetStudents() {
       await this.getStudents({
@@ -4317,6 +4338,7 @@ export default {
       this.isAddAssignment = false;
       this.openAssignment = true;
       this.mapAssignmentDetail(data);
+      this.mapPeerInvited(data);
       // this.subject
       // this.assignmentName
       // this.assignmentDescription
@@ -4324,6 +4346,17 @@ export default {
       // this.timeValue
       // this.subTasksList
       // this.peerSelected
+    },
+    mapPeerInvited(data) {
+      console.log("map peer ", data, this.students);
+      this.peerSelected = [];
+      if (data.peers && data.peers?.length > 0 && this.students.length > 0) {
+        data.peers.forEach((e) => {
+          this.peerSelected.push(this.students.find((s) => s.id == e.id));
+        });
+        console.log(this.peersSelected);
+      }
+      // peerSelected
     },
     mapAssignmentDetail(data) {
       this.isSharedAssignment = data.isShared;
@@ -4392,6 +4425,17 @@ export default {
       this.additionalMaterial = true;
     },
     onFileChange(e) {
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        document.querySelector("#fileUpload").value = "";
+
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
       if (e.target.files[0]) {
         this.file = e.target.files[0];
 
@@ -4440,6 +4484,8 @@ export default {
       });
       this.file = "";
       this.link = "";
+      document.querySelector("#fileUpload").value = "";
+
       // this.ClubFiles();
     },
     openLink(material) {
