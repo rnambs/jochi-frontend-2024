@@ -67,7 +67,7 @@
                       @click="onStudentClick(student)"
                       v-for="student in studentsListAdvisor"
                       :key="student.id"
-                      :class="{ 'bg-gray' : student.id == studentDetail.id }"
+                      :class="{ 'bg-gray': student.id == studentDetail.id }"
                       class="
                         d-flex
                         align-items-center
@@ -78,20 +78,20 @@
                         cursor-pointer
                       "
                     >
-                        <div class="ld-img-section mr-3">
-                          <div class="ld-img-holder">
-                            <img
-                              v-if="student.profile_pic"
-                              :src="student.profile_pic"
-                              alt=""
-                            />
-                          </div>
+                      <div class="ld-img-section mr-3">
+                        <div class="ld-img-holder">
+                          <img
+                            v-if="student.profile_pic"
+                            :src="student.profile_pic"
+                            alt=""
+                          />
                         </div>
-                        <div class="ld-details-section">
-                          <p class="ld-heading mb-1">
-                            {{ student.first_name + " " + student.last_name }}
-                          </p>
-                        </div>
+                      </div>
+                      <div class="ld-details-section">
+                        <p class="ld-heading mb-1">
+                          {{ student.first_name + " " + student.last_name }}
+                        </p>
+                      </div>
                     </div>
                     <!-- <div
                       class="
@@ -261,7 +261,7 @@
                           <div class="row m-0">
                             <div class="col-12 col-sm-3 col-md-12 col-lg-2 p-1">
                               <p class="mb-0 color-dark text-16 font-regular">
-                                <span>School</span>
+                                <span>Class</span>
                               </p>
                             </div>
                             <div class="col-1 p-1">
@@ -279,8 +279,8 @@
                             </div>
                             <div class="col-7 col-md-11 col-lg-8 p-1">
                               <p class="mb-0 color-dark text-16 font-semi-bold">
-                                <!-- <span>Southside Middle School</span> -->
-                                <span>{{ studentDetail.schools.name }}</span>
+                                <!-- <span>{{ studentDetail.schools.name }}</span> -->
+                                <span></span>
                               </p>
                             </div>
                           </div>

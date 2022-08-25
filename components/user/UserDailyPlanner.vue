@@ -164,6 +164,7 @@
                         >
                           <drag class="drag h-100" :transfer-data="{ item }">
                             <div
+                              @touchstart="onCardClick(item)"
                               @click="onCardClick(item)"
                               class="
                                 jochi-sub-components-light-bg
