@@ -300,6 +300,7 @@
                                     word-break
                                     cursor-pointer
                                     mb-0
+                                    line-break-anywhere
                                     font-semi-bold
                                   "
                                 >
@@ -580,6 +581,7 @@
                                     color-primary
                                     word-break
                                     cursor-pointer
+                                    line-break-anywhere
                                     mb-0
                                     font-semi-bold
                                   "
