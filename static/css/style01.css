@@ -24,13 +24,13 @@ body {
 }
 
 .small-device .main-section {
-  height: 92vh !important;
+  height: calc(100vh - 76px) !important;
 }
 .small-device .header-section .sidebar-section {
-  height: calc(92vh - 24px) !important;
+  height: calc(100vh - 76px - 24px) !important;
 }
 .small-device .custom-full-height {
-  height: calc(92vh - 24px);
+  height: calc(100vh - 76px - 24px) !important;
 }
 
 * {
