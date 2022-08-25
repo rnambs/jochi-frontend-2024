@@ -23,13 +23,13 @@ body{
 
 .small-device{
     .main-section{
-        height: 90vh !important;
+        height: 92vh !important;
     }
     .header-section .sidebar-section{
-        height: calc(90vh - 24px) !important;
+        height: calc(92vh - 24px) !important;
     }
     .custom-full-height{
-        height: calc(90vh - 24px);
+        height: calc(92vh - 24px);
     }
 }
 
