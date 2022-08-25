@@ -287,6 +287,12 @@ body{
             transition: ease all 0.5s;
         }
     }
+    &.btn-close{
+        display: flex;
+        color: $theme-color;
+        font-size: 30px;
+        font-weight: 600;
+    }
 }
 .tab-btns{
     // transform: rotate(-90deg);
@@ -365,8 +371,11 @@ input[type="radio"]{
             }
         }
         &.bg-transparent{
-            background-color: transparent;
+            background-color: rgb(255 255 255 / 35%)!important;
             box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+            &::placeholder{
+                color: #1E1E1E !important;
+            }
         }
     }
     select.form-control{
@@ -2038,6 +2047,9 @@ img.dark-icon{
                     }
                 }
             }
+            a.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end, .fc-event-title.fc-sticky{
+                cursor: pointer;
+            }
             // .fc-view-harness.fc-view-harness-active{
                 //     height: calc(100vh - 300px) !important;
                 //     .fc-daygrid.fc-dayGridMonth-view.fc-view{
@@ -2932,7 +2944,7 @@ img.dark-icon{
                 }
             }
             .form-label{
-                color: $cal-border;
+                color: $text-secondary;
                 font-size: 0.85rem;
                 @media (max-width:1024.89px) {
                     font-size: 0.7rem;

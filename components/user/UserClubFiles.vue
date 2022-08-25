@@ -233,7 +233,7 @@
                           <figure class="figure w-100">
                             <div class="img-figure">
                               <img
-                                class="figure-img"
+                                class="figure-img cursor-pointer"
                                 v-if="list.original_file_name"
                                 id="myImg"
                                 :src="list.original_file_name"
@@ -465,7 +465,7 @@
                             :v-model="profilePic"
                             ref="profilePic"
                             name="profilePic"
-                            class="rg-img-upload img-up-two"
+                            class="rg-img-upload img-up-two cursor-pointer"
                             @change="onFileChange"
                             accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
                           />
@@ -481,7 +481,7 @@
                             :v-model="profilePic"
                             ref="profilePic"
                             name="profilePic"
-                            class="rg-img-upload img-up-two"
+                            class="rg-img-upload img-up-two cursor-pointer"
                             @change="onFileChange"
                             accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
                           />

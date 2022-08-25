@@ -313,6 +313,12 @@ body {
   transform: rotate(90deg);
   transition: ease all 0.5s;
 }
+.btn.btn-close {
+  display: flex;
+  color: #FF6D6D;
+  font-size: 30px;
+  font-weight: 600;
+}
 
 .tab-btns {
   top: 0;
@@ -388,8 +394,17 @@ input[type=radio] {
   font-size: 14px;
 }
 .form-row input.form-control.bg-transparent, .form-row select.form-control.bg-transparent, .form-row .form-control.bg-transparent, .form-group input.form-control.bg-transparent, .form-group select.form-control.bg-transparent, .form-group .form-control.bg-transparent {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.35) !important;
   box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+}
+.form-row input.form-control.bg-transparent::-moz-placeholder, .form-row select.form-control.bg-transparent::-moz-placeholder, .form-row .form-control.bg-transparent::-moz-placeholder, .form-group input.form-control.bg-transparent::-moz-placeholder, .form-group select.form-control.bg-transparent::-moz-placeholder, .form-group .form-control.bg-transparent::-moz-placeholder {
+  color: #1E1E1E !important;
+}
+.form-row input.form-control.bg-transparent:-ms-input-placeholder, .form-row select.form-control.bg-transparent:-ms-input-placeholder, .form-row .form-control.bg-transparent:-ms-input-placeholder, .form-group input.form-control.bg-transparent:-ms-input-placeholder, .form-group select.form-control.bg-transparent:-ms-input-placeholder, .form-group .form-control.bg-transparent:-ms-input-placeholder {
+  color: #1E1E1E !important;
+}
+.form-row input.form-control.bg-transparent::placeholder, .form-row select.form-control.bg-transparent::placeholder, .form-row .form-control.bg-transparent::placeholder, .form-group input.form-control.bg-transparent::placeholder, .form-group select.form-control.bg-transparent::placeholder, .form-group .form-control.bg-transparent::placeholder {
+  color: #1E1E1E !important;
 }
 .form-row textarea.form-control, .form-group textarea.form-control {
   border: none;
@@ -2401,6 +2416,9 @@ img.dark-icon {
   text-overflow: ellipsis;
   cursor: pointer;
 }
+.inner-section .main-section #Monthly-Calander a.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end, .inner-section .main-section #Monthly-Calander .fc-event-title.fc-sticky {
+  cursor: pointer;
+}
 .inner-section .main-section .element-section {
   height: 95vh;
   margin: auto;
@@ -2685,7 +2703,7 @@ img.dark-icon {
   height: 100px;
 }
 .inner-section .main-section .upload-area .form-label {
-  color: #F5E4F0;
+  color: #C5C0BD;
   font-size: 0.85rem;
 }
 @media (max-width: 1024.89px) {

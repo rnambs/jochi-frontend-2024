@@ -190,7 +190,7 @@
                                   >
                                     <div
                                       class="
-                                        col-4
+                                        col-3
                                         d-flex
                                         justify-content-end
                                         p-0
@@ -209,7 +209,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-8 p-0">
+                                    <div class="col-9 p-0">
                                       <div class="ld-details-section">
                                         <p
                                           class="
@@ -245,13 +245,14 @@
                                     </div>
                                   </div>
                                 </li>
-
-                                <div
+                                <button 
                                   v-if="leadersInfo.length >= 3"
                                   @click="openViewMoreMembers(true)"
-                                >
-                                  View More
-                                </div>
+                                  class="btn btn-void mt-3 py-1 px-0"> 
+                                  <span class="font-semi-bold mr-1">
+                                    View More</span>
+                                  <span class="more-icon"><i class="fas fa-chevron-right"></i> </span>
+                                </button>
 
                                 <!-- <li
                                   v-for="(leader, index) in list.todoLeader"
@@ -454,17 +455,34 @@
                         <div class="row justify-content-end">
                           <div class="col-6 info-tag pr-0">
                             <div class="input-group mb-0 justify-content-end">
+                              
+                              <!-- input-icon-area
+                              py-1
+                              px-4
+                              mb-2
+                              mr-2
+                              custom-club-details-tag-bg -->
                               <div
                                 class="
-                                  input-icon-area
-                                  py-1
                                   px-4
-                                  mb-2
-                                  mr-2
-                                  custom-club-details-tag-bg
+                                  py-1
+                                  rounded-6
+                                  color-white
+                                  d-flex
+                                  justify-content-center
+                                  min-w-100
+                                  text-14
+                                  bg-theme
+                                  align-items-center
                                 "
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
+                                
+                                :style="{
+                                  'background-color': tagColorMap[value.name]
+                                    ? tagColorMap[value.name]
+                                    : red,
+                                }"
                               >
                                 <!-- <span
                                   type="text"
@@ -475,12 +493,7 @@
                                   >{{ value.name }}</span
                                 > -->
                                 <span
-                                  :style="{
-                                    'background-color': tagColorMap[value.name]
-                                      ? tagColorMap[value.name]
-                                      : red,
-                                  }"
-                                  class="pl bg-theme"
+                                  class=""
                                   >{{ value.name }}</span
                                 >
                                 <span
@@ -578,13 +591,13 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="viewMoreModalLongTitle">
+          <div class="modal-header pb-1">
+            <h3 class="modal-title" id="viewMoreModalLongTitle">
               View {{ isLeaderView ? "Leaders" : "Members" }}
-            </h4>
+            </h3>
             <button
-              type="button"
-              class="close"
+              type="button" 
+              class="btn btn-close px-1"
               data-dismiss="modal"
               aria-label="Close"
             >
@@ -598,10 +611,10 @@
                 <li v-for="(data, index) in leadersInfo" :key="index">
                   <!-- <span class="input-name">{{ data }}</span> -->
                   <div
-                    class="d-flex align-items-center justify-content-end mt-3"
+                    class="d-flex align-items-center mt-3"
                   >
-                    <div class="mr-2 d-flex justify-content-end p-0">
-                      <div class="ld-img-section">
+                    <div class="d-flex justify-content-end p-0">
+                      <div class="ld-img-section mr-2">
                         <div class="ld-img-holder">
                           <img
                             v-if="data.user_info.profile_pic"
