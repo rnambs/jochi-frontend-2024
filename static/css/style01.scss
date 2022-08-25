@@ -23,13 +23,13 @@ body{
 
 .small-device{
     .main-section{
-        height: 96vh !important;
+        height: 90vh !important;
     }
     .header-section .sidebar-section{
-        height: calc(96vh - 24px) !important;
+        height: calc(90vh - 24px) !important;
     }
     .custom-full-height{
-        height: calc(96vh - 24px);
+        height: calc(90vh - 24px);
     }
 }
 
@@ -1417,10 +1417,10 @@ img.dark-icon{
             @media (max-width: 991.98px) {
                 width: 6.625rem;
             }
-            @media (max-width: 510.98px) {
-                left: -7rem;
-                transition: 0.3s ease all;
-            }
+            // @media (max-width: 510.98px) {
+            //     left: -7rem;
+            //     transition: 0.3s ease all;
+            // }
             // .logo-section{
             //     display: flex;
             //     text-align: center;
@@ -1897,10 +1897,10 @@ img.dark-icon{
         @media (max-width: 991.98px) {
             padding-left: 6.625rem;
         }
-        @media (max-width: 510.98px) {
-            padding-left: 0;
-            padding-top: 4rem;
-        }
+        // @media (max-width: 510.98px) {
+        //     padding-left: 0;
+        //     padding-top: 4rem;
+        // }
 
         // planner Assignment
 

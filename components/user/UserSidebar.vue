@@ -372,7 +372,7 @@
                         <nuxt-link
                           to="/teacher-meeting"
                           @click="$event.target.classList.toggle('active')"
-                          class="nav-link"
+                          class="nav-link text-nowrap"
                           >Schedule</nuxt-link
                         >
                       </li>
@@ -521,7 +521,7 @@
                         >
                       </li>
                       <li class="nav-item">
-                        <nuxt-link to="/study-analytics" class="nav-link"
+                        <nuxt-link to="/study-analytics" class="nav-link text-nowrap"
                           >Analytics</nuxt-link
                         >
                       </li>
@@ -606,7 +606,7 @@
                   class="card-header bg-transparent border-0 p-1"
                   id="headingOne"
                 >
-                  <div class="mb-0 d-flex">
+                  <div class="mb-0 d-flex justify-content-center justify-content-lg-start">
                     <button
                       class="
                         btn btn-link

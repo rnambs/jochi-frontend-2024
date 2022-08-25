@@ -24,13 +24,13 @@ body {
 }
 
 .small-device .main-section {
-  height: 96vh !important;
+  height: 90vh !important;
 }
 .small-device .header-section .sidebar-section {
-  height: calc(96vh - 24px) !important;
+  height: calc(90vh - 24px) !important;
 }
 .small-device .custom-full-height {
-  height: calc(96vh - 24px);
+  height: calc(90vh - 24px);
 }
 
 * {
@@ -1357,12 +1357,6 @@ img.dark-icon {
     width: 6.625rem;
   }
 }
-@media (max-width: 510.98px) {
-  .inner-section .header-section .sidebar-section {
-    left: -7rem;
-    transition: 0.3s ease all;
-  }
-}
 .inner-section .header-section .sidebar-section .menu-items {
   position: relative;
   overflow: hidden;
@@ -1574,12 +1568,6 @@ img.dark-icon {
 @media (max-width: 991.98px) {
   .inner-section .main-section {
     padding-left: 6.625rem;
-  }
-}
-@media (max-width: 510.98px) {
-  .inner-section .main-section {
-    padding-left: 0;
-    padding-top: 4rem;
   }
 }
 .inner-section .main-section #Daily-Calander .display-picture-holder, .inner-section .main-section #Weekly-Calander .display-picture-holder, .inner-section .main-section #Monthly-Calander .display-picture-holder {
