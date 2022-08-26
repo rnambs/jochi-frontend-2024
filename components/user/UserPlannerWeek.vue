@@ -315,12 +315,12 @@
           "
         >
           <div class="row">
-            <div class="col-12 position-realtive">
+            <div class="col-12 position-realtive h-100 d-flex flex-column">
               <div
                 class="
-                  dashboard-main-content
                   jochi-components-light-bg
                   position-relative
+                  h-100
                 "
               >
                 <div class="planner-week p-4 pt-5 px-3 px-sm-5">

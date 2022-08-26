@@ -1294,6 +1294,9 @@ $sm-screen-h         : 767.98px;
         transform: rotate(-90deg);
         top: 50vh;
         right: -160px;
+        @media (max-width:$md-screen) {
+            right: -146px;
+        }
       }
       
       .planner-action-btns .pa-btn {

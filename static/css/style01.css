@@ -1754,6 +1754,11 @@ img.dark-icon {
   top: 50vh;
   right: -160px;
 }
+@media (max-width: 991.98px) {
+  .inner-section .main-section #Daily-Calander .planner-action-btns, .inner-section .main-section #Weekly-Calander .planner-action-btns, .inner-section .main-section #Monthly-Calander .planner-action-btns {
+    right: -146px;
+  }
+}
 .inner-section .main-section #Daily-Calander .planner-action-btns .pa-btn, .inner-section .main-section #Weekly-Calander .planner-action-btns .pa-btn, .inner-section .main-section #Monthly-Calander .planner-action-btns .pa-btn {
   padding: 5px 20px;
   background-color: #b8b8b8;
@@ -2325,6 +2330,14 @@ img.dark-icon {
     font-size: 16px;
   }
 }
+.inner-section .main-section #Weekly-Calander .fc-view-harness.fc-view-harness-active {
+  height: 82vh !important;
+}
+@media (max-width: 1199.98px) {
+  .inner-section .main-section #Weekly-Calander .fc-view-harness.fc-view-harness-active {
+    height: 72vh !important;
+  }
+}
 .inner-section .main-section #Weekly-Calander .fc-timegrid-col-events .fc-timegrid-event-harness.fc-timegrid-event-harness-inset {
   min-height: 100px;
 }
@@ -2344,6 +2357,11 @@ img.dark-icon {
 }
 .inner-section .main-section #Monthly-Calander .fc-view-harness.fc-view-harness-active {
   height: 78vh !important;
+}
+@media (max-width: 1199.98px) {
+  .inner-section .main-section #Monthly-Calander .fc-view-harness.fc-view-harness-active {
+    height: 72vh !important;
+  }
 }
 .inner-section .main-section #Monthly-Calander .fc-scroller.fc-scroller-liquid-absolute {
   margin-right: -8px;
