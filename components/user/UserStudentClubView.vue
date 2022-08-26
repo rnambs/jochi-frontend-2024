@@ -466,6 +466,8 @@
                                 class="
                                   px-4
                                   py-1
+                                  ml-1 
+                                  mb-1
                                   rounded-6
                                   color-white
                                   d-flex

@@ -1576,12 +1576,12 @@
                                             color-secondary
                                             text-16
                                             font-regular
-                                            text-truncate
+                                            word-break
                                             pr-3
                                           "
                                         >
                                           <span
-                                            class="subtask-btn"
+                                            class="subtask-btn mr-1"
                                             :class="{
                                               selected:
                                                 subTask.task_status ==
@@ -1589,7 +1589,7 @@
                                             }"
                                             ><i></i
                                           ></span>
-                                          {{ subTask.title }}
+                                          <span>{{ subTask.title }}</span>
                                         </p>
                                         <span
                                           @click="deleteSubTask(subTask)"
@@ -1986,12 +1986,12 @@
                                             color-secondary
                                             text-16
                                             font-regular
-                                            text-truncate
+                                            word-break
                                             pr-3
                                           "
                                         >
                                           <span
-                                            class="subtask-btn"
+                                            class="subtask-btn mr-1"
                                             :class="{
                                               selected:
                                                 subTask.task_status ==
@@ -1999,7 +1999,7 @@
                                             }"
                                             ><i></i
                                           ></span>
-                                          {{ subTask.title }}
+                                          <span>{{ subTask.title }}</span>
                                         </p>
                                         <span
                                           @click="deleteSubTask(subTask)"
