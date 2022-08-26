@@ -150,7 +150,7 @@
                       flex-column
                       h-40
                       flex-fill
-                      hidden-scroll
+                      custom-overflow
                       py-3
                       px-5
                     "
@@ -163,7 +163,7 @@
                           :key="item.id"
                         >
                           <drag class="drag h-100" :transfer-data="{ item }">
-                            <div>
+                            <div class="h-100">
                               <div
                                 @click="onCardClick(item)"
                                 class="
@@ -221,41 +221,43 @@
                                   </div>
                                   <div class="sub-task-section mb-3">
                                     <h6 class="mb-1">Sub-tasks</h6>
-                                    <div
-                                      @click="
-                                        confirmSubTaskComplete(
-                                          $event,
-                                          sub.id,
-                                          item.id,
-                                          sub.task_status
-                                        )
-                                      "
-                                      v-for="sub in item.subTasks"
-                                      :key="sub.id"
-                                      class="
-                                        pl-2
-                                        d-flex
-                                        align-items-center
-                                        color-secondary
-                                        cursor-pointer
-                                      "
-                                    >
-                                      <input
-                                        :id="sub.title"
-                                        v-model="sub.title"
-                                        :value="
-                                          sub.task_status == 'Completed'
-                                            ? sub.title
-                                            : ''
+                                    <div class="d-flex flex-column overflow-hidden vh-10">
+                                      <div
+                                        @click="
+                                          confirmSubTaskComplete(
+                                            $event,
+                                            sub.id,
+                                            item.id,
+                                            sub.task_status
+                                          )
                                         "
-                                        type="radio"
-                                        class="mr-2"
-                                      />
-                                      <label
-                                        for=""
-                                        class="mb-0 text-truncate"
-                                        >{{ sub.title }}</label
+                                        v-for="sub in item.subTasks"
+                                        :key="sub.id"
+                                        class="
+                                          pl-2
+                                          d-flex
+                                          align-items-center
+                                          color-secondary
+                                          cursor-pointer
+                                        "
                                       >
+                                        <input
+                                          :id="sub.title"
+                                          v-model="sub.title"
+                                          :value="
+                                            sub.task_status == 'Completed'
+                                              ? sub.title
+                                              : ''
+                                          "
+                                          type="radio"
+                                          class="mr-2 cursor-pointer"
+                                        />
+                                        <label
+                                          for=""
+                                          class="mb-0 text-truncate cursor-pointer"
+                                          >{{ sub.title }}</label
+                                        >
+                                      </div>
                                     </div>
                                     <div
                                       v-if="

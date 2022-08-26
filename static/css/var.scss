@@ -776,7 +776,7 @@ $sm-screen-h         : 767.98px;
         box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 15%) !important;
         border-radius: 22px;
         border: none;
-        padding: 12px 20px;
+        padding: 11px 20px;
         @media (max-width:$md-screen) {
             padding: 6px 8px;
         }
@@ -965,6 +965,9 @@ $sm-screen-h         : 767.98px;
         .fc-view-harness.fc-view-harness-active{
             height: 75vh !important;
             // margin-top: 20px;
+            @media (max-width:$lg-screen) {
+                height: 64vh !important;
+            }
             table.fc-scrollgrid.fc-scrollgrid-liquid{
                 border: none !important;
                 thead,tbody{
@@ -1197,14 +1200,17 @@ $sm-screen-h         : 767.98px;
         line-height: 16px;
       }
       
-      .sub-task-section h6 {
-        color: #e48194;
-      }
-      
-      .sub-task-section label {
-        font-size: 12px;
-      }
-      
+      .sub-task-section{
+        .vh-10{
+            max-height: 10vh;
+        }
+        h6 {
+            color: #e48194;
+          }
+          label {
+            font-size: 12px;
+          }
+      } 
       .material-link {
         font-size: 10px;
         white-space: nowrap;

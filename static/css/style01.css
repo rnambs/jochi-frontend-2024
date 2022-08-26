@@ -1661,6 +1661,9 @@ img.dark-icon {
   font-weight: 600;
   line-height: 16px;
 }
+.inner-section .main-section #Daily-Calander .sub-task-section .vh-10, .inner-section .main-section #Weekly-Calander .sub-task-section .vh-10, .inner-section .main-section #Monthly-Calander .sub-task-section .vh-10 {
+  max-height: 10vh;
+}
 .inner-section .main-section #Daily-Calander .sub-task-section h6, .inner-section .main-section #Weekly-Calander .sub-task-section h6, .inner-section .main-section #Monthly-Calander .sub-task-section h6 {
   color: #e48194;
 }
@@ -1875,6 +1878,11 @@ img.dark-icon {
 .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
   height: 75vh !important;
 }
+@media (max-width: 1199.98px) {
+  .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
+    height: 64vh !important;
+  }
+}
 .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid {
   border: none !important;
 }
@@ -2088,7 +2096,7 @@ img.dark-icon {
   box-shadow: 0px 0px 32px -4px rgba(0, 1, 0, 0.15) !important;
   border-radius: 22px;
   border: none;
-  padding: 12px 20px;
+  padding: 11px 20px;
 }
 @media (max-width: 991.98px) {
   .inner-section .main-section #Daily-Calander .fc-v-event {
@@ -2297,7 +2305,7 @@ img.dark-icon {
   box-shadow: 0px 0px 32px -4px rgba(0, 1, 0, 0.15) !important;
   border-radius: 22px;
   border: none;
-  padding: 12px 20px;
+  padding: 11px 20px;
 }
 @media (max-width: 991.98px) {
   .inner-section .main-section #Weekly-Calander .fc-v-event {
