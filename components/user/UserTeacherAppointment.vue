@@ -41,6 +41,7 @@
                         card card-primary-void
                         rounded-22
                         flex-fill
+                        calendar-sm
                       "
                     >
                       <FullCalendar :options="calendarOptions" />
@@ -59,6 +60,7 @@
                         card card-primary-void
                         rounded-22
                         flex-fill
+                        calendar-sm
                       "
                     >
                       <h4 class="font-semi-bold color-dark text-center">

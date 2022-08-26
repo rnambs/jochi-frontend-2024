@@ -900,6 +900,11 @@ img.card-img{
 .w-fit-content{
     width: fit-content;
 }
+.h-md-100{
+    @media (min-width:$md-screen) {
+        height: 100% !important;
+    }
+}
 
 // @keyframes jump {
 //     0%   {transform: translate3d(0,-40px,0) scale3d(1,1,1)  rotate(-10deg);transition: 1.9s}
@@ -4141,7 +4146,7 @@ img.dark-icon{
                                 //         }
                                 //     }
                                 // }
-                                @include calendar-sm();
+                                // @include calendar-sm();
                         }
                         // .inner-custom-teacher{
                             // height: 100%;
@@ -4315,7 +4320,7 @@ img.dark-icon{
                         // box-shadow: 
                         //         0px 2px 8px $global-box-shadow;
                         //appointment cal
-                        @include calendar-sm();
+                        // @include calendar-sm();
                     }
                     .inner-custom-teacher{
                         .inner-agenda{
@@ -4436,7 +4441,7 @@ img.dark-icon{
                         // flex-direction: column;
                     // avalability time badge
                         .time-slot{
-                            @include calendar-sm();
+                            // @include calendar-sm();
                             // background-color: $Global-background-element;
                             // border-radius: .5rem;
                             // box-shadow: 
@@ -6299,6 +6304,14 @@ select.form-control{
             width: 130px;
             height: 130px;
             object-fit: cover;
+        }
+        @media (max-width:$md-screen) {
+            width: 90px;
+            height: 90px;
+            img{
+                width: 90px;
+                height: 90px;
+            }
         }
     }
     span {

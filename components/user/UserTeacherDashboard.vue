@@ -162,7 +162,7 @@
                   </div>
                 </div>
                 <!-- END TABLE  -->
-                <div class="inner-custom-teacher dashboard-cal container p-3 pt-4 card card-primary-void rounded-22">
+                <div class="inner-custom-teacher dashboard-cal calendar-sm container p-3 pt-4 card card-primary-void rounded-22">
                   <FullCalendar :options="calendarOptions" />
                 </div>
               </div>
