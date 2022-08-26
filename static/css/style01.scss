@@ -2058,6 +2058,11 @@ img.dark-icon{
             }
             a.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end, .fc-event-title.fc-sticky{
                 cursor: pointer;
+                .fc-event-title{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
             }
             // .fc-view-harness.fc-view-harness-active{
                 //     height: calc(100vh - 300px) !important;

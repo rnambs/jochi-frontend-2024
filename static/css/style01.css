@@ -2083,7 +2083,7 @@ img.dark-icon {
   box-shadow: 0px 0px 32px -4px rgba(0, 1, 0, 0.15) !important;
   border-radius: 22px;
   border: none;
-  padding: 15px 20px;
+  padding: 12px 20px;
 }
 @media (max-width: 991.98px) {
   .inner-section .main-section #Daily-Calander .fc-v-event {
@@ -2292,7 +2292,7 @@ img.dark-icon {
   box-shadow: 0px 0px 32px -4px rgba(0, 1, 0, 0.15) !important;
   border-radius: 22px;
   border: none;
-  padding: 15px 20px;
+  padding: 12px 20px;
 }
 @media (max-width: 991.98px) {
   .inner-section .main-section #Weekly-Calander .fc-v-event {
@@ -2428,6 +2428,11 @@ img.dark-icon {
 }
 .inner-section .main-section #Monthly-Calander a.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end, .inner-section .main-section #Monthly-Calander .fc-event-title.fc-sticky {
   cursor: pointer;
+}
+.inner-section .main-section #Monthly-Calander a.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end .fc-event-title, .inner-section .main-section #Monthly-Calander .fc-event-title.fc-sticky .fc-event-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .inner-section .main-section .element-section {
   height: 95vh;
