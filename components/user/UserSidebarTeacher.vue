@@ -191,7 +191,7 @@
                             text-left
                             collapsed
                             justify-content-start
-                            py-auto py-lg-0
+                            py-0 py-lg-0
                           "
                           @click="$event.target.classList.toggle('active')"
                           type="button"
@@ -216,7 +216,7 @@
                                 collapsed
                                 flex-fill
                                 px-0
-                                py-2 py-lg-2
+                                py-1 py-xl-2
                               "
                             >
                               <div class="font-icon d-inline-block">
@@ -266,7 +266,7 @@
                             text-left
                             collapsed
                             justify-content-start
-                            py-auto py-lg-0
+                            py-0 py-lg-0
                           "
                           @click="$event.target.classList.toggle('active')"
                           type="button"
@@ -290,7 +290,7 @@
                                 text-left
                                 flex-fill
                                 px-0
-                                py-2 py-lg-2
+                                py-1 py-xl-2
                               "
                             >
                               <div class="font-icon d-inline-block">
@@ -340,7 +340,7 @@
                             text-left
                             collapsed
                             justify-content-start
-                            py-auto py-lg-0
+                            py-0 py-lg-0
                           "
                           @click="$event.target.classList.toggle('active')"
                           type="button"
@@ -364,7 +364,7 @@
                                 text-left
                                 flex-fill
                                 px-0
-                                py-2 py-lg-2
+                                py-1 py-xl-2
                               "
                             >
                               <div class="font-icon d-inline-block">
@@ -414,7 +414,7 @@
                             text-left
                             collapsed
                             justify-content-start
-                            py-auto py-lg-0
+                            py-0 py-lg-0
                           "
                           @click="$event.target.classList.toggle('active')"
                           type="button"
@@ -438,7 +438,7 @@
                                 text-left
                                 flex-fill
                                 px-0
-                                py-2 py-lg-2
+                                py-1 py-xl-2
                               "
                             >
                               <div class="font-icon d-inline-block">
@@ -487,7 +487,7 @@
                         collapsed
                         flex-fill
                         px-0
-                        py-2 py-lg-2
+                        py-1 py-xl-2
                       "
                       @click="$event.target.classList.toggle('active')"
                       type="button"
@@ -519,12 +519,12 @@
                 >
                   <div class="card-body py-0">
                     <ul class="inner-custom-list ml-4 mb-2">
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0">
                         <nuxt-link to="/club-detail" class="nav-link"
                           >Existing</nuxt-link
                         >
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0">
                         <nuxt-link to="/club-catalogue" class="nav-link"
                           >Catalog</nuxt-link
                         >
@@ -558,7 +558,7 @@
                             text-left
                             collapsed
                             justify-content-start
-                            py-auto py-lg-0
+                            py-0 py-lg-0
                           "
                           @click="$event.target.classList.toggle('active')"
                           type="button"
@@ -582,7 +582,7 @@
                                 text-left
                                 flex-fill
                                 px-0
-                                py-2 py-lg-2
+                                py-1 py-xl-2
                               "
                             >
                               <div class="font-icon d-inline-block">
@@ -738,7 +738,7 @@
                         text-left
                         collapsed
                         justify-content-start
-                        py-auto py-lg-0
+                        py-2 py-lg-0
                       "
                       @click="$event.target.classList.toggle('active')"
                       type="button"

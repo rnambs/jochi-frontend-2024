@@ -288,7 +288,7 @@
                 >
                   <div class="card-body py-0">
                     <ul class="inner-custom-list ml-4 mb-2">
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0">
                         <nuxt-link
                           to="/planner-day"
                           @click="$event.target.classList.toggle('active')"
@@ -296,7 +296,7 @@
                           >Daily</nuxt-link
                         >
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0">
                         <nuxt-link
                           to="/planner-week"
                           @click="$event.target.classList.toggle('active')"
@@ -304,7 +304,7 @@
                           >Weekly</nuxt-link
                         >
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0">
                         <nuxt-link
                           to="/planner-month"
                           @click="$event.target.classList.toggle('active')"
@@ -368,7 +368,7 @@
                 >
                   <div class="card-body py-0">
                     <ul class="inner-custom-list ml-4 mb-2">
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0">
                         <nuxt-link
                           to="/teacher-meeting"
                           @click="$event.target.classList.toggle('active')"
@@ -384,7 +384,7 @@
                           >Peer</nuxt-link
                         >
                       </li> -->
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0">
                         <nuxt-link
                           to="/viewall-meeting"
                           @click="$event.target.classList.toggle('active')"
@@ -448,12 +448,12 @@
                 >
                   <div class="card-body py-0">
                     <ul class="inner-custom-list ml-4 mb-2">
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0">
                         <nuxt-link to="/club-detail" class="nav-link"
                           >Existing</nuxt-link
                         >
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0">
                         <nuxt-link to="/club-catalogue" class="nav-link"
                           >Catalog</nuxt-link
                         >
@@ -515,12 +515,12 @@
                 >
                   <div class="card-body py-0">
                     <ul class="inner-custom-list ml-4 mb-2">
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0">
                         <nuxt-link to="/study-time" class="nav-link"
                           >Session</nuxt-link
                         >
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0">
                         <nuxt-link to="/study-analytics" class="nav-link text-nowrap"
                           >Analytics</nuxt-link
                         >

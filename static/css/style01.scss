@@ -5229,8 +5229,16 @@ img.dark-icon{
 // Scroll Bar
 /* width */
 ::-webkit-scrollbar  {
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
+    @media (max-width:$lg-screen) {
+        width: 4px;
+        height: 4px;
+    }
+    @media (max-width:$md-screen) {
+        width: 3px;
+        height: 3px;
+    }
 }
 
 /* Track */
@@ -5243,14 +5251,14 @@ img.dark-icon{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #f6f2f3;
+    background: $theme-color;
     border-radius: 10px;
     box-shadow: none;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #f49196;
+    background: $theme-color;
 }
 .custom-switch{
     .custom-control-label::before {
