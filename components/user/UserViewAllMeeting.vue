@@ -514,7 +514,7 @@
                       <p
                         class="
                           mb-0
-                          col-12 
+                          col-12
                           d-flex
                           align-items-center
                           form-row
@@ -986,12 +986,7 @@ export default {
           payLoad = {
             id: this.detailMeetingId,
 
-            slot_id:
-              this.detailType != "Teacher" && this.isDateChanged
-                ? this.selectedSlot
-                : this.detailType != "Teacher" && !this.isDateChanged
-                ? this.detailSlotId
-                : null,
+            slot_id: this.isDateChanged ? this.selectedSlot : this.detailSlotId,
             date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
             conversation_type: this.detailConversationType,
             meeting_name: this.detailMeetingName,
