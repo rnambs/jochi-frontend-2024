@@ -3673,10 +3673,10 @@ img.dark-icon {
   color: #7E7EA0 !important;
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight {
-  background: #F5E4F0 !important;
+  background: #FF6D6D !important;
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight .fc-daygrid-day-number {
-  color: #C5C0BD !important;
+  color: #FF6D6D !important;
 }
 .calendar-sm .fc .fc-scrollgrid {
   border-radius: 12px;
@@ -3851,10 +3851,10 @@ img.dark-icon {
   color: #7E7EA0 !important;
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight {
-  background: #F5E4F0 !important;
+  background: #FF6D6D !important;
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight .fc-daygrid-day-number {
-  color: #C5C0BD !important;
+  color: #FF6D6D !important;
 }
 .calendar-dashboard .fc .fc-scrollgrid {
   border-radius: 12px;

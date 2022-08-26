@@ -335,9 +335,9 @@ $sm-screen-h         : 767.98px;
                             }
                         }
                         .fc-highlight {
-                            background: $cal-border  !important;
+                            background: $theme-color  !important;
                             .fc-daygrid-day-number{
-                                color: $text-secondary !important;
+                                color: $theme-color !important;
                             }
                         }
                     }

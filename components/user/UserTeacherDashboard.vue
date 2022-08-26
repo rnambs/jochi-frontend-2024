@@ -75,7 +75,7 @@
                 <div class="teacher-row container mb-4 card card-primary-void rounded-22 p-0 h-40 flex-fill">
                   <div class="appointment-req d-flex flex-column h-100 p-2">
                     <h6 class="text-center color-primary pt-3 mb-0">Meeting Requests</h6>
-                    <div class="table-req container py-3 custom-overflow-x custom-overflow">
+                    <div class="table-req container py-3 custom-overflow-x custom-overflow h-100">
                       <table class="table mb-0">
                         <thead>
                           <tr class="color-dark font-semi-bold">
