@@ -14,17 +14,15 @@
           class="
             teacher-section
             jochi-components-light-bg
-            p-4
             custom-margin-for-main-section custom-full-height
             d-flex
             flex-column
-            custom-overflow
           "
         >
-          <h2 class="color-primary font-semi-bold m-0 p-3">
+          <h2 class="color-primary font-semi-bold m-0 px-4 pt-4">
             Teacher Appointment
           </h2>
-          <div class="inner-teacher p-3 d-flex flex-column h-40 flex-fill">
+          <div class="inner-teacher px-4 pt-4 pb-2 mb-2 d-flex flex-column h-40 flex-fill custom-overflow">
             <div class="d-flex h-100 flex-column">
               <div>
                 <div class="row teacher-row">
@@ -38,7 +36,7 @@
                         text-light
                         p-3
                         pt-4
-                        card card-primary-void
+                        card card-primary-sm
                         rounded-22
                         flex-fill
                         calendar-sm
@@ -57,7 +55,7 @@
                       class="
                         inner-custom-teacher
                         p-3
-                        card card-primary-void
+                        card card-primary-sm
                         rounded-22
                         flex-fill
                         calendar-sm
@@ -128,7 +126,7 @@
                     custom-teacher-container
                     d-flex
                     flex-column
-                    card card-primary-void
+                    card card-primary-sm
                     rounded-22
                   "
                 >
