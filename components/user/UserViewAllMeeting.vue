@@ -88,7 +88,7 @@
 
         <section id="view-all-section" class="d-flex h-40 flex-fill">
           <div
-            class="meeting-section d-flex custom-overflow pe-2 mr--2 flex-fill"
+            class="meeting-section d-flex custom-overflow pe-2 mr--2 flex-fill pt-3 pt-lg-0"
           >
             <div class="inner-meeting container-fluid p-0">
               <div class="row Meeting-row pl-0 pr-3 pt-0">

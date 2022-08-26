@@ -208,7 +208,7 @@
                                   >
                                     <div
                                       class="
-                                        col-4
+                                        col-3
                                         d-flex
                                         justify-content-end
                                         p-0
@@ -228,7 +228,7 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="col-8 p-0">
+                                    <div class="col-9 p-0">
                                       <div class="ld-details-section">
                                         <p
                                           class="
@@ -781,13 +781,13 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header pb-1">
             <h3 class="modal-title" id="viewMoreModalLongTitle">
               View {{ isLeaderView ? "Leaders" : "Members" }}
             </h3>
             <button
               type="button"
-              class="close"
+              class="btn btn-close"
               data-dismiss="modal"
               aria-label="Close"
             >

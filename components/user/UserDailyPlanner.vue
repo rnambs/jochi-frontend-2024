@@ -596,7 +596,7 @@
                         "
                       >
                         <div
-                          class="d-flex flex-column custom-overflow pr-3 me--3"
+                          class="d-flex flex-column custom-overflow px-2 pr-3 me--3"
                         >
                           <form
                             v-if="!isSharedAssignment"

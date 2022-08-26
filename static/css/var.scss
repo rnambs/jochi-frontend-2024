@@ -335,9 +335,9 @@ $sm-screen-h         : 767.98px;
                             }
                         }
                         .fc-highlight {
-                            background: $cal-border  !important;
+                            background: $theme-color  !important;
                             .fc-daygrid-day-number{
-                                color: $text-secondary !important;
+                                color: $theme-color !important;
                             }
                         }
                     }
@@ -776,7 +776,7 @@ $sm-screen-h         : 767.98px;
         box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 15%) !important;
         border-radius: 22px;
         border: none;
-        padding: 15px 20px;
+        padding: 12px 20px;
         @media (max-width:$md-screen) {
             padding: 6px 8px;
         }
@@ -1294,6 +1294,9 @@ $sm-screen-h         : 767.98px;
         transform: rotate(-90deg);
         top: 50vh;
         right: -160px;
+        @media (max-width:$md-screen) {
+            right: -146px;
+        }
       }
       
       .planner-action-btns .pa-btn {

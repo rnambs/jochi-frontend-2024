@@ -23,13 +23,13 @@ body{
 
 .small-device{
     .main-section{
-        height: calc(100vh - 76px) !important;
+        height: calc(100vh - 96px) !important;
     }
     .header-section .sidebar-section{
-        height: calc(100vh - 76px - 24px) !important;
+        height: calc(100vh - 96px - 24px) !important;
     }
     .custom-full-height{
-        height: calc(100vh - 76px - 24px) !important;
+        height: calc(100vh - 96px - 24px) !important;
     }
 }
 
@@ -287,6 +287,12 @@ body{
             transition: ease all 0.5s;
         }
     }
+    &.btn-close{
+        display: flex;
+        color: $theme-color;
+        font-size: 30px;
+        font-weight: 600;
+    }
 }
 .tab-btns{
     // transform: rotate(-90deg);
@@ -365,8 +371,11 @@ input[type="radio"]{
             }
         }
         &.bg-transparent{
-            background-color: transparent;
+            background-color: rgb(255 255 255 / 35%)!important;
             box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+            &::placeholder{
+                color: #1E1E1E !important;
+            }
         }
     }
     select.form-control{
@@ -890,6 +899,11 @@ img.card-img{
 }
 .w-fit-content{
     width: fit-content;
+}
+.h-md-100{
+    @media (min-width:$md-screen) {
+        height: 100% !important;
+    }
 }
 
 // @keyframes jump {
@@ -1507,6 +1521,10 @@ img.dark-icon{
                     }
                     @media (max-width: 991.98px) {
                         width: 100%;
+                        padding: 0px 14px;
+                    }
+                    img{
+                        width: 2rem;
                     }
                     // i{
                     //     font-size: 1.3rem;
@@ -1965,6 +1983,12 @@ img.dark-icon{
             @include calendar-lg-head();
             @include plannerCommonMonth();
             @include plannerCommon();
+            .fc-view-harness.fc-view-harness-active{
+                height: 82vh !important;
+                @media (max-width:$lg-screen) {
+                    height: 72vh !important;
+                }
+            }
             .fc-timegrid-col-events{
                 .fc-timegrid-event-harness.fc-timegrid-event-harness-inset{
                     min-height: 100px;
@@ -1992,6 +2016,9 @@ img.dark-icon{
         #Monthly-Calander{
              .fc-view-harness.fc-view-harness-active{
                 height: 78vh !important;
+                @media (max-width:$lg-screen) {
+                    height: 72vh !important;
+                }
             }
             .fc-scroller.fc-scroller-liquid-absolute{
                 margin-right: -8px;
@@ -2036,6 +2063,14 @@ img.dark-icon{
                         text-overflow: ellipsis;
                         cursor: pointer;
                     }
+                }
+            }
+            a.fc-daygrid-event.fc-daygrid-dot-event.fc-event.fc-event-start.fc-event-end, .fc-event-title.fc-sticky{
+                cursor: pointer;
+                .fc-event-title{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
             }
             // .fc-view-harness.fc-view-harness-active{
@@ -2932,7 +2967,7 @@ img.dark-icon{
                 }
             }
             .form-label{
-                color: $cal-border;
+                color: $text-secondary;
                 font-size: 0.85rem;
                 @media (max-width:1024.89px) {
                     font-size: 0.7rem;
@@ -4125,7 +4160,7 @@ img.dark-icon{
                                 //         }
                                 //     }
                                 // }
-                                @include calendar-sm();
+                                // @include calendar-sm();
                         }
                         // .inner-custom-teacher{
                             // height: 100%;
@@ -4299,7 +4334,7 @@ img.dark-icon{
                         // box-shadow: 
                         //         0px 2px 8px $global-box-shadow;
                         //appointment cal
-                        @include calendar-sm();
+                        // @include calendar-sm();
                     }
                     .inner-custom-teacher{
                         .inner-agenda{
@@ -4420,7 +4455,7 @@ img.dark-icon{
                         // flex-direction: column;
                     // avalability time badge
                         .time-slot{
-                            @include calendar-sm();
+                            // @include calendar-sm();
                             // background-color: $Global-background-element;
                             // border-radius: .5rem;
                             // box-shadow: 
@@ -5194,8 +5229,16 @@ img.dark-icon{
 // Scroll Bar
 /* width */
 ::-webkit-scrollbar  {
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
+    @media (max-width:$lg-screen) {
+        width: 4px;
+        height: 4px;
+    }
+    @media (max-width:$md-screen) {
+        width: 3px;
+        height: 3px;
+    }
 }
 
 /* Track */
@@ -5208,14 +5251,14 @@ img.dark-icon{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #f6f2f3;
+    background: $theme-color;
     border-radius: 10px;
     box-shadow: none;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #f49196;
+    background: $theme-color;
 }
 .custom-switch{
     .custom-control-label::before {
@@ -5278,7 +5321,7 @@ switch to violet when it is active*/
         .calendar-table{
             // background-color: $global-sidebar-bg;
             thead{
-                color: $border-color;
+                color: $black;
                 th.available{
                     span{
                         color: $global-box-shadow;
@@ -5311,11 +5354,12 @@ switch to violet when it is active*/
     }
     .drp-buttons{
         span.drp-selected{
-            color: $cal-border;
+            color: $theme-color;
+            font-weight: 700;
         }
         button.cancelBtn.btn.btn-sm.btn-default{
             background-color: #fbdcdc;
-            color: $text-dark;
+            color: $white;
             border: none;
         }
         button.applyBtn.btn.btn-sm.btn-primary{
@@ -6283,6 +6327,14 @@ select.form-control{
             width: 130px;
             height: 130px;
             object-fit: cover;
+        }
+        @media (max-width:$md-screen) {
+            width: 90px;
+            height: 90px;
+            img{
+                width: 90px;
+                height: 90px;
+            }
         }
     }
     span {

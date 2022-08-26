@@ -796,6 +796,7 @@
                                 d-flex
                                 flex-column
                                 custom-overflow
+                                px-2
                                 pr-3
                                 me--3
                               "
