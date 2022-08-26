@@ -101,7 +101,7 @@
                         color-dark
                         text-14 form-label"
                             for="switch_time"
-                            >set default time
+                            >Set default time
                           </label>
                         </div>
 

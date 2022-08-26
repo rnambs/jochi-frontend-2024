@@ -5321,7 +5321,7 @@ switch to violet when it is active*/
         .calendar-table{
             // background-color: $global-sidebar-bg;
             thead{
-                color: $border-color;
+                color: $black;
                 th.available{
                     span{
                         color: $global-box-shadow;
@@ -5354,11 +5354,12 @@ switch to violet when it is active*/
     }
     .drp-buttons{
         span.drp-selected{
-            color: $cal-border;
+            color: $theme-color;
+            font-weight: 700;
         }
         button.cancelBtn.btn.btn-sm.btn-default{
             background-color: #fbdcdc;
-            color: $text-dark;
+            color: $white;
             border: none;
         }
         button.applyBtn.btn.btn-sm.btn-primary{

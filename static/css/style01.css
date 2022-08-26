@@ -3995,7 +3995,7 @@ switch to violet when it is active*/
 }
 
 .daterangepicker.ltr.show-calendar.opensleft .drp-calendar .calendar-table thead {
-  color: #f0f0f0;
+  color: #000000;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-calendar .calendar-table thead th.available span {
   color: rgba(255, 255, 255, 0.45);
@@ -4015,11 +4015,12 @@ switch to violet when it is active*/
   color: #F9F9F9;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-buttons span.drp-selected {
-  color: #F5E4F0;
+  color: #FF6D6D;
+  font-weight: 700;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-buttons button.cancelBtn.btn.btn-sm.btn-default {
   background-color: #fbdcdc;
-  color: #431F1C;
+  color: #ffffff;
   border: none;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-buttons button.applyBtn.btn.btn-sm.btn-primary {
