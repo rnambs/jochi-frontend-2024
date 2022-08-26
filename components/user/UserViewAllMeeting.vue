@@ -88,7 +88,15 @@
 
         <section id="view-all-section" class="d-flex h-40 flex-fill">
           <div
-            class="meeting-section d-flex custom-overflow pe-2 mr--2 flex-fill pt-3 pt-lg-0"
+            class="
+              meeting-section
+              d-flex
+              custom-overflow
+              pe-2
+              mr--2
+              flex-fill
+              pt-3 pt-lg-0
+            "
           >
             <div class="inner-meeting container-fluid p-0">
               <div class="row Meeting-row pl-0 pr-3 pt-0">
@@ -514,7 +522,7 @@
                       <p
                         class="
                           mb-0
-                          col-12 
+                          col-12
                           d-flex
                           align-items-center
                           form-row
@@ -962,50 +970,44 @@ export default {
         this.loading = true;
 
         let payLoad = {};
-        if (this.detailType == "Teacher") {
-          payLoad = {
-            id: this.detailMeetingId,
-            schedule_id: this.isDateChanged
-              ? this.selectedScheduleId
-              : this.detailScheduleId,
+        // if (this.detailType == "Teacher") {
+        payLoad = {
+          id: this.detailMeetingId,
+          schedule_id: this.isDateChanged
+            ? this.selectedScheduleId
+            : this.detailScheduleId,
+          slot_id: this.isDateChanged ? this.selectedSlot : this.detailSlotId,
 
-            date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
-            conversation_type: this.detailConversationType,
-            meeting_name: this.detailMeetingName,
-            meeting_description: this.detailMeetingDesc,
-            meeting_link:
-              this.detailConversationType == "Video Conference"
-                ? this.detailVenue
-                : "",
-            meeting_location:
-              this.detailConversationType == "In Person"
-                ? this.detailVenue
-                : "",
-          };
-        } else {
-          payLoad = {
-            id: this.detailMeetingId,
+          date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
+          conversation_type: this.detailConversationType,
+          meeting_name: this.detailMeetingName,
+          meeting_description: this.detailMeetingDesc,
+          meeting_link:
+            this.detailConversationType == "Video Conference"
+              ? this.detailVenue
+              : "",
+          meeting_location:
+            this.detailConversationType == "In Person" ? this.detailVenue : "",
+        };
+        // } else {
+        //   payLoad = {
+        //     id: this.detailMeetingId,
 
-            slot_id:
-              this.detailType != "Teacher" && this.isDateChanged
-                ? this.selectedSlot
-                : this.detailType != "Teacher" && !this.isDateChanged
-                ? this.detailSlotId
-                : null,
-            date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
-            conversation_type: this.detailConversationType,
-            meeting_name: this.detailMeetingName,
-            meeting_description: this.detailMeetingDesc,
-            meeting_link:
-              this.detailConversationType == "Video Conference"
-                ? this.detailVenue
-                : "",
-            meeting_location:
-              this.detailConversationType == "In Person"
-                ? this.detailVenue
-                : "",
-          };
-        }
+        //     slot_id: this.isDateChanged ? this.selectedSlot : this.detailSlotId,
+        //     date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
+        //     conversation_type: this.detailConversationType,
+        //     meeting_name: this.detailMeetingName,
+        //     meeting_description: this.detailMeetingDesc,
+        //     meeting_link:
+        //       this.detailConversationType == "Video Conference"
+        //         ? this.detailVenue
+        //         : "",
+        //     meeting_location:
+        //       this.detailConversationType == "In Person"
+        //         ? this.detailVenue
+        //         : "",
+        //   };
+        // }
 
         await this.updateMeeting(payLoad);
 
