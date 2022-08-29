@@ -104,7 +104,7 @@
                         </div>
                         <div
                           v-if="listAgenda.length == 0"
-                          class="empty-shedule"
+                          class="empty-shedule d-flex justify-content-center align-items-center h-100"
                         >
                           <p>No meetings for the day</p>
                         </div>

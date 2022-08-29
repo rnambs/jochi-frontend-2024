@@ -784,6 +784,7 @@ $sm-screen-h         : 767.98px;
       
       .fc-v-event .fc-event-main {
         color: #000000;
+        overflow: hidden;
       }
       
       .fc-timegrid-col-events .fc-timegrid-more-link.fc-more-link {
@@ -1202,7 +1203,7 @@ $sm-screen-h         : 767.98px;
       
       .sub-task-section{
         .vh-10{
-            max-height: 10vh;
+            max-height: 72px;
         }
         h6 {
             color: #e48194;

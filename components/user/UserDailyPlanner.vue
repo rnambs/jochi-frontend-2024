@@ -1115,7 +1115,7 @@
                                       id="fileUpload"
                                       v-if="materialType == 'file'"
                                       type="file"
-                                      class="form-control px-2"
+                                      class="form-control px-2 cursor-pointer"
                                       placeholder="Upload File"
                                       @change="onFileChange"
                                       accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
@@ -1513,7 +1513,7 @@
                                     <input
                                       v-if="materialType == 'file'"
                                       type="file"
-                                      class="form-control px-2"
+                                      class="form-control px-2 cursor-pointer"
                                       placeholder="Upload File"
                                       @change="onFileChange"
                                       accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
@@ -2079,31 +2079,31 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="completeConfirmModalLongTitle">
+          <div class="modal-header pb-1">
+            <h3 class="modal-title" id="completeConfirmModalLongTitle">
               Complete Assignment Confirmation
-            </h5>
-            <button
+            </h3>
+            <!-- <button
               type="button"
               class="close"
               data-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
-            </button>
+            </button> -->
           </div>
           <div class="modal-body px-4">Mark assignment as completed?</div>
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-pill"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-primary py-1 px-3 rounded-pill"
+              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
               :disabled="processingCompleteAssignment"
               @click="completeAssignment()"
             >

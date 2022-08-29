@@ -182,6 +182,9 @@ body{
   &.yellow{
     background-color: #daa112;
   }
+  &.green{
+    background-color: #34a853;
+  }
 }
 
 // BORDER RADIUS{
@@ -6611,3 +6614,4 @@ select.form-control{
         background-color: rgba($color: $white, $alpha: 0.2) !important;
     }
 } 
+::-webkit-file-upload-button { cursor:pointer; }

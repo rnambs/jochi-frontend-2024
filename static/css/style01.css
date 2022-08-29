@@ -205,6 +205,9 @@ body {
 .assignment-tag.yellow {
   background-color: #daa112;
 }
+.assignment-tag.green {
+  background-color: #34a853;
+}
 
 .rounded-6 {
   border-radius: 6px;
@@ -1662,7 +1665,7 @@ img.dark-icon {
   line-height: 16px;
 }
 .inner-section .main-section #Daily-Calander .sub-task-section .vh-10, .inner-section .main-section #Weekly-Calander .sub-task-section .vh-10, .inner-section .main-section #Monthly-Calander .sub-task-section .vh-10 {
-  max-height: 10vh;
+  max-height: 72px;
 }
 .inner-section .main-section #Daily-Calander .sub-task-section h6, .inner-section .main-section #Weekly-Calander .sub-task-section h6, .inner-section .main-section #Monthly-Calander .sub-task-section h6 {
   color: #e48194;
@@ -2105,6 +2108,7 @@ img.dark-icon {
 }
 .inner-section .main-section #Daily-Calander .fc-v-event .fc-event-main {
   color: #000000;
+  overflow: hidden;
 }
 .inner-section .main-section #Daily-Calander .fc-timegrid-col-events .fc-timegrid-more-link.fc-more-link {
   bottom: unset !important;
@@ -2314,6 +2318,7 @@ img.dark-icon {
 }
 .inner-section .main-section #Weekly-Calander .fc-v-event .fc-event-main {
   color: #000000;
+  overflow: hidden;
 }
 .inner-section .main-section #Weekly-Calander .fc-timegrid-col-events .fc-timegrid-more-link.fc-more-link {
   bottom: unset !important;
@@ -5034,4 +5039,8 @@ select.form-control.is-invalid {
 }
 .schedule-meeting-section .form-control {
   background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+::-webkit-file-upload-button {
+  cursor: pointer;
 }/*# sourceMappingURL=style01.css.map */
