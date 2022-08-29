@@ -50,7 +50,7 @@
                 </div>
                 <div
                   class="
-                    col-10 col-md-11
+                    col-11
                     p-0
                     position-absolute
                     assignment-planner-section
