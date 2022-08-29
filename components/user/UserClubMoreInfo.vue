@@ -113,7 +113,7 @@
                 <div class="row my-0 h-40 flex-fill">
                   <div
                     v-if="type == 'Sports'"
-                    class="col-md-6 col-xs-12 h-100 d-flex"
+                    class="col-md-6 col-xs-12 h-md-100 d-flex"
                   >
                     <div
                       class="
@@ -401,7 +401,7 @@
                         </div> -->
                     </div>
                   </div>
-                  <div v-else class="col-md-6 col-xs-12 h-100 d-flex">
+                  <div v-else class="col-md-6 col-xs-12 h-md-100 d-flex">
                     <div
                       class="inner-info container-fluid p-2 d-flex flex-column"
                     >

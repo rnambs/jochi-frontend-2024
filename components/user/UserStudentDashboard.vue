@@ -218,83 +218,87 @@
                       "
                     >
                       <div
-                        v-for="(list, index) in slot_date"
-                        :key="index"
                         class="row"
                       >
-                        <div class="col-12 faculty-availability-card mb-2">
-                          <div class="row">
-                            <div class="col-3 py-0">
-                              <div
-                                class="
-                                  jochi-sub-components-light-bg
-                                  fa-card-date
-                                  d-flex
-                                  flex-column
-                                  align-items-center
-                                  justify-content-center
-                                  w-100
-                                  p-3
-                                "
-                              >
-                                <p class="color-primary text-12 mb-1">
-                                  {{ list.date_day }}
-                                </p>
-                                <p
+                        <div 
+                        v-for="(list, index) in slot_date"
+                        :key="index"
+                        class="col-12 mb-2"
+                        >
+                          <div class="faculty-availability-card">
+                            <div class="row">
+                              <div class="col-3 py-0">
+                                <div
                                   class="
-                                    color-primary
-                                    font-regular
-                                    text-30
-                                    mb-0
+                                    jochi-sub-components-light-bg
+                                    fa-card-date
+                                    d-flex
+                                    flex-column
+                                    align-items-center
+                                    justify-content-center
+                                    w-100
+                                    p-3
                                   "
                                 >
-                                  {{ list.date_number }}
-                                </p>
-                              </div>
-                            </div>
-                            <div class="col-9">
-                              <div
-                                class="
-                                  d-flex
-                                  justify-content-between
-                                  align-items-center
-                                  cursor-pointer
-                                "
-                                @click="onCardClick(list)"
-                              >
-                                <div class="fa-meeting-faculty-details">
+                                  <p class="color-primary text-12 mb-1">
+                                    {{ list.date_day }}
+                                  </p>
                                   <p
                                     class="
-                                      mb-1
-                                      color-seccondary
-                                      text-14
+                                      color-primary
                                       font-regular
+                                      text-30
+                                      mb-0
                                     "
                                   >
-                                    {{
-                                      list.type == "Teacher"
-                                        ? "Faculty Meeting"
-                                        : "Peer Meeting"
-                                    }}
+                                    {{ list.date_number }}
                                   </p>
-                                  <p class="mb-1 color-dark text-18 font-bold">
-                                    {{ list.new_title }}
-                                  </p>
-                                  <div
-                                    class="
-                                      w-fit-content
-                                      text-12
-                                      px-3
-                                      py-1
-                                      bg-theme
-                                      rounded-pill
-                                      color-white
-                                    "
-                                  >
-                                    {{ list.start_time }}
-                                  </div>
                                 </div>
-                                <i class="arrow right"></i>
+                              </div>
+                              <div class="col-9">
+                                <div
+                                  class="
+                                    d-flex
+                                    justify-content-between
+                                    align-items-center
+                                    cursor-pointer
+                                  "
+                                  @click="onCardClick(list)"
+                                >
+                                  <div class="fa-meeting-faculty-details">
+                                    <p
+                                      class="
+                                        mb-1
+                                        color-seccondary
+                                        text-14
+                                        font-regular
+                                      "
+                                    >
+                                      {{
+                                        list.type == "Teacher"
+                                          ? "Faculty Meeting"
+                                          : "Peer Meeting"
+                                      }}
+                                    </p>
+                                    <p class="mb-1 color-dark text-18 font-bold">
+                                      {{ list.new_title }}
+                                    </p>
+                                    <div
+                                      class="
+                                        w-fit-content
+                                        text-12
+                                        px-3
+                                        py-1
+                                        bg-theme
+                                        rounded-pill
+                                        color-white
+                                      "
+                                    >
+                                      {{ list.start_time }}
+                                    </div>
+                                  </div>
+                                  <i class="arrow right"></i>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -534,13 +538,13 @@
       <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content px-4">
           <div class="modal-header pb-0">
-            <h1
+            <h2
               class="modal-title color-primary font-semi-bold mb-0"
               id="meetingDetailModalLongTitle"
             >
               <span>{{ meetingDetail.type }}</span> Meeting with
               <span>{{ meetingDetail.new_title }}</span>
-            </h1>
+            </h2>
             <!-- <button type="button" class="close">
               <span aria-hidden="true">Edit</span>
             </button> -->

@@ -1061,6 +1061,9 @@ img.dark-icon{
 //     min-height: 274px;
 //     max-height: 300px;
 // }
+.faculty-availability-card{
+    min-height: 90px;
+}
 // SIGN-IN
 
 .main-container{
@@ -5414,9 +5417,9 @@ switch to violet when it is active*/
                 .modal-title{
                     color: $theme-color;
                     font-weight: 700;
-                    @media (max-width:1024.98px) {
-                        font-size: 1rem;
-                    }
+                    // @media (max-width:1024.98px) {
+                    //     font-size: 1rem;
+                    // }
                 }
                 .close{
                     color: $theme-color;
