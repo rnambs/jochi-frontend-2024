@@ -183,11 +183,11 @@
     >
     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
       <div class="modal-content h-auto">
-        <div class="modal-header text-dark">
-          <h5 class="modal-title" id="mediumModalLabel">
+        <div class="modal-header pb-0 text-dark">
+          <h2 class="modal-title mb-0" id="mediumModalLabel">
             Meeting Request
-          </h5>
-          <button
+          </h2>
+          <!-- <button
             type="button"
             class="close"
             data-dismiss="modal"
@@ -195,9 +195,11 @@
           
           >
             <span aria-hidden="true">&times;</span>
-          </button>
+          </button> -->
         </div>
-        <div class="modal-body">
+        <div class="modal-body pb-3">
+          <p class="font-bold text-24 color-dark mb-1">07-29-2022</p>
+          <p class="mb-1 font-semi-bold text-18 color-primary">12:00 PM</p>
           <div class="row py-1">
             <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Name</p></div>
             <div class="col">
@@ -207,7 +209,7 @@
               </p>
             </div>
           </div>
-          <div class="row py-1">
+          <!-- <div class="row py-1">
             <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Date</p></div>
             <div class="col">
               <p class="mb-0 color-dark font-regular text-16 d-flex">
@@ -224,8 +226,8 @@
                 <span>12:00 PM</span> 
               </p>
             </div>
-          </div>
-          <div class="row py-1">
+          </div> -->
+          <div class="row py-1 mt-0">
             <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Duration</p></div>
             <div class="col">
               <p class="mb-0 color-dark font-regular text-16 d-flex">
@@ -234,7 +236,7 @@
               </p>
             </div>
           </div>
-          <div class="row py-1">
+          <div class="row py-1 mt-0">
             <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Discription</p></div>
             <div class="col">
               <p class="mb-0 color-dark font-regular text-16 d-flex">
@@ -246,14 +248,14 @@
         </div>
         <div class="modal-footer bg-white text-dark">
           <button
-          class="d-flex btn btn-secondary rounded-pill px-4 py-1 mx-2"
+          class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
           @click="
             TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 2)"
         >
           <span class="text-16">Reject</span>
         </button>
           <button
-            class="d-flex btn btn-primary rounded-pill px-4 py-1"
+            class="d-flex btn btn-success rounded-12 px-4 py-1 font-semi-bold"
             @click="
               TeacherMeetingConfirm(teacher.studentId,teacher.reqId, 1,teacher.selectableDate)"
           >

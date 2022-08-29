@@ -99,7 +99,7 @@
             "
           >
             <div class="row my-0 flex-fill">
-              <div class="col d-flex h-100">
+              <div class="col d-flex h-md-100">
                 <div
                   class="
                     inner-club
@@ -120,10 +120,10 @@
                       custom-overflow
                       image-overflow
                       d-flex
-                      flex-column flex-fill
+                      flex-column
                     "
                   >
-                    <div class="row info-row container-fluid my-0 mx-auto">
+                    <div class="row info-row container-fluid my-0 mx-auto align-items-start">
                       <div
                         class="col-md-3 col-sm-6 p-2"
                         v-for="(list, index) in allList"
@@ -388,7 +388,7 @@
                   </div>
                 </div>
               </div>
-              <div v-if="enableEdit" class="col-md-4 d-flex flex-column py-3">
+              <div v-if="enableEdit" class="col-lg-4 d-flex flex-column py-3">
                 <div
                   class="
                     inner-club

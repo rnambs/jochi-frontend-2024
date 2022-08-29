@@ -908,7 +908,11 @@ img.card-img{
         height: 100% !important;
     }
 }
-
+.h-sm-100{
+    @media (min-width:$sm-screen) {
+        height: 100% !important;
+    }
+}
 // @keyframes jump {
 //     0%   {transform: translate3d(0,-40px,0) scale3d(1,1,1)  rotate(-10deg);transition: 1.9s}
 //     40%  {transform: translate3d(0,3%,0) scale3d(.9,1.1,.9) rotate(10deg);transition: 1.7s}

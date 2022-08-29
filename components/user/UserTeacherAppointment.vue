@@ -272,19 +272,33 @@
           role="document"
         >
           <div class="modal-content h-auto">
-            <div class="modal-header text-dark">
-              <h5 class="modal-title" id="mediumModalLabel">Meeting Request</h5>
-              <button
+            <div class="modal-header text-dark pb-1">
+              <h2 class="modal-title" id="mediumModalLabel">Meeting Request</h2>
+              <!-- <button
                 type="button"
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
               >
                 <span aria-hidden="true">&times;</span>
-              </button>
+              </button> -->
             </div>
-            <div class="modal-body">
-              <div class="row py-1">
+            <div class="modal-body pb-3">
+              <p v-if="meetingDetail && meetingDetail.date" class="font-bold text-24 color-dark mb-1">{{
+                meetingDetail.date
+              }}</p>
+              <p
+                v-if="
+                  meetingDetail &&
+                  meetingDetail.default_slots &&
+                  meetingDetail.default_slots.start_time &&
+                  meetingDetail.default_slots.end_time
+                " 
+                class="mb-1 font-semi-bold text-18 color-primary"
+                >{{ meetingDetail.default_slots.start_time }} -
+                {{ meetingDetail.default_slots.end_time }}</p
+              >
+              <div class="row py-0 ">
                 <div class="col-3">
                   <p class="mb-0 font-semi-bold color-dark text-16">Name</p>
                 </div>
@@ -297,7 +311,7 @@
                   </p>
                 </div>
               </div>
-              <div class="row py-1">
+              <div class="row py-0 mt-0">
                 <div class="col-3">
                   <p class="mb-0 font-semi-bold color-dark text-16">With</p>
                 </div>
@@ -310,7 +324,7 @@
                   </p>
                 </div>
               </div>
-              <div class="row py-1">
+              <!-- <div class="row py-1">
                 <div class="col-3">
                   <p class="mb-0 font-semi-bold color-dark text-16">Date</p>
                 </div>
@@ -322,8 +336,8 @@
                     }}</span>
                   </p>
                 </div>
-              </div>
-              <div class="row py-1">
+              </div> -->
+              <!-- <div class="row py-1">
                 <div class="col-3">
                   <p class="mb-0 font-semi-bold color-dark text-16">Time</p>
                 </div>
@@ -342,9 +356,9 @@
                     >
                   </p>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="row py-1">
+              <div class="row py-0 mt-0">
                 <div class="col-3">
                   <p class="mb-0 font-semi-bold color-dark text-16">
                     Description
@@ -360,7 +374,7 @@
                   </p>
                 </div>
               </div>
-              <div class="row py-1">
+              <div class="row py-0 mt-0">
                 <div class="col-3">
                   <p class="mb-0 font-semi-bold color-dark text-16">Type</p>
                 </div>
@@ -376,7 +390,7 @@
               </div>
               <div
                 v-if="meetingDetail && meetingDetail.meeting_link"
-                class="row py-1"
+                class="row py-0"
               >
                 <div class="col-3">
                   <p class="mb-0 font-semi-bold color-dark text-16">Link</p>
@@ -390,7 +404,7 @@
               </div>
               <div
                 v-if="meetingDetail && meetingDetail.meeting_location"
-                class="row py-1"
+                class="row py-0 mt-0"
               >
                 <div class="col-3">
                   <p class="mb-0 font-semi-bold color-dark text-16">Location</p>
@@ -410,7 +424,7 @@
                   meetingDetail.studentId &&
                   meetingDetail.reqId
                 "
-                class="d-flex btn btn-secondary rounded-pill px-4 py-1 mx-2"
+                class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -428,7 +442,7 @@
                   meetingDetail.reqId &&
                   meetingDetail.selectableDate
                 "
-                class="d-flex btn btn-primary rounded-pill px-4 py-1"
+                class="d-flex btn btn-success rounded-12 px-4 py-1 font-semi-bold"
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,

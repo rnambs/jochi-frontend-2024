@@ -509,7 +509,7 @@
                   </div>
                 </div>
                 <div class="text-center">
-                  <h4 class="color-dark font-semi-bold mb-1">
+                  <h4 class="color-dark font-semi-bold mb-1 word-break">
                     <!-- French Oral Practice -->
                     {{ detail.task }}
                   </h4>
@@ -2479,24 +2479,24 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="scheduleModalLongTitle">
+            <h3 class="modal-title" id="scheduleModalLongTitle">
               Schedule Time
-            </h5>
-            <button
+            </h3>
+            <!-- <button
               type="button"
               class="close"
               data-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
-            </button>
+            </button> -->
           </div>
           <div class="modal-body overflow-initial">
             <div class="form-group required">
-              <label class="typo__label">Date</label>
+              <!-- <label class="typo__label">Date</label> -->
               <date-picker
                 class="form-control bg-white"
-                placeholder="MM/DD/YYYY"
+                placeholder="Date"
                 format="MM/dd/yyyy"
                 :value="scheduledDate"
                 v-model="scheduledDate"
@@ -2505,10 +2505,11 @@
               />
             </div>
             <div class="form-group required">
-              <label class="typo__label">Time</label>
+              <!-- <label class="typo__label">Time</label> -->
               <vue-timepicker
                 close-on-complete
                 format="hh:mm A"
+                placeholder="Time"
                 v-model="scheduledTime"
                 name="scheduledTime"
                 class="show-cursor form-white"
@@ -2518,14 +2519,14 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-pill"
+              class="btn btn-secondary px-4 py-1 rounded-12"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-primary rounded-pill px-4 py-1"
+              class="btn btn-success rounded-12 px-4 py-1"
               @click="StartStudySession(false)"
               :disabled="processingStudySession"
             >

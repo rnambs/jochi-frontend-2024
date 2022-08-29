@@ -433,7 +433,7 @@
                       <p class="mb-0 px-5 color-secondary font-regular">
                         Drag and drop your assignment here when it is completed
                       </p>
-                      <div class="d-flex flex-column hidden-scroll px-5 pb-3">
+                      <div class="d-flex flex-column custom-overflow px-5 pb-3">
                         <div class="row mt-1">
                           <div
                             v-for="item in completedAssignments"
