@@ -4145,7 +4145,7 @@ switch to violet when it is active*/
   display: none;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker input[type=text] {
-  line-height: 0;
+  line-height: 18px;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group select.form-control {
   cursor: pointer;
