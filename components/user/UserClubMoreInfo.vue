@@ -1527,8 +1527,8 @@
               <span aria-hidden="true">&times;</span>
             </button> -->
           </div>
-          <div class="modal-body no-overflow px-4">
-            <div>
+          <div class="modal-body overflow-hidden d-flex flex-column px-4">
+            <div class="d-flex flex-column overflow-hidden h-100">
               <div
                 size="120"
                 class="
@@ -1538,7 +1538,7 @@
                   justify-content-center
                   py-4
                   rounded
-                  card card-primary-void
+                  card card-primary-sm
                   mb-3
                 "
               >
@@ -1557,8 +1557,8 @@
                 />
               </div>
               <!-- <v-dialog v-model="dialog" width="500"> -->
-              <v-card class="bg-transparent shadow-none">
-                <v-card-text v-show="selectedFile" class="p-0">
+              <v-card class="bg-transparent shadow-none h-100 overflow-hidden d-flex flex-column">
+                <v-card-text v-show="selectedFile" class="p-0 h-100 overflow-hidden">
                   <VueCropper
                     ref="cropper"
                     :src="selectedFile"
