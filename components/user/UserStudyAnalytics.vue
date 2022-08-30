@@ -33,7 +33,7 @@
             />
           </div>
         </div>
-        <div class="study-row d-flex flex-column px-2">
+        <div class="study-row d-flex flex-column px-2 pb-3">
           <div class="row header-row mb-1">
             <div class="col-md-6 pt-2 pb-0">
               <h4 class="color-dark font-semi-bold mb-0">Weekly Dashboard</h4>
@@ -44,7 +44,7 @@
           </div>
           <div class="row inner-row mt-0 text-center mb-2">
             <div class="col-md-3 py-2">
-              <div class="inner-col card card-white p-2">
+              <div class="inner-col card card-void p-2">
                 <h6 class="color-dark font-semi-bold">Total Minutes</h6>
                 <p class="total-value text-24 color-dark font-semi-bold">
                   {{
@@ -64,7 +64,7 @@
               </div>
             </div>
             <div class="col-md-3 py-2">
-              <div class="inner-col card card-white p-2">
+              <div class="inner-col card card-void p-2">
                 <h6 class="color-dark font-semi-bold">Total Session</h6>
                 <p class="total-value text-24 color-dark font-semi-bold">
                   {{
@@ -84,7 +84,7 @@
               </div>
             </div>
             <div class="col-md-3 py-2">
-              <div class="inner-col card card-white p-2">
+              <div class="inner-col card card-void p-2">
                 <h6 class="color-dark font-semi-bold">Total Minutes</h6>
                 <p class="total-value text-24 color-dark">
                   {{ mySession.total_minutes ? mySession.total_minutes : 0 }}
@@ -92,7 +92,7 @@
               </div>
             </div>
             <div class="col-md-3 py-2">
-              <div class="inner-col card card-white p-2">
+              <div class="inner-col card card-void p-2">
                 <h6 class="color-dark font-semi-bold">Total Session</h6>
                 <p class="total-value text-24 color-dark">
                   {{ mySession.total_sessions ? mySession.total_sessions : 0 }}
@@ -105,7 +105,7 @@
               <div
                 class="
                   inner-col
-                  card card-white
+                  card card-void
                   p-3
                   h-100
                   d-flex
@@ -146,7 +146,7 @@
               <div
                 class="
                   inner-col
-                  card card-white
+                  card card-void
                   p-3
                   h-100
                   d-flex
@@ -191,12 +191,12 @@
               <h4 class="color-dark font-semi-bold mb-0">Progress Chart</h4>
             </div>
             <div class="col-md-6 mb-2">
-              <div class="inner-col card card-white p-2">
+              <div class="inner-col card card-void p-2">
                 <canvas id="progress1" width="600" height="380"></canvas>
               </div>
             </div>
             <div class="col-md-6 mb-2">
-              <div class="inner-col card card-white p-2">
+              <div class="inner-col card card-void p-2">
                 <canvas id="progress2" width="600" height="380"></canvas>
               </div>
             </div>
@@ -219,19 +219,19 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="goalModalLongTitle">
+            <h4 class="modal-title" id="goalModalLongTitle">
               Configure Daily Study Session Goal
-            </h5>
-            <button
+            </h4>
+            <!-- <button
               type="button"
               class="close"
               data-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
-            </button>
+            </button> -->
           </div>
-          <div class="modal-body">
+          <div class="modal-body pb-3">
             <div class="row">
               <div class="col-6">
                 <div class="form-row">
@@ -284,14 +284,14 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary rounded-pill px-4 py-1"
+              class="btn btn-secondary rounded-12 font-semi-bold px-4 py-1"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-primary rounded-pill px-4 py-1"
+              class="btn btn-success rounded-12 font-semi-bold px-4 py-1"
               @click="configureGoal()"
               :disabled="processing"
             >

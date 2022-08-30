@@ -412,15 +412,15 @@
                                       :key="subtask.id"
                                     >
                                       <div
-                                        class="pl-2 d-flex align-items-center"
+                                        class="pl-2 d-flex align-items-center mb-1 cursor-pointer"
                                       >
                                         <input
                                           type="radio"
-                                          class="mr-2 color-secondary"
+                                          class="mr-2 color-secondary cursor-pointer"
                                         />
                                         <label
                                           for=""
-                                          class="mb-0 text-12 color-secondary"
+                                          class="mb-0 text-12 color-secondary cursor-pointer"
                                           >{{ subtask.title }}</label
                                         >
                                       </div>

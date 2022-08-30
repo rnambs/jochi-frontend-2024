@@ -534,9 +534,9 @@
                   <h6 class="color-primary">Sub-tasks</h6>
                   <div class="to-do-list">
                     <div v-for="subtask in detail.subTasks" :key="subtask.id">
-                      <div class="pl-2 d-flex align-items-center">
-                        <input type="radio" class="mr-2 color-secondary" />
-                        <label for="" class="mb-0 text-14 color-secondary">{{
+                      <div class="pl-2 d-flex align-items-center mb-1 cursor-pointer">
+                        <input type="radio" class="mr-2 color-secondary cursor-pointer" />
+                        <label for="" class="mb-0 text-14 color-secondary cursor-pointer">{{
                           subtask.title
                         }}</label>
                       </div>
@@ -1176,8 +1176,8 @@
         <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
       </div>
       <div class="row h-40 flex-grow-1">
-        <div class="col-lg-7 h-100 d-flex flex-column">
-          <div class="card card-void rounded-22 p-4 h-40 flex-fill mb-4">
+        <div class="col-lg-7 h-md-100 d-flex flex-column">
+          <div class="card card-void rounded-22 p-4 h-40 flex-fill mb-4 h-min-200">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">
                 Goals
@@ -1266,7 +1266,7 @@
             </div>
           </div>
 
-          <div class="card card-void rounded-22 h-40 flex-fill p-4">
+          <div class="card card-void rounded-22 h-40 flex-fill p-4 h-min-200">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
               <a @click="onInviteClick" class="btn p-0">
@@ -1316,6 +1316,11 @@
                       v-if="peer.profile_pic"
                       class="ld-img-holder shadow-none"
                       :src="peer.profile_pic"
+                      alt=""
+                    />
+                    <img
+                      v-else
+                      class="ld-img-holder shadow-none"
                       alt=""
                     />
                   </div>

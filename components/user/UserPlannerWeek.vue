@@ -346,7 +346,7 @@
                 </div>
                 <div
                   class="
-                    col-10 col-md-11
+                    col-11
                     p-0
                     position-absolute
                     assignment-planner-section
@@ -835,6 +835,7 @@
                                             align-items-center
                                             color-secondary
                                             cursor-pointer
+                                            mb-1
                                           "
                                         >
                                           <input

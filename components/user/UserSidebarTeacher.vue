@@ -519,12 +519,12 @@
                 >
                   <div class="card-body py-0">
                     <ul class="inner-custom-list ml-4 mb-2">
-                      <li class="nav-item pb-1 pb-md-0">
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
                         <nuxt-link to="/club-detail" class="nav-link"
                           >Existing</nuxt-link
                         >
                       </li>
-                      <li class="nav-item pb-1 pb-md-0">
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
                         <nuxt-link to="/club-catalogue" class="nav-link"
                           >Catalog</nuxt-link
                         >

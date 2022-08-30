@@ -20,7 +20,7 @@
           />
         </div> -->
       </div>
-      <div class="d-flex flex-column hidden-scroll h-100">
+      <div class="d-flex flex-column custom-overflow h-100">
         <div class="study-row d-flex flex-column px-2 overflow-unset">
           <div class="row header-row mb-1">
             <div class="col-md-6 pt-2 pb-0">
@@ -32,7 +32,7 @@
           </div>
           <div class="row inner-row mt-0 text-center mb-2">
             <div class="col-md-3 py-2">
-              <div class="inner-col card card-white p-2">
+              <div class="inner-col card card-void p-2">
                 <h6 class="color-dark font-semi-bold">Total Minutes</h6>
                 <p class="total-value text-24 color-dark font-semi-bold">
                   {{
@@ -52,7 +52,7 @@
               </div>
             </div>
             <div class="col-md-3 py-2">
-              <div class="inner-col card card-white p-2">
+              <div class="inner-col card card-void p-2">
                 <h6 class="color-dark font-semi-bold">Total Session</h6>
                 <p class="total-value text-24 color-dark font-semi-bold">
                   {{
@@ -72,7 +72,7 @@
               </div>
             </div>
             <div class="col-md-3 py-2">
-              <div class="inner-col card card-white p-2">
+              <div class="inner-col card card-void p-2">
                 <h6 class="color-dark font-semi-bold">Total Minutes</h6>
                 <p class="total-value text-24 color-dark">
                   {{ mySession.total_minutes ? mySession.total_minutes : 0 }}
@@ -80,7 +80,7 @@
               </div>
             </div>
             <div class="col-md-3 py-2">
-              <div class="inner-col card card-white p-2">
+              <div class="inner-col card card-void p-2">
                 <h6 class="color-dark font-semi-bold">Total Session</h6>
                 <p class="total-value text-24 color-dark">
                   {{ mySession.total_sessions ? mySession.total_sessions : 0 }}
@@ -93,7 +93,7 @@
               <div
                 class="
                   inner-col
-                  card card-white
+                  card card-void
                   p-3
                   h-100
                   d-flex
@@ -134,7 +134,7 @@
               <div
                 class="
                   inner-col
-                  card card-white
+                  card card-void
                   p-3
                   h-100
                   d-flex
@@ -179,12 +179,12 @@
               <h4 class="color-dark font-semi-bold mb-0">Progress Chart</h4>
             </div>
             <div class="col-md-6 mb-0">
-              <div class="inner-col card card-white p-2">
+              <div class="inner-col card card-void p-2">
                 <canvas id="progress1" width="600" height="380"></canvas>
               </div>
             </div>
             <div class="col-md-6 mb-0">
-              <div class="inner-col card card-white p-2">
+              <div class="inner-col card card-void p-2">
                 <canvas id="progress2" width="600" height="380"></canvas>
               </div>
             </div>
