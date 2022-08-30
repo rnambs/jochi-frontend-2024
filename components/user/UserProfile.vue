@@ -76,10 +76,7 @@
                         "
                         class="middle position-absolute text-center"
                       >
-                        <div
-                          class="text-30 color-dark"
-                          @click="ProfileRemove()"
-                        >
+                        <div class="text-30 color-dark" @click="openModal()">
                           <i class="far fa-trash-alt"></i>
                           <p
                             class="
@@ -441,6 +438,58 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-lg modal-dialog-centered"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Confirm Delete
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>Are you sure you want to delete the profile image?</div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-4 rounded-pill"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary py-1 px-4 rounded-pill"
+                data-dismiss="modal"
+                @click="confirmDelete()"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal End -->
     </section>
 
     <!-- End Study Page -->
@@ -634,6 +683,14 @@ export default {
     },
     async getAdvisor() {
       await this.getAdvisorDetail();
+    },
+    async openModal() {
+      $("#exampleModalCenter").modal({ backdrop: true });
+    },
+    async confirmDelete() {
+      this.ProfileRemove();
+      $(".modal").modal("hide");
+      $(".modal-backdrop").remove();
     },
   },
   // // middleware: "authenticated",
