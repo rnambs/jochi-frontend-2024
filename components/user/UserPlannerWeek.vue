@@ -831,6 +831,7 @@
                                             align-items-center
                                             color-secondary
                                             cursor-pointer
+                                            mb-1
                                           "
                                         >
                                           <input

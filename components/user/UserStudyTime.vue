@@ -534,9 +534,9 @@
                   <h6 class="color-primary">Sub-tasks</h6>
                   <div class="to-do-list">
                     <div v-for="subtask in detail.subTasks" :key="subtask.id">
-                      <div class="pl-2 d-flex align-items-center">
-                        <input type="radio" class="mr-2 color-secondary" />
-                        <label for="" class="mb-0 text-14 color-secondary">{{
+                      <div class="pl-2 d-flex align-items-center mb-1 cursor-pointer">
+                        <input type="radio" class="mr-2 color-secondary cursor-pointer" />
+                        <label for="" class="mb-0 text-14 color-secondary cursor-pointer">{{
                           subtask.title
                         }}</label>
                       </div>
