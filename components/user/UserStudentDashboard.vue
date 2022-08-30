@@ -308,7 +308,7 @@
                         class="row"
                         v-if="!slot_date || slot_date.length <= 0"
                       >
-                        No meetings scheduled for this month!
+                        <span class="d-flex w-100 justify-content-center color-secondary text-16 font-regular">No meetings scheduled for this month!</span>
                       </div>
                       <!-- <div class="row">
                         <div class="col-12 faculty-availability-card mb-2">
