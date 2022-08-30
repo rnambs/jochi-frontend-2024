@@ -449,22 +449,22 @@
         aria-hidden="true"
       >
         <div
-          class="modal-dialog modal-lg modal-dialog-centered"
+          class="modal-dialog modal-md modal-dialog-centered"
           role="document"
         >
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
+            <div class="modal-header pb-0">
+              <h3 class="modal-title" id="exampleModalLongTitle">
                 Confirm Delete
-              </h5>
-              <button
+              </h3>
+              <!-- <button
                 type="button"
                 class="close"
                 data-dismiss="modal"
                 aria-label="Close"
               >
                 <span aria-hidden="true">&times;</span>
-              </button>
+              </button> -->
             </div>
             <div class="modal-body">
               <div>Are you sure you want to delete the profile image?</div>
@@ -472,14 +472,14 @@
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-pill"
+                class="btn btn-secondary py-1 px-4 rounded-12 font-semi-bold"
                 data-dismiss="modal"
               >
                 Close
               </button>
               <button
                 type="button"
-                class="btn btn-primary py-1 px-4 rounded-pill"
+                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
                 data-dismiss="modal"
                 @click="confirmDelete()"
               >
