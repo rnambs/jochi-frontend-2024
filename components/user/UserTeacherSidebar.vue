@@ -31,8 +31,8 @@
             }}</span>
           </a>
           <div class="dropdown-menu notify"> -->
-            <!-- notification -->
-            <!-- <div
+      <!-- notification -->
+      <!-- <div
               class="notifications dropdown-item px-2"
               v-if="notificationList && notificationList.length > 0"
             >
@@ -78,8 +78,8 @@
             >
               No notifications to display
             </div> -->
-            <!-- notification End -->
-          <!-- </div>
+      <!-- notification End -->
+      <!-- </div>
         </div>
       </div>
       <nuxt-link to="/user-profile" class="pr-4">
@@ -92,14 +92,19 @@
       </nuxt-link> -->
 
       <!-- Teacher Sidebar -->
-      <div class="sidebar-section
-      col-sm-4 col-md-5 col-lg-6
-      d-flex
-      justify-content-between
-      jochi-components-light-bg
-      p-3 p-lg-4
-      position-fixed
-      flex-column" id="clickableId">
+      <div
+        class="
+          sidebar-section
+          col-sm-4 col-md-5 col-lg-6
+          d-flex
+          justify-content-between
+          jochi-components-light-bg
+          p-3 p-lg-4
+          position-fixed
+          flex-column
+        "
+        id="clickableId"
+      >
         <!-- <div class="logo-section mt-3 p-2">
           <a href="">
             <div
@@ -121,23 +126,37 @@
         </div> -->
         <div class="position-relative profile-sidebar">
           <div
-              class="user-icon  d-flex notification-icon-section align-items-center justify-content-end"
-            >
-              <a class="position-relative p-2" href="#">
-                <img src="../../static/image/Jochi Icons/home_hires.png" alt="" class="dark-icon">
+            class="
+              user-icon
+              d-flex
+              notification-icon-section
+              align-items-center
+              justify-content-end
+            "
+          >
+            <a class="position-relative p-2" href="#">
+              <img
+                src="../../static/image/Jochi Icons/home_hires.png"
+                alt=""
+                class="dark-icon"
+              />
+            </a>
+            <div class="dropdown">
+              <a
+                class="dropdown-toggle position-relative p-2"
+                href="#"
+                data-toggle="dropdown"
+              >
+                <img
+                  src="../../static/image/Jochi Icons/bell_hires.png"
+                  alt=""
+                  class="dark-icon"
+                />
+                <span class="notify-span">3</span>
               </a>
-              <div class="dropdown">
-                <a
-                  class="dropdown-toggle position-relative p-2"
-                  href="#"
-                  data-toggle="dropdown"
-                >
-                  <img src="../../static/image/Jochi Icons/bell_hires.png" alt="" class="dark-icon">
-                  <span class="notify-span">3</span>
-                </a>
-                <div class="dropdown-menu notify">
-                  <!-- notification -->
-                  <!-- <div
+              <div class="dropdown-menu notify">
+                <!-- notification -->
+                <!-- <div
                     class="notifications dropdown-item px-2"
                     v-if="notificationList && notificationList.length > 0"
                   >
@@ -177,16 +196,16 @@
                       </p>
                     </div>
                   </div> -->
-                  <!-- <div
+                <!-- <div
                     class="notifications dropdown-item px-2 no-notify"
                     v-if="!notificationList || notificationList.length == 0"
                   >
                     No notifications to display
                   </div> -->
-                  <!-- notification End -->
-                </div>
+                <!-- notification End -->
               </div>
             </div>
+          </div>
           <a class="pr-4">
             <!-- <img
               v-bind:src="
@@ -196,8 +215,22 @@
               alt=""
               id="profileImage"
             /> -->
-            <img src="../../assets/images/avatar/man_green.svg" class="rounded-circle img-profile" alt="" >
-            <h4 class="color-primary mb-0 mt-2 font-semi-bold text-18 text-center text-lg-left">Tophia</h4>
+            <img
+              src="../../assets/images/avatar/man_green.svg"
+              class="rounded-circle img-profile"
+              alt=""
+            />
+            <h4
+              class="
+                color-primary
+                mb-0
+                mt-2
+                font-semi-bold
+                text-18 text-center text-lg-left
+              "
+            >
+              Tophia
+            </h4>
           </a>
           <div class="user-icon mr-3 settings-icon-section position-absolute">
             <div class="dropdown">
@@ -242,12 +275,28 @@
               <nuxt-link
                 to="/teacher-dashboard"
                 data-toggle="collapse"
-                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
+                class="
+                  btn btn-link
+                  d-flex
+                  align-items-center
+                  justify-content-between
+                  bg-transparent
+                  text-decoration-none text-18
+                  color-secondary
+                  btn-block
+                  text-left
+                  collapsed
+                  flex-fill
+                  px-0
+                  py-2 py-lg-2
+                "
               >
                 <div class="font-icon d-inline-block">
-                  <img src="../../static/image/home-solid.png" alt="">
+                  <img src="../../static/image/home-solid.png" alt="" />
                 </div>
-                <span class="ml-3 color-secondary text-capitalize font-medium">Home</span>
+                <span class="ml-3 color-secondary text-capitalize font-medium"
+                  >Home</span
+                >
               </nuxt-link>
             </li>
 
@@ -255,55 +304,128 @@
               <nuxt-link
                 to="/teacher-appointment"
                 data-toggle="collapse"
-                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
+                class="
+                  btn btn-link
+                  d-flex
+                  align-items-center
+                  justify-content-between
+                  bg-transparent
+                  text-decoration-none text-18
+                  color-secondary
+                  btn-block
+                  text-left
+                  flex-fill
+                  px-0
+                  py-2 py-lg-2
+                "
               >
                 <div class="font-icon d-inline-block">
-                  <img src="../../static/image/user-tag.png" alt="">
+                  <img src="../../static/image/user-tag.png" alt="" />
                 </div>
-                <span class="ml-3 color-secondary text-capitalize font-medium">Appoinments</span>
+                <span class="ml-3 color-secondary text-capitalize font-medium"
+                  >Appoinments</span
+                >
               </nuxt-link>
             </li>
             <li class="menu-list nav-item">
               <nuxt-link
                 to="/custom-availability"
                 data-toggle="collapse"
-                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
+                class="
+                  btn btn-link
+                  d-flex
+                  align-items-center
+                  justify-content-between
+                  bg-transparent
+                  text-decoration-none text-18
+                  color-secondary
+                  btn-block
+                  text-left
+                  flex-fill
+                  px-0
+                  py-2 py-lg-2
+                "
               >
                 <div class="font-icon d-inline-block">
-                  <img src="../../static/image/calendar-check.png" alt="">
+                  <img src="../../static/image/calendar-check.png" alt="" />
                 </div>
-                <span class="ml-3 color-secondary text-capitalize font-medium">Availability</span>
+                <span class="ml-3 color-secondary text-capitalize font-medium"
+                  >Availability</span
+                >
               </nuxt-link>
             </li>
             <li class="menu-list nav-item">
               <nuxt-link
                 to="/teacher-syncCalendar"
                 data-toggle="collapse"
-                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
+                class="
+                  btn btn-link
+                  d-flex
+                  align-items-center
+                  justify-content-between
+                  bg-transparent
+                  text-decoration-none text-18
+                  color-secondary
+                  btn-block
+                  text-left
+                  flex-fill
+                  px-0
+                  py-2 py-lg-2
+                "
               >
                 <div class="font-icon d-inline-block">
-                  <img src="../../static/image/sync-solid.png" alt="">
+                  <img src="../../static/image/sync-solid.png" alt="" />
                 </div>
-                <span class="ml-3 color-secondary text-capitalize font-medium">Sync Calendar</span>
+                <span class="ml-3 color-secondary text-capitalize font-medium"
+                  >Sync Calendar</span
+                >
               </nuxt-link>
             </li>
             <li class="menu-list nav-item">
               <nuxt-link
                 to="/club-detail"
                 data-toggle="collapse"
-                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
+                class="
+                  btn btn-link
+                  d-flex
+                  align-items-center
+                  justify-content-between
+                  bg-transparent
+                  text-decoration-none text-18
+                  color-secondary
+                  btn-block
+                  text-left
+                  flex-fill
+                  px-0
+                  py-2 py-lg-2
+                "
               >
                 <div class="font-icon d-inline-block">
-                  <img src="../../static/image/club-type.png" alt="">
+                  <img src="../../static/image/club-type.png" alt="" />
                 </div>
-                <span class="ml-3 color-secondary text-capitalize font-medium">Club - Existing</span>
+                <span class="ml-3 color-secondary text-capitalize font-medium"
+                  >Club - Existing</span
+                >
               </nuxt-link>
             </li>
             <li class="menu-list nav-item">
               <nuxt-link
                 to="/club-catalogue"
                 data-toggle="collapse"
-                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
+                class="
+                  btn btn-link
+                  d-flex
+                  align-items-center
+                  justify-content-between
+                  bg-transparent
+                  text-decoration-none text-18
+                  color-secondary
+                  btn-block
+                  text-left
+                  flex-fill
+                  px-0
+                  py-2 py-lg-2
+                "
               >
                 <div class="font-icon d-inline-block">
                   <img
@@ -312,19 +434,36 @@
                     alt=""
                   />
                 </div>
-                <span class="ml-3 color-secondary text-capitalize font-medium">Club Catalog</span>
+                <span class="ml-3 color-secondary text-capitalize font-medium"
+                  >Club Catalog</span
+                >
               </nuxt-link>
             </li>
             <li class="menu-list nav-item">
               <nuxt-link
                 to="/teacher-advisor"
                 data-toggle="collapse"
-                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
+                class="
+                  btn btn-link
+                  d-flex
+                  align-items-center
+                  justify-content-between
+                  bg-transparent
+                  text-decoration-none text-18
+                  color-secondary
+                  btn-block
+                  text-left
+                  flex-fill
+                  px-0
+                  py-2 py-lg-2
+                "
               >
                 <div class="font-icon d-inline-block">
-                  <img src="../../static/image/advisor.png" alt="">
+                  <img src="../../static/image/advisor.png" alt="" />
                 </div>
-                <span class="ml-3 color-secondary text-capitalize font-medium">Advisor</span>
+                <span class="ml-3 color-secondary text-capitalize font-medium"
+                  >Advisor</span
+                >
               </nuxt-link>
             </li>
             <!-- <li class="menu-list nav-item">
@@ -378,11 +517,29 @@
           </ul>
           <ul class="custom-list">
             <li @click="openLink()" class="active menu-list nav-item">
-              <div data-toggle="collapse" class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2">
+              <div
+                data-toggle="collapse"
+                class="
+                  btn btn-link
+                  d-flex
+                  align-items-center
+                  justify-content-between
+                  bg-transparent
+                  text-decoration-none text-18
+                  color-secondary
+                  btn-block
+                  text-left
+                  flex-fill
+                  px-0
+                  py-2 py-lg-2
+                "
+              >
                 <div class="font-icon d-inline-block">
                   <i class="fas fa-comments"></i>
                 </div>
-                <span class="ml-3 color-secondary text-capitalize font-medium">FAQ</span>
+                <span class="ml-3 color-secondary text-capitalize font-medium"
+                  >FAQ</span
+                >
               </div>
             </li>
 
@@ -390,12 +547,27 @@
               <nuxt-link
                 to="/privacy-policy"
                 data-toggle="collapse"
-                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
+                class="
+                  btn btn-link
+                  d-flex
+                  align-items-center
+                  justify-content-between
+                  bg-transparent
+                  text-decoration-none text-18
+                  color-secondary
+                  btn-block
+                  text-left
+                  flex-fill
+                  px-0
+                  py-2 py-lg-2
+                "
               >
                 <div class="font-icon d-inline-block">
                   <i class="fas fa-shield-alt"></i>
                 </div>
-                <span class="ml-3 color-secondary text-capitalize font-medium">Privacy Policy</span>
+                <span class="ml-3 color-secondary text-capitalize font-medium"
+                  >Privacy Policy</span
+                >
               </nuxt-link>
             </li>
           </ul>
@@ -509,6 +681,10 @@ export default {
         this.$router.push("/teacher-appointment");
       } else if (type == "Meeting Request") {
         this.$router.push("/teacher-appointment");
+      } else if (type == "Meeting Rescheduled") {
+        this.$router.push("/teacher-appointment");
+      } else if (type == "Teacher Advisor") {
+        this.$router.push("/user-profile");
       }
       this.getNotificationsList();
     },
