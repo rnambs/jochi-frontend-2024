@@ -136,6 +136,7 @@
                             :v-model="profilePic"
                             ref="profilePic"
                             name="profilePic"
+                            id="fileUpload"
                             class="
                               rg-img-upload
                               img-up-two
@@ -634,6 +635,19 @@ export default {
       }
     },
     onFileChange(e) {
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        // document.querySelector("#fileUpload").value = "";
+        document.querySelector("#actual-btn").value = "";
+
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
+
       this.profilePic = this.$refs.profilePic.files[0];
       const file = e.target.files[0];
       this.profileImageUrl = URL.createObjectURL(file);

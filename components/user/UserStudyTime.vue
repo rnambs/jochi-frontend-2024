@@ -3474,7 +3474,7 @@ export default {
         session.id = e.id;
         session.name = e.assignment_id
           ? e.assignments?.task
-          : e.studyroom?.subjectName;
+          : e.subjects?.subject_name;
         session.goals = e.assignment_id ? e.subTasks : e.study_goals;
         session.duration = e.duration;
         session.breakTime = e.studyroom?.break_time;
@@ -3487,7 +3487,7 @@ export default {
         session.studyMethod = e.study_method;
         const d = new Date();
         session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
-        session.startSession = false;
+        session.startSession = e.scheduled_status == "Now" ? true : false;
 
         this.studySessionList.push(session);
       });
