@@ -1875,28 +1875,36 @@ export default {
       }
     },
     async EditTodo() {
-      this.loading = true;
-      await this.editTodo({
-        club_id: this.$route.query.id,
-        user_id: localStorage.getItem("id"),
-        title: this.todolist,
-      });
-      this.loading = false;
-      if (this.successMessage != "") {
+      if (this.todolist.trim().length === 0) {
         this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
+          message: "Please enter valid data",
+          type: "warning",
           duration: 5000,
         });
-      } else if (this.errorMessage != "") {
-        this.$toast.open({
-          message: this.errorMessage,
-          type: this.errorType,
-          duration: 5000,
+      }else{
+        this.loading = true;
+        await this.editTodo({
+          club_id: this.$route.query.id,
+          user_id: localStorage.getItem("id"),
+          title: this.todolist,
         });
-      }
-      this.getClubMoreInfo();
-      this.todolist = "";
+        this.loading = false;
+        if (this.successMessage != "") {
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.SuccessType,
+            duration: 5000,
+          });
+        } else if (this.errorMessage != "") {
+          this.$toast.open({
+            message: this.errorMessage,
+            type: this.errorType,
+            duration: 5000,
+          });
+        }
+        this.getClubMoreInfo();
+        this.todolist = "";
+      } 
     },
     async UpdateTime() {
       this.dayArrVal = [];
