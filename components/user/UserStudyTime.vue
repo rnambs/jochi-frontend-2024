@@ -534,11 +534,24 @@
                   <h6 class="color-primary">Sub-tasks</h6>
                   <div class="to-do-list">
                     <div v-for="subtask in detail.subTasks" :key="subtask.id">
-                      <div class="pl-2 d-flex align-items-center mb-1 cursor-pointer">
-                        <input type="radio" class="mr-2 color-secondary cursor-pointer" />
-                        <label for="" class="mb-0 text-14 color-secondary cursor-pointer">{{
-                          subtask.title
-                        }}</label>
+                      <div
+                        class="
+                          pl-2
+                          d-flex
+                          align-items-center
+                          mb-1
+                          cursor-pointer
+                        "
+                      >
+                        <input
+                          type="radio"
+                          class="mr-2 color-secondary cursor-pointer"
+                        />
+                        <label
+                          for=""
+                          class="mb-0 text-14 color-secondary cursor-pointer"
+                          >{{ subtask.title }}</label
+                        >
                       </div>
                       <!-- <div class="pl-2 d-flex align-items-center">
                       <input type="radio" class="mr-2" />
@@ -557,15 +570,21 @@
                     v-if="detail.assignment_materials"
                     class="col-8 py-0 pl-0 material-link"
                   >
-                    {{ detail.assignment_materials.file_type }}:{{
-                      detail.assignment_materials.file_name
-                    }}
+                    <div
+                      v-for="(file, index) in detail.assignment_materials"
+                      :key="index"
+                    >
+                      <span class="text-capitalize"> {{ file.file_type }} </span
+                      >&nbsp;:&nbsp;{{ file.file_name }}
+                    </div>
                   </div>
 
                   <div v-else class="col-8 py-0 pl-0 material-link">
                     <span class="color-secondary">No documents added!</span>
                   </div>
-                  <div class="col-4 material-date color-secondary py-0 text-right">
+                  <div
+                    class="col-4 material-date color-secondary py-0 text-right"
+                  >
                     {{ detail.due_date }}
                   </div>
                 </div>
@@ -1177,7 +1196,9 @@
       </div>
       <div class="row h-40 flex-grow-1">
         <div class="col-lg-7 h-md-100 d-flex flex-column">
-          <div class="card card-void rounded-22 p-4 h-40 flex-fill mb-4 h-min-200">
+          <div
+            class="card card-void rounded-22 p-4 h-40 flex-fill mb-4 h-min-200"
+          >
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">
                 Goals
@@ -1318,11 +1339,7 @@
                       :src="peer.profile_pic"
                       alt=""
                     />
-                    <img
-                      v-else
-                      class="ld-img-holder shadow-none"
-                      alt=""
-                    />
+                    <img v-else class="ld-img-holder shadow-none" alt="" />
                   </div>
                   <div class="ld-details-section">
                     <p class="ld-heading mb-1">{{ peer.first_name }}</p>
@@ -1722,6 +1739,30 @@
                       <span><i class="far fa-circle"></i></span>
                       <span class="word-break ml-2">{{ goal }}</span>
                     </p>
+                  </div>
+                </div>
+              </div>
+              <div v-if="sessionType == 'assignment'">
+                <div v-for="task in selectedAssignment.subTasks" :key="task.id">
+                  <div class="card card-transparent show-icon p-1 mt-1">
+                    <div
+                      class="d-flex align-items-center justify-content-between"
+                    >
+                      <p
+                        class="
+                          mb-0
+                          color-secondary
+                          text-16
+                          font-regular
+                          pr-3
+                          d-flex
+                          w-100
+                        "
+                      >
+                        <span><i class="far fa-circle"></i></span>
+                        <span class="ml-2 w-100">{{ task.title }}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -3433,7 +3474,7 @@ export default {
         session.id = e.id;
         session.name = e.assignment_id
           ? e.assignments?.task
-          : e.studyroom?.subjectName;
+          : e.subjects?.subject_name;
         session.goals = e.assignment_id ? e.subTasks : e.study_goals;
         session.duration = e.duration;
         session.breakTime = e.studyroom?.break_time;
@@ -3446,7 +3487,7 @@ export default {
         session.studyMethod = e.study_method;
         const d = new Date();
         session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
-        session.startSession = false;
+        session.startSession = e.scheduled_status == "Now" ? true : false;
 
         this.studySessionList.push(session);
       });
@@ -3490,7 +3531,9 @@ export default {
 
       this.onNext();
       if (this.currentTab == 1) {
-        await this.getAssignments({});
+        await this.getAssignments({
+          student_id: parseInt(localStorage.getItem("id")),
+        });
         this.assignmentList = [];
         if (this.assignments && this.assignments.length > 0) {
           this.assignments.forEach((e) => {
