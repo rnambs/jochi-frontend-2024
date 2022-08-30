@@ -2,6 +2,7 @@ import { BASE_URL } from "../assets/js/constants";
 
 const state = {
     allList: [],
+    allMeetingMonthList: [],
     allData: [],
     timeZones: [],
     errorMessage: "",
@@ -147,10 +148,39 @@ const actions = {
         }
     },
 
+
+    async listAllMeetingMonth({ commit }, payLoad) {
+        const token = localStorage.getItem('token')
+        try {
+            const response = await this.$axios.$get(BASE_URL + `view/all/list_all_accepted_meeting?date=${payLoad.date}`, {
+                headers: {
+                    'Authorization': ` ${token}`
+                },
+            });
+            console.log("response ", response)
+            commit('setAllMeetingMonthList', response.data);
+            commit('setTimeZone', response.timeZone);
+        } catch {
+            if (e.response.data.message == "Unauthorized") {
+                commit('setSuccessMessages', "");
+                commit('setSuccessTypes', "");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                window.localStorage.clear();
+                this.$router.push('/');
+            }
+        }
+
+
+    },
+
 }
 const mutations = {
     setAllList(state, data) {
         state.allList = data;
+    },
+    setAllMeetingMonthList(state, data) {
+        state.allMeetingMonthList = data;
     },
     setTimeZone(state, data) {
         state.timeZones = data;
@@ -175,6 +205,9 @@ const mutations = {
 const getters = {
     allList: () => {
         return state.allList;
+    },
+    allMeetingMonthList: () => {
+        return state.allMeetingMonthList;
     },
     allData: () => {
         return state.allData;

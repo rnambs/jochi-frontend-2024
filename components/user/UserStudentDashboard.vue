@@ -217,13 +217,11 @@
                         py-4
                       "
                     >
-                      <div
-                        class="row"
-                      >
-                        <div 
-                        v-for="(list, index) in slot_date"
-                        :key="index"
-                        class="col-12 mb-2"
+                      <div class="row">
+                        <div
+                          v-for="(list, index) in slot_date"
+                          :key="index"
+                          class="col-12 mb-2"
                         >
                           <div class="faculty-availability-card">
                             <div class="row">
@@ -280,7 +278,9 @@
                                           : "Peer Meeting"
                                       }}
                                     </p>
-                                    <p class="mb-1 color-dark text-18 font-bold">
+                                    <p
+                                      class="mb-1 color-dark text-18 font-bold"
+                                    >
                                       {{ list.new_title }}
                                     </p>
                                     <div
@@ -303,6 +303,12 @@
                             </div>
                           </div>
                         </div>
+                      </div>
+                      <div
+                        class="row"
+                        v-if="!slot_date || slot_date.length <= 0"
+                      >
+                        No meetings scheduled for this month!
                       </div>
                       <!-- <div class="row">
                         <div class="col-12 faculty-availability-card mb-2">
@@ -509,6 +515,20 @@
                       <span>{{ item.due_date }}</span
                       >&nbsp;<span>{{ item.due_time }}</span>
                     </p>
+                  </div>
+                  <div
+                    v-if="!plannerList || plannerList.length <= 0"
+                    class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                  >
+                    <p
+                      class="mb-2 word-break text-16 font-semi-bold color-dark"
+                    >
+                      No assignments for this month!
+                    </p>
+                    <!-- <p class="mb-0 text-14">
+                      <span>{{ item.due_date }}</span
+                      >&nbsp;<span>{{ item.due_time }}</span>
+                    </p> -->
                   </div>
                   <!-- <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
                     .
@@ -892,6 +912,7 @@ export default {
     }),
     ...mapState("viewAllMeeting", {
       allList: (state) => state.allList,
+      allMeetingMonthList: (state) => state.allMeetingMonthList,
       allData: (state) => state.allData,
       timeZones: (state) => state.timeZones,
     }),
@@ -917,6 +938,7 @@ export default {
     }),
     ...mapActions("viewAllMeeting", {
       listAllMeeting: "listAllMeeting",
+      listAllMeetingMonth: "listAllMeetingMonth",
       getAll: "getAll",
     }),
     ...mapActions("teacherMeeting", {
@@ -988,10 +1010,14 @@ export default {
       $("#MeetingModal").modal({ backdrop: true });
     },
     async ListAllMeeting() {
+      this.slot_date = [];
       this.loading = true;
-      await this.listAllMeeting({
-        search_id: "",
-        student_id: localStorage.getItem("id"),
+      const format = "YYYY-MM-DD";
+      let calendarDate = moment(this.calendarApi.view.activeStart).format(
+        format
+      );
+      await this.listAllMeetingMonth({
+        date: calendarDate,
       });
       console.log("consoling time zones ", this.timeZones);
       this.loading = false;
@@ -1025,7 +1051,7 @@ export default {
         "Friday",
         "Saturday",
       ];
-      this.allList.forEach((element) => {
+      this.allMeetingMonthList.forEach((element) => {
         var Scheduleobj = {};
         const monthNames = [
           "January",
@@ -1294,6 +1320,7 @@ export default {
         mnth = ("0" + (date.getMonth() + 1)).slice(-2),
         day = ("0" + date.getDate()).slice(-2);
       this.calendarDate = [date.getFullYear(), mnth, day].join("-");
+      this.ListAllMeeting();
     },
     handleDateClick: function (arg) {
       console.log("arg", arg);
@@ -1302,11 +1329,13 @@ export default {
     goPrev() {
       this.calendarApi.prev(); // call a method on the Calendar object
       this.GetDailyPlanner(this.calendarApi.view.activeStart);
+      this.ListAllMeeting();
     },
 
     goNext() {
       this.calendarApi.next();
       this.GetDailyPlanner(this.calendarApi.view.activeStart);
+      this.ListAllMeeting();
     },
   },
 };
