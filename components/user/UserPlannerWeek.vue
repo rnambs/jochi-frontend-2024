@@ -316,13 +316,7 @@
         >
           <div class="row">
             <div class="col-12 position-realtive h-100 d-flex flex-column">
-              <div
-                class="
-                  jochi-components-light-bg
-                  position-relative
-                  h-100
-                "
-              >
+              <div class="jochi-components-light-bg position-relative h-100">
                 <div class="planner-week p-4 pt-5 px-3 px-sm-5">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
@@ -783,11 +777,14 @@
                                         mb-2
                                       "
                                     >
-                                      <div class="assignment-tag mr-2"  :class="{
-                                      red: item.priority == '1',
-                                      yellow: item.priority == '2',
-                                      green: item.priority == '3',
-                                    }">
+                                      <div
+                                        class="assignment-tag mr-2"
+                                        :class="{
+                                          red: item.priority == '1',
+                                          yellow: item.priority == '2',
+                                          green: item.priority == '3',
+                                        }"
+                                      >
                                         {{
                                           item.priority == "1"
                                             ? "Urgent"
@@ -814,7 +811,14 @@
                                     </div>
                                     <div class="sub-task-section mb-3">
                                       <h6 class="mb-1">Sub-tasks</h6>
-                                      <div class="d-flex flex-column overflow-hidden vh-10">
+                                      <div
+                                        class="
+                                          d-flex
+                                          flex-column
+                                          overflow-hidden
+                                          vh-10
+                                        "
+                                      >
                                         <div
                                           @click="
                                             confirmSubTaskComplete(
@@ -846,7 +850,11 @@
                                           />
                                           <label
                                             for=""
-                                            class="mb-0 text-truncate cursor-pointer"
+                                            class="
+                                              mb-0
+                                              text-truncate
+                                              cursor-pointer
+                                            "
                                             >{{ sub.title }}</label
                                           >
                                         </div>
@@ -3013,7 +3021,10 @@ export default {
           var color = "#F6D73C";
         }
         var dateMeeting = element.due_date;
-        var tmeMeeting = this.formatAMPM(element.due_time);
+        var tmeMeeting = "";
+        if (element.due_time) {
+          tmeMeeting = this.formatAMPM(element.due_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
 
         scheduleObject["assignment"] = assignment;
@@ -3053,7 +3064,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.default_slot?.start_time;
-        var tmeMeeting = this.formatAMPM(element.default_slot?.start_time);
+        var tmeMeeting = "";
+        if (element.default_slot?.start_time) {
+          tmeMeeting = this.formatAMPM(element.default_slot?.start_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -3087,7 +3101,10 @@ export default {
         }
         var dateMeeting = element.date;
         var timeValNum = element.start_time;
-        var tmeMeeting = this.formatAMPM(element.start_time);
+        var tmeMeeting = "";
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -3116,7 +3133,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.time;
-        var tmeMeeting = this.formatAMPM(element.time);
+        var tmeMeeting = "";
+        if (element.time) {
+          tmeMeeting = this.formatAMPM(element.time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -3150,7 +3170,10 @@ export default {
           var color = "#F6D73C";
         }
         var dateMeeting = element.due_date;
-        var tmeMeeting = this.formatAMPM(element.due_time);
+        var tmeMeeting = "";
+        if (element.due_time) {
+          tmeMeeting = this.formatAMPM(element.due_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
 
         scheduleObject["assignment"] = assignment;
@@ -3181,7 +3204,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.start_time;
-        var tmeMeeting = this.formatAMPM(element.start_time);
+        var tmeMeeting = "";
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -3791,7 +3817,10 @@ export default {
           var color = "#F6D73C";
         }
         var dateMeeting = element.due_date;
-        var tmeMeeting = this.formatAMPM(element.due_time);
+        var tmeMeeting = "";
+        if (element.due_time) {
+          tmeMeeting = this.formatAMPM(element.due_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         // var start = element.dateISOFormat;
         var id = element.id;
@@ -3819,7 +3848,10 @@ export default {
         }
         var dateMeeting = element.date;
         var timeValNum = element.start_time;
-        var tmeMeeting = this.formatAMPM(element.start_time);
+        var tmeMeeting = "";
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -3854,7 +3886,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.time;
-        var tmeMeeting = this.formatAMPM(element.time);
+        var tmeMeeting = "";
+        if (element.time) {
+          tmeMeeting = this.formatAMPM(element.time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -3893,7 +3928,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.time;
-        var tmeMeeting = this.formatAMPM(element.time);
+        var tmeMeeting = "";
+        if (element.time) {
+          tmeMeeting = this.formatAMPM(element.time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;

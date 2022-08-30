@@ -1557,8 +1557,20 @@
                 />
               </div>
               <!-- <v-dialog v-model="dialog" width="500"> -->
-              <v-card class="bg-transparent shadow-none h-100 overflow-hidden d-flex flex-column">
-                <v-card-text v-show="selectedFile" class="p-0 h-100 overflow-hidden">
+              <v-card
+                class="
+                  bg-transparent
+                  shadow-none
+                  h-100
+                  overflow-hidden
+                  d-flex
+                  flex-column
+                "
+              >
+                <v-card-text
+                  v-show="selectedFile"
+                  class="p-0 h-100 overflow-hidden"
+                >
                   <VueCropper
                     ref="cropper"
                     :src="selectedFile"
@@ -1598,7 +1610,7 @@
                       shadow-none
                     "
                     @click="saveImage(), (dialog = false)"
-                    ><span class="font-semi-bold">Crop</span></v-btn
+                    ><span class="font-semi-bold">Upload</span></v-btn
                   >
                 </v-card-actions>
               </v-card>
@@ -2333,6 +2345,7 @@ export default {
               type: this.SuccessTypeClubFile,
               duration: 5000,
             });
+            this.getClubMoreInfo();
           } else if (this.errorMessageClubFile != "") {
             this.$toast.open({
               message: this.errorMessageClubFile,
@@ -2346,14 +2359,15 @@ export default {
       }, this.mime_type);
     },
     onFileSelect(e) {
-      
-
-       if (e?.target?.files[0]?.size && e.target.files[0]?.size > 5 * 1024 * 1024) {
-            return this.$toast.open({
-              message: "File size must be lesser than 5 MB",
-              type: "warning",
-            });
-          }
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
 
       const file = e.target.files[0];
       this.mime_type = file.type;

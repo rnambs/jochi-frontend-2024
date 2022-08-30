@@ -1041,7 +1041,16 @@
                 />
               </div>
               <!-- <v-dialog v-model="dialog" width="500"> -->
-              <v-card class="bg-transparent shadow-none h-100 overflow-hidden d-flex flex-column">
+              <v-card
+                class="
+                  bg-transparent
+                  shadow-none
+                  h-100
+                  overflow-hidden
+                  d-flex
+                  flex-column
+                "
+              >
                 <v-card-text class="p-0 h-100 overflow-hidden">
                   <VueCropper
                     v-show="selectedFile"
@@ -1083,7 +1092,7 @@
                       shadow-none
                     "
                     @click="saveImage(), (dialog = false)"
-                    ><span class="font-semi-bold">Crop</span></v-btn
+                    ><span class="font-semi-bold">Upload</span></v-btn
                   >
                 </v-card-actions>
               </v-card>
@@ -1601,6 +1610,7 @@ export default {
               type: this.SuccessTypeClubFile,
               duration: 5000,
             });
+            this.getClubMoreInfo();
           } else if (this.errorMessageClubFile != "") {
             this.$toast.open({
               message: this.errorMessageClubFile,
