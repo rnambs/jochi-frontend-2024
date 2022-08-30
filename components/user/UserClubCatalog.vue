@@ -131,7 +131,7 @@
                   <div
                     class="
                       p-0
-                      pr-2
+                      pr-2 pr-sm-0 pr-md-4 pr-xl-2
                       d-flex
                       justify-content-start justify-content-lg-end
                     "

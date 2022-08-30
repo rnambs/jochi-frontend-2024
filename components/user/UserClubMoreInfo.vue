@@ -161,7 +161,7 @@
                               <div
                                 class="
                                   d-flex
-                                  flex-row flex-sm-column flex-lg-row
+                                  flex-row flex-sm-column flex-xl-row
                                   justify-content-between
                                   w-100
                                 "
@@ -222,9 +222,9 @@
                                     d-flex
                                     align-items-end
                                     align-items-sm-center
-                                    align-items-lg-end
+                                    align-items-xl-end
                                     justify-content-between
-                                    flex-column flex-sm-row flex-lg-column
+                                    flex-column flex-sm-row flex-xl-column
                                   "
                                 >
                                   <p class="mb-0 color-secondary text-right">
@@ -279,7 +279,7 @@
                             <div
                               class="
                                 d-flex
-                                flex-row flex-sm-column flex-lg-row
+                                flex-row flex-sm-column flex-xl-row
                                 justify-content-between
                                 w-100
                               "
@@ -314,9 +314,9 @@
                                   d-flex
                                   align-items-end
                                   align-items-sm-center
-                                  align-items-lg-end
+                                  align-items-xl-end
                                   justify-content-between
-                                  flex-column flex-sm-row flex-lg-column
+                                  flex-column flex-sm-row flex-xl-column
                                 "
                               >
                                 <div
@@ -470,7 +470,7 @@
                       </div>
                       <div class="" v-if="enableEdit">
                         <div class="inner-info-head mb-2">
-                          <h5 class="color-dark mb-2 font-bold">Add Todo</h5>
+                          <h5 class="color-dark my-2 font-bold">Add Todo</h5>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-2">
                           <div class="form-row m-0 flex-fill mr-2">
@@ -565,7 +565,7 @@
                               class="
                                 d-flex
                                 justify-content-between
-                                flex-row flex-sm-column flex-lg-row
+                                flex-row flex-sm-column flex-xl-row
                                 w-100
                               "
                             >
@@ -596,9 +596,9 @@
                                   d-flex
                                   align-items-end
                                   align-items-sm-center
-                                  align-items-lg-end
+                                  align-items-xl-end
                                   justify-content-between
-                                  flex-column flex-sm-row flex-lg-column
+                                  flex-column flex-sm-row flex-xl-column
                                 "
                               >
                                 <div
