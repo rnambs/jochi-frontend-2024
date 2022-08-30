@@ -898,6 +898,7 @@
                         rounded-12
                         font-semi-bold
                       "
+                      :disabled="processing"
                       @click="ScheduleConfirm()"
                     >
                       Confirm
@@ -990,6 +991,7 @@ export default {
       meeting_description: "",
       venue: "",
       submitted: false,
+      processing: false,
       playCelebration: false,
     };
   },
@@ -1231,8 +1233,10 @@ export default {
     },
     async ScheduleConfirm() {
       this.submitted = true;
+      this.processing = true;
       this.$v.$touch();
       if (this.$v.$invalid) {
+        this.processing = false;
         return;
       } else {
         this.loading = true;
@@ -1265,6 +1269,8 @@ export default {
 
             $(".modal-backdrop").remove();
             $("#meetingDetailModal").modal("hide");
+            this.processing = false;
+            this.submitted = false;
             const myTimeout = setTimeout(() => {
               this.playCelebration = false;
             }, 5000);
