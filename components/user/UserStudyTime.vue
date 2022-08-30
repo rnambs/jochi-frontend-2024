@@ -3567,8 +3567,10 @@ export default {
       this.addGoal = true;
     },
     onAddNewGoal() {
-      if (this.goalName) {
+      if (this.goalName && this.goalName.trim().length > 0) {
         this.goalsList.push(this.goalName);
+        this.goalName = "";
+        this.addGoal = false;
       } else {
         this.$toast.open({
           message: "Please add a valid goal ",
@@ -3576,8 +3578,6 @@ export default {
           duration: 5000,
         });
       }
-      this.goalName = "";
-      this.addGoal = false;
     },
     deleteGoal(goal) {
       let index = this.goalsList.findIndex((e) => e == goal);
