@@ -28,7 +28,7 @@
                 cursor-pointer
               "
             >
-              <div class="col-7">
+              <div class="col-sm-7 col-md-12 col-lg-7">
                 <h2 class="color-primary font-semi-bold mb-1">
                   Complete An Assignment
                 </h2>
@@ -56,7 +56,7 @@
                 cursor-pointer
               "
             >
-              <div class="col-7">
+              <div class="col-sm-7 col-md-12 col-lg-7">
                 <h2 class="color-primary font-semi-bold mb-1">
                   Start a new Study Session
                 </h2>
@@ -376,7 +376,7 @@
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">Peers</h5>
-                      <div class="d-flex flex-column">
+                      <div class="d-flex flex-column pl-2">
                         <div
                           v-for="peer in invitedPeerList"
                           :key="peer.id"
