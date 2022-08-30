@@ -26,7 +26,7 @@
       </v-card-text>
       <v-card-actions>
         <v-btn class="primary" @click="saveImage(), (dialog = false)"
-          >Crop</v-btn
+          >Upload</v-btn
         >
         <v-btn color="primary" text @click="dialog = false">Cancel</v-btn>
       </v-card-actions>

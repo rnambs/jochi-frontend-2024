@@ -116,14 +116,18 @@
                     </h3>
                   </div>
                   <div
-                    class="
-                      custom-overflow
-                      image-overflow
-                      d-flex
-                      flex-column
-                    "
+                    class="custom-overflow image-overflow d-flex flex-column"
                   >
-                    <div class="row info-row container-fluid my-0 mx-auto align-items-start">
+                    <div
+                      class="
+                        row
+                        info-row
+                        container-fluid
+                        my-0
+                        mx-auto
+                        align-items-start
+                      "
+                    >
                       <div
                         class="col-md-3 col-sm-6 p-2"
                         v-for="(list, index) in allList"
@@ -803,7 +807,16 @@
                 />
               </div>
               <!-- <v-dialog v-model="dialog" width="500"> -->
-              <v-card class="bg-transparent shadow-none h-100 overflow-hidden d-flex flex-column">
+              <v-card
+                class="
+                  bg-transparent
+                  shadow-none
+                  h-100
+                  overflow-hidden
+                  d-flex
+                  flex-column
+                "
+              >
                 <v-card-text class="p-0 h-100 overflow-hidden">
                   <VueCropper
                     v-show="selectedFile"
@@ -845,7 +858,7 @@
                       shadow-none
                     "
                     @click="saveImage(), (dialog = false)"
-                    ><span class="font-semi-bold">Crop</span></v-btn
+                    ><span class="font-semi-bold">Upload</span></v-btn
                   >
                 </v-card-actions>
               </v-card>
@@ -1200,6 +1213,7 @@ export default {
               type: this.SuccessType,
               duration: 5000,
             });
+            this.getClubMoreInfo();
           } else if (this.errorMessage != "") {
             this.$toast.open({
               message: this.errorMessage,

@@ -221,7 +221,14 @@
                                   </div>
                                   <div class="sub-task-section mb-3">
                                     <h6 class="mb-1">Sub-tasks</h6>
-                                    <div class="d-flex flex-column overflow-hidden vh-10">
+                                    <div
+                                      class="
+                                        d-flex
+                                        flex-column
+                                        overflow-hidden
+                                        vh-10
+                                      "
+                                    >
                                       <div
                                         @click="
                                           confirmSubTaskComplete(
@@ -255,7 +262,11 @@
                                         />
                                         <label
                                           for=""
-                                          class="mb-0 text-truncate cursor-pointer"
+                                          class="
+                                            mb-0
+                                            text-truncate
+                                            cursor-pointer
+                                          "
                                           >{{ sub.title }}</label
                                         >
                                       </div>
@@ -599,7 +610,14 @@
                         "
                       >
                         <div
-                          class="d-flex flex-column custom-overflow px-2 pr-3 me--3"
+                          class="
+                            d-flex
+                            flex-column
+                            custom-overflow
+                            px-2
+                            pr-3
+                            me--3
+                          "
                         >
                           <form
                             v-if="!isSharedAssignment"
@@ -955,7 +973,7 @@
                                   >
                                     <p
                                       class="
-                                      d-flex
+                                        d-flex
                                         mb-0
                                         color-secondary
                                         text-16
@@ -2448,6 +2466,8 @@ export default {
         date: this.calendarDate,
       });
 
+      console.log("meetings", this.clubMeetings);
+
       this.loading = false;
       this.assignmentList = [];
       this.meetingDetails = [];
@@ -2469,7 +2489,10 @@ export default {
           var color = "#F6D73C";
         }
         var dateMeeting = element.due_date;
-        var tmeMeeting = this.formatAMPM(element.due_time);
+        var tmeMeeting = "";
+        if (element.due_time) {
+          tmeMeeting = this.formatAMPM(element.due_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
 
         scheduleObject["assignment"] = assignment;
@@ -2509,7 +2532,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.default_slot?.start_time;
-        var tmeMeeting = this.formatAMPM(element.default_slot?.start_time);
+        var tmeMeeting = "";
+        if (element.default_slot?.start_time) {
+          tmeMeeting = this.formatAMPM(element.default_slot?.start_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -2542,7 +2568,10 @@ export default {
         }
         var dateMeeting = element.date;
         var timeValNum = element.start_time;
-        var tmeMeeting = this.formatAMPM(element.start_time);
+        var tmeMeeting = "";
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -2571,7 +2600,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.time;
-        var tmeMeeting = this.formatAMPM(element.time);
+        var tmeMeeting = "";
+        if (element.time) {
+          tmeMeeting = this.formatAMPM(element.time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -2605,7 +2637,10 @@ export default {
           var color = "#F6D73C";
         }
         var dateMeeting = element.due_date;
-        var tmeMeeting = this.formatAMPM(element.due_time);
+        var tmeMeeting = "";
+        if (element.due_time) {
+          tmeMeeting = this.formatAMPM(element.due_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
 
         scheduleObject["assignment"] = assignment;
@@ -2636,7 +2671,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.start_time;
-        var tmeMeeting = this.formatAMPM(element.start_time);
+        var tmeMeeting = "";
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;

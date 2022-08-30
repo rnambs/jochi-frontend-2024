@@ -410,7 +410,14 @@
                                     </div>
                                     <div class="sub-task-section mb-3">
                                       <h6 class="mb-1">Sub-tasks</h6>
-                                      <div class="d-flex flex-column overflow-hidden vh-10">
+                                      <div
+                                        class="
+                                          d-flex
+                                          flex-column
+                                          overflow-hidden
+                                          vh-10
+                                        "
+                                      >
                                         <div
                                           @click="
                                             confirmSubTaskComplete(
@@ -443,7 +450,11 @@
                                           />
                                           <label
                                             for=""
-                                            class="mb-0 text-truncate cursor-pointer"
+                                            class="
+                                              mb-0
+                                              text-truncate
+                                              cursor-pointer
+                                            "
                                             >{{ sub.title }}</label
                                           >
                                         </div>
@@ -2536,9 +2547,6 @@ export default {
       students: (state) => state.students,
       students: (state) => state.students,
     }),
-    ...mapActions("teacherMeeting", {
-      getStudents: "getStudents",
-    }),
   },
   methods: {
     assignmentPlanner() {
@@ -2563,6 +2571,9 @@ export default {
       getAssignments: "getAssignments",
       completeTask: "completeTask",
       getCompletedAssignments: "getCompletedAssignments",
+    }),
+    ...mapActions("teacherMeeting", {
+      getStudents: "getStudents",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -2779,7 +2790,10 @@ export default {
           var color = "#F6D73C";
         }
         var dateMeeting = element.due_date;
-        var tmeMeeting = this.formatAMPM(element.due_time);
+        var tmeMeeting = "";
+        if (element.due_time) {
+          tmeMeeting = this.formatAMPM(element.due_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
 
         scheduleObject["assignment"] = assignment;
@@ -2819,7 +2833,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.default_slot?.start_time;
-        var tmeMeeting = this.formatAMPM(element.default_slot?.start_time);
+        var tmeMeeting = "";
+        if (element.default_slot?.start_time) {
+          tmeMeeting = this.formatAMPM(element.default_slot?.start_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -2853,7 +2870,10 @@ export default {
         }
         var dateMeeting = element.date;
         var timeValNum = element.start_time;
-        var tmeMeeting = this.formatAMPM(element.start_time);
+        var tmeMeeting = "";
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -2882,7 +2902,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.time;
-        var tmeMeeting = this.formatAMPM(element.time);
+        var tmeMeeting = "";
+        if (element.time) {
+          tmeMeeting = this.formatAMPM(element.time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -2916,7 +2939,10 @@ export default {
           var color = "#F6D73C";
         }
         var dateMeeting = element.due_date;
-        var tmeMeeting = this.formatAMPM(element.due_time);
+        var tmeMeeting = "";
+        if (element.due_time) {
+          tmeMeeting = this.formatAMPM(element.due_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
 
         scheduleObject["assignment"] = assignment;
@@ -2947,7 +2973,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.start_time;
-        var tmeMeeting = this.formatAMPM(element.start_time);
+        var tmeMeeting = "";
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -3548,7 +3577,10 @@ export default {
           var color = "#F6D73C";
         }
         var dateMeeting = element.due_date;
-        var tmeMeeting = this.formatAMPM(element.due_time);
+        var tmeMeeting = "";
+        if (element.due_time) {
+          tmeMeeting = this.formatAMPM(element.due_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         // var start = element.dateISOFormat;
         var id = element.id;
@@ -3576,7 +3608,10 @@ export default {
         }
         var dateMeeting = element.date;
         var timeValNum = element.start_time;
-        var tmeMeeting = this.formatAMPM(element.start_time);
+        var tmeMeeting = "";
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -3611,7 +3646,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.time;
-        var tmeMeeting = this.formatAMPM(element.time);
+        var tmeMeeting = "";
+        if (element.time) {
+          tmeMeeting = this.formatAMPM(element.time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
@@ -3650,7 +3688,10 @@ export default {
         // }
         var dateMeeting = element.date;
         var timeValNum = element.time;
-        var tmeMeeting = this.formatAMPM(element.start_time);
+        var tmeMeeting = "";
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
