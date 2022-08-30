@@ -1881,7 +1881,7 @@ export default {
           type: "warning",
           duration: 5000,
         });
-      }else{
+      } else {
         this.loading = true;
         await this.editTodo({
           club_id: this.$route.query.id,
@@ -1904,7 +1904,7 @@ export default {
         }
         this.getClubMoreInfo();
         this.todolist = "";
-      } 
+      }
     },
     async UpdateTime() {
       this.dayArrVal = [];
@@ -2321,6 +2321,7 @@ export default {
       console.log(this.activity.activityDate);
     },
     openAddBanner() {
+      this.clearCrop();
       $("#addBannerModal").modal({ backdrop: true });
     },
     saveImage() {

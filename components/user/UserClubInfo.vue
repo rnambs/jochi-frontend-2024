@@ -1579,6 +1579,7 @@ export default {
       $("#addLeaderModal").modal({ backdrop: true });
     },
     openAddBanner() {
+      this.clearCrop();
       $("#addBannerModal").modal({ backdrop: true });
     },
     saveImage() {
