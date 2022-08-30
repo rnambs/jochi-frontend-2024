@@ -205,7 +205,7 @@
                                   py-1
                                 "
                                 @click="
-                                  TeacherMeetingConfirm(
+                                  openModal(
                                     teacher.studentId,
                                     teacher.reqId,
                                     1,
@@ -230,11 +230,7 @@
                                   py-1
                                 "
                                 @click="
-                                  TeacherMeetingConfirm(
-                                    teacher.studentId,
-                                    teacher.reqId,
-                                    2
-                                  )
+                                  openModal(teacher.studentId, teacher.reqId, 2)
                                 "
                               >
                                 <i
@@ -513,6 +509,61 @@
         </div>
       </div>
       <!-- modal pop up end -->
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-md modal-dialog-centered"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header pb-0">
+              <h3 class="modal-title" id="exampleModalLongTitle">
+                Confirm Operation
+              </h3>
+              <!-- <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+            </div>
+            <div class="modal-body">
+              <div>
+                Are you sure you want to
+                {{ statusConfirm == "1" ? "Accept" : "Reject" }} the meeting
+                scheduled?
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-4 rounded-12 font-semi-bold"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                data-dismiss="modal"
+                @click="confirmAcceptReject()"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal End -->
       <!-- End teacher Page -->
     </div>
   </div>
@@ -558,6 +609,10 @@ export default {
         selectable: true,
       },
       meetingDetail: {},
+      studentIdConfirm: "",
+      reqIdConfirm: "",
+      statusConfirm: "",
+      dateConfirm: "",
     };
   },
   mounted() {
@@ -659,6 +714,10 @@ export default {
           duration: 5000,
         });
       } else if (this.successMessage != "") {
+        this.studentIdConfirm = "";
+        this.reqIdConfirm = "";
+        this.statusConfirm = "";
+        this.dateConfirm = "";
         if ($("#mediumModal").hasClass("show")) {
           $("#mediumModal").modal("hide");
           $(".modal").modal("hide");
@@ -781,6 +840,23 @@ export default {
       $("#mediumModal").modal("show");
       // console.log(teacher);
       this.meetingDetail = Scheduleobj;
+    },
+    async openModal(studentId, reqId, status, date = "") {
+      this.studentIdConfirm = studentId;
+      this.reqIdConfirm = reqId;
+      this.statusConfirm = status;
+      this.dateConfirm = date;
+      $("#exampleModalCenter").modal({ backdrop: true });
+    },
+    async confirmAcceptReject() {
+      this.TeacherMeetingConfirm(
+        this.studentIdConfirm,
+        this.reqIdConfirm,
+        this.statusConfirm,
+        this.dateConfirm
+      );
+      // $(".modal").modal("hide");
+      // $(".modal-backdrop").remove();
     },
   },
 };
