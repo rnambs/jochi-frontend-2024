@@ -319,11 +319,14 @@
                                       >
                                         <div
                                           class="d-flex w-100"
-                                          v-for="material in item.assignment_materials"
+                                          v-for="(
+                                            material, index
+                                          ) in item.assignment_materials"
                                           :key="material.id"
                                           @click="openLink(material)"
                                         >
                                           <span
+                                            v-if="index < 2"
                                             class="
                                               color-secondary
                                               text-truncate
@@ -339,8 +342,17 @@
                                           </span>
                                         </div>
                                       </div>
-                                      <span class="color-secondary text-12"
-                                        >+3 more</span
+                                      <span
+                                        class="color-secondary text-12"
+                                        v-if="
+                                          item.assignment_materials &&
+                                          item.assignment_materials.length &&
+                                          item.assignment_materials.length > 2
+                                        "
+                                        >+{{
+                                          item.assignment_materials.length - 2
+                                        }}
+                                        more</span
                                       >
                                       <span
                                         v-if="
@@ -3198,6 +3210,8 @@ export default {
       if (this.assignmentsList && this.assignmentsList.length > 0) {
         this.assignmentsList.forEach((e) => {
           let item = {};
+          this.assignmentMaterials = [];
+
           item.assignment_description = e.assignment_description;
           if (e.assignment_materials && e.assignment_materials.length > 0) {
             e.assignment_materials.forEach((m) => {
