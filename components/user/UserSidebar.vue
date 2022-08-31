@@ -200,7 +200,8 @@
                     color-primary
                     mb-0
                     font-semi-bold
-                    text-18 text-center text-lg-left word-break
+                    text-18 text-center text-lg-left
+                    word-break
                   "
                 >
                   {{ firstName }}
@@ -651,7 +652,11 @@
                       aria-expanded="false"
                       aria-controls="collapseOne"
                     >
-                      <a href="#" @click="GetLogout()" class="bottum-btn">
+                      <!-- @click="GetLogout()" -->
+                      <a
+                        href="https://sso.gg4l.com/oauth/auth?response_type=code&client_id=PTRQTIBSJC&redirect_uri=https://jochi.devateam.com/redirect-login"
+                        class="bottum-btn"
+                      >
                         <div class="font-icon d-inline-block">
                           <i class="fas fa-sign-out-alt"></i>
                         </div>
@@ -662,8 +667,9 @@
                             text-capitalize
                             font-medium
                           "
-                          >Logout</span
                         >
+                          Logout
+                        </span>
                       </a>
                     </button>
                   </div>
