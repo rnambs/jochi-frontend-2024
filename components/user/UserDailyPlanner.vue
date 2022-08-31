@@ -840,6 +840,7 @@
                                   >
                                   <div>
                                     <vue-timepicker
+                                      @change="checkValidTime"
                                       close-on-complete
                                       format="hh:mm A"
                                       v-model="timeValue"
@@ -848,16 +849,26 @@
                                       :value="timeValue"
                                       :class="{
                                         'is-invalid':
-                                          submitted && $v.timeValue.$error,
+                                          submitted &&
+                                          ($v.timeValue.$error || !validTime),
                                       }"
                                     ></vue-timepicker>
                                     <div
-                                      v-if="submitted && $v.timeValue.$error"
+                                      v-if="
+                                        submitted &&
+                                        ($v.timeValue.$error || !validTime)
+                                      "
                                       class="invalid-feedback"
                                     >
-                                      <span v-if="!$v.timeValue.required"
-                                        >This field is required</span
+                                      <span
+                                        v-if="
+                                          !$v.timeValue.required || !validTime
+                                        "
+                                        >Not a valid time</span
                                       >
+                                      <!-- <span v-if="!validTime"
+                                        >Time is not valid</span
+                                      > -->
                                     </div>
                                   </div>
                                 </div>
@@ -2320,6 +2331,7 @@ export default {
       assignmentId: 0,
       isSharedAssignment: false,
       additionalMaterials: [],
+      validTime: false,
     };
   },
   mounted() {
@@ -2736,10 +2748,38 @@ export default {
       }
       $(".dropdown-select").text(this.priorityVal);
     },
+    checkValidTime() {
+      if (this.timeValue) {
+        let valid = moment(this.timeValue, "h:mm A", true).isValid();
+
+        if (valid && this.timeValue.split(" ")[1].length > 1) {
+          this.validTime = true;
+        } else {
+          this.validTime = false;
+        }
+        return valid;
+      } else {
+        return false;
+      }
+    },
+    checkValidTime() {
+      if (this.timeValue) {
+        let valid = moment(this.timeValue, "h:mm A", true).isValid();
+
+        if (valid && this.timeValue.split(" ")[1].length > 1) {
+          this.validTime = true;
+        } else {
+          this.validTime = false;
+        }
+        return valid;
+      } else {
+        return false;
+      }
+    },
     async AddAssignment() {
       this.submitted = true;
       this.$v.$touch();
-      if (this.$v.$invalid) {
+      if (this.$v.$invalid || !this.validTime) {
         return;
       }
       this.processing = true;
@@ -2821,7 +2861,7 @@ export default {
     async UpdateAssignment() {
       this.submitted = true;
       this.$v.$touch();
-      if (this.$v.$invalid) {
+      if (this.$v.$invalid || !this.validTime) {
         return;
       }
 
@@ -2907,6 +2947,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
+      this.validTime = false;
       this.peerSelected = [];
       this.isSharedAssignment = false;
       this.subject = "";
@@ -3548,8 +3589,8 @@ export default {
             link: this.link,
           });
           this.link = "";
-          this.processingUpload = false;
         }
+        this.processingUpload = false;
         return;
       }
 

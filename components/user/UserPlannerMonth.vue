@@ -1045,6 +1045,7 @@
                                       >
                                       <div>
                                         <vue-timepicker
+                                          @change="checkValidTime"
                                           close-on-complete
                                           format="hh:mm A"
                                           v-model="timeValue"
@@ -1053,17 +1054,24 @@
                                           :value="timeValue"
                                           :class="{
                                             'is-invalid':
-                                              submitted && $v.timeValue.$error,
+                                              submitted &&
+                                              ($v.timeValue.$error ||
+                                                !validTime),
                                           }"
                                         ></vue-timepicker>
                                         <div
                                           v-if="
-                                            submitted && $v.timeValue.$error
+                                            submitted &&
+                                            ($v.timeValue.$error || !validTime)
                                           "
                                           class="invalid-feedback"
                                         >
-                                          <span v-if="!$v.timeValue.required"
-                                            >This field is required</span
+                                          <span
+                                            v-if="
+                                              !$v.timeValue.required ||
+                                              !validTime
+                                            "
+                                            >Not a valid time</span
                                           >
                                         </div>
                                       </div>
@@ -1974,7 +1982,7 @@
             </div>
           </div>
           <!-- Modal -->
-          <div
+          <!-- <div
             class="modal fade"
             id="exampleModalCenter"
             tabindex="-1"
@@ -2170,7 +2178,6 @@
                               >
                             </div>
                           </div>
-                          <!-- <input type="text" class="form-control"> -->
                         </div>
                       </div>
                     </div>
@@ -2192,13 +2199,12 @@
                     "
                     :disabled="processing"
                   >
-                    <!-- data-dismiss="modal" -->
                     Confirm
                   </button>
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           <!-- meeing detil pop up -->
           <div
             class="modal fade"
@@ -2447,6 +2453,7 @@ export default {
       isSharedAssignment: false,
       assignmentList: [],
       assignmentMaterials: [],
+      validTime: false,
     };
   },
   mounted() {
@@ -3120,10 +3127,24 @@ export default {
     //   let clearTimeBtn = document.getElementsByClassName("clear-btn")[0];
     //   clearTimeBtn?.click();
     // },
+    checkValidTime() {
+      if (this.timeValue) {
+        let valid = moment(this.timeValue, "h:mm A", true).isValid();
+
+        if (valid && this.timeValue.split(" ")[1].length > 1) {
+          this.validTime = true;
+        } else {
+          this.validTime = false;
+        }
+        return valid;
+      } else {
+        return false;
+      }
+    },
     async AddAssignment() {
       this.submitted = true;
       this.$v.$touch();
-      if (this.$v.$invalid) {
+      if (this.$v.$invalid || !this.validTime) {
         return;
       }
       this.processing = true;
@@ -3206,7 +3227,7 @@ export default {
     async UpdateAssignment() {
       this.submitted = true;
       this.$v.$touch();
-      if (this.$v.$invalid) {
+      if (this.$v.$invalid || !this.validTime) {
         return;
       }
 
@@ -4265,8 +4286,8 @@ export default {
             link: this.link,
           });
           this.link = "";
-          this.processingUpload = false;
         }
+        this.processingUpload = false;
         return;
       }
 

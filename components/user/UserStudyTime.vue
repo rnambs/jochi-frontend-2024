@@ -3084,7 +3084,7 @@ export default {
     checkValidTime(time) {
       let timeFormat = time?.hh + ":" + time?.mm + " " + time?.A;
       console.log(timeFormat, moment(timeFormat, "h:mm A", true).isValid());
-      return moment(timeFormat, "h:mm A", true).isValid();
+      return moment(timeFormat, "hh:mm A", true).isValid();
     },
 
     async StartStudySession(scheduleNow = true) {
