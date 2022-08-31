@@ -564,26 +564,38 @@
                 </div>
               </div>
               <div class="">
-                <h6 class="mb-1 color-primary">Additional Material</h6>
+                <h6 class="mb-1 font-medium">Additional Materials</h6>
                 <div class="d-flex align-items-center justify-content-between">
                   <div
                     v-if="detail.assignment_materials"
-                    class="col-8 py-0 pl-0 material-link"
+                    class="col-8
+                    py-0
+                    pl-0
+                    text-12
+                    d-flex
+                    flex-column"
                   >
                     <div
-                      v-for="(file, index) in detail.assignment_materials"
-                      :key="index"
+                      class="d-flex flex-column lext-limited"
                     >
-                      <span class="text-capitalize"> {{ file.file_type }} </span
-                      >&nbsp;:&nbsp;{{ file.file_name }}
+                      <div
+                      class="d-flex w-100"
+                        v-for="(file, index) in detail.assignment_materials"
+                        :key="index"
+                      >
+                        <span class="text-capitalize 
+                        color-secondary
+                        text-truncate
+                        w-100"> {{ file.file_type }} &nbsp;:&nbsp;{{ file.file_name }} </span
+                          >
+                      </div>
                     </div>
                   </div>
-
                   <div v-else class="col-8 py-0 pl-0 material-link">
                     <span class="color-secondary">No documents added!</span>
                   </div>
                   <div
-                    class="col-4 material-date color-secondary py-0 text-right"
+                    class="col-4 material-date py-0 text-right text-10"
                   >
                     {{ detail.due_date }}
                   </div>
