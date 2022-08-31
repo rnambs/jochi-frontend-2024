@@ -568,35 +568,31 @@
                 <div class="d-flex align-items-center justify-content-between">
                   <div
                     v-if="detail.assignment_materials"
-                    class="col-8
-                    py-0
-                    pl-0
-                    text-12
-                    d-flex
-                    flex-column"
+                    class="col-8 py-0 pl-0 text-12 d-flex flex-column"
                   >
-                    <div
-                      class="d-flex flex-column lext-limited"
-                    >
+                    <div class="d-flex flex-column lext-limited">
                       <div
-                      class="d-flex w-100"
+                        class="d-flex w-100"
                         v-for="(file, index) in detail.assignment_materials"
                         :key="index"
                       >
-                        <span class="text-capitalize 
-                        color-secondary
-                        text-truncate
-                        w-100"> {{ file.file_type }} &nbsp;:&nbsp;{{ file.file_name }} </span
-                          >
+                        <span
+                          class="
+                            text-capitalize
+                            color-secondary
+                            text-truncate
+                            w-100
+                          "
+                        >
+                          {{ file.file_type }} &nbsp;:&nbsp;{{ file.file_name }}
+                        </span>
                       </div>
                     </div>
                   </div>
                   <div v-else class="col-8 py-0 pl-0 material-link">
                     <span class="color-secondary">No documents added!</span>
                   </div>
-                  <div
-                    class="col-4 material-date py-0 text-right text-10"
-                  >
+                  <div class="col-4 material-date py-0 text-right text-10">
                     {{ detail.due_date }}
                   </div>
                 </div>
@@ -3065,9 +3061,11 @@ export default {
 
     checkScheduleLaterValidations() {
       let valid = true;
-      if (!this.scheduledTime) {
+      console.log(!this.checkValidTime(this.scheduledTime));
+
+      if (!this.checkValidTime(this.scheduledTime)) {
         this.$toast.open({
-          message: "Please add scheduled time",
+          message: "Please add valid scheduled time",
           type: "warning",
           duration: 5000,
         });
@@ -3082,6 +3080,11 @@ export default {
         valid = false;
       }
       return valid;
+    },
+    checkValidTime(time) {
+      let timeFormat = time?.hh + ":" + time?.mm + " " + time?.A;
+      console.log(timeFormat, moment(timeFormat, "h:mm A", true).isValid());
+      return moment(timeFormat, "h:mm A", true).isValid();
     },
 
     async StartStudySession(scheduleNow = true) {
@@ -3776,7 +3779,7 @@ export default {
     },
     async startSessionNow() {
       let payLoad = {};
-      console.log(this.sessionDetail)
+      console.log(this.sessionDetail);
       if (this.sessionDetail.type == "assignment") {
         payLoad = {
           assignment_id: this.sessionDetail.assignmentId,
@@ -3799,7 +3802,7 @@ export default {
           date: this.sessionDetail.scheduledDate,
           start_time: this.sessionDetail.time,
           study_method: this.sessionDetail.studyMethod,
-          subject:  this.sessionDetail.subjectId,
+          subject: this.sessionDetail.subjectId,
           target_duration: this.sessionDetail.duration,
           repeat: this.sessionDetail.repeat,
           scheduled_status: "Now",
