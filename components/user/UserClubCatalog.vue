@@ -258,7 +258,7 @@
                   <nuxt-link
                     :to="{
                       path: '/student-club-view',
-                      query: { id: list.id, name: list.activity_type },
+                      query: { id: list.id, name: list.description },
                     }"
                     class="
                       btn btn-primary
