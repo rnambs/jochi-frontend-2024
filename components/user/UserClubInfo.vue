@@ -189,7 +189,7 @@
                           ></a>
                         </div>
                         <div class="row justify-content-end">
-                          <div class="col-8">
+                          <div class="col-10 col-lg-8">
                             <div class="inner-info-text">
                               <ul class="mb-0 leader-list-style">
                                 <li
@@ -435,7 +435,7 @@
                           </a> -->
                         </div>
                         <div class="row justify-content-end">
-                          <div class="col-6 info-tag">
+                          <div class="col-10 col-lg-8 info-tag">
                             <div class="input-group mb-0 justify-content-end">
                               <div
                                 class="p-1"

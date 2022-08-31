@@ -171,7 +171,7 @@
                           <h4 class="color-dark mb-2 font-bold">Leaders</h4>
                         </div>
                         <div class="row justify-content-end">
-                          <div class="col-8">
+                          <div class="col-10 col-lg-8">
                             <div class="inner-info-text">
                               <ul class="mb-0 leader-list-style">
                                 <li
@@ -453,7 +453,7 @@
                           <h4 class="color-dark mb-2 font-bold">Tags</h4>
                         </div>
                         <div class="row justify-content-end">
-                          <div class="col-6 info-tag pr-0">
+                          <div class="col-10 col-lg-8 info-tag pr-0">
                             <div class="input-group mb-0 justify-content-end">
                               
                               <!-- input-icon-area
