@@ -3482,7 +3482,7 @@ export default {
           ? e.studyroom?.assignments?.task
           : e.subjects?.subject_name;
         session.goals = e.assignment_id ? e.subTasks : e.study_goals;
-        session.duration = e.duration;
+        session.duration = e.studyroom?.duration;
         session.breakTime = e.studyroom?.break_time;
         session.repeat = e.studyroom?.repeat;
         session.peers = e.peers;
@@ -3495,6 +3495,8 @@ export default {
         session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
         session.startSession = e.scheduled_status == "Now" ? true : false;
         session.scheduleStatus = e.scheduled_status;
+        session.assignmentId = e.assignment_id;
+        session.subjectId = e.subjects?.id;
 
         this.studySessionList.push(session);
       });
@@ -3762,9 +3764,10 @@ export default {
     },
     async startSessionNow() {
       let payLoad = {};
+      console.log(this.sessionDetail)
       if (this.sessionDetail.type == "assignment") {
         payLoad = {
-          assignment_id: this.sessionDetail.assignment_id,
+          assignment_id: this.sessionDetail.assignmentId,
           session_shared_user_id: this.sessionDetail.peers,
           goals: this.sessionDetail.goals,
           date: this.sessionDetail.scheduledDate,
@@ -3784,7 +3787,7 @@ export default {
           date: this.sessionDetail.scheduledDate,
           start_time: this.sessionDetail.time,
           study_method: this.sessionDetail.studyMethod,
-          subject: this.sessionType != "assignment" ? this.Subject.id : "",
+          subject:  this.sessionDetail.subjectId,
           target_duration: this.sessionDetail.duration,
           repeat: this.sessionDetail.repeat,
           scheduled_status: "Now",
