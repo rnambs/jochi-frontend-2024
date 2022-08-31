@@ -22,6 +22,7 @@
           <h2 class="color-primary font-semi-bold m-0 px-4 pt-4">
             Teacher Appointment
           </h2>
+
           <div
             class="
               inner-teacher
@@ -280,8 +281,6 @@
         role="dialog"
         aria-labelledby="mediumModalLabel"
         aria-hidden="true"
-        data-backdrop="static"
-        data-keyboard="false"
       >
         <div
           class="modal-dialog modal-dialog-centered modal-md"
