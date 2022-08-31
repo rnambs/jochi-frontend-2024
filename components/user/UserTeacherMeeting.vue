@@ -1233,7 +1233,7 @@ export default {
       }
     },
     async ScheduleConfirm() {
-      let valid;
+      let valid = true;
       if (this.conversation_type == "Video Conference") {
         valid = this.isValidHttpUrl(this.venue);
       }

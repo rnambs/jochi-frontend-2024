@@ -3944,6 +3944,8 @@ export default {
       if (this.assignmentsList && this.assignmentsList.length > 0) {
         this.assignmentsList.forEach((e) => {
           let item = {};
+          this.assignmentMaterials = [];
+
           item.assignment_description = e.assignment_description;
           // item.assignment_materials = e.assignment_materials;
           if (e.assignment_materials && e.assignment_materials.length > 0) {

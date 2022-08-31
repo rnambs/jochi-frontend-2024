@@ -3247,6 +3247,8 @@ export default {
       if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
         this.sharedAssignmentsList.forEach((e) => {
           let item = {};
+          this.assignmentMaterials = [];
+
           if (e.assignments) {
             item.assignment_description = e.assignments.assignment_description;
             if (e.assignment_materials && e.assignment_materials.length > 0) {

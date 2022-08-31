@@ -961,7 +961,7 @@ export default {
       }
     },
     async updateDetails() {
-      let valid;
+      let valid = true;
       if (this.detailConversationType == "Video Conference") {
         valid = this.isValidHttpUrl(this.detailVenue);
       }
