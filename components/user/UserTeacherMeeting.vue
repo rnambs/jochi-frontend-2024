@@ -443,9 +443,12 @@
                         </span>
                         <span v-if="selectedStudents.length > 0">
                           <h4 class="color-primary font-semi-bold">
-                            <span v-for="(student, index) in selectedStudents"
-                            :key="index">{{ student.first_name }} <span> </span></span>
-                        </h4>
+                            <span
+                              v-for="(student, index) in selectedStudents"
+                              :key="index"
+                              >{{ student.first_name }} <span> </span
+                            ></span>
+                          </h4>
                         </span>
                       </h1>
                       <h3 class="color-black font-semi-bold">
@@ -1230,109 +1233,116 @@ export default {
       }
     },
     async ScheduleConfirm() {
-      this.submitted = true;
-      this.processing = true;
-      this.$v.$touch();
-      if (this.$v.$invalid) {
-        this.processing = false;
-        return;
-      } else {
-        this.loading = true;
-
-        if (this.meetingType == "Teachers") {
-          await this.scheduleConfirm({
-            teacher_id: this.value?.id,
-            student_id: localStorage.getItem("id"),
-            schedule_id: slot_id,
-            conversation_type: this.conversation_type,
-            meeting_name: this.meeting_name,
-            meeting_description: this.meeting_description,
-            meeting_link:
-              this.conversation_type == "Video Conference" ? this.venue : "",
-            meeting_location:
-              this.conversation_type == "In Person" ? this.venue : "",
-          });
-
-          this.loading = false;
-
-          if (this.successMessage != "") {
-            this.playCelebration = true;
-            $('input[name="daterange"]').val("");
-            fromDate = "";
-            endDate = "";
-            this.slot_date = [];
-            this.isShowing = true;
-            this.isMounted = false;
-            this.value = "";
-
-            $(".modal-backdrop").remove();
-            $("#meetingDetailModal").modal("hide");
-            this.processing = false;
-            this.submitted = false;
-            const myTimeout = setTimeout(() => {
-              this.playCelebration = false;
-            }, 5000);
-            this.resetValues();
-            this.resetSelection();
-            this.$toast.open({
-              message: this.successMessage,
-              type: this.SuccessType,
-              duration: 5000,
-            });
-          } else if (this.errorMessage != "") {
-            this.$toast.open({
-              message: this.errorMessage,
-              type: this.errorType,
-              duration: 5000,
-            });
-          }
+      let valid;
+      if (this.conversation_type == "Video Conference") {
+        valid = this.isValidHttpUrl(this.venue);
+      }
+      if (valid) {
+        this.submitted = true;
+        this.processing = true;
+        this.$v.$touch();
+        if (this.$v.$invalid) {
+          this.processing = false;
+          return;
         } else {
-          await this.studentScheduleConfirm({
-            group_Id: this.studentsValue,
-            student_id: parseInt(localStorage.getItem("id")),
-            slot_id: slot_id,
-            date: modalDate,
-            conversation_type: this.conversation_type,
-            meeting_name: this.meeting_name,
-            meeting_description: this.meeting_description,
-            meeting_link:
-              this.conversation_type == "Video Conference" ? this.venue : "",
-            meeting_location:
-              this.conversation_type == "In Person" ? this.venue : "",
-          });
+          this.loading = true;
 
-          this.loading = false;
-
-          if (this.successMessage != "") {
-            this.playCelebration = true;
-
-            $('input[name="daterange"]').val("");
-            fromDate = "";
-            endDate = "";
-            this.slot_date = [];
-            this.isShowing = true;
-            this.isMounted = false;
-            this.value = "";
-            $(".modal-backdrop").remove();
-            $("#meetingDetailModal").modal("hide");
-            const myTimeout = setTimeout(() => {
-              this.playCelebration = false;
-            }, 5000);
-            this.resetValues();
-            this.resetSelection();
-            this.$toast.open({
-              message: this.successMessage,
-              type: this.SuccessType,
-              duration: 5000,
+          if (this.meetingType == "Teachers") {
+            await this.scheduleConfirm({
+              teacher_id: this.value?.id,
+              student_id: localStorage.getItem("id"),
+              schedule_id: slot_id,
+              conversation_type: this.conversation_type,
+              meeting_name: this.meeting_name,
+              meeting_description: this.meeting_description,
+              meeting_link:
+                this.conversation_type == "Video Conference" ? this.venue : "",
+              meeting_location:
+                this.conversation_type == "In Person" ? this.venue : "",
             });
-          } else if (this.errorMessage != "") {
-            this.$toast.open({
-              message: this.errorMessage,
-              type: this.errorType,
-              duration: 5000,
+
+            this.loading = false;
+
+            if (this.successMessage != "") {
+              this.playCelebration = true;
+              $('input[name="daterange"]').val("");
+              fromDate = "";
+              endDate = "";
+              this.slot_date = [];
+              this.isShowing = true;
+              this.isMounted = false;
+              this.value = "";
+
+              $(".modal-backdrop").remove();
+              $("#meetingDetailModal").modal("hide");
+
+              const myTimeout = setTimeout(() => {
+                this.playCelebration = false;
+              }, 5000);
+              this.resetValues();
+              this.resetSelection();
+              this.$toast.open({
+                message: this.successMessage,
+                type: this.SuccessType,
+                duration: 5000,
+              });
+            } else if (this.errorMessage != "") {
+              this.$toast.open({
+                message: this.errorMessage,
+                type: this.errorType,
+                duration: 5000,
+              });
+            }
+          } else {
+            await this.studentScheduleConfirm({
+              group_Id: this.studentsValue,
+              student_id: parseInt(localStorage.getItem("id")),
+              slot_id: slot_id,
+              date: modalDate,
+              conversation_type: this.conversation_type,
+              meeting_name: this.meeting_name,
+              meeting_description: this.meeting_description,
+              meeting_link:
+                this.conversation_type == "Video Conference" ? this.venue : "",
+              meeting_location:
+                this.conversation_type == "In Person" ? this.venue : "",
             });
+
+            this.loading = false;
+
+            if (this.successMessage != "") {
+              this.playCelebration = true;
+
+              $('input[name="daterange"]').val("");
+              fromDate = "";
+              endDate = "";
+              this.slot_date = [];
+              this.isShowing = true;
+              this.isMounted = false;
+              this.value = "";
+              $(".modal-backdrop").remove();
+              $("#meetingDetailModal").modal("hide");
+              const myTimeout = setTimeout(() => {
+                this.playCelebration = false;
+              }, 5000);
+              this.resetValues();
+              this.resetSelection();
+              this.$toast.open({
+                message: this.successMessage,
+                type: this.SuccessType,
+                duration: 5000,
+              });
+            } else if (this.errorMessage != "") {
+              this.$toast.open({
+                message: this.errorMessage,
+                type: this.errorType,
+                duration: 5000,
+              });
+            }
           }
         }
+        this.processing = false;
+        this.submitted = false;
       }
     },
     resetValues() {
@@ -1367,6 +1377,31 @@ export default {
     openConfirmMeetingModal() {
       // meetingDetailModal
       $("#meetingDetailModal").modal();
+    },
+    isValidHttpUrl(string) {
+      let url;
+
+      try {
+        url = new URL(string);
+      } catch (_) {
+        this.$toast.open({
+          message: "Please add valid URL",
+          type: "warning",
+          duration: 5000,
+        });
+        return false;
+      }
+
+      let valid = url.protocol === "http:" || url.protocol === "https:";
+      if (!valid) {
+        this.$toast.open({
+          message: "Please add valid URL",
+          type: "warning",
+          duration: 5000,
+        });
+      }
+
+      return valid;
     },
   },
 };

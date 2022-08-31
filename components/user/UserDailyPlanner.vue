@@ -3525,12 +3525,15 @@ export default {
         this.file = "";
         document.querySelector("#fileUpload").value = "";
       } else {
-        this.additionalMaterialList.push({
-          id: Math.random(),
-          link: this.link,
-        });
-        this.link = "";
-        this.processingUpload = false;
+        let urlValid = this.isValidHttpUrl(this.link);
+        if (urlValid) {
+          this.additionalMaterialList.push({
+            id: Math.random(),
+            link: this.link,
+          });
+          this.link = "";
+          this.processingUpload = false;
+        }
         return;
       }
 
@@ -3551,6 +3554,31 @@ export default {
         link,
         "_blank" // <- This is what makes it open in a new window.
       );
+    },
+    isValidHttpUrl(string) {
+      let url;
+
+      try {
+        url = new URL(string);
+      } catch (_) {
+        this.$toast.open({
+          message: "Please add valid URL",
+          type: "warning",
+          duration: 5000,
+        });
+        return false;
+      }
+
+      let valid = url.protocol === "http:" || url.protocol === "https:";
+      if (!valid) {
+        this.$toast.open({
+          message: "Please add valid URL",
+          type: "warning",
+          duration: 5000,
+        });
+      }
+
+      return valid;
     },
   },
 };

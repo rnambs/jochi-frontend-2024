@@ -299,6 +299,12 @@
                     </td>
                   </tr>
 
+                  <!-- <tr v-id="!isDateChanged">
+                    <button @click="changeSlot">
+                      Change Today's Slot Time
+                    </button>
+                  </tr> -->
+
                   <tr v-if="isDateChanged && slot_date_selection.length > 0">
                     <td>Select Time</td>
                     <td>
@@ -955,79 +961,87 @@ export default {
       }
     },
     async updateDetails() {
-      this.submitted = true;
-      this.$v.$touch();
-      if (this.$v.$invalid) {
-        return;
-      } else {
-        if (this.isDateChanged && !this.selectedSlot) {
-          return this.$toast.open({
-            message: "Please choose a slot before proceeding",
-            type: "warning",
-            duration: 5000,
-          });
-        }
-        this.loading = true;
+      let valid;
+      if (this.detailConversationType == "Video Conference") {
+        valid = this.isValidHttpUrl(this.detailVenue);
+      }
+      if (valid) {
+        this.submitted = true;
+        this.$v.$touch();
+        if (this.$v.$invalid) {
+          return;
+        } else {
+          if (this.isDateChanged && !this.selectedSlot) {
+            return this.$toast.open({
+              message: "Please choose a slot before proceeding",
+              type: "warning",
+              duration: 5000,
+            });
+          }
+          this.loading = true;
 
-        let payLoad = {};
-        // if (this.detailType == "Teacher") {
-        payLoad = {
-          id: this.detailMeetingId,
-          schedule_id: this.isDateChanged
-            ? this.selectedScheduleId
-            : this.detailScheduleId,
-          slot_id: this.isDateChanged ? this.selectedSlot : this.detailSlotId,
+          let payLoad = {};
+          // if (this.detailType == "Teacher") {
+          payLoad = {
+            id: this.detailMeetingId,
+            schedule_id: this.isDateChanged
+              ? this.selectedScheduleId
+              : this.detailScheduleId,
+            slot_id: this.isDateChanged ? this.selectedSlot : this.detailSlotId,
 
-          date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
-          conversation_type: this.detailConversationType,
-          meeting_name: this.detailMeetingName,
-          meeting_description: this.detailMeetingDesc,
-          meeting_link:
-            this.detailConversationType == "Video Conference"
-              ? this.detailVenue
-              : "",
-          meeting_location:
-            this.detailConversationType == "In Person" ? this.detailVenue : "",
-        };
-        // } else {
-        //   payLoad = {
-        //     id: this.detailMeetingId,
+            date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
+            conversation_type: this.detailConversationType,
+            meeting_name: this.detailMeetingName,
+            meeting_description: this.detailMeetingDesc,
+            meeting_link:
+              this.detailConversationType == "Video Conference"
+                ? this.detailVenue
+                : "",
+            meeting_location:
+              this.detailConversationType == "In Person"
+                ? this.detailVenue
+                : "",
+          };
+          // } else {
+          //   payLoad = {
+          //     id: this.detailMeetingId,
 
-        //     slot_id: this.isDateChanged ? this.selectedSlot : this.detailSlotId,
-        //     date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
-        //     conversation_type: this.detailConversationType,
-        //     meeting_name: this.detailMeetingName,
-        //     meeting_description: this.detailMeetingDesc,
-        //     meeting_link:
-        //       this.detailConversationType == "Video Conference"
-        //         ? this.detailVenue
-        //         : "",
-        //     meeting_location:
-        //       this.detailConversationType == "In Person"
-        //         ? this.detailVenue
-        //         : "",
-        //   };
-        // }
+          //     slot_id: this.isDateChanged ? this.selectedSlot : this.detailSlotId,
+          //     date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
+          //     conversation_type: this.detailConversationType,
+          //     meeting_name: this.detailMeetingName,
+          //     meeting_description: this.detailMeetingDesc,
+          //     meeting_link:
+          //       this.detailConversationType == "Video Conference"
+          //         ? this.detailVenue
+          //         : "",
+          //     meeting_location:
+          //       this.detailConversationType == "In Person"
+          //         ? this.detailVenue
+          //         : "",
+          //   };
+          // }
 
-        await this.updateMeeting(payLoad);
+          await this.updateMeeting(payLoad);
 
-        this.loading = false;
-        if (this.successMessages != "") {
-          this.resetValues();
-          $(".modal-backdrop").remove();
-          $("#meetingDetailModal").modal("hide");
-          this.$toast.open({
-            message: this.successMessages,
-            type: this.SuccessTypes,
-            duration: 5000,
-          });
-          this.ListAllMeeting();
-        } else if (this.errorMessage != "") {
-          this.$toast.open({
-            message: this.errorMessage,
-            type: this.errorType,
-            duration: 5000,
-          });
+          this.loading = false;
+          if (this.successMessages != "") {
+            this.resetValues();
+            $(".modal-backdrop").remove();
+            $("#meetingDetailModal").modal("hide");
+            this.$toast.open({
+              message: this.successMessages,
+              type: this.SuccessTypes,
+              duration: 5000,
+            });
+            this.ListAllMeeting();
+          } else if (this.errorMessage != "") {
+            this.$toast.open({
+              message: this.errorMessage,
+              type: this.errorType,
+              duration: 5000,
+            });
+          }
         }
       }
     },
@@ -1059,6 +1073,14 @@ export default {
         this.UpdateTimeSchedule(moment(event).format("YYYY-MM-DD"));
         // }
       }
+    },
+    changeSlot() {
+      this.isDateChanged = true;
+      let date = "";
+      date = moment(this.detailDate).format("YYYY-MM-DD");
+      this.updatedDate = moment(date).format("YYYY-MM-DD");
+      console.log(this.updatedDate, date);
+      this.UpdateTimeSchedule(moment(date).format("YYYY-MM-DD"));
     },
     async UpdateTimeSchedule(dateSelected) {
       if (this.detailType == "Teacher") {
@@ -1232,6 +1254,31 @@ export default {
     slotClick(slot, id) {
       this.selectedSlot = slot;
       this.selectedScheduleId = id;
+    },
+    isValidHttpUrl(string) {
+      let url;
+
+      try {
+        url = new URL(string);
+      } catch (_) {
+        this.$toast.open({
+          message: "Please add valid URL",
+          type: "warning",
+          duration: 5000,
+        });
+        return false;
+      }
+
+      let valid = url.protocol === "http:" || url.protocol === "https:";
+      if (!valid) {
+        this.$toast.open({
+          message: "Please add valid URL",
+          type: "warning",
+          duration: 5000,
+        });
+      }
+
+      return valid;
     },
   },
 
