@@ -442,12 +442,10 @@
                           }}
                         </span>
                         <span v-if="selectedStudents.length > 0">
-                          <p
-                            v-for="(student, index) in selectedStudents"
-                            :key="index"
-                          >
-                            {{ student.first_name }}
-                          </p>
+                          <h4 class="color-primary font-semi-bold">
+                            <span v-for="(student, index) in selectedStudents"
+                            :key="index">{{ student.first_name }} <span> </span></span>
+                        </h4>
                         </span>
                       </h1>
                       <h3 class="color-black font-semi-bold">
