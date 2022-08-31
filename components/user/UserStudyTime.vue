@@ -9,7 +9,7 @@
         p-4
         custom-margin-for-main-section custom-full-height
         d-flex
-        hidden-scroll
+        custom-overflow
       "
     >
       <div class="study-section d-flex flex-column flex-fill">
