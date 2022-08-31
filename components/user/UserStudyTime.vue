@@ -1766,7 +1766,13 @@
                   </div>
                 </div>
               </div>
-              <div v-if="!goalsList || goalsList.length <= 0">
+              <div
+                v-if="
+                  (!goalsList || goalsList.length <= 0) &&
+                  (!selectedAssignment.subTasks ||
+                    selectedAssignment.subTasks.length <= 0)
+                "
+              >
                 <span class="color-secondary text-16 font-regular"
                   >No goals listed</span
                 >
@@ -3800,7 +3806,7 @@ export default {
       this.addGoal = false;
       this.goalName = "";
       this.goalsList = [];
-      this.selectedAssignment = {};
+      // this.selectedAssignment = {};
       this.invitePeer = false;
       this.peerSelected = [];
       this.peerList = [];
