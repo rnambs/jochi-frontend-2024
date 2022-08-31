@@ -654,7 +654,7 @@
                     >
                       <!-- @click="GetLogout()" -->
                       <a
-                        href="https://sso.gg4l.com/oauth/auth?response_type=code&client_id=PTRQTIBSJC&redirect_uri=https://jochi.devateam.com/redirect-login"
+                        href="https://sso.gg4l.com/oauth/loginwith/logout?redirect_uri=https://jochi.devateam.com/"
                         class="bottum-btn"
                       >
                         <div class="font-icon d-inline-block">
