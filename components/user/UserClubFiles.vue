@@ -466,6 +466,7 @@
                         <div v-if="profileImageUrl">
                           <input
                             type="file"
+                            id="fileUpload"
                             :v-model="profilePic"
                             ref="profilePic"
                             name="profilePic"
@@ -1181,6 +1182,7 @@ export default {
       }
     },
     openAddBanner() {
+      this.clearCrop();
       $("#addBannerModal").modal({ backdrop: true });
     },
     saveImage() {

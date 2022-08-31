@@ -3471,14 +3471,14 @@ export default {
       this.sharedSessions.forEach((e) => {
         let session = {};
         session.type = e.assignment_id ? "assignment" : "study";
-        session.id = e.id;
+        session.id = e.session_id;
         session.name = e.assignment_id
-          ? e.assignments?.task
+          ? e.studyroom?.assignments?.task
           : e.subjects?.subject_name;
         session.goals = e.assignment_id ? e.subTasks : e.study_goals;
         session.duration = e.duration;
         session.breakTime = e.studyroom?.break_time;
-        session.repeat = e.repeat;
+        session.repeat = e.studyroom?.repeat;
         session.peers = e.peers;
         session.date = moment(e.date).format("MMMM Do, YYYY");
         session.scheduledDate = e.date;
@@ -3488,6 +3488,7 @@ export default {
         const d = new Date();
         session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
         session.startSession = e.scheduled_status == "Now" ? true : false;
+        session.scheduleStatus = e.scheduled_status;
 
         this.studySessionList.push(session);
       });
@@ -3566,8 +3567,10 @@ export default {
       this.addGoal = true;
     },
     onAddNewGoal() {
-      if (this.goalName) {
+      if (this.goalName && this.goalName.trim().length > 0) {
         this.goalsList.push(this.goalName);
+        this.goalName = "";
+        this.addGoal = false;
       } else {
         this.$toast.open({
           message: "Please add a valid goal ",
@@ -3575,8 +3578,6 @@ export default {
           duration: 5000,
         });
       }
-      this.goalName = "";
-      this.addGoal = false;
     },
     deleteGoal(goal) {
       let index = this.goalsList.findIndex((e) => e == goal);
@@ -3732,44 +3733,11 @@ export default {
         this.subjectName = this.selectedAssignment.task;
       }
       this.UpdateStudyTechnique();
-      // let payLoad = {};
-      // if (this.sessionDetail.type == "assignment") {
-      //   payLoad = {
-      //     assignment_id: this.sessionDetail.assignment_id,
-      //     session_shared_user_id: this.sessionDetail.peers,
-      //     goals: this.sessionDetail.goals,
-      //     date: this.sessionDetail.scheduledDate,
-      //     start_time: this.sessionDetail.time,
-      //     study_method: this.sessionDetail.studyMethod,
-      //     subject: this.sessionType != "assignment" ? this.Subject.id : "",
-      //     target_duration: this.sessionDetail.duration,
-      //     repeat: this.sessionDetail.repeat,
-      //     scheduled_status: "Now",
-      //     break_time_at: this.sessionDetail.breakTimeAt,
-      //     break_time: this.sessionDetail.breakTime,
-      //   };
-      // } else {
-      //   payLoad = {
-      //     session_shared_user_id: this.sessionDetail.peers,
-      //     goals: this.sessionDetail.goals,
-      //     date: this.sessionDetail.scheduledDate,
-      //     start_time: this.sessionDetail.time,
-      //     study_method: this.sessionDetail.studyMethod,
-      //     subject: this.sessionType != "assignment" ? this.Subject.id : "",
-      //     target_duration: this.sessionDetail.duration,
-      //     repeat: this.sessionDetail.repeat,
-      //     scheduled_status: "Now",
-      //     break_time_at: this.sessionDetail.breakTimeAt,
-      //     break_time: this.sessionDetail.breakTime,
-      //   };
-      // }
-      // await this.saveStudySession(payLoad);
-      // if (this.successMessage != "") {
-      //   this.$toast.open({
-      //     message: this.successMessage,
-      //     type: this.SuccessType,
-      //     duration: 5000,
-      //   });
+
+      if (this.sessionDetail.scheduleStatus == "Now") {
+        this.startSessionNow();
+      }
+
       if (this.limitedInterval > 0) {
         await clearInterval(this.limitedInterval);
       }
@@ -3785,6 +3753,47 @@ export default {
       //     duration: 5000,
       //   });
       // }
+    },
+    async startSessionNow() {
+      let payLoad = {};
+      if (this.sessionDetail.type == "assignment") {
+        payLoad = {
+          assignment_id: this.sessionDetail.assignment_id,
+          session_shared_user_id: this.sessionDetail.peers,
+          goals: this.sessionDetail.goals,
+          date: this.sessionDetail.scheduledDate,
+          start_time: this.sessionDetail.time,
+          study_method: this.sessionDetail.studyMethod,
+          subject: this.sessionType != "assignment" ? this.Subject.id : "",
+          target_duration: this.sessionDetail.duration,
+          repeat: this.sessionDetail.repeat,
+          scheduled_status: "Now",
+          break_time_at: this.sessionDetail.breakTimeAt,
+          break_time: this.sessionDetail.breakTime,
+        };
+      } else {
+        payLoad = {
+          session_shared_user_id: this.sessionDetail.peers,
+          goals: this.sessionDetail.goals,
+          date: this.sessionDetail.scheduledDate,
+          start_time: this.sessionDetail.time,
+          study_method: this.sessionDetail.studyMethod,
+          subject: this.sessionType != "assignment" ? this.Subject.id : "",
+          target_duration: this.sessionDetail.duration,
+          repeat: this.sessionDetail.repeat,
+          scheduled_status: "Now",
+          break_time_at: this.sessionDetail.breakTimeAt,
+          break_time: this.sessionDetail.breakTime,
+        };
+      }
+      await this.saveStudySession(payLoad);
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+      }
     },
     resetTab3() {
       this.sessionMode = "";

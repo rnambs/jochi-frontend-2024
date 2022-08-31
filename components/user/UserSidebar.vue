@@ -111,15 +111,29 @@
                             : 'read d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer'
                         " -->
                       <div
-                        class="d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer"
+                        class="
+                          d-flex
+                          flex-column
+                          p-3
+                          card card-void
+                          rounded-22
+                          my-3
+                          cursor-pointer
+                        "
                         v-for="(data, index) in notificationList"
                         :key="index"
                         @click="onNotificationClick(data.id, data.title)"
                       >
                         <p
-                          class="color-dark font-semi-bold text-14 text-wrap mb-0"
-                          >{{ data.message }}</p
+                          class="
+                            color-dark
+                            font-semi-bold
+                            text-14 text-wrap
+                            mb-0
+                          "
                         >
+                          {{ data.message }}
+                        </p>
                         <p
                           class="
                             color-secondary
@@ -127,22 +141,22 @@
                             font-regulat
                             mb-0
                             d-flex
-                            justify-content-end align-items-center
+                            justify-content-end
+                            align-items-center
                           "
-                          >
-                          
+                        >
                           <span class="mr-2">{{ data.timestamp }}</span>
-                          
-                          <span :class="
+
+                          <span
+                            :class="
                               data.isViewed
                                 ? 'unread bg-transparent '
                                 : 'read bg-primary d-block notify-span-icon rounded-circle'
-                              "
+                            "
                           >
                           </span>
-                          </p
-                        >
-                        </div>
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -521,7 +535,9 @@
                         >
                       </li>
                       <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
-                        <nuxt-link to="/study-analytics" class="nav-link text-nowrap"
+                        <nuxt-link
+                          to="/study-analytics"
+                          class="nav-link text-nowrap"
                           >Analytics</nuxt-link
                         >
                       </li>
@@ -606,7 +622,13 @@
                   class="card-header bg-transparent border-0 p-1"
                   id="headingOne"
                 >
-                  <div class="mb-0 d-flex justify-content-center justify-content-lg-start">
+                  <div
+                    class="
+                      mb-0
+                      d-flex
+                      justify-content-center justify-content-lg-start
+                    "
+                  >
                     <button
                       class="
                         btn btn-link
@@ -758,7 +780,16 @@ export default {
       await this.markNotificationAsRead(id);
       if (type == "Club Meeting") {
         this.$router.push("/club-detail");
-      } else {
+      } else if (type == "Assignment Session Invitation") {
+        this.$router.push("/planner-month");
+      } else if (type == "Teacher Advisor Request") {
+        this.$router.push("/user-profile");
+      } else if (type == "Study Session Invitation") {
+        this.$router.push("/study-time");
+      } else if (
+        type == "Meeting Request Accepeted" ||
+        type == "Peer Meeting"
+      ) {
         this.$router.push("/viewall-meeting");
       }
       this.getNotificationsList();

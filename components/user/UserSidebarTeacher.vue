@@ -65,7 +65,9 @@
                         my-2
                       "
                     >
-                      <h5 class="color-primary font-semi-bold mb-0">Notifications</h5>
+                      <h5 class="color-primary font-semi-bold mb-0">
+                        Notifications
+                      </h5>
                       <button
                         class="color-dark font-semi-bold text-18"
                         @click="clearNotifications()"
@@ -84,26 +86,37 @@
                         :key="index"
                         @click="onNotificationClick(data.id, data.title)"
                       >
-                        <p class="color-dark font-semi-bold text-14 text-wrap mb-0">{{ data.message }}</p>
-                        <p 
-                          class="color-secondary
-                          text-12
-                          font-regulat
-                          mb-0
-                          d-flex
-                          justify-content-end align-items-center" 
+                        <p
+                          class="
+                            color-dark
+                            font-semi-bold
+                            text-14 text-wrap
+                            mb-0
+                          "
                         >
-                        <span class="mr-2">{{
-                          data.timestamp
-                        }}</span>
-                        <span :class="
+                          {{ data.message }}
+                        </p>
+                        <p
+                          class="
+                            color-secondary
+                            text-12
+                            font-regulat
+                            mb-0
+                            d-flex
+                            justify-content-end
+                            align-items-center
+                          "
+                        >
+                          <span class="mr-2">{{ data.timestamp }}</span>
+                          <span
+                            :class="
                               data.isViewed
                                 ? 'unread bg-transparent '
                                 : 'read bg-primary d-block notify-span-icon rounded-circle'
-                              "
+                            "
                           >
-                        </span>
-                      </p>
+                          </span>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -879,6 +892,10 @@ export default {
         this.$router.push("/teacher-appointment");
       } else if (type == "Meeting Request") {
         this.$router.push("/teacher-appointment");
+      } else if (type == "Meeting Rescheduled") {
+        this.$router.push("/teacher-appointment");
+      } else if (type == "Advisor Request Accepted") {
+        this.$router.push("/teacher-advisor");
       }
       this.getNotificationsList();
     },

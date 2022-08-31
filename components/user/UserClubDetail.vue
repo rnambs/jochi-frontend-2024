@@ -235,6 +235,7 @@ export default {
     };
   },
   mounted() {
+    SelectValue = "";
     this.user = localStorage.getItem("user_type");
     // if (user == 3) {
     this.GetTag();

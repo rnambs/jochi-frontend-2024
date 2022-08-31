@@ -22,7 +22,20 @@
           <h2 class="color-primary font-semi-bold m-0 px-4 pt-4">
             Teacher Appointment
           </h2>
-          <div class="inner-teacher px-4 pt-4 pb-2 mb-2 d-flex flex-column h-40 flex-fill custom-overflow">
+          <div
+            class="
+              inner-teacher
+              px-4
+              pt-4
+              pb-2
+              mb-2
+              d-flex
+              flex-column
+              h-40
+              flex-fill
+              custom-overflow
+            "
+          >
             <div class="d-flex h-100 flex-column">
               <div>
                 <div class="row teacher-row">
@@ -69,6 +82,7 @@
                           class="row container my-2 mx-0 p-0"
                           v-for="(list, index) in listAgenda"
                           :key="index"
+                          @click="setMeetingView(list)"
                         >
                           <div class="col-3 time py-0">
                             <p
@@ -104,7 +118,13 @@
                         </div>
                         <div
                           v-if="listAgenda.length == 0"
-                          class="empty-shedule d-flex justify-content-center align-items-center h-100"
+                          class="
+                            empty-shedule
+                            d-flex
+                            justify-content-center
+                            align-items-center
+                            h-100
+                          "
                         >
                           <p>No meetings for the day</p>
                         </div>
@@ -185,7 +205,7 @@
                                   py-1
                                 "
                                 @click="
-                                  TeacherMeetingConfirm(
+                                  openModal(
                                     teacher.studentId,
                                     teacher.reqId,
                                     1,
@@ -210,11 +230,7 @@
                                   py-1
                                 "
                                 @click="
-                                  TeacherMeetingConfirm(
-                                    teacher.studentId,
-                                    teacher.reqId,
-                                    2
-                                  )
+                                  openModal(teacher.studentId, teacher.reqId, 2)
                                 "
                               >
                                 <i
@@ -284,21 +300,25 @@
               </button> -->
             </div>
             <div class="modal-body pb-3">
-              <p v-if="meetingDetail && meetingDetail.date" class="font-bold text-24 color-dark mb-1">{{
-                meetingDetail.date
-              }}</p>
+              <p
+                v-if="meetingDetail && meetingDetail.date"
+                class="font-bold text-24 color-dark mb-1"
+              >
+                {{ meetingDetail.date }}
+              </p>
               <p
                 v-if="
                   meetingDetail &&
                   meetingDetail.default_slots &&
                   meetingDetail.default_slots.start_time &&
                   meetingDetail.default_slots.end_time
-                " 
+                "
                 class="mb-1 font-semi-bold text-18 color-primary"
-                >{{ meetingDetail.default_slots.start_time }} -
-                {{ meetingDetail.default_slots.end_time }}</p
               >
-              <div class="row py-0 ">
+                {{ meetingDetail.default_slots.start_time }} -
+                {{ meetingDetail.default_slots.end_time }}
+              </p>
+              <div class="row py-0">
                 <div class="col-3">
                   <p class="mb-0 font-semi-bold color-dark text-16">Name</p>
                 </div>
@@ -424,7 +444,15 @@
                   meetingDetail.studentId &&
                   meetingDetail.reqId
                 "
-                class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
+                class="
+                  d-flex
+                  btn btn-secondary
+                  rounded-12
+                  px-4
+                  py-1
+                  mx-2
+                  font-semi-bold
+                "
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -442,7 +470,14 @@
                   meetingDetail.reqId &&
                   meetingDetail.selectableDate
                 "
-                class="d-flex btn btn-success rounded-12 px-4 py-1 font-semi-bold"
+                class="
+                  d-flex
+                  btn btn-success
+                  rounded-12
+                  px-4
+                  py-1
+                  font-semi-bold
+                "
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -454,11 +489,81 @@
               >
                 <span class="text-16">Accept</span>
               </button>
+              <button
+                v-else
+                data-dismiss="modal"
+                class="
+                  d-flex
+                  btn btn-secondary
+                  rounded-12
+                  px-4
+                  py-1
+                  mx-2
+                  font-semi-bold
+                "
+              >
+                <span class="text-16">Close</span>
+              </button>
             </div>
           </div>
         </div>
       </div>
       <!-- modal pop up end -->
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-md modal-dialog-centered"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header pb-0">
+              <h3 class="modal-title" id="exampleModalLongTitle">
+                Confirm Operation
+              </h3>
+              <!-- <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+            </div>
+            <div class="modal-body">
+              <div>
+                Are you sure you want to
+                {{ statusConfirm == "1" ? "Accept" : "Reject" }} the meeting
+                scheduled?
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-4 rounded-12 font-semi-bold"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                data-dismiss="modal"
+                @click="confirmAcceptReject()"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal End -->
       <!-- End teacher Page -->
     </div>
   </div>
@@ -504,6 +609,10 @@ export default {
         selectable: true,
       },
       meetingDetail: {},
+      studentIdConfirm: "",
+      reqIdConfirm: "",
+      statusConfirm: "",
+      dateConfirm: "",
     };
   },
   mounted() {
@@ -605,6 +714,10 @@ export default {
           duration: 5000,
         });
       } else if (this.successMessage != "") {
+        this.studentIdConfirm = "";
+        this.reqIdConfirm = "";
+        this.statusConfirm = "";
+        this.dateConfirm = "";
         if ($("#mediumModal").hasClass("show")) {
           $("#mediumModal").modal("hide");
           $(".modal").modal("hide");
@@ -658,6 +771,7 @@ export default {
         if (element.date == arg.dateStr) {
           listObj["time"] = element.default_slots.start_time;
           listObj["title"] = element.title;
+          listObj["id"] = element.id;
           this.listAgenda.push(listObj);
         }
       });
@@ -693,6 +807,56 @@ export default {
       $("#mediumModal").modal("show");
       console.log(teacher);
       this.meetingDetail = teacher;
+    },
+    setMeetingView(teacher) {
+      console.log(teacher, this.agendaList);
+
+      let element = this.agendaList.find((e) => e.id == teacher.id);
+
+      // console.log(data);
+
+      var Scheduleobj = {};
+      var title = element.title;
+      var time = element.default_slots.start_time;
+      var studentId = element.student_id;
+      var reqId = element.request_id;
+      var selectableDate = element.date;
+      Scheduleobj["date"] = this.formatDate(element.date);
+      Scheduleobj["title"] = title;
+      Scheduleobj["time"] = time;
+      Scheduleobj["studentId"] = studentId;
+      Scheduleobj["reqId"] = reqId;
+      Scheduleobj["selectableDate"] = selectableDate;
+
+      Scheduleobj["conversation_type"] = element.conversation_type;
+      Scheduleobj["dateSelected"] = element.date;
+      Scheduleobj["default_slots"] = element.default_slots;
+      Scheduleobj["meeting_description"] = element.meeting_description;
+      Scheduleobj["meeting_location"] = element.meeting_location;
+      Scheduleobj["meeting_link"] = element.meeting_link;
+      Scheduleobj["meeting_name"] = element.meeting_name;
+      // this.teachersList.push(Scheduleobj);
+
+      $("#mediumModal").modal("show");
+      // console.log(teacher);
+      this.meetingDetail = Scheduleobj;
+    },
+    async openModal(studentId, reqId, status, date = "") {
+      this.studentIdConfirm = studentId;
+      this.reqIdConfirm = reqId;
+      this.statusConfirm = status;
+      this.dateConfirm = date;
+      $("#exampleModalCenter").modal({ backdrop: true });
+    },
+    async confirmAcceptReject() {
+      this.TeacherMeetingConfirm(
+        this.studentIdConfirm,
+        this.reqIdConfirm,
+        this.statusConfirm,
+        this.dateConfirm
+      );
+      // $(".modal").modal("hide");
+      // $(".modal-backdrop").remove();
     },
   },
 };

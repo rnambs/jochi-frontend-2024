@@ -37,6 +37,10 @@
                       v-model="meetingType"
                       :options="types"
                       placeholder="Type of Meeting"
+                      @input="
+                        value = '';
+                        selectedStudents = [];
+                      "
                     >
                       <span slot="noResult">No data found</span>
                     </multiselect>
@@ -425,14 +429,36 @@
                   </div> -->
                   <div class="modal-body mt-4">
                     <form action="">
-                      <h1 class="modal-title color-primary font-semi-bold mb-0" id="exampleModalLongTitle">
+                      <h1
+                        class="modal-title color-primary font-semi-bold mb-0"
+                        id="exampleModalLongTitle"
+                      >
                         Meeting with
+                        <span v-if="value">
+                          {{
+                            value.first_name +
+                            " " +
+                            (value.last_name ? value.last_name : "")
+                          }}
+                        </span>
+                        <span v-if="selectedStudents.length > 0">
+                          <p
+                            v-for="(student, index) in selectedStudents"
+                            :key="index"
+                          >
+                            {{ student.first_name }}
+                          </p>
+                        </span>
                       </h1>
-                      <h3 class="color-black font-semi-bold">{{ popupValue[0] }}</h3>
-                      <h4 class="color-primary font-regular mb-2"> {{ popupFrom[0] }}
-                        {{ popupEnd[0] ? "to " + popupEnd[0] : "" }}</h4>
-                        
-                        <div
+                      <h3 class="color-black font-semi-bold">
+                        {{ popupValue[0] }}
+                      </h3>
+                      <h4 class="color-primary font-regular mb-2">
+                        {{ popupFrom[0] }}
+                        {{ popupEnd[0] ? "to " + popupEnd[0] : "" }}
+                      </h4>
+
+                      <div
                         class="
                           mb-0
                           d-flex
@@ -444,23 +470,22 @@
                           mb-3
                         "
                       >
-                          <input
-                            type="text"
-                            name="meeting_name"
-                            autocomplete="off"
-                            maxlength="100"
-                            class="
-                              form-control
-                              bg-transparent
-                              custom-form-control
-                            "
-                            placeholder="Meeting Name"
-                            v-model="meeting_name"
-                            :class="{
-                              'is-invalid':
-                                submitted && $v.meeting_name.$error,
-                            }"
-                          />
+                        <input
+                          type="text"
+                          name="meeting_name"
+                          autocomplete="off"
+                          maxlength="100"
+                          class="
+                            form-control
+                            bg-transparent
+                            custom-form-control
+                          "
+                          placeholder="Meeting Name"
+                          v-model="meeting_name"
+                          :class="{
+                            'is-invalid': submitted && $v.meeting_name.$error,
+                          }"
+                        />
                         <div
                           v-if="submitted && $v.meeting_name.$error"
                           class="invalid-feedback"
@@ -471,123 +496,124 @@
                         </div>
                       </div>
                       <div
-                              class="
-                                mb-0
-                                col-12 col-md-11 col-lg-10
-                                d-flex
-                                align-items-center
-                                form-row
-                                py-0
-                                px-1
-                                mb-3
-                              "
-                            >
-                            <textarea
-                                  type="text"
-                                  name="meeting_description"
-                                  autocomplete="off"
-                                  maxlength="500"
-                                  row="3"
-                                  class="
-                                    form-control
-                                    custom-form-control
-                                    bg-transparent
-                                  "
-                                  placeholder="Description"
-                                  v-model="meeting_description"
-                                  :class="{
-                                    'is-invalid':
-                                      submitted &&
-                                      $v.meeting_description.$error,
-                                  }"
-                                ></textarea>
-                              <div
-                                v-if="
-                                  submitted && $v.meeting_description.$error
-                                "
-                                class="invalid-feedback"
-                              >
-                                <span v-if="!$v.meeting_description.required"
-                                  >This field is required</span
-                                >
-                              </div>
-                            </div>
+                        class="
+                          mb-0
+                          col-12 col-md-11 col-lg-10
+                          d-flex
+                          align-items-center
+                          form-row
+                          py-0
+                          px-1
+                          mb-3
+                        "
+                      >
+                        <textarea
+                          type="text"
+                          name="meeting_description"
+                          autocomplete="off"
+                          maxlength="500"
+                          row="3"
+                          class="
+                            form-control
+                            custom-form-control
+                            bg-transparent
+                          "
+                          placeholder="Description"
+                          v-model="meeting_description"
+                          :class="{
+                            'is-invalid':
+                              submitted && $v.meeting_description.$error,
+                          }"
+                        ></textarea>
+                        <div
+                          v-if="submitted && $v.meeting_description.$error"
+                          class="invalid-feedback"
+                        >
+                          <span v-if="!$v.meeting_description.required"
+                            >This field is required</span
+                          >
+                        </div>
+                      </div>
 
-                            <div
-                              class="
-                                mb-0
-                                col-12 col-md-7 col-lg-6
-                                d-flex
-                                align-items-center
-                                form-row
-                                py-0
-                                px-1
-                                mb-3
-                              "
-                            >
-                                <select
-                                  class="form-control bg-transparent mb-0"
-                                  tabindex=""
-                                  name="conversation_type"
-                                  v-model="conversation_type"
-                                  :class="{
-                                    'is-invalid':
-                                      submitted && $v.conversation_type.$error,
-                                  }"
-                                >
-                                <option value="" disabled selected>Type of Meeting</option>
-                                  <option value="Video Conference">
-                                    Video Conference
-                                  </option>
-                                  <option value="In Person">In Person</option>
-                                </select>
-                              <div
-                                v-if="submitted && $v.conversation_type.$error"
-                                class="invalid-feedback"
-                              >
-                                <span v-if="!$v.conversation_type.required"
-                                  >This field is required</span
-                                >
-                              </div>
-                            </div>
-                            <div
-                              class="
-                                mb-0
-                                col-12 col-md-10 col-lg-9
-                                d-flex
-                                align-items-center
-                                form-row
-                                py-0
-                                px-1
-                              "
-                            >
-                                <input
-                                  type="text"
-                                  name="venue"
-                                  autocomplete="off"
-                                  maxlength="200"
-                                  class="
-                                    form-control
-                                    custom-form-control
-                                    bg-transparent
-                                  "
-                                  :placeholder="conversation_type == 'Video Conference'
-                                  ? 'Meeting Link'
-                                  : 'Meeting Location'"
-                                  v-model="venue"
-                                  :class="{
-                                    'is-invalid': submitted && $v.venue.$error,
-                                  }"
-                                />
-                              <div
-                                v-if="submitted && $v.venue.$error"
-                                class="invalid-feedback"
-                              >
-                                <span v-if="!$v.venue.required"
-                                  >This field is required</span
-                                >
-                              </div>
-                            </div>
+                      <div
+                        class="
+                          mb-0
+                          col-12 col-md-7 col-lg-6
+                          d-flex
+                          align-items-center
+                          form-row
+                          py-0
+                          px-1
+                          mb-3
+                        "
+                      >
+                        <select
+                          class="form-control bg-transparent mb-0"
+                          tabindex=""
+                          name="conversation_type"
+                          v-model="conversation_type"
+                          :class="{
+                            'is-invalid':
+                              submitted && $v.conversation_type.$error,
+                          }"
+                        >
+                          <option value="" disabled selected>
+                            Type of Meeting
+                          </option>
+                          <option value="Video Conference">
+                            Video Conference
+                          </option>
+                          <option value="In Person">In Person</option>
+                        </select>
+                        <div
+                          v-if="submitted && $v.conversation_type.$error"
+                          class="invalid-feedback"
+                        >
+                          <span v-if="!$v.conversation_type.required"
+                            >This field is required</span
+                          >
+                        </div>
+                      </div>
+                      <div
+                        class="
+                          mb-0
+                          col-12 col-md-10 col-lg-9
+                          d-flex
+                          align-items-center
+                          form-row
+                          py-0
+                          px-1
+                        "
+                      >
+                        <input
+                          type="text"
+                          name="venue"
+                          autocomplete="off"
+                          maxlength="200"
+                          class="
+                            form-control
+                            custom-form-control
+                            bg-transparent
+                          "
+                          :placeholder="
+                            conversation_type == 'Video Conference'
+                              ? 'Meeting Link'
+                              : 'Meeting Location'
+                          "
+                          v-model="venue"
+                          :class="{
+                            'is-invalid': submitted && $v.venue.$error,
+                          }"
+                        />
+                        <div
+                          v-if="submitted && $v.venue.$error"
+                          class="invalid-feedback"
+                        >
+                          <span v-if="!$v.venue.required"
+                            >This field is required</span
+                          >
+                        </div>
+                      </div>
                       <table class="w-100 table-modal custom-row-table">
                         <!-- <tr>
                           <td class="tmodal-data">Date</td>
@@ -603,10 +629,10 @@
                             {{ popupEnd[0] ? "to " + popupEnd[0] : "" }}
                           </td>
                         </tr> -->
-                            <!-- {{ popupFrom[0] }} to {{ popupEnd[0] }} -->
+                        <!-- {{ popupFrom[0] }} to {{ popupEnd[0] }} -->
                         <!-- <tr> -->
-                          <!-- <td class="tmodal-data text-nowrap">Meeting Name</td> -->
-                          <!-- <td class="tmodal-data">
+                        <!-- <td class="tmodal-data text-nowrap">Meeting Name</td> -->
+                        <!-- <td class="tmodal-data">
                             <div
                               class="
                                 mb-0
@@ -626,14 +652,14 @@
                                   align-items-center
                                 "
                               > -->
-                                <!-- <span v-if="value">
+                        <!-- <span v-if="value">
                                 {{
                                   value.first_name +
                                   " " +
                                   (value.last_name ? value.last_name : "")
                                 }}
                               </span> -->
-                                <!-- <input
+                        <!-- <input
                                   type="text"
                                   name="meeting_name"
                                   autocomplete="off"
@@ -684,14 +710,14 @@
                                   align-items-center
                                 "
                               > -->
-                                <!-- <span v-if="value">
+                        <!-- <span v-if="value">
                                 {{
                                   value.first_name +
                                   " " +
                                   (value.last_name ? value.last_name : "")
                                 }}
                               </span> -->
-                                <!-- <textarea
+                        <!-- <textarea
                                   type="text"
                                   name="meeting_description"
                                   autocomplete="off"
@@ -802,14 +828,14 @@
                                   align-items-center
                                 "
                               > -->
-                                <!-- <span v-if="value">
+                        <!-- <span v-if="value">
                               {{
                                 value.first_name +
                                 " " +
                                 (value.last_name ? value.last_name : "")
                               }}
                             </span> -->
-                                <!-- <input
+                        <!-- <input
                                   type="text"
                                   name="venue"
                                   autocomplete="off"
@@ -865,7 +891,14 @@
                     </button>
                     <button
                       type="button"
-                      class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                      class="
+                        btn btn-success
+                        py-1
+                        px-4
+                        rounded-12
+                        font-semi-bold
+                      "
+                      :disabled="processing"
                       @click="ScheduleConfirm()"
                     >
                       Confirm
@@ -876,15 +909,19 @@
             </div>
           </div>
         </section>
-        <div
-          class=""
-        >
-       
+        <div class="">
           <lottie
             v-if="playCelebration"
             :options="lottieOptionsSuccess"
             v-on:animCreated="handleAnimation"
-            class="d-flex position-absolute end-0 bottom-0 meeting-celebration z-index-9"
+            class="
+              d-flex
+              position-absolute
+              end-0
+              bottom-0
+              meeting-celebration
+              z-index-9
+            "
           />
         </div>
       </div>
@@ -954,6 +991,7 @@ export default {
       meeting_description: "",
       venue: "",
       submitted: false,
+      processing: false,
       playCelebration: false,
     };
   },
@@ -1195,8 +1233,10 @@ export default {
     },
     async ScheduleConfirm() {
       this.submitted = true;
+      this.processing = true;
       this.$v.$touch();
       if (this.$v.$invalid) {
+        this.processing = false;
         return;
       } else {
         this.loading = true;
@@ -1229,6 +1269,8 @@ export default {
 
             $(".modal-backdrop").remove();
             $("#meetingDetailModal").modal("hide");
+            this.processing = false;
+            this.submitted = false;
             const myTimeout = setTimeout(() => {
               this.playCelebration = false;
             }, 5000);
