@@ -315,7 +315,15 @@
                     <div
                       class="card card-primary-void rounded-22 h-40 flex-fill"
                     >
-                      <h2 class="color-primary font-semi-bold px-4 pt-2 pt-md-4 mb-2">
+                      <h2
+                        class="
+                          color-primary
+                          font-semi-bold
+                          px-4
+                          pt-2 pt-md-4
+                          mb-2
+                        "
+                      >
                         Assignment
                       </h2>
                       <div class="hidden-scroll px-4 pt-3 mb-3">
@@ -412,15 +420,30 @@
                                       :key="subtask.id"
                                     >
                                       <div
-                                        class="pl-2 d-flex align-items-center mb-1 cursor-pointer"
+                                        class="
+                                          pl-2
+                                          d-flex
+                                          align-items-center
+                                          mb-1
+                                          cursor-pointer
+                                        "
                                       >
                                         <input
                                           type="radio"
-                                          class="mr-2 color-secondary cursor-pointer"
+                                          class="
+                                            mr-2
+                                            color-secondary
+                                            cursor-pointer
+                                          "
                                         />
                                         <label
                                           for=""
-                                          class="mb-0 text-12 color-secondary cursor-pointer"
+                                          class="
+                                            mb-0
+                                            text-12
+                                            color-secondary
+                                            cursor-pointer
+                                          "
                                           >{{ subtask.title }}</label
                                         >
                                       </div>
@@ -692,6 +715,7 @@ export default {
       });
     },
     openModal() {
+      this.selectedStudent = [];
       $("#inviteStudentModal").modal("show");
       this.getAllStudentsList();
     },
