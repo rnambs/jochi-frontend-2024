@@ -401,13 +401,13 @@ input[type=radio] {
   box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
 }
 .form-row input.form-control.bg-transparent::-moz-placeholder, .form-row select.form-control.bg-transparent::-moz-placeholder, .form-row .form-control.bg-transparent::-moz-placeholder, .form-group input.form-control.bg-transparent::-moz-placeholder, .form-group select.form-control.bg-transparent::-moz-placeholder, .form-group .form-control.bg-transparent::-moz-placeholder {
-  color: #1E1E1E !important;
+  color: #C5C0BD !important;
 }
 .form-row input.form-control.bg-transparent:-ms-input-placeholder, .form-row select.form-control.bg-transparent:-ms-input-placeholder, .form-row .form-control.bg-transparent:-ms-input-placeholder, .form-group input.form-control.bg-transparent:-ms-input-placeholder, .form-group select.form-control.bg-transparent:-ms-input-placeholder, .form-group .form-control.bg-transparent:-ms-input-placeholder {
-  color: #1E1E1E !important;
+  color: #C5C0BD !important;
 }
 .form-row input.form-control.bg-transparent::placeholder, .form-row select.form-control.bg-transparent::placeholder, .form-row .form-control.bg-transparent::placeholder, .form-group input.form-control.bg-transparent::placeholder, .form-group select.form-control.bg-transparent::placeholder, .form-group .form-control.bg-transparent::placeholder {
-  color: #1E1E1E !important;
+  color: #C5C0BD !important;
 }
 .form-row textarea.form-control, .form-group textarea.form-control {
   border: none;
@@ -2114,6 +2114,7 @@ img.dark-icon {
 .inner-section .main-section #Daily-Calander .fc-timegrid-event-harness > .fc-timegrid-event {
   left: 15px;
   margin-bottom: 6px;
+  cursor: pointer;
 }
 .inner-section .main-section #Daily-Calander .fc-v-event {
   background-color: #ffffff;
@@ -2325,6 +2326,7 @@ img.dark-icon {
 .inner-section .main-section #Weekly-Calander .fc-timegrid-event-harness > .fc-timegrid-event {
   left: 15px;
   margin-bottom: 6px;
+  cursor: pointer;
 }
 .inner-section .main-section #Weekly-Calander .fc-v-event {
   background-color: #ffffff;

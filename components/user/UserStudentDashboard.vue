@@ -571,14 +571,14 @@
             <!-- <button type="button" class="close">
               <span aria-hidden="true">Edit</span>
             </button> -->
-            <button
+            <!-- <button
               type="button"
               class="close"
               data-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
-            </button>
+            </button> -->
           </div>
           <div class="modal-body">
             <h3 class="color-black font-semi-bold">

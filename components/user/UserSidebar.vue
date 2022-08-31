@@ -200,7 +200,7 @@
                     color-primary
                     mb-0
                     font-semi-bold
-                    text-18 text-center text-lg-left
+                    text-18 text-center text-lg-left word-break
                   "
                 >
                   {{ firstName }}
