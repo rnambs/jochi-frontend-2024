@@ -563,7 +563,10 @@
               id="meetingDetailModalLongTitle"
             >
               <span>{{ meetingDetail.type }}</span> Meeting with
-              <span>{{ meetingDetail.new_title }}</span>
+              <h5
+                  class="color-primary font-semi-bold mb-0"
+                ><span>{{ meetingDetail.new_title }}</span>
+                </h5>
             </h2>
             <!-- <button type="button" class="close">
               <span aria-hidden="true">Edit</span>
@@ -663,9 +666,9 @@
                         align-items-center
                         form-row
                         py-0
+                        line-break-anywhere
                       "
                     >
-                      <span class="pr-2"></span>
 
                       {{ meetingDetail.meeting_name }}
                     </p>
@@ -682,9 +685,9 @@
                         align-items-center
                         form-row
                         py-0
+                        line-break-anywhere
                       "
                     >
-                      <span class="pr-2"></span>
 
                       {{ meetingDetail.meeting_description }}
                     </p>
@@ -703,7 +706,6 @@
                         py-0
                       "
                     >
-                      <span class="pr-2"></span>
                       {{ meetingDetail.conversation_type }}
                     </p>
                   </td>
@@ -725,9 +727,9 @@
                         align-items-center
                         form-row
                         py-0
+                        line-break-anywhere
                       "
                     >
-                      <span class="pr-2"> </span>
 
                       {{
                         meetingDetail.conversation_type == "Video Conference"
