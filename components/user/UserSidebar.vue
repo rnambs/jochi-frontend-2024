@@ -653,10 +653,7 @@
                       aria-controls="collapseOne"
                     >
                       <!-- @click="GetLogout()" -->
-                      <a
-                        href="https://sso.gg4l.com/oauth/loginwith/logout?redirect_uri=https://jochi.devateam.com/"
-                        class="bottum-btn"
-                      >
+                      <a @click="GetLogout()" href="#" class="bottum-btn">
                         <div class="font-icon d-inline-block">
                           <i class="fas fa-sign-out-alt"></i>
                         </div>
@@ -807,6 +804,9 @@ export default {
       await this.getLogout({
         auth_token: localStorage.getItem("token").replace("Bearer ", ""),
       });
+      window.localStorage.clear();
+      window.location.href =
+        "https://sso.gg4l.com/oauth/loginwith/logout?redirect_uri=https://jochi.devateam.com/";
     },
     async UserDetails() {
       this.loading = true;
