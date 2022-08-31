@@ -141,7 +141,7 @@
                         to-do-ul
                         d-flex
                         align-items-center
-                        justify-content-end
+                        justify-content-start justify-content-lg-end
                         flex-wrap
                       "
                     >

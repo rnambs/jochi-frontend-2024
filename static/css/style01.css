@@ -897,6 +897,12 @@ img.card-img {
   min-height: 200px;
 }
 
+@media (max-width: 1199.98px) {
+  .h-max-lg-600 {
+    max-height: 600px !important;
+  }
+}
+
 @-webkit-keyframes jump {
   0% {
     transform: translateY(0px);

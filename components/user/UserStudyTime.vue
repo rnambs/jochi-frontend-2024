@@ -13,7 +13,7 @@
       "
     >
       <div class="study-section d-flex flex-column flex-fill">
-        <div class="row h-100">
+        <div class="row h-lg-100">
           <div class="col-lg-7 d-flex flex-column">
             <div
               @click="setSessionType('assignment')"
@@ -73,7 +73,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-5 h-100">
+          <div class="col-lg-5 h-lg-100">
             <div class="card card-void rounded-22 py-4 h-100 position-realtive">
               <!-- default -->
               <!-- <div class="d-flex justify-content-between flex-column h-100">
@@ -91,7 +91,7 @@
                 <h2 class="color-primary font-semi-bold mb-2 px-4">
                   Upcoming Sessions
                 </h2>
-                <div class="custom-overflow px-4 pt-2">
+                <div class="custom-overflow px-4 pt-2 h-max-lg-600">
                   <div
                     v-for="sessionItem in studySessionList"
                     :key="sessionItem.id"
