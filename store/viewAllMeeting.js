@@ -18,7 +18,7 @@ const actions = {
         try {
             const response = await this.$axios.$get(BASE_URL + `view/all/list_all_meeting?student_id=${payLoad.student_id}&search_id=${payLoad.search_id}`, {
                 headers: {
-                    'Authorization': ` ${token}`
+                    'Authorization': ` Bearer ${token}`
                 },
             });
             console.log("response ", response)
@@ -42,7 +42,7 @@ const actions = {
         try {
             const response = await this.$axios.$get(BASE_URL + `view/all/get_student_and_teacher?user_id=${payLoad.user_id}`, {
                 headers: {
-                    'Authorization': ` ${token}`
+                    'Authorization': ` Bearer ${token}`
                 },
             });
             commit('setAllData', response.data);
@@ -64,7 +64,7 @@ const actions = {
         try {
             const response = await this.$axios.$put(BASE_URL + 'meeting/request/edit_meeting', payLoad, {
                 headers: {
-                    'Authorization': ` ${token}`
+                    'Authorization': ` Bearer ${token}`
                 },
             });
             if (response.message) {
@@ -154,7 +154,7 @@ const actions = {
         try {
             const response = await this.$axios.$get(BASE_URL + `view/all/list_all_accepted_meeting?date=${payLoad.date}`, {
                 headers: {
-                    'Authorization': ` ${token}`
+                    'Authorization': ` Bearer ${token}`
                 },
             });
             console.log("response ", response)
