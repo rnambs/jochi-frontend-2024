@@ -76,7 +76,16 @@
                         "
                         class="middle position-absolute text-center"
                       >
-                        <div class="text-30 color-dark" @click="openModal()">
+                        <div
+                          v-if="
+                            profileImageUrl ||
+                            (profile &&
+                              profile !=
+                                'https://jochi-live.s3.amazonaws.com/profilePic/defaultProfilePic/profile.png')
+                          "
+                          class="text-30 color-dark"
+                          @click="openModal()"
+                        >
                           <i class="far fa-trash-alt"></i>
                           <p
                             class="

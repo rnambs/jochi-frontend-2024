@@ -3083,35 +3083,44 @@ export default {
     },
     eventClicked(info) {
       var idVal = info.event;
-      console.log("idVal", idVal);
-      if (idVal.groupId == "study") {
-        return this.$router.push(`/study-time?id=${idVal.id}`);
-      } else if (
-        idVal.groupId == "peer-meeting" ||
-        idVal.groupId == "teacher-meeting"
+      console.log("idVal", moment(idVal.startStr).format("YYYY-MM-DD"));
+      if (
+        moment(idVal.startStr.split("T")[0]).isBefore(
+          moment().format("YYYY-MM-DD")
+        )
       ) {
-        return this.$router.push(
-          `/viewall-meeting?id=${idVal.id}&type=${idVal.groupId}`
-        );
-      } else if (
-        idVal.groupId == "assignment" ||
-        idVal.groupId == "shared-assignment"
-      ) {
-        let data = {};
-        if (idVal.groupId == "assignment") {
-          data = this.plannerList.find((e) => e.id == idVal.id);
+        alert("No actions can be performed on past events");
+        return;
+      } else {
+        if (idVal.groupId == "study") {
+          return this.$router.push(`/study-time?id=${idVal.id}`);
+        } else if (
+          idVal.groupId == "peer-meeting" ||
+          idVal.groupId == "teacher-meeting"
+        ) {
+          return this.$router.push(
+            `/viewall-meeting?id=${idVal.id}&type=${idVal.groupId}`
+          );
+        } else if (
+          idVal.groupId == "assignment" ||
+          idVal.groupId == "shared-assignment"
+        ) {
+          let data = {};
+          if (idVal.groupId == "assignment") {
+            data = this.plannerList.find((e) => e.id == idVal.id);
+          }
+          if (idVal.groupId == "shared-assignment") {
+            data = this.sharedAstList.find((e) => e.id == idVal.id);
+          }
+          this.onCardClick(data);
+        } else if (idVal.groupId == "club-meeting") {
+          let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
+          console.log(club, this.clubMeetings);
+          // this.onCardClick(idVal); club-moreInfo?id=32&name=mailactivitySports&type=Sports
+          return this.$router.push(
+            `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
+          );
         }
-        if (idVal.groupId == "shared-assignment") {
-          data = this.sharedAstList.find((e) => e.id == idVal.id);
-        }
-        this.onCardClick(data);
-      } else if (idVal.groupId == "club-meeting") {
-        let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
-        console.log(club, this.clubMeetings);
-        // this.onCardClick(idVal); club-moreInfo?id=32&name=mailactivitySports&type=Sports
-        return this.$router.push(
-          `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
-        );
       }
 
       // var idValue = idVal.id;
@@ -3130,6 +3139,10 @@ export default {
       //   let time = this.meetingList?.find((e) => e.id == idVal.id).start_time;
       //   this.popupmodal(titleVal, meetingVal, dateNum, time);
       // }
+    },
+    checkIfPreviousDate(dateStr) {
+      let eventDate = dateStr.split("T");
+      console.log(moment(dateStr.split("T")).isBefore(moment(), "day"));
     },
     popupmodal(titleData, meetingData, dateData, time) {
       var timestandard = new Date(dateData).toLocaleString();

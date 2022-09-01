@@ -65,7 +65,7 @@
             </div>
             <div class="col-md-3 py-2">
               <div class="inner-col card card-void p-2">
-                <h6 class="color-dark font-semi-bold">Total Session</h6>
+                <h6 class="color-dark font-semi-bold">Total Sessions</h6>
                 <p class="total-value text-24 color-dark font-semi-bold">
                   {{
                     mySession.total_sessions_week
@@ -93,7 +93,7 @@
             </div>
             <div class="col-md-3 py-2">
               <div class="inner-col card card-void p-2">
-                <h6 class="color-dark font-semi-bold">Total Session</h6>
+                <h6 class="color-dark font-semi-bold">Total Sessions</h6>
                 <p class="total-value text-24 color-dark">
                   {{ mySession.total_sessions ? mySession.total_sessions : 0 }}
                 </p>
@@ -623,6 +623,8 @@ export default {
     openModal() {
       this.submitted = false;
       this.processing = false;
+      this.hours = 0;
+      this.minutes = 0;
       $("#goalModal").modal({ backdrop: true });
     },
     closeModal() {
