@@ -30,7 +30,7 @@ const actions = {
     try {
       const response = await this.$axios.$put(BASE_URL + 'quotes/motivational_quotes_update', payLoad, {
         headers: {
-          'Authorization': ` ${token}`
+          'Authorization': ` Bearer ${token}`
         },
       });
 
@@ -61,7 +61,7 @@ const actions = {
     try {
       const response = await this.$axios.$get(BASE_URL + `quotes/get_motivational_quote?user_id=${user_id}`, {
         headers: {
-          'Authorization': ` ${token}`
+          'Authorization': ` Bearer ${token}`
         },
       });
       commit('setQuoteMessage', response.data.quote);
@@ -89,7 +89,7 @@ const actions = {
       const token = localStorage.getItem('token')
       const response = await this.$axios.$get(BASE_URL + `planner/get_Plan?user_id=${payLoad.user_id}&type=${payLoad.type}&date=${payLoad.date}`, {
         headers: {
-          'Authorization': ` ${token}`
+          'Authorization': ` Bearer ${token}`
         },
       });
       commit('setPlannerList', response.data);
@@ -122,7 +122,7 @@ const actions = {
       const token = localStorage.getItem('token')
       const response = await this.$axios.$get(BASE_URL + `planner/all_assignments`, {
         headers: {
-          'Authorization': ` ${token}`
+          'Authorization': ` Bearer ${token}`
         },
       });
       commit('setAssignmentsList', response.assignments);
@@ -151,7 +151,7 @@ const actions = {
     try {
       const response = await this.$axios.$post(BASE_URL + 'planner/addAssignment', payLoad, {
         headers: {
-          'Authorization': ` ${token}`
+          'Authorization': ` Bearer ${token}`
         },
       });
       if (response.message == "Assignment added successfully") {
@@ -207,7 +207,7 @@ const actions = {
       const token = localStorage.getItem('token')
       const response = await this.$axios.$get(BASE_URL + `planner/get_assignments?id=${payLoad.id}`, {
         headers: {
-          'Authorization': ` ${token}`
+          'Authorization': ` Bearer ${token}`
         },
       });
       commit('setAssignmentList', response.data);
@@ -235,7 +235,7 @@ const actions = {
     try {
       const response = await this.$axios.$put(BASE_URL + 'planner/editAssignment', payLoad, {
         headers: {
-          'Authorization': ` ${token}`
+          'Authorization': ` Bearer ${token}`
         },
       });
       if (response.message == "Assignment updated successfully") {
@@ -291,7 +291,7 @@ const actions = {
     try {
       const response = await this.$axios.$get(BASE_URL + `studyRoom/subjectsList`, {
         headers: {
-          'Authorization': ` ${token}`
+          'Authorization': ` Bearer ${token}`
         },
       });
       commit('setSubjectsList', response.data);
@@ -309,7 +309,7 @@ const actions = {
     try {
       const response = await this.$axios.$put(BASE_URL + 'planner/add_task_status', payLoad, {
         headers: {
-          'Authorization': ` ${token}`
+          'Authorization': ` Bearer ${token}`
         },
       });
 
@@ -344,7 +344,7 @@ const actions = {
     try {
       const response = await this.$axios.$get(BASE_URL + `planner/all_completed_assignments?user_id=${payLoad.userId}&date=${payLoad.date}&type=${payLoad.type}`, {
         headers: {
-          'Authorization': ` ${token}`
+          'Authorization': ` Bearer ${token}`
         },
       });
       commit('setCompletedAssignments', response.data);
@@ -363,7 +363,7 @@ const actions = {
     try {
       const response = await this.$axios.$post(BASE_URL + 'planner/add_assignment_material', payLoad, {
         headers: {
-          'Authorization': ` ${token}`
+          'Authorization': ` Bearer ${token}`
         },
       });
 
