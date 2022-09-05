@@ -2002,9 +2002,9 @@ img.dark-icon{
             @include plannerCommonMonth();
             @include plannerCommon();
             .fc-view-harness.fc-view-harness-active{
-                height: 82vh !important;
+                height: 80vh !important;
                 @media (max-width:$lg-screen) {
-                    height: 72vh !important;
+                    height: 68vh !important;
                 }
             }
             .fc-timegrid-col-events{

@@ -235,7 +235,7 @@
             <div class="row">
               <div class="col-6">
                 <div class="form-row">
-                  <label for="" class="form-label">Hours</label>
+                  <label for="" class="form-label text-dark">Hours</label>
                   <input
                     type="number"
                     min="0"
@@ -258,7 +258,7 @@
               </div>
               <div class="col-6">
                 <div class="form-row">
-                  <label for="" class="form-label">Minutes</label>
+                  <label for="" class="form-label color-dark">Minutes</label>
                   <input
                     type="number"
                     min="0"

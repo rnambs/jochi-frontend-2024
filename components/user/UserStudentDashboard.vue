@@ -481,11 +481,11 @@
             </div>
           </div>
           <div class="col-xl-4 h-100 mt-3 mt-xl-0">
-            <div class="jochi-sub-components-light-bg h-100 d-flex flex-column">
+            <div class="jochi-sub-components-light-bg h-100 d-flex flex-column overflow-hidden">
               <div class="calendar-dashboard px-4 pt-4">
                 <FullCalendar ref="fullCalendar" :options="calendarOptions" />
               </div>
-              <div class="d-flex flex-column h-40 flex-fill">
+              <div class="d-flex flex-column h-40 flex-fill pb-3">
                 <h4 class="color-black font-semi-bold px-4">
                   Assignments List
                 </h4>
