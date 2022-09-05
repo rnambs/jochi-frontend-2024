@@ -4136,8 +4136,8 @@ export default {
       if (e.assignments) {
         item.assignment_description = e.assignments.assignment_description;
         // item.assignment_materials = e.assignment_materials;
-        if (e.assignment_materials && e.assignment_materials.length > 0) {
-          e.assignment_materials.forEach((m) => {
+        if (e.assignments?.assignment_materials && e.assignments?.assignment_materials.length > 0) {
+          e.assignments?.assignment_materials.forEach((m) => {
             let data = {};
             data = m;
             this.assignmentMaterials.push(data);
