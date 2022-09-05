@@ -188,7 +188,7 @@
                                     "
                                   >
                                     <div
-                                      class="assignment-tag mr-2"
+                                      class="assignment-tag mr-2 text-nowrap"
                                       :class="{
                                         red: item.priority == '1',
                                         yellow: item.priority == '2',
@@ -205,7 +205,7 @@
                                           : ""
                                       }}
                                     </div>
-                                    <div class="assignment-tag pink">
+                                    <div class="assignment-tag pink text-truncate">
                                       {{ item.subject }}
                                     </div>
                                   </div>
@@ -629,6 +629,7 @@
                             px-2
                             pr-3
                             me--3
+                            mb-2
                           "
                         >
                           <form
