@@ -365,6 +365,11 @@
                                   :src="advisor.teacher.profile_pic"
                                   alt=""
                                 />
+                                <img
+                                  v-else
+                                  src="~/static/image/avatar.png"
+                                  alt=""
+                                />
                               </div>
                             </div>
                             <div
