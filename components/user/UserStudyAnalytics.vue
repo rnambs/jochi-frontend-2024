@@ -173,7 +173,7 @@
                   </div>
                   <div
                     id="totalPieContainer"
-                    class="chart p-2 text-center text-white"
+                    class="chart p-2 text-center color-secondary"
                   >
                     <canvas
                       id="totalPie"
