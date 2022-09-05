@@ -610,7 +610,8 @@
                                       class="ap-img-section mr--3 shadow-sm"
                                     >
                                       <!-- {{ peer }} -->
-                                      <img :src="peer.profile_pic" alt="" />
+                                      <img v-if="peer.profile_pic" :src="peer.profile_pic" alt="" />
+                                       <img v-else src="" alt="" />
                                     </div>
                                     <!-- <div
                                   class="ap-img-section mr--3 shadow-sm"
@@ -1307,7 +1308,8 @@
                                     >
                                       <div class="ld-img-section mr-3">
                                         <div class="ld-img-holder">
-                                          <img :src="peer.profile_pic" alt="" />
+                                          <img v-if="peer.profile_pic" :src="peer.profile_pic" alt="" />
+                                           <img v-else src="" alt="" />
                                         </div>
                                       </div>
                                       <div class="ld-details-section">
@@ -1717,7 +1719,8 @@
                                     >
                                       <div class="ld-img-section mr-3">
                                         <div class="ld-img-holder">
-                                          <img :src="peer.profile_pic" alt="" />
+                                          <img v-if="peer.profile_pic" :src="peer.profile_pic" alt="" />
+                                           <img v-else src="" alt="" />
                                         </div>
                                       </div>
                                       <div class="ld-details-section">
@@ -4056,8 +4059,11 @@ export default {
     mapPeers(e) {
       let user_id = localStorage.getItem("id");
       let peers = [];
-      if (e.assignment_shared_users && e.assignment_shared_users.length > 0) {
-        e.assignment_shared_users.forEach((item) => {
+      if (
+        e.assignments?.assignment_shared_users &&
+        e.assignments?.assignment_shared_users.length > 0
+      ) {
+        e.assignments?.assignment_shared_users.forEach((item) => {
           let peer = {};
           if (item.shared_users_id != user_id) {
             peer = item.users;
