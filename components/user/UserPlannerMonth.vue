@@ -611,8 +611,8 @@
                                     "
                                   >
                                     <div
-                                      v-for="peer in item.peers"
-                                      :key="peer"
+                                      v-for="(peer, index) in item.peers"
+                                      :key="index"
                                       class="ap-img-section mr--3 shadow-sm"
                                     >
                                       <!-- {{ peer }} -->
@@ -1488,7 +1488,7 @@
                                     class="col-form-label"
                                     >Subject:</label
                                   >
-                                 &nbsp;{{ subject }}
+                                  &nbsp;{{ subject }}
                                   <!-- <select
                                 class="form-control"
                                 tabindex=""
@@ -1519,7 +1519,7 @@
                                     class="col-form-label"
                                     >Assignment Name:</label
                                   >
-                               &nbsp;{{ assignmentName }}
+                                  &nbsp;{{ assignmentName }}
                                 </div>
                                 <div class="form-group">
                                   <label
@@ -1527,7 +1527,7 @@
                                     class="col-form-label"
                                     >Task:</label
                                   >
-                                 &nbsp;{{ assignmentDescription }}
+                                  &nbsp;{{ assignmentDescription }}
                                 </div>
                                 <div class="row">
                                   <div class="col-md-6 ml-auto">
@@ -1546,7 +1546,7 @@
                                         class="col-form-label"
                                         >Date:</label
                                       >
-                                     &nbsp;{{ dateValue }}
+                                      &nbsp;{{ dateValue }}
                                     </div>
                                   </div>
                                 </div>
@@ -1558,9 +1558,7 @@
                                         class="col-form-label"
                                         >Time:</label
                                       >
-                                      <div>
-                                        &nbsp;{{ timeValue }}
-                                      </div>
+                                      <div>&nbsp;{{ timeValue }}</div>
                                     </div>
                                   </div>
                                 </div>
@@ -4127,8 +4125,7 @@ export default {
           //   this.pendingAssignments.push(item);
           // }
           let asst = this.mapSharedData(e);
-        this.pendingAssignments.push(asst);
-
+          this.pendingAssignments.push(asst);
         });
       }
     },
@@ -4155,7 +4152,7 @@ export default {
         item.priority = e.assignments.priority;
         item.schoologyAssignment = e.assignments.schoologyAssignment;
         item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
-        item.subTasks = e.subTasks;
+        item.subTasks = e.assignments?.subTasks;
         item.subject = e.assignments?.subjects?.subject_name;
         item.subjects = e.subjects;
         item.task = e.assignments.task;
@@ -4335,6 +4332,7 @@ export default {
       }
       this.dateValue = data.due_date;
       this.timeValue = data.due_time;
+      this.subTasksList = [];
       if (data.subTasks && data.subTasks.length > 0) {
         data.subTasks.forEach((e) => {
           let item = {};

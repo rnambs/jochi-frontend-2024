@@ -1012,8 +1012,8 @@
                                     "
                                   >
                                     <div
-                                      v-for="peer in item.peers"
-                                      :key="peer"
+                                      v-for="(peer, index) in item.peers"
+                                      :key="index"
                                       class="ap-img-section mr--3 shadow-sm"
                                     >
                                       <!-- {{ peer }} -->
@@ -4358,7 +4358,7 @@ export default {
         item.priority = e.assignments.priority;
         item.schoologyAssignment = e.assignments.schoologyAssignment;
         item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
-        item.subTasks = e.subTasks;
+        item.subTasks = e.assignments?.subTasks;
         item.subject = e.assignments?.subjects?.subject_name;
         item.subjects = e.subjects;
         item.task = e.assignments.task;
@@ -4538,6 +4538,7 @@ export default {
       }
       this.dateValue = data.due_date;
       this.timeValue = data.due_time;
+      this.subTasksList = [];
       if (data.subTasks && data.subTasks.length > 0) {
         data.subTasks.forEach((e) => {
           let item = {};
