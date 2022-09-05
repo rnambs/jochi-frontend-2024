@@ -2368,11 +2368,11 @@ img.dark-icon {
   }
 }
 .inner-section .main-section #Weekly-Calander .fc-view-harness.fc-view-harness-active {
-  height: 82vh !important;
+  height: 80vh !important;
 }
 @media (max-width: 1199.98px) {
   .inner-section .main-section #Weekly-Calander .fc-view-harness.fc-view-harness-active {
-    height: 72vh !important;
+    height: 68vh !important;
   }
 }
 .inner-section .main-section #Weekly-Calander .fc-timegrid-col-events .fc-timegrid-event-harness.fc-timegrid-event-harness-inset {
