@@ -1504,7 +1504,7 @@
                                   <div class="ld-img-section mr-3">
                                     <div class="ld-img-holder">
                                       <img v-if="peer.profile_pic" :src="peer.profile_pic" alt="" />
-                                      <img v-else src="" alt="" />
+                                      <img v-else src="../../static/image/avatar.png" alt="" />
                                     </div>
                                   </div>
                                   <div class="ld-details-section">
@@ -2080,7 +2080,7 @@
                     <div class="ld-img-section mr-3">
                       <div class="ld-img-holder">
                         <img v-if="peer.profile_pic" :src="peer.profile_pic" alt="" />
-                         <img v-else src="" alt="" />
+                         <img v-else src="../../static/image/avatar.png" alt="" />
                       </div>
                     </div>
                     <div class="ld-details-section">
