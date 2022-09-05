@@ -3895,10 +3895,10 @@ export default {
       console.log("planner list", this.plannerList);
       console.log("meeting list", this.meetingList);
       console.log("session list", this.sessionList);
-      console.log("shared list", this.sharedSessionList);
+      console.log("shared list", this.sharedAstList);
       this.plannerList.forEach((element) => {
         var plannerObj = {};
-        var title = element.assignment_description;
+        var title = element.task;
         if (element.priority == "1") {
           var color = "#EF382E";
         } else if (element.priority == "2") {
@@ -4036,6 +4036,45 @@ export default {
         this.meetingDetails.push(listobj);
         eventList.push(meetingobj);
       });
+      this.sharedAstList.forEach((element) => {
+        var scheduleObject = {};
+        var plannerObj = {};
+        var id = element.id;
+        var assignment = element.subject;
+        var time = element.due_time;
+        var date = this.dateConversion(element.due_date);
+
+        var title = element.task;
+
+        if (element.priority == "1") {
+          var color = "#EF382E";
+        } else if (element.priority == "2") {
+          var color = "#00CCA0";
+        } else if (element.priority == "3") {
+          var color = "#F6D73C";
+        }
+        var dateMeeting = element.due_date;
+        var tmeMeeting = "";
+        if (element.due_time) {
+          tmeMeeting = this.formatAMPM(element.due_time);
+        }
+        var start = dateMeeting + "T" + tmeMeeting;
+
+        scheduleObject["assignment"] = assignment;
+        scheduleObject["time"] = time;
+        scheduleObject["date"] = date;
+        scheduleObject["title"] = title;
+        scheduleObject["id"] = id;
+
+        plannerObj["title"] = title;
+        plannerObj["color"] = color;
+        plannerObj["start"] = start;
+        plannerObj["id"] = id;
+        plannerObj["groupId"] = "shared-assignment";
+        eventList.push(plannerObj);
+        this.assignmentList.push(scheduleObject);
+      });
+
       console.log("events console", eventList);
       this.calendarOptions.events = eventList;
       this.loading = false;
