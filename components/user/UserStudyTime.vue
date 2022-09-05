@@ -6,13 +6,12 @@
       v-if="currentTab == 0"
       class="
         jochi-components-light-bg
-        p-4
         custom-margin-for-main-section custom-full-height
         d-flex
-        custom-overflow
+        
       "
     >
-      <div class="study-section d-flex flex-column flex-fill">
+      <div class="study-section d-flex flex-column flex-fill px-4 custom-overflow my-3 py-md-2 py-lg-3">
         <div class="row h-lg-100">
           <div class="col-lg-7 d-flex flex-column">
             <div
@@ -36,7 +35,7 @@
                   Tackle your upcoming assignments
                 </p>
               </div>
-              <div class="col-5 d-flex justify-content-end">
+              <div class="col-sm-5 col-md-12 col-lg-5 d-flex justify-content-end">
                 <img
                   src="../../static/image/folder.png"
                   alt=""
@@ -64,7 +63,7 @@
                   Stay focused while you study, and monitor your productivity
                 </p>
               </div>
-              <div class="col-5 d-flex justify-content-end">
+              <div class="col-sm-5 col-md-12 col-lg-5 d-flex justify-content-end">
                 <img
                   src="../../static/image/lamp.png"
                   alt=""
@@ -1347,7 +1346,7 @@
                       :src="peer.profile_pic"
                       alt=""
                     />
-                    <img v-else class="ld-img-holder shadow-none" alt="" />
+                    <img v-else class="ld-img-holder shadow-none" src="../../static/image/avatar.png" alt="" />
                   </div>
                   <div class="ld-details-section">
                     <p class="ld-heading mb-1">{{ peer.first_name }}</p>
