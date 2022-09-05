@@ -331,7 +331,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card bg-transparent shadow-none border-0mb-2">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
                 <div
                   class="card-header bg-transparent border-0 p-1"
                   id="headingTwo"

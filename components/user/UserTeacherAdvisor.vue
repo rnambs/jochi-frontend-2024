@@ -362,7 +362,7 @@
                                   "
                                 >
                                   <div
-                                    class="assignment-tag mr-2"
+                                    class="assignment-tag mr-2 text-nowrap"
                                     :class="
                                       detail.priority == '1'
                                         ? 'red'
@@ -383,7 +383,7 @@
                                         : ""
                                     }}
                                   </div>
-                                  <div class="assignment-tag pink">
+                                  <div class="assignment-tag pink text-truncate">
                                     {{ detail.subject }}
                                   </div>
                                 </div>
