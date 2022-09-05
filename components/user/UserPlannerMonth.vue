@@ -1486,9 +1486,9 @@
                                   <label
                                     for="recipient-name"
                                     class="col-form-label"
-                                    >Subject</label
+                                    >Subject:</label
                                   >
-                                  {{ subject }}
+                                 &nbsp;{{ subject }}
                                   <!-- <select
                                 class="form-control"
                                 tabindex=""
@@ -1517,17 +1517,17 @@
                                   <label
                                     for="message-text"
                                     class="col-form-label"
-                                    >Assignment Name</label
+                                    >Assignment Name:</label
                                   >
-                                  {{ assignmentName }}
+                               &nbsp;{{ assignmentName }}
                                 </div>
                                 <div class="form-group">
                                   <label
                                     for="message-text"
                                     class="col-form-label"
-                                    >Task</label
+                                    >Task:</label
                                   >
-                                  {{ assignmentDescription }}
+                                 &nbsp;{{ assignmentDescription }}
                                 </div>
                                 <div class="row">
                                   <div class="col-md-6 ml-auto">
@@ -1535,8 +1535,8 @@
                                       <label
                                         for="recipient-name"
                                         class="col-form-label"
-                                        >Priority</label
-                                      >{{ priorityVal }}
+                                        >Priority:</label
+                                      >&nbsp;{{ priorityVal }}
                                     </div>
                                   </div>
                                   <div class="col-md-6 ml-auto">
@@ -1544,9 +1544,9 @@
                                       <label
                                         for="recipient-name"
                                         class="col-form-label"
-                                        >Date</label
+                                        >Date:</label
                                       >
-                                      {{ dateValue }}
+                                     &nbsp;{{ dateValue }}
                                     </div>
                                   </div>
                                 </div>
@@ -1556,10 +1556,10 @@
                                       <label
                                         for="recipient-name"
                                         class="col-form-label"
-                                        >Time</label
+                                        >Time:</label
                                       >
                                       <div>
-                                        {{ timeValue }}
+                                        &nbsp;{{ timeValue }}
                                       </div>
                                     </div>
                                   </div>
@@ -3530,13 +3530,19 @@ export default {
           idVal.groupId == "shared-assignment"
         ) {
           let data = {};
+          let mappedData = {};
           if (idVal.groupId == "assignment") {
             data = this.plannerList.find((e) => e.id == idVal.id);
+            mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
-            data = this.sharedAstList.find((e) => e.id == idVal.id);
+            data = this.sharedAssignmentsList.find(
+              (e) => e.assignment_id.toString() == idVal.id
+            );
+            mappedData = this.mapSharedData(data);
           }
-          this.onCardClick(data);
+          this.assignmentPlanner();
+          this.onCardClick(mappedData);
         } else if (idVal.groupId == "club-meeting") {
           let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
           return this.$router.push(
@@ -4012,79 +4018,154 @@ export default {
     mapAssignments() {
       if (this.assignmentsList && this.assignmentsList.length > 0) {
         this.assignmentsList.forEach((e) => {
-          let item = {};
-          this.assignmentMaterials = [];
+          // let item = {};
+          // this.assignmentMaterials = [];
 
-          item.assignment_description = e.assignment_description;
-          // item.assignment_materials = e.assignment_materials;
-          if (e.assignment_materials && e.assignment_materials.length > 0) {
-            e.assignment_materials.forEach((m) => {
-              let data = {};
-              data = m;
-              this.assignmentMaterials.push(data);
-            });
-          }
-          item.assignment_materials = this.assignmentMaterials;
-          item.completed_date = e.completed_date;
-          item.dueTimeFormat = e.dueTimeFormat;
-          item.due_date = e.due_date;
-          item.due_time = e.due_time;
-          item.id = e.id;
-          item.priority = e.priority;
-          item.schoologyAssignment = e.schoologyAssignment;
-          item.schoologyAssignmentId = e.schoologyAssignmentId;
-          item.subTasks = e.subTasks;
-          item.subject = e.subject;
-          item.subjects = e.subjects;
-          item.task = e.task;
-          item.task_status = e.task_status;
-          item.updatedAt = e.updatedAt;
-          item.user_id = e.user_id;
-          item.peers = this.mapPeers(e);
-          item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-          item.isShared = false;
-          this.pendingAssignments.push(item);
+          // item.assignment_description = e.assignment_description;
+          // // item.assignment_materials = e.assignment_materials;
+          // if (e.assignment_materials && e.assignment_materials.length > 0) {
+          //   e.assignment_materials.forEach((m) => {
+          //     let data = {};
+          //     data = m;
+          //     this.assignmentMaterials.push(data);
+          //   });
+          // }
+          // item.assignment_materials = this.assignmentMaterials;
+          // item.completed_date = e.completed_date;
+          // item.dueTimeFormat = e.dueTimeFormat;
+          // item.due_date = e.due_date;
+          // item.due_time = e.due_time;
+          // item.id = e.id;
+          // item.priority = e.priority;
+          // item.schoologyAssignment = e.schoologyAssignment;
+          // item.schoologyAssignmentId = e.schoologyAssignmentId;
+          // item.subTasks = e.subTasks;
+          // item.subject = e.subject;
+          // item.subjects = e.subjects;
+          // item.task = e.task;
+          // item.task_status = e.task_status;
+          // item.updatedAt = e.updatedAt;
+          // item.user_id = e.user_id;
+          // item.peers = this.mapPeers(e);
+          // item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+          // item.isShared = false;
+          // this.pendingAssignments.push(item);
+          let asst = this.mapData(e);
+          this.pendingAssignments.push(asst);
         });
       }
+    },
+    mapData(e) {
+      let item = {};
+      this.assignmentMaterials = [];
+
+      item.assignment_description = e.assignment_description;
+      // item.assignment_materials = e.assignment_materials;
+      if (e.assignment_materials && e.assignment_materials.length > 0) {
+        e.assignment_materials.forEach((m) => {
+          let data = {};
+          data = m;
+          this.assignmentMaterials.push(data);
+        });
+      }
+      item.assignment_materials = this.assignmentMaterials;
+      item.completed_date = e.completed_date;
+      item.dueTimeFormat = e.dueTimeFormat;
+      item.due_date = e.due_date;
+      item.due_time = e.due_time;
+      item.id = e.id;
+      item.priority = e.priority;
+      item.schoologyAssignment = e.schoologyAssignment;
+      item.schoologyAssignmentId = e.schoologyAssignmentId;
+      item.subTasks = e.subTasks;
+      item.subject = e.subject;
+      item.subjects = e.subjects;
+      item.task = e.task;
+      item.task_status = e.task_status;
+      item.updatedAt = e.updatedAt;
+      item.user_id = e.user_id;
+      item.peers = this.mapPeers(e);
+      item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+      item.isShared = false;
+      return item;
     },
     mapSharedAssignments() {
       if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
         this.sharedAssignmentsList.forEach((e) => {
-          let item = {};
-          this.assignmentMaterials = [];
+          // let item = {};
+          // this.assignmentMaterials = [];
 
-          if (e.assignments) {
-            item.assignment_description = e.assignments.assignment_description;
-            // item.assignment_materials = e.assignment_materials;
-            if (e.assignment_materials && e.assignment_materials.length > 0) {
-              e.assignment_materials.forEach((m) => {
-                let data = {};
-                data = m;
-                this.assignmentMaterials.push(data);
-              });
-            }
-            item.assignment_materials = this.assignmentMaterials;
-            item.completed_date = e.assignments.completed_date;
-            item.dueTimeFormat = e.assignments.dueTimeFormat;
-            item.due_date = e.assignments.due_date;
-            item.due_time = e.assignments.due_time;
-            item.id = e.assignments.id;
-            item.priority = e.assignments.priority;
-            item.schoologyAssignment = e.assignments.schoologyAssignment;
-            item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
-            item.subTasks = e.subTasks;
-            item.subject = e.assignments?.subjects?.subject_name;
-            item.subjects = e.subjects;
-            item.task = e.assignments.task;
-            item.task_status = e.assignments.task_status;
-            item.updatedAt = e.assignments.updatedAt;
-            item.user_id = e.assignments.user_id;
-            item.peers = this.mapPeers(e);
-            item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-            item.isShared = true;
-            this.pendingAssignments.push(item);
-          }
+          // if (e.assignments) {
+          //   item.assignment_description = e.assignments.assignment_description;
+          //   // item.assignment_materials = e.assignment_materials;
+          //   if (e.assignment_materials && e.assignment_materials.length > 0) {
+          //     e.assignment_materials.forEach((m) => {
+          //       let data = {};
+          //       data = m;
+          //       this.assignmentMaterials.push(data);
+          //     });
+          //   }
+          //   item.assignment_materials = this.assignmentMaterials;
+          //   item.completed_date = e.assignments.completed_date;
+          //   item.dueTimeFormat = e.assignments.dueTimeFormat;
+          //   item.due_date = e.assignments.due_date;
+          //   item.due_time = e.assignments.due_time;
+          //   item.id = e.assignments.id;
+          //   item.priority = e.assignments.priority;
+          //   item.schoologyAssignment = e.assignments.schoologyAssignment;
+          //   item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+          //   item.subTasks = e.subTasks;
+          //   item.subject = e.assignments?.subjects?.subject_name;
+          //   item.subjects = e.subjects;
+          //   item.task = e.assignments.task;
+          //   item.task_status = e.assignments.task_status;
+          //   item.updatedAt = e.assignments.updatedAt;
+          //   item.user_id = e.assignments.user_id;
+          //   item.peers = this.mapPeers(e);
+          //   item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+          //   item.isShared = true;
+          //   this.pendingAssignments.push(item);
+          // }
+          let asst = this.mapSharedData(e);
+        this.pendingAssignments.push(asst);
+
         });
+      }
+    },
+    mapSharedData(e) {
+      let item = {};
+      this.assignmentMaterials = [];
+
+      if (e.assignments) {
+        item.assignment_description = e.assignments.assignment_description;
+        // item.assignment_materials = e.assignment_materials;
+        if (e.assignment_materials && e.assignment_materials.length > 0) {
+          e.assignment_materials.forEach((m) => {
+            let data = {};
+            data = m;
+            this.assignmentMaterials.push(data);
+          });
+        }
+        item.assignment_materials = this.assignmentMaterials;
+        item.completed_date = e.assignments.completed_date;
+        item.dueTimeFormat = e.assignments.dueTimeFormat;
+        item.due_date = e.assignments.due_date;
+        item.due_time = e.assignments.due_time;
+        item.id = e.assignments.id;
+        item.priority = e.assignments.priority;
+        item.schoologyAssignment = e.assignments.schoologyAssignment;
+        item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+        item.subTasks = e.subTasks;
+        item.subject = e.assignments?.subjects?.subject_name;
+        item.subjects = e.subjects;
+        item.task = e.assignments.task;
+        item.task_status = e.assignments.task_status;
+        item.updatedAt = e.assignments.updatedAt;
+        item.user_id = e.assignments.user_id;
+        item.peers = this.mapPeers(e);
+        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        item.isShared = true;
+        return item;
       }
     },
     mapPeers(e) {
@@ -4218,9 +4299,14 @@ export default {
       this.peerSelected = [];
       if (data.peers && data.peers?.length > 0 && this.students.length > 0) {
         data.peers.forEach((e) => {
-          this.peerSelected.push(this.students.find((s) => s.id == e.id));
+          let studs = this.students.find(
+            (s) => s.id.toString() == e.id.toString()
+          );
+          console.log(studs);
+          // this.peerSelected.push(studs);
+          this.peerSelected.push(studs);
         });
-        console.log(this.peersSelected);
+        console.log("peers", this.peerSelected);
       }
       // peerSelected
     },

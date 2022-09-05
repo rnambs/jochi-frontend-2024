@@ -523,7 +523,7 @@
                     <p
                       class="mb-2 word-break text-16 font-semi-bold color-dark"
                     >
-                      No assignments for this month!
+                      No assignments for this day!
                     </p>
                     <!-- <p class="mb-0 text-14">
                       <span>{{ item.due_date }}</span
