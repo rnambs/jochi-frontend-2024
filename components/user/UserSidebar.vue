@@ -682,6 +682,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import { defaultImage } from "../../assets/js/constants";
+import { FRONTEND_BASE_URL } from "~/assets/js/constants";
 
 export default {
   name: "UserSidebar",
@@ -806,7 +807,8 @@ export default {
       });
       window.localStorage.clear();
       window.location.href =
-        "https://sso.gg4l.com/oauth/loginwith/logout?redirect_uri=https://jochi.devateam.com/";
+        "https://sso.gg4l.com/oauth/loginwith/logout?redirect_uri=" +
+        FRONTEND_BASE_URL;
     },
     async UserDetails() {
       this.loading = true;
@@ -814,7 +816,7 @@ export default {
         user_id: localStorage.getItem("id"),
       });
       this.email = localStorage.getItem("email");
-      this.firstName = localStorage.getItem("first_name");
+      this.firstName = localStorage.getItem("firstName");
       this.schoolName = localStorage.getItem("school_name");
       this.profile = localStorage.getItem("profile_pic");
 
