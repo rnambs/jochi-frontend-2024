@@ -299,11 +299,11 @@
                     </td>
                   </tr>
 
-                  <tr v-id="!isDateChanged">
+                  <!-- <tr v-id="!isDateChanged">
                     <button @click="changeSlot">
                       Change Today's Slot Time
                     </button>
-                  </tr>
+                  </tr> -->
 
                   <tr v-if="isDateChanged && slot_date_selection.length > 0">
                     <td>Select Time</td>

@@ -401,7 +401,11 @@
                                           text-truncate
                                         "
                                       >
-                                        {{ item.subject }}
+                                        {{
+                                          item.subjects.subject_name
+                                            ? item.subjects.subject_name
+                                            : item.subject
+                                        }}
                                       </div>
                                     </div>
                                     <div class="assignment-add-section">
@@ -3542,6 +3546,10 @@ export default {
             );
             mappedData = this.mapSharedData(data);
           }
+          if (!mappedData) {
+            return alert("This assignment has been completed!");
+          }
+
           this.assignmentPlanner();
           this.onCardClick(mappedData);
         } else if (idVal.groupId == "club-meeting") {
@@ -3676,6 +3684,7 @@ export default {
         plannerObj["color"] = color;
         plannerObj["start"] = start;
         plannerObj["id"] = id;
+        plannerObj["groupId"] = "assignment";
         eventList.push(plannerObj);
       });
       this.meetingList?.forEach((element) => {
@@ -4096,38 +4105,40 @@ export default {
       }
     },
     mapData(e) {
-      let item = {};
-      this.assignmentMaterials = [];
+      if (e) {
+        let item = {};
+        this.assignmentMaterials = [];
 
-      item.assignment_description = e.assignment_description;
-      // item.assignment_materials = e.assignment_materials;
-      if (e.assignment_materials && e.assignment_materials.length > 0) {
-        e.assignment_materials.forEach((m) => {
-          let data = {};
-          data = m;
-          this.assignmentMaterials.push(data);
-        });
+        item.assignment_description = e.assignment_description;
+        // item.assignment_materials = e.assignment_materials;
+        if (e.assignment_materials && e.assignment_materials.length > 0) {
+          e.assignment_materials.forEach((m) => {
+            let data = {};
+            data = m;
+            this.assignmentMaterials.push(data);
+          });
+        }
+        item.assignment_materials = this.assignmentMaterials;
+        item.completed_date = e.completed_date;
+        item.dueTimeFormat = e.dueTimeFormat;
+        item.due_date = e.due_date;
+        item.due_time = e.due_time;
+        item.id = e.id;
+        item.priority = e.priority;
+        item.schoologyAssignment = e.schoologyAssignment;
+        item.schoologyAssignmentId = e.schoologyAssignmentId;
+        item.subTasks = e.subTasks;
+        item.subject = e.subject;
+        item.subjects = e.subjects;
+        item.task = e.task;
+        item.task_status = e.task_status;
+        item.updatedAt = e.updatedAt;
+        item.user_id = e.user_id;
+        item.peers = this.mapPeers(e);
+        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        item.isShared = false;
+        return item;
       }
-      item.assignment_materials = this.assignmentMaterials;
-      item.completed_date = e.completed_date;
-      item.dueTimeFormat = e.dueTimeFormat;
-      item.due_date = e.due_date;
-      item.due_time = e.due_time;
-      item.id = e.id;
-      item.priority = e.priority;
-      item.schoologyAssignment = e.schoologyAssignment;
-      item.schoologyAssignmentId = e.schoologyAssignmentId;
-      item.subTasks = e.subTasks;
-      item.subject = e.subject;
-      item.subjects = e.subjects;
-      item.task = e.task;
-      item.task_status = e.task_status;
-      item.updatedAt = e.updatedAt;
-      item.user_id = e.user_id;
-      item.peers = this.mapPeers(e);
-      item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-      item.isShared = false;
-      return item;
     },
     mapSharedAssignments() {
       if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
@@ -4175,7 +4186,7 @@ export default {
       let item = {};
       this.assignmentMaterials = [];
 
-      if (e.assignments) {
+      if (e && e.assignments) {
         item.assignment_description = e.assignments.assignment_description;
         // item.assignment_materials = e.assignment_materials;
         if (

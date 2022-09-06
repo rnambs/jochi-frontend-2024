@@ -802,7 +802,11 @@
                                           text-truncate
                                         "
                                       >
-                                        {{ item.subject }}
+                                        {{
+                                          item.subjects.subject_name
+                                            ? item.subjects.subject_name
+                                            : item.subject
+                                        }}
                                       </div>
                                     </div>
                                     <div class="assignment-add-section">
@@ -3774,6 +3778,10 @@ export default {
             );
             mappedData = this.mapSharedData(data);
           }
+          if (!mappedData) {
+            return alert("This assignment has been completed!");
+          }
+
           this.assignmentPlanner();
           this.onCardClick(mappedData);
         } else if (idVal.groupId == "club-meeting") {
@@ -4336,6 +4344,8 @@ export default {
       }
     },
     mapData(e) {
+
+      if(e){
       let item = {};
       this.assignmentMaterials = [];
 
@@ -4368,7 +4378,7 @@ export default {
       item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
       item.isShared = false;
       return item;
-    },
+    }},
     mapSharedAssignments() {
       if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
         this.sharedAssignmentsList.forEach((e) => {
@@ -4381,7 +4391,7 @@ export default {
       let item = {};
       this.assignmentMaterials = [];
 
-      if (e.assignments) {
+      if (e && e.assignments) {
         item.assignment_description = e.assignments.assignment_description;
         // item.assignment_materials = e.assignment_materials;
         if (
