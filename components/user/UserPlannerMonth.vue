@@ -3537,7 +3537,7 @@ export default {
           let data = {};
           let mappedData = {};
           if (idVal.groupId == "assignment") {
-            data = this.plannerList.find((e) => e.id == idVal.id);
+            data = this.assignmentsList.find((e) => e.id == idVal.id);
             mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {

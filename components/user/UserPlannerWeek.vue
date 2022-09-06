@@ -3769,7 +3769,7 @@ export default {
           let data = {};
           let mappedData = {};
           if (idVal.groupId == "assignment") {
-            data = this.plannerList.find((e) => e.id == idVal.id);
+            data = this.assignmentsList.find((e) => e.id == idVal.id);
             mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
@@ -4344,41 +4344,41 @@ export default {
       }
     },
     mapData(e) {
+      if (e) {
+        let item = {};
+        this.assignmentMaterials = [];
 
-      if(e){
-      let item = {};
-      this.assignmentMaterials = [];
-
-      item.assignment_description = e.assignment_description;
-      // item.assignment_materials = e.assignment_materials;
-      if (e.assignment_materials && e.assignment_materials.length > 0) {
-        e.assignment_materials.forEach((m) => {
-          let data = {};
-          data = m;
-          this.assignmentMaterials.push(data);
-        });
+        item.assignment_description = e.assignment_description;
+        // item.assignment_materials = e.assignment_materials;
+        if (e.assignment_materials && e.assignment_materials.length > 0) {
+          e.assignment_materials.forEach((m) => {
+            let data = {};
+            data = m;
+            this.assignmentMaterials.push(data);
+          });
+        }
+        item.assignment_materials = this.assignmentMaterials;
+        item.completed_date = e.completed_date;
+        item.dueTimeFormat = e.dueTimeFormat;
+        item.due_date = e.due_date;
+        item.due_time = e.due_time;
+        item.id = e.id;
+        item.priority = e.priority;
+        item.schoologyAssignment = e.schoologyAssignment;
+        item.schoologyAssignmentId = e.schoologyAssignmentId;
+        item.subTasks = e.subTasks;
+        item.subject = e.subject;
+        item.subjects = e.subjects;
+        item.task = e.task;
+        item.task_status = e.task_status;
+        item.updatedAt = e.updatedAt;
+        item.user_id = e.user_id;
+        item.peers = this.mapPeers(e);
+        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        item.isShared = false;
+        return item;
       }
-      item.assignment_materials = this.assignmentMaterials;
-      item.completed_date = e.completed_date;
-      item.dueTimeFormat = e.dueTimeFormat;
-      item.due_date = e.due_date;
-      item.due_time = e.due_time;
-      item.id = e.id;
-      item.priority = e.priority;
-      item.schoologyAssignment = e.schoologyAssignment;
-      item.schoologyAssignmentId = e.schoologyAssignmentId;
-      item.subTasks = e.subTasks;
-      item.subject = e.subject;
-      item.subjects = e.subjects;
-      item.task = e.task;
-      item.task_status = e.task_status;
-      item.updatedAt = e.updatedAt;
-      item.user_id = e.user_id;
-      item.peers = this.mapPeers(e);
-      item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-      item.isShared = false;
-      return item;
-    }},
+    },
     mapSharedAssignments() {
       if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
         this.sharedAssignmentsList.forEach((e) => {
