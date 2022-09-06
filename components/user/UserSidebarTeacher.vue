@@ -907,6 +907,10 @@ export default {
       await this.getLogout({
         auth_token: localStorage.getItem("token").replace("Bearer ", ""),
       });
+      window.localStorage.clear();
+      window.location.href =
+        "https://sso.gg4l.com/oauth/loginwith/logout?redirect_uri=" +
+        FRONTEND_BASE_URL;
     },
     async UserDetails() {
       this.loading = true;
