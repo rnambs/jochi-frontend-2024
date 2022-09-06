@@ -420,7 +420,16 @@
                                     class="ap-img-section mr--3 shadow-sm"
                                   >
                                     <!-- {{ peer }} -->
-                                    <img :src="peer.profile_pic" alt="" />
+                                    <img
+                                      v-if="peer.profile_pic"
+                                      :src="peer.profile_pic"
+                                      alt=""
+                                    />
+                                    <img
+                                      v-else
+                                      src="~/static/image/avatar.png"
+                                      alt=""
+                                    />
                                   </div>
                                   <!-- <div
                                   class="ap-img-section mr--3 shadow-sm"
@@ -2274,6 +2283,7 @@ export default {
       processingUpload: false,
       processingCompleteAssignment: false,
       subject: "",
+      subjectId: "",
       task: "",
       priorityVal: "",
       timeValue: "",
@@ -2886,9 +2896,12 @@ export default {
     },
     async UpdateAssignment() {
       this.submitted = true;
-      this.$v.$touch();
-      if (this.$v.$invalid || !this.validTime) {
-        return;
+
+      if (!this.isSharedAssignment) {
+        this.$v.$touch();
+        if (this.$v.$invalid || !this.validTime) {
+          return;
+        }
       }
 
       if (this.priorityVal == "Urgent") {
@@ -2939,7 +2952,7 @@ export default {
         user_id: localStorage.getItem("id"),
         task: this.assignmentName,
         assignment_description: this.assignmentDescription,
-        subject: this.subject?.id,
+        subject: this.isSharedAssignment ? this.subjectId : this.subject?.id,
         due_time: this.timeValue,
         due_date: dfE,
         priority: this.priorityVal,
@@ -3412,7 +3425,10 @@ export default {
       if (e.assignments) {
         item.assignment_description = e.assignments.assignment_description;
         // item.assignment_materials = e.assignment_materials;
-        if (e.assignments?.assignment_materials && e.assignments?.assignment_materials.length > 0) {
+        if (
+          e.assignments?.assignment_materials &&
+          e.assignments?.assignment_materials.length > 0
+        ) {
           e.assignments?.assignment_materials.forEach((m) => {
             let data = {};
             data = m;
@@ -3425,12 +3441,13 @@ export default {
         item.due_date = e.assignments.due_date;
         item.due_time = e.assignments.due_time;
         item.id = e.assignments.id;
+        item.sharedId = e.id;
         item.priority = e.assignments.priority;
         item.schoologyAssignment = e.assignments.schoologyAssignment;
         item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
         item.subTasks = e.assignments?.subTasks;
         item.subject = e.assignments?.subjects?.subject_name;
-        item.subjects = e.subjects;
+        item.subjects = e.assignments?.subjects;
         item.task = e.assignments.task;
         item.task_status = e.assignments.task_status;
         item.updatedAt = e.assignments.updatedAt;
@@ -3595,6 +3612,7 @@ export default {
 
       if (data.isShared) {
         this.subject = data.subject;
+        this.subjectId = data.subjects.id;
       } else {
         this.subject = {
           id: data.subjects?.id,

@@ -2688,6 +2688,7 @@ export default {
       submitted: false,
       processing: false,
       subject: "",
+      subjectId: "",
       task: "",
       priorityVal: "",
       timeValue: "",
@@ -3380,9 +3381,11 @@ export default {
     },
     async UpdateAssignment() {
       this.submitted = true;
-      this.$v.$touch();
-      if (this.$v.$invalid || !this.validTime) {
-        return;
+      if (!this.isSharedAssignment) {
+        this.$v.$touch();
+        if (this.$v.$invalid || !this.validTime) {
+          return;
+        }
       }
 
       if (this.priorityVal == "Urgent") {
@@ -4402,7 +4405,7 @@ export default {
         item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
         item.subTasks = e.assignments?.subTasks;
         item.subject = e.assignments?.subjects?.subject_name;
-        item.subjects = e.subjects;
+        item.subjects = e.assignments?.subjects;
         item.task = e.assignments.task;
         item.task_status = e.assignments.task_status;
         item.updatedAt = e.assignments.updatedAt;
@@ -4572,6 +4575,7 @@ export default {
 
       if (data.isShared) {
         this.subject = data.subject;
+        this.subjectId = data.subjects.id;
       } else {
         this.subject = {
           id: data.subjects?.id,
