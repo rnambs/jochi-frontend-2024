@@ -918,7 +918,7 @@ export default {
         user_id: localStorage.getItem("id"),
       });
       this.email = localStorage.getItem("email");
-      this.firstName = localStorage.getItem("first_name");
+      this.firstName = localStorage.getItem("firstName");
       this.schoolName = localStorage.getItem("school_name");
       this.profile = localStorage.getItem("profile_pic");
 
