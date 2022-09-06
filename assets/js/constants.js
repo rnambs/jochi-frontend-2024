@@ -5,4 +5,5 @@ export const defaultImage = 'https://jochi-live.s3.amazonaws.com/profilePic/defa
 // export const BASE_URL = 'https://jochi-api.devateam.com/';
 export const BASE_URL = 'https://api.jochi.live/';
 // export const BASE_URL = 'https://api.jochi.devateam.com/';
-export const REDIRECT_LOGIN_URL = 'https://jochi.live/redirect-login';
+export const REDIRECT_LOGIN_URL = 'https://www.jochi.live/redirect-login';
+export const FRONTEND_BASE_URL = 'https://www.jochi.live';
