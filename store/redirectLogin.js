@@ -11,6 +11,8 @@ const state = {
     user_type: '',
     firstName: '',
     lastName: '',
+    school_id: '',
+    school_name: '',
 }
 const actions = {
 
@@ -26,6 +28,8 @@ const actions = {
                 commit('setUserType', response.data.user_type_id);
                 commit('setFirstName', response.data.first_name);
                 commit('setLastName', response.data.last_name);
+                commit('setSchoolId', response.data.school_id);
+                commit('setSchoolName', response.data.school_name);
                 if (response.data.user_type_id == 1) {
                     this.$router.push('/dashboard');
                 }
@@ -94,6 +98,14 @@ const mutations = {
     setLastName(state, data) {
         state.lastName = data;
         localStorage.setItem('lastName', data);
+    },
+    setSchoolId(state, data) {
+        state.school_id = data;
+        localStorage.setItem('school_id', data);
+    },
+    setSchoolName(state, data) {
+        state.school_name = data;
+        localStorage.setItem('school_name', data);
     },
 }
 const getters = {
