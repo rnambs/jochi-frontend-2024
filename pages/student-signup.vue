@@ -98,12 +98,11 @@
                 alt=""
                 class="mb-4 passport-img py-4"
               />
-              <button class="btn btn-primary font-semi-bold px-5">
-                <a class="btn p-0 color-white"
-                  href="https://sso.gg4l.com/oauth/auth?response_type=code&client_id=PTRQTIBSJC&redirect_uri=https://jochi.devateam.com/redirect-login"
-                >
-                  Sign in with School Passport
-                </a>
+              <button
+                class="btn btn-primary font-semi-bold px-5"
+                @click="redirectToGg4L()"
+              >
+                Sign in with School Passport
               </button>
               <!-- <form action="" class="sign-in" @submit.prevent="GetSignUp">
                 <div class="row mb-3">
@@ -269,6 +268,7 @@ import Multiselect from "vue-multiselect";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 var schoolSelectValue = "";
+import { REDIRECT_LOGIN_URL } from "~/assets/js/constants";
 
 export default {
   name: "student-signup",
@@ -293,6 +293,7 @@ export default {
       loadingMessage: "",
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
+      redirect: "",
     };
   },
 
@@ -303,6 +304,9 @@ export default {
     studentId: { required },
   },
   mounted() {
+    this.redirect =
+      "https://sso.gg4l.com/oauth/auth?response_type=code&client_id=PTRQTIBSJC&redirect_uri=" +
+      REDIRECT_LOGIN_URL;
     if (localStorage.getItem("email")) {
       var userType = localStorage.getItem("user_type");
       if (userType == "1") {
@@ -366,6 +370,9 @@ export default {
       if (val) {
         schoolSelectValue = val.id;
       }
+    },
+    redirectToGg4L() {
+      window.location.href = this.redirect;
     },
   },
 };
