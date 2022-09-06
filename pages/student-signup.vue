@@ -372,7 +372,7 @@ export default {
       }
     },
     redirectToGg4L() {
-      window.location.href = redirect;
+      window.location.href = this.redirect;
     },
   },
 };
