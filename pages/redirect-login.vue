@@ -1,8 +1,25 @@
 <template>
   <div class="inner-section">
-    <div class="main-section sufee-login d-flex vh-100 align-content-center flex-wrap">
+    <div
+      class="
+        main-section
+        sufee-login
+        d-flex
+        vh-100
+        align-content-center
+        flex-wrap
+      "
+    >
       <div class="container">
-        <div class="login-content d-flex flex-column align-items-center justify-content-center">
+        <div
+          class="
+            login-content
+            d-flex
+            flex-column
+            align-items-center
+            justify-content-center
+          "
+        >
           <div class="login-logo">
             <img
               class="align-content"
@@ -11,7 +28,9 @@
             />
           </div>
           <div class="">
-            <span class="text-center">Please wait! Your credentials are being verified!</span>
+            <span class="text-center"
+              >Please wait! Your credentials are being verified!</span
+            >
           </div>
         </div>
       </div>
@@ -58,7 +77,12 @@ export default {
         });
         // this.$router.push("/admin-login");
       } else {
-        this.$router.push("/student-dashboard");
+        let user_type = localStorage.getItem("user_type");
+        if (user_type == 3 || user_type == "3") {
+          this.$router.push("/student-dashboard");
+        } else {
+          this.$router.push("/teacher-dashboard");
+        }
       }
     },
   },
