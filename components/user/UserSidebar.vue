@@ -449,7 +449,7 @@
                       </div>
                       <span
                         class="ml-3 color-secondary text-capitalize font-medium"
-                        >REVTernships</span
+                        >Extracurriculars</span
                       >
                       <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
