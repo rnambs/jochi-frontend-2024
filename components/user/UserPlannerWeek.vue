@@ -4432,6 +4432,16 @@ export default {
           }
         });
       }
+      if (e.assignment_shared_users && e.assignment_shared_users?.length > 0) {
+        e.assignment_shared_users.forEach((item) => {
+          let peer = {};
+          if (item.shared_users_id != user_id) {
+            peer = item.users;
+            peer.id = item.shared_users_id;
+            peers.push(peer);
+          }
+        });
+      }
       if (e.assignments?.users) {
         let user = {};
         user = e.assignments?.users;
