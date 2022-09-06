@@ -86,10 +86,10 @@
               </a>
               <ul class="collapse inner-custom-list ml-4 p-2" id="Club-subMenu">
                 <li>
-                  <a href="">My Clubs</a>
+                  <a href="">Existing</a>
                 </li>
                 <li>
-                  <a href="">Clubs Catalog</a>
+                  <a href="">Catalog</a>
                 </li>
               </ul>
             </li>
@@ -129,7 +129,7 @@
         <div class="study-section container">
           <div class="inner-study container p-3 mt-5">
             <div class="row study-row">
-              <div class="col-md-6 study-col">
+              <div class="col-md-6 study-col d-flex flex-column justify-content-center">
                 <div class="m-5">
                   <div class="study-heading mb-2">
                     <h1>Working on</h1>
@@ -143,7 +143,7 @@
                   </button>
                 </div>
               </div>
-              <div class="col-md-6 study-col">
+              <div class="col-md-6 study-col d-flex flex-column justify-content-center">
                 <!-- timer -->
               </div>
             </div>

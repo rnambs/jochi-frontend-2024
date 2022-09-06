@@ -88,17 +88,23 @@ jQuery(document).ready(function($) {
 		});
 	});
 
-
+	
 	// Load Resize 
+
+	
 	$(window).on("load resize", function(event) { 
-		var windowWidth = $(window).width();  		 
-		if (windowWidth<1010) {
+		var windowWidth = $(window).width(); 
+		// var windowHeight = $(window).height();
+		// var screenHeight = screen.height;
+		// var diff = screenHeight-windowHeight;
+		if (windowWidth<1200) {
 			$('body').addClass('small-device'); 
 		} else {
 			$('body').removeClass('small-device');  
 		} 
+		// $(".main-section").css({"height": "windowHeight"});
+		// $(".main-section").css({ height: 'calc(100vh - ' + diff + 'px)' });
 		
 	});
-  
  
 });

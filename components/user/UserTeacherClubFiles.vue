@@ -169,7 +169,7 @@
                         <figure class="figure w-100">
                           <div class="img-figure">
                             <img
-                              class="figure-img"
+                              class="figure-img cursor-pointer"
                               v-if="list.original_file_name"
                               id="myImg"
                               :src="list.original_file_name"
@@ -228,22 +228,21 @@
                   </div>
                   <div class="modal-body">
                     <p>
-                      Are you sure you want to delete this
+                      Are you sure you want to delete this file?
                       <!-- {{ remove_name }}  -->
-                      file?
                     </p>
                   </div>
                   <div class="modal-footer">
                     <button
                       type="button"
-                      class="btn btn-color-close"
+                      class="btn btn-secondary px-3 py-1 rounded-pill"
                       data-dismiss="modal"
                     >
                       No
                     </button>
                     <button
                       type="button"
-                      class="btn btn-color-save"
+                      class="btn btn-primary px-3 py-1 rounded-pill"
                       data-dismiss="modal"
                       @click="FileRemove"
                     >
@@ -305,7 +304,7 @@
                           :v-model="profilePic"
                           ref="profilePic"
                           name="profilePic"
-                          class="rg-img-upload img-up-two"
+                          class="rg-img-upload img-up-two cursor-pointer"
                           @change="onFileChange"
                           accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
                         />
@@ -321,7 +320,7 @@
                           :v-model="profilePic"
                           ref="profilePic"
                           name="profilePic"
-                          class="rg-img-upload img-up-two"
+                          class="rg-img-upload img-up-two cursor-pointer"
                           @change="onFileChange"
                           accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
                         />

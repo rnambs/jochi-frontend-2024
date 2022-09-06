@@ -3,6 +3,8 @@ import { BASE_URL } from "../assets/js/constants";
 const state = {
 
   allList: [],
+  requestList: [],
+  advisorDetail: {},
   errorMessage: "",
   errorType: "",
   successMessage: "",
@@ -147,12 +149,107 @@ const actions = {
       }
     }
   },
+  async getAdvisorRequests({ commit }) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$get(BASE_URL + `teacher/get_all_advisors_request`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+      if (response.message == "Success") {
+        commit('setRequestList', response.data);
+      }
+
+
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else if (e.response.data.message == "User not found") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "User not found");
+        commit('setErrorType', "error");
+
+      }
+      else if (e.response.data.message == "Validation error") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "error");
+        this.$router.push("/club-detail");
+
+      }
+    }
+
+
+  },
+
+  async respondAdvisorRequest({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$get(BASE_URL + `teacher/respond_to_advisor_request?teacher_id=${payLoad.teacher_id}&advisor_request=${payLoad.response}&advisor_token=${payLoad.token}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+      if (response.message) {
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', success);
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+      }
+    } catch (e) {
+      if (e.response?.data?.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response?.data?.message);
+        commit('setErrorType', "error");
+      }
+    }
+  },
+  async getAdvisorDetail({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$get(BASE_URL + `users/advisor_details`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+
+      commit('setAdvisorDetail', response.data);
+
+
+    } catch (e) {
+      if (e.response?.data?.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response?.data?.message);
+        commit('setErrorType', "error");
+      }
+    }
+  },
 
 
 }
 const mutations = {
   setAllList(state, data) {
     state.allList = data;
+  },
+  setRequestList(state, data) {
+    state.requestList = data;
+  },
+  setAdvisorDetail(state, data) {
+    state.advisorDetail = data;
   },
   profileSet(state, data) {
     state.profile = data;
@@ -175,6 +272,12 @@ const mutations = {
 const getters = {
   allList: () => {
     return state.allList;
+  },
+  requestList: () => {
+    return state.requestList;
+  },
+  advisorDetail: () => {
+    return state.advisorDetail;
   },
   profile: () => {
     return state.profile;

@@ -21,8 +21,8 @@
           </li>
           <li>
             <nuxt-link to="/club-list-table"
-              ><i class="fa fa-futbol-o mr-2 menu-icon" aria-hidden="true"></i
-              ><span class="menu-title-text">Club Details</span>
+              ><i class="fa fa-futbol mr-2 menu-icon" aria-hidden="true"></i
+              ><span class="menu-title-text">Teams and Clubs</span>
             </nuxt-link>
           </li>
           <li>
@@ -37,12 +37,12 @@
               ><span class="menu-title-text">Daily Quotes</span>
             </nuxt-link>
           </li>
-          <li>
+          <!-- <li>
             <nuxt-link to="/teacher-signin-request"
               ><i class="fas fa-user mr-2 menu-icon"></i
               ><span class="menu-title-text">Teacher Sign-In Request</span>
             </nuxt-link>
-          </li>
+          </li> -->
         </ul>
       </div>
     </nav>

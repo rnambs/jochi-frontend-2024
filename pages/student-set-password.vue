@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid main-container">
-    <div class="row main-row">
+    <div class="row main-row d-flex align-items-center flex-row vh-100">
       <div class="col-md-6 img-section">
         <img
           src="~/assets/images/undraw/Undraw_signUp.png"
@@ -33,6 +33,7 @@
                       type="password"
                       id="eyeSpan"
                       @click="toggleVisiblity()"
+                      class="cursor-pointer"
                     >
                       <i class="eye-icon"></i>
                     </span>

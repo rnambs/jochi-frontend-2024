@@ -10,26 +10,31 @@
     <div class="main-section">
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
-        <div class="teacher-section container-fluid mt-4">
-          <h5 class="text-color m-0 p-3">Custom Avaliability</h5>
-          <div class="inner-teacher container-fluid p-3">
-            <div class="row">
-              <div class="col-md-7 text-light custom-teacher-container">
-                <div class="time-slot container p-4 mb-3">
+        <div class="teacher-section jochi-components-light-bg
+        custom-margin-for-main-section custom-full-height
+        d-flex
+        flex-column">
+          <h2 class="color-primary font-semi-bold m-0 p-4">Custom Avaliability</h2>
+          <div class="inner-teacher container-fluid p-4 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow">
+            <div class="row h-100">
+              <div class="col-md-7 text-light custom-teacher-container d-flex flex-column ">
+                <div class="time-slot calendar-sm container card card-primary-sm rounded-22 p-3 pt-4 mb-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-                <div class="time-slot-week container p-4">
+                <div class="time-slot-week container card card-primary-sm rounded-22 p-3 pt-4">
                   <FullCalendar :options="calendar" />
                 </div>
               </div>
-              <div class="col-md-5 custom-teacher-container">
-                <div class="time-slot container p-4">
+              <div class="col-md-5 custom-teacher-container d-flex flex-column h-100">
+                <div class="time-slot container card card-primary-sm rounded-22 p-4 flex-fill h-40">
                   <p class="time-head pb-1">
-                    {{ date_string }} <span><i>30 Minute Slot</i></span>
+                    <span class="color-dark text-16 font-semi-bold">{{ date_string }}</span>
+                    <span class="color-secondary text-14 font-normal"><i>30 Minute Slot</i></span>
                   </p>
-                  <div class="inner-slot">
+                  <div class="inner-slot hidden-scroll h-40 flex-fill mb-5">
                     <span v-for="(slot, index) in slotsArrayShow" :key="index">
                       <div
+
                         :class="
                           slot.exist
                             ? 'badge badge-pill badge-color active'
@@ -42,7 +47,7 @@
                       </div>
                     </span>
                   </div>
-                  <form action="" class="mt-5">
+                  <form action="" class="">
                     <div class="row slot-form">
                       <div class="col">
                         <div class="custom-switch mb-3 switch-right">
@@ -71,7 +76,10 @@
                             @change="weekToggle"
                           />
                           <label
-                            class="custom-control-label form-label"
+                            class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14 form-label"
                             for="switch_week"
                             >Apply for the week</label
                           >
@@ -87,9 +95,12 @@
                             @change="defaultToggle"
                           />
                           <label
-                            class="custom-control-label form-label"
+                            class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14 form-label"
                             for="switch_time"
-                            >set default time
+                            >Set default time
                           </label>
                         </div>
 
@@ -105,7 +116,10 @@
                             v-model="weekend"
                           />
                           <label
-                            class="custom-control-label form-label"
+                            class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14 form-label"
                             for="switch_day"
                             >Include weekends</label
                           >
@@ -116,7 +130,7 @@
                       <div class="form-group col-12">
                         <button
                           type="submit"
-                          class="btn btn-color my-2 pl-4 pr-4 float-right"
+                          class="btn btn-primary my-2 py-1 px-4 rounded-pill float-right"
                           @click.prevent="UpdateTeacherAvailability()"
                         >
                           Update

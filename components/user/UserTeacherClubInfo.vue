@@ -102,13 +102,16 @@
                       @change="ShowClubInCatalog()"
                       v-on:click="availabilityToggle()"
                     />
-                    <label class="custom-control-label" for="custom-Switches"
+                    <label class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14" for="custom-Switches"
                       >Show club in catalog
                     </label>
                   </div>
                 </div>
                 <div class="col-md-6 col-xs-12 px-0">
-                  <div class="row inner-row">
+                  <div class="row inner-row mt-0">
                     <div class="col-6 inner-col">
                       <div class="inner-info-head mb-3">
                         <h6>Leaders</h6>
@@ -168,7 +171,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row inner-row">
+                  <div class="row inner-row mt-0">
                     <div class="col-6 inner-col">
                       <div class="inner-info-head mb-3">
                         <h6>Tags</h6>

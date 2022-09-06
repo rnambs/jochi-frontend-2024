@@ -224,7 +224,7 @@
                           <div class="dropdown input-icon-area">
                             <button
                               id="dLabel"
-                              class="dropdown-select form-control"
+                              class="dropdown-select form-control text-left"
                               type="button"
                               data-toggle="dropdown"
                               aria-haspopup="true"
@@ -306,6 +306,7 @@
                           >
                           <div>
                             <vue-timepicker
+                              close-on-complete
                               format="hh:mm A"
                               v-model="timeValue"
                               name="timeValue"
@@ -426,22 +427,33 @@
 
           <!-- Welcome Pop Up -->
           <div
-            class="customModal"
+            class="customModal d-flex flex-column m-auto w-100"
             id="welcomeModal"
-            v-show="isShowing && isShowQuote"
+            v-if="isShowing && isShowQuote"
           >
             <!-- quots -->
-            <section id="Welcome" class="">
-              <h4 class="mb-5">Welcome</h4>
-              <div class="quotes-section mb-4">
+            <section
+              id="Welcome"
+              class="
+                position-absolute
+                d-flex
+                flex-column
+                align-items-center
+                justify-content-center
+                text-center
+                w-100
+              "
+            >
+              <h4 class="mb-5 color-primary">Welcome</h4>
+              <div class="quotes-section mb-4 color-dark">
                 {{ quoteMessage }}
               </div>
-              <!-- <div class="auther-section mb-4">- A P J Abdul Kalam -</div> -->
+              <!-- <div class="auther-section color-secondary mb-4">- A P J Abdul Kalam -</div> -->
 
               <div class="skip-button-section">
                 <button
                   action=""
-                  class="skip-btn btn mt-4 mb-2 px-5"
+                  class="btn btn-primary px-4"
                   @click="isShowing = false"
                 >
                   <strong>Skip</strong>
@@ -1077,3 +1089,350 @@ export default {
   },
 };
 </script>
+
+
+<!-- <style>
+body {
+  background-color: #ffffff !important;
+}
+
+.student-dashboard-main {
+  min-height: 100vh;
+  margin: 0;
+}
+
+.jochi-sub-components-light-bg {
+  background-color: rgba(255, 255, 255, 0.45);
+  -webkit-box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 9%);
+  box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 9%);
+  border-radius: 22px;
+}
+
+.jochi-headings {
+  color: #ff6d6d;
+}
+
+.sd-sidebar {
+  height: 100%;
+}
+.sd-sidebar,
+.dashboard-main-content {
+  min-height: calc(100vh - 1.8rem);
+}
+
+.sb-btn-icon {
+  width: 30px;
+}
+
+.sb-btn-icon img {
+  width: 100%;
+}
+
+.sb-btn-head {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.sb-expand-btn {
+  cursor: pointer;
+}
+
+.sb-btn-content {
+  display: none;
+  padding-left: 4rem;
+  font-size: 14px;
+}
+
+.sb-btn-content.active {
+  display: block;
+}
+
+.sb-btn.active {
+  opacity: 0.6;
+}
+
+.display-picture-holder {
+  width: 80px;
+  height: 80px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.sb-user-name {
+  font-size: 26px;
+  color: #ff6d6d;
+  font-weight: 700;
+}
+
+.sb-settings-btn {
+  color: #b4b4b4;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.add-assignment-btn {
+  font-size: 12px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+.add-assignment-btn:hover {
+  font-size: 12px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+.notification-section {
+  cursor: pointer;
+}
+
+.notification-section svg {
+  fill: #b4b4b4;
+  width: 25px;
+  height: 25px;
+}
+
+.notification-count-section {
+  background-color: #ea2626;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  top: 3px;
+  right: 0;
+}
+
+.assignment-tag {
+  font-size: 10px;
+  padding: 2px 10px;
+  border-radius: 18px;
+  color: #ffffff;
+}
+
+.assignment-tag.red {
+  background-color: #ea2626;
+}
+
+.assignment-tag.pink {
+  background-color: #fb3e80;
+}
+
+.assignment-add-section h4 {
+  color: #000000;
+  font-weight: 700;
+}
+
+.assignment-add-section p {
+  color: #b4b4b4;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.sub-task-section h6 {
+  color: #e48194;
+}
+
+.sub-task-section label {
+  font-size: 12px;
+}
+
+.material-link {
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.material-date {
+  font-size: 10px;
+}
+
+.addition-material-section h6 {
+  color: #000000;
+}
+
+.form-control {
+  background-color: #b4b4b4;
+  border-block-color: #b4b4b4;
+  color: #ffffff;
+}
+
+.upload-file-section .form-control {
+  height: 18px;
+  font-size: 8px;
+  padding: 0;
+}
+
+.form-control::placeholder {
+  color: #ffffff;
+}
+
+.completed-assignments h4 {
+  font-weight: 700;
+}
+
+.completed-assignments h4.blue {
+  color: #9d00df;
+}
+
+.completed-assignments h4.green {
+  color: #1d9c00;
+}
+
+.completed-assignments p {
+  color: #c7c1c1;
+  font-size: 12px;
+}
+
+.add-person-section {
+  top: -5px;
+  display: flex;
+  right: 25px;
+}
+
+.ap-img-add,
+.ap-img-section {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.ap-img-add {
+  margin-left: -15px;
+  cursor: pointer;
+}
+
+.ap-img-section {
+  background-color: #ffffff;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border: none;
+}
+
+/* .fc-button.fc-button-primary {
+  display: none;
+} */
+
+.fc-theme-standard .fc-scrollgrid {
+  border: none;
+}
+
+.fc .fc-daygrid-day.fc-day-today,
+.fc .fc-timegrid-col.fc-day-today {
+  background-color: transparent;
+}
+
+.fc .fc-timegrid-slot-minor {
+  border-top: none;
+}
+
+/* .fc-media-screen .fc-timegrid-cols {
+  position: unset;
+} */
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+  text-align: center;
+  background-color: #c6c5c5;
+  color: #ffffff;
+  border-radius: 7px;
+  font-size: 12px;
+  position: relative;
+}
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame::after {
+  content: "";
+  background-color: #c6c5c5;
+  width: 100vw;
+  height: 1px;
+  position: absolute;
+  top: 8px;
+}
+
+/* .fc-scrollgrid-sync-table,
+.fc-scrollgrid-section.fc-scrollgrid-section-header {
+  display: none;
+} */
+
+.fc .fc-cell-shaded,
+.fc .fc-day-disabled {
+  background: none;
+}
+
+/* .fc-toolbar-chunk .fc-toolbar-title {
+  position: absolute;
+  left: 62px;
+  top: 78px;
+  font-size: 14px;
+} */
+
+/* .fc-view-harness.fc-view-harness-active {
+  height: 75vh !important;
+  margin-top: 20px;
+} */
+
+.fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar {
+  width: 3px;
+}
+
+.fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-track {
+  background: none;
+}
+
+.fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-thumb {
+  background: #ff6d6d;
+}
+
+.fc-timegrid-event-harness > .fc-timegrid-event {
+  left: 15px;
+}
+
+.fc-v-event {
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 15%) !important;
+  box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 15%) !important;
+  border-radius: 22px;
+  border: none;
+  padding: 15px 20px;
+}
+
+.fc-v-event .fc-event-main {
+  color: #000000;
+}
+
+.jochi-components-light-bg.pending-assignment-popup {
+  top: 12px;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  background-color: #ffffff;
+  transform: scale(0);
+  transition: transform 1s ease;
+}
+
+.jochi-components-light-bg.pending-assignment-popup.active {
+  transform: scale(1);
+  transition: transform 1s ease;
+}
+
+.add-sub-task-btn {
+  width: 20px;
+  height: 20px;
+  background-color: #ea2626;
+  color: #ffffff;
+  border-radius: 50%;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pending-popup-close-btn {
+  color: #ea2626;
+  font-size: 32px;
+  font-weight: 900;
+}
+</style> -->

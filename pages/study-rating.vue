@@ -86,10 +86,10 @@
               </a>
               <ul class="collapse inner-custom-list ml-4 p-2" id="Club-subMenu">
                 <li>
-                  <a href="">My Clubs</a>
+                  <a href="">Existing</a>
                 </li>
                 <li>
-                  <a href="">Clubs Catalog</a>
+                  <a href="">Catalog</a>
                 </li>
               </ul>
             </li>
@@ -134,10 +134,10 @@
                   <h4>Rate your session</h4>
                 </div>
               </div>
-              <div class="row inner-row container">
+              <div class="row inner-row mt-0 container">
                 <div class="col-md-4">
                   <div class="inner-col p-2">
-                    <h6 class="py-2">Focus</h6>
+                    <h6 class="py-2 color-dark font-semi-bold">Focus</h6>
                     <i class="fa fa-star star-icon" aria-hidden="true"></i>
                     <i class="fa fa-star star-icon" aria-hidden="true"></i>
                     <i class="fa fa-star star-icon" aria-hidden="true"></i>
@@ -147,7 +147,7 @@
                 </div>
                 <div class="col-md-4">
                   <div class="inner-col p-2">
-                    <h6 class="py-2">Efficiency</h6>
+                    <h6 class="py-2 color-dark font-semi-bold">Efficiency</h6>
                     <i class="fa fa-star star-icon" aria-hidden="true"></i>
                     <i class="fa fa-star star-icon" aria-hidden="true"></i>
                     <i class="fa fa-star star-icon" aria-hidden="true"></i>
@@ -157,12 +157,12 @@
                 </div>
                 <div class="col-md-4">
                   <div class="inner-col p-2">
-                    <h6 class="py-2">Work Complete</h6>
+                    <h6 class="py-2 color-dark font-semi-bold">Work Complete</h6>
                     <i class="fa fa-star star-icon" aria-hidden="true"></i>
                     <i class="fa fa-star star-icon" aria-hidden="true"></i>
                     <i class="fa fa-star star-icon" aria-hidden="true"></i>
                     <i class="fa fa-star-o star-icon" aria-hidden="true"></i>
-                    <p class="total-value py-2">3.0<sub>/4</sub></p>
+                    <p class="total-value py-2 ">3.0<sub>/4</sub></p>
                   </div>
                 </div>
               </div>

@@ -1,8 +1,18 @@
 <template>
-  <div class="container-fluid main-container" data-app>
+  <div class="w-100 main-container register" data-app>
     <!-- <div class="text-center" v-if="loading && loadingMessage">
       {{ loadingMessage }}
     </div> -->
+    <img
+      src="../static/image/login-bg.jpg"
+      alt=""
+      class="bg-img d-none d-md-block"
+    />
+    <img
+      src="../static/image/login-bg-rotate.jpg"
+      alt=""
+      class="bg-img d-block d-md-none"
+    />
 
     <lottie
       v-if="loading"
@@ -29,135 +39,224 @@
       <div id="fountainTextG_3" class="fountainTextG animation">. &nbsp;</div>
       <div id="fountainTextG_4" class="fountainTextG animation">. &nbsp;</div>
     </div>
-    <div class="row main-row">
-      <div class="col-md-6 img-section">
+    <div class="row main-row flex-row vh-100 m-0">
+      <div
+        class="
+          col-md-6
+          img-section
+          login-cover
+          d-flex
+          flex-column
+          align-items-center
+          justify-content-between
+          h-md-100
+          flex-fill
+        "
+      >
+        <div class="logo-img d-flex align-items-center w-100">
+          <img src="../static/image/logo.png" alt="" class="logo-icon" />
+        </div>
         <img
-          src="~/assets/images/undraw/Undraw_signUp.png"
+          src="../static/image/login-img.png"
           alt="undraw"
-          class="img-responsive"
+          class="img-responsive jump"
         />
+        <p class="mb-0 color-white text-16 font-regular">
+          FAQ's | Privacy Policy
+        </p>
       </div>
-      <div class="col-md-5 col-lg-4 form-section">
+      <div
+        class="
+          col-md-6
+          form-section
+          d-flex
+          align-items-center
+          justify-content-center
+          h-md-100
+        "
+      >
         <!-- Sign-Up -->
 
-        <section id="sign-up" class="">
-          <h1 class="heading mb-5">Sign up</h1>
-          <form action="" class="sign-in" @submit.prevent="GetSignUp">
-            <div class="row mb-3">
-              <div class="col-12">
-                <div class="form-row m-0">
-                  <label class="form-label" for="name">Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="name"
-                    :class="{ 'is-invalid': submitted && $v.name.$error }"
-                    placeholder="Enter Name"
-                    maxlength="150"
-                  />
-                  <div
-                    v-if="submitted && $v.name.$error"
-                    class="invalid-feedback"
-                  >
-                    <span v-if="!$v.name.required">This field is required</span>
+        <section
+          id="sign-up"
+          class="login-box d-flex flex-column h-100 justify-content-between"
+        >
+          <div class="d-flex flex-column h-100 justify-content-center p-3">
+            <div
+              class="
+                card
+                rounded-22
+                p-5
+                d-flex
+                flex-column
+                justify-content-center
+                align-items-center
+              "
+            >
+              <img
+                src="../static/image/school_passport.png"
+                alt=""
+                class="mb-4 passport-img py-4"
+              />
+              <button class="btn btn-primary font-semi-bold px-5">
+                <a class="btn p-0 color-white"
+                  href="https://sso.gg4l.com/oauth/auth?response_type=code&client_id=PTRQTIBSJC&redirect_uri=https://jochi.devateam.com/redirect-login"
+                >
+                  Sign in with School Passport
+                </a>
+              </button>
+              <!-- <form action="" class="sign-in" @submit.prevent="GetSignUp">
+                <div class="row mb-3">
+                  <div class="col-12">
+                    <div class="form-row m-0">
+                      <label class="form-label" for="name">Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        v-model="name"
+                        :class="{ 'is-invalid': submitted && $v.name.$error }"
+                        placeholder="Enter Name"
+                        maxlength="150"
+                      />
+                      <div
+                        v-if="submitted && $v.name.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.name.required">This field is required</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-12">
-                <div class="form-row m-0">
-                  <label class="form-label" for="email">Email</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    v-model="Email"
-                    :class="{ 'is-invalid': submitted && $v.Email.$error }"
-                    placeholder="Enter Email"
-                    maxlength="320"
-                  />
-                  <div
-                    v-if="submitted && $v.Email.$error"
-                    class="invalid-feedback"
-                  >
-                    <span v-if="!$v.Email.required"
-                      >This field is required</span
-                    >
-                    <span v-if="!$v.Email.email">Email is invalid</span>
+                <div class="row mb-3">
+                  <div class="col-12">
+                    <div class="form-row m-0">
+                      <label class="form-label" for="email">Email</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        v-model="Email"
+                        :class="{ 'is-invalid': submitted && $v.Email.$error }"
+                        placeholder="Enter Email"
+                        maxlength="320"
+                      />
+                      <div
+                        v-if="submitted && $v.Email.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.Email.required"
+                          >This field is required</span
+                        >
+                        <span v-if="!$v.Email.email">Email is invalid</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-12">
-                <div class="form-row m-0 flex-column">
-                  <label for="state" class="form-label">School </label>
-                  <multiselect
-                    v-model="value"
-                    :options="schools"
-                    track-by="name"
-                    label="name"
-                    placeholder="Select your school"
-                    @input="SchoolSelection"
-                    :class="{ 'is-invalid': submitted && $v.value.$error }"
-                  >
-                    <span slot="noResult">No data found</span>
-                  </multiselect>
-                  <div
-                    v-if="submitted && $v.value.$error"
-                    class="invalid-feedback"
-                  >
-                    <span v-if="!$v.value.required"
-                      >This field is required</span
-                    >
+                <div class="row mb-3">
+                  <div class="col-12">
+                    <div class="form-row m-0 flex-column">
+                      <label for="state" class="form-label">School </label>
+                      <multiselect
+                        v-model="value"
+                        :options="schools"
+                        track-by="name"
+                        label="name"
+                        placeholder="Select your school"
+                        @input="SchoolSelection"
+                        :class="{ 'is-invalid': submitted && $v.value.$error }"
+                      >
+                        <span slot="noResult">No data found</span>
+                      </multiselect>
+                      <div
+                        v-if="submitted && $v.value.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.value.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-12">
-                <!-- student pwd -->
-
-                <div class="form-row m-0">
-                  <label class="form-label" for="Password">Student ID</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter your ID"
-                    v-model="studentId"
-                    :class="{
-                      'is-invalid': submitted && $v.studentId.$error,
-                    }"
-                  /><br />
-                  <div
-                    v-if="submitted && $v.studentId.$error"
-                    class="invalid-feedback"
-                  >
-                    <span v-if="!$v.studentId.required"
-                      >This field is required</span
-                    >
+                <div class="row mb-3">
+                  <div class="col-12">
+  
+                    <div class="form-row m-0">
+                      <label class="form-label" for="Password">Student ID</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter your ID"
+                        v-model="studentId"
+                        :class="{
+                          'is-invalid': submitted && $v.studentId.$error,
+                        }"
+                      /><br />
+                      <div
+                        v-if="submitted && $v.studentId.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.studentId.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 my-4">
+                        <span>Already have an account? </span
+                        ><span
+                          ><nuxt-link to="/" class="btn-link"
+                            >Sign in</nuxt-link
+                          ></span
+                        >
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-12 my-4">
-                    <span>Already have an account? </span
-                    ><span
-                      ><nuxt-link to="/" class="btn-link"
-                        >Sign in</nuxt-link
-                      ></span
-                    >
+                <div class="row mb-2 mt-4">
+                  <div class="col-12 signin-button-section">
+                    <button action="" class="signin" :disabled="processing">
+                      <strong>Sign Up</strong>
+                    </button>
                   </div>
                 </div>
-              </div>
+              </form> -->
             </div>
-            <div class="row mb-2 mt-4">
-              <div class="col-12 signin-button-section">
-                <button action="" class="signin" :disabled="processing">
-                  <strong>Sign Up</strong>
-                </button>
-              </div>
+            <div
+              class="
+                login-icon-area
+                d-flex
+                align-items-center
+                justify-content-between
+                p-4
+              "
+            >
+              <a class="btn" href=""
+                ><img
+                  src="../static/image/social-icon/Instagram logo.png"
+                  alt=""
+              /></a>
+              <a class="btn" href=""
+                ><img src="../static/image/social-icon/Twitter Png.png" alt=""
+              /></a>
+              <a class="btn" href=""
+                ><img src="../static/image/social-icon/TikTok Logo.png" alt=""
+              /></a>
+              <a class="btn" href=""
+                ><img src="../static/image/social-icon/Spotify Logo.png" alt=""
+              /></a>
+              <a class="btn" href=""
+                ><img src="../static/image/social-icon/YouTube Png.png" alt=""
+              /></a>
             </div>
-          </form>
+          </div>
+          <div class="d-flex flex-column justify-content-center">
+            <a href="" class="text-center color-secondary font-regular text-16"
+              >www.jochi.info</a
+            >
+            <a href="" class="text-center color-secondary font-regular text-16">
+              contact@jochi.info</a
+            >
+          </div>
         </section>
       </div>
     </div>

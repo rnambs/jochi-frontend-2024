@@ -67,7 +67,7 @@
                     <div class="row">
                       <div class="col-6">
                         <div class="inner-info-head mb-3">
-                          <h6>To do!</h6>
+                          <h6>To-do's!</h6>
                         </div>
                         <div class="form-group">
                           <ul>
@@ -98,7 +98,7 @@
                       </div>
                       <div class="col-6" v-if="enableEdit">
                         <div class="inner-info-head mb-3">
-                          <h6>Add Todo</h6>
+                          <h6>Add To-do's</h6>
                         </div>
                         <div class="form-row m-0">
                           <input
@@ -182,7 +182,7 @@
                     </div>
                     <button
                       v-if="enableEdit"
-                      class="btn btn-info-edit mt-2"
+                      class="btn btn-primary rounded-pill mt-2 py-1 px-4"
                       :disabled="!value"
                       @click.prevent="UpdateTime"
                     >

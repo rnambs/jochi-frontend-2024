@@ -1,12 +1,12 @@
 <template>
-  <div class="container-fluid main-container">
+  <div class="container-fluid main-container jochi-main-bg-light">
     <lottie
       v-if="loading"
       :options="lottieOptions"
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     />
-    <div class="row main-row">
+    <div class="row main-row d-flex align-items-center flex-row vh-100">
       <div class="col-md-6 img-section">
         <img
           src="~/assets/images/undraw/Undraw.png"
@@ -16,89 +16,94 @@
       </div>
       <div class="col-md-5 col-lg-4 form-section" v-if="!isLoggedIn">
         <h1 class="heading mb-5">Sign in</h1>
-        <form action="" class="sign-in" @submit.prevent="GetSignIn">
-          <div class="row mb-3">
-            <div class="col-12">
-              <div class="form-row m-0">
-                <label class="form-label" for="username">Email Address</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  v-model="Email"
-                  :class="{ 'is-invalid': submitted && $v.Email.$error }"
-                  maxlength="320"
-                />
-                <div
-                  v-if="submitted && $v.Email.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.Email.required">Email is required</span>
-                  <span v-if="!$v.Email.email">Email is invalid</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-2">
-            <div class="col-12">
-              <div class="form-row m-0">
-                <div class="d-flex w-100 justify-content-between">
-                  <label class="form-label" for="Password">Password</label>
-                  <nuxt-link class="btn-link" to="/forgot-password"
-                    >Forgot Password?</nuxt-link
-                  >
-                </div>
-                <div class="password-eye position-relative w-100">
+        <div class="jochi-components-light-bg p-5">
+          <form action="" class="sign-in" @submit.prevent="GetSignIn">
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="form-row m-0">
+                  <label class="form-label" for="username">Email Address</label>
                   <input
-                    :type="passwordFieldType"
+                    type="text"
                     class="form-control"
-                    v-model="password"
-                    :class="{ 'is-invalid': submitted && $v.password.$error }"
+                    v-model="Email"
+                    :class="{ 'is-invalid': submitted && $v.Email.$error }"
+                    maxlength="320"
                   />
-                  <span
-                    :class="passwordFieldType"
-                    type="password"
-                    id="eyeSpan"
-                    @click="toggleVisiblity()"
+                  <div
+                    v-if="submitted && $v.Email.$error"
+                    class="invalid-feedback"
                   >
-                    <i class="eye-icon"></i>
-                  </span>
-                </div>
-                <br />
-                <div
-                  v-if="submitted && $v.password.$error"
-                  class="invalid-feedback"
-                >
-                  <span v-if="!$v.password.required">Password is required</span>
-                  <!-- <span v-if="!$v.password.minLength"
-                    >Password must be at least 8 characters</span
-                  > -->
+                    <span v-if="!$v.Email.required">Email is required</span>
+                    <span v-if="!$v.Email.email">Email is invalid</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-12 my-4">
-              <span>Don't have an account? </span
-              ><span
-                ><nuxt-link to="/student-signup" class="btn-link"
-                  >Sign up</nuxt-link
-                ></span
-              >
+            <div class="row mb-2">
+              <div class="col-12">
+                <div class="form-row m-0">
+                  <div class="d-flex w-100 justify-content-between">
+                    <label class="form-label" for="Password">Password</label>
+                    <nuxt-link class="btn-link" to="/forgot-password"
+                      >Forgot Password?</nuxt-link
+                    >
+                  </div>
+                  <div class="password-eye position-relative w-100">
+                    <input
+                      :type="passwordFieldType"
+                      class="form-control"
+                      v-model="password"
+                      :class="{ 'is-invalid': submitted && $v.password.$error }"
+                    />
+                    <span
+                      :class="passwordFieldType"
+                      type="password"
+                      id="eyeSpan"
+                      @click="toggleVisiblity()"
+                      class="cursor-pointer"
+                    >
+                      <i class="eye-icon"></i>
+                    </span>
+                  </div>
+                  <br />
+                  <div
+                    v-if="submitted && $v.password.$error"
+                    class="invalid-feedback"
+                  >
+                    <span v-if="!$v.password.required"
+                      >Password is required</span
+                    >
+                    <!-- <span v-if="!$v.password.minLength"
+                      >Password must be at least 8 characters</span
+                    > -->
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="row my-3">
-            <div class="col-12 signin-button-section">
-              <button
-                type="submit"
-                action=""
-                class="signin"
-                :disabled="processing"
-              >
-                <strong>Sign In</strong>
-              </button>
+            <div class="row">
+              <div class="col-12 my-4">
+                <span>Don't have an account? </span
+                ><span
+                  ><nuxt-link to="/student-signup" class="btn-link"
+                    >Sign up</nuxt-link
+                  ></span
+                >
+              </div>
             </div>
-          </div>
-        </form>
+            <div class="row my-3">
+              <div class="col-12 signin-button-section">
+                <button
+                  type="submit"
+                  action=""
+                  class="signin"
+                  :disabled="processing"
+                >
+                  <strong>Sign In</strong>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -131,6 +136,8 @@ export default {
       isLoggedIn: false,
       currentToken: "",
       passwordFieldType: "password",
+      code: this.$route.query.code,
+      stateResp: this.$route.query.state,
     };
   },
   validations: {
@@ -139,6 +146,10 @@ export default {
     password: { required },
   },
   mounted() {
+    if (this.code && this.stateResp) {
+      this.redirectToPassport();
+    }
+
     this.getTokenDevice();
 
     if (localStorage.getItem("email")) {
@@ -165,6 +176,7 @@ export default {
   methods: {
     ...mapActions("studentSignIn", {
       getSignIn: "getSignIn",
+      passportRedirect: "passportRedirect",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -203,6 +215,28 @@ export default {
       this.$fire.messaging.onMessage((payload) => {
         console.info("Message received: ", payload);
       });
+    },
+    async redirectToPassport() {
+      this.loading = true;
+      await this.passportRedirect({
+        code: this.code,
+        state: this.stateResp,
+      });
+      this.loading = false;
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+      }
+      if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
     },
   },
 };

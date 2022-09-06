@@ -1,98 +1,10 @@
 <template>
   <section id="header" class="">
-    <div class="header-section fixed-top">
-      <span class="menu-bar-icon" v-on:click="clickableIcon()"
+    <div class="header-section position-fixed top-0 position-relative">
+      <!-- <span class="menu-bar-icon" v-on:click="clickableIcon()"
         ><i class="fas fa-bars"></i
-      ></span>
+      ></span> -->
       <!-- <h5 class="mr-3 mb-0 mt-0 text-light">{{ firstName }}</h5> -->
-      <div class="user-icon mr-3">
-        <div class="dropdown">
-          <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-            <i class="fas fa-cog"></i>
-          </a>
-          <div class="dropdown-menu">
-            <!-- <a class="dropdown-item" href="#">Reset Password</a> -->
-            <nuxt-link to="/user-reset-password" class="dropdown-item">
-              <span>Reset Password</span>
-            </nuxt-link>
-            <a class="dropdown-item" href="#" @click="GetLogout()">Logout</a>
-          </div>
-        </div>
-      </div>
-      <div class="user-icon mr-3">
-        <div class="dropdown">
-          <a
-            class="dropdown-toggle position-relative p-2"
-            href="#"
-            data-toggle="dropdown"
-          >
-            <i class="fas fa-bell"></i>
-            <span v-if="notificationCount > 0" class="notify-span">{{
-              notificationCount
-            }}</span>
-          </a>
-          <div class="dropdown-menu notify">
-            <!-- notification -->
-            <div
-              class="notifications dropdown-item px-2"
-              v-if="notificationList && notificationList.length > 0"
-            >
-              <div
-                class="
-                  d-flex
-                  justify-content-between
-                  align-items-center
-                  px-3
-                  mt-2
-                  mb-3
-                "
-              >
-                <h5 class="notify-head">Notificaitons</h5>
-                <button
-                  class="btn btn-sm notify-btn mb-3"
-                  @click="clearNotifications()"
-                >
-                  Clear all
-                </button>
-              </div>
-              <div class="notification-text px-3">
-                <p
-                  :class="
-                    data.isViewed
-                      ? 'unread d-flex flex-column p-3'
-                      : 'read d-flex flex-column p-3'
-                  "
-                  v-for="(data, index) in notificationList"
-                  :key="index"
-                  @click="onNotificationClick(data.id, data.title)"
-                >
-                  <span class="notify-text">{{ data.message }}</span>
-                  <span class="notify-time d-flex justify-content-end">{{
-                    data.timestamp
-                  }}</span>
-                </p>
-              </div>
-            </div>
-            <div
-              class="notifications dropdown-item px-2 no-notify"
-              v-if="!notificationList || notificationList.length == 0"
-            >
-              No notifications to display
-            </div>
-            <!-- notification End -->
-          </div>
-        </div>
-      </div>
-      <nuxt-link to="/user-profile" class="pr-4">
-        <img
-          v-bind:src="profile && profile != 'null' ? profile : defaultImage"
-          class="rounded-circle img-profile"
-          alt=""
-          id="profileImage"
-        />
-        <!-- <img v-else src="../../assets/images/avatar/man_green.svg" class="rounded-circle img-profile" alt="" > -->
-      </nuxt-link>
-
       <!-- Student Sidebar -->
       <div
         class="
@@ -100,11 +12,15 @@
           col-sm-4 col-md-5 col-lg-6
           d-flex
           justify-content-between
+          jochi-components-light-bg
+          p-3 p-lg-4
+          position-fixed
+          flex-column
         "
         id="clickableId"
       >
-        <div>
-          <div class="logo-section mt-3 p-2">
+        <div class="d-flex flex-column h-40 flex-fill">
+          <!-- <div class="logo-section mt-3 p-2">
             <a href="">
               <div
                 class="
@@ -127,9 +43,188 @@
                 class="icon-logo"
               />
             </a>
-          </div>
+          </div> -->
           <div class="position-relative profile-sidebar">
-            <div class="sidebar-profile p-2 d-flex align-items-center">
+            <div
+              class="
+                user-icon
+                d-flex
+                flex-column flex-lg-row
+                notification-icon-section
+                align-items-center
+                justify-content-end
+                position-md-absolute
+                mb-3 mb-lg-0
+              "
+            >
+              <nuxt-link to="/student-dashboard" class="nav-link btn p-0 mb-2">
+                <img
+                  src="../../static/image/Jochi Icons/home_hires.png"
+                  alt=""
+                  class="dark-icon"
+              /></nuxt-link>
+
+              <div class="dropdown mb-2">
+                <a
+                  class="dropdown-toggle position-relative p-2"
+                  href="#"
+                  data-toggle="dropdown"
+                >
+                  <img
+                    src="../../static/image/Jochi Icons/bell_hires.png"
+                    alt=""
+                    class="dark-icon"
+                  />
+                  <span v-if="notificationCount > 0" class="notify-span">{{
+                    notificationCount
+                  }}</span>
+                </a>
+                <div class="dropdown-menu notify border-0">
+                  <!-- notification -->
+                  <div
+                    class="notifications dropdown-item px-2"
+                    v-if="notificationList && notificationList.length > 0"
+                  >
+                    <div
+                      class="
+                        d-flex
+                        justify-content-between
+                        align-items-center
+                        px-3
+                        my-2
+                      "
+                    >
+                      <h5 class="color-primary font-semi-bold mb-0">
+                        Notifications
+                      </h5>
+                      <button
+                        class="color-dark font-semi-bold text-18"
+                        @click="clearNotifications()"
+                      >
+                        Clear all
+                      </button>
+                    </div>
+                    <div class="notification-text px-3 py-1 hidden-scroll">
+                      <!-- :class="
+                          data.isViewed
+                            ? 'unread d-flex flex-column p-3 card card-primary-sm bg-white rounded-22 my-3 cursor-pointer'
+                            : 'read d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer'
+                        " -->
+                      <div
+                        class="
+                          d-flex
+                          flex-column
+                          p-3
+                          card card-void
+                          rounded-22
+                          my-3
+                          cursor-pointer
+                        "
+                        v-for="(data, index) in notificationList"
+                        :key="index"
+                        @click="onNotificationClick(data.id, data.title)"
+                      >
+                        <p
+                          class="
+                            color-dark
+                            font-semi-bold
+                            text-14 text-wrap
+                            mb-0
+                          "
+                        >
+                          {{ data.message }}
+                        </p>
+                        <p
+                          class="
+                            color-secondary
+                            text-12
+                            font-regulat
+                            mb-0
+                            d-flex
+                            justify-content-end
+                            align-items-center
+                          "
+                        >
+                          <span class="mr-2">{{ data.timestamp }}</span>
+
+                          <span
+                            :class="
+                              data.isViewed
+                                ? 'unread bg-transparent '
+                                : 'read bg-primary d-block notify-span-icon rounded-circle'
+                            "
+                          >
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="notifications dropdown-item px-2 no-notify"
+                    v-if="!notificationList || notificationList.length == 0"
+                  >
+                    No notifications to display
+                  </div>
+                  <!-- notification End -->
+                </div>
+              </div>
+            </div>
+            <nuxt-link
+              to="/user-profile"
+              class="
+                pr-0 pr-lg-4
+                d-flex
+                flex-column
+                align-items-center align-items-lg-start
+              "
+            >
+              <img
+                v-bind:src="
+                  profile && profile != 'null' ? profile : defaultImage
+                "
+                class="rounded-circle img-profile mb-2"
+                alt=""
+                id="profileImage"
+              />
+              <!-- <img v-else src="../../assets/images/avatar/man_green.svg" class="rounded-circle img-profile" alt="" > -->
+              <div
+                class="
+                  d-flex
+                  flex-column flex-lg-row
+                  align-items-center
+                  justify-cotent-center
+                "
+              >
+                <h4
+                  class="
+                    color-primary
+                    mb-0
+                    font-semi-bold
+                    text-18 text-center text-lg-left
+                    word-break
+                  "
+                >
+                  {{ firstName }}
+                </h4>
+              </div>
+            </nuxt-link>
+
+            <!-- <div class="user-icon mr-3 settings-icon-section position-absolute">
+              <div class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                  <p>Settings</p>
+                </a>
+                <div class="dropdown-menu">
+                  <nuxt-link to="/user-reset-password" class="dropdown-item">
+                    <span>Reset Password</span>
+                  </nuxt-link>
+                  <a class="dropdown-item" href="#" @click="GetLogout()"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div> -->
+            <!-- <div class="sidebar-profile p-2 d-flex align-items-center">
               <img
                 v-bind:src="
                   profile && profile != 'null' ? profile : defaultImage
@@ -142,15 +237,42 @@
                 <p class="wish-text mb-1">Hello,</p>
                 <p class="profile-name mb-0">{{ firstName }}</p>
               </div>
-            </div>
+            </div> -->
           </div>
-          <div class="menu-items py-4">
+          <div
+            class="
+              menu-items
+              position-relative
+              py-4
+              custom-scroll-for-side-menus
+              d-flex
+              flex-column flex-fill
+              h-40
+            "
+          >
             <div class="accordion" id="accordionExample">
-              <div class="card mb-2">
-                <div class="card-header p-1" id="headingOne">
-                  <h2 class="mb-0">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div
+                  class="card-header bg-transparent border-0 p-1"
+                  id="headingOne"
+                >
+                  <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link btn-block text-left collapsed"
+                      class="
+                        btn btn-link
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        bg-transparent
+                        text-decoration-none text-18
+                        color-secondary
+                        btn-block
+                        text-left
+                        collapsed
+                        flex-fill
+                        px-0
+                        py-2 py-lg-2
+                      "
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -159,12 +281,19 @@
                       aria-controls="collapseOne"
                     >
                       <div class="font-icon d-inline-block">
-                        <i class="fas fa-calendar-alt"></i>
+                        <img
+                          src="../../static/image/Calendar.png"
+                          alt=""
+                          class="planner"
+                        />
                       </div>
-                      <span class="ml-2">Planner</span>
-                      <i class="fas fa-chevron-right"></i>
+                      <span
+                        class="ml-3 color-secondary text-capitalize font-medium"
+                        >Planner</span
+                      >
+                      <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
-                  </h2>
+                  </div>
                 </div>
                 <div
                   id="collapseOne"
@@ -173,8 +302,8 @@
                   data-parent="#accordionExample"
                 >
                   <div class="card-body py-0">
-                    <ul class="inner-custom-list ml-4">
-                      <li class="nav-item">
+                    <ul class="inner-custom-list ml-4 mb-2">
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
                         <nuxt-link
                           to="/planner-day"
                           @click="$event.target.classList.toggle('active')"
@@ -182,7 +311,7 @@
                           >Daily</nuxt-link
                         >
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
                         <nuxt-link
                           to="/planner-week"
                           @click="$event.target.classList.toggle('active')"
@@ -190,7 +319,7 @@
                           >Weekly</nuxt-link
                         >
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
                         <nuxt-link
                           to="/planner-month"
                           @click="$event.target.classList.toggle('active')"
@@ -202,11 +331,28 @@
                   </div>
                 </div>
               </div>
-              <div class="card mb-2">
-                <div class="card-header p-1" id="headingTwo">
-                  <h2 class="mb-0">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div
+                  class="card-header bg-transparent border-0 p-1"
+                  id="headingTwo"
+                >
+                  <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link btn-block text-left collapsed"
+                      class="
+                        btn btn-link
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        bg-transparent
+                        text-decoration-none text-18
+                        color-secondary
+                        btn-block
+                        text-left
+                        collapsed
+                        flex-fill
+                        px-0
+                        py-2 py-lg-2
+                      "
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -215,12 +361,19 @@
                       aria-controls="collapseTwo"
                     >
                       <div class="font-icon d-inline-block">
-                        <i class="fas fa-user-friends"></i>
+                        <img
+                          src="../../static/image/Call.png"
+                          alt=""
+                          class="meetings"
+                        />
                       </div>
-                      <span class="ml-2">Meeting</span>
-                      <i class="fas fa-chevron-right"></i>
+                      <span
+                        class="ml-3 color-secondary text-capitalize font-medium"
+                        >Meeting</span
+                      >
+                      <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
-                  </h2>
+                  </div>
                 </div>
                 <div
                   id="collapseTwo"
@@ -229,24 +382,24 @@
                   data-parent="#accordionExample"
                 >
                   <div class="card-body py-0">
-                    <ul class="inner-custom-list ml-4">
-                      <li class="nav-item">
+                    <ul class="inner-custom-list ml-4 mb-2">
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
                         <nuxt-link
                           to="/teacher-meeting"
                           @click="$event.target.classList.toggle('active')"
-                          class="nav-link"
-                          >Teacher</nuxt-link
+                          class="nav-link text-nowrap"
+                          >Schedule</nuxt-link
                         >
                       </li>
-                      <li class="nav-item">
+                      <!-- <li class="nav-item">
                         <nuxt-link
                           to="/peer-meeting"
                           @click="$event.target.classList.toggle('active')"
                           class="nav-link"
                           >Peer</nuxt-link
                         >
-                      </li>
-                      <li class="nav-item">
+                      </li> -->
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
                         <nuxt-link
                           to="/viewall-meeting"
                           @click="$event.target.classList.toggle('active')"
@@ -258,11 +411,28 @@
                   </div>
                 </div>
               </div>
-              <div class="card mb-2">
-                <div class="card-header p-1" id="headingThree">
-                  <h2 class="mb-0">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div
+                  class="card-header bg-transparent border-0 p-1"
+                  id="headingThree"
+                >
+                  <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link btn-block text-left collapsed"
+                      class="
+                        btn btn-link
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        bg-transparent
+                        text-decoration-none text-18
+                        color-secondary
+                        btn-block
+                        text-left
+                        collapsed
+                        flex-fill
+                        px-0
+                        py-2 py-lg-2
+                      "
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -272,15 +442,18 @@
                     >
                       <div class="font-icon d-inline-block">
                         <img
-                          src="~/assets/images/Icon/club-icon.png"
-                          class="image-i"
+                          src="../../static/image/Football.png"
                           alt=""
+                          class="teams-clubs"
                         />
                       </div>
-                      <span class="ml-2">Clubs</span>
-                      <i class="fas fa-chevron-right"></i>
+                      <span
+                        class="ml-3 color-secondary text-capitalize font-medium"
+                        >Extracurriculars</span
+                      >
+                      <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
-                  </h2>
+                  </div>
                 </div>
                 <div
                   id="collapseThree"
@@ -289,26 +462,44 @@
                   data-parent="#accordionExample"
                 >
                   <div class="card-body py-0">
-                    <ul class="inner-custom-list ml-4">
-                      <li class="nav-item">
+                    <ul class="inner-custom-list ml-4 mb-2">
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
                         <nuxt-link to="/club-detail" class="nav-link"
-                          >My Clubs</nuxt-link
+                          >Existing</nuxt-link
                         >
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
                         <nuxt-link to="/club-catalogue" class="nav-link"
-                          >Clubs Catalog</nuxt-link
+                          >Catalog</nuxt-link
                         >
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="card mb-2">
-                <div class="card-header p-1" id="headingFour">
-                  <h2 class="mb-0">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div
+                  class="card-header bg-transparent border-0 p-1"
+                  id="headingFour"
+                >
+                  <div class="mb-0 d-flex">
                     <button
-                      class="btn btn-link btn-block text-left collapsed"
+                      class="
+                        btn btn-link
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        bg-transparent
+                        text-decoration-none text-18
+                        color-secondary
+                        btn-block
+                        text-left
+                        collapsed
+                        flex-fill
+                        px-0
+                        pt-0 pt-lg-0
+                        pb-2 pb-lg-2
+                      "
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -317,12 +508,19 @@
                       aria-controls="collapseFour"
                     >
                       <div class="font-icon d-inline-block">
-                        <i class="fas fa-book-open"></i>
+                        <img
+                          src="../../static/image/Lot_of_book.png"
+                          alt=""
+                          class="study-room"
+                        />
                       </div>
-                      <span class="ml-2">Study</span>
-                      <i class="fas fa-chevron-right"></i>
+                      <span
+                        class="ml-3 color-secondary text-capitalize font-medium"
+                        >Study Room</span
+                      >
+                      <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
-                  </h2>
+                  </div>
                 </div>
                 <div
                   id="collapseFour"
@@ -331,15 +529,17 @@
                   data-parent="#accordionExample"
                 >
                   <div class="card-body py-0">
-                    <ul class="inner-custom-list ml-4">
-                      <li class="nav-item">
+                    <ul class="inner-custom-list ml-4 mb-2">
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
                         <nuxt-link to="/study-time" class="nav-link"
-                          >Study Room</nuxt-link
+                          >Session</nuxt-link
                         >
                       </li>
-                      <li class="nav-item">
-                        <nuxt-link to="/study-analytics" class="nav-link"
-                          >My Sessions</nuxt-link
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
+                        <nuxt-link
+                          to="/study-analytics"
+                          class="nav-link text-nowrap"
+                          >Analytics</nuxt-link
                         >
                       </li>
                     </ul>
@@ -350,14 +550,14 @@
           </div>
         </div>
         <div>
-          <div class="menu-items py-0">
+          <!-- <div class="menu-items  position-relative py-0">
             <div class="accordion" id="accordionExample">
-              <div class="card mb-2">
-                <div class="card-header p-1" id="headingOne">
-                  <h2 class="mb-0">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div class="card-header bg-transparent border-0 p-1" id="headingOne">
+                  <div class="mb-0 d-flex">
                     <button
                       class="
-                        btn btn-link btn-block
+                        btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block px-0
                         text-left
                         collapsed
                         justify-content-start
@@ -376,23 +576,23 @@
                         <div class="font-icon d-inline-block">
                           <i class="fas fa-comments"></i>
                         </div>
-                        <span class="ml-2">FAQ</span>
-                      </div>
-                      <!-- <a href="https://www.jochi.info/faqs">FAQ</a> -->
-                    </button>
-                  </h2>
+                        <span class="ml-3 color-secondary text-capitalize font-medium">FAQ</span>
+                      </div> -->
+          <!-- <a href="https://www.jochi.info/faqs">FAQ</a> -->
+          <!--</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="menu-items py-0">
+          </div> -->
+          <!-- <div class="menu-items  position-relative py-0">
             <div class="accordion" id="accordionExample">
-              <div class="card mb-2">
-                <div class="card-header p-1" id="headingOne">
-                  <h2 class="mb-0">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div class="card-header bg-transparent border-0 p-1" id="headingOne">
+                  <div class="mb-0 d-flex">
                     <button
                       class="
-                        btn btn-link btn-block
+                        btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block px-0
                         text-left
                         collapsed
                         justify-content-start
@@ -408,10 +608,68 @@
                         <div class="font-icon d-inline-block">
                           <i class="fas fa-shield-alt"></i>
                         </div>
-                        <span class="ml-2">Privacy Policy</span>
+                        <span class="ml-3 color-secondary text-capitalize font-medium">Privacy Policy</span>
                       </nuxt-link>
                     </button>
-                  </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <div class="menu-items position-relative py-0">
+            <div class="accordion" id="accordionExample">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div
+                  class="card-header bg-transparent border-0 p-1"
+                  id="headingOne"
+                >
+                  <div
+                    class="
+                      mb-0
+                      d-flex
+                      justify-content-center justify-content-lg-start
+                    "
+                  >
+                    <button
+                      class="
+                        btn btn-link
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        bg-transparent
+                        text-decoration-none text-18
+                        color-secondary
+                        btn-block
+                        px-0
+                        text-left
+                        collapsed
+                        justify-content-start
+                        py-auto py-lg-0
+                      "
+                      @click="$event.target.classList.toggle('active')"
+                      type="button"
+                      data-toggle="collapse"
+                      aria-expanded="false"
+                      aria-controls="collapseOne"
+                    >
+                      <!-- @click="GetLogout()" -->
+                      <a @click="GetLogout()" href="#" class="bottum-btn">
+                        <div class="font-icon d-inline-block">
+                          <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <span
+                          class="
+                            ml-3
+                            color-secondary
+                            text-capitalize
+                            font-medium
+                          "
+                        >
+                          Logout
+                        </span>
+                      </a>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -441,38 +699,38 @@ export default {
     this.sendToken();
     this.getNotifications();
 
-    window.addEventListener("keydown", (e) => {
-      if (e.keyCode == 123) {
-        e.preventDefault();
+    // window.addEventListener("keydown", (e) => {
+    //   if (e.keyCode == 123) {
+    //     e.preventDefault();
 
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.keyCode == "I".charCodeAt(0)) {
-        e.preventDefault();
-        return false;
-      }
-      if (e.ctrlKey && e.shiftKey && e.keyCode == "J".charCodeAt(0)) {
-        e.preventDefault();
+    //     return false;
+    //   }
+    //   if (e.ctrlKey && e.shiftKey && e.keyCode == "I".charCodeAt(0)) {
+    //     e.preventDefault();
+    //     return false;
+    //   }
+    //   if (e.ctrlKey && e.shiftKey && e.keyCode == "J".charCodeAt(0)) {
+    //     e.preventDefault();
 
-        return false;
-      }
-      if (e.ctrlKey && e.keyCode == "U".charCodeAt(0)) {
-        e.preventDefault();
+    //     return false;
+    //   }
+    //   if (e.ctrlKey && e.keyCode == "U".charCodeAt(0)) {
+    //     e.preventDefault();
 
-        return false;
-      }
+    //     return false;
+    //   }
 
-      if (e.ctrlKey && e.shiftKey && e.keyCode == "C".charCodeAt(0)) {
-        e.preventDefault();
+    //   if (e.ctrlKey && e.shiftKey && e.keyCode == "C".charCodeAt(0)) {
+    //     e.preventDefault();
 
-        return false;
-      }
-    });
+    //     return false;
+    //   }
+    // });
 
-    window.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-      return false;
-    });
+    // window.addEventListener("contextmenu", (e) => {
+    //   e.preventDefault();
+    //   return false;
+    // });
   },
   updated() {
     document.addEventListener("DOMContentLoaded", function () {
@@ -525,7 +783,16 @@ export default {
       await this.markNotificationAsRead(id);
       if (type == "Club Meeting") {
         this.$router.push("/club-detail");
-      } else {
+      } else if (type == "Assignment Session Invitation") {
+        this.$router.push("/planner-month");
+      } else if (type == "Teacher Advisor Request") {
+        this.$router.push("/user-profile");
+      } else if (type == "Study Session Invitation") {
+        this.$router.push("/study-time");
+      } else if (
+        type == "Meeting Request Accepeted" ||
+        type == "Peer Meeting"
+      ) {
         this.$router.push("/viewall-meeting");
       }
       this.getNotificationsList();
@@ -537,6 +804,9 @@ export default {
       await this.getLogout({
         auth_token: localStorage.getItem("token").replace("Bearer ", ""),
       });
+      window.localStorage.clear();
+      window.location.href =
+        "https://sso.gg4l.com/oauth/loginwith/logout?redirect_uri=https://jochi.devateam.com/";
     },
     async UserDetails() {
       this.loading = true;

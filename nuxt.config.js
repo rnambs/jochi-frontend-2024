@@ -16,7 +16,7 @@ export default {
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/image/favicon.png' },
             { rel: 'stylesheet', type: 'text/css', href: "https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" },
-            { rel: 'stylesheet', type: 'text/css', href: "https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" },
+            { rel: 'stylesheet', type: 'text/css', href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" },
             { rel: 'stylesheet', type: 'text/css', href: "https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css" },
             { rel: 'stylesheet', type: 'text/css', href: "https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css" },
             { rel: 'stylesheet', type: 'text/css', href: "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css" },
@@ -50,8 +50,8 @@ export default {
             { src: "https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js" },
             { src: "https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js" },
             { src: "https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js" },
-            { src: "https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js" },
-            { src: "/js/init/weather-init.js" },
+            // { src: "https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js" },
+            // { src: "/js/init/weather-init.js" },
             { src: "https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js" },
             { src: "https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js" },
             { src: "/js/init/fullcalendar-init.js" },
@@ -81,7 +81,11 @@ export default {
         { src: '~/plugins/VueToast' },
         { src: '~/plugins/VueStarRating.js', mode: 'client' },
         { src: '~/plugins/vue-google-oauth2', mode: 'client' },
-        { src: '~/plugins/vue-datepicker', ssr: false }
+        { src: '~/plugins/vue-datepicker', ssr: false },
+        { src: '~/plugins/croppa', ssr: false },
+        { src: '~/plugins/vuetify', ssr: false },
+        { src: '~/plugins/vue-drag-drop', ssr: false },
+        { src: '~/plugins/vuejs-progress-bar', ssr: false }
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

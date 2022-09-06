@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid main-container">
-    <div class="row main-row">
+    <div class="row main-row d-flex align-items-center flex-row vh-100">
       <div class="col-md-6 img-section">
         <img
           src="~/assets/images/undraw/no_internet.png"

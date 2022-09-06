@@ -8,231 +8,240 @@
     />
     <div class="main-section">
       <!-- tab section for peer meeting -->
-      <section id="tab" class="">
-        <div class="tab-section container-fluid mt-4">
-          <h5 class="tab-head">Peer Meeting</h5>
-          <div class="inner-tab-section container-fluid py-3">
-            <div class="row m-auto">
-              <div class="col-md-4 m-auto">
-                <div class="input-icon-area">
-                  <multiselect
-                    v-model="value"
-                    :options="students"
-                    track-by="first_name"
-                    label="first_name"
-                    placeholder="Select students"
-                    :multiple="true"
-                    :max="4"
-                    @input="UpdateStudentTimeSchedule"
-                  >
-                    <span slot="maxElements"
-                      >Maximum of 4 students selected</span
+      <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+        <section id="tab" class="">
+          <div class="tab-section container-fluid mt-4">
+            <h4 class="tab-head">Peer Meeting</h4>
+            <div class="inner-tab-section container-fluid p-0">
+              <div class="row m-0">
+                <div class="col-md-3">
+                  <div class="input-icon-area">
+                    <multiselect
+                      v-model="value"
+                      :options="students"
+                      track-by="first_name"
+                      label="first_name"
+                      placeholder="Select students"
+                      :multiple="true"
+                      :max="4"
+                      @input="UpdateStudentTimeSchedule"
                     >
-                    <span slot="noResult">No data found</span>
-                  </multiselect>
-                  <span class="input-icon"
-                    ><i class="fa fa-search" aria-hidden="true"></i
-                  ></span>
+                      <span slot="maxElements"
+                        >Maximum of 4 students selected</span
+                      >
+                      <span slot="noResult">No data found</span>
+                    </multiselect>
+                    <span class="input-icon custom-search-icon"
+                      ><i class="fa fa-search" aria-hidden="true"></i
+                    ></span>
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4 m-auto">
-                <div class="input-icon-area">
-                  <input
-                    type="text"
-                    name="daterange"
-                    class="form-control"
-                    autocomplete="off"
-                    placeholder="Select Date"
-                    readonly="readonly"
-                    :disabled="!value"
-                  />
-                  <span class="input-icon"
-                    ><i class="fa fa-calendar" aria-hidden="true"></i>
-                  </span>
+                <div class="col-md-3">
+                  <div class="input-icon-area">
+                    <input
+                      type="text"
+                      name="daterange"
+                      class="form-control custom-form-control"
+                      autocomplete="off"
+                      placeholder="Select Date"
+                      readonly="readonly"
+                      :disabled="!value"
+                    />
+                    <!-- <span class="input-icon"
+                      ><i class="fa fa-calendar" aria-hidden="true"></i>
+                    </span> -->
+                  </div>
                 </div>
-              </div>
-              <div class="col-md-4 m-auto px-2 justify-content-md-end">
-                <div class="custom-switch pb-2">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="custom-Switches"
-                    v-model="week"
-                    @change="UpdateStudentTimeSchedule()"
-                    v-on:click="weekToggle()"
-                  />
-                  <label class="custom-control-label" for="custom-Switches"
-                    >Include weekends</label
-                  >
-                </div>
-                <div class="custom-switch">
-                  <input
-                    type="checkbox"
-                    class="custom-control-input"
-                    id="customSwitches"
-                    v-model="availability"
-                    @change="UpdateStudentTimeSchedule()"
-                    v-on:click="availabilityToggle()"
-                  />
-                  <label class="custom-control-label" for="customSwitches"
-                    >Show options based on my availability</label
-                  >
+                <div class="col-md-3 px-2 justify-content-md-end">
+                  <div class="custom-switch pb-2">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="custom-Switches"
+                      v-model="week"
+                      @change="UpdateStudentTimeSchedule()"
+                      v-on:click="weekToggle()"
+                    />
+                    <label class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14" for="custom-Switches"
+                      >Include weekends</label
+                    >
+                  </div>
+                  <div class="custom-switch">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="customSwitches"
+                      v-model="availability"
+                      @change="UpdateStudentTimeSchedule()"
+                      v-on:click="availabilityToggle()"
+                    />
+                    <label class="custom-control-label
+                        font-normal
+                        color-dark
+                        text-14" for="customSwitches"
+                      >Based on my availability</label
+                    >
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      
 
-      <!-- end tab section for peer meeting -->
+        <!-- end tab section for peer meeting -->
 
-      <!-- element secton -->
+        <!-- element secton -->
 
-      <section id="teacher-section" class="">
-        <div class="meeting-section container-fluid mt-4">
-          <div class="inner-meeting m-auto container-fluid py-3">
-            <div class="row Meeting-row" v-show="isShowing">
-              <div class="col-md-4 p-3">
-                <div class="default-section">
-                  <img src="~/assets/images/undraw/step1.png" alt="" />
-                  <div class="default-area">
-                    <h6 class="default-head">Step 1</h6>
-                    <p class="default-text">
-                      Search & Select Your Peers (up to 4)
+        <section id="teacher-section" class="">
+          <div class="meeting-section container-fluid mt-4">
+            <div class="inner-meeting m-auto container-fluid py-3">
+              <div class="row Meeting-row" v-show="isShowing">
+                <div class="col-md-4 p-3">
+                  <div class="default-section">
+                    <img src="~/assets/images/undraw/step1.png" alt="" />
+                    <div class="default-area">
+                      <h6 class="default-head">Step 1</h6>
+                      <p class="default-text">
+                        Search & Select Your Peers (up to 4)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 p-3">
+                  <div class="default-section">
+                    <img src="~/assets/images/undraw/step2.png" alt="" />
+                    <div class="default-area">
+                      <h6 class="default-head">Step 2</h6>
+                      <p class="default-text">Choose Your Date Range</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 p-3">
+                  <div class="default-section">
+                    <img src="~/assets/images/undraw/step3.png" alt="" />
+                    <div class="default-area">
+                      <h6 class="default-head">Step 3</h6>
+                      <p class="default-text">Select Your Time and Confirm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row Meeting-row pl-3 pr-3 pt-3">
+                <div
+                  class="col-md-4 mb-4 py-0"
+                  v-for="(Schedule, index) in slot_date"
+                  :key="index"
+                >
+                  <div
+                    class="meeting-list p-3"
+                    data-toggle="modal"
+                    data-target="#exampleModalCenter"
+                    v-on:click="
+                      modalValue(
+                        Schedule.dateFormat,
+                        Schedule.from,
+                        Schedule.slot,
+                        Schedule.dateValue
+                      )
+                    "
+                  >
+                    <h6>{{ Schedule["dateFormat"] }}</h6>
+                    <p class="time">
+                      {{ Schedule["from"] }} {{ timeZones.timeZone }}
                     </p>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-4 p-3">
-                <div class="default-section">
-                  <img src="~/assets/images/undraw/step2.png" alt="" />
-                  <div class="default-area">
-                    <h6 class="default-head">Step 2</h6>
-                    <p class="default-text">Choose Your Date Range</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 p-3">
-                <div class="default-section">
-                  <img src="~/assets/images/undraw/step3.png" alt="" />
-                  <div class="default-area">
-                    <h6 class="default-head">Step 3</h6>
-                    <p class="default-text">Select Your Time and Confirm</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row Meeting-row pl-3 pr-3 pt-3">
-              <div
-                class="col-md-4 mb-4 py-0"
-                v-for="(Schedule, index) in slot_date"
-                :key="index"
-              >
                 <div
-                  class="meeting-list p-3"
-                  data-toggle="modal"
-                  data-target="#exampleModalCenter"
-                  v-on:click="
-                    modalValue(
-                      Schedule.dateFormat,
-                      Schedule.from,
-                      Schedule.slot,
-                      Schedule.dateValue
-                    )
-                  "
+                  v-if="slot_date.length == 0 && isMounted"
+                  class="empty-schedule"
                 >
-                  <h6>{{ Schedule["dateFormat"] }}</h6>
-                  <p class="time">
-                    {{ Schedule["from"] }} {{ timeZones.timeZone }}
-                  </p>
+                  <p>No time slot is available</p>
                 </div>
-              </div>
-              <div
-                v-if="slot_date.length == 0 && isMounted"
-                class="empty-schedule"
-              >
-                <p>No time slot is available</p>
               </div>
             </div>
-          </div>
-          <!-- Modal -->
-          <div
-            class="modal fade"
-            id="exampleModalCenter"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">
-                    Confirm Meeting
-                  </h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <table class="w-100 table-modal w-100">
-                    <tr>
-                      <td class="tmodal-data mb-2 text-nowrap">Meeting With</td>
-                      <td class="tmodal-data">
-                        <p class="mb-0 tdata-overflow">
-                          <span class="pr-2">:</span
-                          ><span
-                            v-for="(Student, index) in students_name"
-                            :key="index"
-                            >{{ Student }}
-                            {{ index != students_name.length - 1 ? "," : "" }}
-                          </span>
-                        </p>
-                      </td>
-                    </tr>
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModalCenter"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalCenterTitle"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                      Confirm Meeting
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="w-100 table-modal custom-row-table">
+                      <tr>
+                        <td class="tmodal-data mb-2 text-nowrap">Meeting With</td>
+                        <td class="tmodal-data">
+                          <p class="mb-0 tdata-overflow">
+                            <span class="pr-2">:</span
+                            ><span
+                              v-for="(Student, index) in students_name"
+                              :key="index"
+                              >{{ Student }}
+                              {{ index != students_name.length - 1 ? "," : "" }}
+                            </span>
+                          </p>
+                        </td>
+                      </tr>
 
-                    <tr>
-                      <td class="tmodal-data mb-2">Date</td>
-                      <td class="tmodal-data">
-                        <span class="pr-2">:</span>{{ popupValue[0] }}
-                      </td>
-                    </tr>
+                      <tr>
+                        <td class="tmodal-data mb-2">Date</td>
+                        <td class="tmodal-data">
+                          <span class="pr-2">:</span>{{ popupValue[0] }}
+                        </td>
+                      </tr>
 
-                    <tr>
-                      <td class="tmodal-data mb-2">Time</td>
-                      <td class="tmodal-data">
-                        <span class="pr-2">:</span>{{ popupFrom[0] }}
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-color-close"
-                    data-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-color-save"
-                    data-dismiss="modal"
-                    @click="ScheduleConfirm()"
-                  >
-                    Confirm
-                  </button>
+                      <tr>
+                        <td class="tmodal-data mb-2">Time</td>
+                        <td class="tmodal-data">
+                          <span class="pr-2">:</span>{{ popupFrom[0] }}
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary py-1 px-4 rounded-pill"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-primary py-1 px-4 rounded-pill"
+                      data-dismiss="modal"
+                      @click="ScheduleConfirm()"
+                    >
+                      Confirm
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       <!-- end element secton -->
     </div>

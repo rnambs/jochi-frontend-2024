@@ -8,6 +8,7 @@ const state = {
   successType: "",
   taglist: [],
   enableEdit: '',
+  students: [],
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -68,6 +69,12 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
 
 
@@ -125,6 +132,14 @@ const actions = {
 
 
       }
+      else if (response.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', "success");
+
+
+      }
     }
     catch (e) {
       if (e.response.data.message == "Unauthorized") {
@@ -132,6 +147,14 @@ const actions = {
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
         commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
         window.localStorage.clear();
         this.$router.push('/');
       }
@@ -158,6 +181,12 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
 
 
@@ -180,6 +209,12 @@ const actions = {
         commit('setErrorType', "");
         window.localStorage.clear();
         this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
       }
     }
 
@@ -246,6 +281,12 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
   },
   //show club in catalog
@@ -311,6 +352,12 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
 
   },
@@ -370,6 +417,12 @@ const actions = {
         commit('setErrorType', "");
         window.localStorage.clear();
         this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
       }
     }
 
@@ -433,6 +486,14 @@ const actions = {
 
 
       }
+      else if (response.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', "success");
+
+
+      }
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -442,7 +503,76 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
     }
+  },
+  // add a new leader
+  async addStudentLeader({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$post(BASE_URL + 'club/detail/add_student_leaders', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+      if (response.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', "success");
+
+
+      }
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', e.response.data.message);
+        commit('setSuccessType', "error");
+
+      }
+    }
+  },
+  async getStudents({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$get(BASE_URL + `users/student_list_for_leaders?club_id=${payLoad.clubId}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      commit('setStudents', response.data);
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+      }
+    }
+
   },
 }
 const mutations = {
@@ -468,6 +598,9 @@ const mutations = {
   setSuccessType(state, data) {
     state.successType = data;
   },
+  setStudents(state, data) {
+    state.students = data;
+  },
 
 }
 const getters = {
@@ -492,6 +625,9 @@ const getters = {
   },
   successType: () => {
     return state.successType;
+  },
+  students: () => {
+    return state.students;
   },
 
 }

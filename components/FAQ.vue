@@ -2,7 +2,6 @@
   <div>
     <div class="main-section">
       <div class="study-section container-fluid">
-        <div class="inner-study p-4 mt-4">
           <div class="study-row">
             <div class="py-3 px-5">
               <h3 class="faq-head text-center mb-3">FAQ</h3>
@@ -44,7 +43,6 @@
               </p>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </div>

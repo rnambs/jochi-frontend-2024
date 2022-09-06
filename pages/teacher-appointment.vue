@@ -1,7 +1,7 @@
 <template>
   <div class="inner-section">
     <!-- sidebar -->
-    <UserTeacherSidebar />
+    <UserSidebarTeacher />
 
     <!-- sidebar -->
 
@@ -10,6 +10,7 @@
 </template>
 <script>
 import UserSidebar from "~/components/user/UserTeacherSidebar.vue";
+import UserSidebarTeacher from "~/components/user/UserSidebarTeacher.vue";
 import UserTeacherAppointment from "~/components/user/UserTeacherAppointment.vue";
 export default {
   // middleware: "authenticated",

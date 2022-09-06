@@ -216,6 +216,38 @@ const actions = {
 
 
     },
+    async passportRedirect({ commit }, payLoad) {
+        try {
+            const response = await this.$axios.$post(BASE_URL + 'users/users_login', payLoad)
+            if (response.message) {
+
+                commit('setErrorMessage', response.message);
+                commit('setSuccessType', "success");
+            }
+
+        }
+        catch (e) {
+            if (e.response) {
+
+                commit('setErrorMessage', e);
+                commit('setErrorType', "error");
+            }
+
+            if (e.response && e.response.status == 400) {
+
+                commit('setErrorMessage', "Invalid value");
+                commit('setErrorType', "error");
+            } else if (e.response && e.response.status == 401) {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                window.localStorage.clear();
+                this.$router.push('/');
+            }
+        }
+
+    },
 
 }
 const mutations = {

@@ -1,14 +1,19 @@
 import { BASE_URL } from "../assets/js/constants";
 
 const state = {
-  plannerList: [],
   errorMessage: "",
   errorType: "",
   successMessage: "",
   successType: "",
   assignment: [],
-  meetingList: [],
   subjectsData: [],
+  plannerList: [],
+  meetingList: [],
+  sessionList: [],
+  sharedAstList: [],
+  sharedSessionList: [],
+  clubMeetings: []
+
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -21,8 +26,59 @@ const actions = {
           'Authorization': ` ${token}`
         },
       });
+
       commit('setPlannerList', response.data);
       commit('setMeetingList', response.meeting);
+      commit('setSharedAstList', response.shared_assignments);
+      commit('setSessionList', response.session);
+      commit('setSharedSessionList', response.shared_sessions);
+      commit('setClubMeetings', response.club_meeting);
+
+    } catch (e) {
+      if (e.response.data.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else {
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+      }
+    }
+
+
+  },
+  async getWeeklyPlannerFilter({ commit }, payLoad) {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await this.$axios.$get(BASE_URL + `planner/get_filter?date=${payLoad.date}&type=${payLoad.plannerType}&filter=${payLoad.filter}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      commit('setPlannerList', []);
+      commit('setMeetingList', []);
+      commit('setSessionList', []);
+      commit('setSharedSessionList', []);
+      commit('setSharedAstList', []);
+
+      if (payLoad.filter == 'Assignments') {
+        commit('setPlannerList', response.data);
+        commit('setSharedAstList', response.shared_assignments);
+      }
+      if (payLoad.filter == 'Meetings')
+        commit('setMeetingList', response.meeting);
+      if (payLoad.filter == 'Session') {
+        commit('setSessionList', response.session);
+        commit('setSharedSessionList', response.shared_sessions);
+      }
+
+
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -116,7 +172,7 @@ const actions = {
         this.$router.push('/');
       }
       else {
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e.response.data.error);
         commit('setErrorType', "error");
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -212,6 +268,15 @@ const mutations = {
   setMeetingList(state, data) {
     state.meetingList = data;
   },
+  setSharedSessionList(state, data) {
+    state.sharedSessionList = data;
+  },
+  setSessionList(state, data) {
+    state.sessionList = data;
+  },
+  setSharedAstList(state, data) {
+    state.sharedAstList = data;
+  },
   setAssignmentList(state, data) {
     state.assignment = data;
   },
@@ -231,6 +296,9 @@ const mutations = {
   setSubjectsList(state, data) {
     state.subjectsData = data;
   },
+  setClubMeetings(state, data) {
+    state.clubMeetings = data;
+  },
 
 }
 const getters = {
@@ -239,6 +307,15 @@ const getters = {
   },
   meetingList: () => {
     return state.meetingList;
+  },
+  sharedSessionList: () => {
+    return state.sharedSessionList;
+  },
+  sessionList: () => {
+    return state.sessionList;
+  },
+  sharedAstList: () => {
+    return state.sharedAstList;
   },
   assignment: () => {
     return state.assignment;
@@ -258,6 +335,10 @@ const getters = {
   subjectsData: () => {
     return state.subjectsData;
   },
+  clubMeetings: () => {
+    return state.clubMeetings;
+  },
+
 }
 
 export default {

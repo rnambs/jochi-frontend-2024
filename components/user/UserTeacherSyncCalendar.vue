@@ -3,55 +3,60 @@
     <!-- teacher syncCalendar Page -->
 
     <section id="study-detail" class="">
-      <div class="study-section container">
-        <div class="inner-study sync-inner container p-3 mt-4">
-          <div class="row study-row">
-            <div class="col-md-6 study-col">
-              <img
-                src="~/assets/images/undraw/Group 293.png"
-                alt=""
-                class="container cal-image p-3"
-              />
-              <h4 class="study-text">Sync Calendar</h4>
-            </div>
-            <div class="col-md-6 study-col">
-              <div
-                class="form-section form-bg mt-4 mr-5 mb-4 ml-5 ml-sm-5 ml-md-0"
-              >
-                <div class="form-group px-4">
-                  <div class="d-flex flex-column align-items-center">
-                    <button class="btn btn-color mb-3" @click="syncToGoogle()">
-                      {{ syncStatus == 1 ? "Disable" : "Enable" }}
-                      <i class="fab fa-google"></i>
-                      Calendar Sync
-                    </button>
-                    <p
-                      for=""
-                      class="d-flex align-items-center px-0 px-lg-3 mb-0"
-                    >
-                      <span>Status : &nbsp;</span>
-                      <span v-if="syncStatus == 1" class="text-nowrap">
-                        Synced
-                        <i
-                          class="fa fa-calendar-check-o text-success"
-                          aria-hidden="true"
-                        ></i>
-                      </span>
-                      <span v-if="syncStatus == 0">
-                        Not Synced
-                        <i
-                          class="fa fa-calendar-minus-o"
-                          aria-hidden="true"
-                        ></i>
-                      </span>
-                    </p>
+      <div class="study-section jochi-sub-components-light-bg
+      custom-margin-for-main-section custom-full-height
+      d-flex
+      flex-column">
+          <h2 class="color-primary font-semi-bold px-4 pb-2 pt-4">Sync Calendar</h2>
+          <div class="px-4 pb-2 mb-2 pt-4 custom-overflow h-100">
+            <div class="card card-primary rounded-22 p-4 h-100">
+              <div class="row">
+                <div class="col-md-6 d-flex flex-column justify-content-center">
+                  <div
+                    class="form-section form-bg mt-4 mr-5 mb-4 ml-5 ml-sm-5 ml-md-0"
+                  >
+                    <div class="form-group px-4">
+                      <div class="d-flex flex-column align-items-center">
+                        <button class="btn btn-primary mb-3 px-5" @click="syncToGoogle()">
+                          <span class="mr-2">{{ syncStatus == 1 ? "Disable" : "Enable" }}</span>
+                          <i class="fab fa-google"></i>
+                          <span class="ml-2">Calendar Sync</span>
+                        </button>
+                        <p
+                          for=""
+                          class="d-flex align-items-center px-0 px-lg-3 mb-0 color-secondary text-16 font-regular"
+                        >
+                          <span>Status : &nbsp;</span>
+                          <span v-if="syncStatus == 1" class="text-nowrap">
+                            Synced
+                            <i
+                              class="fa fa-calendar-check-o text-success"
+                              aria-hidden="true"
+                            ></i>
+                          </span>
+                          <span v-if="syncStatus == 0">
+                            Not Synced
+                            <i
+                              class="fa fa-calendar-minus-o"
+                              aria-hidden="true"
+                            ></i>
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                    <!-- </form> -->
                   </div>
                 </div>
-                <!-- </form> -->
+                <div class="col-md-3 d-flex flex-column justify-content-center">
+                  <img
+                    src="../../static/image/dashboard_img.png"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
       </div>
     </section>
 
