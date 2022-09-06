@@ -388,6 +388,10 @@
                                 :src="peer.proPic"
                                 alt="image"
                               />
+                              <img 
+                                v-else 
+                                src="../../static/image/avatar.png" 
+                                alt="" />
                             </div>
                           </div>
                           <div class="ld-details-section">
@@ -1800,7 +1804,8 @@
                       :src="peer.profile_pic"
                       alt=""
                     />
-                    <div v-else class="ld-img-holder shadow-none"></div>
+                    <img v-else class="ld-img-holder shadow-none" src="../../static/image/avatar.png" alt="" />
+                    <!-- <div v-else class="ld-img-holder shadow-none"></div> -->
                   </div>
                   <div class="ld-details-section">
                     <p class="ld-heading mb-1">{{ peer.first_name }}</p>
