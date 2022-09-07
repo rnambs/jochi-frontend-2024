@@ -10,7 +10,8 @@
       <!-- Daily Calander -->
 
       <section id="Daily-Calander" class="">
-        <div class="custom-margin-for-main-section custom-full-height d-flex">
+        <div class="custom-m
+        argin-for-main-section custom-full-height d-flex">
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
               <div class="col-lg-5 col-md-12 h-100">

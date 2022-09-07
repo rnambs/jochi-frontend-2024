@@ -146,7 +146,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group required">
+                  <div class="form-group">
                     <label for="contact-person" class="form-control-label"
                       >GG4L School ID </label
                     ><input
@@ -190,7 +190,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group required">
+                  <div class="form-group">
                     <label for="contact-person" class="form-control-label"
                       >GG4L Sis ID </label
                     ><input
@@ -364,9 +364,9 @@ export default {
     Description: { required },
     GG4L_client_id: { required },
     GG4L_client_secret: { required },
-    GG4L_school_id: { required },
+    // GG4L_school_id: { required },
     GG4L_district_id: { required },
-    GG4L_sis_id: { required },
+    // GG4L_sis_id: { required },
   },
   mounted() {
     this.fetchStates();
