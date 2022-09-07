@@ -8,7 +8,7 @@ export const BASE_URL = 'https://api.jochi.live/';
 // export const BASE_URL = 'https://api.jochi.devateam.com/';
 
 // export const REDIRECT_LOGIN_URL = 'https://www.jochi.live/redirect-login';
-export const REDIRECT_LOGIN_URL = 'https://www.jochi.devateam/redirect-login';
+export const REDIRECT_LOGIN_URL = 'https://jochi.devateam.com/redirect-login';
 
 // export const FRONTEND_BASE_URL = 'https://www.jochi.live';
-export const FRONTEND_BASE_URL = 'https://www.jochi.devateam';
+export const FRONTEND_BASE_URL = 'https://jochi.devateam.com/';
