@@ -3274,11 +3274,20 @@ export default {
       this.checkShowToday();
     },
     checkShowToday() {
+      console.log(
+        "tday",
+        moment().format("YYYY-MM-DD"),
+        moment(this.calendarApi.view.activeStart).format("YYYY-MM-DD"),
+        moment().format("YYYY-MM-DD") ==
+          moment(this.calendarApi.view.activeStart).format("YYYY-MM-DD")
+      );
       if (
         moment().format("YYYY-MM-DD") ==
         moment(this.calendarApi.view.activeStart).format("YYYY-MM-DD")
       ) {
         this.showToday = true;
+      } else {
+        this.showToday = false;
       }
     },
     openAddAssignmentModal() {
@@ -3372,7 +3381,6 @@ export default {
       }
     },
     mapData(e) {
-      console.log("redirect", e);
       if (e) {
         let item = {};
         this.assignmentMaterials = [];
