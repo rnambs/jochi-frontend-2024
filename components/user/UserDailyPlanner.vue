@@ -2916,12 +2916,14 @@ export default {
         }
       }
 
+      let priority = 0;
+
       if (this.priorityVal == "Urgent") {
-        this.priorityVal = "1";
+        priority = "1";
       } else if (this.priorityVal == "Important") {
-        this.priorityVal = "2";
+        priority = "2";
       } else if (this.priorityVal == "Can Wait") {
-        this.priorityVal = "3";
+        priority = "3";
       }
 
       this.processing = true;
@@ -2967,7 +2969,7 @@ export default {
         subject: this.isSharedAssignment ? this.subjectId : this.subject?.id,
         due_time: this.timeValue,
         due_date: dfE,
-        priority: this.priorityVal,
+        priority: priority,
         shared_users_ids: peersSelected,
         assignment_materials: assignment_materials,
         subTasks: subTaskLists,

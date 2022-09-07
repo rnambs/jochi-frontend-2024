@@ -3270,13 +3270,13 @@ export default {
         }
       }
 
-      if (this.priorityVal == "Urgent") {
-        this.priorityVal = "1";
-      } else if (this.priorityVal == "Important") {
-        this.priorityVal = "2";
-      } else if (this.priorityVal == "Can Wait") {
-        this.priorityVal = "3";
-      }
+      // if (this.priorityVal == "Urgent") {
+      //   this.priorityVal = "1";
+      // } else if (this.priorityVal == "Important") {
+      //   this.priorityVal = "2";
+      // } else if (this.priorityVal == "Can Wait") {
+      //   this.priorityVal = "3";
+      // }
 
       this.processing = true;
       this.loading = true;
@@ -3321,7 +3321,14 @@ export default {
         subject: this.subject?.id,
         due_time: this.timeValue,
         due_date: dfE,
-        priority: this.priorityVal,
+        priority:
+          this.priorityVal == "Urgent"
+            ? 1
+            : this.priorityVal == "Important"
+            ? 2
+            : this.priorityVal == "Can Wait"
+            ? 3
+            : "",
         shared_users_ids: peersSelected,
         assignment_materials: assignment_materials,
         subTasks: subTaskLists,
