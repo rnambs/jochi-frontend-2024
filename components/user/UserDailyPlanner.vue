@@ -15,7 +15,12 @@
             <div class="row h-100">
               <div class="col-lg-5 col-md-12 h-100">
                 <div class="jochi-components-light-bg p-4 h-100">
-                  <h2 class="color-primary font-semi-bold mb-1">Today,</h2>
+                  <h2
+                    v-if="showToday"
+                    class="color-primary font-semi-bold mb-1"
+                  >
+                    Today,
+                  </h2>
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
               </div>
@@ -2313,6 +2318,7 @@ export default {
         animationData: animationDataSuccess.default,
         loop: false,
       },
+      showToday: false,
       calendarApi: Calendar,
       calendarOptions: {
         displayEventTime: false,
@@ -2372,9 +2378,11 @@ export default {
       isSharedAssignment: false,
       additionalMaterials: [],
       validTime: false,
+      date_formatted: "",
     };
   },
   mounted() {
+    this.checkShowToday();
     this.GetStudents();
 
     this.disabledDates.to = new Date(
@@ -3151,7 +3159,9 @@ export default {
           let data = {};
           let mappedData = {};
           if (idVal.groupId == "assignment") {
-            data = this.assignmentsList.find((e) => e.id.toString() == idVal.id);
+            data = this.assignmentsList.find(
+              (e) => e.id.toString() == idVal.id
+            );
             mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
@@ -3255,11 +3265,21 @@ export default {
     goPrev() {
       this.calendarApi.prev(); // call a method on the Calendar object
       this.GetDailyPlanner();
+      this.checkShowToday();
     },
 
     goNext() {
       this.calendarApi.next();
       this.GetDailyPlanner();
+      this.checkShowToday();
+    },
+    checkShowToday() {
+      if (
+        moment().format("YYYY-MM-DD") ==
+        moment(this.calendarApi.view.activeStart).format("YYYY-MM-DD")
+      ) {
+        this.showToday = true;
+      }
     },
     openAddAssignmentModal() {
       this.processing = false;
