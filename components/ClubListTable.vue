@@ -67,7 +67,7 @@
                     <th>Student Leader</th>
                     <th>Teacher</th>
                     <th>Action</th>
-                    <th>Status</th>
+                    <!-- <th>Status</th> -->
                   </tr>
                   <tr v-if="clubs.length == 0">
                     <td colspan="6" class="text-center text-danger pt-3">
@@ -100,7 +100,7 @@
                         ></span>
                       </nuxt-link>
                     </td>
-                    <td>
+                    <!-- <td>
                       <div class="d-flex w-100 justify-content-between">
                         <div class="custom-control custom-switch">
                           <input
@@ -131,7 +131,10 @@
                           </label>
                         </div>
 
-                        <!-- <nuxt-link
+                       
+                      </div>
+                    </td> -->
+                     <!-- <nuxt-link
                           :to="{
                             path: '/school-edit-form',
                             query: { id: club.clubId },
@@ -141,8 +144,6 @@
                             ><i class="fas fa-pencil"></i
                           ></span>
                         </nuxt-link> -->
-                      </div>
-                    </td>
                   </tr>
                 </table>
                 <div class="custom-paginate d-flex justify-content-center p-3">

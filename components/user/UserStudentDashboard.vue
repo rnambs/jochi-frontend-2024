@@ -308,7 +308,17 @@
                         class="row"
                         v-if="!slot_date || slot_date.length <= 0"
                       >
-                        <span class="d-flex w-100 justify-content-center color-secondary text-16 font-regular">No meetings scheduled for this month!</span>
+                        <span
+                          class="
+                            d-flex
+                            w-100
+                            justify-content-center
+                            color-secondary
+                            text-16
+                            font-regular
+                          "
+                          >No meetings scheduled for this month!</span
+                        >
                       </div>
                       <!-- <div class="row">
                         <div class="col-12 faculty-availability-card mb-2">
@@ -481,7 +491,15 @@
             </div>
           </div>
           <div class="col-xl-4 h-100 mt-3 mt-xl-0">
-            <div class="jochi-sub-components-light-bg h-100 d-flex flex-column overflow-hidden">
+            <div
+              class="
+                jochi-sub-components-light-bg
+                h-100
+                d-flex
+                flex-column
+                overflow-hidden
+              "
+            >
               <div class="calendar-dashboard px-4 pt-4">
                 <FullCalendar ref="fullCalendar" :options="calendarOptions" />
               </div>
@@ -563,10 +581,9 @@
               id="meetingDetailModalLongTitle"
             >
               <span>{{ meetingDetail.type }}</span> Meeting with
-              <h5
-                  class="color-primary font-semi-bold mb-0"
-                ><span>{{ meetingDetail.new_title }}</span>
-                </h5>
+              <h5 class="color-primary font-semi-bold mb-0">
+                <span>{{ meetingDetail.new_title }}</span>
+              </h5>
             </h2>
             <!-- <button type="button" class="close">
               <span aria-hidden="true">Edit</span>
@@ -669,7 +686,6 @@
                         line-break-anywhere
                       "
                     >
-
                       {{ meetingDetail.meeting_name }}
                     </p>
                   </td>
@@ -688,7 +704,6 @@
                         line-break-anywhere
                       "
                     >
-
                       {{ meetingDetail.meeting_description }}
                     </p>
                   </td>
@@ -730,7 +745,6 @@
                         line-break-anywhere
                       "
                     >
-
                       {{
                         meetingDetail.conversation_type == "Video Conference"
                           ? meetingDetail.meeting_link
@@ -928,7 +942,7 @@ export default {
     this.getConfiguredGoal();
     this.ListAllMeeting();
     this.GetDailyPlanner(this.calendarApi.getDate());
-    this.firstName = localStorage.getItem("first_name");
+    this.firstName = localStorage.getItem("firstName");
   },
   methods: {
     ...mapActions("quotedMessage", {

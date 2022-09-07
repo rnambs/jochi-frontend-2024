@@ -10,12 +10,17 @@
       <!-- Daily Calander -->
 
       <section id="Daily-Calander" class="">
-        <div class="custom-margin-for-main-section custom-full-height d-flex">
+        <div class="custom-m argin-for-main-section custom-full-height d-flex">
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
               <div class="col-lg-5 col-md-12 h-100">
                 <div class="jochi-components-light-bg p-4 h-100">
-                  <h2 class="color-primary font-semi-bold mb-1">Today,</h2>
+                  <h2
+                    v-if="showToday"
+                    class="color-primary font-semi-bold mb-1"
+                  >
+                    Today,
+                  </h2>
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
               </div>
@@ -2313,6 +2318,7 @@ export default {
         animationData: animationDataSuccess.default,
         loop: false,
       },
+      showToday: false,
       calendarApi: Calendar,
       calendarOptions: {
         displayEventTime: false,
@@ -2372,6 +2378,7 @@ export default {
       isSharedAssignment: false,
       additionalMaterials: [],
       validTime: false,
+      date_formatted: "",
     };
   },
   mounted() {
@@ -2387,6 +2394,7 @@ export default {
     this.getAssignmentsList();
     this.getAllCompletedAssignments();
     this.calendarApi = this.$refs.fullCalendar.getApi();
+    this.checkShowToday();
     this.GetDailyPlanner();
     //priority dropdown
     const _this = this;
@@ -2908,12 +2916,14 @@ export default {
         }
       }
 
+      let priority = 0;
+
       if (this.priorityVal == "Urgent") {
-        this.priorityVal = "1";
+        priority = "1";
       } else if (this.priorityVal == "Important") {
-        this.priorityVal = "2";
+        priority = "2";
       } else if (this.priorityVal == "Can Wait") {
-        this.priorityVal = "3";
+        priority = "3";
       }
 
       this.processing = true;
@@ -2959,7 +2969,7 @@ export default {
         subject: this.isSharedAssignment ? this.subjectId : this.subject?.id,
         due_time: this.timeValue,
         due_date: dfE,
-        priority: this.priorityVal,
+        priority: priority,
         shared_users_ids: peersSelected,
         assignment_materials: assignment_materials,
         subTasks: subTaskLists,
@@ -3151,7 +3161,9 @@ export default {
           let data = {};
           let mappedData = {};
           if (idVal.groupId == "assignment") {
-            data = this.assignmentsList.find((e) => e.id.toString() == idVal.id);
+            data = this.assignmentsList.find(
+              (e) => e.id.toString() == idVal.id
+            );
             mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
@@ -3255,11 +3267,30 @@ export default {
     goPrev() {
       this.calendarApi.prev(); // call a method on the Calendar object
       this.GetDailyPlanner();
+      this.checkShowToday();
     },
 
     goNext() {
       this.calendarApi.next();
       this.GetDailyPlanner();
+      this.checkShowToday();
+    },
+    checkShowToday() {
+      console.log(
+        "tday",
+        moment().format("YYYY-MM-DD"),
+        moment(this.calendarApi.view.activeStart).format("YYYY-MM-DD"),
+        moment().format("YYYY-MM-DD") ==
+          moment(this.calendarApi.view.activeStart).format("YYYY-MM-DD")
+      );
+      if (
+        moment().format("YYYY-MM-DD") ==
+        moment(this.calendarApi.view.activeStart).format("YYYY-MM-DD")
+      ) {
+        this.showToday = true;
+      } else {
+        this.showToday = false;
+      }
     },
     openAddAssignmentModal() {
       this.processing = false;
@@ -3352,7 +3383,6 @@ export default {
       }
     },
     mapData(e) {
-      console.log("redirect", e);
       if (e) {
         let item = {};
         this.assignmentMaterials = [];
