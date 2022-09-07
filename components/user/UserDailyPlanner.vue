@@ -10,8 +10,7 @@
       <!-- Daily Calander -->
 
       <section id="Daily-Calander" class="">
-        <div class="custom-m
-        argin-for-main-section custom-full-height d-flex">
+        <div class="custom-m argin-for-main-section custom-full-height d-flex">
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
               <div class="col-lg-5 col-md-12 h-100">
@@ -2383,7 +2382,6 @@ export default {
     };
   },
   mounted() {
-    this.checkShowToday();
     this.GetStudents();
 
     this.disabledDates.to = new Date(
@@ -2396,6 +2394,7 @@ export default {
     this.getAssignmentsList();
     this.getAllCompletedAssignments();
     this.calendarApi = this.$refs.fullCalendar.getApi();
+    this.checkShowToday();
     this.GetDailyPlanner();
     //priority dropdown
     const _this = this;
