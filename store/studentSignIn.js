@@ -121,7 +121,7 @@ const actions = {
 
 
         } catch (e) {
-            if (e.response.data.message == "Unauthorized") {
+            if (e?.response?.data?.message == "Unauthorized") {
                 commit('setSuccessMessage', "");
                 commit('setSuccessType', "");
                 commit('setErrorMessage', "");
@@ -129,14 +129,14 @@ const actions = {
                 window.localStorage.clear();
                 this.$router.push('/');
             }
-            else if (e.response.data.message == "User not found") {
+            else if (e?.response?.data?.message == "User not found") {
                 commit('setSuccessMessage', "");
                 commit('setSuccessType', "");
                 commit('setErrorMessage', "User not found");
                 commit('setErrorType', "error");
 
             }
-            else if (e.response.data.message == "Validation error") {
+            else if (e?.response?.data?.message == "Validation error") {
                 commit('setSuccessMessage', "");
                 commit('setSuccessType', "");
                 commit('setErrorMessage', "");
@@ -160,7 +160,7 @@ const actions = {
             commit('setNotificationCount', response.count);
 
         } catch (e) {
-            if (e.response.data.message == "Unauthorized") {
+            if (e?.response?.data?.message == "Unauthorized") {
                 commit('setSuccessMessage', "");
                 commit('setSuccessType', "");
                 commit('setErrorMessage', "");
@@ -182,7 +182,7 @@ const actions = {
             });
             commit('setNotificationList', response.data);
         } catch (e) {
-            if (e.response.data.message == "Unauthorized") {
+            if (e?.response?.data?.message == "Unauthorized") {
                 commit('setSuccessMessage', "");
                 commit('setSuccessType', "");
                 commit('setErrorMessage', "");
@@ -204,7 +204,7 @@ const actions = {
             });
             commit('setNotificationList', response.data);
         } catch (e) {
-            if (e.response.data.message == "Unauthorized") {
+            if (e?.response?.data?.message == "Unauthorized") {
                 commit('setSuccessMessage', "");
                 commit('setSuccessType', "");
                 commit('setErrorMessage', "");
