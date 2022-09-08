@@ -782,6 +782,7 @@ export default {
     },
     async onNotificationClick(id, type) {
       await this.markNotificationAsRead(id);
+      console.log(type);
       if (type == "Club Meeting") {
         this.$router.push("/club-detail");
       } else if (type == "Assignment Session Invitation") {
@@ -792,7 +793,8 @@ export default {
         this.$router.push("/study-time");
       } else if (
         type == "Meeting Request Accepeted" ||
-        type == "Peer Meeting"
+        type == "Peer Meeting" ||
+        type == "Peer Meeting Scheduled"
       ) {
         this.$router.push("/viewall-meeting");
       }

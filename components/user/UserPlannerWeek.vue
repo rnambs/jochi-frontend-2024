@@ -3443,7 +3443,8 @@ export default {
         subject: this.subject?.id,
         due_time: this.timeValue,
         due_date: dfE,
-        priority:  this.priorityVal == "Urgent"
+        priority:
+          this.priorityVal == "Urgent"
             ? 1
             : this.priorityVal == "Important"
             ? 2
@@ -4657,7 +4658,8 @@ export default {
         e?.target?.files[0]?.size &&
         e.target.files[0]?.size > 5 * 1024 * 1024
       ) {
-        document.querySelector("#fileUpload").value = "";
+        if (document.querySelector("#fileUpload"))
+          document.querySelector("#fileUpload").value = "";
 
         return this.$toast.open({
           message: "File size must be lesser than 5 MB",
@@ -4717,7 +4719,8 @@ export default {
       });
       this.file = "";
       this.link = "";
-      document.querySelector("#fileUpload").value = "";
+      if (document.querySelector("#fileUpload"))
+        document.querySelector("#fileUpload").value = "";
 
       // this.ClubFiles();
     },

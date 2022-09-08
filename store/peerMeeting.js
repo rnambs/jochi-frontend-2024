@@ -61,7 +61,7 @@ const actions = {
 
     const token = localStorage.getItem('token')
     try {
-      const response = await this.$axios.$post(BASE_URL + '/peer/meetings/schedule_peer_meeting', payLoad, {
+      const response = await this.$axios.$post(BASE_URL + 'peer/meetings/schedule_peer_meeting', payLoad, {
         headers: {
           'Authorization': ` ${token}`
         },

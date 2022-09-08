@@ -8,10 +8,19 @@
         jochi-components-light-bg
         custom-margin-for-main-section custom-full-height
         d-flex
-        
       "
     >
-      <div class="study-section d-flex flex-column flex-fill px-4 custom-overflow my-3 py-md-2 py-lg-3">
+      <div
+        class="
+          study-section
+          d-flex
+          flex-column flex-fill
+          px-4
+          custom-overflow
+          my-3
+          py-md-2 py-lg-3
+        "
+      >
         <div class="row h-lg-100">
           <div class="col-lg-7 d-flex flex-column">
             <div
@@ -35,7 +44,9 @@
                   Tackle your upcoming assignments
                 </p>
               </div>
-              <div class="col-sm-5 col-md-12 col-lg-5 d-flex justify-content-end">
+              <div
+                class="col-sm-5 col-md-12 col-lg-5 d-flex justify-content-end"
+              >
                 <img
                   src="../../static/image/folder.png"
                   alt=""
@@ -63,7 +74,9 @@
                   Stay focused while you study, and monitor your productivity
                 </p>
               </div>
-              <div class="col-sm-5 col-md-12 col-lg-5 d-flex justify-content-end">
+              <div
+                class="col-sm-5 col-md-12 col-lg-5 d-flex justify-content-end"
+              >
                 <img
                   src="../../static/image/lamp.png"
                   alt=""
@@ -342,7 +355,7 @@
                         {{
                           sessionDetail.studyMethod == "1"
                             ? "Pomodoro"
-                            : sessionDetail.studyMethod == "3"
+                            : sessionDetail.studyMethod == "2"
                             ? "Regular"
                             : ""
                         }}
@@ -388,10 +401,11 @@
                                 :src="peer.proPic"
                                 alt="image"
                               />
-                              <img 
-                                v-else 
-                                src="../../static/image/avatar.png" 
-                                alt="" />
+                              <img
+                                v-else
+                                src="../../static/image/avatar.png"
+                                alt=""
+                              />
                             </div>
                           </div>
                           <div class="ld-details-section">
@@ -1350,7 +1364,12 @@
                       :src="peer.profile_pic"
                       alt=""
                     />
-                    <img v-else class="ld-img-holder shadow-none" src="../../static/image/avatar.png" alt="" />
+                    <img
+                      v-else
+                      class="ld-img-holder shadow-none"
+                      src="../../static/image/avatar.png"
+                      alt=""
+                    />
                   </div>
                   <div class="ld-details-section">
                     <p class="ld-heading mb-1">{{ peer.first_name }}</p>
@@ -1558,7 +1577,7 @@
                         >
                       </div>
                     </div> -->
-                    <div class="form-group" v-if="this.studyTypes.id != 3">
+                    <div class="form-group" v-if="this.studyTypes.id != 2">
                       <label for="">Number of repetitions</label>
 
                       <select
@@ -1573,7 +1592,7 @@
                       </select>
                     </div>
 
-                    <div class="form-group" v-show="this.studyTypes.id == 3">
+                    <div class="form-group" v-show="this.studyTypes.id == 2">
                       <label for="">Duration (In Minutes)</label>
                       <input
                         type="number"
@@ -1584,7 +1603,7 @@
                         class="form-control"
                       />
                     </div>
-                    <div class="form-group" v-show="this.studyTypes.id == 3">
+                    <div class="form-group" v-show="this.studyTypes.id == 2">
                       <label for="">Break Time At (In Minutes)</label>
                       <input
                         type="number"
@@ -1595,7 +1614,7 @@
                         class="form-control"
                       />
                     </div>
-                    <div class="form-group" v-show="this.studyTypes.id == 3">
+                    <div class="form-group" v-show="this.studyTypes.id == 2">
                       <label for="">Break Time (In Minutes)</label>
                       <input
                         type="number"
@@ -1804,7 +1823,12 @@
                       :src="peer.profile_pic"
                       alt=""
                     />
-                    <img v-else class="ld-img-holder shadow-none" src="../../static/image/avatar.png" alt="" />
+                    <img
+                      v-else
+                      class="ld-img-holder shadow-none"
+                      src="../../static/image/avatar.png"
+                      alt=""
+                    />
                     <!-- <div v-else class="ld-img-holder shadow-none"></div> -->
                   </div>
                   <div class="ld-details-section">
@@ -2775,6 +2799,7 @@ export default {
       counter: false,
       intervalCountDown: null,
       sessionRedirectId: this.$route.query.id,
+      userId: "",
     };
   },
 
@@ -2789,6 +2814,7 @@ export default {
   },
 
   async mounted() {
+    this.userId = localStorage.getItem("id");
     if (this.sessionRedirectId) {
       await this.getDetail(this.sessionRedirectId);
       this.redirectMap(this.studySessionDetail);
@@ -2888,7 +2914,6 @@ export default {
     },
     async getDetail(id) {
       await this.getSessionDetail({ id });
-      console.log("session details", this.studySessionDetail);
     },
     async GetStatusTimer() {
       await this.getStatusTimer({});
@@ -2901,9 +2926,14 @@ export default {
     },
     async UpdateStudyTechnique() {
       this.CustomMode = "active";
-      if (this.studyTypes.id != 3) {
+      // if (this.studyTypes.id != 2) {
+      //   this.targetDuration = this.studyTypes.start_time;
+      //   this.breakTime = this.studyTypes.break_time;
+      //   this.repeatLoopBy = this.studyTypes.cycle;
+      if (this.studyTypes.id != 2) {
         this.targetDuration = this.studyTypes.start_time;
         this.breakTime = this.studyTypes.break_time;
+        this.breakAt = this.studyTypes.start_time;
         this.repeatLoopBy = this.studyTypes.cycle;
       } else {
         this.targetDuration = 5;
@@ -2937,7 +2967,7 @@ export default {
           ? this.studyTypes.long_break
           : this.studyTypes.breakTime;
 
-      if (this.studyTypes.id != 3) {
+      if (this.studyTypes.id != 2) {
         for (let i = 0; i < Number(this.repetitionCount); i++) {
           this.currentRepetitionNum = 1 + i;
           this.studyStatus = "";
@@ -3087,7 +3117,6 @@ export default {
     },
     checkValidTime(time) {
       let timeFormat = time?.hh + ":" + time?.mm + " " + time?.A;
-      console.log(timeFormat, moment(timeFormat, "h:mm A", true).isValid());
       return moment(timeFormat, "hh:mm A", true).isValid();
     },
 
@@ -3144,7 +3173,10 @@ export default {
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
             this.sessionMode == "regular" ? this.targetDuration : null,
-          repeat: this.repeatLoopBy,
+          repeat:
+            this.sessionMode == "regular"
+              ? this.repeatLoopBy
+              : this.repetitionCount,
           scheduled_status: scheduleNow ? "Now" : "Later",
           break_time_at: this.breakAt,
           break_time: this.breakTime,
@@ -3169,7 +3201,10 @@ export default {
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
             this.sessionMode == "regular" ? this.targetDuration : null,
-          repeat: this.repeatLoopBy,
+          repeat:
+            this.sessionMode == "regular"
+              ? this.repeatLoopBy
+              : this.repetitionCount,
           scheduled_status: scheduleNow ? "Now" : "Later",
           break_time_at: this.breakAt,
           break_time: this.breakTime,
@@ -3445,7 +3480,7 @@ export default {
         session.id = e.id;
         session.assignment_id = e.assignment_id;
         session.name = e.assignments?.task;
-        session.goals = e.subTasks;
+        session.goals = this.mapAsstGoals(e.assignments?.subTasks);
         session.duration = e.duration;
         session.breakTime = e.break_time;
         session.repeat = e.repeat;
@@ -3469,14 +3504,8 @@ export default {
         session.type = "study";
         session.id = e.id;
         session.name = e.subject?.subject_name;
-        session.goals = [];
-        if (e.study_goals && e.study_goals.length > 0) {
-          e.study_goals.forEach((element) => {
-            if (element.goal) {
-              session.goals.push(element.goal);
-            }
-          });
-        }
+        session.goals = this.mapSessionGoal(e.study_goals);
+
         session.duration = e.duration;
         session.breakTime = e.break_time;
         session.repeat = e.repeat;
@@ -3499,8 +3528,14 @@ export default {
         session.id = e.session_id;
         session.name = e.assignment_id
           ? e.studyroom?.assignments?.task
+            ? e.studyroom?.assignments?.task
+            : e.assignments?.task
+            ? e.assignments?.task
+            : ""
           : e.subjects?.subject_name;
-        session.goals = e.assignment_id ? e.subTasks : e.study_goals;
+        session.goals = e.assignment_id
+          ? this.mapAsstGoals(e.assignments?.subTasks)
+          : this.mapSessionGoal(e.studyroom?.study_goals);
         session.duration = e.studyroom?.duration;
         session.breakTime = e.studyroom?.break_time;
         session.repeat = e.studyroom?.repeat;
@@ -3519,6 +3554,26 @@ export default {
 
         this.studySessionList.push(session);
       });
+    },
+    mapSessionGoal(goalsList) {
+      let goals = [];
+      if (goalsList && goalsList.length > 0) {
+        goalsList.forEach((element) => {
+          if (element.goal) {
+            goals.push(element.goal);
+          }
+        });
+      }
+      return goals;
+    },
+    mapAsstGoals(subTasks) {
+      let tasks = [];
+      if (subTasks && subTasks.length > 0) {
+        subTasks.forEach((e) => {
+          tasks.push(e.title);
+        });
+      }
+      return tasks;
     },
     async onNext() {
       let nextTab = this.currentTab + 1;
@@ -3581,10 +3636,11 @@ export default {
 
       this.onNext();
       if (this.sessionMode == "regular") {
-        this.studyTypes = this.studyTypesData.find((e) => e.id == 3);
+        this.studyTypes = this.studyTypesData.find((e) => e.id == 2);
       } else {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 1);
       }
+      console.log(this.studyTypesData, this.studyTypes);
       if (this.sessionType == "assignment") {
         this.subjectName = this.selectedAssignment.task;
       }
@@ -3706,6 +3762,11 @@ export default {
     },
     async setDetail(session) {
       this.sessionDetail = session;
+      if (this.sessionDetail.studyroom) {
+        this.sessionDetail.study_goals =
+          this.sessionDetail.studyroom.study_goals;
+      }
+      console.log(this.sessionDetail, session);
       clearInterval(this.intervalCountDown);
       this.counter = false;
       if (this.sessionDetail.isToday) {
@@ -3715,23 +3776,27 @@ export default {
       this.invitedPeerList = [];
       if (this.invitedPeers && this.invitedPeers.length > 0) {
         this.invitedPeers.forEach((e) => {
-          let peer = {};
-          peer["id"] = e[0]?.users?.id;
-          peer["firstName"] = e?.users?.first_name;
-          peer["last_name"] = e?.users?.last_name;
-          peer["proPic"] = e?.users?.profile_pic;
-          this.invitedPeerList.push(peer);
+          if (e?.users?.id != this.userId) {
+            let peer = {};
+            peer["id"] = e[0]?.users?.id;
+            peer["firstName"] = e?.users?.first_name;
+            peer["last_name"] = e?.users?.last_name;
+            peer["proPic"] = e?.users?.profile_pic;
+            this.invitedPeerList.push(peer);
+          }
         });
       }
-      if (this.ownerDetail && this.ownerDetail.length > 0) {
-        this.ownerDetail.forEach((e) => {
+      if (this.ownerDetail) {
+        // this.ownerDetail.forEach((e) => {
+        if (this.ownerDetail?.users?.id != this.userId) {
           let peer = {};
-          peer["id"] = e[0]?.users?.id;
-          peer["firstName"] = e?.users?.first_name;
-          peer["last_name"] = e?.users?.last_name;
-          peer["proPic"] = e?.users?.profile_pic;
+          peer["id"] = this.ownerDetail?.users?.id;
+          peer["firstName"] = this.ownerDetail?.users?.first_name;
+          peer["last_name"] = this.ownerDetail?.users?.last_name;
+          peer["proPic"] = this.ownerDetail?.users?.profile_pic;
           this.invitedPeerList.push(peer);
-        });
+        }
+        // });
       }
     },
     checkIfCompletedAsst() {
@@ -3752,7 +3817,7 @@ export default {
     },
     async goToSession() {
       if (Number(this.sessionDetail.studyMethod) == 3) {
-        this.studyTypes = this.studyTypesData.find((e) => e.id == 3);
+        this.studyTypes = this.studyTypesData.find((e) => e.id == 2);
       } else {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 1);
       }
@@ -3783,7 +3848,6 @@ export default {
     },
     async startSessionNow() {
       let payLoad = {};
-      console.log(this.sessionDetail);
       if (this.sessionDetail.type == "assignment") {
         payLoad = {
           assignment_id: this.sessionDetail.assignmentId,

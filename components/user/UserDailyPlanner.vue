@@ -3162,13 +3162,13 @@ export default {
           let mappedData = {};
           if (idVal.groupId == "assignment") {
             data = this.assignmentsList.find(
-              (e) => e.id.toString() == idVal.id
+              (e) => e.id.toString() == idVal.id.toString()
             );
             mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedAssignmentsList.find(
-              (e) => e.assignment_id.toString() == idVal.id
+              (e) => e.assignment_id.toString() == idVal.id.toString()
             );
             mappedData = this.mapSharedData(data);
           }
@@ -3719,7 +3719,8 @@ export default {
         e?.target?.files[0]?.size &&
         e.target.files[0]?.size > 5 * 1024 * 1024
       ) {
-        document.querySelector("#fileUpload").value = "";
+        if (document.querySelector("#fileUpload"))
+          document.querySelector("#fileUpload").value = "";
 
         return this.$toast.open({
           message: "File size must be lesser than 5 MB",
@@ -3771,7 +3772,8 @@ export default {
         });
         this.processingUpload = false;
         this.file = "";
-        document.querySelector("#fileUpload").value = "";
+        if (document.querySelector("#fileUpload"))
+          document.querySelector("#fileUpload").value = "";
       } else {
         let urlValid = this.isValidHttpUrl(this.link);
         if (urlValid) {

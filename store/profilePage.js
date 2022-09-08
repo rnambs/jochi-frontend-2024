@@ -30,7 +30,7 @@ const actions = {
 
 
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -38,14 +38,14 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      else if (e.response.data.message == "User not found") {
+      else if (e?.response?.data?.message == "User not found") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "User not found");
         commit('setErrorType', "error");
 
       }
-      else if (e.response.data.message == "Validation error") {
+      else if (e?.response?.data?.message == "Validation error") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -77,7 +77,7 @@ const actions = {
 
       }
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -85,20 +85,20 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      else if (e.response.data.message == "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.") {
+      else if (e?.response?.data?.message == "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.");
         commit('setErrorType', "error");
 
       }
-      else if (e.response.data.message == "Validation error") {
+      else if (e?.response?.data?.message == "Validation error") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "Oops! Something went wrong. Please try again later");
         commit('setErrorType', "error");
       }
-      else if (e.response.data.message == "File size cannot be larger than 4MB!") {
+      else if (e?.response?.data?.message == "File size cannot be larger than 4MB!") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "File size cannot be larger than 4MB!");
@@ -106,7 +106,7 @@ const actions = {
 
       }
 
-      else if (e.response.data.message == "No user found") {
+      else if (e?.response?.data?.message == "No user found") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "No user found");
@@ -133,7 +133,7 @@ const actions = {
         commit('setSuccessType', "success");
       }
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -141,7 +141,7 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      else if (e.response.data.message == "Validation error") {
+      else if (e?.response?.data?.message == "Validation error") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "Validation error");
@@ -164,7 +164,7 @@ const actions = {
 
 
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -172,14 +172,14 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      else if (e.response.data.message == "User not found") {
+      else if (e?.response?.data?.message == "User not found") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "User not found");
         commit('setErrorType', "error");
 
       }
-      else if (e.response.data.message == "Validation error") {
+      else if (e?.response?.data?.message == "Validation error") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -203,7 +203,7 @@ const actions = {
 
       if (response.message) {
         commit('setSuccessMessage', response.message);
-        commit('setSuccessType', success);
+        commit('setSuccessType', "success");
         commit('setErrorMessage', "");
         commit('setErrorType', "");
       }

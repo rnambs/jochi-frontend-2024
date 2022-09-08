@@ -47,7 +47,7 @@ const actions = {
         this.$router.push('/');
       }
       else {
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -76,7 +76,7 @@ const actions = {
         this.$router.push('/');
       }
       else {
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -99,7 +99,7 @@ const actions = {
       commit('setSharedSessionList', response.shared_sessions);
       commit('setClubMeetings', response.club_meeting);
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -108,7 +108,7 @@ const actions = {
         this.$router.push('/');
       }
       else {
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -128,7 +128,7 @@ const actions = {
       commit('setAssignmentsList', response.assignments);
       commit('setSharedAssignmentsList', response.shared_assignments);
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -137,7 +137,7 @@ const actions = {
         this.$router.push('/');
       }
       else {
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -161,7 +161,7 @@ const actions = {
         commit('setSuccessType', "success");
       }
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -169,25 +169,25 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      else if (e.response.data.message == "Validation error") {
+      else if (e?.response?.data?.message == "Validation error") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "All fields are required ");
         commit('setErrorType', "error");
       }
-      else if (e.response.data.message == "Please select an upcoming time") {
+      else if (e?.response?.data?.message == "Please select an upcoming time") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "Please select an upcoming time");
         commit('setErrorType', "error");
       }
-      else if (e.response.data.message == "User Not found") {
+      else if (e?.response?.data?.message == "User Not found") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "User Not found");
         commit('setErrorType', "error");
       }
-      else if (e.response.data.message == "Assignment already Exist") {
+      else if (e?.response?.data?.message == "Assignment already Exist") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "Assignment already Exist");
@@ -212,7 +212,7 @@ const actions = {
       });
       commit('setAssignmentList', response.data);
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -221,7 +221,7 @@ const actions = {
         this.$router.push('/');
       }
       else {
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -245,7 +245,7 @@ const actions = {
         commit('setSuccessType', "success");
       }
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -253,32 +253,32 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      else if (e.response.data.message == "Validation error") {
+      else if (e?.response?.data?.message == "Validation error") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "All fields are required ");
         commit('setErrorType', "error");
       }
-      else if (e.response.data.message == "Please select an upcoming time") {
+      else if (e?.response?.data?.message == "Please select an upcoming time") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "Please select an upcoming time");
         commit('setErrorType', "error");
       }
-      else if (e.response.data.message == "User Not found") {
+      else if (e?.response?.data?.message == "User Not found") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "User Not found");
         commit('setErrorType', "error");
       }
-      else if (e.response.data.message == "Assignment already Exist") {
+      else if (e?.response?.data?.message == "Assignment already Exist") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "Assignment already Exist");
         commit('setErrorType', "error");
       }
       else {
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -297,7 +297,7 @@ const actions = {
       commit('setSubjectsList', response.data);
     } catch (e) {
 
-      commit('setErrorMessage', e.response.data.message);
+      commit('setErrorMessage', e?.response?.data?.message);
       commit('setErrorType', "error");
       commit('setSuccessMessage', "");
       commit('setSuccessType', "")
@@ -330,7 +330,7 @@ const actions = {
         this.$router.push('/');
       }
       else {
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -350,7 +350,7 @@ const actions = {
       commit('setCompletedAssignments', response.data);
     } catch (e) {
 
-      commit('setErrorMessage', e.response.data.message);
+      commit('setErrorMessage', e?.response?.data?.message);
       commit('setErrorType', "error");
       commit('setSuccessMessage', "");
       commit('setSuccessType', "")
@@ -379,7 +379,7 @@ const actions = {
 
       }
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -387,20 +387,20 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      else if (e.response.data.message == "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.") {
+      else if (e?.response?.data?.message == "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.");
         commit('setErrorType', "error");
 
       }
-      else if (e.response.data.message == "Validation error") {
+      else if (e?.response?.data?.message == "Validation error") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "Oops! Something went wrong. Please try again later");
         commit('setErrorType', "error");
       }
-      else if (e.response.data.message == "File size cannot be larger than 4MB!") {
+      else if (e?.response?.data?.message == "File size cannot be larger than 4MB!") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "File size cannot be larger than 4MB!");
@@ -408,7 +408,7 @@ const actions = {
 
       }
 
-      else if (e.response.data.message == "No club found") {
+      else if (e?.response?.data?.message == "No club found") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "This club is not exist");
@@ -416,14 +416,14 @@ const actions = {
         // this.$router.push("/club-detail");
 
       }
-      else if (e.response.data.message == "Club is not active") {
+      else if (e?.response?.data?.message == "Club is not active") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "Club is not active");
         commit('setErrorType', "error");
 
       }
-      else if (e.response.data.message == "Please upload a file!") {
+      else if (e?.response?.data?.message == "Please upload a file!") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "Please upload a file!");
