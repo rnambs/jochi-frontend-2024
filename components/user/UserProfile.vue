@@ -233,61 +233,61 @@
               "
             >
               <div class="form-section mx-auto w-100 py-3">
-                <form action="" class="container">
-                  <!-- <div class="form-group">
+                <!-- <form action="" class="container"> -->
+                <!-- <div class="form-group">
                     <label for="">Email</label>
                     <div class="form-field">{{ email }}</div>
                   </div> -->
-                  <div>
-                    <div
-                      class="
-                        row
-                        flex-column
-                        justify-content-center
-                        align-items-center
-                      "
-                    >
-                      <div class="col-12 col-md-7">
-                        <div
-                          class="card card-primary p-3 h-100 d-flex flex-column"
+                <div>
+                  <div
+                    class="
+                      row
+                      flex-column
+                      justify-content-center
+                      align-items-center
+                    "
+                  >
+                    <div class="col-12 col-md-7">
+                      <div
+                        class="card card-primary p-3 h-100 d-flex flex-column"
+                      >
+                        <p
+                          class="
+                            mb-0
+                            text-16
+                            color-secondary
+                            d-flex
+                            flex-row
+                            align-items-baseline
+                          "
                         >
-                          <p
-                            class="
-                              mb-0
-                              text-16
-                              color-secondary
-                              d-flex
-                              flex-row
-                              align-items-baseline
-                            "
-                          >
-                            <span class="text-24"
-                              ><i class="fas fa-envelope"></i
-                            ></span>
-                            <span class="ml-2">{{ email }}</span>
-                          </p>
-                        </div>
+                          <span class="text-24"
+                            ><i class="fas fa-envelope"></i
+                          ></span>
+                          <span class="ml-2">{{ email }}</span>
+                        </p>
                       </div>
-                      <div class="col-12 col-md-7">
-                        <div class="card card-primary p-3 h-100">
-                          <p
-                            class="
-                              mb-0
-                              text-16
-                              color-secondary
-                              d-flex
-                              flex-row
-                              align-items-baseline
-                            "
-                          >
-                            <span class="text-24"
-                              ><i class="fas fa-school"></i
-                            ></span>
-                            <span class="ml-2">{{ schoolName }}</span>
-                          </p>
-                        </div>
+                    </div>
+                    <div class="col-12 col-md-7">
+                      <div class="card card-primary p-3 h-100">
+                        <p
+                          class="
+                            mb-0
+                            text-16
+                            color-secondary
+                            d-flex
+                            flex-row
+                            align-items-baseline
+                          "
+                        >
+                          <span class="text-24"
+                            ><i class="fas fa-school"></i
+                          ></span>
+                          <span class="ml-2">{{ schoolName }}</span>
+                        </p>
                       </div>
-                      <!-- <div class="col-12 col-md-4">
+                    </div>
+                    <!-- <div class="col-12 col-md-4">
                         <div class="card card-primary h-100 ">
                               <nuxt-link to="/user-reset-password" class="btn btn-void d-flex flex-column align-items-start">
                                 <span class="mr-2 text-30"><i class="fas fa-lock"></i></span>
@@ -296,135 +296,122 @@
                         </div>
                       </div> -->
 
-                      <div v-if="user_type == '3'" class="col-12 col-md-7">
+                    <div v-if="user_type == '3'" class="col-12 col-md-7">
+                      <div
+                        v-if="advisorDetail && advisorDetail.first_name"
+                        class="card card-primary p-3 h-100 d-flex flex-column"
+                      >
+                        <h4 class="color-dark font-semi-bold">Your Advisor</h4>
                         <div
-                          v-if="advisorDetail"
-                          class="card card-primary p-3 h-100 d-flex flex-column"
+                          class="d-flex align-items-center my-2 mr-3 min-w-200"
                         >
-                          <h4 class="color-dark font-semi-bold">
-                            Your Advisor
-                          </h4>
-                          <div
-                            class="
-                              d-flex
-                              align-items-center
-                              my-2
-                              mr-3
-                              min-w-200
-                            "
-                          >
-                            <div class="ld-img-section mr-3">
-                              <div class="ld-img-holder">
-                                <img
-                                  v-if="advisorDetail.profile_pic"
-                                  :src="advisorDetail.profile_pic"
-                                  alt=""
-                                />
-                              </div>
+                          <div class="ld-img-section mr-3">
+                            <div class="ld-img-holder">
+                              <img
+                                v-if="advisorDetail.profile_pic"
+                                :src="advisorDetail.profile_pic"
+                                alt=""
+                              />
                             </div>
-                            <div class="ld-details-section">
-                              <p class="ld-heading mb-1">
-                                {{
-                                  advisorDetail.first_name +
-                                  " " +
-                                  advisorDetail.last_name
-                                }}
-                              </p>
-                            </div>
+                          </div>
+                          <div class="ld-details-section">
+                            <p class="ld-heading mb-1">
+                              {{
+                                advisorDetail.first_name +
+                                " " +
+                                advisorDetail.last_name
+                              }}
+                            </p>
                           </div>
                         </div>
                       </div>
+                    </div>
+                    <div v-if="requestList.length > 0" class="col-12 col-md-7">
                       <div
-                        v-if="requestList.length > 0"
-                        class="col-12 col-md-7"
+                        class="card card-primary p-3 h-100 d-flex flex-column"
                       >
+                        <h4 class="color-dark font-semi-bold">
+                          Advisor Requests
+                        </h4>
                         <div
-                          class="card card-primary p-3 h-100 d-flex flex-column"
+                          v-for="advisor in requestList"
+                          :key="advisor.id"
+                          class="
+                            d-flex
+                            flex-column flex-md-row
+                            align-items-center
+                            my-2
+                            mr-3
+                            min-w-200
+                          "
                         >
-                          <h4 class="color-dark font-semi-bold">
-                            Advisor Requests
-                          </h4>
+                          <div class="ld-img-section mr-0 mr-md-3 mb-2 mb-md-0">
+                            <div class="ld-img-holder">
+                              <img
+                                v-if="advisor.teacher.profile_pic"
+                                :src="advisor.teacher.profile_pic"
+                                alt=""
+                              />
+                              <img
+                                v-else
+                                src="~/static/image/avatar.png"
+                                alt=""
+                              />
+                            </div>
+                          </div>
                           <div
-                            v-for="advisor in requestList"
-                            :key="advisor.id"
                             class="
                               d-flex
                               flex-column flex-md-row
                               align-items-center
-                              my-2
-                              mr-3
-                              min-w-200
+                              justify-content-between
+                              w-100
                             "
                           >
-                            <div
-                              class="ld-img-section mr-0 mr-md-3 mb-2 mb-md-0"
-                            >
-                              <div class="ld-img-holder">
-                                <img
-                                  v-if="advisor.teacher.profile_pic"
-                                  :src="advisor.teacher.profile_pic"
-                                  alt=""
-                                />
-                                <img
-                                  v-else
-                                  src="~/static/image/avatar.png"
-                                  alt=""
-                                />
-                              </div>
+                            <div class="ld-details-section">
+                              <p class="ld-heading mb-1">
+                                {{
+                                  advisor.teacher.first_name +
+                                  " " +
+                                  advisor.teacher.last_name
+                                }}
+                              </p>
                             </div>
+
                             <div
                               class="
                                 d-flex
-                                flex-column flex-md-row
                                 align-items-center
-                                justify-content-between
-                                w-100
+                                justify-content-center
                               "
                             >
-                              <div class="ld-details-section">
-                                <p class="ld-heading mb-1">
-                                  {{
-                                    advisor.teacher.first_name +
-                                    " " +
-                                    advisor.teacher.last_name
-                                  }}
-                                </p>
-                              </div>
-
-                              <div
+                              <button
                                 class="
-                                  d-flex
-                                  align-items-center
-                                  justify-content-center
+                                  btn btn-secondary
+                                  px-4
+                                  py-1
+                                  rounded-pill
+                                  mr-2
                                 "
+                                @click="respondRequest(2, advisor)"
                               >
-                                <button
-                                  class="
-                                    btn btn-secondary
-                                    px-4
-                                    py-1
-                                    rounded-pill
-                                    mr-2
-                                  "
-                                  @click="respondRequest(0, advisor)"
-                                >
-                                  Reject
-                                </button>
-                                <button
-                                  class="btn btn-primary px-4 py-1 rounded-pill"
-                                  @click="respondRequest(1, advisor)"
-                                >
-                                  Accept
-                                </button>
-                              </div>
+                                Reject
+                              </button>
+                              <button
+                                class="btn btn-primary px-4 py-1 rounded-pill"
+                                @click="respondRequest(1, advisor)"
+                              >
+                                Accept
+                              </button>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="row justify-content-center">
-                    <!-- <div class="col-12 col-md-4">
+                </div>
+                <div class="row justify-content-center">
+                  <!-- <div class="col-12 col-md-4">
                       <div class="card card-primary p-3 h-100">
                         <p class="mb-0 text-16 color-secondary d-flex flex-column">
                           <span class="text-30"><i class="fas fa-school"></i></span>
@@ -432,22 +419,22 @@
                         </p>
                       </div>
                     </div> -->
-                  </div>
-                  <!-- <div class="form-group">
+                </div>
+                <!-- <div class="form-group">
                     <label for="">Name of school</label>
                     <div class="form-field">{{ schoolName }}</div>
                   </div> -->
-                  <!-- <div class="form-group">
+                <!-- <div class="form-group">
                                         <label for="">Class</label>
                                         <div class="form-field">IX</div>
                                    </div> -->
 
-                  <!-- <div class="row justify-content-end">
+                <!-- <div class="row justify-content-end">
                     <div class="col-4">
                       <img src="../../static/image/student_img.png" alt=" img-fluid card-img">
                     </div>
                   </div> -->
-                </form>
+                <!-- </form> -->
               </div>
             </div>
           </div>
@@ -695,6 +682,7 @@ export default {
       });
       this.submitted = false;
       this.getAllAdvisors();
+      this.getAdvisor();
       if (this.successMessage != "") {
         this.$toast.open({
           message: this.successMessage,
