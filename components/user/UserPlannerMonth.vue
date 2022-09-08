@@ -4453,7 +4453,8 @@ export default {
         e?.target?.files[0]?.size &&
         e.target.files[0]?.size > 5 * 1024 * 1024
       ) {
-        document.querySelector("#fileUpload").value = "";
+        if (document.querySelector("#fileUpload"))
+          document.querySelector("#fileUpload").value = "";
 
         return this.$toast.open({
           message: "File size must be lesser than 5 MB",
@@ -4513,7 +4514,8 @@ export default {
       });
       this.file = "";
       this.link = "";
-      document.querySelector("#fileUpload").value = "";
+      if (document.querySelector("#fileUpload"))
+        document.querySelector("#fileUpload").value = "";
 
       // this.ClubFiles();
     },
