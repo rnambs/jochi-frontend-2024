@@ -154,18 +154,18 @@
                       id="GG4L_school_id"
                       class="form-control"
                       v-model="GG4L_school_id"
-                      :class="{
-                        'is-invalid': submitted && $v.GG4L_school_id.$error,
-                      }"
                     />
-                    <div
+                    <!-- :class="{
+                        'is-invalid': submitted && $v.GG4L_school_id.$error,
+                      }" -->
+                    <!-- <div
                       v-if="submitted && $v.GG4L_school_id.$error"
                       class="invalid-feedback"
                     >
                       <span v-if="!$v.GG4L_school_id.required"
                         >This field is required</span
                       >
-                    </div>
+                    </div> -->
                   </div>
 
                   <div class="form-group required">
@@ -198,18 +198,18 @@
                       id="GG4L_sis_id"
                       class="form-control"
                       v-model="GG4L_sis_id"
-                      :class="{
-                        'is-invalid': submitted && $v.GG4L_sis_id.$error,
-                      }"
                     />
-                    <div
+                    <!-- :class="{
+                        'is-invalid': submitted && $v.GG4L_sis_id.$error,
+                      }" -->
+                    <!-- <div
                       v-if="submitted && $v.GG4L_sis_id.$error"
                       class="invalid-feedback"
                     >
                       <span v-if="!$v.GG4L_sis_id.required"
                         >This field is required</span
                       >
-                    </div>
+                    </div> -->
                   </div>
                   <!-- GG4L details end -->
 
