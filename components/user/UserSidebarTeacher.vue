@@ -788,6 +788,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import { defaultImage } from "../../assets/js/constants";
+import { FRONTEND_BASE_URL } from "~/assets/js/constants";
 
 export default {
   name: "UserSidebarTeacher",
