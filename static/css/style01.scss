@@ -573,6 +573,9 @@ input[type="radio"]{
     // time Picker
     span.vue__time-picker.time-picker{
         width: 100%;
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
         &.form-white{
             input.display-time{
                 background-color: $white;
@@ -614,19 +617,58 @@ input[type="radio"]{
             // margin-top: 3px;
             // width: 13.3em;
             // border-radius: 5px;
-            background-color: $white;
+            background-color: $white;    
+            position: absolute;
+            z-index: 5;
+            top: calc(2.2em + 2px);
+            left: 0;
+            background: #fff;
+            -webkit-box-shadow: 0 1px 6px rgb(0 0 0 / 15%);
+            box-shadow: 0 1px 6px rgb(0 0 0 / 15%);
+            width: 10em;
+            height: 10em;
+            font-weight: 400;
             .select-list{
                 width: 13.3em;
                 @include borderRadius(15);
                 background-color: $white;
+                height: 10em;
+                overflow: hidden;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                -ms-flex-flow: row nowrap;
+                flex-flow: row nowrap;
+                -webkit-box-align: stretch;
+                -ms-flex-align: stretch;
+                align-items: stretch;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
                 ul{
                     background-color: rgba(255, 255, 255, 0.5);
                     box-shadow: 0 0 5px rgb(0 0 0 / 5%);
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                    outline: 0;
+                    -webkit-box-flex: 1;
+                    -ms-flex: 1 1 0.00001px;
+                    flex: 1 1 0.00001px;
+                    overflow-x: hidden;
+                    overflow-y: auto;
                     li.hint{
-                        color: $text-dark;
+                        color: $text-dark;    
+                        cursor: default;
+                        font-size: .8em;
                     }
                     li{
                         color: $text-dark;
+                        list-style: none;
+                        text-align: center;
+                        padding: 0.3em 0;
                         &.active{
                             background-color: $theme-color;
                             color: $white;
