@@ -5322,7 +5322,7 @@ switch to violet when it is active*/
     width: 100%;
     height: 100vh;
     background-color: rgba(0,0,0,0.7);
-    z-index: 1400;
+    z-index: 1080;
     backdrop-filter: blur(1.4px);
 }
 .z-index-9{
@@ -5331,7 +5331,7 @@ switch to violet when it is active*/
 
 // tab calendar
 .daterangepicker{
- z-index: 1301;
+ z-index: 1051;
 }
 .daterangepicker.ltr.show-calendar.opensleft{
     .drp-calendar{
@@ -5394,7 +5394,7 @@ switch to violet when it is active*/
 
 // common popUp
 .modal{
-    z-index: 1300;
+    z-index: 1050;
     overflow: unset !important;
     .modal-dialog{
         @media (max-width:1024.98px) {
@@ -6630,3 +6630,5 @@ select.form-control{
     }
 } 
 ::-webkit-file-upload-button { cursor:pointer; }
+
+$b-toaster-zindex: 1100 !default;

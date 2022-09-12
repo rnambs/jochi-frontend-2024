@@ -1072,11 +1072,11 @@
                           <div
                             class="d-flex flex-column custom-overflow px-5 pb-3"
                           >
-                            <div class="row mt-1">
+                            <div class="row mt-0">
                               <div
                                 v-for="item in completedAssignments"
                                 :key="item.id"
-                                class="col-6"
+                                class="col-6 mt-1"
                               >
                                 <div
                                   class="
