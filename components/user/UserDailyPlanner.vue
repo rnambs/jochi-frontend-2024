@@ -2751,7 +2751,7 @@ export default {
         meetingobj["title"] = title;
         meetingobj["color"] = color;
         meetingobj["start"] = start;
-        meetingobj["id"] = element.id;
+        meetingobj["id"] = element.session_id;
         meetingobj["groupId"] = "study";
         // meetingobj["type"] = "study";
 

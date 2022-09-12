@@ -2893,9 +2893,17 @@ export default {
     },
     redirectMap(e) {
       let session = {};
-      session.type = "assignment";
+      session.type = e.assignment_id ? "assignment" : "study";
       session.id = e.id;
-      session.name = e.assignments?.task;
+      session.name =
+        session.type == "assignment"
+          ? e.assignments?.task
+          : e.subject?.subject_name;
+      if (session.type == "study") {
+        let nameSubject = { id: e.subject.id, text: e.subject.subject_name };
+        this.Subject = nameSubject;
+      }
+
       session.goals = e.subTasks;
       session.duration = e.duration;
       session.breakTime = e.break_time;
@@ -2914,6 +2922,7 @@ export default {
     },
     async getDetail(id) {
       await this.getSessionDetail({ id });
+      console.log(this.studySessionDetail);
     },
     async GetStatusTimer() {
       await this.getStatusTimer({});
