@@ -10,7 +10,7 @@
       <!-- Daily Calander -->
 
       <section id="Daily-Calander" class="">
-        <div class="custom-m argin-for-main-section custom-full-height d-flex">
+        <div class="custom-margin-for-main-section custom-full-height d-flex">
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
               <div class="col-lg-5 col-md-12 h-100">
@@ -478,11 +478,11 @@
                         Drag and drop your assignment here when it is completed
                       </p>
                       <div class="d-flex flex-column custom-overflow px-5 pb-3">
-                        <div class="row mt-1">
+                        <div class="row mt-0">
                           <div
                             v-for="item in completedAssignments"
                             :key="item.id"
-                            class="col-6"
+                            class="col-6 mt-1"
                           >
                             <div
                               class="
