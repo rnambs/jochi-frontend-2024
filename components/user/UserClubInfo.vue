@@ -1597,30 +1597,57 @@ export default {
           formData.append("user_id", localStorage.getItem("id"));
           formData.append("club_banner", "1");
 
-          this.uploadBanner(formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-            club_id: this.$route.query.id,
-          });
-          if (this.successMessageClubFile != "") {
-            $(".modal").modal("hide");
-            $(".modal-backdrop").remove();
-            this.$toast.open({
-              message: this.successMessageClubFile,
-              type: this.SuccessTypeClubFile,
-              duration: 5000,
-            });
-            this.getClubMoreInfo();
-          } else if (this.errorMessageClubFile != "") {
-            this.$toast.open({
-              message: this.errorMessageClubFile,
-              type: this.errorTypeClubFile,
-              duration: 5000,
-            });
-          }
+          this.upload(formData);
+
+          // this.uploadBanner(formData, {
+          //   headers: {
+          //     "Content-Type": "multipart/form-data",
+          //   },
+          //   club_id: this.$route.query.id,
+          // });
+          // if (this.successMessageClubFile != "") {
+          //   $(".modal").modal("hide");
+          //   $(".modal-backdrop").remove();
+          //   this.$toast.open({
+          //     message: this.successMessageClubFile,
+          //     type: this.SuccessTypeClubFile,
+          //     duration: 5000,
+          //   });
+          //   this.getClubMoreInfo();
+          // } else if (this.errorMessageClubFile != "") {
+          //   this.$toast.open({
+          //     message: this.errorMessageClubFile,
+          //     type: this.errorTypeClubFile,
+          //     duration: 5000,
+          //   });
+          // }
         }
       }, this.mime_type);
+    },
+    async upload(formData) {
+      await this.uploadBanner(formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        club_id: this.$route.query.id,
+      });
+      //   this.loading = false;
+      if (this.successMessage != "") {
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        this.getClubMoreInfo();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
     },
     onFileSelect(e) {
       if (
