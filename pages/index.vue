@@ -1,17 +1,17 @@
 <template>
-  <div class="w-100 main-container register" data-app>
+  <div class="w-100 main-container register custom-full-height" data-app>
     <!-- <div class="text-center" v-if="loading && loadingMessage">
       {{ loadingMessage }}
     </div> -->
     <img
       src="../static/image/login-bg.jpg"
       alt=""
-      class="bg-img d-none d-md-block"
+      class="bg-img d-none d-md-flex custom-full-height"
     />
     <img
       src="../static/image/login-bg-rotate.jpg"
       alt=""
-      class="bg-img d-block d-md-none"
+      class="bg-img d-flex d-md-none"
     />
 
     <lottie
@@ -39,7 +39,7 @@
       <div id="fountainTextG_3" class="fountainTextG animation">. &nbsp;</div>
       <div id="fountainTextG_4" class="fountainTextG animation">. &nbsp;</div>
     </div>
-    <div class="row main-row flex-row vh-100 m-0">
+    <div class="row main-row flex-row custom-full-height m-0">
       <div
         class="
           col-md-6
@@ -86,7 +86,7 @@
               class="
                 card
                 rounded-22
-                p-5
+                p-4 p-md-5
                 d-flex
                 flex-column
                 justify-content-center
@@ -96,7 +96,7 @@
               <img
                 src="../static/image/school_passport.png"
                 alt=""
-                class="mb-4 passport-img py-4"
+                class="mb-2 mb-md-4 passport-img py-4"
               />
               <button
                 class="btn btn-primary font-semi-bold px-5"
