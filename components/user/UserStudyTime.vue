@@ -2896,6 +2896,7 @@ export default {
       event.returnValue = "";
     },
     redirectMap(e) {
+      console.log("session detail", this.studySessionDetail);
       let session = {};
       session.type = e.assignment_id ? "assignment" : "study";
       session.id = e.id;
@@ -2906,6 +2907,8 @@ export default {
       if (session.type == "study") {
         let nameSubject = { id: e.subject.id, text: e.subject.subject_name };
         this.Subject = nameSubject;
+      } else {
+        this.subjectName = e.assignments?.task;
       }
 
       session.goals = e.subTasks;
@@ -2947,7 +2950,7 @@ export default {
         this.targetDuration = this.studyTypes.start_time;
         this.breakTime = this.studyTypes.break_time;
         this.breakAt = this.studyTypes.start_time;
-        this.repeatLoopBy = this.studyTypes.cycle;
+        // this.repeatLoopBy = this.studyTypes.cycle;
       } else {
         this.targetDuration = 5;
         this.breakTime = 2;
@@ -2956,6 +2959,19 @@ export default {
         // this.totalCycles = 1;
       }
     },
+    // async UpdateStudyTechnique() {
+    //   this.CustomMode = "active";
+    //   if (this.studyTypes.id != 2) {
+    //     this.targetDuration = this.studyTypes.startTime;
+    //     this.breakTime = this.studyTypes.breakTime;
+    //     this.repeatLoopBy = this.studyTypes.cycle;
+    //   } else {
+    //     this.targetDuration = 5;
+    //     this.breakTime = 2;
+    //     this.breakAt = 2;
+    //   }
+    // },
+
     async UpdateSubject() {
       this.SubjectName = this.Subject.subject_name;
     },
@@ -2971,7 +2987,7 @@ export default {
       this.totalCycles = this.repeatLoopBy;
       this.customBreakStarted = false;
       this.breakAtMinutes = this.breakAt * 60;
-      if (this.studyTypes.id == 3) {
+      if (this.studyTypes.id == 2) {
         this.timeCompleted = 0;
       }
 
@@ -3024,7 +3040,7 @@ export default {
       let percentage = 0;
       var minutes = 0;
       var seconds = 0;
-      if (this.studyTypes.id == 3) {
+      if (this.studyTypes.id == 2) {
         this.timeCompleted = this.timeCompleted > 0 ? this.timeCompleted : 0;
       }
       // var startTime;
@@ -3064,7 +3080,7 @@ export default {
 
               if (
                 this.studyStatus == "study" &&
-                this.studyTypes.id == 3 &&
+                this.studyTypes.id == 2 &&
                 this.timeCompleted == this.breakAtMinutes &&
                 !this.customBreakStarted
               ) {
@@ -3268,7 +3284,7 @@ export default {
         });
         valid = false;
       }
-      if (this.studyTypes.id == 3) {
+      if (this.studyTypes.id == 2) {
         if (!this.targetDuration) {
           this.$toast.open({
             message: "Durartion is required",
@@ -3390,7 +3406,7 @@ export default {
         }
         this.totalStudyTime = 0;
         if (
-          this.studyTypes.id == 3 &&
+          this.studyTypes.id == 2 &&
           studyStatus == "PAUSE" &&
           this.customBreakStarted
         ) {
@@ -3420,7 +3436,7 @@ export default {
       this.AddStudyTime("STOP");
     },
     async onPauseSession() {
-      // if (this.studyTypes.id == 3) {
+      // if (this.studyTypes.id == 2) {
       this.studyTimePaused = true;
       var presentTime = new Date().getTime();
       this.totalStudyTime = (presentTime - this.studyTimeStart) / 1000;
@@ -3428,7 +3444,7 @@ export default {
       // }
     },
     async onResumeSession() {
-      // if (this.studyTypes.id == 3) {
+      // if (this.studyTypes.id == 2) {
       (this.startTime = new Date().getTime()), (this.studyTimePaused = false);
       this.studyTimeStart = new Date().getTime();
       this.showResume = false;
@@ -3960,7 +3976,7 @@ export default {
       $("#confirmAsstStartModal").modal({ backdrop: true });
     },
     async goToSession() {
-      if (Number(this.sessionDetail.studyMethod) == 3) {
+      if (Number(this.sessionDetail.studyMethod) == 2) {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 2);
       } else {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 1);
