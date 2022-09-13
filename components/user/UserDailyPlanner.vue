@@ -10,7 +10,7 @@
       <!-- Daily Calander -->
 
       <section id="Daily-Calander" class="">
-        <div class="custom-margin-for-main-section custom-full-height d-flex">
+        <div class="custom-m argin-for-main-section custom-full-height d-flex">
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
               <div class="col-lg-5 col-md-12 h-100">
@@ -478,11 +478,11 @@
                         Drag and drop your assignment here when it is completed
                       </p>
                       <div class="d-flex flex-column custom-overflow px-5 pb-3">
-                        <div class="row mt-0">
+                        <div class="row mt-1">
                           <div
                             v-for="item in completedAssignments"
                             :key="item.id"
-                            class="col-6 mt-1"
+                            class="col-6"
                           >
                             <div
                               class="
@@ -2751,7 +2751,7 @@ export default {
         meetingobj["title"] = title;
         meetingobj["color"] = color;
         meetingobj["start"] = start;
-        meetingobj["id"] = element.id;
+        meetingobj["id"] = element.session_id;
         meetingobj["groupId"] = "study";
         // meetingobj["type"] = "study";
 
@@ -3506,26 +3506,31 @@ export default {
         e.assignments?.assignment_shared_users &&
         e.assignments?.assignment_shared_users.length > 0
       ) {
-        e.assignments?.assignment_shared_users.forEach((item) => {
-          let peer = {};
+        e.assignments.assignment_shared_users.forEach((item) => {
           if (item.shared_users_id != user_id) {
+            let peer = {};
             peer = item.users;
             peer.id = item.shared_users_id;
+            console.log("console", item, peer);
             peers.push(peer);
           }
         });
       }
       if (e.assignment_shared_users && e.assignment_shared_users?.length > 0) {
         e.assignment_shared_users.forEach((item) => {
-          let peer = {};
           if (item.shared_users_id != user_id) {
+            let peer = {};
             peer = item.users;
             peer.id = item.shared_users_id;
             peers.push(peer);
           }
         });
       }
-      if (e.assignments?.users) {
+      let exists = peers.find(
+        (ele) => ele.id.toString() == e.assignments?.user_id.toString()
+      );
+
+      if (e.assignments?.users && !exists) {
         let user = {};
         user = e.assignments?.users;
         user.id = e.user_id;
