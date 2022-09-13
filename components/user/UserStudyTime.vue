@@ -2879,6 +2879,7 @@ export default {
       saveStudySession: "saveStudySession",
       getInvitedPeers: "getInvitedPeers",
       getSessionDetail: "getSessionDetail",
+      editStudySession: "editStudySession",
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
@@ -2909,6 +2910,12 @@ export default {
         this.Subject = nameSubject;
       } else {
         this.subjectName = e.assignments?.task;
+        this.goalsList = [];
+        if (e.assignments?.subTasks && e.assignments?.subTasks?.length > 0) {
+          e.assignments?.subTasks.forEach((element) => {
+            this.goalsList.push(element.title);
+          });
+        }
       }
 
       session.goals = e.subTasks;
@@ -2925,7 +2932,13 @@ export default {
 
       session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
       session.startSession = false;
+      this.targetDuration = e.duration;
+      session.id = e.id;
+      this.studyTypes = {};
+      this.studyTypes.id = e.study_method;
       this.sessionDetail = session;
+      this.breakAt = e.break_time_at;
+      this.sessionMode = e.study_method ? "regular" : "pomodoro";
     },
     async getDetail(id) {
       await this.getSessionDetail({ id });
@@ -3239,40 +3252,45 @@ export default {
           break_time: this.breakTime,
         };
       }
-      await this.saveStudySession(payLoad);
-      if (this.successMessage != "") {
-        this.$toast.open({
-          message: scheduleNow
-            ? this.successMessage
-            : "Session details saved successfully",
-          type: this.SuccessType,
-          duration: 5000,
-        });
-        if (this.limitedInterval > 0) {
-          await clearInterval(this.limitedInterval);
+      if (this.studySessionDetail.id) {
+        payLoad.session_id = this.sessionDetail.id;
+        return this.EditStudyTime(scheduleNow, payLoad);
+      } else {
+        await this.saveStudySession(payLoad);
+        if (this.successMessage != "") {
+          this.$toast.open({
+            message: scheduleNow
+              ? this.successMessage
+              : "Session details saved successfully",
+            type: this.SuccessType,
+            duration: 5000,
+          });
+          if (this.limitedInterval > 0) {
+            await clearInterval(this.limitedInterval);
+          }
+          this.submitted = false;
+          this.processing = false;
+          if (!scheduleNow) {
+            this.resetData();
+            this.closeScheduleForLater();
+            this.currentTab = 0;
+            this.getAllStudySessions();
+            return;
+          } else {
+            this.onNext();
+            this.Timer();
+          }
+        } else if (this.errorMessage != "") {
+          this.$toast.open({
+            message: this.errorMessage,
+            type: this.errorType,
+            duration: 5000,
+          });
         }
-        this.submitted = false;
         this.processing = false;
-        if (!scheduleNow) {
-          this.resetData();
-          this.closeScheduleForLater();
-          this.currentTab = 0;
-          this.getAllStudySessions();
-          return;
-        } else {
-          this.onNext();
-          this.Timer();
-        }
-      } else if (this.errorMessage != "") {
-        this.$toast.open({
-          message: this.errorMessage,
-          type: this.errorType,
-          duration: 5000,
-        });
-      }
-      this.processing = false;
 
-      this.processingStudySession = false;
+        this.processingStudySession = false;
+      }
     },
     checkValidations() {
       let valid = true;
@@ -3311,8 +3329,7 @@ export default {
         }
 
         if (
-          this.targetDuration &&
-          this.breakTime &&
+          (this.targetDuration || this.breakTime) &&
           (this.targetDuration < 0 || this.breakTime < 0)
         ) {
           this.$toast.open({
@@ -3419,6 +3436,42 @@ export default {
           duration: 5000,
         });
       }
+    },
+    async EditStudyTime(scheduleNow, payLoad) {
+      await this.editStudySession(payLoad);
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: scheduleNow
+            ? this.successMessage
+            : "Session details saved successfully",
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        if (this.limitedInterval > 0) {
+          await clearInterval(this.limitedInterval);
+        }
+        this.submitted = false;
+        this.processing = false;
+        if (!scheduleNow) {
+          this.resetData();
+          this.closeScheduleForLater();
+          this.currentTab = 0;
+          this.getAllStudySessions();
+          return;
+        } else {
+          this.onNext();
+          this.Timer();
+        }
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      this.processing = false;
+
+      this.processingStudySession = false;
     },
     async runCustomTimerRemaining(totalTimeStudied) {
       this.studyStatus = "break";
