@@ -312,6 +312,11 @@
                                 :src="advisorDetail.profile_pic"
                                 alt=""
                               />
+                              <img
+                                v-else
+                                src="~/static/image/avatar.png"
+                                alt=""
+                              />
                             </div>
                           </div>
                           <div class="ld-details-section">
