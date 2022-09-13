@@ -3271,7 +3271,7 @@ export default {
         meetingobj["title"] = title;
         meetingobj["color"] = color;
         meetingobj["start"] = start;
-        meetingobj["id"] = element.id;
+        meetingobj["id"] = element.session_id;
         meetingobj["groupId"] = "study";
         // meetingobj["type"] = "study";
 
@@ -4459,7 +4459,11 @@ export default {
           }
         });
       }
-      if (e.assignments?.users) {
+      let exists = peers.find(
+        (ele) => ele.id.toString() == e.assignments?.user_id.toString()
+      );
+
+      if (e.assignments?.users && !exists) {
         let user = {};
         user = e.assignments?.users;
         user.id = e.user_id;

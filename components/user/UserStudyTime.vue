@@ -477,7 +477,7 @@
       <div>
         <div class="row">
           <div
-            v-for="detail in assignmentList"
+            v-for="detail in pendingAssignments"
             :key="detail.id"
             class="col-md-6 col-lg-4"
           >
@@ -2800,6 +2800,8 @@ export default {
       intervalCountDown: null,
       sessionRedirectId: this.$route.query.id,
       userId: "",
+      assignmentMaterials: [],
+      pendingAssignments: [],
     };
   },
 
@@ -2857,6 +2859,8 @@ export default {
       invitedPeers: (state) => state.invitedPeers,
       ownerDetail: (state) => state.ownerDetail,
       studySessionDetail: (state) => state.studySessionDetail,
+      assignmentsList: (state) => state.assignmentsList,
+      sharedAssignmentsList: (state) => state.sharedAssignmentsList,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -2892,10 +2896,21 @@ export default {
       event.returnValue = "";
     },
     redirectMap(e) {
+      console.log("session detail", this.studySessionDetail);
       let session = {};
-      session.type = "assignment";
+      session.type = e.assignment_id ? "assignment" : "study";
       session.id = e.id;
-      session.name = e.assignments?.task;
+      session.name =
+        session.type == "assignment"
+          ? e.assignments?.task
+          : e.subject?.subject_name;
+      if (session.type == "study") {
+        let nameSubject = { id: e.subject.id, text: e.subject.subject_name };
+        this.Subject = nameSubject;
+      } else {
+        this.subjectName = e.assignments?.task;
+      }
+
       session.goals = e.subTasks;
       session.duration = e.duration;
       session.breakTime = e.break_time;
@@ -2914,6 +2929,7 @@ export default {
     },
     async getDetail(id) {
       await this.getSessionDetail({ id });
+      console.log(this.studySessionDetail);
     },
     async GetStatusTimer() {
       await this.getStatusTimer({});
@@ -2934,7 +2950,7 @@ export default {
         this.targetDuration = this.studyTypes.start_time;
         this.breakTime = this.studyTypes.break_time;
         this.breakAt = this.studyTypes.start_time;
-        this.repeatLoopBy = this.studyTypes.cycle;
+        // this.repeatLoopBy = this.studyTypes.cycle;
       } else {
         this.targetDuration = 5;
         this.breakTime = 2;
@@ -2943,6 +2959,19 @@ export default {
         // this.totalCycles = 1;
       }
     },
+    // async UpdateStudyTechnique() {
+    //   this.CustomMode = "active";
+    //   if (this.studyTypes.id != 2) {
+    //     this.targetDuration = this.studyTypes.startTime;
+    //     this.breakTime = this.studyTypes.breakTime;
+    //     this.repeatLoopBy = this.studyTypes.cycle;
+    //   } else {
+    //     this.targetDuration = 5;
+    //     this.breakTime = 2;
+    //     this.breakAt = 2;
+    //   }
+    // },
+
     async UpdateSubject() {
       this.SubjectName = this.Subject.subject_name;
     },
@@ -2958,7 +2987,7 @@ export default {
       this.totalCycles = this.repeatLoopBy;
       this.customBreakStarted = false;
       this.breakAtMinutes = this.breakAt * 60;
-      if (this.studyTypes.id == 3) {
+      if (this.studyTypes.id == 2) {
         this.timeCompleted = 0;
       }
 
@@ -3011,7 +3040,7 @@ export default {
       let percentage = 0;
       var minutes = 0;
       var seconds = 0;
-      if (this.studyTypes.id == 3) {
+      if (this.studyTypes.id == 2) {
         this.timeCompleted = this.timeCompleted > 0 ? this.timeCompleted : 0;
       }
       // var startTime;
@@ -3051,7 +3080,7 @@ export default {
 
               if (
                 this.studyStatus == "study" &&
-                this.studyTypes.id == 3 &&
+                this.studyTypes.id == 2 &&
                 this.timeCompleted == this.breakAtMinutes &&
                 !this.customBreakStarted
               ) {
@@ -3255,7 +3284,7 @@ export default {
         });
         valid = false;
       }
-      if (this.studyTypes.id == 3) {
+      if (this.studyTypes.id == 2) {
         if (!this.targetDuration) {
           this.$toast.open({
             message: "Durartion is required",
@@ -3377,7 +3406,7 @@ export default {
         }
         this.totalStudyTime = 0;
         if (
-          this.studyTypes.id == 3 &&
+          this.studyTypes.id == 2 &&
           studyStatus == "PAUSE" &&
           this.customBreakStarted
         ) {
@@ -3407,7 +3436,7 @@ export default {
       this.AddStudyTime("STOP");
     },
     async onPauseSession() {
-      // if (this.studyTypes.id == 3) {
+      // if (this.studyTypes.id == 2) {
       this.studyTimePaused = true;
       var presentTime = new Date().getTime();
       this.totalStudyTime = (presentTime - this.studyTimeStart) / 1000;
@@ -3415,7 +3444,7 @@ export default {
       // }
     },
     async onResumeSession() {
-      // if (this.studyTypes.id == 3) {
+      // if (this.studyTypes.id == 2) {
       (this.startTime = new Date().getTime()), (this.studyTimePaused = false);
       this.studyTimeStart = new Date().getTime();
       this.showResume = false;
@@ -3617,14 +3646,145 @@ export default {
         await this.getAssignments({
           student_id: parseInt(localStorage.getItem("id")),
         });
-        this.assignmentList = [];
-        if (this.assignments && this.assignments.length > 0) {
-          this.assignments.forEach((e) => {
-            this.assignmentDetail = e;
-            this.assignmentList.push(this.assignmentDetail);
+        console.log(this.assignmentsList, this.sharedAssignmentsList);
+        this.assignmentMaterials = [];
+        this.mapAssignments();
+        this.mapSharedAssignments();
+      }
+    },
+
+    mapAssignments() {
+      if (this.assignmentsList && this.assignmentsList.length > 0) {
+        this.assignmentsList.forEach((e) => {
+          let asst = this.mapData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
+      console.log("pending assts ", this.pendingAssignments);
+    },
+    mapData(e) {
+      if (e) {
+        let item = {};
+        this.assignmentMaterials = [];
+
+        item.assignment_description = e.assignment_description;
+        // item.assignment_materials = e.assignment_materials;
+        if (e.assignment_materials && e.assignment_materials.length > 0) {
+          e.assignment_materials.forEach((m) => {
+            let data = {};
+            data = m;
+            this.assignmentMaterials.push(data);
           });
         }
+        item.assignment_materials = this.assignmentMaterials;
+        item.completed_date = e.completed_date;
+        item.dueTimeFormat = e.dueTimeFormat;
+        item.due_date = e.due_date;
+        item.due_time = e.due_time;
+        item.id = e.id;
+        item.priority = e.priority;
+        item.schoologyAssignment = e.schoologyAssignment;
+        item.schoologyAssignmentId = e.schoologyAssignmentId;
+        item.subTasks = e.subTasks;
+        item.subject = e.subject;
+        item.subjects = e.subjects;
+        item.task = e.task;
+        item.task_status = e.task_status;
+        item.updatedAt = e.updatedAt;
+        item.user_id = e.user_id;
+        item.peers = this.mapPeers(e);
+        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        item.isShared = false;
+        return item;
       }
+    },
+    mapSharedAssignments() {
+      if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
+        this.sharedAssignmentsList.forEach((e) => {
+          let asst = this.mapSharedData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
+      console.log("pending assts ", this.pendingAssignments);
+    },
+    mapSharedData(e) {
+      let item = {};
+      this.assignmentMaterials = [];
+
+      if (e && e.assignments) {
+        item.assignment_description = e.assignments.assignment_description;
+        // item.assignment_materials = e.assignment_materials;
+        if (
+          e.assignments?.assignment_materials &&
+          e.assignments?.assignment_materials.length > 0
+        ) {
+          e.assignments?.assignment_materials.forEach((m) => {
+            let data = {};
+            data = m;
+            this.assignmentMaterials.push(data);
+          });
+        }
+        item.assignment_materials = this.assignmentMaterials;
+        item.completed_date = e.assignments.completed_date;
+        item.dueTimeFormat = e.assignments.dueTimeFormat;
+        item.due_date = e.assignments.due_date;
+        item.due_time = e.assignments.due_time;
+        item.id = e.assignments.id;
+        item.sharedId = e.id;
+        item.priority = e.assignments.priority;
+        item.schoologyAssignment = e.assignments.schoologyAssignment;
+        item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+        item.subTasks = e.assignments?.subTasks;
+        item.subject = e.assignments?.subjects?.subject_name;
+        item.subjects = e.assignments?.subjects;
+        item.task = e.assignments.task;
+        item.task_status = e.assignments.task_status;
+        item.updatedAt = e.assignments.updatedAt;
+        item.user_id = e.assignments.user_id;
+        item.peers = this.mapPeers(e);
+        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        item.isShared = true;
+        return item;
+      }
+    },
+    mapPeers(e) {
+      let user_id = localStorage.getItem("id");
+      let peers = [];
+      if (
+        e.assignments?.assignment_shared_users &&
+        e.assignments?.assignment_shared_users.length > 0
+      ) {
+        e.assignments.assignment_shared_users.forEach((item) => {
+          if (item.shared_users_id != user_id) {
+            let peer = {};
+            peer = item.users;
+            peer.id = item.shared_users_id;
+            console.log("console", item, peer);
+            peers.push(peer);
+          }
+        });
+      }
+      if (e.assignment_shared_users && e.assignment_shared_users?.length > 0) {
+        e.assignment_shared_users.forEach((item) => {
+          if (item.shared_users_id != user_id) {
+            let peer = {};
+            peer = item.users;
+            peer.id = item.shared_users_id;
+            peers.push(peer);
+          }
+        });
+      }
+      let exists = peers.find(
+        (ele) => ele.id.toString() == e.assignments?.user_id.toString()
+      );
+
+      if (e.assignments?.users && !exists) {
+        let user = {};
+        user = e.assignments?.users;
+        user.id = e.user_id;
+        peers.push(user);
+      }
+      return peers;
     },
     onAssignmentSelect(detail) {
       this.selectedAssignment = detail;
@@ -3816,7 +3976,7 @@ export default {
       $("#confirmAsstStartModal").modal({ backdrop: true });
     },
     async goToSession() {
-      if (Number(this.sessionDetail.studyMethod) == 3) {
+      if (Number(this.sessionDetail.studyMethod) == 2) {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 2);
       } else {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 1);
