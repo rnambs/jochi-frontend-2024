@@ -3783,6 +3783,7 @@ img.dark-icon {
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day {
   background-color: unset !important;
+  background: unset !important;
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day.fc-day-today {
   background-color: #FF6D6D;
@@ -3965,6 +3966,7 @@ img.dark-icon {
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day {
   background-color: unset !important;
+  background: unset !important;
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day.fc-day-today {
   background-color: #FF6D6D;
