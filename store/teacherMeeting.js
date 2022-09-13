@@ -25,7 +25,7 @@ const actions = {
       });
       commit('setStudentsList', response.data);
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -33,10 +33,10 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      if (e.response.data.message) {
+      if (e?.response?.data?.message) {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
       }
     }
@@ -52,7 +52,7 @@ const actions = {
       });
       commit('setTeacherList', response.data);
     } catch {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -60,10 +60,10 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      if (e.response.data.message) {
+      if (e?.response?.data?.message) {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
       }
     }
@@ -80,7 +80,7 @@ const actions = {
       commit('setStudentSchedule', response.data);
       commit('setTimeZone', response.timeZone);
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -88,10 +88,10 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      if (e.response.data.message) {
+      if (e?.response?.data?.message) {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
       }
     }
@@ -109,7 +109,7 @@ const actions = {
       commit('setTeacherSchedule', response.data);
       commit('setTimeZone', response.timeZone);
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -117,10 +117,10 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      if (e.response.data.message) {
+      if (e?.response?.data?.message) {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
       }
     }
@@ -197,7 +197,7 @@ const actions = {
 
       }
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -205,10 +205,10 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      if (e.response.data.message) {
+      if (e?.response?.data?.message) {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
       }
     }
@@ -262,7 +262,7 @@ const actions = {
 
       }
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -271,10 +271,10 @@ const actions = {
         this.$router.push('/');
       }
 
-      if (e.response.data.message) {
+      if (e?.response?.data?.message) {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
       }
     }
@@ -302,7 +302,7 @@ const actions = {
         commit('setSuccessType', "error");
       }
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -310,10 +310,10 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      if (e.response.data.message) {
+      if (e?.response?.data?.message) {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
       }
     }
@@ -329,7 +329,7 @@ const actions = {
       });
       commit('setInvitedMembers', response.data);
     } catch (e) {
-      if (e.response.data.message == "Unauthorized") {
+      if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "");
@@ -337,10 +337,10 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      if (e.response.data.message) {
+      if (e?.response?.data?.message) {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
-        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorMessage', e?.response?.data?.message);
         commit('setErrorType', "error");
       }
     }

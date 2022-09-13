@@ -299,11 +299,17 @@
                     </td>
                   </tr>
 
-                  <!-- <tr v-id="!isDateChanged">
-                    <button @click="changeSlot">
+                  <tr
+                    v-if="
+                      !isDateChanged &&
+                      ((detailType == 'Peer' && detailTeacherId != studentId) ||
+                        detailMeetingRequest != 1)
+                    "
+                  >
+                    <button type="button" @click="changeSlot">
                       Change Today's Slot Time
                     </button>
-                  </tr> -->
+                  </tr>
 
                   <tr v-if="isDateChanged && slot_date_selection.length > 0">
                     <td>Select Time</td>

@@ -601,9 +601,46 @@ input[type="radio"]{
             width: 100%;
             cursor: pointer;
         }
+        .controls>*{
+            display: flex;
+            cursor: pointer;
+            width: auto;
+            -webkit-box-orient: vertical;
+            -ms-flex-flow: column nowrap;
+            flex-flow: column nowrap;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 0 0.35em;
+            color: #d2d2d2;
+            line-height: 100%;
+            font-style: normal;
+            pointer-events: auto;
+            -webkit-transition: color .2s,opacity .2s;
+            transition: color .2s,opacity .2s;
+        }
         .controls{
+            display: flex;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 3;
+            -webkit-box-orient: horizontal;
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+            -webkit-box-align: stretch;
+            -ms-flex-align: stretch;
+            align-items: stretch;
+            pointer-events: none;
             span.clear-btn{
-                padding: 0.2em 0.35em 0em;
+                padding: 0em 0.35em 0em;
                 span.char{
                     font-size: 1.2em;
                     line-height: 1;

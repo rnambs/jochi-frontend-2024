@@ -16,7 +16,9 @@ const state = {
   sessionData: {},
   invitedPeers: [],
   ownerDetail: [],
-  studySessionDetail: {}
+  studySessionDetail: {},
+  assignmentsList: [],
+  sharedAssignmentsList: [],
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -265,23 +267,26 @@ const actions = {
   async getAssignments({ commit }, payLoad) {
     const token = localStorage.getItem('token')
     try {
-      const response = await this.$axios.$get(BASE_URL + `studyRoom/get_all_assignments?student_id=${payLoad.student_id}`, {
+      // const response = await this.$axios.$get(BASE_URL + `studyRoom/get_all_assignments?student_id=${payLoad.student_id}`, {
+      const response = await this.$axios.$get(BASE_URL + `planner/all_assignments`, {
         headers: {
           'Authorization': ` ${token}`
         },
       });
-      if (response.status == true) {
-        if (response.data && response.data.length > 0) {
-          response.data.forEach(e => {
-            e.due_date = moment(e.due_date).format("MM/DD/YY")
-          })
-        }
-        commit('setAssignments', response.data);
+      // if (response.status == true) {
+      //   if (response.assignments && response.assignments.length > 0) {
+      //     response.assignments.forEach(e => {
+      //       e.due_date = moment(e.due_date).format("MM/DD/YY")
+      //     })
+      //   }
+      // commit('setAssignments', response.data);
+      commit('setAssignmentsList', response.assignments);
+      commit('setSharedAssignmentsList', response.shared_assignments);
 
-      } else {
-        commit('setStatusTimer', 'ended');
+      // } else {
+      //   commit('setStatusTimer', 'ended');
 
-      }
+      // }
     } catch (e) {
 
     }
@@ -370,7 +375,12 @@ const mutations = {
   setSessionDetail(state, data) {
     state.studySessionDetail = data;
   },
-
+  setAssignmentsList(state, data) {
+    state.assignmentsList = data;
+  },
+  setSharedAssignmentsList(state, data) {
+    state.sharedAssignmentsList = data;
+  },
 
 
 }
@@ -419,6 +429,12 @@ const getters = {
   },
   studySessionDetail: () => {
     return state.studySessionDetail;
+  },
+  assignmentsList: () => {
+    return state.assignmentsList;
+  },
+  sharedAssignmentsList: () => {
+    return state.sharedAssignmentsList;
   },
 
 
