@@ -49,11 +49,11 @@
                       </button>
                     </div>
                   </div>
-                  <div class="col-md-4 col-lg-3">
+                  <!-- <div class="col-md-4 col-lg-3">
                     <nuxt-link class="py-2 btn btn-primary px-4" to="/club-form"
                       >Add Club
                     </nuxt-link>
-                  </div>
+                  </div> -->
                 </div>
 
                 <!-- end search tab -->
