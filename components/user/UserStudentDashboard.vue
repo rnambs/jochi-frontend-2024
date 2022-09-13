@@ -1029,7 +1029,7 @@ export default {
       this.slot_date = [];
       this.loading = true;
       const format = "YYYY-MM-DD";
-      let calendarDate = moment(this.calendarApi.view.activeStart).format(
+      let calendarDate = moment(this.calendarApi?.view?.activeStart).format(
         format
       );
       await this.listAllMeetingMonth({

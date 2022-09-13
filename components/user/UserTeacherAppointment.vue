@@ -860,3 +860,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.modal-backdrop {
+  display: none;
+}
+</style>
