@@ -219,11 +219,12 @@
                     >
                       <div class="row">
                         <div
-                          v-for="(list, index) in slot_date"
-                          :key="index"
                           class="col-12 mb-2"
                         >
-                          <div class="faculty-availability-card">
+                          <div 
+                          v-for="(list, index) in slot_date"
+                          :key="index"
+                           class="faculty-availability-card mb-4">
                             <div class="row">
                               <div class="col-3 py-0">
                                 <div
