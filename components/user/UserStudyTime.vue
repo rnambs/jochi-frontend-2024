@@ -2938,6 +2938,9 @@ export default {
       this.studyTypes.id = e.study_method;
       this.sessionDetail = session;
       this.breakAt = e.break_time_at;
+      // this.peerSelected = this.mapPeers(e)
+      this.peerList = this.mapPeers(e);
+      console.log("peer list", this.peerList);
       this.sessionMode = e.study_method ? "regular" : "pomodoro";
     },
     async getDetail(id) {
@@ -3252,7 +3255,7 @@ export default {
           break_time: this.breakTime,
         };
       }
-      if (this.studySessionDetail.id) {
+      if (this.sessionDetail.id) {
         payLoad.session_id = this.sessionDetail.id;
         return this.EditStudyTime(scheduleNow, payLoad);
       } else {
@@ -3803,6 +3806,20 @@ export default {
     mapPeers(e) {
       let user_id = localStorage.getItem("id");
       let peers = [];
+      if (
+        e.assignment_session_shared_users &&
+        e.assignment_session_shared_users.length > 0
+      ) {
+        e.assignment_session_shared_users.forEach((item) => {
+          if (item.session_shared_user_id != user_id) {
+            let peer = {};
+            peer = item.users;
+            peer.id = item.session_shared_user_id;
+            console.log("console", item, peer);
+            peers.push(peer);
+          }
+        });
+      }
       if (
         e.assignments?.assignment_shared_users &&
         e.assignments?.assignment_shared_users.length > 0

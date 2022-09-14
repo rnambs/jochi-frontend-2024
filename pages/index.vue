@@ -267,7 +267,10 @@ import { mapState, mapActions } from "vuex";
 import Multiselect from "vue-multiselect";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
-import { REDIRECT_LOGIN_URL } from "~/assets/js/constants";
+import {
+  REDIRECT_LOGIN_URL,
+  GG4L_REDIRECT_LOGIN_URL,
+} from "~/assets/js/constants";
 
 var schoolSelectValue = "";
 
@@ -305,9 +308,7 @@ export default {
     studentId: { required },
   },
   mounted() {
-    this.redirect =
-      "https://sso.gg4l.com/oauth/auth?response_type=code&client_id=PTRQTIBSJC&redirect_uri=" +
-      REDIRECT_LOGIN_URL;
+    this.redirect = GG4L_REDIRECT_LOGIN_URL + REDIRECT_LOGIN_URL;
     if (localStorage.getItem("email")) {
       var userType = localStorage.getItem("user_type");
       if (userType == "1") {
