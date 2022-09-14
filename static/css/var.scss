@@ -288,8 +288,11 @@ $sm-screen-h         : 767.98px;
                             &:last-child{
                                 border-right: none !important;
                             }
-                            
+                            .fc-daygrid-body.fc-daygrid-body-unbalanced{
+                                width: 100% !important;
+                            }
                             table.fc-scrollgrid-sync-table{
+                                width: 100% !important;
                                 height: 133px !important;
                                 display: inline-table !important;
                             }

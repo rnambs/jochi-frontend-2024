@@ -2,7 +2,7 @@
   <div class="inner-section">
     <div
       class="
-        main-section
+        main-section 
         sufee-login
         d-flex
         vh-100
@@ -93,10 +93,10 @@ export default {
     overflow: hidden;
     height: 100vh;
   }
-  .inner-section .main-section{
+  .inner-section .sufee-login{
     position: relative;
   }
-  .inner-section .main-section::before{
+  .inner-section .sufee-login::before{
     content: '';
     position: absolute;
     background-image: url(../static/image/jochi-light-bg-rotate.png);
