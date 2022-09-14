@@ -2803,6 +2803,8 @@ export default {
       assignmentMaterials: [],
       pendingAssignments: [],
       isRedirect: false,
+      sharedSessionId: "",
+      sharedNewSessionId: "",
     };
   },
 
@@ -2821,6 +2823,8 @@ export default {
     if (this.sessionRedirectId) {
       await this.getDetail(this.sessionRedirectId);
       this.redirectMap(this.studySessionDetail);
+      await this.getInvitedPeersList();
+      this.mapPeersInvited();
       this.currentTab = 3;
       this.isRedirect = true;
     }
@@ -2897,6 +2901,19 @@ export default {
       if (this.limitedInterval <= 0) return;
       event.preventDefault();
       event.returnValue = "";
+    },
+    mapPeersInvited() {
+      if (this.invitedPeerList && this.invitedPeerList.length > 0) {
+        this.peerList = [];
+        this.invitedPeerList.forEach((e) => {
+          let peer = e;
+          peer.id = e.id;
+          peer.first_name = e.firstName;
+          peer.profile_pic = e.proPic;
+          this.peerList.push(peer);
+        });
+        this.peerSelected = this.peerList;
+      }
     },
     redirectMap(e) {
       console.log("session detail", this.studySessionDetail);
@@ -3423,13 +3440,18 @@ export default {
       this.Timerrepeat = this.timerStatusData.repeat;
 
       await this.addStudyTime({
-        sessionId: this.sessionData.id
+        sessionId: this.sharedSessionId
+          ? this.sharedSessionId
+          : this.sessionData.id
           ? this.sessionData.id
           : this.sessionDetail.id,
         min: totalTimeStudied,
         status: studyStatus,
       });
       if (this.successMessage != "") {
+        if (studyStatus != "STOP" && this.sharedSessionId) {
+          this.sharedSessionId = "";
+        }
         if (studyStatus != "PAUSE") {
           this.$toast.open({
             message: this.successMessage,
@@ -3535,7 +3557,9 @@ export default {
     },
     async onLogSession() {
       await this.addRating({
-        session_id: this.sessionData.id
+        session_id: this.sharedNewSessionId
+          ? this.sharedNewSessionId
+          : this.sessionData.id
           ? this.sessionData.id
           : this.sessionDetail.id,
         focus: this.focusRating,
@@ -3625,6 +3649,7 @@ export default {
         let session = {};
         session.type = e.assignment_id ? "assignment" : "study";
         session.id = e.session_id;
+        session.newSessionId = e.id;
         session.name = e.assignment_id
           ? e.studyroom?.assignments?.task
             ? e.studyroom?.assignments?.task
@@ -3650,6 +3675,7 @@ export default {
         session.scheduleStatus = e.scheduled_status;
         session.assignmentId = e.assignment_id;
         session.subjectId = e.subjects?.id;
+        session.isSharedSession = true;
 
         this.studySessionList.push(session);
       });
@@ -4021,13 +4047,16 @@ export default {
       if (this.sessionDetail.isToday) {
         this.checkTime();
       }
+      this.getInvitedPeersList();
+    },
+    async getInvitedPeersList() {
       await this.getInvitedPeers(this.sessionDetail.id);
       this.invitedPeerList = [];
       if (this.invitedPeers && this.invitedPeers.length > 0) {
         this.invitedPeers.forEach((e) => {
           if (e?.users?.id != this.userId) {
             let peer = {};
-            peer["id"] = e[0]?.users?.id;
+            peer["id"] = e?.users?.id;
             peer["firstName"] = e?.users?.first_name;
             peer["last_name"] = e?.users?.last_name;
             peer["proPic"] = e?.users?.profile_pic;
@@ -4049,6 +4078,14 @@ export default {
       }
     },
     checkIfCompletedAsst() {
+      if (this.sessionDetail.isSharedSession) {
+        this.sharedSessionId = this.sessionDetail.id;
+        this.sharedNewSessionId = this.sessionDetail.newSessionId;
+      } else {
+        this.sharedSessionId = "";
+        this.sharedSessionId = "";
+        this.sharedNewSessionId = "";
+      }
       let valid = true;
       if (this.sessionDetail.type == "assignment") {
         if (this.sessionDetail.status == "Completed") {

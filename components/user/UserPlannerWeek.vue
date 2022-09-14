@@ -1870,7 +1870,7 @@
                                         <p class="ld-heading mb-1 text-link">
                                           <!-- {{ peer.first_name }} -->
                                           {{
-                                            item.file_type
+                                            item.file_type != "link"
                                               ? item.file_name
                                               : item.material
                                           }}
@@ -2285,7 +2285,7 @@
                                         <p class="ld-heading mb-1">
                                           <!-- {{ peer.first_name }} -->
                                           {{
-                                            item.file_type
+                                            item.file_type != "link"
                                               ? item.file_name
                                               : item.material
                                           }}
@@ -3744,7 +3744,9 @@ export default {
     eventClicked(info) {
       var idVal = info.event;
       console.log(
+        moment().format("YYYY-MM-DD"),
         "idVal",
+        idVal,
         idVal.startStr.split("T")[0],
         moment().format("YYYY-MM-DD"),
         !moment(idVal.startStr.split("T")[0]).isBefore(
@@ -3913,7 +3915,7 @@ export default {
       console.log("planner list", this.plannerList);
       console.log("meeting list", this.meetingList);
       console.log("session list", this.sessionList);
-      console.log("shared list", this.sharedAstList);
+      console.log("shared session list", this.sharedSessionList);
       this.plannerList.forEach((element) => {
         var plannerObj = {};
         var title = element.task;
@@ -4037,15 +4039,17 @@ export default {
         var dateMeeting = element.date;
         var timeValNum = element.time;
         var tmeMeeting = "";
-        if (element.time) {
-          tmeMeeting = this.formatAMPM(element.time);
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
         }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
         meetingobj["start"] = start;
-        meetingobj["id"] = element.id;
-        // meetingobj["groupId"] = "Meeting";
+        // meetingobj["id"] = element.id;
+        meetingobj["id"] = element.session_id;
+
+        meetingobj["groupId"] = "study";
 
         listobj["title"] = title;
         listobj["meeting"] = "Study Session";
