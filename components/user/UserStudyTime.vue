@@ -2906,10 +2906,21 @@ export default {
           ? e.assignments?.task
           : e.subject?.subject_name;
       if (session.type == "study") {
+        this.sessionType = "study";
         let nameSubject = { id: e.subject.id, text: e.subject.subject_name };
         this.Subject = nameSubject;
+        this.subjectsData.find(
+          (element) => element.id.toString() == e.subject.id.toString()
+        );
+        this.goalsList = [];
+        if (e.study_goals && e.study_goals?.length > 0) {
+          e.study_goals.forEach((element) => {
+            this.goalsList.push(element.goal);
+          });
+        }
       } else {
         this.subjectName = e.assignments?.task;
+
         this.goalsList = [];
         if (e.assignments?.subTasks && e.assignments?.subTasks?.length > 0) {
           e.assignments?.subTasks.forEach((element) => {
@@ -3688,6 +3699,10 @@ export default {
       if (this.currentTab == 2) {
         this.resetTab3();
       }
+
+      if (this.currentTab == 0) {
+        this.resetData();
+      }
     },
     async setSessionType(type) {
       this.sessionType = type;
@@ -3935,6 +3950,7 @@ export default {
     },
 
     resetData() {
+      this.sessionDetail = {};
       this.sessionType = "";
       this.assignmentDetail = {};
       this.assignmentList = [];
