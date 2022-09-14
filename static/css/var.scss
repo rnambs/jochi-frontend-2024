@@ -322,6 +322,7 @@ $sm-screen-h         : 767.98px;
                         }
                         td.fc-daygrid-day.fc-day{
                             background-color: unset !important;
+                            background: unset !important;
                         }
                         td.fc-daygrid-day.fc-day.fc-day-today{
                             background-color: $theme-color;
