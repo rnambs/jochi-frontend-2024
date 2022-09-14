@@ -85,11 +85,7 @@
                             :src="student.profile_pic"
                             alt=""
                           />
-                          <img
-                            v-else
-                            src="~/static/image/avatar.png"
-                            alt=""
-                          />
+                          <img v-else src="~/static/image/avatar.png" alt="" />
                         </div>
                       </div>
                       <div class="ld-details-section">
@@ -393,7 +389,9 @@
                                         : ""
                                     }}
                                   </div>
-                                  <div class="assignment-tag pink text-truncate">
+                                  <div
+                                    class="assignment-tag pink text-truncate"
+                                  >
                                     {{ detail.subject }}
                                   </div>
                                 </div>
@@ -473,20 +471,53 @@
                                   "
                                 >
                                   <div
-                                    v-if="detail.assignment_materials"
+                                    v-if="
+                                      detail.assignment_materials &&
+                                      detail.assignment_materials.length > 0
+                                    "
                                     class="col-8 py-0 pl-0 material-link"
                                   >
-                                    <span class="text-12">
-                                      {{
-                                        detail.assignment_materials.file_type
-                                      }}:{{
-                                        detail.assignment_materials.file_name
-                                      }}
-                                    </span>
+                                    <div
+                                      class="d-flex w-100"
+                                      v-for="(
+                                        material, index
+                                      ) in detail.assignment_materials"
+                                      :key="material.id"
+                                    >
+                                      <span
+                                        v-if="index < 2"
+                                        class="
+                                          color-secondary
+                                          text-truncate
+                                          w-100
+                                        "
+                                      >
+                                        {{
+                                          material.file_type == "link"
+                                            ? material.material
+                                            : material.file_name
+                                        }}
+                                      </span>
+                                      <span
+                                        class="color-secondary text-12"
+                                        v-if="
+                                          detail.assignment_materials &&
+                                          detail.assignment_materials.length &&
+                                          detail.assignment_materials.length > 2
+                                        "
+                                        >+{{
+                                          detail.assignment_materials.length - 2
+                                        }}
+                                        more</span
+                                      >
+                                    </div>
                                   </div>
 
                                   <div
-                                    v-else
+                                    v-if="
+                                      !detail.assignment_materials ||
+                                      detail.assignment_materials.length <= 0
+                                    "
                                     class="col-8 py-0 pl-0 material-link"
                                   >
                                     <span class="color-secondary text-12"
@@ -814,7 +845,7 @@ export default {
           let item = {};
           if (e.assignments) {
             item.assignment_description = e.assignments.assignment_description;
-            item.assignment_materials = e.assignment_materials;
+            item.assignment_materials = e.assignments.assignment_materials;
             item.completed_date = e.assignments.completed_date;
             item.dueTimeFormat = e.assignments.dueTimeFormat;
             item.due_date = e.assignments.due_date;

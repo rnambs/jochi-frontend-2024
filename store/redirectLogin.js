@@ -6,7 +6,7 @@ const state = {
     errorMessage: '',
     token: '',
     email: '',
-    errorMessage: '',
+    errorType: '',
     id: '',
     user_type: '',
     firstName: '',
@@ -38,10 +38,19 @@ const actions = {
             }
         }
         catch (err) {
-            if (status = 422) {
+            console.log(err)
+            if (err?.response?.data?.error) {
                 commit('setLoginStatus', false);
                 window.$nuxt.$cookies.removeAll();
                 commit('setUserId', '');
+                commit('setErrorType', "error");
+                commit('setErrorMessage', err?.response?.data?.error);
+            }
+            else if (status = 422) {
+                commit('setLoginStatus', false);
+                window.$nuxt.$cookies.removeAll();
+                commit('setUserId', '');
+                commit('setErrorType', "error");
                 commit('setErrorMessage', "You have entered invalid credentials");
             }
         }
@@ -66,6 +75,9 @@ const actions = {
 const mutations = {
     setErrorMessage(state, data) {
         state.errorMessage = data;
+    },
+    setErrorType(state, data) {
+        state.errorType = data;
     },
     setLoginStatus(state, data) {
         state.loginStatus = data;
@@ -129,6 +141,9 @@ const getters = {
     },
     errorMessage: () => {
         return state.errorMessage;
+    },
+    errorType: () => {
+        return state.errorType;
     },
     firstName: () => {
         return state.firstName;
