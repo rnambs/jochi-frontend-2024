@@ -1207,7 +1207,7 @@ export default {
       clubMoreDetails: (state) => state.clubMoreDetails,
       slots: (state) => state.slots,
       successMessageClub: (state) => state.successMessage,
-      SuccessTypeClub: (state) => state.SuccessType,
+      SuccessTypeClub: (state) => state.successType,
       errorMessageClub: (state) => state.errorMessage,
       errorTypeClub: (state) => state.errorType,
       clubBannerImage: (state) => state.clubBannerImage,
@@ -1632,12 +1632,12 @@ export default {
         club_id: this.$route.query.id,
       });
       //   this.loading = false;
-      if (this.successMessage != "") {
+      if (this.successMessageClubFile != "") {
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
         this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
+          message: this.successMessageClubFile,
+          type: this.SuccessTypeClubFile,
           duration: 5000,
         });
         this.getClubMoreInfo();
