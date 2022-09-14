@@ -26,7 +26,7 @@
                   "
                 >
                   <div class="col-md-4 col-lg-3">
-                    <h4 class="text-dark text-left">Club</h4>
+                    <h4 class="text-dark text-left">Teams & Clubs</h4>
                   </div>
                   <div class="col-md-4 col-lg-3">
                     <div class="input-group rounded">
@@ -62,10 +62,10 @@
               <div class="bg-white mt-2 p-1 rounded">
                 <table class="user-table table">
                   <tr class="text-secondary bg-light">
-                    <th>Club Name</th>
+                    <th>Name</th>
                     <th>School Name</th>
-                    <th>Student Leader</th>
-                    <th>Teacher</th>
+                    <th>Type</th>
+                    <!-- <th>Teacher</th> -->
                     <th>Action</th>
                     <!-- <th>Status</th> -->
                   </tr>
@@ -77,8 +77,8 @@
                   <tr v-for="(club, index) in clublist" :key="index">
                     <td>{{ club.clubName }}</td>
                     <td>{{ club.schoolName }}</td>
-                    <td>{{ club.leaderName }}</td>
-                    <td>{{ club.teacherName }}</td>
+                    <td>{{ club.activity_type=='Clubs'?'Club':'Team' }}</td>
+                    <!-- <td>{{ club.teacherName }}</td> -->
                     <td>
                       <button
                         @click="setDeleteId(club.clubId)"
@@ -408,6 +408,7 @@ export default {
         clubArray["teacherName"] = teacherName;
         clubArray["clubId"] = clubId;
         clubArray["status"] = element.status;
+        clubArray["activity_type"] = element.activity_type;
         this.clublist.push(clubArray);
       });
 
