@@ -125,7 +125,7 @@
                       <!-- — Malcolm X -->
                     </p>
                   </div>
-                  <div class="col-4 p-0">
+                  <div class="col-4 col-md-3 col-lg-4 p-0">
                     <img
                       src="~/static/image/dashboard_img.png"
                       alt=""
@@ -135,8 +135,8 @@
                 </div>
               </div>
               <div class="d-flex flex-column h-40 flex-fill">
-                <div class="row mt-1 h-100 flex-column flex-lg-row">
-                  <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
+                <div class="row mt-1 h-100 flex-row">
+                  <div class="col-4 h-100 flex-fill">
                     <div class="jochi-sub-components-light-bg h-100">
                       <div
                         class="
@@ -205,7 +205,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill">
+                  <div class="col-8 px-0 h-100 flex-fill">
                     <div
                       class="
                         d-flex
@@ -1029,7 +1029,7 @@ export default {
       this.slot_date = [];
       this.loading = true;
       const format = "YYYY-MM-DD";
-      let calendarDate = moment(this.calendarApi.view.activeStart).format(
+      let calendarDate = moment(this.calendarApi?.view?.activeStart).format(
         format
       );
       await this.listAllMeetingMonth({
