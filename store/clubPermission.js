@@ -31,6 +31,7 @@ const actions = {
                 window.localStorage.clear();
                 this.$router.push('/');
             } else if (e.response.data.message) {
+                console.log(e)
                 commit('setSuccessMessage', "");
                 commit('setSuccessType', "");
                 commit('setErrorMessage', e.response.data.message);
