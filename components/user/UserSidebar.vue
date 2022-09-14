@@ -403,7 +403,7 @@
                         <nuxt-link
                           to="/viewall-meeting"
                           @click="$event.target.classList.toggle('active')"
-                          class="nav-link"
+                          class="nav-link text-nowrap"
                           >View All</nuxt-link
                         >
                       </li>

@@ -166,6 +166,12 @@ body {
   line-height: 30px;
   font-style: italic;
 }
+@media (max-width:764.98px) {
+  .dashboard-text-content{
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
 
 .study-status-img-section {
   width: 150px;
