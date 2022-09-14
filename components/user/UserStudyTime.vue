@@ -2802,6 +2802,7 @@ export default {
       userId: "",
       assignmentMaterials: [],
       pendingAssignments: [],
+      isRedirect: false,
     };
   },
 
@@ -2821,6 +2822,7 @@ export default {
       await this.getDetail(this.sessionRedirectId);
       this.redirectMap(this.studySessionDetail);
       this.currentTab = 3;
+      this.isRedirect = true;
     }
     window.addEventListener("beforeunload", function (e) {
       // Cancel the event
@@ -3266,7 +3268,7 @@ export default {
           break_time: this.breakTime,
         };
       }
-      if (this.sessionDetail.id) {
+      if (this.isRedirect) {
         payLoad.session_id = this.sessionDetail.id;
         return this.EditStudyTime(scheduleNow, payLoad);
       } else {
@@ -3453,6 +3455,7 @@ export default {
     },
     async EditStudyTime(scheduleNow, payLoad) {
       await this.editStudySession(payLoad);
+      this.isRedirect = false;
       if (this.successMessage != "") {
         this.$toast.open({
           message: scheduleNow
