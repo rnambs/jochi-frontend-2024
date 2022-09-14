@@ -244,8 +244,7 @@
                               </td>
                               <td>
                                 <button
-                                  data-toggle="modal"
-                                  data-target="#mediumModal"
+                                  @click="setMeeting(teacher)"
                                   class="
                                     d-flex
                                     btn
@@ -306,84 +305,162 @@
           role="document"
         >
           <div class="modal-content h-auto">
-            <div class="modal-header pb-0 text-dark">
-              <h2 class="modal-title mb-0" id="mediumModalLabel">
-                Meeting Request
-              </h2>
+            <div class="modal-header text-dark pb-1">
+              <h2 class="modal-title" id="mediumModalLabel">Meeting Request</h2>
               <!-- <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          
-          >
-            <span aria-hidden="true">&times;</span>
-          </button> -->
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button> -->
             </div>
             <div class="modal-body pb-3">
-              <p class="font-bold text-24 color-dark mb-1">07-29-2022</p>
-              <p class="mb-1 font-semi-bold text-18 color-primary">12:00 PM</p>
-              <div class="row py-1">
+              <p
+                v-if="meetingDetail && meetingDetail.date"
+                class="font-bold text-24 color-dark mb-1"
+              >
+                {{ meetingDetail.date }}
+              </p>
+              <p
+                v-if="
+                  meetingDetail &&
+                  meetingDetail.default_slots &&
+                  meetingDetail.default_slots.start_time &&
+                  meetingDetail.default_slots.end_time
+                "
+                class="mb-1 font-semi-bold text-18 color-primary"
+              >
+                {{ meetingDetail.default_slots.start_time }} -
+                {{ meetingDetail.default_slots.end_time }}
+              </p>
+              <div class="row py-0">
                 <div class="col-3">
                   <p class="mb-0 font-semi-bold color-dark text-16">Name</p>
                 </div>
                 <div class="col">
                   <p class="mb-0 color-dark font-regular text-16 d-flex">
                     <span class="px-2"> : </span>
-                    <span>Miya</span>
+                    <span v-if="meetingDetail && meetingDetail.meeting_name">{{
+                      meetingDetail.meeting_name
+                    }}</span>
                   </p>
                 </div>
               </div>
-              <!-- <div class="row py-1">
-            <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Date</p></div>
-            <div class="col">
-              <p class="mb-0 color-dark font-regular text-16 d-flex">
-                <span class="px-2"> : </span> 
-                <span>07-29-2022</span> 
-              </p>
-            </div>
-          </div>
-          <div class="row py-1">
-            <div class="col-3"><p class="mb-0 font-semi-bold color-dark text-16">Time</p></div>
-            <div class="col">
-              <p class="mb-0 color-dark font-regular text-16 d-flex">
-                <span class="px-2"> : </span> 
-                <span>12:00 PM</span> 
-              </p>
-            </div>
-          </div> -->
-              <div class="row py-1 mt-0">
+              <div class="row py-0 mt-0">
                 <div class="col-3">
-                  <p class="mb-0 font-semi-bold color-dark text-16">Duration</p>
+                  <p class="mb-0 font-semi-bold color-dark text-16">With</p>
                 </div>
                 <div class="col">
                   <p class="mb-0 color-dark font-regular text-16 d-flex">
                     <span class="px-2"> : </span>
-                    <span>30 Min</span>
+                    <span v-if="meetingDetail && meetingDetail.title">{{
+                      meetingDetail.title
+                    }}</span>
                   </p>
                 </div>
               </div>
-              <div class="row py-1 mt-0">
+              <!-- <div class="row py-1">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Date</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span v-if="meetingDetail && meetingDetail.date">{{
+                      meetingDetail.date
+                    }}</span>
+                  </p>
+                </div>
+              </div> -->
+              <!-- <div class="row py-1">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Time</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span
+                      v-if="
+                        meetingDetail &&
+                        meetingDetail.default_slots &&
+                        meetingDetail.default_slots.start_time &&
+                        meetingDetail.default_slots.end_time
+                      "
+                      >{{ meetingDetail.default_slots.start_time }} -
+                      {{ meetingDetail.default_slots.end_time }}</span
+                    >
+                  </p>
+                </div>
+              </div> -->
+
+              <div class="row py-0 mt-0">
                 <div class="col-3">
                   <p class="mb-0 font-semi-bold color-dark text-16">
-                    Discription
+                    Description
                   </p>
                 </div>
                 <div class="col">
                   <p class="mb-0 color-dark font-regular text-16 d-flex">
                     <span class="px-2"> : </span>
                     <span
-                      >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Voluptas quibusdam enim, esse in maiores facere quis autem
-                      aperiam at laudantium mollitia accusantium, similique
-                      itaque repudiandae deserunt natus, rerum vero vel?</span
+                      v-if="meetingDetail && meetingDetail.meeting_description"
+                      >{{ meetingDetail.meeting_description }}</span
                     >
+                  </p>
+                </div>
+              </div>
+              <div class="row py-0 mt-0">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Type</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span
+                      v-if="meetingDetail && meetingDetail.conversation_type"
+                      >{{ meetingDetail.conversation_type }}</span
+                    >
+                  </p>
+                </div>
+              </div>
+              <div
+                v-if="meetingDetail && meetingDetail.meeting_link"
+                class="row py-0"
+              >
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Link</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span>{{ meetingDetail.meeting_link }}</span>
+                  </p>
+                </div>
+              </div>
+              <div
+                v-if="meetingDetail && meetingDetail.meeting_location"
+                class="row py-0 mt-0"
+              >
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Location</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span>{{ meetingDetail.meeting_location }}</span>
                   </p>
                 </div>
               </div>
             </div>
             <div class="modal-footer bg-white text-dark">
               <button
+                v-if="
+                  meetingDetail &&
+                  meetingDetail.studentId &&
+                  meetingDetail.reqId
+                "
                 class="
                   d-flex
                   btn btn-secondary
@@ -394,12 +471,22 @@
                   font-semi-bold
                 "
                 @click="
-                  TeacherMeetingConfirm(teacher.studentId, teacher.reqId, 2)
+                  TeacherMeetingConfirm(
+                    meetingDetail.studentId,
+                    meetingDetail.reqId,
+                    2
+                  )
                 "
               >
                 <span class="text-16">Reject</span>
               </button>
               <button
+                v-if="
+                  meetingDetail &&
+                  meetingDetail.studentId &&
+                  meetingDetail.reqId &&
+                  meetingDetail.selectableDate
+                "
                 class="
                   d-flex
                   btn btn-success
@@ -410,14 +497,29 @@
                 "
                 @click="
                   TeacherMeetingConfirm(
-                    teacher.studentId,
-                    teacher.reqId,
+                    meetingDetail.studentId,
+                    meetingDetail.reqId,
                     1,
-                    teacher.selectableDate
+                    meetingDetail.selectableDate
                   )
                 "
               >
                 <span class="text-16">Accept</span>
+              </button>
+              <button
+                v-else
+                data-dismiss="modal"
+                class="
+                  d-flex
+                  btn btn-secondary
+                  rounded-12
+                  px-4
+                  py-1
+                  mx-2
+                  font-semi-bold
+                "
+              >
+                <span class="text-16">Close</span>
               </button>
             </div>
           </div>
@@ -469,6 +571,11 @@ export default {
         dateClick: this.handleDateClick,
         selectable: true,
       },
+      meetingDetail: {},
+      studentIdConfirm: "",
+      reqIdConfirm: "",
+      statusConfirm: "",
+      dateConfirm: "",
     };
   },
   mounted() {
@@ -497,6 +604,11 @@ export default {
     handleAnimation: function (anim) {
       this.anim = anim;
     },
+    setMeeting(teacher) {
+      $("#mediumModal").modal("show");
+      console.log(teacher);
+      this.meetingDetail = teacher;
+    },
     async TeacherMeetingList() {
       await this.teacherMeetingList({
         teacher_id: localStorage.getItem("id"),
@@ -515,6 +627,14 @@ export default {
         Scheduleobj["studentId"] = studentId;
         Scheduleobj["reqId"] = reqId;
         Scheduleobj["selectableDate"] = selectableDate;
+
+        Scheduleobj["conversation_type"] = element.conversation_type;
+        Scheduleobj["dateSelected"] = element.date;
+        Scheduleobj["default_slots"] = element.default_slots;
+        Scheduleobj["meeting_description"] = element.meeting_description;
+        Scheduleobj["meeting_location"] = element.meeting_location;
+        Scheduleobj["meeting_link"] = element.meeting_link;
+        Scheduleobj["meeting_name"] = element.meeting_name;
         this.teachersList.push(Scheduleobj);
       });
     },

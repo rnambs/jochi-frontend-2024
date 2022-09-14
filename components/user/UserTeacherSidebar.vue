@@ -579,7 +579,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import { defaultImage } from "../../assets/js/constants";
-import { FRONTEND_BASE_URL } from "~/assets/js/constants";
+import { FRONTEND_BASE_URL, GG4L_REDIRECT_URL } from "~/assets/js/constants";
 
 export default {
   name: "UserTeacherSidebar",
@@ -697,9 +697,7 @@ export default {
         auth_token: localStorage.getItem("token").replace("Bearer ", ""),
       });
       window.localStorage.clear();
-      window.location.href =
-        "https://sso.gg4l.com/oauth/loginwith/logout?redirect_uri=" +
-        FRONTEND_BASE_URL;
+      window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
     },
     clickableIcon() {
       let element = document.getElementById("clickableId");
