@@ -1866,7 +1866,7 @@ img.dark-icon {
   pointer-events: visible;
   right: 3rem;
   transition: ease-in-out all 0.8s;
-  z-index: 99999;
+  z-index: 1050;
 }
 .inner-section .main-section #Daily-Calander .assignment-planner-section .jochi-components-light-bg, .inner-section .main-section #Weekly-Calander .assignment-planner-section .jochi-components-light-bg, .inner-section .main-section #Monthly-Calander .assignment-planner-section .jochi-components-light-bg {
   background-color: #ffffff;

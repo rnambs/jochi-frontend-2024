@@ -2820,6 +2820,7 @@ select{
   appearance: menulist !important;
   -moz-appearance: menulist !important;
   -webkit-appearance: menulist !important;
+  cursor: pointer;
 }
 .form-group.required .form-control-label:after {
   content:"*";
