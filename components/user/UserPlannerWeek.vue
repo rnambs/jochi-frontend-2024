@@ -1074,7 +1074,7 @@
                           >
                             <div class="row mt-0">
                               <div
-                                v-for="item in completedAssignments"
+                                v-for="item in completedAssignmentList"
                                 :key="item.id"
                                 class="col-6 mt-1"
                               >
@@ -2775,6 +2775,7 @@ export default {
       assignmentList: [],
       assignmentMaterials: [],
       validTime: false,
+      completedAssignmentList: [],
     };
   },
 
@@ -2881,6 +2882,7 @@ export default {
       assignmentsList: (state) => state.assignmentsList,
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
       completedAssignments: (state) => state.completedAssignments,
+      completedSharedAssignments: (state) => state.completedSharedAssignments,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -3595,8 +3597,8 @@ export default {
         (e) => e.subject_name == this.assignment.subject
       );
       this.subject = {
-        id: subject.id,
-        text: subject.subject_name,
+        id: subject?.id,
+        text: subject?.subject_name,
       };
       this.task = this.assignment.task;
       let dateSplit = this.assignment.due_date.split("-");
@@ -4641,6 +4643,20 @@ export default {
         type: "Daily",
       });
       console.log(this.completedAssignments);
+      console.log(this.completedSharedAssignments);
+      let completed = [];
+      completed = this.completedAssignments;
+      this.completedAssignmentList = [];
+      this.completedAssignments.forEach((e) => {
+        let asst = {};
+        asst = e;
+        this.completedAssignmentList.push(asst);
+      });
+      this.completedSharedAssignments.forEach((e) => {
+        let asst = {};
+        asst = e.assignments;
+        this.completedAssignmentList.push(asst);
+      });
     },
     confirmComplete() {
       // this.completeAsstId = id;
