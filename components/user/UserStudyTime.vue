@@ -3442,15 +3442,36 @@ export default {
       this.Timertotal_time = Math.floor(this.totalStudyTime / 60);
       this.Timerrepeat = this.timerStatusData.repeat;
 
-      await this.addStudyTime({
-        sessionId: this.sharedNewSessionId
-          ? this.sharedNewSessionId
-          : this.sessionData.id
-          ? this.sessionData.id
-          : this.sessionDetail.id,
-        min: totalTimeStudied,
-        status: studyStatus,
-      });
+      let addStudyPayload = {};
+      if (this.sessionDetail.isSharedSession) {
+        console.log("session detail add study", this.sessionDetail)
+        addStudyPayload = {
+          sessionId: this.sharedNewSessionId,
+          old_sessionId: this.sessionDetail.id,
+          min: totalTimeStudied,
+          status: studyStatus,
+        };
+      } else {
+        addStudyPayload = {
+          sessionId: this.sessionData.id
+            ? this.sessionData.id
+            : this.sessionDetail.id,
+          min: totalTimeStudied,
+          status: studyStatus,
+        };
+      }
+
+      // await this.addStudyTime({
+      //   sessionId: this.sharedNewSessionId
+      //     ? this.sharedNewSessionId
+      //     : this.sessionData.id
+      //     ? this.sessionData.id
+      //     : this.sessionDetail.id,
+      //   min: totalTimeStudied,
+      //   status: studyStatus,
+      // });
+      await this.addStudyTime(addStudyPayload);
+
       if (this.successMessage != "") {
         if (studyStatus != "STOP" && this.sharedSessionId) {
           this.sharedSessionId = "";
@@ -4177,6 +4198,9 @@ export default {
         };
       }
       await this.saveStudySession(payLoad);
+      if (this.sessionDetail.isSharedSession) {
+          this.sharedNewSessionId = this.sessionData.id;
+        }
       if (this.successMessage != "") {
         this.$toast.open({
           message: this.successMessage,
