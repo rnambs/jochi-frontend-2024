@@ -80,6 +80,16 @@
                     <td>{{ club.activity_type=='Clubs'?'Club':'Team' }}</td>
                     <!-- <td>{{ club.teacherName }}</td> -->
                     <td>
+                      <nuxt-link
+                        :to="{
+                          path: '/club-edit-form',
+                          query: { id: club.clubId },
+                        }"
+                        class="mr-2"
+                      >
+                        <span class="ml-2 text-dark"
+                          ><i class="fas fa-eye"></i></span>
+                      </nuxt-link>
                       <button
                         @click="setDeleteId(club.clubId)"
                         data-toggle="modal"
@@ -89,16 +99,6 @@
                           <i class="fa fa-trash" aria-hidden="true"></i>
                         </span>
                       </button>
-                      <nuxt-link
-                        :to="{
-                          path: '/club-edit-form',
-                          query: { id: club.clubId },
-                        }"
-                      >
-                        <span class="ml-2 text-dark"
-                          ><i class="fas fa-pencil"></i
-                        ></span>
-                      </nuxt-link>
                     </td>
                     <!-- <td>
                       <div class="d-flex w-100 justify-content-between">
