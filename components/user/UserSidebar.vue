@@ -803,12 +803,18 @@ export default {
     async markNotificationAsRead(id) {
       await this.markAsRead({ notificationId: id });
     },
+
     async GetLogout() {
-      await this.getLogout({
-        auth_token: localStorage.getItem("token").replace("Bearer ", ""),
-      });
-      window.localStorage.clear();
-      window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
+      let confirm = window.confirm("You will be logged out now");
+      if (confirm) {
+        await this.getLogout({
+          auth_token: localStorage.getItem("token").replace("Bearer ", ""),
+        });
+        window.localStorage.clear();
+        window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
+      } else {
+        return;
+      }
     },
     async UserDetails() {
       this.loading = true;
