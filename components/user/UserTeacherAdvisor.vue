@@ -498,19 +498,19 @@
                                             : material.file_name
                                         }}
                                       </span>
-                                      <span
-                                        class="color-secondary text-12"
-                                        v-if="
-                                          detail.assignment_materials &&
-                                          detail.assignment_materials.length &&
-                                          detail.assignment_materials.length > 2
-                                        "
-                                        >+{{
-                                          detail.assignment_materials.length - 2
-                                        }}
-                                        more</span
-                                      >
                                     </div>
+                                    <span
+                                      class="color-secondary text-12"
+                                      v-if="
+                                        detail.assignment_materials &&
+                                        detail.assignment_materials.length &&
+                                        detail.assignment_materials.length > 2
+                                      "
+                                      >+{{
+                                        detail.assignment_materials.length - 2
+                                      }}
+                                      more</span
+                                    >
                                   </div>
 
                                   <div
@@ -552,6 +552,7 @@
                               >
                                 <!-- <img src="../../static/image/done.png" alt="" class="position-absolute"> -->
                                 <span
+                                  v-if="detail.task_status == 'Completed'"
                                   class="
                                     color-primary
                                     text-30
