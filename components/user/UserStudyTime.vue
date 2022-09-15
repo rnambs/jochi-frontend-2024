@@ -3444,7 +3444,7 @@ export default {
 
       let addStudyPayload = {};
       if (this.sessionDetail.isSharedSession) {
-        console.log("session detail add study", this.sessionDetail)
+        console.log("session detail add study", this.sessionDetail);
         addStudyPayload = {
           sessionId: this.sharedNewSessionId,
           old_sessionId: this.sessionDetail.id,
@@ -3671,6 +3671,7 @@ export default {
       });
 
       this.sharedSessions.forEach((e) => {
+        console.log(e);
         let session = {};
         session.type = e.assignment_id ? "assignment" : "study";
         session.id = e.session_id;
@@ -4075,6 +4076,8 @@ export default {
         this.checkTime();
       }
       this.getInvitedPeersList();
+      this.mapPeersInvited();
+
     },
     async getInvitedPeersList() {
       await this.getInvitedPeers(this.sessionDetail.id);
@@ -4129,6 +4132,11 @@ export default {
       $("#confirmAsstStartModal").modal({ backdrop: true });
     },
     async goToSession() {
+      await this.getInvitedPeersList();
+      this.mapPeersInvited();
+
+      console.log("session details", this.sessionDetail);
+      this.goalsList = this.sessionDetail.goals;
       this.sessionMode =
         this.sessionDetail.studyMethod == "1"
           ? "pomodoro"
@@ -4199,8 +4207,8 @@ export default {
       }
       await this.saveStudySession(payLoad);
       if (this.sessionDetail.isSharedSession) {
-          this.sharedNewSessionId = this.sessionData.id;
-        }
+        this.sharedNewSessionId = this.sessionData.id;
+      }
       if (this.successMessage != "") {
         this.$toast.open({
           message: this.successMessage,
