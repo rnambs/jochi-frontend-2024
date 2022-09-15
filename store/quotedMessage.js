@@ -13,6 +13,7 @@ const state = {
   assignmentsList: [],
   sharedAssignmentsList: [],
   completedAssignments: [],
+  completedSharedAssignments: [],
   newAdditionalMaterial: {},
   plannerList: [],
   meetingList: [],
@@ -348,6 +349,7 @@ const actions = {
         },
       });
       commit('setCompletedAssignments', response.data);
+      commit('setCompletedSharedAssignments', response.shared_assignments);
     } catch (e) {
 
       commit('setErrorMessage', e?.response?.data?.message);
@@ -490,6 +492,9 @@ const mutations = {
   setCompletedAssignments(state, data) {
     state.completedAssignments = data;
   },
+  setCompletedSharedAssignments(state, data) {
+    state.completedSharedAssignments = data;
+  },
   setAdditionalMaterial(state, data) {
     state.newAdditionalMaterial = data;
   },
@@ -549,6 +554,9 @@ const getters = {
   },
   completedAssignments: () => {
     return state.completedAssignments;
+  },
+  completedSharedAssignments: () => {
+    return state.completedSharedAssignments;
   },
   newAdditionalMaterial: () => {
     return state.newAdditionalMaterial;

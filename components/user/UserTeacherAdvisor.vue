@@ -785,6 +785,8 @@ export default {
         }
         this.selectedStudent = "";
       } else {
+        this.submitted = false;
+
         return this.$toast.open({
           message: "Please select student before proceeding",
           type: "warning",

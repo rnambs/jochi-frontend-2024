@@ -5,13 +5,13 @@
         <div class="row">
           <div class="col-lg-8">
             <div class="card">
-              <div class="card-header">
+              <div class="card-header d-flex flex-column align-items-start">
                 <strong>View Details</strong><small></small>
               </div>
               <div class="card-body card-block">
                 <form @submit.prevent="UpdateClubs">
-                  <div class="form-group required">
-                    <label for="school" class="form-control-label"
+                  <div class="form-group required row align-items-center">
+                    <label for="school" class="form-label text-secondary col-3 col-xl-2 py-1"
                       >Club Name</label
                     >
                     <!-- <input
@@ -22,7 +22,7 @@
                       v-model="clubname"
                       :class="{ 'is-invalid': submitted && $v.clubname.$error }"
                     /> -->
-                    <span>{{ clubname }}</span>
+                    <span class="font-weight-bold col-8 col-xl-9 py-1">{{ clubname }}</span>
                     <!-- <div
                       v-if="submitted && $v.clubname.$error"
                       class="invalid-feedback"
@@ -32,11 +32,9 @@
                       >
                     </div> -->
                   </div>
-                  <div class="form-group required">
-                    <label for="state" class="form-control-label">School</label>
-
-                    {{ clubDetails.schools.name }}
-
+                  <div class="form-group required row align-items-center">
+                    <label for="state" class="form-label text-secondary col-3 col-xl-2 py-1">School</label>
+                    <span class="font-weight-bold col-8 col-xl-9 py-1">{{ clubDetails.schools.name }}</span>
                     <!-- <select
                       @input="GetSchool()"
                       class="custom-select custom-select-sm mb-3"
@@ -66,22 +64,21 @@
                       >
                     </div> -->
                   </div>
-                  <div class="form-group required">
-                    <label for="state" class="form-control-label"
+                  <div class="form-group required row">
+                    <label for="state" class="form-label text-secondary col-3 col-xl-2 py-1"
                       >Student Leaders</label
                     >
-
-                    <div v-if="leaders && leaders.length > 0">
-                      <div v-for="leader in leaders" :key="leader.id">
-                        <span v-if="leader.user_info.user_type_id == '3'">
+                    <span v-if="leaders && leaders.length > 0" class="col-8 col-xl-9 py-1 d-flex">
+                      <span v-for="leader in leaders" :key="leader.id" class="d-flex flex-wrap w-100">
+                        <span v-if="leader.user_info.user_type_id == '3'" class="bg-light rounded-pill px-3 py-1 pb-2 mb-2 mr-2 text-nowrap">
                           {{
                             leader.user_info.first_name +
                             " " +
                             leader.user_info.last_name
                           }}
                         </span>
-                      </div>
-                    </div>
+                      </span>
+                    </span>
 
                     <!-- <select
                       @input="StudentSelection"
@@ -111,22 +108,22 @@
                       >
                     </div> -->
                   </div>
-                  <div class="form-group required">
-                    <label for="state" class="form-control-label"
+                  <div class="form-group required row align-items-center">
+                    <label for="state" class="form-label text-secondary col-3 col-xl-2"
                       >Teacher Leaders</label
                     >
 
-                    <div v-if="leaders && leaders.length > 0">
-                      <div v-for="leader in leaders" :key="leader.id">
-                        <span v-if="leader.user_info.user_type_id == '2'">
+                    <span v-if="leaders && leaders.length > 0"  class="col-8 col-xl-9 d-flex">
+                      <span v-for="leader in leaders" :key="leader.id" class="d-flex flex-wrap w-100">
+                        <span v-if="leader.user_info.user_type_id == '2'" class="bg-light rounded-pill px-3 py-1 pb-2 mb-2 mr-2 text-nowrap">
                           {{
                             leader.user_info.first_name +
                             " " +
                             leader.user_info.last_name
                           }}
                         </span>
-                      </div>
-                    </div>
+                      </span>
+                    </span>
 
                     <!-- <select
                       @input="TeacherSelection"
@@ -163,22 +160,26 @@
                   >
                     Save
                   </button> -->
-                  <button
-                    type="submit"
-                    class="btn-flat m-b-30 m-t-30 color-dark"
-                  >
-                    <nuxt-link
-                      to="/club-list-table"
-                      class="
-                        border border-secondary
-                        text-decoration-none text-dark
-                        btn
-                        bg-light
-                      "
-                    >
-                      Back</nuxt-link
-                    >
-                  </button>
+                <button
+                type="submit"
+                class="btn-flat m-b-30 m-t-30 color-dark mb-2 mt-3"
+              >
+              
+                <nuxt-link
+                  to="/club-list-table"
+                  class="
+                    border border-secondary
+                    text-decoration-none text-dark
+                    btn
+                    px-3 py-1
+                    rounded-pill
+                    border-0
+                    bg-light
+                  "
+                ><span><i class="fas fa-long-arrow-alt-left"></i></span>
+                  <span class="font-weight-bold">Back</span></nuxt-link
+                >
+              </button>
                 </form>
               </div>
             </div>

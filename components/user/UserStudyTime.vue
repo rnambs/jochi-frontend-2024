@@ -3979,6 +3979,7 @@ export default {
     },
 
     resetData() {
+      this.processingStudySession = false;
       this.sessionDetail = {};
       this.sessionType = "";
       this.assignmentDetail = {};
@@ -4102,6 +4103,12 @@ export default {
       $("#confirmAsstStartModal").modal({ backdrop: true });
     },
     async goToSession() {
+      this.sessionMode =
+        this.sessionDetail.studyMethod == "1"
+          ? "pomodoro"
+          : this.sessionDetail.studyMethod == "2"
+          ? "regular"
+          : "";
       if (Number(this.sessionDetail.studyMethod) == 2) {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 2);
       } else {
