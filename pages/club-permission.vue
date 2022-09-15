@@ -1,5 +1,15 @@
 <template>
-  <div class="container-fluid main-container jochi-main-bg-light vh-100 d-flex align-items-center justify-content-center">
+  <div
+    class="
+      container-fluid
+      main-container
+      jochi-main-bg-light
+      vh-100
+      d-flex
+      align-items-center
+      justify-content-center
+    "
+  >
     <lottie
       v-if="loading"
       :options="lottieOptions"
@@ -8,14 +18,21 @@
     />
     <div class="d-flex flex-column align-items-center justify-content-center">
       <div class="col-7 col-sm-6 col-md-5 col-lg-3">
-        <img src="../static/image/process-image.png" alt="" class="img-responsive jump">
+        <img
+          src="../static/image/process-image.png"
+          alt=""
+          class="img-responsive jump"
+        />
       </div>
       <h5 v-if="!processed" class="border-top pt-2 color-black">
-        Your request for {{ response == 1 ? "approving" : "rejecting" }} the club
-        is in progress...
+        Your request for {{ response == 1 ? "approving" : "rejecting" }} the
+        club is in progress...
       </h5>
-      <h5 v-else  class="border-top pt-2 color-black">
+      <h5 v-if="processed && isSuccess" class="border-top pt-2 color-black">
         Club details successfully {{ response == 1 ? "approved" : "rejected" }}
+      </h5>
+      <h5 v-if="processed && isError" class="border-top pt-2 color-black">
+        {{ "Error!" + " " + errorMessage }}
       </h5>
     </div>
   </div>
@@ -45,6 +62,8 @@ export default {
       response: Number(this.$route.query.response),
       token: this.$route.query.token,
       processed: false,
+      isError: false,
+      isSuccess: false,
     };
   },
 
@@ -54,11 +73,11 @@ export default {
     }
   },
   computed: {
-    ...mapState("appointmentVerified", {
+    ...mapState("clubPermission", {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
       successMessage: (state) => state.successMessage,
-      SuccessType: (state) => state.SuccessType,
+      SuccessType: (state) => state.successType,
     }),
   },
   methods: {
@@ -74,14 +93,16 @@ export default {
         response: this.response,
         token: this.token,
       });
+      this.processed = true;
       if (this.successMessage != "") {
-        this.processed = true;
+        this.isSuccess = true;
         this.$toast.open({
           message: this.successMessage,
-          type: this.SuccessType,
+          type: this.successType,
           duration: 5000,
         });
       } else if (this.errorMessage != "") {
+        this.isError = true;
         this.$toast.open({
           message: this.errorMessage,
           type: this.errorType,

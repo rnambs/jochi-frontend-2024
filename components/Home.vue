@@ -3,11 +3,11 @@
     <!-- Animated -->
 
     <div class="animated fadeIn">
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-body">
           <div class="float-right">
             <strong>Filter By</strong>
-            <select @change="onChange($event)">
+            <select @change="onChange($event)" class="cursor-pointer">
               <option value="Last Week" selected>Last Week</option>
               <option value="Last Month">Last Month</option>
               <option value="Last Year">Last Year</option>
@@ -98,7 +98,7 @@
         </div>
         <!-- /# column -->
         <div class="col-lg-4">
-          <div class="card">
+          <div class="card mb-4">
             <div class="card-body">
               <div class="stat-widget-five">
                 <div class="stat-icon dib flat-color-1">
@@ -117,7 +117,7 @@
               </div>
             </div>
           </div>
-          <div class="card">
+          <div class="card mb-4">
             <div class="card-body">
               <div class="stat-widget-five">
                 <div class="stat-icon dib flat-color-2">
@@ -136,7 +136,7 @@
               </div>
             </div>
           </div>
-          <div class="card">
+          <div class="card mb-4">
             <div class="card-body">
               <div class="stat-widget-five">
                 <div class="stat-icon dib flat-color-3">
@@ -155,7 +155,7 @@
               </div>
             </div>
           </div>
-          <div class="card">
+          <div class="card mb-4">
             <div class="card-body">
               <div class="stat-widget-five">
                 <div class="stat-icon dib flat-color-4">

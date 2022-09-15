@@ -1262,7 +1262,7 @@
                                     <p class="ld-heading mb-1 text-link">
                                       <!-- {{ peer.first_name }} -->
                                       {{
-                                        item.file_type
+                                        item.file_type != "link"
                                           ? item.file_name
                                           : item.material
                                       }}
@@ -1665,7 +1665,11 @@
                                   <div class="ld-details-section w-100">
                                     <p class="ld-heading mb-1 text-link">
                                       <!-- {{ peer.first_name }} -->
-                                      {{ item.material }}
+                                      {{
+                                        item.file_type != "link"
+                                          ? item.file_name
+                                          : item.material
+                                      }}
                                     </p>
                                   </div>
                                 </div>

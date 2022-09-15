@@ -1784,7 +1784,7 @@ export default {
     }),
     ...mapState("clubFiles", {
       successMessageClubFile: (state) => state.successMessage,
-      SuccessTypeClubFile: (state) => state.SuccessType,
+      SuccessTypeClubFile: (state) => state.successType,
       errorMessageClubFile: (state) => state.errorMessage,
       errorTypeClubFile: (state) => state.errorType,
     }),
@@ -2376,13 +2376,18 @@ export default {
         },
         club_id: this.$route.query.id,
       });
+      console.log(
+        "message response",
+        this.successMessageClubFile,
+        this.SuccessTypeClubFile
+      );
       //   this.loading = false;
-      if (this.successMessage != "") {
+      if (this.successMessageClubFile != "") {
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
         this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
+          message: this.successMessageClubFile,
+          type: this.SuccessTypeClubFile,
           duration: 5000,
         });
         this.getClubMoreInfo();
