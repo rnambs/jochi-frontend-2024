@@ -328,7 +328,7 @@ $sm-screen-h         : 767.98px;
                             background: unset !important;
                         }
                         td.fc-daygrid-day.fc-day.fc-day-today{
-                            background-color: $theme-color;
+                            background-color: $theme-color !important;
                             .fc-daygrid-day-frame.fc-scrollgrid-sync-inner{
                                 .fc-daygrid-day-number{
                                     color: $white !important;
