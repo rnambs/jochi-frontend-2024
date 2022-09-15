@@ -66,6 +66,7 @@
                       label="first_name"
                       placeholder="Select a teacher"
                       @input="UpdateTimeSchedule"
+                      :disabled="!meetingType"
                     >
                       <span slot="noResult">No data found</span>
                     </multiselect>
@@ -85,6 +86,7 @@
                       :multiple="true"
                       :max="4"
                       @input="UpdateTimeSchedule"
+                      :disabled="!meetingType"
                     >
                       <span slot="maxElements"
                         >Maximum of 4 students selected</span

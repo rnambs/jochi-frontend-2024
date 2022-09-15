@@ -6,36 +6,38 @@
           <div class="col-lg-8">
             <div class="card">
               <div class="card-header">
-                <strong>Edit Club</strong><small></small>
+                <strong>View Details</strong><small></small>
               </div>
               <div class="card-body card-block">
                 <form @submit.prevent="UpdateClubs">
                   <div class="form-group required">
                     <label for="school" class="form-control-label"
                       >Club Name</label
-                    ><input
+                    >
+                    <!-- <input
                       type="text"
                       id="club"
                       placeholder="Enter your club name"
                       class="form-control"
                       v-model="clubname"
                       :class="{ 'is-invalid': submitted && $v.clubname.$error }"
-                    />
-                    <div
+                    /> -->
+                    <span>{{ clubname }}</span>
+                    <!-- <div
                       v-if="submitted && $v.clubname.$error"
                       class="invalid-feedback"
                     >
                       <span v-if="!$v.clubname.required"
                         >This field is required</span
                       >
-                    </div>
+                    </div> -->
                   </div>
                   <div class="form-group required">
-                    <label for="state" class="form-control-label"
-                      >Select the School</label
-                    >
+                    <label for="state" class="form-control-label">School</label>
 
-                    <select
+                    {{ clubDetails.schools.name }}
+
+                    <!-- <select
                       @input="GetSchool()"
                       class="custom-select custom-select-sm mb-3"
                       tabindex=""
@@ -62,14 +64,26 @@
                       <span v-if="!$v.schoollist.required"
                         >This field is required</span
                       >
-                    </div>
+                    </div> -->
                   </div>
                   <div class="form-group required">
                     <label for="state" class="form-control-label"
-                      >Select the Leader</label
+                      >Student Leaders</label
                     >
 
-                    <select
+                    <div v-if="leaders && leaders.length > 0">
+                      <div v-for="leader in leaders" :key="leader.id">
+                        <span v-if="leader.user_info.user_type_id == '3'">
+                          {{
+                            leader.user_info.first_name +
+                            " " +
+                            leader.user_info.last_name
+                          }}
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- <select
                       @input="StudentSelection"
                       class="custom-select custom-select-sm mb-3"
                       tabindex=""
@@ -95,14 +109,26 @@
                       <span v-if="!$v.leaderlist.required"
                         >This field is required</span
                       >
-                    </div>
+                    </div> -->
                   </div>
                   <div class="form-group required">
                     <label for="state" class="form-control-label"
-                      >Select the Teacher</label
+                      >Teacher Leaders</label
                     >
 
-                    <select
+                    <div v-if="leaders && leaders.length > 0">
+                      <div v-for="leader in leaders" :key="leader.id">
+                        <span v-if="leader.user_info.user_type_id == '2'">
+                          {{
+                            leader.user_info.first_name +
+                            " " +
+                            leader.user_info.last_name
+                          }}
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- <select
                       @input="TeacherSelection"
                       class="custom-select custom-select-sm mb-3"
                       tabindex=""
@@ -127,16 +153,16 @@
                       <span v-if="!$v.teacherlist.required"
                         >This field is required</span
                       >
-                    </div>
+                    </div> -->
                   </div>
 
-                  <button
+                  <!-- <button
                     type="submit"
                     class="btn btn-primary btn-flat m-b-30 m-t-30"
                     :disabled="processing"
                   >
                     Save
-                  </button>
+                  </button> -->
                   <button
                     type="submit"
                     class="btn-flat m-b-30 m-t-30 color-dark"
@@ -150,7 +176,7 @@
                         bg-light
                       "
                     >
-                      cancel</nuxt-link
+                      Back</nuxt-link
                     >
                   </button>
                 </form>
@@ -184,6 +210,8 @@ export default {
       leaderlist: "",
       submitted: false,
       processing: false,
+      school: "",
+      teacherLeaders: [],
     };
   },
   validations: {
@@ -195,6 +223,7 @@ export default {
   computed: {
     ...mapState("clubEditForm", {
       clubDetails: (state) => state.clubDetails,
+      leaders: (state) => state.leaders,
       schools: (state) => state.schools,
       Students: (state) => state.Students,
       Teachers: (state) => state.Teachers,

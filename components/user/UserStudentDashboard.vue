@@ -199,7 +199,12 @@
                             {{ duration }} Minutes Studied Today
                           </p>
                           <p class="study-status-time-left">
-                            {{ durationRemaining }} Minutes Left
+                            {{ durationRemaining }}
+                            {{
+                              isAdditionalCovered
+                                ? "Additional Minutes Covered"
+                                : "Minutes Left"
+                            }}
                           </p>
                         </div>
                       </div>
@@ -218,12 +223,12 @@
                       "
                     >
                       <div class="row">
-                        <div
-                          v-for="(list, index) in slot_date"
-                          :key="index"
-                          class="col-12 mb-2"
-                        >
-                          <div class="faculty-availability-card">
+                        <div class="col-12 mb-2">
+                          <div
+                            v-for="(list, index) in slot_date"
+                            :key="index"
+                            class="faculty-availability-card mb-4"
+                          >
                             <div class="row">
                               <div class="col-3 py-0">
                                 <div
@@ -916,6 +921,7 @@ export default {
         },
       },
       value: 0,
+      isAdditionalCovered: false,
     };
   },
   computed: {
@@ -998,28 +1004,35 @@ export default {
           this.value = 0;
         }
 
-        // this.dailyTimerId = this.goal.id ? this.goal.id : 0;
-        // this.duration = !isNaN(Number(this.goal.total_duration_covered))
-        //   ? Number(this.goal.total_duration_covered)
-        //   : 0;
-        // this.durationRemaining =
-        //   !isNaN(Number(this.goal.duration)) &&
-        //   !isNaN(Number(this.goal.total_duration_covered))
-        //     ? Number(this.goal.duration) -
-        //       Number(this.goal.total_duration_covered)
-        //     : 0;
-        // let goal =
-        //   Number(this.goal.duration) > 0 ? Number(this.goal.duration) : 0;
-        // var h = Math.floor(goal / 60);
-        // var m = goal % 60;
+        this.dailyTimerId = this.goal.id ? this.goal.id : 0;
+        this.duration = !isNaN(Number(this.goal.total_duration_covered))
+          ? Number(this.goal.total_duration_covered)
+          : 0;
+        this.durationRemaining =
+          !isNaN(Number(this.goal.duration)) &&
+          !isNaN(Number(this.goal.total_duration_covered))
+            ? Number(this.goal.duration) -
+              Number(this.goal.total_duration_covered)
+            : 0;
 
-        // this.hours = h;
-        // this.minutes = m;
-        // var percentageStudied =
-        //   Number(this.goal.duration) / Number(this.goal.total_duration_covered);
-        // percentageStudied = percentageStudied * 100;
-        // var percentage = percentageStudied.toFixed(2);
-        // this.value = percentage;
+        if (this.durationRemaining < 0) {
+          this.isAdditionalCovered = true;
+          this.durationRemaining = 0 - this.durationRemaining;
+        } else {
+          this.isAdditionalCovered = false;
+        }
+        let goal =
+          Number(this.goal.duration) > 0 ? Number(this.goal.duration) : 0;
+        var h = Math.floor(goal / 60);
+        var m = goal % 60;
+
+        this.hours = h;
+        this.minutes = m;
+        var percentageStudied =
+          Number(this.goal.duration) / Number(this.goal.total_duration_covered);
+        percentageStudied = percentageStudied * 100;
+        var percentage = percentageStudied.toFixed(2);
+        this.value = percentage;
       }
     },
     openMeetingDetail() {

@@ -23,7 +23,12 @@
                 >{{ duration }} Minutes Studied Today</span
               >
               <span class="color-secondary text-14 font-normal"
-                >{{ durationRemaining }} Minutes Left</span
+                >{{ durationRemaining }}
+                {{
+                  isAdditionalCovered
+                    ? "Additional Minutes Covered"
+                    : "Minutes Left"
+                }}</span
               >
             </p>
             <img
@@ -346,6 +351,7 @@ export default {
       duration: 0,
       durationRemaining: 0,
       dailyTimerId: 0,
+      isAdditionalCovered: false,
     };
   },
   mounted() {
@@ -706,6 +712,13 @@ export default {
             ? Number(this.goal.duration) -
               Number(this.goal.total_duration_covered)
             : 0;
+
+        if (this.durationRemaining < 0) {
+          this.isAdditionalCovered = true;
+          this.durationRemaining = 0 - this.durationRemaining;
+        } else {
+          this.isAdditionalCovered = false;
+        }
         let goal =
           Number(this.goal.duration) > 0 ? Number(this.goal.duration) : 0;
         var h = Math.floor(goal / 60);

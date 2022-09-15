@@ -10,7 +10,7 @@
       <!-- Daily Calander -->
 
       <section id="Daily-Calander" class="">
-        <div class="custom-m argin-for-main-section custom-full-height d-flex">
+        <div class="custom-margin-for-main-section custom-full-height d-flex">
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
               <div class="col-lg-5 col-md-12 h-100">
@@ -1262,7 +1262,7 @@
                                     <p class="ld-heading mb-1 text-link">
                                       <!-- {{ peer.first_name }} -->
                                       {{
-                                        item.file_type
+                                        item.file_type != "link"
                                           ? item.file_name
                                           : item.material
                                       }}
@@ -1665,7 +1665,11 @@
                                   <div class="ld-details-section w-100">
                                     <p class="ld-heading mb-1 text-link">
                                       <!-- {{ peer.first_name }} -->
-                                      {{ item.material }}
+                                      {{
+                                        item.file_type != "link"
+                                          ? item.file_name
+                                          : item.material
+                                      }}
                                     </p>
                                   </div>
                                 </div>

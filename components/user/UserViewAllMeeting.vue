@@ -302,8 +302,11 @@
                   <tr
                     v-if="
                       !isDateChanged &&
-                      ((detailType == 'Peer' && detailTeacherId != studentId) ||
-                        detailMeetingRequest != 1)
+                      !(
+                        (detailType == 'Peer' &&
+                          detailTeacherId != studentId) ||
+                        detailMeetingRequest != 1
+                      )
                     "
                   >
                     <button type="button" @click="changeSlot">

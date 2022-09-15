@@ -2,6 +2,7 @@ import { BASE_URL } from "../assets/js/constants";
 
 export const state = {
   clubDetails: [],
+  leaders: [],
   schools: [],
   Teachers: [],
   Students: [],
@@ -61,6 +62,7 @@ export const actions = {
         },
       });
       commit('setClubDetails', response.data);
+      commit('setLeaders', response.leaders);
 
     } catch (e) {
       if (e.response.data.message == "Unauthorized") {
@@ -133,6 +135,10 @@ export const mutations = {
     state.clubDetails = data;
 
   },
+  setLeaders(state, data) {
+    state.leaders = data;
+
+  },
   setSchool(state, data) {
     state.schools = data;
 
@@ -165,6 +171,9 @@ export const getters = {
 
   clubDetails: () => {
     return state.clubDetails;
+  },
+  leaders: () => {
+    return state.leaders;
   },
   SuccessType: () => {
     return state.SuccessType;

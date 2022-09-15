@@ -403,7 +403,7 @@
                         <nuxt-link
                           to="/viewall-meeting"
                           @click="$event.target.classList.toggle('active')"
-                          class="nav-link"
+                          class="nav-link text-nowrap"
                           >View All</nuxt-link
                         >
                       </li>
@@ -682,7 +682,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import { defaultImage } from "../../assets/js/constants";
-import { FRONTEND_BASE_URL } from "~/assets/js/constants";
+import { FRONTEND_BASE_URL, GG4L_REDIRECT_URL } from "~/assets/js/constants";
 
 export default {
   name: "UserSidebar",
@@ -808,9 +808,7 @@ export default {
         auth_token: localStorage.getItem("token").replace("Bearer ", ""),
       });
       window.localStorage.clear();
-      window.location.href =
-        "https://sso.gg4l.com/oauth/loginwith/logout?redirect_uri=" +
-        FRONTEND_BASE_URL;
+      window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
     },
     async UserDetails() {
       this.loading = true;

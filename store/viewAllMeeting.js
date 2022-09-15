@@ -25,7 +25,7 @@ const actions = {
             commit('setAllList', response.data);
             commit('setTimeZone', response.timeZone);
         } catch {
-            if (e.response.data.message == "Unauthorized") {
+            if (e?.response?.data?.message == "Unauthorized") {
                 commit('setSuccessMessages', "");
                 commit('setSuccessTypes', "");
                 commit('setErrorMessage', "");
@@ -47,7 +47,7 @@ const actions = {
             });
             commit('setAllData', response.data);
         } catch {
-            if (e.response.data.message == "Unauthorized") {
+            if (e?.response?.data?.message == "Unauthorized") {
                 commit('setSuccessMessages', "");
                 commit('setSuccessTypes', "");
                 commit('setErrorMessage', "");
@@ -137,7 +137,7 @@ const actions = {
             }
 
         } catch (e) {
-            if (e.response.data.message == "Unauthorized") {
+            if (e?.response?.data?.message == "Unauthorized") {
                 commit('setSuccessMessages', "");
                 commit('setSuccessTypes', "");
                 commit('setErrorMessage', "");
@@ -161,7 +161,7 @@ const actions = {
             commit('setAllMeetingMonthList', response.data);
             commit('setTimeZone', response.timeZone);
         } catch {
-            if (e.response.data.message == "Unauthorized") {
+            if (e?.response?.data?.message == "Unauthorized") {
                 commit('setSuccessMessages', "");
                 commit('setSuccessTypes', "");
                 commit('setErrorMessage', "");

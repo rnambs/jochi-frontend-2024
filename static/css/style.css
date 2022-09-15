@@ -1807,6 +1807,9 @@ header .form-inline {
     z-index: 2;
     right: 11px;
   }
+  .login-form .form-group span.field-icon::before{
+    cursor: pointer;
+  }
 .login-form .form-group input.form-control.is-invalid ~ span.field-icon{
   display: none;
 }
@@ -2817,6 +2820,7 @@ select{
   appearance: menulist !important;
   -moz-appearance: menulist !important;
   -webkit-appearance: menulist !important;
+  cursor: pointer;
 }
 .form-group.required .form-control-label:after {
   content:"*";

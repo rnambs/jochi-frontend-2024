@@ -2,7 +2,7 @@
   <div class="inner-section">
     <div
       class="
-        main-section
+        main-section 
         sufee-login
         d-flex
         vh-100
@@ -27,7 +27,7 @@
               alt=""
             />
           </div>
-          <div class="">
+          <div class="text-center">
             <span class="text-center"
               >Please wait! Your credentials are being verified!</span
             >
@@ -88,3 +88,53 @@ export default {
   },
 };
 </script>
+<style>
+  .inner-section{
+    overflow: hidden;
+    height: 100vh;
+  }
+  .inner-section .sufee-login{
+    position: relative;
+  }
+  .inner-section .sufee-login::before{
+    content: '';
+    position: absolute;
+    background-image: url(../static/image/jochi-light-bg-rotate.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: 100% 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    width: 200%;
+    height: 227%;
+    left: -43%;
+    right: 0;
+    margin: auto;
+    top: -48%;
+    opacity: 0.7;
+    transform-origin: 50% 50%;
+    -webkit-animation: rotating 5s linear infinite;
+    animation: rotating 30s linear infinite;
+  }
+  .login-content{
+    position: relative;
+    z-index: 9;
+  }
+  @keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+</style>

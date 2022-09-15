@@ -1469,7 +1469,7 @@
                                         <p class="ld-heading mb-1 text-link">
                                           <!-- {{ peer.first_name }} -->
                                           {{
-                                            item.file_type
+                                            item.file_type != "link"
                                               ? item.file_name
                                               : item.material
                                           }}
@@ -1884,7 +1884,7 @@
                                         <p class="ld-heading mb-1">
                                           <!-- {{ peer.first_name }} -->
                                           {{
-                                            item.file_type
+                                            item.file_type != "link"
                                               ? item.file_name
                                               : item.material
                                           }}
@@ -3800,8 +3800,10 @@ export default {
         meetingobj["title"] = title;
         meetingobj["color"] = color;
         meetingobj["start"] = start;
-        meetingobj["id"] = element.id;
-        // meetingobj["groupId"] = "Meeting";
+        // meetingobj["id"] = element.id;
+        meetingobj["id"] = element.session_id;
+
+        meetingobj["groupId"] = "study";
 
         listobj["title"] = title;
         listobj["meeting"] = "Study Session";

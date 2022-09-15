@@ -762,7 +762,8 @@ export default {
     },
     async inviteStudentAdv() {
       this.submitted = true;
-      if (this.selectedStudent) {
+      console.log("selected student ", this.selectedStudent);
+      if (this.selectedStudent.id) {
         await this.inviteStudent({ id: this.selectedStudent.id });
         if (this.errorMessage != "") {
           this.$toast.open({
@@ -783,7 +784,7 @@ export default {
         }
         this.selectedStudent = "";
       } else {
-        this.$toast.open({
+        return this.$toast.open({
           message: "Please select student before proceeding",
           type: "warning",
           duration: 5000,
