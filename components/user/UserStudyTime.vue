@@ -3290,6 +3290,9 @@ export default {
         return this.EditStudyTime(scheduleNow, payLoad);
       } else {
         await this.saveStudySession(payLoad);
+        if (this.sessionDetail.isSharedSession) {
+          this.sharedNewSessionId = this.sessionData.id;
+        }
         if (this.successMessage != "") {
           this.$toast.open({
             message: scheduleNow
@@ -3440,8 +3443,8 @@ export default {
       this.Timerrepeat = this.timerStatusData.repeat;
 
       await this.addStudyTime({
-        sessionId: this.sharedSessionId
-          ? this.sharedSessionId
+        sessionId: this.sharedNewSessionId
+          ? this.sharedNewSessionId
           : this.sessionData.id
           ? this.sessionData.id
           : this.sessionDetail.id,
@@ -3567,6 +3570,7 @@ export default {
         workCompletes: this.focusWorkComplete,
       });
       if (this.successMessage != "") {
+        this.sharedNewSessionId = "";
         this.currentTab = 0;
         this.resetData();
         this.$toast.open({
@@ -3979,6 +3983,7 @@ export default {
     },
 
     resetData() {
+      this.sharedNewSessionId = "";
       this.processingStudySession = false;
       this.sessionDetail = {};
       this.sessionType = "";
@@ -4081,7 +4086,7 @@ export default {
     checkIfCompletedAsst() {
       if (this.sessionDetail.isSharedSession) {
         this.sharedSessionId = this.sessionDetail.id;
-        this.sharedNewSessionId = this.sessionDetail.newSessionId;
+        // this.sharedNewSessionId = this.sessionDetail.newSessionId;
       } else {
         this.sharedSessionId = "";
         this.sharedSessionId = "";
