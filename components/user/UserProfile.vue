@@ -534,7 +534,6 @@ export default {
   mounted() {
     this.UserDetails();
     this.user_type = localStorage.getItem("user_type");
-    console.log(this.user_type, typeof this.user_type);
     if (this.user_type == "3") {
       this.getAllAdvisors();
       this.getAdvisor();
@@ -614,7 +613,6 @@ export default {
       }
     },
     checkFile(profileImage) {
-      console.log("img", profileImage);
       let parts = profileImage.name.split(".");
       let ext = parts[parts.length - 1];
       if (ext == "png" || ext == "jpg" || ext == "jpeg") {
@@ -623,7 +621,6 @@ export default {
       }
       if (localStorage.getItem("profile_pic")) {
         this.profile = localStorage.getItem("profile_pic");
-        console.log(this.profile);
         $("#profileImage").attr("src", this.profile);
         $("#profileImageTeacher").attr("src", this.profile);
         $("#menu_profile_pic").attr("src", this.profile);
