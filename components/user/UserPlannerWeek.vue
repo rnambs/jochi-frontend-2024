@@ -1074,7 +1074,7 @@
                           >
                             <div class="row mt-0">
                               <div
-                                v-for="item in completedAssignments"
+                                v-for="item in completedAssignmentList"
                                 :key="item.id"
                                 class="col-6 mt-1"
                               >
@@ -2775,6 +2775,7 @@ export default {
       assignmentList: [],
       assignmentMaterials: [],
       validTime: false,
+      completedAssignmentList: [],
     };
   },
 
@@ -2881,6 +2882,8 @@ export default {
       assignmentsList: (state) => state.assignmentsList,
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
       completedAssignments: (state) => state.completedAssignments,
+      completedSharedAssignments: (state) => state.completedSharedAssignments,
+      newAdditionalMaterial: (state) => state.newAdditionalMaterial,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -2910,6 +2913,7 @@ export default {
       getAssignments: "getAssignments",
       completeTask: "completeTask",
       getCompletedAssignments: "getCompletedAssignments",
+      uploadAdditionalMaterial: "uploadAdditionalMaterial",
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
@@ -3595,8 +3599,8 @@ export default {
         (e) => e.subject_name == this.assignment.subject
       );
       this.subject = {
-        id: subject.id,
-        text: subject.subject_name,
+        id: subject?.id,
+        text: subject?.subject_name,
       };
       this.task = this.assignment.task;
       let dateSplit = this.assignment.due_date.split("-");
@@ -4641,6 +4645,20 @@ export default {
         type: "Daily",
       });
       console.log(this.completedAssignments);
+      console.log(this.completedSharedAssignments);
+      let completed = [];
+      completed = this.completedAssignments;
+      this.completedAssignmentList = [];
+      this.completedAssignments.forEach((e) => {
+        let asst = {};
+        asst = e;
+        this.completedAssignmentList.push(asst);
+      });
+      this.completedSharedAssignments.forEach((e) => {
+        let asst = {};
+        asst = e.assignments;
+        this.completedAssignmentList.push(asst);
+      });
     },
     confirmComplete() {
       // this.completeAsstId = id;
@@ -4699,10 +4717,59 @@ export default {
       }
     },
     async UploadAttachment() {
-      console.log("attachment");
+      // console.log("attachment");
+      // const data = new FormData();
+      // if (this.materialType == "file") {
+      //   data.append("file", this.file);
+      // } else {
+      //   let urlValid = this.isValidHttpUrl(this.link);
+      //   if (urlValid) {
+      //     this.additionalMaterialList.push({
+      //       id: Math.random(),
+      //       link: this.link,
+      //     });
+      //     this.link = "";
+      //   }
+      //   this.processingUpload = false;
+      //   return;
+      // }
+
+      // await this.uploadAdditionalMaterial(data, {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
+
+      // console.log(this.newAdditionalMaterial);
+      // this.additionalMaterialList.push({
+      //   id: this.newAdditionalMaterial.id,
+      //   material: this.newAdditionalMaterial.material,
+      // });
+      // this.file = "";
+      // this.link = "";
+      // if (document.querySelector("#fileUpload"))
+      //   document.querySelector("#fileUpload").value = "";
+
+      this.processingUpload = true;
       const data = new FormData();
       if (this.materialType == "file") {
         data.append("file", this.file);
+        await this.uploadAdditionalMaterial(data, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        console.log(this.newAdditionalMaterial);
+        this.additionalMaterialList.push({
+          id: this.newAdditionalMaterial.id,
+          name: this.newAdditionalMaterial.material,
+          material: this.file.name,
+        });
+        this.processingUpload = false;
+        this.file = "";
+        if (document.querySelector("#fileUpload"))
+          document.querySelector("#fileUpload").value = "";
       } else {
         let urlValid = this.isValidHttpUrl(this.link);
         if (urlValid) {
@@ -4715,22 +4782,6 @@ export default {
         this.processingUpload = false;
         return;
       }
-
-      await this.uploadAdditionalMaterial(data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      console.log(this.newAdditionalMaterial);
-      this.additionalMaterialList.push({
-        id: this.newAdditionalMaterial.id,
-        material: this.newAdditionalMaterial.material,
-      });
-      this.file = "";
-      this.link = "";
-      if (document.querySelector("#fileUpload"))
-        document.querySelector("#fileUpload").value = "";
 
       // this.ClubFiles();
     },
