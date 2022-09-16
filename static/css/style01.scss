@@ -965,11 +965,11 @@ input[type="radio"]{
 }
 
 img.card-img{
-    max-width: 180px;
+    max-width: 130px;
     object-fit: contain;
     width: 100%;
     @media (max-width:$lg-screen) {
-        max-width: 130px;
+        max-width: 120px;
     }
 }
 

@@ -36,7 +36,7 @@
                 cursor-pointer
               "
             >
-              <div class="col-sm-7 col-md-12 col-lg-7">
+              <div class="col-sm-7 col-md-8 col-xl-7">
                 <h2 class="color-primary font-semi-bold mb-1">
                   Complete An Assignment
                 </h2>
@@ -45,7 +45,7 @@
                 </p>
               </div>
               <div
-                class="col-sm-5 col-md-12 col-lg-5 d-flex justify-content-end"
+                class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
               >
                 <img
                   src="../../static/image/folder.png"
@@ -66,7 +66,7 @@
                 cursor-pointer
               "
             >
-              <div class="col-sm-7 col-md-12 col-lg-7">
+              <div class="col-sm-7 col-md-8 col-xl-7">
                 <h2 class="color-primary font-semi-bold mb-1">
                   Start a new Study Session
                 </h2>
@@ -75,7 +75,7 @@
                 </p>
               </div>
               <div
-                class="col-sm-5 col-md-12 col-lg-5 d-flex justify-content-end"
+                class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
               >
                 <img
                   src="../../static/image/lamp.png"
@@ -260,10 +260,10 @@
               <!-- popup panel -->
               <div
                 v-if="showSessionDetail"
-                class="position-absolute w-100 h-100 top-0 left-0 p-3"
+                class="position-absolute w-100 h-100 top-0 left-0 p-0"
               >
                 <div
-                  class="d-flex card card-primary-void flex-column h-100 p-3"
+                  class="d-flex card card-primary-void flex-column h-100 p-3 rounded-22"
                 >
                   <div
                     class="d-flex justify-content-between mb-2 border-bottom"
