@@ -4190,6 +4190,11 @@ switch to violet when it is active*/
   max-height: 75vh;
   padding: 4px 16px;
 }
+@media (max-width: 1199.98px) {
+  .modal .modal-dialog .modal-content .modal-body {
+    max-height: 50vh;
+  }
+}
 .modal .modal-dialog .modal-content .modal-body.no-overflow {
   overflow: unset !important;
 }

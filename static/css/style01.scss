@@ -5524,6 +5524,9 @@ switch to violet when it is active*/
                 background-color: transparent;
                 max-height: 75vh;
                 padding: 4px 16px;
+                @media (max-width:$lg-screen) {
+                    max-height: 50vh;
+                }
                 &.no-overflow{
                     overflow: unset !important;
                 }
