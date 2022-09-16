@@ -617,7 +617,7 @@ export default {
       console.log("img", profileImage);
       let parts = profileImage.name.split(".");
       let ext = parts[parts.length - 1];
-      if (ext == ".png" || ext == ".jpg" || ext == ".jpeg") {
+      if (ext == "png" || ext == "jpg" || ext == "jpeg") {
         // this.onFileChange();
         return true;
       }
