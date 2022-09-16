@@ -802,6 +802,9 @@ export default {
   },
 
   mounted() {
+    if (!localStorage.getItem("email")) {
+      this.$router.push("/");
+    }
     this.UserDetails();
     this.sendToken();
     this.getNotifications();

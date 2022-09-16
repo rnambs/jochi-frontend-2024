@@ -37,7 +37,6 @@
         "
       >
         <!-- end tab for club files -->
-
         <!-- Club files -->
         <div
           class="cd-cover-pic-section position-relative"
@@ -1193,8 +1192,7 @@ export default {
 
         if (blob) {
           var file = new File([blob], "name");
-
-          console.log("consoling image outputs ", blob, file);
+          blob.fileName = this.fileName;
           formData.append("file", blob, this.fileName);
           formData.append("club_id", this.$route.query.id);
           formData.append("user_id", localStorage.getItem("id"));
@@ -1223,7 +1221,8 @@ export default {
           type: this.SuccessType,
           duration: 5000,
         });
-        this.getClubMoreInfo();
+        await this.getClubMoreInfo();
+        console.log("club banner image", this.clubBannerImage);
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -1265,29 +1264,46 @@ export default {
     //   }
     // },
     onFileSelect(e) {
-      if (
-        e?.target?.files[0]?.size &&
-        e.target.files[0]?.size > 5 * 1024 * 1024
-      ) {
-        return this.$toast.open({
-          message: "File size must be lesser than 5 MB",
-          type: "warning",
-        });
+      if (e.target.files[0] && this.checkFileValid(e.target.files[0])) {
+        if (
+          e?.target?.files[0]?.size &&
+          e.target.files[0]?.size > 5 * 1024 * 1024
+        ) {
+          return this.$toast.open({
+            message: "File size must be lesser than 5 MB",
+            type: "warning",
+          });
+        }
+        const file = e.target.files[0];
+        this.mime_type = file.type;
+        this.fileName = file.name;
+        console.log(this.mime_type);
+        if (typeof FileReader === "function") {
+          this.dialog = true;
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            this.selectedFile = event.target.result;
+            this.$refs.cropper.replace(this.selectedFile);
+          };
+          reader.readAsDataURL(file);
+        } else {
+          alert("Sorry, FileReader API not supported");
+        }
       }
-      const file = e.target.files[0];
-      this.mime_type = file.type;
-      console.log(this.mime_type);
-      if (typeof FileReader === "function") {
-        this.dialog = true;
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          this.selectedFile = event.target.result;
-          this.$refs.cropper.replace(this.selectedFile);
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("Sorry, FileReader API not supported");
+    },
+    checkFileValid(profileImage) {
+      let parts = profileImage.name.split(".");
+      let ext = parts[parts.length - 1];
+      if (ext == "png" || ext == "jpg" || ext == "jpeg") {
+        return true;
       }
+
+      this.$toast.open({
+        message: "File type accepts only PNG,JPG,JPEG formats",
+        type: "warning",
+        duration: 5000,
+      });
+      return false;
     },
     clearCrop() {
       this.selectedFile = "";

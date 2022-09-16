@@ -37,12 +37,7 @@
                 flex-fill
               "
             >
-              <form
-                method="post"
-                @submit.prevent="UploadProfile"
-                id="form"
-                enctype="multipart/form-data"
-              >
+              <form id="form" enctype="multipart/form-data">
                 <div class="">
                   <div class="upload-image position-relative">
                     <div
@@ -155,7 +150,7 @@
                               h-100
                               rounded-circle
                             "
-                            @change="onFileChange"
+                            @change="onFileChange()"
                             accept=".jpeg,.jpg,.png"
                           />
                         </i> </span
@@ -539,7 +534,6 @@ export default {
   mounted() {
     this.UserDetails();
     this.user_type = localStorage.getItem("user_type");
-    console.log(this.user_type, typeof this.user_type);
     if (this.user_type == "3") {
       this.getAllAdvisors();
       this.getAdvisor();
@@ -618,6 +612,26 @@ export default {
         });
       }
     },
+    checkFile(profileImage) {
+      let parts = profileImage.name.split(".");
+      let ext = parts[parts.length - 1];
+      if (ext == "png" || ext == "jpg" || ext == "jpeg") {
+        // this.onFileChange();
+        return true;
+      }
+      if (localStorage.getItem("profile_pic")) {
+        this.profile = localStorage.getItem("profile_pic");
+        $("#profileImage").attr("src", this.profile);
+        $("#profileImageTeacher").attr("src", this.profile);
+        $("#menu_profile_pic").attr("src", this.profile);
+      }
+      this.$toast.open({
+        message: "File type accepts only PNG,JPG,JPEG formats",
+        type: "warning",
+        duration: 5000,
+      });
+      return false;
+    },
     async ProfileRemove() {
       this.loading = true;
       await this.profileRemove({
@@ -641,23 +655,24 @@ export default {
       }
     },
     onFileChange(e) {
-      if (
-        e?.target?.files[0]?.size &&
-        e.target.files[0]?.size > 5 * 1024 * 1024
-      ) {
-        // document.querySelector("#fileUpload").value = "";
-        document.querySelector("#actual-btn").value = "";
+      if (e.target.files[0] && this.checkFile(e.target.files[0])) {
+        if (
+          e?.target?.files[0]?.size &&
+          e.target.files[0]?.size > 5 * 1024 * 1024
+        ) {
+          // document.querySelector("#fileUpload").value = "";
+          document.querySelector("#actual-btn").value = "";
+          return this.$toast.open({
+            message: "File size must be lesser than 5 MB",
+            type: "warning",
+          });
+        }
 
-        return this.$toast.open({
-          message: "File size must be lesser than 5 MB",
-          type: "warning",
-        });
+        this.profilePic = this.$refs.profilePic.files[0];
+        const file = e.target.files[0];
+        this.profileImageUrl = URL.createObjectURL(file);
+        this.UploadProfile();
       }
-
-      this.profilePic = this.$refs.profilePic.files[0];
-      const file = e.target.files[0];
-      this.profileImageUrl = URL.createObjectURL(file);
-      this.UploadProfile();
       //
     },
     removeFile() {
