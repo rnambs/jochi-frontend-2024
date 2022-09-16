@@ -2151,7 +2151,6 @@ export default {
         club_id: this.clubId,
       });
       this.loading = false;
-      console.log(this.sportsActivities);
       // this.announcementList = [];
       // this.announcements.forEach((e) => {
       //   e["date"] = moment(e.createdAt).format("MMMM Do, YYYY");
@@ -2161,8 +2160,6 @@ export default {
       // });
     },
     async addNewActivity() {
-      console.log(this.$v.activity.$invalid, this.$v.activity, this.$v);
-
       let isValid = this.timeChangeHandler();
 
       this.submittedActivity = true;
@@ -2314,11 +2311,9 @@ export default {
       });
     },
     onDateChange(event) {
-      console.log(event, this.activity.activityDate);
       this.activity.activityDate = moment(this.activity.activityDate).format(
         "YYYY-MM-DD"
       );
-      console.log(this.activity.activityDate);
     },
     openAddBanner() {
       this.clearCrop();
@@ -2333,7 +2328,6 @@ export default {
         if (blob) {
           var file = new File([blob], "name");
           blob.fileName = this.fileName;
-          console.log("consoling image outputs ", blob, file);
           formData.append("file", blob, this.fileName);
           formData.append("club_id", this.$route.query.id);
           formData.append("user_id", localStorage.getItem("id"));
@@ -2376,12 +2370,7 @@ export default {
         },
         club_id: this.$route.query.id,
       });
-      console.log(
-        "message response",
-        this.successMessageClubFile,
-        this.SuccessTypeClubFile
-      );
-      //   this.loading = false;
+
       if (this.successMessageClubFile != "") {
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
@@ -2400,31 +2389,46 @@ export default {
       }
     },
     onFileSelect(e) {
-      if (
-        e?.target?.files[0]?.size &&
-        e.target.files[0]?.size > 5 * 1024 * 1024
-      ) {
-        return this.$toast.open({
-          message: "File size must be lesser than 5 MB",
-          type: "warning",
-        });
+      if (e.target.files[0] && this.checkFileValid(e.target.files[0])) {
+        if (
+          e?.target?.files[0]?.size &&
+          e.target.files[0]?.size > 5 * 1024 * 1024
+        ) {
+          return this.$toast.open({
+            message: "File size must be lesser than 5 MB",
+            type: "warning",
+          });
+        }
+
+        const file = e.target.files[0];
+        this.mime_type = file.type;
+        this.fileName = file.name;
+        if (typeof FileReader === "function") {
+          this.dialog = true;
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            this.selectedFile = event.target.result;
+            this.$refs.cropper.replace(this.selectedFile);
+          };
+          reader.readAsDataURL(file);
+        } else {
+          alert("Sorry, FileReader API not supported");
+        }
+      }
+    },
+    checkFileValid(profileImage) {
+      let parts = profileImage.name.split(".");
+      let ext = parts[parts.length - 1];
+      if (ext == "png" || ext == "jpg" || ext == "jpeg") {
+        return true;
       }
 
-      const file = e.target.files[0];
-      this.mime_type = file.type;
-      this.fileName = file.name;
-      console.log(this.mime_type);
-      if (typeof FileReader === "function") {
-        this.dialog = true;
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          this.selectedFile = event.target.result;
-          this.$refs.cropper.replace(this.selectedFile);
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("Sorry, FileReader API not supported");
-      }
+      this.$toast.open({
+        message: "File type accepts only PNG,JPG,JPEG formats",
+        type: "warning",
+        duration: 5000,
+      });
+      return false;
     },
     timeChangeHandler() {
       let time =
@@ -2437,7 +2441,6 @@ export default {
       let isValid = moment(time, "hh:mm A", true).isValid();
       if (!isValid) {
         this.activity.activityTimeError = true;
-        console.log("is valid", this.activity.activityTimeError);
       } else {
         this.activity.activityTimeError = false;
       }

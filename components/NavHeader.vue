@@ -98,9 +98,14 @@ export default {
     }),
 
     async GetLogout() {
-      await this.getLogout({
-        auth_token: localStorage.getItem("token").replace("Bearer ", ""),
-      });
+      let confirm = window.confirm("You will be logged out now");
+      if (confirm) {
+        await this.getLogout({
+          auth_token: localStorage.getItem("token").replace("Bearer ", ""),
+        });
+      } else {
+        return;
+      }
     },
     async menuToggle() {
       // Menu Trigger

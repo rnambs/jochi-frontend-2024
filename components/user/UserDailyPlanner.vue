@@ -480,7 +480,7 @@
                       <div class="d-flex flex-column custom-overflow px-5 pb-3">
                         <div class="row mt-1">
                           <div
-                            v-for="item in completedAssignments"
+                            v-for="item in completedAssignmentList"
                             :key="item.id"
                             class="col-6"
                           >
@@ -1667,7 +1667,7 @@
                                     <p class="ld-heading mb-1 text-link">
                                       <!-- {{ peer.first_name }} -->
                                       {{
-                                          item.file_type &&
+                                        item.file_type &&
                                         item.file_type != "link"
                                           ? item.file_name
                                           : item.material
@@ -2385,6 +2385,7 @@ export default {
       additionalMaterials: [],
       validTime: false,
       date_formatted: "",
+      completedAssignmentList: [],
     };
   },
   mounted() {
@@ -2480,6 +2481,7 @@ export default {
       assignmentsList: (state) => state.assignmentsList,
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
       completedAssignments: (state) => state.completedAssignments,
+      completedSharedAssignments: (state) => state.completedSharedAssignments,
       newAdditionalMaterial: (state) => state.newAdditionalMaterial,
       sessionList: (state) => state.sessionList,
       sharedAstList: (state) => state.sharedAstList,
@@ -2786,7 +2788,7 @@ export default {
       );
       this.subject = {
         id: subject?.id,
-        text: subject.subject_name,
+        text: subject?.subject_name,
       };
       this.task = this.assignment.task;
       let dateSplit = this.assignment.due_date.split("-");
@@ -3681,7 +3683,8 @@ export default {
           text: data.subjects?.subject_name,
         };
       }
-      this.dateValue = data.due_date;
+      // this.dateValue = data.due_date;
+      this.dateValue = moment(data.due_date).format("MM/DD/YYYY");
       this.timeValue = data.due_time;
       this.subTasksList = [];
       if (data.subTasks && data.subTasks.length > 0) {
@@ -3703,6 +3706,20 @@ export default {
         type: "Daily",
       });
       console.log(this.completedAssignments);
+      console.log(this.completedSharedAssignments);
+      let completed = [];
+      completed = this.completedAssignments;
+      this.completedAssignmentList = [];
+      this.completedAssignments.forEach((e) => {
+        let asst = {};
+        asst = e;
+        this.completedAssignmentList.push(asst);
+      });
+      this.completedSharedAssignments.forEach((e) => {
+        let asst = {};
+        asst = e.assignments;
+        this.completedAssignmentList.push(asst);
+      });
     },
     confirmComplete() {
       // this.completeAsstId = id;
