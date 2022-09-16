@@ -2,7 +2,7 @@
   <div class="inner-section">
     <div
       class="
-        main-section 
+        main-section
         sufee-login
         d-flex
         vh-100
@@ -48,8 +48,9 @@ export default {
   },
 
   mounted() {
+    this.getTokenDevice();
     console.log("code in redirect", this.$route.query.code);
-    this.gg4lLogin();
+    // this.gg4lLogin();
   },
 
   computed: {
@@ -64,10 +65,32 @@ export default {
     ...mapActions("redirectLogin", {
       loginUsingGg4l: "loginUsingGg4l",
     }),
+    async TokenValidate() {
+      await this.tokenValidate({
+        reset_password_token: this.$route.query.token,
+      });
+      if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+        this.$router.push("/");
+      }
+    },
+    async getTokenDevice() {
+      this.currentToken = await this.$fire.messaging.getToken();
+      console.log("consoling token", this.currentToken);
+      this.gg4lLogin();
+      this.$fire.messaging.onMessage((payload) => {
+        console.info("Message received: ", payload);
+      });
+    },
 
     async gg4lLogin() {
       await this.loginUsingGg4l({
         code: this.$route.query.code,
+        deviceTokenWeb: this.currentToken,
       });
       if (this.errorMessage != "") {
         this.$toast.open({
@@ -89,39 +112,39 @@ export default {
 };
 </script>
 <style>
-  .inner-section{
-    overflow: hidden;
-    height: 100vh;
-  }
-  .inner-section .sufee-login{
-    position: relative;
-  }
-  .inner-section .sufee-login::before{
-    content: '';
-    position: absolute;
-    background-image: url(../static/image/jochi-light-bg-rotate.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-size: 100% 100%;
-    overflow: hidden;
-    overflow-y: auto;
-    width: 200%;
-    height: 227%;
-    left: -43%;
-    right: 0;
-    margin: auto;
-    top: -48%;
-    opacity: 0.7;
-    transform-origin: 50% 50%;
-    -webkit-animation: rotating 5s linear infinite;
-    animation: rotating 30s linear infinite;
-  }
-  .login-content{
-    position: relative;
-    z-index: 9;
-  }
-  @keyframes rotating {
+.inner-section {
+  overflow: hidden;
+  height: 100vh;
+}
+.inner-section .sufee-login {
+  position: relative;
+}
+.inner-section .sufee-login::before {
+  content: "";
+  position: absolute;
+  background-image: url(../static/image/jochi-light-bg-rotate.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-size: 100% 100%;
+  overflow: hidden;
+  overflow-y: auto;
+  width: 200%;
+  height: 227%;
+  left: -43%;
+  right: 0;
+  margin: auto;
+  top: -48%;
+  opacity: 0.7;
+  transform-origin: 50% 50%;
+  -webkit-animation: rotating 5s linear infinite;
+  animation: rotating 30s linear infinite;
+}
+.login-content {
+  position: relative;
+  z-index: 9;
+}
+@keyframes rotating {
   from {
     -ms-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
