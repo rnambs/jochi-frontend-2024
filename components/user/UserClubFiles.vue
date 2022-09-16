@@ -1068,7 +1068,6 @@ export default {
       if (this.profilePic) {
         this.loading = true;
         const data = new FormData();
-        console.log(this.profilePic);
         data.append("file", this.profilePic);
         data.append("club_id", this.$route.query.id);
         data.append("user_id", localStorage.getItem("id"));
@@ -1222,7 +1221,6 @@ export default {
           duration: 5000,
         });
         await this.getClubMoreInfo();
-        console.log("club banner image", this.clubBannerImage);
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -1277,7 +1275,6 @@ export default {
         const file = e.target.files[0];
         this.mime_type = file.type;
         this.fileName = file.name;
-        console.log(this.mime_type);
         if (typeof FileReader === "function") {
           this.dialog = true;
           const reader = new FileReader();
