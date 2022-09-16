@@ -910,6 +910,7 @@
                                           pl-0
                                           d-flex
                                           flex-column
+                                          text-12
                                         "
                                       >
                                         <div

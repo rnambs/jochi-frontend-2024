@@ -1741,7 +1741,7 @@ img.dark-icon {
   line-height: 16px;
 }
 .inner-section .main-section #Daily-Calander .sub-task-section .vh-10, .inner-section .main-section #Weekly-Calander .sub-task-section .vh-10, .inner-section .main-section #Monthly-Calander .sub-task-section .vh-10 {
-  max-height: 72px;
+  max-height: 86px;
 }
 .inner-section .main-section #Daily-Calander .sub-task-section h6, .inner-section .main-section #Weekly-Calander .sub-task-section h6, .inner-section .main-section #Monthly-Calander .sub-task-section h6 {
   color: #e48194;
