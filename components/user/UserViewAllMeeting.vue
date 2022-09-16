@@ -310,7 +310,7 @@
                     "
                   >
                     <button type="button" @click="changeSlot">
-                      Change Today's Slot Time
+                      Change Slot Time
                     </button>
                   </tr>
 
