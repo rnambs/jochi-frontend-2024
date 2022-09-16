@@ -4642,7 +4642,7 @@ export default {
       await this.getCompletedAssignments({
         userId: localStorage.getItem("id"),
         date: moment().format("YYYY-MM-DD"),
-        type: "Daily",
+        type: "Weekly",
       });
       console.log(this.completedAssignments);
       console.log(this.completedSharedAssignments);
