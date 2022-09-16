@@ -613,20 +613,20 @@ export default {
         });
       }
     },
-    async checkFile(profileImage) {
+    checkFile(profileImage) {
       console.log("img", profileImage);
       let parts = profileImage.name.split(".");
       let ext = parts[parts.length - 1];
-      if (ext == ".png" || ext == "jpg" || ext == "jpeg") {
+      if (ext == ".png" || ext == ".jpg" || ext == ".jpeg") {
         // this.onFileChange();
         return true;
       }
       if (localStorage.getItem("profile_pic")) {
         this.profile = localStorage.getItem("profile_pic");
         console.log(this.profile);
-        await $("#profileImage").attr("src", this.profile);
-        await $("#profileImageTeacher").attr("src", this.profile);
-        await $("#menu_profile_pic").attr("src", this.profile);
+        $("#profileImage").attr("src", this.profile);
+        $("#profileImageTeacher").attr("src", this.profile);
+        $("#menu_profile_pic").attr("src", this.profile);
       }
       this.$toast.open({
         message: "File type accepts only PNG,JPG,JPEG formats",
