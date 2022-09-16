@@ -852,13 +852,13 @@ export default {
             item.assignment_materials = e.assignments.assignment_materials;
             item.completed_date = e.assignments.completed_date;
             item.dueTimeFormat = e.assignments.dueTimeFormat;
-            item.due_date = e.assignments.due_date;
+            item.due_date = moment(e.assignments.due_date).format("MM/DD/YYYY");
             item.due_time = e.assignments.due_time;
             item.id = e.assignments.id;
             item.priority = e.assignments.priority;
             item.schoologyAssignment = e.assignments.schoologyAssignment;
             item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
-            item.subTasks = e.subTasks;
+            item.subTasks = e.assignments?.subTasks;
             item.subject = e.assignments?.subjects?.subject_name;
             item.subjects = e.subjects;
             item.task = e.assignments.task;
