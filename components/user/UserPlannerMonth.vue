@@ -4416,7 +4416,8 @@ export default {
           text: data.subjects?.subject_name,
         };
       }
-      this.dateValue = data.due_date;
+      // this.dateValue = data.due_date;
+      this.dateValue = moment(data.due_date).format("MM/DD/YYYY");
       this.timeValue = data.due_time;
       this.subTasksList = [];
       if (data.subTasks && data.subTasks.length > 0) {
