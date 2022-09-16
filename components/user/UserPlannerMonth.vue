@@ -2602,6 +2602,7 @@ export default {
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
       completedAssignments: (state) => state.completedAssignments,
       completedSharedAssignments: (state) => state.completedSharedAssignments,
+      newAdditionalMaterial: (state) => state.newAdditionalMaterial,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -2631,6 +2632,7 @@ export default {
       getAssignments: "getAssignments",
       completeTask: "completeTask",
       getCompletedAssignments: "getCompletedAssignments",
+      uploadAdditionalMaterial: "uploadAdditionalMaterial",
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
@@ -4509,9 +4511,58 @@ export default {
     },
     async UploadAttachment() {
       console.log("attachment");
+      // const data = new FormData();
+      // if (this.materialType == "file") {
+      //   data.append("file", this.file);
+      // } else {
+      //   let urlValid = this.isValidHttpUrl(this.link);
+      //   if (urlValid) {
+      //     this.additionalMaterialList.push({
+      //       id: Math.random(),
+      //       link: this.link,
+      //     });
+      //     this.link = "";
+      //   }
+      //   this.processingUpload = false;
+      //   return;
+      // }
+
+      // await this.uploadAdditionalMaterial(data, {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // });
+
+      // console.log(this.newAdditionalMaterial);
+      // this.additionalMaterialList.push({
+      //   id: this.newAdditionalMaterial.id,
+      //   material: this.newAdditionalMaterial.material,
+      // });
+      // this.file = "";
+      // this.link = "";
+      // if (document.querySelector("#fileUpload"))
+      //   document.querySelector("#fileUpload").value = "";
+
+      this.processingUpload = true;
       const data = new FormData();
       if (this.materialType == "file") {
         data.append("file", this.file);
+        await this.uploadAdditionalMaterial(data, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        console.log(this.newAdditionalMaterial);
+        this.additionalMaterialList.push({
+          id: this.newAdditionalMaterial.id,
+          name: this.newAdditionalMaterial.material,
+          material: this.file.name,
+        });
+        this.processingUpload = false;
+        this.file = "";
+        if (document.querySelector("#fileUpload"))
+          document.querySelector("#fileUpload").value = "";
       } else {
         let urlValid = this.isValidHttpUrl(this.link);
         if (urlValid) {
@@ -4524,22 +4575,6 @@ export default {
         this.processingUpload = false;
         return;
       }
-
-      await this.uploadAdditionalMaterial(data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      console.log(this.newAdditionalMaterial);
-      this.additionalMaterialList.push({
-        id: this.newAdditionalMaterial.id,
-        material: this.newAdditionalMaterial.material,
-      });
-      this.file = "";
-      this.link = "";
-      if (document.querySelector("#fileUpload"))
-        document.querySelector("#fileUpload").value = "";
 
       // this.ClubFiles();
     },
