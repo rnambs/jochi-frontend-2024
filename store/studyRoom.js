@@ -19,6 +19,7 @@ const state = {
   studySessionDetail: {},
   assignmentsList: [],
   sharedAssignmentsList: [],
+  startStudyResponse: {}
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -84,6 +85,7 @@ const actions = {
           'Authorization': ` ${token}`
         },
       });
+      commit('setStartStudyResponse', response.data);
       commit('setErrorMessage', "");
       commit('setErrorType', "");
       commit('setSuccessMessage', "Session has started!");
@@ -428,6 +430,9 @@ const mutations = {
   setSharedAssignmentsList(state, data) {
     state.sharedAssignmentsList = data;
   },
+  setStartStudyResponse(state, data) {
+    state.startStudyResponse = data;
+  },
 
 
 }
@@ -482,6 +487,9 @@ const getters = {
   },
   sharedAssignmentsList: () => {
     return state.sharedAssignmentsList;
+  },
+  startStudyResponse: () => {
+    return state.startStudyResponse;
   },
 
 
