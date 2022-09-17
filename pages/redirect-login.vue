@@ -102,7 +102,7 @@ export default {
 
         window.localStorage.clear();
         window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
-        this.$router.push("/admin-login");
+        // this.$router.push("/admin-login");
       } else {
         let user_type = localStorage.getItem("user_type");
         if (user_type == 3 || user_type == "3") {
