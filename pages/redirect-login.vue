@@ -50,7 +50,6 @@ export default {
 
   mounted() {
     this.getTokenDevice();
-    console.log("code in redirect", this.$route.query.code);
     this.gg4lLogin();
   },
 
@@ -65,6 +64,7 @@ export default {
   methods: {
     ...mapActions("redirectLogin", {
       loginUsingGg4l: "loginUsingGg4l",
+      sendDeviceToken: "sendDeviceToken",
     }),
     async TokenValidate() {
       await this.tokenValidate({
@@ -81,8 +81,9 @@ export default {
     },
     async getTokenDevice() {
       this.currentToken = await this.$fire.messaging.getToken();
-      console.log("consoling token", this.currentToken);
-      // this.gg4lLogin();
+      await this.sendDeviceToken({
+        deviceTokenWeb: this.currentToken,
+      });
       this.$fire.messaging.onMessage((payload) => {
         console.info("Message received: ", payload);
       });
