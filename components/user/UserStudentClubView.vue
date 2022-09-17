@@ -49,7 +49,10 @@
           </div>
         </div>
 
-        <section id="club-detail" class="custom-height-for-club-detail-section h-40 flex-fill">
+        <section
+          id="club-detail"
+          class="custom-height-for-club-detail-section h-40 flex-fill"
+        >
           <div class="club-section container-fluid h-100">
             <div
               class="
@@ -180,7 +183,7 @@
                                 >
                                   <!-- <span class="input-name">{{ data }}</span> -->
                                   <div
-                                    v-if="index < 2"
+                                    v-if="data.user_info && index < 2"
                                     class="
                                       d-flex
                                       align-items-center
@@ -197,7 +200,10 @@
                                       "
                                     >
                                       <div class="ld-img-section">
-                                        <div class="ld-img-holder">
+                                        <div
+                                          v-if="data.user_info"
+                                          class="ld-img-holder"
+                                        >
                                           <img
                                             v-if="data.user_info.profile_pic"
                                             :src="data.user_info.profile_pic"
@@ -210,7 +216,10 @@
                                       </div>
                                     </div>
                                     <div class="col-9 p-0">
-                                      <div class="ld-details-section">
+                                      <div
+                                        v-if="data.user_info"
+                                        class="ld-details-section"
+                                      >
                                         <p
                                           class="
                                             mb-1
@@ -245,13 +254,17 @@
                                     </div>
                                   </div>
                                 </li>
-                                <button 
+                                <button
                                   v-if="leadersInfo.length >= 3"
                                   @click="openViewMoreMembers(true)"
-                                  class="btn btn-void mt-3 py-1 px-0"> 
+                                  class="btn btn-void mt-3 py-1 px-0"
+                                >
                                   <span class="font-semi-bold mr-1">
-                                    View More</span>
-                                  <span class="more-icon"><i class="fas fa-chevron-right"></i> </span>
+                                    View More</span
+                                  >
+                                  <span class="more-icon"
+                                    ><i class="fas fa-chevron-right"></i>
+                                  </span>
                                 </button>
 
                                 <!-- <li
@@ -455,7 +468,6 @@
                         <div class="row justify-content-end">
                           <div class="col-10 col-lg-8 info-tag pr-0">
                             <div class="input-group mb-0 justify-content-end">
-                              
                               <!-- input-icon-area
                               py-1
                               px-4
@@ -466,7 +478,7 @@
                                 class="
                                   px-4
                                   py-1
-                                  ml-1 
+                                  ml-1
                                   mb-1
                                   rounded-6
                                   color-white
@@ -479,7 +491,6 @@
                                 "
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
-                                
                                 :style="{
                                   'background-color': tagColorMap[value.name]
                                     ? tagColorMap[value.name]
@@ -494,10 +505,7 @@
                                   class="pl"
                                   >{{ value.name }}</span
                                 > -->
-                                <span
-                                  class=""
-                                  >{{ value.name }}</span
-                                >
+                                <span class="">{{ value.name }}</span>
                                 <span
                                   class="input-icon"
                                   v-if="enableEdit"
@@ -598,7 +606,7 @@
               View {{ isLeaderView ? "Leaders" : "Members" }}
             </h3>
             <button
-              type="button" 
+              type="button"
               class="btn btn-close px-1"
               data-dismiss="modal"
               aria-label="Close"
@@ -613,6 +621,7 @@
                 <li v-for="(data, index) in leadersInfo" :key="index">
                   <!-- <span class="input-name">{{ data }}</span> -->
                   <div
+                    v-if="data.user_info"
                     class="d-flex align-items-center mt-3"
                   >
                     <div class="d-flex justify-content-end p-0">
@@ -664,7 +673,10 @@
               <ul class="mb-0 leader-list-style">
                 <li v-for="(data, index) in membersInfo" :key="index">
                   <!-- <span class="input-name">{{ data }}</span> -->
-                  <div class="d-flex align-items-center mt-3">
+                  <div
+                    v-if="data.user_info"
+                    class="d-flex align-items-center mt-3"
+                  >
                     <div class="d-flex justify-content-end p-0">
                       <div class="ld-img-section mr-3">
                         <div class="ld-img-holder">
