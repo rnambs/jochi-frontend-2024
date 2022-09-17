@@ -263,7 +263,14 @@
                 class="position-absolute w-100 h-100 top-0 left-0 p-0"
               >
                 <div
-                  class="d-flex card card-primary-void flex-column h-100 p-3 rounded-22"
+                  class="
+                    d-flex
+                    card card-primary-void
+                    flex-column
+                    h-100
+                    p-3
+                    rounded-22
+                  "
                 >
                   <div
                     class="d-flex justify-content-between mb-2 border-bottom"
@@ -2867,6 +2874,7 @@ export default {
       studySessionDetail: (state) => state.studySessionDetail,
       assignmentsList: (state) => state.assignmentsList,
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
+      startStudyResponse: (state) => state.startStudyResponse,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -4077,7 +4085,6 @@ export default {
       }
       this.getInvitedPeersList();
       this.mapPeersInvited();
-
     },
     async getInvitedPeersList() {
       await this.getInvitedPeers(this.sessionDetail.id);
@@ -4174,47 +4181,86 @@ export default {
       // }
     },
     async startSessionNow() {
-      let payLoad = {};
-      if (this.sessionDetail.type == "assignment") {
-        payLoad = {
-          assignment_id: this.sessionDetail.assignmentId,
-          session_shared_user_id: this.sessionDetail.peers,
-          goals: this.sessionDetail.goals,
-          date: this.sessionDetail.scheduledDate,
-          start_time: this.sessionDetail.time,
-          study_method: this.sessionDetail.studyMethod,
-          subject: this.sessionType != "assignment" ? this.Subject.id : "",
-          target_duration: this.sessionDetail.duration,
-          repeat: this.sessionDetail.repeat,
-          scheduled_status: "Now",
-          break_time_at: this.sessionDetail.breakTimeAt,
-          break_time: this.sessionDetail.breakTime,
-        };
-      } else {
-        payLoad = {
-          session_shared_user_id: this.sessionDetail.peers,
-          goals: this.sessionDetail.goals,
-          date: this.sessionDetail.scheduledDate,
-          start_time: this.sessionDetail.time,
-          study_method: this.sessionDetail.studyMethod,
-          subject: this.sessionDetail.subjectId,
-          target_duration: this.sessionDetail.duration,
-          repeat: this.sessionDetail.repeat,
-          scheduled_status: "Now",
-          break_time_at: this.sessionDetail.breakTimeAt,
-          break_time: this.sessionDetail.breakTime,
-        };
-      }
-      await this.saveStudySession(payLoad);
+      // let payLoad = {};
+      // if (this.sessionDetail.type == "assignment") {
+      //   payLoad = {
+      //     assignment_id: this.sessionDetail.assignmentId,
+      //     session_shared_user_id: this.sessionDetail.peers,
+      //     goals: this.sessionDetail.goals,
+      //     date: this.sessionDetail.scheduledDate,
+      //     start_time: this.sessionDetail.time,
+      //     study_method: this.sessionDetail.studyMethod,
+      //     subject: this.sessionType != "assignment" ? this.Subject.id : "",
+      //     target_duration: this.sessionDetail.duration,
+      //     repeat: this.sessionDetail.repeat,
+      //     scheduled_status: "Now",
+      //     break_time_at: this.sessionDetail.breakTimeAt,
+      //     break_time: this.sessionDetail.breakTime,
+      //   };
+      // } else {
+      //   payLoad = {
+      //     session_shared_user_id: this.sessionDetail.peers,
+      //     goals: this.sessionDetail.goals,
+      //     date: this.sessionDetail.scheduledDate,
+      //     start_time: this.sessionDetail.time,
+      //     study_method: this.sessionDetail.studyMethod,
+      //     subject: this.sessionDetail.subjectId,
+      //     target_duration: this.sessionDetail.duration,
+      //     repeat: this.sessionDetail.repeat,
+      //     scheduled_status: "Now",
+      //     break_time_at: this.sessionDetail.breakTimeAt,
+      //     break_time: this.sessionDetail.breakTime,
+      //   };
+      // }
+      // await this.saveStudySession(payLoad);
+      // if (this.sessionDetail.isSharedSession) {
+      //   this.sharedNewSessionId = this.sessionData.id;
+      // }
+      // if (this.successMessage != "") {
+      //   this.$toast.open({
+      //     message: this.successMessage,
+      //     type: this.SuccessType,
+      //     duration: 5000,
+      //   });
+      // }
       if (this.sessionDetail.isSharedSession) {
-        this.sharedNewSessionId = this.sessionData.id;
-      }
-      if (this.successMessage != "") {
-        this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
-          duration: 5000,
-        });
+        let payLoad = {};
+        if (this.sessionDetail.type == "assignment") {
+          payLoad = {
+            assignment_id: this.sessionDetail.assignmentId,
+            session_shared_user_id: this.sessionDetail.peers,
+            time: this.sessionDetail.time,
+            date: this.sessionDetail.scheduledDate,
+            type: this.sessionDetail.studyMethod,
+            targetDuration: this.sessionDetail.duration,
+            repeat: this.sessionDetail.repeat,
+            break_time_at: this.sessionDetail.breakTimeAt,
+            break_time: this.sessionDetail.breakTime,
+          };
+        } else {
+          payLoad = {
+            session_shared_user_id: this.sessionDetail.peers,
+            time: this.sessionDetail.time,
+            date: this.sessionDetail.scheduledDate,
+            type: this.sessionDetail.studyMethod,
+            targetDuration: this.sessionDetail.duration,
+            repeat: this.sessionDetail.repeat,
+            break_time_at: this.sessionDetail.breakTimeAt,
+            break_time: this.sessionDetail.breakTime,
+            subject: this.sessionDetail.subjectId,
+          };
+        }
+        await this.startStudySession(payLoad);
+
+        this.sharedNewSessionId = this.startStudyResponse.id;
+
+        if (this.successMessage != "") {
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.SuccessType,
+            duration: 5000,
+          });
+        }
       }
     },
     resetTab3() {
