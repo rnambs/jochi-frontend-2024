@@ -2649,6 +2649,7 @@ export default {
       assignmentMaterials: [],
       validTime: false,
       completedAssignmentList: [],
+      deletedSubTasksArray: [],
     };
   },
   mounted() {
@@ -3493,9 +3494,12 @@ export default {
         shared_users_ids: peersSelected,
         assignment_materials: assignment_materials,
         subTasks: subTaskLists,
+        deleted_subTask: this.deletedSubTasksArray,
       });
       this.loading = false;
       if (this.successMessage != "") {
+        this.deletedSubTasksArray = [];
+
         this.GetAssignment();
         this.getAssignmentsList();
         this.openAssignment = false;
@@ -4208,6 +4212,11 @@ export default {
       this.addSubTask = false;
     },
     deleteSubTask(subTask) {
+      if (this.assignmentId) {
+        // deleted_subTask
+        console.log("edit", this.subTasksList, subTask);
+        this.deletedSubTasksArray.push(subTask.id);
+      }
       this.subTasksList = this.subTasksList.filter((e) => e != subTask);
     },
     onInviteClick() {
@@ -4518,6 +4527,7 @@ export default {
       return !incomplete;
     },
     onCardClick(data) {
+      this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
       this.openAssignment = true;
       this.mapAssignmentDetail(data);
@@ -4773,7 +4783,7 @@ export default {
 
       return valid;
     },
-     deleteAdditionalMat(item) {
+    deleteAdditionalMat(item) {
       console.log(item);
       this.additionalMaterialList;
       const index = this.additionalMaterialList.indexOf(item);

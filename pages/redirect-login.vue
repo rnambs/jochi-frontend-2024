@@ -41,6 +41,7 @@
 import { required, minLength, sameAs } from "vuelidate/lib/validators";
 import { mapState, mapActions } from "vuex";
 import VueToast from "vue-toast-notification";
+import { FRONTEND_BASE_URL, GG4L_REDIRECT_URL } from "~/assets/js/constants";
 
 export default {
   data() {
@@ -50,7 +51,7 @@ export default {
   mounted() {
     this.getTokenDevice();
     console.log("code in redirect", this.$route.query.code);
-    // this.gg4lLogin();
+    this.gg4lLogin();
   },
 
   computed: {
@@ -81,7 +82,7 @@ export default {
     async getTokenDevice() {
       this.currentToken = await this.$fire.messaging.getToken();
       console.log("consoling token", this.currentToken);
-      this.gg4lLogin();
+      // this.gg4lLogin();
       this.$fire.messaging.onMessage((payload) => {
         console.info("Message received: ", payload);
       });
@@ -98,7 +99,10 @@ export default {
           type: this.errorType,
           duration: 5000,
         });
-        // this.$router.push("/admin-login");
+
+        window.localStorage.clear();
+        window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
+        this.$router.push("/admin-login");
       } else {
         let user_type = localStorage.getItem("user_type");
         if (user_type == 3 || user_type == "3") {
