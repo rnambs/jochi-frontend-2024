@@ -965,11 +965,11 @@ input[type="radio"]{
 }
 
 img.card-img{
-    max-width: 180px;
+    max-width: 130px;
     object-fit: contain;
     width: 100%;
     @media (max-width:$lg-screen) {
-        max-width: 130px;
+        max-width: 120px;
     }
 }
 
@@ -5524,6 +5524,9 @@ switch to violet when it is active*/
                 background-color: transparent;
                 max-height: 75vh;
                 padding: 4px 16px;
+                @media (max-width:$lg-screen) {
+                    max-height: 50vh;
+                }
                 &.no-overflow{
                     overflow: unset !important;
                 }
