@@ -334,7 +334,6 @@
                                             material, index
                                           ) in item.assignment_materials"
                                           :key="material.id"
-                                          @click="openLink(material)"
                                         >
                                           <span
                                             v-if="index < 2"
@@ -554,6 +553,7 @@
                             @click="
                               openAssignment = false;
                               isAddAssignment = true;
+                              assignmentId = '';
                             "
                             ><i class="fas fa-times"></i
                           ></span>
@@ -936,57 +936,7 @@
                                 </button>
                               </div>
                             </div>
-                            <!-- <div
-                              v-if="isAddAssignment"
-                              class="
-                                custom-overflow
-                                pr-2
-                                mr--2
-                                d-flex
-                                flex-column
-                              "
-                            >
-                              <div v-for="subTask in subTasksList" :key="subTask">
-                                <div
-                                  class="card card-transparent show-icon p-1 mb-1"
-                                >
-                                  <div
-                                    class="
-                                      d-flex
-                                      align-items-center
-                                      justify-content-between
-                                    "
-                                  >
-                                    <p
-                                      class="
-                                        mb-0
-                                        color-secondary
-                                        text-16
-                                        font-regular
-                                        text-truncate
-                                        pr-3
-                                      "
-                                    >
-                                      <span><i class="far fa-circle"></i></span>
-                                      {{ subTask }}
-                                    </p>
-                                    <span
-                                      @click="deleteSubTask(subTask)"
-                                      class="
-                                        color-primary
-                                        fa-icon
-                                        show-hover
-                                        d-none
-                                        btn
-                                        p-0
-                                      "
-                                      ><i class="fas fa-trash-alt"></i
-                                    ></span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div> -->
-                            <!-- v-else -->
+
                             <div
                               class="
                                 custom-overflow
@@ -1037,6 +987,7 @@
                                       <span>{{ subTask.title }}</span>
                                     </p>
                                     <span
+                                      v-if="subTask.task_status != 'Completed'"
                                       @click="deleteSubTask(subTask)"
                                       class="
                                         color-primary
@@ -1227,7 +1178,6 @@
                                 v-for="item of additionalMaterialList"
                                 :key="item.id"
                                 class="h-fit-content w-100"
-                                @click="openLink(item)"
                               >
                                 <div
                                   v-if="item.link"
@@ -1241,11 +1191,17 @@
                                   "
                                 >
                                   <div class="ld-details-section w-100">
-                                    <p class="ld-heading mb-1 text-link">
+                                    <p
+                                      @click="openLink(item)"
+                                      class="ld-heading mb-1 text-link"
+                                    >
                                       <!-- {{ peer.first_name }} -->
                                       {{ item.link }}
                                     </p>
                                   </div>
+                                  <span @click="deleteAdditionalMat(item)"
+                                    ><i class="fas fa-trash-alt"></i
+                                  ></span>
                                 </div>
                                 <div
                                   v-else
@@ -1259,7 +1215,10 @@
                                   "
                                 >
                                   <div class="ld-details-section w-100">
-                                    <p class="ld-heading mb-1 text-link">
+                                    <p
+                                      @click="openLink(item)"
+                                      class="ld-heading mb-1 text-link"
+                                    >
                                       <!-- {{ peer.first_name }} -->
                                       {{
                                         item.file_type &&
@@ -1269,6 +1228,9 @@
                                       }}
                                     </p>
                                   </div>
+                                  <span @click="deleteAdditionalMat(item)"
+                                    ><i class="fas fa-trash-alt"></i
+                                  ></span>
                                 </div>
                               </div>
                             </div>
@@ -1444,6 +1406,7 @@
                                       <span>{{ subTask.title }}</span>
                                     </p>
                                     <span
+                                      v-if="subTask.task_status != 'Completed'"
                                       @click="deleteSubTask(subTask)"
                                       class="
                                         color-primary
@@ -1646,11 +1609,17 @@
                                   "
                                 >
                                   <div class="ld-details-section w-100">
-                                    <p class="ld-heading mb-1 text-link">
+                                    <p
+                                      @click="openLink(item)"
+                                      class="ld-heading mb-1 text-link"
+                                    >
                                       <!-- {{ peer.first_name }} -->
                                       {{ item.link }}
                                     </p>
                                   </div>
+                                  <span @click="deleteAdditionalMat(item)"
+                                    ><i class="fas fa-trash-alt"></i
+                                  ></span>
                                 </div>
                                 <div
                                   v-else
@@ -1664,7 +1633,10 @@
                                   "
                                 >
                                   <div class="ld-details-section w-100">
-                                    <p class="ld-heading mb-1 text-link">
+                                    <p
+                                      @click="openLink(item)"
+                                      class="ld-heading mb-1 text-link"
+                                    >
                                       <!-- {{ peer.first_name }} -->
                                       {{
                                         item.file_type &&
@@ -1674,6 +1646,9 @@
                                       }}
                                     </p>
                                   </div>
+                                  <span @click="deleteAdditionalMat(item)"
+                                    ><i class="fas fa-trash-alt"></i
+                                  ></span>
                                 </div>
                               </div>
                             </div>
@@ -2063,6 +2038,7 @@
                         <span><i class="far fa-circle"></i></span> {{ subTask }}
                       </p>
                       <span
+                        v-if="subTask.task_status != 'Completed'"
                         @click="deleteSubTask(subTask)"
                         class="color-primary fa-icon show-hover d-none btn p-0"
                         ><i class="fas fa-trash-alt"></i
@@ -2252,8 +2228,11 @@
             <button
               type="button"
               class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
-              :disabled="processingCompleteAssignment"
-              @click="completeSubTask()"
+              :disabled="processingSubCompleteAssignment"
+              @click="
+                processingSubCompleteAssignment = true;
+                completeSubTask();
+              "
             >
               Confirm
             </button>
@@ -2297,6 +2276,7 @@ export default {
       processing: false,
       processingUpload: false,
       processingCompleteAssignment: false,
+      processingSubCompleteAssignment: false,
       subject: "",
       subjectId: "",
       task: "",
@@ -2386,6 +2366,7 @@ export default {
       validTime: false,
       date_formatted: "",
       completedAssignmentList: [],
+      deletedSubTasksArray: [],
     };
   },
   mounted() {
@@ -2981,9 +2962,11 @@ export default {
         shared_users_ids: peersSelected,
         assignment_materials: assignment_materials,
         subTasks: subTaskLists,
+        deleted_subTask: this.deletedSubTasksArray,
       });
       this.loading = false;
       if (this.successMessage != "") {
+        this.deletedSubTasksArray = [];
         this.GetAssignment();
         this.getAssignmentsList();
         this.openAssignment = false;
@@ -3324,6 +3307,11 @@ export default {
       this.addSubTask = false;
     },
     deleteSubTask(subTask) {
+      if (this.assignmentId) {
+        // deleted_subTask
+        console.log("edit", this.subTasksList, subTask);
+        this.deletedSubTasksArray.push(subTask.id);
+      }
       this.subTasksList = this.subTasksList.filter((e) => e != subTask);
     },
     onInviteClick() {
@@ -3586,20 +3574,17 @@ export default {
       }
     },
     async completeSubTask() {
-      this.processingCompleteAssignment = true;
+      // this.processingSubCompleteAssignment = true;
       await this.completeTask({
         task_id: this.completeSubTaskId,
         status: "Completed",
       });
-      this.processingCompleteAssignment = false;
+      this.processingSubCompleteAssignment = false;
+      $(".modal").modal("hide");
+      $(".modal-backdrop").remove();
       await this.GetDailyPlanner();
 
       if (this.successMessage != "") {
-        await this.getAssignmentsList();
-        await this.getAllCompletedAssignments();
-        if (this.checkAllCompleted()) {
-          await this.completeAssignment();
-        }
         this.completeSubTaskId = 0;
         this.completeAsstId = 0;
         this.$toast.open({
@@ -3607,9 +3592,11 @@ export default {
           type: this.SuccessType,
           duration: 5000,
         });
-
-        $(".modal").modal("hide");
-        $(".modal-backdrop").remove();
+        await this.getAssignmentsList();
+        await this.getAllCompletedAssignments();
+        if (this.checkAllCompleted()) {
+          await this.completeAssignment();
+        }
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -3636,6 +3623,7 @@ export default {
       return !incomplete;
     },
     onCardClick(data) {
+      this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
       this.openAssignment = true;
       this.mapAssignmentDetail(data);
@@ -3857,6 +3845,18 @@ export default {
       }
 
       return valid;
+    },
+    deleteAdditionalMat(item) {
+      console.log(item);
+      this.additionalMaterialList;
+      const index = this.additionalMaterialList.indexOf(item);
+      if (index > -1) {
+        // only splice array when item is found
+        this.additionalMaterialList.splice(index, 1); // 2nd parameter means remove one item only
+      }
+
+      // array = [2, 9]
+      console.log(this.additionalMaterialList);
     },
   },
 };

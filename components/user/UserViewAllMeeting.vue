@@ -309,37 +309,40 @@
                       )
                     "
                   >
-                    <button type="button" @click="changeSlot">
-                      Change Slot Time
+                  <td class="tmodal-data">Change Slot Time</td>
+                  <span class="pr-2"></span>
+                    <button type="button" @click="changeSlot" class="btn btn-primary py-2 rounded-12">
+                      <i class="fas fa-clock mr-2"></i><span>Change slot</span>
                     </button>
                   </tr>
 
                   <tr v-if="isDateChanged && slot_date_selection.length > 0">
-                    <td>Select Time</td>
+                    <td style="vertical-align: top;" class="pt-3">Select Time</td>
                     <td>
                       <div class="d-flex align-items-center">
                         <span class="pr-2"></span>
                         <div
                           v-if="slot_date_selection.length > 0"
-                          class="col-10 p-0 position-relative"
+                          class="col-11 p-0 position-relative"
                         >
-                          <button
+                          <!-- <button
                             class="btn up-btn up-arrow-icon position-absolute"
                           >
                             <i class="fa-solid fa-circle-chevron-up"></i>
-                          </button>
+                          </button> -->
                           <div
                             class="
                               row
                               Meeting-row
                               pl-0
-                              pr-3
-                              pt-3
+                              pr-1
+                              pt-1
+                              my-2
                               custom-modal-ts-height
                             "
                           >
                             <div
-                              class="col-6 text-center modal-time-schedules"
+                              class="col-12 py-1 pr-1 text-center modal-time-schedules"
                               v-for="(Schedule, index) in slot_date_selection"
                               :key="index"
                               @click="slotClick(Schedule.slot_id, Schedule.id)"
@@ -375,7 +378,7 @@
                               <p>No time slot is available</p>
                             </div>
                           </div>
-                          <button
+                          <!-- <button
                             class="
                               btn
                               down-btn down-arrow-icon
@@ -383,7 +386,7 @@
                             "
                           >
                             <i class="fa-solid fa-circle-chevron-down"></i>
-                          </button>
+                          </button> -->
                         </div>
                       </div>
                     </td>

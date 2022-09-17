@@ -525,7 +525,6 @@
                                               material, index
                                             ) in item.assignment_materials"
                                             :key="material.id"
-                                            @click="openLink(material)"
                                           >
                                             <span
                                               v-if="index < 2"
@@ -750,6 +749,7 @@
                                 @click="
                                   openAssignment = false;
                                   isAddAssignment = true;
+                                  assignmentId = '';
                                 "
                                 ><i class="fas fa-times"></i
                               ></span>
@@ -1241,6 +1241,9 @@
                                           <span>{{ subTask.title }}</span>
                                         </p>
                                         <span
+                                          v-if="
+                                            subTask.task_status != 'Completed'
+                                          "
                                           @click="deleteSubTask(subTask)"
                                           class="
                                             color-primary
@@ -1435,7 +1438,6 @@
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
                                     class="h-fit-content cursor-pointer w-100"
-                                    @click="openLink(item)"
                                   >
                                     <div
                                       v-if="item.link"
@@ -1449,11 +1451,17 @@
                                       "
                                     >
                                       <div class="ld-details-section w-100">
-                                        <p class="ld-heading mb-1 text-link">
+                                        <p
+                                          @click="openLink(item)"
+                                          class="ld-heading mb-1 text-link"
+                                        >
                                           <!-- {{ peer.first_name }} -->
                                           {{ item.link }}
                                         </p>
                                       </div>
+                                      <span @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
                                     </div>
                                     <div
                                       v-else
@@ -1467,7 +1475,10 @@
                                       "
                                     >
                                       <div class="ld-details-section w-100">
-                                        <p class="ld-heading mb-1 text-link">
+                                        <p
+                                          @click="openLink(item)"
+                                          class="ld-heading mb-1 text-link"
+                                        >
                                           <!-- {{ peer.first_name }} -->
                                           {{
                                             item.file_type &&
@@ -1477,6 +1488,9 @@
                                           }}
                                         </p>
                                       </div>
+                                      <span @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
                                     </div>
                                   </div>
                                 </div>
@@ -1659,6 +1673,9 @@
                                           <span>{{ subTask.title }}</span>
                                         </p>
                                         <span
+                                          v-if="
+                                            subTask.task_status != 'Completed'
+                                          "
                                           @click="deleteSubTask(subTask)"
                                           class="
                                             color-primary
@@ -1852,7 +1869,6 @@
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
                                     class="h-fit-content cursor-pointer w-100"
-                                    @click="openLink(item)"
                                   >
                                     <div
                                       v-if="item.link"
@@ -1866,11 +1882,17 @@
                                       "
                                     >
                                       <div class="ld-details-section w-100">
-                                        <p class="ld-heading mb-1 text-link">
+                                        <p
+                                          @click="openLink(item)"
+                                          class="ld-heading mb-1 text-link"
+                                        >
                                           <!-- {{ peer.first_name }} -->
                                           {{ item.link }}
                                         </p>
                                       </div>
+                                      <span @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
                                     </div>
                                     <div
                                       v-else
@@ -1883,7 +1905,10 @@
                                       "
                                     >
                                       <div class="ld-details-section">
-                                        <p class="ld-heading mb-1">
+                                        <p
+                                          @click="openLink(item)"
+                                          class="ld-heading mb-1"
+                                        >
                                           <!-- {{ peer.first_name }} -->
                                           {{
                                             item.file_type &&
@@ -1893,6 +1918,9 @@
                                           }}
                                         </p>
                                       </div>
+                                      <span @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
                                     </div>
                                   </div>
                                 </div>
@@ -2371,6 +2399,124 @@
       <!-- filter modal end -->
 
       <!-- End Monthly Calander -->
+      <!-- Assignment completion confirmation  -->
+      <div
+        class="modal fade"
+        id="completeConfirm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="completeConfirmModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered add-assmt"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header pb-1">
+              <h3 class="modal-title" id="completeConfirmModalLongTitle">
+                Complete Assignment Confirmation
+              </h3>
+              <!-- <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button> -->
+            </div>
+            <div class="modal-body px-4">Mark assignment as completed?</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+                :disabled="processingCompleteAssignment"
+                @click="completeAssignment()"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Assignment completion confirmation end  -->
+      <!-- Sub task completion confirmation  -->
+      <div
+        class="modal fade"
+        id="completeSubTaskConfirm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="completeConfirmModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered add-assmt"
+          role="document"
+        >
+          <div class="modal-content">
+            <!-- <div class="modal-header pb-0">
+            <h4 class="modal-title" id="completeConfirmModalLongTitle">
+              Complete Sub-Task Confirmation
+            </h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> -->
+            <div class="modal-body px-4">
+              <h3
+                class="modal-title color-primary font-bold mt-3"
+                id="completeConfirmModalLongTitle"
+              >
+                Complete Sub-Task Confirmation
+              </h3>
+              <h5 class="color-dark font-semi-bold">
+                Mark sub-task as completed?
+              </h5>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="
+                  btn btn-secondary
+                  py-1
+                  px-4
+                  rounded-12
+                  mr-2
+                  font-semi-bold
+                "
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                :disabled="processingSubCompleteAssignment"
+                @click="
+                  processingSubCompleteAssignment = true;
+                  completeSubTask();
+                "
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sub task completion confirmation end  -->
     </div>
   </div>
 </template>
@@ -2383,6 +2529,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
+import * as animationDataSuccess from "~/assets/success.json";
 import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
 import "../../static/css/var.scss";
@@ -2409,6 +2556,9 @@ export default {
       },
       submitted: false,
       processing: false,
+      processingUpload: false,
+      processingCompleteAssignment: false,
+      processingSubCompleteAssignment: false,
       subject: "",
       subjectId: "",
       task: "",
@@ -2432,6 +2582,10 @@ export default {
       loading: false,
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
+      lottieOptionsSuccess: {
+        animationData: animationDataSuccess.default,
+        loop: false,
+      },
       calendarApi: Calendar,
       calendarOptions: {
         showNonCurrentDates: false,
@@ -2495,6 +2649,7 @@ export default {
       assignmentMaterials: [],
       validTime: false,
       completedAssignmentList: [],
+      deletedSubTasksArray: [],
     };
   },
   mounted() {
@@ -2508,7 +2663,7 @@ export default {
     this.getAssignmentsList();
     this.getAllCompletedAssignments();
     this.calendarApi = this.$refs.fullCalendar.getApi();
-    this.GetWeeklyPlanner();
+    this.GetMonthlyPlanner();
     //priority
     //priority dropdown
     const _this = this;
@@ -2646,12 +2801,12 @@ export default {
     },
     goPrev() {
       this.calendarApi.prev(); // call a method on the Calendar object
-      this.GetWeeklyPlanner();
+      this.GetMonthlyPlanner();
     },
 
     goNext() {
       this.calendarApi.next();
-      this.GetWeeklyPlanner();
+      this.GetMonthlyPlanner();
     },
     dateConversion(value) {
       const monthNames = [
@@ -2689,7 +2844,7 @@ export default {
       return "th";
     },
 
-    async GetWeeklyPlanner() {
+    async GetMonthlyPlanner() {
       eventList = [];
       this.loading = true;
       const format = "YYYY-MM-DD";
@@ -3087,7 +3242,7 @@ export default {
     //       duration: 5000,
     //     });
     //     this.resetAssignment();
-    //     this.GetWeeklyPlanner();
+    //     this.GetMonthlyPlanner();
     //     $(".modal").modal("hide");
     //     $(".modal-backdrop").remove();
     //   } else if (this.errorMessage != "") {
@@ -3137,7 +3292,7 @@ export default {
     //       duration: 5000,
     //     });
     //     this.resetAssignment();
-    //     this.GetWeeklyPlanner();
+    //     this.GetMonthlyPlanner();
     //     $(".modal").modal("hide");
     //     $(".modal-backdrop").remove();
     //   } else if (this.errorMessage != "") {
@@ -3266,7 +3421,7 @@ export default {
       this.submitted = false;
       this.processing = false;
 
-      this.GetDailyPlanner();
+      this.GetMonthlyPlanner();
     },
     async UpdateAssignment() {
       this.submitted = true;
@@ -3339,9 +3494,12 @@ export default {
         shared_users_ids: peersSelected,
         assignment_materials: assignment_materials,
         subTasks: subTaskLists,
+        deleted_subTask: this.deletedSubTasksArray,
       });
       this.loading = false;
       if (this.successMessage != "") {
+        this.deletedSubTasksArray = [];
+
         this.GetAssignment();
         this.getAssignmentsList();
         this.openAssignment = false;
@@ -3361,7 +3519,7 @@ export default {
           duration: 5000,
         });
       }
-      this.GetDailyPlanner();
+      this.GetMonthlyPlanner();
       this.submitted = false;
       this.processing = false;
     },
@@ -3655,7 +3813,7 @@ export default {
       if (!this.filterType) {
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
-        return this.GetWeeklyPlanner();
+        return this.GetMonthlyPlanner();
       }
       eventList = [];
       this.loading = true;
@@ -3940,7 +4098,7 @@ export default {
     //       duration: 5000,
     //     });
     //   }
-    //   this.GetDailyPlanner();
+    //   this.GetMonthlyPlanner();
     // },
     // async completeSubTask() {
     //   this.processingCompleteAssignment = true;
@@ -3967,7 +4125,7 @@ export default {
     //       duration: 5000,
     //     });
     //   }
-    //   this.GetDailyPlanner();
+    //   this.GetMonthlyPlanner();
     // },
     // onCardClick() {
     //   this.isAddAssignment = false;
@@ -4054,6 +4212,11 @@ export default {
       this.addSubTask = false;
     },
     deleteSubTask(subTask) {
+      if (this.assignmentId) {
+        // deleted_subTask
+        console.log("edit", this.subTasksList, subTask);
+        this.deletedSubTasksArray.push(subTask.id);
+      }
       this.subTasksList = this.subTasksList.filter((e) => e != subTask);
     },
     onInviteClick() {
@@ -4300,7 +4463,7 @@ export default {
 
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
-        await this.GetDailyPlanner();
+        await this.GetMonthlyPlanner();
         this.playCelebration = true;
         const myTimeout = setTimeout(() => {
           this.playCelebration = false;
@@ -4311,24 +4474,21 @@ export default {
           type: this.errorType,
           duration: 5000,
         });
-        await this.GetDailyPlanner();
+        await this.GetMonthlyPlanner();
       }
     },
     async completeSubTask() {
-      this.processingCompleteAssignment = true;
+      // this.processingSubCompleteAssignment = true;
       await this.completeTask({
         task_id: this.completeSubTaskId,
         status: "Completed",
       });
-      this.processingCompleteAssignment = false;
-      await this.GetDailyPlanner();
+      this.processingSubCompleteAssignment = false;
+      $(".modal").modal("hide");
+      $(".modal-backdrop").remove();
+      await this.GetMonthlyPlanner();
 
       if (this.successMessage != "") {
-        await this.getAssignmentsList();
-        await this.getAllCompletedAssignments();
-        if (this.checkAllCompleted()) {
-          await this.completeAssignment();
-        }
         this.completeSubTaskId = 0;
         this.completeAsstId = 0;
         this.$toast.open({
@@ -4336,9 +4496,11 @@ export default {
           type: this.SuccessType,
           duration: 5000,
         });
-
-        $(".modal").modal("hide");
-        $(".modal-backdrop").remove();
+        await this.getAssignmentsList();
+        await this.getAllCompletedAssignments();
+        if (this.checkAllCompleted()) {
+          await this.completeAssignment();
+        }
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -4346,7 +4508,7 @@ export default {
           duration: 5000,
         });
       }
-      this.GetDailyPlanner();
+      this.GetMonthlyPlanner();
     },
     checkAllCompleted() {
       let asst = this.pendingAssignments.find(
@@ -4365,6 +4527,7 @@ export default {
       return !incomplete;
     },
     onCardClick(data) {
+      this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
       this.openAssignment = true;
       this.mapAssignmentDetail(data);
@@ -4619,6 +4782,18 @@ export default {
       }
 
       return valid;
+    },
+    deleteAdditionalMat(item) {
+      console.log(item);
+      this.additionalMaterialList;
+      const index = this.additionalMaterialList.indexOf(item);
+      if (index > -1) {
+        // only splice array when item is found
+        this.additionalMaterialList.splice(index, 1); // 2nd parameter means remove one item only
+      }
+
+      // array = [2, 9]
+      console.log(this.additionalMaterialList);
     },
   },
 };
