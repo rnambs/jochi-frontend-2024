@@ -69,7 +69,47 @@ const actions = {
         window.$nuxt.$cookies.removeAll();
         this.$router.push('/');
 
+    },
+
+    async sendDeviceToken({ commit }, payLoad) {
+
+
+        const token = localStorage.getItem('token')
+        try {
+            const token = localStorage.getItem('token')
+            const response = await this.$axios.$post(BASE_URL + 'users/save_device_token', payLoad, {
+                headers: {
+                    'Authorization': ` ${token}`
+                },
+            });
+            commit('setAssignmentList', response.assignments);
+            commit('setSharedAssignmentsList', response.shared_assignments);
+        } catch (e) {
+            if (e.response && e.response.status == 401) {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                // window.localStorage.clear();
+                // this.$router.push('/admin-login');
+            }
+
+            else if (e.response && e.response.status == 409) {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', e.response.data.message);
+                commit('setErrorType', "error");
+            }
+            else if (e.response) {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', e.response.data.message);
+                commit('setErrorType', "error");
+            }
+        }
+
     }
+
 
 }
 const mutations = {
