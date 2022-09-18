@@ -3016,7 +3016,7 @@ export default {
         this.targetDuration = this.studyTypes.start_time;
         this.breakTime = this.studyTypes.break_time;
         this.breakAt = this.studyTypes.start_time;
-        // this.repeatLoopBy = this.studyTypes.cycle;
+        this.repeatLoopBy = this.studyTypes.cycle;
       } else {
         this.targetDuration = 5;
         this.breakTime = 2;
