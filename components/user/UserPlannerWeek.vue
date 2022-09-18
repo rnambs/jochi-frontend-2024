@@ -3106,7 +3106,7 @@
             <button
               @click="
                 applyFilter();
-                assignmentPlanner();
+                closeAssignmentPlanner();
               "
               class="btn btn-success px-4 py-1 rounded-12"
             >
@@ -3471,6 +3471,22 @@ export default {
     assignmentPlanner() {
       this.$el.querySelector("#assignmentPlanner").classList.toggle("active");
       this.$el.querySelector("#assignPlanSection").classList.toggle("active");
+    },
+    closeAssignmentPlanner() {
+      if (
+        this.$el
+          .querySelector("#assignPlanSection")
+          .classList.contains("active")
+      ) {
+        this.$el.querySelector("#assignPlanSection").classList.remove("active");
+      }
+      if (
+        this.$el
+          .querySelector("#assignmentPlanner")
+          .classList.contains("active")
+      ) {
+        this.$el.querySelector("#assignmentPlanner").classList.remove("active");
+      }
     },
     ...mapActions("plannerWeek", {
       getWeeklyPlanner: "getWeeklyPlanner",
