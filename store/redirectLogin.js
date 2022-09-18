@@ -73,9 +73,17 @@ const actions = {
 
     async sendDeviceToken({ commit }, payLoad) {
 
-        try {
-            const response = await this.$axios.$post(BASE_URL + 'users/save_device_token', payLoad)
 
+        const token = localStorage.getItem('token')
+        try {
+            const token = localStorage.getItem('token')
+            const response = await this.$axios.$post(BASE_URL + 'users/save_device_token', payLoad, {
+                headers: {
+                    'Authorization': ` ${token}`
+                },
+            });
+            commit('setAssignmentList', response.assignments);
+            commit('setSharedAssignmentsList', response.shared_assignments);
         } catch (e) {
             if (e.response && e.response.status == 401) {
                 commit('setSuccessMessage', "");

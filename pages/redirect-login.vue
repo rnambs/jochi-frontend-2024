@@ -49,8 +49,7 @@ export default {
   },
 
   mounted() {
-    this.getTokenDevice();
-    this.gg4lLogin();
+    this.login();
   },
 
   computed: {
@@ -66,6 +65,9 @@ export default {
       loginUsingGg4l: "loginUsingGg4l",
       sendDeviceToken: "sendDeviceToken",
     }),
+    async login() {
+      await this.gg4lLogin();
+    },
     async TokenValidate() {
       await this.tokenValidate({
         reset_password_token: this.$route.query.token,
@@ -76,13 +78,13 @@ export default {
           type: this.errorType,
           duration: 5000,
         });
-        this.$router.push("/");
+        // this.$router.push("/");
       }
     },
     async getTokenDevice() {
       this.currentToken = await this.$fire.messaging.getToken();
       await this.sendDeviceToken({
-        deviceTokenWeb: this.currentToken,
+        deviceTokenWeb: this.currentToken.toString(),
       });
       this.$fire.messaging.onMessage((payload) => {
         console.info("Message received: ", payload);
@@ -92,8 +94,9 @@ export default {
     async gg4lLogin() {
       await this.loginUsingGg4l({
         code: this.$route.query.code,
-        deviceTokenWeb: this.currentToken,
       });
+      await this.getTokenDevice();
+
       if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
