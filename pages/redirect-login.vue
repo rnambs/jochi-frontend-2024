@@ -82,7 +82,7 @@ export default {
       }
     },
     async getTokenDevice() {
-      this.currentToken = await this.$fire.messaging.getToken();
+      this.currentToken = await this.$fire?.messaging?.getToken();
       await this.sendDeviceToken({
         deviceTokenWeb: this.currentToken.toString(),
       });

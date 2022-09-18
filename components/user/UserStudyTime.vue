@@ -2926,7 +2926,7 @@ export default {
       }
     },
     redirectMap(e) {
-      console.log("session detail", this.studySessionDetail);
+      console.log("session detail", e, this.studySessionDetail);
       let session = {};
       session.type = e.assignment_id ? "assignment" : "study";
       if (e.assignment_id) {
@@ -2940,6 +2940,7 @@ export default {
       if (session.type == "study") {
         this.sessionType = "study";
         let nameSubject = { id: e.subject.id, text: e.subject.subject_name };
+        session.subjectId = e.subject?.id;
         this.Subject = nameSubject;
         this.subjectsData.find(
           (element) => element.id.toString() == e.subject.id.toString()
@@ -2971,20 +2972,26 @@ export default {
       session.time = e.time;
       session.breakTimeAt = e.break_time_at;
       session.studyMethod = e.study_method;
+      session.isSharedSession = e.isSharedSession || e.shared ? true : false;
       const d = new Date();
 
       session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
       session.startSession = false;
       this.targetDuration = e.duration;
+      this.breakAt = e.break_time_at;
+      this.breakTime = e.break_time;
+      this.repeatLoopBy = e.repeat;
+      // this.totalCycles = 1;
+
       session.id = e.id;
       this.studyTypes = {};
       this.studyTypes.id = e.study_method;
-      this.sessionDetail = session;
-      this.breakAt = e.break_time_at;
-      // this.peerSelected = this.mapPeers(e)
+      // this.studyTypes.start_time = this.targetDuration;
+      //   this.studyTypes.break_time = this.studyTypes.break_time;
+      //   this.breakAt = this.studyTypes.start_time;
       this.peerList = this.mapPeers(e);
-      console.log("peer list", this.peerList);
       this.sessionMode = e.study_method ? "regular" : "pomodoro";
+      this.sessionDetail = session;
     },
     async getDetail(id) {
       await this.getSessionDetail({ id });
@@ -4154,9 +4161,11 @@ export default {
     async goToSession() {
       await this.getDetail(this.sessionDetail.id);
       this.redirectMap(this.studySessionDetail);
+
       await this.getInvitedPeersList();
       this.mapPeersInvited();
 
+      // this.UpdateStudyTechnique();
       console.log("session details", this.sessionDetail);
       // this.goalsList = this.sessionDetail.goals;
       // this.sessionMode =
@@ -4178,11 +4187,10 @@ export default {
       //   // let nameSubject = { id: e.subject.id, text: e.subject.subject_name };
       //   // this.Subject = nameSubject;
       // }
-      this.UpdateStudyTechnique();
 
-      if (this.sessionDetail.scheduleStatus == "Now") {
-        this.startSessionNow();
-      }
+      // if (this.sessionDetail.scheduleStatus == "Now") {
+      this.startSessionNow();
+      // }
 
       if (this.limitedInterval > 0) {
         await clearInterval(this.limitedInterval);
