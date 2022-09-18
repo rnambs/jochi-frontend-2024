@@ -1236,7 +1236,9 @@
                 Goals
                 {{
                   sessionType == "assignment"
-                    ? "(" + selectedAssignment.task + ")"
+                    ? "(" +
+                      (subjectName ? subjectName : selectedAssignment.task) +
+                      ")"
                     : null
                 }}
               </h3>
@@ -1725,8 +1727,8 @@
                 <span class="word-break">
                   {{
                     sessionType == "assignment"
-                      ? subjectName
-                      : timerStatusData.subjectName
+                      ? subjectName // : timerStatusData.subjectName
+                      : Subject.text
                   }}
                 </span>
               </p>
@@ -2927,6 +2929,9 @@ export default {
       console.log("session detail", this.studySessionDetail);
       let session = {};
       session.type = e.assignment_id ? "assignment" : "study";
+      if (e.assignment_id) {
+        session.assignments = e.assignments;
+      }
       session.id = e.id;
       session.name =
         session.type == "assignment"
@@ -2946,8 +2951,8 @@ export default {
           });
         }
       } else {
+        this.sessionType = "assignment";
         this.subjectName = e.assignments?.task;
-
         this.goalsList = [];
         if (e.assignments?.subTasks && e.assignments?.subTasks?.length > 0) {
           e.assignments?.subTasks.forEach((element) => {
@@ -3232,12 +3237,10 @@ export default {
         todayTime = moment().format("LT");
       }
       let payLoad = {};
-      if (this.sessionType == "assignment") {
+      if (this.d == "assignment") {
         payLoad = {
           assignment_id:
-            this.sessionType == "assignment"
-              ? this.selectedAssignment.id
-              : null,
+            this.d == "assignment" ? this.selectedAssignment.id : null,
           session_shared_user_id: peersSelected,
           goals: this.goalsList,
           date: scheduleNow
@@ -3253,7 +3256,7 @@ export default {
               " " +
               this.scheduledTime.A,
           study_method: this.studyTypes.id,
-          subject: this.sessionType != "assignment" ? this.Subject.id : "",
+          subject: this.d != "assignment" ? this.Subject.id : "",
           target_duration:
             this.sessionMode == "regular" ? this.targetDuration : null,
           repeat:
@@ -3281,7 +3284,7 @@ export default {
               " " +
               this.scheduledTime.A,
           study_method: this.studyTypes.id,
-          subject: this.sessionType != "assignment" ? this.Subject.id : "",
+          subject: this.d != "assignment" ? this.Subject.id : "",
           target_duration:
             this.sessionMode == "regular" ? this.targetDuration : null,
           repeat:
@@ -3338,7 +3341,7 @@ export default {
     },
     checkValidations() {
       let valid = true;
-      if (this.sessionType == "study" && (!this.Subject || !this.Subject.id)) {
+      if (this.d == "study" && (!this.Subject || !this.Subject.id)) {
         this.$toast.open({
           message: "Please add subject",
           type: "warning",
@@ -3753,7 +3756,7 @@ export default {
       }
     },
     onBack() {
-      if (this.sessionType == "study" && this.currentTab == 2) {
+      if (this.d == "study" && this.currentTab == 2) {
         this.currentTab = 0;
         return;
       }
@@ -3766,10 +3769,14 @@ export default {
       if (this.currentTab == 0) {
         this.resetData();
       }
+
+      if (this.currentTab == 1) {
+        this.loadAssignments();
+      }
     },
     async setSessionType(type) {
-      this.sessionType = type;
-      if (this.sessionType == "study") {
+      this.d = type;
+      if (this.d == "study") {
         this.resetAssignment();
         this.currentTab = 2;
         return;
@@ -3777,14 +3784,18 @@ export default {
 
       this.onNext();
       if (this.currentTab == 1) {
-        await this.getAssignments({
-          student_id: parseInt(localStorage.getItem("id")),
-        });
-        console.log(this.assignmentsList, this.sharedAssignmentsList);
-        this.assignmentMaterials = [];
-        this.mapAssignments();
-        this.mapSharedAssignments();
+        this.loadAssignments();
       }
+    },
+
+    async loadAssignments() {
+      await this.getAssignments({
+        student_id: parseInt(localStorage.getItem("id")),
+      });
+      console.log(this.assignmentsList, this.sharedAssignmentsList);
+      this.pendingAssignments = [];
+      this.mapAssignments();
+      this.mapSharedAssignments();
     },
 
     mapAssignments() {
@@ -3813,7 +3824,7 @@ export default {
         item.assignment_materials = this.assignmentMaterials;
         item.completed_date = e.completed_date;
         item.dueTimeFormat = e.dueTimeFormat;
-        item.due_date = e.due_date;
+        item.due_date = moment(e.due_date).format("MM/DD/YYYY");
         item.due_time = e.due_time;
         item.id = e.id;
         item.priority = e.priority;
@@ -3861,7 +3872,7 @@ export default {
         item.assignment_materials = this.assignmentMaterials;
         item.completed_date = e.assignments.completed_date;
         item.dueTimeFormat = e.assignments.dueTimeFormat;
-        item.due_date = e.assignments.due_date;
+        item.due_date = moment(e.assignments.due_date).format("MM/DD/YYYY");
         item.due_time = e.assignments.due_time;
         item.id = e.assignments.id;
         item.sharedId = e.id;
@@ -4139,25 +4150,32 @@ export default {
       $("#confirmAsstStartModal").modal({ backdrop: true });
     },
     async goToSession() {
+      await this.getDetail(this.sessionDetail.id);
+      this.redirectMap(this.studySessionDetail);
       await this.getInvitedPeersList();
       this.mapPeersInvited();
 
       console.log("session details", this.sessionDetail);
-      this.goalsList = this.sessionDetail.goals;
-      this.sessionMode =
-        this.sessionDetail.studyMethod == "1"
-          ? "pomodoro"
-          : this.sessionDetail.studyMethod == "2"
-          ? "regular"
-          : "";
-      if (Number(this.sessionDetail.studyMethod) == 2) {
-        this.studyTypes = this.studyTypesData.find((e) => e.id == 2);
-      } else {
-        this.studyTypes = this.studyTypesData.find((e) => e.id == 1);
-      }
-      if (this.sessionDetail.type == "assignment") {
-        this.subjectName = this.selectedAssignment.task;
-      }
+      // this.goalsList = this.sessionDetail.goals;
+      // this.sessionMode =
+      //   this.sessionDetail.studyMethod == "1"
+      //     ? "pomodoro"
+      //     : this.sessionDetail.studyMethod == "2"
+      //     ? "regular"
+      //     : "";
+      // if (Number(this.sessionDetail.studyMethod) == 2) {
+      //   this.studyTypes = this.studyTypesData.find((e) => e.id == 2);
+      // } else {
+      //   this.studyTypes = this.studyTypesData.find((e) => e.id == 1);
+      // }
+      // if (this.sessionDetail.type == "assignment") {
+      //   this.subjectName = this.sessionDetail.assignments?.task
+      //     ? this.sessionDetail.assignments?.task
+      //     : this.selectedAssignment.task;
+      // } else {
+      //   // let nameSubject = { id: e.subject.id, text: e.subject.subject_name };
+      //   // this.Subject = nameSubject;
+      // }
       this.UpdateStudyTechnique();
 
       if (this.sessionDetail.scheduleStatus == "Now") {
