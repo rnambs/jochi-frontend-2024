@@ -2695,25 +2695,8 @@ import * as animationData from "~/assets/animation.json";
 // import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
 import VueTimepicker from "vue2-timepicker";
+import { NavigationGuardNext, Route } from "vue-router";
 export default {
-  beforeRouteLeave(to, from, next) {
-    // if (!window.confirm("Leave without saving?")) {
-    //   next(false);
-    //   return;
-    // }
-
-    // next();
-    console.log(`from ${from.name} to ${to.name} next ${next.name} `);
-    const answer = confirm(
-      "Do you really want to leave? you have unsaved changes!"
-    );
-    if (answer) {
-      next();
-    } else {
-      next(false);
-    }
-  },
-
   name: "ClubEditForm",
   components: {
     lottie,
@@ -2819,12 +2802,6 @@ export default {
 
   beforeMount() {
     window.addEventListener("beforeunload", this.preventNav);
-  },
-  watch: {
-    $route(to, from) {
-      console.log("route change to", to);
-      console.log("route change from", from);
-    },
   },
 
   async mounted() {
@@ -2980,7 +2957,9 @@ export default {
       this.targetDuration = e.duration;
       this.breakAt = e.break_time_at;
       this.breakTime = e.break_time;
-      this.repeatLoopBy = e.repeat;
+      this.repeatLoopBy = e.study_method == "1" || e.study_method == 1 ? 4 : 1;
+      this.repetitionCount =
+        e.study_method == "1" || e.study_method == 1 ? e.repeat : 1;
       // this.totalCycles = 1;
 
       session.id = e.id;
@@ -4310,47 +4289,7 @@ export default {
       this.repetitionCount = 1;
     },
   },
-  // beforeRouteLeave: function (to, from, next) {
-  //   console.log("In beforeRouteLeave of AnotherComponent");
 
-  //   // Indicate to the SubComponent that we are leaving the route
-  //   // this.$refs.mySubComponent.prepareToExit();
-  //   // Make sure to always call the next function, otherwise the hook will never be resolved
-  //   // Ref: https://router.vuejs.org/en/advanced/navigation-guards.html
-  //   next();
-  // },
-
-  // beforeRouteLeave(to, from, next) {
-  //   const answer = (window.confirm = function (e) {
-  //     return "Do you really want to leave? you have unsaved changes!";
-  //   });
-  //   if (answer) {
-  //     return next();
-  //   } else {
-  //     return next(false);
-  //   }
-
-  //   // return next();
-  // },
-  beforeDestroy(e) {
-    const answer = confirm(
-      "Do you really want to leave? you have unsaved changes!"
-    );
-    console.log(e);
-    // return;
-    if (!answer) {
-      e.preventDefault();
-    }
-  },
-  // beforeRouteLeave(to, from, next) {
-  //   // const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
-  //   // if (answer) {
-  //   //   next()
-  //   // } else {
-  //   //   next(false)
-  //   // }
-  //   alert("destroy");
-  // },
   destroyed() {
     window.removeEventListener("beforeunload", this.preventNav);
   },
