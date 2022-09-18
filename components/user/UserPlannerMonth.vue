@@ -2826,7 +2826,10 @@
                 Cancel
               </button>
               <button
-                @click="applyFilter"
+                @click="
+                  applyFilter();
+                  assignmentPlanner();
+                "
                 class="btn btn-success px-4 py-1 rounded-12"
               >
                 Apply Filter
@@ -2987,7 +2990,7 @@ export default {
     FullCalendar,
     lottie,
     VueTimepicker,
-    draggable
+    draggable,
   },
   data() {
     return {
@@ -3093,7 +3096,6 @@ export default {
       completedAssignmentList: [],
       deletedSubTasksArray: [],
       tempCompleted: [],
-
     };
   },
   mounted() {
@@ -4888,7 +4890,7 @@ export default {
       let assignment = data.item;
       this.completeAsstId = assignment.id;
     },
-     handleDropDraggable(data, event) {
+    handleDropDraggable(data, event) {
       $("#completeConfirm").modal({ backdrop: true });
 
       let assignment = data?.item?._underlying_vm_;
