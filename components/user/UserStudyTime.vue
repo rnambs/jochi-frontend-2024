@@ -3286,7 +3286,20 @@ export default {
       }
       if (this.isRedirect) {
         payLoad.session_id = this.sessionDetail.id;
-        return this.EditStudyTime(scheduleNow, payLoad);
+        if (scheduleNow == "Later") {
+          return this.EditStudyTime(scheduleNow, payLoad);
+        } else {
+          this.startSessionNow();
+
+          if (this.limitedInterval > 0) {
+            await clearInterval(this.limitedInterval);
+          }
+          this.submitted = false;
+          this.processing = false;
+
+          this.currentTab = 4;
+          this.Timer();
+        }
       } else {
         await this.saveStudySession(payLoad);
         if (this.sessionDetail.isSharedSession) {
