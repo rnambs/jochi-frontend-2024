@@ -3237,10 +3237,12 @@ export default {
         todayTime = moment().format("LT");
       }
       let payLoad = {};
-      if (this.d == "assignment") {
+      if (this.sessionType == "assignment") {
         payLoad = {
           assignment_id:
-            this.d == "assignment" ? this.selectedAssignment.id : null,
+            this.sessionType == "assignment"
+              ? this.selectedAssignment.id
+              : null,
           session_shared_user_id: peersSelected,
           goals: this.goalsList,
           date: scheduleNow
@@ -3256,7 +3258,7 @@ export default {
               " " +
               this.scheduledTime.A,
           study_method: this.studyTypes.id,
-          subject: this.d != "assignment" ? this.Subject.id : "",
+          subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
             this.sessionMode == "regular" ? this.targetDuration : null,
           repeat:
@@ -3284,7 +3286,7 @@ export default {
               " " +
               this.scheduledTime.A,
           study_method: this.studyTypes.id,
-          subject: this.d != "assignment" ? this.Subject.id : "",
+          subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
             this.sessionMode == "regular" ? this.targetDuration : null,
           repeat:
@@ -3341,7 +3343,7 @@ export default {
     },
     checkValidations() {
       let valid = true;
-      if (this.d == "study" && (!this.Subject || !this.Subject.id)) {
+      if (this.sessionType == "study" && (!this.Subject || !this.Subject.id)) {
         this.$toast.open({
           message: "Please add subject",
           type: "warning",
@@ -3756,7 +3758,7 @@ export default {
       }
     },
     onBack() {
-      if (this.d == "study" && this.currentTab == 2) {
+      if (this.sessionType == "study" && this.currentTab == 2) {
         this.currentTab = 0;
         return;
       }
@@ -3775,8 +3777,8 @@ export default {
       }
     },
     async setSessionType(type) {
-      this.d = type;
-      if (this.d == "study") {
+      this.sessionType = type;
+      if (this.sessionType == "study") {
         this.resetAssignment();
         this.currentTab = 2;
         return;
