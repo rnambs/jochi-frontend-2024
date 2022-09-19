@@ -743,23 +743,22 @@
                           px-5
                         "
                       >
-                        <div>
+                        <div class="row">
                           <!-- drag and drop for mobile -->
-                          <div class="d-none">
                             <draggable
                               v-model="pendingAssignments"
                               group="people"
                               @start="drag = true"
                               @end="drag = false"
                               :sort="false"
+                              class="col-12 col-md-6 py-3"
+                              v-for="item in pendingAssignments"
+                              :key="item.id"
                             >
-                              <div class="row">
                                 <div
-                                  class="col-12 col-md-6 py-3"
-                                  v-for="item in pendingAssignments"
-                                  :key="item.id"
+                                class="draggable-card h-100"
                                 >
-                                  <drag
+                                  <div
                                     class="drag h-100"
                                     :transfer-data="{ item }"
                                   >
@@ -1084,106 +1083,13 @@
                                         </div>
                                       </div>
                                     </div>
-                                  </drag>
+                                  </div>
                                 </div>
-                              </div>
                             </draggable>
 
-                            <draggable
-                              draggable=".not-draggable-container"
-                              v-model="tempCompleted"
-                              group="people"
-                              @start="drag = true"
-                              @end="drag = false"
-                              @add="handleDropDraggable"
-                              :sort="false"
-                            >
-                              <div
-                                class="d-flex flex-column pt-3 h-40 flex-fill"
-                              >
-                                <drop
-                                  class="
-                                    drop
-                                    color-secondary
-                                    text-16
-                                    h-100
-                                    d-flex
-                                    flex-column
-                                  "
-                                >
-                                  <h2 class="color-primary font-semi-bold px-5">
-                                    Completed Today
-                                  </h2>
-                                  <p
-                                    class="
-                                      mb-0
-                                      px-5
-                                      color-secondary
-                                      font-regular
-                                    "
-                                  >
-                                    Drag and drop your assignment here when it
-                                    is completed
-                                  </p>
-                                  <div
-                                    class="
-                                      d-flex
-                                      flex-column
-                                      custom-overflow
-                                      px-5
-                                      pb-3
-                                    "
-                                  >
-                                    <div class="row mt-1">
-                                      <div
-                                        v-for="item in completedAssignmentList"
-                                        :key="item.id"
-                                        class="col-6"
-                                      >
-                                        <div
-                                          class="
-                                            jochi-sub-components-light-bg
-                                            py-4
-                                            px-2
-                                            completed-assignments
-                                            text-center
-                                            h-100
-                                          "
-                                        >
-                                          <h4 class="mb-0 blue word-break">
-                                            {{ item.task }}
-                                          </h4>
-                                          <p
-                                            v-for="sub in item.subTasks"
-                                            class="mb-0 word-break"
-                                            :key="sub.id"
-                                          >
-                                            {{ sub.title }}
-                                          </p>
-                                        </div>
-                                      </div>
-                                      <!-- <div class="col-6">
-                            <div
-                              class="
-                                jochi-sub-components-light-bg
-                                py-4
-                                px-2
-                                completed-assignments
-                                text-center
-                              "
-                            >
-                              <h4 class="mb-0 green">AP Calculus Problem</h4>
-                              <p class="mb-0">Homework #5</p>
-                            </div>
-                          </div> -->
-                                    </div>
-                                  </div>
-                                </drop>
-                              </div>
-                            </draggable>
                           </div>
                           <!-- hide -->
-                          <div class="row">
+                          <div class="row d-none">
                             <div
                               class="col-12 col-md-6 py-3"
                               v-for="item in pendingAssignments"
@@ -1486,10 +1392,106 @@
                               </drag>
                             </div>
                           </div>
-                        </div>
                       </div>
                       <!-- drag end -->
-                      <div class="d-flex flex-column pt-3 h-40 flex-fill">
+
+                        <div
+                          class="d-flex flex-column pt-3 h-40 flex-fill"
+                        >
+                          <div
+                            class="
+                              drop
+                              color-secondary
+                              text-16
+                              h-100
+                              d-flex
+                              flex-column
+                            "
+                          >
+                            <h2 class="color-primary font-semi-bold px-5">
+                              Completed Today
+                            </h2>
+                            <p
+                              class="
+                                mb-0
+                                px-5
+                                color-secondary
+                                font-regular
+                              "
+                            >
+                              Drag and drop your assignment here when it
+                              is completed
+                            </p>
+                            <div
+                              class="
+                                d-flex
+                                flex-column
+                                custom-overflow
+                                px-5
+                                pb-3
+                                h-100
+                              "
+                                :class="{'drag-blur':drag}"
+                            >
+                                <draggable
+                                draggable=".not-draggable-container"
+                                v-model="tempCompleted"
+                                group="people"
+                                @start="drag = true"
+                                @end="drag = false"
+                                @add="handleDropDraggable"
+                                :sort="false"
+                                class="h-100"
+                              >
+                                <div class="row mt-1">
+                                  <div
+                                    v-for="item in completedAssignmentList"
+                                    :key="item.id"
+                                    class="col-6"
+                                  >
+                                    <div
+                                      class="
+                                        jochi-sub-components-light-bg
+                                        py-4
+                                        px-2
+                                        completed-assignments
+                                        text-center
+                                        h-100
+                                      "
+                                    >
+                                      <h4 class="mb-0 blue word-break">
+                                        {{ item.task }}
+                                      </h4>
+                                      <p
+                                        v-for="sub in item.subTasks"
+                                        class="mb-0 word-break"
+                                        :key="sub.id"
+                                      >
+                                        {{ sub.title }}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <!-- <div class="col-6">
+                        <div
+                          class="
+                            jochi-sub-components-light-bg
+                            py-4
+                            px-2
+                            completed-assignments
+                            text-center
+                          "
+                        >
+                          <h4 class="mb-0 green">AP Calculus Problem</h4>
+                          <p class="mb-0">Homework #5</p>
+                        </div>
+                      </div> -->
+                                </div>
+                              </draggable>
+                            </div>
+                          </div>
+                        </div>
+
+                      <div class="d-none flex-column pt-3 h-40 flex-fill">
                         <drop
                           class="
                             drop

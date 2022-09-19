@@ -5142,4 +5142,9 @@ select.form-control.is-invalid {
 
 ::-webkit-file-upload-button {
   cursor: pointer;
+}
+
+.drag-blur {
+  filter: blur(6px);
+  position: relative;
 }/*# sourceMappingURL=style01.css.map */
