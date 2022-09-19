@@ -823,7 +823,7 @@ export default {
           item.assignment_materials = e.assignment_materials;
           item.completed_date = e.completed_date;
           item.dueTimeFormat = e.dueTimeFormat;
-          item.due_date = e.due_date;
+          item.due_date = moment(e.due_date).format("MM/DD/YYYY");
           item.due_time = e.due_time;
           item.id = e.id;
           item.priority = e.priority;
