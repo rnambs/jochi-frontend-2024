@@ -160,417 +160,331 @@
                       px-5
                     "
                   >
-                    <div>
+                    <div class="row">
                       <!-- drag and drop for mobile -->
-                      <div class="d-none">
-                        <draggable
-                          v-model="pendingAssignments"
-                          group="people"
-                          @start="drag = true"
-                          @end="drag = false"
-                          :sort="false"
+                      <draggable
+                        v-model="pendingAssignments"
+                        group="people"
+                        @start="drag = true"
+                        @end="drag = false"
+                        :sort="false"
+                        class="col-12 col-md-6 py-3"
+                        v-for="item in pendingAssignments"
+                        :key="item.id"
+                      >
+                        <div
+                          class="draggable-card h-100"
                         >
-                          <div class="row">
-                            <div
-                              class="col-12 col-md-6 py-3"
-                              v-for="item in pendingAssignments"
-                              :key="item.id"
-                            >
-                              <drag
-                                class="drag h-100"
-                                :transfer-data="{ item }"
-                              >
-                                <div class="h-100">
-                                  <div
-                                    @click="onCardClick(item)"
-                                    class="
-                                      jochi-sub-components-light-bg
-                                      drag-drop
-                                      p-4
-                                      position-realtive
-                                      h-100
-                                      cursor-pointer
-                                      d-flex
-                                      flex-column
-                                      justify-content-between
-                                    "
-                                  >
-                                    <div class="d-flex flex-column">
-                                      <div
-                                        class="
-                                          assignment-tag-section
-                                          d-flex
-                                          align-items-center
-                                          mb-2
-                                        "
-                                      >
-                                        <div
-                                          class="
-                                            assignment-tag
-                                            mr-2
-                                            text-nowrap
-                                          "
-                                          :class="{
-                                            red: item.priority == '1',
-                                            yellow: item.priority == '2',
-                                            green: item.priority == '3',
-                                          }"
-                                        >
-                                          {{
-                                            item.priority == "1"
-                                              ? "Urgent"
-                                              : item.priority == "2"
-                                              ? "Important"
-                                              : item.priority == "3"
-                                              ? "Can Wait"
-                                              : ""
-                                          }}
-                                        </div>
-                                        <div
-                                          class="
-                                            assignment-tag
-                                            pink
-                                            text-truncate
-                                          "
-                                        >
-                                          {{
-                                            item.subjects.subject_name
-                                              ? item.subjects.subject_name
-                                              : item.subject
-                                          }}
-                                        </div>
-                                      </div>
-                                      <div class="assignment-add-section">
-                                        <h4 class="mb-1 text-center word-break">
-                                          {{ item.task }}
-                                        </h4>
-                                        <div class="text-center px-3">
-                                          <p class="text-truncate pb-3 mb-0">
-                                            {{ item.assignment_description }}
-                                          </p>
-                                        </div>
-                                      </div>
-                                      <div class="sub-task-section mb-3">
-                                        <h6 class="mb-1">Sub-tasks</h6>
-                                        <div
-                                          class="
-                                            d-flex
-                                            flex-column
-                                            overflow-hidden
-                                            vh-10
-                                          "
-                                        >
-                                          <div
-                                            @click="
-                                              confirmSubTaskComplete(
-                                                $event,
-                                                sub.id,
-                                                item.id,
-                                                sub.task_status
-                                              )
-                                            "
-                                            v-for="sub in item.subTasks"
-                                            :key="sub.id"
-                                            class="
-                                              pl-2
-                                              d-flex
-                                              align-items-center
-                                              color-secondary
-                                              cursor-pointer
-                                              mb-1
-                                            "
-                                          >
-                                            <input
-                                              :id="sub.title"
-                                              v-model="sub.title"
-                                              :value="
-                                                sub.task_status == 'Completed'
-                                                  ? sub.title
-                                                  : ''
-                                              "
-                                              type="radio"
-                                              class="mr-2 cursor-pointer"
-                                            />
-                                            <label
-                                              for=""
-                                              class="
-                                                mb-0
-                                                text-truncate
-                                                cursor-pointer
-                                              "
-                                              >{{ sub.title }}</label
-                                            >
-                                          </div>
-                                        </div>
-                                        <div
-                                          v-if="
-                                            !item.subTasks ||
-                                            item.subTasks.length <= 0
-                                          "
-                                          class="pl-2 d-flex align-items-center"
-                                        >
-                                          <span class="color-secondary text-12"
-                                            >No sub tasks added!</span
-                                          >
-                                        </div>
-                                        <!-- <div class="pl-2 d-flex align-items-center">
-                              <input type="radio" class="mr-2" />
-                              <label for="" class="mb-0"
-                                >Start typing to add subtasks</label
-                              >
-                            </div> -->
-                                      </div>
-                                    </div>
-                                    <div
-                                      v-if="item.assignment_materials"
-                                      class="addition-material-section"
-                                    >
-                                      <h6 class="mb-1 font-medium">
-                                        Additional Material
-                                      </h6>
-                                      <div
-                                        class="
-                                          d-flex
-                                          align-items-center
-                                          justify-content-between
-                                        "
-                                      >
-                                        <div
-                                          class="
-                                            col-8
-                                            py-0
-                                            pl-0
-                                            text-12
-                                            d-flex
-                                            flex-column
-                                          "
-                                        >
-                                          <div
-                                            class="
-                                              d-flex
-                                              flex-column
-                                              lext-limited
-                                            "
-                                          >
-                                            <div
-                                              class="d-flex w-100"
-                                              v-for="(
-                                                material, index
-                                              ) in item.assignment_materials"
-                                              :key="material.id"
-                                            >
-                                              <span
-                                                v-if="index < 2"
-                                                class="
-                                                  color-secondary
-                                                  text-truncate
-                                                  w-100
-                                                "
-                                              >
-                                                <!-- Rubric: -->
-                                                {{
-                                                  material.file_type == "link"
-                                                    ? material.material
-                                                    : material.file_name
-                                                }}
-                                              </span>
-                                            </div>
-                                          </div>
-                                          <span
-                                            class="color-secondary text-12"
-                                            v-if="
-                                              item.assignment_materials &&
-                                              item.assignment_materials
-                                                .length &&
-                                              item.assignment_materials.length >
-                                                2
-                                            "
-                                            >+{{
-                                              item.assignment_materials.length -
-                                              2
-                                            }}
-                                            more</span
-                                          >
-                                          <span
-                                            v-if="
-                                              !item.assignment_materials ||
-                                              item.assignment_materials
-                                                .length <= 0
-                                            "
-                                            class="color-secondary text-12"
-                                          >
-                                            No additional materials added
-                                          </span>
-                                        </div>
-                                        <div
-                                          class="
-                                            col-4
-                                            material-date
-                                            py-0
-                                            text-right
-                                          "
-                                        >
-                                          {{ item.formattedDate }}
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <!-- <div class="upload-file-section mt-2">
-                                <div class="d-flex align-items-center">
-                                  <div class="col-2 p-0">
-                                    <select
-                                      class="form-select form-control"
-                                      aria-label="Default select example"
-                                    >
-                                      <option selected>Type</option>
-                                      <option value="1">One</option>
-                                      <option value="2">Two</option>
-                                      <option value="3">Three</option>
-                                    </select>
-                                  </div>
-                                  <div class="col-8 py-0 px-1">
-                                    <input
-                                      type="text"
-                                      class="form-control px-2"
-                                      placeholder="Paste Link or Upload File"
-                                    />
-                                  </div>
-                                  <div class="col-2 p-0">
-                                    <input
-                                      type="submit"
-                                      class="form-control"
-                                      value="Add"
-                                    />
-                                  </div>
-                                </div>
-                              </div> -->
-                                    <div
-                                      class="
-                                        add-person-section
-                                        position-absolute
-                                        top-0
-                                      "
-                                    >
-                                      <div
-                                        v-for="(peer, index) in item.peers"
-                                        :key="index"
-                                        class="ap-img-section mr--3 shadow-sm"
-                                      >
-                                        <!-- {{ peer }} -->
-                                        <img
-                                          v-if="peer.profile_pic"
-                                          :src="peer.profile_pic"
-                                          alt=""
-                                        />
-                                        <img
-                                          v-else
-                                          src="~/static/image/avatar.png"
-                                          alt=""
-                                        />
-                                      </div>
-                                      <!-- <div
-                                  class="ap-img-section mr--3 shadow-sm"
-                                ></div>
-                                <div
-                                  class="ap-img-section mr--3 shadow-sm"
-                                ></div>
-                                <div class="ap-img-section shadow-sm"></div> -->
-                                      <!-- <div class="ap-img-add">
-                              <img src="~/static/image/add-btn.png" alt="" />
-                            </div> -->
-                                    </div>
-                                  </div>
-                                </div>
-                              </drag>
-                            </div>
-                          </div>
-                        </draggable>
-
-                        <draggable
-                          draggable=".not-draggable-container"
-                          v-model="tempCompleted"
-                          group="people"
-                          @start="drag = true"
-                          @end="drag = false"
-                          @add="handleDropDraggable"
-                          :sort="false"
-                        >
-                          <div class="d-flex flex-column pt-3 h-40 flex-fill">
-                            <drop
-                              class="
-                                drop
-                                color-secondary
-                                text-16
-                                h-100
-                                d-flex
-                                flex-column
-                              "
-                            >
-                              <h2 class="color-primary font-semi-bold px-5">
-                                Completed Today
-                              </h2>
-                              <p class="mb-0 px-5 color-secondary font-regular">
-                                Drag and drop your assignment here when it is
-                                completed
-                              </p>
+                          <div
+                            class="drag h-100"
+                            :transfer-data="{ item }"
+                          >
+                            <div class="h-100">
                               <div
+                                @click="onCardClick(item)"
                                 class="
+                                  jochi-sub-components-light-bg
+                                  drag-drop
+                                  p-4
+                                  position-realtive
+                                  h-100
+                                  cursor-pointer
                                   d-flex
                                   flex-column
-                                  custom-overflow
-                                  px-5
-                                  pb-3
+                                  justify-content-between
                                 "
                               >
-                                <div class="row mt-1">
+                                <div class="d-flex flex-column">
                                   <div
-                                    v-for="item in completedAssignmentList"
-                                    :key="item.id"
-                                    class="col-6"
+                                    class="
+                                      assignment-tag-section
+                                      d-flex
+                                      align-items-center
+                                      mb-2
+                                    "
                                   >
                                     <div
                                       class="
-                                        jochi-sub-components-light-bg
-                                        py-4
-                                        px-2
-                                        completed-assignments
-                                        text-center
-                                        h-100
+                                        assignment-tag
+                                        mr-2
+                                        text-nowrap
+                                      "
+                                      :class="{
+                                        red: item.priority == '1',
+                                        yellow: item.priority == '2',
+                                        green: item.priority == '3',
+                                      }"
+                                    >
+                                      {{
+                                        item.priority == "1"
+                                          ? "Urgent"
+                                          : item.priority == "2"
+                                          ? "Important"
+                                          : item.priority == "3"
+                                          ? "Can Wait"
+                                          : ""
+                                      }}
+                                    </div>
+                                    <div
+                                      class="
+                                        assignment-tag
+                                        pink
+                                        text-truncate
                                       "
                                     >
-                                      <h4 class="mb-0 blue word-break">
-                                        {{ item.task }}
-                                      </h4>
-                                      <p
-                                        v-for="sub in item.subTasks"
-                                        class="mb-0 word-break"
-                                        :key="sub.id"
-                                      >
-                                        {{ sub.title }}
+                                      {{
+                                        item.subjects.subject_name
+                                          ? item.subjects.subject_name
+                                          : item.subject
+                                      }}
+                                    </div>
+                                  </div>
+                                  <div class="assignment-add-section">
+                                    <h4 class="mb-1 text-center word-break">
+                                      {{ item.task }}
+                                    </h4>
+                                    <div class="text-center px-3">
+                                      <p class="text-truncate pb-3 mb-0">
+                                        {{ item.assignment_description }}
                                       </p>
                                     </div>
                                   </div>
-                                  <!-- <div class="col-6">
-                            <div
-                              class="
-                                jochi-sub-components-light-bg
-                                py-4
-                                px-2
-                                completed-assignments
-                                text-center
-                              "
-                            >
-                              <h4 class="mb-0 green">AP Calculus Problem</h4>
-                              <p class="mb-0">Homework #5</p>
+                                  <div class="sub-task-section mb-3">
+                                    <h6 class="mb-1">Sub-tasks</h6>
+                                    <div
+                                      class="
+                                        d-flex
+                                        flex-column
+                                        overflow-hidden
+                                        vh-10
+                                      "
+                                    >
+                                      <div
+                                        @click="
+                                          confirmSubTaskComplete(
+                                            $event,
+                                            sub.id,
+                                            item.id,
+                                            sub.task_status
+                                          )
+                                        "
+                                        v-for="sub in item.subTasks"
+                                        :key="sub.id"
+                                        class="
+                                          pl-2
+                                          d-flex
+                                          align-items-center
+                                          color-secondary
+                                          cursor-pointer
+                                          mb-1
+                                        "
+                                      >
+                                        <input
+                                          :id="sub.title"
+                                          v-model="sub.title"
+                                          :value="
+                                            sub.task_status == 'Completed'
+                                              ? sub.title
+                                              : ''
+                                          "
+                                          type="radio"
+                                          class="mr-2 cursor-pointer"
+                                        />
+                                        <label
+                                          for=""
+                                          class="
+                                            mb-0
+                                            text-truncate
+                                            cursor-pointer
+                                          "
+                                          >{{ sub.title }}</label
+                                        >
+                                      </div>
+                                    </div>
+                                    <div
+                                      v-if="
+                                        !item.subTasks ||
+                                        item.subTasks.length <= 0
+                                      "
+                                      class="pl-2 d-flex align-items-center"
+                                    >
+                                      <span class="color-secondary text-12"
+                                        >No sub tasks added!</span
+                                      >
+                                    </div>
+                                    <!-- <div class="pl-2 d-flex align-items-center">
+                          <input type="radio" class="mr-2" />
+                          <label for="" class="mb-0"
+                            >Start typing to add subtasks</label
+                          >
+                        </div> -->
+                                  </div>
+                                </div>
+                                <div
+                                  v-if="item.assignment_materials"
+                                  class="addition-material-section"
+                                >
+                                  <h6 class="mb-1 font-medium">
+                                    Additional Material
+                                  </h6>
+                                  <div
+                                    class="
+                                      d-flex
+                                      align-items-center
+                                      justify-content-between
+                                    "
+                                  >
+                                    <div
+                                      class="
+                                        col-8
+                                        py-0
+                                        pl-0
+                                        text-12
+                                        d-flex
+                                        flex-column
+                                      "
+                                    >
+                                      <div
+                                        class="
+                                          d-flex
+                                          flex-column
+                                          lext-limited
+                                        "
+                                      >
+                                        <div
+                                          class="d-flex w-100"
+                                          v-for="(
+                                            material, index
+                                          ) in item.assignment_materials"
+                                          :key="material.id"
+                                        >
+                                          <span
+                                            v-if="index < 2"
+                                            class="
+                                              color-secondary
+                                              text-truncate
+                                              w-100
+                                            "
+                                          >
+                                            <!-- Rubric: -->
+                                            {{
+                                              material.file_type == "link"
+                                                ? material.material
+                                                : material.file_name
+                                            }}
+                                          </span>
+                                        </div>
+                                      </div>
+                                      <span
+                                        class="color-secondary text-12"
+                                        v-if="
+                                          item.assignment_materials &&
+                                          item.assignment_materials
+                                            .length &&
+                                          item.assignment_materials.length >
+                                            2
+                                        "
+                                        >+{{
+                                          item.assignment_materials.length -
+                                          2
+                                        }}
+                                        more</span
+                                      >
+                                      <span
+                                        v-if="
+                                          !item.assignment_materials ||
+                                          item.assignment_materials
+                                            .length <= 0
+                                        "
+                                        class="color-secondary text-12"
+                                      >
+                                        No additional materials added
+                                      </span>
+                                    </div>
+                                    <div
+                                      class="
+                                        col-4
+                                        material-date
+                                        py-0
+                                        text-right
+                                      "
+                                    >
+                                      {{ item.formattedDate }}
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- <div class="upload-file-section mt-2">
+                            <div class="d-flex align-items-center">
+                              <div class="col-2 p-0">
+                                <select
+                                  class="form-select form-control"
+                                  aria-label="Default select example"
+                                >
+                                  <option selected>Type</option>
+                                  <option value="1">One</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                                </select>
+                              </div>
+                              <div class="col-8 py-0 px-1">
+                                <input
+                                  type="text"
+                                  class="form-control px-2"
+                                  placeholder="Paste Link or Upload File"
+                                />
+                              </div>
+                              <div class="col-2 p-0">
+                                <input
+                                  type="submit"
+                                  class="form-control"
+                                  value="Add"
+                                />
+                              </div>
                             </div>
                           </div> -->
+                                <div
+                                  class="
+                                    add-person-section
+                                    position-absolute
+                                    top-0
+                                  "
+                                >
+                                  <div
+                                    v-for="(peer, index) in item.peers"
+                                    :key="index"
+                                    class="ap-img-section mr--3 shadow-sm"
+                                  >
+                                    <!-- {{ peer }} -->
+                                    <img
+                                      v-if="peer.profile_pic"
+                                      :src="peer.profile_pic"
+                                      alt=""
+                                    />
+                                    <img
+                                      v-else
+                                      src="~/static/image/avatar.png"
+                                      alt=""
+                                    />
+                                  </div>
+                                  <!-- <div
+                              class="ap-img-section mr--3 shadow-sm"
+                            ></div>
+                            <div
+                              class="ap-img-section mr--3 shadow-sm"
+                            ></div>
+                            <div class="ap-img-section shadow-sm"></div> -->
+                                  <!-- <div class="ap-img-add">
+                          <img src="~/static/image/add-btn.png" alt="" />
+                        </div> -->
                                 </div>
                               </div>
-                            </drop>
+                            </div>
                           </div>
-                        </draggable>
-                      </div>
+                        </div>
+                      </draggable>
+                    </div>
                       <!-- hide -->
-                      <div class="row">
+                      <div class="row d-none">
                         <div
                           class="col-12 col-md-6 py-3"
                           v-for="item in pendingAssignments"
@@ -864,11 +778,99 @@
                           </drag>
                         </div>
                       </div>
-                    </div>
                   </div>
                   <!-- drag end -->
                   <!-- hide -->
-                  <div class="d-flex flex-column pt-3 h-40 flex-fill">
+
+                  
+
+                    <div class="d-flex flex-column pt-3 h-40 flex-fill">
+                      <div
+                        class="
+                          drop
+                          color-secondary
+                          text-16
+                          h-100
+                          d-flex
+                          flex-column
+                        "
+                      >
+                        <h2 class="color-primary font-semi-bold px-5">
+                          Completed Today
+                        </h2>
+                        <p class="mb-0 px-5 color-secondary font-regular">
+                          Drag and drop your assignment here when it is
+                          completed
+                        </p>
+                        <div
+                          class="
+                            d-flex
+                            flex-column
+                            custom-overflow
+                            px-5
+                            pb-3
+                            h-100
+                          "
+                            :class="{'drag-blur':drag}"
+                        >
+                          <draggable
+                            draggable=".not-draggable-container"
+                            v-model="tempCompleted"
+                            group="people"
+                            @start="drag = true"
+                            @end="drag = false"
+                            @add="handleDropDraggable"
+                            :sort="false"
+                          >
+                            <div class="row mt-1">
+                              <div
+                                v-for="item in completedAssignmentList"
+                                :key="item.id"
+                                class="col-6"
+                              >
+                                <div
+                                  class="
+                                    jochi-sub-components-light-bg
+                                    py-4
+                                    px-2
+                                    completed-assignments
+                                    text-center
+                                    h-100
+                                  "
+                                >
+                                  <h4 class="mb-0 blue word-break">
+                                    {{ item.task }}
+                                  </h4>
+                                  <p
+                                    v-for="sub in item.subTasks"
+                                    class="mb-0 word-break"
+                                    :key="sub.id"
+                                  >
+                                    {{ sub.title }}
+                                  </p>
+                                </div>
+                              </div>
+                              <!-- <div class="col-6">
+                        <div
+                          class="
+                            jochi-sub-components-light-bg
+                            py-4
+                            px-2
+                            completed-assignments
+                            text-center
+                          "
+                        >
+                          <h4 class="mb-0 green">AP Calculus Problem</h4>
+                          <p class="mb-0">Homework #5</p>
+                        </div>
+                      </div> -->
+                            </div>
+                          </draggable>
+                        </div>
+                      </div>
+                    </div>
+
+                  <div class="d-none flex-column pt-3 h-40 flex-fill">
                     <drop
                       class="
                         drop
