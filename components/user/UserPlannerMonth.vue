@@ -1900,7 +1900,7 @@
                                           {{ item.link }}
                                         </p>
                                       </div>
-                                      <span @click="deleteAdditionalMat(item)"
+                                      <span class="btn p-0" @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
                                     </div>
@@ -1929,7 +1929,7 @@
                                           }}
                                         </p>
                                       </div>
-                                      <span @click="deleteAdditionalMat(item)"
+                                      <span class="btn p-0" @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
                                     </div>
@@ -2331,7 +2331,7 @@
                                           {{ item.link }}
                                         </p>
                                       </div>
-                                      <span @click="deleteAdditionalMat(item)"
+                                      <span class="btn p-0" @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
                                     </div>
@@ -2341,7 +2341,7 @@
                                         d-flex
                                         align-items-center
                                         my-2
-                                        mr-3
+                                        justify-content-between
                                         min-w-200
                                       "
                                     >
@@ -2359,7 +2359,7 @@
                                           }}
                                         </p>
                                       </div>
-                                      <span @click="deleteAdditionalMat(item)"
+                                      <span class="btn p-0" @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
                                     </div>

@@ -1611,7 +1611,7 @@
                                       {{ item.link }}
                                     </p>
                                   </div>
-                                  <span @click="deleteAdditionalMat(item)"
+                                  <span class="btn p-0" @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
                                 </div>
@@ -1639,8 +1639,8 @@
                                           : item.material
                                       }}
                                     </p>
-                                  </div>
-                                  <span @click="deleteAdditionalMat(item)"
+                                  </div> 
+                                  <span class="btn p-0" @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
                                 </div>
@@ -2029,7 +2029,7 @@
                                       {{ item.link }}
                                     </p>
                                   </div>
-                                  <span @click="deleteAdditionalMat(item)"
+                                  <span class="btn p-0" @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
                                 </div>
@@ -2058,7 +2058,7 @@
                                       }}
                                     </p>
                                   </div>
-                                  <span @click="deleteAdditionalMat(item)"
+                                  <span class="btn p-0" @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
                                 </div>
