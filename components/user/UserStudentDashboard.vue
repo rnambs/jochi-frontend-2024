@@ -1023,15 +1023,16 @@ export default {
         }
         let goal =
           Number(this.goal.duration) > 0 ? Number(this.goal.duration) : 0;
-        var h = Math.floor(goal / 60);
-        var m = goal % 60;
+        let h = Math.floor(goal / 60);
+        let m = goal % 60;
 
         this.hours = h;
         this.minutes = m;
-        var percentageStudied =
-          Number(this.goal.duration) / Number(this.goal.total_duration_covered);
+        let percentageStudied =
+          Number(this.goal.total_duration_covered) / Number(this.goal.duration);
         percentageStudied = percentageStudied * 100;
-        var percentage = percentageStudied.toFixed(2);
+        let percentage = percentageStudied.toFixed(2);
+
         this.value = percentage;
       }
     },

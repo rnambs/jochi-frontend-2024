@@ -82,13 +82,17 @@ export default {
       }
     },
     async getTokenDevice() {
-      this.currentToken = await this.$fire.messaging.getToken();
-      await this.sendDeviceToken({
-        deviceTokenWeb: this.currentToken.toString(),
-      });
-      this.$fire.messaging.onMessage((payload) => {
-        console.info("Message received: ", payload);
-      });
+      try {
+        this.currentToken = await this.$fire?.messaging?.getToken();
+        await this.sendDeviceToken({
+          deviceTokenWeb: this.currentToken.toString(),
+        });
+        this.$fire.messaging.onMessage((payload) => {
+          console.info("Message received: ", payload);
+        });
+      } catch (e) {
+        console.log(e);
+      }
     },
 
     async gg4lLogin() {

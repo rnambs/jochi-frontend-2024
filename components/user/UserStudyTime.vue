@@ -2695,25 +2695,8 @@ import * as animationData from "~/assets/animation.json";
 // import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
 import VueTimepicker from "vue2-timepicker";
+import { NavigationGuardNext, Route } from "vue-router";
 export default {
-  beforeRouteLeave(to, from, next) {
-    // if (!window.confirm("Leave without saving?")) {
-    //   next(false);
-    //   return;
-    // }
-
-    // next();
-    console.log(`from ${from.name} to ${to.name} next ${next.name} `);
-    const answer = confirm(
-      "Do you really want to leave? you have unsaved changes!"
-    );
-    if (answer) {
-      next();
-    } else {
-      next(false);
-    }
-  },
-
   name: "ClubEditForm",
   components: {
     lottie,
@@ -2820,12 +2803,6 @@ export default {
   beforeMount() {
     window.addEventListener("beforeunload", this.preventNav);
   },
-  watch: {
-    $route(to, from) {
-      console.log("route change to", to);
-      console.log("route change from", from);
-    },
-  },
 
   async mounted() {
     this.userId = localStorage.getItem("id");
@@ -2926,7 +2903,7 @@ export default {
       }
     },
     redirectMap(e) {
-      console.log("session detail", this.studySessionDetail);
+      console.log("session detail", e, this.studySessionDetail);
       let session = {};
       session.type = e.assignment_id ? "assignment" : "study";
       if (e.assignment_id) {
@@ -2940,6 +2917,7 @@ export default {
       if (session.type == "study") {
         this.sessionType = "study";
         let nameSubject = { id: e.subject.id, text: e.subject.subject_name };
+        session.subjectId = e.subject?.id;
         this.Subject = nameSubject;
         this.subjectsData.find(
           (element) => element.id.toString() == e.subject.id.toString()
@@ -2971,20 +2949,28 @@ export default {
       session.time = e.time;
       session.breakTimeAt = e.break_time_at;
       session.studyMethod = e.study_method;
+      session.isSharedSession = e.isSharedSession || e.shared ? true : false;
       const d = new Date();
 
       session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
       session.startSession = false;
       this.targetDuration = e.duration;
+      this.breakAt = e.break_time_at;
+      this.breakTime = e.break_time;
+      this.repeatLoopBy = e.study_method == "1" || e.study_method == 1 ? 4 : 1;
+      this.repetitionCount =
+        e.study_method == "1" || e.study_method == 1 ? e.repeat : 1;
+      // this.totalCycles = 1;
+
       session.id = e.id;
       this.studyTypes = {};
       this.studyTypes.id = e.study_method;
-      this.sessionDetail = session;
-      this.breakAt = e.break_time_at;
-      // this.peerSelected = this.mapPeers(e)
+      // this.studyTypes.start_time = this.targetDuration;
+      //   this.studyTypes.break_time = this.studyTypes.break_time;
+      //   this.breakAt = this.studyTypes.start_time;
       this.peerList = this.mapPeers(e);
-      console.log("peer list", this.peerList);
       this.sessionMode = e.study_method ? "regular" : "pomodoro";
+      this.sessionDetail = session;
     },
     async getDetail(id) {
       await this.getSessionDetail({ id });
@@ -3009,7 +2995,7 @@ export default {
         this.targetDuration = this.studyTypes.start_time;
         this.breakTime = this.studyTypes.break_time;
         this.breakAt = this.studyTypes.start_time;
-        // this.repeatLoopBy = this.studyTypes.cycle;
+        this.repeatLoopBy = this.studyTypes.cycle;
       } else {
         this.targetDuration = 5;
         this.breakTime = 2;
@@ -3300,7 +3286,20 @@ export default {
       }
       if (this.isRedirect) {
         payLoad.session_id = this.sessionDetail.id;
-        return this.EditStudyTime(scheduleNow, payLoad);
+        if (scheduleNow == "Later") {
+          return this.EditStudyTime(scheduleNow, payLoad);
+        } else {
+          this.startSessionNow();
+
+          if (this.limitedInterval > 0) {
+            await clearInterval(this.limitedInterval);
+          }
+          this.submitted = false;
+          this.processing = false;
+
+          this.currentTab = 4;
+          this.Timer();
+        }
       } else {
         await this.saveStudySession(payLoad);
         if (this.sessionDetail.isSharedSession) {
@@ -4154,9 +4153,11 @@ export default {
     async goToSession() {
       await this.getDetail(this.sessionDetail.id);
       this.redirectMap(this.studySessionDetail);
+
       await this.getInvitedPeersList();
       this.mapPeersInvited();
 
+      // this.UpdateStudyTechnique();
       console.log("session details", this.sessionDetail);
       // this.goalsList = this.sessionDetail.goals;
       // this.sessionMode =
@@ -4178,11 +4179,10 @@ export default {
       //   // let nameSubject = { id: e.subject.id, text: e.subject.subject_name };
       //   // this.Subject = nameSubject;
       // }
-      this.UpdateStudyTechnique();
 
-      if (this.sessionDetail.scheduleStatus == "Now") {
-        this.startSessionNow();
-      }
+      // if (this.sessionDetail.scheduleStatus == "Now") {
+      this.startSessionNow();
+      // }
 
       if (this.limitedInterval > 0) {
         await clearInterval(this.limitedInterval);
@@ -4302,47 +4302,7 @@ export default {
       this.repetitionCount = 1;
     },
   },
-  // beforeRouteLeave: function (to, from, next) {
-  //   console.log("In beforeRouteLeave of AnotherComponent");
 
-  //   // Indicate to the SubComponent that we are leaving the route
-  //   // this.$refs.mySubComponent.prepareToExit();
-  //   // Make sure to always call the next function, otherwise the hook will never be resolved
-  //   // Ref: https://router.vuejs.org/en/advanced/navigation-guards.html
-  //   next();
-  // },
-
-  // beforeRouteLeave(to, from, next) {
-  //   const answer = (window.confirm = function (e) {
-  //     return "Do you really want to leave? you have unsaved changes!";
-  //   });
-  //   if (answer) {
-  //     return next();
-  //   } else {
-  //     return next(false);
-  //   }
-
-  //   // return next();
-  // },
-  beforeDestroy(e) {
-    const answer = confirm(
-      "Do you really want to leave? you have unsaved changes!"
-    );
-    console.log(e);
-    // return;
-    if (!answer) {
-      e.preventDefault();
-    }
-  },
-  // beforeRouteLeave(to, from, next) {
-  //   // const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
-  //   // if (answer) {
-  //   //   next()
-  //   // } else {
-  //   //   next(false)
-  //   // }
-  //   alert("destroy");
-  // },
   destroyed() {
     window.removeEventListener("beforeunload", this.preventNav);
   },

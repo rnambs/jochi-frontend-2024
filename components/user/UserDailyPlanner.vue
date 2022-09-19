@@ -161,6 +161,415 @@
                     "
                   >
                     <div>
+                      <!-- drag and drop for mobile -->
+                      <div class="d-none">
+                        <draggable
+                          v-model="pendingAssignments"
+                          group="people"
+                          @start="drag = true"
+                          @end="drag = false"
+                          :sort="false"
+                        >
+                          <div class="row">
+                            <div
+                              class="col-12 col-md-6 py-3"
+                              v-for="item in pendingAssignments"
+                              :key="item.id"
+                            >
+                              <drag
+                                class="drag h-100"
+                                :transfer-data="{ item }"
+                              >
+                                <div class="h-100">
+                                  <div
+                                    @click="onCardClick(item)"
+                                    class="
+                                      jochi-sub-components-light-bg
+                                      drag-drop
+                                      p-4
+                                      position-realtive
+                                      h-100
+                                      cursor-pointer
+                                      d-flex
+                                      flex-column
+                                      justify-content-between
+                                    "
+                                  >
+                                    <div class="d-flex flex-column">
+                                      <div
+                                        class="
+                                          assignment-tag-section
+                                          d-flex
+                                          align-items-center
+                                          mb-2
+                                        "
+                                      >
+                                        <div
+                                          class="
+                                            assignment-tag
+                                            mr-2
+                                            text-nowrap
+                                          "
+                                          :class="{
+                                            red: item.priority == '1',
+                                            yellow: item.priority == '2',
+                                            green: item.priority == '3',
+                                          }"
+                                        >
+                                          {{
+                                            item.priority == "1"
+                                              ? "Urgent"
+                                              : item.priority == "2"
+                                              ? "Important"
+                                              : item.priority == "3"
+                                              ? "Can Wait"
+                                              : ""
+                                          }}
+                                        </div>
+                                        <div
+                                          class="
+                                            assignment-tag
+                                            pink
+                                            text-truncate
+                                          "
+                                        >
+                                          {{
+                                            item.subjects.subject_name
+                                              ? item.subjects.subject_name
+                                              : item.subject
+                                          }}
+                                        </div>
+                                      </div>
+                                      <div class="assignment-add-section">
+                                        <h4 class="mb-1 text-center word-break">
+                                          {{ item.task }}
+                                        </h4>
+                                        <div class="text-center px-3">
+                                          <p class="text-truncate pb-3 mb-0">
+                                            {{ item.assignment_description }}
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <div class="sub-task-section mb-3">
+                                        <h6 class="mb-1">Sub-tasks</h6>
+                                        <div
+                                          class="
+                                            d-flex
+                                            flex-column
+                                            overflow-hidden
+                                            vh-10
+                                          "
+                                        >
+                                          <div
+                                            @click="
+                                              confirmSubTaskComplete(
+                                                $event,
+                                                sub.id,
+                                                item.id,
+                                                sub.task_status
+                                              )
+                                            "
+                                            v-for="sub in item.subTasks"
+                                            :key="sub.id"
+                                            class="
+                                              pl-2
+                                              d-flex
+                                              align-items-center
+                                              color-secondary
+                                              cursor-pointer
+                                              mb-1
+                                            "
+                                          >
+                                            <input
+                                              :id="sub.title"
+                                              v-model="sub.title"
+                                              :value="
+                                                sub.task_status == 'Completed'
+                                                  ? sub.title
+                                                  : ''
+                                              "
+                                              type="radio"
+                                              class="mr-2 cursor-pointer"
+                                            />
+                                            <label
+                                              for=""
+                                              class="
+                                                mb-0
+                                                text-truncate
+                                                cursor-pointer
+                                              "
+                                              >{{ sub.title }}</label
+                                            >
+                                          </div>
+                                        </div>
+                                        <div
+                                          v-if="
+                                            !item.subTasks ||
+                                            item.subTasks.length <= 0
+                                          "
+                                          class="pl-2 d-flex align-items-center"
+                                        >
+                                          <span class="color-secondary text-12"
+                                            >No sub tasks added!</span
+                                          >
+                                        </div>
+                                        <!-- <div class="pl-2 d-flex align-items-center">
+                              <input type="radio" class="mr-2" />
+                              <label for="" class="mb-0"
+                                >Start typing to add subtasks</label
+                              >
+                            </div> -->
+                                      </div>
+                                    </div>
+                                    <div
+                                      v-if="item.assignment_materials"
+                                      class="addition-material-section"
+                                    >
+                                      <h6 class="mb-1 font-medium">
+                                        Additional Material
+                                      </h6>
+                                      <div
+                                        class="
+                                          d-flex
+                                          align-items-center
+                                          justify-content-between
+                                        "
+                                      >
+                                        <div
+                                          class="
+                                            col-8
+                                            py-0
+                                            pl-0
+                                            text-12
+                                            d-flex
+                                            flex-column
+                                          "
+                                        >
+                                          <div
+                                            class="
+                                              d-flex
+                                              flex-column
+                                              lext-limited
+                                            "
+                                          >
+                                            <div
+                                              class="d-flex w-100"
+                                              v-for="(
+                                                material, index
+                                              ) in item.assignment_materials"
+                                              :key="material.id"
+                                            >
+                                              <span
+                                                v-if="index < 2"
+                                                class="
+                                                  color-secondary
+                                                  text-truncate
+                                                  w-100
+                                                "
+                                              >
+                                                <!-- Rubric: -->
+                                                {{
+                                                  material.file_type == "link"
+                                                    ? material.material
+                                                    : material.file_name
+                                                }}
+                                              </span>
+                                            </div>
+                                          </div>
+                                          <span
+                                            class="color-secondary text-12"
+                                            v-if="
+                                              item.assignment_materials &&
+                                              item.assignment_materials
+                                                .length &&
+                                              item.assignment_materials.length >
+                                                2
+                                            "
+                                            >+{{
+                                              item.assignment_materials.length -
+                                              2
+                                            }}
+                                            more</span
+                                          >
+                                          <span
+                                            v-if="
+                                              !item.assignment_materials ||
+                                              item.assignment_materials
+                                                .length <= 0
+                                            "
+                                            class="color-secondary text-12"
+                                          >
+                                            No additional materials added
+                                          </span>
+                                        </div>
+                                        <div
+                                          class="
+                                            col-4
+                                            material-date
+                                            py-0
+                                            text-right
+                                          "
+                                        >
+                                          {{ item.formattedDate }}
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!-- <div class="upload-file-section mt-2">
+                                <div class="d-flex align-items-center">
+                                  <div class="col-2 p-0">
+                                    <select
+                                      class="form-select form-control"
+                                      aria-label="Default select example"
+                                    >
+                                      <option selected>Type</option>
+                                      <option value="1">One</option>
+                                      <option value="2">Two</option>
+                                      <option value="3">Three</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-8 py-0 px-1">
+                                    <input
+                                      type="text"
+                                      class="form-control px-2"
+                                      placeholder="Paste Link or Upload File"
+                                    />
+                                  </div>
+                                  <div class="col-2 p-0">
+                                    <input
+                                      type="submit"
+                                      class="form-control"
+                                      value="Add"
+                                    />
+                                  </div>
+                                </div>
+                              </div> -->
+                                    <div
+                                      class="
+                                        add-person-section
+                                        position-absolute
+                                        top-0
+                                      "
+                                    >
+                                      <div
+                                        v-for="(peer, index) in item.peers"
+                                        :key="index"
+                                        class="ap-img-section mr--3 shadow-sm"
+                                      >
+                                        <!-- {{ peer }} -->
+                                        <img
+                                          v-if="peer.profile_pic"
+                                          :src="peer.profile_pic"
+                                          alt=""
+                                        />
+                                        <img
+                                          v-else
+                                          src="~/static/image/avatar.png"
+                                          alt=""
+                                        />
+                                      </div>
+                                      <!-- <div
+                                  class="ap-img-section mr--3 shadow-sm"
+                                ></div>
+                                <div
+                                  class="ap-img-section mr--3 shadow-sm"
+                                ></div>
+                                <div class="ap-img-section shadow-sm"></div> -->
+                                      <!-- <div class="ap-img-add">
+                              <img src="~/static/image/add-btn.png" alt="" />
+                            </div> -->
+                                    </div>
+                                  </div>
+                                </div>
+                              </drag>
+                            </div>
+                          </div>
+                        </draggable>
+
+                        <draggable
+                          draggable=".not-draggable-container"
+                          v-model="tempCompleted"
+                          group="people"
+                          @start="drag = true"
+                          @end="drag = false"
+                          @add="handleDropDraggable"
+                          :sort="false"
+                        >
+                          <div class="d-flex flex-column pt-3 h-40 flex-fill">
+                            <drop
+                              class="
+                                drop
+                                color-secondary
+                                text-16
+                                h-100
+                                d-flex
+                                flex-column
+                              "
+                            >
+                              <h2 class="color-primary font-semi-bold px-5">
+                                Completed Today
+                              </h2>
+                              <p class="mb-0 px-5 color-secondary font-regular">
+                                Drag and drop your assignment here when it is
+                                completed
+                              </p>
+                              <div
+                                class="
+                                  d-flex
+                                  flex-column
+                                  custom-overflow
+                                  px-5
+                                  pb-3
+                                "
+                              >
+                                <div class="row mt-1">
+                                  <div
+                                    v-for="item in completedAssignmentList"
+                                    :key="item.id"
+                                    class="col-6"
+                                  >
+                                    <div
+                                      class="
+                                        jochi-sub-components-light-bg
+                                        py-4
+                                        px-2
+                                        completed-assignments
+                                        text-center
+                                        h-100
+                                      "
+                                    >
+                                      <h4 class="mb-0 blue word-break">
+                                        {{ item.task }}
+                                      </h4>
+                                      <p
+                                        v-for="sub in item.subTasks"
+                                        class="mb-0 word-break"
+                                        :key="sub.id"
+                                      >
+                                        {{ sub.title }}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <!-- <div class="col-6">
+                            <div
+                              class="
+                                jochi-sub-components-light-bg
+                                py-4
+                                px-2
+                                completed-assignments
+                                text-center
+                              "
+                            >
+                              <h4 class="mb-0 green">AP Calculus Problem</h4>
+                              <p class="mb-0">Homework #5</p>
+                            </div>
+                          </div> -->
+                                </div>
+                              </div>
+                            </drop>
+                          </div>
+                        </draggable>
+                      </div>
+                      <!-- hide -->
                       <div class="row">
                         <div
                           class="col-12 col-md-6 py-3"
@@ -458,6 +867,7 @@
                     </div>
                   </div>
                   <!-- drag end -->
+                  <!-- hide -->
                   <div class="d-flex flex-column pt-3 h-40 flex-fill">
                     <drop
                       class="
@@ -2255,6 +2665,8 @@ import * as animationData from "~/assets/animation.json";
 import * as animationDataSuccess from "~/assets/success.json";
 import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
+import draggable from "vuedraggable";
+
 var fromDate = "";
 var endDate = "";
 var eventList = [];
@@ -2264,6 +2676,7 @@ export default {
     lottie,
     VueTimepicker,
     FullCalendar,
+    draggable,
   },
   data() {
     return {
@@ -2367,6 +2780,7 @@ export default {
       date_formatted: "",
       completedAssignmentList: [],
       deletedSubTasksArray: [],
+      tempCompleted: [],
     };
   },
   mounted() {
@@ -2526,8 +2940,6 @@ export default {
         type: "Daily",
         date: this.calendarDate,
       });
-
-      console.log("meetings", this.clubMeetings);
 
       this.loading = false;
       this.assignmentList = [];
@@ -2847,8 +3259,6 @@ export default {
         subTaskLists.push(e.title);
       });
 
-      console.log(assignment_materials);
-
       await this.addAssignment({
         user_id: localStorage.getItem("id"),
         task: this.assignmentName,
@@ -3127,7 +3537,6 @@ export default {
     },
     eventClicked(info) {
       var idVal = info.event;
-      console.log("idVal", moment(idVal.startStr).format("YYYY-MM-DD"));
       if (
         moment(idVal.startStr.split("T")[0]).isBefore(
           moment().format("YYYY-MM-DD")
@@ -3170,8 +3579,7 @@ export default {
           this.onCardClick(mappedData);
         } else if (idVal.groupId == "club-meeting") {
           let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
-          console.log(club, this.clubMeetings);
-          // this.onCardClick(idVal); club-moreInfo?id=32&name=mailactivitySports&type=Sports
+
           return this.$router.push(
             `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
           );
@@ -3197,7 +3605,6 @@ export default {
     },
     checkIfPreviousDate(dateStr) {
       let eventDate = dateStr.split("T");
-      console.log(moment(dateStr.split("T")).isBefore(moment(), "day"));
     },
     popupmodal(titleData, meetingData, dateData, time) {
       var timestandard = new Date(dateData).toLocaleString();
@@ -3267,13 +3674,7 @@ export default {
       this.checkShowToday();
     },
     checkShowToday() {
-      console.log(
-        "tday",
-        moment().format("YYYY-MM-DD"),
-        moment(this.calendarApi.view.activeStart).format("YYYY-MM-DD"),
-        moment().format("YYYY-MM-DD") ==
-          moment(this.calendarApi.view.activeStart).format("YYYY-MM-DD")
-      );
+     
       if (
         moment().format("YYYY-MM-DD") ==
         moment(this.calendarApi.view.activeStart).format("YYYY-MM-DD")
@@ -3308,8 +3709,6 @@ export default {
     },
     deleteSubTask(subTask) {
       if (this.assignmentId) {
-        // deleted_subTask
-        console.log("edit", this.subTasksList, subTask);
         this.deletedSubTasksArray.push(subTask.id);
       }
       this.subTasksList = this.subTasksList.filter((e) => e != subTask);
@@ -3333,8 +3732,6 @@ export default {
     async getAssignmentsList() {
       this.pendingAssignments = [];
       await this.getAssignments();
-      console.log(this.assignmentsList);
-      console.log(this.sharedAssignmentsList);
       this.assignmentMaterials = [];
       this.mapAssignments();
       this.mapSharedAssignments();
@@ -3507,7 +3904,6 @@ export default {
             let peer = {};
             peer = item.users;
             peer.id = item.shared_users_id;
-            console.log("console", item, peer);
             peers.push(peer);
           }
         });
@@ -3538,6 +3934,12 @@ export default {
       $("#completeConfirm").modal({ backdrop: true });
 
       let assignment = data.item;
+      this.completeAsstId = assignment.id;
+    },
+    handleDropDraggable(data, event) {
+      $("#completeConfirm").modal({ backdrop: true });
+
+      let assignment = data?.item?._underlying_vm_;
       this.completeAsstId = assignment.id;
     },
     async completeAssignment() {
@@ -3610,16 +4012,13 @@ export default {
       let asst = this.pendingAssignments.find(
         (e) => e.id == this.completeAsstId
       );
-      console.log(asst);
       let sub = asst.subTasks;
-      console.log(sub);
       let incomplete = false;
       sub.forEach((e) => {
         if (!incomplete && e.task_status != "Completed") {
           incomplete = true;
         }
       });
-      console.log(incomplete);
       return !incomplete;
     },
     onCardClick(data) {
@@ -3637,13 +4036,11 @@ export default {
       // this.peerSelected
     },
     mapPeerInvited(data) {
-      console.log("map peer ", data, this.students);
       this.peerSelected = [];
       if (data.peers && data.peers?.length > 0 && this.students.length > 0) {
         data.peers.forEach((e) => {
           this.peerSelected.push(this.students.find((s) => s.id == e.id));
         });
-        console.log(this.peersSelected);
       }
       // peerSelected
     },
@@ -3685,7 +4082,6 @@ export default {
       // this.subTasksList = data.subTasks;
       this.peerList = data.peers;
       this.additionalMaterialList = data.assignment_materials;
-      console.log("map ", data);
     },
     async getAllCompletedAssignments() {
       await this.getCompletedAssignments({
@@ -3693,8 +4089,6 @@ export default {
         date: moment().format("YYYY-MM-DD"),
         type: "Daily",
       });
-      console.log(this.completedAssignments);
-      console.log(this.completedSharedAssignments);
       let completed = [];
       completed = this.completedAssignments;
       this.completedAssignmentList = [];
@@ -3768,7 +4162,6 @@ export default {
       }
     },
     async UploadAttachment() {
-      console.log("attachment");
 
       this.processingUpload = true;
       const data = new FormData();
@@ -3780,7 +4173,6 @@ export default {
           },
         });
 
-        console.log(this.newAdditionalMaterial);
         this.additionalMaterialList.push({
           id: this.newAdditionalMaterial.id,
           name: this.newAdditionalMaterial.material,
@@ -3807,7 +4199,6 @@ export default {
     },
 
     openLink(material) {
-      console.log(material);
       let link = material.link
         ? material.link
         : material.name
@@ -3847,7 +4238,6 @@ export default {
       return valid;
     },
     deleteAdditionalMat(item) {
-      console.log(item);
       this.additionalMaterialList;
       const index = this.additionalMaterialList.indexOf(item);
       if (index > -1) {
