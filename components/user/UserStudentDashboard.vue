@@ -525,7 +525,7 @@
                   "
                 >
                   <div
-                    v-for="item in plannerList"
+                    v-for="item in assignmentList"
                     :key="item.id"
                     class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                   >
@@ -1240,37 +1240,48 @@ export default {
       this.plannerList.forEach((element) => {
         var scheduleObject = {};
         var plannerObj = {};
-        var id = element.id;
-        var assignment = element.subject;
-        var time = element.due_time;
-        var date = this.dateConversion(element.due_date);
+        // var id = element.id;
+        // var assignment = element.subject;
+        // var time = element.due_time;
+        // var date = this.dateConversion(element.due_date);
 
-        var title = element.task;
+        // var title = element.task;
 
-        if (element.priority == "1") {
-          var color = "#EF382E";
-        } else if (element.priority == "2") {
-          var color = "#00CCA0";
-        } else if (element.priority == "3") {
-          var color = "#F6D73C";
-        }
-        var dateMeeting = element.due_date;
-        var tmeMeeting = this.formatAMPM(element.due_time);
-        var start = dateMeeting + "T" + tmeMeeting;
+        // if (element.priority == "1") {
+        //   var color = "#EF382E";
+        // } else if (element.priority == "2") {
+        //   var color = "#00CCA0";
+        // } else if (element.priority == "3") {
+        //   var color = "#F6D73C";
+        // }
+        // var dateMeeting = element.due_date;
+        // var tmeMeeting = this.formatAMPM(element.due_time);
+        // var start = dateMeeting + "T" + tmeMeeting;
 
-        scheduleObject["assignment"] = assignment;
-        scheduleObject["time"] = time;
-        scheduleObject["date"] = date;
-        scheduleObject["title"] = title;
-        scheduleObject["id"] = id;
+        // scheduleObject["assignment"] = assignment;
+        // scheduleObject["time"] = time;
+        // scheduleObject["date"] = moment(date).format("MM/DD/YYYY");
+        // scheduleObject["title"] = title;
+        // scheduleObject["id"] = id;
 
-        plannerObj["title"] = title;
-        plannerObj["color"] = color;
-        plannerObj["start"] = start;
-        plannerObj["id"] = id;
-        plannerObj["groupId"] = "assignment";
-        eventList.push(plannerObj);
-        this.assignmentList.push(scheduleObject);
+        // plannerObj["title"] = title;
+        // plannerObj["color"] = color;
+        // plannerObj["start"] = start;
+        // plannerObj["id"] = id;
+        // plannerObj["groupId"] = "assignment";
+
+        let planner = {};
+        planner.task = element.task;
+        planner.task_status = element.task_status;
+        planner.id = element.id;
+        planner.subject = element.subject;
+        planner.due_date = moment(element.due_date).format("MM/DD/YYYY");
+        planner.due_time = element.due_time;
+        planner.assignment_description = element.assignment_description;
+        planner.subjects = element.assignment_description;
+
+        // planner.due_date = moment(element.due_date).format("MM/DD/YYYY");
+        this.assignmentList.push(planner);
       });
       this.meetingList?.forEach((element) => {
         var meetingobj = {};
