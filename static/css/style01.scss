@@ -6714,3 +6714,9 @@ select.form-control{
 ::-webkit-file-upload-button { cursor:pointer; }
 
 $b-toaster-zindex: 1100 !default;
+
+
+.drag-blur{
+    filter: blur(6px);
+    position: relative;
+}

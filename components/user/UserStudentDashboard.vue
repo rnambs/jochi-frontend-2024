@@ -922,6 +922,7 @@ export default {
       },
       value: 0,
       isAdditionalCovered: false,
+      assignmentList: [],
     };
   },
   computed: {
