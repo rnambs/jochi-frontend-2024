@@ -1368,7 +1368,7 @@
                           "
                         >
                           <h2 class="color-primary font-semi-bold px-5">
-                            Completed Today
+                            Completed This Week
                           </h2>
                           <p class="mb-0 px-5 color-secondary font-regular">
                             Drag and drop your assignment here when it is
