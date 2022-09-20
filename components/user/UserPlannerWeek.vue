@@ -2238,16 +2238,18 @@
                                       class="
                                         d-flex
                                         align-items-center
+                                        justify-content-between
                                         my-2
                                         mr-3
                                         min-w-200
                                         w-100
+                                        show-icon
                                       "
                                     >
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link"
+                                          class="ld-heading mb-1 text-link text-truncate"
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{ item.link }}
@@ -2271,16 +2273,18 @@
                                       class="
                                         d-flex
                                         align-items-center
+                                        justify-content-between
                                         my-2
                                         mr-3
                                         min-w-200
                                         w-100
+                                        show-icon
                                       "
                                     >
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link"
+                                          class="ld-heading mb-1 text-link text-truncate"
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{
@@ -2681,22 +2685,24 @@
                                   <div
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
-                                    class="h-fit-content"
+                                    class="h-fit-content w-100"
                                   >
                                     <div
                                       v-if="item.link"
                                       class="
                                         d-flex
                                         align-items-center
+                                        justify-content-between
                                         my-2
                                         mr-3
                                         min-w-200
+                                        show-icon
                                       "
                                     >
-                                      <div class="ld-details-section">
+                                      <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1"
+                                          class="ld-heading mb-1 text-truncate"
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{ item.link }}
@@ -2720,15 +2726,17 @@
                                       class="
                                         d-flex
                                         align-items-center
+                                        justify-content-between
                                         my-2
                                         mr-3
                                         min-w-200
+                                        show-icon
                                       "
                                     >
-                                      <div class="ld-details-section">
+                                      <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1"
+                                          class="ld-heading mb-1 text-truncate"
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{
