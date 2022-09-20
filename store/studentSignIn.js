@@ -248,6 +248,30 @@ const actions = {
         }
 
     },
+    async getNotificationCount({ commit }) {
+        try {
+            const token = localStorage.getItem('token')
+            const response = await this.$axios.$get(BASE_URL + `users/unread_message_count`, {
+                headers: {
+                    'Authorization': ` ${token}`
+                },
+            });
+            commit('setNotificationCount', response.count);
+
+        } catch (e) {
+            if (e?.response?.data?.message == "Unauthorized") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                window.localStorage.clear();
+                this.$router.push('/');
+            }
+        }
+
+
+    },
+
 
 }
 const mutations = {

@@ -2801,9 +2801,28 @@ export default {
   },
 
   beforeMount() {
-    window.addEventListener("beforeunload", this.preventNav);
+    var self = this;
+    window.onbeforeunload = function (e) {
+      if (self.$route.path == "/study-time") {
+        e = e || window.event;
+        //old browsers
+        if (e) {
+          e.returnValue = "Changes you made may not be saved";
+        }
+        //safari, chrome(chrome ignores text)
+        return "Changes you made may not be saved";
+      } else {
+        return null;
+      }
+    };
+    if (performance.navigation.type == 1) {
+      if (this.$route.path == "/study-time") {
+        this.$router.push({ path: "/study-time" });
+      } else {
+        console.log("reload page without redirect");
+      }
+    }
   },
-
   async mounted() {
     this.userId = localStorage.getItem("id");
     if (this.sessionRedirectId) {
@@ -2816,9 +2835,11 @@ export default {
     }
     window.addEventListener("beforeunload", function (e) {
       // Cancel the event
-      e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
-      // Chrome requires returnValue to be set
-      e.returnValue = "";
+      if (this.limitedInterval > 0) {
+        e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+        // Chrome requires returnValue to be set
+        e.returnValue = "";
+      }
     });
     this.disabledDates.to = new Date(
       this.date_today.getFullYear(),
@@ -2929,6 +2950,7 @@ export default {
           });
         }
       } else {
+        session.assignmentId = e.assignment_id;
         this.sessionType = "assignment";
         this.subjectName = e.assignments?.task;
         this.goalsList = [];
@@ -2950,6 +2972,7 @@ export default {
       session.breakTimeAt = e.break_time_at;
       session.studyMethod = e.study_method;
       session.isSharedSession = e.isSharedSession || e.shared ? true : false;
+      session.subjectNameId = e.subjectName;
       const d = new Date();
 
       session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
@@ -3020,10 +3043,11 @@ export default {
     async UpdateSubject() {
       this.SubjectName = this.Subject.subject_name;
     },
-    async resetTime() {
+    async resetTimer() {
       this.totalStudyTime = 0;
       this.studyStatus = "";
-      clearInterval(this.limitedInterval);
+      this.$store.commit("SET_IS_TIMER_RUNNING", false);
+      await clearInterval(this.limitedInterval);
     },
     async Timer() {
       this.GetStatusTimer();
@@ -3076,6 +3100,8 @@ export default {
       }
     },
     async runTimer(targetDuration, isPending = false) {
+      this.$store.commit("SET_IS_TIMER_RUNNING", true);
+
       await setTimeout(function () {
         console.log("timer is starting");
       }, 1000);
@@ -3140,7 +3166,7 @@ export default {
                   this.totalStudyTime +=
                     (presentTime - this.studyTimeStart) / 1000;
                 }
-                clearInterval(this.limitedInterval);
+                this.resetTimer();
 
                 if (isPending) {
                   this.AddStudyTime("STOP");
@@ -3292,7 +3318,7 @@ export default {
           this.startSessionNow();
 
           if (this.limitedInterval > 0) {
-            await clearInterval(this.limitedInterval);
+            await this.resetTimer();
           }
           this.submitted = false;
           this.processing = false;
@@ -3314,7 +3340,7 @@ export default {
             duration: 5000,
           });
           if (this.limitedInterval > 0) {
-            await clearInterval(this.limitedInterval);
+            await this.resetTimer();
           }
           this.submitted = false;
           this.processing = false;
@@ -3523,7 +3549,7 @@ export default {
           duration: 5000,
         });
         if (this.limitedInterval > 0) {
-          await clearInterval(this.limitedInterval);
+          await this.resetTimer();
         }
         this.submitted = false;
         this.processing = false;
@@ -3581,7 +3607,7 @@ export default {
     },
 
     async onBackClick() {
-      clearInterval(this.limitedInterval);
+      this.resetTimer();
       this.submitted = false;
       this.addedStudyTime = false;
       this.timerStatus = 0;
@@ -3627,7 +3653,7 @@ export default {
       this.customBreakStarted = true;
       var presentTime = new Date().getTime();
       this.totalStudyTime += (presentTime - this.studyTimeStart) / 1000;
-      clearInterval(this.limitedInterval);
+      this.resetTimer();
 
       this.AddStudyTime("PAUSE");
     },
@@ -3714,7 +3740,7 @@ export default {
         session.assignmentId = e.assignment_id;
         session.subjectId = e.subjects?.id;
         session.isSharedSession = true;
-
+        session.subjectNameId = e.studyroom?.subjectName;
         this.studySessionList.push(session);
       });
     },
@@ -3753,7 +3779,7 @@ export default {
     },
     timerPageInitialize() {
       if (this.limitedInterval && this.limitedInterval > 0) {
-        clearInterval(this.limitedInterval);
+        this.resetTimer();
       }
     },
     onBack() {
@@ -4185,7 +4211,7 @@ export default {
       // }
 
       if (this.limitedInterval > 0) {
-        await clearInterval(this.limitedInterval);
+        await this.resetTimer();
       }
       this.submitted = false;
       this.processing = false;
@@ -4256,6 +4282,7 @@ export default {
             repeat: this.sessionDetail.repeat,
             break_time_at: this.sessionDetail.breakTimeAt,
             break_time: this.sessionDetail.breakTime,
+            subject: this.sessionDetail.subjectNameId,
           };
         } else {
           payLoad = {
