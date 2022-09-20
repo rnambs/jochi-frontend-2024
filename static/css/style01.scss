@@ -849,15 +849,16 @@ input[type="radio"]{
         background-color: transparent;
         box-shadow: none;
     }
-    &.show-icon:hover{
-        span.fa-icon{
-            &.show-hover{
-                display: block !important;
-            }
-        }
-    }
     &.rounded-22{
         border-radius: 22px;
+    }
+}
+
+.show-icon:hover{
+    span.fa-icon{
+        &.show-hover{
+            display: block !important;
+        }
     }
 }
 .rounded-10{
@@ -5300,14 +5301,14 @@ img.dark-icon{
 .calendar-sm{
     @include calendar-sm();
 }
-// .calendar-dashboard{
-    // @include calendar-lg-head();
-    // .fc .fc-toolbar.fc-header-toolbar{
-    //     margin-bottom: 1rem;
-    // }
-    // @include calendar-sm-body();
-    // @include plannerCommonMonth();
-// }
+.calendar-dashboard{
+    @include calendar-lg-head();
+    .fc .fc-toolbar.fc-header-toolbar{
+        margin-bottom: 1rem;
+    }
+    @include calendar-sm-body();
+    @include plannerCommonMonth();
+}
 
 // faq 
 // .faq-head{
