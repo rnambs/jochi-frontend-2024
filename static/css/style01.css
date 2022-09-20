@@ -1156,8 +1156,9 @@ img.dark-icon {
   width: 100%;
 }
 .main-container.register .login-icon-area a.btn img {
-  width: auto;
-  height: 30px;
+  width: 30px;
+  min-width: 24px;
+  height: auto;
 }
 .main-container .img-section {
   text-align: center;
@@ -1166,7 +1167,7 @@ img.dark-icon {
   max-width: 600px;
   width: 100%;
 }
-@media (max-width: 767.98px) {
+@media (max-width: 1199.98px) {
   .main-container .img-section .img-responsive {
     padding: 0;
     margin: 0px auto 20px;
