@@ -125,7 +125,7 @@
                       <!-- — Malcolm X -->
                     </p>
                   </div>
-                  <div class="col-4 col-md-3 col-lg-4 p-0">
+                  <div class="col-4 p-0">
                     <img
                       src="~/static/image/dashboard_img.png"
                       alt=""
@@ -135,14 +135,15 @@
                 </div>
               </div>
               <div class="d-flex flex-column h-40 flex-fill">
-                <div class="row mt-1 h-100 flex-row">
-                  <div class="col-4 h-100 flex-fill">
+                <div class="row mt-1 h-100 flex-column flex-lg-row">
+                  <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                     <div class="jochi-sub-components-light-bg h-100">
                       <div
                         class="
                           study-status-card
                           d-flex
-                          flex-column
+                          flex-row
+                          flex-lg-column
                           justify-content-center
                           align-items-center
                           h-100
@@ -174,7 +175,7 @@
                           dot="10 white"
                           ><span>dkjsfajh</span>
                         </vue-ellipse-progress> -->
-                        <div class="position-relative d-flex">
+                        <div class="position-relative d-flex mr-3 mr-lg-0">
                           <progress-bar
                             :options="options"
                             :value="value"
@@ -194,7 +195,7 @@
                             <img src="~/static/image/alarm.png" alt="" />
                           </div>
                         </div>
-                        <div class="study-status-text text-center mb-2">
+                        <div class="study-status-text text-left text-lg-center mb-2">
                           <p class="study-status-studied mb-1">
                             {{ duration }} Minutes Studied Today
                           </p>
@@ -210,12 +211,12 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-8 px-0 h-100 flex-fill">
+                  <div class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill">
                     <div
                       class="
                         d-flex
                         flex-column
-                        hidden-scroll
+                        custom-overflow
                         faculty-availability-card-outer
                         h-100
                         p-3
@@ -508,7 +509,7 @@
               <div class="calendar-dashboard px-4 pt-4">
                 <FullCalendar ref="fullCalendar" :options="calendarOptions" />
               </div>
-              <div class="d-flex flex-column h-40 flex-fill pb-3">
+              <div class="d-flex flex-column h-40 flex-fill pb-3 assignment-list">
                 <h4 class="color-black font-semi-bold px-4">
                   Assignments List
                 </h4>
@@ -518,14 +519,15 @@
                     flex-column
                     h-40
                     flex-fill
-                    hidden-scroll
-                    px-4
+                    custom-overflow
+                    px-3
                     mb-3
                     pt-2
+                    mx-2
                   "
                 >
                   <div
-                    v-for="item in plannerList"
+                    v-for="item in assignmentList"
                     :key="item.id"
                     class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                   >
@@ -922,6 +924,7 @@ export default {
       },
       value: 0,
       isAdditionalCovered: false,
+      assignmentList: [],
     };
   },
   computed: {
@@ -1240,37 +1243,48 @@ export default {
       this.plannerList.forEach((element) => {
         var scheduleObject = {};
         var plannerObj = {};
-        var id = element.id;
-        var assignment = element.subject;
-        var time = element.due_time;
-        var date = this.dateConversion(element.due_date);
+        // var id = element.id;
+        // var assignment = element.subject;
+        // var time = element.due_time;
+        // var date = this.dateConversion(element.due_date);
 
-        var title = element.task;
+        // var title = element.task;
 
-        if (element.priority == "1") {
-          var color = "#EF382E";
-        } else if (element.priority == "2") {
-          var color = "#00CCA0";
-        } else if (element.priority == "3") {
-          var color = "#F6D73C";
-        }
-        var dateMeeting = element.due_date;
-        var tmeMeeting = this.formatAMPM(element.due_time);
-        var start = dateMeeting + "T" + tmeMeeting;
+        // if (element.priority == "1") {
+        //   var color = "#EF382E";
+        // } else if (element.priority == "2") {
+        //   var color = "#00CCA0";
+        // } else if (element.priority == "3") {
+        //   var color = "#F6D73C";
+        // }
+        // var dateMeeting = element.due_date;
+        // var tmeMeeting = this.formatAMPM(element.due_time);
+        // var start = dateMeeting + "T" + tmeMeeting;
 
-        scheduleObject["assignment"] = assignment;
-        scheduleObject["time"] = time;
-        scheduleObject["date"] = date;
-        scheduleObject["title"] = title;
-        scheduleObject["id"] = id;
+        // scheduleObject["assignment"] = assignment;
+        // scheduleObject["time"] = time;
+        // scheduleObject["date"] = moment(date).format("MM/DD/YYYY");
+        // scheduleObject["title"] = title;
+        // scheduleObject["id"] = id;
 
-        plannerObj["title"] = title;
-        plannerObj["color"] = color;
-        plannerObj["start"] = start;
-        plannerObj["id"] = id;
-        plannerObj["groupId"] = "assignment";
-        eventList.push(plannerObj);
-        this.assignmentList.push(scheduleObject);
+        // plannerObj["title"] = title;
+        // plannerObj["color"] = color;
+        // plannerObj["start"] = start;
+        // plannerObj["id"] = id;
+        // plannerObj["groupId"] = "assignment";
+
+        let planner = {};
+        planner.task = element.task;
+        planner.task_status = element.task_status;
+        planner.id = element.id;
+        planner.subject = element.subject;
+        planner.due_date = moment(element.due_date).format("MM/DD/YYYY");
+        planner.due_time = element.due_time;
+        planner.assignment_description = element.assignment_description;
+        planner.subjects = element.assignment_description;
+
+        // planner.due_date = moment(element.due_date).format("MM/DD/YYYY");
+        this.assignmentList.push(planner);
       });
       this.meetingList?.forEach((element) => {
         var meetingobj = {};
@@ -1370,3 +1384,58 @@ export default {
   },
 };
 </script>
+
+
+<style>
+  .greet-with-name-sec .hello {
+    font-size: 24px;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 0.4rem;
+    margin-left: 2px;
+  }
+  
+  .faq-section {
+    font-weight: 700;
+    color: #000000;
+  }
+  
+  .dashboard-text-content-section {
+    top: 10px;
+    left: 15px;
+    right: 26%;
+  }
+  
+  .dashboard-head {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+  }
+  
+  .dashboard-text-content {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ff6d6d;
+    line-height: 30px;
+    font-style: italic;
+  }
+  @media (max-width:764.98px) {
+    .dashboard-text-content{
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+  .study-status-img img {
+    width: 80px;
+    height: auto;
+  }
+  .study-status-studied {
+    font-weight: 600;
+    color: #ff6d6d;
+  }
+  @media (min-width:991.98px) {
+    .h-lg-100{
+      height: 100% !important;
+    }
+  }
+  </style>

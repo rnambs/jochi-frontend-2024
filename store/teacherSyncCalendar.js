@@ -1,4 +1,4 @@
-import { BASE_URL } from "../assets/js/constants";
+import { BASE_URL, FRONTEND_BASE_URL } from "../assets/js/constants";
 
 const state = {
     errorMessage: "",
@@ -13,8 +13,10 @@ const state = {
 const actions = {
     async syncGoogleCalendar({ commit }, { }) {
         try {
+            let redirect = FRONTEND_BASE_URL + '/teacher-meeting'
             const response = await this.$axios.$get(
-                'https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/calendar+https://www.googleapis.com/auth/calendar.events&access_type=offline&include_granted_scopes=true&state=there&redirect_uri=https://jochi.devateam.com/teacher-meeting/&client_id=227130792138-jamh1o4o7o3elmchg04ihj3uuoojqkdk.apps.googleusercontent.com&response_type=code&prompt=consent'
+                // 'https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/calendar+https://www.googleapis.com/auth/calendar.events&access_type=offline&include_granted_scopes=true&state=there&redirect_uri=https://jochi.devateam.com/teacher-meeting/&client_id=227130792138-jamh1o4o7o3elmchg04ihj3uuoojqkdk.apps.googleusercontent.com&response_type=code&prompt=consent'
+                `https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/calendar+https://www.googleapis.com/auth/calendar.events&access_type=offline&include_granted_scopes=true&state=there&redirect_uri=${redirect}/&client_id=227130792138-jamh1o4o7o3elmchg04ihj3uuoojqkdk.apps.googleusercontent.com&response_type=code&prompt=consent`
             );
 
             var myWindow = window.open("", "_self");

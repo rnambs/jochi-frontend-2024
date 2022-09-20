@@ -88,6 +88,7 @@ export default {
           deviceTokenWeb: this.currentToken.toString(),
         });
         this.$fire.messaging.onMessage((payload) => {
+          // alert("alerting" + payload);
           console.info("Message received: ", payload);
         });
       } catch (e) {

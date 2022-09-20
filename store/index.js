@@ -93,6 +93,18 @@ export const store = new Vuex.Store({
     }
 });
 
+export const state = () => ({
+    isTimerRunning: false
+})
+
+export const mutations = {
+    SET_IS_TIMER_RUNNING(state, value) {
+        console.log('SET_IS_TIMER_RUNNING', value)
+        state.isTimerRunning = value
+    },
+
+}
+
 
 // async mounted() {
 //     const currentToken = await this.$fire.messaging.getToken()

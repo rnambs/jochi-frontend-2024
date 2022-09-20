@@ -4,17 +4,50 @@
   </div>
 </template>
 
+<script>
+import { nextTick } from "process";
+
+export default {
+  watch: {
+    $route(to, from) {
+      console.log("route change to", to);
+      console.log("route change from", from);
+      if (from == "study-time" && this.$store.state.isTimerRunning) {
+        alert("unsaved");
+      } else {
+      }
+    },
+  },
+  beforeMount() {
+    var self = this;
+    window.onbeforeunload = function (e) {
+      if (self.$route.path == "/study-time") {
+        e = e || window.event;
+        //old browsers
+        if (e) {
+          e.returnValue = "Changes you made may not be saved";
+        }
+        //safari, chrome(chrome ignores text)
+        return "Changes you made may not be saved";
+      } else {
+        return null;
+      }
+    };
+    if (performance.navigation.type == 1) {
+      if (this.$route.path == "/study-time") {
+        this.$router.push({ path: "/study-time" });
+      } else {
+        console.log("reload page without redirect");
+      }
+    }
+  },
+};
+</script>
+
 <style>
 html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

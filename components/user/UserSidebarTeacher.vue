@@ -40,6 +40,7 @@
                   class="dropdown-toggle position-relative p-2"
                   href="#"
                   data-toggle="dropdown"
+                  @click="getNotifications()"
                 >
                   <img
                     src="../../static/image/Jochi Icons/bell_hires.png"
@@ -806,8 +807,9 @@ export default {
       this.$router.push("/");
     }
     this.UserDetails();
-    this.sendToken();
+    this.getPushNotifications();
     this.getNotifications();
+    this.getCount();
 
     // window.addEventListener("keydown", (e) => {
     //   if (e.keyCode == 123) {
@@ -877,10 +879,14 @@ export default {
       getNotificationsList: "getNotificationsList",
       clearNotificationsList: "clearNotificationsList",
       markAsRead: "markAsRead",
+      getNotificationCount: "getNotificationCount",
     }),
-    async sendToken() {
-      // const currentToken = await this.$fire.messaging.getToken();
-      // console.log("current token consoling", currentToken);
+    async getPushNotifications() {
+      this.$fire.messaging.onMessage((payload) => {
+        // alert("alerting" + payload.notification.body);
+        // console.info("Message received: ", payload);
+        this.getCount();
+      });
     },
     async getNotifications() {
       await this.getNotificationsList();
@@ -951,6 +957,9 @@ export default {
     },
     openLink() {
       window.open("https://www.jochi.info/faqs", "_blank");
+    },
+    async getCount() {
+      await this.getNotificationCount();
     },
   },
   // // middleware: "authenticated",
