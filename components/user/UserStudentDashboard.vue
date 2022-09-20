@@ -509,7 +509,7 @@
               <div class="calendar-dashboard px-4 pt-4">
                 <FullCalendar ref="fullCalendar" :options="calendarOptions" />
               </div>
-              <div class="d-flex flex-column h-40 flex-fill pb-3">
+              <div class="d-flex flex-column h-40 flex-fill pb-3 assignment-list">
                 <h4 class="color-black font-semi-bold px-4">
                   Assignments List
                 </h4>
@@ -1384,3 +1384,58 @@ export default {
   },
 };
 </script>
+
+
+<style>
+  .greet-with-name-sec .hello {
+    font-size: 24px;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 0.4rem;
+    margin-left: 2px;
+  }
+  
+  .faq-section {
+    font-weight: 700;
+    color: #000000;
+  }
+  
+  .dashboard-text-content-section {
+    top: 10px;
+    left: 15px;
+    right: 26%;
+  }
+  
+  .dashboard-head {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+  }
+  
+  .dashboard-text-content {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ff6d6d;
+    line-height: 30px;
+    font-style: italic;
+  }
+  @media (max-width:764.98px) {
+    .dashboard-text-content{
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+  .study-status-img img {
+    width: 80px;
+    height: auto;
+  }
+  .study-status-studied {
+    font-weight: 600;
+    color: #ff6d6d;
+  }
+  @media (min-width:991.98px) {
+    .h-lg-100{
+      height: 100% !important;
+    }
+  }
+  </style>
