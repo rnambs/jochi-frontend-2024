@@ -1368,7 +1368,7 @@
                           "
                         >
                           <h2 class="color-primary font-semi-bold px-5">
-                            Completed Today
+                            Completed This Week
                           </h2>
                           <p class="mb-0 px-5 color-secondary font-regular">
                             Drag and drop your assignment here when it is
@@ -2238,37 +2238,53 @@
                                       class="
                                         d-flex
                                         align-items-center
+                                        justify-content-between
                                         my-2
                                         mr-3
                                         min-w-200
                                         w-100
+                                        show-icon
                                       "
                                     >
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link"
+                                          class="ld-heading mb-1 text-link text-truncate"
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{ item.link }}
                                         </p>
                                       </div>
+                                      <span
+                                        class="
+                                          color-primary
+                                          fa-icon
+                                          show-hover
+                                          d-none
+                                          btn
+                                          p-0
+                                        "
+                                        @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
                                     </div>
                                     <div
                                       v-else
                                       class="
                                         d-flex
                                         align-items-center
+                                        justify-content-between
                                         my-2
                                         mr-3
                                         min-w-200
                                         w-100
+                                        show-icon
                                       "
                                     >
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link"
+                                          class="ld-heading mb-1 text-link text-truncate"
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{
@@ -2279,6 +2295,18 @@
                                           }}
                                         </p>
                                       </div>
+                                      <span
+                                        class="
+                                          color-primary
+                                          fa-icon
+                                          show-hover
+                                          d-none
+                                          btn
+                                          p-0
+                                        "
+                                        @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
                                     </div>
                                   </div>
                                 </div>
@@ -2657,42 +2685,58 @@
                                   <div
                                     v-for="item of additionalMaterialList"
                                     :key="item.id"
-                                    class="h-fit-content"
+                                    class="h-fit-content w-100"
                                   >
                                     <div
                                       v-if="item.link"
                                       class="
                                         d-flex
                                         align-items-center
+                                        justify-content-between
                                         my-2
                                         mr-3
                                         min-w-200
+                                        show-icon
                                       "
                                     >
-                                      <div class="ld-details-section">
+                                      <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1"
+                                          class="ld-heading mb-1 text-truncate"
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{ item.link }}
                                         </p>
                                       </div>
+                                      <span
+                                        class="
+                                          color-primary
+                                          fa-icon
+                                          show-hover
+                                          d-none
+                                          btn
+                                          p-0
+                                        "
+                                        @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
                                     </div>
                                     <div
                                       v-else
                                       class="
                                         d-flex
                                         align-items-center
+                                        justify-content-between
                                         my-2
                                         mr-3
                                         min-w-200
+                                        show-icon
                                       "
                                     >
-                                      <div class="ld-details-section">
+                                      <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1"
+                                          class="ld-heading mb-1 text-truncate"
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{
@@ -2703,6 +2747,18 @@
                                           }}
                                         </p>
                                       </div>
+                                      <span
+                                        class="
+                                          color-primary
+                                          fa-icon
+                                          show-hover
+                                          d-none
+                                          btn
+                                          p-0
+                                        "
+                                        @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
                                     </div>
                                   </div>
                                 </div>
@@ -5303,59 +5359,34 @@ export default {
       }
     },
     async UploadAttachment() {
-      // console.log("attachment");
-      // const data = new FormData();
-      // if (this.materialType == "file") {
-      //   data.append("file", this.file);
-      // } else {
-      //   let urlValid = this.isValidHttpUrl(this.link);
-      //   if (urlValid) {
-      //     this.additionalMaterialList.push({
-      //       id: Math.random(),
-      //       link: this.link,
-      //     });
-      //     this.link = "";
-      //   }
-      //   this.processingUpload = false;
-      //   return;
-      // }
-
-      // await this.uploadAdditionalMaterial(data, {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // });
-
-      // console.log(this.newAdditionalMaterial);
-      // this.additionalMaterialList.push({
-      //   id: this.newAdditionalMaterial.id,
-      //   material: this.newAdditionalMaterial.material,
-      // });
-      // this.file = "";
-      // this.link = "";
-      // if (document.querySelector("#fileUpload"))
-      //   document.querySelector("#fileUpload").value = "";
-
       this.processingUpload = true;
       const data = new FormData();
       if (this.materialType == "file") {
-        data.append("file", this.file);
-        await this.uploadAdditionalMaterial(data, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        if (this.file) {
+          data.append("file", this.file);
+          await this.uploadAdditionalMaterial(data, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
 
-        console.log(this.newAdditionalMaterial);
-        this.additionalMaterialList.push({
-          id: this.newAdditionalMaterial.id,
-          name: this.newAdditionalMaterial.material,
-          material: this.file.name,
-        });
-        this.processingUpload = false;
-        this.file = "";
-        if (document.querySelector("#fileUpload"))
-          document.querySelector("#fileUpload").value = "";
+          this.additionalMaterialList.push({
+            id: this.newAdditionalMaterial.id,
+            name: this.newAdditionalMaterial.material,
+            material: this.file.name,
+          });
+          this.processingUpload = false;
+          this.file = "";
+          if (document.querySelector("#fileUpload"))
+            document.querySelector("#fileUpload").value = "";
+        } else {
+          return this.$toast.open({
+            message: "Please add valid file",
+            type: "warning",
+            duration: 5000,
+          });
+          return false;
+        }
       } else {
         let urlValid = this.isValidHttpUrl(this.link);
         if (urlValid) {
