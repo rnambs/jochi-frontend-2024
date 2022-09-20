@@ -2972,6 +2972,7 @@ export default {
       session.breakTimeAt = e.break_time_at;
       session.studyMethod = e.study_method;
       session.isSharedSession = e.isSharedSession || e.shared ? true : false;
+      session.subjectNameId = e.subjectName;
       const d = new Date();
 
       session.isToday = moment(moment(d).format("YYYY-MM-DD")).isSame(e.date);
@@ -3739,7 +3740,7 @@ export default {
         session.assignmentId = e.assignment_id;
         session.subjectId = e.subjects?.id;
         session.isSharedSession = true;
-
+        session.subjectNameId = e.studyroom?.subjectName;
         this.studySessionList.push(session);
       });
     },
@@ -4281,6 +4282,7 @@ export default {
             repeat: this.sessionDetail.repeat,
             break_time_at: this.sessionDetail.breakTimeAt,
             break_time: this.sessionDetail.breakTime,
+            subject: this.sessionDetail.subjectNameId,
           };
         } else {
           payLoad = {

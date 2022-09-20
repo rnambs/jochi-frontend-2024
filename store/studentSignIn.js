@@ -256,7 +256,7 @@ const actions = {
                     'Authorization': ` ${token}`
                 },
             });
-            commit('setNotificationCount', response.data);
+            commit('setNotificationCount', response.count);
 
         } catch (e) {
             if (e?.response?.data?.message == "Unauthorized") {
