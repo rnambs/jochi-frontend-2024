@@ -125,7 +125,7 @@
                       <!-- — Malcolm X -->
                     </p>
                   </div>
-                  <div class="col-4 col-md-3 col-lg-4 p-0">
+                  <div class="col-4 p-0">
                     <img
                       src="~/static/image/dashboard_img.png"
                       alt=""
@@ -135,14 +135,15 @@
                 </div>
               </div>
               <div class="d-flex flex-column h-40 flex-fill">
-                <div class="row mt-1 h-100 flex-row">
-                  <div class="col-4 h-100 flex-fill">
+                <div class="row mt-1 h-100 flex-column flex-lg-row">
+                  <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                     <div class="jochi-sub-components-light-bg h-100">
                       <div
                         class="
                           study-status-card
                           d-flex
-                          flex-column
+                          flex-row
+                          flex-lg-column
                           justify-content-center
                           align-items-center
                           h-100
@@ -174,7 +175,7 @@
                           dot="10 white"
                           ><span>dkjsfajh</span>
                         </vue-ellipse-progress> -->
-                        <div class="position-relative d-flex">
+                        <div class="position-relative d-flex mr-3 mr-lg-0">
                           <progress-bar
                             :options="options"
                             :value="value"
@@ -194,7 +195,7 @@
                             <img src="~/static/image/alarm.png" alt="" />
                           </div>
                         </div>
-                        <div class="study-status-text text-center mb-2">
+                        <div class="study-status-text text-left text-lg-center mb-2">
                           <p class="study-status-studied mb-1">
                             {{ duration }} Minutes Studied Today
                           </p>
@@ -210,12 +211,12 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-8 px-0 h-100 flex-fill">
+                  <div class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill">
                     <div
                       class="
                         d-flex
                         flex-column
-                        hidden-scroll
+                        custom-overflow
                         faculty-availability-card-outer
                         h-100
                         p-3
@@ -518,10 +519,11 @@
                     flex-column
                     h-40
                     flex-fill
-                    hidden-scroll
-                    px-4
+                    custom-overflow
+                    px-3
                     mb-3
                     pt-2
+                    mx-2
                   "
                 >
                   <div
