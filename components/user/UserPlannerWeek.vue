@@ -751,7 +751,7 @@
                             @start="drag = true"
                             @end="drag = false"
                             :sort="false"
-                            class="col-12 col-md-6 py-3"
+                            class="col-12 col-md-6 py-3 px-5 px-lg-3"
                             v-for="item in pendingAssignments"
                             :key="item.id"
                           >
@@ -1044,6 +1044,10 @@
                                           alt=""
                                         />
                                       </div>
+                                      <div
+                                    class="ap-img-section mr--3 shadow-sm exclamation d-flex align-items-center justify-content-center bg-primary"
+                                  ><span class="color-white"><i class="fas fa-exclamation"></i></span>
+                                  </div>
                                       <!-- <div
                                   class="ap-img-section mr--3 shadow-sm"
                                 ></div>
@@ -1337,6 +1341,10 @@
                                       src="~/static/image/avatar.png"
                                       alt=""
                                     />
+                                  </div>
+                                  <div
+                                    class="ap-img-section mr--3 shadow-sm exclamation d-flex align-items-center justify-content-center bg-primary"
+                                  ><span class="color-white"><i class="fas fa-exclamation"></i></span>
                                   </div>
                                   <!-- <div
                                   class="ap-img-section mr--3 shadow-sm"
