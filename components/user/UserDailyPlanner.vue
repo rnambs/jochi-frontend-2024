@@ -1584,12 +1584,14 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="color-primary
-                                    fa-icon
-                                    show-hover
-                                    d-none
-                                    btn
-                                    p-0"
+                                    class="
+                                      color-primary
+                                      fa-icon
+                                      show-hover
+                                      d-none
+                                      btn
+                                      p-0
+                                    "
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
@@ -2020,12 +2022,14 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="color-primary
-                                    fa-icon
-                                    show-hover
-                                    d-none
-                                    btn
-                                    p-0"
+                                    class="
+                                      color-primary
+                                      fa-icon
+                                      show-hover
+                                      d-none
+                                      btn
+                                      p-0
+                                    "
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
@@ -2057,12 +2061,14 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="color-primary
-                                    fa-icon
-                                    show-hover
-                                    d-none
-                                    btn
-                                    p-0"
+                                    class="
+                                      color-primary
+                                      fa-icon
+                                      show-hover
+                                      d-none
+                                      btn
+                                      p-0
+                                    "
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
@@ -4195,22 +4201,31 @@ export default {
       this.processingUpload = true;
       const data = new FormData();
       if (this.materialType == "file") {
-        data.append("file", this.file);
-        await this.uploadAdditionalMaterial(data, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        if (this.file) {
+          data.append("file", this.file);
+          await this.uploadAdditionalMaterial(data, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
 
-        this.additionalMaterialList.push({
-          id: this.newAdditionalMaterial.id,
-          name: this.newAdditionalMaterial.material,
-          material: this.file.name,
-        });
-        this.processingUpload = false;
-        this.file = "";
-        if (document.querySelector("#fileUpload"))
-          document.querySelector("#fileUpload").value = "";
+          this.additionalMaterialList.push({
+            id: this.newAdditionalMaterial.id,
+            name: this.newAdditionalMaterial.material,
+            material: this.file.name,
+          });
+          this.processingUpload = false;
+          this.file = "";
+          if (document.querySelector("#fileUpload"))
+            document.querySelector("#fileUpload").value = "";
+        } else {
+          return this.$toast.open({
+            message: "Please add valid file",
+            type: "warning",
+            duration: 5000,
+          });
+          return false;
+        }
       } else {
         let urlValid = this.isValidHttpUrl(this.link);
         if (urlValid) {

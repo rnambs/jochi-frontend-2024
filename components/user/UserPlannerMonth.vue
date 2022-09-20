@@ -1852,12 +1852,14 @@
                                         </p>
                                       </div>
                                       <span
-                                        class="color-primary
-                                        fa-icon
-                                        show-hover
-                                        d-none
-                                        btn
-                                        p-0"
+                                        class="
+                                          color-primary
+                                          fa-icon
+                                          show-hover
+                                          d-none
+                                          btn
+                                          p-0
+                                        "
                                         @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
@@ -1889,12 +1891,14 @@
                                         </p>
                                       </div>
                                       <span
-                                        class="color-primary
-                                        fa-icon
-                                        show-hover
-                                        d-none
-                                        btn
-                                        p-0""
+                                        class="
+                                          color-primary
+                                          fa-icon
+                                          show-hover
+                                          d-none
+                                          btn
+                                          p-0
+                                        "
                                         @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
@@ -2299,12 +2303,14 @@
                                         </p>
                                       </div>
                                       <span
-                                        class="color-primary
-                                        fa-icon
-                                        show-hover
-                                        d-none
-                                        btn
-                                        p-0""
+                                        class="
+                                          color-primary
+                                          fa-icon
+                                          show-hover
+                                          d-none
+                                          btn
+                                          p-0
+                                        "
                                         @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
@@ -5145,59 +5151,34 @@ export default {
       }
     },
     async UploadAttachment() {
-      console.log("attachment");
-      // const data = new FormData();
-      // if (this.materialType == "file") {
-      //   data.append("file", this.file);
-      // } else {
-      //   let urlValid = this.isValidHttpUrl(this.link);
-      //   if (urlValid) {
-      //     this.additionalMaterialList.push({
-      //       id: Math.random(),
-      //       link: this.link,
-      //     });
-      //     this.link = "";
-      //   }
-      //   this.processingUpload = false;
-      //   return;
-      // }
-
-      // await this.uploadAdditionalMaterial(data, {
-      //   headers: {
-      //     "Content-Type": "multipart/form-data",
-      //   },
-      // });
-
-      // console.log(this.newAdditionalMaterial);
-      // this.additionalMaterialList.push({
-      //   id: this.newAdditionalMaterial.id,
-      //   material: this.newAdditionalMaterial.material,
-      // });
-      // this.file = "";
-      // this.link = "";
-      // if (document.querySelector("#fileUpload"))
-      //   document.querySelector("#fileUpload").value = "";
-
       this.processingUpload = true;
       const data = new FormData();
       if (this.materialType == "file") {
-        data.append("file", this.file);
-        await this.uploadAdditionalMaterial(data, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        if (this.file) {
+          data.append("file", this.file);
+          await this.uploadAdditionalMaterial(data, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
 
-        console.log(this.newAdditionalMaterial);
-        this.additionalMaterialList.push({
-          id: this.newAdditionalMaterial.id,
-          name: this.newAdditionalMaterial.material,
-          material: this.file.name,
-        });
-        this.processingUpload = false;
-        this.file = "";
-        if (document.querySelector("#fileUpload"))
-          document.querySelector("#fileUpload").value = "";
+          this.additionalMaterialList.push({
+            id: this.newAdditionalMaterial.id,
+            name: this.newAdditionalMaterial.material,
+            material: this.file.name,
+          });
+          this.processingUpload = false;
+          this.file = "";
+          if (document.querySelector("#fileUpload"))
+            document.querySelector("#fileUpload").value = "";
+        } else {
+          return this.$toast.open({
+            message: "Please add valid file",
+            type: "warning",
+            duration: 5000,
+          });
+          return false;
+        }
       } else {
         let urlValid = this.isValidHttpUrl(this.link);
         if (urlValid) {
