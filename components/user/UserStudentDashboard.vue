@@ -1,4 +1,14 @@
 <template>
+  <div>
+    <div id="pageLoader" class="bg-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0" style="z-index: 9;" v-if="!isHidden">
+      <h1 data-loading-text="It's loading…" class="display-4 loading"></h1>
+    </div>
+    <!-- <lottie
+      v-if=" loading"
+      :options="lottieOptions"
+      v-on:animCreated="handleAnimation"
+      class="lottie-loader"
+    /> -->
   <div class="main-section">
     <!-- <div class="row"> -->
     <!-- <div class="col-2">
@@ -820,6 +830,7 @@
 
     <!-- </div> -->
   </div>
+</div>
 </template>
 
 <script>
@@ -851,6 +862,9 @@ export default {
   },
   data() {
     return {
+      loading: true,
+      anim: null, // for saving the reference to the animation
+      lottieOptions: { animationData: animationData.default },
       slot_date: [],
       progress: 50,
       calendarApi: Calendar,
@@ -925,6 +939,7 @@ export default {
       value: 0,
       isAdditionalCovered: false,
       assignmentList: [],
+      isHidden:false
     };
   },
   computed: {
@@ -952,8 +967,16 @@ export default {
     this.ListAllMeeting();
     this.GetDailyPlanner(this.calendarApi.getDate());
     this.firstName = localStorage.getItem("firstName");
+    this.activate()
   },
   methods: {
+    activate() {
+      console.log("inside hide timeout");
+      setTimeout(() => this.isHidden = true, 500);
+    },
+    handleAnimation: function (anim) {
+      this.anim = anim;
+    },
     ...mapActions("quotedMessage", {
       showQuotedMessage: "showQuotedMessage",
       getDailyPlanner: "getDailyPlanner",
@@ -1438,4 +1461,49 @@ export default {
       height: 100% !important;
     }
   }
+
+  .loading {
+  left: 50%;
+  top: 50%;
+  font-size: 36px;
+  font-family: serif;
+  font-weight: bold;
+  letter-spacing: 4.4px;
+  text-transform: capitalize;
+  position: absolute;
+  overflow: hidden;
+  transform: translate(-50%, -60%);
+}
+.loading:before {
+  color: #aaa;
+  content: attr(data-loading-text);
+}
+.loading:after {
+  top: 0;
+  left: 0;
+  width: 0;
+  opacity: 1;
+  color: #444;
+  overflow: hidden;
+  position: absolute;
+  content: attr(data-loading-text);
+  -webkit-animation: loading 5s infinite;
+          animation: loading 5s infinite;
+}
+@-webkit-keyframes loading {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes loading {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
   </style>

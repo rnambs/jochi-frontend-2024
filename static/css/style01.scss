@@ -5300,14 +5300,14 @@ img.dark-icon{
 .calendar-sm{
     @include calendar-sm();
 }
-// .calendar-dashboard{
-    // @include calendar-lg-head();
-    // .fc .fc-toolbar.fc-header-toolbar{
-    //     margin-bottom: 1rem;
-    // }
-    // @include calendar-sm-body();
-    // @include plannerCommonMonth();
-// }
+.calendar-dashboard{
+    @include calendar-lg-head();
+    .fc .fc-toolbar.fc-header-toolbar{
+        margin-bottom: 1rem;
+    }
+    @include calendar-sm-body();
+    @include plannerCommonMonth();
+}
 
 // faq 
 // .faq-head{
