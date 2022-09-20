@@ -4365,8 +4365,29 @@ export default {
         return;
       } else {
         if (idVal.groupId == "study") {
-          return this.$router.push(`/study-time?id=${idVal.id}`);
-        } else if (
+          let session = this.sessionList.find(
+            (e) => e.id.toString() == idVal.id.toString()
+          );
+
+          if (session.status == "STOP") {
+            alert("This session has already been completed");
+            return;
+          } else {
+            return this.$router.push(`/study-time?id=${idVal.id}`);
+          }
+        }
+        if (idVal.groupId == "shared-study") {
+          let studySession = this.sharedSessionList.find(
+            (e) => e.session_id.toString() == idVal.id.toString()
+          );
+          if (studySession.studyroom?.status == "STOP") {
+            alert("This session has already been completed");
+            return;
+          } else {
+            return this.$router.push(`/study-time?id=${idVal.id}`);
+          }
+        }
+        if (
           idVal.groupId == "peer-meeting" ||
           idVal.groupId == "teacher-meeting"
         ) {
@@ -4651,7 +4672,7 @@ export default {
         // meetingobj["id"] = element.id;
         meetingobj["id"] = element.session_id;
 
-        meetingobj["groupId"] = "study";
+        meetingobj["groupId"] = "shared-study";
 
         listobj["title"] = title;
         listobj["meeting"] = "Study Session";
