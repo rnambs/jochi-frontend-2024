@@ -1857,7 +1857,7 @@
                                         show-hover
                                         d-none
                                         btn
-                                        p-0""
+                                        p-0"
                                         @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>

@@ -2253,6 +2253,16 @@
                                           {{ item.link }}
                                         </p>
                                       </div>
+                                      <span
+                                        class="color-primary
+                                        fa-icon
+                                        show-hover
+                                        d-none
+                                        btn
+                                        p-0"
+                                        @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
                                     </div>
                                     <div
                                       v-else
@@ -2279,6 +2289,16 @@
                                           }}
                                         </p>
                                       </div>
+                                      <span
+                                        class="color-primary
+                                        fa-icon
+                                        show-hover
+                                        d-none
+                                        btn
+                                        p-0"
+                                        @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
                                     </div>
                                   </div>
                                 </div>
@@ -2678,6 +2698,16 @@
                                           {{ item.link }}
                                         </p>
                                       </div>
+                                      <span
+                                        class="color-primary
+                                        fa-icon
+                                        show-hover
+                                        d-none
+                                        btn
+                                        p-0"
+                                        @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
                                     </div>
                                     <div
                                       v-else
@@ -2703,6 +2733,16 @@
                                           }}
                                         </p>
                                       </div>
+                                      <span
+                                        class="color-primary
+                                        fa-icon
+                                        show-hover
+                                        d-none
+                                        btn
+                                        p-0"
+                                        @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
                                     </div>
                                   </div>
                                 </div>
