@@ -1571,6 +1571,7 @@
                                     mr-3
                                     min-w-200
                                     w-100
+                                    show-icon
                                   "
                                 >
                                   <div class="ld-details-section w-100">
@@ -1583,7 +1584,12 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="btn p-0"
+                                    class="color-primary
+                                    fa-icon
+                                    show-hover
+                                    d-none
+                                    btn
+                                    p-0"
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
@@ -1597,6 +1603,7 @@
                                     mr-3
                                     min-w-200
                                     w-100
+                                    show-icon
                                   "
                                 >
                                   <div class="ld-details-section w-100">
@@ -1614,7 +1621,14 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="btn p-0"
+                                    class="
+                                      color-primary
+                                      fa-icon
+                                      show-hover
+                                      d-none
+                                      btn
+                                      p-0
+                                    "
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
@@ -1993,6 +2007,7 @@
                                     mr-3
                                     min-w-200
                                     w-100
+                                    show-icon
                                   "
                                 >
                                   <div class="ld-details-section w-100">
@@ -2005,7 +2020,12 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="btn p-0"
+                                    class="color-primary
+                                    fa-icon
+                                    show-hover
+                                    d-none
+                                    btn
+                                    p-0"
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
@@ -2019,6 +2039,7 @@
                                     mr-3
                                     min-w-200
                                     w-100
+                                    show-icon
                                   "
                                 >
                                   <div class="ld-details-section w-100">
@@ -2036,7 +2057,12 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="btn p-0"
+                                    class="color-primary
+                                    fa-icon
+                                    show-hover
+                                    d-none
+                                    btn
+                                    p-0"
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>

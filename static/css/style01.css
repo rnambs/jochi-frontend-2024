@@ -800,11 +800,12 @@ input[type=radio] {
   background-color: transparent;
   box-shadow: none;
 }
-.card.show-icon:hover span.fa-icon.show-hover {
-  display: block !important;
-}
 .card.rounded-22 {
   border-radius: 22px;
+}
+
+.show-icon:hover span.fa-icon.show-hover {
+  display: block !important;
 }
 
 .rounded-10 {
