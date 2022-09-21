@@ -979,10 +979,10 @@ $sm-screen-h         : 767.98px;
             @media (max-width:$lg-screen) {
                 height: 64vh !important;
             }
-            @media (max-height:767.98px) {
+            @media (max-height:768.98px) and (max-width:$lg-screen) {
                 height: 52vh !important;
             }
-            @media (max-height:524.98px) {
+            @media (max-height:524.98px) and (max-width:$lg-screen) {
                 height: 44vh !important;
             }
             table.fc-scrollgrid.fc-scrollgrid-liquid{
@@ -1323,7 +1323,7 @@ $sm-screen-h         : 767.98px;
         @media (max-width:$md-screen) {
             right: -146px;
         }
-        @media (max-height:767.98px) {
+        @media (max-height:768.98px) and (max-width:$lg-screen) {
             top: 30vh;
         }
       }
