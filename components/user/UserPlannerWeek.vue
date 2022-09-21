@@ -2249,7 +2249,11 @@
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link text-truncate"
+                                          class="
+                                            ld-heading
+                                            mb-1
+                                            text-link text-truncate
+                                          "
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{ item.link }}
@@ -2284,7 +2288,11 @@
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link text-truncate"
+                                          class="
+                                            ld-heading
+                                            mb-1
+                                            text-link text-truncate
+                                          "
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{
@@ -5380,6 +5388,8 @@ export default {
           if (document.querySelector("#fileUpload"))
             document.querySelector("#fileUpload").value = "";
         } else {
+          this.processingUpload = false;
+
           return this.$toast.open({
             message: "Please add valid file",
             type: "warning",
@@ -5399,6 +5409,7 @@ export default {
         this.processingUpload = false;
         return;
       }
+      this.processingUpload = false;
 
       // this.ClubFiles();
     },

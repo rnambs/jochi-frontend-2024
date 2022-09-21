@@ -5172,6 +5172,8 @@ export default {
           if (document.querySelector("#fileUpload"))
             document.querySelector("#fileUpload").value = "";
         } else {
+      this.processingUpload = false;
+
           return this.$toast.open({
             message: "Please add valid file",
             type: "warning",
@@ -5191,6 +5193,7 @@ export default {
         this.processingUpload = false;
         return;
       }
+      this.processingUpload = false;
 
       // this.ClubFiles();
     },
