@@ -32,7 +32,7 @@ body{
         height: calc(100vh - 96px - 24px) !important;
     }
 }
-@media (max-height:768.98px) {
+@media (max-height:767.98px) {
     .height-md-unset{
         height: unset !important;
     }
@@ -2092,6 +2092,12 @@ img.dark-icon{
                 @media (max-width:$lg-screen) {
                     height: 68vh !important;
                 }
+                @media (max-height:767.98px) {
+                    height: 58vh !important;
+                }
+                @media (max-height:524.98px) {
+                    height: 50vh !important;
+                }
             }
             .fc-timegrid-col-events{
                 .fc-timegrid-event-harness.fc-timegrid-event-harness-inset{
@@ -2122,6 +2128,12 @@ img.dark-icon{
                 height: 78vh !important;
                 @media (max-width:$lg-screen) {
                     height: 72vh !important;
+                }
+                @media (max-height:767.98px) {
+                    height: 60vh !important;
+                }
+                @media (max-height:524.98px) {
+                    height: 50vh !important;
                 }
             }
             .fc-scroller.fc-scroller-liquid-absolute{
