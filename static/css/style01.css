@@ -33,6 +33,11 @@ body {
   height: calc(100vh - 96px - 24px) !important;
 }
 
+@media (max-height: 768.98px) {
+  .height-md-unset {
+    height: unset !important;
+  }
+}
 * {
   box-sizing: border-box;
   text-decoration: none;
@@ -2241,7 +2246,7 @@ img.dark-icon {
   color: #a995ef;
 }
 .inner-section .main-section #Daily-Calander .fc-theme-standard td {
-  border-color: 1px solid #ddd !important;
+  border-color: #e9d7ee;
 }
 .inner-section .main-section #Daily-Calander .fc-timegrid-col-events .fc-timegrid-event-harness.fc-timegrid-event-harness-inset {
   min-height: 100px;
@@ -2309,7 +2314,7 @@ img.dark-icon {
   color: #a995ef;
 }
 .inner-section .main-section #Weekly-Calander .fc-theme-standard td {
-  border-color: 1px solid #ddd !important;
+  border-color: #e9d7ee;
 }
 .inner-section .main-section #Weekly-Calander .fc .fc-scrollgrid {
   border-radius: 12px;
@@ -2530,7 +2535,7 @@ img.dark-icon {
   color: #a995ef;
 }
 .inner-section .main-section #Monthly-Calander .fc-theme-standard td {
-  border-color: 1px solid #ddd !important;
+  border-color: #e9d7ee;
 }
 .inner-section .main-section #Monthly-Calander .fc-popover.fc-more-popover .fc-popover-body {
   max-height: 140px;
@@ -3833,7 +3838,7 @@ img.dark-icon {
   color: #a995ef;
 }
 .calendar-sm .fc-theme-standard td {
-  border-color: 1px solid #ddd !important;
+  border-color: #e9d7ee;
 }
 
 .calendar-dashboard .fc-header-toolbar.fc-toolbar.fc-toolbar-ltr {
@@ -4020,7 +4025,7 @@ img.dark-icon {
   color: #a995ef;
 }
 .calendar-dashboard .fc-theme-standard td {
-  border-color: 1px solid #ddd !important;
+  border-color: #e9d7ee;
 }
 
 /* width */

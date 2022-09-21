@@ -32,6 +32,11 @@ body{
         height: calc(100vh - 96px - 24px) !important;
     }
 }
+@media (max-height:768.98px) {
+    .height-md-unset{
+        height: unset !important;
+    }
+}
 
 *{
     box-sizing: border-box;

@@ -114,7 +114,7 @@
       </div>
       <div class="d-flex flex-column h-40 flex-fill">
         <div class="row h-100">
-          <div class="col-xl-8 h-100">
+          <div class="col-xl-8 h-100 height-md-unset">
             <div class="d-flex flex-column h-100">
               <div
                 class="
@@ -145,7 +145,7 @@
                 </div>
               </div>
               <div class="d-flex flex-column h-40 flex-fill">
-                <div class="row mt-1 h-100 flex-column flex-lg-row">
+                <div class="row mt-1 h-100 height-md-unset flex-column flex-lg-row">
                   <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                     <div class="jochi-sub-components-light-bg h-100">
                       <div
@@ -185,7 +185,7 @@
                           dot="10 white"
                           ><span>dkjsfajh</span>
                         </vue-ellipse-progress> -->
-                        <div class="position-relative d-flex mr-3 mr-lg-0">
+                        <div class="position-relative d-flex mr-3 mr-lg-0 mt-2">
                           <progress-bar
                             :options="options"
                             :value="value"
@@ -506,7 +506,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4 h-100 mt-3 mt-xl-0">
+          <div class="col-xl-4 h-100 mt-3 mt-xl-0 height-md-unset">
             <div
               class="
                 jochi-sub-components-light-bg
@@ -534,6 +534,7 @@
                     mb-3
                     pt-2
                     mx-2
+                    h-max-lg-600
                   "
                 >
                   <div
