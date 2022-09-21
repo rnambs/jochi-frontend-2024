@@ -794,8 +794,6 @@ export default {
       console.log(type);
       if (type == "Club Meeting") {
         this.$router.push("/club-detail");
-      } else if (type == "Assignment Session Invitation") {
-        this.$router.push("/planner-month");
       } else if (type == "Teacher Advisor Request") {
         this.$router.push("/user-profile");
       } else if (type == "Study Session Invitation") {
@@ -806,6 +804,11 @@ export default {
         type == "Peer Meeting Scheduled"
       ) {
         this.$router.push("/viewall-meeting");
+      } else if (
+        type == "Assignment Session Invitation" ||
+        type.includes("Assignment")
+      ) {
+        this.$router.push("/planner-month");
       }
       this.getNotificationsList();
     },
