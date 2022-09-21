@@ -1268,6 +1268,9 @@ $sm-screen-h         : 767.98px;
         top: -5px;
         display: flex;
         right: 25px;
+        @media (max-width:$md-screen) {
+            right: 65px;
+        }
       }
       
       .ap-img-add,
