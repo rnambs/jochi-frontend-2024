@@ -587,6 +587,7 @@ export default {
     this.ListTeacherAgenda();
     this.TeacherMeetingList();
     this.firstName = localStorage.getItem("first_name");
+    this.activate();
   },
 
   computed: {
