@@ -826,7 +826,7 @@
                           @end="drag = false"
                           @add="handleDropDraggable"
                           :sort="false"
-                          class="d-flex h-100"
+                          class="h-100"
                         >
                           <div class="row mt-1">
                             <div
