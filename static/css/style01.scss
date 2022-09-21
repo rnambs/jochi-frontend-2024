@@ -32,7 +32,7 @@ body{
         height: calc(100vh - 96px - 24px) !important;
     }
 }
-@media (max-height:624.98px) {
+@media (max-height:768.98px) and (max-width:$lg-screen) {
     .height-md-unset{
         height: unset !important;
     }
@@ -1004,6 +1004,11 @@ img.card-img{
 .h-max-lg-600{
     @media (max-width:$lg-screen) {
         max-height: 600px !important;
+    }
+}
+.h-max-lg-400{
+    @media (max-width:$lg-screen) {
+        max-height: 400px !important;
     }
 }
 // @keyframes jump {
