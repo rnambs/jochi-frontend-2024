@@ -332,7 +332,7 @@
                       >
                         Assignment
                       </h2>
-                      <div class="hidden-scroll px-4 pt-3 mb-3">
+                      <div class="custom-overflow px-4 pt-3 mb-3">
                         <div class="row">
                           <div
                             v-for="detail in pendingAssignments"
@@ -350,7 +350,6 @@
                                 d-flex
                                 flex-column
                                 justify-content-between
-                                cursor-pointer
                                 assignment-status
                                 position-relative
                               "
@@ -475,7 +474,7 @@
                                       detail.assignment_materials &&
                                       detail.assignment_materials.length > 0
                                     "
-                                    class="col-8 py-0 pl-0 material-link"
+                                    class="col-8 py-0 pl-0 material-link text-12"
                                   >
                                     <div
                                       class="d-flex w-100"
@@ -518,7 +517,7 @@
                                       !detail.assignment_materials ||
                                       detail.assignment_materials.length <= 0
                                     "
-                                    class="col-8 py-0 pl-0 material-link"
+                                    class="col-8 py-0 pl-0 material-link text-12"
                                   >
                                     <span class="color-secondary text-12"
                                       >No documents added!</span
