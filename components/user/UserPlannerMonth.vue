@@ -730,8 +730,8 @@
                                       class="assignment-tag pink text-truncate"
                                     >
                                       {{
-                                        item.subjects.subject_name
-                                          ? item.subjects.subject_name
+                                        item.subject.subject_name
+                                          ? item.subject.subject_name
                                           : item.subject
                                       }}
                                     </div>

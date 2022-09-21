@@ -231,6 +231,7 @@
                         h-100
                         p-3
                         py-4
+                        h-max-lg-400
                       "
                     >
                       <div class="row">

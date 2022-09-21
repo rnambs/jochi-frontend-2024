@@ -533,8 +533,8 @@
                                     class="assignment-tag pink text-truncate"
                                   >
                                     {{
-                                      item.subjects.subject_name
-                                        ? item.subjects.subject_name
+                                      item.subject.subject_name
+                                        ? item.subject.subject_name
                                         : item.subject
                                     }}
                                   </div>
@@ -826,7 +826,7 @@
                           @end="drag = false"
                           @add="handleDropDraggable"
                           :sort="false"
-                          class="d-flex h-100"
+                          class="h-100"
                         >
                           <div class="row mt-1">
                             <div
