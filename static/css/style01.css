@@ -33,7 +33,7 @@ body {
   height: calc(100vh - 96px - 24px) !important;
 }
 
-@media (max-height: 624.98px) {
+@media (max-height: 768.98px) and (max-width: 1199.98px) {
   .height-md-unset {
     height: unset !important;
   }
@@ -962,6 +962,12 @@ img.card-img {
 @media (max-width: 1199.98px) {
   .h-max-lg-600 {
     max-height: 600px !important;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .h-max-lg-400 {
+    max-height: 400px !important;
   }
 }
 
@@ -2459,12 +2465,12 @@ img.dark-icon {
     height: 68vh !important;
   }
 }
-@media (max-height: 624.98px) {
+@media (max-height: 768.98px) and (max-width: 1199.98px) {
   .inner-section .main-section #Weekly-Calander .fc-view-harness.fc-view-harness-active {
     height: 58vh !important;
   }
 }
-@media (max-height: 524.98px) {
+@media (max-height: 524.98px) and (max-width: 1199.98px) {
   .inner-section .main-section #Weekly-Calander .fc-view-harness.fc-view-harness-active {
     height: 50vh !important;
   }
@@ -2494,12 +2500,12 @@ img.dark-icon {
     height: 72vh !important;
   }
 }
-@media (max-height: 624.98px) {
+@media (max-height: 768.98px) and (max-width: 1199.98px) {
   .inner-section .main-section #Monthly-Calander .fc-view-harness.fc-view-harness-active {
     height: 60vh !important;
   }
 }
-@media (max-height: 524.98px) {
+@media (max-height: 524.98px) and (max-width: 1199.98px) {
   .inner-section .main-section #Monthly-Calander .fc-view-harness.fc-view-harness-active {
     height: 50vh !important;
   }
