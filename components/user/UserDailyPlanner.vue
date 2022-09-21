@@ -220,8 +220,8 @@
                                       class="assignment-tag pink text-truncate"
                                     >
                                       {{
-                                        item.subjects.subject_name
-                                          ? item.subjects.subject_name
+                                        item.subject.subject_name
+                                          ? item.subject.subject_name
                                           : item.subject
                                       }}
                                     </div>
@@ -446,8 +446,21 @@
                                     />
                                   </div>
                                   <div
-                                    class="ap-img-section mr--3 shadow-sm exclamation d-flex align-items-center justify-content-center bg-primary"
-                                  ><span class="color-white"><i class="fas fa-exclamation"></i></span>
+                                    v-if="!item.formattedDate"
+                                    class="
+                                      ap-img-section
+                                      mr--3
+                                      shadow-sm
+                                      exclamation
+                                      d-flex
+                                      align-items-center
+                                      justify-content-center
+                                      bg-primary
+                                    "
+                                  >
+                                    <span class="color-white"
+                                      ><i class="fas fa-exclamation"></i
+                                    ></span>
                                   </div>
                                   <!-- <div
                               class="ap-img-section mr--3 shadow-sm"
@@ -741,9 +754,22 @@
                                   />
                                 </div>
                                 <div
-                                class="ap-img-section mr--3 shadow-sm exclamation d-flex align-items-center justify-content-center bg-primary"
-                              ><span class="color-white"><i class="fas fa-exclamation"></i></span>
-                              </div>
+                                  v-if="!item.formattedDate"
+                                  class="
+                                    ap-img-section
+                                    mr--3
+                                    shadow-sm
+                                    exclamation
+                                    d-flex
+                                    align-items-center
+                                    justify-content-center
+                                    bg-primary
+                                  "
+                                >
+                                  <span class="color-white"
+                                    ><i class="fas fa-exclamation"></i
+                                  ></span>
+                                </div>
                                 <!-- <div
                                   class="ap-img-section mr--3 shadow-sm"
                                 ></div>
@@ -2597,6 +2623,7 @@
               type="button"
               class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
               data-dismiss="modal"
+              @click="getAssignmentsList()"
             >
               Cancel
             </button>
@@ -2967,42 +2994,44 @@ export default {
       this.assignmentList = [];
       this.meetingDetails = [];
       this.plannerList.forEach((element) => {
-        var scheduleObject = {};
-        var plannerObj = {};
-        var id = element.id;
-        var assignment = element.subject;
-        var time = element.due_time;
-        var date = this.dateConversion(element.due_date);
+        if (element.due_date) {
+          var scheduleObject = {};
+          var plannerObj = {};
+          var id = element.id;
+          var assignment = element.subject;
+          var time = element.due_time;
+          var date = this.dateConversion(element.due_date);
 
-        var title = element.task;
+          var title = element.task;
 
-        if (element.priority == "1") {
-          var color = "#EF382E";
-        } else if (element.priority == "2") {
-          var color = "#00CCA0";
-        } else if (element.priority == "3") {
-          var color = "#F6D73C";
+          if (element.priority == "1") {
+            var color = "#EF382E";
+          } else if (element.priority == "2") {
+            var color = "#00CCA0";
+          } else if (element.priority == "3") {
+            var color = "#F6D73C";
+          }
+          var dateMeeting = element.due_date;
+          var tmeMeeting = "";
+          if (element.due_time) {
+            tmeMeeting = this.formatAMPM(element.due_time);
+          }
+          var start = dateMeeting + "T" + tmeMeeting;
+
+          scheduleObject["assignment"] = assignment;
+          scheduleObject["time"] = time;
+          scheduleObject["date"] = date;
+          scheduleObject["title"] = title;
+          scheduleObject["id"] = id;
+
+          plannerObj["title"] = title;
+          plannerObj["color"] = color;
+          plannerObj["start"] = start;
+          plannerObj["id"] = id;
+          plannerObj["groupId"] = "assignment";
+          eventList.push(plannerObj);
+          this.assignmentList.push(scheduleObject);
         }
-        var dateMeeting = element.due_date;
-        var tmeMeeting = "";
-        if (element.due_time) {
-          tmeMeeting = this.formatAMPM(element.due_time);
-        }
-        var start = dateMeeting + "T" + tmeMeeting;
-
-        scheduleObject["assignment"] = assignment;
-        scheduleObject["time"] = time;
-        scheduleObject["date"] = date;
-        scheduleObject["title"] = title;
-        scheduleObject["id"] = id;
-
-        plannerObj["title"] = title;
-        plannerObj["color"] = color;
-        plannerObj["start"] = start;
-        plannerObj["id"] = id;
-        plannerObj["groupId"] = "assignment";
-        eventList.push(plannerObj);
-        this.assignmentList.push(scheduleObject);
       });
       this.clubMeetings?.forEach((element) => {
         var meetingobj = {};
@@ -3115,42 +3144,44 @@ export default {
         eventList.push(meetingobj);
       });
       this.sharedAstList.forEach((element) => {
-        var scheduleObject = {};
-        var plannerObj = {};
-        var id = element.id;
-        var assignment = element.subject;
-        var time = element.due_time;
-        var date = this.dateConversion(element.due_date);
+        if (element.due_date) {
+          var scheduleObject = {};
+          var plannerObj = {};
+          var id = element.id;
+          var assignment = element.subject;
+          var time = element.due_time;
+          var date = this.dateConversion(element.due_date);
 
-        var title = element.task;
+          var title = element.task;
 
-        if (element.priority == "1") {
-          var color = "#EF382E";
-        } else if (element.priority == "2") {
-          var color = "#00CCA0";
-        } else if (element.priority == "3") {
-          var color = "#F6D73C";
+          if (element.priority == "1") {
+            var color = "#EF382E";
+          } else if (element.priority == "2") {
+            var color = "#00CCA0";
+          } else if (element.priority == "3") {
+            var color = "#F6D73C";
+          }
+          var dateMeeting = element.due_date;
+          var tmeMeeting = "";
+          if (element.due_time) {
+            tmeMeeting = this.formatAMPM(element.due_time);
+          }
+          var start = dateMeeting + "T" + tmeMeeting;
+
+          scheduleObject["assignment"] = assignment;
+          scheduleObject["time"] = time;
+          scheduleObject["date"] = date;
+          scheduleObject["title"] = title;
+          scheduleObject["id"] = id;
+
+          plannerObj["title"] = title;
+          plannerObj["color"] = color;
+          plannerObj["start"] = start;
+          plannerObj["id"] = id;
+          plannerObj["groupId"] = "shared-assignment";
+          eventList.push(plannerObj);
+          this.assignmentList.push(scheduleObject);
         }
-        var dateMeeting = element.due_date;
-        var tmeMeeting = "";
-        if (element.due_time) {
-          tmeMeeting = this.formatAMPM(element.due_time);
-        }
-        var start = dateMeeting + "T" + tmeMeeting;
-
-        scheduleObject["assignment"] = assignment;
-        scheduleObject["time"] = time;
-        scheduleObject["date"] = date;
-        scheduleObject["title"] = title;
-        scheduleObject["id"] = id;
-
-        plannerObj["title"] = title;
-        plannerObj["color"] = color;
-        plannerObj["start"] = start;
-        plannerObj["id"] = id;
-        plannerObj["groupId"] = "shared-assignment";
-        eventList.push(plannerObj);
-        this.assignmentList.push(scheduleObject);
       });
       this.sharedSessionList?.forEach((element) => {
         var meetingobj = {};
@@ -3206,9 +3237,15 @@ export default {
         text: subject?.subject_name,
       };
       this.task = this.assignment.task;
-      let dateSplit = this.assignment.due_date.split("-");
-      let date = new Date(dateSplit[0], Number(dateSplit[1] - 1), dateSplit[2]);
-      this.dateValue = date;
+      if (this.assignment.due_date) {
+        let dateSplit = this.assignment.due_date.split("-");
+        let date = new Date(
+          dateSplit[0],
+          Number(dateSplit[1] - 1),
+          dateSplit[2]
+        );
+      }
+      this.dateValue = date ? date : "";
       this.timeValue = this.assignment.due_time;
       if (this.assignment.priority == 1) {
         this.priorityVal = "Urgent";
@@ -3221,10 +3258,19 @@ export default {
     },
     checkValidTime() {
       if (this.timeValue) {
-        let valid = moment(this.timeValue, "h:mm A", true).isValid();
+        let tempTime =
+          typeof this.timeValue == "object"
+            ? this.timeValue.hh +
+              ":" +
+              this.timeValue.mm +
+              " " +
+              this.timeValue.A
+            : this.timeValue;
+        let valid = moment(tempTime, "h:mm A", true).isValid();
 
-        if (valid && this.timeValue.split(" ")[1].length > 1) {
+        if (valid && tempTime.split(" ")[1].length > 1) {
           this.validTime = true;
+          this.timeValue = tempTime;
         } else {
           this.validTime = false;
         }
@@ -3233,20 +3279,20 @@ export default {
         return false;
       }
     },
-    checkValidTime() {
-      if (this.timeValue) {
-        let valid = moment(this.timeValue, "h:mm A", true).isValid();
+    // checkValidTime() {
+    //   if (this.timeValue) {
+    //     let valid = moment(this.timeValue, "h:mm A", true).isValid();
 
-        if (valid && this.timeValue.split(" ")[1].length > 1) {
-          this.validTime = true;
-        } else {
-          this.validTime = false;
-        }
-        return valid;
-      } else {
-        return false;
-      }
-    },
+    //     if (valid && this.timeValue.split(" ")[1].length > 1) {
+    //       this.validTime = true;
+    //     } else {
+    //       this.validTime = false;
+    //     }
+    //     return valid;
+    //   } else {
+    //     return false;
+    //   }
+    // },
     async AddAssignment() {
       this.submitted = true;
       this.$v.$touch();
@@ -3329,7 +3375,6 @@ export default {
     },
     async UpdateAssignment() {
       this.submitted = true;
-
       if (!this.isSharedAssignment) {
         this.$v.$touch();
         if (this.$v.$invalid || !this.validTime) {
@@ -3848,7 +3893,9 @@ export default {
         item.updatedAt = e.updatedAt;
         item.user_id = e.user_id;
         item.peers = this.mapPeers(e);
-        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        if (e.due_date) {
+          item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        }
         item.isShared = false;
         return item;
       }
@@ -3929,9 +3976,11 @@ export default {
         item.updatedAt = e.assignments.updatedAt;
         item.user_id = e.assignments.user_id;
         item.peers = this.mapPeers(e);
-        item.formattedDate = moment(e.assignments.due_date).format(
-          "MMMM Do, YYYY"
-        );
+        if (e.assignments.due_date) {
+          item.formattedDate = moment(e.assignments.due_date).format(
+            "MMMM Do, YYYY"
+          );
+        }
         item.isShared = true;
         return item;
       }
@@ -3981,6 +4030,7 @@ export default {
       this.completeAsstId = assignment.id;
     },
     handleDropDraggable(data, event) {
+      this.drag = false;
       $("#completeConfirm").modal({ backdrop: true });
 
       let assignment = data?.item?._underlying_vm_;
@@ -4113,7 +4163,9 @@ export default {
         };
       }
       // this.dateValue = data.due_date;
-      this.dateValue = moment(data.due_date).format("MM/DD/YYYY");
+      this.dateValue = data.due_date
+        ? moment(data.due_date).format("MM/DD/YYYY")
+        : "";
       this.timeValue = data.due_time;
       this.subTasksList = [];
       if (data.subTasks && data.subTasks.length > 0) {
