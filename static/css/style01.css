@@ -33,7 +33,7 @@ body {
   height: calc(100vh - 96px - 24px) !important;
 }
 
-@media (max-height: 767.98px) {
+@media (max-height: 624.98px) {
   .height-md-unset {
     height: unset !important;
   }
@@ -1853,7 +1853,7 @@ img.dark-icon {
     right: -146px;
   }
 }
-@media (max-height: 767.98px) {
+@media (max-height: 624.98px) {
   .inner-section .main-section #Daily-Calander .planner-action-btns, .inner-section .main-section #Weekly-Calander .planner-action-btns, .inner-section .main-section #Monthly-Calander .planner-action-btns {
     top: 30vh;
   }
@@ -1981,7 +1981,7 @@ img.dark-icon {
     height: 64vh !important;
   }
 }
-@media (max-height: 767.98px) {
+@media (max-height: 624.98px) {
   .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
     height: 52vh !important;
   }
@@ -2459,7 +2459,7 @@ img.dark-icon {
     height: 68vh !important;
   }
 }
-@media (max-height: 767.98px) {
+@media (max-height: 624.98px) {
   .inner-section .main-section #Weekly-Calander .fc-view-harness.fc-view-harness-active {
     height: 58vh !important;
   }
@@ -2494,7 +2494,7 @@ img.dark-icon {
     height: 72vh !important;
   }
 }
-@media (max-height: 767.98px) {
+@media (max-height: 624.98px) {
   .inner-section .main-section #Monthly-Calander .fc-view-harness.fc-view-harness-active {
     height: 60vh !important;
   }

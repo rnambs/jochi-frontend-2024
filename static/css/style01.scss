@@ -32,7 +32,7 @@ body{
         height: calc(100vh - 96px - 24px) !important;
     }
 }
-@media (max-height:767.98px) {
+@media (max-height:624.98px) {
     .height-md-unset{
         height: unset !important;
     }
@@ -2092,7 +2092,7 @@ img.dark-icon{
                 @media (max-width:$lg-screen) {
                     height: 68vh !important;
                 }
-                @media (max-height:767.98px) {
+                @media (max-height:624.98px) {
                     height: 58vh !important;
                 }
                 @media (max-height:524.98px) {
@@ -2129,7 +2129,7 @@ img.dark-icon{
                 @media (max-width:$lg-screen) {
                     height: 72vh !important;
                 }
-                @media (max-height:767.98px) {
+                @media (max-height:624.98px) {
                     height: 60vh !important;
                 }
                 @media (max-height:524.98px) {
