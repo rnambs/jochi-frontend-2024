@@ -3312,7 +3312,7 @@ export default {
       }
       if (this.isRedirect) {
         payLoad.session_id = this.sessionDetail.id;
-        if (scheduleNow == "Later") {
+        if (!scheduleNow) {
           return this.EditStudyTime(scheduleNow, payLoad);
         } else {
           this.startSessionNow();

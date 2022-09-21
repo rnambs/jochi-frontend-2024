@@ -979,6 +979,12 @@ $sm-screen-h         : 767.98px;
             @media (max-width:$lg-screen) {
                 height: 64vh !important;
             }
+            @media (max-height:767.98px) {
+                height: 52vh !important;
+            }
+            @media (max-height:524.98px) {
+                height: 44vh !important;
+            }
             table.fc-scrollgrid.fc-scrollgrid-liquid{
                 border: none !important;
                 thead,tbody{
@@ -1268,6 +1274,9 @@ $sm-screen-h         : 767.98px;
         top: -5px;
         display: flex;
         right: 25px;
+        @media (max-width:$md-screen) {
+            right: 65px;
+        }
       }
       
       .ap-img-add,
@@ -1313,6 +1322,9 @@ $sm-screen-h         : 767.98px;
         right: -160px;
         @media (max-width:$md-screen) {
             right: -146px;
+        }
+        @media (max-height:767.98px) {
+            top: 30vh;
         }
       }
       

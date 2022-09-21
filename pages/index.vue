@@ -81,12 +81,12 @@
           id="sign-up"
           class="login-box d-flex flex-column h-100 justify-content-between"
         >
-          <div class="d-flex flex-column h-100 justify-content-center p-3">
+          <div class="d-flex flex-column h-100 justify-content-center p-3 px-3 px-md-5 px-lg-3">
             <div
               class="
                 card
                 rounded-22
-                p-4 p-md-5
+                p-4 p-xl-5
                 d-flex
                 flex-column
                 justify-content-center
@@ -96,10 +96,10 @@
               <img
                 src="../static/image/school_passport.png"
                 alt=""
-                class="mb-2 mb-md-4 passport-img py-4"
+                class="mb-2 mb-lg-4 passport-img py-4 py-md-2 py-xl-4"
               />
               <button
-                class="btn btn-primary font-semi-bold px-5"
+                class="btn btn-primary font-semi-bold px-5 px-md-3 px-lg-5"
                 @click="redirectToGg4L()"
               >
                 Sign in with School Passport
