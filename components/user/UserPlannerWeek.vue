@@ -3729,9 +3729,9 @@ export default {
           if (element.priority == "1") {
             var color = "#EF382E";
           } else if (element.priority == "2") {
-            var color = "#00CCA0";
-          } else if (element.priority == "3") {
             var color = "#F6D73C";
+          } else if (element.priority == "3") {
+            var color = "#00CCA0";
           }
           var dateMeeting = element.due_date;
           var tmeMeeting = "";
@@ -3880,9 +3880,9 @@ export default {
           if (element.priority == "1") {
             var color = "#EF382E";
           } else if (element.priority == "2") {
-            var color = "#00CCA0";
-          } else if (element.priority == "3") {
             var color = "#F6D73C";
+          } else if (element.priority == "3") {
+            var color = "#00CCA0";
           }
           var dateMeeting = element.due_date;
           var tmeMeeting = "";
@@ -4618,9 +4618,9 @@ export default {
         if (element.priority == "1") {
           var color = "#EF382E";
         } else if (element.priority == "2") {
-          var color = "#00CCA0";
-        } else {
           var color = "#F6D73C";
+        } else {
+          var color = "#00CCA0";
         }
         var dateMeeting = element.due_date;
         var tmeMeeting = "";
@@ -4768,9 +4768,9 @@ export default {
         if (element.priority == "1") {
           var color = "#EF382E";
         } else if (element.priority == "2") {
-          var color = "#00CCA0";
-        } else if (element.priority == "3") {
           var color = "#F6D73C";
+        } else if (element.priority == "3") {
+          var color = "#00CCA0";
         }
         var dateMeeting = element.due_date;
         var tmeMeeting = "";
