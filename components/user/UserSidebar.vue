@@ -123,7 +123,7 @@
                         "
                         v-for="(data, index) in notificationList"
                         :key="index"
-                        @click="onNotificationClick(data.id, data.title)"
+                        @click="onNotificationClick(data.id, data.meetingType)"
                       >
                         <p
                           class="
@@ -790,23 +790,64 @@ export default {
       await this.getNotificationsList();
     },
     async onNotificationClick(id, type) {
+      // Assignment
+      // Assignment session rescheduled
+
+      // Teacher Advisor
+
+      // Study session
+      // Session
+      // Assignment session
+
+      // Club
+      // Club Leader
+      // Club Activation
+      // Team Activation
+
       await this.markNotificationAsRead(id);
       console.log(type);
-      if (type == "Club Meeting") {
-        this.$router.push("/club-detail");
-      } else if (type == "Assignment Session Invitation") {
-        this.$router.push("/planner-month");
-      } else if (type == "Teacher Advisor Request") {
-        this.$router.push("/user-profile");
-      } else if (type == "Study Session Invitation") {
-        this.$router.push("/study-time");
-      } else if (
-        type == "Meeting Request Accepeted" ||
-        type == "Peer Meeting" ||
-        type == "Peer Meeting Scheduled"
-      ) {
+
+      if (type == "Peer" || type == "Teacher") {
         this.$router.push("/viewall-meeting");
+      } else if (type == "Assignment") {
+        this.$router.push("/planner-month");
+      } else if (
+        type == "Session" ||
+        type == "Study session" ||
+        type == "Assignment session" ||
+        type == "Assignment session rescheduled"
+      ) {
+        this.$router.push("/study-time");
+      } else if (type == "Teacher Advisor") {
+        this.$router.push("/user-profile");
+      } else if (
+        type == "Club" ||
+        type == "Club Leader" ||
+        type == "Club Activation" ||
+        type == "Team Activation"
+      ) {
+        this.$router.push("/club-detail");
       }
+
+      // if (type == "Club Meeting") {
+      //   this.$router.push("/club-detail");
+      // } else if (type == "Teacher Advisor Request") {
+      //   this.$router.push("/user-profile");
+      // } else if (type == "Study Session Invitation") {
+      //   this.$router.push("/study-time");
+      // } else if (
+      //   type == "Meeting Request Accepeted" ||
+      //   type == "Peer Meeting" ||
+      //   type == "Peer Meeting Scheduled"
+      // ) {
+      //   this.$router.push("/viewall-meeting");
+      // } else if (
+      //   type == "Assignment Session Invitation" ||
+      //   type.includes("Assignment") ||
+      //   type.includes("assignment")
+      // ) {
+      //   this.$router.push("/planner-month");
+      // }
       this.getNotificationsList();
     },
     async markNotificationAsRead(id) {

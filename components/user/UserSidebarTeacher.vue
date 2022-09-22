@@ -85,7 +85,7 @@
                         "
                         v-for="(data, index) in notificationList"
                         :key="index"
-                        @click="onNotificationClick(data.id, data.title)"
+                        @click="onNotificationClick(data.id, data.meetingType)"
                       >
                         <p
                           class="
@@ -897,17 +897,40 @@ export default {
     },
     async onNotificationClick(id, type) {
       await this.markNotificationAsRead(id);
-      if (type == "Club Meeting") {
-        this.$router.push("/clubs");
-      } else if (type == "Student Meeting") {
+
+      if (type == "Peer" || type == "Teacher") {
         this.$router.push("/teacher-appointment");
-      } else if (type == "Meeting Request") {
-        this.$router.push("/teacher-appointment");
-      } else if (type == "Meeting Rescheduled") {
-        this.$router.push("/teacher-appointment");
-      } else if (type == "Advisor Request Accepted") {
+      } else if (type == "Assignment") {
+        this.$router.push("/planner-month");
+      } else if (
+        type == "Session" ||
+        type == "Study session" ||
+        type == "Assignment session" ||
+        type == "Assignment session rescheduled"
+      ) {
+        this.$router.push("/study-time");
+      } else if (type == "Teacher Advisor") {
         this.$router.push("/teacher-advisor");
+      } else if (
+        type == "Club" ||
+        type == "Club Leader" ||
+        type == "Club Activation" ||
+        type == "Team Activation"
+      ) {
+        this.$router.push("/clubs");
       }
+
+      // if (type == "Club Meeting") {
+      //   this.$router.push("/clubs");
+      // } else if (type == "Student Meeting") {
+      //   this.$router.push("/teacher-appointment");
+      // } else if (type == "Meeting Request") {
+      //   this.$router.push("/teacher-appointment");
+      // } else if (type == "Meeting Rescheduled") {
+      //   this.$router.push("/teacher-appointment");
+      // } else if (type == "Advisor Request Accepted") {
+      //   this.$router.push("/teacher-advisor");
+      // }
       this.getNotificationsList();
     },
     async markNotificationAsRead(id) {
