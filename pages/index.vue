@@ -39,7 +39,7 @@
       <div id="fountainTextG_3" class="fountainTextG animation">. &nbsp;</div>
       <div id="fountainTextG_4" class="fountainTextG animation">. &nbsp;</div>
     </div>
-    <div class="row main-row flex-row custom-full-height m-0">
+    <div class="row main-row flex-row custom-full-height m-0 w-100">
       <div
         class="
           col-md-6

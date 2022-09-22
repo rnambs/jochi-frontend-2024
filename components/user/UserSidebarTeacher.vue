@@ -738,7 +738,7 @@
                   class="card-header bg-transparent border-0 p-1"
                   id="headingOne"
                 >
-                  <div class="mb-0 d-flex">
+                  <div class="mb-0 d-flex justify-content-center justify-content-lg-start">
                     <button
                       class="
                         btn btn-link
