@@ -28,9 +28,10 @@ body{
     .header-section .sidebar-section{
         height: calc(100vh - 96px - 24px) !important;
     }
-    // .custom-full-height{
-    //     height: calc(100vh - 96px - 24px) !important;
-    // }
+    .custom-full-height{
+        height: calc(100vh - 96px - 24px) !important;
+        transition: all 0.3s;
+    }
 }
 @media (max-height:768.98px) and (max-width:$lg-screen) {
     .height-md-unset{
