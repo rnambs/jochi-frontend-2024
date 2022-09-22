@@ -28,9 +28,10 @@ body{
     .header-section .sidebar-section{
         height: calc(100vh - 96px - 24px) !important;
     }
-    // .custom-full-height{
-    //     height: calc(100vh - 96px - 24px) !important;
-    // }
+    .custom-full-height{
+        height: calc(100vh - 96px - 24px) !important;
+        transition: all 0.3s;
+    }
 }
 @media (max-height:768.98px) and (max-width:$lg-screen) {
     .height-md-unset{
@@ -1000,6 +1001,9 @@ img.card-img{
 }
 .h-min-200{
     min-height: 200px;
+}
+.h-min-400{
+    min-height: 400px !important;
 }
 .h-max-lg-600{
     @media (max-width:$lg-screen) {

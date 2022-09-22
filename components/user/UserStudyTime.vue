@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="col-lg-5 h-lg-100">
-            <div class="card card-void rounded-22 py-4 h-100 position-realtive">
+            <div class="card card-void rounded-22 py-4 h-100 position-realtive h-min-400">
               <!-- default -->
               <!-- <div class="d-flex justify-content-between flex-column h-100">
                       <div class="head-section">
@@ -443,6 +443,7 @@
                       <button
                         v-if="sessionDetail.startSession"
                         @click="checkIfCompletedAsst()"
+                        class="btn btn-dark py-2 text-center"
                       >
                         Start Session Now
                       </button>

@@ -1,12 +1,12 @@
 <template>
-  <div class="w-100 main-container register custom-full-height" data-app>
+  <div class="w-100 main-container register vh-100" data-app>
     <!-- <div class="text-center" v-if="loading && loadingMessage">
       {{ loadingMessage }}
     </div> -->
     <img
       src="../static/image/login-bg.jpg"
       alt=""
-      class="bg-img d-none d-md-flex custom-full-height"
+      class="bg-img d-none d-md-flex"
     />
     <img
       src="../static/image/login-bg-rotate.jpg"
