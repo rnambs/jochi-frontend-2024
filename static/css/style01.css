@@ -957,6 +957,10 @@ img.card-img {
   min-height: 200px;
 }
 
+.h-min-400 {
+  min-height: 400px !important;
+}
+
 @media (max-width: 1199.98px) {
   .h-max-lg-600 {
     max-height: 600px !important;

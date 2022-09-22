@@ -1002,6 +1002,9 @@ img.card-img{
 .h-min-200{
     min-height: 200px;
 }
+.h-min-400{
+    min-height: 400px !important;
+}
 .h-max-lg-600{
     @media (max-width:$lg-screen) {
         max-height: 600px !important;
