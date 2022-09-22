@@ -22,15 +22,15 @@ body{
 
 
 .small-device{
-    .main-section{
-        height: calc(100vh - 96px) !important;
-    }
+    // .main-section{
+    //     height: calc(100vh - 96px) !important;
+    // }
     .header-section .sidebar-section{
         height: calc(100vh - 96px - 24px) !important;
     }
-    .custom-full-height{
-        height: calc(100vh - 96px - 24px) !important;
-    }
+    // .custom-full-height{
+    //     height: calc(100vh - 96px - 24px) !important;
+    // }
 }
 @media (max-height:768.98px) and (max-width:$lg-screen) {
     .height-md-unset{
@@ -2139,6 +2139,9 @@ img.dark-icon{
                 }
                 @media (max-height:524.98px) and (max-width:$lg-screen) {
                     height: 50vh !important;
+                }
+                .fc-popover.fc-more-popover{
+                    z-index: 9;
                 }
             }
             .fc-scroller.fc-scroller-liquid-absolute{
