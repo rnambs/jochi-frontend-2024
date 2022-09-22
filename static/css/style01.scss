@@ -2140,6 +2140,9 @@ img.dark-icon{
                 @media (max-height:524.98px) and (max-width:$lg-screen) {
                     height: 50vh !important;
                 }
+                .fc-popover.fc-more-popover{
+                    z-index: 9;
+                }
             }
             .fc-scroller.fc-scroller-liquid-absolute{
                 margin-right: -8px;
