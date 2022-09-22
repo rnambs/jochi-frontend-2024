@@ -22,15 +22,15 @@ body{
 
 
 .small-device{
-    .main-section{
-        height: calc(100vh - 96px) !important;
-    }
+    // .main-section{
+    //     height: calc(100vh - 96px) !important;
+    // }
     .header-section .sidebar-section{
         height: calc(100vh - 96px - 24px) !important;
     }
-    .custom-full-height{
-        height: calc(100vh - 96px - 24px) !important;
-    }
+    // .custom-full-height{
+    //     height: calc(100vh - 96px - 24px) !important;
+    // }
 }
 @media (max-height:768.98px) and (max-width:$lg-screen) {
     .height-md-unset{

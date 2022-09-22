@@ -23,13 +23,7 @@ body {
   color: #000000;
 }
 
-.small-device .main-section {
-  height: calc(100vh - 96px) !important;
-}
 .small-device .header-section .sidebar-section {
-  height: calc(100vh - 96px - 24px) !important;
-}
-.small-device .custom-full-height {
   height: calc(100vh - 96px - 24px) !important;
 }
 
