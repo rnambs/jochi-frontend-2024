@@ -3166,7 +3166,7 @@ export default {
                   this.totalStudyTime +=
                     (presentTime - this.studyTimeStart) / 1000;
                 }
-                this.resetTimer();
+                this.clearInterval(this.limitedInterval);
 
                 if (isPending) {
                   this.AddStudyTime("STOP");
@@ -3475,6 +3475,7 @@ export default {
       if (studyStatus == "STOP") {
         this.onNext();
       }
+      debugger;
       let totalTimeStudied = Math.floor(this.totalStudyTime / 60);
       this.Timersession_id = this.timerStatusData.id;
       this.Timertotal_time = Math.floor(this.totalStudyTime / 60);
@@ -3607,7 +3608,7 @@ export default {
     },
 
     async onBackClick() {
-      this.resetTimer();
+      this.clearInterval(this.limitedInterval);
       this.submitted = false;
       this.addedStudyTime = false;
       this.timerStatus = 0;
@@ -4211,7 +4212,7 @@ export default {
       // }
 
       if (this.limitedInterval > 0) {
-        await this.resetTimer();
+        await this.clearInterval(this.limitedInterval);
       }
       this.submitted = false;
       this.processing = false;
