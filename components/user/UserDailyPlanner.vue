@@ -174,7 +174,7 @@
                       px-5
                     "
                   >
-                    <div class="row">
+                    <div class="row d-none">
                       <!-- drag and drop for mobile -->
                       <draggable
                         v-model="pendingAssignments"
@@ -253,14 +253,13 @@
                                       </p>
                                     </div>
                                   </div>
-                                  <div class="sub-task-section mb-3">
+                                  <div class="sub-task-section mb-2">
                                     <h6 class="mb-1">Sub-tasks</h6>
                                     <div
-                                      class="
-                                        d-flex
-                                        flex-column
-                                        overflow-hidden
-                                        vh-10
+                                      :class="
+                                        viewMore && viewMoreId == item.id
+                                          ? 'd-flex flex-column  overflow-auto vh-10'
+                                          : ' d-flex flex-column overflow-hidden vh-10'
                                       "
                                     >
                                       <div
@@ -305,6 +304,9 @@
                                         >
                                       </div>
                                     </div>
+                                    <button class="btn btn-void p-0 pl-2">
+                                      <span class="text-12">View more</span>
+                                    </button>
                                     <div
                                       v-if="
                                         !item.subTasks ||
@@ -495,9 +497,24 @@
                           </div>
                         </div>
                       </draggable>
+                      <div
+                        class="
+                          w-100
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        v-if="
+                          !pendingAssignments || pendingAssignments.length <= 0
+                        "
+                      >
+                        <span class="color-secondary"
+                          >No pending assignments</span
+                        >
+                      </div>
                     </div>
                     <!-- hide -->
-                    <div class="row d-none">
+                    <div class="row">
                       <div
                         class="col-12 col-md-6 py-3"
                         v-for="item in pendingAssignments"
@@ -566,14 +583,13 @@
                                     </p>
                                   </div>
                                 </div>
-                                <div class="sub-task-section mb-3">
+                                <div class="sub-task-section mb-2">
                                   <h6 class="mb-1">Sub-tasks</h6>
                                   <div
-                                    class="
-                                      d-flex
-                                      flex-column
-                                      overflow-hidden
-                                      vh-10
+                                    :class="
+                                      viewMore && viewMoreId == item.id
+                                        ? 'd-flex flex-column overflow-auto vh-10'
+                                        : 'd-flex flex-column overflow-hidden vh-10'
                                     "
                                   >
                                     <div
@@ -629,12 +645,19 @@
                                       >No sub tasks added!</span
                                     >
                                   </div>
+                                  <button
+                                    v-if="!viewMore || viewMoreId != item.id"
+                                    @click="viewMoreClick($event, item)"
+                                    class="btn btn-void p-0 pl-2"
+                                  >
+                                    <span class="text-12">View more</span>
+                                  </button>
                                   <!-- <div class="pl-2 d-flex align-items-center">
-                              <input type="radio" class="mr-2" />
-                              <label for="" class="mb-0"
-                                >Start typing to add subtasks</label
-                              >
-                            </div> -->
+                          <input type="radio" class="mr-2" />
+                          <label for="" class="mb-0"
+                            >Start typing to add subtasks</label
+                          >
+                        </div> -->
                                 </div>
                               </div>
                               <div
@@ -718,34 +741,34 @@
                                 </div>
                               </div>
                               <!-- <div class="upload-file-section mt-2">
-                                <div class="d-flex align-items-center">
-                                  <div class="col-2 p-0">
-                                    <select
-                                      class="form-select form-control"
-                                      aria-label="Default select example"
-                                    >
-                                      <option selected>Type</option>
-                                      <option value="1">One</option>
-                                      <option value="2">Two</option>
-                                      <option value="3">Three</option>
-                                    </select>
-                                  </div>
-                                  <div class="col-8 py-0 px-1">
-                                    <input
-                                      type="text"
-                                      class="form-control px-2"
-                                      placeholder="Paste Link or Upload File"
-                                    />
-                                  </div>
-                                  <div class="col-2 p-0">
-                                    <input
-                                      type="submit"
-                                      class="form-control"
-                                      value="Add"
-                                    />
-                                  </div>
-                                </div>
-                              </div> -->
+                            <div class="d-flex align-items-center">
+                              <div class="col-2 p-0">
+                                <select
+                                  class="form-select form-control"
+                                  aria-label="Default select example"
+                                >
+                                  <option selected>Type</option>
+                                  <option value="1">One</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                                </select>
+                              </div>
+                              <div class="col-8 py-0 px-1">
+                                <input
+                                  type="text"
+                                  class="form-control px-2"
+                                  placeholder="Paste Link or Upload File"
+                                />
+                              </div>
+                              <div class="col-2 p-0">
+                                <input
+                                  type="submit"
+                                  class="form-control"
+                                  value="Add"
+                                />
+                              </div>
+                            </div>
+                          </div> -->
                               <div
                                 class="
                                   add-person-section
@@ -788,26 +811,41 @@
                                   ></span>
                                 </div>
                                 <!-- <div
-                                  class="ap-img-section mr--3 shadow-sm"
-                                ></div>
-                                <div
-                                  class="ap-img-section mr--3 shadow-sm"
-                                ></div>
-                                <div class="ap-img-section shadow-sm"></div> -->
+                              class="ap-img-section mr--3 shadow-sm"
+                            ></div>
+                            <div
+                              class="ap-img-section mr--3 shadow-sm"
+                            ></div>
+                            <div class="ap-img-section shadow-sm"></div> -->
                                 <!-- <div class="ap-img-add">
-                              <img src="~/static/image/add-btn.png" alt="" />
-                            </div> -->
+                          <img src="~/static/image/add-btn.png" alt="" />
+                        </div> -->
                               </div>
                             </div>
                           </div>
                         </drag>
+                      </div>
+                      <div
+                        class="
+                          w-100
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        v-if="
+                          !pendingAssignments || pendingAssignments.length <= 0
+                        "
+                      >
+                        <span class="color-secondary"
+                          >No pending assignments</span
+                        >
                       </div>
                     </div>
                   </div>
                   <!-- drag end -->
                   <!-- hide -->
 
-                  <div class="d-flex flex-column pt-3 h-40 flex-fill">
+                  <div class="d-none flex-column pt-3 h-40 flex-fill">
                     <div
                       class="
                         drop
@@ -821,7 +859,15 @@
                       <h2 class="color-primary font-semi-bold px-5">
                         Completed Today
                       </h2>
-                      <p class="mb-0 px-5 color-secondary font-regular">
+                      <p
+                        class="
+                          d-none d-lg-block
+                          mb-0
+                          px-5
+                          color-secondary
+                          font-regular
+                        "
+                      >
                         Drag and drop your assignment here when it is completed
                       </p>
                       <div
@@ -888,12 +934,29 @@
                         </div>
                       </div> -->
                           </div>
+
+                          <div
+                            class="
+                              h-100
+                              d-flex
+                              align-items-center
+                              justify-content-center
+                            "
+                            v-if="
+                              !completedAssignmentList ||
+                              completedAssignmentList.length <= 0
+                            "
+                          >
+                            <span class="color-secondary text-center"
+                              >There are no completed tasks today</span
+                            >
+                          </div>
                         </draggable>
                       </div>
                     </div>
                   </div>
 
-                  <div class="d-none flex-column pt-3 h-40 flex-fill">
+                  <div class="d-flex flex-column pt-3 h-40 flex-fill">
                     <drop
                       class="
                         drop
@@ -908,10 +971,27 @@
                       <h2 class="color-primary font-semi-bold px-5">
                         Completed Today
                       </h2>
-                      <p class="mb-0 px-5 color-secondary font-regular">
+                      <p
+                        class="
+                          d-none d-xl-block
+                          mb-0
+                          px-5
+                          color-secondary
+                          font-regular
+                        "
+                      >
                         Drag and drop your assignment here when it is completed
                       </p>
-                      <div class="d-flex flex-column custom-overflow px-5 pb-3">
+                      <div
+                        class="
+                          d-flex
+                          flex-column
+                          custom-overflow
+                          px-5
+                          pb-3
+                          h-100
+                        "
+                      >
                         <div class="row mt-1">
                           <div
                             v-for="item in completedAssignmentList"
@@ -955,6 +1035,22 @@
                             </div>
                           </div> -->
                         </div>
+                        <div
+                          class="
+                            h-100
+                            d-flex
+                            align-items-center
+                            justify-content-center
+                          "
+                          v-if="
+                            !completedAssignmentList ||
+                            completedAssignmentList.length <= 0
+                          "
+                        >
+                          <span class="color-secondary text-center"
+                            >There are no completed tasks today</span
+                          >
+                        </div>
                       </div>
                     </drop>
                   </div>
@@ -975,6 +1071,7 @@
                       <div
                         class="
                           d-flex
+                          flex-column flex-md-row
                           justify-content-between
                           mb-2
                           border-bottom
@@ -983,7 +1080,7 @@
                         <h3 class="color-primary font-semi-bold">
                           {{ isAddAssignment ? "Add" : "Edit" }} Assignment
                         </h3>
-                        <p class="mb-0 cursor-pointer">
+                        <p class="mb-0 cursor-pointer d-none d-xl-block">
                           <span
                             @click="
                               openAssignment = false;
@@ -993,6 +1090,25 @@
                             ><i class="fas fa-times"></i
                           ></span>
                         </p>
+                        <div
+                          class="d-flex justify-content-end d-block d-xl-none"
+                        >
+                          <button
+                            v-if="!isAddAssignment"
+                            class="
+                              btn btn-success
+                              border border-dark
+                              py-0
+                              px-4
+                              rounded-12
+                              font-semi-bold
+                              mb-2
+                            "
+                            @click="confirmComplete"
+                          >
+                            <span>Mark as complete</span>
+                          </button>
+                        </div>
                       </div>
                       <!-- <div class="d-flex flex-column custom-overflow">
                         <div class="d-flex flex-column mb-2">
@@ -2641,7 +2757,6 @@
               type="button"
               class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
               data-dismiss="modal"
-              @click="getAssignmentsList()"
             >
               Cancel
             </button>
@@ -2848,6 +2963,8 @@ export default {
       deletedSubTasksArray: [],
       tempCompleted: [],
       drag: false,
+      viewMore: false,
+      viewMoreId: "",
     };
   },
   mounted() {
@@ -2986,6 +3103,13 @@ export default {
       } else {
         this.isShowQuote = true;
       }
+    },
+    viewMoreClick(event, item) {
+      console.log("view more", event, item);
+      event.preventDefault();
+      event.stopPropagation();
+      this.viewMore = true;
+      this.viewMoreId = item.id;
     },
     async openModal() {
       this.dateValue = new Date(this.calendarApi.view.activeStart);
@@ -4047,8 +4171,8 @@ export default {
     handleDrop(data, event) {
       $("#completeConfirm").modal({ backdrop: true });
 
-      // let assignment = data.item;
-      // this.completeAsstId = assignment.id;
+      let assignment = data.item;
+      this.completeAsstId = assignment.id;
     },
     handleDropDraggable(data, event) {
       this.drag = false;
@@ -4065,6 +4189,7 @@ export default {
       });
       this.processingCompleteAssignment = false;
       if (this.successMessage != "") {
+        this.openAssignment = false;
         this.getAssignmentsList();
         this.getAllCompletedAssignments();
         this.completeAsstId = 0;
@@ -4221,11 +4346,8 @@ export default {
       });
     },
     confirmComplete() {
-      // this.completeAsstId = id;
+      this.completeAsstId = this.assignmentId;
       $("#completeConfirm").modal({ backdrop: true });
-
-      // event.preventDefault();
-      // event.stopPropagation();
     },
     confirmSubTaskComplete(event, id, asstId, status) {
       if (status == "Completed") {
