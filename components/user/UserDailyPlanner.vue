@@ -10,7 +10,7 @@
       <!-- Daily Calander -->
 
       <section id="Daily-Calander" class="">
-        <div class="custom-margin-for-main-section custom-full-height d-flex">
+        <div class="custom-margin-for-main-section custom-full-height d-flex planner-day-responsive">
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
               <div class="col-lg-5 col-md-12 h-100">
@@ -24,7 +24,7 @@
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
               </div>
-              <div class="col-lg-7 col-md-12 position-realtive h-100">
+              <div class="col-lg-7 col-md-12 position-realtive h-100 pb-0 pb-xl-3 pt-24 pt-xl-3">
                 <div
                   class="
                     jochi-components-light-bg
