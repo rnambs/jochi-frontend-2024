@@ -57,14 +57,14 @@
                 mb-3 mb-lg-0
               "
             >
-              <nuxt-link to="/student-dashboard" class="nav-link btn p-0 mb-2">
+              <nuxt-link to="/student-dashboard" class="nav-link btn p-0 mb-3">
                 <img
                   src="../../static/image/Jochi Icons/home_hires.png"
                   alt=""
                   class="dark-icon"
               /></nuxt-link>
 
-              <div class="dropdown mb-2">
+              <div class="dropdown mb-2 mb-lg-3">
                 <a
                   class="dropdown-toggle position-relative p-2"
                   href="#"
@@ -780,6 +780,7 @@ export default {
         // alert("alerting" + payload.notification.body);
         // console.info("Message received: ", payload);
         this.getCount();
+        this.getNotifications();
       });
     },
     async getNotifications() {
@@ -810,7 +811,7 @@ export default {
       if (type == "Peer" || type == "Teacher") {
         this.$router.push("/viewall-meeting");
       } else if (type == "Assignment") {
-        this.$router.push("/planner-month");
+        this.$router.push("/planner-day");
       } else if (
         type == "Session" ||
         type == "Study session" ||
