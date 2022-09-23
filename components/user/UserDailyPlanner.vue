@@ -495,6 +495,12 @@
                           </div>
                         </div>
                       </draggable>
+                      <div
+                      class="w-100 d-flex align-items-center justify-content-center"
+                      v-if="!pendingAssignments || pendingAssignments.length<=0"
+                      >
+                        <span class="color-secondary">No pending assignments</span>
+                      </div>
                     </div>
                     <!-- hide -->
                     <div class="row d-none">
@@ -888,6 +894,13 @@
                         </div>
                       </div> -->
                           </div>
+                          
+                        <div
+                          class="h-100 d-flex align-items-center justify-content-center"
+                          v-if="!completedAssignmentList || completedAssignmentList.length<=0"
+                        >
+                          <span class="color-secondary text-center">There are no completed tasks today</span>
+                        </div>
                         </draggable>
                       </div>
                     </div>

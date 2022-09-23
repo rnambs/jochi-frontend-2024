@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="pageLoader" class="bg-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0" style="z-index: 9;" v-if="!isHidden">
-      <h1 data-loading-text="Welcome to Jochi..." class="display-4 loading"></h1>
+      <h1 data-loading-text="loading..." class="display-4 loading"></h1>
     </div>
     <!-- <lottie
       v-if=" loading"
@@ -974,7 +974,7 @@ export default {
   methods: {
     activate() {
       console.log("inside hide timeout");
-      setTimeout(() => this.isHidden = true, 500);
+      setTimeout(() => this.isHidden = true, 1500);
     },
     handleAnimation: function (anim) {
       this.anim = anim;
