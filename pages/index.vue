@@ -1,12 +1,12 @@
 <template>
-  <div class="w-100 main-container register custom-full-height" data-app>
+  <div class="w-100 main-container register vh-100" data-app>
     <!-- <div class="text-center" v-if="loading && loadingMessage">
       {{ loadingMessage }}
     </div> -->
     <img
       src="../static/image/login-bg.jpg"
       alt=""
-      class="bg-img d-none d-md-flex custom-full-height"
+      class="bg-img d-none d-md-flex"
     />
     <img
       src="../static/image/login-bg-rotate.jpg"
@@ -39,7 +39,7 @@
       <div id="fountainTextG_3" class="fountainTextG animation">. &nbsp;</div>
       <div id="fountainTextG_4" class="fountainTextG animation">. &nbsp;</div>
     </div>
-    <div class="row main-row flex-row custom-full-height m-0">
+    <div class="row main-row flex-row custom-full-height m-0 w-100">
       <div
         class="
           col-md-6
