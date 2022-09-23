@@ -174,7 +174,7 @@
                       px-5
                     "
                   >
-                    <div class="row">
+                    <div class="row d-none">
                       <!-- drag and drop for mobile -->
                       <draggable
                         v-model="pendingAssignments"
@@ -496,14 +496,23 @@
                         </div>
                       </draggable>
                       <div
-                      class="w-100 d-flex align-items-center justify-content-center"
-                      v-if="!pendingAssignments || pendingAssignments.length<=0"
+                        class="
+                          w-100
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        v-if="
+                          !pendingAssignments || pendingAssignments.length <= 0
+                        "
                       >
-                        <span class="color-secondary">No pending assignments</span>
+                        <span class="color-secondary"
+                          >No pending assignments</span
+                        >
                       </div>
                     </div>
                     <!-- hide -->
-                    <div class="row d-none">
+                    <div class="row">
                       <div
                         class="col-12 col-md-6 py-3"
                         v-for="item in pendingAssignments"
@@ -636,11 +645,11 @@
                                     >
                                   </div>
                                   <!-- <div class="pl-2 d-flex align-items-center">
-                              <input type="radio" class="mr-2" />
-                              <label for="" class="mb-0"
-                                >Start typing to add subtasks</label
-                              >
-                            </div> -->
+                          <input type="radio" class="mr-2" />
+                          <label for="" class="mb-0"
+                            >Start typing to add subtasks</label
+                          >
+                        </div> -->
                                 </div>
                               </div>
                               <div
@@ -724,34 +733,34 @@
                                 </div>
                               </div>
                               <!-- <div class="upload-file-section mt-2">
-                                <div class="d-flex align-items-center">
-                                  <div class="col-2 p-0">
-                                    <select
-                                      class="form-select form-control"
-                                      aria-label="Default select example"
-                                    >
-                                      <option selected>Type</option>
-                                      <option value="1">One</option>
-                                      <option value="2">Two</option>
-                                      <option value="3">Three</option>
-                                    </select>
-                                  </div>
-                                  <div class="col-8 py-0 px-1">
-                                    <input
-                                      type="text"
-                                      class="form-control px-2"
-                                      placeholder="Paste Link or Upload File"
-                                    />
-                                  </div>
-                                  <div class="col-2 p-0">
-                                    <input
-                                      type="submit"
-                                      class="form-control"
-                                      value="Add"
-                                    />
-                                  </div>
-                                </div>
-                              </div> -->
+                            <div class="d-flex align-items-center">
+                              <div class="col-2 p-0">
+                                <select
+                                  class="form-select form-control"
+                                  aria-label="Default select example"
+                                >
+                                  <option selected>Type</option>
+                                  <option value="1">One</option>
+                                  <option value="2">Two</option>
+                                  <option value="3">Three</option>
+                                </select>
+                              </div>
+                              <div class="col-8 py-0 px-1">
+                                <input
+                                  type="text"
+                                  class="form-control px-2"
+                                  placeholder="Paste Link or Upload File"
+                                />
+                              </div>
+                              <div class="col-2 p-0">
+                                <input
+                                  type="submit"
+                                  class="form-control"
+                                  value="Add"
+                                />
+                              </div>
+                            </div>
+                          </div> -->
                               <div
                                 class="
                                   add-person-section
@@ -794,15 +803,15 @@
                                   ></span>
                                 </div>
                                 <!-- <div
-                                  class="ap-img-section mr--3 shadow-sm"
-                                ></div>
-                                <div
-                                  class="ap-img-section mr--3 shadow-sm"
-                                ></div>
-                                <div class="ap-img-section shadow-sm"></div> -->
+                              class="ap-img-section mr--3 shadow-sm"
+                            ></div>
+                            <div
+                              class="ap-img-section mr--3 shadow-sm"
+                            ></div>
+                            <div class="ap-img-section shadow-sm"></div> -->
                                 <!-- <div class="ap-img-add">
-                              <img src="~/static/image/add-btn.png" alt="" />
-                            </div> -->
+                          <img src="~/static/image/add-btn.png" alt="" />
+                        </div> -->
                               </div>
                             </div>
                           </div>
@@ -813,7 +822,7 @@
                   <!-- drag end -->
                   <!-- hide -->
 
-                  <div class="d-flex flex-column pt-3 h-40 flex-fill">
+                  <div class="d-none flex-column pt-3 h-40 flex-fill">
                     <div
                       class="
                         drop
@@ -894,19 +903,29 @@
                         </div>
                       </div> -->
                           </div>
-                          
-                        <div
-                          class="h-100 d-flex align-items-center justify-content-center"
-                          v-if="!completedAssignmentList || completedAssignmentList.length<=0"
-                        >
-                          <span class="color-secondary text-center">There are no completed tasks today</span>
-                        </div>
+
+                          <div
+                            class="
+                              h-100
+                              d-flex
+                              align-items-center
+                              justify-content-center
+                            "
+                            v-if="
+                              !completedAssignmentList ||
+                              completedAssignmentList.length <= 0
+                            "
+                          >
+                            <span class="color-secondary text-center"
+                              >There are no completed tasks today</span
+                            >
+                          </div>
                         </draggable>
                       </div>
                     </div>
                   </div>
 
-                  <div class="d-none flex-column pt-3 h-40 flex-fill">
+                  <div class="d-flex flex-column pt-3 h-40 flex-fill">
                     <drop
                       class="
                         drop
@@ -2654,7 +2673,6 @@
               type="button"
               class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
               data-dismiss="modal"
-              @click="getAssignmentsList()"
             >
               Cancel
             </button>
@@ -4060,8 +4078,8 @@ export default {
     handleDrop(data, event) {
       $("#completeConfirm").modal({ backdrop: true });
 
-      // let assignment = data.item;
-      // this.completeAsstId = assignment.id;
+      let assignment = data.item;
+      this.completeAsstId = assignment.id;
     },
     handleDropDraggable(data, event) {
       this.drag = false;
