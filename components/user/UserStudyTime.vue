@@ -93,7 +93,7 @@
                 py-4
                 h-100
                 position-realtive
-                h-min-400
+                h-70
               "
             >
               <!-- default -->
