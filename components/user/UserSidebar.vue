@@ -57,14 +57,14 @@
                 mb-3 mb-lg-0
               "
             >
-              <nuxt-link to="/student-dashboard" class="nav-link btn p-0 mb-2">
+              <nuxt-link to="/student-dashboard" class="nav-link btn p-0 mb-3">
                 <img
                   src="../../static/image/Jochi Icons/home_hires.png"
                   alt=""
                   class="dark-icon"
               /></nuxt-link>
 
-              <div class="dropdown mb-2">
+              <div class="dropdown mb-2 mb-lg-3">
                 <a
                   class="dropdown-toggle position-relative p-2"
                   href="#"
