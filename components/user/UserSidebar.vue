@@ -705,6 +705,10 @@ export default {
     this.getNotifications();
     this.getCount();
 
+    this.$socket.$subscribe("messageChannel", (payload) => {
+      console.log(payload);
+    });
+
     // window.addEventListener("keydown", (e) => {
     //   if (e.keyCode == 123) {
     //     e.preventDefault();
@@ -780,6 +784,7 @@ export default {
         // alert("alerting" + payload.notification.body);
         // console.info("Message received: ", payload);
         this.getCount();
+        this.getNotifications();
       });
     },
     async getNotifications() {
@@ -810,7 +815,7 @@ export default {
       if (type == "Peer" || type == "Teacher") {
         this.$router.push("/viewall-meeting");
       } else if (type == "Assignment") {
-        this.$router.push("/planner-month");
+        this.$router.push("/planner-day");
       } else if (
         type == "Session" ||
         type == "Study session" ||
