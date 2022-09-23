@@ -3532,7 +3532,6 @@ export default {
           });
         }
         this.totalStudyTime = 0;
-        debugger;
         if (
           this.studyTypes.id == 2 &&
           studyStatus == "PAUSE" &&
@@ -3586,7 +3585,6 @@ export default {
       this.processingStudySession = false;
     },
     async runCustomTimerRemaining(totalTimeStudied) {
-      debugger;
       this.studyStatus = "break";
       await this.runTimer(this.breakTime * 60);
       this.targetDuration = this.targetDuration - totalTimeStudied;
