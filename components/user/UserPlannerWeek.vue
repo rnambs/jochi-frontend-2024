@@ -748,7 +748,10 @@
                           <draggable
                             v-model="pendingAssignments"
                             group="people"
-                            @start="drag = true"
+                            @start="
+                              drag = true;
+                              dragCard(item.id);
+                            "
                             @end="drag = false"
                             :sort="false"
                             class="col-12 col-md-6 py-3 px-5 px-lg-3"
@@ -811,10 +814,10 @@
                                           "
                                         >
                                           {{
-                                        item.subject.subject_name
-                                          ? item.subject.subject_name
-                                          : item.subject
-                                      }}
+                                            item.subject.subject_name
+                                              ? item.subject.subject_name
+                                              : item.subject
+                                          }}
                                         </div>
                                       </div>
                                       <div class="assignment-add-section">
@@ -3957,7 +3960,7 @@ export default {
 
         if (valid && tempTime.split(" ")[1].length > 1) {
           this.validTime = true;
-           this.timeValue = tempTime;
+          this.timeValue = tempTime;
         } else {
           this.validTime = false;
         }
@@ -4266,7 +4269,7 @@ export default {
         text: subject?.subject_name,
       };
       this.task = this.assignment.task;
-     if (this.assignment.due_date) {
+      if (this.assignment.due_date) {
         let dateSplit = this.assignment.due_date.split("-");
         let date = new Date(
           dateSplit[0],
@@ -4755,44 +4758,44 @@ export default {
         eventList.push(meetingobj);
       });
       this.sharedAstList.forEach((element) => {
-        if(element.due_date){
-        var scheduleObject = {};
-        var plannerObj = {};
-        var id = element.id;
-        var assignment = element.subject;
-        var time = element.due_time;
-        var date = this.dateConversion(element.due_date);
+        if (element.due_date) {
+          var scheduleObject = {};
+          var plannerObj = {};
+          var id = element.id;
+          var assignment = element.subject;
+          var time = element.due_time;
+          var date = this.dateConversion(element.due_date);
 
-        var title = element.task;
+          var title = element.task;
 
-        if (element.priority == "1") {
-          var color = "#EF382E";
-        } else if (element.priority == "2") {
-          var color = "#F6D73C";
-        } else if (element.priority == "3") {
-          var color = "#00CCA0";
+          if (element.priority == "1") {
+            var color = "#EF382E";
+          } else if (element.priority == "2") {
+            var color = "#F6D73C";
+          } else if (element.priority == "3") {
+            var color = "#00CCA0";
+          }
+          var dateMeeting = element.due_date;
+          var tmeMeeting = "";
+          if (element.due_time) {
+            tmeMeeting = this.formatAMPM(element.due_time);
+          }
+          var start = dateMeeting + "T" + tmeMeeting;
+
+          scheduleObject["assignment"] = assignment;
+          scheduleObject["time"] = time;
+          scheduleObject["date"] = date;
+          scheduleObject["title"] = title;
+          scheduleObject["id"] = id;
+
+          plannerObj["title"] = title;
+          plannerObj["color"] = color;
+          plannerObj["start"] = start;
+          plannerObj["id"] = id;
+          plannerObj["groupId"] = "shared-assignment";
+          eventList.push(plannerObj);
+          this.assignmentList.push(scheduleObject);
         }
-        var dateMeeting = element.due_date;
-        var tmeMeeting = "";
-        if (element.due_time) {
-          tmeMeeting = this.formatAMPM(element.due_time);
-        }
-        var start = dateMeeting + "T" + tmeMeeting;
-
-        scheduleObject["assignment"] = assignment;
-        scheduleObject["time"] = time;
-        scheduleObject["date"] = date;
-        scheduleObject["title"] = title;
-        scheduleObject["id"] = id;
-
-        plannerObj["title"] = title;
-        plannerObj["color"] = color;
-        plannerObj["start"] = start;
-        plannerObj["id"] = id;
-        plannerObj["groupId"] = "shared-assignment";
-        eventList.push(plannerObj);
-        this.assignmentList.push(scheduleObject);
-      }
       });
 
       console.log("events console", eventList);
@@ -5184,18 +5187,21 @@ export default {
       }
       return peers;
     },
+    dragCard(data) {
+      this.completeAsstId = data;
+    },
     handleDrop(data, event) {
       $("#completeConfirm").modal({ backdrop: true });
 
-      let assignment = data.item;
-      this.completeAsstId = assignment.id;
+      // let assignment = data.item;
+      // this.completeAsstId = assignment.id;
     },
     handleDropDraggable(data, event) {
-       this.drag = false;
+      this.drag = false;
       $("#completeConfirm").modal({ backdrop: true });
 
-      let assignment = data?.item?._underlying_vm_;
-      this.completeAsstId = assignment.id;
+      // let assignment = data?.item?._underlying_vm_;
+      // this.completeAsstId = assignment.id;
     },
     async completeAssignment() {
       this.processingCompleteAssignment = true;
