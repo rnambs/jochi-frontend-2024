@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="row inner-row mt-0 text-center mb-2">
-            <div class="col-md-3 py-2">
+            <div class="col-12 col-sm-3 col-md-12 col-lg-3 py-2">
               <div class="inner-col card card-void p-2">
                 <h6 class="color-dark font-semi-bold">Total Minutes</h6>
                 <p class="total-value text-24 color-dark font-semi-bold">
@@ -51,7 +51,7 @@
                 </p>
               </div>
             </div>
-            <div class="col-md-3 py-2">
+            <div class="col-12 col-sm-3 col-md-12 col-lg-3 py-2">
               <div class="inner-col card card-void p-2">
                 <h6 class="color-dark font-semi-bold">Total Session</h6>
                 <p class="total-value text-24 color-dark font-semi-bold">
@@ -71,7 +71,7 @@
                 </p>
               </div>
             </div>
-            <div class="col-md-3 py-2">
+            <div class="col-12 col-sm-3 col-md-12 col-lg-3 py-2">
               <div class="inner-col card card-void p-2">
                 <h6 class="color-dark font-semi-bold">Total Minutes</h6>
                 <p class="total-value text-24 color-dark">
@@ -79,7 +79,7 @@
                 </p>
               </div>
             </div>
-            <div class="col-md-3 py-2">
+            <div class="col-12 col-sm-3 col-md-12 col-lg-3 py-2">
               <div class="inner-col card card-void p-2">
                 <h6 class="color-dark font-semi-bold">Total Session</h6>
                 <p class="total-value text-24 color-dark">
@@ -89,7 +89,7 @@
             </div>
           </div>
           <div class="row inner-row mt-0 mb-2">
-            <div class="col-md-6 py-2">
+            <div class="col-12 col-sm-6 col-md-12 col-lg-6 py-2">
               <div
                 class="
                   inner-col
@@ -130,7 +130,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6 py-2">
+            <div class="col-12 col-sm-6 col-md-12 col-lg-6 py-2">
               <div
                 class="
                   inner-col

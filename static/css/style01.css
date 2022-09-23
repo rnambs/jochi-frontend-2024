@@ -23,6 +23,24 @@ body {
   color: #000000;
 }
 
+.small-device .main-section::after {
+  content: "www.jochi.live";
+  text-align: center;
+  left: 45%;
+  bottom: 40px;
+  position: absolute;
+  color: #b6b6b6;
+}
+@media (max-width: 991.98px) {
+  .small-device .main-section::after {
+    left: 44%;
+  }
+}
+@media (max-width: 767.98px) {
+  .small-device .main-section::after {
+    left: 42%;
+  }
+}
 .small-device .header-section .sidebar-section {
   height: calc(100vh - 96px - 24px) !important;
 }
@@ -984,6 +1002,10 @@ img.card-img {
   min-height: 200px;
 }
 
+.h-min-400 {
+  min-height: 400px;
+}
+
 .h-70 {
   height: 70vh !important;
 }
@@ -1213,6 +1235,11 @@ img.dark-icon {
     margin: 0px auto 20px;
     max-width: 180px;
     width: 100%;
+  }
+}
+@media (max-height: 768.98px) {
+  .main-container .img-section .img-responsive {
+    max-width: 180px;
   }
 }
 @media (max-width: 575.98px) {
