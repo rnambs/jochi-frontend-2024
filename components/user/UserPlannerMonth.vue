@@ -347,7 +347,10 @@
                           <draggable
                             v-model="pendingAssignments"
                             group="people"
-                            @start="drag = true"
+                            @start="
+                              drag = true;
+                              dragCard(item.id);
+                            "
                             @end="drag = false"
                             :sort="false"
                             class="col-12 col-md-6 py-3 px-5 px-lg-3"
@@ -4968,18 +4971,21 @@ export default {
       }
       return peers;
     },
+    dragCard(data) {
+      this.completeAsstId = data;
+    },
     handleDrop(data, event) {
       $("#completeConfirm").modal({ backdrop: true });
 
-      let assignment = data.item;
-      this.completeAsstId = assignment.id;
+      // let assignment = data.item;
+      // this.completeAsstId = assignment.id;
     },
     handleDropDraggable(data, event) {
       this.drag = false;
       $("#completeConfirm").modal({ backdrop: true });
 
-      let assignment = data?.item?._underlying_vm_;
-      this.completeAsstId = assignment.id;
+      // let assignment = data?.item?._underlying_vm_;
+      // this.completeAsstId = assignment.id;
     },
     async completeAssignment() {
       this.processingCompleteAssignment = true;
