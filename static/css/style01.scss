@@ -31,13 +31,15 @@ body{
     .custom-full-height{
         height: calc(100vh - 96px - 24px) !important;
         transition: all 0.3s;
-        position: fixed;
-        width: calc(100% - 15.625rem);
-        @media (max-width:1023.98px) {
-            width: calc(100% - 14.625rem);
-        }
-        @media (max-width:$md-screen) {
-            width: calc(100% - 6.625rem);
+        &.planner-day-responsive{
+            position: fixed;
+            width: calc(100% - 15.625rem);
+            @media (max-width:1023.98px) {
+                width: calc(100% - 14.625rem);
+            }
+            @media (max-width:$md-screen) {
+                width: calc(100% - 6.625rem);
+            }
         }
     }
 }
@@ -988,7 +990,7 @@ input[type="radio"]{
     margin-right: -16px;
 }
 .pt-24{
-    padding-top: 24px;
+    padding-top: 24px !important;
 }
 
 img.card-img{
