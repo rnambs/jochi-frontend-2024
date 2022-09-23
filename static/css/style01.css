@@ -1237,6 +1237,11 @@ img.dark-icon {
     width: 100%;
   }
 }
+@media (max-height: 768.98px) {
+  .main-container .img-section .img-responsive {
+    max-width: 180px;
+  }
+}
 @media (max-width: 575.98px) {
   .main-container .img-section .img-responsive {
     margin: 0 auto 20px;

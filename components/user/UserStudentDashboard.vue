@@ -205,11 +205,11 @@
                             <img src="~/static/image/alarm.png" alt="" />
                           </div>
                         </div>
-                        <div class="study-status-text text-left text-lg-center mb-2">
-                          <p class="study-status-studied mb-1">
+                        <div class="study-status-text text-left text-lg-center mb-2 px-2">
+                          <p class="study-status-studied mb-1 word-break">
                             {{ duration }} Minutes Studied Today
                           </p>
-                          <p class="study-status-time-left">
+                          <p class="study-status-time-left word-break">
                             {{ durationRemaining }}
                             {{
                               isAdditionalCovered
