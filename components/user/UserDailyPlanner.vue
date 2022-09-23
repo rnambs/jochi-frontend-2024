@@ -1041,6 +1041,7 @@
                       <div
                         class="
                           d-flex
+                          flex-column flex-md-row
                           justify-content-between
                           mb-2
                           border-bottom
@@ -1059,15 +1060,16 @@
                             ><i class="fas fa-times"></i
                           ></span>
                         </p>
-                        <button class="
-                        d-block d-xl-none
-                        btn btn-success
-                        border border-dark
-                        py-0
-                        px-4
-                        rounded-12
-                        font-semi-bold mb-2
-                      "><span>Mark as complete</span></button>
+                        <div class="d-flex justify-content-end d-block d-xl-none">
+                          <button class="
+                            btn btn-success
+                            border border-dark
+                            py-0
+                            px-4
+                            rounded-12
+                            font-semi-bold mb-2
+                          "><span>Mark as complete</span></button>
+                        </div>
                       </div>
                       <!-- <div class="d-flex flex-column custom-overflow">
                         <div class="d-flex flex-column mb-2">

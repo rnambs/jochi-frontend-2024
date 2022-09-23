@@ -429,7 +429,7 @@
                                           </p>
                                         </div>
                                       </div>
-                                      <div class="sub-task-section mb-3">
+                                      <div class="sub-task-section mb-2">
                                         <h6 class="mb-1">Sub-tasks</h6>
                                         <div
                                           class="
@@ -492,6 +492,7 @@
                                             >No sub tasks added!</span
                                           >
                                         </div>
+                                        <button class="btn btn-void p-0 pl-2"><span class="text-12">View more</span></button>
                                         <!-- <div class="pl-2 d-flex align-items-center">
                           <input type="radio" class="mr-2" />
                           <label for="" class="mb-0"
@@ -770,7 +771,7 @@
                                         </p>
                                       </div>
                                     </div>
-                                    <div class="sub-task-section mb-3">
+                                    <div class="sub-task-section mb-2">
                                       <h6 class="mb-1">Sub-tasks</h6>
                                       <div
                                         class="
@@ -833,6 +834,7 @@
                                           >No sub tasks added!</span
                                         >
                                       </div>
+                                      <button class="btn btn-void p-0 pl-2"><span class="text-12">View more</span></button>
                                       <!-- <div class="pl-2 d-flex align-items-center">
                           <input type="radio" class="mr-2" />
                           <label for="" class="mb-0"
@@ -1016,6 +1018,22 @@
                               </div>
                             </drag>
                           </div>
+                          <div
+                            class="
+                              w-100
+                              d-flex
+                              align-items-center
+                              justify-content-center
+                            "
+                            v-if="
+                              !pendingAssignments ||
+                              pendingAssignments.length <= 0
+                            "
+                          >
+                            <span class="color-secondary"
+                              >No pending assignments</span
+                            >
+                          </div>
                         </div>
                       </div>
                       <!-- drag end -->
@@ -1141,7 +1159,7 @@
                             completed
                           </p>
                           <div
-                            class="d-flex flex-column custom-overflow px-5 pb-3"
+                            class="d-flex flex-column custom-overflow px-5 pb-3 h-100"
                           >
                             <div class="row mt-1">
                               <div
@@ -1186,6 +1204,22 @@
                       </div>
                     </div> -->
                             </div>
+                            <div
+                                class="
+                                  h-100
+                                  d-flex
+                                  align-items-center
+                                  justify-content-center
+                                "
+                                v-if="
+                                  !completedAssignmentList ||
+                                  completedAssignmentList.length <= 0
+                                "
+                              >
+                                <span class="color-secondary text-center"
+                                  >No completed tasks for this month</span
+                                >
+                              </div>
                           </div>
                         </drop>
                       </div>
@@ -1201,13 +1235,14 @@
                             h-100
                             p-4
                             rounded-22
-                            col-12 col-md-8
+                            col-12 col-lg-8
                             float-right
                           "
                         >
                           <div
                             class="
                               d-flex
+                              flex-column flex-md-row
                               justify-content-between
                               mb-2
                               border-bottom
@@ -1216,7 +1251,7 @@
                             <h3 class="color-primary font-semi-bold">
                               {{ isAddAssignment ? "Add" : "Edit" }} Assignment
                             </h3>
-                            <p class="mb-0 cursor-pointer">
+                            <p class="mb-0 cursor-pointer d-none d-xl-block">
                               <span
                                 @click="
                                   openAssignment = false;
@@ -1226,6 +1261,16 @@
                                 ><i class="fas fa-times"></i
                               ></span>
                             </p>
+                            <div class="d-flex justify-content-end d-block d-xl-none">
+                              <button class="
+                                btn btn-success
+                                border border-dark
+                                py-0
+                                px-4
+                                rounded-12
+                                font-semi-bold mb-2
+                              "><span>Mark as complete</span></button>
+                            </div>
                           </div>
                           <!-- <div class="d-flex flex-column custom-overflow">
                         <div class="d-flex flex-column mb-2">
