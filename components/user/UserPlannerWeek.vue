@@ -833,11 +833,10 @@
                                       <div class="sub-task-section mb-2">
                                         <h6 class="mb-1">Sub-tasks</h6>
                                         <div
-                                          class="
-                                            d-flex
-                                            flex-column
-                                            overflow-hidden
-                                            vh-10
+                                          :class="
+                                            viewMore && viewMoreId == item.id
+                                              ? 'd-flex flex-column  overflow-auto vh-10'
+                                              : ' d-flex flex-column overflow-hidden vh-10'
                                           "
                                         >
                                           <div
@@ -893,7 +892,15 @@
                                             >No sub tasks added!</span
                                           >
                                         </div>
-                                        <button class="btn btn-void p-0 pl-2"><span class="text-12">View more</span></button>
+                                        <button
+                                          v-if="
+                                            !viewMore || viewMoreId != item.id
+                                          "
+                                          @click="viewMoreClick($event, item)"
+                                          class="btn btn-void p-0 pl-2"
+                                        >
+                                          <span class="text-12">View more</span>
+                                        </button>
                                         <!-- <div class="pl-2 d-flex align-items-center">
                               <input type="radio" class="mr-2" />
                               <label for="" class="mb-0"
@@ -1175,11 +1182,10 @@
                                     <div class="sub-task-section mb-2">
                                       <h6 class="mb-1">Sub-tasks</h6>
                                       <div
-                                        class="
-                                          d-flex
-                                          flex-column
-                                          overflow-hidden
-                                          vh-10
+                                        :class="
+                                          viewMore && viewMoreId == item.id
+                                            ? 'd-flex flex-column  overflow-auto vh-10'
+                                            : ' d-flex flex-column overflow-hidden vh-10'
                                         "
                                       >
                                         <div
@@ -1235,7 +1241,15 @@
                                           >No sub tasks added!</span
                                         >
                                       </div>
-                                      <button class="btn btn-void p-0 pl-2"><span class="text-12">View more</span></button>
+                                      <button
+                                        v-if="
+                                          !viewMore || viewMoreId != item.id
+                                        "
+                                        @click="viewMoreClick($event, item)"
+                                        class="btn btn-void p-0 pl-2"
+                                      >
+                                        <span class="text-12">View more</span>
+                                      </button>
                                       <!-- <div class="pl-2 d-flex align-items-center">
                               <input type="radio" class="mr-2" />
                               <label for="" class="mb-0"
@@ -1453,7 +1467,15 @@
                           <h2 class="color-primary font-semi-bold px-5">
                             Completed This Week
                           </h2>
-                          <p class="mb-0 px-5 color-secondary font-regular">
+                          <p
+                            class="
+                              d-none d-xl-block
+                              mb-0
+                              px-5
+                              color-secondary
+                              font-regular
+                            "
+                          >
                             Drag and drop your assignment here when it is
                             completed
                           </p>
@@ -1562,7 +1584,14 @@
                             completed
                           </p>
                           <div
-                            class="d-flex flex-column custom-overflow px-5 pb-3 h-100"
+                            class="
+                              d-flex
+                              flex-column
+                              custom-overflow
+                              px-5
+                              pb-3
+                              h-100
+                            "
                           >
                             <div class="row mt-1">
                               <div
@@ -1608,21 +1637,21 @@
                       </div> -->
                             </div>
                             <div
-                                class="
-                                  h-100
-                                  d-flex
-                                  align-items-center
-                                  justify-content-center
-                                "
-                                v-if="
-                                  !completedAssignmentList ||
-                                  completedAssignmentList.length <= 0
-                                "
+                              class="
+                                h-100
+                                d-flex
+                                align-items-center
+                                justify-content-center
+                              "
+                              v-if="
+                                !completedAssignmentList ||
+                                completedAssignmentList.length <= 0
+                              "
+                            >
+                              <span class="color-secondary text-center"
+                                >No completed tasks for this week</span
                               >
-                                <span class="color-secondary text-center"
-                                  >No completed tasks for this week</span
-                                >
-                              </div>
+                            </div>
                           </div>
                         </drop>
                       </div>
@@ -1664,15 +1693,27 @@
                                 ><i class="fas fa-times"></i
                               ></span>
                             </p>
-                            <div class="d-flex justify-content-end d-block d-xl-none">
-                              <button class="
-                              btn btn-success
-                              border border-dark
-                              py-0
-                              px-4
-                              rounded-12
-                              font-semi-bold mb-2
-                            "><span>Mark as complete</span></button>
+                            <div
+                              class="
+                                d-flex
+                                justify-content-end
+                                d-block d-xl-none
+                              "
+                            >
+                              <button v-if="!isAddAssignment"
+                                class="
+                                  btn btn-success
+                                  border border-dark
+                                  py-0
+                                  px-4
+                                  rounded-12
+                                  font-semi-bold
+                                  mb-2
+                                "
+                                @click="confirmComplete"
+                              >
+                                <span>Mark as complete</span>
+                              </button>
                             </div>
                           </div>
                           <!-- <div class="d-flex flex-column custom-overflow">
@@ -3498,6 +3539,8 @@ export default {
       deletedSubTasksArray: [],
       tempCompleted: [],
       drag: false,
+      viewMore: false,
+      viewMoreId: "",
     };
   },
 
@@ -4320,6 +4363,13 @@ export default {
     //   this.submitted = false;
     //   this.processing = false;
     // },
+    viewMoreClick(event, item) {
+      console.log("view more", event, item);
+      event.preventDefault();
+      event.stopPropagation();
+      this.viewMore = true;
+      this.viewMoreId = item.id;
+    },
     async openModal() {
       this.isAssignmentEdit = false;
       $("#exampleModalCenter").modal({ backdrop: true });
@@ -5299,6 +5349,8 @@ export default {
       });
       this.processingCompleteAssignment = false;
       if (this.successMessage != "") {
+        this.openAssignment = false;
+
         this.getAssignmentsList();
         this.getAllCompletedAssignments();
         this.completeAsstId = 0;
@@ -5468,11 +5520,8 @@ export default {
       });
     },
     confirmComplete() {
-      // this.completeAsstId = id;
+      this.completeAsstId = this.assignmentId;
       $("#completeConfirm").modal({ backdrop: true });
-
-      // event.preventDefault();
-      // event.stopPropagation();
     },
     confirmSubTaskComplete(event, id, asstId) {
       if (status == "Completed") {
