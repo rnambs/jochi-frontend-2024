@@ -705,10 +705,6 @@ export default {
     this.getNotifications();
     this.getCount();
 
-    this.$socket.$subscribe("messageChannel", (payload) => {
-      console.log(payload);
-    });
-
     // window.addEventListener("keydown", (e) => {
     //   if (e.keyCode == 123) {
     //     e.preventDefault();
