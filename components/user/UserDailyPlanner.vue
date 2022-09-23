@@ -816,7 +816,23 @@
                             </div>
                           </div>
                         </drag>
+                        
                       </div>
+                      <div
+                        class="
+                          w-100
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        v-if="
+                          !pendingAssignments || pendingAssignments.length <= 0
+                        "
+                      >
+                        <span class="color-secondary"
+                          >No pending assignments</span
+                        >
+                        </div>
                     </div>
                   </div>
                   <!-- drag end -->
@@ -943,7 +959,7 @@
                       <p class="mb-0 px-5 color-secondary font-regular">
                         Drag and drop your assignment here when it is completed
                       </p>
-                      <div class="d-flex flex-column custom-overflow px-5 pb-3">
+                      <div class="d-flex flex-column custom-overflow px-5 pb-3 h-100">
                         <div class="row mt-1">
                           <div
                             v-for="item in completedAssignmentList"
@@ -987,6 +1003,22 @@
                             </div>
                           </div> -->
                         </div>
+                        <div
+                            class="
+                              h-100
+                              d-flex
+                              align-items-center
+                              justify-content-center
+                            "
+                            v-if="
+                              !completedAssignmentList ||
+                              completedAssignmentList.length <= 0
+                            "
+                          >
+                            <span class="color-secondary text-center"
+                              >There are no completed tasks today</span
+                            >
+                          </div>
                       </div>
                     </drop>
                   </div>
@@ -1015,7 +1047,7 @@
                         <h3 class="color-primary font-semi-bold">
                           {{ isAddAssignment ? "Add" : "Edit" }} Assignment
                         </h3>
-                        <p class="mb-0 cursor-pointer">
+                        <p class="mb-0 cursor-pointer d-none d-xl-block">
                           <span
                             @click="
                               openAssignment = false;
@@ -1025,6 +1057,15 @@
                             ><i class="fas fa-times"></i
                           ></span>
                         </p>
+                        <button class="
+                        d-block d-xl-none
+                        btn btn-success
+                        border border-dark
+                        py-0
+                        px-4
+                        rounded-12
+                        font-semi-bold mb-2
+                      "><span>Mark as complete</span></button>
                       </div>
                       <!-- <div class="d-flex flex-column custom-overflow">
                         <div class="d-flex flex-column mb-2">
