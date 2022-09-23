@@ -172,20 +172,18 @@
                   <!-- end rounded black button -->
                 </div>
               </div>
-              <div class="col-12 col-md-7 col-lg-8 col-xl-9 h-50 h-md-100">
+              <div class="col-12 col-md-7 col-lg-8 col-xl-9 h-100">
                 <div
                   v-if="showStudentAnalytics || showStudentProfile"
                   class="
                     card card-primary-void
                     rounded-22
-                    p-4
-                    pt-5
                     h-100
                     position-realtive
                   "
                 >
                   <div
-                    class="tab-btns d-flex align-items-center position-absolute"
+                    class="tab-btns d-flex align-items-center position-absolute z-index-9"
                   >
                     <button
                       @click="onTabClick(1)"
@@ -206,7 +204,9 @@
                   </div>
                   <div
                     v-if="showStudentProfile"
-                    class="d-flex flex-column h-40 flex-fill"
+                    class="d-flex flex-column h-40 flex-fill 
+                    p-4
+                    pt-0 custom-overflow my-3 mt-5"
                   >
                     <div class="d-flex py-1 py-md-4 px-0 px-xl-4">
                       <div class="ld-img-section mr-3 mb-0">
@@ -319,7 +319,7 @@
                       </div>
                     </div>
                     <div
-                      class="card card-primary-void rounded-22 h-40 flex-fill"
+                      class="card card-primary-void rounded-22 h-40 flex-fill h-min-400"
                     >
                       <h2
                         class="
@@ -337,7 +337,7 @@
                           <div
                             v-for="detail in pendingAssignments"
                             :key="detail.id"
-                            class="col-md-6 col-xxl-4"
+                            class="col-12 col-lg-6 col-xl-4"
                           >
                             <!-- @click="onAssignmentSelect(detail)" -->
                             <div
@@ -568,7 +568,7 @@
                     </div>
                   </div>
                   <!-- analytics -->
-                  <div v-if="showStudentAnalytics" class="h-100">
+                  <div v-if="showStudentAnalytics" class="h-100 p-4 pt-5">
                     <!-- <h2 class="color-primary font-semi-bold">Analytics</h2> -->
                     <UserAdvisorStudyAnalytics
                       :studentId="studentDetail.id"
