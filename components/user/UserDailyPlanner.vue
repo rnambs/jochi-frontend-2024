@@ -253,7 +253,7 @@
                                       </p>
                                     </div>
                                   </div>
-                                  <div class="sub-task-section mb-3">
+                                  <div class="sub-task-section mb-2">
                                     <h6 class="mb-1">Sub-tasks</h6>
                                     <div
                                       class="
@@ -305,6 +305,7 @@
                                         >
                                       </div>
                                     </div>
+                                    <button class="btn btn-void p-0 pl-2"><span class="text-12">View more</span></button>
                                     <div
                                       v-if="
                                         !item.subTasks ||
@@ -581,7 +582,7 @@
                                     </p>
                                   </div>
                                 </div>
-                                <div class="sub-task-section mb-3">
+                                <div class="sub-task-section mb-2">
                                   <h6 class="mb-1">Sub-tasks</h6>
                                   <div
                                     class="
@@ -644,6 +645,7 @@
                                       >No sub tasks added!</span
                                     >
                                   </div>
+                                  <button class="btn btn-void p-0 pl-2"><span class="text-12">View more</span></button>
                                   <!-- <div class="pl-2 d-flex align-items-center">
                           <input type="radio" class="mr-2" />
                           <label for="" class="mb-0"
