@@ -33,7 +33,7 @@ body{
         transition: all 0.3s;
         &.planner-day-responsive{
             position: fixed;
-            width: calc(100% - 15.625rem);
+            width: calc(100% - 15.625rem); 
             @media (max-width:1023.98px) {
                 width: calc(100% - 14.625rem);
             }
@@ -1024,8 +1024,8 @@ img.card-img{
 .h-min-200{
     min-height: 200px;
 }
-.h-min-400{
-    min-height: 400px !important;
+.h-70{
+    height: 70vh !important;
 }
 .h-max-lg-600{
     @media (max-width:$lg-screen) {
