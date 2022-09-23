@@ -738,7 +738,13 @@
                   class="card-header bg-transparent border-0 p-1"
                   id="headingOne"
                 >
-                  <div class="mb-0 d-flex justify-content-center justify-content-lg-start">
+                  <div
+                    class="
+                      mb-0
+                      d-flex
+                      justify-content-center justify-content-lg-start
+                    "
+                  >
                     <button
                       class="
                         btn btn-link
@@ -886,6 +892,7 @@ export default {
         // alert("alerting" + payload.notification.body);
         // console.info("Message received: ", payload);
         this.getCount();
+        this.getNotifications();
       });
     },
     async getNotifications() {

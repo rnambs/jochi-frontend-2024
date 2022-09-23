@@ -25,6 +25,7 @@
     "cookie-universal-nuxt": "^2.1.5",
     "core-js": "^3.19.0",
     "firebase": "^8.10.1",
+    "fs": "^0.0.1-security",
     "hchs-vue-charts": "^1.2.8",
     "moment": "^2.29.1",
     "nuxt": "^2.15.8",
