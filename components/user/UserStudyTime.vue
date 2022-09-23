@@ -86,7 +86,16 @@
             </div>
           </div>
           <div class="col-lg-5 h-lg-100">
-            <div class="card card-void rounded-22 py-4 h-100 position-realtive h-min-400">
+            <div
+              class="
+                card card-void
+                rounded-22
+                py-4
+                h-100
+                position-realtive
+                h-min-400
+              "
+            >
               <!-- default -->
               <!-- <div class="d-flex justify-content-between flex-column h-100">
                       <div class="head-section">
@@ -3167,7 +3176,7 @@ export default {
                   this.totalStudyTime +=
                     (presentTime - this.studyTimeStart) / 1000;
                 }
-                this.clearInterval(this.limitedInterval);
+                clearInterval(this.limitedInterval);
 
                 if (isPending) {
                   this.AddStudyTime("STOP");
@@ -3476,7 +3485,6 @@ export default {
       if (studyStatus == "STOP") {
         this.onNext();
       }
-      debugger;
       let totalTimeStudied = Math.floor(this.totalStudyTime / 60);
       this.Timersession_id = this.timerStatusData.id;
       this.Timertotal_time = Math.floor(this.totalStudyTime / 60);
@@ -3524,6 +3532,7 @@ export default {
           });
         }
         this.totalStudyTime = 0;
+        debugger;
         if (
           this.studyTypes.id == 2 &&
           studyStatus == "PAUSE" &&
@@ -3577,6 +3586,7 @@ export default {
       this.processingStudySession = false;
     },
     async runCustomTimerRemaining(totalTimeStudied) {
+      debugger;
       this.studyStatus = "break";
       await this.runTimer(this.breakTime * 60);
       this.targetDuration = this.targetDuration - totalTimeStudied;
@@ -3609,7 +3619,7 @@ export default {
     },
 
     async onBackClick() {
-      this.clearInterval(this.limitedInterval);
+      clearInterval(this.limitedInterval);
       this.submitted = false;
       this.addedStudyTime = false;
       this.timerStatus = 0;
@@ -3652,11 +3662,17 @@ export default {
       }
     },
     async runIntervalCustom() {
+      // this.customBreakStarted = true;
+      // var presentTime = new Date().getTime();
+      // this.totalStudyTime += (presentTime - this.studyTimeStart) / 1000;
+      // this.resetTimer();
+
+      // this.AddStudyTime("PAUSE");
       this.customBreakStarted = true;
       var presentTime = new Date().getTime();
       this.totalStudyTime += (presentTime - this.studyTimeStart) / 1000;
-      this.resetTimer();
-
+      clearInterval(this.limitedInterval);
+      console.log(this.studyStatus + "custom interval cleared!");
       this.AddStudyTime("PAUSE");
     },
     async getAllStudySessions() {
@@ -4213,7 +4229,7 @@ export default {
       // }
 
       if (this.limitedInterval > 0) {
-        await this.clearInterval(this.limitedInterval);
+        await clearInterval(this.limitedInterval);
       }
       this.submitted = false;
       this.processing = false;
