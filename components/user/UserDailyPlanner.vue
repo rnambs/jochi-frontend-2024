@@ -517,7 +517,7 @@
                     <div class="row">
                       <div
                         class="col-12 col-md-6 py-3"
-                        v-for="item in pendingAssignments"
+                        v-for="item in tempAssts"
                         :key="item.id"
                       >
                         <drag class="drag h-100" :transfer-data="{ item }">
@@ -825,6 +825,12 @@
                           </div>
                         </drag>
                       </div>
+                      <client-only>
+                        <infinite-loading
+                          class="d-flex align-center"
+                          @infinite="loadNext"
+                        ></infinite-loading>
+                      </client-only>
                       <div
                         class="
                           w-100
@@ -2847,6 +2853,7 @@ import * as animationDataSuccess from "~/assets/success.json";
 import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
 import draggable from "vuedraggable";
+import InfiniteLoading from "vue-infinite-loading";
 
 var fromDate = "";
 var endDate = "";
@@ -2858,6 +2865,7 @@ export default {
     VueTimepicker,
     FullCalendar,
     draggable,
+    InfiniteLoading,
   },
   data() {
     return {
@@ -2965,6 +2973,9 @@ export default {
       drag: false,
       viewMore: false,
       viewMoreId: "",
+      page: 0,
+      limit: 10,
+      tempAssts: [],
     };
   },
   mounted() {
@@ -3197,10 +3208,10 @@ export default {
         //   var color = "#073BBF";
         // }
         var dateMeeting = element.date;
-        var timeValNum = element.default_slot?.start_time;
+        var timeValNum = element.default_slots?.start_time;
         var tmeMeeting = "";
-        if (element.default_slot?.start_time) {
-          tmeMeeting = this.formatAMPM(element.default_slot?.start_time);
+        if (element.default_slots?.start_time) {
+          tmeMeeting = this.formatAMPM(element.default_slots?.start_time);
         }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
@@ -3958,12 +3969,27 @@ export default {
       });
       this.invitePeer = false;
     },
+    async loadNext($state) {
+      this.page += 1;
+      await this.getAssignments({ page: this.page, limit: this.limit });
+      this.assignmentMaterials = [];
+      await this.mapAssignments();
+      await this.mapSharedAssignments();
+      if (this.pendingAssignments.length > 0) {
+        this.tempAssts.push(...this.pendingAssignments);
+        $state.loaded();
+      } else {
+        $state.complete();
+      }
+    },
     async getAssignmentsList() {
       this.pendingAssignments = [];
-      await this.getAssignments();
+      await this.getAssignments({ page: this.page, limit: this.limit });
+
       this.assignmentMaterials = [];
-      this.mapAssignments();
-      this.mapSharedAssignments();
+      await this.mapAssignments();
+      await this.mapSharedAssignments();
+      this.tempAssts = this.pendingAssignments;
     },
     mapAssignments() {
       if (this.assignmentsList && this.assignmentsList.length > 0) {

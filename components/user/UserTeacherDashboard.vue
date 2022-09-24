@@ -1,6 +1,21 @@
 <template>
   <div>
-    <div id="pageLoader" class="bg-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0" style="z-index: 9;" v-if="!isHidden">
+    <div
+      id="pageLoader"
+      class="
+        bg-light
+        d-flex
+        align-items-center
+        justify-content-center
+        position-fixed
+        vh-100
+        vw-100
+        left-0
+        top-0
+      "
+      style="z-index: 9"
+      v-if="!isHidden"
+    >
       <h1 data-loading-text="Loading..." class="display-4 loading"></h1>
     </div>
     <!-- <lottie
@@ -63,7 +78,7 @@
                     "
                   >
                     <h4 class="color-dark mb-4 px-2 font-semi-bold">
-                      Meetings Today
+                      Meetings for {{ showDate }}
                     </h4>
                     <div class="h-40 flex-fill hidden-scroll">
                       <div
@@ -579,7 +594,8 @@ export default {
       reqIdConfirm: "",
       statusConfirm: "",
       dateConfirm: "",
-      isHidden:false
+      isHidden: false,
+      showDate: "",
     };
   },
   mounted() {
@@ -603,7 +619,7 @@ export default {
   methods: {
     activate() {
       console.log("inside hide timeout");
-      setTimeout(() => this.isHidden = true, 1500);
+      setTimeout(() => (this.isHidden = true), 1500);
     },
     ...mapActions("teacherAppointment", {
       listTeacherAgenda: "listTeacherAgenda",
@@ -692,6 +708,11 @@ export default {
           duration: 5000,
         });
       } else if (this.successMessage != "") {
+        if ($("#mediumModal").hasClass("show")) {
+          $("#mediumModal").modal("hide");
+          $(".modal").modal("hide");
+          $(".modal-backdrop").remove();
+        }
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -733,6 +754,7 @@ export default {
 
     handleDateClick: function (arg) {
       this.listAgenda = [];
+      this.showDate = moment(arg.dateStr).format("MM/DD/YYYY");
 
       this.agendaList.forEach((element) => {
         var listObj = {};
