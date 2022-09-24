@@ -627,11 +627,17 @@
                     <span class="color-secondary">No documents added!</span>
                   </div>
                   <div class="col-4 material-date py-0 text-right text-10">
-                    {{ detail.due_date }}
+                    {{ detail.formattedDate }}
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div>
+            <button :disabled="disablePrevious" @click="previous">
+              Previous
+            </button>
+            <button :disabled="disableNext" @click="next">Next</button>
           </div>
           <!-- <div class="col-md-6 col-lg-4">
           <div
@@ -2807,6 +2813,10 @@ export default {
       isRedirect: false,
       sharedSessionId: "",
       sharedNewSessionId: "",
+      page: 0,
+      limit: 10,
+      disablePrevious: true,
+      disableNext: false,
     };
   },
 
@@ -2919,6 +2929,14 @@ export default {
       if (this.limitedInterval <= 0) return;
       event.preventDefault();
       event.returnValue = "";
+    },
+    previous() {
+      this.page = this.page > 0 ? this.page - 1 : 0;
+      this.loadAssignments();
+    },
+    next() {
+      this.page += 1;
+      this.loadAssignments();
     },
     mapPeersInvited() {
       if (this.invitedPeerList && this.invitedPeerList.length > 0) {
@@ -3834,6 +3852,8 @@ export default {
     async loadAssignments() {
       await this.getAssignments({
         student_id: parseInt(localStorage.getItem("id")),
+        page: this.page,
+        limit: this.limit,
       });
       console.log(this.assignmentsList, this.sharedAssignmentsList);
       this.pendingAssignments = [];
@@ -3867,7 +3887,12 @@ export default {
         item.assignment_materials = this.assignmentMaterials;
         item.completed_date = e.completed_date;
         item.dueTimeFormat = e.dueTimeFormat;
-        item.due_date = moment(e.due_date).format("MM/DD/YYYY");
+        item.due_date = e.due_date
+          ? moment(e.due_date).format("MM/DD/YYYY")
+          : "";
+        item.formattedDate = e.due_date
+          ? moment(e.due_date).format("MMMM Do, YYYY")
+          : "";
         item.due_time = e.due_time;
         item.id = e.id;
         item.priority = e.priority;
@@ -3881,7 +3906,7 @@ export default {
         item.updatedAt = e.updatedAt;
         item.user_id = e.user_id;
         item.peers = this.mapPeers(e);
-        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        // item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
         item.isShared = false;
         return item;
       }
@@ -3916,6 +3941,9 @@ export default {
         item.completed_date = e.assignments.completed_date;
         item.dueTimeFormat = e.assignments.dueTimeFormat;
         item.due_date = moment(e.assignments.due_date).format("MM/DD/YYYY");
+        item.formattedDate = e.assignments.due_date
+          ? moment(e.assignments.due_date).format("MMMM Do, YYYY")
+          : "";
         item.due_time = e.assignments.due_time;
         item.id = e.assignments.id;
         item.sharedId = e.id;
@@ -3930,7 +3958,7 @@ export default {
         item.updatedAt = e.assignments.updatedAt;
         item.user_id = e.assignments.user_id;
         item.peers = this.mapPeers(e);
-        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        // item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
         item.isShared = true;
         return item;
       }
