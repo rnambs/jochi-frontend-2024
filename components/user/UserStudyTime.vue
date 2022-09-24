@@ -601,7 +601,10 @@
                 <h6 class="mb-1 font-medium">Additional Materials</h6>
                 <div class="d-flex align-items-center justify-content-between">
                   <div
-                    v-if="detail.assignment_materials"
+                    v-if="
+                      detail.assignment_materials &&
+                      detail.assignment_materials.length > 0
+                    "
                     class="col-8 py-0 pl-0 text-12 d-flex flex-column"
                   >
                     <div class="d-flex flex-column lext-limited">
