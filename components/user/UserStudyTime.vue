@@ -636,12 +636,13 @@
               </div>
             </div>
           </div>
-          <div>
+          <div v-if="pendingAssignments && pendingAssignments.length > 0">
             <button :disabled="disablePrevious" @click="previous">
               Previous
             </button>
             <button :disabled="disableNext" @click="next">Next</button>
           </div>
+          <div v-else>No pending assignments!</div>
           <!-- <div class="col-md-6 col-lg-4">
           <div
             class="
