@@ -19,7 +19,9 @@ const state = {
   studySessionDetail: {},
   assignmentsList: [],
   sharedAssignmentsList: [],
-  startStudyResponse: {}
+  startStudyResponse: {},
+  assignmentsCount: 0,
+  sharedAssignmentsCount: 0
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -331,6 +333,8 @@ const actions = {
       // commit('setAssignments', response.data);
       commit('setAssignmentsList', response.assignments);
       commit('setSharedAssignmentsList', response.shared_assignments);
+      commit('setAssignmentsCount', response.assignments_count);
+      commit('setSharedAssignmentsCount', response.shared_assignments_count);
 
       // } else {
       //   commit('setStatusTimer', 'ended');
@@ -433,6 +437,12 @@ const mutations = {
   setStartStudyResponse(state, data) {
     state.startStudyResponse = data;
   },
+  setAssignmentsCount(state, data) {
+    state.assignmentsCount = data;
+  },
+  setSharedAssignmentsCount(state, data) {
+    state.sharedAssignmentsCount = data;
+  },
 
 
 }
@@ -490,6 +500,12 @@ const getters = {
   },
   startStudyResponse: () => {
     return state.startStudyResponse;
+  },
+  assignmentsCount: () => {
+    return state.assignmentsCount;
+  },
+  sharedAssignmentsCount: () => {
+    return state.sharedAssignmentsCount;
   },
 
 

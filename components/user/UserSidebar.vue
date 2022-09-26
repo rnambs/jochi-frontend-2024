@@ -902,6 +902,8 @@ export default {
       let isGg4lDataSynced = localStorage.getItem("isGg4lDataSynced");
       if (isGg4lDataSynced != "1") {
         await this.syncData();
+        localStorage.setItem("isGg4lDataSynced", "1");
+        this.$router.go();
       }
     },
   },

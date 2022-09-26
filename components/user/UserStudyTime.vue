@@ -492,19 +492,45 @@
           </button>
           <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
         </div>
-        <div v-if="pendingAssignments && pendingAssignments.length > 0" class="d-flex align-items-center">
+        <div
+          v-if="pendingAssignments && pendingAssignments.length > 0"
+          class="d-flex align-items-center"
+        >
           <button :disabled="disablePrevious" @click="previous" class="btn p-1">
-            <span class="bg-theme d-flex align-items-center justify-content-center rounded-circle btn-circle"
-            ><i class="fa-solid fa-chevron-left color-white text-12"></i></span>
+            <span
+              class="
+                bg-theme
+                d-flex
+                align-items-center
+                justify-content-center
+                rounded-circle
+                btn-circle
+              "
+              ><i class="fa-solid fa-chevron-left color-white text-12"></i
+            ></span>
           </button>
           <button :disabled="disableNext" @click="next" class="btn p-1">
-            <span class="ml-1 bg-theme d-flex align-items-center justify-content-center rounded-circle btn-circle"
-            ><i class="fa-solid fa-chevron-right color-white text-12"></i></span
-          >
+            <span
+              class="
+                ml-1
+                bg-theme
+                d-flex
+                align-items-center
+                justify-content-center
+                rounded-circle
+                btn-circle
+              "
+              ><i class="fa-solid fa-chevron-right color-white text-12"></i
+            ></span>
           </button>
         </div>
       </div>
-      <div v-if="!pendingAssignments || pendingAssignments.length < 1" class="d-flex align-items-center justify-content-center w-100 h-100 "><span class="text-secondary">No pending assignments!</span></div>
+      <div
+        v-if="!pendingAssignments || pendingAssignments.length < 1"
+        class="d-flex align-items-center justify-content-center w-100 h-100"
+      >
+        <span class="text-secondary">No pending assignments!</span>
+      </div>
       <div>
         <div class="row">
           <div
@@ -2828,6 +2854,7 @@ export default {
       limit: 10,
       disablePrevious: true,
       disableNext: false,
+      pageCount: 0,
     };
   },
 
@@ -2906,6 +2933,8 @@ export default {
       assignmentsList: (state) => state.assignmentsList,
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
       startStudyResponse: (state) => state.startStudyResponse,
+      assignmentsCount: (state) => state.assignmentsCount,
+      sharedAssignmentsCount: (state) => state.sharedAssignmentsCount,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -3867,9 +3896,23 @@ export default {
         limit: this.limit,
       });
       console.log(this.assignmentsList, this.sharedAssignmentsList);
+      this.mapCount();
       this.pendingAssignments = [];
       this.mapAssignments();
       this.mapSharedAssignments();
+    },
+
+    mapCount() {
+      this.sharedAssignmentsCount;
+      this.assignmentsCount;
+
+      if (this.sharedAssignmentsCount > 0 || this.assignmentsCount > 0) {
+        let sharedPages = Math.ceil(this.sharedAssignmentsCount / 10);
+        let asstPages = Math.ceil(this.assignmentsCount / 10);
+        this.pageCount = sharedPages > asstPages ? sharedPages : asstPages;
+        this.disableNext = this.pageCount == this.page + 1;
+      }
+      this.disablePrevious = this.page == 0;
     },
 
     mapAssignments() {
