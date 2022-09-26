@@ -325,32 +325,20 @@ body {
 .btn.btn-secondary:hover {
   background-color: #000000;
 }
-.btn span.arrow.arrow-left {
+.btn span.arrow {
   padding-left: 0.5rem;
 }
-.btn span.arrow.arrow-right {
-  padding-right: 0.5rem;
-}
-.btn span.arrow-text.arrow-text-left {
+.btn span.arrow-text {
   padding-left: 0rem;
-}
-.btn span.arrow-text.arrow-text-right {
-  padding-right: 0rem;
 }
 .btn:hover {
   transition: ease-in-out all 0.3s;
 }
-.btn:hover span.arrow.arrow-left {
+.btn:hover span.arrow {
   padding-left: 0rem;
 }
-.btn:hover span.arrow.arrow-right {
-  padding-right: 0rem;
-}
-.btn:hover span.arrow-text.arrow-text-left {
+.btn:hover span.arrow-text {
   padding-left: 0.5rem;
-}
-.btn:hover span.arrow-text.arrow-text-right {
-  padding-right: 0.5rem;
 }
 .btn.btn-rounded {
   bottom: 1.5rem;
@@ -368,6 +356,11 @@ body {
   color: #FF6D6D;
   font-size: 30px;
   font-weight: 600;
+}
+
+.btn-circle {
+  width: 24px;
+  height: 24px;
 }
 
 .tab-btns {
