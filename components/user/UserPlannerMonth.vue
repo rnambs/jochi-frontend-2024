@@ -3401,6 +3401,7 @@ export default {
       completedAssignments: (state) => state.completedAssignments,
       completedSharedAssignments: (state) => state.completedSharedAssignments,
       newAdditionalMaterial: (state) => state.newAdditionalMaterial,
+      allSubTskCompleted: (state) => state.allSubTskCompleted,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -4186,7 +4187,14 @@ export default {
         subject_id: this.isSharedAssignment ? this.subjectId : this.subject?.id,
         due_time: this.timeValue,
         due_date: dfE,
-        priority: priority,
+        priority:
+          this.priorityVal == "Urgent"
+            ? 1
+            : this.priorityVal == "Important"
+            ? 2
+            : this.priorityVal == "Can Wait"
+            ? 3
+            : "",
         shared_users_ids: peersSelected,
         assignment_materials: assignment_materials,
         subTasks: subTaskLists,
@@ -5267,8 +5275,12 @@ export default {
         });
         await this.getAssignmentsList();
         await this.getAllCompletedAssignments();
-        if (this.checkAllCompleted()) {
-          await this.completeAssignment();
+        if (this.allSubTskCompleted) {
+          // await this.completeAssignment();
+          this.playCelebration = true;
+          const myTimeout = setTimeout(() => {
+            this.playCelebration = false;
+          }, 5000);
         }
       } else if (this.errorMessage != "") {
         this.$toast.open({

@@ -20,7 +20,8 @@ const state = {
   sessionList: [],
   sharedAstList: [],
   sharedSessionList: [],
-  clubMeetings: []
+  clubMeetings: [],
+  allSubTskCompleted: false
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -319,6 +320,7 @@ const actions = {
         commit('setErrorType', "");
         commit('setSuccessMessage', response.message);
         commit('setSuccessType', "success");
+        commit('setAllSubTskCompleted', response.all_sub_task_completed);
       }
 
     } catch (e) {
@@ -501,6 +503,9 @@ const mutations = {
   setClubMeetings(state, data) {
     state.clubMeetings = data;
   },
+  setAllSubTskCompleted(state, data) {
+    state.allSubTskCompleted = data;
+  },
 }
 const getters = {
 
@@ -563,6 +568,9 @@ const getters = {
   },
   clubMeetings: () => {
     return state.clubMeetings;
+  },
+  allSubTskCompleted: () => {
+    return state.allSubTskCompleted;
   },
 }
 
