@@ -483,14 +483,26 @@
     >
       <h2 class="color-primary font-bold mb-1">Step One:</h2>
       <h2 class="color-primary font-bold mb-1">Choose An Assignment</h2>
-      <div class="d-flex">
+        <div v-if="pendingAssignments && pendingAssignments.length > 0" class="d-flex align-items-center justify-content-between">
+          <button :disabled="disablePrevious" @click="previous" class="btn color-secondary">
+            <span class="mr-2 arrow arrow-left"
+            ><i class="fas fa-long-arrow-alt-left"></i></span>
+            <span class="arrow-text arrow-text-left">Previous</span>
+          </button>
+          <button :disabled="disableNext" @click="next" class="btn color-secondary">
+            <span class="arrow-text arrow-text-right ">Next</span><span class="ml-2 arrow arrow-right"
+            ><i class="fas fa-long-arrow-alt-right"></i></span
+          >
+          </button>
+        </div>
+      <!-- <div class="d-flex">
         <button @click="onBack()" class="btn color-secondary">
           <span class="mr-2 arrow"
             ><i class="fas fa-long-arrow-alt-left"></i></span
           ><span class="arrow-text">Back</span>
-        </button>
+        </button> -->
         <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
-      </div>
+      <!-- </div> -->
       <div>
         <div class="row">
           <div
@@ -636,13 +648,7 @@
               </div>
             </div>
           </div>
-          <div v-if="pendingAssignments && pendingAssignments.length > 0">
-            <button :disabled="disablePrevious" @click="previous">
-              Previous
-            </button>
-            <button :disabled="disableNext" @click="next">Next</button>
-          </div>
-          <div v-else>No pending assignments!</div>
+          <div v-if="!pendingAssignments || pendingAssignments.length < 1">No pending assignments!</div>
           <!-- <div class="col-md-6 col-lg-4">
           <div
             class="

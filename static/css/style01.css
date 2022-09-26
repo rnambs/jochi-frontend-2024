@@ -325,20 +325,32 @@ body {
 .btn.btn-secondary:hover {
   background-color: #000000;
 }
-.btn span.arrow {
+.btn span.arrow.arrow-left {
   padding-left: 0.5rem;
 }
-.btn span.arrow-text {
+.btn span.arrow.arrow-right {
+  padding-right: 0.5rem;
+}
+.btn span.arrow-text.arrow-text-left {
   padding-left: 0rem;
+}
+.btn span.arrow-text.arrow-text-right {
+  padding-right: 0rem;
 }
 .btn:hover {
   transition: ease-in-out all 0.3s;
 }
-.btn:hover span.arrow {
+.btn:hover span.arrow.arrow-left {
   padding-left: 0rem;
 }
-.btn:hover span.arrow-text {
+.btn:hover span.arrow.arrow-right {
+  padding-right: 0rem;
+}
+.btn:hover span.arrow-text.arrow-text-left {
   padding-left: 0.5rem;
+}
+.btn:hover span.arrow-text.arrow-text-right {
+  padding-right: 0.5rem;
 }
 .btn.btn-rounded {
   bottom: 1.5rem;

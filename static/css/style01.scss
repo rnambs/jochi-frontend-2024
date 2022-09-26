@@ -294,19 +294,39 @@ body{
         }
     }
     span.arrow{
-        padding-left: 0.5rem;
+        &.arrow-left{
+            padding-left: 0.5rem;
+        }
+        &.arrow-right{
+            padding-right: 0.5rem;
+        }
     }
     span.arrow-text{
-        padding-left: 0rem;
+        &.arrow-text-left{
+            padding-left: 0rem;
+        }
+        &.arrow-text-right{
+            padding-right: 0rem;
+        }
     }
     &:hover{
         transition: ease-in-out all 0.3s;
         span.arrow{
-            padding-left: 0rem;
+            &.arrow-left{
+                padding-left: 0rem;
+            }
+            &.arrow-right{
+                padding-right: 0rem;
+            }
         }
         span.arrow-text{
-            padding-left: 0.5rem;
-        }
+            &.arrow-text-left{
+                padding-left: 0.5rem;
+            }
+            &.arrow-text-right{
+                padding-right: 0.5rem;
+            }
+        } 
     }
     &.btn-rounded{
         bottom: 1.5rem;
