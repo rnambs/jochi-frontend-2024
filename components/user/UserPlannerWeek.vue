@@ -5530,6 +5530,9 @@ export default {
           text: data.subjects?.subject_name,
         };
       }
+      if (this.schoologyAssignment == "1") {
+        this.gg4lSubject = data.subject;
+      }
       // this.dateValue = data.due_date;
       this.dateValue = data.due_date
         ? moment(data.due_date).format("MM/DD/YYYY")
