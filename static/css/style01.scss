@@ -1040,8 +1040,8 @@ img.card-img{
 .h-min-400{
     min-height: 400px;
 }
-.h-70{
-    height: 70vh !important;
+.h-min-70{
+    min-height: 70vh !important;
 }
 .h-max-lg-600{
     @media (max-width:$lg-screen) {

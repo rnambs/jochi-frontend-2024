@@ -1006,8 +1006,8 @@ img.card-img {
   min-height: 400px;
 }
 
-.h-70 {
-  height: 70vh !important;
+.h-min-70 {
+  min-height: 70vh !important;
 }
 
 @media (max-width: 1199.98px) {
