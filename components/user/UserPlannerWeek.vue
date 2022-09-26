@@ -833,11 +833,10 @@
                                       <div class="sub-task-section mb-2">
                                         <h6 class="mb-1">Sub-tasks</h6>
                                         <div
-                                          class="
-                                            d-flex
-                                            flex-column
-                                            overflow-hidden
-                                            vh-10
+                                          :class="
+                                            viewMore && viewMoreId == item.id
+                                              ? 'd-flex flex-column  overflow-auto vh-10'
+                                              : ' d-flex flex-column overflow-hidden vh-10'
                                           "
                                         >
                                           <div
@@ -893,7 +892,15 @@
                                             >No sub tasks added!</span
                                           >
                                         </div>
-                                        <button class="btn btn-void p-0 pl-2"><span class="text-12">View more</span></button>
+                                        <button
+                                          v-if="
+                                            !viewMore || viewMoreId != item.id
+                                          "
+                                          @click="viewMoreClick($event, item)"
+                                          class="btn btn-void p-0 pl-2"
+                                        >
+                                          <span class="text-12">View more</span>
+                                        </button>
                                         <!-- <div class="pl-2 d-flex align-items-center">
                               <input type="radio" class="mr-2" />
                               <label for="" class="mb-0"
@@ -1102,7 +1109,7 @@
                         <div class="row">
                           <div
                             class="col-12 col-md-6 py-3"
-                            v-for="item in pendingAssignments"
+                            v-for="item in tempAssts"
                             :key="item.id"
                           >
                             <drag class="drag h-100" :transfer-data="{ item }">
@@ -1175,11 +1182,10 @@
                                     <div class="sub-task-section mb-2">
                                       <h6 class="mb-1">Sub-tasks</h6>
                                       <div
-                                        class="
-                                          d-flex
-                                          flex-column
-                                          overflow-hidden
-                                          vh-10
+                                        :class="
+                                          viewMore && viewMoreId == item.id
+                                            ? 'd-flex flex-column  overflow-auto vh-10'
+                                            : ' d-flex flex-column overflow-hidden vh-10'
                                         "
                                       >
                                         <div
@@ -1235,7 +1241,15 @@
                                           >No sub tasks added!</span
                                         >
                                       </div>
-                                      <button class="btn btn-void p-0 pl-2"><span class="text-12">View more</span></button>
+                                      <button
+                                        v-if="
+                                          !viewMore || viewMoreId != item.id
+                                        "
+                                        @click="viewMoreClick($event, item)"
+                                        class="btn btn-void p-0 pl-2"
+                                      >
+                                        <span class="text-12">View more</span>
+                                      </button>
                                       <!-- <div class="pl-2 d-flex align-items-center">
                               <input type="radio" class="mr-2" />
                               <label for="" class="mb-0"
@@ -1419,6 +1433,12 @@
                               </div>
                             </drag>
                           </div>
+                          <client-only>
+                            <infinite-loading
+                              class="d-flex align-center"
+                              @infinite="loadNext"
+                            ></infinite-loading>
+                          </client-only>
                           <div
                             class="
                               w-100
@@ -1453,7 +1473,15 @@
                           <h2 class="color-primary font-semi-bold px-5">
                             Completed This Week
                           </h2>
-                          <p class="mb-0 px-5 color-secondary font-regular">
+                          <p
+                            class="
+                              d-none d-xl-block
+                              mb-0
+                              px-5
+                              color-secondary
+                              font-regular
+                            "
+                          >
                             Drag and drop your assignment here when it is
                             completed
                           </p>
@@ -1562,7 +1590,14 @@
                             completed
                           </p>
                           <div
-                            class="d-flex flex-column custom-overflow px-5 pb-3 h-100"
+                            class="
+                              d-flex
+                              flex-column
+                              custom-overflow
+                              px-5
+                              pb-3
+                              h-100
+                            "
                           >
                             <div class="row mt-1">
                               <div
@@ -1608,21 +1643,21 @@
                       </div> -->
                             </div>
                             <div
-                                class="
-                                  h-100
-                                  d-flex
-                                  align-items-center
-                                  justify-content-center
-                                "
-                                v-if="
-                                  !completedAssignmentList ||
-                                  completedAssignmentList.length <= 0
-                                "
+                              class="
+                                h-100
+                                d-flex
+                                align-items-center
+                                justify-content-center
+                              "
+                              v-if="
+                                !completedAssignmentList ||
+                                completedAssignmentList.length <= 0
+                              "
+                            >
+                              <span class="color-secondary text-center"
+                                >No completed tasks for this week</span
                               >
-                                <span class="color-secondary text-center"
-                                  >No completed tasks for this week</span
-                                >
-                              </div>
+                            </div>
                           </div>
                         </drop>
                       </div>
@@ -1664,15 +1699,28 @@
                                 ><i class="fas fa-times"></i
                               ></span>
                             </p>
-                            <div class="d-flex justify-content-end d-block d-xl-none">
-                              <button class="
-                              btn btn-success
-                              border border-dark
-                              py-0
-                              px-4
-                              rounded-12
-                              font-semi-bold mb-2
-                            "><span>Mark as complete</span></button>
+                            <div
+                              class="
+                                d-flex
+                                justify-content-end
+                                d-block d-xl-none
+                              "
+                            >
+                              <button
+                                v-if="!isAddAssignment"
+                                class="
+                                  btn btn-success
+                                  border border-dark
+                                  py-0
+                                  px-4
+                                  rounded-12
+                                  font-semi-bold
+                                  mb-2
+                                "
+                                @click="confirmComplete"
+                              >
+                                <span>Mark as complete</span>
+                              </button>
                             </div>
                           </div>
                           <!-- <div class="d-flex flex-column custom-overflow">
@@ -3384,6 +3432,8 @@ import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
 import "vue2-timepicker/dist/VueTimepicker.css";
 import draggable from "vuedraggable";
+import InfiniteLoading from "vue-infinite-loading";
+
 var fromDate = "";
 var endDate = "";
 var eventList = [];
@@ -3395,6 +3445,7 @@ export default {
     lottie,
     VueTimepicker,
     draggable,
+    InfiniteLoading,
   },
   data() {
     return {
@@ -3498,6 +3549,11 @@ export default {
       deletedSubTasksArray: [],
       tempCompleted: [],
       drag: false,
+      viewMore: false,
+      viewMoreId: "",
+      page: 0,
+      limit: 10,
+      tempAssts: [],
     };
   },
 
@@ -3868,10 +3924,10 @@ export default {
         //   var color = "#073BBF";
         // }
         var dateMeeting = element.date;
-        var timeValNum = element.default_slot?.start_time;
+        var timeValNum = element.default_slots?.start_time;
         var tmeMeeting = "";
-        if (element.default_slot?.start_time) {
-          tmeMeeting = this.formatAMPM(element.default_slot?.start_time);
+        if (element.default_slots?.start_time) {
+          tmeMeeting = this.formatAMPM(element.default_slots?.start_time);
         }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
@@ -4320,6 +4376,13 @@ export default {
     //   this.submitted = false;
     //   this.processing = false;
     // },
+    viewMoreClick(event, item) {
+      console.log("view more", event, item);
+      event.preventDefault();
+      event.stopPropagation();
+      this.viewMore = true;
+      this.viewMoreId = item.id;
+    },
     async openModal() {
       this.isAssignmentEdit = false;
       $("#exampleModalCenter").modal({ backdrop: true });
@@ -4671,12 +4734,27 @@ export default {
     filterPlanner() {
       $("#filterModal").modal("show");
     },
+    async loadNext($state) {
+      this.page += 1;
+      await this.getAssignments({ page: this.page, limit: this.limit });
+      this.assignmentMaterials = [];
+      await this.mapAssignments();
+      await this.mapSharedAssignments();
+      if (this.pendingAssignments.length > 0) {
+        this.tempAssts.push(...this.pendingAssignments);
+        $state.loaded();
+      } else {
+        $state.complete();
+      }
+    },
     async getAssignmentsList() {
       this.pendingAssignments = [];
-      await this.getAssignments();
-      console.log(this.assignmentsList);
-      console.log(this.sharedAssignmentsList);
-      this.mapAssignments();
+      await this.getAssignments({ page: this.page, limit: this.limit });
+
+      this.assignmentMaterials = [];
+      await this.mapAssignments();
+      await this.mapSharedAssignments();
+      this.tempAssts = this.pendingAssignments;
     },
     async applyFilter() {
       if (!this.filterType) {
@@ -5299,6 +5377,8 @@ export default {
       });
       this.processingCompleteAssignment = false;
       if (this.successMessage != "") {
+        this.openAssignment = false;
+
         this.getAssignmentsList();
         this.getAllCompletedAssignments();
         this.completeAsstId = 0;
@@ -5468,11 +5548,8 @@ export default {
       });
     },
     confirmComplete() {
-      // this.completeAsstId = id;
+      this.completeAsstId = this.assignmentId;
       $("#completeConfirm").modal({ backdrop: true });
-
-      // event.preventDefault();
-      // event.stopPropagation();
     },
     confirmSubTaskComplete(event, id, asstId) {
       if (status == "Completed") {

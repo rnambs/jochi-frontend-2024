@@ -604,10 +604,10 @@
                               : 'Meeting Location'
                           "
                           v-model="venue"
-                          :class="{
+                        />
+                        <!-- :class="{
                             'is-invalid': submitted && $v.venue.$error,
                           }"
-                        />
                         <div
                           v-if="submitted && $v.venue.$error"
                           class="invalid-feedback"
@@ -615,7 +615,7 @@
                           <span v-if="!$v.venue.required"
                             >This field is required</span
                           >
-                        </div>
+                        </div> -->
                       </div>
                       <table class="w-100 table-modal custom-row-table">
                         <!-- <tr>
@@ -1002,7 +1002,7 @@ export default {
     meeting_name: { required },
     meeting_description: { required },
     conversation_type: { required },
-    venue: { required },
+    // venue: { required },
     // meeting_link: { required },
   },
   mounted() {
@@ -1236,7 +1236,7 @@ export default {
     },
     async ScheduleConfirm() {
       let valid = true;
-      if (this.conversation_type == "Video Conference") {
+      if (this.conversation_type == "Video Conference" && this.venue) {
         valid = this.isValidHttpUrl(this.venue);
       }
       if (valid) {
