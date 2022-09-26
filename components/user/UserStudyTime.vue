@@ -93,7 +93,7 @@
                 py-4
                 h-100
                 position-realtive
-                h-70
+                h-min-70
               "
             >
               <!-- default -->
@@ -483,13 +483,53 @@
     >
       <h2 class="color-primary font-bold mb-1">Step One:</h2>
       <h2 class="color-primary font-bold mb-1">Choose An Assignment</h2>
-      <div class="d-flex">
-        <button @click="onBack()" class="btn color-secondary">
-          <span class="mr-2 arrow"
-            ><i class="fas fa-long-arrow-alt-left"></i></span
-          ><span class="arrow-text">Back</span>
-        </button>
-        <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex">
+          <button @click="onBack()" class="btn color-secondary">
+            <span class="mr-2 arrow"
+              ><i class="fas fa-long-arrow-alt-left"></i></span
+            ><span class="arrow-text">Back</span>
+          </button>
+          <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
+        </div>
+        <div
+          v-if="pendingAssignments && pendingAssignments.length > 0"
+          class="d-flex align-items-center"
+        >
+          <button :disabled="disablePrevious" @click="previous" class="btn p-1">
+            <span
+              class="
+                bg-theme
+                d-flex
+                align-items-center
+                justify-content-center
+                rounded-circle
+                btn-circle
+              "
+              ><i class="fa-solid fa-chevron-left color-white text-12"></i
+            ></span>
+          </button>
+          <button :disabled="disableNext" @click="next" class="btn p-1">
+            <span
+              class="
+                ml-1
+                bg-theme
+                d-flex
+                align-items-center
+                justify-content-center
+                rounded-circle
+                btn-circle
+              "
+              ><i class="fa-solid fa-chevron-right color-white text-12"></i
+            ></span>
+          </button>
+        </div>
+      </div>
+      <div
+        v-if="!pendingAssignments || pendingAssignments.length < 1"
+        class="d-flex align-items-center justify-content-center w-100 h-100"
+      >
+        <span class="text-secondary">No pending assignments!</span>
       </div>
       <div>
         <div class="row">
@@ -601,7 +641,10 @@
                 <h6 class="mb-1 font-medium">Additional Materials</h6>
                 <div class="d-flex align-items-center justify-content-between">
                   <div
-                    v-if="detail.assignment_materials"
+                    v-if="
+                      detail.assignment_materials &&
+                      detail.assignment_materials.length > 0
+                    "
                     class="col-8 py-0 pl-0 text-12 d-flex flex-column"
                   >
                     <div class="d-flex flex-column lext-limited">
@@ -632,12 +675,6 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div>
-            <button :disabled="disablePrevious" @click="previous">
-              Previous
-            </button>
-            <button :disabled="disableNext" @click="next">Next</button>
           </div>
           <!-- <div class="col-md-6 col-lg-4">
           <div
@@ -2813,10 +2850,11 @@ export default {
       isRedirect: false,
       sharedSessionId: "",
       sharedNewSessionId: "",
-      page: 0,
+      offset: 0,
       limit: 10,
       disablePrevious: true,
       disableNext: false,
+      pageCount: 0,
     };
   },
 
@@ -2895,6 +2933,8 @@ export default {
       assignmentsList: (state) => state.assignmentsList,
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
       startStudyResponse: (state) => state.startStudyResponse,
+      assignmentsCount: (state) => state.assignmentsCount,
+      sharedAssignmentsCount: (state) => state.sharedAssignmentsCount,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -2931,11 +2971,11 @@ export default {
       event.returnValue = "";
     },
     previous() {
-      this.page = this.page > 0 ? this.page - 1 : 0;
+      this.offset = this.offset > 0 ? this.offset - this.limit : 0;
       this.loadAssignments();
     },
     next() {
-      this.page += 1;
+      this.offset = this.offset + this.limit;
       this.loadAssignments();
     },
     mapPeersInvited() {
@@ -3852,13 +3892,31 @@ export default {
     async loadAssignments() {
       await this.getAssignments({
         student_id: parseInt(localStorage.getItem("id")),
-        page: this.page,
+        offset: this.offset,
         limit: this.limit,
       });
       console.log(this.assignmentsList, this.sharedAssignmentsList);
+      this.mapCount();
       this.pendingAssignments = [];
       this.mapAssignments();
       this.mapSharedAssignments();
+    },
+
+    mapCount() {
+      this.sharedAssignmentsCount;
+      this.assignmentsCount;
+
+      if (this.sharedAssignmentsCount > 0 || this.assignmentsCount > 0) {
+        let sharedPages = Math.floor(this.sharedAssignmentsCount / 10);
+        let asstPages = Math.floor(this.assignmentsCount / 10);
+        this.pageCount = sharedPages > asstPages ? sharedPages : asstPages;
+        this.disableNext =
+          sharedPages > asstPages
+            ? sharedPages * this.limit == this.offset
+            : asstPages * this.limit == this.offset;
+        //  this.pageCount == this.offset + 1;
+      }
+      this.disablePrevious = this.offset == 0;
     },
 
     mapAssignments() {

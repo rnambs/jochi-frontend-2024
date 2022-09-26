@@ -326,6 +326,10 @@ body{
         font-weight: 600;
     }
 }
+.btn-circle{
+    width: 24px;
+    height: 24px;
+}
 .tab-btns{
     // transform: rotate(-90deg);
     // top: 50vh;
@@ -1040,8 +1044,8 @@ img.card-img{
 .h-min-400{
     min-height: 400px;
 }
-.h-70{
-    height: 70vh !important;
+.h-min-70{
+    min-height: 70vh !important;
 }
 .h-max-lg-600{
     @media (max-width:$lg-screen) {

@@ -304,7 +304,13 @@
                                         >
                                       </div>
                                     </div>
-                                    <button class="btn btn-void p-0 pl-2">
+                                    <button
+                                      v-if="
+                                        item.subTasks &&
+                                        item.subTasks.length > 3
+                                      "
+                                      class="btn btn-void p-0 pl-2"
+                                    >
                                       <span class="text-12">View more</span>
                                     </button>
                                     <div
@@ -497,7 +503,7 @@
                           </div>
                         </div>
                       </draggable>
-                      <div
+                      <!-- <div
                         class="
                           w-100
                           d-flex
@@ -511,7 +517,7 @@
                         <span class="color-secondary"
                           >No pending assignments</span
                         >
-                      </div>
+                      </div> -->
                     </div>
                     <!-- hide -->
                     <div class="row">
@@ -646,7 +652,11 @@
                                     >
                                   </div>
                                   <button
-                                    v-if="!viewMore || viewMoreId != item.id"
+                                    v-if="
+                                      item.subTasks &&
+                                      item.subTasks.length > 4 &&
+                                      (!viewMore || viewMoreId != item.id)
+                                    "
                                     @click="viewMoreClick($event, item)"
                                     class="btn btn-void p-0 pl-2"
                                   >
@@ -827,11 +837,16 @@
                       </div>
                       <client-only>
                         <infinite-loading
-                          class="d-flex align-center"
+                          class="
+                            d-flex
+                            align-items-center
+                            w-100
+                            justify-content-center
+                          "
                           @infinite="loadNext"
                         ></infinite-loading>
                       </client-only>
-                      <div
+                      <!-- <div
                         class="
                           w-100
                           d-flex
@@ -845,7 +860,7 @@
                         <span class="color-secondary"
                           >No pending assignments</span
                         >
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                   <!-- drag end -->
@@ -1218,7 +1233,17 @@
                               <label for="recipient-name" class="col-form-label"
                                 >Subject<em>*</em></label
                               >
+                              <input
+                                v-if="schoologyAssignment == '1'"
+                                type="text"
+                                class="form-control"
+                                id="message-text"
+                                v-model="gg4lSubject"
+                                maxlength="125"
+                                placeholder="Enter assignment name"
+                              />
                               <select
+                                v-else
                                 class="form-control"
                                 tabindex=""
                                 v-model="subject"
@@ -2397,7 +2422,19 @@
                 <label for="recipient-name" class="col-form-label"
                   >Subject<em>*</em></label
                 >
+
+                <input
+                  v-if="schoologyAssignment == '1'"
+                  type="text"
+                  class="form-control"
+                  id="message-text"
+                  v-model="gg4lSubject"
+                  maxlength="125"
+                  placeholder="Enter assignment name"
+                />
+
                 <select
+                  v-else
                   class="form-control"
                   tabindex=""
                   v-model="subject"
@@ -2973,9 +3010,11 @@ export default {
       drag: false,
       viewMore: false,
       viewMoreId: "",
-      page: 0,
+      offset: 0,
       limit: 10,
       tempAssts: [],
+      gg4lSubject: "",
+      schoologyAssignment: "",
     };
   },
   mounted() {
@@ -3390,13 +3429,10 @@ export default {
         text: subject?.subject_name,
       };
       this.task = this.assignment.task;
+      let date = "";
       if (this.assignment.due_date) {
         let dateSplit = this.assignment.due_date.split("-");
-        let date = new Date(
-          dateSplit[0],
-          Number(dateSplit[1] - 1),
-          dateSplit[2]
-        );
+        date = new Date(dateSplit[0], Number(dateSplit[1] - 1), dateSplit[2]);
       }
       this.dateValue = date ? date : "";
       this.timeValue = this.assignment.due_time;
@@ -3970,8 +4006,9 @@ export default {
       this.invitePeer = false;
     },
     async loadNext($state) {
-      this.page += 1;
-      await this.getAssignments({ page: this.page, limit: this.limit });
+      this.pendingAssignments = [];
+      this.offset = this.offset + this.limit;
+      await this.getAssignments({ offset: this.offset, limit: this.limit });
       this.assignmentMaterials = [];
       await this.mapAssignments();
       await this.mapSharedAssignments();
@@ -3983,8 +4020,9 @@ export default {
       }
     },
     async getAssignmentsList() {
+      this.offset = 0;
       this.pendingAssignments = [];
-      await this.getAssignments({ page: this.page, limit: this.limit });
+      await this.getAssignments({ offset: this.offset, limit: this.limit });
 
       this.assignmentMaterials = [];
       await this.mapAssignments();
@@ -4051,7 +4089,6 @@ export default {
         item.due_time = e.due_time;
         item.id = e.id;
         item.priority = e.priority;
-        item.schoologyAssignment = e.schoologyAssignment;
         item.schoologyAssignmentId = e.schoologyAssignmentId;
         item.subTasks = e.subTasks;
         item.subject = e.subject;
@@ -4060,6 +4097,7 @@ export default {
         item.task_status = e.task_status;
         item.updatedAt = e.updatedAt;
         item.user_id = e.user_id;
+        item.schoologyAssignment = e.schoologyAssignment;
         item.peers = this.mapPeers(e);
         if (e.due_date) {
           item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
@@ -4134,7 +4172,6 @@ export default {
         item.id = e.assignments.id;
         item.sharedId = e.id;
         item.priority = e.assignments.priority;
-        item.schoologyAssignment = e.assignments.schoologyAssignment;
         item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
         item.subTasks = e.assignments?.subTasks;
         item.subject = e.assignments?.subjects?.subject_name;
@@ -4143,6 +4180,7 @@ export default {
         item.task_status = e.assignments.task_status;
         item.updatedAt = e.assignments.updatedAt;
         item.user_id = e.assignments.user_id;
+        item.schoologyAssignment = e.schoologyAssignment;
         item.peers = this.mapPeers(e);
         if (e.assignments.due_date) {
           item.formattedDate = moment(e.assignments.due_date).format(
@@ -4311,8 +4349,9 @@ export default {
       // peerSelected
     },
     mapAssignmentDetail(data) {
+      console.log(data);
       this.isSharedAssignment = data.isShared;
-
+      this.schoologyAssignment = data.schoologyAssignment;
       this.assignmentId = data.id;
       this.assignmentName = data.task;
       this.assignmentDescription = data.assignment_description;
@@ -4333,6 +4372,9 @@ export default {
           id: data.subjects?.id,
           text: data.subjects?.subject_name,
         };
+      }
+      if (this.schoologyAssignment == "1") {
+        this.gg4lSubject = data.subject;
       }
       // this.dateValue = data.due_date;
       this.dateValue = data.due_date

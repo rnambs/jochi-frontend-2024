@@ -229,21 +229,21 @@
                 p-4
               "
             >
-              <a class="btn" href=""
+              <a class="btn" href="https://www.instagram.com/jochi.info/"
                 ><img
                   src="../static/image/social-icon/Instagram logo.png"
                   alt=""
               /></a>
-              <a class="btn" href=""
+              <a class="btn" href="https://mobile.twitter.com/JochiInfo"
                 ><img src="../static/image/social-icon/Twitter Png.png" alt=""
               /></a>
-              <a class="btn" href=""
+              <a class="btn" href="https://www.tiktok.com/@jochiapp"
                 ><img src="../static/image/social-icon/TikTok Logo.png" alt=""
               /></a>
-              <a class="btn" href=""
+              <a class="btn" href="https://open.spotify.com/user/j67o7nwic4neqgxjhxd17bsb7?si=FSnQG04QTVWIJVqGfUvmOQ"
                 ><img src="../static/image/social-icon/Spotify Logo.png" alt=""
               /></a>
-              <a class="btn" href=""
+              <a class="btn" href="https://www.youtube.com/channel/UCu063irMWPCQz4AkWkdwCBA"
                 ><img src="../static/image/social-icon/YouTube Png.png" alt=""
               /></a>
             </div>
