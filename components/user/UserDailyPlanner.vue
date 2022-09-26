@@ -3015,6 +3015,7 @@ export default {
       tempAssts: [],
       gg4lSubject: "",
       schoologyAssignment: "",
+      loaderState: {},
     };
   },
   mounted() {
@@ -4006,6 +4007,7 @@ export default {
       this.invitePeer = false;
     },
     async loadNext($state) {
+      this.loaderState = $state;
       this.pendingAssignments = [];
       this.offset = this.offset + this.limit;
       await this.getAssignments({ offset: this.offset, limit: this.limit });
@@ -4020,6 +4022,7 @@ export default {
       }
     },
     async getAssignmentsList() {
+      this.loaderState?.reset();
       this.offset = 0;
       this.pendingAssignments = [];
       await this.getAssignments({ offset: this.offset, limit: this.limit });

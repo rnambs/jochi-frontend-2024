@@ -3290,6 +3290,7 @@ export default {
       tempAssts: [],
       gg4lSubject: "",
       schoologyAssignment: "",
+      loaderState: {},
     };
   },
   mounted() {
@@ -4960,6 +4961,7 @@ export default {
       }
     },
     async getAssignmentsList() {
+      this.loaderState?.reset();
       this.offset = 0;
 
       this.pendingAssignments = [];
@@ -5305,7 +5307,7 @@ export default {
     },
     mapAssignmentDetail(data) {
       this.isSharedAssignment = data.isShared;
- this.schoologyAssignment = data.schoologyAssignment;
+      this.schoologyAssignment = data.schoologyAssignment;
       this.assignmentId = data.id;
       this.assignmentName = data.task;
       this.assignmentDescription = data.assignment_description;
@@ -5327,7 +5329,7 @@ export default {
           text: data.subjects?.subject_name,
         };
       }
-        if (this.schoologyAssignment == "1") {
+      if (this.schoologyAssignment == "1") {
         this.gg4lSubject = data.subject;
       }
       // this.dateValue = data.due_date;

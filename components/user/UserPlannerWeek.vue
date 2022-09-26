@@ -3575,6 +3575,7 @@ export default {
       tempAssts: [],
       gg4lSubject: "",
       schoologyAssignment: "",
+      loaderState: {},
     };
   },
 
@@ -4769,6 +4770,7 @@ export default {
       }
     },
     async getAssignmentsList() {
+      this.loaderState?.reset();
       this.offset = 0;
 
       this.pendingAssignments = [];
