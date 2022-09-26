@@ -271,6 +271,40 @@ const actions = {
 
 
     },
+    async syncData({ commit }) {
+        try {
+            const token = localStorage.getItem('token')
+            const response = await this.$axios.$post(BASE_URL + `/auth/gg4l_data_sync`, {}, {
+                headers: {
+                    'Authorization': ` ${token}`
+                },
+            });
+            commit('setSuccessMessage', "Data sync successfull");
+            commit('setSuccessType', "success");
+            commit('setErrorMessage', "");
+            commit('setErrorType', "");
+
+        } catch (e) {
+            if (e?.response?.data?.message == "Unauthorized") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                window.localStorage.clear();
+                this.$router.push('/');
+            }
+            else if (e?.response?.data?.message) {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', e?.response?.data?.message);
+                commit('setErrorType', "error");
+                window.localStorage.clear();
+                this.$router.push('/');
+            }
+        }
+
+
+    },
 
 
 }

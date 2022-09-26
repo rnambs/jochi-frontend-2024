@@ -13,6 +13,7 @@ const state = {
     lastName: '',
     school_id: '',
     school_name: '',
+    isGg4lDataSynced: '',
 }
 const actions = {
 
@@ -30,6 +31,7 @@ const actions = {
                 commit('setLastName', response.data.last_name);
                 commit('setSchoolId', response.data.school_id);
                 commit('setSchoolName', response.data.school_name);
+                commit('setIsGg4lDataSynced', response.data.isGg4lDataSynced);
                 if (response.data.user_type_id == 1) {
                     this.$router.push('/dashboard');
                 }
@@ -159,6 +161,10 @@ const mutations = {
         state.school_name = data;
         localStorage.setItem('school_name', data);
     },
+    setIsGg4lDataSynced(state, data) {
+        state.isGg4lDataSynced = data;
+        localStorage.setItem('isGg4lDataSynced', data);
+    },
 }
 const getters = {
 
@@ -190,6 +196,9 @@ const getters = {
     },
     lastName: () => {
         return state.lastName;
+    },
+    isGg4lDataSynced: () => {
+        return state.isGg4lDataSynced;
     },
 
 }

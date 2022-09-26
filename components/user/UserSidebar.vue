@@ -704,6 +704,7 @@ export default {
     this.getPushNotifications();
     this.getNotifications();
     this.getCount();
+    this.syncGg4lData();
 
     // window.addEventListener("keydown", (e) => {
     //   if (e.keyCode == 123) {
@@ -774,6 +775,7 @@ export default {
       clearNotificationsList: "clearNotificationsList",
       markAsRead: "markAsRead",
       getNotificationCount: "getNotificationCount",
+      syncData: "syncData",
     }),
     async getPushNotifications() {
       this.$fire.messaging.onMessage((payload) => {
@@ -895,6 +897,12 @@ export default {
     },
     async getCount() {
       await this.getNotificationCount();
+    },
+    async syncGg4lData() {
+      let isGg4lDataSynced = localStorage.getItem("isGg4lDataSynced");
+      if (isGg4lDataSynced != "1") {
+        await this.syncData();
+      }
     },
   },
   // // middleware: "authenticated",
