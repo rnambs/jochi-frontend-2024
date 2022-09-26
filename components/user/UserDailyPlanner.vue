@@ -3118,6 +3118,7 @@ export default {
       sharedAstList: (state) => state.sharedAstList,
       sharedSessionList: (state) => state.sharedSessionList,
       clubMeetings: (state) => state.clubMeetings,
+      allSubTskCompleted: (state) => state.allSubTskCompleted,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -4302,8 +4303,6 @@ export default {
       await this.GetDailyPlanner();
 
       if (this.successMessage != "") {
-        this.completeSubTaskId = 0;
-        this.completeAsstId = 0;
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -4311,9 +4310,15 @@ export default {
         });
         await this.getAssignmentsList();
         await this.getAllCompletedAssignments();
-        if (this.checkAllCompleted()) {
-          await this.completeAssignment();
+        if (this.allSubTskCompleted) {
+          // await this.completeAssignment();
+          this.playCelebration = true;
+          const myTimeout = setTimeout(() => {
+            this.playCelebration = false;
+          }, 5000);
         }
+        this.completeSubTaskId = 0;
+        this.completeAsstId = 0;
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -4323,19 +4328,26 @@ export default {
       }
       this.GetDailyPlanner();
     },
-    checkAllCompleted() {
-      let asst = this.pendingAssignments.find(
-        (e) => e.id == this.completeAsstId
-      );
-      let sub = asst.subTasks;
-      let incomplete = false;
-      sub.forEach((e) => {
-        if (!incomplete && e.task_status != "Completed") {
-          incomplete = true;
-        }
-      });
-      return !incomplete;
-    },
+    // checkAllCompleted() {
+    //   let asst = this.pendingAssignments.find(
+    //     (e) => e.id == this.completeAsstId
+    //   );
+    //   let incomplete = true;
+    //   if (asst) {
+    //     let sub = asst.subTasks;
+    //     if (sub && sub.length > 0) {
+    //       let completedTasks = sub.filter((e) => e.task_status == "Completed");
+    //       if (completedTasks && completedTasks.length == sub.length) {
+    //         incomplete = false;
+    //       }
+    //     }
+    //   }
+    //   if (incomplete) {
+    //     this.completeSubTaskId = 0;
+    //     this.completeAsstId = 0;
+    //   }
+    //   return !incomplete;
+    // },
     onCardClick(data) {
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
