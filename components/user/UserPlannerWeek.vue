@@ -1435,7 +1435,12 @@
                           </div>
                           <client-only>
                             <infinite-loading
-                              class="d-flex align-center"
+                              class="
+                                d-flex
+                                align-items-center
+                                w-100
+                                justify-content-center
+                              "
                               @infinite="loadNext"
                             ></infinite-loading>
                           </client-only>
@@ -3720,6 +3725,8 @@ export default {
     },
 
     async GetWeeklyPlanner() {
+      this.page = 0;
+
       eventList = [];
       this.loading = true;
       const format = "YYYY-MM-DD";
