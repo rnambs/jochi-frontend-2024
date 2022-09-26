@@ -894,7 +894,9 @@
                                         </div>
                                         <button
                                           v-if="
-                                            !viewMore || viewMoreId != item.id
+                                            item.subTasks &&
+                                            item.subTasks.length > 4 &&
+                                            (!viewMore || viewMoreId != item.id)
                                           "
                                           @click="viewMoreClick($event, item)"
                                           class="btn btn-void p-0 pl-2"
@@ -1088,7 +1090,7 @@
                               </div>
                             </div>
                           </draggable>
-                          <div
+                          <!-- <div
                             class="
                               w-100
                               d-flex
@@ -1103,7 +1105,7 @@
                             <span class="color-secondary"
                               >No pending assignments</span
                             >
-                          </div>
+                          </div> -->
                         </div>
                         <!-- hide -->
                         <div class="row">
@@ -1243,7 +1245,9 @@
                                       </div>
                                       <button
                                         v-if="
-                                          !viewMore || viewMoreId != item.id
+                                          item.subTasks &&
+                                          item.subTasks.length > 4 &&
+                                          (!viewMore || viewMoreId != item.id)
                                         "
                                         @click="viewMoreClick($event, item)"
                                         class="btn btn-void p-0 pl-2"
@@ -1444,7 +1448,7 @@
                               @infinite="loadNext"
                             ></infinite-loading>
                           </client-only>
-                          <div
+                          <!-- <div
                             class="
                               w-100
                               d-flex
@@ -1459,7 +1463,7 @@
                             <span class="color-secondary"
                               >No pending assignments</span
                             >
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                       <!-- drag end -->
@@ -1832,7 +1836,17 @@
                                     class="col-form-label"
                                     >Subject<em>*</em></label
                                   >
+                                  <input
+                                    v-if="schoologyAssignment == '1'"
+                                    type="text"
+                                    class="form-control"
+                                    id="message-text"
+                                    v-model="gg4lSubject"
+                                    maxlength="125"
+                                    placeholder="Enter assignment name"
+                                  />
                                   <select
+                                    v-else
                                     class="form-control"
                                     tabindex=""
                                     v-model="subject"
@@ -3556,9 +3570,11 @@ export default {
       drag: false,
       viewMore: false,
       viewMoreId: "",
-      page: 0,
+      offset: 0,
       limit: 10,
       tempAssts: [],
+      gg4lSubject: "",
+      schoologyAssignment: "",
     };
   },
 
@@ -3725,8 +3741,6 @@ export default {
     },
 
     async GetWeeklyPlanner() {
-      this.page = 0;
-
       eventList = [];
       this.loading = true;
       const format = "YYYY-MM-DD";
@@ -4427,13 +4441,10 @@ export default {
         text: subject?.subject_name,
       };
       this.task = this.assignment.task;
+      let date = "";
       if (this.assignment.due_date) {
         let dateSplit = this.assignment.due_date.split("-");
-        let date = new Date(
-          dateSplit[0],
-          Number(dateSplit[1] - 1),
-          dateSplit[2]
-        );
+        date = new Date(dateSplit[0], Number(dateSplit[1] - 1), dateSplit[2]);
       }
       this.dateValue = date ? date : "";
       if (this.assignment.priority == "1") {
@@ -4742,8 +4753,11 @@ export default {
       $("#filterModal").modal("show");
     },
     async loadNext($state) {
-      this.page += 1;
-      await this.getAssignments({ page: this.page, limit: this.limit });
+      // this.offset += 1;
+      this.pendingAssignments = [];
+
+      this.offset = this.offset + this.limit;
+      await this.getAssignments({ offset: this.offset, limit: this.limit });
       this.assignmentMaterials = [];
       await this.mapAssignments();
       await this.mapSharedAssignments();
@@ -4755,8 +4769,10 @@ export default {
       }
     },
     async getAssignmentsList() {
+      this.offset = 0;
+
       this.pendingAssignments = [];
-      await this.getAssignments({ page: this.page, limit: this.limit });
+      await this.getAssignments({ offset: this.offset, limit: this.limit });
 
       this.assignmentMaterials = [];
       await this.mapAssignments();
@@ -5492,7 +5508,7 @@ export default {
     },
     mapAssignmentDetail(data) {
       this.isSharedAssignment = data.isShared;
-
+      this.schoologyAssignment = data.schoologyAssignment;
       this.assignmentId = data.id;
       this.assignmentName = data.task;
       this.assignmentDescription = data.assignment_description;

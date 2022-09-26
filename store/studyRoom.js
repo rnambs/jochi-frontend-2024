@@ -319,7 +319,7 @@ const actions = {
     const token = localStorage.getItem('token')
     try {
       // const response = await this.$axios.$get(BASE_URL + `studyRoom/get_all_assignments?student_id=${payLoad.student_id}`, {
-      const response = await this.$axios.$get(BASE_URL + `planner/all_assignments?offset=${payLoad.page}&limit=${payLoad.limit}`, {
+      const response = await this.$axios.$get(BASE_URL + `planner/all_assignments?offset=${payLoad.offset}&limit=${payLoad.limit}`, {
         headers: {
           'Authorization': ` ${token}`
         },

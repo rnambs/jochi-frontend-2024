@@ -2850,7 +2850,7 @@ export default {
       isRedirect: false,
       sharedSessionId: "",
       sharedNewSessionId: "",
-      page: 0,
+      offset: 0,
       limit: 10,
       disablePrevious: true,
       disableNext: false,
@@ -2971,11 +2971,11 @@ export default {
       event.returnValue = "";
     },
     previous() {
-      this.page = this.page > 0 ? this.page - 1 : 0;
+      this.offset = this.offset > 0 ? this.offset - this.limit : 0;
       this.loadAssignments();
     },
     next() {
-      this.page += 1;
+      this.offset = this.offset + this.limit;
       this.loadAssignments();
     },
     mapPeersInvited() {
@@ -3892,7 +3892,7 @@ export default {
     async loadAssignments() {
       await this.getAssignments({
         student_id: parseInt(localStorage.getItem("id")),
-        page: this.page,
+        offset: this.offset,
         limit: this.limit,
       });
       console.log(this.assignmentsList, this.sharedAssignmentsList);
@@ -3907,12 +3907,16 @@ export default {
       this.assignmentsCount;
 
       if (this.sharedAssignmentsCount > 0 || this.assignmentsCount > 0) {
-        let sharedPages = Math.ceil(this.sharedAssignmentsCount / 10);
-        let asstPages = Math.ceil(this.assignmentsCount / 10);
+        let sharedPages = Math.floor(this.sharedAssignmentsCount / 10);
+        let asstPages = Math.floor(this.assignmentsCount / 10);
         this.pageCount = sharedPages > asstPages ? sharedPages : asstPages;
-        this.disableNext = this.pageCount == this.page + 1;
+        this.disableNext =
+          sharedPages > asstPages
+            ? sharedPages * this.limit == this.offset
+            : asstPages * this.limit == this.offset;
+        //  this.pageCount == this.offset + 1;
       }
-      this.disablePrevious = this.page == 0;
+      this.disablePrevious = this.offset == 0;
     },
 
     mapAssignments() {
