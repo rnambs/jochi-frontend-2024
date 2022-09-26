@@ -843,6 +843,7 @@
                             w-100
                             justify-content-center
                           "
+                          :identifier="reloadCount"
                           @infinite="loadNext"
                         ></infinite-loading>
                       </client-only>
@@ -3015,7 +3016,7 @@ export default {
       tempAssts: [],
       gg4lSubject: "",
       schoologyAssignment: "",
-      loaderState: {},
+      reloadCount: 0,
     };
   },
   mounted() {
@@ -3522,6 +3523,7 @@ export default {
         task: this.assignmentName,
         assignment_description: this.assignmentDescription,
         subject: this.subject?.id,
+        subject_id: this.subject?.id,
         due_time: this.timeValue,
         due_date: df,
         priority:
@@ -3623,6 +3625,7 @@ export default {
         task: this.assignmentName,
         assignment_description: this.assignmentDescription,
         subject: this.isSharedAssignment ? this.subjectId : this.subject?.id,
+        subject_id: this.isSharedAssignment ? this.subjectId : this.subject?.id,
         due_time: this.timeValue,
         due_date: dfE,
         priority: priority,
@@ -3658,6 +3661,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
+      this.schoologyAssignment = "";
       this.validTime = false;
       this.peerSelected = [];
       this.isSharedAssignment = false;
@@ -4007,7 +4011,9 @@ export default {
       this.invitePeer = false;
     },
     async loadNext($state) {
-      this.loaderState = $state;
+      if (this.reloadCount == 0) {
+        this.reloadCount = 1;
+      }
       this.pendingAssignments = [];
       this.offset = this.offset + this.limit;
       await this.getAssignments({ offset: this.offset, limit: this.limit });
@@ -4022,8 +4028,10 @@ export default {
       }
     },
     async getAssignmentsList() {
-      this.loaderState?.reset();
       this.offset = 0;
+      if (this.reloadCount > 0) {
+        this.reloadCount += 1;
+      }
       this.pendingAssignments = [];
       await this.getAssignments({ offset: this.offset, limit: this.limit });
 
