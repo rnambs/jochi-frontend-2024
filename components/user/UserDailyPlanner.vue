@@ -843,6 +843,7 @@
                             w-100
                             justify-content-center
                           "
+                          :identifier="reloadCount"
                           @infinite="loadNext"
                         ></infinite-loading>
                       </client-only>
@@ -3015,6 +3016,7 @@ export default {
       tempAssts: [],
       gg4lSubject: "",
       schoologyAssignment: "",
+      reloadCount: 0,
     };
   },
   mounted() {
@@ -3116,6 +3118,7 @@ export default {
       sharedAstList: (state) => state.sharedAstList,
       sharedSessionList: (state) => state.sharedSessionList,
       clubMeetings: (state) => state.clubMeetings,
+      allSubTskCompleted: (state) => state.allSubTskCompleted,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -3521,6 +3524,7 @@ export default {
         task: this.assignmentName,
         assignment_description: this.assignmentDescription,
         subject: this.subject?.id,
+        subject_id: this.subject?.id,
         due_time: this.timeValue,
         due_date: df,
         priority:
@@ -3622,6 +3626,7 @@ export default {
         task: this.assignmentName,
         assignment_description: this.assignmentDescription,
         subject: this.isSharedAssignment ? this.subjectId : this.subject?.id,
+        subject_id: this.isSharedAssignment ? this.subjectId : this.subject?.id,
         due_time: this.timeValue,
         due_date: dfE,
         priority: priority,
@@ -3657,6 +3662,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
+      this.schoologyAssignment = "";
       this.validTime = false;
       this.peerSelected = [];
       this.isSharedAssignment = false;
@@ -4006,6 +4012,9 @@ export default {
       this.invitePeer = false;
     },
     async loadNext($state) {
+      if (this.reloadCount == 0) {
+        this.reloadCount = 1;
+      }
       this.pendingAssignments = [];
       this.offset = this.offset + this.limit;
       await this.getAssignments({ offset: this.offset, limit: this.limit });
@@ -4021,6 +4030,9 @@ export default {
     },
     async getAssignmentsList() {
       this.offset = 0;
+      if (this.reloadCount > 0) {
+        this.reloadCount += 1;
+      }
       this.pendingAssignments = [];
       await this.getAssignments({ offset: this.offset, limit: this.limit });
 
@@ -4291,8 +4303,6 @@ export default {
       await this.GetDailyPlanner();
 
       if (this.successMessage != "") {
-        this.completeSubTaskId = 0;
-        this.completeAsstId = 0;
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -4300,9 +4310,15 @@ export default {
         });
         await this.getAssignmentsList();
         await this.getAllCompletedAssignments();
-        if (this.checkAllCompleted()) {
-          await this.completeAssignment();
+        if (this.allSubTskCompleted) {
+          // await this.completeAssignment();
+          this.playCelebration = true;
+          const myTimeout = setTimeout(() => {
+            this.playCelebration = false;
+          }, 5000);
         }
+        this.completeSubTaskId = 0;
+        this.completeAsstId = 0;
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -4312,19 +4328,26 @@ export default {
       }
       this.GetDailyPlanner();
     },
-    checkAllCompleted() {
-      let asst = this.pendingAssignments.find(
-        (e) => e.id == this.completeAsstId
-      );
-      let sub = asst.subTasks;
-      let incomplete = false;
-      sub.forEach((e) => {
-        if (!incomplete && e.task_status != "Completed") {
-          incomplete = true;
-        }
-      });
-      return !incomplete;
-    },
+    // checkAllCompleted() {
+    //   let asst = this.pendingAssignments.find(
+    //     (e) => e.id == this.completeAsstId
+    //   );
+    //   let incomplete = true;
+    //   if (asst) {
+    //     let sub = asst.subTasks;
+    //     if (sub && sub.length > 0) {
+    //       let completedTasks = sub.filter((e) => e.task_status == "Completed");
+    //       if (completedTasks && completedTasks.length == sub.length) {
+    //         incomplete = false;
+    //       }
+    //     }
+    //   }
+    //   if (incomplete) {
+    //     this.completeSubTaskId = 0;
+    //     this.completeAsstId = 0;
+    //   }
+    //   return !incomplete;
+    // },
     onCardClick(data) {
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;

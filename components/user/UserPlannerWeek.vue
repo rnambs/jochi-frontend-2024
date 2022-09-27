@@ -1445,6 +1445,7 @@
                                 w-100
                                 justify-content-center
                               "
+                              :identifier="reloadCount"
                               @infinite="loadNext"
                             ></infinite-loading>
                           </client-only>
@@ -3575,6 +3576,7 @@ export default {
       tempAssts: [],
       gg4lSubject: "",
       schoologyAssignment: "",
+      reloadCount: 0,
     };
   },
 
@@ -3683,6 +3685,7 @@ export default {
       completedAssignments: (state) => state.completedAssignments,
       completedSharedAssignments: (state) => state.completedSharedAssignments,
       newAdditionalMaterial: (state) => state.newAdditionalMaterial,
+      allSubTskCompleted: (state) => state.allSubTskCompleted,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -4176,6 +4179,7 @@ export default {
         task: this.assignmentName,
         assignment_description: this.assignmentDescription,
         subject: this.subject?.id,
+        subject_id: this.subject?.id,
         due_time: this.timeValue,
         due_date: df,
         priority:
@@ -4270,11 +4274,31 @@ export default {
         subTaskLists.push(e.title);
       });
       await this.updateAssignment({
+        // assignment_id: this.assignmentId,
+        // user_id: localStorage.getItem("id"),
+        // task: this.assignmentName,
+        // assignment_description: this.assignmentDescription,
+        // subject: this.subject?.id,
+        // due_time: this.timeValue,
+        // due_date: dfE,
+        // priority:
+        //   this.priorityVal == "Urgent"
+        //     ? 1
+        //     : this.priorityVal == "Important"
+        //     ? 2
+        //     : this.priorityVal == "Can Wait"
+        //     ? 3
+        //     : "",
+        // shared_users_ids: peersSelected,
+        // assignment_materials: assignment_materials,
+        // subTasks: subTaskLists,
+        // deleted_subTask: this.deletedSubTasksArray,
         assignment_id: this.assignmentId,
         user_id: localStorage.getItem("id"),
         task: this.assignmentName,
         assignment_description: this.assignmentDescription,
-        subject: this.subject?.id,
+        subject: this.isSharedAssignment ? this.subjectId : this.subject?.id,
+        subject_id: this.isSharedAssignment ? this.subjectId : this.subject?.id,
         due_time: this.timeValue,
         due_date: dfE,
         priority:
@@ -4318,6 +4342,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
+      this.schoologyAssignment = "";
       this.peerSelected = [];
       this.isSharedAssignment = false;
       this.subject = "";
@@ -4753,9 +4778,10 @@ export default {
       $("#filterModal").modal("show");
     },
     async loadNext($state) {
-      // this.offset += 1;
+      if (this.reloadCount == 0) {
+        this.reloadCount = 1;
+      }
       this.pendingAssignments = [];
-
       this.offset = this.offset + this.limit;
       await this.getAssignments({ offset: this.offset, limit: this.limit });
       this.assignmentMaterials = [];
@@ -4770,7 +4796,9 @@ export default {
     },
     async getAssignmentsList() {
       this.offset = 0;
-
+      if (this.reloadCount > 0) {
+        this.reloadCount += 1;
+      }
       this.pendingAssignments = [];
       await this.getAssignments({ offset: this.offset, limit: this.limit });
 
@@ -5233,14 +5261,14 @@ export default {
       });
       this.invitePeer = false;
     },
-    async getAssignmentsList() {
-      this.pendingAssignments = [];
-      await this.getAssignments();
-      console.log(this.assignmentsList);
-      console.log(this.sharedAssignmentsList);
-      this.mapAssignments();
-      this.mapSharedAssignments();
-    },
+    // async getAssignmentsList() {
+    //   this.pendingAssignments = [];
+    //   await this.getAssignments();
+    //   console.log(this.assignmentsList);
+    //   console.log(this.sharedAssignmentsList);
+    //   this.mapAssignments();
+    //   this.mapSharedAssignments();
+    // },
     mapAssignments() {
       if (this.assignmentsList && this.assignmentsList.length > 0) {
         this.assignmentsList.forEach((e) => {
@@ -5448,8 +5476,12 @@ export default {
         });
         await this.getAssignmentsList();
         await this.getAllCompletedAssignments();
-        if (this.checkAllCompleted()) {
-          await this.completeAssignment();
+        if (this.allSubTskCompleted) {
+          // await this.completeAssignment();
+          this.playCelebration = true;
+          const myTimeout = setTimeout(() => {
+            this.playCelebration = false;
+          }, 5000);
         }
       } else if (this.errorMessage != "") {
         this.$toast.open({

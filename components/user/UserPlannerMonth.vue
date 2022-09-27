@@ -1044,6 +1044,7 @@
                                 w-100
                                 justify-content-center
                               "
+                              :identifier="reloadCount"
                               @infinite="loadNext"
                             ></infinite-loading>
                           </client-only>
@@ -3290,6 +3291,7 @@ export default {
       tempAssts: [],
       gg4lSubject: "",
       schoologyAssignment: "",
+      reloadCount: 0,
     };
   },
   mounted() {
@@ -3399,6 +3401,7 @@ export default {
       completedAssignments: (state) => state.completedAssignments,
       completedSharedAssignments: (state) => state.completedSharedAssignments,
       newAdditionalMaterial: (state) => state.newAdditionalMaterial,
+      allSubTskCompleted: (state) => state.allSubTskCompleted,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -4062,6 +4065,7 @@ export default {
         task: this.assignmentName,
         assignment_description: this.assignmentDescription,
         subject: this.subject?.id,
+        subject_id: this.subject?.id,
         due_time: this.timeValue,
         due_date: df,
         priority:
@@ -4156,11 +4160,31 @@ export default {
         subTaskLists.push(e.title);
       });
       await this.updateAssignment({
+        // assignment_id: this.assignmentId,
+        // user_id: localStorage.getItem("id"),
+        // task: this.assignmentName,
+        // assignment_description: this.assignmentDescription,
+        // subject: this.subject?.id,
+        // due_time: this.timeValue,
+        // due_date: dfE,
+        // priority:
+        //   this.priorityVal == "Urgent"
+        //     ? 1
+        //     : this.priorityVal == "Important"
+        //     ? 2
+        //     : this.priorityVal == "Can Wait"
+        //     ? 3
+        //     : "",
+        // shared_users_ids: peersSelected,
+        // assignment_materials: assignment_materials,
+        // subTasks: subTaskLists,
+        // deleted_subTask: this.deletedSubTasksArray,
         assignment_id: this.assignmentId,
         user_id: localStorage.getItem("id"),
         task: this.assignmentName,
         assignment_description: this.assignmentDescription,
-        subject: this.subject?.id,
+        subject: this.isSharedAssignment ? this.subjectId : this.subject?.id,
+        subject_id: this.isSharedAssignment ? this.subjectId : this.subject?.id,
         due_time: this.timeValue,
         due_date: dfE,
         priority:
@@ -4204,6 +4228,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
+      this.schoologyAssignment = "";
       this.peerSelected = [];
       this.isSharedAssignment = false;
       this.subject = "";
@@ -4946,6 +4971,9 @@ export default {
     //   this.tempAssts.push(...this.pendingAssignments);
     // },
     async loadNext($state) {
+      if (this.reloadCount == 0) {
+        this.reloadCount = 1;
+      }
       this.pendingAssignments = [];
       this.offset = this.offset + this.limit;
       await this.getAssignments({ offset: this.offset, limit: this.limit });
@@ -4961,7 +4989,9 @@ export default {
     },
     async getAssignmentsList() {
       this.offset = 0;
-
+      if (this.reloadCount > 0) {
+        this.reloadCount += 1;
+      }
       this.pendingAssignments = [];
 
       await this.getAssignments({ offset: this.offset, limit: this.limit });
@@ -5245,8 +5275,12 @@ export default {
         });
         await this.getAssignmentsList();
         await this.getAllCompletedAssignments();
-        if (this.checkAllCompleted()) {
-          await this.completeAssignment();
+        if (this.allSubTskCompleted) {
+          // await this.completeAssignment();
+          this.playCelebration = true;
+          const myTimeout = setTimeout(() => {
+            this.playCelebration = false;
+          }, 5000);
         }
       } else if (this.errorMessage != "") {
         this.$toast.open({
@@ -5305,7 +5339,7 @@ export default {
     },
     mapAssignmentDetail(data) {
       this.isSharedAssignment = data.isShared;
- this.schoologyAssignment = data.schoologyAssignment;
+      this.schoologyAssignment = data.schoologyAssignment;
       this.assignmentId = data.id;
       this.assignmentName = data.task;
       this.assignmentDescription = data.assignment_description;
@@ -5327,7 +5361,7 @@ export default {
           text: data.subjects?.subject_name,
         };
       }
-        if (this.schoologyAssignment == "1") {
+      if (this.schoologyAssignment == "1") {
         this.gg4lSubject = data.subject;
       }
       // this.dateValue = data.due_date;
