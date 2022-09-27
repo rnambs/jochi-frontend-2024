@@ -558,15 +558,11 @@
                 >
                   <div
                     class="assignment-tag mr-2 text-nowrap"
-                    :class="
-                      detail.priority == '1'
-                        ? 'red'
-                        : detail.priority == '2'
-                        ? 'orange'
-                        : detail.priority == '3'
-                        ? 'yellow'
-                        : ''
-                    "
+                    :class="{
+                      red: detail.priority == '1',
+                      yellow: detail.priority == '2',
+                      green: detail.priority == '3',
+                    }"
                   >
                     {{
                       detail.priority == "1"
@@ -618,8 +614,15 @@
                         "
                       >
                         <input
+                          :id="subtask.title"
+                          v-model="subtask.title"
+                          :value="
+                            subtask.task_status == 'Completed'
+                              ? subtask.title
+                              : ''
+                          "
                           type="radio"
-                          class="mr-2 color-secondary cursor-pointer"
+                          class="mr-2 cursor-pointer"
                         />
                         <label
                           for=""
@@ -634,6 +637,11 @@
                       >
                     </div> -->
                     </div>
+                  </div>
+                  <div v-if="detail.subTasks && detail.subTasks.length > 4">
+                    <span class="text-12 color-secondary">
+                      + {{ detail.subTasks.length - 4 }} more
+                    </span>
                   </div>
                 </div>
               </div>
