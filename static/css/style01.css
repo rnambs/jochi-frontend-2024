@@ -1829,6 +1829,7 @@ img.dark-icon {
 }
 .inner-section .main-section #Daily-Calander .sub-task-section .vh-10, .inner-section .main-section #Weekly-Calander .sub-task-section .vh-10, .inner-section .main-section #Monthly-Calander .sub-task-section .vh-10 {
   max-height: 86px;
+  height: 86px;
 }
 .inner-section .main-section #Daily-Calander .sub-task-section h6, .inner-section .main-section #Weekly-Calander .sub-task-section h6, .inner-section .main-section #Monthly-Calander .sub-task-section h6 {
   color: #e48194;
@@ -2996,6 +2997,7 @@ img.dark-icon {
 .inner-section .main-section .to-do-list {
   max-height: 74px;
   min-height: 74px;
+  height: 74px;
   overflow: hidden;
 }
 .inner-section .main-section .study-section .study-row {
