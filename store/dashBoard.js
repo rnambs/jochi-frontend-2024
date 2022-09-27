@@ -7,6 +7,7 @@ const state = {
     errorType: "",
     successMessage: "",
     successType: "",
+    chartData: []
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -22,6 +23,7 @@ const actions = {
             commit('setdashBoardData', response.data);
             commit('setappointmentsData', response.appointments);
             commit('setusersData', response.users);
+            commit('setChartData', response.chart_data);
         } catch (e) {
             if (e.response.data.message == "Unauthorized") {
                 commit('setSuccessMessage', "");
@@ -61,6 +63,9 @@ const mutations = {
     setSuccessType(state, data) {
         state.successType = data;
     },
+    setChartData(state, data) {
+        state.chartData = data;
+    },
 
 }
 const getters = {
@@ -85,6 +90,9 @@ const getters = {
     },
     successType: () => {
         return state.successType;
+    },
+    chartData: () => {
+        return state.chartData;
     },
 
 }
