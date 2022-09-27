@@ -515,6 +515,13 @@ input[type=radio] {
   margin: 9px;
   right: 0;
 }
+.form-row .multiselect.multiselect--disabled, .form-group .multiselect.multiselect--disabled {
+  background-color: unset;
+  opacity: 1;
+}
+.form-row .multiselect.multiselect--disabled .multiselect__select, .form-group .multiselect.multiselect--disabled .multiselect__select {
+  background: unset;
+}
 .form-row .multiselect__tags, .form-group .multiselect__tags {
   border-radius: 12px;
   font-size: 0.9rem;
@@ -1234,6 +1241,12 @@ img.dark-icon {
   max-width: 600px;
   width: 100%;
 }
+@media (max-width: 1399.98px) {
+  .main-container .img-section .img-responsive {
+    max-width: 400px;
+    width: 100%;
+  }
+}
 @media (max-width: 1199.98px) {
   .main-container .img-section .img-responsive {
     padding: 0;
@@ -1242,7 +1255,7 @@ img.dark-icon {
     width: 100%;
   }
 }
-@media (max-height: 768.98px) {
+@media (max-height: 689.98px) {
   .main-container .img-section .img-responsive {
     max-width: 180px;
   }

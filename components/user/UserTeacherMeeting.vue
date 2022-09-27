@@ -148,6 +148,7 @@
                         font-normal
                         color-dark
                         text-14
+                        cursor-pointer
                       "
                       for="custom-Switches"
                       >Include weekends
@@ -168,6 +169,7 @@
                         font-normal
                         color-dark
                         text-14
+                        cursor-pointer
                       "
                       for="customSwitches"
                       >Based on my availability
