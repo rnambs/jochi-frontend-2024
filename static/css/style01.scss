@@ -504,7 +504,13 @@ input[type="radio"]{
             right: 0;
         }
     }
-
+    .multiselect.multiselect--disabled{
+        background-color: unset;
+        opacity: 1;
+        .multiselect__select{
+            background: unset
+        }
+    }
     .multiselect__tags {
         @include borderRadius(12);
         font-size: 0.9rem;
@@ -1268,13 +1274,17 @@ img.dark-icon{
         .img-responsive{
             max-width: 600px;
             width: 100%;
+            @media (max-width: $xl-screen) {
+                max-width: 400px;
+                width: 100%;
+            }
             @media (max-width: $lg-screen) {
                 padding: 0;
                 margin: 0px auto 20px;
                 max-width: 180px;
                 width: 100%;
             }
-            @media (max-height:768.98px){
+            @media (max-height:689.98px){
                 max-width: 180px;
             }
             @media (max-width: 575.98px) {
