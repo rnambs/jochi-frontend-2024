@@ -1447,7 +1447,16 @@
                               "
                               :identifier="reloadCount"
                               @infinite="loadNext"
-                            ></infinite-loading>
+                            >
+                          <div slot="no-more">No more records</div>
+                          <div slot="no-results">
+                            {{
+                              (!pendingAssignments ||
+                              pendingAssignments.length < 1)
+                                ? "No records found"
+                                : ""
+                            }}
+                          </div></infinite-loading>
                           </client-only>
                           <!-- <div
                             class="
@@ -4778,18 +4787,22 @@ export default {
       $("#filterModal").modal("show");
     },
     async loadNext($state) {
-      if (this.reloadCount == 0) {
-        this.reloadCount = 1;
-      }
-      this.pendingAssignments = [];
-      this.offset = this.offset + this.limit;
-      await this.getAssignments({ offset: this.offset, limit: this.limit });
-      this.assignmentMaterials = [];
-      await this.mapAssignments();
-      await this.mapSharedAssignments();
-      if (this.pendingAssignments.length > 0) {
-        this.tempAssts.push(...this.pendingAssignments);
-        $state.loaded();
+      if (this.initialLoad) {
+        if (this.reloadCount == 0) {
+          this.reloadCount = 1;
+        }
+        this.pendingAssignments = [];
+        this.offset = this.offset + this.limit;
+        await this.getAssignments({ offset: this.offset, limit: this.limit });
+        this.assignmentMaterials = [];
+        await this.mapAssignments();
+        await this.mapSharedAssignments();
+        if (this.pendingAssignments.length > 0) {
+          this.tempAssts.push(...this.pendingAssignments);
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
       } else {
         $state.complete();
       }
@@ -4801,7 +4814,9 @@ export default {
       }
       this.pendingAssignments = [];
       await this.getAssignments({ offset: this.offset, limit: this.limit });
-
+      if (!this.initialLoad) {
+        this.initialLoad = !this.initialLoad;
+      }
       this.assignmentMaterials = [];
       await this.mapAssignments();
       await this.mapSharedAssignments();
