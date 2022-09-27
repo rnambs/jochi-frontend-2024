@@ -36,7 +36,7 @@
                   position-realtive
                   h-100
                   pb-0 pb-xl-3
-                  pt-24 pt-xl-3
+                  pt-lg-24 pt-xl-auto
                 "
               >
                 <div

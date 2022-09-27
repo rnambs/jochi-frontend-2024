@@ -972,6 +972,12 @@ input[type=radio] {
   padding-top: 24px !important;
 }
 
+@media (max-width: 1199.98px) {
+  .pt-lg-24 {
+    padding-top: 24px !important;
+  }
+}
+
 img.card-img {
   max-width: 130px;
   -o-object-fit: contain;
