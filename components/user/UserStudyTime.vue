@@ -493,7 +493,11 @@
           <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
         </div>
         <div
-          v-if="pendingAssignments && pendingAssignments.length > 0"
+          v-if="
+            pendingAssignments &&
+            pendingAssignments.length > 0 &&
+            (sharedAssignmentsCount > 10 || assignmentsCount > 10)
+          "
           class="d-flex align-items-center"
         >
           <button :disabled="disablePrevious" @click="previous" class="btn p-1">
@@ -3929,6 +3933,8 @@ export default {
             ? sharedPages * this.limit == this.offset
             : asstPages * this.limit == this.offset;
         //  this.pageCount == this.offset + 1;
+      } else {
+        this.disableNext = true;
       }
       this.disablePrevious = this.offset == 0;
     },
