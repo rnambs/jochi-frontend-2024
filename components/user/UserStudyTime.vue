@@ -683,6 +683,16 @@
                         </span>
                       </div>
                     </div>
+                    <div
+                      v-if="
+                        detail.assignment_materials &&
+                        detail.assignment_materials.length > 2
+                      "
+                    >
+                      <span class="text-12 color-secondary">
+                        + {{ detail.assignment_materials.length - 2 }} more
+                      </span>
+                    </div>
                   </div>
                   <div v-else class="col-8 py-0 pl-0 material-link">
                     <span class="color-secondary">No documents added!</span>
@@ -3890,6 +3900,7 @@ export default {
       }
 
       if (this.currentTab == 1) {
+        this.offset = 0;
         this.loadAssignments();
       }
     },
@@ -3903,6 +3914,7 @@ export default {
 
       this.onNext();
       if (this.currentTab == 1) {
+        this.offset = 0;
         this.loadAssignments();
       }
     },
