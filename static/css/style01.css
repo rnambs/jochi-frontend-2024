@@ -1,4 +1,9 @@
 @charset "UTF-8";
+.lext-limited {
+  max-height: 36px;
+  overflow: hidden;
+}
+
 :root {
   font-size: 16px;
 }
@@ -1983,10 +1988,6 @@ img.dark-icon {
 .inner-section .main-section #Daily-Calander .assignment-planner-section .jochi-components-light-bg, .inner-section .main-section #Weekly-Calander .assignment-planner-section .jochi-components-light-bg, .inner-section .main-section #Monthly-Calander .assignment-planner-section .jochi-components-light-bg {
   background-color: #ffffff;
   height: 100%;
-}
-.inner-section .main-section #Daily-Calander .lext-limited, .inner-section .main-section #Weekly-Calander .lext-limited, .inner-section .main-section #Monthly-Calander .lext-limited {
-  max-height: 36px;
-  overflow: hidden;
 }
 .inner-section .main-section #Daily-Calander .text-link:hover, .inner-section .main-section #Weekly-Calander .text-link:hover, .inner-section .main-section #Monthly-Calander .text-link:hover {
   color: #000000 !important;
