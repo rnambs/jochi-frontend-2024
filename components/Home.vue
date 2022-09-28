@@ -155,7 +155,7 @@
               </div>
             </div>
           </div>
-          <div class="card mb-4">
+          <!-- <div class="card mb-4">
             <div class="card-body">
               <div class="stat-widget-five">
                 <div class="stat-icon dib flat-color-4">
@@ -173,7 +173,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <!-- /# column -->
       </div>
@@ -225,6 +225,7 @@ export default {
       dashBoardData: (state) => state.dashBoardData,
       usersData: (state) => state.usersData,
       appointmentsData: (state) => state.appointmentsData,
+      chartData: (state) => state.chartData,
     }),
   },
   methods: {
@@ -267,11 +268,26 @@ export default {
       const appointments = this.appointmentsData;
       const users = this.usersData;
       const xData = [1, 2, 3, 4, 5];
+      const chartData = this.chartData;
+
+      let userData = [];
+      let appointmentData = [];
+      let dates = [];
+      this.chartData.forEach((e) => {
+        dates.push(moment(e.end).format("MM/DD/YYYY"));
+        userData.push(e.users);
+        appointmentData.push(e.appointments);
+      });
+      dates = dates?.reverse();
+      userData = userData?.reverse();
+      appointmentData = appointmentData?.reverse();
+
+      console.log("chartData", chartData);
 
       const myChart = new Chart(ctx, {
         type: "line",
         data: {
-          labels: xData,
+          labels: dates,
           datasets: [
             {
               label: "Appointments ",
@@ -279,7 +295,7 @@ export default {
               pointBackgroundColor: colors.lightBlue.stroke,
               borderColor: colors.lightBlue.stroke,
               pointHighlightStroke: colors.lightBlue.stroke,
-              data: appointments,
+              data: appointmentData,
             },
             {
               label: "users",
@@ -287,7 +303,7 @@ export default {
               pointBackgroundColor: colors.green.stroke,
               borderColor: colors.green.stroke,
               pointHighlightStroke: colors.green.stroke,
-              data: users,
+              data: userData,
             },
           ],
         },

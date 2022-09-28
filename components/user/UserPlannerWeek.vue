@@ -1448,15 +1448,7 @@
                               :identifier="reloadCount"
                               @infinite="loadNext"
                             >
-                          <div slot="no-more">No more records</div>
-                          <div slot="no-results">
-                            {{
-                              (!pendingAssignments ||
-                              pendingAssignments.length < 1)
-                                ? "No records found"
-                                : ""
-                            }}
-                          </div></infinite-loading>
+                            </infinite-loading>
                           </client-only>
                           <!-- <div
                             class="
@@ -3586,6 +3578,7 @@ export default {
       gg4lSubject: "",
       schoologyAssignment: "",
       reloadCount: 0,
+      tempOffset: -1,
     };
   },
 
@@ -3597,7 +3590,7 @@ export default {
       this.date_today.getDate()
     );
     this.getSubjectsList();
-    this.getAssignmentsList();
+    // this.getAssignmentsList();
     this.getAllCompletedAssignments();
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.GetWeeklyPlanner();
@@ -4787,13 +4780,16 @@ export default {
       $("#filterModal").modal("show");
     },
     async loadNext($state) {
-      if (this.initialLoad) {
-        if (this.reloadCount == 0) {
-          this.reloadCount = 1;
-        }
+      // if (this.initialLoad) {
+      // if (this.reloadCount == 0) {
+      //   this.reloadCount = 1;
+      // }
+      if (this.tempOffset != this.offset) {
+        this.tempOffset = this.offset;
+        console.log("inside load next", this.offset);
         this.pendingAssignments = [];
-        this.offset = this.offset + this.limit;
         await this.getAssignments({ offset: this.offset, limit: this.limit });
+        this.offset = this.offset + this.limit;
         this.assignmentMaterials = [];
         await this.mapAssignments();
         await this.mapSharedAssignments();
@@ -4803,24 +4799,30 @@ export default {
         } else {
           $state.complete();
         }
-      } else {
-        $state.complete();
       }
+      // } else {
+      //   $state.complete();
+      // }
     },
     async getAssignmentsList() {
-      this.offset = 0;
-      if (this.reloadCount > 0) {
+      if (this.reloadCount >= 0) {
         this.reloadCount += 1;
+        this.tempAssts = [];
+        this.offset = 0;
       }
-      this.pendingAssignments = [];
-      await this.getAssignments({ offset: this.offset, limit: this.limit });
-      if (!this.initialLoad) {
-        this.initialLoad = !this.initialLoad;
-      }
-      this.assignmentMaterials = [];
-      await this.mapAssignments();
-      await this.mapSharedAssignments();
-      this.tempAssts = this.pendingAssignments;
+      // this.offset = 0;
+      // if (this.reloadCount > 0) {
+      //   this.reloadCount += 1;
+      // }
+      // this.pendingAssignments = [];
+      // await this.getAssignments({ offset: this.offset, limit: this.limit });
+      // if (!this.initialLoad) {
+      //   this.initialLoad = !this.initialLoad;
+      // }
+      // this.assignmentMaterials = [];
+      // await this.mapAssignments();
+      // await this.mapSharedAssignments();
+      // this.tempAssts = this.pendingAssignments;
     },
     async applyFilter() {
       if (!this.filterType) {
