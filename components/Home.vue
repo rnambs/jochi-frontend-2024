@@ -274,7 +274,7 @@ export default {
       let appointmentData = [];
       let dates = [];
       this.chartData.forEach((e) => {
-        dates.push(moment(e.end).format("MM/DD/YYYY"));
+        dates.push(moment(e.currentDate).format("MM/DD/YYYY"));
         userData.push(e.users);
         appointmentData.push(e.appointments);
       });

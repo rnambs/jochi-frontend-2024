@@ -112,7 +112,7 @@
           <!-- <div @click="logoutSession" class="privacy-btn mr-4">Logout</div> -->
         </div>
       </div>
-      <div class="d-flex flex-column h-40 flex-fill">
+      <div class="d-flex flex-column h-40 flex-fill min-h-dashboard">
         <div class="row h-100">
           <div class="col-xl-8 h-100 height-md-unset">
             <div class="d-flex flex-column h-100">
@@ -206,10 +206,10 @@
                           </div>
                         </div>
                         <div class="study-status-text text-left text-lg-center mb-2 px-2">
-                          <p class="study-status-studied mb-1 word-break">
+                          <p class="study-status-studied mb-1 break-word">
                             {{ duration }} Minutes Studied Today
                           </p>
-                          <p class="study-status-time-left word-break">
+                          <p class="study-status-time-left break-word">
                             {{ durationRemaining }}
                             {{
                               isAdditionalCovered

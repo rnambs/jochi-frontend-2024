@@ -1364,13 +1364,14 @@ $sm-screen-h         : 767.98px;
         background-color: #ffffff;
         height: 100%;
       }
-      .lext-limited{
-        max-height: 36px;
-        overflow: hidden;
-      }
       .text-link{
         &:hover{
             color: #000000 !important;
         }
       }
 }
+
+.lext-limited{
+    max-height: 36px;
+    overflow: hidden;
+  }
