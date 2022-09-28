@@ -140,6 +140,10 @@ body {
   word-break: break-all;
 }
 
+.break-word {
+  word-break: break-word;
+}
+
 .line-break-anywhere {
   line-break: anywhere;
 }
@@ -1038,6 +1042,10 @@ img.card-img {
   .h-max-lg-400 {
     max-height: 400px !important;
   }
+}
+
+.min-h-dashboard {
+  min-height: 568.98px;
 }
 
 @-webkit-keyframes jump {

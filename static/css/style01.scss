@@ -124,6 +124,9 @@ body{
 .word-break{
     word-break: break-all;
 }
+.break-word{
+    word-break: break-word;
+}
 .line-break-anywhere{
     line-break: anywhere;
 }
@@ -1068,6 +1071,9 @@ img.card-img{
     @media (max-width:$lg-screen) {
         max-height: 400px !important;
     }
+}
+.min-h-dashboard{
+    min-height: 568.98px;
 }
 // @keyframes jump {
 //     0%   {transform: translate3d(0,-40px,0) scale3d(1,1,1)  rotate(-10deg);transition: 1.9s}
