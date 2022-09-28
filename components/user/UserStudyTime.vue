@@ -493,7 +493,11 @@
           <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
         </div>
         <div
-          v-if="pendingAssignments && pendingAssignments.length > 0"
+          v-if="
+            pendingAssignments &&
+            pendingAssignments.length > 0 &&
+            (sharedAssignmentsCount > 10 || assignmentsCount > 10)
+          "
           class="d-flex align-items-center"
         >
           <button :disabled="disablePrevious" @click="previous" class="btn p-1">
@@ -678,6 +682,16 @@
                           {{ file.file_type }} &nbsp;:&nbsp;{{ file.file_name }}
                         </span>
                       </div>
+                    </div>
+                    <div
+                      v-if="
+                        detail.assignment_materials &&
+                        detail.assignment_materials.length > 2
+                      "
+                    >
+                      <span class="text-12 color-secondary">
+                        + {{ detail.assignment_materials.length - 2 }} more
+                      </span>
                     </div>
                   </div>
                   <div v-else class="col-8 py-0 pl-0 material-link">
@@ -3886,6 +3900,7 @@ export default {
       }
 
       if (this.currentTab == 1) {
+        this.offset = 0;
         this.loadAssignments();
       }
     },
@@ -3899,6 +3914,7 @@ export default {
 
       this.onNext();
       if (this.currentTab == 1) {
+        this.offset = 0;
         this.loadAssignments();
       }
     },
@@ -3929,6 +3945,8 @@ export default {
             ? sharedPages * this.limit == this.offset
             : asstPages * this.limit == this.offset;
         //  this.pageCount == this.offset + 1;
+      } else {
+        this.disableNext = true;
       }
       this.disablePrevious = this.offset == 0;
     },
