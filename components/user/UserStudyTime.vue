@@ -626,7 +626,13 @@
                         />
                         <label
                           for=""
-                          class="mb-0 text-14 color-secondary cursor-pointer"
+                          class="
+                            mb-0
+                            text-14
+                            color-secondary
+                            cursor-pointer
+                            text-truncate
+                          "
                           >{{ subtask.title }}</label
                         >
                       </div>
