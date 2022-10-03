@@ -1405,7 +1405,11 @@
           <div class="card card-void rounded-22 h-40 flex-fill p-4 h-min-200">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
-              <a @click="onInviteClick" class="btn p-0">
+              <a
+                v-if="!sessionDetail.id"
+                @click="onInviteClick"
+                class="btn p-0"
+              >
                 <span class="color-secondary"
                   ><i class="fas fa-plus-circle"></i
                 ></span>
@@ -1578,6 +1582,7 @@
                       <!-- {{subjectsData}} -->
                       <label class="typo__label">Subject</label>
                       <select
+                        :disabled="sessionDetail.id"
                         @change="UpdateSubject()"
                         class="form-control"
                         tabindex=""
@@ -3887,6 +3892,7 @@ export default {
     onBack() {
       if (this.sessionType == "study" && this.currentTab == 2) {
         this.currentTab = 0;
+        this.resetData();
         return;
       }
 
