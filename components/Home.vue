@@ -155,7 +155,7 @@
               </div>
             </div>
           </div>
-          <!-- <div class="card mb-4">
+          <div class="card mb-4">
             <div class="card-body">
               <div class="stat-widget-five">
                 <div class="stat-icon dib flat-color-4">
@@ -173,7 +173,45 @@
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="stat-widget-five">
+                <div class="stat-icon dib flat-color-4">
+                  <i class="pe-7s-note2"></i>
+                </div>
+                <div class="stat-content">
+                  <div class="text-left dib">
+                    <div class="stat-text">
+                      <span class="count_static">{{
+                        dashBoardData.sub_task_count
+                      }}</span>
+                    </div>
+                    <div class="stat-heading">Sub Task Count</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="stat-widget-five">
+                <div class="stat-icon dib flat-color-4">
+                  <i class="pe-7s-note2"></i>
+                </div>
+                <div class="stat-content">
+                  <div class="text-left dib">
+                    <div class="stat-text">
+                      <span class="count_static">{{
+                        dashBoardData.completed_sub_task_count
+                      }}</span>
+                    </div>
+                    <div class="stat-heading">Completed Sub Task Count</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- /# column -->
       </div>
