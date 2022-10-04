@@ -4085,6 +4085,8 @@ export default {
       this.loading = false;
 
       if (this.successMessage != "") {
+        this.reloadCount += 1;
+
         this.GetAssignment();
         this.getAssignmentsList();
         this.openAssignment = false;
@@ -4205,6 +4207,7 @@ export default {
       this.loading = false;
       if (this.successMessage != "") {
         this.deletedSubTasksArray = [];
+        this.reloadCount += 1;
 
         this.GetAssignment();
         this.getAssignmentsList();
