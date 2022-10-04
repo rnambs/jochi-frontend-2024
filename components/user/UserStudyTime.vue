@@ -1753,6 +1753,10 @@
                         </div>
                         <div class="py-1">
                           <button
+                            v-if="
+                              !sessionDetail.id ||
+                              (sessionDetail && sessionDetail.userId == userId)
+                            "
                             type="button"
                             @click="openScheduleForLater()"
                             class="btn btn-dark btn-sm"
@@ -3094,6 +3098,7 @@ export default {
       //   this.breakAt = this.studyTypes.start_time;
       this.peerList = this.mapPeers(e);
       this.sessionMode = e.study_method ? "regular" : "pomodoro";
+      session.userId = e.userId;
       this.sessionDetail = session;
     },
     async getDetail(id) {
@@ -3115,7 +3120,7 @@ export default {
       //   this.targetDuration = this.studyTypes.start_time;
       //   this.breakTime = this.studyTypes.break_time;
       //   this.repeatLoopBy = this.studyTypes.cycle;
-      if (this.studyTypes.id != 2) {
+      if (this.studyTypes?.id != 2) {
         this.targetDuration = this.studyTypes.start_time;
         this.breakTime = this.studyTypes.break_time;
         this.breakAt = this.studyTypes.start_time;
@@ -3130,7 +3135,7 @@ export default {
     },
     // async UpdateStudyTechnique() {
     //   this.CustomMode = "active";
-    //   if (this.studyTypes.id != 2) {
+    //   if (this.studyTypes?.id != 2) {
     //     this.targetDuration = this.studyTypes.startTime;
     //     this.breakTime = this.studyTypes.breakTime;
     //     this.repeatLoopBy = this.studyTypes.cycle;
@@ -3157,7 +3162,7 @@ export default {
       this.totalCycles = this.repeatLoopBy;
       this.customBreakStarted = false;
       this.breakAtMinutes = this.breakAt * 60;
-      if (this.studyTypes.id == 2) {
+      if (this.studyTypes?.id == 2) {
         this.timeCompleted = 0;
       }
 
@@ -3166,11 +3171,14 @@ export default {
           ? this.studyTypes.long_break
           : this.studyTypes.breakTime;
 
-      if (this.studyTypes.id != 2) {
+      if (this.studyTypes?.id != 2) {
         for (let i = 0; i < Number(this.repetitionCount); i++) {
           this.currentRepetitionNum = 1 + i;
           this.studyStatus = "";
-          if (i != 0 && (this.studyTypes.id == 1 || this.studyTypes.id == 2)) {
+          if (
+            i != 0 &&
+            (this.studyTypes?.id == 1 || this.studyTypes?.id == 2)
+          ) {
             this.studyStatus = "break";
             await this.runTimer(repbreakTime * 60);
           }
@@ -3212,7 +3220,7 @@ export default {
       let percentage = 0;
       var minutes = 0;
       var seconds = 0;
-      if (this.studyTypes.id == 2) {
+      if (this.studyTypes?.id == 2) {
         this.timeCompleted = this.timeCompleted > 0 ? this.timeCompleted : 0;
       }
       // var startTime;
@@ -3252,7 +3260,7 @@ export default {
 
               if (
                 this.studyStatus == "study" &&
-                this.studyTypes.id == 2 &&
+                this.studyTypes?.id == 2 &&
                 this.timeCompleted == this.breakAtMinutes &&
                 !this.customBreakStarted
               ) {
@@ -3370,7 +3378,7 @@ export default {
               this.scheduledTime.mm +
               " " +
               this.scheduledTime.A,
-          study_method: this.studyTypes.id,
+          study_method: this.studyTypes?.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
             this.sessionMode == "regular" ? this.targetDuration : null,
@@ -3398,7 +3406,7 @@ export default {
               this.scheduledTime.mm +
               " " +
               this.scheduledTime.A,
-          study_method: this.studyTypes.id,
+          study_method: this.studyTypes?.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
             this.sessionMode == "regular" ? this.targetDuration : null,
@@ -3477,7 +3485,7 @@ export default {
         });
         valid = false;
       }
-      if (this.studyTypes.id == 2) {
+      if (this.studyTypes?.id == 2) {
         if (!this.targetDuration) {
           this.$toast.open({
             message: "Durartion is required",
@@ -3624,7 +3632,7 @@ export default {
         }
         this.totalStudyTime = 0;
         if (
-          this.studyTypes.id == 2 &&
+          this.studyTypes?.id == 2 &&
           studyStatus == "PAUSE" &&
           this.customBreakStarted
         ) {
@@ -3691,7 +3699,7 @@ export default {
       this.AddStudyTime("STOP");
     },
     async onPauseSession() {
-      // if (this.studyTypes.id == 2) {
+      // if (this.studyTypes?.id == 2) {
       this.studyTimePaused = true;
       var presentTime = new Date().getTime();
       this.totalStudyTime = (presentTime - this.studyTimeStart) / 1000;
@@ -3699,7 +3707,7 @@ export default {
       // }
     },
     async onResumeSession() {
-      // if (this.studyTypes.id == 2) {
+      // if (this.studyTypes?.id == 2) {
       (this.startTime = new Date().getTime()), (this.studyTimePaused = false);
       this.studyTimeStart = new Date().getTime();
       this.showResume = false;
