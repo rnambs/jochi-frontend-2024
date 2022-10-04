@@ -4200,6 +4200,7 @@ export default {
 
       if (this.successMessage != "") {
         this.offset = 0;
+         this.tempAssts = [];
         this.GetAssignment();
         this.getAssignmentsList();
         this.openAssignment = false;
@@ -4320,6 +4321,7 @@ export default {
       this.loading = false;
       if (this.successMessage != "") {
         this.offset = 0;
+         this.tempAssts = [];
         this.deletedSubTasksArray = [];
 
         this.GetAssignment();
@@ -4807,11 +4809,11 @@ export default {
       // }
     },
     async getAssignmentsList() {
-      if (this.reloadCount >= 0) {
-        this.reloadCount += 1;
-        this.tempAssts = [];
-        this.offset = 0;
-      }
+      // if (this.reloadCount >= 0) {
+      //   this.reloadCount += 1;
+      //   this.tempAssts = [];
+      //   this.offset = 0;
+      // }
       // this.offset = 0;
       // if (this.reloadCount > 0) {
       //   this.reloadCount += 1;
