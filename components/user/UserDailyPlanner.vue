@@ -4283,6 +4283,8 @@ export default {
       });
       this.processingCompleteAssignment = false;
       if (this.successMessage != "") {
+        this.reloadCount += 1;
+
         this.openAssignment = false;
         this.getAssignmentsList();
         this.getAllCompletedAssignments();
@@ -4321,6 +4323,7 @@ export default {
       await this.GetDailyPlanner();
 
       if (this.successMessage != "") {
+        this.reloadCount += 1;
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
