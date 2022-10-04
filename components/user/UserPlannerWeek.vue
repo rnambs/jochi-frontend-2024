@@ -4201,8 +4201,8 @@ export default {
 
       if (this.successMessage != "") {
         this.offset = 0;
-         this.tempAssts = [];
-          this.reloadNext = true;
+        this.tempAssts = [];
+        this.reloadNext = true;
         this.reloadCount += 1;
         this.GetAssignment();
         // this.getAssignmentsList();
@@ -4324,8 +4324,8 @@ export default {
       this.loading = false;
       if (this.successMessage != "") {
         this.offset = 0;
-         this.tempAssts = [];
-          this.reloadNext = true;
+        this.tempAssts = [];
+        this.reloadNext = true;
         this.reloadCount += 1;
         this.deletedSubTasksArray = [];
 
@@ -4793,7 +4793,7 @@ export default {
       // if (this.reloadCount == 0) {
       //   this.reloadCount = 1;
       // }
-     if (this.tempOffset != this.offset || this.reloadNext) {
+      if (this.tempOffset != this.offset || this.reloadNext) {
         this.reloadNext = false;
         this.tempOffset = this.offset;
         console.log("inside load next", this.offset);
@@ -5456,8 +5456,12 @@ export default {
       this.processingCompleteAssignment = false;
       if (this.successMessage != "") {
         this.openAssignment = false;
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
 
-        this.getAssignmentsList();
+        // this.getAssignmentsList();
         this.getAllCompletedAssignments();
         this.completeAsstId = 0;
         this.$toast.open({
@@ -5494,6 +5498,10 @@ export default {
       await this.GetWeeklyPlanner();
 
       if (this.successMessage != "") {
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
         this.completeSubTaskId = 0;
         this.completeAsstId = 0;
         this.$toast.open({
@@ -5501,7 +5509,7 @@ export default {
           type: this.SuccessType,
           duration: 5000,
         });
-        await this.getAssignmentsList();
+        // await this.getAssignmentsList();
         await this.getAllCompletedAssignments();
         if (this.allSubTskCompleted) {
           // await this.completeAssignment();
