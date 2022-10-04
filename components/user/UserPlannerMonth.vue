@@ -4088,7 +4088,7 @@ export default {
       if (this.successMessage != "") {
         this.offset = 0;
         this.tempAssts = [];
-         this.reloadNext = true;
+        this.reloadNext = true;
         this.reloadCount += 1;
         this.GetAssignment();
         // this.getAssignmentsList();
@@ -4211,7 +4211,7 @@ export default {
       if (this.successMessage != "") {
         this.offset = 0;
         this.tempAssts = [];
-         this.reloadNext = true;
+        this.reloadNext = true;
         this.reloadCount += 1;
         this.deletedSubTasksArray = [];
         this.GetAssignment();
@@ -5251,8 +5251,11 @@ export default {
       this.processingCompleteAssignment = false;
       if (this.successMessage != "") {
         this.openAssignment = false;
-
-        this.getAssignmentsList();
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
+        // this.getAssignmentsList();
         this.getAllCompletedAssignments();
         this.completeAsstId = 0;
         this.$toast.open({
@@ -5290,6 +5293,10 @@ export default {
       await this.GetMonthlyPlanner();
 
       if (this.successMessage != "") {
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
         this.completeSubTaskId = 0;
         this.completeAsstId = 0;
         this.$toast.open({
@@ -5297,7 +5304,7 @@ export default {
           type: this.SuccessType,
           duration: 5000,
         });
-        await this.getAssignmentsList();
+        // await this.getAssignmentsList();
         await this.getAllCompletedAssignments();
         if (this.allSubTskCompleted) {
           // await this.completeAssignment();
