@@ -3294,6 +3294,7 @@ export default {
       schoologyAssignment: "",
       reloadCount: 0,
       tempOffset: -1,
+      reloadNext: false,
     };
   },
   mounted() {
@@ -4087,6 +4088,8 @@ export default {
       if (this.successMessage != "") {
         this.offset = 0;
         this.tempAssts = [];
+         this.reloadNext = true;
+        this.reloadCount += 1;
         this.GetAssignment();
         this.getAssignmentsList();
         this.openAssignment = false;
@@ -4208,6 +4211,8 @@ export default {
       if (this.successMessage != "") {
         this.offset = 0;
         this.tempAssts = [];
+         this.reloadNext = true;
+        this.reloadCount += 1;
         this.deletedSubTasksArray = [];
         this.GetAssignment();
         this.getAssignmentsList();
@@ -4978,7 +4983,8 @@ export default {
     async loadNext($state) {
       // if (this.initialLoad) {
       // $state.reset();
-      if (this.tempOffset != this.offset) {
+      if (this.tempOffset != this.offset || this.reloadNext) {
+        this.reloadNext = false;
         this.tempOffset = this.offset;
         console.log("inside load next", this.offset);
 
