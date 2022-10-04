@@ -4199,6 +4199,7 @@ export default {
       this.loading = false;
 
       if (this.successMessage != "") {
+        this.offset = 0;
         this.GetAssignment();
         this.getAssignmentsList();
         this.openAssignment = false;
@@ -4318,6 +4319,7 @@ export default {
       });
       this.loading = false;
       if (this.successMessage != "") {
+        this.offset = 0;
         this.deletedSubTasksArray = [];
 
         this.GetAssignment();
