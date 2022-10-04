@@ -3019,6 +3019,7 @@ export default {
       schoologyAssignment: "",
       reloadCount: 0,
       tempOffset: -1,
+      reloadNext: false,
     };
   },
   mounted() {
@@ -3545,6 +3546,9 @@ export default {
 
       if (this.successMessage != "") {
         this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
         this.GetAssignment();
         this.getAssignmentsList();
         this.openAssignment = false;
@@ -3641,6 +3645,9 @@ export default {
       this.loading = false;
       if (this.successMessage != "") {
         this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
         this.deletedSubTasksArray = [];
         this.GetAssignment();
         this.getAssignmentsList();
@@ -4020,7 +4027,8 @@ export default {
       // if (this.reloadCount == 0) {
       //   this.reloadCount = 1;
       // }
-      if (this.tempOffset != this.offset) {
+      if (this.tempOffset != this.offset || this.reloadNext) {
+        this.reloadNext = false;
         this.tempOffset = this.offset;
         console.log("inside load next", this.offset);
         this.pendingAssignments = [];
@@ -4041,16 +4049,15 @@ export default {
       // }
     },
     async getAssignmentsList() {
-      if (this.reloadCount >= 0) {
-        this.reloadCount += 1;
-        this.tempAssts = [];
-        this.offset = 0;
-      }
+      // if (this.reloadCount >= 0) {
+      //   this.reloadCount += 1;
+      //   this.tempAssts = [];
+      //   this.offset = 0;
+      // }
       // this.offset = 0;
       // if (this.reloadCount > 0) {
       //   this.reloadCount += 1;
       // }
-
       // this.pendingAssignments = [];
       // await this.getAssignments({ offset: this.offset, limit: this.limit });
       // if (!this.initialLoad) {
