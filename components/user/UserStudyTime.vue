@@ -1323,7 +1323,11 @@
                     : null
                 }}
               </h3>
-              <a @click="onAddGoalClick" class="btn p-0">
+              <a
+                v-if="!sessionDetail.id"
+                @click="onAddGoalClick"
+                class="btn p-0"
+              >
                 <span class="color-secondary"
                   ><i class="fas fa-plus-circle"></i
                 ></span>
