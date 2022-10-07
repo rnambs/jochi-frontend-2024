@@ -3046,7 +3046,10 @@ export default {
           : e.subject?.subject_name;
       if (session.type == "study") {
         this.sessionType = "study";
-        let nameSubject = { id: e.subject.id, text: e.subject.subject_name };
+        let nameSubject = {
+          id: e.subjectName ? e.subjectName : e.subject.id,
+          text: e.subject.subject_name,
+        };
         session.subjectId = e.subject?.id;
         this.Subject = nameSubject;
         this.subjectsData.find(
