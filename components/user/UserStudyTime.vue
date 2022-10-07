@@ -1323,7 +1323,11 @@
                     : null
                 }}
               </h3>
-              <a @click="onAddGoalClick" class="btn p-0">
+              <a
+                v-if="!sessionDetail.id"
+                @click="onAddGoalClick"
+                class="btn p-0"
+              >
                 <span class="color-secondary"
                   ><i class="fas fa-plus-circle"></i
                 ></span>
@@ -3042,7 +3046,10 @@ export default {
           : e.subject?.subject_name;
       if (session.type == "study") {
         this.sessionType = "study";
-        let nameSubject = { id: e.subject.id, text: e.subject.subject_name };
+        let nameSubject = {
+          id: e.subjectName ? e.subjectName : e.subject.id,
+          text: e.subject.subject_name,
+        };
         session.subjectId = e.subject?.id;
         this.Subject = nameSubject;
         this.subjectsData.find(
