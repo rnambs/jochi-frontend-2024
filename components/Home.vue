@@ -31,7 +31,7 @@
                         dashBoardData.student_count
                       }}</span>
                     </div>
-                    <div class="stat-heading">Students</div>
+                    <div class="stat-heading">New Students</div>
                   </div>
                 </div>
               </div>
@@ -53,7 +53,7 @@
                         dashBoardData.teacher_count
                       }}</span>
                     </div>
-                    <div class="stat-heading">Teachers</div>
+                    <div class="stat-heading">New Teachers</div>
                   </div>
                 </div>
               </div>
@@ -75,7 +75,7 @@
                         dashBoardData.school_count
                       }}</span>
                     </div>
-                    <div class="stat-heading">Schools</div>
+                    <div class="stat-heading">New Schools</div>
                   </div>
                 </div>
               </div>
