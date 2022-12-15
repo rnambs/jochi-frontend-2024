@@ -62,7 +62,10 @@
           class="img-responsive jump"
         />
         <p class="mb-0 color-white text-16 font-regular">
-          FAQ's | Privacy Policy
+          <a class="color-white" href="https://www.jochi.info/faqs"> FAQ's </a>|
+          <a class="color-white" href="  https://www.jochi.info/privacy-policy">
+            Privacy Policy
+          </a>
         </p>
       </div>
       <div
@@ -81,7 +84,16 @@
           id="sign-up"
           class="login-box d-flex flex-column h-100 justify-content-between"
         >
-          <div class="d-flex flex-column h-100 justify-content-center p-3 px-3 px-md-5 px-lg-3">
+          <div
+            class="
+              d-flex
+              flex-column
+              h-100
+              justify-content-center
+              p-3
+              px-3 px-md-5 px-lg-3
+            "
+          >
             <div
               class="
                 card
@@ -240,20 +252,31 @@
               <a class="btn" href="https://www.tiktok.com/@jochiapp"
                 ><img src="../static/image/social-icon/TikTok Logo.png" alt=""
               /></a>
-              <a class="btn" href="https://open.spotify.com/user/j67o7nwic4neqgxjhxd17bsb7?si=FSnQG04QTVWIJVqGfUvmOQ"
+              <a
+                class="btn"
+                href="https://open.spotify.com/user/j67o7nwic4neqgxjhxd17bsb7?si=FSnQG04QTVWIJVqGfUvmOQ"
                 ><img src="../static/image/social-icon/Spotify Logo.png" alt=""
               /></a>
-              <a class="btn" href="https://www.youtube.com/channel/UCu063irMWPCQz4AkWkdwCBA"
+              <a
+                class="btn"
+                href="https://www.youtube.com/channel/UCu063irMWPCQz4AkWkdwCBA"
                 ><img src="../static/image/social-icon/YouTube Png.png" alt=""
               /></a>
             </div>
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <a href="" class="text-center color-secondary font-regular text-16"
+            <a
+              href="https://www.jochi.info"
+              class="text-center color-secondary font-regular text-16"
               >www.jochi.info</a
             >
-            <a href="" class="text-center color-secondary font-regular text-16">
-              contact@jochi.info</a
+            <!-- <span class="text-center color-secondary font-regular text-16">
+              contact@jochi.info</span
+            > -->
+            <a
+              href="mailto:contact@jochi.info"
+              class="text-center color-secondary font-regular text-16"
+              >contact@jochi.info</a
             >
           </div>
         </section>
