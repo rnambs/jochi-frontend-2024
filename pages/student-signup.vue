@@ -249,7 +249,9 @@
             </div>
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <a href="" class="text-center color-secondary font-regular text-16"
+            <a
+              href="https://www.jochi.info/"
+              class="text-center color-secondary font-regular text-16"
               >www.jochi.info</a
             >
             <a href="" class="text-center color-secondary font-regular text-16">
