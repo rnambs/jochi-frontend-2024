@@ -62,7 +62,8 @@
           class="img-responsive jump"
         />
         <p class="mb-0 color-white text-16 font-regular">
-          FAQ's | Privacy Policy
+          <a href="https://www.jochi.info/faqs"> FAQ's </a>|
+          <a href="  https://www.jochi.info/privacy-policy"> Privacy Policy </a>
         </p>
       </div>
       <div
@@ -249,11 +250,18 @@
             </div>
           </div>
           <div class="d-flex flex-column justify-content-center">
-            <a href="" class="text-center color-secondary font-regular text-16"
+            <a
+              href="https://www.jochi.info"
+              class="text-center color-secondary font-regular text-16"
               >www.jochi.info</a
             >
-            <a href="" class="text-center color-secondary font-regular text-16">
-              contact@jochi.info</a
+            <!-- <span class="text-center color-secondary font-regular text-16">
+              contact@jochi.info</span
+            > -->
+            <a
+              href="mailto:contact@jochi.info"
+              class="text-center color-secondary font-regular text-16"
+              >contact@jochi.info</a
             >
           </div>
         </section>
