@@ -31,7 +31,7 @@
                         dashBoardData.student_count
                       }}</span>
                     </div>
-                    <div class="stat-heading">Students</div>
+                    <div class="stat-heading">New Students</div>
                   </div>
                 </div>
               </div>
@@ -53,7 +53,7 @@
                         dashBoardData.teacher_count
                       }}</span>
                     </div>
-                    <div class="stat-heading">Teachers</div>
+                    <div class="stat-heading">New Teachers</div>
                   </div>
                 </div>
               </div>
@@ -75,7 +75,7 @@
                         dashBoardData.school_count
                       }}</span>
                     </div>
-                    <div class="stat-heading">Schools</div>
+                    <div class="stat-heading">New Schools</div>
                   </div>
                 </div>
               </div>
@@ -313,8 +313,8 @@ export default {
       let dates = [];
       this.chartData.forEach((e) => {
         dates.push(moment(e.currentDate).format("MM/DD/YYYY"));
-        userData.push(e.users);
-        appointmentData.push(e.appointments);
+        userData.push(e.students);
+        appointmentData.push(e.teachers);
       });
       dates = dates?.reverse();
       userData = userData?.reverse();
@@ -328,7 +328,7 @@ export default {
           labels: dates,
           datasets: [
             {
-              label: "Appointments ",
+              label: "Teachers ",
               fill: false,
               pointBackgroundColor: colors.lightBlue.stroke,
               borderColor: colors.lightBlue.stroke,
@@ -336,7 +336,7 @@ export default {
               data: appointmentData,
             },
             {
-              label: "users",
+              label: "Students",
               fill: false,
               pointBackgroundColor: colors.green.stroke,
               borderColor: colors.green.stroke,
