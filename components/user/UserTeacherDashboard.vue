@@ -47,10 +47,22 @@
                 <h2 class="color-primary font-semi-bold">Have a great day</h2>
               </div>
               <div class="d-flex align-items-center">
-                <div class="btn color-dark font-semi-bold mr-3">FAQs</div>
-                <div class="btn color-dark font-semi-bold mr-4">
+                <!-- <div class="btn color-dark font-semi-bold mr-3">FAQs</div> -->
+                <a
+                  class="btn color-dark font-semi-bold mr-3"
+                  href="https://www.jochi.info/faqs"
+                >
+                  FAQ's
+                </a>
+                <!-- <div class="btn color-dark font-semi-bold mr-4">
                   Privacy Policy
-                </div>
+                </div> -->
+                <a
+                  class="btn color-dark font-semi-bold mr-4"
+                  href="https://www.jochi.info/privacy-policy"
+                >
+                  Privacy Policy
+                </a>
               </div>
             </div>
             <div class="h-40 flex-fill custom-overflow px-4 pt-4 pb-2 mb-2">
