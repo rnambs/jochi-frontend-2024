@@ -2299,7 +2299,7 @@
                                       @click="onInvitePeer"
                                       class="btn btn-primary btn-sm mt-2"
                                     >
-                                      Add
+                                      {{ isAddAssignment ? "Add" : "Save" }}
                                     </button>
                                   </div>
                                 </div>
@@ -2331,6 +2331,15 @@
                                             alt=""
                                           />
                                         </div>
+                                        <button
+                                          type="button"
+                                          role="button"
+                                          @click="
+                                            removePeerConfirm(peer.id, $event)
+                                          "
+                                        >
+                                          Remove
+                                        </button>
                                       </div>
                                       <div class="ld-details-section">
                                         <p class="ld-heading mb-1">
@@ -3437,6 +3446,44 @@
       </div>
     </div>
     <!-- Sub task completion confirmation end  -->
+    <!-- Remove peer  confirmation  -->
+    <div
+      class="modal fade"
+      id="removePeerConfirmation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="removePeerConfirmationModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h3 class="modal-title" id="removePeerConfirmationModalLongTitle">
+              Remove Peer Confirmation
+            </h3>
+          </div>
+          <div class="modal-body px-4">Remove the peer?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              @click="removePeer()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Remove peer  confirmation end  -->
   </div>
 </template>
 <script>
@@ -3550,6 +3597,7 @@ export default {
       peerSelected: [],
       peerList: [],
       completeAsstId: 0,
+      removePeerId: 0,
       playCelebration: false,
       completeSubTasktId: 0,
       openAssignment: false,
@@ -5792,343 +5840,23 @@ export default {
       // array = [2, 9]
       console.log(this.additionalMaterialList);
     },
+    removePeerConfirm(id, event) {
+      event.stopPropagation();
+      $("#removePeerConfirmation").modal({ backdrop: true });
+      this.removePeerId = id;
+    },
+    removePeer() {
+      const index = this.peerList.findIndex(
+        (item) => item.id == this.removePeerId
+      );
+      if (index > -1) {
+        this.peerList.splice(index, 1); // 2nd parameter means remove one item only
+      }
+    },
   },
 };
 </script>
 
-<!-- <style>
-.material-link {
-  font-size: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.material-date {
-  font-size: 10px;
-}
-
-.addition-material-section h6 {
-  color: #000000;
-}
-
-.form-control {
-  background-color: #b4b4b4;
-  border-block-color: #b4b4b4;
-  color: #ffffff;
-}
-
-.upload-file-section .form-control {
-  height: 18px;
-  font-size: 8px;
-  padding: 0;
-}
-
-.upload-file-section .form-control::placeholder {
-  color: #ffffff;
-}
-
-.completed-assignments h4 {
-  font-weight: 700;
-}
-
-.completed-assignments h4.blue {
-  color: #9d00df;
-}
-
-.completed-assignments h4.green {
-  color: #1d9c00;
-}
-
-.completed-assignments p {
-  color: #c7c1c1;
-  font-size: 12px;
-}
-
-.add-person-section {
-  top: -5px;
-  display: flex;
-  right: 25px;
-}
-
-.ap-img-add,
-.ap-img-section {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-.ap-img-add {
-  margin-left: -15px;
-  cursor: pointer;
-}
-
-.ap-img-section {
-  background-color: #ffffff;
-}
-
-.fc .fc-scrollgrid {
-    border-radius: 12px;
-    overflow: hidden;
-    border: none;
-}
-
-.fc-timegrid-body {
-  padding-top: 25px;
-}
-
-.fc-theme-standard .fc-popover {
-  background: none;
-  border: none;
-  box-shadow: none;
-}
-
-.fc .fc-more-popover .fc-popover-header {
-  background: #ff6f69;
-  color: #ffffff;
-  border-radius: 12px 12px 0 0;
-  font-weight: 700;
-}
-
-.fc .fc-more-popover .fc-popover-body {
-  background: none;
-  padding: 0;
-}
-
-.fc .fc-more-popover .fc-popover-body .fc-timegrid-event {
-  border-radius: 0 0 12px 12px;
-}
-
-.fc-toolbar-chunk .fc-toolbar-title {
-    position: absolute;
-    font-size: 20px;
-    color: #000000;
-    font-weight: 700;
-    z-index: 999;
-}
-
-.fc-toolbar-chunk button {
-    display: none !important;
-}
-
-/* .fc .fc-button .fc-icon {
-    color: #a28cf6;
-    font-size: 1em;
-    line-height: 1em;
-    margin: 0;
-}
-
-.fc-toolbar-chunk .fc-next-button.fc-button,
-.fc-toolbar-chunk .fc-prev-button.fc-button {
-    background: none;
-    border: 1px solid #b4b4b4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fc-toolbar-chunk .fc-next-button.fc-button {
-    position: relative;
-    top: 1.065rem;
-}
-
-.fc .fc-day-disabled {
-    background: none;
-}
-
-.fc .fc-daygrid-day-number {
-    color: #8c8bac !important;
-    font-weight: 600;
-}
-
-.fc-theme-standard th {
-    border-right: none;
-    border-left: none;
-    background-color: #f0deeb;
-    padding: 5px;
-}
-
-.fc-theme-standard th .fc-col-header-cell-cushion {
-    color: #a995ef;
-}
-
-.fc-theme-standard td {
-  border-color: #e9d7ee;
-} */
-
-.fc-theme-standard td,
-.fc-theme-standard th {
-  border: none;
-}
-
-/* .fc-button.fc-button-primary {
-  display: none;
-}
-
-.fc-theme-standard .fc-scrollgrid {
-  border: none;
-} */
-
-.fc .fc-daygrid-day.fc-day-today,
-.fc .fc-timegrid-col.fc-day-today {
-  background-color: transparent;
-}
-
-.fc .fc-timegrid-slot-minor {
-  border-top: none;
-}
-
-/* .fc-media-screen .fc-timegrid-cols {
-  position: unset;
-} */
-
-.fc-direction-ltr .fc-timegrid-slot-label-frame {
-  text-align: center;
-  background-color: #c6c5c5;
-  color: #ffffff;
-  border-radius: 7px;
-  font-size: 12px;
-  position: relative;
-}
-
-.fc-direction-ltr .fc-timegrid-slot-label-frame::after {
-  content: "";
-  background-color: #c6c5c5;
-  width: 100vw;
-  height: 1px;
-  position: absolute;
-  top: 8px;
-}
-
-/* .fc-scrollgrid-sync-table{
-  display: none;
-} */
-
-.fc .fc-cell-shaded,
-.fc .fc-day-disabled {
-  background: none;
-}
-
-.fc-toolbar-chunk .fc-toolbar-title {
-  position: absolute;
-  left: 42%;
-  right: 42%;
-  top: -5px;
-  font-size: 14px;
-  color: #ffffff;
-  background: #ff6f69;
-  border-radius: 12px;
-  padding: 5px;
-}
-
-.planner-week .fc-view-harness.fc-view-harness-active {
-  height: 75vh !important;
-  margin-top: 20px;
-}
-
-.fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar {
-  width: 3px;
-}
-
-.fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-track {
-  background: none;
-}
-
-.fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-thumb {
-  background: #ff6d6d;
-}
-
-.fc-timegrid-event-harness > .fc-timegrid-event {
-  left: 15px;
-}
-
-.fc-v-event {
-  background-color: #ffffff;
-  -webkit-box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 15%) !important;
-  box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 15%) !important;
-  border-radius: 22px !important;
-  border: none !important;
-  padding: 15px 20px !important;
-}
-
-.fc-v-event .fc-event-main {
-  color: #000000;
-}
-
-.fc-timegrid-col-events .fc-timegrid-more-link.fc-more-link {
-  bottom: Unset !important;
-  background: #ff6f69;
-  color: #ffffff !important;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  margin-right: 5px;
-}
-
-.fc-v-event .fc-event-title {
-  font-weight: 800;
-  font-size: 18px;
-  word-break: break-all;
-}
-
-.jochi-components-light-bg.pending-assignment-popup {
-  top: 12px;
-  bottom: 12px;
-  left: 12px;
-  right: 12px;
-  background-color: #ffffff;
-  transform: scale(0);
-  transition: transform 1s ease;
-}
-
-.jochi-components-light-bg.pending-assignment-popup.active {
-  transform: scale(1);
-  transition: transform 1s ease;
-}
-
-.planner-action-btns {
-  transform: rotate(-90deg);
-  top: 50vh;
-  right: -139px;
-}
-
-.planner-action-btns .pa-btn {
-  padding: 5px 20px;
-  background-color: #b8b8b8;
-  color: #ffffff;
-  border-radius: 14px 14px 0 0;
-  transition: background-color 0.5s ease;
-}
-
-.planner-action-btns .pa-btn.active {
-  background-color: #ffffff;
-  color: #b8b8b8;
-  border: 1px solid #b8b8b8;
-  transition: background-color 0.5s ease;
-}
-
-.assignment-planner-section {
-  top: 0;
-  right: 3rem;
-  bottom: 0;
-  z-index: 5;
-  display: none;
-}
-
-.assignment-planner-section.active {
-  display: block;
-}
-
-.assignment-planner-section .jochi-components-light-bg {
-  background-color: #ffffff;
-  height: 100%;
-}
-</style> -->
-
-<!-- <style>
 /* body {
   background-color: #ffffff !important;
 }

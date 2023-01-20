@@ -1353,7 +1353,12 @@
                                         alt=""
                                       />
                                     </div>
-                                    <button @click="removePeer(peer.id)">
+                                    <button type="button"
+                                      role="button"
+                                      @click="
+                                        removePeerConfirm(peer.id, $event)
+                                      "
+                                    >
                                       Remove
                                     </button>
                                   </div>
@@ -2419,6 +2424,44 @@
       </div>
     </div>
     <!-- Sub task completion confirmation end  -->
+    <!-- Remove peer  confirmation  -->
+    <div
+      class="modal fade"
+      id="removePeerConfirmation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="removePeerConfirmationModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h3 class="modal-title" id="removePeerConfirmationModalLongTitle">
+              Remove Peer Confirmation
+            </h3>
+          </div>
+          <div class="modal-body px-4">Remove the peer?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              @click="removePeer()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Remove peer  confirmation end  -->
   </div>
 </template>
 <script>
@@ -2533,6 +2576,7 @@ export default {
       peerSelected: [],
       peerList: [],
       completeAsstId: 0,
+      removePeerId: 0,
       playCelebration: false,
       completeSubTaskId: 0,
       openAssignment: false,
@@ -3964,8 +4008,15 @@ export default {
 
       console.log(this.additionalMaterialList);
     },
-    removePeer(id) {
-      const index = this.peerList.findIndex((item) => item.id == id);
+    removePeerConfirm(id, event) {
+      event.stopPropagation();
+      $("#removePeerConfirmation").modal({ backdrop: true });
+      this.removePeerId = id;
+    },
+    removePeer() {
+      const index = this.peerList.findIndex(
+        (item) => item.id == this.removePeerId
+      );
       if (index > -1) {
         this.peerList.splice(index, 1); // 2nd parameter means remove one item only
       }

@@ -1903,7 +1903,7 @@
                                       @click="onInvitePeer"
                                       class="btn btn-primary btn-sm mt-2"
                                     >
-                                      Add
+                                      {{ isAddAssignment ? "Add" : "Save" }}
                                     </button>
                                   </div>
                                 </div>
@@ -1935,6 +1935,15 @@
                                             alt=""
                                           />
                                         </div>
+                                        <button
+                                          type="button"
+                                          role="button"
+                                          @click="
+                                            removePeerConfirm(peer.id, $event)
+                                          "
+                                        >
+                                          Remove
+                                        </button>
                                       </div>
                                       <div class="ld-details-section">
                                         <p class="ld-heading mb-1">
@@ -3145,6 +3154,44 @@
         </div>
       </div>
       <!-- Sub task completion confirmation end  -->
+       <!-- Remove peer  confirmation  -->
+    <div
+      class="modal fade"
+      id="removePeerConfirmation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="removePeerConfirmationModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h3 class="modal-title" id="removePeerConfirmationModalLongTitle">
+              Remove Peer Confirmation
+            </h3>
+          </div>
+          <div class="modal-body px-4">Remove the peer?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              @click="removePeer()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Remove peer  confirmation end  -->
     </div>
   </div>
 </template>
@@ -3265,6 +3312,7 @@ export default {
       peerSelected: [],
       peerList: [],
       completeAsstId: 0,
+      removePeerId: 0,
       playCelebration: false,
       completeSubTasktId: 0,
       openAssignment: false,
@@ -5587,285 +5635,21 @@ export default {
       // array = [2, 9]
       console.log(this.additionalMaterialList);
     },
+      removePeerConfirm(id, event) {
+      event.stopPropagation();
+      $("#removePeerConfirmation").modal({ backdrop: true });
+      this.removePeerId = id;
+    },
+    removePeer() {
+      const index = this.peerList.findIndex(
+        (item) => item.id == this.removePeerId
+      );
+      if (index > -1) {
+        this.peerList.splice(index, 1); // 2nd parameter means remove one item only
+      }
+    },
   },
 };
 </script>
 
-<style>
-/* .display-picture-holder {
-  width: 80px;
-  height: 80px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.sb-user-name {
-  font-size: 26px;
-  color: #ff6d6d;
-  font-weight: 700;
-}
-
-.sb-settings-btn {
-  color: #b4b4b4;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-.add-assignment-btn {
-  font-size: 12px;
-  background-color: #000000;
-  color: #ffffff;
-  border-radius: 10px;
-}
-
-.add-assignment-btn:hover {
-  font-size: 12px;
-  background-color: #000000;
-  color: #ffffff;
-  border-radius: 10px;
-}
-
-.notification-section {
-  cursor: pointer;
-}
-
-.notification-section svg {
-  fill: #b4b4b4;
-  width: 25px;
-  height: 25px;
-}
-
-.notification-count-section {
-  background-color: #ea2626;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  top: 3px;
-  right: 0;
-}
-
-.assignment-tag {
-  font-size: 10px;
-  padding: 2px 10px;
-  border-radius: 18px;
-  color: #ffffff;
-}
-
-.assignment-tag.red {
-  background-color: #ea2626;
-}
-
-.assignment-tag.pink {
-  background-color: #fb3e80;
-}
-
-.assignment-add-section h4 {
-  color: #000000;
-  font-weight: 700;
-}
-
-.assignment-add-section p {
-  color: #b4b4b4;
-  font-weight: 600;
-  line-height: 16px;
-}
-
-.sub-task-section h6 {
-  color: #e48194;
-}
-
-.sub-task-section label {
-  font-size: 12px;
-}
-
-.material-link {
-  font-size: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.material-date {
-  font-size: 10px;
-}
-
-.addition-material-section h6 {
-  color: #000000;
-}
-
-.form-control {
-  background-color: #b4b4b4;
-  border-block-color: #b4b4b4;
-  color: #ffffff;
-}
-
-.upload-file-section .form-control {
-  height: 18px;
-  font-size: 8px;
-  padding: 0;
-}
-
-.upload-file-section .form-control::placeholder {
-  color: #ffffff;
-}
-
-.completed-assignments h4 {
-  font-weight: 700;
-}
-
-.completed-assignments h4.blue {
-  color: #9d00df;
-}
-
-.completed-assignments h4.green {
-  color: #1d9c00;
-}
-
-.completed-assignments p {
-  color: #c7c1c1;
-  font-size: 12px;
-}
-
-.add-person-section {
-  top: -5px;
-  display: flex;
-  right: 25px;
-}
-
-.ap-img-add,
-.ap-img-section {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-
-.ap-img-add {
-  margin-left: -15px;
-  cursor: pointer;
-}
-
-.ap-img-section {
-  background-color: #ffffff;
-} */
-
-/* .fc .fc-scrollgrid {
-  border-radius: 12px;
-  overflow: hidden;
-} */
-
-/* .fc-toolbar-chunk .fc-toolbar-title {
-    position: absolute;
-    left: 3rem;
-    top: 3rem;
-    font-size: 20px;
-    color: #000000;
-    font-weight: 700;
-} */
-
-/* .fc-toolbar-chunk .fc-prev-button.fc-button {
-    position: absolute;
-    right: 6rem;
-}
-
-.fc .fc-button .fc-icon {
-    color: #a28cf6;
-    font-size: 1em;
-    line-height: 1em;
-    margin: 0;
-} */
-
-/* .fc-toolbar-chunk .fc-next-button.fc-button,
-.fc-toolbar-chunk .fc-prev-button.fc-button {
-    background: none;
-    border: 1px solid #b4b4b4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
-/* .fc-toolbar-chunk .fc-next-button.fc-button {
-  position: relative;
-  top: 1.065rem;
-}
-
-.fc .fc-day-disabled {
-  background: none;
-}
-
-.fc .fc-daygrid-day-number {
-  color: #8c8bac !important;
-  font-weight: 600;
-}
-
-.fc-theme-standard th {
-  border-right: none;
-  border-left: none;
-  background-color: #f0deeb;
-  padding: 5px;
-}
-
-.fc-theme-standard th .fc-col-header-cell-cushion {
-  color: #a995ef;
-}
-
-.fc-theme-standard td {
-  border-color: #e9d7ee;
-} */
-
-/* .jochi-components-light-bg.pending-assignment-popup {
-  top: 12px;
-  bottom: 12px;
-  left: 12px;
-  right: 12px;
-  background-color: #ffffff;
-  transform: scale(0);
-  transition: transform 1s ease;
-}
-
-.jochi-components-light-bg.pending-assignment-popup.active {
-  transform: scale(1);
-  transition: transform 1s ease;
-}
-
-.planner-action-btns {
-  transform: rotate(-90deg);
-  top: 50vh;
-  right: -164px;
-}
-
-.planner-action-btns .pa-btn {
-  padding: 5px 20px;
-  background-color: #b8b8b8;
-  color: #ffffff;
-  border-radius: 14px 14px 0 0;
-  transition: background-color 0.5s ease;
-}
-
-.planner-action-btns .pa-btn.active {
-  background-color: #ffffff;
-  color: #b8b8b8;
-  border: 1px solid #b8b8b8;
-  transition: background-color 0.5s ease;
-}
-
-.assignment-planner-section {
-  top: 0;
-  right: -80rem;
-  bottom: 0;
-  z-index: 5;
-  transition: ease-in-out all 0.8s;
-  pointer-events: none;
-}
-
-.assignment-planner-section.active {
-  pointer-events: visible;
-  right: 3rem;
-  transition: ease-in-out all 0.8s;
-}
-
-.assignment-planner-section .jochi-components-light-bg {
-  background-color: #ffffff;
-  height: 100%;
-} */
-</style>
+<style></style>
