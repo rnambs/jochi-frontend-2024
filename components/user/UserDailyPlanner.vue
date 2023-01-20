@@ -75,6 +75,12 @@
                     >
                       Add Assignment
                     </button>
+                    <button
+                      @click="chooseMultiple = true"
+                      class="btn btn-dark py-1 px-3"
+                    >
+                      Choose Multiple
+                    </button>
                   </div>
                   <!-- drag -->
                   <div
@@ -282,7 +288,6 @@
                                               w-100
                                             "
                                           >
-                                            <!-- Rubric: -->
                                             {{
                                               material.file_type == "link"
                                                 ? material.material
@@ -378,6 +383,13 @@
                         v-for="item in tempAssts"
                         :key="item.id"
                       >
+                        <input
+                          v-if="chooseMultiple"
+                          type="radio"
+                          :id="item.id"
+                          :name="item.id"
+                          @click="onChooseMultiple(item.id)"
+                        />
                         <drag class="drag h-100" :transfer-data="{ item }">
                           <div class="h-100">
                             <div
@@ -1353,7 +1365,8 @@
                                         alt=""
                                       />
                                     </div>
-                                    <button type="button"
+                                    <button
+                                      type="button"
                                       role="button"
                                       @click="
                                         removePeerConfirm(peer.id, $event)
@@ -2606,6 +2619,8 @@ export default {
       reloadCount: 0,
       tempOffset: -1,
       reloadNext: false,
+      chooseMultiple: false,
+      choosenAssignments: [],
     };
   },
   mounted() {
@@ -4020,6 +4035,15 @@ export default {
       if (index > -1) {
         this.peerList.splice(index, 1); // 2nd parameter means remove one item only
       }
+    },
+    onChooseMultiple(id) {
+      if (this.choosenAssignments.includes(id)) {
+        let index = this.choosenAssignments.indexOf(id);
+        this.choosenAssignments.splice(index, 1);
+      } else {
+        this.choosenAssignments.push(id);
+      }
+      console.log(this.choosenAssignments);
     },
   },
 };
