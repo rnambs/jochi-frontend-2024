@@ -408,6 +408,14 @@
                           >View All</nuxt-link
                         >
                       </li>
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
+                        <nuxt-link
+                          to="/custom-availability-student"
+                          @click="$event.target.classList.toggle('active')"
+                          class="nav-link text-nowrap"
+                          >Availability</nuxt-link
+                        >
+                      </li>
                     </ul>
                   </div>
                 </div>
