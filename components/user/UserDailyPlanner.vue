@@ -2439,6 +2439,47 @@
       </div>
     </div>
     <!-- Sub task completion confirmation end  -->
+    <!-- Sub task undo confirmation  -->
+    <div
+      class="modal fade"
+      id="undoSubTaskConfirm"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="undoSubTaskConfirmModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-body px-4">
+            <h3
+              class="modal-title color-primary font-bold mt-3"
+              id="undoSubTaskConfirmModalLongTitle"
+            >
+              Undo Sub-Task Completion Confirmation
+            </h3>
+            <h5 class="color-dark font-semi-bold">Undo sub-task completion?</h5>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+              :disabled="processingSubCompleteAssignment"
+              @click="undoCompleteSubTask()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sub task undo confirmation end  -->
     <!-- Remove peer  confirmation  -->
     <div
       class="modal fade"
@@ -3815,6 +3856,11 @@ export default {
       }
       this.GetDailyPlanner();
     },
+    async undoCompleteSubTask() {
+      this.pendingAssignments
+        .find((e) => e.id == this.completeAsstId)
+        .subTasks.find((i) => i.id == this.completeSubTaskId).task_status='';
+    },
     onCardClick(data) {
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
@@ -3898,11 +3944,12 @@ export default {
       $("#completeConfirm").modal({ backdrop: true });
     },
     confirmSubTaskComplete(event, id, asstId, status) {
-      if (status == "Completed") {
-        return;
-      }
       this.completeAsstId = asstId;
       this.completeSubTaskId = id;
+      if (status == "Completed") {
+        $("#undoSubTaskConfirm").modal({ backdrop: true });
+        return;
+      }
       $("#completeSubTaskConfirm").modal({ backdrop: true });
 
       event.preventDefault();

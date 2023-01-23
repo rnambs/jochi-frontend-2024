@@ -3461,6 +3461,47 @@
       </div>
     </div>
     <!-- Sub task completion confirmation end  -->
+    <!-- Sub task undo confirmation  -->
+    <div
+      class="modal fade"
+      id="undoSubTaskConfirm"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="undoSubTaskConfirmModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-body px-4">
+            <h3
+              class="modal-title color-primary font-bold mt-3"
+              id="undoSubTaskConfirmModalLongTitle"
+            >
+              Undo Sub-Task Completion Confirmation
+            </h3>
+            <h5 class="color-dark font-semi-bold">Undo sub-task completion?</h5>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+              :disabled="processingSubCompleteAssignment"
+              @click="undoCompleteSubTask()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sub task undo confirmation end  -->
     <!-- Remove peer  confirmation  -->
     <div
       class="modal fade"
@@ -3825,136 +3866,7 @@ export default {
         date: this.calendarDate,
       });
       this.meetingDetails = [];
-      // this.plannerList.forEach((element) => {
-      //   var plannerObj = {};
-      //   var title = element.assignment_description;
-      //   if (element.priority == "1") {
-      //     var color = "#EF382E";
-      //   } else if (element.priority == "2") {
-      //     var color = "#00CCA0";
-      //   } else {
-      //     var color = "#F6D73C";
-      //   }
-      //   var dateMeeting = element.due_date;
-      //   var tmeMeeting = this.formatAMPM(element.due_time);
-      //   var start = dateMeeting + "T" + tmeMeeting;
-      //   var id = element.id;
-      //   plannerObj["title"] = title;
-      //   plannerObj["color"] = color;
-      //   plannerObj["start"] = start;
-      //   plannerObj["id"] = id;
-      //   eventList.push(plannerObj);
-      // });
-      // this.meetingList.forEach((element) => {
-      //   var meetingobj = {};
-      //   var listobj = {};
-      //   if (element.title != null) {
-      //     var title = "Meeting with " + element.title;
-      //   }
-      //   if (element.club_name != null) {
-      //     var title = element.club_name + " Meeting";
-      //   }
-      //   var meeting = element.meeting_type;
-      //   if (meeting == "Peer") {
-      //     var color = "#64B5FC";
-      //   } else if (meeting == "Club") {
-      //     var color = "#07BEB8";
-      //   } else if (meeting == "Teacher") {
-      //     var color = "#073BBF";
-      //   }
-      //   var dateMeeting = element.date;
-      //   var timeValNum = element.start_time;
-      //   var tmeMeeting = this.formatAMPM(element.start_time);
-      //   var start = dateMeeting + "T" + tmeMeeting;
-      //   meetingobj["title"] = title;
-      //   meetingobj["color"] = color;
-      //   meetingobj["start"] = start;
-      //   meetingobj["id"] = element.id;
-      //   meetingobj["groupId"] = "Meeting";
-
-      //   listobj["title"] = title;
-      //   listobj["meeting"] = meeting;
-      //   listobj["dateMeeting"] = dateMeeting;
-      //   listobj["timeValNum"] = timeValNum;
-      //   this.meetingDetails.push(listobj);
-      //   eventList.push(meetingobj);
-      // });
-      // this.sessionList.forEach((element) => {
-      //   var meetingobj = {};
-      //   var listobj = {};
-      //   let title = "";
-      //   if (element.assignment_id) {
-      //     title = "Study Session " + element.assignments?.task;
-      //   } else {
-      //     title = "Study Session " + element.subject?.subject_name;
-      //   }
-
-      //   // var meeting = element.meeting_type;
-      //   // if (meeting == "Peer") {
-      //   // var color = "#64B5FC";
-      //   // } else if (meeting == "Club") {
-      //   //   var color = "#07BEB8";
-      //   // } else if (meeting == "Teacher") {
-      //   const color = element.subject?.color_code;
-      //   // }
-      //   var dateMeeting = element.date;
-      //   var timeValNum = element.time;
-      //   var tmeMeeting = this.formatAMPM(element.time);
-      //   var start = dateMeeting + "T" + tmeMeeting;
-      //   meetingobj["title"] = title;
-      //   meetingobj["color"] = color;
-      //   meetingobj["start"] = start;
-      //   meetingobj["id"] = element.id;
-      //   // meetingobj["groupId"] = "Meeting";
-
-      //   listobj["title"] = title;
-      //   listobj["meeting"] = "Study Session";
-      //   listobj["dateMeeting"] = dateMeeting;
-      //   listobj["timeValNum"] = timeValNum;
-      //   this.meetingDetails.push(listobj);
-      //   eventList.push(meetingobj);
-      // });
-      // this.sharedSessionList.forEach((element) => {
-      //   var meetingobj = {};
-      //   var listobj = {};
-      //   let title = "";
-      //   if (element.assignment_id) {
-      //     title =
-      //       "Study Session For Assignment: " +
-      //       element.studyroom?.assignments?.task;
-      //   } else {
-      //     title =
-      //       "Study Session For Regular Study: " +
-      //       element.studyroom.subject?.subject_name;
-      //   }
-
-      //   // var meeting = element.meeting_type;
-      //   // if (meeting == "Peer") {
-      //   // var color = "#64B5FC";
-      //   // } else if (meeting == "Club") {
-      //   //   var color = "#07BEB8";
-      //   // } else if (meeting == "Teacher") {
-      //   const color = element.subject?.color_code;
-      //   // }
-      //   var dateMeeting = element.date;
-      //   var timeValNum = element.time;
-      //   var tmeMeeting = this.formatAMPM(element.time);
-      //   var start = dateMeeting + "T" + tmeMeeting;
-      //   meetingobj["title"] = title;
-      //   meetingobj["color"] = color;
-      //   meetingobj["start"] = start;
-      //   meetingobj["id"] = element.id;
-      //   // meetingobj["groupId"] = "Meeting";
-
-      //   listobj["title"] = title;
-      //   listobj["meeting"] = "Study Session";
-      //   listobj["dateMeeting"] = dateMeeting;
-      //   listobj["timeValNum"] = timeValNum;
-      //   this.meetingDetails.push(listobj);
-      //   eventList.push(meetingobj);
-      // });
-      // console.log("events console", eventList);
-      this.plannerList.forEach((element) => {
+     this.plannerList.forEach((element) => {
         if (element.due_date) {
           var scheduleObject = {};
           var plannerObj = {};
@@ -4459,45 +4371,6 @@ export default {
       clearTimeBtn?.click();
     },
 
-    // async AddAssignment() {
-    //   this.submitted = true;
-    //   this.$v.$touch();
-    //   if (this.$v.$invalid) {
-    //     return;
-    //   }
-    //   this.processing = true;
-
-    //   const df = moment(this.dateValue).format("YYYY-MM-DD");
-    //   this.loading = true;
-    //   await this.addAssignment({
-    //     user_id: localStorage.getItem("id"),
-    //     task: this.task,
-    //     subject: this.subject?.id,
-    //     due_time: this.timeValue,
-    //     due_date: df,
-    //     priority: this.priorityVal,
-    //   });
-    //   this.loading = false;
-    //   if (this.successMessage != "") {
-    //     this.$toast.open({
-    //       message: this.successMessage,
-    //       type: this.SuccessType,
-    //       duration: 5000,
-    //     });
-    //     this.resetAssignment();
-    //     this.GetWeeklyPlanner();
-    //     $(".modal").modal("hide");
-    //     $(".modal-backdrop").remove();
-    //   } else if (this.errorMessage != "") {
-    //     this.$toast.open({
-    //       message: this.errorMessage,
-    //       type: this.errorType,
-    //       duration: 5000,
-    //     });
-    //   }
-    //   this.submitted = false;
-    //   this.processing = false;
-    // },
     viewMoreClick(event, item) {
       console.log("view more", event, item);
       event.preventDefault();
@@ -4560,58 +4433,7 @@ export default {
       // $("#daterange").data("daterangepicker").setStartDate(this.dateListValue);
       // $("#daterange").data("daterangepicker").setEndDate(this.dateListValue);
     },
-    // async UpdateAssignment() {
-    //   this.submitted = true;
-    //   this.$v.$touch();
-    //   if (this.$v.$invalid) {
-    //     return;
-    //   }
-    //   this.processing = true;
-    //   this.loading = true;
-    //   const dfE = moment(this.dateValue).format("YYYY-MM-DD");
-    //   if (this.priorityVal == "High") {
-    //     this.priorityVal = "1";
-    //   } else if (this.priorityVal == "Medium") {
-    //     this.priorityVal = "2";
-    //   } else if (this.priorityVal == "Low") {
-    //     this.priorityVal = "3";
-    //   }
-
-    //   await this.updateAssignment({
-    //     user_id: localStorage.getItem("id"),
-    //     assignment_id: this.idNum,
-    //     task: this.task,
-    //     subject: this.subject?.id,
-    //     due_time: this.timeValue,
-    //     due_date: dfE,
-    //     priority: this.priorityVal
-    //       ? this.priorityVal
-    //       : this.assignment.priority,
-    //   });
-    //   this.loading = false;
-    //   if (this.successMessage != "") {
-    //     this.resetAssignment();
-    //     this.$toast.open({
-    //       message: this.successMessage,
-    //       type: this.SuccessType,
-    //       duration: 5000,
-    //     });
-
-    //     $(".modal").modal("hide");
-    //     $(".modal-backdrop").remove();
-    //     this.resetAssignment();
-    //   } else if (this.errorMessage != "") {
-    //     this.$toast.open({
-    //       message: this.errorMessage,
-    //       type: this.errorType,
-    //       duration: 5000,
-    //     });
-    //   }
-    //   this.GetWeeklyPlanner();
-    //   this.submitted = false;
-    //   this.processing = false;
-    // },
-    filterOption(val) {
+   filterOption(val) {
       var high = /High/g;
       var med = /Medium/g;
       var low = /Low/g;
@@ -5146,166 +4968,6 @@ export default {
       }
       return "th";
     },
-    // mapAssignments() {
-    //   if (this.assignmentsList && this.assignmentsList.length > 0) {
-    //     this.assignmentsList.forEach((e) => {
-    //       let item = {};
-    //       item.assignment_description = e.assignment_description;
-    //       item.assignment_materials = e.assignment_materials;
-    //       item.completed_date = e.completed_date;
-    //       item.dueTimeFormat = e.dueTimeFormat;
-    //       item.due_date = e.due_date;
-    //       item.due_time = e.due_time;
-    //       item.id = e.id;
-    //       item.priority = e.priority;
-    //       item.schoologyAssignment = e.schoologyAssignment;
-    //       item.schoologyAssignmentId = e.schoologyAssignmentId;
-    //       item.subTasks = e.subTasks;
-    //       item.subject = e.subject;
-    //       item.subjects = e.subjects;
-    //       item.task = e.task;
-    //       item.task_status = e.task_status;
-    //       item.updatedAt = e.updatedAt;
-    //       item.user_id = e.user_id;
-    //       item.peers = this.mapPeers(e.id);
-    //       this.pendingAssignments.push(item);
-    //     });
-    //   }
-    // },
-    // mapPeers(id) {
-    //   let peers = [];
-    //   if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
-    //     this.peers = this.sharedAssignmentsList.filter(
-    //       (e) => e.assignment_id == id
-    //     );
-    //   }
-    //   return peers;
-    // },
-    // handleDrop(data, event) {
-    //   $("#completeConfirm").modal({ backdrop: true });
-
-    //   let assignment = data.item;
-    //   this.completeAsstId = assignment.id;
-    // },
-    // async completeAssignment() {
-    //   this.processingCompleteAssignment = true;
-    //   await this.completeTask({
-    //     assignment_id: this.completeAsstId,
-    //     status: "Completed",
-    //   });
-    //   this.processingCompleteAssignment = false;
-    //   if (this.successMessage != "") {
-    //     this.getAssignmentsList();
-    //     this.getAllCompletedAssignments();
-    //     this.completeAsstId = 0;
-    //     this.playCelebration = true;
-    //     this.$toast.open({
-    //       message: this.successMessage,
-    //       type: this.SuccessType,
-    //       duration: 5000,
-    //     });
-
-    //     $(".modal").modal("hide");
-    //     $(".modal-backdrop").remove();
-    //     const myTimeout = setTimeout(() => {
-    //       this.playCelebration = false;
-    //     }, 5000);
-    //   } else if (this.errorMessage != "") {
-    //     this.$toast.open({
-    //       message: this.errorMessage,
-    //       type: this.errorType,
-    //       duration: 5000,
-    //     });
-    //   }
-    //   this.GetWeeklyPlanner();
-    // },
-    // async completeSubTask() {
-    //   this.processingCompleteAssignment = true;
-    //   await this.completeTask({
-    //     task_id: this.completeSubTasktId,
-    //     status: "Completed",
-    //   });
-    //   this.processingCompleteAssignment = false;
-    //   if (this.successMessage != "") {
-    //     this.completeSubTasktId = 0;
-    //     this.playCelebration = true;
-    //     this.$toast.open({
-    //       message: this.successMessage,
-    //       type: this.SuccessType,
-    //       duration: 5000,
-    //     });
-
-    //     $(".modal").modal("hide");
-    //     $(".modal-backdrop").remove();
-    //   } else if (this.errorMessage != "") {
-    //     this.$toast.open({
-    //       message: this.errorMessage,
-    //       type: this.errorType,
-    //       duration: 5000,
-    //     });
-    //   }
-    //   this.GetWeeklyPlanner();
-    // },
-    // onCardClick() {
-    //   this.isAddAssignment = false;
-    //   this.openAssignment = true;
-    //   // this.subject
-    //   // this.assignmentName
-    //   // this.assignmentDescription
-    //   // this.priorityVal
-    //   // this.timeValue
-    //   // this.subTasksList
-    //   // this.peerSelected
-    // },
-    // async getAllCompletedAssignments() {
-    //   await this.getCompletedAssignments({
-    //     userId: localStorage.getItem("id"),
-    //     date: moment().format("YYYY-MM-DD"),
-    //     type: "Weekly",
-    //   });
-    //   console.log(this.completedAssignments);
-    // },
-    // confirmComplete(event) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // },
-    // async resetAssignment() {
-    //   this.isSharedAssignment = false;
-    //   this.subject = "";
-    //   this.assignmentName = "";
-    //   this.assignmentDescription = "";
-    //   this.priorityVal = "";
-    //   this.dateValue = "";
-    //   this.timeValue = "";
-    //   this.subTasksList = [];
-    //   this.peerList = [];
-    //   this.additionalMaterialList = [];
-    //   this.invitePeer = false;
-    //   this.materialType = "";
-    //   this.additionalMaterial = false;
-    //   this.addSubTask = false;
-    //   this.submitted = false;
-    //   this.value = "";
-    //   this.dateValue = "";
-
-    //   $('input[name="daterange"]').val("");
-    //   fromDate = "";
-    //   $(".dropdown-select").text("Select priority");
-    //   this.priorityVal = "";
-    //   this.subject = "";
-    //   this.task = "";
-    //   (fromDate = ""), $('input[name="daterange"]').val("");
-    //   fromDate = "";
-    //   this.priorityVal = "";
-    //   this.timeValue = null;
-    //   this.subject = "";
-    //   this.task = "";
-    //   this.taskValue = "";
-    //   this.timeList = "";
-    //   this.timeValue = "";
-    //   let clearTimeBtn = document.getElementsByClassName("clear-btn")[0];
-    //   clearTimeBtn?.click();
-    // },
     openAddAssignmentModal() {
       this.processing = false;
       this.$refs.assignmentForm.reset();
@@ -5608,6 +5270,11 @@ export default {
       console.log(incomplete);
       return !incomplete;
     },
+    async undoCompleteSubTask() {
+      this.pendingAssignments
+        .find((e) => e.id == this.completeAsstId)
+        .subTasks.find((i) => i.id == this.completeSubTaskId).task_status='';
+    },
     onCardClick(data) {
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
@@ -5709,12 +5376,22 @@ export default {
       this.completeAsstId = this.assignmentId;
       $("#completeConfirm").modal({ backdrop: true });
     },
-    confirmSubTaskComplete(event, id, asstId) {
-      if (status == "Completed") {
-        return;
-      }
+    confirmSubTaskComplete(event, id, asstId,status) {
+      // if (status == "Completed") {
+      //   return;
+      // }
+      // this.completeAsstId = asstId;
+      // this.completeSubTaskId = id;
+      // $("#completeSubTaskConfirm").modal({ backdrop: true });
+
+      // event.preventDefault();
+      // event.stopPropagation();
       this.completeAsstId = asstId;
       this.completeSubTaskId = id;
+      if (status == "Completed") {
+        $("#undoSubTaskConfirm").modal({ backdrop: true });
+        return;
+      }
       $("#completeSubTaskConfirm").modal({ backdrop: true });
 
       event.preventDefault();
