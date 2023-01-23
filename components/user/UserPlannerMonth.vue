@@ -5568,7 +5568,6 @@ export default {
       }else{
       $("#completeSubTaskConfirm").modal({ backdrop: true });
       }
-
       event.preventDefault();
       event.stopPropagation();
     },

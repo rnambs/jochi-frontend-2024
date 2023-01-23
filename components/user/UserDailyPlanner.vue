@@ -3859,7 +3859,7 @@ export default {
     async undoCompleteSubTask() {
       this.pendingAssignments
         .find((e) => e.id == this.completeAsstId)
-        .subTasks.find((i) => i.id == this.completeSubTaskId).task_status='';
+        .subTasks.find((i) => i.id == this.completeSubTaskId).task_status = "";
     },
     onCardClick(data) {
       this.deletedSubTasksArray = [];
@@ -3948,9 +3948,8 @@ export default {
       this.completeSubTaskId = id;
       if (status == "Completed") {
         $("#undoSubTaskConfirm").modal({ backdrop: true });
-       
-      }else{
-      $("#completeSubTaskConfirm").modal({ backdrop: true });
+      } else {
+        $("#completeSubTaskConfirm").modal({ backdrop: true });
       }
 
       event.preventDefault();

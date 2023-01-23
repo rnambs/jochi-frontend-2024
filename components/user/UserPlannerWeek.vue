@@ -5390,7 +5390,6 @@ export default {
       this.completeSubTaskId = id;
       if (status == "Completed") {
         $("#undoSubTaskConfirm").modal({ backdrop: true });
-       
      }else{
       $("#completeSubTaskConfirm").modal({ backdrop: true });
       }
