@@ -3948,9 +3948,10 @@ export default {
       this.completeSubTaskId = id;
       if (status == "Completed") {
         $("#undoSubTaskConfirm").modal({ backdrop: true });
-        return;
-      }
+       
+      }else{
       $("#completeSubTaskConfirm").modal({ backdrop: true });
+      }
 
       event.preventDefault();
       event.stopPropagation();
