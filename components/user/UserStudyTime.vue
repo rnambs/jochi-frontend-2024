@@ -43,6 +43,9 @@
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Tackle your upcoming assignments
                 </p>
+                <button @click="scheduleLaterClick('assignment', $event)">
+                  Schedule Later
+                </button>
               </div>
               <div
                 class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
@@ -73,6 +76,9 @@
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Stay focused while you study, and monitor your productivity
                 </p>
+                <button @click="scheduleLaterClick('study', $event)">
+                  Schedule Later
+                </button>
               </div>
               <div
                 class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
@@ -1748,6 +1754,7 @@
                       <div class="d-flex flex-column">
                         <div class="py-1">
                           <button
+                            v-if="!scheduleLater"
                             type="submit"
                             :disabled="processingStudySession"
                             class="btn btn-primary btn-sm"
@@ -2896,6 +2903,7 @@ export default {
       disablePrevious: true,
       disableNext: false,
       pageCount: 0,
+      scheduleLater: false,
     };
   },
 
@@ -4482,6 +4490,11 @@ export default {
       this.scheduledDate = "";
       this.Subject = "";
       this.repetitionCount = 1;
+    },
+    scheduleLaterClick(type, e) {
+      e.stopPropagation();
+      this.scheduleLater = true;
+      this.setSessionType(type);
     },
   },
 
