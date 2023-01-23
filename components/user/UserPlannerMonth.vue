@@ -1234,6 +1234,8 @@
                                 :key="item.id"
                                 class="col-6"
                               >
+                            <i class="fas fa-undo"></i>
+
                                 <div
                                   class="
                                     jochi-sub-components-light-bg

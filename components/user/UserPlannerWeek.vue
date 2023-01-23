@@ -1120,13 +1120,13 @@
                             v-for="item in tempAssts"
                             :key="item.id"
                           >
-                           <input
-                          v-if="chooseMultiple"
-                          type="radio"
-                          :id="item.id"
-                          :name="item.id"
-                          @click="onChooseMultiple(item.id)"
-                        />
+                            <input
+                              v-if="chooseMultiple"
+                              type="radio"
+                              :id="item.id"
+                              :name="item.id"
+                              @click="onChooseMultiple(item.id)"
+                            />
                             <drag class="drag h-100" :transfer-data="{ item }">
                               <div class="h-100">
                                 <div
@@ -1629,6 +1629,8 @@
                                 :key="item.id"
                                 class="col-6"
                               >
+                                <i class="fas fa-undo"></i>
+
                                 <div
                                   class="
                                     jochi-sub-components-light-bg
