@@ -69,7 +69,7 @@
                       <div class="col-md-4">
                         <h2 class="color-primary font-semi-bold mb-0">Pending</h2>
                       </div>
-                      <div class="col-md-8 d-flex justify-content-end">
+                      <div class="col-md-8 d-flex justify-content-start justify-content-md-end">
                         <button
                         @click="
                           openAssignment = true;
