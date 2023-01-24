@@ -58,17 +58,18 @@
                   <div
                     class="
                       d-flex
-                      justify-content-between
+                      justify-content-md-end
+                      justify-content-start
                       align-items-center
                       px-4
                       pb-2
                     "
                   >
                     <div class="row">
-                      <div class="col-4">
+                      <div class="col-md-4">
                         <h2 class="color-primary font-semi-bold mb-0">Pending</h2>
                       </div>
-                      <div class="col-8 d-flex justify-content-end">
+                      <div class="col-md-8 d-flex justify-content-end">
                         <button
                         @click="
                           openAssignment = true;
