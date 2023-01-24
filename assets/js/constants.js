@@ -9,12 +9,12 @@ export const BASE_URL = 'https://api.jochi.devateam.com/';
 // export const BASE_URL = 'http://localhost:3000/';
 
 // export const REDIRECT_LOGIN_URL = 'https://www.jochi.live/redirect-login';
-// export const REDIRECT_LOGIN_URL = 'https://jochi.devateam.com/redirect-login';
-export const REDIRECT_LOGIN_URL = 'http://localhost:3101/redirect-login';
+export const REDIRECT_LOGIN_URL = 'https://jochi.devateam.com/redirect-login';
+// export const REDIRECT_LOGIN_URL = 'http://localhost:3101/redirect-login';
 
 // export const FRONTEND_BASE_URL = 'https://www.jochi.live';
-// export const FRONTEND_BASE_URL = 'https://jochi.devateam.com/';
-export const FRONTEND_BASE_URL = 'http://localhost:3101/';
+export const FRONTEND_BASE_URL = 'https://jochi.devateam.com/';
+// export const FRONTEND_BASE_URL = 'http://localhost:3101/';
 
 export const GG4L_REDIRECT_LOGIN_URL = "https://sso.gg4l.com/oauth/auth?response_type=code&client_id=PTRQTIBSJC&redirect_uri="
 export const GG4L_REDIRECT_URL = "https://sso.gg4l.com/oauth/loginwith/logout?redirect_uri="
