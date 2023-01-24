@@ -223,6 +223,7 @@
                       />
                       <div
                         class="
+                          row
                           d-flex
                           justify-content-between
                           align-items-center
@@ -230,23 +231,27 @@
                           pb-2
                         "
                       >
-                        <h2 class="color-primary font-semi-bold">Pending</h2>
-                        <button
-                          @click="
-                            openAssignment = true;
-                            isAddAssignment = true;
-                            resetAssignment();
-                          "
-                          class="btn btn-dark py-1 px-3"
-                        >
-                          Add Assignment
-                        </button>
-                        <button
-                      @click="chooseMultiple = true"
-                      class="btn btn-dark py-1 px-3"
-                    >
-                      Choose Multiple
-                    </button>
+                        <div class="col-md-4">
+                          <h2 class="color-primary font-semi-bold">Pending</h2>
+                        </div>
+                        <div class="col-md-8 d-flex justify-content-start justify-content-md-end">
+                          <button
+                            @click="
+                              openAssignment = true;
+                              isAddAssignment = true;
+                              resetAssignment();
+                            "
+                            class="btn btn-dark py-1 px-3 mr-3"
+                          >
+                            Add Assignment
+                          </button>
+                          <button
+                            @click="chooseMultiple = true"
+                            class="btn btn-dark py-1 px-3"
+                          >
+                            Choose Multiple
+                          </button>
+                        </div>
                       </div>
                       <!-- <div class="col-6 px-0">
                     <div
