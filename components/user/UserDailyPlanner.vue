@@ -60,27 +60,34 @@
                       d-flex
                       justify-content-between
                       align-items-center
-                      px-5
+                      px-4
                       pb-2
                     "
                   >
-                    <h2 class="color-primary font-semi-bold">Pending</h2>
-                    <button
-                      @click="
-                        openAssignment = true;
-                        isAddAssignment = true;
-                        resetAssignment();
-                      "
-                      class="btn btn-dark py-1 px-3"
-                    >
-                      Add Assignment
-                    </button>
-                    <button
-                      @click="chooseMultiple = true"
-                      class="btn btn-dark py-1 px-3"
-                    >
-                      Choose Multiple
-                    </button>
+                    <div class="row">
+                      <div class="col-4">
+                        <h2 class="color-primary font-semi-bold mb-0">Pending</h2>
+                      </div>
+                      <div class="col-8 d-flex justify-content-end">
+                        <button
+                        @click="
+                          openAssignment = true;
+                          isAddAssignment = true;
+                          resetAssignment();
+                        "
+                        class="btn btn-dark py-1 px-3 mr-3"
+                        >
+                          Add Assignment
+                        </button>
+                        <button
+                          @click="chooseMultiple = true"
+                          class="btn btn-dark py-1 px-3"
+                        >
+                          Choose Multiple
+                        </button>
+                      </div>
+
+                    </div>
                   </div>
                   <!-- drag -->
                   <div
@@ -91,7 +98,7 @@
                       flex-fill
                       custom-overflow
                       py-3
-                      px-5
+                      px-4
                     "
                   >
                     <div class="row d-none">
