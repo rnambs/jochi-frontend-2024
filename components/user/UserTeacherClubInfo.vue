@@ -23,6 +23,9 @@
                   <i class="fas fa-info"></i><span class="pl">Info</span>
                 </div>
               </nuxt-link>
+              <button class="btn p-1 m-2" CustomTitle="1200 X 180">
+                <i class="fas fa-cog color-white"></i>
+              </button>
             </div>
             <div class="col-md-4 col-xs-12">
               <nuxt-link
@@ -102,10 +105,14 @@
                       @change="ShowClubInCatalog()"
                       v-on:click="availabilityToggle()"
                     />
-                    <label class="custom-control-label
+                    <label
+                      class="
+                        custom-control-label
                         font-normal
                         color-dark
-                        text-14" for="custom-Switches"
+                        text-14
+                      "
+                      for="custom-Switches"
                       >Show club in catalog
                     </label>
                   </div>

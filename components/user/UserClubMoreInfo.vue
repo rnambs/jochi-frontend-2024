@@ -62,6 +62,9 @@
             >
               <i class="fas fa-info-circle color-white"></i>
             </button>
+            <button class="btn p-1 m-2" CustomTitle="1200 X 180">
+              <i class="fas fa-cog color-white"></i>
+            </button>
           </div>
         </div>
 

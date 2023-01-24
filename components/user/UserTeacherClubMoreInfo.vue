@@ -22,6 +22,9 @@
               >
                 <i class="fas fa-info"></i><span class="pl">Info</span>
               </nuxt-link>
+              <button class="btn p-1 m-2" CustomTitle="1200 X 180">
+                <i class="fas fa-cog color-white"></i>
+              </button>
             </div>
             <div class="col-md-4 col-xs-12">
               <nuxt-link
