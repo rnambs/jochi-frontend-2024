@@ -65,9 +65,24 @@
             >
               <i class="fas fa-info-circle color-white"></i>
             </button>
-            <button class="btn p-1 m-2" CustomTitle="1200 X 180">
+            <!-- <button class="btn p-1 m-2" CustomTitle="1200 X 180">
+              <i class="fas fa-cog color-white"></i>
+            </button> -->
+            <button class="btn p-1 m-2" v-on:click="toggleDropdown">
               <i class="fas fa-cog color-white"></i>
             </button>
+            <div
+              v-bind:class="{
+                dropdown: true,
+                'dropdown--visible': dropdownVisible,
+              }"
+            >
+              <button>Info</button>
+              <button>Leave</button>
+              <button>Remove As Leader</button>
+              <button>Delete</button>
+              <!-- dropdown content here -->
+            </div>
           </div>
         </div>
 
@@ -219,9 +234,12 @@
                                       "
                                     >
                                       <div class="ld-img-section">
-                                        <div class="ld-img-holder">
+                                        <div
+                                          v-if="data.user_info"
+                                          class="ld-img-holder"
+                                        >
                                           <img
-                                            v-if="data.user_info.profile_pic"
+                                            v-if="data.user_info"
                                             :src="data.user_info.profile_pic"
                                             alt=""
                                           />
@@ -234,6 +252,7 @@
                                     <div class="col-9 p-0">
                                       <div class="ld-details-section">
                                         <p
+                                          v-if="data.user_info"
                                           class="
                                             mb-1
                                             text-18
@@ -254,6 +273,7 @@
                                           }}
                                         </p>
                                         <p
+                                          v-if="data.user_info"
                                           class="
                                             color-secondary
                                             text-16
@@ -806,9 +826,9 @@
                   <div class="d-flex align-items-center mt-3">
                     <div class="d-flex justify-content-end p-0">
                       <div class="ld-img-section mr-3">
-                        <div class="ld-img-holder">
+                        <div v-if="data.user_info" class="ld-img-holder">
                           <img
-                            v-if="data.user_info.profile_pic"
+                            v-if="data.user_info"
                             :src="data.user_info.profile_pic"
                             alt=""
                           />
@@ -820,7 +840,10 @@
                     </div>
                     <div class="p-0">
                       <div class="ld-details-section">
-                        <p class="mb-0 text-18 color-dark font-semi-bold">
+                        <p
+                          v-if="data.user_info"
+                          class="mb-0 text-18 color-dark font-semi-bold"
+                        >
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name
@@ -834,6 +857,7 @@
                           }}
                         </p>
                         <p
+                          v-if="data.user_info"
                           class="
                             color-secondary
                             text-16
@@ -864,9 +888,9 @@
                   <div class="d-flex align-items-center mt-3">
                     <div class="d-flex justify-content-end p-0">
                       <div class="ld-img-section mr-3">
-                        <div class="ld-img-holder">
+                        <div v-if="data.user_info" class="ld-img-holder">
                           <img
-                            v-if="data.user_info.profile_pic"
+                            v-if="data.user_info"
                             :src="data.user_info.profile_pic"
                             alt=""
                           />
@@ -878,7 +902,10 @@
                     </div>
                     <div class="p-0">
                       <div class="ld-details-section">
-                        <p class="mb-0 text-18 color-dark font-semi-bold">
+                        <p
+                          v-if="data.user_info"
+                          class="mb-0 text-18 color-dark font-semi-bold"
+                        >
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name
@@ -892,6 +919,7 @@
                           }}
                         </p>
                         <p
+                          v-if="data.user_info"
                           class="
                             color-secondary
                             text-16
@@ -1178,6 +1206,7 @@ export default {
       image: "",
       dialog: false,
       files: "",
+      dropdownVisible: false,
     };
   },
 
@@ -1699,6 +1728,9 @@ export default {
       this.selectedFile = "";
       this.$refs.cropper.destroy();
     },
+    toggleDropdown() {
+      this.dropdownVisible = !this.dropdownVisible;
+    },
   },
 };
 </script>
@@ -1708,5 +1740,12 @@ export default {
   height: 600px;
   width: 600px;
   background: #ddd;
+}
+
+.dropdown {
+  display: none;
+}
+.dropdown--visible {
+  display: block;
 }
 </style>

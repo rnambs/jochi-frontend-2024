@@ -62,9 +62,24 @@
             >
               <i class="fas fa-info-circle color-white"></i>
             </button>
-            <button class="btn p-1 m-2" CustomTitle="1200 X 180">
+            <!-- <button class="btn p-1 m-2" CustomTitle="1200 X 180">
+              <i class="fas fa-cog color-white"></i>
+            </button> -->
+            <button class="btn p-1 m-2" v-on:click="toggleDropdown">
               <i class="fas fa-cog color-white"></i>
             </button>
+            <div
+              v-bind:class="{
+                dropdown: true,
+                'dropdown--visible': dropdownVisible,
+              }"
+            >
+              <button>Info</button>
+              <button>Leave</button>
+              <button>Remove As Leader</button>
+              <button>Delete</button>
+              <!-- dropdown content here -->
+            </div>
           </div>
         </div>
 
@@ -1728,6 +1743,7 @@ export default {
       image: "",
       dialog: false,
       files: "",
+      dropdownVisible: false,
     };
   },
   validations: {
@@ -2453,6 +2469,18 @@ export default {
       this.selectedFile = "";
       this.$refs.cropper.destroy();
     },
+    toggleDropdown() {
+      this.dropdownVisible = !this.dropdownVisible;
+    },
   },
 };
 </script>
+
+<style scoped>
+.dropdown {
+  display: none;
+}
+.dropdown--visible {
+  display: block;
+}
+</style>
