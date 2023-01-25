@@ -101,7 +101,7 @@
                       h-40
                       flex-fill
                       custom-overflow
-                      py-3
+                      py-1
                       px-4
                     "
                   >
