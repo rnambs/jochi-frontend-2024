@@ -1,3 +1,6 @@
+<style>
+.multi-select-checkbox{left:32px; top:-12px}
+</style>
 <template>
   <div>
     <lottie
@@ -719,17 +722,19 @@
                         <!-- hide -->
                         <div class="row">
                           <div
-                            class="col-12 col-md-6 py-3"
+                            class="col-12 col-md-6 py-3 mb-3"
                             v-for="item in tempAssts"
                             :key="item.id"
                           >
+                          <div class="position-absolute multi-select-checkbox">
                           <input
-                          v-if="chooseMultiple"
-                          type="radio"
-                          :id="item.id"
-                          :name="item.id"
-                          @click="onChooseMultiple(item.id)"
-                        />
+                            v-if="chooseMultiple"
+                            type="checkbox"
+                            :id="item.id"
+                            :name="item.id"
+                            @click="onChooseMultiple(item.id)"
+                          />
+                          </div>
                             <drag class="drag h-100" :transfer-data="{ item }">
                               <div class="h-100">
                                 <div
