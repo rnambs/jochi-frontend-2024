@@ -1474,7 +1474,7 @@
                                     class="form-control"
                                     id="message-text"
                                     v-model="gg4lSubject"
-                                    maxlength="125"
+                                    maxlength="60"
                                     placeholder="Enter assignment name"
                                   />
                                   <select

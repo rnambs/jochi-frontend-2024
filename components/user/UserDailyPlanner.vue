@@ -1005,7 +1005,7 @@
                                 class="form-control"
                                 id="message-text"
                                 v-model="assignmentName"
-                                maxlength="125"
+                                maxlength="60"
                                 placeholder="Enter assignment name"
                                 :class="{
                                   'is-invalid':
