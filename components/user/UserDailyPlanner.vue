@@ -393,7 +393,7 @@
                       >
                         <input
                           v-if="chooseMultiple"
-                          type="radio"
+                          type="checkbox"
                           :id="item.id"
                           :name="item.id"
                           @click="onChooseMultiple(item.id)"
@@ -526,7 +526,7 @@
                                   <button
                                     v-if="
                                       item.subTasks &&
-                                      item.subTasks.length > 4 &&
+                                      item.subTasks.length > 3 &&
                                       (!viewMore || viewMoreId != item.id)
                                     "
                                     @click="viewMoreClick($event, item)"
@@ -690,14 +690,14 @@
                         flex-column
                       "
                     >
-                      <h2 class="color-primary font-semi-bold px-5">
+                      <h2 class="color-primary font-semi-bold px-4">
                         Completed Today
                       </h2>
                       <p
                         class="
                           d-none d-lg-block
                           mb-0
-                          px-5
+                          px-4
                           color-secondary
                           font-regular
                         "
@@ -789,14 +789,14 @@
                       "
                       @drop="handleDrop"
                     >
-                      <h2 class="color-primary font-semi-bold px-5">
+                      <h2 class="color-primary font-semi-bold px-4">
                         Completed Today
                       </h2>
                       <p
                         class="
                           d-none d-xl-block
                           mb-0
-                          px-5
+                          px-4
                           color-secondary
                           font-regular
                         "
@@ -808,7 +808,7 @@
                           d-flex
                           flex-column
                           custom-overflow
-                          px-5
+                          px-4
                           pb-3
                           h-100
                         "
