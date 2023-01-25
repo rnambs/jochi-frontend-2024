@@ -1,5 +1,55 @@
 <style>
-.multi-select-checkbox{left:32px; top:-12px}
+.multiple-select-checkbox {left:5px; top:0px; width:32px; height: 32px !important; border-radius: 50%; background-color: unset;}
+.h-60{height:60%}
+.squaredThree {
+  /* position: relative;
+  float:left; */
+  /* margin: 10px */
+}
+.squaredThree label {
+  width: 24px;
+  height: 24px !important;
+  cursor: pointer;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  background: #ffb5b2;
+  border-radius: 50%; 
+}
+.squaredThree label:after {
+  content: '';
+  width: 13px;
+  height:7px;
+  position: absolute;
+  top: 7px;
+  left: 6px;
+  border: 3px solid #fcfff4;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.squaredThree label::after {
+  opacity: 0.3;
+}
+.squaredThree label:hover::after {
+  opacity: 1; transition:all ease-in 300ms;
+}
+.squaredThree input[type=checkbox] {
+  visibility: hidden;
+}
+.squaredThree input[type=checkbox]:checked + label:after {
+  opacity: 1 !important;
+}
+.squaredThree input[type=checkbox]:checked + label{
+  background: #ED7672; transition: all ease-in 300ms;
+}
+.label-text {
+  /* position: relative; */
+  /* left: 10px; */
+}
 </style>
 <template>
   <div>
@@ -613,7 +663,7 @@
                     <div
                       class="
                         jochi-components-light-bg
-                        pb-4
+                        py-4
                         h-100
                         d-flex
                         flex-column
@@ -750,7 +800,7 @@
                         class="
                           d-flex
                           flex-column
-                          h-40
+                          h-50
                           flex-fill
                           custom-overflow
                           pb-3
@@ -1128,14 +1178,17 @@
                             v-for="item in tempAssts"
                             :key="item.id"
                           >
-                            <div class="position-absolute multi-select-checkbox">
-                              <input
-                                v-if="chooseMultiple"
-                                type="radio"
-                                :id="item.id"
-                                :name="item.id"
-                                @click="onChooseMultiple(item.id)"
-                              />
+                            <div class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center">
+                              <div class="squaredThree">
+                                <input
+                                  v-if="chooseMultiple"
+                                  type="checkbox"
+                                  :id="item.id"
+                                  :name="item.id"
+                                  @click="onChooseMultiple(item.id)"
+                                />
+                                <label :for="item.id"></label>
+                              </div>
                             </div>
                             <drag class="drag h-100" :transfer-data="{ item }">
                               <div class="h-100">
@@ -1639,8 +1692,10 @@
                                 :key="item.id"
                                 class="col-6"
                               >
-                                <i class="fas fa-undo"></i>
 
+                                <div class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center">
+                                  <i class="fas fa-undo"></i>
+                                </div>
                                 <div
                                   class="
                                     jochi-sub-components-light-bg

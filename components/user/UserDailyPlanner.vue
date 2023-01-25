@@ -1,14 +1,11 @@
 <style>
 .multiple-select-checkbox {left:5px; top:0px; width:32px; height: 32px; border-radius: 50%;}
-
 .h-60{height:60%}
-
 .squaredThree {
   /* position: relative;
   float:left; */
   /* margin: 10px */
 }
-
 .squaredThree label {
   width: 24px;
   height: 24px;
@@ -19,7 +16,6 @@
   background: #ffb5b2;
   border-radius: 50%; 
 }
-
 .squaredThree label:after {
   content: '';
   width: 13px;
@@ -35,31 +31,25 @@
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
-
 .squaredThree label::after {
   opacity: 0.3;
 }
 .squaredThree label:hover::after {
   opacity: 1; transition:all ease-in 300ms;
 }
-
 .squaredThree input[type=checkbox] {
   visibility: hidden;
 }
 .squaredThree input[type=checkbox]:checked + label:after {
   opacity: 1 !important;
 }
-
 .squaredThree input[type=checkbox]:checked + label{
   background: #ED7672; transition: all ease-in 300ms;
 }
-
 .label-text {
   /* position: relative; */
   /* left: 10px; */
 }
-
-
 </style>
 <template>
   <div>
