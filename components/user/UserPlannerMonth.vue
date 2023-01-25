@@ -793,7 +793,7 @@
                                       </div>
                                     </div>
                                     <div class="assignment-add-section">
-                                      <h4 class="mb-1 text-center word-break">
+                                      <h4 class="mb-1 text-center word-break text-truncate">
                                         {{ item.task }}
                                       </h4>
                                       <div class="text-center px-3">
