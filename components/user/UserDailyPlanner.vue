@@ -98,7 +98,7 @@
                     class="
                       d-flex
                       flex-column
-                      h-40
+                      h-50
                       flex-fill
                       custom-overflow
                       py-1
@@ -399,7 +399,7 @@
                         <div class="position-absolute multi-select-checkbox">
                           <input
                             v-if="chooseMultiple"
-                            type="checkbox"
+                            type="radio"
                             :id="item.id"
                             :name="item.id"
                             @click="onChooseMultiple(item.id)"

@@ -613,7 +613,7 @@
                     <div
                       class="
                         jochi-components-light-bg
-                        py-4
+                        pb-4
                         h-100
                         d-flex
                         flex-column
@@ -638,7 +638,7 @@
                         "
                       >
                         <div class="col-md-4">
-                          <h2 class="color-primary font-semi-bold">Pending</h2>
+                          <h2 class="color-primary font-semi-bold mb-0  ">Pending</h2>
                         </div>
                         <div class="col-md-8 d-flex justify-content-start justify-content-md-end">
                           <button
@@ -753,7 +753,7 @@
                           h-40
                           flex-fill
                           custom-overflow
-                          py-3
+                          pb-3
                           px-5
                         "
                       >
@@ -1131,7 +1131,7 @@
                             <div class="position-absolute multi-select-checkbox">
                               <input
                                 v-if="chooseMultiple"
-                                type="checkbox"
+                                type="radio"
                                 :id="item.id"
                                 :name="item.id"
                                 @click="onChooseMultiple(item.id)"
