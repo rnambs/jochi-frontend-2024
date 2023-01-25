@@ -1,5 +1,6 @@
 <style>
 .multi-select-checkbox{left:32px; top:-12px}
+.h-60{height:60%}
 </style>
 <template>
   <div>
@@ -98,7 +99,7 @@
                     class="
                       d-flex
                       flex-column
-                      h-50
+                      h-60
                       flex-fill
                       custom-overflow
                       py-1
@@ -399,7 +400,7 @@
                         <div class="position-absolute multi-select-checkbox">
                           <input
                             v-if="chooseMultiple"
-                            type="radio"
+                            type="checkbox"
                             :id="item.id"
                             :name="item.id"
                             @click="onChooseMultiple(item.id)"
