@@ -91,8 +91,8 @@
             </button>
             <div
               v-bind:class="{
-                dropdown: true,
-                'dropdown--visible': dropdownVisible,
+                'dropdown-club': true,
+                'dropdown-club--visible': dropdownVisible,
               }"
             >
               <button>Info</button>
@@ -1334,10 +1334,10 @@ export default {
 </script>
 
 <style scoped>
-.dropdown {
+.dropdown-club {
   display: none;
 }
-.dropdown--visible {
+.dropdown-club--visible {
   display: block;
 }
 </style>
