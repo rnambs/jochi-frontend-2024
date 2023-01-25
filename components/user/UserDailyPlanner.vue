@@ -1,3 +1,6 @@
+<style>
+.multi-select-checkbox{left:32px; top:-12px}
+</style>
 <template>
   <div>
     <lottie
@@ -338,29 +341,30 @@
                                     </div>
                                   </div>
                                 </div>
-                                <div
+                                <div class="position-relative">
+                                  <div
                                   class="
                                     add-person-section
                                     position-absolute
                                     top-0
                                   "
-                                >
-                                  <div
-                                    v-for="(peer, index) in item.peers"
-                                    :key="index"
-                                    class="ap-img-section mr--3 shadow-sm"
                                   >
-                                    <img
-                                      v-if="peer.profile_pic"
-                                      :src="peer.profile_pic"
-                                      alt=""
-                                    />
-                                    <img
-                                      v-else
-                                      src="~/static/image/avatar.png"
-                                      alt=""
-                                    />
-                                  </div>
+                                    <div
+                                      v-for="(peer, index) in item.peers"
+                                      :key="index"
+                                      class="ap-img-section mr--3 shadow-sm"
+                                    >
+                                      <img
+                                        v-if="peer.profile_pic"
+                                        :src="peer.profile_pic"
+                                        alt=""
+                                      />
+                                      <img
+                                        v-else
+                                        src="~/static/image/avatar.png"
+                                        alt=""
+                                      />
+                                    </div>
                                   <div
                                     v-if="!item.formattedDate"
                                     class="
@@ -378,6 +382,7 @@
                                       ><i class="fas fa-exclamation"></i
                                     ></span>
                                   </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -387,17 +392,19 @@
                     </div>
                     <div class="row">
                       <div
-                        class="col-12 col-md-6 py-3"
+                        class="col-12 col-md-6 mb-3"
                         v-for="item in tempAssts"
                         :key="item.id"
                       >
-                        <input
-                          v-if="chooseMultiple"
-                          type="checkbox"
-                          :id="item.id"
-                          :name="item.id"
-                          @click="onChooseMultiple(item.id)"
-                        />
+                        <div class="position-absolute multi-select-checkbox">
+                          <input
+                            v-if="chooseMultiple"
+                            type="checkbox"
+                            :id="item.id"
+                            :name="item.id"
+                            @click="onChooseMultiple(item.id)"
+                          />
+                        </div>
                         <drag class="drag h-100" :transfer-data="{ item }">
                           <div class="h-100">
                             <div
@@ -526,7 +533,7 @@
                                   <button
                                     v-if="
                                       item.subTasks &&
-                                      item.subTasks.length > 3 &&
+                                      item.subTasks.length > 4 &&
                                       (!viewMore || viewMoreId != item.id)
                                     "
                                     @click="viewMoreClick($event, item)"
