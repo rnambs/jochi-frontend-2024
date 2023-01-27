@@ -1,4 +1,5 @@
 <style>
+.completed-assignments{min-height:200px}
 .multiple-select-checkbox {
   left: 5px;
   top: 0px;
@@ -923,7 +924,11 @@
                             :key="item.id"
                             class="col-6"
                           >
-                            <i class="fas fa-undo"></i>
+                          
+                            <div class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center">
+                              <i class="fas fa-undo"></i>
+                            </div>
+
                             <div
                               class="
                                 jochi-sub-components-light-bg
@@ -934,12 +939,12 @@
                                 h-100
                               "
                             >
-                              <h4 class="mb-0 blue word-break">
+                              <h4 class="mb-0 blue word-break text-truncate">
                                 {{ item.task }}
                               </h4>
                               <p
                                 v-for="sub in item.subTasks"
-                                class="mb-0 word-break"
+                                class="mb-0 word-break text-truncate"
                                 :key="sub.id"
                               >
                                 {{ sub.title }}

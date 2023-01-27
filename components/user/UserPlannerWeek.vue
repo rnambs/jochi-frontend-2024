@@ -1,4 +1,5 @@
 <style>
+.completed-assignments{min-height:200px}
 .multiple-select-checkbox {
   left: 5px;
   top: 0px;
@@ -1750,12 +1751,12 @@
                                     h-100
                                   "
                                 >
-                                  <h4 class="mb-0 blue word-break">
+                                  <h4 class="mb-0 blue word-break text-truncate">
                                     {{ item.task }}
                                   </h4>
                                   <p
                                     v-for="sub in item.subTasks"
-                                    class="mb-0 word-break"
+                                    class="mb-0 word-break text-truncate"
                                     :key="sub.id"
                                   >
                                     {{ sub.title }}
