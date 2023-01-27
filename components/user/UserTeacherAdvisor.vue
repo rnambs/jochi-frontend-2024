@@ -183,7 +183,13 @@
                   "
                 >
                   <div
-                    class="tab-btns d-flex align-items-center position-absolute z-index-9"
+                    class="
+                      tab-btns
+                      d-flex
+                      align-items-center
+                      position-absolute
+                      z-index-9
+                    "
                   >
                     <button
                       @click="onTabClick(1)"
@@ -204,9 +210,17 @@
                   </div>
                   <div
                     v-if="showStudentProfile"
-                    class="d-flex flex-column h-40 flex-fill 
-                    p-4
-                    pt-0 custom-overflow my-3 mt-5"
+                    class="
+                      d-flex
+                      flex-column
+                      h-40
+                      flex-fill
+                      p-4
+                      pt-0
+                      custom-overflow
+                      my-3
+                      mt-5
+                    "
                   >
                     <div class="d-flex py-1 py-md-4 px-0 px-xl-4">
                       <div class="ld-img-section mr-3 mb-0">
@@ -319,7 +333,13 @@
                       </div>
                     </div>
                     <div
-                      class="card card-primary-void rounded-22 h-40 flex-fill h-min-400"
+                      class="
+                        card card-primary-void
+                        rounded-22
+                        h-40
+                        flex-fill
+                        h-min-400
+                      "
                     >
                       <h2
                         class="
@@ -329,10 +349,26 @@
                           pt-2 pt-md-4
                           mb-2
                         "
+                        @click="onTabClickAssignment(1)"
                       >
-                        Assignment
+                        Assignments
                       </h2>
-                      <div class="custom-overflow px-4 pt-3 mb-3">
+                      <h2
+                        class="
+                          color-primary
+                          font-semi-bold
+                          px-4
+                          pt-2 pt-md-4
+                          mb-2
+                        "
+                        @click="onTabClickAssignment(2)"
+                      >
+                        Overdue Assignments
+                      </h2>
+                      <div
+                        v-if="showAssignments"
+                        class="custom-overflow px-4 pt-3 mb-3"
+                      >
                         <div class="row">
                           <div
                             v-for="detail in pendingAssignments"
@@ -474,7 +510,13 @@
                                       detail.assignment_materials &&
                                       detail.assignment_materials.length > 0
                                     "
-                                    class="col-8 py-0 pl-0 material-link text-12"
+                                    class="
+                                      col-8
+                                      py-0
+                                      pl-0
+                                      material-link
+                                      text-12
+                                    "
                                   >
                                     <div
                                       class="d-flex w-100"
@@ -517,7 +559,261 @@
                                       !detail.assignment_materials ||
                                       detail.assignment_materials.length <= 0
                                     "
-                                    class="col-8 py-0 pl-0 material-link text-12"
+                                    class="
+                                      col-8
+                                      py-0
+                                      pl-0
+                                      material-link
+                                      text-12
+                                    "
+                                  >
+                                    <span class="color-secondary text-12"
+                                      >No documents added!</span
+                                    >
+                                  </div>
+                                  <div
+                                    class="
+                                      col-4
+                                      material-date
+                                      py-0
+                                      text-right
+                                      pr-0
+                                    "
+                                  >
+                                    <span class="text-12">{{
+                                      detail.due_date
+                                    }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div
+                                class="
+                                  position-absolute
+                                  w-100
+                                  h-100
+                                  d-flex
+                                  align-items-start
+                                  justify-content-end
+                                  success-image
+                                "
+                              >
+                                <!-- <img src="../../static/image/done.png" alt="" class="position-absolute"> -->
+                                <span
+                                  v-if="detail.task_status == 'Completed'"
+                                  class="
+                                    color-primary
+                                    text-30
+                                    check
+                                    position-absolute
+                                  "
+                                  ><i class="fas fa-check-circle"></i
+                                ></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        v-if="showOverdueAssingments"
+                        class="custom-overflow px-4 pt-3 mb-3"
+                      >
+                        <div class="row d-none">
+                          <div
+                            v-for="detail in pendingAssignments"
+                            :key="detail.id"
+                            class="col-12 col-lg-6 col-xl-4"
+                          >
+                            <!-- @click="onAssignmentSelect(detail)" -->
+                            <div
+                              class="
+                                jochi-sub-components-light-bg
+                                drag-drop
+                                p-4
+                                position-realtive
+                                h-100
+                                d-flex
+                                flex-column
+                                justify-content-between
+                                assignment-status
+                                position-relative
+                              "
+                              :class="{
+                                selected: detail.task_status == 'Completed',
+                              }"
+                            >
+                              <div class="d-flex flex-column">
+                                <div
+                                  class="
+                                    assignment-tag-section
+                                    d-flex
+                                    align-items-center
+                                    mb-2
+                                  "
+                                >
+                                  <div
+                                    class="assignment-tag mr-2 text-nowrap"
+                                    :class="
+                                      detail.priority == '1'
+                                        ? 'red'
+                                        : detail.priority == '2'
+                                        ? 'orange'
+                                        : detail.priority == '3'
+                                        ? 'yellow'
+                                        : ''
+                                    "
+                                  >
+                                    {{
+                                      detail.priority == "1"
+                                        ? "Urgent"
+                                        : detail.priority == "2"
+                                        ? "Important"
+                                        : detail.priority == "3"
+                                        ? "Can Wait"
+                                        : ""
+                                    }}
+                                  </div>
+                                  <div
+                                    class="assignment-tag pink text-truncate"
+                                  >
+                                    {{ detail.subject }}
+                                  </div>
+                                </div>
+                                <div class="text-center">
+                                  <h4 class="color-dark font-semi-bold mb-1">
+                                    {{ detail.task }}
+                                  </h4>
+                                  <div class="text-center px-3">
+                                    <p
+                                      class="
+                                        color-secondary
+                                        text-16
+                                        line-height-1
+                                        font-semi-bold
+                                      "
+                                    >
+                                      {{ detail.subject }}
+                                    </p>
+                                  </div>
+                                </div>
+                                <div
+                                  v-if="
+                                    detail.subTasks &&
+                                    detail.subTasks.length > 0
+                                  "
+                                  class="mb-3"
+                                >
+                                  <h6 class="color-primary font-semi-bold">
+                                    Sub-tasks
+                                  </h6>
+                                  <div class="to-do-list">
+                                    <div
+                                      v-for="subtask in detail.subTasks"
+                                      :key="subtask.id"
+                                    >
+                                      <div
+                                        class="
+                                          pl-2
+                                          d-flex
+                                          align-items-center
+                                          mb-1
+                                          cursor-pointer
+                                        "
+                                      >
+                                        <input
+                                          type="radio"
+                                          class="
+                                            mr-2
+                                            color-secondary
+                                            cursor-pointer
+                                          "
+                                        />
+                                        <label
+                                          for=""
+                                          class="
+                                            mb-0
+                                            text-12
+                                            color-secondary
+                                            cursor-pointer
+                                          "
+                                          >{{ subtask.title }}</label
+                                        >
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="">
+                                <h6 class="mb-1 color-primary font-semi-bold">
+                                  Additional Material
+                                </h6>
+                                <div
+                                  class="
+                                    d-flex
+                                    align-items-center
+                                    justify-content-between
+                                  "
+                                >
+                                  <div
+                                    v-if="
+                                      detail.assignment_materials &&
+                                      detail.assignment_materials.length > 0
+                                    "
+                                    class="
+                                      col-8
+                                      py-0
+                                      pl-0
+                                      material-link
+                                      text-12
+                                    "
+                                  >
+                                    <div
+                                      class="d-flex w-100"
+                                      v-for="(
+                                        material, index
+                                      ) in detail.assignment_materials"
+                                      :key="material.id"
+                                    >
+                                      <span
+                                        v-if="index < 2"
+                                        class="
+                                          color-secondary
+                                          text-truncate
+                                          w-100
+                                        "
+                                      >
+                                        {{
+                                          material.file_type == "link"
+                                            ? material.material
+                                            : material.file_name
+                                        }}
+                                      </span>
+                                    </div>
+                                    <span
+                                      class="color-secondary text-12"
+                                      v-if="
+                                        detail.assignment_materials &&
+                                        detail.assignment_materials.length &&
+                                        detail.assignment_materials.length > 2
+                                      "
+                                      >+{{
+                                        detail.assignment_materials.length - 2
+                                      }}
+                                      more</span
+                                    >
+                                  </div>
+
+                                  <div
+                                    v-if="
+                                      !detail.assignment_materials ||
+                                      detail.assignment_materials.length <= 0
+                                    "
+                                    class="
+                                      col-8
+                                      py-0
+                                      pl-0
+                                      material-link
+                                      text-12
+                                    "
                                   >
                                     <span class="color-secondary text-12"
                                       >No documents added!</span
@@ -718,6 +1014,8 @@ export default {
       submitted: false,
       studentDetail: {},
       pendingAssignments: [],
+      showAssignments: true,
+      showOverdueAssingments: false,
     };
   },
   mounted() {
@@ -892,6 +1190,15 @@ export default {
         peers.push(user);
       }
       return peers;
+    },
+    onTabClickAssignment(tab) {
+      if (tab == 1) {
+        this.showOverdueAssingments = false;
+        this.showAssignments = true;
+      } else if (tab == 2) {
+        this.showOverdueAssingments = true;
+        this.showAssignments = false;
+      }
     },
   },
 };
