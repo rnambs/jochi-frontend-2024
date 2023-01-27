@@ -68,9 +68,13 @@
             <button class="btn p-1 m-2" v-on:click="toggleDropdown">
               <i class="fas fa-cog color-white"></i>
             </button>
-            <div
+            
+          </div>
+        </div>
+        <div class="position-relative">
+          <div
               v-bind:class="{
-                'dropdown-club': true,
+                'dropdown-club jochi-components-light-bg': true,
                 'dropdown-club--visible': dropdownVisible,
               }"
             >
@@ -79,7 +83,6 @@
               <button>Remove As Leader</button>
               <button>Delete</button>
               <!-- dropdown content here -->
-            </div>
           </div>
         </div>
 
@@ -2482,5 +2485,14 @@ export default {
 }
 .dropdown-club--visible {
   display: block;
+  position: absolute;
+  width: 182px;
+  height: auto;
+  background: #FF6D6D;
+  z-index: 999;
+  border-radius: 0px 0px 1rem 1rem;
+  right: 10px;
+  padding:1rem;
+  color:#fff;
 }
 </style>
