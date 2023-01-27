@@ -45,7 +45,7 @@
 }
 .squaredThree label:hover::after {
   opacity: 1;
-  transition: all ease-in 300ms;
+  transition: all ease-in-out 300ms;
 }
 .squaredThree input[type="checkbox"] {
   visibility: hidden;
@@ -55,7 +55,7 @@
 }
 .squaredThree input[type="checkbox"]:checked + label {
   background: #ed7672;
-  transition: all ease-in 300ms;
+  transition: all ease-in-out 300ms;
 }
 .label-text {
   /* position: relative; */

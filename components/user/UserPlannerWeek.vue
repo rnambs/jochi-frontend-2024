@@ -45,7 +45,7 @@
 }
 .squaredThree label:hover::after {
   opacity: 1;
-  transition: all ease-in 300ms;
+  transition: all ease-in-out 300ms;
 }
 .squaredThree input[type="checkbox"] {
   visibility: hidden;
@@ -55,7 +55,7 @@
 }
 .squaredThree input[type="checkbox"]:checked + label {
   background: #ed7672;
-  transition: all ease-in 300ms;
+  transition: all ease-in-out 300ms;
 }
 .label-text {
   /* position: relative; */
@@ -1728,7 +1728,7 @@
                                 class="col-6"
                               >
                                 <div
-                                   @click="confirmUndo(item.id)"
+                                  @click="confirmUndo(item.id)"
                                   class="
                                     position-absolute
                                     multiple-select-checkbox
@@ -3650,49 +3650,46 @@
     </div>
     <!-- Remove peer  confirmation end  -->
     <!-- Undo assignment  confirmation  -->
-      <div
-        class="modal fade"
-        id="undoAssignmentConfirmation"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="undoAssignmentConfirmationModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div
-          class="modal-dialog modal-dialog-centered add-assmt"
-          role="document"
-        >
-          <div class="modal-content">
-            <div class="modal-header pb-1">
-              <h3
-                class="modal-title"
-                id="undoAssignmentConfirmationModalLongTitle"
-              >
-                Undo complete assignment confirmation
-              </h3>
-            </div>
-            <div class="modal-body px-4">Undo this action?</div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
-                data-dismiss="modal"
-              >
-                Cancel
-              </button>
-              <button
-                data-dismiss="modal"
-                type="button"
-                class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
-                @click="undoAsstComplete()"
-              >
-                Confirm
-              </button>
-            </div>
+    <div
+      class="modal fade"
+      id="undoAssignmentConfirmation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="undoAssignmentConfirmationModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h3
+              class="modal-title"
+              id="undoAssignmentConfirmationModalLongTitle"
+            >
+              Undo complete assignment confirmation
+            </h3>
+          </div>
+          <div class="modal-body px-4">Undo this action?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              @click="undoAsstComplete()"
+            >
+              Confirm
+            </button>
           </div>
         </div>
       </div>
-      <!-- Undo assignment confirmation end  -->
+    </div>
+    <!-- Undo assignment confirmation end  -->
   </div>
 </template>
 <script>
