@@ -1,6 +1,15 @@
 <style>
-.multiple-select-checkbox {left:5px; top:0px; width:32px; height: 32px !important; border-radius: 50%; background-color: unset;}
-.h-60{height:60%}
+.multiple-select-checkbox {
+  left: 5px;
+  top: 0px;
+  width: 32px;
+  height: 32px !important;
+  border-radius: 50%;
+  background-color: unset;
+}
+.h-60 {
+  height: 60%;
+}
 .squaredThree {
   /* position: relative;
   float:left; */
@@ -14,12 +23,12 @@
   top: 3px;
   left: 3px;
   background: #ffb5b2;
-  border-radius: 50%; 
+  border-radius: 50%;
 }
 .squaredThree label:after {
-  content: '';
+  content: "";
   width: 13px;
-  height:7px;
+  height: 7px;
   position: absolute;
   top: 7px;
   left: 6px;
@@ -35,16 +44,18 @@
   opacity: 0.3;
 }
 .squaredThree label:hover::after {
-  opacity: 1; transition:all ease-in-out 300ms;
+  opacity: 1;
+  transition: all ease-in-out 300ms;
 }
-.squaredThree input[type=checkbox] {
+.squaredThree input[type="checkbox"] {
   visibility: hidden;
 }
-.squaredThree input[type=checkbox]:checked + label:after {
+.squaredThree input[type="checkbox"]:checked + label:after {
   opacity: 1 !important;
 }
-.squaredThree input[type=checkbox]:checked + label{
-  background: #ED7672; transition: all ease-in-out 300ms;
+.squaredThree input[type="checkbox"]:checked + label {
+  background: #ed7672;
+  transition: all ease-in-out 300ms;
 }
 .label-text {
   /* position: relative; */
@@ -688,9 +699,17 @@
                         "
                       >
                         <div class="col-md-4">
-                          <h2 class="color-primary font-semi-bold mb-0  ">Pending</h2>
+                          <h2 class="color-primary font-semi-bold mb-0">
+                            Pending
+                          </h2>
                         </div>
-                        <div class="col-md-8 d-flex justify-content-start justify-content-md-end">
+                        <div
+                          class="
+                            col-md-8
+                            d-flex
+                            justify-content-start justify-content-md-end
+                          "
+                        >
                           <button
                             @click="
                               openAssignment = true;
@@ -1178,7 +1197,16 @@
                             v-for="item in tempAssts"
                             :key="item.id"
                           >
-                            <div class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center">
+                            <div
+                              class="
+                                position-absolute
+                                multiple-select-checkbox
+                                jochi-components-light-bg
+                                d-flex
+                                align-items-center
+                                justify-content-center
+                              "
+                            >
                               <div class="squaredThree">
                                 <input
                                   v-if="chooseMultiple"
@@ -1248,7 +1276,14 @@
                                       </div>
                                     </div>
                                     <div class="assignment-add-section">
-                                      <h4 class="mb-1 text-center word-break text-truncate">
+                                      <h4
+                                        class="
+                                          mb-1
+                                          text-center
+                                          word-break
+                                          text-truncate
+                                        "
+                                      >
                                         {{ item.task }}
                                       </h4>
                                       <div class="text-center px-3">
@@ -1692,8 +1727,17 @@
                                 :key="item.id"
                                 class="col-6"
                               >
-
-                                <div class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center">
+                                <div
+                                  @click="confirmUndo(item.id)"
+                                  class="
+                                    position-absolute
+                                    multiple-select-checkbox
+                                    jochi-components-light-bg
+                                    d-flex
+                                    align-items-center
+                                    justify-content-center
+                                  "
+                                >
                                   <i class="fas fa-undo"></i>
                                 </div>
                                 <div
@@ -3605,6 +3649,47 @@
       </div>
     </div>
     <!-- Remove peer  confirmation end  -->
+    <!-- Undo assignment  confirmation  -->
+    <div
+      class="modal fade"
+      id="undoAssignmentConfirmation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="undoAssignmentConfirmationModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h3
+              class="modal-title"
+              id="undoAssignmentConfirmationModalLongTitle"
+            >
+              Undo complete assignment confirmation
+            </h3>
+          </div>
+          <div class="modal-body px-4">Undo this action?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              @click="undoAsstComplete()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Undo assignment confirmation end  -->
   </div>
 </template>
 <script>
@@ -3751,6 +3836,7 @@ export default {
       reloadNext: false,
       chooseMultiple: false,
       choosenAssignments: [],
+      undoAsstId: 0,
     };
   },
 
@@ -3931,7 +4017,7 @@ export default {
         date: this.calendarDate,
       });
       this.meetingDetails = [];
-     this.plannerList.forEach((element) => {
+      this.plannerList.forEach((element) => {
         if (element.due_date) {
           var scheduleObject = {};
           var plannerObj = {};
@@ -4498,7 +4584,7 @@ export default {
       // $("#daterange").data("daterangepicker").setStartDate(this.dateListValue);
       // $("#daterange").data("daterangepicker").setEndDate(this.dateListValue);
     },
-   filterOption(val) {
+    filterOption(val) {
       var high = /High/g;
       var med = /Medium/g;
       var low = /Low/g;
@@ -5338,7 +5424,7 @@ export default {
     async undoCompleteSubTask() {
       this.pendingAssignments
         .find((e) => e.id == this.completeAsstId)
-        .subTasks.find((i) => i.id == this.completeSubTaskId).task_status='';
+        .subTasks.find((i) => i.id == this.completeSubTaskId).task_status = "";
     },
     onCardClick(data) {
       this.deletedSubTasksArray = [];
@@ -5441,7 +5527,7 @@ export default {
       this.completeAsstId = this.assignmentId;
       $("#completeConfirm").modal({ backdrop: true });
     },
-    confirmSubTaskComplete(event, id, asstId,status) {
+    confirmSubTaskComplete(event, id, asstId, status) {
       // if (status == "Completed") {
       //   return;
       // }
@@ -5455,8 +5541,8 @@ export default {
       this.completeSubTaskId = id;
       if (status == "Completed") {
         $("#undoSubTaskConfirm").modal({ backdrop: true });
-     }else{
-      $("#completeSubTaskConfirm").modal({ backdrop: true });
+      } else {
+        $("#completeSubTaskConfirm").modal({ backdrop: true });
       }
 
       event.preventDefault();
@@ -5620,6 +5706,13 @@ export default {
         this.choosenAssignments.push(id);
       }
       console.log(this.choosenAssignments);
+    },
+    confirmUndo(id) {
+      this.undoAsstId = id;
+      $("#undoAssignmentConfirmation").modal({ backdrop: true });
+    },
+    undoAsstComplete() {
+      console.log(this.undoAsstId);
     },
   },
 };

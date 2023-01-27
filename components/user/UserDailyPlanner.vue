@@ -1,6 +1,14 @@
 <style>
-.multiple-select-checkbox {left:5px; top:0px; width:32px; height: 32px; border-radius: 50%;}
-.h-60{height:60%}
+.multiple-select-checkbox {
+  left: 5px;
+  top: 0px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.h-60 {
+  height: 60%;
+}
 .squaredThree {
   /* position: relative;
   float:left; */
@@ -14,12 +22,12 @@
   top: 3px;
   left: 3px;
   background: #ffb5b2;
-  border-radius: 50%; 
+  border-radius: 50%;
 }
 .squaredThree label:after {
-  content: '';
+  content: "";
   width: 13px;
-  height:7px;
+  height: 7px;
   position: absolute;
   top: 7px;
   left: 6px;
@@ -35,16 +43,18 @@
   opacity: 0.3;
 }
 .squaredThree label:hover::after {
-  opacity: 1; transition:all ease-in-out 300ms;
+  opacity: 1;
+  transition: all ease-in-out 300ms;
 }
-.squaredThree input[type=checkbox] {
+.squaredThree input[type="checkbox"] {
   visibility: hidden;
 }
-.squaredThree input[type=checkbox]:checked + label:after {
+.squaredThree input[type="checkbox"]:checked + label:after {
   opacity: 1 !important;
 }
-.squaredThree input[type=checkbox]:checked + label{
-  background: #ED7672; transition: all ease-in-out 300ms;
+.squaredThree input[type="checkbox"]:checked + label {
+  background: #ed7672;
+  transition: all ease-in-out 300ms;
 }
 .label-text {
   /* position: relative; */
@@ -111,8 +121,7 @@
                   <div
                     class="
                       d-flex
-                      justify-content-md-end
-                      justify-content-start
+                      justify-content-md-end justify-content-start
                       align-items-center
                       px-4
                       pb-2
@@ -120,16 +129,24 @@
                   >
                     <div class="row">
                       <div class="col-md-4">
-                        <h2 class="color-primary font-semi-bold mb-0">Pending</h2>
+                        <h2 class="color-primary font-semi-bold mb-0">
+                          Pending
+                        </h2>
                       </div>
-                      <div class="col-md-8 d-flex justify-content-start justify-content-md-end">
-                        <button
-                        @click="
-                          openAssignment = true;
-                          isAddAssignment = true;
-                          resetAssignment();
+                      <div
+                        class="
+                          col-md-8
+                          d-flex
+                          justify-content-start justify-content-md-end
                         "
-                        class="btn btn-dark py-1 px-3 mr-3"
+                      >
+                        <button
+                          @click="
+                            openAssignment = true;
+                            isAddAssignment = true;
+                            resetAssignment();
+                          "
+                          class="btn btn-dark py-1 px-3 mr-3"
                         >
                           Add Assignment
                         </button>
@@ -140,7 +157,6 @@
                           Choose Multiple
                         </button>
                       </div>
-
                     </div>
                   </div>
                   <!-- drag -->
@@ -393,11 +409,11 @@
                                 </div>
                                 <div class="position-relative">
                                   <div
-                                  class="
-                                    add-person-section
-                                    position-absolute
-                                    top-0
-                                  "
+                                    class="
+                                      add-person-section
+                                      position-absolute
+                                      top-0
+                                    "
                                   >
                                     <div
                                       v-for="(peer, index) in item.peers"
@@ -415,23 +431,23 @@
                                         alt=""
                                       />
                                     </div>
-                                  <div
-                                    v-if="!item.formattedDate"
-                                    class="
-                                      ap-img-section
-                                      mr--3
-                                      shadow-sm
-                                      exclamation
-                                      d-flex
-                                      align-items-center
-                                      justify-content-center
-                                      bg-primary
-                                    "
-                                  >
-                                    <span class="color-white"
-                                      ><i class="fas fa-exclamation"></i
-                                    ></span>
-                                  </div>
+                                    <div
+                                      v-if="!item.formattedDate"
+                                      class="
+                                        ap-img-section
+                                        mr--3
+                                        shadow-sm
+                                        exclamation
+                                        d-flex
+                                        align-items-center
+                                        justify-content-center
+                                        bg-primary
+                                      "
+                                    >
+                                      <span class="color-white"
+                                        ><i class="fas fa-exclamation"></i
+                                      ></span>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -446,7 +462,16 @@
                         v-for="item in tempAssts"
                         :key="item.id"
                       >
-                        <div class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center">
+                        <div
+                          class="
+                            position-absolute
+                            multiple-select-checkbox
+                            jochi-components-light-bg
+                            d-flex
+                            align-items-center
+                            justify-content-center
+                          "
+                        >
                           <div class="squaredThree">
                             <input
                               v-if="chooseMultiple"
@@ -512,7 +537,14 @@
                                   </div>
                                 </div>
                                 <div class="assignment-add-section">
-                                  <h4 class="mb-1 text-center word-break text-truncate">
+                                  <h4
+                                    class="
+                                      mb-1
+                                      text-center
+                                      word-break
+                                      text-truncate
+                                    "
+                                  >
                                     {{ item.task }}
                                   </h4>
                                   <div class="text-center px-3">
@@ -791,7 +823,19 @@
                               :key="item.id"
                               class="col-6"
                             >
-                              <i class="fas fa-undo"></i>
+                              <div
+                                @click="confirmUndo(item.id)"
+                                class="
+                                  position-absolute
+                                  multiple-select-checkbox
+                                  jochi-components-light-bg
+                                  d-flex
+                                  align-items-center
+                                  justify-content-center
+                                "
+                              >
+                                <i class="fas fa-undo"></i>
+                              </div>
                               <div
                                 class="
                                   jochi-sub-components-light-bg
@@ -2586,6 +2630,47 @@
       </div>
     </div>
     <!-- Remove peer  confirmation end  -->
+    <!-- Undo assignment  confirmation  -->
+    <div
+      class="modal fade"
+      id="undoAssignmentConfirmation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="undoAssignmentConfirmationModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h3
+              class="modal-title"
+              id="undoAssignmentConfirmationModalLongTitle"
+            >
+              Undo complete assignment confirmation
+            </h3>
+          </div>
+          <div class="modal-body px-4">Undo this action?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              @click="undoAsstComplete()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Undo assignment confirmation end  -->
   </div>
 </template>
 <script>
@@ -2732,6 +2817,7 @@ export default {
       reloadNext: false,
       chooseMultiple: false,
       choosenAssignments: [],
+      undoAsstId: 0,
     };
   },
   mounted() {
@@ -4161,6 +4247,13 @@ export default {
         this.choosenAssignments.push(id);
       }
       console.log(this.choosenAssignments);
+    },
+    confirmUndo(id) {
+      this.undoAsstId = id;
+      $("#undoAssignmentConfirmation").modal({ backdrop: true });
+    },
+    undoAsstComplete() {
+      console.log(this.undoAsstId);
     },
   },
 };
