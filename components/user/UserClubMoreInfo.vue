@@ -78,10 +78,10 @@
                 'dropdown-club--visible': dropdownVisible,
               }"
             >
-              <button>Info</button>
-              <button>Leave</button>
-              <button>Remove As Leader</button>
-              <button>Delete</button>
+              <button class="btn btn-primary btn-sm">Info</button>
+              <button class="btn btn-primary btn-sm">Leave</button>
+              <button class="btn btn-primary btn-sm">Remove As Leader</button>
+              <button class="btn btn-primary btn-sm">Delete</button>
               <!-- dropdown content here -->
           </div>
         </div>
@@ -2488,7 +2488,6 @@ export default {
   position: absolute;
   width: 182px;
   height: auto;
-  background: #FF6D6D;
   z-index: 999;
   border-radius: 0px 0px 1rem 1rem;
   right: 10px;
