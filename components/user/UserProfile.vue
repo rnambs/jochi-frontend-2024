@@ -237,101 +237,234 @@
                   <div
                     class="
                       row
-                      flex-column
-                      justify-content-center
-                      align-items-center
+                      
                     "
                   >
-                    <div class="col-12 col-md-7">
-                      <div
-                        class="card card-primary p-3 h-100 d-flex flex-column"
-                      >
-                        <p
-                          class="
-                            mb-0
-                            text-16
-                            color-secondary
-                            d-flex
-                            flex-row
-                            align-items-baseline
-                          "
+                    
+
+                  <div class="col-md-6">
+                      <div v-if="user_type == '3'" class="col-md-12">
+                        <div
+                          v-if="advisorDetail && advisorDetail.first_name"
+                          class="card card-primary p-3 h-100 d-flex flex-column"
                         >
-                          <span class="text-24"
-                            ><i class="fas fa-envelope"></i
-                          ></span>
-                          <span class="ml-2">{{ email }}</span>
-                        </p>
+                          <h4 class="color-dark font-semi-bold">Your Advisor</h4>
+                          <div
+                            class="d-flex align-items-center my-2 mr-3 min-w-200"
+                          >
+                            <div class="ld-img-section mr-3">
+                              <div class="ld-img-holder">
+                                <img
+                                  v-if="
+                                    advisorDetail && advisorDetail.profile_pic
+                                  "
+                                  :src="advisorDetail.profile_pic"
+                                  alt=""
+                                />
+                                <img
+                                  v-else
+                                  src="~/static/image/avatar.png"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                            <div class="ld-details-section">
+                              <p class="ld-heading mb-1">
+                                {{
+                                  advisorDetail.first_name +
+                                  " " +
+                                  advisorDetail.last_name
+                                }}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-12 col-md-7">
-                      <div class="card card-primary p-3 h-100">
-                        <p
-                          class="
-                            mb-0
-                            text-16
-                            color-secondary
-                            d-flex
-                            flex-row
-                            align-items-baseline
-                          "
+                      <div v-if="requestList.length > 0" class="col-md-12">
+                        <div
+                          class="card card-primary p-3 h-100 d-flex flex-column"
                         >
-                          <span class="text-24"
-                            ><i class="fas fa-school"></i
-                          ></span>
-                          <span class="ml-2">{{ schoolName }}</span>
-                        </p>
-                      </div>
-                    </div>
-                    <div class="col-12 col-md-7">
-                      <div class="row">
-                        <div class="col-md-8">
-                          <div class="card card-primary p-3 h-100">
-                            <p
+                          <h4 class="color-dark font-semi-bold">
+                            Advisor Requests
+                          </h4>
+                          <div
+                            v-for="advisor in requestList"
+                            :key="advisor.id"
+                            class="
+                              d-flex
+                              flex-column flex-md-row
+                              align-items-center
+                              my-2
+                              mr-3
+                              min-w-200
+                            "
+                          >
+                            <div class="ld-img-section mr-0 mr-md-3 mb-2 mb-md-0">
+                              <div class="ld-img-holder">
+                                <img
+                                  v-if="
+                                    advisor &&
+                                    advisor.teacher &&
+                                    advisor.teacher.profile_pic
+                                  "
+                                  :src="advisor.teacher.profile_pic"
+                                  alt=""
+                                />
+                                <img
+                                  v-else
+                                  src="~/static/image/avatar.png"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                            <div
                               class="
-                                mb-0
-                                text-16
-                                color-secondary
                                 d-flex
-                                flex-row
-                                align-items-baseline
+                                flex-column flex-md-row
+                                align-items-center
+                                justify-content-between
+                                w-100
                               "
                             >
-                              <span class="text-24"
-                                ><i class="fas fa-phone"></i
-                              ></span>
-                              <input
-                                type="text"
-                                class="pl-3"
-                                v-model="valuePhone"
-                                @change="checkValueChange()"
-                                @input="checkValue()"
-                                maxlength="15"
-                              />
-                            </p>
-                          </div>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                          <div class="custom-switch pb-1">
-                            <input
-                              type="checkbox" 
-                              id="switch_time"
-                              class="custom-control-input color-primary"
-                            />
-                            <label
-                              class="
-                                custom-control-label
-                                font-normal
-                                color-dark
-                                text-14
-                                cursor-pointer
-                              "
-                              for="switch_time"
-                              >Notification
-                            </label>
+                              <div class="ld-details-section">
+                                <p v-if="advisor.teacher" class="ld-heading mb-1">
+                                  {{
+                                    advisor.teacher.first_name +
+                                    " " +
+                                    advisor.teacher.last_name
+                                  }}
+                                </p>
+                              </div>
+
+                              <div
+                                class="
+                                  d-flex
+                                  align-items-center
+                                  justify-content-center
+                                "
+                              >
+                                <button
+                                  class="
+                                    btn btn-secondary
+                                    px-4
+                                    py-1
+                                    rounded-pill
+                                    mr-2
+                                  "
+                                  @click="respondRequest(2, advisor)"
+                                >
+                                  Reject
+                                </button>
+                                <button
+                                  class="btn btn-primary px-4 py-1 rounded-pill"
+                                  @click="respondRequest(1, advisor)"
+                                >
+                                  Accept
+                                </button>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                    
+                    <div class="col-md-6">
+
+                      <div class="col-12 col-md-12">
+                        <div
+                          class="card card-primary p-3 h-100 d-flex flex-column"
+                        >
+                          <p
+                            class="
+                              mb-0
+                              text-16
+                              color-secondary
+                              d-flex
+                              flex-row
+                              align-items-baseline
+                            "
+                          >
+                            <span class="text-24"
+                              ><i class="fas fa-envelope"></i
+                            ></span>
+                            <span class="ml-2">{{ email }}</span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="card card-primary p-3 h-100">
+                          <p
+                            class="
+                              mb-0
+                              text-16
+                              color-secondary
+                              d-flex
+                              flex-row
+                              align-items-baseline
+                            "
+                          >
+                            <span class="text-24"
+                              ><i class="fas fa-school"></i
+                            ></span>
+                            <span class="ml-2">{{ schoolName }}</span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-8">
+                            <div class="card card-primary p-3 h-100">
+                              <p
+                                class="
+                                  mb-0
+                                  text-16
+                                  color-secondary
+                                  d-flex
+                                  flex-row
+                                  align-items-baseline
+                                "
+                              >
+                                <span class="text-24"
+                                  ><i class="fas fa-phone"></i
+                                ></span>
+                                <input
+                                  type="text"
+                                  class="pl-3"
+                                  v-model="valuePhone"
+                                  @change="checkValueChange()"
+                                  @input="checkValue()"
+                                  maxlength="15"
+                                />
+                              </p>
+                            </div>
+                          </div>
+                          <div class="col-md-4 d-flex align-items-center">
+                            <div class="custom-switch pb-1">
+                              <input
+                                type="checkbox" 
+                                id="switch_time"
+                                class="custom-control-input color-primary"
+                              />
+                              <label
+                                class="
+                                  custom-control-label
+                                  font-normal
+                                  color-dark
+                                  text-14
+                                  cursor-pointer
+                                "
+                                for="switch_time"
+                                >Notification
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                    
+
                     <!-- <div class="col-12 col-md-4">
                         <div class="card card-primary h-100 ">
                               <nuxt-link to="/user-reset-password" class="btn btn-void d-flex flex-column align-items-start">
@@ -341,129 +474,7 @@
                         </div>
                       </div> -->
 
-                    <div v-if="user_type == '3'" class="col-12 col-md-7">
-                      <div
-                        v-if="advisorDetail && advisorDetail.first_name"
-                        class="card card-primary p-3 h-100 d-flex flex-column"
-                      >
-                        <h4 class="color-dark font-semi-bold">Your Advisor</h4>
-                        <div
-                          class="d-flex align-items-center my-2 mr-3 min-w-200"
-                        >
-                          <div class="ld-img-section mr-3">
-                            <div class="ld-img-holder">
-                              <img
-                                v-if="
-                                  advisorDetail && advisorDetail.profile_pic
-                                "
-                                :src="advisorDetail.profile_pic"
-                                alt=""
-                              />
-                              <img
-                                v-else
-                                src="~/static/image/avatar.png"
-                                alt=""
-                              />
-                            </div>
-                          </div>
-                          <div class="ld-details-section">
-                            <p class="ld-heading mb-1">
-                              {{
-                                advisorDetail.first_name +
-                                " " +
-                                advisorDetail.last_name
-                              }}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div v-if="requestList.length > 0" class="col-12 col-md-7">
-                      <div
-                        class="card card-primary p-3 h-100 d-flex flex-column"
-                      >
-                        <h4 class="color-dark font-semi-bold">
-                          Advisor Requests
-                        </h4>
-                        <div
-                          v-for="advisor in requestList"
-                          :key="advisor.id"
-                          class="
-                            d-flex
-                            flex-column flex-md-row
-                            align-items-center
-                            my-2
-                            mr-3
-                            min-w-200
-                          "
-                        >
-                          <div class="ld-img-section mr-0 mr-md-3 mb-2 mb-md-0">
-                            <div class="ld-img-holder">
-                              <img
-                                v-if="
-                                  advisor &&
-                                  advisor.teacher &&
-                                  advisor.teacher.profile_pic
-                                "
-                                :src="advisor.teacher.profile_pic"
-                                alt=""
-                              />
-                              <img
-                                v-else
-                                src="~/static/image/avatar.png"
-                                alt=""
-                              />
-                            </div>
-                          </div>
-                          <div
-                            class="
-                              d-flex
-                              flex-column flex-md-row
-                              align-items-center
-                              justify-content-between
-                              w-100
-                            "
-                          >
-                            <div class="ld-details-section">
-                              <p v-if="advisor.teacher" class="ld-heading mb-1">
-                                {{
-                                  advisor.teacher.first_name +
-                                  " " +
-                                  advisor.teacher.last_name
-                                }}
-                              </p>
-                            </div>
-
-                            <div
-                              class="
-                                d-flex
-                                align-items-center
-                                justify-content-center
-                              "
-                            >
-                              <button
-                                class="
-                                  btn btn-secondary
-                                  px-4
-                                  py-1
-                                  rounded-pill
-                                  mr-2
-                                "
-                                @click="respondRequest(2, advisor)"
-                              >
-                                Reject
-                              </button>
-                              <button
-                                class="btn btn-primary px-4 py-1 rounded-pill"
-                                @click="respondRequest(1, advisor)"
-                              >
-                                Accept
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
                 <div class="row justify-content-center">
