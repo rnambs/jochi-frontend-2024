@@ -1,3 +1,9 @@
+<style>
+.send-later{right: 1rem; top:1rem; width: 32px;
+    height: 32px !important;
+    border-radius: 50%;
+    background-color: unset;}
+</style>
 <template>
   <div class="main-section">
     <!-- Study Page -->
@@ -23,6 +29,12 @@
       >
         <div class="row h-lg-100">
           <div class="col-lg-7 d-flex flex-column">
+            <div class="position-relative">
+              <div class="position-absolute   send-later  jochi-components-light-bg d-flex align-items-center justify-content-center">
+                <!-- <img src="/_nuxt/static/image/send-later.png" alt=""> -->
+                <img  src="~/assets/images/send-later.png">
+              </div>
+            </div>  
             <div
               @click="setSessionType('assignment')"
               class="
@@ -37,15 +49,16 @@
               "
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
+                
                 <h2 class="color-primary font-semi-bold mb-1">
                   Complete An Assignment
                 </h2>
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Tackle your upcoming assignments
                 </p>
-                <button @click="scheduleLaterClick('assignment', $event)">
+                <!-- <button @click="scheduleLaterClick('assignment', $event)">
                   Schedule Later
-                </button>
+                </button> -->
               </div>
               <div
                 class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
@@ -55,6 +68,12 @@
                   alt=""
                   class="card-img"
                 />
+              </div>
+            </div>
+            <div class="position-relative">
+              <div class="position-absolute   send-later  jochi-components-light-bg d-flex align-items-center justify-content-center">
+                <!-- <img src="/_nuxt/static/image/send-later.png" alt=""> -->
+                <img  src="~/assets/images/send-later.png">
               </div>
             </div>
             <div
@@ -76,9 +95,9 @@
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Stay focused while you study, and monitor your productivity
                 </p>
-                <button @click="scheduleLaterClick('study', $event)">
+                <!-- <button @click="scheduleLaterClick('study', $event)">
                   Schedule Later
-                </button>
+                </button> -->
               </div>
               <div
                 class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
