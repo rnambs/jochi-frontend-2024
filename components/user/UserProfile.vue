@@ -282,6 +282,33 @@
                         </p>
                       </div>
                     </div>
+                    <div class="col-12 col-md-7">
+                      <input type="checkbox" id="switch_time" />
+                      <label for="switch_time">Notification</label>
+                      <div class="card card-primary p-3 h-100">
+                        <p
+                          class="
+                            mb-0
+                            text-16
+                            color-secondary
+                            d-flex
+                            flex-row
+                            align-items-baseline
+                          "
+                        >
+                          <span class="text-24"
+                            ><i class="fas fa-phone"></i
+                          ></span>
+                          <input
+                            type="text"
+                            v-model="valuePhone"
+                            @change="checkValueChange()"
+                            @input="checkValue()"
+                            maxlength="15"
+                          />
+                        </p>
+                      </div>
+                    </div>
                     <!-- <div class="col-12 col-md-4">
                         <div class="card card-primary h-100 ">
                               <nuxt-link to="/user-reset-password" class="btn btn-void d-flex flex-column align-items-start">
@@ -303,7 +330,9 @@
                           <div class="ld-img-section mr-3">
                             <div class="ld-img-holder">
                               <img
-                                v-if="advisorDetail.profile_pic"
+                                v-if="
+                                  advisorDetail && advisorDetail.profile_pic
+                                "
                                 :src="advisorDetail.profile_pic"
                                 alt=""
                               />
@@ -348,7 +377,11 @@
                           <div class="ld-img-section mr-0 mr-md-3 mb-2 mb-md-0">
                             <div class="ld-img-holder">
                               <img
-                                v-if="advisor.teacher.profile_pic"
+                                v-if="
+                                  advisor &&
+                                  advisor.teacher &&
+                                  advisor.teacher.profile_pic
+                                "
                                 :src="advisor.teacher.profile_pic"
                                 alt=""
                               />
@@ -369,7 +402,7 @@
                             "
                           >
                             <div class="ld-details-section">
-                              <p class="ld-heading mb-1">
+                              <p v-if="advisor.teacher" class="ld-heading mb-1">
                                 {{
                                   advisor.teacher.first_name +
                                   " " +
@@ -528,10 +561,11 @@ export default {
       defaultImage: defaultImage,
       submitted: false,
       user_type: "",
+      valuePhone: "",
     };
   },
 
-  mounted() {
+  created() {
     this.UserDetails();
     this.user_type = localStorage.getItem("user_type");
     if (this.user_type == "3") {
@@ -727,6 +761,22 @@ export default {
       this.ProfileRemove();
       $(".modal").modal("hide");
       $(".modal-backdrop").remove();
+    },
+    checkValue() {
+      console.log(this.valuePhone);
+      const phonePattern = /^(\+|\d+)$/;
+      if (!phonePattern.test(this.valuePhone)) {
+        this.valuePhone = this.valuePhone.slice(0, -1);
+      }
+      console.log(this.valuePhone);
+    },
+    checkValueChange() {
+      console.log(this.valuePhone);
+      const phonePattern = /^(\+\d{1,3}[- ]?)?\d{10,15}$/;
+      if (!phonePattern.test(this.valuePhone)) {
+        this.valuePhone = this.valuePhone.slice(0, -1);
+      }
+      console.log(this.valuePhone);
     },
   },
   // // middleware: "authenticated",
