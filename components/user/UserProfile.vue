@@ -283,30 +283,53 @@
                       </div>
                     </div>
                     <div class="col-12 col-md-7">
-                      <input type="checkbox" id="switch_time" />
-                      <label for="switch_time">Notification</label>
-                      <div class="card card-primary p-3 h-100">
-                        <p
-                          class="
-                            mb-0
-                            text-16
-                            color-secondary
-                            d-flex
-                            flex-row
-                            align-items-baseline
-                          "
-                        >
-                          <span class="text-24"
-                            ><i class="fas fa-phone"></i
-                          ></span>
-                          <input
-                            type="text"
-                            v-model="valuePhone"
-                            @change="checkValueChange()"
-                            @input="checkValue()"
-                            maxlength="15"
-                          />
-                        </p>
+                      <div class="row">
+                        <div class="col-md-8">
+                          <div class="card card-primary p-3 h-100">
+                            <p
+                              class="
+                                mb-0
+                                text-16
+                                color-secondary
+                                d-flex
+                                flex-row
+                                align-items-baseline
+                              "
+                            >
+                              <span class="text-24"
+                                ><i class="fas fa-phone"></i
+                              ></span>
+                              <input
+                                type="text"
+                                class="pl-3"
+                                v-model="valuePhone"
+                                @change="checkValueChange()"
+                                @input="checkValue()"
+                                maxlength="15"
+                              />
+                            </p>
+                          </div>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center">
+                          <div class="custom-switch pb-1">
+                            <input
+                              type="checkbox" 
+                              id="switch_time"
+                              class="custom-control-input color-primary"
+                            />
+                            <label
+                              class="
+                                custom-control-label
+                                font-normal
+                                color-dark
+                                text-14
+                                cursor-pointer
+                              "
+                              for="switch_time"
+                              >Notification
+                            </label>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <!-- <div class="col-12 col-md-4">
