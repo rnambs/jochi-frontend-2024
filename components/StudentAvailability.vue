@@ -59,7 +59,7 @@
                 >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-                <div
+                <!-- <div
                   class="
                     time-slot-week
                     container
@@ -70,7 +70,7 @@
                   "
                 >
                   <FullCalendar :options="calendar" />
-                </div>
+                </div> -->
               </div>
               <div
                 class="
