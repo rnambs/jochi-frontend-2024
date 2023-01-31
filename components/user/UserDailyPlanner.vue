@@ -1,67 +1,4 @@
-<style>
-.completed-assignments{min-height:200px}
-.multiple-select-checkbox {
-  left: 5px;
-  top: 0px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-}
-.h-60 {
-  height: 60%;
-}
-.squaredThree {
-  /* position: relative;
-  float:left; */
-  /* margin: 10px */
-}
-.squaredThree label {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  background: #ffb5b2;
-  border-radius: 50%;
-}
-.squaredThree label:after {
-  content: "";
-  width: 13px;
-  height: 7px;
-  position: absolute;
-  top: 7px;
-  left: 6px;
-  border: 3px solid #fcfff4;
-  border-top: none;
-  border-right: none;
-  background: transparent;
-  opacity: 0;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-.squaredThree label::after {
-  opacity: 0.3;
-}
-.squaredThree label:hover::after {
-  opacity: 1;
-  transition: all ease-in-out 300ms;
-}
-.squaredThree input[type="checkbox"] {
-  visibility: hidden;
-}
-.squaredThree input[type="checkbox"]:checked + label:after {
-  opacity: 1 !important;
-}
-.squaredThree input[type="checkbox"]:checked + label {
-  background: #ed7672;
-  transition: all ease-in-out 300ms;
-}
-.label-text {
-  /* position: relative; */
-  /* left: 10px; */
-}
-</style>
+
 <template>
   <div>
     <lottie
@@ -152,10 +89,13 @@
                           Add Assignment
                         </button>
                         <button
-                          @click="chooseMultiple = true"
+                          @click="confirmDeletion()"
+                          v-if="
+                            choosenAssignments && choosenAssignments.length > 0
+                          "
                           class="btn btn-dark py-1 px-3"
                         >
-                          Choose Multiple
+                          Delete selected
                         </button>
                       </div>
                     </div>
@@ -475,7 +415,6 @@
                         >
                           <div class="squaredThree">
                             <input
-                              v-if="chooseMultiple"
                               type="checkbox"
                               :id="item.id"
                               :name="item.id"
@@ -924,8 +863,17 @@
                             :key="item.id"
                             class="col-6"
                           >
-                          
-                            <div class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center">
+                            <div
+                              @click="confirmUndo(item.id)"
+                              class="
+                                position-absolute
+                                multiple-select-checkbox
+                                jochi-components-light-bg
+                                d-flex
+                                align-items-center
+                                justify-content-center
+                              "
+                            >
                               <i class="fas fa-undo"></i>
                             </div>
 
@@ -2676,6 +2624,47 @@
       </div>
     </div>
     <!-- Undo assignment confirmation end  -->
+    <!-- Delete assignment  confirmation  -->
+    <div
+      class="modal fade"
+      id="deleteAssignmentConfirmation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="deleteAssignmentConfirmationModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h3
+              class="modal-title"
+              id="deleteAssignmentConfirmationModalLongTitle"
+            >
+              Delete assignment confirmation
+            </h3>
+          </div>
+          <div class="modal-body px-4">Delete selected assignments?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              @click="deleteAssts()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Delete assignment confirmation end  -->
   </div>
 </template>
 <script>
@@ -2823,6 +2812,7 @@ export default {
       chooseMultiple: false,
       choosenAssignments: [],
       undoAsstId: 0,
+      undoSubtaskId: 0,
     };
   },
   mounted() {
@@ -2941,6 +2931,7 @@ export default {
       completeTask: "completeTask",
       getCompletedAssignments: "getCompletedAssignments",
       uploadAdditionalMaterial: "uploadAdditionalMaterial",
+      deleteAssignments: "deleteAssignments",
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
@@ -3940,11 +3931,11 @@ export default {
       this.drag = false;
       $("#completeConfirm").modal({ backdrop: true });
     },
-    async completeAssignment() {
+    async completeAssignment(completed = true) {
       this.processingCompleteAssignment = true;
       await this.completeTask({
-        assignment_id: this.completeAsstId,
-        status: "Completed",
+        assignment_id: completed ? this.completeAsstId : this.undoAsstId,
+        status: completed ? "Completed" : "Pending",
       });
       this.processingCompleteAssignment = false;
       if (this.successMessage != "") {
@@ -3964,7 +3955,7 @@ export default {
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
         await this.GetDailyPlanner();
-        this.playCelebration = true;
+        if (completed) this.playCelebration = true;
         const myTimeout = setTimeout(() => {
           this.playCelebration = false;
         }, 5000);
@@ -3977,10 +3968,10 @@ export default {
         await this.GetDailyPlanner();
       }
     },
-    async completeSubTask() {
+    async completeSubTask(completed = true) {
       await this.completeTask({
-        task_id: this.completeSubTaskId,
-        status: "Completed",
+        task_id: completed ? this.completeSubTaskId : this.undoSubtaskId,
+        status: completed ? "Completed" : "Pending",
       });
       this.processingSubCompleteAssignment = false;
       $(".modal").modal("hide");
@@ -3999,7 +3990,7 @@ export default {
         });
         await this.getAllCompletedAssignments();
         if (this.allSubTskCompleted) {
-          this.playCelebration = true;
+          if (completed) this.playCelebration = true;
           const myTimeout = setTimeout(() => {
             this.playCelebration = false;
           }, 5000);
@@ -4016,9 +4007,7 @@ export default {
       this.GetDailyPlanner();
     },
     async undoCompleteSubTask() {
-      this.pendingAssignments
-        .find((e) => e.id == this.completeAsstId)
-        .subTasks.find((i) => i.id == this.completeSubTaskId).task_status = "";
+      this.completeSubTask(false);
     },
     onCardClick(data) {
       this.deletedSubTasksArray = [];
@@ -4106,6 +4095,7 @@ export default {
       this.completeAsstId = asstId;
       this.completeSubTaskId = id;
       if (status == "Completed") {
+        this.undoSubtaskId = id;
         $("#undoSubTaskConfirm").modal({ backdrop: true });
       } else {
         $("#completeSubTaskConfirm").modal({ backdrop: true });
@@ -4259,10 +4249,102 @@ export default {
     },
     undoAsstComplete() {
       console.log(this.undoAsstId);
+      this.completeAssignment(false);
+    },
+    confirmDeletion() {
+      console.log("confirm delete");
+      $("#deleteAssignmentConfirmation").modal({ backdrop: true });
+    },
+    async deleteAssts() {
+      await this.deleteAssignments({
+        assignments_ids: this.choosenAssignments,
+      });
+      if (this.successMessage != "") {
+        this.choosenAssignments = [];
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
+        this.openAssignment = false;
+        // this.getAllCompletedAssignments();
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+        await this.GetDailyPlanner();
+      }
     },
   },
 };
 </script>
 
 <style>
+.completed-assignments {
+  min-height: 200px;
+}
+.multiple-select-checkbox {
+  left: 5px;
+  top: 0px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.h-60 {
+  height: 60%;
+}
+.squaredThree {
+  /* position: relative;
+  float:left; */
+  /* margin: 10px */
+}
+.squaredThree label {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  background: #ffb5b2;
+  border-radius: 50%;
+}
+.squaredThree label:after {
+  content: "";
+  width: 13px;
+  height: 7px;
+  position: absolute;
+  top: 7px;
+  left: 6px;
+  border: 3px solid #fcfff4;
+  border-top: none;
+  border-right: none;
+  background: transparent;
+  opacity: 0;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.squaredThree label::after {
+  opacity: 0.3;
+}
+.squaredThree label:hover::after {
+  opacity: 1;
+  transition: all ease-in-out 300ms;
+}
+.squaredThree input[type="checkbox"] {
+  visibility: hidden;
+}
+.squaredThree input[type="checkbox"]:checked + label:after {
+  opacity: 1 !important;
+}
+.squaredThree input[type="checkbox"]:checked + label {
+  background: #ed7672;
+  transition: all ease-in-out 300ms;
+}
+.label-text {
+  /* position: relative; */
+  /* left: 10px; */
+}
 </style>
