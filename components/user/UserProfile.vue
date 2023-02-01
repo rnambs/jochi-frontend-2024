@@ -234,23 +234,24 @@
                     <div class="form-field">{{ email }}</div>
                   </div> -->
                 <div>
-                  <div
-                    class="
-                      row
-                      
-                    "
-                  >
-                    
-
-                  <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-6">
                       <div v-if="user_type == '3'" class="col-md-12">
                         <div
                           v-if="advisorDetail && advisorDetail.first_name"
                           class="card card-primary p-3 h-100 d-flex flex-column"
                         >
-                          <h4 class="color-dark font-semi-bold">Your Advisor</h4>
+                          <h4 class="color-dark font-semi-bold">
+                            Your Advisor
+                          </h4>
                           <div
-                            class="d-flex align-items-center my-2 mr-3 min-w-200"
+                            class="
+                              d-flex
+                              align-items-center
+                              my-2
+                              mr-3
+                              min-w-200
+                            "
                           >
                             <div class="ld-img-section mr-3">
                               <div class="ld-img-holder">
@@ -299,7 +300,9 @@
                               min-w-200
                             "
                           >
-                            <div class="ld-img-section mr-0 mr-md-3 mb-2 mb-md-0">
+                            <div
+                              class="ld-img-section mr-0 mr-md-3 mb-2 mb-md-0"
+                            >
                               <div class="ld-img-holder">
                                 <img
                                   v-if="
@@ -327,7 +330,10 @@
                               "
                             >
                               <div class="ld-details-section">
-                                <p v-if="advisor.teacher" class="ld-heading mb-1">
+                                <p
+                                  v-if="advisor.teacher"
+                                  class="ld-heading mb-1"
+                                >
                                   {{
                                     advisor.teacher.first_name +
                                     " " +
@@ -367,9 +373,8 @@
                         </div>
                       </div>
                     </div>
-                    
-                    <div class="col-md-6">
 
+                    <div class="col-md-6">
                       <div class="col-12 col-md-12">
                         <div
                           class="card card-primary p-3 h-100 d-flex flex-column"
@@ -413,6 +418,15 @@
                       <div class="col-md-12">
                         <div class="row">
                           <div class="col-md-8">
+                            <button
+                              v-if="!enableEdit"
+                              @click="enableEdit = true"
+                            >
+                              <span class="mr-2"
+                                ><i class="fas fa-pencil"></i
+                              ></span>
+                              <span>Edit</span>
+                            </button>
                             <div class="card card-primary p-3 h-100">
                               <p
                                 class="
@@ -428,22 +442,44 @@
                                   ><i class="fas fa-phone"></i
                                 ></span>
                                 <input
+                                  :disabled="!enableEdit"
                                   type="text"
                                   class="pl-3"
-                                  v-model="valuePhone"
+                                  v-model="phone"
                                   @change="checkValueChange()"
                                   @input="checkValue()"
                                   maxlength="15"
                                 />
                               </p>
+                              <span v-if="phoneInvalid" style="color: red"
+                                >Please enter a valid phone number</span
+                              >
                             </div>
                           </div>
                           <div class="col-md-4 d-flex align-items-center">
+                            <button
+                              v-if="enableEdit"
+                              @click="enableEdit = false"
+                            >
+                              <span class="mr-2"
+                                ><i class="fas fa-times"></i
+                              ></span>
+                              <span>Cancel</span>
+                            </button>
+                            <button v-if="enableEdit" @click="phoneUpdate()">
+                              <span class="mr-2"
+                                ><i class="fas fa-save"></i
+                              ></span>
+                              <span>Update</span>
+                            </button>
                             <div class="custom-switch pb-1">
                               <input
-                                type="checkbox" 
+                                :disabled="!enableEdit"
+                                @change="updateNotification()"
+                                type="checkbox"
                                 id="switch_time"
                                 class="custom-control-input color-primary"
+                                v-model="notifyStatus"
                               />
                               <label
                                 class="
@@ -460,10 +496,7 @@
                           </div>
                         </div>
                       </div>
-
-
                     </div>
-                    
 
                     <!-- <div class="col-12 col-md-4">
                         <div class="card card-primary h-100 ">
@@ -473,8 +506,6 @@
                               </nuxt-link>
                         </div>
                       </div> -->
-
-                    
                   </div>
                 </div>
                 <div class="row justify-content-center">
@@ -595,7 +626,10 @@ export default {
       defaultImage: defaultImage,
       submitted: false,
       user_type: "",
-      valuePhone: "",
+      phone: "",
+      notifyStatus: false,
+      phoneInvalid: false,
+      enableEdit: false,
     };
   },
 
@@ -617,6 +651,8 @@ export default {
       errorType: (state) => state.errorType,
       profileImage: (state) => state.profile,
       advisorDetail: (state) => state.advisorDetail,
+      phone: (state) => state.phone,
+      notification: (state) => state.notification,
     }),
   },
   methods: {
@@ -627,6 +663,8 @@ export default {
       getAdvisorRequests: "getAdvisorRequests",
       respondAdvisorRequest: "respondAdvisorRequest",
       getAdvisorDetail: "getAdvisorDetail",
+      updatePhone: "updatePhone",
+      notificationUpdate: "notificationUpdate",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -643,6 +681,13 @@ export default {
       this.schoolName = localStorage.getItem("school_name");
       if (localStorage.getItem("profile_pic")) {
         this.profile = localStorage.getItem("profile_pic");
+      }
+      if (localStorage.getItem("phone")) {
+        this.phone = localStorage.getItem("phone");
+      }
+      if (localStorage.getItem("notifyStatus")) {
+        this.notifyStatus =
+          localStorage.getItem("notifyStatus") == "true" ? true : false;
       }
 
       this.loading = false;
@@ -797,20 +842,61 @@ export default {
       $(".modal-backdrop").remove();
     },
     checkValue() {
-      console.log(this.valuePhone);
+      console.log(this.phone);
       const phonePattern = /^(\+|\d+)$/;
-      if (!phonePattern.test(this.valuePhone)) {
-        this.valuePhone = this.valuePhone.slice(0, -1);
+      if (!phonePattern.test(this.phone)) {
+        this.phone = this.phone.slice(0, -1);
       }
-      console.log(this.valuePhone);
+      console.log(this.phone);
     },
     checkValueChange() {
-      console.log(this.valuePhone);
+      console.log(this.phone);
       const phonePattern = /^(\+\d{1,3}[- ]?)?\d{10,15}$/;
-      if (!phonePattern.test(this.valuePhone)) {
-        this.valuePhone = this.valuePhone.slice(0, -1);
+      if (!phonePattern.test(this.phone)) {
+        this.phoneInvalid = true;
+      } else {
+        this.phoneInvalid = false;
       }
-      console.log(this.valuePhone);
+    },
+    async phoneUpdate() {
+      this.checkValueChange();
+      if (!this.phoneInvalid) {
+        await this.updatePhone({
+          phone_number: this.phone,
+        });
+        if (this.successMessage != "") {
+          localStorage.setItem("phone", this.phone);
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.successType,
+            duration: 5000,
+          });
+        } else if (this.errorMessage != "") {
+          this.$toast.open({
+            message: this.errorMessage,
+            type: this.errorType,
+            duration: 5000,
+          });
+        }
+      }
+    },
+    async updateNotification() {
+      await this.notificationUpdate({
+        enable_status: this.notifyStatus,
+      });
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.successType,
+          duration: 5000,
+        });
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
     },
   },
   // // middleware: "authenticated",

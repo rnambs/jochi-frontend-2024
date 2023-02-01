@@ -10,6 +10,8 @@ const state = {
   successMessage: "",
   successType: "",
   profile: '',
+  phone: '',
+  notification: ''
 }
 
 const actions = {
@@ -26,6 +28,7 @@ const actions = {
       if (response.message == "Success") {
         commit('setAllList', response.data);
         commit('profileSet', response.data.profile_pic)
+        commit('phone', response.data.phone_number)
       }
 
 
@@ -238,7 +241,124 @@ const actions = {
       }
     }
   },
+  // update phone number in profile
+  async updatePhone({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$put(BASE_URL + 'users/update_phone_number', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
 
+      console.log("response of upload profile pic", response, response.message)
+
+      // if (response.message == "Image uploaded successfully") {
+      commit('setErrorMessage', "");
+      commit('setErrorType', "");
+      commit('setSuccessMessage', response.message);
+      commit('setSuccessType', "success");
+      commit('setPhone', response.phone_number)
+
+      // }
+    } catch (e) {
+      if (e?.response?.data?.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else if (e?.response?.data?.message == "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.");
+        commit('setErrorType', "error");
+
+      }
+      else if (e?.response?.data?.message == "Validation error") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "Oops! Something went wrong. Please try again later");
+        commit('setErrorType', "error");
+      }
+      else if (e?.response?.data?.message == "File size cannot be larger than 4MB!") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "File size cannot be larger than 4MB!");
+        commit('setErrorType', "error");
+
+      }
+
+      else if (e?.response?.data?.message == "No user found") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "No user found");
+        commit('setErrorType', "error");
+
+      }
+    }
+
+  },
+  // enable/disable notification
+  async notificationUpdate({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$put(BASE_URL + 'users/enable_disable_notification', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+      // if (response.message == "Image uploaded successfully") {
+      commit('setErrorMessage', "");
+      commit('setErrorType', "");
+      commit('setSuccessMessage', response.message);
+      commit('setSuccessType', "success");
+      commit('setNotification', response.enable_status)
+
+      // }
+    } catch (e) {
+      if (e?.response?.data?.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else if (e?.response?.data?.message == "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.");
+        commit('setErrorType', "error");
+
+      }
+      else if (e?.response?.data?.message == "Validation error") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "Oops! Something went wrong. Please try again later");
+        commit('setErrorType', "error");
+      }
+      else if (e?.response?.data?.message == "File size cannot be larger than 4MB!") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "File size cannot be larger than 4MB!");
+        commit('setErrorType', "error");
+
+      }
+
+      else if (e?.response?.data?.message == "No user found") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "No user found");
+        commit('setErrorType', "error");
+
+      }
+    }
+
+  },
 
 }
 const mutations = {
@@ -267,6 +387,14 @@ const mutations = {
   setSuccessType(state, data) {
     state.successType = data;
   },
+  setPhone(state, data) {
+    state.phone = data;
+    localStorage.setItem('phone', data);
+  },
+  setNotification(state, data) {
+    state.phone = data;
+    localStorage.setItem('notification', data);
+  },
 
 }
 const getters = {
@@ -294,6 +422,12 @@ const getters = {
   },
   successType: () => {
     return state.successType;
+  },
+  phone: () => {
+    return state.phone;
+  },
+  notification: () => {
+    return state.notification;
   },
 
 }

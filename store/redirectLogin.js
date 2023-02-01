@@ -14,6 +14,8 @@ const state = {
     school_id: '',
     school_name: '',
     isGg4lDataSynced: '',
+    phone: '',
+    notifyStatus: ''
 }
 const actions = {
 
@@ -32,6 +34,8 @@ const actions = {
                 commit('setSchoolId', response.data.school_id);
                 commit('setSchoolName', response.data.school_name);
                 commit('setIsGg4lDataSynced', response.data.isGg4lDataSynced);
+                commit('setPhone', response.data.phone_number);
+                commit('setNotifyStatus', response.data.notification);
                 if (response.data.user_type_id == 1) {
                     this.$router.push('/dashboard');
                 }
@@ -165,6 +169,14 @@ const mutations = {
         state.isGg4lDataSynced = data;
         localStorage.setItem('isGg4lDataSynced', data);
     },
+    setPhone(state, data) {
+        state.phone = data;
+        localStorage.setItem('phone', data);
+    },
+    setNotifyStatus(state, data) {
+        state.notifyStatus = data;
+        localStorage.setItem('notifyStatus', data);
+    },
 }
 const getters = {
 
@@ -200,7 +212,12 @@ const getters = {
     isGg4lDataSynced: () => {
         return state.isGg4lDataSynced;
     },
-
+    phone: () => {
+        return state.phone;
+    },
+    notifyStatus: () => {
+        return state.notifyStatus;
+    },
 }
 
 export default {
