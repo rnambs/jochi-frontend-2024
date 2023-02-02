@@ -456,7 +456,14 @@
                               >
                             </div>
                           </div>
-                          <div class="col-md-4 d-flex align-items-center">
+                          <div
+                            class="
+                              col-md-4
+                              d-flex
+                              flex-column
+                              align-items-center
+                            "
+                          >
                             <button
                               v-if="enableEdit"
                               @click="enableEdit = false"
@@ -477,9 +484,9 @@
                                 :disabled="!enableEdit"
                                 @change="updateNotification()"
                                 type="checkbox"
-                                id="switch_time"
+                                id="smsNotify"
                                 class="custom-control-input color-primary"
-                                v-model="notifyStatus"
+                                v-model="smsNotify"
                               />
                               <label
                                 class="
@@ -489,8 +496,92 @@
                                   text-14
                                   cursor-pointer
                                 "
-                                for="switch_time"
-                                >Notification
+                                for="smsNotify"
+                                >SMS Notification
+                              </label>
+                            </div>
+                            <div class="custom-switch pb-1">
+                              <input
+                                :disabled="!enableEdit"
+                                @change="updateNotification()"
+                                type="checkbox"
+                                id="meetingNotify"
+                                class="custom-control-input color-primary"
+                                v-model="meetingNotify"
+                              />
+                              <label
+                                class="
+                                  custom-control-label
+                                  font-normal
+                                  color-dark
+                                  text-14
+                                  cursor-pointer
+                                "
+                                for="meetingNotify"
+                                >Meeting Notification
+                              </label>
+                            </div>
+                            <div class="custom-switch pb-1">
+                              <input
+                                :disabled="!enableEdit"
+                                @change="updateNotification()"
+                                type="checkbox"
+                                id="clubNotify"
+                                class="custom-control-input color-primary"
+                                v-model="clubNotify"
+                              />
+                              <label
+                                class="
+                                  custom-control-label
+                                  font-normal
+                                  color-dark
+                                  text-14
+                                  cursor-pointer
+                                "
+                                for="clubNotify"
+                                >Club Notification
+                              </label>
+                            </div>
+                            <div class="custom-switch pb-1">
+                              <input
+                                :disabled="!enableEdit"
+                                @change="updateNotification()"
+                                type="checkbox"
+                                id="assignmentNotify"
+                                class="custom-control-input color-primary"
+                                v-model="assignmentNotify"
+                              />
+                              <label
+                                class="
+                                  custom-control-label
+                                  font-normal
+                                  color-dark
+                                  text-14
+                                  cursor-pointer
+                                "
+                                for="assignmentNotify"
+                                >Assignment Notification
+                              </label>
+                            </div>
+                            <div class="custom-switch pb-1">
+                              <input
+                                :disabled="!enableEdit"
+                                @change="updateNotification()"
+                                type="checkbox"
+                                id="sessionNotify"
+                                class="custom-control-input color-primary"
+                                v-model="sessionNotify"
+                              />
+                              <label
+                                class="
+                                  custom-control-label
+                                  font-normal
+                                  color-dark
+                                  text-14
+                                  cursor-pointer
+                                "
+                                for="sessionNotify"
+                                >Study Session Notification
                               </label>
                             </div>
                           </div>
@@ -630,6 +721,11 @@ export default {
       notifyStatus: false,
       phoneInvalid: false,
       enableEdit: false,
+      smsNotify: false,
+      meetingNotify: false,
+      clubNotify: false,
+      assignmentNotify: false,
+      sessionNotify: false,
     };
   },
 
