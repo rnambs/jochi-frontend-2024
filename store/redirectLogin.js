@@ -15,7 +15,7 @@ const state = {
     school_name: '',
     isGg4lDataSynced: '',
     phone: '',
-    notifyStatus: ''
+    notifyStatus: '',
 }
 const actions = {
 
@@ -24,6 +24,8 @@ const actions = {
         try {
             const response = await this.$axios.$post(BASE_URL + 'auth/gg4l_passport_auth', payLoad)
             if (status = 200) {
+
+                localStorage.setItem("skippedPrompt", "false")
                 commit('setLoginStatus', true);
                 commit('setUserToken', response.data.auth_token);
                 commit('setUserEmail', response.data.email);
@@ -114,9 +116,7 @@ const actions = {
             }
         }
 
-    }
-
-
+    },
 }
 const mutations = {
     setErrorMessage(state, data) {
@@ -170,8 +170,10 @@ const mutations = {
         localStorage.setItem('isGg4lDataSynced', data);
     },
     setPhone(state, data) {
-        state.phone = data;
-        localStorage.setItem('phone', data);
+        if (data) {
+            state.phone = data;
+            localStorage.setItem('phone', data);
+        }
     },
     setNotifyStatus(state, data) {
         state.notifyStatus = data;
@@ -217,7 +219,7 @@ const getters = {
     },
     notifyStatus: () => {
         return state.notifyStatus;
-    },
+    }
 }
 
 export default {

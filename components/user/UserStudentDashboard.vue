@@ -894,6 +894,49 @@
 
       <!-- meeting detail pop up end -->
 
+      <!--  prompt pop up -->
+
+      <div
+        class="modal fade"
+        id="promptModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="promptModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-md modal-dialog-centered"
+          role="document"
+        >
+          <div class="modal-content px-4">
+            <div class="modal-body">
+              Update your phone number to receive SMS notification on your
+              mobile phone!
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                data-dismiss="modal"
+                class="btn btn-primary color-white"
+                @click="skipPromt()"
+              >
+                <nuxt-link to="/user-profile"> Update Now </nuxt-link>
+              </button>
+              <button
+                type="button"
+                data-dismiss="modal"
+                class="btn btn-primary color-white"
+                @click="skipPromt()"
+              >
+                Skip for Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--  prompt pop up end -->
+
       <!-- </div> -->
     </div>
   </div>
@@ -1034,8 +1077,16 @@ export default {
     this.GetDailyPlanner(this.calendarApi.getDate());
     this.firstName = localStorage.getItem("firstName");
     this.activate();
+    const phone = localStorage.getItem("phone");
+    const skipped = localStorage.getItem("skippedPrompt");
+    if (!phone && skipped != "true") {
+      $("#promptModal").modal();
+    }
   },
   methods: {
+    async skipPromt() {
+      localStorage.setItem("skippedPrompt", "true");
+    },
     activate() {
       console.log("inside hide timeout");
       setTimeout(() => (this.isHidden = true), 1500);
