@@ -37,6 +37,12 @@
               ><span class="menu-title-text">Daily Quotes</span>
             </nuxt-link>
           </li>
+          <li>
+            <nuxt-link to="/email-dispatch"
+              ><i class="fas fa-envelope mr-2 menu-icon"></i
+              ><span class="menu-title-text">Email Dispatch</span>
+            </nuxt-link>
+          </li>
           <!-- <li>
             <nuxt-link to="/teacher-signin-request"
               ><i class="fas fa-user mr-2 menu-icon"></i
