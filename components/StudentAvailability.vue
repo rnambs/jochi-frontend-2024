@@ -329,12 +329,12 @@ export default {
   mounted() {
     ismounted = true;
     this.calendarApi = this.$refs.fullCalendar.getApi();
-    // this.TeacherAvailableSlot();
+    this.TeacherAvailableSlot();
     this.AvailabilitySlotswithId();
   },
 
   computed: {
-    ...mapState("customAvailability", {
+    ...mapState("studentCustomAvailability", {
       availableSlot: (state) => state.availableSlot,
       teacherSlot: (state) => state.teacherSlot,
       successMessage: (state) => state.successMessage,
@@ -344,7 +344,7 @@ export default {
     }),
   },
   methods: {
-    ...mapActions("customAvailability", {
+    ...mapActions("studentCustomAvailability", {
       teacherAvailableSlot: "teacherAvailableSlot",
       updateTeacherAvailability: "updateTeacherAvailability",
       availabilitySlotswithId: "availabilitySlotswithId",
@@ -392,7 +392,7 @@ export default {
         apply_for_a_month: this.month,
         include_weekends: this.weekend,
         date: dateClickValue,
-        teacher_id: localStorage.getItem("id"),
+        student_id: localStorage.getItem("id"),
         apply_for_a_week: this.week,
         set_default_time: this.time,
         slot: slot_id,
