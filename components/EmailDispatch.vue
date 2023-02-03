@@ -246,7 +246,13 @@
                     v-if="selectAll || schoolList.find((e) => e.checked)"
                     class="col-md-4 col-lg-6"
                   >
-                    <button>Send Email</button>
+                    <button
+                      :disabled="!templateId"
+                      class="btn btn-primary btn-flat m-b-30 m-t-30"
+                      @click="dispatchEmail()"
+                    >
+                      Send Email
+                    </button>
                   </div>
                 </div>
               </div>
@@ -290,6 +296,12 @@ export default {
     this.pageCount = 10;
   },
   computed: {
+    ...mapState("emailDispatch", {
+      successMessage: (state) => state.successMessage,
+      SuccessType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+    }),
     ...mapState("schoolListTable", {
       schools: (state) => state.schools,
       schoolCount: (state) => state.schoolCount,
@@ -300,6 +312,9 @@ export default {
     }),
   },
   methods: {
+    ...mapActions("emailDispatch", {
+      sendEmail: "sendEmail",
+    }),
     ...mapActions("schoolListTable", {
       getSchoolList: "getSchoolList",
       updateStatus: "updateStatus",
@@ -310,10 +325,18 @@ export default {
       this.updateId = id;
       this.updateStat = status;
     },
-    async update() {
-      await this.updateStatus({
-        school_id: this.updateId,
-        status: this.updateStat,
+    async dispatchEmail() {
+      if (!this.selectAll) {
+        let selectedSchools = this.schoolList.filter((e) => e.checked);
+        let selectedIds = [];
+        selectedSchools.forEach((e) => {
+          selectedIds.push(e.id);
+        });
+      }
+      await this.sendEmail({
+        school_ids: selectedIds,
+        template_id: this.templateId,
+        select_all: this.selectAll,
       });
       if (this.successMessage != "") {
         this.$toast.open({

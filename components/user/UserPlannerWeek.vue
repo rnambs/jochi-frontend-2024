@@ -5265,9 +5265,11 @@ export default {
         e.assignments?.assignment_shared_users.forEach((item) => {
           let peer = {};
           if (item.shared_users_id != user_id) {
-            peer = item.users;
-            peer.id = item.shared_users_id;
-            peers.push(peer);
+            if (item.users) {
+              peer = item.users;
+              peer.id = item.shared_users_id;
+              peers.push(peer);
+            }
           }
         });
       }
@@ -5275,9 +5277,11 @@ export default {
         e.assignment_shared_users.forEach((item) => {
           let peer = {};
           if (item.shared_users_id != user_id) {
-            peer = item.users;
-            peer.id = item.shared_users_id;
-            peers.push(peer);
+            if (item.users) {
+              peer = item.users;
+              peer.id = item.shared_users_id;
+              peers.push(peer);
+            }
           }
         });
       }
@@ -5707,7 +5711,7 @@ export default {
         assignments_ids: this.choosenAssignments,
       });
       if (this.successMessage != "") {
-        this.choosenAssignments=[]
+        this.choosenAssignments = [];
         this.offset = 0;
         this.tempAssts = [];
         this.reloadNext = true;
