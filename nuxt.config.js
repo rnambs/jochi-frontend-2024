@@ -146,6 +146,7 @@ export default {
         //   }
     ],
 
+
     toast: {
         position: 'top-right',
         duration: 5000
@@ -162,6 +163,10 @@ export default {
     build: {
         transpile: [/^vue-google-oauth2($|\/)/]
     },
+
+    serverMiddleware: [
+        '~/api/socket.io'
+    ]
 
 
 }
