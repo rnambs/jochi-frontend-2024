@@ -105,7 +105,7 @@ export default {
       });
       await this.getTokenDevice();
       const token = localStorage.getItem("token");
-      socket.emit("login", token.split("Bearer ")[1]);
+      socket.emit("login", token?.split("Bearer ")[1]);
 
       if (this.errorMessage != "") {
         this.$toast.open({

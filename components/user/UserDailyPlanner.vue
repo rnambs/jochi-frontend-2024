@@ -2681,6 +2681,9 @@ import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
 import draggable from "vuedraggable";
 import InfiniteLoading from "vue-infinite-loading";
+import io from "socket.io-client";
+
+const socket = io("ws://localhost:3000");
 
 var fromDate = "";
 var endDate = "";
@@ -2816,6 +2819,10 @@ export default {
     };
   },
   mounted() {
+    socket.on("notifications", (data) => {
+      console.log("socket data", data);
+    });
+
     this.GetStudents();
 
     this.disabledDates.to = new Date(
