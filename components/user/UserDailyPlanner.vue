@@ -159,6 +159,7 @@
                                         red: item.priority == '1',
                                         yellow: item.priority == '2',
                                         green: item.priority == '3',
+                                        orange: item.priority == '4',
                                       }"
                                     >
                                       {{
@@ -168,6 +169,8 @@
                                           ? "Important"
                                           : item.priority == "3"
                                           ? "Can Wait"
+                                          : item.priority == "4"
+                                          ? "Overdue"
                                           : ""
                                       }}
                                     </div>
@@ -454,6 +457,7 @@
                                       red: item.priority == '1',
                                       yellow: item.priority == '2',
                                       green: item.priority == '3',
+                                      orange: item.priority == '4',
                                     }"
                                   >
                                     {{
@@ -463,6 +467,8 @@
                                         ? "Important"
                                         : item.priority == "3"
                                         ? "Can Wait"
+                                        : item.priority == "4"
+                                        ? "Overdue"
                                         : ""
                                     }}
                                   </div>
@@ -2821,6 +2827,7 @@ export default {
   mounted() {
     socket.on("notifications", (data) => {
       console.log("socket data", data);
+      if (data) this.updateOverdueStatus(data);
     });
 
     this.GetStudents();
@@ -4288,6 +4295,9 @@ export default {
         $(".modal-backdrop").remove();
         await this.GetDailyPlanner();
       }
+    },
+    updateOverdueStatus(data) {
+      this.tempAssts.find((e) => e.id == data.id)?.priority == 4;
     },
   },
 };
