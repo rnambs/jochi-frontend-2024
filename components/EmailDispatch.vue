@@ -35,297 +35,182 @@
               <div class="bg-white mt-2 p-1 rounded row">
                 <!-- table -->
                 <div class="bg-white mt-2 p-1 rounded row">
-                  <div class="col-md-4 col-lg-3">
-                    <div class="input-group rounded">
+                  <div class="col-md-4 col-lg-3 d-flex align-items-center">
+                    <div class="input-group rounded d-flex">
                       <input
+                        class="mr-1"
                         type="checkbox"
                         aria-describedby="search-addon"
                         v-model="selectAll"
                         name="selectAll"
                         @change="custom = !selectAll"
                       />
-                      <label for="selectAll">Select All</label>
+                      <label for="selectAll" class="m-0">Select All</label>
                     </div>
                     <div class="input-group rounded">
                       <input
+                        class="mr-1"
                         type="checkbox"
                         aria-describedby="search-addon1"
                         v-model="custom"
                         name="custom"
                         @change="selectAll = !custom"
                       />
-                      <label for="custom">Search</label>
+                      <label for="custom" class="m-0">Search</label>
                     </div>
                   </div>
-                  <div v-if="custom" class="col-md-4 col-lg-6">
-                    <div class="input-group rounded">
-                      <input
-                        type="search"
-                        class="form-control rounded"
-                        placeholder="Search"
-                        aria-label="Search"
-                        aria-describedby="search-addon"
-                        v-model="search"
-                        v-on:keyup="GetSchoolList()"
-                      />
-                      <button type="button">
-                        <span
-                          class="input-group-text border-0 h-100"
-                          id="search-addon2"
-                        >
-                          <i class="fa fa-search" aria-hidden="true"></i>
-                        </span>
-                      </button>
+                  <div class="col-md-4 col-lg-12">
+                    <div class="row">
+                      <div v-if="custom" class="col-md-4 col-lg-6 align-items-center">
+                      <div class="input-group rounded d-flex">
+                        <input
+                          type="search"
+                          class="form-control rounded"
+                          placeholder="Search"
+                          aria-label="Search"
+                          aria-describedby="search-addon"
+                          v-model="search"
+                          v-on:keyup="GetSchoolList()"
+                        />
+                        <button type="button">
+                          <span
+                            class="input-group-text border-0 h-100"
+                            id="search-addon2"
+                          >
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                          </span>
+                        </button>
+                      </div>
                     </div>
-                    <div v-if="schoolSelected()" class="input-group rounded">
-                      <input
-                        type="search"
-                        class="form-control rounded"
-                        placeholder="Search Student"
-                        aria-label="searchStudent"
-                        aria-describedby="search-addon"
-                        v-model="searchStudent"
-                        @keyup="GetStudentList()"
-                      />
-                      <button type="button">
-                        <span
-                          class="input-group-text border-0 h-100"
-                          id="search-addon2"
-                        >
-                          <i class="fa fa-search" aria-hidden="true"></i>
-                        </span>
-                      </button>
+                    <div v-if="custom" class="col-md-4 col-lg-6">
+                      <div v-if="schoolSelected()" class="input-group rounded">
+                          <input
+                          type="search"
+                          class="form-control rounded"
+                          placeholder="Search Student"
+                          aria-label="searchStudent"
+                          aria-describedby="search-addon"
+                          v-model="searchStudent"
+                          @keyup="GetStudentList()"
+                          />
+                          <button type="button">
+                          <span
+                              class="input-group-text border-0 h-100"
+                              id="search-addon2"
+                          >
+                              <i class="fa fa-search" aria-hidden="true"></i>
+                          </span>
+                          </button>
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-md-4 col-lg-6">
+                    </div>
+
                     <div
                       v-if="custom && search"
                       class="bg-white mt-2 p-1 rounded"
                     >
-                      <table class="user-table table">
-                        <tr class="text-secondary bg-light">
-                          <th>
-                            <input
-                              type="checkbox"
-                              name="chooseAll"
-                              v-model="chooseAll"
-                              @change="changeSelection()"
-                            />
-                            <label for="chooseAll">Select</label>
-                          </th>
-                          <th>School Name</th>
-                          <th>State</th>
-                        </tr>
-                        <tr v-if="schools.length == 0">
-                          <td colspan="5" class="text-center text-danger pt-3">
-                            No data found
-                          </td>
-                        </tr>
-                        <tr v-for="(school, index) in schoolList" :key="index">
-                          <td>
-                            <input
-                              type="checkbox"
-                              :name="index"
-                              v-model="school.checked"
-                              @change="individualSelect()"
-                            />
-                          </td>
-                          <td>
-                            <nuxt-link
-                              :to="{
-                                path: '/user-table',
-                                query: { id: school.schoolId },
-                              }"
-                            >
-                              <span class="text-nowrap">{{
-                                school.schoolName
-                              }}</span>
-                            </nuxt-link>
-                          </td>
-                          <td class="text-nowrap">{{ school.state }}</td>
-                        </tr>
-                      </table>
-                      <div
-                        class="
-                          custom-paginate
-                          d-flex
-                          justify-content-center
-                          p-3
-                        "
-                      >
-                        <paginate
-                          :page-count="pageTotal"
-                          :page-range="this.paginateRange"
-                          :margin-pages="this.paginateRange"
-                          :click-handler="clickCallback"
-                          :prev-text="'Prev'"
-                          :next-text="'Next'"
-                          :container-class="'pagination'"
-                          :page-class="'page-item'"
-                        >
-                        </paginate>
-                        <div class="pr-5">
-                          {{ (pageNumValue - 1) * selectValue + 1 }}-{{
-                            pageNumValue * selectValue > schoolCount
-                              ? schoolCount
-                              : pageNumValue * selectValue
-                          }}
-                          of {{ schoolCount }}
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <table class="user-table table">
+                            <tr class="text-secondary bg-light">
+                              <th>
+                                <input
+                                  type="checkbox"
+                                  name="chooseAll"
+                                  v-model="chooseAll"
+                                  @change="changeSelection()"
+                                />
+                                <label for="chooseAll">Select</label>
+                              </th>
+                              <th>School Name</th>
+                              <th>State</th>
+                            </tr>
+                            <tr v-if="schools.length == 0">
+                              <td colspan="5" class="text-center text-danger pt-3">
+                                No data found
+                              </td>
+                            </tr>
+                            <tr v-for="(school, index) in schoolList" :key="index">
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  :name="index"
+                                  v-model="school.checked"
+                                  @change="individualSelect()"
+                                />
+                              </td>
+                              <td>
+                                <nuxt-link
+                                  :to="{
+                                    path: '/user-table',
+                                    query: { id: school.schoolId },
+                                  }"
+                                >
+                                  <span class="text-nowrap">{{
+                                    school.schoolName
+                                  }}</span>
+                                </nuxt-link>
+                              </td>
+                              <td class="text-nowrap">{{ school.state }}</td>
+                            </tr>
+                          </table>
                         </div>
-                        <div class="pr-2">schools per page</div>
-                        <div>
-                          <select
-                            name="rows per page"
-                            class="border rounded"
-                            @change="selectvaluechange($event)"
-                          >
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                            <option value="20">20</option>
-                          </select>
+                        <div class="col-md-6">
+                          <table v-if="students" class="user-table table">
+                            <tr class="text-secondary bg-light">
+                              <th class="p-3">Name</th>
+                              <th>Email Id</th>
+                              <th>Status</th>
+                               
+                            </tr>
+                            <tr v-if="students.length == 0">
+                              <td colspan="5" class="text-center text-danger pt-3">
+                                No data found
+                              </td>
+                            </tr>
+                            <tr v-for="student in students" :key="student.id">
+                              <td>{{ student.first_name }}</td>
+                              <td>{{ student.email }}</td>
+                              <td>{{ student.isactive == 1 ? "Active":"Inactive" }}</td>
+                            </tr>
+                          </table>
                         </div>
                       </div>
+                    </div>
 
-                      <div
-                        class="modal fade"
-                        id="mediumModal"
-                        tabindex="-1"
-                        role="dialog"
-                        aria-labelledby="mediumModalLabel"
-                        aria-hidden="true"
-                        data-backdrop="static"
-                        data-keyboard="false"
-                      >
-                        <div class="modal-dialog modal-md" role="document">
-                          <div class="modal-content h-auto">
-                            <div class="modal-header bg-light text-dark">
-                              <h5 class="modal-title" id="mediumModalLabel">
-                                Change status
-                              </h5>
-                              <button
-                                type="button"
-                                class="close"
-                                data-dismiss="modal"
-                                aria-label="Close"
-                                @click="cancel()"
-                              >
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <p class="text-left">
-                                Are you sure you want to change the status for
-                                this school?
-                              </p>
-                            </div>
-                            <div class="modal-footer bg-white text-dark">
-                              <button
-                                type="button"
-                                data-dismiss="modal"
-                                class="btn btn-primary color-white"
-                                @click="update()"
-                              >
-                                Yes
-                              </button>
-                              <button
-                                type="button"
-                                data-dismiss="modal"
-                                class="
-                                  btn btn-light
-                                  border border-secondary
-                                  color-dark
-                                "
-                                @click="cancel()"
-                                aria-label="Close"
-                              >
-                                No
-                              </button>
-                            </div>
+                    <div class="row">
+                      <div class="bg-white mt-2 p-1 rounded d-flex">
+                        <div v-if="custom || selectAll" class="col-md-4 col-lg-6">
+                          <div class="input-group rounded">
+                            <input
+                              type="text"
+                              class="form-control rounded"
+                              placeholder="Template ID"
+                              aria-label="Template ID"
+                              aria-describedby="search-addon2"
+                              v-model="templateId"
+                            />
                           </div>
                         </div>
+                        <div
+                          v-if="selectAll || schoolList.find((e) => e.checked)"
+                          class="col-md-4 col-lg-6"
+                        >
+                          <button
+                            :disabled="!templateId"
+                            class="btn btn-primary btn-flat m-b-30 m-t-30"
+                            @click="dispatchEmail()"
+                          >
+                            Send Email
+                          </button>
+                        </div>
                       </div>
-
-                      <table v-if="students" class="user-table table">
-                        <tr class="text-secondary bg-light">
-                          <th>Name</th>
-                          <th>Email Id</th>
-                          <th>Status</th>
-                          <th>Request for Delete</th>
-                          <th>Actions</th>
-                        </tr>
-                        <tr v-if="students.length == 0">
-                          <td colspan="5" class="text-center text-danger pt-3">
-                            No data found
-                          </td>
-                        </tr>
-                        <tr v-for="student in students" :key="student.id">
-                          <td>{{ student.first_name }}</td>
-                          <td>{{ student.email }}</td>
-
-                          <td @click="setId(student.id)">
-                            <select
-                              @change="onchange($event)"
-                              class="px-2 rounded border"
-                              style="cursor: pointer"
-                            >
-                              <option
-                                :value="1"
-                                :selected="student.isactive == 1"
-                              >
-                                Active
-                              </option>
-                              <option
-                                :value="0"
-                                :selected="student.isactive == 0"
-                              >
-                                Inactive
-                              </option>
-                            </select>
-                          </td>
-                          <td>No</td>
-                          <td @click="setDeleteId(student.id)">
-                            <button
-                              type="button"
-                              data-toggle="modal"
-                              data-target="#mediumModal"
-                            >
-                              <span>
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                              </span>
-                            </button>
-                          </td>
-                        </tr>
-                      </table>
                     </div>
+
                   </div>
                 </div>
                 <!-- end table -->
-                <div class="bg-white mt-2 p-1 rounded row">
-                  <div v-if="custom || selectAll" class="col-md-4 col-lg-6">
-                    <div class="input-group rounded">
-                      <input
-                        type="text"
-                        class="form-control rounded"
-                        placeholder="Template ID"
-                        aria-label="Template ID"
-                        aria-describedby="search-addon2"
-                        v-model="templateId"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    v-if="selectAll || schoolList.find((e) => e.checked)"
-                    class="col-md-4 col-lg-6"
-                  >
-                    <button
-                      :disabled="!templateId"
-                      class="btn btn-primary btn-flat m-b-30 m-t-30"
-                      @click="dispatchEmail()"
-                    >
-                      Send Email
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -393,12 +278,12 @@ export default {
       sendEmail: "sendEmail",
     }),
     ...mapActions("schoolListTable", {
-      getSchoolList: "getSchoolList",
+      getSchoolFullList: "getSchoolFullList",
       updateStatus: "updateStatus",
       deleteSchools: "deleteSchools",
     }),
     ...mapActions("userListTable", {
-      getStudentList: "getStudentList",
+      getStudentFullList: "getStudentFullList",
     }),
     async changeStatus(id, status) {
       $("#mediumModal").modal("show");
@@ -441,10 +326,8 @@ export default {
       if (pageNum != 0) {
         pageNum = (pageNum - 1) * this.selectValue;
       }
-      await this.getSchoolList({
+      await this.getSchoolFullList({
         search: this.search,
-        offset: pageNum,
-        limit: this.selectValue,
       });
       //schools
       this.schoolList = [];
@@ -539,10 +422,8 @@ export default {
         pageNum = (pageNum - 1) * this.selectValue;
       }
 
-      await this.getStudentList({
+      await this.getStudentFullList({
         search: this.searchStudent,
-        offset: pageNum,
-        limit: this.selectValue,
         school_id: this.schoolId,
       });
       this.paginateCount = pageNum;
