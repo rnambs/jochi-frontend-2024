@@ -483,9 +483,10 @@
                               <div class="custom-switch pb-1">
                                 <input
                                   :disabled="!enableEdit"
-                                  @change="updateNotification()"
+                                  @change="updateNotification($event, 'sms')"
                                   type="checkbox"
                                   id="smsNotify"
+                                  name="smsNotify"
                                   class="custom-control-input color-primary"
                                   v-model="smsNotify"
                                 />
@@ -504,9 +505,12 @@
                               <div class="custom-switch pb-1">
                                 <input
                                   :disabled="!enableEdit"
-                                  @change="updateNotification()"
+                                  @change="
+                                    updateNotification($event, 'meeting')
+                                  "
                                   type="checkbox"
                                   id="meetingNotify"
+                                  name="meetingNotify"
                                   class="custom-control-input color-primary"
                                   v-model="meetingNotify"
                                 />
@@ -525,9 +529,10 @@
                               <div class="custom-switch pb-1">
                                 <input
                                   :disabled="!enableEdit"
-                                  @change="updateNotification()"
+                                  @change="updateNotification($event, 'club')"
                                   type="checkbox"
                                   id="clubNotify"
+                                  name="clubNotify"
                                   class="custom-control-input color-primary"
                                   v-model="clubNotify"
                                 />
@@ -546,9 +551,12 @@
                               <div class="custom-switch pb-1">
                                 <input
                                   :disabled="!enableEdit"
-                                  @change="updateNotification()"
+                                  @change="
+                                    updateNotification($event, 'assignment')
+                                  "
                                   type="checkbox"
                                   id="assignmentNotify"
+                                  name="assignmentNotify"
                                   class="custom-control-input color-primary"
                                   v-model="assignmentNotify"
                                 />
@@ -567,9 +575,12 @@
                               <div class="custom-switch pb-1">
                                 <input
                                   :disabled="!enableEdit"
-                                  @change="updateNotification()"
+                                  @change="
+                                    updateNotification($event, 'session')
+                                  "
                                   type="checkbox"
                                   id="sessionNotify"
+                                  name="sessionNotify"
                                   class="custom-control-input color-primary"
                                   v-model="sessionNotify"
                                 />
@@ -978,9 +989,16 @@ export default {
         }
       }
     },
-    async updateNotification() {
+    async updateNotification(event, type) {
+      console.log(event.target.checked, type);
+
       await this.notificationUpdate({
-        enable_status: this.notifyStatus,
+        enable_status: event.target.checked,
+        assignments: type == "assignment" ? 1 : "",
+        meetings: type == "meeting" ? 1 : "",
+        sessions: type == "session" ? 1 : "",
+        clubs: type == "club" ? 1 : "",
+        SMS: type == "sms" ? 1 : "",
       });
       if (this.successMessage != "") {
         this.$toast.open({

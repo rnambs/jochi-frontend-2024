@@ -77,6 +77,25 @@
                         </span>
                       </button>
                     </div>
+                    <div v-if="schoolSelected()" class="input-group rounded">
+                      <input
+                        type="search"
+                        class="form-control rounded"
+                        placeholder="Search Student"
+                        aria-label="searchStudent"
+                        aria-describedby="search-addon"
+                        v-model="searchStudent"
+                        @keyup="GetStudentList()"
+                      />
+                      <button type="button">
+                        <span
+                          class="input-group-text border-0 h-100"
+                          id="search-addon2"
+                        >
+                          <i class="fa fa-search" aria-hidden="true"></i>
+                        </span>
+                      </button>
+                    </div>
                   </div>
                   <div class="col-md-4 col-lg-6">
                     <div
@@ -225,6 +244,58 @@
                           </div>
                         </div>
                       </div>
+
+                      <table v-if="students" class="user-table table">
+                        <tr class="text-secondary bg-light">
+                          <th>Name</th>
+                          <th>Email Id</th>
+                          <th>Status</th>
+                          <th>Request for Delete</th>
+                          <th>Actions</th>
+                        </tr>
+                        <tr v-if="students.length == 0">
+                          <td colspan="5" class="text-center text-danger pt-3">
+                            No data found
+                          </td>
+                        </tr>
+                        <tr v-for="student in students" :key="student.id">
+                          <td>{{ student.first_name }}</td>
+                          <td>{{ student.email }}</td>
+
+                          <td @click="setId(student.id)">
+                            <select
+                              @change="onchange($event)"
+                              class="px-2 rounded border"
+                              style="cursor: pointer"
+                            >
+                              <option
+                                :value="1"
+                                :selected="student.isactive == 1"
+                              >
+                                Active
+                              </option>
+                              <option
+                                :value="0"
+                                :selected="student.isactive == 0"
+                              >
+                                Inactive
+                              </option>
+                            </select>
+                          </td>
+                          <td>No</td>
+                          <td @click="setDeleteId(student.id)">
+                            <button
+                              type="button"
+                              data-toggle="modal"
+                              data-target="#mediumModal"
+                            >
+                              <span>
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                              </span>
+                            </button>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
                   </div>
                 </div>
@@ -289,6 +360,8 @@ export default {
       custom: false,
       templateId: "",
       chooseAll: false,
+      searchStudent: "",
+      schoolId: "",
     };
   },
   mounted() {
@@ -310,6 +383,10 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    ...mapState("userListTable", {
+      students: (state) => state.students,
+      studentsCount: (state) => state.studentsCount,
+    }),
   },
   methods: {
     ...mapActions("emailDispatch", {
@@ -319,6 +396,9 @@ export default {
       getSchoolList: "getSchoolList",
       updateStatus: "updateStatus",
       deleteSchools: "deleteSchools",
+    }),
+    ...mapActions("userListTable", {
+      getStudentList: "getStudentList",
     }),
     async changeStatus(id, status) {
       $("#mediumModal").modal("show");
@@ -445,6 +525,28 @@ export default {
           this.chooseAll = false;
         }
       }
+    },
+    schoolSelected() {
+      const selected = this.schoolList.filter((e) => e.checked);
+      if (selected.length == 1) {
+        console.log("selected", selected);
+        this.schoolId = selected[0].schoolId;
+      }
+      return selected.length == 1 ? true : false;
+    },
+    async GetStudentList(pageNum = 0) {
+      if (pageNum != 0) {
+        pageNum = (pageNum - 1) * this.selectValue;
+      }
+
+      await this.getStudentList({
+        search: this.searchStudent,
+        offset: pageNum,
+        limit: this.selectValue,
+        school_id: this.schoolId,
+      });
+      this.paginateCount = pageNum;
+      this.paginateRange = Math.ceil(this.studentsCount / this.selectValue);
     },
   },
 };
