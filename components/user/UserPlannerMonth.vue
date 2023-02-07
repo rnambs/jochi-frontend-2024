@@ -1326,7 +1326,6 @@
                                     multiple-select-checkbox
                                     jochi-components-light-bg
                                     d-flex
-                                    align-items-center
                                     justify-content-center
                                     cursor-pointer
                                   "
