@@ -908,19 +908,19 @@
           class="modal-dialog modal-md modal-dialog-centered"
           role="document"
         >
-          <div class="modal-content px-4">
+          <div class="modal-content px-4 py-4">
             <div class="modal-body">
               Update your phone number to receive SMS notification on your
               mobile phone!
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer d-flex justify-content-between pb-0">
               <button
                 type="button"
                 data-dismiss="modal"
                 class="btn btn-primary color-white"
                 @click="skipPromt()"
               >
-                <nuxt-link to="/user-profile"> Update Now </nuxt-link>
+                <nuxt-link to="/user-profile" class="text-white"> Update Now </nuxt-link>
               </button>
               <button
                 type="button"
