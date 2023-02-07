@@ -1675,6 +1675,7 @@
                                     d-flex
                                     align-items-center
                                     justify-content-center
+                                    cursor-pointer
                                   "
                                 >
                                   <i class="fas fa-undo"></i>
