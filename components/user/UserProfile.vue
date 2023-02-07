@@ -445,7 +445,7 @@
                                   :disabled="!enableEdit"
                                   type="text"
                                   class="pl-3"
-                                  v-model="phone"
+                                  v-model="phoneNumber"
                                   @change="checkValueChange()"
                                   @input="checkValue()"
                                   maxlength="15"
@@ -730,7 +730,7 @@ export default {
       defaultImage: defaultImage,
       submitted: false,
       user_type: "",
-      phone: "",
+      phoneNumber: "",
       notifyStatus: false,
       phoneInvalid: false,
       enableEdit: false,
@@ -749,6 +749,7 @@ export default {
       this.getAllAdvisors();
       this.getAdvisor();
     }
+    this.fetchSettings();
   },
   computed: {
     ...mapState("profilePage", {
@@ -762,6 +763,7 @@ export default {
       advisorDetail: (state) => state.advisorDetail,
       phone: (state) => state.phone,
       notification: (state) => state.notification,
+      notificationSettings: (state) => state.notificationSettings,
     }),
   },
   methods: {
@@ -774,6 +776,7 @@ export default {
       getAdvisorDetail: "getAdvisorDetail",
       updatePhone: "updatePhone",
       notificationUpdate: "notificationUpdate",
+      getSettings: "getSettings",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -792,7 +795,7 @@ export default {
         this.profile = localStorage.getItem("profile_pic");
       }
       if (localStorage.getItem("phone")) {
-        this.phone = localStorage.getItem("phone");
+        this.phoneNumber = localStorage.getItem("phone");
       }
       if (localStorage.getItem("notifyStatus")) {
         this.notifyStatus =
@@ -951,17 +954,17 @@ export default {
       $(".modal-backdrop").remove();
     },
     checkValue() {
-      console.log(this.phone);
+      console.log(this.phoneNumber);
       const phonePattern = /^(\+|\d+)$/;
-      if (!phonePattern.test(this.phone)) {
-        this.phone = this.phone.slice(0, -1);
+      if (!phonePattern.test(this.phoneNumber)) {
+        this.phoneNumber = this.phoneNumber.slice(0, -1);
       }
-      console.log(this.phone);
+      console.log(this.phoneNumber);
     },
     checkValueChange() {
-      console.log(this.phone);
+      console.log(this.phoneNumber);
       const phonePattern = /^(\+\d{1,3}[- ]?)?\d{10,15}$/;
-      if (!phonePattern.test(this.phone)) {
+      if (!phonePattern.test(this.phoneNumber)) {
         this.phoneInvalid = true;
       } else {
         this.phoneInvalid = false;
@@ -971,10 +974,10 @@ export default {
       this.checkValueChange();
       if (!this.phoneInvalid) {
         await this.updatePhone({
-          phone_number: this.phone,
+          phone_number: this.phoneNumber,
         });
         if (this.successMessage != "") {
-          localStorage.setItem("phone", this.phone);
+          localStorage.setItem("phone", this.phoneNumber);
           this.$toast.open({
             message: this.successMessage,
             type: this.successType,
@@ -1013,6 +1016,19 @@ export default {
           duration: 5000,
         });
       }
+    },
+    async fetchSettings() {
+      await this.getSettings();
+      console.log(this.notificationSettings);
+      this.smsNotify = this.notificationSettings.SMS_notification
+        ? true
+        : false;
+      this.assignmentNotify = this.notificationSettings.assignments
+        ? true
+        : false;
+      this.clubNotify = this.notificationSettings.clubs ? true : false;
+      this.meetingNotify = this.notificationSettings.meetings ? true : false;
+      this.sessionNotify = this.notificationSettings.sessions ? true : false;
     },
   },
   // // middleware: "authenticated",

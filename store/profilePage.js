@@ -11,7 +11,8 @@ const state = {
   successType: "",
   profile: '',
   phone: '',
-  notification: ''
+  notification: '',
+  notificationSettings: {}
 }
 
 const actions = {
@@ -28,7 +29,7 @@ const actions = {
       if (response.message == "Success") {
         commit('setAllList', response.data);
         commit('profileSet', response.data.profile_pic)
-        commit('phone', response.data.phone_number)
+        commit('setPhone', response.data.phone_number)
       }
 
 
@@ -360,6 +361,49 @@ const actions = {
 
   },
 
+  // get notification settings
+  async getSettings({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$get(BASE_URL + `users/notification_setting_status`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+      if (response.message == "Success") {
+        commit('setNotificationSettings', response.data);
+      }
+
+    } catch (e) {
+      if (e?.response?.data?.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else if (e?.response?.data?.message == "User not found") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "User not found");
+        commit('setErrorType', "error");
+
+      }
+      else if (e?.response?.data?.message == "Validation error") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "error");
+        this.$router.push("/club-detail");
+
+      }
+    }
+
+
+  },
+
 }
 const mutations = {
   setAllList(state, data) {
@@ -392,8 +436,11 @@ const mutations = {
     localStorage.setItem('phone', data);
   },
   setNotification(state, data) {
-    state.phone = data;
+    state.notification = data;
     localStorage.setItem('notification', data);
+  },
+  setNotificationSettings(state, data) {
+    state.notificationSettings = data;
   },
 
 }
@@ -428,6 +475,9 @@ const getters = {
   },
   notification: () => {
     return state.notification;
+  },
+  notificationSettings: () => {
+    return state.notificationSettings;
   },
 
 }
