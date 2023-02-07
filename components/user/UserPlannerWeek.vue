@@ -1681,6 +1681,7 @@
                                     d-flex
                                     align-items-center
                                     justify-content-center
+                                    cursor-pointer
                                   "
                                 >
                                   <i class="fas fa-undo"></i>
@@ -1700,13 +1701,54 @@
                                   >
                                     {{ item.task }}
                                   </h4>
-                                  <p
+                                  <!-- <p
                                     v-for="sub in item.subTasks"
                                     class="mb-0 word-break text-truncate"
                                     :key="sub.id"
                                   >
                                     {{ sub.title }}
-                                  </p>
+                                  </p> -->
+                                  <div
+                                :class="
+                                  viewMore && viewMoreId == item.id
+                                    ? 'd-flex flex-column overflow-auto vh-10 completed-vh-10'
+                                    : 'd-flex flex-column overflow-hidden vh-10 completed-vh-10'
+                                "
+                              >
+                                <div
+                                  @click="
+                                    confirmSubTaskComplete(
+                                      $event,
+                                      sub.id,
+                                      item.id,
+                                      sub.task_status
+                                    )
+                                  "
+                                  v-for="sub in item.subTasks"
+                                  :key="sub.id"
+                                  class="
+                                    pl-2
+                                    d-flex
+                                    justify-content-center
+                                    color-secondary
+                                    cursor-pointer
+                                    mb-1
+                                  "
+                                >
+                                  <label
+                                    for=""
+                                    class="mb-0 text-truncate cursor-pointer"
+                                    >{{ sub.title }}</label
+                                  >
+                                </div>
+                              </div>
+                              <button
+                                v-if="item.subTasks && item.subTasks.length > 3"
+                                class="btn btn-void p-0 pl-2"
+                                @click="viewMoreClick($event, item)"
+                              >
+                                <span class="text-12">View more</span>
+                              </button>
                                 </div>
                               </div>
                               <!-- <div class="col-6">
@@ -5812,6 +5854,7 @@ export default {
   /* position: relative; */
   /* left: 10px; */
 }
+.completed-vh-10{height: 10vh;}
 </style>
 
 /* body {
