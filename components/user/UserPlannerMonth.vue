@@ -738,6 +738,7 @@
                             :key="item.id"
                           >
                             <div
+                              v-if="item.shared_users_id != user_id"
                               class="
                                 position-absolute
                                 multiple-select-checkbox
@@ -1199,46 +1200,53 @@
                                       {{ sub.title }}
                                     </p> -->
                                     <div
-                                :class="
-                                  viewMore && viewMoreId == item.id
-                                    ? 'd-flex flex-column overflow-auto vh-10 completed-vh-10'
-                                    : 'd-flex flex-column overflow-hidden vh-10 completed-vh-10'
-                                "
-                              >
-                                <div
-                                  @click="
-                                    confirmSubTaskComplete(
-                                      $event,
-                                      sub.id,
-                                      item.id,
-                                      sub.task_status
-                                    )
-                                  "
-                                  v-for="sub in item.subTasks"
-                                  :key="sub.id"
-                                  class="
-                                    pl-2
-                                    d-flex
-                                    justify-content-center
-                                    color-secondary
-                                    cursor-pointer
-                                    mb-1
-                                  "
-                                >
-                                  <label
-                                    for=""
-                                    class="mb-0 text-truncate cursor-pointer"
-                                    >{{ sub.title }}</label
-                                  >
-                                </div>
-                              </div>
-                              <button
-                                v-if="item.subTasks && item.subTasks.length > 3"
-                                class="btn btn-void p-0 pl-2"
-                                @click="viewMoreClick($event, item)"
-                              >
-                                <span class="text-12">View more</span>
-                              </button>
+                                      :class="
+                                        viewMore && viewMoreId == item.id
+                                          ? 'd-flex flex-column overflow-auto vh-10 completed-vh-10'
+                                          : 'd-flex flex-column overflow-hidden vh-10 completed-vh-10'
+                                      "
+                                    >
+                                      <div
+                                        @click="
+                                          confirmSubTaskComplete(
+                                            $event,
+                                            sub.id,
+                                            item.id,
+                                            sub.task_status
+                                          )
+                                        "
+                                        v-for="sub in item.subTasks"
+                                        :key="sub.id"
+                                        class="
+                                          pl-2
+                                          d-flex
+                                          justify-content-center
+                                          color-secondary
+                                          cursor-pointer
+                                          mb-1
+                                        "
+                                      >
+                                        <label
+                                          for=""
+                                          class="
+                                            mb-0
+                                            text-truncate
+                                            cursor-pointer
+                                          "
+                                          >{{ sub.title }}</label
+                                        >
+                                      </div>
+                                    </div>
+                                    <button
+                                      v-if="
+                                        item.subTasks &&
+                                        item.subTasks.length > 3
+                                      "
+                                      class="btn btn-void p-0 pl-2"
+                                      @click="viewMoreClick($event, item)"
+                                    >
+                                      <span class="text-12">View more</span>
+                                    </button>
                                   </div>
                                 </div>
                                 <!-- <div class="col-6">
@@ -1356,46 +1364,52 @@
                                     {{ sub.title }}
                                   </p> -->
                                   <div
-                                :class="
-                                  viewMore && viewMoreId == item.id
-                                    ? 'd-flex flex-column overflow-auto vh-10 completed-vh-10'
-                                    : 'd-flex flex-column overflow-hidden vh-10 completed-vh-10'
-                                "
-                              >
-                                <div
-                                  @click="
-                                    confirmSubTaskComplete(
-                                      $event,
-                                      sub.id,
-                                      item.id,
-                                      sub.task_status
-                                    )
-                                  "
-                                  v-for="sub in item.subTasks"
-                                  :key="sub.id"
-                                  class="
-                                    pl-2
-                                    d-flex
-                                    align-items-center
-                                    color-secondary
-                                    cursor-pointer
-                                    mb-1
-                                  "
-                                >
-                                  <label
-                                    for=""
-                                    class="mb-0 text-truncate cursor-pointer"
-                                    >{{ sub.title }}</label
+                                    :class="
+                                      viewMore && viewMoreId == item.id
+                                        ? 'd-flex flex-column overflow-auto vh-10 completed-vh-10'
+                                        : 'd-flex flex-column overflow-hidden vh-10 completed-vh-10'
+                                    "
                                   >
-                                </div>
-                              </div>
-                              <button
-                                v-if="item.subTasks && item.subTasks.length > 3"
-                                class="btn btn-void p-0 pl-2"
-                                @click="viewMoreClick($event, item)"
-                              >
-                                <span class="text-12">View more</span>
-                              </button>
+                                    <div
+                                      @click="
+                                        confirmSubTaskComplete(
+                                          $event,
+                                          sub.id,
+                                          item.id,
+                                          sub.task_status
+                                        )
+                                      "
+                                      v-for="sub in item.subTasks"
+                                      :key="sub.id"
+                                      class="
+                                        pl-2
+                                        d-flex
+                                        align-items-center
+                                        color-secondary
+                                        cursor-pointer
+                                        mb-1
+                                      "
+                                    >
+                                      <label
+                                        for=""
+                                        class="
+                                          mb-0
+                                          text-truncate
+                                          cursor-pointer
+                                        "
+                                        >{{ sub.title }}</label
+                                      >
+                                    </div>
+                                  </div>
+                                  <button
+                                    v-if="
+                                      item.subTasks && item.subTasks.length > 3
+                                    "
+                                    class="btn btn-void p-0 pl-2"
+                                    @click="viewMoreClick($event, item)"
+                                  >
+                                    <span class="text-12">View more</span>
+                                  </button>
                                 </div>
                               </div>
                               <!-- <div class="col-6">
@@ -3517,6 +3531,8 @@ var idValue = "";
 var eventList = [];
 var dateValueNum = "";
 import InfiniteLoading from "vue-infinite-loading";
+import io from "socket.io-client";
+const socket = io("ws://localhost:3000");
 
 export default {
   name: "PlannerMonth",
@@ -3647,9 +3663,12 @@ export default {
       choosenAssignments: [],
       undoAsstId: 0,
       undoSubtaskId: 0,
+      user_id: "",
     };
   },
   mounted() {
+    this.user_id = localStorage.getItem("id");
+
     socket.on("notifications", (data) => {
       console.log("socket data", data);
       if (data) this.updateOverdueStatus(data);
@@ -5452,6 +5471,7 @@ export default {
         item.task_status = e.task_status;
         item.updatedAt = e.updatedAt;
         item.user_id = e.user_id;
+        item.shared_users_id = e.shared_users_id;
         item.peers = this.mapPeers(e);
         if (e.due_date) {
           item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
@@ -5535,6 +5555,7 @@ export default {
         item.task_status = e.assignments.task_status;
         item.updatedAt = e.assignments.updatedAt;
         item.user_id = e.assignments.user_id;
+        item.shared_users_id = e.shared_users_id;
         item.peers = this.mapPeers(e);
         if (e.assignments.due_date) {
           item.formattedDate = moment(e.assignments.due_date).format(
@@ -6090,5 +6111,7 @@ export default {
   /* position: relative; */
   /* left: 10px; */
 }
-.completed-vh-10{height: 10vh;}
+.completed-vh-10 {
+  height: 10vh;
+}
 </style>
