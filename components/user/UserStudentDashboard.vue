@@ -910,6 +910,7 @@
         >
           <div class="modal-content px-4 py-4">
             <div class="modal-body">
+              <h3 class="modal-title color-primary font-bold">Update Phone Number</h3>
               Update your phone number to receive SMS notification on your
               mobile phone!
             </div>

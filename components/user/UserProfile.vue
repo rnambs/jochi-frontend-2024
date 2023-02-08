@@ -26,7 +26,29 @@
               pt-3
             "
           >
+            
             <div
+              class="
+                study-col
+                d-flex
+                flex-column
+                justify-content-start
+                flex-fill
+              "
+            >
+              <div class="form-section mx-auto w-100 py-3">
+                <!-- <form action="" class="container"> -->
+                <!-- <div class="form-group">
+                    <label for="">Email</label>
+                    <div class="form-field">{{ email }}</div>
+                  </div> -->
+                <div>
+                  <div class="row">
+
+
+                    <!----image-->
+                    <div class="col-md-6">
+                      <div
               class="
                 study-col
                 profile-col
@@ -217,25 +239,240 @@
           <span class="mr-2"><i class="fas fa-save"></i></span> <span>Save Changes</span>
           </button> -->
               </form>
-            </div>
-            <div
-              class="
-                study-col
-                d-flex
-                flex-column
-                justify-content-start
-                flex-fill
-              "
-            >
-              <div class="form-section mx-auto w-100 py-3">
-                <!-- <form action="" class="container"> -->
-                <!-- <div class="form-group">
-                    <label for="">Email</label>
-                    <div class="form-field">{{ email }}</div>
-                  </div> -->
-                <div>
-                  <div class="row">
-                    <div class="col-md-6">
+            </div>  
+                      <div class="col-12 col-md-12">
+                        <div
+                          class="card card-primary p-3 h-100 d-flex flex-column"
+                        >
+                          <p
+                            class="
+                              mb-0
+                              text-16
+                              color-secondary
+                              d-flex
+                              flex-row
+                              align-items-baseline
+                            "
+                          >
+                            <span class="text-24"
+                              ><i class="fas fa-envelope"></i
+                            ></span>
+                            <span class="ml-2">{{ email }}</span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="card card-primary p-3 h-100">
+                          <p
+                            class="
+                              mb-0
+                              text-16
+                              color-secondary
+                              d-flex
+                              flex-row
+                              align-items-baseline
+                            "
+                          >
+                            <span class="text-24"
+                              ><i class="fas fa-school"></i
+                            ></span>
+                            <span class="ml-2">{{ schoolName }}</span>
+                          </p>
+                        </div>
+                      </div>
+                      <div v-if="user_type == 3" class="col-md-12">
+                        <div class="row">
+                          <div class="col-xl-6">
+                            <button
+                              class="mr-2"
+                              v-if="!enableEdit"
+                              @click="enableEdit = true"
+                            >
+                              <span class="mr-1"
+                                ><i class="fas fa-pencil"></i
+                              ></span>
+                              <span>Edit</span>
+                            </button>
+
+                            <button
+                              class="mr-2"
+                              v-if="enableEdit"
+                              @click="enableEdit = false"
+                            >
+                              <span class="mr-1"
+                                ><i class="fas fa-times"></i
+                              ></span>
+                              <span>Cancel</span>
+                            </button>
+                            <button v-if="enableEdit" @click="phoneUpdate()">
+                              <span class="mr-1"
+                                ><i class="fas fa-save"></i
+                              ></span>
+                              <span>Update</span>
+                            </button>
+
+                            <div class="card card-primary p-3 ">
+                              <p
+                                class="
+                                  mb-0
+                                  text-16
+                                  color-secondary
+                                  d-flex
+                                  flex-row
+                                  align-items-baseline
+                                "
+                              >
+                                <span class="text-24"
+                                  ><i class="fas fa-phone"></i
+                                ></span>
+                                <input
+                                  :disabled="!enableEdit"
+                                  type="text"
+                                  class="pl-3 word-break text-truncate"
+                                  v-model="phoneNumber"
+                                  @change="checkValueChange()"
+                                  @input="checkValue()"
+                                  maxlength="15"
+                                />
+                              </p>
+                              
+                            </div>
+                            <span class="mt-1" v-if="phoneInvalid" style="color: red"
+                                >Please enter a valid phone number</span
+                              >
+                          </div>
+                          <div
+                            class="
+                              col-xl-6
+                              d-flex
+                              flex-column
+                              align-items-center
+                            "
+                          >
+                            
+                            <div>
+                              <div class="custom-switch pb-1">
+                                <input
+                                  :disabled="!enableEdit"
+                                  @change="updateNotification($event, 'sms')"
+                                  type="checkbox"
+                                  id="smsNotify"
+                                  name="smsNotify"
+                                  class="custom-control-input color-primary"
+                                  v-model="smsNotify"
+                                />
+                                <label
+                                  class="
+                                    custom-control-label
+                                    font-normal
+                                    color-dark
+                                    text-14
+                                    cursor-pointer
+                                  "
+                                  for="smsNotify"
+                                  >SMS Notification
+                                </label>
+                              </div>
+                              <div class="custom-switch pb-1">
+                                <input
+                                  :disabled="!enableEdit"
+                                  @change="
+                                    updateNotification($event, 'meeting')
+                                  "
+                                  type="checkbox"
+                                  id="meetingNotify"
+                                  name="meetingNotify"
+                                  class="custom-control-input color-primary"
+                                  v-model="meetingNotify"
+                                />
+                                <label
+                                  class="
+                                    custom-control-label
+                                    font-normal
+                                    color-dark
+                                    text-14
+                                    cursor-pointer
+                                  "
+                                  for="meetingNotify"
+                                  >Meeting Notification
+                                </label>
+                              </div>
+                              <div class="custom-switch pb-1">
+                                <input
+                                  :disabled="!enableEdit"
+                                  @change="updateNotification($event, 'club')"
+                                  type="checkbox"
+                                  id="clubNotify"
+                                  name="clubNotify"
+                                  class="custom-control-input color-primary"
+                                  v-model="clubNotify"
+                                />
+                                <label
+                                  class="
+                                    custom-control-label
+                                    font-normal
+                                    color-dark
+                                    text-14
+                                    cursor-pointer
+                                  "
+                                  for="clubNotify"
+                                  >Club Notification
+                                </label>
+                              </div>
+                              <div class="custom-switch pb-1">
+                                <input
+                                  :disabled="!enableEdit"
+                                  @change="
+                                    updateNotification($event, 'assignment')
+                                  "
+                                  type="checkbox"
+                                  id="assignmentNotify"
+                                  name="assignmentNotify"
+                                  class="custom-control-input color-primary"
+                                  v-model="assignmentNotify"
+                                />
+                                <label
+                                  class="
+                                    custom-control-label
+                                    font-normal
+                                    color-dark
+                                    text-14
+                                    cursor-pointer
+                                  "
+                                  for="assignmentNotify"
+                                  >Assignment Notification
+                                </label>
+                              </div>
+                              <div class="custom-switch pb-1">
+                                <input
+                                  :disabled="!enableEdit"
+                                  @change="
+                                    updateNotification($event, 'session')
+                                  "
+                                  type="checkbox"
+                                  id="sessionNotify"
+                                  name="sessionNotify"
+                                  class="custom-control-input color-primary"
+                                  v-model="sessionNotify"
+                                />
+                                <label
+                                  class="
+                                    custom-control-label
+                                    font-normal
+                                    color-dark
+                                    text-14
+                                    cursor-pointer
+                                  "
+                                  for="sessionNotify"
+                                  >Study Session Notification
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center">
                       <div v-if="user_type == '3'" class="col-md-12">
                         <div
                           v-if="advisorDetail && advisorDetail.first_name"
@@ -374,233 +611,7 @@
                       </div>
                     </div>
 
-                    <div class="col-md-6">
-                      <div class="col-12 col-md-12">
-                        <div
-                          class="card card-primary p-3 h-100 d-flex flex-column"
-                        >
-                          <p
-                            class="
-                              mb-0
-                              text-16
-                              color-secondary
-                              d-flex
-                              flex-row
-                              align-items-baseline
-                            "
-                          >
-                            <span class="text-24"
-                              ><i class="fas fa-envelope"></i
-                            ></span>
-                            <span class="ml-2">{{ email }}</span>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="card card-primary p-3 h-100">
-                          <p
-                            class="
-                              mb-0
-                              text-16
-                              color-secondary
-                              d-flex
-                              flex-row
-                              align-items-baseline
-                            "
-                          >
-                            <span class="text-24"
-                              ><i class="fas fa-school"></i
-                            ></span>
-                            <span class="ml-2">{{ schoolName }}</span>
-                          </p>
-                        </div>
-                      </div>
-                      <div v-if="user_type == 3" class="col-md-12">
-                        <div class="row">
-                          <div class="col-md-8">
-                            <button
-                              v-if="!enableEdit"
-                              @click="enableEdit = true"
-                            >
-                              <span class="mr-2"
-                                ><i class="fas fa-pencil"></i
-                              ></span>
-                              <span>Edit</span>
-                            </button>
-                            <div class="card card-primary p-3 h-100">
-                              <p
-                                class="
-                                  mb-0
-                                  text-16
-                                  color-secondary
-                                  d-flex
-                                  flex-row
-                                  align-items-baseline
-                                "
-                              >
-                                <span class="text-24"
-                                  ><i class="fas fa-phone"></i
-                                ></span>
-                                <input
-                                  :disabled="!enableEdit"
-                                  type="text"
-                                  class="pl-3"
-                                  v-model="phoneNumber"
-                                  @change="checkValueChange()"
-                                  @input="checkValue()"
-                                  maxlength="15"
-                                />
-                              </p>
-                              <span v-if="phoneInvalid" style="color: red"
-                                >Please enter a valid phone number</span
-                              >
-                            </div>
-                          </div>
-                          <div
-                            class="
-                              col-md-4
-                              d-flex
-                              flex-column
-                              align-items-center
-                            "
-                          >
-                            <button
-                              v-if="enableEdit"
-                              @click="enableEdit = false"
-                            >
-                              <span class="mr-2"
-                                ><i class="fas fa-times"></i
-                              ></span>
-                              <span>Cancel</span>
-                            </button>
-                            <button v-if="enableEdit" @click="phoneUpdate()">
-                              <span class="mr-2"
-                                ><i class="fas fa-save"></i
-                              ></span>
-                              <span>Update</span>
-                            </button>
-                            <div>
-                              <div class="custom-switch pb-1">
-                                <input
-                                  :disabled="!enableEdit"
-                                  @change="updateNotification($event, 'sms')"
-                                  type="checkbox"
-                                  id="smsNotify"
-                                  name="smsNotify"
-                                  class="custom-control-input color-primary"
-                                  v-model="smsNotify"
-                                />
-                                <label
-                                  class="
-                                    custom-control-label
-                                    font-normal
-                                    color-dark
-                                    text-14
-                                    cursor-pointer
-                                  "
-                                  for="smsNotify"
-                                  >SMS Notification
-                                </label>
-                              </div>
-                              <div class="custom-switch pb-1">
-                                <input
-                                  :disabled="!enableEdit"
-                                  @change="
-                                    updateNotification($event, 'meeting')
-                                  "
-                                  type="checkbox"
-                                  id="meetingNotify"
-                                  name="meetingNotify"
-                                  class="custom-control-input color-primary"
-                                  v-model="meetingNotify"
-                                />
-                                <label
-                                  class="
-                                    custom-control-label
-                                    font-normal
-                                    color-dark
-                                    text-14
-                                    cursor-pointer
-                                  "
-                                  for="meetingNotify"
-                                  >Meeting Notification
-                                </label>
-                              </div>
-                              <div class="custom-switch pb-1">
-                                <input
-                                  :disabled="!enableEdit"
-                                  @change="updateNotification($event, 'club')"
-                                  type="checkbox"
-                                  id="clubNotify"
-                                  name="clubNotify"
-                                  class="custom-control-input color-primary"
-                                  v-model="clubNotify"
-                                />
-                                <label
-                                  class="
-                                    custom-control-label
-                                    font-normal
-                                    color-dark
-                                    text-14
-                                    cursor-pointer
-                                  "
-                                  for="clubNotify"
-                                  >Club Notification
-                                </label>
-                              </div>
-                              <div class="custom-switch pb-1">
-                                <input
-                                  :disabled="!enableEdit"
-                                  @change="
-                                    updateNotification($event, 'assignment')
-                                  "
-                                  type="checkbox"
-                                  id="assignmentNotify"
-                                  name="assignmentNotify"
-                                  class="custom-control-input color-primary"
-                                  v-model="assignmentNotify"
-                                />
-                                <label
-                                  class="
-                                    custom-control-label
-                                    font-normal
-                                    color-dark
-                                    text-14
-                                    cursor-pointer
-                                  "
-                                  for="assignmentNotify"
-                                  >Assignment Notification
-                                </label>
-                              </div>
-                              <div class="custom-switch pb-1">
-                                <input
-                                  :disabled="!enableEdit"
-                                  @change="
-                                    updateNotification($event, 'session')
-                                  "
-                                  type="checkbox"
-                                  id="sessionNotify"
-                                  name="sessionNotify"
-                                  class="custom-control-input color-primary"
-                                  v-model="sessionNotify"
-                                />
-                                <label
-                                  class="
-                                    custom-control-label
-                                    font-normal
-                                    color-dark
-                                    text-14
-                                    cursor-pointer
-                                  "
-                                  for="sessionNotify"
-                                  >Study Session Notification
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    
 
                     <!-- <div class="col-12 col-md-4">
                         <div class="card card-primary h-100 ">
