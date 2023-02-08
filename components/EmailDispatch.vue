@@ -61,55 +61,60 @@
                   </div>
                   <div class="col-md-4 col-lg-12">
                     <div class="row">
-                      <div v-if="custom" class="col-md-4 col-lg-6 align-items-center">
-                      <div class="input-group rounded d-flex">
-                        <input
-                          type="search"
-                          class="form-control rounded"
-                          placeholder="Search"
-                          aria-label="Search"
-                          aria-describedby="search-addon"
-                          v-model="search"
-                          v-on:keyup="GetSchoolList()"
-                        />
-                        <button type="button">
-                          <span
-                            class="input-group-text border-0 h-100"
-                            id="search-addon2"
-                          >
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-                    <div v-if="custom" class="col-md-4 col-lg-6">
-                      <div v-if="schoolSelected()" class="input-group rounded">
+                      <div
+                        v-if="custom"
+                        class="col-md-4 col-lg-6 align-items-center"
+                      >
+                        <div class="input-group rounded d-flex">
                           <input
-                          type="search"
-                          class="form-control rounded"
-                          placeholder="Search Student"
-                          aria-label="searchStudent"
-                          aria-describedby="search-addon"
-                          v-model="searchStudent"
-                          @keyup="GetStudentList()"
+                            type="search"
+                            class="form-control rounded"
+                            placeholder="Search"
+                            aria-label="Search"
+                            aria-describedby="search-addon"
+                            v-model="search"
+                            v-on:keyup="GetSchoolList()"
                           />
                           <button type="button">
-                          <span
+                            <span
                               class="input-group-text border-0 h-100"
                               id="search-addon2"
-                          >
+                            >
                               <i class="fa fa-search" aria-hidden="true"></i>
-                          </span>
+                            </span>
                           </button>
+                        </div>
                       </div>
-                    </div>
+                      <div v-if="custom" class="col-md-4 col-lg-6">
+                        <div
+                          v-if="schoolSelected()"
+                          class="input-group rounded"
+                        >
+                          <input
+                            type="search"
+                            class="form-control rounded"
+                            placeholder="Search Student"
+                            aria-label="searchStudent"
+                            aria-describedby="search-addon"
+                            v-model="searchStudent"
+                            @keyup="GetStudentList()"
+                          />
+                          <button type="button">
+                            <span
+                              class="input-group-text border-0 h-100"
+                              id="search-addon2"
+                            >
+                              <i class="fa fa-search" aria-hidden="true"></i>
+                            </span>
+                          </button>
+                        </div>
+                      </div>
                     </div>
 
                     <div
                       v-if="custom && search"
                       class="bg-white mt-2 p-1 rounded"
                     >
-
                       <div class="row">
                         <div class="col-md-6">
                           <table class="user-table table">
@@ -127,11 +132,17 @@
                               <th>State</th>
                             </tr>
                             <tr v-if="schools.length == 0">
-                              <td colspan="5" class="text-center text-danger pt-3">
+                              <td
+                                colspan="5"
+                                class="text-center text-danger pt-3"
+                              >
                                 No data found
                               </td>
                             </tr>
-                            <tr v-for="(school, index) in schoolList" :key="index">
+                            <tr
+                              v-for="(school, index) in schoolList"
+                              :key="index"
+                            >
                               <td>
                                 <input
                                   type="checkbox"
@@ -141,38 +152,60 @@
                                 />
                               </td>
                               <td>
-                                <nuxt-link
-                                  :to="{
-                                    path: '/user-table',
-                                    query: { id: school.schoolId },
-                                  }"
-                                >
-                                  <span class="text-nowrap">{{
-                                    school.schoolName
-                                  }}</span>
-                                </nuxt-link>
+                                <span class="text-nowrap">{{
+                                  school.schoolName
+                                }}</span>
                               </td>
                               <td class="text-nowrap">{{ school.state }}</td>
                             </tr>
                           </table>
                         </div>
                         <div class="col-md-6">
-                          <table v-if="students" class="user-table table">
+                          <table
+                            v-if="studentsList && schoolSelected()"
+                            class="user-table table"
+                          >
                             <tr class="text-secondary bg-light">
+                              <th>
+                                <input
+                                  type="checkbox"
+                                  name="chooseAllStudent"
+                                  v-model="chooseAllStudent"
+                                  @change="changeSelectionStudent()"
+                                />
+                                <label for="chooseAllStudent">Select</label>
+                              </th>
                               <th class="p-3">Name</th>
                               <th>Email Id</th>
                               <th>Status</th>
-                               
                             </tr>
-                            <tr v-if="students.length == 0">
-                              <td colspan="5" class="text-center text-danger pt-3">
+                            <tr v-if="studentsList.length == 0">
+                              <td
+                                colspan="5"
+                                class="text-center text-danger pt-3"
+                              >
                                 No data found
                               </td>
                             </tr>
-                            <tr v-for="student in students" :key="student.id">
+                            <tr
+                              v-for="student in studentsList"
+                              :key="student.id"
+                            >
+                              <td>
+                                <input
+                                  type="checkbox"
+                                  :name="index"
+                                  v-model="student.checked"
+                                  @change="individualSelectStudent()"
+                                />
+                              </td>
                               <td>{{ student.first_name }}</td>
                               <td>{{ student.email }}</td>
-                              <td>{{ student.isactive == 1 ? "Active":"Inactive" }}</td>
+                              <td>
+                                {{
+                                  student.isactive == 1 ? "Active" : "Inactive"
+                                }}
+                              </td>
                             </tr>
                           </table>
                         </div>
@@ -181,7 +214,10 @@
 
                     <div class="row">
                       <div class="bg-white mt-2 p-1 rounded d-flex">
-                        <div v-if="custom || selectAll" class="col-md-4 col-lg-6">
+                        <div
+                          v-if="custom || selectAll"
+                          class="col-md-4 col-lg-6"
+                        >
                           <div class="input-group rounded">
                             <input
                               type="text"
@@ -207,7 +243,6 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
                 <!-- end table -->
@@ -245,8 +280,10 @@ export default {
       custom: false,
       templateId: "",
       chooseAll: false,
+      chooseAllStudent: false,
       searchStudent: "",
       schoolId: "",
+      studentsList: [],
     };
   },
   mounted() {
@@ -291,19 +328,34 @@ export default {
       this.updateStat = status;
     },
     async dispatchEmail() {
+      let selectedIds = [];
+      console.log("check", this.selectAll, this.schoolList);
       if (!this.selectAll) {
         let selectedSchools = this.schoolList.filter((e) => e.checked);
-        let selectedIds = [];
         selectedSchools.forEach((e) => {
-          selectedIds.push(e.id);
+          selectedIds.push(e.schoolId);
+        });
+        console.log("check", selectedSchools, selectedIds);
+      }
+      let selectedIdStudents = [];
+      if (!this.selectAll && this.schoolSelected()) {
+        let selectedStudents = this.studentsList.filter((e) => e.checked);
+        selectedStudents.forEach((e) => {
+          selectedIdStudents.push(e.id);
         });
       }
       await this.sendEmail({
         school_ids: selectedIds,
+        student_ids: selectedIdStudents,
         template_id: this.templateId,
         select_all: this.selectAll,
       });
       if (this.successMessage != "") {
+        this.selectAll = false;
+        this.custom = false;
+        this.schoolList = [];
+        this.studentsList = [];
+        this.templateId = "";
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -426,8 +478,41 @@ export default {
         search: this.searchStudent,
         school_id: this.schoolId,
       });
+      this.studentsList = [];
+      if (this.students && this.students.length > 0) {
+        this.students.forEach((element) => {
+          var studentArray = {};
+          var id = element.id;
+          var first_name = element.first_name;
+          var email = element.email;
+          var isactive = element.isactive;
+
+          studentArray["id"] = id;
+          studentArray["first_name"] = first_name;
+          studentArray["email"] = email;
+          studentArray["isactive"] = isactive;
+          studentArray["checked"] = false;
+
+          this.studentsList.push(studentArray);
+        });
+      }
       this.paginateCount = pageNum;
       this.paginateRange = Math.ceil(this.studentsCount / this.selectValue);
+    },
+    changeSelectionStudent() {
+      if (this.chooseAllStudent) {
+        this.studentsList.forEach((e) => (e.checked = true));
+      } else {
+        this.studentsList.forEach((e) => (e.checked = false));
+      }
+    },
+    individualSelectStudent() {
+      if (this.chooseAllStudent) {
+        const unchecked = this.studentsList.find((e) => !e.checked);
+        if (unchecked) {
+          this.chooseAllStudent = false;
+        }
+      }
     },
   },
 };
