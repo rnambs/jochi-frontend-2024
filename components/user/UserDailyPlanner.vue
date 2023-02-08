@@ -407,6 +407,7 @@
                         :key="item.id"
                       >
                         <div
+                          v-if="item.shared_users_id != user_id"
                           class="
                             position-absolute
                             multiple-select-checkbox
@@ -2865,9 +2866,11 @@ export default {
       choosenAssignments: [],
       undoAsstId: 0,
       undoSubtaskId: 0,
+      user_id: "",
     };
   },
   mounted() {
+    this.user_id = localStorage.getItem("id");
     socket.on("notifications", (data) => {
       console.log("socket data", data);
       if (data) this.updateOverdueStatus(data);
@@ -3927,6 +3930,7 @@ export default {
         item.updatedAt = e.assignments.updatedAt;
         item.user_id = e.assignments.user_id;
         item.schoologyAssignment = e.schoologyAssignment;
+        item.shared_users_id = e.shared_users_id;
         item.peers = this.mapPeers(e);
         if (e.assignments.due_date) {
           item.formattedDate = moment(e.assignments.due_date).format(
@@ -4411,5 +4415,7 @@ export default {
   /* position: relative; */
   /* left: 10px; */
 }
-.completed-vh-10{height: 10vh;}
+.completed-vh-10 {
+  height: 10vh;
+}
 </style>
