@@ -215,7 +215,7 @@
                     <div class="row">
                       <div class="bg-white mt-2 p-1 rounded d-flex">
                         <div
-                          v-if="custom || selectAll"
+                          v-if="(custom && schoolSelected(true)) || selectAll"
                           class="col-md-4 col-lg-6"
                         >
                           <div class="input-group rounded">
@@ -461,13 +461,22 @@ export default {
         }
       }
     },
-    schoolSelected() {
-      const selected = this.schoolList.filter((e) => e.checked);
-      if (selected.length == 1) {
-        console.log("selected", selected);
-        this.schoolId = selected[0].schoolId;
+    schoolSelected(multiple = false) {
+      if (!multiple) {
+        const selected = this.schoolList.filter((e) => e.checked);
+        if (selected.length == 1) {
+          console.log("selected", selected);
+          this.schoolId = selected[0].schoolId;
+        }
+        return selected.length == 1 ? true : false;
+      } else {
+        const selected = this.schoolList.filter((e) => e.checked);
+        if (selected.length == 1) {
+          console.log("selected", selected);
+          this.schoolId = selected[0].schoolId;
+        }
+        return selected.length > 0 ? true : false;
       }
-      return selected.length == 1 ? true : false;
     },
     async GetStudentList(pageNum = 0) {
       if (pageNum != 0) {
