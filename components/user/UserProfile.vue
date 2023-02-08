@@ -26,7 +26,6 @@
               pt-3
             "
           >
-            
             <div
               class="
                 study-col
@@ -43,194 +42,202 @@
                     <div class="form-field">{{ email }}</div>
                   </div> -->
                 <div>
-                  <div class="row">
-
-
+                  <div
+                    :class="
+                      (advisorDetail && advisorDetail.first_name) ||
+                      requestList.length > 0
+                        ? 'row'
+                        : 'row d-flex justify-content-center'
+                    "
+                  >
                     <!----image-->
                     <div class="col-md-6">
                       <div
-              class="
-                study-col
-                profile-col
-                d-flex
-                flex-column
-                justify-content-end
-                align-items-center
-                flex-fill
-              "
-            >
-              <form id="form" enctype="multipart/form-data">
-                <div class="">
-                  <div class="upload-image position-relative">
-                    <div
-                      class="
-                        proof-img-wrp
-                        position-relative
-                        cursor-pointer
-                        d-flex
-                        justify-content-center
-                      "
-                    >
-                      <img
-                        v-if="profileImageUrl"
-                        :src="profileImageUrl"
-                        class="profile-pic rounded-circle"
-                        alt=""
-                      />
-                      <img
-                        v-if="!profileImageUrl"
-                        :src="profile ? profile : defaultImage"
-                        class="profile-pic rounded-circle"
-                        alt=""
-                      />
-                      <!-- @error="$event.target.src=(awsPath + 'images/avatar/man_green.svg')" -->
-
-                      <div
-                        v-if="
-                          this.profile &&
-                          this.profile !=
-                            'https://jochi-developement.s3.ap-south-1.amazonaws.com/profilePic/1634542050892.png'
-                        "
-                        class="middle position-absolute text-center"
-                      >
-                        <div
-                          v-if="
-                            profileImageUrl ||
-                            (profile &&
-                              profile !=
-                                'https://jochi-live.s3.amazonaws.com/profilePic/defaultProfilePic/profile.png')
-                          "
-                          class="text-30 color-dark"
-                          @click="openModal()"
-                        >
-                          <i class="far fa-trash-alt"></i>
-                          <p
-                            class="
-                              text-remove
-                              color-secondary
-                              text-14 text-nowrap
-                            "
-                          >
-                            Remove profile
-                          </p>
-                        </div>
-                      </div>
-
-                      <div class="img-edit d-none">
-                        <a
-                          class="btn btn-info round p-1 mx-1"
-                          href="javascript:void(0)"
-                        >
-                          <i class="fas fa-file-upload"></i>
-                        </a>
-                        <a
-                          class="btn btn-danger round p-1 mx-1"
-                          href="javascript:void(0)"
-                          @click="removeFile"
-                        >
-                          <i class="fas fa-trash-alt"></i>
-                        </a>
-                      </div>
-                    </div>
-                    <div v-if="profileImageUrl">
-                      <span
                         class="
-                          pic-edit
-                          w-100
+                          study-col
+                          profile-col
                           d-flex
-                          flex-row-reverse
-                          position-absolute
+                          flex-column
+                          justify-content-end
+                          align-items-center
+                          flex-fill
                         "
                       >
-                        <i
-                          class="
-                            fas
-                            fa-pen
-                            rounded-circle
-                            position-relative
-                            text-16
-                            d-flex
-                            align-items-center
-                            justify-content-center
-                            bg-theme
-                            text-white
-                          "
-                        >
-                          <!-- accept=".png,.jpeg,.jpg,.doc,.docx,.pdf" -->
-                          <input
-                            type="file"
-                            :v-model="profilePic"
-                            ref="profilePic"
-                            name="profilePic"
-                            id="fileUpload"
-                            class="
-                              rg-img-upload
-                              img-up-two
-                              cursor-pointer
-                              position-absolute
-                              w-100
-                              h-100
-                              rounded-circle
-                            "
-                            @change="onFileChange()"
-                            accept=".jpeg,.jpg,.png"
-                          />
-                        </i> </span
-                      ><br />
-                    </div>
-                    <div v-else class="custom-upload-with-msg text-center">
-                      <span
-                        class="
-                          pic-edit
-                          w-100
-                          d-flex
-                          flex-row-reverse
-                          position-absolute
-                        "
-                      >
-                        <i
-                          class="
-                            fas
-                            fa-pen
-                            rounded-circle
-                            position-relative
-                            text-16
-                            d-flex
-                            align-items-center
-                            justify-content-center
-                            bg-theme
-                            text-white
-                          "
-                        >
-                          <input
-                            id="actual-btn"
-                            type="file"
-                            :v-model="profilePic"
-                            ref="profilePic"
-                            name="profilePic"
-                            class="
-                              rg-img-upload
-                              img-up-two
-                              cursor-pointer
-                              position-absolute
-                              w-100
-                              h-100
-                              rounded-circle
-                            "
-                            @change="onFileChange"
-                            accept=".jpeg,.jpg,.png"
-                          />
-                        </i> </span
-                      ><br />
-                    </div>
-                  </div>
-                </div>
-                <h4 class="text-center color-dark font-semi-bold">
-                  <!-- <span><i class="fas fa-user"></i></span> -->
-                  {{ name }}
-                </h4>
+                        <form id="form" enctype="multipart/form-data">
+                          <div class="">
+                            <div class="upload-image position-relative">
+                              <div
+                                class="
+                                  proof-img-wrp
+                                  position-relative
+                                  cursor-pointer
+                                  d-flex
+                                  justify-content-center
+                                "
+                              >
+                                <img
+                                  v-if="profileImageUrl"
+                                  :src="profileImageUrl"
+                                  class="profile-pic rounded-circle"
+                                  alt=""
+                                />
+                                <img
+                                  v-if="!profileImageUrl"
+                                  :src="profile ? profile : defaultImage"
+                                  class="profile-pic rounded-circle"
+                                  alt=""
+                                />
+                                <!-- @error="$event.target.src=(awsPath + 'images/avatar/man_green.svg')" -->
 
-                <!-- <button
+                                <div
+                                  v-if="
+                                    this.profile &&
+                                    this.profile !=
+                                      'https://jochi-developement.s3.ap-south-1.amazonaws.com/profilePic/1634542050892.png'
+                                  "
+                                  class="middle position-absolute text-center"
+                                >
+                                  <div
+                                    v-if="
+                                      profileImageUrl ||
+                                      (profile &&
+                                        profile !=
+                                          'https://jochi-live.s3.amazonaws.com/profilePic/defaultProfilePic/profile.png')
+                                    "
+                                    class="text-30 color-dark"
+                                    @click="openModal()"
+                                  >
+                                    <i class="far fa-trash-alt"></i>
+                                    <p
+                                      class="
+                                        text-remove
+                                        color-secondary
+                                        text-14 text-nowrap
+                                      "
+                                    >
+                                      Remove profile
+                                    </p>
+                                  </div>
+                                </div>
+
+                                <div class="img-edit d-none">
+                                  <a
+                                    class="btn btn-info round p-1 mx-1"
+                                    href="javascript:void(0)"
+                                  >
+                                    <i class="fas fa-file-upload"></i>
+                                  </a>
+                                  <a
+                                    class="btn btn-danger round p-1 mx-1"
+                                    href="javascript:void(0)"
+                                    @click="removeFile"
+                                  >
+                                    <i class="fas fa-trash-alt"></i>
+                                  </a>
+                                </div>
+                              </div>
+                              <div v-if="profileImageUrl">
+                                <span
+                                  class="
+                                    pic-edit
+                                    w-100
+                                    d-flex
+                                    flex-row-reverse
+                                    position-absolute
+                                  "
+                                >
+                                  <i
+                                    class="
+                                      fas
+                                      fa-pen
+                                      rounded-circle
+                                      position-relative
+                                      text-16
+                                      d-flex
+                                      align-items-center
+                                      justify-content-center
+                                      bg-theme
+                                      text-white
+                                    "
+                                  >
+                                    <!-- accept=".png,.jpeg,.jpg,.doc,.docx,.pdf" -->
+                                    <input
+                                      type="file"
+                                      :v-model="profilePic"
+                                      ref="profilePic"
+                                      name="profilePic"
+                                      id="fileUpload"
+                                      class="
+                                        rg-img-upload
+                                        img-up-two
+                                        cursor-pointer
+                                        position-absolute
+                                        w-100
+                                        h-100
+                                        rounded-circle
+                                      "
+                                      @change="onFileChange()"
+                                      accept=".jpeg,.jpg,.png"
+                                    />
+                                  </i> </span
+                                ><br />
+                              </div>
+                              <div
+                                v-else
+                                class="custom-upload-with-msg text-center"
+                              >
+                                <span
+                                  class="
+                                    pic-edit
+                                    w-100
+                                    d-flex
+                                    flex-row-reverse
+                                    position-absolute
+                                  "
+                                >
+                                  <i
+                                    class="
+                                      fas
+                                      fa-pen
+                                      rounded-circle
+                                      position-relative
+                                      text-16
+                                      d-flex
+                                      align-items-center
+                                      justify-content-center
+                                      bg-theme
+                                      text-white
+                                    "
+                                  >
+                                    <input
+                                      id="actual-btn"
+                                      type="file"
+                                      :v-model="profilePic"
+                                      ref="profilePic"
+                                      name="profilePic"
+                                      class="
+                                        rg-img-upload
+                                        img-up-two
+                                        cursor-pointer
+                                        position-absolute
+                                        w-100
+                                        h-100
+                                        rounded-circle
+                                      "
+                                      @change="onFileChange"
+                                      accept=".jpeg,.jpg,.png"
+                                    />
+                                  </i> </span
+                                ><br />
+                              </div>
+                            </div>
+                          </div>
+                          <h4 class="text-center color-dark font-semi-bold">
+                            <!-- <span><i class="fas fa-user"></i></span> -->
+                            {{ name }}
+                          </h4>
+
+                          <!-- <button
             id="clckPrevent"
             type="submit"
             class="btn btn-primary "
@@ -238,8 +245,8 @@
           >
           <span class="mr-2"><i class="fas fa-save"></i></span> <span>Save Changes</span>
           </button> -->
-              </form>
-            </div>  
+                        </form>
+                      </div>
                       <div class="col-12 col-md-12">
                         <div
                           class="card card-primary p-3 h-100 d-flex flex-column"
@@ -311,7 +318,7 @@
                               <span>Update</span>
                             </button>
 
-                            <div class="card card-primary p-3 ">
+                            <div class="card card-primary p-3">
                               <p
                                 class="
                                   mb-0
@@ -335,11 +342,13 @@
                                   maxlength="15"
                                 />
                               </p>
-                              
                             </div>
-                            <span class="mt-1" v-if="phoneInvalid" style="color: red"
-                                >Please enter a valid phone number</span
-                              >
+                            <span
+                              class="mt-1"
+                              v-if="phoneInvalid"
+                              style="color: red"
+                              >Please enter a valid phone number</span
+                            >
                           </div>
                           <div
                             class="
@@ -349,7 +358,6 @@
                               align-items-center
                             "
                           >
-                            
                             <div>
                               <div class="custom-switch pb-1">
                                 <input
@@ -472,7 +480,14 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-6 d-flex align-items-center">
+                    <div
+                      v-if="
+                        user_type == '3' &&
+                        advisorDetail &&
+                        advisorDetail.first_name
+                      "
+                      class="col-md-6 d-flex align-items-center"
+                    >
                       <div v-if="user_type == '3'" class="col-md-12">
                         <div
                           v-if="advisorDetail && advisorDetail.first_name"
@@ -610,8 +625,6 @@
                         </div>
                       </div>
                     </div>
-
-                    
 
                     <!-- <div class="col-12 col-md-4">
                         <div class="card card-primary h-100 ">
