@@ -432,8 +432,10 @@ const mutations = {
     state.successType = data;
   },
   setPhone(state, data) {
-    state.phone = data;
-    localStorage.setItem('phone', data);
+    if (data) {
+      state.phone = data;
+      localStorage.setItem('phone', data);
+    }
   },
   setNotification(state, data) {
     state.notification = data;
