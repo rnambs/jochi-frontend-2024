@@ -35,7 +35,7 @@
               <div class="bg-white mt-2 p-1 rounded row">
                 <!-- table -->
                 <div class="bg-white mt-2 p-1 rounded row">
-                  <div class="col-md-4 col-lg-3 d-flex align-items-center">
+                  <div class="col-lg-4 d-flex align-items-center align-items-start">
                     <div class="input-group rounded d-flex">
                       <input
                         class="mr-1"
@@ -59,7 +59,7 @@
                       <label for="custom" class="m-0">Search</label>
                     </div>
                   </div>
-                  <div class="col-md-4 col-lg-12">
+                  <div class="col-md-12">
                     <div class="row">
                       <div
                         v-if="custom"
@@ -116,7 +116,7 @@
                       class="bg-white mt-2 p-1 rounded"
                     >
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12 col-lg-6">
                           <table class="user-table table">
                             <tr class="text-secondary bg-light">
                               <th>
@@ -160,7 +160,7 @@
                             </tr>
                           </table>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12 col-lg-6">
                           <table
                             v-if="studentsList && schoolSelected()"
                             class="user-table table"
