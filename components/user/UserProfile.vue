@@ -482,11 +482,12 @@
                     </div>
                     <div
                       v-if="
-                        user_type == '3' &&
-                        advisorDetail &&
-                        advisorDetail.first_name
+                        (user_type == '3' &&
+                          advisorDetail &&
+                          advisorDetail.first_name) ||
+                        requestList.length > 0
                       "
-                      class="col-md-6 d-flex align-items-center"
+                      class="col-md-6"
                     >
                       <div v-if="user_type == '3'" class="col-md-12">
                         <div

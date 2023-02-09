@@ -210,7 +210,14 @@
                                         </div>
                                       </div>
                                       <div class="assignment-add-section">
-                                        <h4 class="mb-1 text-center word-break text-capitalize">
+                                        <h4
+                                          class="
+                                            mb-1
+                                            text-center
+                                            word-break
+                                            text-capitalize
+                                          "
+                                        >
                                           {{ item.task }}
                                         </h4>
                                         <div class="text-center px-3">
@@ -833,7 +840,14 @@
                                       h-100
                                     "
                                   >
-                                    <h4 class="mb-0 blue word-break text-capitalize">
+                                    <h4
+                                      class="
+                                        mb-0
+                                        blue
+                                        word-break
+                                        text-capitalize
+                                      "
+                                    >
                                       {{ item.task }}
                                     </h4>
                                     <p
@@ -927,7 +941,12 @@
                                   "
                                 >
                                   <h4
-                                    class="mb-0 blue word-break text-truncate text-capitalize"
+                                    class="
+                                      mb-0
+                                      blue
+                                      word-break
+                                      text-truncate text-capitalize
+                                    "
                                   >
                                     {{ item.task }}
                                   </h4>
@@ -2413,7 +2432,7 @@
               Undo complete assignment confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">Undo assignment completion??</div>
+          <div class="modal-body px-4">Undo assignment completion?</div>
           <div class="modal-footer">
             <button
               type="button"
