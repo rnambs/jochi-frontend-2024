@@ -347,7 +347,8 @@
                               class="mt-1"
                               v-if="phoneInvalid"
                               style="color: red"
-                              >Please enter a valid phone number</span
+                              >Please enter a valid phone number with country
+                              code</span
                             >
                           </div>
                           <div
@@ -989,7 +990,10 @@ export default {
     checkValueChange() {
       console.log(this.phoneNumber);
       const phonePattern = /^(\+\d{1,3}[- ]?)?\d{10,15}$/;
-      if (!phonePattern.test(this.phoneNumber)) {
+      if (
+        !phonePattern.test(this.phoneNumber) ||
+        !this.phoneNumber.includes("+")
+      ) {
         this.phoneInvalid = true;
       } else {
         this.phoneInvalid = false;
