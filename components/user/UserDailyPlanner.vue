@@ -2652,7 +2652,7 @@
               Undo complete assignment confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">Undo this action?</div>
+          <div class="modal-body px-4">Undo assignment completion??</div>
           <div class="modal-footer">
             <button
               type="button"
