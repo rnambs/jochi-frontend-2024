@@ -821,7 +821,7 @@
                             "
                           >
                             <span class="color-secondary text-center"
-                              >There are no completed tasks today</span
+                              >No completed tasks today</span
                             >
                           </div>
                         </draggable>
@@ -963,7 +963,7 @@
                           "
                         >
                           <span class="color-secondary text-center"
-                            >There are no completed tasks today</span
+                            >No completed tasks today</span
                           >
                         </div>
                       </div>
