@@ -185,7 +185,14 @@
                                     </div>
                                   </div>
                                   <div class="assignment-add-section">
-                                    <h4 class="mb-1 text-center word-break">
+                                    <h4
+                                      class="
+                                        mb-1
+                                        text-center
+                                        word-break
+                                        text-capitalize
+                                      "
+                                    >
                                       {{ item.task }}
                                     </h4>
                                     <div class="text-center px-3">
@@ -489,7 +496,7 @@
                                       mb-1
                                       text-center
                                       word-break
-                                      text-truncate
+                                      text-truncate text-capitalize
                                     "
                                   >
                                     {{ item.task }}
@@ -794,7 +801,9 @@
                                   h-100
                                 "
                               >
-                                <h4 class="mb-0 blue word-break">
+                                <h4
+                                  class="mb-0 blue word-break text-capitalize"
+                                >
                                   {{ item.task }}
                                 </h4>
                                 <p
@@ -896,7 +905,14 @@
                                 h-100
                               "
                             >
-                              <h4 class="mb-0 blue word-break text-truncate">
+                              <h4
+                                class="
+                                  mb-0
+                                  blue
+                                  word-break
+                                  text-truncate text-capitalize
+                                "
+                              >
                                 {{ item.task }}
                               </h4>
                               <!-- <p
