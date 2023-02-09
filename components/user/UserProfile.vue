@@ -978,12 +978,12 @@ export default {
       $(".modal-backdrop").remove();
     },
     checkValue() {
-      console.log(this.phoneNumber);
-      const phonePattern = /^(\+|\d+)$/;
-      if (!phonePattern.test(this.phoneNumber)) {
-        this.phoneNumber = this.phoneNumber.slice(0, -1);
-      }
-      console.log(this.phoneNumber);
+      // console.log(this.phoneNumber);
+      // const phonePattern = /^(\+\d{1,3}[- ]?)?\d{10,15}$/;
+      // if (!phonePattern.test(this.phoneNumber)) {
+      //   this.phoneNumber = this.phoneNumber.slice(0, -1);
+      // }
+      // console.log(this.phoneNumber);
     },
     checkValueChange() {
       console.log(this.phoneNumber);
