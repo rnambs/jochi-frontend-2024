@@ -4318,6 +4318,12 @@ export default {
       if (index > -1) {
         this.peerList.splice(index, 1); // 2nd parameter means remove one item only
       }
+      const index1 = this.peerSelected.findIndex(
+        (item) => item.id == this.removePeerId
+      );
+      if (index1 > -1) {
+        this.peerSelected.splice(index1, 1); // 2nd parameter means remove one item only
+      }
     },
     onChooseMultiple(id) {
       if (this.choosenAssignments.includes(id)) {

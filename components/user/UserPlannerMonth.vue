@@ -3756,11 +3756,11 @@ export default {
           var color = "#EF382E";
         } else if (element.priority == "2") {
           var color = "#F6D73C";
-        } else if(element.priority=="3"){
+        } else if (element.priority == "3") {
           var color = "#00CCA0";
         } else if (element.priority == "4") {
-            var color = "#a7a7a7";
-          }
+          var color = "#a7a7a7";
+        }
         var dateMeeting = element.due_date;
         var tmeMeeting = "";
         if (element.due_time) {
@@ -4502,6 +4502,12 @@ export default {
       );
       if (index > -1) {
         this.peerList.splice(index, 1); // 2nd parameter means remove one item only
+      }
+      const index1 = this.peerSelected.findIndex(
+        (item) => item.id == this.removePeerId
+      );
+      if (index1 > -1) {
+        this.peerSelected.splice(index1, 1); // 2nd parameter means remove one item only
       }
     },
     onChooseMultiple(id) {
