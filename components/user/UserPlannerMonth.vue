@@ -3381,6 +3381,14 @@ export default {
       this.GetMonthlyPlanner();
     },
     async UpdateAssignment() {
+      if (this.priorityVal == "Overdue") {
+        this.$toast.open({
+          message: "Please select the priority",
+          type: "error",
+          duration: 5000,
+        });
+        return;
+      }
       this.submitted = true;
       if (!this.isSharedAssignment) {
         this.$v.$touch();
