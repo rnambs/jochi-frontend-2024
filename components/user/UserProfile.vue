@@ -592,7 +592,7 @@
                                     flex-column flex-md-row
                                     align-items-center
                                     justify-content-between
-                                    w-100
+                                    w-100 flex-wrap
                                   "
                                 >
                                   <div class="ld-details-section">
@@ -612,23 +612,23 @@
                                     class="
                                       d-flex
                                       align-items-center
-                                      justify-content-center
+                                      justify-content-center flex-wrap
                                     "
                                   >
                                     <button
                                       class="
                                         btn btn-secondary
-                                        px-4
+                                        px-3
                                         py-1
                                         rounded-pill
-                                        mr-2
+                                        mr-2 mb-2
                                       "
                                       @click="respondRequest(2, advisor)"
                                     >
                                       Reject
                                     </button>
                                     <button
-                                      class="btn btn-primary px-4 py-1 rounded-pill"
+                                      class="btn btn-primary px-3 py-1 mb-2 rounded-pill"
                                       @click="respondRequest(1, advisor)"
                                     >
                                       Accept
