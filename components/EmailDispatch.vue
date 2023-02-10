@@ -32,7 +32,7 @@
 
                 <!-- end search tab -->
               </div>
-              <div class="bg-white mt-2 p-1 rounded row">
+              <div class="bg-white mt-2 p-1 rounded row overflow-hidden">
                 <!-- table -->
                 <div class="bg-white mt-2 p-1 rounded row">
                   <div
