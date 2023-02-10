@@ -35,7 +35,9 @@
               <div class="bg-white mt-2 p-1 rounded row">
                 <!-- table -->
                 <div class="bg-white mt-2 p-1 rounded row">
-                  <div class="col-lg-4 d-flex align-items-center align-items-start">
+                  <div
+                    class="col-lg-4 d-flex align-items-center align-items-start"
+                  >
                     <div class="input-group rounded d-flex">
                       <input
                         class="mr-1"
@@ -136,7 +138,7 @@
                                 colspan="5"
                                 class="text-center text-danger pt-3"
                               >
-                                No data found
+                                Type something to search for students
                               </td>
                             </tr>
                             <tr
@@ -184,7 +186,7 @@
                                 colspan="5"
                                 class="text-center text-danger pt-3"
                               >
-                                No data found
+                                Type something to start searching
                               </td>
                             </tr>
                             <tr
@@ -292,10 +294,10 @@ export default {
   },
   computed: {
     ...mapState("emailDispatch", {
-      successMessage: (state) => state.successMessage,
-      SuccessType: (state) => state.SuccessType,
-      errorMessage: (state) => state.errorMessage,
-      errorType: (state) => state.errorType,
+      successMessageEmail: (state) => state.successMessageEmail,
+      SuccessTypeEmail: (state) => state.SuccessTypeEmail,
+      errorMessageEmail: (state) => state.errorMessageEmail,
+      errorTypeEmail: (state) => state.errorTypeEmail,
     }),
     ...mapState("schoolListTable", {
       schools: (state) => state.schools,
@@ -350,22 +352,34 @@ export default {
         template_id: this.templateId,
         select_all: this.selectAll,
       });
-      if (this.successMessage != "") {
+      if (this.successMessageEmail != "") {
         this.selectAll = false;
         this.custom = false;
         this.schoolList = [];
         this.studentsList = [];
+        this.chooseAll = false;
+        this.chooseAllStudent = false;
+        this.search = "";
+        this.searchStudent = "";
+        this.GetStudentList();
         this.templateId = "";
         this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
+          message: this.successMessageEmail,
+          type: this.SuccessTypeEmail,
           duration: 5000,
         });
       }
-      if (this.errorMessage != "") {
+      if (this.errorMessageEmail != "") {
+        this.selectAll = false;
+        this.custom = false;
+        this.chooseAll = false;
+        this.chooseAllStudent = false;
+        this.search = "";
+        this.searchStudent = "";
+        this.GetStudentList();
         this.$toast.open({
-          message: this.errorMessage,
-          type: this.errorType,
+          message: this.errorMessageEmail,
+          type: this.errorTypeEmail,
           duration: 5000,
         });
       }
@@ -495,7 +509,6 @@ export default {
           var first_name = element.first_name;
           var email = element.email;
           var isactive = element.isactive;
-
           studentArray["id"] = id;
           studentArray["first_name"] = first_name;
           studentArray["email"] = email;
