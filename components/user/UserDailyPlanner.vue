@@ -1017,6 +1017,7 @@
                               openAssignment = false;
                               isAddAssignment = true;
                               assignmentId = '';
+                              closePopup();
                             "
                             ><i class="fas fa-times"></i
                           ></span>
@@ -2081,7 +2082,10 @@
                               rounded-pill
                               mr-2
                             "
-                            @click="openAssignment = false"
+                            @click="
+                              openAssignment = false;
+                              closePopup();
+                            "
                           >
                             Close
                           </button>
@@ -4409,6 +4413,17 @@ export default {
     },
     updateOverdueStatus(data) {
       this.tempAssts.find((e) => e.id == data.id)?.priority == 4;
+    },
+    closePopup() {
+      this.offset = 0;
+      this.tempAssts = [];
+      this.reloadNext = true;
+      this.reloadCount += 1;
+      this.deletedSubTasksArray = [];
+
+      this.GetAssignment();
+      this.getDailyPlanner();
+      this.openAssignment = false;
     },
   },
 };
