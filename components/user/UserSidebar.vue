@@ -921,5 +921,7 @@ export default {
 <style>
 @media (max-width: 991.98px) { 
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a{font-size: 0.7rem;}
- }
+
+ .dropdown .dropdown-menu.notify{top:-40px !important}
+}
 </style>
