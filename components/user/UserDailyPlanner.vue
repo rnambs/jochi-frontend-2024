@@ -62,7 +62,7 @@
                       justify-content-md-end justify-content-start
                       align-items-center
                       px-4
-                      pb-2
+                      pb-0
                     "
                   >
                     <div class="row">
@@ -1475,7 +1475,7 @@
                               <div
                                 v-for="peer of peerList"
                                 :key="peer.id"
-                                class="h-fit-content"
+                                class="h-fit-content  show-icon"
                               >
                                 <div
                                   class="d-flex align-items-center my-2 mr-3"
@@ -1500,22 +1500,23 @@
                                         alt=""
                                       />
                                     </div>
-                                    <button
-                                      type="button"
-                                      role="button"
-                                      @click="
-                                        removePeerConfirm(peer.id, $event)
-                                      "
-                                    >
-                                      <i class="fas fa-trash-alt mt-2"></i>
-                                    </button>
+                                    
                                   </div>
                                   <div class="ld-details-section">
-                                    <p class="ld-heading mb-4">
+                                    <p class="ld-heading mb-0">
                                       {{ peer.first_name }}
                                     </p>
                                   </div>
                                 </div>
+                                <button
+                                    type="button"
+                                    role="button"
+                                    @click="
+                                      removePeerConfirm(peer.id, $event)
+                                    "
+                                  >
+                                    <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt ml-3"></i></span>
+                                </button>
                               </div>
                             </div>
 
