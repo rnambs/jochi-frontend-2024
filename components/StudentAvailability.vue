@@ -118,7 +118,7 @@
                   <form action="" class="">
                     <div class="row slot-form">
                       <div class="col">
-                        <div class="custom-switch mb-3 switch-right">
+                        <div class="custom-switch mb-3">
                           <input
                             type="checkbox"
                             class="custom-control-input"
@@ -134,7 +134,7 @@
                           >
                         </div>
 
-                        <div class="custom-switch mb-3 switch-right">
+                        <div class="custom-switch mb-3">
                           <input
                             type="checkbox"
                             class="custom-control-input"
@@ -157,7 +157,7 @@
                         </div>
                       </div>
                       <div class="col">
-                        <div class="custom-switch mb-3 switch-right">
+                        <div class="custom-switch mb-3">
                           <input
                             type="checkbox"
                             class="custom-control-input"
@@ -180,7 +180,7 @@
 
                         <div
                           v-if="isWeek || isMonth || isTime"
-                          class="custom-switch mb-3 switch-right"
+                          class="custom-switch mb-3"
                         >
                           <input
                             type="checkbox"
