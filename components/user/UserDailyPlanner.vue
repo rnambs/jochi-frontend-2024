@@ -1477,16 +1477,17 @@
                                 class="h-fit-content"
                               >
                                 <div
-                                  class="
-                                    d-flex
-                                    align-items-center
-                                    my-2
-                                    mr-3
-                                    
-                                  "
+                                  class="d-flex align-items-center my-2 mr-3"
                                 >
-                                  <div class="ld-img-section mr-2 d-flex flex-column">
-                                    <div class="ld-img-holder ">
+                                  <div
+                                    class="
+                                      ld-img-section
+                                      mr-2
+                                      d-flex
+                                      flex-column
+                                    "
+                                  >
+                                    <div class="ld-img-holder">
                                       <img
                                         v-if="peer.profile_pic"
                                         :src="peer.profile_pic"
@@ -1505,7 +1506,7 @@
                                         removePeerConfirm(peer.id, $event)
                                       "
                                     >
-                                    <i class="fas fa-trash-alt mt-2"></i>
+                                      <i class="fas fa-trash-alt mt-2"></i>
                                     </button>
                                   </div>
                                   <div class="ld-details-section">
@@ -1894,7 +1895,7 @@
                                     min-w-200
                                   "
                                 >
-                                  <div class="ld-img-section mr-3 ">
+                                  <div class="ld-img-section mr-3">
                                     <div class="ld-img-holder">
                                       <img
                                         v-if="peer.profile_pic"
@@ -2444,7 +2445,7 @@
                   class="h-fit-content"
                 >
                   <div class="d-flex align-items-center my-2 mr-3 min-w-200">
-                    <div class="ld-img-section mr-3 ">
+                    <div class="ld-img-section mr-3">
                       <div class="ld-img-holder">
                         <img
                           v-if="peer.profile_pic"
@@ -2668,8 +2669,10 @@
             </h3>
           </div>
           <div class="modal-body px-3">
-            <h5 class="color-dark font-semi-bold">Undo assignment completion?</h5>  
-            </div>
+            <h5 class="color-dark font-semi-bold">
+              Undo assignment completion?
+            </h5>
+          </div>
           <div class="modal-footer">
             <button
               type="button"
@@ -2884,6 +2887,7 @@ export default {
       undoAsstId: 0,
       undoSubtaskId: 0,
       user_id: "",
+      removedPeerList: [],
     };
   },
   mounted() {
@@ -3452,6 +3456,14 @@ export default {
         });
       }
 
+      let removed = this.removedPeerList;
+      this.removedPeerList.forEach((e) => {
+        const index = this.peerList.findIndex((item) => item.id == e);
+        if (!index) {
+          removed.push(e);
+        }
+      });
+
       let assignment_materials = [];
       if (
         this.additionalMaterialList &&
@@ -3483,6 +3495,7 @@ export default {
         assignment_materials: assignment_materials,
         subTasks: subTaskLists,
         deleted_subTask: this.deletedSubTasksArray,
+        removed_users: removed,
       });
       this.loading = false;
       if (this.successMessage != "") {
@@ -4323,6 +4336,7 @@ export default {
       this.removePeerId = id;
     },
     removePeer() {
+      this.removedPeerList.push(this.removePeerId);
       const index = this.peerList.findIndex(
         (item) => item.id == this.removePeerId
       );
