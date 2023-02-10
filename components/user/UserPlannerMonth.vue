@@ -1103,6 +1103,7 @@
                                   openAssignment = false;
                                   isAddAssignment = true;
                                   assignmentId = '';
+                                  closePopup();
                                 "
                                 ><i class="fas fa-times"></i
                               ></span>
@@ -2199,7 +2200,10 @@
                                   rounded-pill
                                   mr-2
                                 "
-                                @click="openAssignment = false"
+                                @click="
+                                  openAssignment = false;
+                                  closePopup();
+                                "
                               >
                                 Close
                               </button>
@@ -2902,6 +2906,8 @@ export default {
       completedSharedAssignments: (state) => state.completedSharedAssignments,
       newAdditionalMaterial: (state) => state.newAdditionalMaterial,
       allSubTskCompleted: (state) => state.allSubTskCompleted,
+        overdues: (state) => state.overdues,
+      sharedOverdues: (state) => state.sharedOverdues,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -3416,6 +3422,8 @@ export default {
           removed.push(e);
         }
       });
+
+      removed = [...new Set(removed)];
 
       let assignment_materials = [];
       if (
@@ -4032,6 +4040,9 @@ export default {
 
         this.pendingAssignments = [];
         await this.getAssignments({ offset: this.offset, limit: this.limit });
+         if (this.offset == 0) {
+          await this.mapOverdues();
+        }
         this.offset = this.offset + this.limit;
         this.assignmentMaterials = [];
         await this.mapAssignments();
@@ -4052,6 +4063,21 @@ export default {
         this.reloadCount += 1;
         this.tempAssts = [];
         this.offset = 0;
+      }
+    },
+    mapOverdues() {
+      if (this.overdues && this.overdues.length > 0) {
+        this.overdues.forEach((e) => {
+          let asst = this.mapData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
+    
+      if (this.sharedOverdues && this.sharedOverdues.length > 0) {
+        this.sharedOverdues.forEach((e) => {
+          let asst = this.mapSharedData(e);
+          this.pendingAssignments.push(asst);
+        });
       }
     },
     mapAssignments() {
@@ -4602,6 +4628,17 @@ export default {
     },
     updateOverdueStatus(data) {
       this.tempAssts.find((e) => e.id == data.id)?.priority == 4;
+    },
+    closePopup() {
+      this.offset = 0;
+      this.tempAssts = [];
+      this.reloadNext = true;
+      this.reloadCount += 1;
+      this.deletedSubTasksArray = [];
+
+      this.GetAssignment();
+      this.getMonthlyPlanner();
+      this.openAssignment = false;
     },
   },
 };
