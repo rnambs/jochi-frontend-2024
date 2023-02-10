@@ -1482,7 +1482,7 @@
                                     align-items-center
                                     my-2
                                     mr-3
-                                    min-w-200
+                                    
                                   "
                                 >
                                   <div class="ld-img-section mr-3">
@@ -1505,7 +1505,7 @@
                                         removePeerConfirm(peer.id, $event)
                                       "
                                     >
-                                      Remove
+                                    <i class="fas fa-trash-alt"></i>
                                     </button>
                                   </div>
                                   <div class="ld-details-section">
@@ -2668,7 +2668,9 @@
               Undo complete assignment confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">Undo assignment completion?</div>
+          <div class="modal-body px-4">
+            <h5 class="color-dark font-semi-bold">Undo assignment completion?</h5>  
+            </div>
           <div class="modal-footer">
             <button
               type="button"
