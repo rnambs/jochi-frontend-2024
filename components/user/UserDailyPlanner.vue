@@ -3078,7 +3078,11 @@ export default {
             var color = "#F6D73C";
           } else if (element.priority == "3") {
             var color = "#00CCA0";
-          } else if (element.priority == "4") {
+          }
+          // else if (element.priority == "4") {
+          //   var color = "#a7a7a7";
+          // }
+          if (element.task_status == "Completed") {
             var color = "#a7a7a7";
           }
           var dateMeeting = element.due_date;
@@ -3215,7 +3219,11 @@ export default {
             var color = "#F6D73C";
           } else if (element.priority == "3") {
             var color = "#00CCA0";
-          } else if (element.priority == "4") {
+          }
+          //  else if (element.priority == "4") {
+          //   var color = "#a7a7a7";
+          // }
+          if (element.task_status == "Completed") {
             var color = "#a7a7a7";
           }
           var dateMeeting = element.due_date;
