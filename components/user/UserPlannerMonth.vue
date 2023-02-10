@@ -3414,11 +3414,11 @@ export default {
         });
       }
 
-      let removed = this.removedPeerList;
-
+       let removed = [];
       this.removedPeerList.forEach((e) => {
         const index = this.peerList.findIndex((item) => item.id == e);
-        if (!index) {
+        if (index < 0) {
+          console.log("index", index);
           removed.push(e);
         }
       });
@@ -3467,6 +3467,7 @@ export default {
         removed_users: removed,
       });
       this.loading = false;
+       this.removedPeerList = [];
       if (this.successMessage != "") {
         this.offset = 0;
         this.tempAssts = [];
