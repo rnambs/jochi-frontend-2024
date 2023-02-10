@@ -4144,6 +4144,8 @@ export default {
           ? "Important"
           : data.priority == "3"
           ? "Can Wait"
+          : data.priority == "4"
+          ? "Overdue"
           : "";
 
       if (data.isShared) {
