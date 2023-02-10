@@ -364,7 +364,7 @@
                                 align-items-center
                               "
                             >
-                              <div class="d-flex">
+                              <div class="d-flex flex-wrap">
                                 <div class="custom-switch pb-1 mr-3">
                                   <input
                                     @change="updateNotification($event, 'sms')"
@@ -409,8 +409,7 @@
                                     >Meeting Notification
                                   </label>
                                 </div>
-                              </div>
-                              <div class="d-flex">
+                              
                                 <div class="custom-switch pb-1 mr-3">
                                   <input
                                     @change="updateNotification($event, 'club')"
@@ -455,8 +454,6 @@
                                     >Assignment Notification
                                   </label>
                                 </div>
-                              </div>
-                              <div class="d-flex">
                                 <div class="custom-switch pb-1 mr-3">
                                   <input
                                     @change="

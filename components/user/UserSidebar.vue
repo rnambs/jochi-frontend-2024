@@ -920,6 +920,6 @@ export default {
 </script>
 <style>
 @media (max-width: 991.98px) { 
-  .nav-lin{font-size: 10px;}
+  .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a{font-size: 0.7rem;}
  }
 </style>
