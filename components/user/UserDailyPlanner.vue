@@ -3473,14 +3473,14 @@ export default {
         });
       }
 
-      let removed = this.removedPeerList;
+      let removed = [];
       this.removedPeerList.forEach((e) => {
         const index = this.peerList.findIndex((item) => item.id == e);
-        if (!index) {
+        if (index < 0) {
+          console.log("index", index);
           removed.push(e);
         }
       });
-
       removed = [...new Set(removed)];
 
       let assignment_materials = [];
@@ -3517,6 +3517,7 @@ export default {
         removed_users: removed,
       });
       this.loading = false;
+      this.removedPeerList = [];
       if (this.successMessage != "") {
         this.offset = 0;
         this.tempAssts = [];
@@ -3915,7 +3916,7 @@ export default {
           this.pendingAssignments.push(asst);
         });
       }
-    
+
       if (this.sharedOverdues && this.sharedOverdues.length > 0) {
         this.sharedOverdues.forEach((e) => {
           let asst = this.mapSharedData(e);
