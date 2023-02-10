@@ -3194,7 +3194,7 @@ export default {
           type: "error",
           duration: 5000,
         });
-        return
+        return;
       }
       this.submitted = true;
       if (!this.isSharedAssignment) {
@@ -3223,6 +3223,8 @@ export default {
           removed.push(e);
         }
       });
+
+      removed = [...new Set(removed)];
 
       let assignment_materials = [];
       if (

@@ -3417,6 +3417,8 @@ export default {
         }
       });
 
+       removed = [...new Set(removed)];
+
       let assignment_materials = [];
       if (
         this.additionalMaterialList &&
