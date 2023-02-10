@@ -918,3 +918,8 @@ export default {
   // // middleware: "authenticated",
 };
 </script>
+<style>
+@media (max-width: 991.98px) { 
+  .nav-lin{font-size: 10px;}
+ }
+</style>
