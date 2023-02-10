@@ -2,11 +2,11 @@ import { BASE_URL } from "../assets/js/constants";
 
 const state = {
     schools: [],
-    successMessage: "",
-    successType: "",
-    schoolCount: "",
-    errorMessage: "",
-    errorType: "",
+    successMessageEmail: "",
+    successTypeEmail: "",
+    schoolCountEmail: "",
+    errorMessageEmail: "",
+    errorTypeEmail: "",
 }
 const actions = {
 
@@ -19,20 +19,20 @@ const actions = {
                     'Authorization': ` ${token}`
                 },
             });
-            commit('setSuccessMessage', response.message);
-            commit('setSuccessType', "success");
-            commit('setErrorMessage', "");
-            commit('setErrorType', "");
+            commit('setsuccessMessageEmail', response.message);
+            commit('setsuccessTypeEmail', "success");
+            commit('seterrorMessageEmail', "");
+            commit('seterrorTypeEmail', "");
         } catch (e) {
             if (e.response && e.response.status == 401) {
                 window.localStorage.clear();
                 this.$router.push('/admin-login');
             }
             else {
-                commit('setErrorMessage', e.response.data.message);
-                commit('setErrorType', "error");
-                commit('setSuccessMessage', "");
-                commit('setSuccessType', "");
+                commit('seterrorMessageEmail', e.response.data.message);
+                commit('seterrorTypeEmail', "error");
+                commit('setsuccessMessageEmail', "");
+                commit('setsuccessTypeEmail', "");
             }
         }
     },
@@ -46,21 +46,21 @@ const mutations = {
         state.schools = data;
 
     },
-    setschoolCount(state, data) {
-        state.schoolCount = data;
+    setschoolCountEmail(state, data) {
+        state.schoolCountEmail = data;
 
     },
-    setSuccessMessage(state, data) {
-        state.successMessage = data;
+    setsuccessMessageEmail(state, data) {
+        state.successMessageEmail = data;
     },
-    setSuccessType(state, data) {
-        state.successType = data;
+    setsuccessTypeEmail(state, data) {
+        state.successTypeEmail = data;
     },
-    setErrorMessage(state, data) {
-        state.errorMessage = data;
+    seterrorMessageEmail(state, data) {
+        state.errorMessageEmail = data;
     },
-    setErrorType(state, data) {
-        state.errorType = data;
+    seterrorTypeEmail(state, data) {
+        state.errorTypeEmail = data;
     },
 
 }
@@ -69,20 +69,20 @@ const getters = {
     schools: () => {
         return state.schools;
     },
-    schoolCount: () => {
-        return state.schoolCount;
+    schoolCountEmail: () => {
+        return state.schoolCountEmail;
     },
-    successMessage: () => {
-        return state.successMessage;
+    successMessageEmail: () => {
+        return state.successMessageEmail;
     },
-    successType: () => {
-        return state.successType;
+    successTypeEmail: () => {
+        return state.successTypeEmail;
     },
-    errorMessage: () => {
-        return state.errorMessage;
+    errorMessageEmail: () => {
+        return state.errorMessageEmail;
     },
-    errorType: () => {
-        return state.errorType;
+    errorTypeEmail: () => {
+        return state.errorTypeEmail;
     },
 
 }
