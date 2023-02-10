@@ -362,7 +362,6 @@
                             <div>
                               <div class="custom-switch pb-1">
                                 <input
-                                  :disabled="!enableEdit"
                                   @change="updateNotification($event, 'sms')"
                                   type="checkbox"
                                   id="smsNotify"
@@ -384,7 +383,6 @@
                               </div>
                               <div class="custom-switch pb-1">
                                 <input
-                                  :disabled="!enableEdit"
                                   @change="
                                     updateNotification($event, 'meeting')
                                   "
@@ -408,7 +406,6 @@
                               </div>
                               <div class="custom-switch pb-1">
                                 <input
-                                  :disabled="!enableEdit"
                                   @change="updateNotification($event, 'club')"
                                   type="checkbox"
                                   id="clubNotify"
@@ -430,7 +427,6 @@
                               </div>
                               <div class="custom-switch pb-1">
                                 <input
-                                  :disabled="!enableEdit"
                                   @change="
                                     updateNotification($event, 'assignment')
                                   "
@@ -454,7 +450,6 @@
                               </div>
                               <div class="custom-switch pb-1">
                                 <input
-                                  :disabled="!enableEdit"
                                   @change="
                                     updateNotification($event, 'session')
                                   "
