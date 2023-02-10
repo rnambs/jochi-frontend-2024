@@ -296,7 +296,7 @@
                               @click="enableEdit = true"
                             >
                               <span class="mr-1"
-                                ><i class="fas fa-pencil"></i
+                                ><i class="fas fa-pencil color-primary"></i
                               ></span>
                               <span>Edit</span>
                             </button>
@@ -307,13 +307,13 @@
                               @click="enableEdit = false"
                             >
                               <span class="mr-1"
-                                ><i class="fas fa-times"></i
+                                ><i class="fas fa-times color-primary"></i
                               ></span>
                               <span>Cancel</span>
                             </button>
                             <button v-if="enableEdit" @click="phoneUpdate()">
                               <span class="mr-1"
-                                ><i class="fas fa-save"></i
+                                ><i class="fas fa-save color-primary"></i
                               ></span>
                               <span>Update</span>
                             </button>

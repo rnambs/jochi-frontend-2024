@@ -40,7 +40,7 @@
                   >
                     <div class="input-group rounded d-flex">
                       <input
-                        class="mr-1"
+                        class="mr-1" role="button"
                         type="checkbox"
                         aria-describedby="search-addon"
                         v-model="selectAll"
@@ -51,7 +51,7 @@
                     </div>
                     <div class="input-group rounded">
                       <input
-                        class="mr-1"
+                        class="mr-1" role="button"
                         type="checkbox"
                         aria-describedby="search-addon1"
                         v-model="custom"
@@ -70,7 +70,7 @@
                         <div class="input-group rounded d-flex">
                           <input
                             type="search"
-                            class="form-control rounded"
+                            class="form-control rounded mr-3"
                             placeholder="Search"
                             aria-label="Search"
                             aria-describedby="search-addon"
@@ -123,7 +123,7 @@
                             <tr class="text-secondary bg-light">
                               <th>
                                 <input
-                                  type="checkbox"
+                                  type="checkbox" role="button"
                                   name="chooseAll"
                                   v-model="chooseAll"
                                   @change="changeSelection()"
@@ -147,7 +147,7 @@
                             >
                               <td>
                                 <input
-                                  type="checkbox"
+                                  type="checkbox" role="button"
                                   :name="index"
                                   v-model="school.checked"
                                   @change="individualSelect()"
@@ -170,7 +170,7 @@
                             <tr class="text-secondary bg-light">
                               <th>
                                 <input
-                                  type="checkbox"
+                                  type="checkbox" role="button"
                                   name="chooseAllStudent"
                                   v-model="chooseAllStudent"
                                   @change="changeSelectionStudent()"
@@ -195,7 +195,7 @@
                             >
                               <td>
                                 <input
-                                  type="checkbox"
+                                  type="checkbox" role="button"
                                   :name="index"
                                   v-model="student.checked"
                                   @change="individualSelectStudent()"
