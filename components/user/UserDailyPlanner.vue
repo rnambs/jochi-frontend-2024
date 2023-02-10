@@ -1485,8 +1485,8 @@
                                     
                                   "
                                 >
-                                  <div class="ld-img-section mr-3">
-                                    <div class="ld-img-holder">
+                                  <div class="ld-img-section mr-2 d-flex flex-column">
+                                    <div class="ld-img-holder ">
                                       <img
                                         v-if="peer.profile_pic"
                                         :src="peer.profile_pic"
@@ -1505,11 +1505,11 @@
                                         removePeerConfirm(peer.id, $event)
                                       "
                                     >
-                                    <i class="fas fa-trash-alt"></i>
+                                    <i class="fas fa-trash-alt mt-2"></i>
                                     </button>
                                   </div>
                                   <div class="ld-details-section">
-                                    <p class="ld-heading mb-1">
+                                    <p class="ld-heading mb-4">
                                       {{ peer.first_name }}
                                     </p>
                                   </div>
@@ -1600,7 +1600,6 @@
                                     align-items-center
                                     my-2
                                     mr-3
-                                    min-w-200
                                     w-100
                                     show-icon
                                   "
@@ -1895,7 +1894,7 @@
                                     min-w-200
                                   "
                                 >
-                                  <div class="ld-img-section mr-3">
+                                  <div class="ld-img-section mr-3 ">
                                     <div class="ld-img-holder">
                                       <img
                                         v-if="peer.profile_pic"
@@ -2445,7 +2444,7 @@
                   class="h-fit-content"
                 >
                   <div class="d-flex align-items-center my-2 mr-3 min-w-200">
-                    <div class="ld-img-section mr-3">
+                    <div class="ld-img-section mr-3 ">
                       <div class="ld-img-holder">
                         <img
                           v-if="peer.profile_pic"
@@ -2668,7 +2667,7 @@
               Undo complete assignment confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">
+          <div class="modal-body px-3">
             <h5 class="color-dark font-semi-bold">Undo assignment completion?</h5>  
             </div>
           <div class="modal-footer">
