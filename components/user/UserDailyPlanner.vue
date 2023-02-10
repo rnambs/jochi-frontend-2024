@@ -2999,6 +2999,8 @@ export default {
       sharedSessionList: (state) => state.sharedSessionList,
       clubMeetings: (state) => state.clubMeetings,
       allSubTskCompleted: (state) => state.allSubTskCompleted,
+      overdues: (state) => state.overdues,
+      sharedOverdues: (state) => state.sharedOverdues,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -3883,8 +3885,12 @@ export default {
         console.log("inside load next", this.offset);
         this.pendingAssignments = [];
         await this.getAssignments({ offset: this.offset, limit: this.limit });
+        if (this.offset == 0) {
+          await this.mapOverdues();
+        }
         this.offset = this.offset + this.limit;
         this.assignmentMaterials = [];
+
         await this.mapAssignments();
         await this.mapSharedAssignments();
         if (this.pendingAssignments.length > 0) {
@@ -3900,6 +3906,21 @@ export default {
         this.reloadCount += 1;
         this.tempAssts = [];
         this.offset = 0;
+      }
+    },
+    mapOverdues() {
+      if (this.overdues && this.overdues.length > 0) {
+        this.overdues.forEach((e) => {
+          let asst = this.mapData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
+    
+      if (this.sharedOverdues && this.sharedOverdues.length > 0) {
+        this.sharedOverdues.forEach((e) => {
+          let asst = this.mapSharedData(e);
+          this.pendingAssignments.push(asst);
+        });
       }
     },
     mapAssignments() {

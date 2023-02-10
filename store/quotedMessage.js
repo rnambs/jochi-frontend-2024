@@ -21,7 +21,9 @@ const state = {
   sharedAstList: [],
   sharedSessionList: [],
   clubMeetings: [],
-  allSubTskCompleted: false
+  allSubTskCompleted: false,
+  overdues: [],
+  sharedOverdues: []
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -100,6 +102,7 @@ const actions = {
       commit('setSessionList', response.session);
       commit('setSharedSessionList', response.shared_sessions);
       commit('setClubMeetings', response.club_meeting);
+
     } catch (e) {
       if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -129,6 +132,8 @@ const actions = {
       });
       commit('setAssignmentsList', response.assignments);
       commit('setSharedAssignmentsList', response.shared_assignments);
+      commit('setOverdues', response.overdue_assignments);
+      commit('setSharedOverdues', response.overdue_shared_assignments);
     } catch (e) {
       if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -579,6 +584,12 @@ const mutations = {
   setAllSubTskCompleted(state, data) {
     state.allSubTskCompleted = data;
   },
+  setOverdues(state, data) {
+    state.overdues = data;
+  },
+  setSharedOverdues(state, data) {
+    state.sharedOverdues = data;
+  },
 }
 const getters = {
 
@@ -644,6 +655,12 @@ const getters = {
   },
   allSubTskCompleted: () => {
     return state.allSubTskCompleted;
+  },
+  overdues: () => {
+    return state.overdues;
+  },
+  sharedOverdues: () => {
+    return state.sharedOverdues;
   },
 }
 
