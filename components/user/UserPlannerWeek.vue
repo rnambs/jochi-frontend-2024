@@ -3207,7 +3207,8 @@ export default {
         });
       }
 
-      let removed = [];
+      let removed = this.removedPeerList;
+
       this.removedPeerList.forEach((e) => {
         const index = this.peerList.findIndex((item) => item.id == e);
         if (!index) {
