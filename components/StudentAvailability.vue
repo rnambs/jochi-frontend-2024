@@ -128,7 +128,7 @@
                             name="default-cal"
                           />
                           <label
-                            class="custom-control-label form-label"
+                            class="custom-control-label font-normal color-dark  form-label"
                             for="switch_month"
                             >Apply for the month</label
                           >
@@ -602,3 +602,7 @@ export default {
   },
 };
 </script>
+<style>
+.custom-switch .custom-control-label::after{top: calc(0.0375rem + 2px) !important;}
+</style>
+

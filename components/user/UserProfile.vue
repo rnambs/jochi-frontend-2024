@@ -258,7 +258,7 @@
                               color-secondary
                               d-flex
                               flex-row
-                              align-items-baseline
+                              align-items-center
                             "
                           >
                             <span class="text-24"
