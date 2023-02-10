@@ -249,7 +249,7 @@
                       </div>
                       <div class="col-12 col-md-12">
                         <div
-                          class="card card-primary p-3 h-100 d-flex flex-column"
+                          class="card card-primary p-2 h-100 d-flex flex-column"
                         >
                           <p
                             class="
@@ -261,7 +261,7 @@
                               align-items-center
                             "
                           >
-                            <span class="text-24"
+                            <span class="text-20"
                               ><i class="fas fa-envelope"></i
                             ></span>
                             <span class="ml-2">{{ email }}</span>
@@ -269,7 +269,7 @@
                         </div>
                       </div>
                       <div class="col-md-12">
-                        <div class="card card-primary p-3 h-100">
+                        <div class="card card-primary p-2 h-100">
                           <p
                             class="
                               mb-0
@@ -280,7 +280,7 @@
                               align-items-baseline
                             "
                           >
-                            <span class="text-24"
+                            <span class="text-20"
                               ><i class="fas fa-school"></i
                             ></span>
                             <span class="ml-2">{{ schoolName }}</span>
@@ -289,7 +289,7 @@
                       </div>
                       <div v-if="user_type == 3" class="col-md-12">
                         <div class="row">
-                          <div class="col-xl-6">
+                          <div class="col-xl-12">
                             <button
                               class="mr-2"
                               v-if="!enableEdit"
@@ -318,7 +318,7 @@
                               <span>Update</span>
                             </button>
 
-                            <div class="card card-primary p-3">
+                            <div class="card card-primary p-2">
                               <p
                                 class="
                                   mb-0
@@ -329,7 +329,7 @@
                                   align-items-center
                                 "
                               >
-                                <span class="text-24"
+                                <span class="text-20"
                                   ><i class="fas fa-phone"></i
                                 ></span>
                                 <input
@@ -351,128 +351,142 @@
                               code</span
                             >
                           </div>
-                          <div
-                            class="
-                              col-xl-6
-                              d-flex
-                              flex-column
-                              align-items-center
-                            "
-                          >
-                            <div>
-                              <div class="custom-switch pb-1">
-                                <input
-                                  @change="updateNotification($event, 'sms')"
-                                  type="checkbox"
-                                  id="smsNotify"
-                                  name="smsNotify"
-                                  class="custom-control-input color-primary"
-                                  v-model="smsNotify"
-                                />
-                                <label
-                                  class="
-                                    custom-control-label
-                                    font-normal
-                                    color-dark
-                                    text-14
-                                    cursor-pointer
-                                  "
-                                  for="smsNotify"
-                                  >SMS Notification
-                                </label>
+                          
+                          
+                          <div class="col-xl-12">
+                            <div class="card card-primary p-3 h-100 d-flex flex-column">
+                            <h4 class="color-dark font-semi-bold">
+                            Notification Settings
+                          </h4>
+                            <div
+                              class="
+                                col-xl-12
+                                align-items-center
+                              "
+                            >
+                              <div class="d-flex">
+                                <div class="custom-switch pb-1 mr-3">
+                                  <input
+                                    @change="updateNotification($event, 'sms')"
+                                    type="checkbox"
+                                    id="smsNotify"
+                                    name="smsNotify"
+                                    class="custom-control-input color-primary"
+                                    v-model="smsNotify"
+                                  />
+                                  <label
+                                    class="
+                                      custom-control-label
+                                      font-normal
+                                      color-dark
+                                      text-14
+                                      cursor-pointer
+                                    "
+                                    for="smsNotify"
+                                    >SMS Notification
+                                  </label>
+                                </div>
+                                <div class="custom-switch pb-1 mr-3">
+                                  <input
+                                    @change="
+                                      updateNotification($event, 'meeting')
+                                    "
+                                    type="checkbox"
+                                    id="meetingNotify"
+                                    name="meetingNotify"
+                                    class="custom-control-input color-primary"
+                                    v-model="meetingNotify"
+                                  />
+                                  <label
+                                    class="
+                                      custom-control-label
+                                      font-normal
+                                      color-dark
+                                      text-14
+                                      cursor-pointer
+                                    "
+                                    for="meetingNotify"
+                                    >Meeting Notification
+                                  </label>
+                                </div>
                               </div>
-                              <div class="custom-switch pb-1">
-                                <input
-                                  @change="
-                                    updateNotification($event, 'meeting')
-                                  "
-                                  type="checkbox"
-                                  id="meetingNotify"
-                                  name="meetingNotify"
-                                  class="custom-control-input color-primary"
-                                  v-model="meetingNotify"
-                                />
-                                <label
-                                  class="
-                                    custom-control-label
-                                    font-normal
-                                    color-dark
-                                    text-14
-                                    cursor-pointer
-                                  "
-                                  for="meetingNotify"
-                                  >Meeting Notification
-                                </label>
+                              <div class="d-flex">
+                                <div class="custom-switch pb-1 mr-3">
+                                  <input
+                                    @change="updateNotification($event, 'club')"
+                                    type="checkbox"
+                                    id="clubNotify"
+                                    name="clubNotify"
+                                    class="custom-control-input color-primary"
+                                    v-model="clubNotify"
+                                  />
+                                  <label
+                                    class="
+                                      custom-control-label
+                                      font-normal
+                                      color-dark
+                                      text-14
+                                      cursor-pointer
+                                    "
+                                    for="clubNotify"
+                                    >Club Notification
+                                  </label>
+                                </div>
+                                <div class="custom-switch pb-1 mr-3">
+                                  <input
+                                    @change="
+                                      updateNotification($event, 'assignment')
+                                    "
+                                    type="checkbox"
+                                    id="assignmentNotify"
+                                    name="assignmentNotify"
+                                    class="custom-control-input color-primary"
+                                    v-model="assignmentNotify"
+                                  />
+                                  <label
+                                    class="
+                                      custom-control-label
+                                      font-normal
+                                      color-dark
+                                      text-14
+                                      cursor-pointer
+                                    "
+                                    for="assignmentNotify"
+                                    >Assignment Notification
+                                  </label>
+                                </div>
                               </div>
-                              <div class="custom-switch pb-1">
-                                <input
-                                  @change="updateNotification($event, 'club')"
-                                  type="checkbox"
-                                  id="clubNotify"
-                                  name="clubNotify"
-                                  class="custom-control-input color-primary"
-                                  v-model="clubNotify"
-                                />
-                                <label
-                                  class="
-                                    custom-control-label
-                                    font-normal
-                                    color-dark
-                                    text-14
-                                    cursor-pointer
-                                  "
-                                  for="clubNotify"
-                                  >Club Notification
-                                </label>
-                              </div>
-                              <div class="custom-switch pb-1">
-                                <input
-                                  @change="
-                                    updateNotification($event, 'assignment')
-                                  "
-                                  type="checkbox"
-                                  id="assignmentNotify"
-                                  name="assignmentNotify"
-                                  class="custom-control-input color-primary"
-                                  v-model="assignmentNotify"
-                                />
-                                <label
-                                  class="
-                                    custom-control-label
-                                    font-normal
-                                    color-dark
-                                    text-14
-                                    cursor-pointer
-                                  "
-                                  for="assignmentNotify"
-                                  >Assignment Notification
-                                </label>
-                              </div>
-                              <div class="custom-switch pb-1">
-                                <input
-                                  @change="
-                                    updateNotification($event, 'session')
-                                  "
-                                  type="checkbox"
-                                  id="sessionNotify"
-                                  name="sessionNotify"
-                                  class="custom-control-input color-primary"
-                                  v-model="sessionNotify"
-                                />
-                                <label
-                                  class="
-                                    custom-control-label
-                                    font-normal
-                                    color-dark
-                                    text-14
-                                    cursor-pointer
-                                  "
-                                  for="sessionNotify"
-                                  >Study Session Notification
-                                </label>
+                              <div class="d-flex">
+                                <div class="custom-switch pb-1 mr-3">
+                                  <input
+                                    @change="
+                                      updateNotification($event, 'session')
+                                    "
+                                    type="checkbox"
+                                    id="sessionNotify"
+                                    name="sessionNotify"
+                                    class="custom-control-input color-primary"
+                                    v-model="sessionNotify"
+                                  />
+                                  <label
+                                    class="
+                                      custom-control-label
+                                      font-normal
+                                      color-dark
+                                      text-14
+                                      cursor-pointer
+                                    "
+                                    for="sessionNotify"
+                                    >Study Session Notification
+                                  </label>
+                                </div>
                               </div>
                             </div>
                           </div>
+                          </div>
+
+
+
                         </div>
                       </div>
                     </div>
@@ -485,142 +499,150 @@
                       "
                       class="col-md-6"
                     >
-                      <div v-if="user_type == '3'" class="col-md-12">
-                        <div
-                          v-if="advisorDetail && advisorDetail.first_name"
-                          class="card card-primary p-3 h-100 d-flex flex-column"
-                        >
-                          <h4 class="color-dark font-semi-bold">
-                            Your Advisor
-                          </h4>
-                          <div
-                            class="
-                              d-flex
-                              align-items-center
-                              my-2
-                              mr-3
-                              min-w-200
-                            "
-                          >
-                            <div class="ld-img-section mr-3">
-                              <div class="ld-img-holder">
-                                <img
-                                  v-if="
-                                    advisorDetail && advisorDetail.profile_pic
-                                  "
-                                  :src="advisorDetail.profile_pic"
-                                  alt=""
-                                />
-                                <img
-                                  v-else
-                                  src="~/static/image/avatar.png"
-                                  alt=""
-                                />
-                              </div>
-                            </div>
-                            <div class="ld-details-section">
-                              <p class="ld-heading mb-1">
-                                {{
-                                  advisorDetail.first_name +
-                                  " " +
-                                  advisorDetail.last_name
-                                }}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div v-if="requestList.length > 0" class="col-md-12">
-                        <div
-                          class="card card-primary p-3 h-100 d-flex flex-column"
-                        >
-                          <h4 class="color-dark font-semi-bold">
-                            Advisor Requests
-                          </h4>
-                          <div
-                            v-for="advisor in requestList"
-                            :key="advisor.id"
-                            class="
-                              d-flex
-                              flex-column flex-md-row
-                              align-items-center
-                              my-2
-                              mr-3
-                              min-w-200
-                            "
-                          >
-                            <div
-                              class="ld-img-section mr-0 mr-md-3 mb-2 mb-md-0"
-                            >
-                              <div class="ld-img-holder">
-                                <img
-                                  v-if="
-                                    advisor &&
-                                    advisor.teacher &&
-                                    advisor.teacher.profile_pic
-                                  "
-                                  :src="advisor.teacher.profile_pic"
-                                  alt=""
-                                />
-                                <img
-                                  v-else
-                                  src="~/static/image/avatar.png"
-                                  alt=""
-                                />
-                              </div>
-                            </div>
-                            <div
-                              class="
-                                d-flex
-                                flex-column flex-md-row
-                                align-items-center
-                                justify-content-between
-                                w-100
-                              "
-                            >
-                              <div class="ld-details-section">
-                                <p
-                                  v-if="advisor.teacher"
-                                  class="ld-heading mb-1"
-                                >
-                                  {{
-                                    advisor.teacher.first_name +
-                                    " " +
-                                    advisor.teacher.last_name
-                                  }}
-                                </p>
-                              </div>
 
+                      <div class="jochi-components-light-bg p-4 h-100">
+                        <div class="">
+                          <div v-if="user_type == '3'" class="col-md-12">
+                            <div
+                              v-if="advisorDetail && advisorDetail.first_name"
+                              class="card card-primary p-3 "
+                            >
+                              <h4 class="color-dark font-semi-bold">
+                                Your Advisor
+                              </h4>
                               <div
                                 class="
                                   d-flex
                                   align-items-center
-                                  justify-content-center
+                                  my-2
+                                  mr-3
+                                  min-w-200
                                 "
                               >
-                                <button
+                                <div class="ld-img-section mr-3">
+                                  <div class="ld-img-holder">
+                                    <img
+                                      v-if="
+                                        advisorDetail && advisorDetail.profile_pic
+                                      "
+                                      :src="advisorDetail.profile_pic"
+                                      alt=""
+                                    />
+                                    <img
+                                      v-else
+                                      src="~/static/image/avatar.png"
+                                      alt=""
+                                    />
+                                  </div>
+                                </div>
+                                <div class="ld-details-section">
+                                  <p class="ld-heading mb-1">
+                                    {{
+                                      advisorDetail.first_name +
+                                      " " +
+                                      advisorDetail.last_name
+                                    }}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div v-if="requestList.length > 0" class="col-md-12">
+                            <div
+                              class="card card-primary p-3"
+                            >
+                              <h4 class="color-dark font-semi-bold">
+                                Advisor Requests
+                              </h4>
+                              <div
+                                v-for="advisor in requestList"
+                                :key="advisor.id"
+                                class="
+                                  d-flex
+                                  flex-column flex-md-row
+                                  align-items-center
+                                  my-2
+                                  mr-3
+                                  min-w-200
+                                "
+                              >
+                                <div
+                                  class="ld-img-section mr-0 mr-md-3 mb-2 mb-md-0"
+                                >
+                                  <div class="ld-img-holder">
+                                    <img
+                                      v-if="
+                                        advisor &&
+                                        advisor.teacher &&
+                                        advisor.teacher.profile_pic
+                                      "
+                                      :src="advisor.teacher.profile_pic"
+                                      alt=""
+                                    />
+                                    <img
+                                      v-else
+                                      src="~/static/image/avatar.png"
+                                      alt=""
+                                    />
+                                  </div>
+                                </div>
+                                <div
                                   class="
-                                    btn btn-secondary
-                                    px-4
-                                    py-1
-                                    rounded-pill
-                                    mr-2
+                                    d-flex
+                                    flex-column flex-md-row
+                                    align-items-center
+                                    justify-content-between
+                                    w-100 flex-wrap
                                   "
-                                  @click="respondRequest(2, advisor)"
                                 >
-                                  Reject
-                                </button>
-                                <button
-                                  class="btn btn-primary px-4 py-1 rounded-pill"
-                                  @click="respondRequest(1, advisor)"
-                                >
-                                  Accept
-                                </button>
+                                  <div class="ld-details-section">
+                                    <p
+                                      v-if="advisor.teacher"
+                                      class="ld-heading mb-1"
+                                    >
+                                      {{
+                                        advisor.teacher.first_name +
+                                        " " +
+                                        advisor.teacher.last_name
+                                      }}
+                                    </p>
+                                  </div>
+
+                                  <div
+                                    class="
+                                      d-flex
+                                      align-items-center
+                                      justify-content-center flex-wrap
+                                    "
+                                  >
+                                    <button
+                                      class="
+                                        btn btn-secondary
+                                        px-3
+                                        py-1
+                                        rounded-pill
+                                        mr-2 mb-2
+                                      "
+                                      @click="respondRequest(2, advisor)"
+                                    >
+                                      Reject
+                                    </button>
+                                    <button
+                                      class="btn btn-primary px-3 py-1 mb-2 rounded-pill"
+                                      @click="respondRequest(1, advisor)"
+                                    >
+                                      Accept
+                                    </button>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
+
+
+
                     </div>
 
                     <!-- <div class="col-12 col-md-4">
