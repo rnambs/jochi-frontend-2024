@@ -1702,7 +1702,7 @@
             </h2>
           </div>
           <div v-if="!showClubInfo" class="modal-body">
-            <p class="confirm-text d-flex text-nowrap">
+            <p class="confirm-text d-flex">
               <span class="w-100 color-dark font-semi-bold"
                 >{{ confirmationMessage}}
               </span>
@@ -1713,16 +1713,16 @@
             </p>
           </div>
           <div v-if="showClubInfo && clubInformation" class="modal-body">
-            <p class="confirm-text d-flex">
+            <p class="confirm-text d-flex justify-content-between">
               <label for="created_at">Type</label>
-              <span class="w-100 color-dark font-semi-bold"
+              <span class="color-dark font-semi-bold"
                 >{{ clubInformation.activity_type }}
               </span>
 
               <label for="created_at">Created By</label>
               <span
                 v-if="clubInformation.student"
-                class="w-100 color-dark font-semi-bold"
+                class="color-dark font-semi-bold"
                 >{{
                   clubInformation.student.first_name +
                   " " +
@@ -1731,7 +1731,7 @@
               </span>
 
               <label for="created_at">Created At</label>
-              <span class="w-100 color-dark font-semi-bold"
+              <span class="color-dark font-semi-bold"
                 >{{ clubCreatedAt }}
               </span>
             </p>
