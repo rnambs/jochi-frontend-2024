@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button @click="startIntro">Start Intro</button>
     <div
       id="pageLoader"
       class="
@@ -910,7 +911,9 @@
         >
           <div class="modal-content px-4 py-4">
             <div class="modal-body">
-              <h3 class="modal-title color-primary font-bold">Update Phone Number</h3>
+              <h3 class="modal-title color-primary font-bold">
+                Update Phone Number
+              </h3>
               Update your phone number to receive SMS notification on your
               mobile phone!
             </div>
@@ -921,7 +924,9 @@
                 class="btn btn-primary color-white"
                 @click="skipPromt()"
               >
-                <nuxt-link to="/user-profile" class="text-white"> Update Now </nuxt-link>
+                <nuxt-link to="/user-profile" class="text-white">
+                  Update Now
+                </nuxt-link>
               </button>
               <button
                 type="button"
@@ -1085,6 +1090,25 @@ export default {
     }
   },
   methods: {
+     startIntro () {
+      const intro = this.$intro()
+      intro.setOptions({
+        steps: [
+          {
+            intro: 'Welcome to Intro.js'
+          },
+          {
+            element: '#step1',
+            intro: 'This is step 1'
+          },
+          {
+            element: '#step2',
+            intro: 'This is step 2'
+          }
+        ]
+      })
+      intro.start()
+    },
     async skipPromt() {
       localStorage.setItem("skippedPrompt", "true");
     },
