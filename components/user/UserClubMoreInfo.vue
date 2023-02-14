@@ -68,23 +68,52 @@
             <button class="btn p-1 m-2" v-on:click="toggleDropdown">
               <i class="fas fa-cog color-white"></i>
             </button>
-            
           </div>
         </div>
         <div class="position-relative">
           <div
-              v-bind:class="{
-                'dropdown-club jochi-components-light-bg': true,
-                'dropdown-club--visible': dropdownVisible,
-              }"
-            >
+            v-bind:class="{
+              'dropdown-club jochi-components-light-bg': true,
+              'dropdown-club--visible': dropdownVisible,
+            }"
+          >
             <ul class="m-0">
-              <li class="d-flex"><button class="btn btn-primary btn-sm py-1 mb-2 col-12">Info</button></li>
-              <li class="d-flex"><button class="btn btn-primary btn-sm py-1 mb-2 col-12">Leave</button></li>
-              <li class="d-flex"><button class="btn btn-primary btn-sm py-1 mb-2 col-12">Remove As Leader</button></li>
-              <li class="d-flex"><button class="btn btn-primary btn-sm py-1 col-12">Delete</button></li>
+              <ul class="m-0">
+                <li>
+                  <button
+                    class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                    @click="openConfirm('info')"
+                  >
+                    Info
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                    @click="openConfirm('leave')"
+                  >
+                    Leave
+                  </button>
+                </li>
+                <li v-if="enableEdit">
+                  <button
+                    class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                    @click="openConfirm('remove_leader')"
+                  >
+                    Remove As Leader
+                  </button>
+                </li>
+                <li v-if="enableEdit">
+                  <button
+                    class="btn btn-primary btn-sm py-1 col-12"
+                    @click="openConfirm('delete')"
+                  >
+                    Delete
+                  </button>
+                </li>
+              </ul>
             </ul>
-              <!-- dropdown content here -->
+            <!-- dropdown content here -->
           </div>
         </div>
 
@@ -1656,6 +1685,87 @@
       </div>
     </div>
     <!-- modal add banner -->
+    <!-- modal for confirmation pop up -->
+    <div
+      class="modal fade"
+      id="confirmationModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="confirmationModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-0">
+            <h2 class="modal-title font-bold" id="confirmationModalLongTitle">
+              {{ showClubInfo ? "Club Information" : "Confirmation" }}
+            </h2>
+          </div>
+          <div v-if="!showClubInfo" class="modal-body">
+            <p class="confirm-text d-flex text-nowrap">
+              <span class="w-100 color-dark font-semi-bold"
+                >{{ confirmationMessage}}
+              </span>
+              <!-- <span class="delete-text w-100 pl-1">
+                          {{ remove_name }}</span
+                        > -->
+              <!-- <span class="w-100"> file?</span> -->
+            </p>
+          </div>
+          <div v-if="showClubInfo && clubInformation" class="modal-body">
+            <p class="confirm-text d-flex">
+              <label for="created_at">Type</label>
+              <span class="w-100 color-dark font-semi-bold"
+                >{{ clubInformation.activity_type }}
+              </span>
+
+              <label for="created_at">Created By</label>
+              <span
+                v-if="clubInformation.student"
+                class="w-100 color-dark font-semi-bold"
+                >{{
+                  clubInformation.student.first_name +
+                  " " +
+                  clubInformation.student.last_name
+                }}
+              </span>
+
+              <label for="created_at">Created At</label>
+              <span class="w-100 color-dark font-semi-bold"
+                >{{ clubCreatedAt }}
+              </span>
+            </p>
+          </div>
+          <div v-if="!showClubInfo" class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              No
+            </button>
+            <button
+              type="button"
+              class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+              @click="confirmAction()"
+            >
+              Yes
+            </button>
+          </div>
+          <div v-if="showClubInfo" class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal for confirmation pop up end -->
   </div>
 </template>
 <script>
@@ -1749,6 +1859,10 @@ export default {
       dialog: false,
       files: "",
       dropdownVisible: false,
+      confirmEvent: "",
+      confirmationMessage: "",
+      showClubInfo: false,
+      clubCreatedAt: "",
     };
   },
   validations: {
@@ -1818,6 +1932,13 @@ export default {
     checkIsActivity() {
       return this.isActivity; // some conditional logic here...
     },
+    ...mapState("clubUpdates", {
+      successTypeClubUpdate: (state) => state.successTypeClubUpdate,
+      successMessageClubUpdate: (state) => state.successMessageClubUpdate,
+      errorMessageClubUpdate: (state) => state.errorMessageClubUpdate,
+      errorTypeClubUpdate: (state) => state.errorTypeClubUpdate,
+      clubInformation: (state) => state.clubInformation,
+    }),
   },
   methods: {
     ...mapActions("clubMoreInfo", {
@@ -1841,6 +1962,12 @@ export default {
       uploadFile: "uploadFile",
       fileRemove: "fileRemove",
       uploadBanner: "uploadBanner",
+    }),
+    ...mapActions("clubUpdates", {
+      clubDelete: "clubDelete",
+      clubLeave: "clubLeave",
+      removeLeader: "removeLeader",
+      getInformation: "getInformation",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -2477,6 +2604,117 @@ export default {
     toggleDropdown() {
       this.dropdownVisible = !this.dropdownVisible;
     },
+    openConfirm(event) {
+      this.showClubInfo = false;
+      this.confirmEvent = event;
+      $("#confirmationModal").modal();
+      this.confirmationMessage = this.setConfirmationMessage(event);
+    },
+    setConfirmationMessage(event) {
+      switch (event) {
+        case "delete": {
+          return "Are you sure you want to delete this club? This action is not reversible!";
+        }
+        case "remove_leader": {
+          return "Are you sure you want to remove yourself as a leader of this club? This action is not reversible!";
+        }
+        case "leave": {
+          return "Are you sure you want to leave this club? This action is not reversible!";
+        }
+        case "info": {
+          this.showClubInfo = true;
+          this.getClubInformation();
+          return "";
+        }
+        default: {
+          return "";
+        }
+      }
+    },
+    confirmAction() {
+      switch (this.confirmEvent) {
+        case "delete": {
+          this.deleteClub();
+          break;
+        }
+        case "remove_leader": {
+          this.removeAsLeader();
+          break;
+        }
+        case "leave": {
+          this.leaveClub();
+          break;
+        }
+
+        default: {
+          return "";
+        }
+      }
+    },
+    async deleteClub() {
+      await this.clubDelete({
+        club_id: this.clubId,
+      });
+      if (this.successMessageClubUpdate != "") {
+        this.$toast.open({
+          message: this.successMessageClubUpdate,
+          type: this.successTypeClubUpdate,
+          duration: 5000,
+        });
+      } else if (this.errorMessageClubUpdate != "") {
+        this.$toast.open({
+          message: this.errorMessageClubUpdate,
+          type: this.errorTypeClubUpdate,
+          duration: 5000,
+        });
+      }
+      this.$router.push("/club-detail");
+    },
+    async removeAsLeader() {
+      await this.removeLeader({
+        club_id: this.clubId,
+      });
+      if (this.successMessageClubUpdate != "") {
+        this.$toast.open({
+          message: this.successMessageClubUpdate,
+          type: this.successTypeClubUpdate,
+          duration: 5000,
+        });
+      } else if (this.errorMessageClubUpdate != "") {
+        this.$toast.open({
+          message: this.errorMessageClubUpdate,
+          type: this.errorTypeClubUpdate,
+          duration: 5000,
+        });
+      }
+      this.getClubMoreInfo();
+    },
+    async leaveClub() {
+      await this.clubLeave({
+        club_id: this.clubId,
+      });
+      if (this.successMessageClubUpdate != "") {
+        this.$toast.open({
+          message: this.successMessageClubUpdate,
+          type: this.successTypeClubUpdate,
+          duration: 5000,
+        });
+      } else if (this.errorMessageClubUpdate != "") {
+        this.$toast.open({
+          message: this.errorMessageClubUpdate,
+          type: this.errorTypeClubUpdate,
+          duration: 5000,
+        });
+      }
+      this.$router.push("/club-detail");
+    },
+    async getClubInformation() {
+      await this.getInformation({
+        club_id: this.clubId,
+      });
+      console.log("club information", this.clubInformation);
+      this.clubCreatedAt = moment(this.clubInformation).format("MMMM Do, YYYY");
+    },
   },
 };
 </script>
@@ -2493,7 +2731,7 @@ export default {
   z-index: 999;
   border-radius: 0px 0px 1rem 1rem;
   right: 10px;
-  padding:1rem;
-  color:#fff;
+  padding: 1rem;
+  color: #fff;
 }
 </style>
