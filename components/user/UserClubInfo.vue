@@ -1209,7 +1209,7 @@
               <div>
                 <label for="created_at">Type: </label>
                 <span class="color-dark font-semi-bold"
-                  >{{ clubInformation.activity_type }}
+                  >{{ clubInformation.activity_type=='Clubs'?'Club':'Team' }}
                 </span>
               </div>
               <div>
