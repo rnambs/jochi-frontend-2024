@@ -1608,7 +1608,6 @@
                                             alt=""
                                           />
                                         </div>
-                                        
                                       </div>
                                       <div class="ld-details-section">
                                         <p class="ld-heading mb-0">
@@ -1617,14 +1616,24 @@
                                       </div>
                                     </div>
                                     <button
-                                        type="button"
-                                        role="button"
-                                        @click="
-                                          removePeerConfirm(peer.id, $event)
+                                      type="button"
+                                      role="button"
+                                      @click="
+                                        removePeerConfirm(peer.id, $event)
+                                      "
+                                    >
+                                      <span
+                                        class="
+                                          color-primary
+                                          fa-icon
+                                          show-hover
+                                          d-none
+                                          btn
+                                          p-0
                                         "
-                                      >
-                                        <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt ml-3"></i></span>
-                                      </button>
+                                        ><i class="fas fa-trash-alt ml-3"></i
+                                      ></span>
+                                    </button>
                                   </div>
                                 </div>
 
@@ -2907,8 +2916,9 @@ export default {
       completedSharedAssignments: (state) => state.completedSharedAssignments,
       newAdditionalMaterial: (state) => state.newAdditionalMaterial,
       allSubTskCompleted: (state) => state.allSubTskCompleted,
-        overdues: (state) => state.overdues,
+      overdues: (state) => state.overdues,
       sharedOverdues: (state) => state.sharedOverdues,
+      trainingsMatches: (state) => state.trainingsMatches,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -3259,7 +3269,33 @@ export default {
         // this.meetingDetails.push(listobj);
         eventList.push(meetingobj);
       });
+      this.trainingsMatches?.forEach((element) => {
+        if (element.team_match_trainings.date) {
+          var plannerObj = {};
 
+          if (element.team_match_trainings.session_type == "Match") {
+            var color = "#ad2b89";
+          } else {
+            var color = "#bebebe";
+          }
+          var dateMeeting = element.team_match_trainings.date;
+          var tmeMeeting = "";
+          if (element.team_match_trainings.time) {
+            tmeMeeting = this.formatAMPM(element.team_match_trainings.time);
+          }
+          var start = dateMeeting + "T" + tmeMeeting;
+
+          plannerObj["title"] = element.team_match_trainings.title;
+          plannerObj["color"] = color;
+          plannerObj["start"] = start;
+          plannerObj["id"] = element.club_id;
+          plannerObj["groupId"] =
+            element.team_match_trainings.session_type == "Match"
+              ? "matches"
+              : "trainings";
+          eventList.push(plannerObj);
+        }
+      });
       this.calendarOptions.events = eventList;
       this.loading = false;
     },
@@ -3415,7 +3451,7 @@ export default {
         });
       }
 
-       let removed = [];
+      let removed = [];
       this.removedPeerList.forEach((e) => {
         const index = this.peerList.findIndex((item) => item.id == e);
         if (index < 0) {
@@ -3468,7 +3504,7 @@ export default {
         removed_users: removed,
       });
       this.loading = false;
-       this.removedPeerList = [];
+      this.removedPeerList = [];
       if (this.successMessage != "") {
         this.offset = 0;
         this.tempAssts = [];
@@ -4042,7 +4078,7 @@ export default {
 
         this.pendingAssignments = [];
         await this.getAssignments({ offset: this.offset, limit: this.limit });
-         if (this.offset == 0) {
+        if (this.offset == 0) {
           await this.mapOverdues();
         }
         this.offset = this.offset + this.limit;
@@ -4074,7 +4110,7 @@ export default {
           this.pendingAssignments.push(asst);
         });
       }
-    
+
       if (this.sharedOverdues && this.sharedOverdues.length > 0) {
         this.sharedOverdues.forEach((e) => {
           let asst = this.mapSharedData(e);

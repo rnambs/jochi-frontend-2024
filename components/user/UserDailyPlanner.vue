@@ -1475,7 +1475,7 @@
                               <div
                                 v-for="peer of peerList"
                                 :key="peer.id"
-                                class="h-fit-content  show-icon"
+                                class="h-fit-content show-icon"
                               >
                                 <div
                                   class="d-flex align-items-center my-2 mr-3"
@@ -1500,7 +1500,6 @@
                                         alt=""
                                       />
                                     </div>
-                                    
                                   </div>
                                   <div class="ld-details-section">
                                     <p class="ld-heading mb-0">
@@ -1509,13 +1508,21 @@
                                   </div>
                                 </div>
                                 <button
-                                    type="button"
-                                    role="button"
-                                    @click="
-                                      removePeerConfirm(peer.id, $event)
+                                  type="button"
+                                  role="button"
+                                  @click="removePeerConfirm(peer.id, $event)"
+                                >
+                                  <span
+                                    class="
+                                      color-primary
+                                      fa-icon
+                                      show-hover
+                                      d-none
+                                      btn
+                                      p-0
                                     "
-                                  >
-                                    <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt ml-3"></i></span>
+                                    ><i class="fas fa-trash-alt ml-3"></i
+                                  ></span>
                                 </button>
                               </div>
                             </div>
@@ -3002,6 +3009,7 @@ export default {
       allSubTskCompleted: (state) => state.allSubTskCompleted,
       overdues: (state) => state.overdues,
       sharedOverdues: (state) => state.sharedOverdues,
+      trainingsMatches: (state) => state.trainingsMatches,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -3041,7 +3049,6 @@ export default {
       }
     },
     viewMoreClick(event, item) {
-      console.log("view more", event, item);
       event.preventDefault();
       event.stopPropagation();
       this.viewMore = true;
@@ -3288,6 +3295,33 @@ export default {
         listobj["timeValNum"] = timeValNum;
         eventList.push(meetingobj);
       });
+      this.trainingsMatches?.forEach((element) => {
+        if (element.team_match_trainings.date) {
+          var plannerObj = {};
+
+          if (element.team_match_trainings.session_type == "Match") {
+            var color = "#ad2b89";
+          } else {
+            var color = "#bebebe";
+          }
+          var dateMeeting = element.team_match_trainings.date;
+          var tmeMeeting = "";
+          if (element.team_match_trainings.time) {
+            tmeMeeting = this.formatAMPM(element.team_match_trainings.time);
+          }
+          var start = dateMeeting + "T" + tmeMeeting;
+
+          plannerObj["title"] = element.team_match_trainings.title;
+          plannerObj["color"] = color;
+          plannerObj["start"] = start;
+          plannerObj["id"] = element.club_id;
+          plannerObj["groupId"] =
+            element.team_match_trainings.session_type == "Match"
+              ? "matches"
+              : "trainings";
+          eventList.push(plannerObj);
+        }
+      });
 
       this.calendarOptions.events = eventList;
     },
@@ -3434,8 +3468,6 @@ export default {
       this.GetDailyPlanner();
     },
     async UpdateAssignment() {
-      console.log(this.priorityVal);
-
       if (this.priorityVal == "Overdue") {
         this.$toast.open({
           message: "Please select the priority",
@@ -3478,7 +3510,6 @@ export default {
       this.removedPeerList.forEach((e) => {
         const index = this.peerList.findIndex((item) => item.id == e);
         if (index < 0) {
-          console.log("index", index);
           removed.push(e);
         }
       });
@@ -3884,7 +3915,6 @@ export default {
       if (this.tempOffset != this.offset || this.reloadNext) {
         this.reloadNext = false;
         this.tempOffset = this.offset;
-        console.log("inside load next", this.offset);
         this.pendingAssignments = [];
         await this.getAssignments({ offset: this.offset, limit: this.limit });
         if (this.offset == 0) {
@@ -4172,7 +4202,6 @@ export default {
       }
     },
     mapAssignmentDetail(data) {
-      console.log(data);
       this.isSharedAssignment = data.isShared;
       this.schoologyAssignment = data.schoologyAssignment;
       this.assignmentId = data.id;
@@ -4367,8 +4396,6 @@ export default {
         // only splice array when item is found
         this.additionalMaterialList.splice(index, 1); // 2nd parameter means remove one item only
       }
-
-      console.log(this.additionalMaterialList);
     },
     removePeerConfirm(id, event) {
       event.stopPropagation();
@@ -4397,18 +4424,15 @@ export default {
       } else {
         this.choosenAssignments.push(id);
       }
-      console.log(this.choosenAssignments);
     },
     confirmUndo(id) {
       this.undoAsstId = id;
       $("#undoAssignmentConfirmation").modal({ backdrop: true });
     },
     undoAsstComplete() {
-      console.log(this.undoAsstId);
       this.completeAssignment(false);
     },
     confirmDeletion() {
-      console.log("confirm delete");
       $("#deleteAssignmentConfirmation").modal({ backdrop: true });
     },
     async deleteAssts() {
