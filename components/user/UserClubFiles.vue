@@ -1120,7 +1120,7 @@ export default {
     ...mapActions("clubUpdates", {
       clubDelete: "clubDelete",
       clubLeave: "clubLeave",
-      removeLeader: "removeLeader",
+      leaderRemove: "leaderRemove",
       getInformation: "getInformation",
     }),
     handleAnimation: function (anim) {
@@ -1497,7 +1497,7 @@ export default {
       this.$router.push("/club-detail");
     },
     async removeAsLeader() {
-      await this.removeLeader({
+      await this.leaderRemove({
         club_id: this.clubId,
       });
       if (this.successMessageClubUpdate != "") {
@@ -1513,7 +1513,7 @@ export default {
           duration: 5000,
         });
       }
-      this.getClubMoreInfo();
+      this.ClubFiles();
     },
     async leaveClub() {
       await this.clubLeave({

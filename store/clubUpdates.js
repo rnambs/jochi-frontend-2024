@@ -83,7 +83,7 @@ const actions = {
     },
 
     // remove as club
-    async removeLeader({ commit }, payLoad) {
+    async leaderRemove({ commit }, payLoad) {
         const token = localStorage.getItem('token')
         try {
             const response = await this.$axios.$put(BASE_URL + 'clubs/remove_as_leader', payLoad, {
