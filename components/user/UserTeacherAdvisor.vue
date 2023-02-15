@@ -365,32 +365,33 @@
                       >
                         Overdue Assignments
                       </h2> -->
-                      
 
-                    <div class="tab-btns d-flex align-items-center  z-index-">
-
-
-                      <button
-                        @click="onTabClickAssignment(1)"
-                        class="tab-btn mr-3"
-                        id="filterPlanner"
-                        :class="{ selected: showStudentProfile }"
-                      >
-                      Assignments
-                      </button>
-                      <button
-                        @click="onTabClickAssignment(2)"
-                        class="btn tab-btn"
-                        id="assignmentPlanner"
-                        :class="{ selected: showStudentAnalytics }"
-                      >
-                      Overdue Assignments
-                      </button>
-
-
-
-                    </div>
-
+                      <div class="tab-btns d-flex align-items-center z-index-">
+                        <button
+                          @click="
+                            onTabClickAssignment(1);
+                            showOverdueAssingments = false;
+                            showAssignments = true;
+                          "
+                          class="tab-btn mr-3"
+                          id="filterPlanner"
+                          :class="{ selected: showAssignments }"
+                        >
+                          Assignments
+                        </button>
+                        <button
+                          @click="
+                            onTabClickAssignment(2);
+                            showOverdueAssingments = true;
+                            showAssignments = false;
+                          "
+                          class="btn tab-btn"
+                          id="assignmentPlanner"
+                          :class="{ selected: showOverdueAssingments }"
+                        >
+                          Overdue Assignments
+                        </button>
+                      </div>
 
                       <div
                         v-if="showAssignments"
@@ -644,9 +645,9 @@
                         v-if="showOverdueAssingments"
                         class="custom-overflow px-4 pt-3 mb-3"
                       >
-                        <div class="row d-none">
+                        <div class="row">
                           <div
-                            v-for="detail in pendingAssignments"
+                            v-for="detail in overdueAssts"
                             :key="detail.id"
                             class="col-12 col-lg-6 col-xl-4"
                           >
@@ -686,6 +687,8 @@
                                         ? 'orange'
                                         : detail.priority == '3'
                                         ? 'yellow'
+                                        : detail.priority == '4'
+                                        ? 'red'
                                         : ''
                                     "
                                   >
@@ -696,6 +699,8 @@
                                         ? "Important"
                                         : detail.priority == "3"
                                         ? "Can Wait"
+                                        : detail.priority == "4"
+                                        ? "Overdue"
                                         : ""
                                     }}
                                   </div>
@@ -1041,6 +1046,7 @@ export default {
       submitted: false,
       studentDetail: {},
       pendingAssignments: [],
+      overdueAssts: [],
       showAssignments: true,
       showOverdueAssingments: false,
     };
@@ -1059,6 +1065,8 @@ export default {
       errorType: (state) => state.errorType,
       assignmentList: (state) => state.assignmentList,
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
+      overdueAssignments: (state) => state.overdueAssignments,
+      sharedOverdueAssignments: (state) => state.sharedOverdueAssignments,
     }),
   },
   methods: {
@@ -1087,7 +1095,6 @@ export default {
     },
     async inviteStudentAdv() {
       this.submitted = true;
-      console.log("selected student ", this.selectedStudent);
       if (this.selectedStudent.id) {
         await this.inviteStudent({ id: this.selectedStudent.id });
         if (this.errorMessage != "") {
@@ -1123,6 +1130,8 @@ export default {
       this.showStudentProfile = true;
       this.showStudentAnalytics = false;
       this.studentDetail = student;
+      this.showOverdueAssingments = false;
+      this.showAssignments = true;
       this.getAssignments();
     },
     onTabClick(tab) {
@@ -1136,8 +1145,12 @@ export default {
     },
     async getAssignments() {
       await this.getAssignmentsList({ id: this.studentDetail.id });
+
       this.mapAssignments();
       this.mapSharedAssignments();
+      this.mapOverdueAssignments();
+      this.mapOverdueSharedAssignments();
+      console.log(this.overdueAssts);
     },
     mapAssignments() {
       if (this.assignmentList && this.assignmentList.length > 0) {
@@ -1197,13 +1210,74 @@ export default {
         });
       }
     },
+    mapOverdueAssignments() {
+      if (this.overdueAssignments && this.overdueAssignments.length > 0) {
+        this.overdueAssignments.forEach((e) => {
+          let item = {};
+          item.assignment_description = e.assignment_description;
+          item.assignment_materials = e.assignment_materials;
+          item.completed_date = e.completed_date;
+          item.dueTimeFormat = e.dueTimeFormat;
+          item.due_date = moment(e.due_date).format("MM/DD/YYYY");
+          item.due_time = e.due_time;
+          item.id = e.id;
+          item.priority = e.priority;
+          item.schoologyAssignment = e.schoologyAssignment;
+          item.schoologyAssignmentId = e.schoologyAssignmentId;
+          item.subTasks = e.subTasks;
+          item.subject = e.subject;
+          item.subjects = e.subjects;
+          item.task = e.task;
+          item.task_status = e.task_status;
+          item.updatedAt = e.updatedAt;
+          item.user_id = e.user_id;
+          item.peers = this.mapPeers(e);
+          item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+          item.isShared = false;
+          this.overdueAssts.push(item);
+        });
+      }
+    },
+    mapOverdueSharedAssignments() {
+      if (
+        this.sharedOverdueAssignments &&
+        this.sharedOverdueAssignments.length > 0
+      ) {
+        this.sharedOverdueAssignments.forEach((e) => {
+          let item = {};
+          if (e.assignments) {
+            item.assignment_description = e.assignments.assignment_description;
+            item.assignment_materials = e.assignments.assignment_materials;
+            item.completed_date = e.assignments.completed_date;
+            item.dueTimeFormat = e.assignments.dueTimeFormat;
+            item.due_date = moment(e.assignments.due_date).format("MM/DD/YYYY");
+            item.due_time = e.assignments.due_time;
+            item.id = e.assignments.id;
+            item.priority = e.assignments.priority;
+            item.schoologyAssignment = e.assignments.schoologyAssignment;
+            item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+            item.subTasks = e.assignments?.subTasks;
+            item.subject = e.assignments?.subjects?.subject_name;
+            item.subjects = e.subjects;
+            item.task = e.assignments.task;
+            item.task_status = e.assignments.task_status;
+            item.updatedAt = e.assignments.updatedAt;
+            item.user_id = e.assignments.user_id;
+            item.peers = this.mapPeers(e);
+            item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+            item.isShared = true;
+            this.overdueAssts.push(item);
+          }
+        });
+      }
+    },
     mapPeers(e) {
       let user_id = localStorage.getItem("id");
       let peers = [];
       if (e.assignment_shared_users && e.assignment_shared_users.length > 0) {
         e.assignment_shared_users.forEach((item) => {
           let peer = {};
-          if (item.shared_users_id != user_id) {
+          if (item.users && item.shared_users_id != user_id) {
             peer = item.users;
             peer.id = item.shared_users_id;
             peers.push(peer);
