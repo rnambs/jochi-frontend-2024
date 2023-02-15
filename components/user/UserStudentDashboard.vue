@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="startIntro">Start Intro</button>
+    <button @click="startIntro" title="Tooltip on bottom">Start Intro</button>
     <div
       id="pageLoader"
       class="
@@ -972,7 +972,16 @@ export default {
   },
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [
+        {
+          rel: "stylesheet",
+          href: "/css/style01.css",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
     };
   },
   data() {
@@ -1090,24 +1099,24 @@ export default {
     }
   },
   methods: {
-     startIntro () {
-      const intro = this.$intro()
+    startIntro() {
+      const intro = this.$intro();
       intro.setOptions({
         steps: [
           {
-            intro: 'Welcome to Intro.js'
+            intro: "Welcome to Intro.js",
           },
           {
-            element: '#step1',
-            intro: 'This is step 1'
+            element: "#step1",
+            intro: "This is step 1",
           },
           {
-            element: '#step2',
-            intro: 'This is step 2'
-          }
-        ]
-      })
-      intro.start()
+            element: "#step2",
+            intro: "This is step 2",
+          },
+        ],
+      });
+      intro.start();
     },
     async skipPromt() {
       localStorage.setItem("skippedPrompt", "true");
