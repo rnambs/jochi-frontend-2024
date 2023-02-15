@@ -959,27 +959,31 @@
             </p>
           </div>
           <div v-if="showClubInfo && clubInformation" class="modal-body">
-            <p class="confirm-text d-flex justify-content-between">
-              <label for="created_at">Type</label>
-              <span class="color-dark font-semi-bold"
-                >{{ clubInformation.activity_type }}
-              </span>
-
-              <label for="created_at">Created By</label>
-              <span
-                v-if="clubInformation.student"
-                class="color-dark font-semi-bold"
-                >{{
-                  clubInformation.student.first_name +
-                  " " +
-                  clubInformation.student.last_name
-                }}
-              </span>
-
-              <label for="created_at">Created At</label>
-              <span class="color-dark font-semi-bold"
-                >{{ clubCreatedAt }}
-              </span>
+            <p class="confirm-text">
+              <div class="w-100">
+                <label for="created_at">Type:</label>
+                <span class="color-dark font-semi-bold"
+                  >{{ clubInformation.activity_type }}
+                </span>
+              </div>
+              <div>
+                <label for="created_at">Created By:</label>
+                  <span
+                    v-if="clubInformation.student"
+                    class="color-dark font-semi-bold"
+                    >{{
+                      clubInformation.student.first_name +
+                      " " +
+                      clubInformation.student.last_name
+                    }}
+                  </span>
+              </div>
+              <div>
+                <label for="created_at">Created At:</label>
+                <span class="color-dark font-semi-bold"
+                  >{{ clubCreatedAt }}
+                </span>
+              </div>
             </p>
           </div>
           <div v-if="!showClubInfo" class="modal-footer">
