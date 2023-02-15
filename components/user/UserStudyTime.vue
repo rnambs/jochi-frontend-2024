@@ -1,8 +1,13 @@
 <style>
-.send-later{right: 1rem; top:1rem; width: 32px;
-    height: 32px !important;
-    border-radius: 50%;
-    background-color: unset;}
+.send-later {
+  right: 1rem;
+  top: 1rem;
+  width: 32px;
+  height: 32px !important;
+  border-radius: 50%;
+  background-color: unset;
+  z-index: 99;
+}
 </style>
 <template>
   <div class="main-section">
@@ -30,11 +35,22 @@
         <div class="row h-lg-100">
           <div class="col-lg-7 d-flex flex-column">
             <div class="position-relative">
-              <div class="position-absolute   send-later  jochi-components-light-bg d-flex align-items-center justify-content-center">
+              <div
+                @click="scheduleLaterClick('assignment', $event)"
+                class="
+                  position-absolute
+                  send-later
+                  jochi-components-light-bg
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                  cursor-pointer
+                "
+              >
                 <!-- <img src="/_nuxt/static/image/send-later.png" alt=""> -->
-                <img  src="~/assets/images/send-later.png">
+                <img src="~/assets/images/send-later.png" />
               </div>
-            </div>  
+            </div>
             <div
               @click="setSessionType('assignment')"
               class="
@@ -49,7 +65,6 @@
               "
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
-                
                 <h2 class="color-primary font-semi-bold mb-1">
                   Complete An Assignment
                 </h2>
@@ -71,9 +86,20 @@
               </div>
             </div>
             <div class="position-relative">
-              <div class="position-absolute   send-later  jochi-components-light-bg d-flex align-items-center justify-content-center">
+              <div
+                @click="scheduleLaterClick('study', $event)"
+                class="
+                  position-absolute
+                  send-later
+                  jochi-components-light-bg
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                  cursor-pointer
+                "
+              >
                 <!-- <img src="/_nuxt/static/image/send-later.png" alt=""> -->
-                <img  src="~/assets/images/send-later.png">
+                <img src="~/assets/images/send-later.png" />
               </div>
             </div>
             <div

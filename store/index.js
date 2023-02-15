@@ -24,6 +24,7 @@ import { emailVerified } from './emailVerified';
 import { teacherMeeting } from './teacherMeeting';
 import { customAvailability } from './customAvailability';
 import { studentCustomAvailability } from './studentCustomAvailability';
+import { clubUpdates } from './clubUpdates';
 import { teacherAppointment } from './teacherAppointment';
 import { viewAllMeeting } from './viewAllMeeting';
 import { appointmentVerified } from './appointmentVerified';
@@ -91,7 +92,8 @@ export const store = new Vuex.Store({
         teacherDashboard,
         userStudyAnalytics,
         teacherSyncCalendar,
-        studentCustomAvailability
+        studentCustomAvailability,
+        clubUpdates
     }
 });
 

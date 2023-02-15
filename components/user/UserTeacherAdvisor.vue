@@ -222,7 +222,7 @@
                       mt-5
                     "
                   >
-                    <div class="d-flex py-1 py-md-4 px-0 px-xl-4">
+                    <div class="d-flex py-1 py-md-4 px-0 px-xl-4 pt-xl-0">
                       <div class="ld-img-section mr-3 mb-0">
                         <div class="ld-img-holder img-holder-lg">
                           <img
@@ -341,7 +341,7 @@
                         h-min-400
                       "
                     >
-                      <h2
+                      <!-- <h2
                         class="
                           color-primary
                           font-semi-bold
@@ -364,7 +364,34 @@
                         @click="onTabClickAssignment(2)"
                       >
                         Overdue Assignments
-                      </h2>
+                      </h2> -->
+                      
+
+                    <div class="tab-btns d-flex align-items-center  z-index-">
+
+
+                      <button
+                        @click="onTabClickAssignment(1)"
+                        class="tab-btn mr-3"
+                        id="filterPlanner"
+                        :class="{ selected: showStudentProfile }"
+                      >
+                      Assignments
+                      </button>
+                      <button
+                        @click="onTabClickAssignment(2)"
+                        class="btn tab-btn"
+                        id="assignmentPlanner"
+                        :class="{ selected: showStudentAnalytics }"
+                      >
+                      Overdue Assignments
+                      </button>
+
+
+
+                    </div>
+
+
                       <div
                         v-if="showAssignments"
                         class="custom-overflow px-4 pt-3 mb-3"
