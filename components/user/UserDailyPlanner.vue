@@ -3370,7 +3370,7 @@ export default {
           plannerObj["title"] = element.team_match_trainings.title;
           plannerObj["color"] = color;
           plannerObj["start"] = start;
-          plannerObj["id"] = element.club_id;
+          plannerObj["id"] = element.team_match_trainings.id;
           plannerObj["groupId"] =
             element.team_match_trainings.session_type == "Match"
               ? "matches"

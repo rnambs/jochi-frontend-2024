@@ -115,7 +115,7 @@
                   Leave
                 </button>
               </li>
-              <li v-if="userType=='3' && enableEdit">
+              <li v-if="userType == '3' && enableEdit">
                 <button
                   class="btn btn-primary btn-sm py-1 mb-2 col-12"
                   @click="openConfirm('remove_leader')"
@@ -398,7 +398,7 @@
                       </button> -->
                     </div>
                     <div class="modal-body">
-                      <p class="confirm-text d-flex ">
+                      <p class="confirm-text d-flex">
                         <span class="w-100 color-dark font-semi-bold"
                           >Are you sure you want to delete this file?
                         </span>
@@ -959,24 +959,26 @@
             </p>
           </div>
           <div v-if="showClubInfo && clubInformation" class="modal-body">
-            <p class="confirm-text">
+            <div class="confirm-text">
               <div class="w-100">
                 <label for="created_at">Type:</label>
                 <span class="color-dark font-semi-bold"
-                  >{{ clubInformation.activity_type=='Clubs'?'Club':'Team' }}
+                  >{{
+                    clubInformation.activity_type == "Clubs" ? "Club" : "Team"
+                  }}
                 </span>
               </div>
               <div>
                 <label for="created_at">Created By:</label>
-                  <span
-                    v-if="clubInformation.student"
-                    class="color-dark font-semi-bold"
-                    >{{
-                      clubInformation.student.first_name +
-                      " " +
-                      clubInformation.student.last_name
-                    }}
-                  </span>
+                <span
+                  v-if="clubInformation.student"
+                  class="color-dark font-semi-bold"
+                  >{{
+                    clubInformation.student.first_name +
+                    " " +
+                    clubInformation.student.last_name
+                  }}
+                </span>
               </div>
               <div>
                 <label for="created_at">Created At:</label>
@@ -984,7 +986,7 @@
                   >{{ clubCreatedAt }}
                 </span>
               </div>
-            </p>
+            </div>
           </div>
           <div v-if="!showClubInfo" class="modal-footer">
             <button

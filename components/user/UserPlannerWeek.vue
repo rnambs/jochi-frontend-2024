@@ -2827,6 +2827,7 @@ export default {
       sharedAstList: (state) => state.sharedAstList,
       sharedSessionList: (state) => state.sharedSessionList,
       clubMeetings: (state) => state.clubMeetings,
+      trainingsMatches: (state) => state.trainingsMatches,
     }),
     ...mapState("quotedMessage", {
       quoteMessage: (state) => state.quoteMessage,
@@ -2847,7 +2848,6 @@ export default {
       allSubTskCompleted: (state) => state.allSubTskCompleted,
       overdues: (state) => state.overdues,
       sharedOverdues: (state) => state.sharedOverdues,
-      trainingsMatches: (state) => state.trainingsMatches,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -3148,6 +3148,7 @@ export default {
         // this.meetingDetails.push(listobj);
         eventList.push(meetingobj);
       });
+      console.log("inside taining match", this.trainingsMatches);
       this.trainingsMatches?.forEach((element) => {
         if (element.team_match_trainings.date) {
           var plannerObj = {};
@@ -3167,7 +3168,7 @@ export default {
           plannerObj["title"] = element.team_match_trainings.title;
           plannerObj["color"] = color;
           plannerObj["start"] = start;
-          plannerObj["id"] = element.club_id;
+          plannerObj["id"] = element.team_match_trainings.id;
           plannerObj["groupId"] =
             element.team_match_trainings.session_type == "Match"
               ? "matches"
@@ -3175,6 +3176,7 @@ export default {
           eventList.push(plannerObj);
         }
       });
+      console.log(eventList);
       this.calendarOptions.events = eventList;
       this.loading = false;
     },
