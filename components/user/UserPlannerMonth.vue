@@ -3276,7 +3276,7 @@ export default {
           if (element.team_match_trainings.session_type == "Match") {
             var color = "#ad2b89";
           } else {
-            var color = "#bebebe";
+            var color = "#da70d6";
           }
           var dateMeeting = element.team_match_trainings.date;
           var tmeMeeting = "";
