@@ -303,6 +303,8 @@
                                         ? 'orange'
                                         : detail.priority == '3'
                                         ? 'yellow'
+                                        : detail.priority == '4'
+                                        ? 'red'
                                         : ''
                                     "
                                   >
@@ -313,6 +315,8 @@
                                         ? "Important"
                                         : detail.priority == "3"
                                         ? "Can Wait"
+                                        : detail.priority == "4"
+                                        ? "Overdue"
                                         : ""
                                     }}
                                   </div>
@@ -1118,7 +1122,7 @@ export default {
             item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
             item.isShared = true;
             this.overdueAssts.push(item);
-          } else if (e.assignments.task_status != "Completed") {
+          } else if (e.assignments.task_status == "Completed") {
             this.mapSingleSharedAsst(e);
           }
         });
