@@ -98,7 +98,7 @@
                     Leave
                   </button>
                 </li>
-                <li v-if="enableEdit">
+                <li v-if="userType=='3' && enableEdit">
                   <button
                     class="btn btn-primary btn-sm py-1 mb-2 col-12"
                     @click="openConfirm('remove_leader')"
@@ -1329,11 +1329,12 @@ export default {
       confirmationMessage: "",
       showClubInfo: false,
       clubCreatedAt: "",
+      userType: "",
     };
   },
 
   mounted() {
-    var user = localStorage.getItem("user_type");
+    this.userType = localStorage.getItem("user_type");
     this.getClubMoreInfo();
     this.SlotswithId();
     // load students for add leader
