@@ -52,7 +52,7 @@
               </div>
             </div>
             <div
-              @click="setSessionType('assignment')"
+              @click="setSessionType('assignment', false)"
               class="
                 row
                 card card-void
@@ -103,7 +103,7 @@
               </div>
             </div>
             <div
-              @click="setSessionType('study')"
+              @click="setSessionType('study', false)"
               class="
                 row
                 card card-void
@@ -3978,7 +3978,8 @@ export default {
         this.loadAssignments();
       }
     },
-    async setSessionType(type) {
+    async setSessionType(type, later=false) {
+      this.scheduleLater = later;
       this.sessionType = type;
       if (this.sessionType == "study") {
         this.resetAssignment();
@@ -4537,9 +4538,9 @@ export default {
       this.repetitionCount = 1;
     },
     scheduleLaterClick(type, e) {
+      e.preventDefault();
       e.stopPropagation();
-      this.scheduleLater = true;
-      this.setSessionType(type);
+      this.setSessionType(type, true);
     },
   },
 
