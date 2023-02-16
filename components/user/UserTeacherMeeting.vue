@@ -450,8 +450,11 @@
                             <span
                               v-for="(student, index) in selectedStudents"
                               :key="index"
-                              >{{ student.first_name }} <span> </span
-                            ></span>
+                              >{{ student.first_name }}
+                              <span v-if="index != selectedStudents.length - 1"
+                                >,
+                              </span></span
+                            >
                           </h4>
                         </span>
                       </h1>
