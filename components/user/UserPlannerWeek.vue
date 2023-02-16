@@ -1794,7 +1794,65 @@
                                         for="recipient-name"
                                         class="col-form-label"
                                         >Priority:</label
-                                      >&nbsp;{{ priorityVal }}
+                                      >&nbsp;<span
+                                        v-if="priorityVal != 'Overdue'"
+                                        >{{ priorityVal }}</span
+                                      >
+                                      <div
+                                        v-else
+                                        class="dropdown input-icon-area"
+                                      >
+                                        <button
+                                          id="dLabel"
+                                          class="
+                                            dropdown-select
+                                            form-control
+                                            text-left
+                                          "
+                                          type="button"
+                                          data-toggle="dropdown"
+                                          aria-haspopup="true"
+                                          aria-expanded="false"
+                                          requ
+                                        >
+                                          <span class="caret">
+                                            {{
+                                              priorityVal && !prior
+                                                ? priorityVal
+                                                : prior == 1
+                                                ? "Urgent"
+                                                : prior == 2
+                                                ? "Important"
+                                                : prior == 3
+                                                ? "Can Wait"
+                                                : "Select priority"
+                                            }}</span
+                                          >
+                                        </button>
+                                        <ul
+                                          class="dropdown-menu"
+                                          aria-labelledby="dLabel"
+                                        >
+                                          <li
+                                            @click="prior = 3"
+                                            class="item low-color"
+                                          >
+                                            <span>Can Wait</span>
+                                          </li>
+                                          <li
+                                            @click="prior = 2"
+                                            class="item medium-color"
+                                          >
+                                            <span>Important</span>
+                                          </li>
+                                          <li
+                                            @click="prior = 1"
+                                            class="item high-color"
+                                          >
+                                            <span>Urgent</span>
+                                          </li>
+                                        </ul>
+                                      </div>
                                     </div>
                                   </div>
                                   <div class="col-md-6 ml-auto">
@@ -2671,6 +2729,7 @@ export default {
       undoSubtaskId: 0,
       user_id: "",
       removedPeerList: [],
+      prior: 0,
     };
   },
 
@@ -3231,7 +3290,7 @@ export default {
       this.GetWeeklyPlanner();
     },
     async UpdateAssignment() {
-      if (this.priorityVal == "Overdue") {
+      if (this.priorityVal == "Overdue" && !this.prior) {
         this.$toast.open({
           message: "Please select the priority",
           type: "error",
@@ -3247,6 +3306,17 @@ export default {
         }
       }
 
+      let priority = 0;
+
+      if (this.priorityVal == "Urgent") {
+        priority = "1";
+      } else if (this.priorityVal == "Important") {
+        priority = "2";
+      } else if (this.priorityVal == "Can Wait") {
+        priority = "3";
+      } else if (this.priorityVal == "Overdue") {
+        priority = this.prior;
+      }
       this.processing = true;
       this.loading = true;
       const dfE = moment(this.dateValue).format("YYYY-MM-DD");
@@ -3296,14 +3366,7 @@ export default {
         subject_id: this.isSharedAssignment ? this.subjectId : this.subject?.id,
         due_time: this.timeValue,
         due_date: dfE,
-        priority:
-          this.priorityVal == "Urgent"
-            ? 1
-            : this.priorityVal == "Important"
-            ? 2
-            : this.priorityVal == "Can Wait"
-            ? 3
-            : "",
+        priority: priority,
         shared_users_ids: peersSelected,
         assignment_materials: assignment_materials,
         subTasks: subTaskLists,
