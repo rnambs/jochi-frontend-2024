@@ -106,7 +106,7 @@
                   </div> -->
               <div class="row catalog-row">
                 <div class="col-lg-4">
-                  <h4 class="mb-2 color-dark font-semi-bold">
+                  <h4 class="mb-2 color-dark font-semi-bold text-capitalize">
                     {{ list["name"] }}
                   </h4>
                   <!-- <p class="catalog-text">
