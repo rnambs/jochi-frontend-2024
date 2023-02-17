@@ -300,11 +300,11 @@
                                       detail.priority == '1'
                                         ? 'red'
                                         : detail.priority == '2'
-                                        ? 'orange'
-                                        : detail.priority == '3'
                                         ? 'yellow'
+                                        : detail.priority == '3'
+                                        ? 'green'
                                         : detail.priority == '4'
-                                        ? 'red'
+                                        ? 'orange'
                                         : ''
                                     "
                                   >
@@ -552,11 +552,11 @@
                                       detail.priority == '1'
                                         ? 'red'
                                         : detail.priority == '2'
-                                        ? 'orange'
-                                        : detail.priority == '3'
                                         ? 'yellow'
+                                        : detail.priority == '3'
+                                        ? 'green'
                                         : detail.priority == '4'
-                                        ? 'red'
+                                        ? 'orange'
                                         : ''
                                     "
                                   >
