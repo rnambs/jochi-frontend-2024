@@ -3150,27 +3150,27 @@ export default {
       });
       console.log("inside taining match", this.trainingsMatches);
       this.trainingsMatches?.forEach((element) => {
-        if (element.team_match_trainings.date) {
+        if (element.date) {
           var plannerObj = {};
 
-          if (element.team_match_trainings.session_type == "Match") {
+          if (element.session_type == "Match") {
             var color = "#ad2b89";
           } else {
             var color = "#da70d6";
           }
-          var dateMeeting = element.team_match_trainings.date;
+          var dateMeeting = element.date;
           var tmeMeeting = "";
-          if (element.team_match_trainings.time) {
-            tmeMeeting = this.formatAMPM(element.team_match_trainings.time);
+          if (element.time) {
+            tmeMeeting = this.formatAMPM(element.time);
           }
           var start = dateMeeting + "T" + tmeMeeting;
 
-          plannerObj["title"] = element.team_match_trainings.title;
+          plannerObj["title"] = element.title;
           plannerObj["color"] = color;
           plannerObj["start"] = start;
-          plannerObj["id"] = element.team_match_trainings.id;
+          plannerObj["id"] = element.id;
           plannerObj["groupId"] =
-            element.team_match_trainings.session_type == "Match"
+            element.session_type == "Match"
               ? "matches"
               : "trainings";
           eventList.push(plannerObj);
