@@ -60,14 +60,6 @@
               align-items-center
             "
           >
-            <!-- <div class="d-flex align-items-center hover-area">
-            <p class="mb-0 color-secondary text-14 font-regular">
-              1200 X 1802
-            </p>
-            <button class="btn p-1 m-2">
-              <i class="fas fa-info-circle color-white"></i>
-            </button>
-          </div> -->
             <button
               v-if="enableEdit"
               @click="openAddBanner"
@@ -82,9 +74,6 @@
             >
               <i class="fas fa-info-circle color-white"></i>
             </button>
-            <!-- <button class="btn p-1 m-2" CustomTitle="1200 X 180">
-              <i class="fas fa-cog color-white"></i>
-            </button> -->
 
             <button class="btn p-1 m-2" v-on:click="toggleDropdown">
               <i class="fas fa-cog color-white"></i>
@@ -388,24 +377,12 @@
                       >
                         Confirmation
                       </h2>
-                      <!-- <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button> -->
                     </div>
                     <div class="modal-body">
                       <p class="confirm-text d-flex">
                         <span class="w-100 color-dark font-semi-bold"
                           >Are you sure you want to delete this file?
                         </span>
-                        <!-- <span class="delete-text w-100 pl-1">
-                          {{ remove_name }}</span
-                        > -->
-                        <!-- <span class="w-100"> file?</span> -->
                       </p>
                     </div>
                     <div class="modal-footer">
@@ -539,14 +516,6 @@
                             accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
                           />
                         </div>
-                        <!-- <button
-                          id="clckPrevent"
-                          type="file"
-                          class="btn btn-primary py-1 my-3"
-                          @click="$event.stopPropagation()"
-                        >
-                          Browse for files
-                        </button> -->
                       </div>
                       <button
                         id="clckPrevent"
@@ -578,15 +547,6 @@
           <div class="info-tab container-fluid mb-3 px-3">
             <div class="row tab-row m-0 px-3">
               <div class="col-md-4 col-xs-12 py-2 py-md-0">
-                <!-- <nuxt-link
-                  :to="{
-                    path: '/club-info',
-                    query: { id: clubId, name: headingName },
-                  }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-3 rounded-10 h-100"
-                >
-                  <span class="text-24 color-primary font-semi-bold">Club Details</span>
-                </nuxt-link> -->
                 <nuxt-link
                   :to="{
                     path: '/club-moreInfo',
@@ -606,7 +566,6 @@
                     h-100
                   "
                 >
-                  <!-- <i class="fas fa-info"></i> -->
                   <span class="text-24 color-primary font-semi-bold"
                     >Home Page</span
                   >
@@ -678,21 +637,7 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <!-- <div class="modal-header">
-            <h3 class="modal-title" id="nextMeetingModalLongTitle">
-              Configure Meeting Days
-            </h3>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> -->
           <div class="modal-body no-overflow px-4 pt-4">
-            <!-- <div class="col-md-5 col-xs-12"> -->
             <h3
               class="modal-title color-primary font-semi-bold"
               id="nextMeetingModalLongTitle"
@@ -700,9 +645,6 @@
               Configure Meeting Days
             </h3>
             <div class="inner-info">
-              <!-- <div class="inner-info-head mb-3">
-                <h6 class="color-dark mb-0">Meeting Time</h6>
-              </div> -->
               <p class="color-dark text-24 font-semi-bold">
                 Next meeting:
                 {{
@@ -713,16 +655,6 @@
               </p>
 
               <div class="row inner-col" v-if="enableEdit">
-                <!-- <div
-                  class="
-                    col-lg-4 col-md-12
-                    inner-info-head
-                    d-flex
-                    align-items-center
-                  "
-                >
-                  <h6 class="mb-0">Choose time</h6>
-                </div> -->
                 <div class="col-lg-8 col-md-12 input-icon-area form-row">
                   <multiselect
                     v-model="valueMeeting"
@@ -762,25 +694,9 @@
                   >
                 </div>
               </div>
-              <!-- <button
-                v-if="enableEdit"
-                class="btn btn-info-edit mt-2"
-                :disabled="!value"
-                @click.prevent="UpdateTime"
-              >
-                Update the next meeting
-              </button> -->
             </div>
-            <!-- </div> -->
           </div>
           <div class="modal-footer">
-            <!-- <button
-              type="button"
-              class="btn btn-color-close"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button> -->
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-12"
@@ -817,14 +733,6 @@
             <h3 class="modal-title color-primary" id="addBannerModalLongTitle">
               Add Banner
             </h3>
-            <!-- <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button> -->
           </div>
           <div class="modal-body overflow-hidden d-flex flex-column px-4">
             <div class="d-flex flex-column overflow-hidden h-100">
@@ -841,7 +749,6 @@
                   mb-3
                 "
               >
-                <!-- <v-img :src="image_name" class="profile-img"></v-img> -->
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"
                   @click="$refs.FileInput.click()"
@@ -855,7 +762,6 @@
                   @change="onFileSelect"
                 />
               </div>
-              <!-- <v-dialog v-model="dialog" width="500"> -->
               <v-card
                 class="
                   bg-transparent
@@ -914,18 +820,6 @@
               <!-- </v-dialog> -->
             </div>
           </div>
-
-          <!-- <div class="modal-footer px-4">
-            <button
-              class="btn btn-primary"
-              @click="saveImage(), (dialog = false)"
-            >
-              Crop
-            </button>
-            <button class="btn btn-primary" text @click="dialog = false">
-              Cancel
-            </button>
-          </div> -->
         </div>
       </div>
     </div>
@@ -952,10 +846,6 @@
               <span class="w-100 color-dark font-semi-bold"
                 >{{ confirmationMessage }}
               </span>
-              <!-- <span class="delete-text w-100 pl-1">
-                          {{ remove_name }}</span
-                        > -->
-              <!-- <span class="w-100"> file?</span> -->
             </p>
           </div>
           <div v-if="showClubInfo && clubInformation" class="modal-body">
@@ -1070,17 +960,16 @@ export default {
       showClubInfo: false,
       clubCreatedAt: "",
       userType: "",
+      startTime: null,
     };
   },
   mounted() {
+    this.startTime = new Date().getTime();
+
     this.userType = localStorage.getItem("user_type");
     this.getClubMoreInfo();
     this.SlotswithId();
-    // if (user == 3) {
     this.ClubFiles();
-    // } else {
-    //   this.$router.push("/");
-    // }
   },
   computed: {
     ...mapState("clubFiles", {
@@ -1354,9 +1243,6 @@ export default {
           formData.append("club_banner", "1");
 
           this.upload(formData);
-
-          //   this.profileImageUrl = "";
-          // this.ClubFiles();
         }
       }, this.mime_type);
     },
@@ -1367,7 +1253,6 @@ export default {
         },
         club_id: this.$route.query.id,
       });
-      //   this.loading = false;
       if (this.successMessage != "") {
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
@@ -1545,6 +1430,13 @@ export default {
       console.log("club information", this.clubInformation);
       this.clubCreatedAt = moment(this.clubInformation).format("MMMM Do, YYYY");
     },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "ClubDetail";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
 </script>
