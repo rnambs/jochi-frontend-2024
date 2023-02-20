@@ -34,20 +34,12 @@
             <button class="d-none btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
             </button>
-            <!-- <div class="d-flex align-items-center">
-              <button class="btn p-1 m-2">
-                <i class="fas fa-info-circle color-white"></i>
-              </button>
-              <p class="mb-0 color-secondary text-14 font-regular">1200 X 180</p>
-            </div> -->
+
             <button
               class="d-none btn p-0 tooltip01 right-tip"
               CustomTitle="1200 X 180"
             >
               <i class="fas fa-info-circle color-white"></i>
-            </button>
-            <button class="btn p-1 m-2" CustomTitle="1200 X 180">
-              <i class="fas fa-cog color-white"></i>
             </button>
           </div>
         </div>
@@ -81,6 +73,7 @@
                   </h3>
 
                   <a
+                    v-if="initialLoading && userNotLeader"
                     href="#"
                     class="btn btn-primary py-1"
                     @click="JoinClub()"
@@ -152,22 +145,6 @@
                         Update
                       </button>
                     </div>
-                    <!-- <div class="custom-switch pb-2" v-if="enableEdit">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="custom-Switches"
-                        v-model="availability"
-                        @change="ShowClubInCatalog()"
-                        v-on:click="availabilityToggle()"
-                      />
-                      <label class="custom-control-label
-                        font-normal
-                        color-dark
-                        text-14" for="custom-Switches"
-                        >Show club in catalog
-                      </label>
-                    </div> -->
                   </div>
 
                   <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
@@ -260,7 +237,7 @@
                                 <button
                                   v-if="leadersInfo.length >= 3"
                                   @click="openViewMoreMembers(true)"
-                                  class="btn btn-void mt-3 py-1 px-0"
+                                  class="btn btn-void mt-2 py-1 px-0"
                                 >
                                   <span class="font-semi-bold mr-1">
                                     View More</span
@@ -270,20 +247,6 @@
                                   </span>
                                 </button>
 
-                                <!-- <li
-                                  v-for="(leader, index) in list.todoLeader"
-                                  :key="index"
-                                >
-                                  <span class="input-name">{{ leader }}</span>
-                                  <span
-                                    class="input-icon"
-                                    v-if="enableEdit"
-                                    @click.prevent="RemoveLeader(leader)"
-                                  >
-                                    <i class="fa fa-times p-1" aria-hidden="true"></i
-                                  ></span> 
-                                </li> -->
-                                <!-- list.todoArr.length == 0 && -->
                                 <li
                                   v-if="!leadersInfo || leadersInfo.length == 0"
                                 >
@@ -314,33 +277,6 @@
                             justify-content-end
                           "
                         >
-                          <!-- <multiselect
-                              v-model="value"
-                              :options="taglist"
-                              track-by="name"
-                              label="name"
-                              placeholder="Select a tag"
-                              @input="EditTag"
-                            >
-                              <span slot="noResult">No data found</span>
-                            </multiselect> -->
-                          <!-- <multiselect
-                            v-model="value"
-                            deselect-label="Can't remove this value"
-                            track-by="name"
-                            label="name"
-                            placeholder="Select one"
-                            :options="options"
-                            :searchable="false"
-                            :allow-empty="false"
-                          >
-                            <template slot="singleLabel" slot-scope="{ option }"
-                              ><strong>{{ option.name }}</strong> is written
-                              in<strong>
-                                {{ option.language }}</strong
-                              ></template
-                            >
-                          </multiselect> -->
                           <multiselect
                             v-model="leaderUpdate"
                             :options="students"
@@ -350,9 +286,6 @@
                               Select students
                             "
                           >
-                            <!-- <span slot="maxElements"
-                              >Maximum of 4 students selected</span
-                            > -->
                             <span slot="color-secondary text-14 font-regular"
                               >No data found</span
                             >
@@ -420,9 +353,6 @@
                                 : ""
                             }}</span>
                           </div>
-                          <!-- <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div> -->
                         </div>
                       </div>
                       <div v-if="membersInfo.length > 4" class="second-row">
@@ -448,8 +378,6 @@
                               alt=""
                             />
                           </div>
-                          <!-- <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div> -->
                         </div>
                       </div>
                       <div
@@ -471,12 +399,6 @@
                         <div class="row justify-content-end">
                           <div class="col-10 col-lg-8 info-tag pr-0">
                             <div class="input-group mb-0 justify-content-end">
-                              <!-- input-icon-area
-                              py-1
-                              px-4
-                              mb-2
-                              mr-2
-                              custom-club-details-tag-bg -->
                               <div
                                 class="
                                   px-4
@@ -500,14 +422,6 @@
                                     : red,
                                 }"
                               >
-                                <!-- <span
-                                  type="text"
-                                  :style="{
-                                    'background-color': tagColorMap[value.name],
-                                  }"
-                                  class="pl"
-                                  >{{ value.name }}</span
-                                > -->
                                 <span class="">{{ value.name }}</span>
                                 <span
                                   class="input-icon"
@@ -520,14 +434,6 @@
                                 ></span>
                               </div>
 
-                              <!-- <li
-                                class="to-do-li"
-                                :style="{
-                                  'background-color': tagColorMap[todos],
-                                }"
-                              >
-                                {{ todos }}
-                              </li> -->
                               <div
                                 class="input-icon-area mb-2 mr-2"
                                 v-if="list.taglists.length == 0"
@@ -775,11 +681,16 @@ export default {
       isLeaderView: false,
       tagColorMap: {},
       userType: 0,
+      userId: 0,
+      userNotLeader: true,
+      initialLoading: false,
     };
   },
 
   mounted() {
+    this.initialLoading = false;
     this.userType = localStorage.getItem("user_type");
+    this.userId = localStorage.getItem("id");
     this.getClubMoreInfo();
     this.SlotswithId();
     // load students for add leader
@@ -839,10 +750,31 @@ export default {
       this.anim = anim;
     },
     async getClubMoreInfo() {
+      this.loading = true;
       await this.clubMoreInfo({
         club_id: this.$route.query.id,
         user_id: localStorage.getItem("id"),
       });
+      this.loading = false;
+    },
+    async checkUserLeader() {
+      this.initialLoading = true;
+      let index = this.leadersInfo.findIndex(
+        (e) => e.user_id.toString() == this.userId.toString()
+      );
+      if (index < 0) {
+        index = this.membersInfo.findIndex(
+          (e) => e.user_id.toString() == this.userId.toString()
+        );
+      }
+
+      if (index > -1) {
+        this.userNotLeader = false;
+        this.$router.push({
+          path: "/club-info",
+          query: { id: this.clubId, name: this.headingName },
+        });
+      }
     },
     async UpdateTime() {
       this.dayArrVal = [];
@@ -881,7 +813,10 @@ export default {
       this.valueMeeting = "";
     },
     async SlotswithId() {
+      this.loading = true;
+
       await this.slotswithId({});
+      this.loading = false;
     },
     UpdateDays(value) {
       this.daysArray.push(value);
@@ -960,7 +895,9 @@ export default {
       this.list_data = [];
       this.clubDetails = this.allList[0];
       this.leadersInfo = this.allList[1].Leaders_info;
+
       this.membersInfo = this.allList[2].Members_info;
+      this.checkUserLeader();
       this.allList.forEach((element) => {
         var Scheduleobj = {};
         statusValue = element.status_by_leader;
@@ -1010,6 +947,7 @@ export default {
         this.availability = false;
       }
     },
+
     async Editinformation(value, des) {
       this.loading = true;
       if (this.student) {
@@ -1127,10 +1065,13 @@ export default {
     },
     // adding student leader
     async GetStudents() {
+      this.loading = true;
+
       await this.getStudents({
         school_id: localStorage.getItem("school_id"),
         studentId: localStorage.getItem("id"),
       });
+      this.loading = false;
     },
     async addLeader() {
       await this.addStudentLeader({

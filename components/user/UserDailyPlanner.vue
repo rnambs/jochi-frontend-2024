@@ -1475,7 +1475,7 @@
                               <div
                                 v-for="peer of peerList"
                                 :key="peer.id"
-                                class="h-fit-content  show-icon"
+                                class="h-fit-content show-icon"
                               >
                                 <div
                                   class="d-flex align-items-center my-2 mr-3"
@@ -1500,7 +1500,6 @@
                                         alt=""
                                       />
                                     </div>
-                                    
                                   </div>
                                   <div class="ld-details-section">
                                     <p class="ld-heading mb-0">
@@ -1509,13 +1508,21 @@
                                   </div>
                                 </div>
                                 <button
-                                    type="button"
-                                    role="button"
-                                    @click="
-                                      removePeerConfirm(peer.id, $event)
+                                  type="button"
+                                  role="button"
+                                  @click="removePeerConfirm(peer.id, $event)"
+                                >
+                                  <span
+                                    class="
+                                      color-primary
+                                      fa-icon
+                                      show-hover
+                                      d-none
+                                      btn
+                                      p-0
                                     "
-                                  >
-                                    <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt ml-3"></i></span>
+                                    ><i class="fas fa-trash-alt ml-3"></i
+                                  ></span>
                                 </button>
                               </div>
                             </div>
@@ -1701,7 +1708,62 @@
                                     for="recipient-name"
                                     class="col-form-label"
                                     >Priority:</label
-                                  >&nbsp;{{ priorityVal }}
+                                  >&nbsp;
+                                  <span v-if="priorityVal != 'Overdue'">{{
+                                    priorityVal
+                                  }}</span>
+                                  <div v-else class="dropdown input-icon-area">
+                                    <button
+                                      id="dLabel"
+                                      class="
+                                        dropdown-select
+                                        form-control
+                                        text-left
+                                      "
+                                      type="button"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      requ
+                                    >
+                                      <span class="caret">
+                                        {{
+                                          priorityVal && !prior
+                                            ? priorityVal
+                                            : prior == 1
+                                            ? "Urgent"
+                                            : prior == 2
+                                            ? "Important"
+                                            : prior == 3
+                                            ? "Can Wait"
+                                            : "Select priority"
+                                        }}</span
+                                      >
+                                    </button>
+                                    <ul
+                                      class="dropdown-menu"
+                                      aria-labelledby="dLabel"
+                                    >
+                                      <li
+                                        @click="prior = 3"
+                                        class="item low-color"
+                                      >
+                                        <span>Can Wait</span>
+                                      </li>
+                                      <li
+                                        @click="prior = 2"
+                                        class="item medium-color"
+                                      >
+                                        <span>Important</span>
+                                      </li>
+                                      <li
+                                        @click="prior = 1"
+                                        class="item high-color"
+                                      >
+                                        <span>Urgent</span>
+                                      </li>
+                                    </ul>
+                                  </div>
                                 </div>
                               </div>
                               <div class="col-md-6 ml-auto">
@@ -2893,9 +2955,13 @@ export default {
       undoSubtaskId: 0,
       user_id: "",
       removedPeerList: [],
+      prior: 0,
+      startTime: null,
     };
   },
   mounted() {
+    this.startTime = new Date().getTime();
+
     this.user_id = localStorage.getItem("id");
     socket.on("notifications", (data) => {
       console.log("socket data", data);
@@ -2922,7 +2988,6 @@ export default {
       $(".dropdown-select").text(getValue);
       _this.filterOption(getValue);
     });
-    //datepicker
 
     var today = new Date();
     var future = new Date();
@@ -3002,6 +3067,7 @@ export default {
       allSubTskCompleted: (state) => state.allSubTskCompleted,
       overdues: (state) => state.overdues,
       sharedOverdues: (state) => state.sharedOverdues,
+      trainingsMatches: (state) => state.trainingsMatches,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -3041,7 +3107,6 @@ export default {
       }
     },
     viewMoreClick(event, item) {
-      console.log("view more", event, item);
       event.preventDefault();
       event.stopPropagation();
       this.viewMore = true;
@@ -3288,6 +3353,31 @@ export default {
         listobj["timeValNum"] = timeValNum;
         eventList.push(meetingobj);
       });
+      this.trainingsMatches?.forEach((element) => {
+        if (element.date) {
+          var plannerObj = {};
+
+          if (element.session_type == "Match") {
+            var color = "#ad2b89";
+          } else {
+            var color = "#da70d6";
+          }
+          var dateMeeting = element.date;
+          var tmeMeeting = "";
+          if (element.time) {
+            tmeMeeting = this.formatAMPM(element.time);
+          }
+          var start = dateMeeting + "T" + tmeMeeting;
+
+          plannerObj["title"] = element.title;
+          plannerObj["color"] = color;
+          plannerObj["start"] = start;
+          plannerObj["id"] = element.id;
+          plannerObj["groupId"] =
+            element.session_type == "Match" ? "matches" : "trainings";
+          eventList.push(plannerObj);
+        }
+      });
 
       this.calendarOptions.events = eventList;
     },
@@ -3434,9 +3524,7 @@ export default {
       this.GetDailyPlanner();
     },
     async UpdateAssignment() {
-      console.log(this.priorityVal);
-
-      if (this.priorityVal == "Overdue") {
+      if (this.priorityVal == "Overdue" && !this.prior) {
         this.$toast.open({
           message: "Please select the priority",
           type: "error",
@@ -3461,6 +3549,8 @@ export default {
         priority = "2";
       } else if (this.priorityVal == "Can Wait") {
         priority = "3";
+      } else if (this.priorityVal == "Overdue") {
+        priority = this.prior;
       }
 
       this.processing = true;
@@ -3478,7 +3568,6 @@ export default {
       this.removedPeerList.forEach((e) => {
         const index = this.peerList.findIndex((item) => item.id == e);
         if (index < 0) {
-          console.log("index", index);
           removed.push(e);
         }
       });
@@ -3884,7 +3973,6 @@ export default {
       if (this.tempOffset != this.offset || this.reloadNext) {
         this.reloadNext = false;
         this.tempOffset = this.offset;
-        console.log("inside load next", this.offset);
         this.pendingAssignments = [];
         await this.getAssignments({ offset: this.offset, limit: this.limit });
         if (this.offset == 0) {
@@ -3939,7 +4027,6 @@ export default {
         this.assignmentMaterials = [];
 
         item.assignment_description = e.assignment_description;
-        // item.assignment_materials = e.assignment_materials;
         if (e.assignment_materials && e.assignment_materials.length > 0) {
           e.assignment_materials.forEach((m) => {
             let data = {};
@@ -4172,7 +4259,6 @@ export default {
       }
     },
     mapAssignmentDetail(data) {
-      console.log(data);
       this.isSharedAssignment = data.isShared;
       this.schoologyAssignment = data.schoologyAssignment;
       this.assignmentId = data.id;
@@ -4367,8 +4453,6 @@ export default {
         // only splice array when item is found
         this.additionalMaterialList.splice(index, 1); // 2nd parameter means remove one item only
       }
-
-      console.log(this.additionalMaterialList);
     },
     removePeerConfirm(id, event) {
       event.stopPropagation();
@@ -4397,18 +4481,15 @@ export default {
       } else {
         this.choosenAssignments.push(id);
       }
-      console.log(this.choosenAssignments);
     },
     confirmUndo(id) {
       this.undoAsstId = id;
       $("#undoAssignmentConfirmation").modal({ backdrop: true });
     },
     undoAsstComplete() {
-      console.log(this.undoAsstId);
       this.completeAssignment(false);
     },
     confirmDeletion() {
-      console.log("confirm delete");
       $("#deleteAssignmentConfirmation").modal({ backdrop: true });
     },
     async deleteAssts() {
@@ -4422,7 +4503,6 @@ export default {
         this.reloadNext = true;
         this.reloadCount += 1;
         this.openAssignment = false;
-        // this.getAllCompletedAssignments();
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -4449,6 +4529,13 @@ export default {
       this.openAssignment = false;
     },
   },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "PlannerDay";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
+  },
 };
 </script>
 
@@ -4467,9 +4554,6 @@ export default {
   height: 60%;
 }
 .squaredThree {
-  /* position: relative;
-  float:left; */
-  /* margin: 10px */
 }
 .squaredThree label {
   width: 24px;
@@ -4514,8 +4598,6 @@ export default {
   transition: all ease-in-out 300ms;
 }
 .label-text {
-  /* position: relative; */
-  /* left: 10px; */
 }
 .completed-vh-10 {
   height: 10vh;

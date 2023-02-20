@@ -18,7 +18,6 @@
       >
         <!-- end tab for club info -->
 
-        <!-- :style="{ 'background-image': clubDetails.club_banner_image }" -->
         <!-- Club info -->
 
         <div
@@ -50,14 +49,7 @@
             >
               <i class="fas fa-pen color-white"></i>
             </button>
-            <!-- <div class="d-flex align-items-center">
-              <button class="btn p-1 m-2">
-                <i class="fas fa-info-circle color-white"></i>
-              </button>
-              <p class="mb-0 color-secondary text-14 font-regular">
-                1200 X 180
-              </p>
-            </div> -->
+
             <button
               v-if="enableEdit"
               class="btn p-0 tooltip01 right-tip"
@@ -65,9 +57,7 @@
             >
               <i class="fas fa-info-circle color-white"></i>
             </button>
-            <!-- <button class="btn p-1 m-2" CustomTitle="1200 X 180">
-              <i class="fas fa-cog color-white"></i>
-            </button> -->
+
             <button class="btn p-1 m-2" v-on:click="toggleDropdown">
               <i class="fas fa-cog color-white"></i>
             </button>
@@ -98,7 +88,7 @@
                     Leave
                   </button>
                 </li>
-                <li v-if="enableEdit">
+                <li v-if="userType == '3' && enableEdit">
                   <button
                     class="btn btn-primary btn-sm py-1 mb-2 col-12"
                     @click="openConfirm('remove_leader')"
@@ -198,22 +188,6 @@
                         Update
                       </button>
                     </div>
-                    <!-- <div class="custom-switch pb-2" v-if="enableEdit">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="custom-Switches"
-                        v-model="availability"
-                        @change="ShowClubInCatalog()"
-                        v-on:click="availabilityToggle()"
-                      />
-                      <label class="custom-control-label
-                        font-normal
-                        color-dark
-                        text-14" for="custom-Switches"
-                        >Show club in catalog
-                      </label>
-                    </div> -->
                   </div>
                   <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
                     <div class="row">
@@ -246,7 +220,6 @@
                                   v-for="(data, index) in leadersInfo"
                                   :key="index"
                                 >
-                                  <!-- <span class="input-name">{{ data }}</span> -->
                                   <div
                                     v-if="index < 2"
                                     class="
@@ -324,7 +297,7 @@
                                 <button
                                   v-if="leadersInfo.length >= 3"
                                   @click="openViewMoreMembers(true)"
-                                  class="btn btn-void mt-3 py-1 px-0"
+                                  class="btn btn-void mt-2 py-1 px-0"
                                 >
                                   <span class="font-semi-bold mr-1"
                                     >View More</span
@@ -333,20 +306,6 @@
                                   ></span>
                                 </button>
 
-                                <!-- <li
-                                  v-for="(leader, index) in list.todoLeader"
-                                  :key="index"
-                                >
-                                  <span class="input-name">{{ leader }}</span>
-                                  <span
-                                    class="input-icon"
-                                    v-if="enableEdit"
-                                    @click.prevent="RemoveLeader(leader)"
-                                  >
-                                    <i class="fa fa-times p-1" aria-hidden="true"></i
-                                  ></span> 
-                                </li> -->
-                                <!-- list.todoArr.length == 0 && -->
                                 <li
                                   v-if="!leadersInfo || leadersInfo.length == 0"
                                 >
@@ -360,24 +319,6 @@
                           </div>
                         </div>
                       </div>
-                      <!-- <div
-                        class="col-12 text-right inner-col py-12"
-                        v-if="enableEdit"
-                      >
-                        <div class="inner-info-head mb-0">
-                          <h4 class="color-dark mb-2 font-bold">Add Leaders</h4>
-                        </div>
-
-                        <div
-                          class="
-                            form-row
-                            m-0
-                            d-flex
-                            align-items-center
-                            justify-content-end
-                          "
-                        ></div>
-                      </div> -->
                     </div>
                   </div>
                   <div
@@ -410,7 +351,6 @@
                                 : 'd-none'
                             "
                           >
-                            <!-- {{ membersInfo[index].user_info }} -->
                             <img
                               v-if="
                                 membersInfo[index - 1] &&
@@ -431,9 +371,6 @@
                                 : ""
                             }}</span>
                           </div>
-                          <!-- <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div> -->
                         </div>
                       </div>
                       <div v-if="membersInfo.length > 4" class="second-row">
@@ -459,8 +396,6 @@
                               alt=""
                             />
                           </div>
-                          <!-- <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div> -->
                         </div>
                       </div>
                       <div
@@ -485,9 +420,6 @@
                           "
                         >
                           <h4 class="color-dark mb-0 mr-2 font-bold">Tags</h4>
-                          <!-- <a href="#" class="btn p-1 color-secondary">
-                            <span><i class="fas fa-plus-circle"></i></span>
-                          </a> -->
                         </div>
                         <div class="row justify-content-end">
                           <div class="col-10 col-lg-8 info-tag">
@@ -497,18 +429,6 @@
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
                               >
-                                <!-- <input type="text" class="pl" hidden />{{
-                                  value.name
-                                }} -->
-
-                                <!-- <input
-                                  type="text"
-                                  :style="{
-                                    'background-color': tagColorMap[value.name],
-                                  }"
-                                  class="pl"
-                                  hidden
-                                />{{ value.name }} -->
                                 <span
                                   :style="{
                                     'background-color': tagColorMap[value.name]
@@ -559,7 +479,7 @@
                         <div
                           class="d-flex align-items-center justify-content-end"
                         >
-                          <div class="input-icon-area col-6 pr-0 form-row">
+                          <div class="input-icon-area col-6 pr-0 pt-0 form-row">
                             <multiselect
                               v-model="value"
                               :options="taglist"
@@ -607,7 +527,6 @@
                     h-100
                   "
                 >
-                  <!-- <i class="fas fa-info"></i> -->
                   <span class="text-24 color-primary font-semi-bold"
                     >Home Page</span
                   >
@@ -633,7 +552,6 @@
                     h-100
                   "
                 >
-                  <!-- <i class="fas fa-file-alt"></i> -->
                   <span class="text-24 color-primary font-semi-bold"
                     >Files & Slides</span
                   >
@@ -656,19 +574,6 @@
                     h-100
                   "
                 >
-                  <!-- <nuxt-link
-                    :to="{
-                      path: '/club-moreInfo',
-                      query: {
-                        id: clubId,
-                        name: headingName,
-                        type: activity_type,
-                      },
-                    }"
-                    class="inner-tab"
-                  > -->
-                  <!-- <i class="fas fa-ellipsis-h"></i> -->
-                  <!-- <span class="pl">More</span> -->
                   <span class="text-24 color-primary font-semi-bold"
                     >Next Meeting</span
                   >
@@ -695,21 +600,7 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <!-- <div class="modal-header">
-            <h3 class="modal-title" id="nextMeetingModalLongTitle">
-              Configure Meeting Days
-            </h3>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> -->
           <div class="modal-body no-overflow px-4 pt-4">
-            <!-- <div class="col-md-5 col-xs-12"> -->
             <h3
               class="modal-title color-primary font-semi-bold"
               id="nextMeetingModalLongTitle"
@@ -717,9 +608,6 @@
               Configure Meeting Days
             </h3>
             <div class="inner-info">
-              <!-- <div class="inner-info-head mb-3">
-                <h6 class="color-dark mb-0">Meeting Time</h6>
-              </div> -->
               <p class="color-dark text-24 font-semi-bold">
                 Next meeting:
                 {{
@@ -730,16 +618,6 @@
               </p>
 
               <div class="row inner-col mb-3" v-if="enableEdit">
-                <!-- <div
-                  class="
-                    col-lg-4 col-md-12
-                    inner-inner-info-head
-                    d-flex
-                    align-items-center
-                  "
-                >
-                  <h6 class="color-dark mb-0">Choose time</h6>
-                </div> -->
                 <div class="col-lg-8 col-md-12 input-icon-area form-row">
                   <multiselect
                     v-model="valueMeeting"
@@ -785,25 +663,9 @@
                   >
                 </div>
               </div>
-              <!-- <button
-                v-if="enableEdit"
-                class="btn btn-info-edit mt-2"
-                :disabled="!value"
-                @click.prevent="UpdateTime"
-              >
-                Update the next meeting
-              </button> -->
             </div>
-            <!-- </div> -->
           </div>
           <div class="modal-footer px-4">
-            <!-- <button
-              type="button"
-              class="btn btn-color-close"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button> -->
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-12"
@@ -854,7 +716,6 @@
             <div v-if="isLeaderView" class="inner-info-text">
               <ul class="mb-0 leader-list-style">
                 <li v-for="(data, index) in leadersInfo" :key="index">
-                  <!-- <span class="input-name">{{ data }}</span> -->
                   <div class="d-flex align-items-center mt-3">
                     <div class="d-flex justify-content-end p-0">
                       <div class="ld-img-section mr-3">
@@ -916,7 +777,6 @@
             <div v-if="!isLeaderView" class="inner-info-text">
               <ul class="mb-0 leader-list-style">
                 <li v-for="(data, index) in membersInfo" :key="index">
-                  <!-- <span class="input-name">{{ data }}</span> -->
                   <div class="d-flex align-items-center mt-3">
                     <div class="d-flex justify-content-end p-0">
                       <div class="ld-img-section mr-3">
@@ -991,21 +851,7 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <!-- <div class="modal-header">
-            <h4 class="modal-title color-dark" id="addLeaderModalLongTitle">
-              Add Leaders
-            </h4>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> -->
           <div class="modal-body no-overflow px-4 pt-4">
-            <!-- <div class="col-md-5 col-xs-12"> -->
             <h3
               class="modal-title color-primary font-semi-bold"
               id="addLeaderModalLongTitle"
@@ -1025,8 +871,6 @@
                 <span slot="noResult">No data found</span>
               </multiselect>
             </div>
-
-            <!-- </div> -->
           </div>
           <div class="modal-footer px-4">
             <button
@@ -1065,14 +909,6 @@
             <h3 class="modal-title color-primary" id="addBannerModalLongTitle">
               Add Banner
             </h3>
-            <!-- <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button> -->
           </div>
           <div class="modal-body overflow-hidden d-flex flex-column px-4">
             <div class="d-flex flex-column overflow-hidden h-100">
@@ -1089,7 +925,6 @@
                   mb-3
                 "
               >
-                <!-- <v-img :src="image_name" class="profile-img"></v-img> -->
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"
                   @click="$refs.FileInput.click()"
@@ -1103,7 +938,6 @@
                   @change="onFileSelect"
                 />
               </div>
-              <!-- <v-dialog v-model="dialog" width="500"> -->
               <v-card
                 class="
                   bg-transparent
@@ -1159,19 +993,8 @@
                   >
                 </v-card-actions>
               </v-card>
-              <!-- </v-dialog> -->
             </div>
           </div>
-
-          <!-- <div class="modal-footer px-4">
-            <button
-              class="btn btn-primary"
-              :disabled="!leaderUpdate"
-              @click.prevent="addLeader()"
-            >
-              Update
-            </button>
-          </div> -->
         </div>
       </div>
     </div>
@@ -1198,35 +1021,37 @@
               <span class="w-100 color-dark font-semi-bold"
                 >{{ confirmationMessage }}
               </span>
-              <!-- <span class="delete-text w-100 pl-1">
-                          {{ remove_name }}</span
-                        > -->
-              <!-- <span class="w-100"> file?</span> -->
             </p>
           </div>
           <div v-if="showClubInfo && clubInformation" class="modal-body">
-            <p class="confirm-text d-flex justify-content-between">
-              <label for="created_at">Type</label>
-              <span class="color-dark font-semi-bold"
-                >{{ clubInformation.activity_type }}
-              </span>
-
-              <label for="created_at">Created By</label>
-              <span
-                v-if="clubInformation.student"
-                class="color-dark font-semi-bold"
-                >{{
-                  clubInformation.student.first_name +
-                  " " +
-                  clubInformation.student.last_name
-                }}
-              </span>
-
-              <label for="created_at">Created At</label>
-              <span class="color-dark font-semi-bold"
-                >{{ clubCreatedAt }}
-              </span>
-            </p>
+            <div class="confirm-text">
+              <div>
+                <label for="created_at">Type: </label>
+                <span class="color-dark font-semi-bold"
+                  >{{
+                    clubInformation.activity_type == "Clubs" ? "Club" : "Team"
+                  }}
+                </span>
+              </div>
+              <div>
+                <label for="created_at">Created By: </label>
+                <span
+                  v-if="clubInformation.student"
+                  class="color-dark font-semi-bold"
+                  >{{
+                    clubInformation.student.first_name +
+                    " " +
+                    clubInformation.student.last_name
+                  }}
+                </span>
+              </div>
+              <div>
+                <label for="created_at">Created At: </label>
+                <span class="color-dark font-semi-bold"
+                  >{{ clubCreatedAt }}
+                </span>
+              </div>
+            </div>
           </div>
           <div v-if="!showClubInfo" class="modal-footer">
             <button
@@ -1325,22 +1150,21 @@ export default {
       confirmationMessage: "",
       showClubInfo: false,
       clubCreatedAt: "",
+      userType: "",
+      startTime: null,
     };
   },
 
   mounted() {
-    var user = localStorage.getItem("user_type");
+    this.startTime = new Date().getTime();
+
+    this.userType = localStorage.getItem("user_type");
     this.getClubMoreInfo();
     this.SlotswithId();
-    // load students for add leader
     this.GetStudents();
 
-    // if (user == 3) {
     this.ClubInfo();
     this.GetTag();
-    // } else {
-    //   this.$router.push("/");
-    // }
   },
   computed: {
     ...mapState("clubInfo", {
@@ -1362,9 +1186,7 @@ export default {
       errorTypeClub: (state) => state.errorType,
       clubBannerImage: (state) => state.clubBannerImage,
     }),
-    ...mapState("teacherMeeting", {
-      // students: (state) => state.students,
-    }),
+    ...mapState("teacherMeeting", {}),
     ...mapState("clubFiles", {
       successMessageClubFile: (state) => state.successMessage,
       SuccessTypeClubFile: (state) => state.SuccessType,
@@ -1396,9 +1218,7 @@ export default {
       updateTime: "updateTime",
       slotswithId: "slotswithId",
     }),
-    ...mapActions("teacherMeeting", {
-      // getStudents: "getStudents",
-    }),
+    ...mapActions("teacherMeeting", {}),
     ...mapActions("clubFiles", {
       clubFiles: "clubFiles",
       uploadFile: "uploadFile",
@@ -1408,7 +1228,7 @@ export default {
     ...mapActions("clubUpdates", {
       clubDelete: "clubDelete",
       clubLeave: "clubLeave",
-      removeLeader: "removeLeader",
+      leaderRemove: "leaderRemove",
       getInformation: "getInformation",
     }),
     handleAnimation: function (anim) {
@@ -1488,7 +1308,6 @@ export default {
       this.list_data.forEach((e) => {
         if (e.taglists && e.taglists.length > 0) {
           e.taglists.forEach((tag) => {
-            // let index = this.tagColorMap.find((index) => index.tag == tag);
             if (!this.tagColorMap[tag.name]) {
               let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
               const key = tag.name;
@@ -1577,7 +1396,6 @@ export default {
         Scheduleobj["todoArr"] = todoArr;
         Scheduleobj["taglists"] = taglists;
         this.list_data.push(Scheduleobj);
-        // this.taglist = this.taglist.filter( ( el ) => !this.list_data.includes( el ) );
       });
       this.generateRandomColor();
       if (statusValue == "active") {
@@ -1668,6 +1486,7 @@ export default {
           duration: 5000,
         });
       }
+      this.getClubMoreInfo();
       this.ClubInfo();
     },
     async RemoveTag(val) {
@@ -1704,8 +1523,6 @@ export default {
     // adding student leader
     async GetStudents() {
       await this.getStudents({
-        // school_id: localStorage.getItem("school_id"),
-        // studentId: localStorage.getItem("id"),
         clubId: this.$route.query.id,
       });
     },
@@ -1761,29 +1578,6 @@ export default {
           formData.append("club_banner", "1");
 
           this.upload(formData);
-
-          // this.uploadBanner(formData, {
-          //   headers: {
-          //     "Content-Type": "multipart/form-data",
-          //   },
-          //   club_id: this.$route.query.id,
-          // });
-          // if (this.successMessageClubFile != "") {
-          //   $(".modal").modal("hide");
-          //   $(".modal-backdrop").remove();
-          //   this.$toast.open({
-          //     message: this.successMessageClubFile,
-          //     type: this.SuccessTypeClubFile,
-          //     duration: 5000,
-          //   });
-          //   this.getClubMoreInfo();
-          // } else if (this.errorMessageClubFile != "") {
-          //   this.$toast.open({
-          //     message: this.errorMessageClubFile,
-          //     type: this.errorTypeClubFile,
-          //     duration: 5000,
-          //   });
-          // }
         }
       }, this.mime_type);
     },
@@ -1794,7 +1588,6 @@ export default {
         },
         club_id: this.$route.query.id,
       });
-      //   this.loading = false;
       if (this.successMessageClubFile != "") {
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
@@ -1914,6 +1707,7 @@ export default {
         club_id: this.clubId,
       });
       if (this.successMessageClubUpdate != "") {
+        this.$router.push("/club-detail");
         this.$toast.open({
           message: this.successMessageClubUpdate,
           type: this.successTypeClubUpdate,
@@ -1926,10 +1720,9 @@ export default {
           duration: 5000,
         });
       }
-      this.$router.push("/club-detail");
     },
     async removeAsLeader() {
-      await this.removeLeader({
+      await this.leaderRemove({
         club_id: this.clubId,
       });
       if (this.successMessageClubUpdate != "") {
@@ -1945,13 +1738,14 @@ export default {
           duration: 5000,
         });
       }
-      this.getClubMoreInfo();
+      this.ClubInfo();
     },
     async leaveClub() {
       await this.clubLeave({
         club_id: this.clubId,
       });
       if (this.successMessageClubUpdate != "") {
+        this.$router.push("/club-detail");
         this.$toast.open({
           message: this.successMessageClubUpdate,
           type: this.successTypeClubUpdate,
@@ -1964,7 +1758,6 @@ export default {
           duration: 5000,
         });
       }
-      this.$router.push("/club-detail");
     },
     async getClubInformation() {
       await this.getInformation({
@@ -1973,6 +1766,13 @@ export default {
       console.log("club information", this.clubInformation);
       this.clubCreatedAt = moment(this.clubInformation).format("MMMM Do, YYYY");
     },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "ClubDetail";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
 </script>

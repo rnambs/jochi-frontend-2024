@@ -87,6 +87,7 @@ export default {
         { src: '~/plugins/vue-drag-drop', ssr: false },
         { src: '~/plugins/vuejs-progress-bar', ssr: false },
         { src: '~/plugins/intro.js', ssr: false },
+        { src: '~/plugins/mixpanel.js', mode: 'client' }
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

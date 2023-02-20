@@ -1059,6 +1059,7 @@ export default {
           progressPadding: 0,
           type: "circle",
         },
+        startTime: null,
       },
       value: 0,
       isAdditionalCovered: false,
@@ -1085,6 +1086,7 @@ export default {
     }),
   },
   mounted() {
+    this.startTime = new Date().getTime();
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.ShowQuotedMessage();
     this.getConfiguredGoal();
@@ -1555,6 +1557,13 @@ export default {
       this.GetDailyPlanner(this.calendarApi.view.activeStart);
       this.ListAllMeeting();
     },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "Dashboard";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
 </script>

@@ -7,7 +7,6 @@
       class="lottie-loader"
     />
     <div class="main-section">
-      <!-- tab for club catalog -->
       <div
         class="
           jochi-components-light-bg
@@ -26,8 +25,7 @@
                   Find your People!
                 </h4>
               </div>
-              <!-- data-toggle="modal"
-                data-target="#createNewModal" -->
+
               <button
                 v-if="user_type == 3"
                 type="button"
@@ -66,9 +64,6 @@
                   >
                     <span slot="noResult">No data found</span>
                   </multiselect>
-                  <!-- <span class="input-icon">
-                      <i class="fa fa-filter" aria-hidden="true"></i>
-                    </span> -->
                 </div>
               </div>
             </div>
@@ -101,22 +96,12 @@
               v-for="(list, index) in list_data"
               :key="index"
             >
-              <!-- <div class="row-heading col-12">
-                    <h6 class="mb-0">{{ list["name"] }}</h6>
-                  </div> -->
               <div class="row catalog-row">
                 <div class="col-lg-4">
-                  <h4 class="mb-2 color-dark font-semi-bold">
+                  <h4 class="mb-2 color-dark font-semi-bold text-capitalize">
                     {{ list["name"] }}
                   </h4>
-                  <!-- <p class="catalog-text">
-                        {{ list.part ? list.part : "No data "
-                        }}<span :id="'dots' + list.id" v-if="list.remaining"
-                          >...</span
-                        ><span :id="'more' + list.id" style="display: none">
-                          {{ list.remaining }}
-                        </span>
-                      </p> -->
+
                   <p class="color-secondary fort-regular text-14 mb-0">
                     {{ list.activity_type == "Clubs" ? "Club" : "Team" }}
                   </p>
@@ -150,15 +135,6 @@
                         :key="index"
                         class="mb-2"
                       >
-                        <!-- <li
-                              class="to-do-li"
-                              v-if="
-                                index % 2 == 0 &&
-                                (!(expandId == list.id) ? index < 4 : true)
-                              "
-                            >
-                              {{ todos }}
-                            </li> -->
                         <span
                           class="
                             to-do-li
@@ -191,63 +167,6 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div class="col-md-3">
-                      <ul class="to-do-ul">
-                        <span
-                          v-for="(todos, index) in list.tagList"
-                          :key="index"
-                        >
-                          <li
-                            class="to-do-li"
-                            v-if="
-                              index % 2 != 0 &&
-                              (!(expandId == list.id) ? index < 4 : true)
-                            "
-                          >
-                            {{ todos }}
-                          </li>
-                        </span>
-                      </ul>
-                    </div> -->
-                <!-- <div class="col-md-2">
-                      <a
-                        href="#"
-                        class="btn btn-join-now"
-                        @click="JoinClub(list.id)"
-                        >Join Now</a
-                      >
-                      <a
-                        v-if="
-                          (list.part && list.remaining) ||
-                          list.tagList.length >= 5
-                        "
-                        class="btn readmore-btn"
-                        @click="myFunction(list.id)"
-                        :id="list.id"
-                        >Read more<i class="fas fa-chevron-right pl-1"></i
-                      ></a>
-                    </div> -->
-
-                <!-- <div class="col-lg-2 d-flex justify-content-start justify-content-lg-end">
-                      <nuxt-link
-                        :to="{
-                          path: '/student-club-view',
-                          query: { id: list.id, name: list.activity_type },
-                        }"
-                        class="
-                          btn
-                          btn-primary
-                          py-2
-                          px-4
-                          mt-2
-                          h-fit-content
-                        "
-                      >
-                        View More
-                      </nuxt-link>
-                    </div>
-                  </div>
-                </div> -->
                 <div
                   class="
                     col-lg-2
@@ -298,21 +217,11 @@
             <div class="modal-content">
               <div class="modal-header pb-1">
                 <h3 class="modal-title" id="exampleModalLabel">Create New</h3>
-                <!-- <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  @click="resetClubData"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button> -->
               </div>
               <div class="modal-body px-4">
                 <form action="">
                   <table class="w-100 table-modal custom-row-table">
                     <tr>
-                      <!-- <td class="tmodal-data text-nowrap">Name</td> -->
                       <td class="tmodal-data d-flex">
                         <p
                           class="
@@ -350,7 +259,6 @@
                       </td>
                     </tr>
                     <tr>
-                      <!-- <td class="tmodal-data text-nowrap">Description</td> -->
                       <td class="tmodal-data d-flex">
                         <p
                           class="
@@ -389,7 +297,6 @@
                       </td>
                     </tr>
                     <tr>
-                      <!-- <td class="tmodal-data text-nowrap">Type</td> -->
                       <td class="tmodal-data d-flex">
                         <p
                           class="
@@ -427,23 +334,6 @@
                         </div>
                       </td>
                     </tr>
-
-                    <!-- <tr>
-                      <td class="tmodal-data text-nowrap">Tags</td>
-                      <td class="tmodal-data">
-                        <p class="mb-0 tdata-overflow  d-flex align-items-center">
-                          <span class="pr-2">:</span>
-                          <select
-                            class="custom-select custom-select-sm mb-3"
-                          >
-                            <option value="Video Conference">
-                              Tag 1
-                            </option>
-                            <option value="In Person">Tag 2</option>
-                          </select>
-                        </p>
-                      </td>
-                    </tr> -->
                   </table>
                 </form>
               </div>
@@ -500,7 +390,6 @@ export default {
       search: "",
       todoList: false,
       expandId: "",
-      // taglist: [],
       activity_type: "",
       name: "",
       description: "",
@@ -508,6 +397,7 @@ export default {
       tags: [],
       debounce: null,
       tagColorMap: {},
+      startTime: null,
     };
   },
   validations: {
@@ -516,6 +406,8 @@ export default {
     description: { required },
   },
   mounted() {
+    this.startTime = new Date().getTime();
+
     this.user_type = localStorage.getItem("user_type");
     SelectValue = "";
     this.GetTag();
@@ -654,11 +546,9 @@ export default {
     generateRandomColor() {
       this.tagColorMap = {};
       const obj = {};
-      // console.log("color", this.list_data);
       this.list_data.forEach((e) => {
         if (e.tagList && e.tagList.length > 0) {
           e.tagList.forEach((tag) => {
-            // let index = this.tagColorMap.find((index) => index.tag == tag);
             if (!this.tagColorMap[tag]) {
               let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
               const key = tag;
@@ -723,7 +613,6 @@ export default {
           this.resetClubData();
           $("#createNewModal").modal("hide");
           $(".modal-backdrop").remove();
-          // $(".modal").modal("hide");
           this.$toast.open({
             message: this.successMessage,
             type: this.SuccessType,
@@ -750,6 +639,13 @@ export default {
       this.resetClubData();
       $("#createNewModal").modal({ backdrop: true });
     },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "ClubCatalog";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
 </script>

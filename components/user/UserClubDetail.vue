@@ -44,9 +44,6 @@
                     >
                       <span slot="noResult">No data found</span>
                     </multiselect>
-                    <!-- <span class="input-icon"
-                      ><i class="fa fa-filter" aria-hidden="true"></i
-                    ></span> -->
                   </div>
                 </div>
                 <div v-if="user == '3'" class="col-md-4 px-0">
@@ -232,17 +229,17 @@ export default {
       availability: "",
       tags: [],
       user: "",
+      startTime: null,
     };
   },
   mounted() {
+    this.startTime = new Date().getTime();
+
     SelectValue = "";
     this.user = localStorage.getItem("user_type");
-    // if (user == 3) {
+
     this.GetTag();
     this.MyClubList();
-    // } else {
-    // this.$router.push("/");
-    // }
   },
   computed: {
     ...mapState("myClub", {
@@ -339,6 +336,13 @@ export default {
       }
       this.MyClubList();
     },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "ClubExisting";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
 </script>
