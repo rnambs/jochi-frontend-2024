@@ -352,9 +352,12 @@ export default {
       durationRemaining: 0,
       dailyTimerId: 0,
       isAdditionalCovered: false,
+      startTime: null,
     };
   },
   mounted() {
+    this.startTime = new Date().getTime();
+
     console.log("mounting student id", this.studentId);
     this.GetMySession();
     this.getConfiguredGoal();
@@ -728,6 +731,13 @@ export default {
         this.minutes = m;
       }
     },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "StudyAnalytics";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
 </script>

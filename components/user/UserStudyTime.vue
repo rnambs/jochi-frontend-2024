@@ -47,7 +47,6 @@
                   cursor-pointer
                 "
               >
-                <!-- <img src="/_nuxt/static/image/send-later.png" alt=""> -->
                 <img src="~/assets/images/send-later.png" />
               </div>
             </div>
@@ -71,9 +70,6 @@
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Tackle your upcoming assignments
                 </p>
-                <!-- <button @click="scheduleLaterClick('assignment', $event)">
-                  Schedule Later
-                </button> -->
               </div>
               <div
                 class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
@@ -98,7 +94,6 @@
                   cursor-pointer
                 "
               >
-                <!-- <img src="/_nuxt/static/image/send-later.png" alt=""> -->
                 <img src="~/assets/images/send-later.png" />
               </div>
             </div>
@@ -121,9 +116,6 @@
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Stay focused while you study, and monitor your productivity
                 </p>
-                <!-- <button @click="scheduleLaterClick('study', $event)">
-                  Schedule Later
-                </button> -->
               </div>
               <div
                 class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
@@ -246,9 +238,7 @@
                       <p class="mb-0 color-secondary font-regular text-16">
                         {{ sessionDetail.name }}
                       </p>
-                      <p class="mb-0 color-secondary font-regular text-16">
-                        <!-- subject -->
-                      </p>
+                      <p class="mb-0 color-secondary font-regular text-16"></p>
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">Goals</h5>
@@ -403,7 +393,6 @@
               ><i class="fas fa-long-arrow-alt-left"></i></span
             ><span class="arrow-text">Back</span>
           </button>
-          <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
         </div>
         <div
           v-if="
@@ -733,7 +722,6 @@
             ><i class="fas fa-long-arrow-alt-left"></i></span
           ><span class="arrow-text">Back</span>
         </button>
-        <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
       </div>
       <div class="row h-40 flex-grow-1">
         <div class="col-lg-7 h-md-100 d-flex flex-column">
@@ -850,7 +838,6 @@
             <div v-if="invitePeer" class="d-flex flex-row align-items-start">
               <div class="form-row mb-2 mx-0 mr-2">
                 <label class="form-label" for="name">Invite peers</label>
-                <!-- <input type="text" class="form-control" /> -->
                 <multiselect
                   v-model="peerSelected"
                   :options="students"
@@ -883,7 +870,6 @@
               >
                 <div class="d-flex align-items-center my-2 mr-3 min-w-200">
                   <div class="ld-img-section mr-3">
-                    <!-- <div class="ld-img-holder"></div> -->
                     <img
                       v-if="peer.profile_pic"
                       class="ld-img-holder shadow-none"
@@ -934,7 +920,6 @@
                       v-if="sessionType == 'study'"
                       class="form-group required"
                     >
-                      <!-- {{subjectsData}} -->
                       <label class="typo__label">Subject</label>
                       <select
                         :disabled="sessionDetail.id"
@@ -1134,12 +1119,10 @@
                     : "Pomodoro Studying"
                 }}</span>
               </p>
-              <!-- v-if="studyTypes.id != 3" -->
               <p class="color-secondary text-16 font-regular mb-1">
                 Remaining Cycles :
                 {{ totalCycles - currentCycle }}
               </p>
-              <!-- v-if="studyTypes.id != 3" -->
               <p class="color-secondary text-16 font-regular mb-1">
                 Remaining Repetitions :
                 {{ repetitionCount - currentRepetitionNum }}
@@ -1224,7 +1207,6 @@
                       src="../../static/image/avatar.png"
                       alt=""
                     />
-                    <!-- <div v-else class="ld-img-holder shadow-none"></div> -->
                   </div>
                   <div class="ld-details-section">
                     <p class="ld-heading mb-1">{{ peer.first_name }}</p>
@@ -1313,7 +1295,6 @@
                         class="color-dark text-24 font-semi-bold"
                         >{{ timerDurationDisplay }}</span
                       >
-                      <!-- <span class="color-dark text-24 font-semi-bold">22</span> -->
                       <span class="color-dark base-timer-text">{{
                         studyStatus == "break" ? "BREAK" : ""
                       }}</span>
@@ -1329,8 +1310,6 @@
                   justify-content-center
                 "
               >
-                <!-- && !studyTimePaused -->
-                <!-- this.studyTypes.id == 3 && -->
                 <button
                   v-show="studyStatus != 'break'"
                   @click.prevent="
@@ -1531,7 +1510,6 @@
           </div>
           <div class="modal-body overflow-initial">
             <div class="form-group required">
-              <!-- <label class="typo__label">Date</label> -->
               <date-picker
                 class="form-control bg-white"
                 placeholder="Date"
@@ -1543,7 +1521,6 @@
               />
             </div>
             <div class="form-group required">
-              <!-- <label class="typo__label">Time</label> -->
               <vue-timepicker
                 close-on-complete
                 format="hh:mm A"
@@ -1633,7 +1610,6 @@
 import { required, requiredIf } from "vuelidate/lib/validators";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
-// import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
 import VueTimepicker from "vue2-timepicker";
 import { NavigationGuardNext, Route } from "vue-router";
@@ -1744,10 +1720,13 @@ export default {
       disableNext: false,
       pageCount: 0,
       scheduleLater: false,
+      startTime: null,
     };
   },
 
   beforeMount() {
+    this.startTime = new Date().getTime();
+
     var self = this;
     window.onbeforeunload = function (e) {
       if (self.$route.path == "/study-time") {
@@ -1943,7 +1922,6 @@ export default {
       this.repeatLoopBy = e.study_method == "1" || e.study_method == 1 ? 4 : 1;
       this.repetitionCount =
         e.study_method == "1" || e.study_method == 1 ? e.repeat : 1;
-      // this.totalCycles = 1;
 
       session.id = e.id;
       this.studyTypes = {};
@@ -1988,18 +1966,6 @@ export default {
         // this.totalCycles = 1;
       }
     },
-    // async UpdateStudyTechnique() {
-    //   this.CustomMode = "active";
-    //   if (this.studyTypes?.id != 2) {
-    //     this.targetDuration = this.studyTypes.startTime;
-    //     this.breakTime = this.studyTypes.breakTime;
-    //     this.repeatLoopBy = this.studyTypes.cycle;
-    //   } else {
-    //     this.targetDuration = 5;
-    //     this.breakTime = 2;
-    //     this.breakAt = 2;
-    //   }
-    // },
 
     async UpdateSubject() {
       this.SubjectName = this.Subject.subject_name;
@@ -3347,6 +3313,13 @@ export default {
 
   destroyed() {
     window.removeEventListener("beforeunload", this.preventNav);
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "StudySession";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
 </script>
