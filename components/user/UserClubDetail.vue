@@ -341,7 +341,7 @@ export default {
     const endTime = new Date().getTime();
     const duration = (endTime - this.startTime) / 1000;
     const distinct_id = localStorage.getItem("distinctId");
-    const page = "ClubDetail";
+    const page = "ClubExisting";
     this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
