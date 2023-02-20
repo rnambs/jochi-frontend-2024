@@ -134,7 +134,7 @@
                           </span>
                         </div>
                       </div>
-                      <div v-if="listAgenda.length == 0" class="empty-shedule">
+                      <div v-if="listAgenda.length == 0" class="empty-shedule d-flex h-100 justify-content-center align-items-center">
                         <p class="color-secondary text-center">
                           No meetings for the day
                         </p>
