@@ -973,7 +973,8 @@
                                     jochi-components-light-bg
                                     d-flex
                                     justify-content-center
-                                    cursor-pointer align-items-center
+                                    cursor-pointer
+                                    align-items-center
                                   "
                                 >
                                   <i class="fas fa-undo"></i>
@@ -2861,9 +2862,12 @@ export default {
       user_id: "",
       removedPeerList: [],
       prior: 0,
+      startTime: null,
     };
   },
   mounted() {
+    this.startTime = new Date().getTime();
+
     this.user_id = localStorage.getItem("id");
 
     socket.on("notifications", (data) => {
@@ -3349,9 +3353,7 @@ export default {
           plannerObj["start"] = start;
           plannerObj["id"] = element.id;
           plannerObj["groupId"] =
-            element.session_type == "Match"
-              ? "matches"
-              : "trainings";
+            element.session_type == "Match" ? "matches" : "trainings";
           eventList.push(plannerObj);
         }
       });
@@ -4742,6 +4744,13 @@ export default {
       this.getMonthlyPlanner();
       this.openAssignment = false;
     },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "PlannerMonth";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
 </script>
