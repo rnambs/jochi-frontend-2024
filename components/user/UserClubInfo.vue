@@ -297,7 +297,7 @@
                                 <button
                                   v-if="leadersInfo.length >= 3"
                                   @click="openViewMoreMembers(true)"
-                                  class="btn btn-void mt-3 py-1 px-0"
+                                  class="btn btn-void mt-2 py-1 px-0"
                                 >
                                   <span class="font-semi-bold mr-1"
                                     >View More</span

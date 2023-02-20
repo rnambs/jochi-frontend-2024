@@ -153,7 +153,7 @@
                     </h3>
                   </div>
                   <div
-                    class="custom-overflow image-overflow d-flex flex-column"
+                    class="custom-overflow image-overflow d-flex flex-column h-100"
                   >
                     <div
                       class="
@@ -349,10 +349,10 @@
                           text-center
                           d-flex
                           align-items-center
-                          justify-content-center
+                          justify-content-center h-100
                         "
                       >
-                        <p class="no-data">No Data</p>
+                        <p class="no-data mb-0">No data</p>
                       </div>
                     </div>
                   </div>
