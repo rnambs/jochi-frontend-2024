@@ -1090,9 +1090,6 @@ export default {
       $("#promptModal").modal();
     }
   },
-  destroyed() {
-    // this.$mixpanel.time_event("page_exit");
-  },
   methods: {
     async skipPromt() {
       localStorage.setItem("skippedPrompt", "true");
