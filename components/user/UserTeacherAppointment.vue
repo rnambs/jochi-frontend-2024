@@ -85,37 +85,82 @@
                           :key="index"
                           @click="setMeetingView(list)"
                         >
-                          <div class="col-3 time py-0">
-                            <p
+                          <div class="card card-white w-100
+                            d-flex
+                            flex-row
+                            align-items-center
+                            mb-2
+                            px-3 py-2 cursor-pointer">
+
+                            <span
                               class="
-                                time
-                                text-center
+                                image-icon
+                                py-0
                                 d-flex
                                 align-items-center
                                 justify-content-center
-                                mb-0
-                                p-3
-                                m-1
-                                text-14
+                                bg-primary
+                                rounded-circle
+                                p-2
                               "
                             >
-                              {{ list["time"] }}
-                            </p>
-                          </div>
-                          <div class="col px-0 py-0">
-                            <p class="p-3 card card-white m-0">
-                              <span
+                              <i
+                                class="fas fa-users color-white"
+                                aria-hidden="true"
+                              ></i>
+                            </span>
+
+                            <div class="time-detail pl-3 py-0 d-flex align-items-center
+                                justify-content-between flex-wrap w-100">
+                              <h4 class="color-dark font-semi-bold text-18 mb-1 me-3">
+                                {{ list["title"] }}
+                              </h4>
+                              <div>
+                                <span class="color-secondary"
+                                  ><i class="far fa-clock"></i>
+                                </span>
+                                <span class="color-secondary font-regular text-16">
+                                  {{ list["time"] }}
+                                </span>
+                              </div>
+                            </div>
+
+                            <!-- <div class="col-3 time py-0">
+                              <p
                                 class="
-                                  club-name
-                                  color-dark
-                                  font-semi-bold
-                                  text-truncate
+                                  time
+                                  text-center
+                                  d-flex
+                                  align-items-center
+                                  justify-content-center
+                                  mb-0
+                                  p-3
+                                  m-1
+                                  text-14
                                 "
-                                >{{ list["title"] }}</span
                               >
-                              <span class="club-i"><i></i> </span>
-                            </p>
+                                {{ list["time"] }}
+                              </p>
+                            </div>
+                            <div class="col px-0 py-0">
+                              <p class="p-3 card card-white m-0">
+                                <span
+                                  class="
+                                    club-name
+                                    color-dark
+                                    font-semi-bold
+                                    text-truncate
+                                  "
+                                  >{{ list["title"] }}</span
+                                >
+                                <span class="club-i"><i></i> </span>
+                              </p>
+                            </div> -->
+
+
+
                           </div>
+                          
                         </div>
                         <div
                           v-if="listAgenda.length == 0"
