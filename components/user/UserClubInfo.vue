@@ -479,7 +479,7 @@
                         <div
                           class="d-flex align-items-center justify-content-end"
                         >
-                          <div class="input-icon-area col-6 pr-0 form-row">
+                          <div class="input-icon-area col-6 pr-0 pt-0 form-row">
                             <multiselect
                               v-model="value"
                               :options="taglist"
