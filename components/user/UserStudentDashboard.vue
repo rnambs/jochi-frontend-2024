@@ -910,7 +910,9 @@
         >
           <div class="modal-content px-4 py-4">
             <div class="modal-body">
-              <h3 class="modal-title color-primary font-bold">Update Phone Number</h3>
+              <h3 class="modal-title color-primary font-bold">
+                Update Phone Number
+              </h3>
               Update your phone number to receive SMS notification on your
               mobile phone!
             </div>
@@ -921,7 +923,9 @@
                 class="btn btn-primary color-white"
                 @click="skipPromt()"
               >
-                <nuxt-link to="/user-profile" class="text-white"> Update Now </nuxt-link>
+                <nuxt-link to="/user-profile" class="text-white">
+                  Update Now
+                </nuxt-link>
               </button>
               <button
                 type="button"
@@ -1045,6 +1049,7 @@ export default {
           progressPadding: 0,
           type: "circle",
         },
+        startTime: null,
       },
       value: 0,
       isAdditionalCovered: false,
@@ -1071,6 +1076,7 @@ export default {
     }),
   },
   mounted() {
+    this.startTime = new Date().getTime();
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.ShowQuotedMessage();
     this.getConfiguredGoal();
@@ -1522,6 +1528,13 @@ export default {
       this.GetDailyPlanner(this.calendarApi.view.activeStart);
       this.ListAllMeeting();
     },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "Dashboard";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
 </script>
