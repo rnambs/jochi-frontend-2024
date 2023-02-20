@@ -973,7 +973,7 @@
                                     jochi-components-light-bg
                                     d-flex
                                     justify-content-center
-                                    cursor-pointer
+                                    cursor-pointer align-items-center
                                   "
                                 >
                                   <i class="fas fa-undo"></i>
