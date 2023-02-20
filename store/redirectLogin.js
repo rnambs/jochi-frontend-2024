@@ -16,6 +16,7 @@ const state = {
     isGg4lDataSynced: '',
     phone: '',
     notifyStatus: '',
+    distinctId: '',
 }
 const actions = {
 
@@ -38,6 +39,7 @@ const actions = {
                 commit('setIsGg4lDataSynced', response.data.isGg4lDataSynced);
                 commit('setPhone', response.data.phone_number);
                 commit('setNotifyStatus', response.data.notification);
+                commit('setDistinctId', response.data.distinct_id);
                 if (response.data.user_type_id == 1) {
                     this.$router.push('/dashboard');
                 }
@@ -179,6 +181,10 @@ const mutations = {
         state.notifyStatus = data;
         localStorage.setItem('notifyStatus', data);
     },
+    setDistinctId(state, data) {
+        state.distinctId = data;
+        localStorage.setItem('distinctId', data);
+    },
 }
 const getters = {
 
@@ -219,6 +225,9 @@ const getters = {
     },
     notifyStatus: () => {
         return state.notifyStatus;
+    },
+    distinctId: () => {
+        return state.distinctId;
     }
 }
 
