@@ -2730,10 +2730,14 @@ export default {
       user_id: "",
       removedPeerList: [],
       prior: 0,
+      startTime: null,
+
     };
   },
 
   mounted() {
+    this.startTime = new Date().getTime();
+
     this.user_id = localStorage.getItem("id");
 
     socket.on("notifications", (data) => {
@@ -4580,6 +4584,13 @@ export default {
       this.GetWeeklyPlanner();
       this.openAssignment = false;
     },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "PlannerWeek";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
 </script>
