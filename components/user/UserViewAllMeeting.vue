@@ -309,15 +309,21 @@
                       )
                     "
                   >
-                  <td class="tmodal-data">Change Slot Time</td>
-                  <span class="pr-2"></span>
-                    <button type="button" @click="changeSlot" class="btn btn-primary py-2 rounded-12">
+                    <td class="tmodal-data">Change Slot Time</td>
+                    <span class="pr-2"></span>
+                    <button
+                      type="button"
+                      @click="changeSlot"
+                      class="btn btn-primary py-2 rounded-12"
+                    >
                       <i class="fas fa-clock mr-2"></i><span>Change slot</span>
                     </button>
                   </tr>
 
                   <tr v-if="isDateChanged && slot_date_selection.length > 0">
-                    <td style="vertical-align: top;" class="pt-3">Select Time</td>
+                    <td style="vertical-align: top" class="pt-3">
+                      Select Time
+                    </td>
                     <td>
                       <div class="d-flex align-items-center">
                         <span class="pr-2"></span>
@@ -342,7 +348,13 @@
                             "
                           >
                             <div
-                              class="col-12 py-1 pr-1 text-center modal-time-schedules"
+                              class="
+                                col-12
+                                py-1
+                                pr-1
+                                text-center
+                                modal-time-schedules
+                              "
                               v-for="(Schedule, index) in slot_date_selection"
                               :key="index"
                               @click="slotClick(Schedule.slot_id, Schedule.id)"
@@ -1124,20 +1136,10 @@ export default {
           this.studentsValue = [];
           this.students_name = [];
           this.invitedMembers?.forEach((element) => {
-            this.studentsValue.push(element.student_id);
+            if (element.student_id.toString() != localStorage.getItem("id"))
+              this.studentsValue.push(element.student_id);
           });
         }
-        // if (this.studentsValue.length === 0) {
-        //   this.value = "";
-        //   $('input[name="daterange"]').val("");
-        //   fromDate = "";
-        //   endDate = "";
-        //   this.studentsValue = "";
-        //   this.loading = false;
-        //   this.slot_date = [];
-        //   this.isShowing = true;
-        //   this.isMounted = false;
-        // }
 
         if (this.studentsValue.length != 0) {
           this.isMounted = true;

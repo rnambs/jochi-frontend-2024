@@ -2663,6 +2663,7 @@ export default {
         club_id: this.clubId,
       });
       if (this.successMessageClubUpdate != "") {
+        this.$router.push("/club-detail");
         this.$toast.open({
           message: this.successMessageClubUpdate,
           type: this.successTypeClubUpdate,
@@ -2675,7 +2676,6 @@ export default {
           duration: 5000,
         });
       }
-      this.$router.push("/club-detail");
     },
     async removeAsLeader() {
       await this.leaderRemove({
@@ -2701,6 +2701,7 @@ export default {
         club_id: this.clubId,
       });
       if (this.successMessageClubUpdate != "") {
+        this.$router.push("/club-detail");
         this.$toast.open({
           message: this.successMessageClubUpdate,
           type: this.successTypeClubUpdate,
@@ -2713,7 +2714,6 @@ export default {
           duration: 5000,
         });
       }
-      this.$router.push("/club-detail");
     },
     async getClubInformation() {
       await this.getInformation({
