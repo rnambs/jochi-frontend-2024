@@ -697,7 +697,6 @@
                     p-2
                     rounded-10
                     h-100
-                    cursor-pointer
                   "
                 >
                   <span class="text-24 color-primary font-semi-bold"
