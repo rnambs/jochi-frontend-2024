@@ -59,18 +59,6 @@
                 >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-                <!-- <div
-                  class="
-                    time-slot-week
-                    container
-                    card card-primary-sm
-                    rounded-22
-                    p-3
-                    pt-4
-                  "
-                >
-                  <FullCalendar :options="calendar" />
-                </div> -->
               </div>
               <div
                 class="
@@ -128,7 +116,12 @@
                             name="default-cal"
                           />
                           <label
-                            class="custom-control-label font-normal color-dark  form-label"
+                            class="
+                              custom-control-label
+                              font-normal
+                              color-dark
+                              form-label
+                            "
                             for="switch_month"
                             >Apply for the month</label
                           >
@@ -324,9 +317,11 @@ export default {
         unselectAuto: false,
         dayClick: this.clickedDay,
       },
+      startTime: null,
     };
   },
   mounted() {
+    this.startTime = new Date().getTime();
     ismounted = true;
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.TeacherAvailableSlot();
@@ -575,15 +570,12 @@ export default {
         " " +
         date.format("MMMM");
 
-      // this.date_string =
-      //   weekDay + "," + clickedDate + " " + month + " " + clickedYear;
       this.slotList.forEach((e) => {
         this.slotsArray.push({ exist: false, time: e });
       });
       let dates = this.teacherSlot.filter((elem) => elem.date == arg.dateStr);
       dates.forEach((element) => {
         let exist = this.checkSlot(element.default_slots.start_time);
-        // this.slots.push(element.default_slots.start_time);
         let index = this.slotsArray.findIndex(
           (item) => item.time == element.default_slots.start_time
         );
@@ -600,9 +592,18 @@ export default {
       ismounted = false;
     },
   },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "MeetingAvailability";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
+  },
 };
 </script>
 <style>
-.custom-switch .custom-control-label::after{top: calc(0.0375rem + 1px) !important;}
+.custom-switch .custom-control-label::after {
+  top: calc(0.0375rem + 1px) !important;
+}
 </style>
 

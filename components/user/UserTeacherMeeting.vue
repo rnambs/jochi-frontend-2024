@@ -124,9 +124,6 @@
                       readonly="readonly"
                       :disabled="!value && !(selectedStudents.length > 0)"
                     />
-                    <!-- <span class="input-icon"
-                      ><i class="fa fa-calendar" aria-hidden="true"></i>
-                    </span> -->
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 px-2 justify-content-md-end">
@@ -296,7 +293,7 @@
                       >
                         {{ Schedule["from"] }}
                         {{ Schedule["end"] ? "to " + Schedule["end"] : "" }}
-                        <!-- {{ timeZones.timeZone }} -->
+                        {{ timeZones.timeZone }}
                       </p>
                     </div>
                   </div>
@@ -628,16 +625,17 @@ export default {
       submitted: false,
       processing: false,
       playCelebration: false,
+      startTime: null,
     };
   },
   validations: {
     meeting_name: { required },
     meeting_description: { required },
     conversation_type: { required },
-    // venue: { required },
-    // meeting_link: { required },
   },
   mounted() {
+    this.startTime = new Date().getTime();
+
     this.GetStudents();
     this.GetTeacher();
     this.isMounted = false;
@@ -984,7 +982,6 @@ export default {
       }
     },
     resetValues() {
-      // this.studentsValue = [];
       this.submitted = false;
       slot_id = "";
       modalDate = "";
@@ -1013,7 +1010,6 @@ export default {
       modalDate = value;
     },
     openConfirmMeetingModal() {
-      // meetingDetailModal
       $("#meetingDetailModal").modal();
     },
     isValidHttpUrl(string) {
@@ -1041,6 +1037,13 @@ export default {
 
       return valid;
     },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "MeetingSchedule";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
 </script>
