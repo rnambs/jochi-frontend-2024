@@ -17,7 +17,6 @@
         "
       >
         <!-- end tab for club info -->
-        <!-- {{ clubBannerImage }} -->
         <div
           class="cd-cover-pic-section position-relative"
           v-bind:style="{
@@ -47,14 +46,7 @@
             >
               <i class="fas fa-pen color-white"></i>
             </button>
-            <!-- <div class="d-flex align-items-center">
-              <button class="btn p-1 m-2">
-                <i class="fas fa-info-circle color-white"></i>
-              </button>
-              <p class="mb-0 color-secondary text-14 font-regular">
-                1200 X 180
-              </p>
-            </div> -->
+
             <button
               v-if="enableEdit"
               class="btn p-0 tooltip01 right-tip"
@@ -62,9 +54,7 @@
             >
               <i class="fas fa-info-circle color-white"></i>
             </button>
-            <!-- <button class="btn p-1 m-2" CustomTitle="1200 X 180">
-              <i class="fas fa-cog color-white"></i>
-            </button> -->
+
             <button class="btn p-1 m-2" v-on:click="toggleDropdown">
               <i class="fas fa-cog color-white"></i>
             </button>
@@ -95,7 +85,7 @@
                     Leave
                   </button>
                 </li>
-                <li v-if="userType=='3' && enableEdit">
+                <li v-if="userType == '3' && enableEdit">
                   <button
                     class="btn btn-primary btn-sm py-1 mb-2 col-12"
                     @click="openConfirm('remove_leader')"
@@ -116,10 +106,6 @@
             <!-- dropdown content here -->
           </div>
         </div>
-
-        <!-- image upload -->
-        <!-- <VueCropper></VueCropper> -->
-        <!-- image upload end -->
 
         <!-- Club info -->
 
@@ -286,13 +272,6 @@
                                     <span>{{ item.venue }}</span>
                                   </p>
                                   <div class="d-flex justify-content-end">
-                                    <!-- <div
-                                        :class="
-                                          isRead == 1
-                                            ? 'anc-status-btn green mr-3'
-                                            : 'anc-status-btn red mr-3'
-                                        "
-                                      ></div> -->
                                     <button
                                       v-if="enableEdit"
                                       @click="
@@ -397,13 +376,6 @@
                                   </p>
                                 </div>
                                 <div class="d-flex justify-content-end mb-2">
-                                  <!-- <div
-                                        :class="
-                                          item.isRead == 1
-                                            ? 'anc-status-btn green mr-3'
-                                            : 'anc-status-btn red mr-3'
-                                        "
-                                      ></div> -->
                                   <button
                                     v-if="enableEdit"
                                     @click="
@@ -431,26 +403,6 @@
                           <!-- {{ item.description }} -->
                         </div>
                       </div>
-                      <!-- </div> -->
-                      <!-- <div class="col-6" v-if="enableEdit">
-                          <div class="inner-info-head mb-3">
-                            <h6>Add Todo</h6>
-                          </div>
-                          <div class="form-row m-0">
-                            <input
-                              class="form-control"
-                              v-model="todolist"
-                              maxlength="30"
-                            />
-                            <button
-                              :disabled="!todolist"
-                              class="btn btn-info-edit mt-2"
-                              @click.prevent="EditTodo(clubId)"
-                            >
-                              Update
-                            </button>
-                          </div>
-                        </div> -->
                     </div>
                   </div>
                   <div v-else class="col-md-6 col-xs-12 h-md-100 d-flex">
@@ -556,33 +508,6 @@
                         p-4
                       "
                     >
-                      <!-- <p class="time">
-                        Next meeting:
-                        {{
-                          allList.announcement == null
-                            ? "No meeting scheduled "
-                            : allList.announcement
-                        }}
-                      </p>
-
-                      <div class="row inner-col" v-if="enableEdit">
-                        <div class="col-lg-4 col-md-12 inner-info-head">
-                          <h6>Choose time</h6>
-                        </div>
-                        <div class="col-lg-8 col-md-12 input-icon-area">
-                          <multiselect
-                            v-model="value"
-                            track-by="start_time"
-                            label="start_time"
-                            placeholder="Select the time"
-                            :options="slots"
-                            @input="UpdateSlots"
-                          >
-                            <span slot="noResult">No data found</span>
-                          </multiselect>
-                        </div>
-                      </div> -->
-
                       <div
                         class="
                           d-flex
@@ -702,18 +627,8 @@
                               </div>
                             </div>
                           </div>
-
-                          <!-- {{ item.description }} -->
                         </div>
                       </div>
-                      <!-- <button
-                        v-if="enableEdit"
-                        class="btn btn-info-edit mt-2"
-                        :disabled="!value"
-                        @click.prevent="UpdateTime"
-                      >
-                        Update the next meeting
-                      </button> -->
                     </div>
                   </div>
                 </div>
@@ -741,7 +656,6 @@
                     h-100
                   "
                 >
-                  <!-- <i class="fas fa-info"></i> -->
                   <span class="text-24 color-primary font-semi-bold"
                     >Club Details</span
                   >
@@ -763,7 +677,6 @@
                     h-100
                   "
                 >
-                  <!-- <i class="fas fa-file-alt"></i> -->
                   <span class="text-24 color-primary font-semi-bold"
                     >Files/Slides</span
                   >
@@ -787,21 +700,12 @@
                     cursor-pointer
                   "
                 >
-                  <!-- <nuxt-link
-                    :to="{
-                      path: '/club-moreInfo',
-                      query: { id: clubId, name: headingName },
-                    }"
-                    class="inner-tab"
-                  > -->
-                  <!-- <i class="fas fa-ellipsis-h"></i> -->
                   <span class="text-24 color-primary font-semi-bold"
                     >Next Meeting</span
                   >
                   <span class="text-16 color-primary font-regular">{{
                     clubMoreDetails.announcement
                   }}</span>
-                  <!-- </nuxt-link> -->
                 </div>
               </div>
             </div>
@@ -822,17 +726,6 @@
     >
       <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content h-auto">
-          <!-- <div class="modal-header text-dark">
-            <h2 class="modal-title" id="mediumModalLabel">Delete</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> -->
           <div class="modal-body px-4 pt-4">
             <h3
               class="modal-title color-primary font-bold"
@@ -890,26 +783,11 @@
               {{ enableEdit ? (isAnnouncementEdit ? "Edit" : "Add") : "" }}
               Announcement
             </h3>
-            <!-- <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-              @click="resetAnnouncement"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button> -->
           </div>
           <div class="modal-body no-overflow px-4">
             <form name="announcement">
               <fieldset v-if="enableEdit">
                 <div class="form-group">
-                  <!-- <label
-                    for="recipient-name"
-                    class="col-form-label color-secondary"
-                    >Title<em>*</em></label
-                  > -->
-
                   <input
                     type="text"
                     id="club"
@@ -939,11 +817,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <!-- <label
-                    for="message-text"
-                    class="col-form-label color-secondary"
-                    >Description<em>*</em></label
-                  > -->
                   <textarea
                     class="form-control"
                     id="message-text"
@@ -1039,24 +912,12 @@
               {{ enableEdit ? (isActivityEdit ? "Edit" : "Add") : "" }}
               Training/Match
             </h3>
-            <!-- <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button> -->
           </div>
           <div class="modal-body d-flex flex-column px-0">
             <div class="custom-overflow px-4">
               <form>
                 <fieldset v-if="enableEdit">
                   <div class="form-group">
-                    <!-- <label for="recipient-name" class="col-form-label"
-                      >Type<em>*</em></label
-                    > -->
-
                     <select
                       class="form-control bg-transparent mb-3"
                       tabindex=""
@@ -1087,10 +948,6 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <!-- <label for="recipient-name" class="col-form-label"
-                      >Title<em>*</em></label
-                    > -->
-
                     <input
                       type="text"
                       id="club"
@@ -1120,9 +977,6 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <!-- <label for="message-text" class="col-form-label"
-                      >Description<em>*</em></label
-                    > -->
                     <textarea
                       class="form-control bg-transparent"
                       id="message-text"
@@ -1151,40 +1005,6 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <!-- <label for="recipient-name" class="col-form-label"
-                      >Date<em>*</em></label
-                    > -->
-
-                    <!-- <input
-                      type="text"
-                      id="club"
-                      placeholder="Enter the date"
-                      class="form-control"
-                      v-model="activity.activityDate"
-                      name="activityDate"
-                      maxlength="100"
-                      :class="{
-                        'is-invalid':
-                          submittedActivity &&
-                          isActivity &&
-                          $v.activity.activityDate.$error,
-                      }"
-                    /> -->
-                    <!-- <input
-                      type="text"
-                      name="daterange"
-                      @change="onDateChange($event)"
-                      v-model="activity.activityDate"
-                      autocomplete="off"
-                      placeholder="Date Range"
-                      class="form-control tab-form-control custom-form-control"
-                      :class="{
-                        'is-invalid':
-                          submittedActivity &&
-                          isActivity &&
-                          $v.activity.activityDate.$error,
-                      }"
-                    /> -->
                     <date-picker
                       class="form-control bg-transparent"
                       placeholder="Date *"
@@ -1215,25 +1035,6 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <!-- <label for="recipient-name" class="col-form-label"
-                      >Time<em>*</em></label
-                    > -->
-
-                    <!-- <input
-                      type="text"
-                      id="club"
-                      placeholder="Enter the time"
-                      class="form-control"
-                      v-model="activityTime"
-                      name="activityTime"
-                      maxlength="100"
-                      :class="{
-                        'is-invalid':
-                          submittedActivity &&
-                          isActivity &&
-                          $v.activity.activityTime.$error,
-                      }"
-                    /> -->
                     <vue-timepicker
                       close-on-complete
                       format="hh:mm A"
@@ -1267,10 +1068,6 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <!-- <label for="recipient-name" class="col-form-label"
-                      >Venue<em>*</em></label
-                    > -->
-
                     <input
                       type="text"
                       id="club"
@@ -1425,21 +1222,7 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <!-- <div class="modal-header">
-            <h3 class="modal-title" id="nextMeetingModalLongTitle">
-              Configure Meeting Days
-            </h3>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> -->
           <div class="modal-body no-overflow px-4 pt-4">
-            <!-- <div class="col-md-5 col-xs-12"> -->
             <h3
               class="modal-title color-primary font-semi-bold"
               id="nextMeetingModalLongTitle"
@@ -1447,9 +1230,6 @@
               Configure Meeting Days
             </h3>
             <div class="inner-info">
-              <!-- <div class="inner-info-head mb-3">
-                <h6 class="color-dark mb-0">Meeting Time</h6>
-              </div> -->
               <p class="color-dark text-24 font-semi-bold">
                 Next meeting:
                 {{
@@ -1460,16 +1240,6 @@
               </p>
 
               <div class="row inner-col mb-3" v-if="enableEdit">
-                <!-- <div
-                  class="
-                    col-lg-4 col-md-12
-                    inner-info-head
-                    d-flex
-                    align-items-center
-                  "
-                >
-                  <h6 class="color-dark mb-0">Choose time</h6>
-                </div> -->
                 <div class="col-lg-8 col-md-12 input-icon-area form-row">
                   <multiselect
                     v-model="value"
@@ -1515,25 +1285,9 @@
                   >
                 </div>
               </div>
-              <!-- <button
-                v-if="enableEdit"
-                class="btn btn-info-edit mt-2"
-                :disabled="!value"
-                @click.prevent="UpdateTime"
-              >
-                Update the next meeting
-              </button> -->
             </div>
-            <!-- </div> -->
           </div>
           <div class="modal-footer px-4">
-            <!-- <button
-              type="button"
-              class="btn btn-color-close"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button> -->
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-12"
@@ -1570,14 +1324,6 @@
             <h3 class="modal-title color-primary" id="addBannerModalLongTitle">
               Add Banner
             </h3>
-            <!-- <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button> -->
           </div>
           <div class="modal-body overflow-hidden d-flex flex-column px-4">
             <div class="d-flex flex-column overflow-hidden h-100">
@@ -1594,7 +1340,6 @@
                   mb-3
                 "
               >
-                <!-- <v-img :src="image_name" class="profile-img"></v-img> -->
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"
                   @click="$refs.FileInput.click()"
@@ -1608,7 +1353,6 @@
                   @change="onFileSelect"
                 />
               </div>
-              <!-- <v-dialog v-model="dialog" width="500"> -->
               <v-card
                 class="
                   bg-transparent
@@ -1666,21 +1410,8 @@
                   >
                 </v-card-actions>
               </v-card>
-              <!-- </v-dialog> -->
             </div>
           </div>
-
-          <!-- <div class="modal-footer px-4">
-            <button
-              class="btn btn-primary"
-              @click="saveImage(), (dialog = false)"
-            >
-              Crop
-            </button>
-            <button class="btn btn-primary" text @click="dialog = false">
-              Cancel
-            </button>
-          </div> -->
         </div>
       </div>
     </div>
@@ -1704,20 +1435,18 @@
           <div v-if="!showClubInfo" class="modal-body">
             <p class="confirm-text d-flex">
               <span class="w-100 color-dark font-semi-bold"
-                >{{ confirmationMessage}}
+                >{{ confirmationMessage }}
               </span>
-              <!-- <span class="delete-text w-100 pl-1">
-                          {{ remove_name }}</span
-                        > -->
-              <!-- <span class="w-100"> file?</span> -->
             </p>
           </div>
           <div v-if="showClubInfo && clubInformation" class="modal-body">
-            <p class="confirm-text">
+            <div class="confirm-text">
               <div>
                 <label for="created_at">Type: </label>
                 <span class="color-dark font-semi-bold"
-                  >{{ clubInformation.activity_type=='Clubs'?'Club':'Team' }}
+                  >{{
+                    clubInformation.activity_type == "Clubs" ? "Club" : "Team"
+                  }}
                 </span>
               </div>
               <div>
@@ -1738,7 +1467,7 @@
                   >{{ clubCreatedAt }}
                 </span>
               </div>
-            </p>
+            </div>
           </div>
           <div v-if="!showClubInfo" class="modal-footer">
             <button
@@ -1868,6 +1597,7 @@ export default {
       showClubInfo: false,
       clubCreatedAt: "",
       userType: "",
+      startTime: null,
     };
   },
   validations: {
@@ -1893,6 +1623,8 @@ export default {
     },
   },
   mounted() {
+    this.startTime = new Date().getTime();
+
     this.userType = localStorage.getItem("user_type");
 
     this.disabledDates.to = new Date(
@@ -1905,12 +1637,9 @@ export default {
     this.getAnnouncement();
     this.getSportActivities();
     this.getClubMoreInfo();
-    // if (user == 3) {
     this.ClubMoreInfo();
     this.SlotswithId();
-    // } else {
-    //   this.$router.push("/");
-    // }
+
     this.initializeDatePicker();
   },
   computed: {
@@ -1983,14 +1712,12 @@ export default {
       this.loading = true;
       await this.getAnnouncements({
         club_id: this.clubId,
-        // user_id: localStorage.getItem("id"),
       });
       this.loading = false;
       this.announcementList = [];
       this.announcements.forEach((e) => {
         e["date"] = moment(e.createdAt).format("MMMM Do, YYYY");
         e["time"] = moment(e.createdAt).format("h:mm A");
-        // e["time"] = moment(e.createdAt, "h:mm a");
         this.announcementList.push(e);
       });
     },
@@ -2181,12 +1908,9 @@ export default {
       this.resetAnnouncement();
       this.isAnnouncementEdit = true;
       this.markAnnouncementAsRead(data.id);
-      // this.dateValue = new Date(this.calendarApi.view.activeStart);
-      // this.isAssignmentEdit = false;
       this.announcementId = data.id;
       this.announcement.announceTitle = data.title;
       this.announcement.announceDesc = data.description;
-      // this.announceDate = new Date(data.date);
       this.announceClubId = data.club_id;
       $("#announcementModal").modal({ backdrop: true });
     },
@@ -2309,13 +2033,6 @@ export default {
         club_id: this.clubId,
       });
       this.loading = false;
-      // this.announcementList = [];
-      // this.announcements.forEach((e) => {
-      //   e["date"] = moment(e.createdAt).format("MMMM Do, YYYY");
-      //   e["time"] = moment(e.createdAt).format("h:mm A");
-      //   // e["time"] = moment(e.createdAt, "h:mm a");
-      //   this.announcementList.push(e);
-      // });
     },
     async addNewActivity() {
       let isValid = this.timeChangeHandler();
@@ -2328,9 +2045,7 @@ export default {
       this.$v.activity.activityDate.$touch();
       this.$v.activity.activityTime.$touch();
       this.$v.activity.activityVenue.$touch();
-      // if (act.activityType == "Match") {
       this.$v.activity.activityOpponentTeam.$touch();
-      // }
       if (this.$v.activity.$invalid || !isValid) {
         this.processingActivity = false;
 
@@ -2378,7 +2093,6 @@ export default {
       this.$v.activity.activityDate.$touch();
       this.$v.activity.activityTime.$touch();
       this.$v.activity.activityVenue.$touch();
-      // this.$v.activity.activityOpponentTeam.$touch();
       if (this.$v.activity.$invalid) {
         return;
       } else {
@@ -2456,7 +2170,6 @@ export default {
           function (ev, picker) {
             $(this).val(picker.startDate.format("MM/DD/YYYY"));
             activityDate = picker.startDate.format("YYYY-MM-DD");
-            // endDate = picker.endDate.format("YYYY-MM-DD");
           }
         );
 
@@ -2492,32 +2205,6 @@ export default {
           formData.append("club_banner", "1");
 
           this.upload(formData);
-
-          // this.uploadBanner(formData, {
-          //   headers: {
-          //     "Content-Type": "multipart/form-data",
-          //   },
-          //   club_id: this.$route.query.id,
-          // });
-
-          // if (this.successMessageClubFile != "") {
-          //   $(".modal").modal("hide");
-          //   $(".modal-backdrop").remove();
-          //   this.$toast.open({
-          //     message: this.successMessageClubFile,
-          //     type: this.SuccessTypeClubFile,
-          //     duration: 5000,
-          //   });
-          //   this.getClubMoreInfo();
-          // } else if (this.errorMessageClubFile != "") {
-          //   this.$toast.open({
-          //     message: this.errorMessageClubFile,
-          //     type: this.errorTypeClubFile,
-          //     duration: 5000,
-          //   });
-          // }
-          //   this.profileImageUrl = "";
-          // this.ClubFiles();
         }
       }, this.mime_type);
     },
@@ -2722,6 +2409,13 @@ export default {
       console.log("club information", this.clubInformation);
       this.clubCreatedAt = moment(this.clubInformation).format("MMMM Do, YYYY");
     },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "ClubHomepage";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
   },
 };
 </script>
