@@ -2956,9 +2956,12 @@ export default {
       user_id: "",
       removedPeerList: [],
       prior: 0,
+      startTime: null,
     };
   },
   mounted() {
+    this.startTime = new Date().getTime();
+
     this.user_id = localStorage.getItem("id");
     socket.on("notifications", (data) => {
       console.log("socket data", data);
@@ -2985,7 +2988,6 @@ export default {
       $(".dropdown-select").text(getValue);
       _this.filterOption(getValue);
     });
-    //datepicker
 
     var today = new Date();
     var future = new Date();
@@ -3372,9 +3374,7 @@ export default {
           plannerObj["start"] = start;
           plannerObj["id"] = element.id;
           plannerObj["groupId"] =
-            element.session_type == "Match"
-              ? "matches"
-              : "trainings";
+            element.session_type == "Match" ? "matches" : "trainings";
           eventList.push(plannerObj);
         }
       });
@@ -4027,7 +4027,6 @@ export default {
         this.assignmentMaterials = [];
 
         item.assignment_description = e.assignment_description;
-        // item.assignment_materials = e.assignment_materials;
         if (e.assignment_materials && e.assignment_materials.length > 0) {
           e.assignment_materials.forEach((m) => {
             let data = {};
@@ -4504,7 +4503,6 @@ export default {
         this.reloadNext = true;
         this.reloadCount += 1;
         this.openAssignment = false;
-        // this.getAllCompletedAssignments();
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -4531,6 +4529,13 @@ export default {
       this.openAssignment = false;
     },
   },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "PlannerDay";
+    this.$mixpanel.track("Page View", { duration, distinct_id, page });
+  },
 };
 </script>
 
@@ -4549,9 +4554,6 @@ export default {
   height: 60%;
 }
 .squaredThree {
-  /* position: relative;
-  float:left; */
-  /* margin: 10px */
 }
 .squaredThree label {
   width: 24px;
@@ -4596,8 +4598,6 @@ export default {
   transition: all ease-in-out 300ms;
 }
 .label-text {
-  /* position: relative; */
-  /* left: 10px; */
 }
 .completed-vh-10 {
   height: 10vh;
