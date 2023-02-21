@@ -2731,11 +2731,12 @@ export default {
       removedPeerList: [],
       prior: 0,
       startTime: null,
-
     };
   },
 
   mounted() {
+    const page = "PlannerWeek";
+    this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
 
     this.user_id = localStorage.getItem("id");
@@ -3174,9 +3175,7 @@ export default {
           plannerObj["start"] = start;
           plannerObj["id"] = element.id;
           plannerObj["groupId"] =
-            element.session_type == "Match"
-              ? "matches"
-              : "trainings";
+            element.session_type == "Match" ? "matches" : "trainings";
           eventList.push(plannerObj);
         }
       });
@@ -4590,7 +4589,7 @@ export default {
     const duration = (endTime - this.startTime) / 1000;
     const distinct_id = localStorage.getItem("distinctId");
     const page = "PlannerWeek";
-    this.$mixpanel.track("Page View", { duration, distinct_id, page });
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
   },
 };
 </script>

@@ -1622,6 +1622,8 @@ export default {
     },
   },
   mounted() {
+    const page = "ClubHomepage";
+    this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
 
     this.userType = localStorage.getItem("user_type");
@@ -2414,7 +2416,7 @@ export default {
     const duration = (endTime - this.startTime) / 1000;
     const distinct_id = localStorage.getItem("distinctId");
     const page = "ClubHomepage";
-    this.$mixpanel.track("Page View", { duration, distinct_id, page });
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
   },
 };
 </script>

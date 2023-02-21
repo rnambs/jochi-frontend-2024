@@ -406,6 +406,8 @@ export default {
     description: { required },
   },
   mounted() {
+    const page = "ClubCatalog";
+    this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
 
     this.user_type = localStorage.getItem("user_type");
@@ -645,7 +647,7 @@ export default {
     const duration = (endTime - this.startTime) / 1000;
     const distinct_id = localStorage.getItem("distinctId");
     const page = "ClubCatalog";
-    this.$mixpanel.track("Page View", { duration, distinct_id, page });
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
   },
 };
 </script>

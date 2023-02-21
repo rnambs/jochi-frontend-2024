@@ -321,6 +321,8 @@ export default {
     };
   },
   mounted() {
+    const page = "MeetingAvailability";
+    this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
     ismounted = true;
     this.calendarApi = this.$refs.fullCalendar.getApi();
@@ -597,11 +599,13 @@ export default {
     const duration = (endTime - this.startTime) / 1000;
     const distinct_id = localStorage.getItem("distinctId");
     const page = "MeetingAvailability";
-    this.$mixpanel.track("Page View", { duration, distinct_id, page });
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
   },
 };
 </script>
 <style>
-.custom-switch .custom-control-label::after{top: calc(0.0375rem + 2px) !important;}
+.custom-switch .custom-control-label::after {
+  top: calc(0.0375rem + 2px) !important;
+}
 </style>
 
