@@ -27,6 +27,7 @@
     "firebase": "^8.10.1",
     "fs": "^0.0.1-security",
     "hchs-vue-charts": "^1.2.8",
+    "intro.js": "^6.0.0",
     "mixpanel": "^0.17.0",
     "moment": "^2.29.1",
     "net": "^1.0.2",

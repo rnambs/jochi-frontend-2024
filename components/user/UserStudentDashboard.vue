@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- <button @click="startIntro" title="Tooltip on bottom">Start Intro</button> -->
     <div
       id="pageLoader"
       class="
@@ -18,81 +19,8 @@
     >
       <h1 data-loading-text="loading..." class="display-4 loading"></h1>
     </div>
-    <!-- <lottie
-      v-if=" loading"
-      :options="lottieOptions"
-      v-on:animCreated="handleAnimation"
-      class="lottie-loader"
-    /> -->
+
     <div class="main-section">
-      <!-- <div class="row"> -->
-      <!-- <div class="col-2">
-          <div class="sd-sidebar jochi-components-light-bg p-4">
-            <div class="sb-head-section">
-              <div class="display-picture-holder mb-3">
-                <img src="" alt="" />
-              </div>
-              <p class="sb-user-name mb-1">Hannah Scott</p>
-              <a href="#" class="sb-settings-btn">Settings</a>
-            </div>
-            <div class="sb-buttons-section">
-              <div class="sb-expand-btn my-3">
-                <div class="sb-btn-head d-flex align-items-center">
-                  <div class="sb-btn-icon mr-3">
-                    <img
-                      src="~/static/image/Calendar.png"
-                      alt=""
-                      class="planner"
-                    />
-                  </div>
-                  Planner
-                </div>
-                <div class="sb-btn-content">
-                  <div class="sb-btn">Daily</div>
-                  <div class="sb-btn">Weekly</div>
-                  <div class="sb-btn">Monthly</div>
-                </div>
-              </div>
-              <div class="sb-expand-btn my-3">
-                <div class="sb-btn-head d-flex align-items-center">
-                  <div class="sb-btn-icon mr-3">
-                    <img
-                      src="~/static/image/Call.png"
-                      alt=""
-                      class="meetings"
-                    />
-                  </div>
-                  Meetings
-                </div>
-              </div>
-              <div class="sb-expand-btn my-3">
-                <div class="sb-btn-head d-flex align-items-center">
-                  <div class="sb-btn-icon mr-3">
-                    <img
-                      src="~/static/image/Football.png"
-                      alt=""
-                      class="teams-clubs"
-                    />
-                  </div>
-                  Teams & Clubs
-                </div>
-              </div>
-              <div class="sb-expand-btn my-3">
-                <div class="sb-btn-head d-flex align-items-center">
-                  <div class="sb-btn-icon mr-3">
-                    <img
-                      src="~/static/image/Lot_of_book.png"
-                      alt=""
-                      class="study-room"
-                    />
-                  </div>
-                  Study Room
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      <!-- <div class="col-10"> -->
       <div
         class="
           jochi-components-light-bg
@@ -111,21 +39,11 @@
           </div>
           <div class="faq-section d-flex align-items-center">
             <div class="faq-btn color-dark font-semi-bold mr-4">
-              <!-- <a style="color: #000000" href="https://www.jochi.info/faqs"
-              >FAQs</a
-            > -->
               <a style="color: #000000" href="https://www.jochi.info/faqs">
                 FAQ's
               </a>
             </div>
             <div class="privacy-btn mr-4 color-dark font-semi-bold">
-              <!-- <nuxt-link
-                style="color: #000000"
-                to="/privacy-policy"
-                class="bottum-btn"
-              >
-                Privacy Policy
-              </nuxt-link> -->
               <a
                 style="color: #000000"
                 href="https://www.jochi.info/privacy-policy"
@@ -133,7 +51,6 @@
                 Privacy Policy
               </a>
             </div>
-            <!-- <div @click="logoutSession" class="privacy-btn mr-4">Logout</div> -->
           </div>
         </div>
         <div class="d-flex flex-column h-40 flex-fill min-h-dashboard">
@@ -148,6 +65,7 @@
                     pb-1
                     h-fit-content
                   "
+                  data-intro="Quote for the day"
                 >
                   <div class="row position-relative justify-content-between">
                     <div class="col-7"></div>
@@ -157,8 +75,6 @@
                       <p class="dashboard-head">Dashboard</p>
                       <p v-if="quoteMessage" class="dashboard-text-content">
                         “{{ quoteMessage }}”<br />
-
-                        <!-- — Malcolm X -->
                       </p>
                     </div>
                     <div class="col-4 p-0">
@@ -192,32 +108,6 @@
                             h-100
                           "
                         >
-                          <!-- <div
-                          class="
-                            study-status-img-section
-                            position-relative
-                            my-4
-                          "
-                        >
-                          <div class="study-status-img">
-                            <img src="~/static/image/alarm.png" alt="" />
-                          </div>
-                          <div
-                            class="study-status-progress position-absolute"
-                          ></div>
-                        </div> -->
-                          <!-- <vue-ellipse-progress
-                          :progress="progress"
-                          :angle="-90"
-                          color="#1565C0"
-                          emptyColor="#BBDEFB"
-                          :size="180"
-                          :thickness="10"
-                          emptyThickness="15%"
-                          fontColor="black"
-                          dot="10 white"
-                          ><span>dkjsfajh</span>
-                        </vue-ellipse-progress> -->
                           <div
                             class="position-relative d-flex mr-3 mr-lg-0 mt-2"
                           >
@@ -384,170 +274,6 @@
                             >No meetings scheduled for this month!</span
                           >
                         </div>
-                        <!-- <div class="row">
-                        <div class="col-12 faculty-availability-card mb-2">
-                          <div class="row">
-                            <div class="col-3 py-0">
-                              <div
-                                class="
-                                  jochi-sub-components-light-bg
-                                  fa-card-date
-                                  d-flex
-                                  flex-column
-                                  align-items-center
-                                  justify-content-center
-                                  w-100
-                                  p-3
-                                "
-                              >
-                                <p class="fac-day mb-1">MON</p>
-                                <p class="fac-date mb-0">11</p>
-                              </div>
-                            </div>
-                            <div class="col-9">
-                              <div
-                                class="
-                                  d-flex
-                                  justify-content-between
-                                  align-items-center
-                                "
-                              >
-                                <div class="fa-meeting-faculty-details">
-                                  <p class="mb-1 faculty-meeting-text">
-                                    Faculty Meeting
-                                  </p>
-                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
-                                  <div class="fa-time-section">6:00 pm</div>
-                                </div>
-                                <i class="arrow right"></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-12 faculty-availability-card mb-2">
-                          <div class="row">
-                            <div class="col-3 py-0">
-                              <div
-                                class="
-                                  jochi-sub-components-light-bg
-                                  fa-card-date
-                                  d-flex
-                                  flex-column
-                                  align-items-center
-                                  justify-content-center
-                                  w-100
-                                  p-3
-                                "
-                              >
-                                <p class="fac-day mb-1">MON</p>
-                                <p class="fac-date mb-0">11</p>
-                              </div>
-                            </div>
-                            <div class="col-9">
-                              <div
-                                class="
-                                  d-flex
-                                  justify-content-between
-                                  align-items-center
-                                "
-                              >
-                                <div class="fa-meeting-faculty-details">
-                                  <p class="mb-1 faculty-meeting-text">
-                                    Faculty Meeting
-                                  </p>
-                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
-                                  <div class="fa-time-section">6:00 pm</div>
-                                </div>
-                                <i class="arrow right"></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-12 faculty-availability-card mb-2">
-                          <div class="row">
-                            <div class="col-3 py-0">
-                              <div
-                                class="
-                                  jochi-sub-components-light-bg
-                                  fa-card-date
-                                  d-flex
-                                  flex-column
-                                  align-items-center
-                                  justify-content-center
-                                  w-100
-                                  p-3
-                                "
-                              >
-                                <p class="fac-day mb-1">MON</p>
-                                <p class="fac-date mb-0">11</p>
-                              </div>
-                            </div>
-                            <div class="col-9">
-                              <div
-                                class="
-                                  d-flex
-                                  justify-content-between
-                                  align-items-center
-                                "
-                              >
-                                <div class="fa-meeting-faculty-details">
-                                  <p class="mb-1 faculty-meeting-text">
-                                    Faculty Meeting
-                                  </p>
-                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
-                                  <div class="fa-time-section">6:00 pm</div>
-                                </div>
-                                <i class="arrow right"></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-12 faculty-availability-card mb-2">
-                          <div class="row">
-                            <div class="col-3 py-0">
-                              <div
-                                class="
-                                  jochi-sub-components-light-bg
-                                  fa-card-date
-                                  d-flex
-                                  flex-column
-                                  align-items-center
-                                  justify-content-center
-                                  w-100
-                                  p-3
-                                "
-                              >
-                                <p class="fac-day mb-1">MON</p>
-                                <p class="fac-date mb-0">11</p>
-                              </div>
-                            </div>
-                            <div class="col-9">
-                              <div
-                                class="
-                                  d-flex
-                                  justify-content-between
-                                  align-items-center
-                                "
-                              >
-                                <div class="fa-meeting-faculty-details">
-                                  <p class="mb-1 faculty-meeting-text">
-                                    Faculty Meeting
-                                  </p>
-                                  <p class="mb-1 faculty-name">Mr. Ronald</p>
-                                  <div class="fa-time-section">6:00 pm</div>
-                                </div>
-                                <i class="arrow right"></i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div> -->
                       </div>
                     </div>
                   </div>
@@ -564,7 +290,10 @@
                   overflow-hidden
                 "
               >
-                <div class="calendar-dashboard px-4 pt-4">
+                <div
+                  class="calendar-dashboard px-4 pt-4"
+                  data-intro="Calendar planner"
+                >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
                 <div
@@ -623,24 +352,13 @@
                       >
                         No assignments for this day!
                       </p>
-                      <!-- <p class="mb-0 text-14">
-                      <span>{{ item.due_date }}</span
-                      >&nbsp;<span>{{ item.due_time }}</span>
-                    </p> -->
                     </div>
-                    <!-- <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
-                    .
-                  </div>
-                  <div class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3">
-                    .
-                  </div> -->
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- </div> -->
       </div>
 
       <!-- meeing detil pop up -->
@@ -668,17 +386,6 @@
                   <span>{{ meetingDetail.new_title }}</span>
                 </h5>
               </h2>
-              <!-- <button type="button" class="close">
-              <span aria-hidden="true">Edit</span>
-            </button> -->
-              <!-- <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button> -->
             </div>
             <div class="modal-body">
               <h3 class="color-black font-semi-bold">
@@ -690,71 +397,6 @@
               <h4 class="color-primary font-regular mb-2"></h4>
               <form action="">
                 <table class="w-100 table-modal custom-row-table">
-                  <!-- <tr>
-                  <td class="tmodal-data">Type</td>
-                  <td class="tmodal-data">
-                    <span class="pr-2"></span>
-                    {{ meetingDetail.type }}
-                  </td>
-                </tr> -->
-
-                  <!-- <tr>
-                  <td class="tmodal-data">With</td>
-                  <td class="tmodal-data d-flex align-items-center flex-wrap">
-                    <span class="pr-2"></span>
-                    <span>{{ meetingDetail.new_title }} </span> -->
-                  <!-- <div
-                      class="invited-members-status mr-2"
-                      v-else
-                      v-for="(item, index) of invitedMembers"
-                      :key="index"
-                    >
-                      <span
-                        v-if="item.student_id != studentId"
-                        :class="
-                          item.student_id == item.teacher_id
-                            ? 'accepted-meeting i-member-status'
-                            : item.meeting_request == 0
-                            ? 'pending-meeting i-member-status'
-                            : item.meeting_request == 1
-                            ? 'accepted-meeting i-member-status'
-                            : item.meeting_request == 2
-                            ? 'rejected-meeting i-member-status'
-                            : ''
-                        "
-                        >{{ item.name }}</span
-                      >
-                    </div> -->
-                  <!-- </td>
-                </tr> -->
-
-                  <!-- <tr>
-                  <td class="tmodal-data">Date</td>
-                  <td class="tmodal-data">
-                    <div
-                      class="
-                        mb-0
-                        col-12 col-md-8 col-lg-7
-                        d-flex
-                        align-items-center
-                        form-row
-                        py-0
-                      "
-                    >
-                      <span class="pr-2"></span>
-
-                      {{ meetingDetail.dateFormat }}
-                    </div>
-                  </td>
-                </tr> -->
-
-                  <!-- <tr>
-                  <td class="tmodal-data">Time</td>
-                  <td class="tmodal-data">
-                    <span class="pr-2"></span>
-                    {{ meetingDetail.start_time }}
-                  </td>
-                </tr> -->
                   <tr>
                     <td class="tmodal-data text-nowrap">Meeting Name</td>
                     <td class="tmodal-data">
@@ -839,55 +481,7 @@
                 </table>
               </form>
             </div>
-            <div class="modal-footer">
-              <!-- <div
-              v-if="
-                detailType == 'Peer' &&
-                detailMeetingRequest == 0 &&
-                detailTeacherId != studentId
-              "
-              class="row text-center justify-content-end p-3"
-            >
-              <button
-                type="button"
-                class="btn btn-secondary py-1 px-4 rounded-pill mr-2"
-                data-dismiss="modal"
-                @click="acceptOrReject(2)"
-              >
-                Reject
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary py-1 px-4 rounded-pill"
-                data-dismiss="modal"
-                @click="acceptOrReject(1)"
-              >
-                Accept
-              </button>
-            </div>
-            <div
-              v-if="
-                (detailTeacherId == studentId || detailType == 'Teacher') &&
-                detailMeetingRequest == 1
-              "
-              class="row text-center justify-content-end p-3"
-            >
-              <button
-                type="button"
-                class="btn btn-secondary py-1 px-4 rounded-pill mr-2"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary py-1 px-4 rounded-pill"
-                @click="updateDetails()"
-              >
-                Update
-              </button>
-            </div> -->
-            </div>
+            <div class="modal-footer"></div>
           </div>
         </div>
       </div>
@@ -950,13 +544,11 @@
 <script>
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
-// import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
 
 import FullCalendar, { Calendar } from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-// import { VueEllipseProgress } from "vue-ellipse-progress";
 
 var eventList = [];
 var Peerarray = [];
@@ -967,11 +559,19 @@ export default {
   components: {
     lottie,
     FullCalendar,
-    // VueEllipseProgress,
   },
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [
+        {
+          rel: "stylesheet",
+          href: "/css/style01.css",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
     };
   },
   data() {
@@ -1004,7 +604,6 @@ export default {
         initialView: "dayGridMonth",
         unselectAuto: false,
         selectable: true,
-        // events: eventList,
         eventClick: this.eventClicked,
         datesSet: this.handleMonthChange,
         dateClick: this.handleDateClick,
@@ -1012,8 +611,6 @@ export default {
         views: {
           dayGrid: {
             dayMaxEventRows: 4, // adjust to 6 only for timeGridWeek/timeGridDay
-            //
-            // },
           },
         },
       },
@@ -1076,6 +673,7 @@ export default {
     }),
   },
   mounted() {
+    // this.startIntro();
     this.startTime = new Date().getTime();
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.ShowQuotedMessage();
@@ -1091,6 +689,26 @@ export default {
     }
   },
   methods: {
+    startIntro() {
+      const intro = this.$intro();
+      // intro.setOptions({
+      //   steps: [
+      //     {
+      //       intro: "Welcome to Intro.js",
+      //     },
+      //     {
+      //       element: "#quoteForTheDay",
+      //       intro: "This is step 1",
+      //     },
+      //     {
+      //       element: "#step2",
+      //       intro: "This is step 2",
+      //     },
+      //   ],
+      // });
+      intro.start();
+      // intro.addHints();
+    },
     async skipPromt() {
       localStorage.setItem("skippedPrompt", "true");
     },
@@ -1128,6 +746,7 @@ export default {
       } else {
         this.isShowQuote = true;
       }
+      this.startIntro();
     },
     async getConfiguredGoal() {
       await this.getGoal({ student_id: this.studentId });
@@ -1253,7 +872,6 @@ export default {
         var end = element.end_time;
 
         var date = moment(element.date, "YYYY-MM-DD");
-        // var date = moment(element.date, "YYYY-MM-DD");
         var dateFormat =
           date.format("dddd") +
           ", " +
@@ -1319,32 +937,7 @@ export default {
     onCardClick(list) {
       $("#meetingDetailModal").modal();
       this.meetingDetail = list;
-      // this.selectedSlot = "";
-      // this.slot_date_selection = [];
-      // this.detailDate = list.date;
-      // this.detailDateFormat = list.date_formatted;
-      // this.detailTime = list.from + " to " + list.end;
-      // this.detailMeetingName = list.meeting_name;
-      // this.detailMeetingDesc = list.meeting_description;
-      // this.detailConversationType = list.conversation_type;
-      // this.detailVenue =
-      //   list.conversation_type == "In Person"
-      //     ? list.meeting_location
-      //     : list.meeting_link;
-      // this.detailType = list.type;
-      // this.detailWith = list.title;
-      // this.detailMeetingWith = list.meeting_with;
-      // this.detailMeetingId = list.meeting_id;
-      // this.detailMeetingId = list.meeting_id;
-      // this.detailGroupId = list.group_id;
-      // this.detailStudentId = list.student_id;
-      // this.detailRequestId = list.request_id;
-      // this.detailMeetingRequest = list.meeting_request;
-      // this.detailScheduleId = list.schedule_id;
-      // this.detailTeacherId = list.teacher_id;
-      // this.detailSlotId = list.slot_id;
-      // this.date_formatted = list.date_formatted;
-      // var dateF = list.date.split("-");
+
       this.date = new Date(moment(list.date));
       if (this.detailType != "Teacher") {
         this.getMemberDetails();
@@ -1357,22 +950,7 @@ export default {
       });
       this.loading = false;
     },
-    // handleDateClick: function (arg) {
-    //   this.listAgenda = [];
 
-    //   this.agendaList.forEach((element) => {
-    //     var listObj = {};
-    //     if (element.date == arg.dateStr) {
-    //       listObj["time"] = element.default_slots.start_time;
-    //       listObj["title"] = element.title;
-    //       this.listAgenda.push(listObj);
-    //     }
-    //   });
-    //   if (!ismounted) {
-    //     this.ListTeacherAgenda();
-    //   }
-    //   ismounted = false;
-    // },
     async GetDailyPlanner(date) {
       eventList = [];
       this.loading = true;
@@ -1390,35 +968,6 @@ export default {
       this.plannerList.forEach((element) => {
         var scheduleObject = {};
         var plannerObj = {};
-        // var id = element.id;
-        // var assignment = element.subject;
-        // var time = element.due_time;
-        // var date = this.dateConversion(element.due_date);
-
-        // var title = element.task;
-
-        // if (element.priority == "1") {
-        //   var color = "#EF382E";
-        // } else if (element.priority == "2") {
-        //   var color = "#00CCA0";
-        // } else if (element.priority == "3") {
-        //   var color = "#F6D73C";
-        // }
-        // var dateMeeting = element.due_date;
-        // var tmeMeeting = this.formatAMPM(element.due_time);
-        // var start = dateMeeting + "T" + tmeMeeting;
-
-        // scheduleObject["assignment"] = assignment;
-        // scheduleObject["time"] = time;
-        // scheduleObject["date"] = moment(date).format("MM/DD/YYYY");
-        // scheduleObject["title"] = title;
-        // scheduleObject["id"] = id;
-
-        // plannerObj["title"] = title;
-        // plannerObj["color"] = color;
-        // plannerObj["start"] = start;
-        // plannerObj["id"] = id;
-        // plannerObj["groupId"] = "assignment";
 
         let planner = {};
         planner.task = element.task;
@@ -1430,7 +979,6 @@ export default {
         planner.assignment_description = element.assignment_description;
         planner.subjects = element.assignment_description;
 
-        // planner.due_date = moment(element.due_date).format("MM/DD/YYYY");
         this.assignmentList.push(planner);
       });
       this.meetingList?.forEach((element) => {
@@ -1462,7 +1010,6 @@ export default {
         meetingobj["color"] = color;
         meetingobj["start"] = start;
         meetingobj["id"] = element.id;
-        // meetingobj["groupId"] = "Meeting";
 
         listobj["title"] = title;
         listobj["meeting"] = meeting;
@@ -1492,16 +1039,13 @@ export default {
         meetingobj["start"] = start;
         meetingobj["id"] = element.id;
         meetingobj["groupId"] = "study";
-        // meetingobj["type"] = "study";
 
         listobj["title"] = title;
         listobj["meeting"] = "Study Session";
         listobj["dateMeeting"] = dateMeeting;
         listobj["timeValNum"] = timeValNum;
-        // this.meetingDetails.push(listobj);
         eventList.push(meetingobj);
       });
-      // this.calendarOptions.events = eventList;
     },
     handleMonthChange(dateInfo) {
       var dateStr = dateInfo.startStr;
@@ -1534,7 +1078,7 @@ export default {
     const duration = (endTime - this.startTime) / 1000;
     const distinct_id = localStorage.getItem("distinctId");
     const page = "Dashboard";
-    this.$mixpanel.track("Page View", { duration, distinct_id, page });
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
   },
 };
 </script>
