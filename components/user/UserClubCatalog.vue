@@ -406,6 +406,8 @@ export default {
     description: { required },
   },
   mounted() {
+    const page = "ClubCatalog";
+    this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
 
     this.user_type = localStorage.getItem("user_type");

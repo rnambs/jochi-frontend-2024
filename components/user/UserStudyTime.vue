@@ -1720,13 +1720,11 @@ export default {
       disableNext: false,
       pageCount: 0,
       scheduleLater: false,
-      startTime: null,
+      startTimeMixpanel: null,
     };
   },
 
   beforeMount() {
-    this.startTime = new Date().getTime();
-
     var self = this;
     window.onbeforeunload = function (e) {
       if (self.$route.path == "/study-time") {
@@ -1750,6 +1748,10 @@ export default {
     }
   },
   async mounted() {
+    
+    const page = "StudySession";
+    this.$mixpanel.track("Page View", { distinct_id, page });
+    this.startTimeMixpanel = new Date().getTime();
     this.userId = localStorage.getItem("id");
     if (this.sessionRedirectId) {
       await this.getDetail(this.sessionRedirectId);
@@ -3316,7 +3318,7 @@ export default {
   },
   beforeDestroy() {
     const endTime = new Date().getTime();
-    const duration = (endTime - this.startTime) / 1000;
+    const duration = (endTime - this.startTimeMixpanel) / 1000;
     const distinct_id = localStorage.getItem("distinctId");
     const page = "StudySession";
     this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
