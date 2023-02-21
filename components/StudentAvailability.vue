@@ -321,6 +321,8 @@ export default {
     };
   },
   mounted() {
+    const page = "MeetingAvailability";
+    this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
     ismounted = true;
     this.calendarApi = this.$refs.fullCalendar.getApi();
@@ -602,6 +604,8 @@ export default {
 };
 </script>
 <style>
-.custom-switch .custom-control-label::after{top: calc(0.0375rem + 2px) !important;}
+.custom-switch .custom-control-label::after {
+  top: calc(0.0375rem + 2px) !important;
+}
 </style>
 

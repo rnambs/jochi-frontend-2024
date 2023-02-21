@@ -2735,6 +2735,8 @@ export default {
   },
 
   mounted() {
+    const page = "PlannerWeek";
+    this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
 
     this.user_id = localStorage.getItem("id");

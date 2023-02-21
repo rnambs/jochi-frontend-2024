@@ -673,6 +673,8 @@ export default {
     }),
   },
   mounted() {
+    const page = "Dashboard";
+    this.$mixpanel.track("Page View", { distinct_id, page });
     // this.startIntro();
     this.startTime = new Date().getTime();
     this.calendarApi = this.$refs.fullCalendar.getApi();

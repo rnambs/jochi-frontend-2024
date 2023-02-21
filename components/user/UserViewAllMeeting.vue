@@ -649,6 +649,8 @@ export default {
     detailVenue: { required },
   },
   mounted() {
+    const page = "MeetingViewAll";
+    this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
 
     this.disabledDates.to = new Date(

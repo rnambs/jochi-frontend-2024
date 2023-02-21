@@ -356,6 +356,8 @@ export default {
     };
   },
   mounted() {
+    const page = "StudyAnalytics";
+    this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
 
     console.log("mounting student id", this.studentId);
