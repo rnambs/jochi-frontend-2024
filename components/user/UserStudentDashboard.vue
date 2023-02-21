@@ -674,6 +674,7 @@ export default {
   },
   mounted() {
     const page = "Dashboard";
+    const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
     // this.startIntro();
     this.startTime = new Date().getTime();
