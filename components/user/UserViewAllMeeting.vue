@@ -1157,7 +1157,7 @@ export default {
       const duration = (endTime - this.startTime) / 1000;
       const distinct_id = localStorage.getItem("distinctId");
       const page = "MeetingViewAll";
-      this.$mixpanel.track("Page View", { duration, distinct_id, page });
+      this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
     },
   },
 };
