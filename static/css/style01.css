@@ -276,7 +276,6 @@ body {
   position: relative;
   letter-spacing: 0.5px;
   transition: 0.3s ease all;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -426,9 +425,6 @@ input[type=radio] {
 .form-row input.form-control::-moz-placeholder, .form-row select.form-control::-moz-placeholder, .form-row .form-control::-moz-placeholder, .form-group input.form-control::-moz-placeholder, .form-group select.form-control::-moz-placeholder, .form-group .form-control::-moz-placeholder {
   color: #C5C0BD;
 }
-.form-row input.form-control:-ms-input-placeholder, .form-row select.form-control:-ms-input-placeholder, .form-row .form-control:-ms-input-placeholder, .form-group input.form-control:-ms-input-placeholder, .form-group select.form-control:-ms-input-placeholder, .form-group .form-control:-ms-input-placeholder {
-  color: #C5C0BD;
-}
 .form-row input.form-control::placeholder, .form-row select.form-control::placeholder, .form-row .form-control::placeholder, .form-group input.form-control::placeholder, .form-group select.form-control::placeholder, .form-group .form-control::placeholder {
   color: #C5C0BD;
 }
@@ -439,9 +435,6 @@ input[type=radio] {
 .form-row input.form-control.tab-form-control::-moz-placeholder, .form-row select.form-control.tab-form-control::-moz-placeholder, .form-row .form-control.tab-form-control::-moz-placeholder, .form-group input.form-control.tab-form-control::-moz-placeholder, .form-group select.form-control.tab-form-control::-moz-placeholder, .form-group .form-control.tab-form-control::-moz-placeholder {
   font-size: 14px;
 }
-.form-row input.form-control.tab-form-control:-ms-input-placeholder, .form-row select.form-control.tab-form-control:-ms-input-placeholder, .form-row .form-control.tab-form-control:-ms-input-placeholder, .form-group input.form-control.tab-form-control:-ms-input-placeholder, .form-group select.form-control.tab-form-control:-ms-input-placeholder, .form-group .form-control.tab-form-control:-ms-input-placeholder {
-  font-size: 14px;
-}
 .form-row input.form-control.tab-form-control::placeholder, .form-row select.form-control.tab-form-control::placeholder, .form-row .form-control.tab-form-control::placeholder, .form-group input.form-control.tab-form-control::placeholder, .form-group select.form-control.tab-form-control::placeholder, .form-group .form-control.tab-form-control::placeholder {
   font-size: 14px;
 }
@@ -450,9 +443,6 @@ input[type=radio] {
   box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
 }
 .form-row input.form-control.bg-transparent::-moz-placeholder, .form-row select.form-control.bg-transparent::-moz-placeholder, .form-row .form-control.bg-transparent::-moz-placeholder, .form-group input.form-control.bg-transparent::-moz-placeholder, .form-group select.form-control.bg-transparent::-moz-placeholder, .form-group .form-control.bg-transparent::-moz-placeholder {
-  color: #C5C0BD !important;
-}
-.form-row input.form-control.bg-transparent:-ms-input-placeholder, .form-row select.form-control.bg-transparent:-ms-input-placeholder, .form-row .form-control.bg-transparent:-ms-input-placeholder, .form-group input.form-control.bg-transparent:-ms-input-placeholder, .form-group select.form-control.bg-transparent:-ms-input-placeholder, .form-group .form-control.bg-transparent:-ms-input-placeholder {
   color: #C5C0BD !important;
 }
 .form-row input.form-control.bg-transparent::placeholder, .form-row select.form-control.bg-transparent::placeholder, .form-row .form-control.bg-transparent::placeholder, .form-group input.form-control.bg-transparent::placeholder, .form-group select.form-control.bg-transparent::placeholder, .form-group .form-control.bg-transparent::placeholder {
@@ -550,10 +540,6 @@ input[type=radio] {
   color: #C5C0BD;
   font-size: 0.9rem;
 }
-.form-row .multiselect__tags:-ms-input-placeholder, .form-group .multiselect__tags:-ms-input-placeholder {
-  color: #C5C0BD;
-  font-size: 0.9rem;
-}
 .form-row .multiselect__tags::placeholder, .form-group .multiselect__tags::placeholder {
   color: #C5C0BD;
   font-size: 0.9rem;
@@ -569,10 +555,6 @@ input[type=radio] {
   margin: 6px 2px;
 }
 .form-row .multiselect__tags .multiselect__input::-moz-placeholder, .form-row .multiselect__tags .multiselect__single::-moz-placeholder, .form-group .multiselect__tags .multiselect__input::-moz-placeholder, .form-group .multiselect__tags .multiselect__single::-moz-placeholder {
-  color: #C5C0BD;
-  font-size: 0.9rem;
-}
-.form-row .multiselect__tags .multiselect__input:-ms-input-placeholder, .form-row .multiselect__tags .multiselect__single:-ms-input-placeholder, .form-group .multiselect__tags .multiselect__input:-ms-input-placeholder, .form-group .multiselect__tags .multiselect__single:-ms-input-placeholder {
   color: #C5C0BD;
   font-size: 0.9rem;
 }
@@ -875,27 +857,9 @@ input[type=radio] {
      object-fit: contain;
 }
 .icon-img.clock-icon {
-  -webkit-animation-name: bell-ring;
-          animation-name: bell-ring;
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-}
-
-@-webkit-keyframes bell-ring {
-  5%, 15% {
-    transform: rotate(25deg);
-  }
-  10%, 20% {
-    transform: rotate(-25deg);
-  }
-  25% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
+  animation-name: bell-ring;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
 }
 
 @keyframes bell-ring {
@@ -921,7 +885,6 @@ input[type=radio] {
 }
 
 .h-fit-content {
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -1008,7 +971,6 @@ img.card-img {
 }
 
 .w-fit-content {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -1053,18 +1015,6 @@ img.card-img {
   min-height: 568.98px;
 }
 
-@-webkit-keyframes jump {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(30px) rotate(5deg);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
 @keyframes jump {
   0% {
     transform: translateY(0px);
@@ -1078,8 +1028,7 @@ img.card-img {
 }
 .jump {
   transform-origin: 50% 50%;
-  -webkit-animation: jump 15s linear alternate infinite;
-          animation: jump 15s linear alternate infinite;
+  animation: jump 15s linear alternate infinite;
 }
 
 img.dark-icon {
@@ -1341,9 +1290,6 @@ img.dark-icon {
 .main-container .form-section .sign-in .col-12 .form-control::-moz-placeholder, .main-container .form-section .sign-in .col .form-control::-moz-placeholder {
   color: rgba(180, 180, 180, 0.4);
 }
-.main-container .form-section .sign-in .col-12 .form-control:-ms-input-placeholder, .main-container .form-section .sign-in .col .form-control:-ms-input-placeholder {
-  color: rgba(180, 180, 180, 0.4);
-}
 .main-container .form-section .sign-in .col-12 .form-control::placeholder, .main-container .form-section .sign-in .col .form-control::placeholder {
   color: rgba(180, 180, 180, 0.4);
 }
@@ -1402,9 +1348,6 @@ img.dark-icon {
   color: #B4B4B4;
 }
 .main-container .form-section .sign-in .col-12 .form-row .multiselect__tags .multiselect__input::-moz-placeholder, .main-container .form-section .sign-in .col-12 .form-row .multiselect__tags .multiselect__single::-moz-placeholder, .main-container .form-section .sign-in .col .form-row .multiselect__tags .multiselect__input::-moz-placeholder, .main-container .form-section .sign-in .col .form-row .multiselect__tags .multiselect__single::-moz-placeholder {
-  color: rgba(180, 180, 180, 0.4);
-}
-.main-container .form-section .sign-in .col-12 .form-row .multiselect__tags .multiselect__input:-ms-input-placeholder, .main-container .form-section .sign-in .col-12 .form-row .multiselect__tags .multiselect__single:-ms-input-placeholder, .main-container .form-section .sign-in .col .form-row .multiselect__tags .multiselect__input:-ms-input-placeholder, .main-container .form-section .sign-in .col .form-row .multiselect__tags .multiselect__single:-ms-input-placeholder {
   color: rgba(180, 180, 180, 0.4);
 }
 .main-container .form-section .sign-in .col-12 .form-row .multiselect__tags .multiselect__input::placeholder, .main-container .form-section .sign-in .col-12 .form-row .multiselect__tags .multiselect__single::placeholder, .main-container .form-section .sign-in .col .form-row .multiselect__tags .multiselect__input::placeholder, .main-container .form-section .sign-in .col .form-row .multiselect__tags .multiselect__single::placeholder {
@@ -1874,9 +1817,6 @@ img.dark-icon {
   padding: 0;
 }
 .inner-section .main-section #Daily-Calander .upload-file-section .form-control::-moz-placeholder, .inner-section .main-section #Weekly-Calander .upload-file-section .form-control::-moz-placeholder, .inner-section .main-section #Monthly-Calander .upload-file-section .form-control::-moz-placeholder {
-  color: #ffffff;
-}
-.inner-section .main-section #Daily-Calander .upload-file-section .form-control:-ms-input-placeholder, .inner-section .main-section #Weekly-Calander .upload-file-section .form-control:-ms-input-placeholder, .inner-section .main-section #Monthly-Calander .upload-file-section .form-control:-ms-input-placeholder {
   color: #ffffff;
 }
 .inner-section .main-section #Daily-Calander .upload-file-section .form-control::placeholder, .inner-section .main-section #Weekly-Calander .upload-file-section .form-control::placeholder, .inner-section .main-section #Monthly-Calander .upload-file-section .form-control::placeholder {
@@ -3263,7 +3203,6 @@ img.dark-icon {
   border-radius: 0px;
   min-height: 20px;
   white-space: nowrap;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   position: unset;
@@ -3798,7 +3737,6 @@ img.dark-icon {
   border-radius: 0px;
   min-height: 20px;
   white-space: nowrap;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   position: unset;
@@ -4815,16 +4753,6 @@ switch to violet when it is active*/
     color: rgb(255, 255, 255);
   }
 }
-@-webkit-keyframes bounce_fountainTextG {
-  0% {
-    -webkit-transform: scale(1);
-    color: rgb(0, 0, 0);
-  }
-  100% {
-    -webkit-transform: scale(0.5);
-    color: rgb(255, 255, 255);
-  }
-}
 .vdp-datepicker.form-control input[type=text] {
   color: #431F1C;
   cursor: pointer;
@@ -5043,7 +4971,6 @@ select.form-control.is-invalid {
 .custom-club-details-tag-bg {
   color: #ffffff;
   border-radius: 6px;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -5122,7 +5049,6 @@ select.form-control.is-invalid {
 }
 
 .members-thumbnail-list {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
