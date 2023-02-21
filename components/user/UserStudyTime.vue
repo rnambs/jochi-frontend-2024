@@ -1750,6 +1750,7 @@ export default {
   async mounted() {
     
     const page = "StudySession";
+    const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTimeMixpanel = new Date().getTime();
     this.userId = localStorage.getItem("id");

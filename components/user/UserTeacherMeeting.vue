@@ -635,6 +635,7 @@ export default {
   },
   mounted() {
     const page = "MeetingSchedule";
+    const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
 

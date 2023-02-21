@@ -2867,6 +2867,7 @@ export default {
   },
   mounted() {
     const page = "PlannerMonth";
+    const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
 
