@@ -634,6 +634,8 @@ export default {
     conversation_type: { required },
   },
   mounted() {
+    const page = "MeetingSchedule";
+    this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
 
     this.GetStudents();
