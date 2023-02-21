@@ -602,8 +602,6 @@ export default {
 };
 </script>
 <style>
-.custom-switch .custom-control-label::after {
-  top: calc(0.0375rem + 1px) !important;
-}
+.custom-switch .custom-control-label::after{top: calc(0.0375rem + 2px) !important;}
 </style>
 
