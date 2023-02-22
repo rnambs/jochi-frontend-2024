@@ -94,8 +94,7 @@ const actions = {
                     'Authorization': ` ${token}`
                 },
             });
-            commit('setAssignmentList', response.assignments);
-            commit('setSharedAssignmentsList', response.shared_assignments);
+
         } catch (e) {
             if (e.response && e.response.status == 401) {
                 commit('setSuccessMessage', "");
@@ -189,10 +188,8 @@ const mutations = {
     },
     setStudentSignUp(state, data) {
         state.studentSignUp = data;
-        if (data == true || data == 'true') {
-            localStorage.setItem('studentSignUp', data);
-            this.$store.commit("setStartProductGuide", true);
-        }
+        localStorage.setItem('studentSignUp', data)
+
     },
 }
 const getters = {
