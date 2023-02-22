@@ -2307,15 +2307,29 @@ export default {
       this.confirmationMessage = this.setConfirmationMessage(event);
     },
     setConfirmationMessage(event) {
+      const type = this.type == "Sports" ? " team" : " club";
+
       switch (event) {
         case "delete": {
-          return "Are you sure you want to delete this club? This action is not reversible!";
+          return (
+            "Are you sure you want to delete this " +
+            type +
+            "? This action is not reversible!"
+          );
         }
         case "remove_leader": {
-          return "Are you sure you want to remove yourself as a leader of this club? This action is not reversible!";
+          return (
+            "Are you sure you want to remove yourself as a leader of this " +
+            type +
+            "? This action is not reversible!"
+          );
         }
         case "leave": {
-          return "Are you sure you want to leave this club? This action is not reversible!";
+          return (
+            "Are you sure you want to leave this " +
+            type +
+            "? This action is not reversible!"
+          );
         }
         case "info": {
           this.showClubInfo = true;
