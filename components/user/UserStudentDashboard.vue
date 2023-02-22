@@ -97,7 +97,6 @@
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                       <div class="jochi-sub-components-light-bg h-100">
                         <div
-                          data-intro="Find daily study target and study status here"
                           class="
                             study-status-card
                             d-flex
@@ -154,7 +153,6 @@
                     </div>
                     <div class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill">
                       <div
-                        data-intro="Find meetings scheduled for the selected month here"
                         class="
                           d-flex
                           flex-column
@@ -263,7 +261,6 @@
                           v-if="!slot_date || slot_date.length <= 0"
                         >
                           <span
-                            data-intro="Find meetings scheduled for the selected month here"
                             class="
                               d-flex
                               w-100
@@ -295,7 +292,6 @@
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
                 <div
-                  data-intro="Find assignments which are due for the selected date here"
                   class="d-flex flex-column h-40 flex-fill pb-3 assignment-list"
                 >
                   <h4 class="color-black font-semi-bold px-4">
@@ -566,10 +562,6 @@ export default {
           rel: "stylesheet",
           href: "/css/style01.css",
         },
-        {
-          rel: "stylesheet",
-          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
-        },
       ],
     };
   },
@@ -693,21 +685,6 @@ export default {
     }
   },
   methods: {
-    startIntro() {
-      const intro = this.$intro();
-      // let completed = false;
-      // if (this.startProductGuide) {
-      intro.start();
-      intro.oncomplete(() => {
-        // completed = true;
-        this.$router.push("/planner-day");
-      });
-      intro.onexit(() => {
-        // if (!completed)
-        this.$store.commit("setStartProductGuide", false);
-      });
-      // }
-    },
     async skipPromt() {
       localStorage.setItem("skippedPrompt", "true");
     },
@@ -800,7 +777,7 @@ export default {
         percentageStudied = percentageStudied * 100;
         let percentage = percentageStudied.toFixed(2);
 
-        this.value = percentage;
+        this.value = percentage >= 0 ? percentage : 0;
       }
     },
     openMeetingDetail() {
@@ -816,7 +793,6 @@ export default {
       await this.listAllMeetingMonth({
         date: calendarDate,
       });
-      console.log("consoling time zones ", this.timeZones);
       this.loading = false;
       this.dateConversion();
     },

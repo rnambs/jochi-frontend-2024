@@ -3056,6 +3056,7 @@ export default {
         }
       );
     });
+    this.startIntro();
   },
   validations: {
     subject: { required },
@@ -3411,7 +3412,6 @@ export default {
       });
 
       this.calendarOptions.events = eventList;
-      this.startIntro();
     },
 
     async GetAssignment(val) {

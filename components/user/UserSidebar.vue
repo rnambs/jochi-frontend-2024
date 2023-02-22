@@ -771,6 +771,12 @@ export default {
     this.getCount();
     this.syncGg4lData();
 
+    const studentSignUpSetting = localStorage.getItem("studentSignUpSetting");
+    if (studentSignUpSetting == "true") {
+      this.$store.commit("setStartProductGuide", true);
+      localStorage.setItem("studentSignUpSetting", "false");
+    }
+
     // window.addEventListener("keydown", (e) => {
     //   if (e.keyCode == 123) {
     //     e.preventDefault();
@@ -831,6 +837,9 @@ export default {
       notificationList: (state) => state.notificationList,
       notificationCount: (state) => state.notificationCount,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("studentSignIn", {
@@ -968,6 +977,11 @@ export default {
       if (isGg4lDataSynced != "1") {
         await this.syncData();
         localStorage.setItem("isGg4lDataSynced", "1");
+        if (this.startProductGuide) {
+          localStorage.setItem("studentSignUpSetting", "true");
+        } else {
+          localStorage.setItem("studentSignUpSetting", "false");
+        }
         this.$router.go();
       }
     },

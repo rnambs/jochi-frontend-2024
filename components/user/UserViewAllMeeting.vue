@@ -757,7 +757,6 @@ export default {
         search_id: selectValue,
         student_id: localStorage.getItem("id"),
       });
-      console.log("consoling time zones ", this.timeZones);
       this.loading = false;
       this.dateConversion();
     },
