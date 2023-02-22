@@ -282,7 +282,7 @@
                                             !item.subTasks ||
                                             item.subTasks.length <= 0
                                           "
-                                          class="pl-2 d-flex align-items-center"
+                                          class="d-flex align-items-center"
                                         >
                                           <span class="color-secondary text-12"
                                             >No sub tasks added!</span
@@ -604,7 +604,7 @@
                                           !item.subTasks ||
                                           item.subTasks.length <= 0
                                         "
-                                        class="pl-2 d-flex align-items-center"
+                                        class="d-flex align-items-center"
                                       >
                                         <span class="color-secondary text-12"
                                           >No sub tasks added!</span
@@ -1631,6 +1631,7 @@
                                           d-none
                                           btn
                                           p-0
+                                          ml-05
                                         "
                                         ><i class="fas fa-trash-alt ml-3"></i
                                       ></span>
@@ -2440,7 +2441,7 @@
                 Complete Assignment Confirmation
               </h3>
             </div>
-            <div class="modal-body px-4">Mark assignment as completed?</div>
+            <div class="modal-body px-3 bold-6">Mark assignment as completed?</div>
             <div class="modal-footer">
               <button
                 type="button"
