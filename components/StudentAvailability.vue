@@ -73,7 +73,7 @@
                 <img
                   src="../static/image/calendar-2.svg"
                   alt=""
-                  class="card-img"
+                  class="card-img small-size"
                 />
               </div>
             </div>

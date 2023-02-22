@@ -935,6 +935,10 @@ input[type=radio] {
   background-color: White;
 }
 
+.small-size {
+  height: 100px;
+}
+
 .card {
   border-radius: 0.5rem;
   border: none;
