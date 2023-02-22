@@ -20,6 +20,20 @@
             <div class="col-12 position-realtive h-100 d-flex flex-column">
               <div class="jochi-components-light-bg position-relative h-100">
                 <div class="planner-week p-4 pt-5 px-3 px-sm-5">
+                  <div class="color-ref">
+                    <ul class="d-flex align-itmes-center">
+                      <li><span>Assignments - Urgent</span></li>
+                      <li><span>Assignments -  Important</span></li>
+                      <li><span>Assignments - Can wait</span></li>
+                      <li><span>Completed assignments</span></li>
+                      <li><span>Meeting - Club meeting</span></li>
+                      <li><span>Meeting - Peer meeting</span></li>
+                      <li><span>Meeting - Teacher meeting</span></li>
+                      <!-- <li><span>color-8</span></li>
+                      <li><span>color-9</span></li>
+                      <li><span>color-10</span></li> -->
+                    </ul>
+                  </div>
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
 

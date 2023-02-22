@@ -915,6 +915,112 @@ input[type="radio"]{
     }
 }
 
+.fc .fc-toolbar.fc-header-toolbar {
+	margin-bottom: 2em !important;
+}
+
+.color-ref {
+	position: absolute;
+	top: 5.5rem;
+	right: 3rem;
+    &.mnth{
+        top: 4.7rem;
+        right: 3.5rem;
+    }
+    ul {
+        li {
+            padding: 5px;
+            list-style: none;
+            position: relative;
+            width: 18px;
+            height: 18px;
+            margin: 0 5px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: ease-in-out 1s all;
+            font-size: 14px;
+            background: #0000000f;
+            border-radius: 20px;
+            box-shadow: 0px 1px 7px #00000021;
+            &:hover{
+                width: auto;
+                transition: ease-in-out 1s all;
+                span{
+                    width: auto;
+                    opacity: 1;
+                    padding-left: 18px;
+                    padding-right: 5px;
+                    transition: ease-in 1s all;
+                }
+            }
+            &::before{
+                content: "";
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                background-color: #EF382E;
+                border-radius: 15px;
+                top: 0;
+                left: 0;
+            }
+            span{
+                width: 0;
+                opacity: 0;
+                display: inline-block;
+            }
+            &:nth-child(2){
+                &::before{
+                    background-color: #F6D73C;
+                }
+            }
+            &:nth-child(3){
+                &::before{
+                    background-color: #00CCA0;
+                }
+            }
+            &:nth-child(4){
+                &::before{
+                    background-color: #a7a7a7;
+                }
+            }
+            &:nth-child(5){
+                &::before{
+                    background-color: #07BEB8;
+                }
+            }
+            &:nth-child(6){
+                &::before{
+                    background-color: #64B5FC;
+                }
+            }
+            &:nth-child(7){
+                &::before{
+                    background-color: #073BBF;
+                }
+            }
+            &:nth-child(8){
+                &::before{
+                    background-color: White;
+                }
+            }
+            // &:nth-child(9){
+            //     &::before{
+            //         background-color: rgb(18, 9, 103);
+            //     }
+            // }
+            // &:nth-child(10){
+            //     &::before{
+            //         background-color: rgb(18, 9, 103);
+            //     }
+            // }
+        }
+    }
+}
+
+.small-size{
+    height: 100px;
+}
 
 // Card
 
