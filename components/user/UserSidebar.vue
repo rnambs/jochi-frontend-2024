@@ -556,62 +556,7 @@
                   </div>
                 </div>
               </div>
-              <div class="menu-items position-relative py-0">
-                <div class="accordion" id="accordionExample">
-                  <div class="card bg-transparent shadow-none border-0 mb-2">
-                    <div
-                      class="card-header bg-transparent border-0 p-1"
-                      id="headingOne"
-                    >
-                      <div class="mb-0 d-flex">
-                        <button
-                          class="
-                            btn btn-link
-                            d-flex
-                            align-items-center
-                            justify-content-between
-                            bg-transparent
-                            text-decoration-none text-18
-                            color-secondary
-                            btn-block
-                            px-0
-                            text-left
-                            collapsed
-                            justify-content-start
-                            py-0 py-lg-0
-                          "
-                          @click="
-                            $event.target.classList.toggle('active');
-                            startGuide();
-                          "
-                          type="button"
-                          data-toggle="collapse"
-                          aria-expanded="false"
-                          aria-controls="collapseOne"
-                        >
-                          <div class="bottum-btn">
-                            <div class="font-icon d-inline-block">
-                              <img
-                                src="../../static/image/advisor.png"
-                                alt=""
-                              />
-                            </div>
-                            <span
-                              class="
-                                ml-3
-                                color-secondary
-                                text-capitalize
-                                font-medium
-                              "
-                              >Tutorial</span
-                            >
-                          </div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -682,6 +627,59 @@
               </div>
             </div>
           </div> -->
+          <div class="menu-items position-relative py-0 mb-2">
+            <div class="accordion" id="accordionExample">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div
+                  class="card-header bg-transparent border-0 p-1"
+                  id="headingOne"
+                >
+                  <div class="mb-0 d-flex">
+                    <button
+                      class="
+                        btn btn-link
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        text-decoration-none text-18
+                        btn-block
+                        text-left
+                        collapsed
+                        justify-content-start
+                        tutorial-btn
+                      "
+                      @click="
+                        $event.target.classList.toggle('active');
+                        startGuide();
+                      "
+                      type="button"
+                      data-toggle="collapse"
+                      aria-expanded="false"
+                      aria-controls="collapseOne"
+                    >
+                      <div class="bottum-btn align-items-center">
+                        <!-- <div class="font-icon d-inline-block">
+                          <img
+                            src="../../static/image/advisor.png"
+                            alt=""
+                          />
+                        </div> -->
+                        <i class="fab fa-jira mr-2"></i>
+                        <span
+                          class="
+                            color-secondary
+                            text-capitalize
+                            font-medium
+                          "
+                          >Tutorial</span
+                        >
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="menu-items position-relative py-0">
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
