@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <button @click="startIntro" title="Tooltip on bottom">Start Intro</button> -->
     <div
       id="pageLoader"
       class="
@@ -65,7 +64,6 @@
                     pb-1
                     h-fit-content
                   "
-                  data-intro="Quote for the day"
                 >
                   <div class="row position-relative justify-content-between">
                     <div class="col-7"></div>
@@ -99,6 +97,7 @@
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                       <div class="jochi-sub-components-light-bg h-100">
                         <div
+                          data-intro="Find daily study target and study status here"
                           class="
                             study-status-card
                             d-flex
@@ -155,6 +154,7 @@
                     </div>
                     <div class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill">
                       <div
+                        data-intro="Find meetings scheduled for the selected month here"
                         class="
                           d-flex
                           flex-column
@@ -263,6 +263,7 @@
                           v-if="!slot_date || slot_date.length <= 0"
                         >
                           <span
+                            data-intro="Find meetings scheduled for the selected month here"
                             class="
                               d-flex
                               w-100
@@ -290,13 +291,11 @@
                   overflow-hidden
                 "
               >
-                <div
-                  class="calendar-dashboard px-4 pt-4"
-                  data-intro="Calendar planner"
-                >
+                <div class="calendar-dashboard px-4 pt-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
                 <div
+                  data-intro="Find assignments which are due for the selected date here"
                   class="d-flex flex-column h-40 flex-fill pb-3 assignment-list"
                 >
                   <h4 class="color-black font-semi-bold px-4">
@@ -671,12 +670,14 @@ export default {
     ...mapState("teacherMeeting", {
       invitedMembers: (state) => state.invitedMembers,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   mounted() {
     const page = "Dashboard";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
-    // this.startIntro();
     this.startTime = new Date().getTime();
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.ShowQuotedMessage();
@@ -694,23 +695,18 @@ export default {
   methods: {
     startIntro() {
       const intro = this.$intro();
-      // intro.setOptions({
-      //   steps: [
-      //     {
-      //       intro: "Welcome to Intro.js",
-      //     },
-      //     {
-      //       element: "#quoteForTheDay",
-      //       intro: "This is step 1",
-      //     },
-      //     {
-      //       element: "#step2",
-      //       intro: "This is step 2",
-      //     },
-      //   ],
-      // });
+      // let completed = false;
+      // if (this.startProductGuide) {
       intro.start();
-      // intro.addHints();
+      intro.oncomplete(() => {
+        // completed = true;
+        this.$router.push("/planner-day");
+      });
+      intro.onexit(() => {
+        // if (!completed)
+        this.$store.commit("setStartProductGuide", false);
+      });
+      // }
     },
     async skipPromt() {
       localStorage.setItem("skippedPrompt", "true");
@@ -749,7 +745,6 @@ export default {
       } else {
         this.isShowQuote = true;
       }
-      this.startIntro();
     },
     async getConfiguredGoal() {
       await this.getGoal({ student_id: this.studentId });

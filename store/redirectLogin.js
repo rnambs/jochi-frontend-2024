@@ -17,6 +17,7 @@ const state = {
     phone: '',
     notifyStatus: '',
     distinctId: '',
+    studentSignUp: false,
 }
 const actions = {
 
@@ -40,6 +41,7 @@ const actions = {
                 commit('setPhone', response.data.phone_number);
                 commit('setNotifyStatus', response.data.notification);
                 commit('setDistinctId', response.data.distinct_id);
+                commit('setStudentSignUp', response.data.studentSignUp);
                 if (response.data.user_type_id == 1) {
                     this.$router.push('/dashboard');
                 }
@@ -185,6 +187,13 @@ const mutations = {
         state.distinctId = data;
         localStorage.setItem('distinctId', data);
     },
+    setStudentSignUp(state, data) {
+        state.studentSignUp = data;
+        if (data == true || data == 'true') {
+            localStorage.setItem('studentSignUp', data);
+            this.$store.commit("setStartProductGuide", true);
+        }
+    },
 }
 const getters = {
 
@@ -228,6 +237,9 @@ const getters = {
     },
     distinctId: () => {
         return state.distinctId;
+    },
+    studentSignUp: () => {
+        return state.studentSignUp;
     }
 }
 
