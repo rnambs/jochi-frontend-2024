@@ -19,7 +19,12 @@
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-3">
-            <h2 class="tab-head color-primary font-semi-bold">Club details</h2>
+            <h2
+              data-intro="View all your clubs here and click on the club for futher details"
+              class="tab-head color-primary font-semi-bold"
+            >
+              Club details
+            </h2>
             <div class="inner-tab-section container-fluid p-0">
               <div
                 class="
@@ -31,7 +36,10 @@
                   align-items-center
                 "
               >
-                <div class="col-md-4 px-0">
+                <div
+                  data-intro="Filter the clubs based on the tags"
+                  class="col-md-4 px-0"
+                >
                   <div class="input-icon-area form-row">
                     <multiselect
                       v-model="value"
@@ -62,6 +70,7 @@
                         color-dark
                         text-14
                       "
+                      data-intro="Sync your team and club meetings to your planner from here"
                       for="custom-Switches"
                       >Sync to Planner
                     </label>
@@ -218,6 +227,16 @@ export default {
     Multiselect,
     lottie,
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
+  },
   data() {
     return {
       list_data: [],
@@ -243,6 +262,7 @@ export default {
 
     this.GetTag();
     this.MyClubList();
+    this.startIntro();
   },
   computed: {
     ...mapState("myClub", {
@@ -254,6 +274,9 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("myClub", {
@@ -338,6 +361,20 @@ export default {
         SelectValue = "";
       }
       this.MyClubList();
+    },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.oncomplete(() => {
+          completed = true;
+          this.$router.push("/club-catalogue");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
     },
   },
   beforeDestroy() {

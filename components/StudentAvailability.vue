@@ -84,7 +84,9 @@
                     <span class="color-dark text-16 font-semi-bold">{{
                       date_string
                     }}</span>
-                    <span class="color-secondary text-14 font-normal"
+                    <span
+                      data-intro="Select the 30 minute slots on which you are available"
+                      class="color-secondary text-14 font-normal"
                       ><i>30 Minute Slot</i></span
                     >
                   </p>
@@ -104,7 +106,10 @@
                     </span>
                   </div>
                   <form action="" class="">
-                    <div class="row slot-form">
+                    <div
+                      data-intro="Apply the selected slots for a month or week, include weekends and set as default time from here"
+                      class="row slot-form"
+                    >
                       <div class="col">
                         <div class="custom-switch mb-3">
                           <input
@@ -244,6 +249,16 @@ export default {
     FullCalendar,
     lottie,
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
+  },
   data() {
     return {
       currentTime: "",
@@ -329,6 +344,7 @@ export default {
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.TeacherAvailableSlot();
     this.AvailabilitySlotswithId();
+    this.startIntro();
   },
 
   computed: {
@@ -340,6 +356,9 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("studentCustomAvailability", {
@@ -593,6 +612,20 @@ export default {
       if (!ismounted) {
       }
       ismounted = false;
+    },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.oncomplete(() => {
+          completed = true;
+          this.$router.push("/viewall-meeting");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
     },
   },
   beforeDestroy() {
