@@ -840,6 +840,24 @@ input[type=radio] {
   font-weight: 600;
 }
 
+.tutorial-btn {
+  border: 1px solid #FF6D6D !important;
+  width: 100%;
+  background-color: #ffdfdf;
+}
+.tutorial-btn span, .tutorial-btn i {
+  color: #FF6D6D !important;
+}
+.tutorial-btn span {
+  margin: initial !important;
+}
+.tutorial-btn:hover {
+  background-color: #FF6D6D;
+}
+.tutorial-btn:hover span, .tutorial-btn:hover i {
+  color: #FFf !important;
+}
+
 .card {
   border-radius: 0.5rem;
   border: none;
