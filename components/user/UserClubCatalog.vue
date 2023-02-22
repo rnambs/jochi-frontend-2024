@@ -20,25 +20,33 @@
           <div class="tab-section container-fluid">
             <div class="d-flex justify-content-between align-item-center">
               <div class="d-flex flex-column">
-                <h2 class="color-primary font-semi-bold mb-1">Club Catalog</h2>
+                <h2
+                  data-intro="Find the list of all the clubs in your school. Click on Learn More to see the club details and join to the club from there"
+                  class="color-primary font-semi-bold mb-1"
+                >
+                  Club Catalog
+                </h2>
                 <h4 class="mb-2 color-dark font-semi-bold">
                   Find your People!
                 </h4>
               </div>
 
-              <button
-                v-if="user_type == 3"
-                type="button"
-                class="btn btn-dark py-2 mt-1 h-fit-content px-4"
-                @click="openCreateNewModal"
-              >
-                Create New
-              </button>
+              <div data-intro="Create your own clubs from here">
+                <button
+                  v-if="user_type == 3"
+                  type="button"
+                  class="btn btn-dark py-2 mt-1 h-fit-content px-4"
+                  @click="openCreateNewModal"
+                >
+                  Create New
+                </button>
+              </div>
             </div>
             <div class="row p-2">
               <div class="col-md-4">
                 <div class="form-row position-relative">
                   <input
+                    data-intro="Search for clubs from here"
                     class="form-control w-100 tab-form-control"
                     type="text"
                     v-model="search"
@@ -52,6 +60,7 @@
               </div>
               <div class="col-md-4">
                 <div
+                  data-intro="Filter clubs based on tags from here"
                   class="input-icon-area custom-multiselect-adj-text form-row"
                 >
                   <multiselect
@@ -379,6 +388,16 @@ export default {
     Multiselect,
     lottie,
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
+  },
   data() {
     return {
       user_type: 0,
@@ -415,6 +434,7 @@ export default {
     SelectValue = "";
     this.GetTag();
     this.ClubCatalogue();
+    this.startIntro();
   },
   computed: {
     ...mapState("clubCatalogue", {
@@ -425,6 +445,9 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("clubCatalogue", {
@@ -641,6 +664,20 @@ export default {
       this.$v.$reset();
       this.resetClubData();
       $("#createNewModal").modal({ backdrop: true });
+    },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.oncomplete(() => {
+          completed = true;
+          this.$router.push("/study-time");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
     },
   },
   beforeDestroy() {
