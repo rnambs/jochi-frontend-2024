@@ -1528,6 +1528,7 @@
                                       d-none
                                       btn
                                       p-0
+                                      ml-05
                                     "
                                     ><i class="fas fa-trash-alt ml-3"></i
                                   ></span>
