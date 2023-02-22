@@ -2578,7 +2578,7 @@
               Complete Assignment Confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">Mark assignment as completed?</div>
+          <div class="modal-body px-3 bold-6">Mark assignment as completed?</div>
           <div class="modal-footer">
             <button
               type="button"
