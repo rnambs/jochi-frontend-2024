@@ -798,6 +798,47 @@ input[type=radio] {
 .dropdown .dropdown-menu.notify .dropdown-item.notifications .notification-text {
   max-height: calc(100vh - 190px);
 }
+.dropdown button::before {
+  position: absolute;
+  content: "\f078";
+  right: 10px;
+  bottom: 0;
+  height: 15px;
+  width: 15px;
+  top: 0;
+  font-style: normal;
+  font-family: "Font Awesome 5 Pro";
+  margin: auto;
+  color: #c8c2c0;
+  line-height: 1;
+}
+
+.vdp-datepicker::before, .time-picker::before {
+  position: absolute;
+  content: "\f073";
+  right: 10px;
+  bottom: 0;
+  height: 15px;
+  width: 15px;
+  top: 0;
+  font-style: normal;
+  font-family: "Font Awesome 5 Pro";
+  margin: auto;
+  color: #c8c2c0;
+  line-height: 1;
+}
+
+.time-picker::before {
+  content: "\f017";
+}
+
+.ml-05 {
+  margin-left: 2px;
+}
+
+.bold-6 {
+  font-weight: 600;
+}
 
 .card {
   border-radius: 0.5rem;
