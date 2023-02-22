@@ -519,7 +519,6 @@
                     <div v-for="subtask in detail.subTasks" :key="subtask.id">
                       <div
                         class="
-                          pl-2
                           d-flex
                           align-items-center
                           mb-1

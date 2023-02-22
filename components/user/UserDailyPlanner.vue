@@ -271,7 +271,7 @@
                                         !item.subTasks ||
                                         item.subTasks.length <= 0
                                       "
-                                      class="pl-2 d-flex align-items-center"
+                                      class="d-flex align-items-center"
                                     >
                                       <span class="color-secondary text-12"
                                         >No sub tasks added!</span
@@ -568,7 +568,7 @@
                                       !item.subTasks ||
                                       item.subTasks.length <= 0
                                     "
-                                    class="pl-2 d-flex align-items-center"
+                                    class="d-flex align-items-center"
                                   >
                                     <span class="color-secondary text-12"
                                       >No sub tasks added!</span
