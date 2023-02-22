@@ -36,6 +36,7 @@
           <div class="col-lg-7 d-flex flex-column">
             <div class="position-relative">
               <div
+                data-intro="Schedule study sessions for completing study sessions for later from here"
                 @click="scheduleLaterClick('assignment', $event)"
                 class="
                   position-absolute
@@ -62,6 +63,7 @@
                 flex-row
                 cursor-pointer
               "
+              data-intro="Start sessions for completing an assignment from here. Choose an assignment, select your study method and configure your study session for starting a new study session"
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
                 <h2 class="color-primary font-semi-bold mb-1">
@@ -83,6 +85,7 @@
             </div>
             <div class="position-relative">
               <div
+                data-intro="Schedule normal study sessions for later from here"
                 @click="scheduleLaterClick('study', $event)"
                 class="
                   position-absolute
@@ -98,6 +101,7 @@
               </div>
             </div>
             <div
+              data-intro="Start normal study sessions from here. Select your study method and configure your study session for starting a new study session"
               @click="setSessionType('study', false)"
               class="
                 row
@@ -140,7 +144,10 @@
               "
             >
               <div class="d-flex flex-column h-100">
-                <h2 class="color-primary font-semi-bold mb-2 px-4">
+                <h2
+                  data-intro="View all your configured study sessions and the study sessions shared by your peers here"
+                  class="color-primary font-semi-bold mb-2 px-4"
+                >
                   Upcoming Sessions
                 </h2>
                 <div class="custom-overflow px-4 pt-2 h-max-lg-600">
@@ -1621,9 +1628,16 @@ export default {
   },
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [
+        { rel: "stylesheet", href: "/css/style01.css" },
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
     };
   },
+
   data() {
     return {
       Subject: "",
@@ -1748,7 +1762,6 @@ export default {
     }
   },
   async mounted() {
-    
     const page = "StudySession";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
@@ -1778,6 +1791,7 @@ export default {
     this.GetSubjectList();
     this.GetStudyTypes();
     this.getAllStudySessions();
+    this.startIntro();
   },
 
   validations: {
@@ -1810,6 +1824,9 @@ export default {
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("studyRoom", {
@@ -3311,6 +3328,20 @@ export default {
       e.preventDefault();
       e.stopPropagation();
       this.setSessionType(type, true);
+    },
+    startIntro() {
+      const intro = this.$intro();
+       let completed = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.oncomplete(() => {
+          completed = true;
+          this.$router.push("/study-analytics");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+      });
+      }
     },
   },
 

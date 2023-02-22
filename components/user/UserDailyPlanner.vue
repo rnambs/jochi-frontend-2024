@@ -23,6 +23,7 @@
               <div class="col-lg-5 col-md-12 h-100">
                 <div class="jochi-components-light-bg p-4 h-100">
                   <h2
+                    data-intro="Find all your assignments, study sessions, meetings, trainings and matches in the planner below"
                     v-if="showToday"
                     class="color-primary font-semi-bold mb-1"
                   >
@@ -67,7 +68,10 @@
                   >
                     <div class="row">
                       <div class="col-md-4">
-                        <h2 class="color-primary font-semi-bold mb-0">
+                        <h2
+                          data-intro="Find all your pending assignments here"
+                          class="color-primary font-semi-bold mb-0"
+                        >
                           Pending
                         </h2>
                       </div>
@@ -79,6 +83,7 @@
                         "
                       >
                         <button
+                          data-intro="Add new assignments from here"
                           @click="
                             openAssignment = true;
                             isAddAssignment = true;
@@ -850,7 +855,10 @@
                       "
                       @drop="handleDrop"
                     >
-                      <h2 class="color-primary font-semi-bold px-4">
+                      <h2
+                        data-intro="Find all your assignments completed today here"
+                        class="color-primary font-semi-bold px-4"
+                      >
                         Completed Today
                       </h2>
                       <p
@@ -2834,6 +2842,16 @@ export default {
     draggable,
     InfiniteLoading,
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
+  },
   data() {
     return {
       isAssignmentEdit: false,
@@ -3075,6 +3093,16 @@ export default {
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
+  },
+  watch: {
+    startProductGuide(newValue, oldValue) {
+      if (newValue) {
+        this.startIntro();
+      }
+    },
   },
   methods: {
     ...mapActions("quotedMessage", {
@@ -3383,6 +3411,7 @@ export default {
       });
 
       this.calendarOptions.events = eventList;
+      this.startIntro();
     },
 
     async GetAssignment(val) {
@@ -4531,6 +4560,20 @@ export default {
       this.getDailyPlanner();
       this.openAssignment = false;
     },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.oncomplete(() => {
+          completed = true;
+          this.$router.push("/teacher-meeting");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
+    },
   },
   beforeDestroy() {
     const endTime = new Date().getTime();
@@ -4556,8 +4599,8 @@ export default {
 .h-60 {
   height: 60%;
 }
-.squaredThree {
-}
+/* .squaredThree {
+} */
 .squaredThree label {
   width: 24px;
   height: 24px;

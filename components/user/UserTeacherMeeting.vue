@@ -26,6 +26,7 @@
               <div class="row m-0">
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
+                    data-intro="Choose teacher meeting or peer meeting"
                     class="
                       form-row
                       d-flex
@@ -48,6 +49,7 @@
                 </div>
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
+                    data-intro="Choose one teacher or upto four peers"
                     class="
                       form-row
                       d-flex
@@ -108,6 +110,7 @@
                 </div>
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
+                    data-intro="Choose date range"
                     class="
                       form-row
                       d-flex
@@ -591,6 +594,16 @@ export default {
     Multiselect,
     lottie,
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
+  },
   data() {
     return {
       value: "",
@@ -641,6 +654,8 @@ export default {
 
     this.GetStudents();
     this.GetTeacher();
+    this.startIntro();
+
     this.isMounted = false;
     const _this = this;
     var today = new Date();
@@ -708,6 +723,9 @@ export default {
       errorType: (state) => state.errorType,
       timeZones: (state) => state.timeZones,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
 
   methods: {
@@ -1039,6 +1057,20 @@ export default {
       }
 
       return valid;
+    },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.oncomplete(() => {
+          completed = true;
+          this.$router.push("/custom-availability-student");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
     },
   },
   beforeDestroy() {

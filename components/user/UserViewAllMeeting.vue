@@ -20,11 +20,19 @@
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid">
-            <h2 class="color-primary font-semi-bold">My Meetings</h2>
+            <h2
+              data-intro="View all your meetings here. Accept or Reject meeting requests from peers or Edit your meeting requests from here"
+              class="color-primary font-semi-bold"
+            >
+              My Meetings
+            </h2>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0 mb-3">
                 <div class="col-md-4 p-0 mx-1">
-                  <div class="dropdown form-row custom-sort-by-btn">
+                  <div
+                    data-intro="Filter teacher and peer meetings from here"
+                    class="dropdown form-row custom-sort-by-btn"
+                  >
                     <div
                       class="
                         dropdown-select
@@ -595,6 +603,16 @@ export default {
     Multiselect,
     lottie,
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
+  },
   data() {
     return {
       value: "",
@@ -676,6 +694,7 @@ export default {
       $(".dropdown-select").text(getValue);
       _this.filterOption(getValue);
     });
+    this.startIntro();
   },
   computed: {
     ...mapState("viewAllMeeting", {
@@ -697,6 +716,9 @@ export default {
       timeZones: (state) => state.timeZones,
       invitedMembers: (state) => state.invitedMembers,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("viewAllMeeting", {
@@ -1155,13 +1177,27 @@ export default {
 
       return valid;
     },
-    beforeDestroy() {
-      const endTime = new Date().getTime();
-      const duration = (endTime - this.startTime) / 1000;
-      const distinct_id = localStorage.getItem("distinctId");
-      const page = "MeetingViewAll";
-      this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.oncomplete(() => {
+          completed = true;
+          this.$router.push("/club-detail");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
     },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "MeetingViewAll";
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
   },
 };
 </script>
