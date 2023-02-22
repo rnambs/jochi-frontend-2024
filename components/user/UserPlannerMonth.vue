@@ -2455,7 +2455,9 @@
                 Complete Assignment Confirmation
               </h3>
             </div>
-            <div class="modal-body px-3 bold-6">Mark assignment as completed?</div>
+            <div class="modal-body px-3 bold-6">
+              Mark assignment as completed?
+            </div>
             <div class="modal-footer">
               <button
                 type="button"
@@ -2605,7 +2607,9 @@
                 Remove Peer Confirmation
               </h3>
             </div>
-            <div class="modal-body px-4">Remove the peer?</div>
+            <div class="modal-body px-4">
+              Are you sure want to remove the peer?
+            </div>
             <div class="modal-footer">
               <button
                 type="button"
