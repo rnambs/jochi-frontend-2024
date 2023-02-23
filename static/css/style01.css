@@ -813,6 +813,11 @@ input[type=radio] {
   line-height: 1;
 }
 
+.vdp-datepicker input, .time-picker input {
+  width: 100%;
+  position: relative;
+  z-index: 99;
+}
 .vdp-datepicker::before, .time-picker::before {
   position: absolute;
   content: "\f073";

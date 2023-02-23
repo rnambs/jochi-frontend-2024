@@ -867,6 +867,11 @@ input[type="radio"]{
 }
 
 .vdp-datepicker, .time-picker{
+    input{
+        width: 100%;
+        position: relative;
+        z-index: 99;
+    }
     &::before{
         position: absolute;
         content: "\f073";
