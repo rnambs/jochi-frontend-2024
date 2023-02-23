@@ -24,13 +24,13 @@
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                   <div class="color-ref mnth">
                     <ul class="d-flex align-itmes-center">
-                      <li><span>Assignments - Urgent</span></li>
-                      <li><span>Assignments -  Important</span></li>
-                      <li><span>Assignments - Can wait</span></li>
-                      <li><span>Completed assignments</span></li>
-                      <li><span>Meeting - Club meeting</span></li>
-                      <li><span>Meeting - Peer meeting</span></li>
-                      <li><span>Meeting - Teacher meeting</span></li>
+                      <li><span>Urgent assignments</span></li>
+                      <li><span>Important Assignments</span></li>
+                      <li><span>Can wait Assignments</span></li>
+                      <li><span>Completed Assignments</span></li>
+                      <li><span>Club Meeting</span></li>
+                      <li><span>Peer Meeting</span></li>
+                      <li><span>Teacher Meeting</span></li>
                       <!-- <li><span>color-8</span></li>
                       <li><span>color-9</span></li>
                       <li><span>color-10</span></li> -->
