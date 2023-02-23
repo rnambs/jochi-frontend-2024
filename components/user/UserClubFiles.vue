@@ -1231,7 +1231,17 @@ export default {
     },
     onNextMeeting() {
       if (this.enableEdit) {
+        this.valueMeeting = "";
+        this.dayArrVal = [];
+        this.dateArray = [];
         $("#nextMeetingModal").modal();
+
+        let activeElements = document.getElementsByClassName(
+          "btn date-picker badge badge-pill badge-color active"
+        );
+        Array.prototype.forEach.call(activeElements, function (element) {
+          element.classList.remove("active");
+        });
       }
     },
     openAddBanner() {
