@@ -1654,7 +1654,7 @@
                                           placeholder="Upload File"
                                           @change="onFileChange"
                                           id="fileUpload"
-                                          accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
+                                          accept=".png,.jpeg,.jpg,.pdf"
                                         />
                                       </div>
                                       <div class="col-9 py-0 pl-0">
@@ -2138,7 +2138,7 @@
                                           placeholder="Upload File"
                                           id="fileUpload"
                                           @change="onFileChange"
-                                          accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
+                                          accept=".png,.jpeg,.jpg,.pdf"
                                         />
                                       </div>
                                       <div class="col-9 py-0 pl-0">
@@ -2863,6 +2863,8 @@ export default {
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
+      errorMessageQuote: (state) => state.errorMessage,
+      errorTypeQuote: (state) => state.errorType,
       subjectsData: (state) => state.subjectsData,
       assignmentsList: (state) => state.assignmentsList,
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
@@ -3631,7 +3633,7 @@ export default {
           if (!mappedData) {
             return alert("This assignment has been completed!");
           }
-this.assignmentPlanner();
+          this.assignmentPlanner();
           this.onCardClick(mappedData);
         } else {
           alert("No actions can be performed on past events");
@@ -3668,7 +3670,7 @@ this.assignmentPlanner();
           return this.$router.push(
             `/viewall-meeting?id=${idVal.id}&type=${idVal.groupId}`
           );
-        }  else if (idVal.groupId == "club-meeting") {
+        } else if (idVal.groupId == "club-meeting") {
           let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
           return this.$router.push(
             `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
@@ -4457,6 +4459,15 @@ this.assignmentPlanner();
       }
     },
     async UploadAttachment() {
+      if (!this.materialType) {
+        return this.$toast.open({
+          message: "Please choose file type",
+          type: "warning",
+          duration: 5000,
+        });
+        return false;
+      }
+      
       this.processingUpload = true;
       const data = new FormData();
       if (this.materialType == "file") {
@@ -4467,6 +4478,13 @@ this.assignmentPlanner();
               "Content-Type": "multipart/form-data",
             },
           });
+          if (this.errorMessageQuote != "") {
+        return this.$toast.open({
+          message: this.errorMessageQuote,
+          type: this.errorTypeQuote,
+          duration: 4000,
+        });
+      }
 
           this.additionalMaterialList.push({
             id: this.newAdditionalMaterial.id,

@@ -1702,7 +1702,7 @@
                                           class="form-control px-2"
                                           placeholder="Upload File"
                                           @change="onFileChange"
-                                          accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
+                                          accept=".png,.jpeg,.jpg,.pdf"
                                         />
                                       </div>
                                       <div class="col-9 py-0 pl-0">
@@ -2172,7 +2172,7 @@
                                           class="form-control px-2"
                                           placeholder="Upload File"
                                           @change="onFileChange"
-                                          accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
+                                          accept=".png,.jpeg,.jpg,.pdf"
                                         />
                                       </div>
                                       <div class="col-9 py-0 pl-0">
@@ -2994,6 +2994,8 @@ export default {
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
+      errorMessageQuote: (state) => state.errorMessage,
+      errorTypeQuote: (state) => state.errorType,
       subjectsData: (state) => state.subjectsData,
       assignmentsList: (state) => state.assignmentsList,
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
@@ -4615,6 +4617,14 @@ export default {
       }
     },
     async UploadAttachment() {
+      if (!this.materialType) {
+        return this.$toast.open({
+          message: "Please choose file type",
+          type: "warning",
+          duration: 5000,
+        });
+        return false;
+      }
       this.processingUpload = true;
       const data = new FormData();
       if (this.materialType == "file") {
@@ -4625,6 +4635,14 @@ export default {
               "Content-Type": "multipart/form-data",
             },
           });
+
+          if (this.errorMessageQuote != "") {
+            return this.$toast.open({
+              message: this.errorMessageQuote,
+              type: this.errorTypeQuote,
+              duration: 4000,
+            });
+          }
 
           this.additionalMaterialList.push({
             id: this.newAdditionalMaterial.id,

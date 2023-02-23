@@ -391,6 +391,7 @@ const actions = {
 
       }
     } catch (e) {
+
       if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -441,6 +442,11 @@ const actions = {
         commit('setErrorMessage', "Please upload a file!");
         commit('setErrorType', "error");
 
+      } else if (e?.response?.data?.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e?.response?.data?.message);
+        commit('setErrorType', "error");
       }
     }
 
