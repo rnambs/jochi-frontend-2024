@@ -3145,9 +3145,9 @@ export default {
           } else if (element.priority == "3") {
             var color = "#00CCA0";
           }
-          // else if (element.priority == "4") {
-          //   var color = "#a7a7a7";
-          // }
+          else if (element.priority == "4") {
+            var color = "#ffffff";
+          }
           if (element.task_status == "Completed") {
             var color = "#a7a7a7";
           }
@@ -3294,9 +3294,9 @@ export default {
           } else if (element.priority == "3") {
             var color = "#00CCA0";
           }
-          // else if (element.priority == "4") {
-          //   var color = "#a7a7a7";
-          // }
+          else if (element.priority == "4") {
+            var color = "#ffffff";
+          }
           if (element.task_status == "Completed") {
             var color = "#a7a7a7";
           }
@@ -3955,9 +3955,9 @@ export default {
         } else if (element.priority == "3") {
           var color = "#00CCA0";
         }
-        // else if (element.priority == "4") {
-        //   var color = "#a7a7a7";
-        // }
+        else if (element.priority == "4") {
+          var color = "#ffffff";
+        }
         if (element.task_status == "Completed") {
           var color = "#a7a7a7";
         }
@@ -4100,9 +4100,9 @@ export default {
           } else if (element.priority == "3") {
             var color = "#00CCA0";
           }
-          //  else if (element.priority == "4") {
-          //   var color = "#a7a7a7";
-          // }
+           else if (element.priority == "4") {
+            var color = "#ffffff";
+          }
           if (element.task_status == "Completed") {
             var color = "#a7a7a7";
           }
