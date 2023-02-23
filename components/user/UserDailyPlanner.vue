@@ -1626,7 +1626,12 @@
                                   <div class="ld-details-section w-100">
                                     <p
                                       @click="openLink(item)"
-                                      class="ld-heading mb-1 text-link"
+                                      class="
+                                        ld-heading
+                                        mb-1
+                                        text-link
+                                        cursor-pointer
+                                      "
                                     >
                                       {{ item.link }}
                                     </p>
@@ -1659,7 +1664,12 @@
                                   <div class="ld-details-section w-100">
                                     <p
                                       @click="openLink(item)"
-                                      class="ld-heading mb-1 text-link"
+                                      class="
+                                        ld-heading
+                                        mb-1
+                                        text-link
+                                        cursor-pointer
+                                      "
                                     >
                                       {{
                                         item.file_type &&
@@ -2081,7 +2091,12 @@
                                   <div class="ld-details-section w-100">
                                     <p
                                       @click="openLink(item)"
-                                      class="ld-heading mb-1 text-link"
+                                      class="
+                                        ld-heading
+                                        mb-1
+                                        text-link
+                                        cursor-pointer
+                                      "
                                     >
                                       {{ item.link }}
                                     </p>
@@ -2114,7 +2129,12 @@
                                   <div class="ld-details-section w-100">
                                     <p
                                       @click="openLink(item)"
-                                      class="ld-heading mb-1 text-link"
+                                      class="
+                                        ld-heading
+                                        mb-1
+                                        text-link
+                                        cursor-pointer
+                                      "
                                     >
                                       {{
                                         item.file_type &&

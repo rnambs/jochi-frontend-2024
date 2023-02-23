@@ -2184,7 +2184,7 @@
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-truncate"
+                                          class="ld-heading mb-1 text-truncate cursor-pointer"
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{ item.link }}
@@ -2218,7 +2218,7 @@
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-truncate"
+                                          class="ld-heading mb-1 text-truncate cursor-pointer"
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{
