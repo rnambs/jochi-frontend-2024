@@ -876,32 +876,38 @@ input[type=radio] {
   top: 4.7rem;
   right: 3.5rem;
 }
+.color-ref ul {
+  justify-content: flex-end;
+}
 .color-ref ul li {
   padding: 5px;
   list-style: none;
   position: relative;
+  min-width: 18px;
   width: 18px;
+  min-height: 18px;
   height: 18px;
   margin: 0 5px;
   display: flex;
   align-items: center;
   cursor: pointer;
-  transition: ease-in-out 1s all;
+  transition: ease-in-out 0.3s all;
   font-size: 14px;
   background: rgba(0, 0, 0, 0.0588235294);
   border-radius: 20px;
   box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.1294117647);
+  overflow: hidden;
+  text-align: right;
 }
 .color-ref ul li:hover {
-  width: auto;
-  transition: ease-in-out 1s all;
+  width: 100%;
+  transition: ease-in-out 0.5s all;
 }
 .color-ref ul li:hover span {
-  width: auto;
   opacity: 1;
   padding-left: 18px;
   padding-right: 5px;
-  transition: ease-in 1s all;
+  transition: ease-in-out 0.5s all;
 }
 .color-ref ul li::before {
   content: "";
@@ -912,11 +918,14 @@ input[type=radio] {
   border-radius: 15px;
   top: 0;
   left: 0;
+  z-index: 9;
 }
 .color-ref ul li span {
-  width: 0;
   opacity: 0;
   display: inline-block;
+  white-space: nowrap;
+  text-align: right;
+  transition: ease-in-out 0.5s all;
 }
 .color-ref ul li:nth-child(2)::before {
   background-color: #F6D73C;
