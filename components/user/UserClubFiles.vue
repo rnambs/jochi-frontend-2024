@@ -1460,8 +1460,7 @@ export default {
       await this.getInformation({
         club_id: this.clubId,
       });
-      console.log("club information", this.clubInformation);
-      this.clubCreatedAt = moment(this.clubInformation).format("MMMM Do, YYYY");
+      this.clubCreatedAt = this.clubInformation.createdAt;
     },
   },
   beforeDestroy() {
