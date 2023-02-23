@@ -3674,6 +3674,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
+      this.choosenAssignments=[];
       this.schoologyAssignment = "";
       this.validTime = false;
       this.peerSelected = [];
@@ -3715,7 +3716,6 @@ export default {
       let clearTimeBtn = document.getElementsByClassName("clear-btn")[0];
       clearTimeBtn?.click();
     },
-
     dateConversion(value) {
       const monthNames = [
         "January",
