@@ -760,6 +760,11 @@
                             </div>
                           </div>
                         </div>
+                        <div class="row">
+                          <div v-if="!overdueAssts || overdueAssts.length <= 0">
+                            No overdue assignments
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

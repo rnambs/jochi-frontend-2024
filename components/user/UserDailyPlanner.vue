@@ -1718,10 +1718,11 @@
                                     class="col-form-label"
                                     >Priority:</label
                                   >&nbsp;
-                                  <span v-if="priorityVal != 'Overdue'">{{
-                                    priorityVal
-                                  }}</span>
-                                  <div v-else class="dropdown input-icon-area">
+                                  <!-- <span v-if="priorityVal != 'Overdue'"> -->
+                                  <span >
+                                    {{ priorityVal }}</span
+                                  >
+                                  <!-- <div v-else class="dropdown input-icon-area">
                                     <button
                                       id="dLabel"
                                       class="
@@ -1772,7 +1773,7 @@
                                         <span>Urgent</span>
                                       </li>
                                     </ul>
-                                  </div>
+                                  </div> -->
                                 </div>
                               </div>
                               <div class="col-md-6 ml-auto">
@@ -2978,7 +2979,7 @@ export default {
       undoSubtaskId: 0,
       user_id: "",
       removedPeerList: [],
-      prior: 0,
+      prior: "4",
       startTime: null,
     };
   },
@@ -3561,7 +3562,7 @@ export default {
       this.GetDailyPlanner();
     },
     async UpdateAssignment() {
-      if (this.priorityVal == "Overdue" && !this.prior) {
+      if (this.priorityVal == "Overdue" && !this.isSharedAssignment) {
         this.$toast.open({
           message: "Please select the priority",
           type: "error",
@@ -3586,7 +3587,7 @@ export default {
         priority = "2";
       } else if (this.priorityVal == "Can Wait") {
         priority = "3";
-      } else if (this.priorityVal == "Overdue") {
+      } else if (this.priorityVal == "Overdue" ) {
         priority = this.prior;
       }
 
@@ -3674,7 +3675,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
-      this.choosenAssignments=[];
+      this.choosenAssignments = [];
       this.schoologyAssignment = "";
       this.validTime = false;
       this.peerSelected = [];
@@ -3877,6 +3878,11 @@ export default {
 
           return this.$router.push(
             `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
+          );
+        } else if (idVal.groupId == "matches" || idVal.groupId == "trainings") {
+          let club = this.trainingsMatches.find((e) => e.id == idVal.id);
+          return this.$router.push(
+            `/club-moreInfo?id=${club.clubs.id}&name=${club.clubs.name}&type=${club.clubs.activity_type}`
           );
         }
       }
