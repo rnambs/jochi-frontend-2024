@@ -359,7 +359,7 @@
                           h-100
                         "
                       >
-                        <p class="no-data mb-0">No data</p>
+                        <p class="no-data mb-0">No Files</p>
                       </div>
                     </div>
                   </div>
