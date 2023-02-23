@@ -1719,9 +1719,7 @@
                                     >Priority:</label
                                   >&nbsp;
                                   <!-- <span v-if="priorityVal != 'Overdue'"> -->
-                                  <span >
-                                    {{ priorityVal }}</span
-                                  >
+                                  <span> {{ priorityVal }}</span>
                                   <!-- <div v-else class="dropdown input-icon-area">
                                     <button
                                       id="dLabel"
@@ -3587,7 +3585,7 @@ export default {
         priority = "2";
       } else if (this.priorityVal == "Can Wait") {
         priority = "3";
-      } else if (this.priorityVal == "Overdue" ) {
+      } else if (this.priorityVal == "Overdue") {
         priority = this.prior;
       }
 
@@ -3817,8 +3815,49 @@ export default {
           moment().format("YYYY-MM-DD")
         )
       ) {
-        alert("No actions can be performed on past events");
-        return;
+        if (
+          idVal.groupId == "assignment" ||
+          idVal.groupId == "shared-assignment"
+        ) {
+          console.log("asst");
+
+          let data = {};
+          let mappedData = {};
+          if (idVal.groupId == "assignment") {
+            data = this.assignmentsList.find(
+              (e) => e.id.toString() == idVal.id.toString()
+            );
+            mappedData = this.mapData(data);
+          }
+          if (idVal.groupId == "assignment") {
+            data = this.overdues.find(
+              (e) => e.id.toString() == idVal.id.toString()
+            );
+            mappedData = this.mapData(data);
+          }
+          if (idVal.groupId == "shared-assignment") {
+            data = this.sharedAssignmentsList.find(
+              (e) => e.assignment_id.toString() == idVal.id.toString()
+            );
+
+            mappedData = this.mapSharedData(data);
+          }
+          if (idVal.groupId == "shared-assignment") {
+            data = this.sharedOverdues.find(
+              (e) => e.assignment_id.toString() == idVal.id.toString()
+            );
+
+            mappedData = this.mapSharedData(data);
+          }
+          if (!mappedData) {
+            return alert("This assignment has been completed!");
+          }
+
+          this.onCardClick(mappedData);
+        } else {
+          alert("No actions can be performed on past events");
+          return;
+        }
       } else {
         if (idVal.groupId == "study") {
           let session = this.sessionList.find(
@@ -3850,29 +3889,6 @@ export default {
           return this.$router.push(
             `/viewall-meeting?id=${idVal.id}&type=${idVal.groupId}`
           );
-        } else if (
-          idVal.groupId == "assignment" ||
-          idVal.groupId == "shared-assignment"
-        ) {
-          let data = {};
-          let mappedData = {};
-          if (idVal.groupId == "assignment") {
-            data = this.assignmentsList.find(
-              (e) => e.id.toString() == idVal.id.toString()
-            );
-            mappedData = this.mapData(data);
-          }
-          if (idVal.groupId == "shared-assignment") {
-            data = this.sharedAssignmentsList.find(
-              (e) => e.assignment_id.toString() == idVal.id.toString()
-            );
-            mappedData = this.mapSharedData(data);
-          }
-          if (!mappedData) {
-            return alert("This assignment has been completed!");
-          }
-
-          this.onCardClick(mappedData);
         } else if (idVal.groupId == "club-meeting") {
           let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
 
