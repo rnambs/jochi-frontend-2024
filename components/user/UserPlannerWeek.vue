@@ -4013,7 +4013,7 @@ export default {
         this.subTasksList.push(sub);
       } else {
         this.$toast.open({
-          message: "Please add a valid subTask ",
+          message: "Please add a valid sub task ",
           type: "warning",
           duration: 5000,
         });
