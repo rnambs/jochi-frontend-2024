@@ -1297,7 +1297,7 @@
             <button
               v-if="enableEdit"
               class="btn btn-success rounded-12 mt-2 py-1 px-4 font-semi-bold"
-              :disabled="!value"
+              :disabled="!value || dayArrVal.length <= 0"
               @click.prevent="UpdateTime"
             >
               Update the next meeting
