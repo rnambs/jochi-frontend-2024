@@ -3623,6 +3623,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
+      this.choosenAssignments=[];
       this.schoologyAssignment = "";
       this.peerSelected = [];
       this.isSharedAssignment = false;
