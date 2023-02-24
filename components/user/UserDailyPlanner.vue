@@ -3887,7 +3887,12 @@ export default {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
-            if (!mappedData) mappedData = this.mapData(data);
+            if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedAssignmentsList.find(
@@ -3899,14 +3904,19 @@ export default {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-            if (!mappedData) mappedData = this.mapSharedData(data);
+            if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapSharedData(data);
           }
           if (!mappedData) {
             this.alertMessage = "This assignment has been completed!";
             $("#alertModal").modal({ backdrop: true });
             return;
           }
-
+          console.log("past", mappedData);
           this.onCardClick(mappedData);
         } else {
           this.alertMessage = "No actions can be performed on past events";
@@ -3933,7 +3943,12 @@ export default {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
-            if (!mappedData) mappedData = this.mapData(data);
+            if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedAssignmentsList.find(
@@ -3945,7 +3960,12 @@ export default {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-            if (!mappedData) mappedData = this.mapSharedData(data);
+            if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapSharedData(data);
           }
 
           if (!mappedData) {
@@ -3953,6 +3973,7 @@ export default {
             $("#alertModal").modal({ backdrop: true });
             return;
           }
+          console.log("future", mappedData);
 
           this.onCardClick(mappedData);
         }
@@ -4225,6 +4246,7 @@ export default {
       }
     },
     mapSharedData(e) {
+      console.log(e);
       let item = {};
       this.assignmentMaterials = [];
 
@@ -4402,6 +4424,7 @@ export default {
       this.completeSubTask(false);
     },
     onCardClick(data) {
+      console.log(data);
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
       this.openAssignment = true;

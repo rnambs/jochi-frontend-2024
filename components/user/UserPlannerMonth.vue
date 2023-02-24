@@ -3835,7 +3835,12 @@ export default {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
-            if (!mappedData) mappedData = this.mapData(data);
+             if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapData(data); 
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedAssignmentsList.find(
@@ -3847,7 +3852,12 @@ export default {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-            if (!mappedData) mappedData = this.mapSharedData(data);
+             if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapSharedData(data); 
           }
           if (!mappedData) {
             this.alertMessage = "This assignment has been completed!";
@@ -3881,7 +3891,12 @@ export default {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
-            if (!mappedData) mappedData = this.mapData(data);
+             if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedAssignmentsList.find(
@@ -3893,7 +3908,12 @@ export default {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-            if (!mappedData) mappedData = this.mapSharedData(data);
+             if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapSharedData(data);
           }
           if (!mappedData) {
             this.alertMessage = "This assignment has been completed!";
