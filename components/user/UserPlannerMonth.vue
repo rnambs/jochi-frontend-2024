@@ -4817,7 +4817,6 @@ export default {
       this.completeAssignment(false);
     },
     confirmDeletion() {
-      console.log("confirm delete");
       $("#deleteAssignmentConfirmation").modal({ backdrop: true });
     },
     async deleteAssts() {
