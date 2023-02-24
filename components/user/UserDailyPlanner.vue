@@ -20,7 +20,7 @@
         >
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
-              <div class="col-lg-5 col-md-12 h-100">
+              <div class="col-lg-5 col-md-12 ">
                 <div
                   data-intro="Find all your assignments, study sessions, meetings, trainings and matches in the planner below"
                   class="jochi-components-light-bg p-4 h-100"

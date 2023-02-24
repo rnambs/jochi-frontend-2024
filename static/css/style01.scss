@@ -906,6 +906,9 @@ input[type="radio"]{
 	border: 1px solid #FF6D6D !important;
 	width: 100%;
     background-color: #ffdfdf;
+    @media screen and (max-width: $md-screen) {
+        width: auto;
+    }
     span, i {
         color: #FF6D6D !important;
     }
@@ -913,7 +916,7 @@ input[type="radio"]{
         margin: initial !important;
     }
     &:hover{
-        background-color: #FF6D6D;
+        background-color: #FF6D6D !important;
         span, i {
             color: #FFf !important;
         }
