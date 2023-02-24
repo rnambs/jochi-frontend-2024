@@ -518,12 +518,7 @@
                   <div class="to-do-list">
                     <div v-for="subtask in detail.subTasks" :key="subtask.id">
                       <div
-                        class="
-                          d-flex
-                          align-items-center
-                          mb-1
-                          cursor-pointer
-                        "
+                        class="d-flex align-items-center mb-1 cursor-pointer"
                       >
                         <input
                           :id="subtask.title"
@@ -3330,16 +3325,22 @@ export default {
     },
     startIntro() {
       const intro = this.$intro();
-       let completed = false;
+      let completed = false;
+      let skip = false;
       if (this.startProductGuide) {
         intro.start();
-        intro.oncomplete(() => {
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
           completed = true;
-          this.$router.push("/study-analytics");
+          if (state != "skip") this.$router.push("/study-analytics");
         });
         intro.onexit(() => {
           if (!completed) this.$store.commit("setStartProductGuide", false);
-      });
+        });
       }
     },
   },

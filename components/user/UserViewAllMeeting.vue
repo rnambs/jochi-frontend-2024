@@ -1179,11 +1179,17 @@ export default {
     startIntro() {
       const intro = this.$intro();
       let completed = false;
+      let skip = false;
       if (this.startProductGuide) {
         intro.start();
-        intro.oncomplete(() => {
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
           completed = true;
-          this.$router.push("/club-detail");
+          if (state != "skip") this.$router.push("/club-detail");
         });
         intro.onexit(() => {
           if (!completed) this.$store.commit("setStartProductGuide", false);

@@ -20,7 +20,7 @@
         >
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
-              <div class="col-lg-5 col-md-12 ">
+              <div class="col-lg-5 col-md-12">
                 <div
                   data-intro="Find all your assignments, study sessions, meetings, trainings and matches in the planner below"
                   class="jochi-components-light-bg p-4 h-100"
@@ -4706,11 +4706,17 @@ export default {
     startIntro() {
       const intro = this.$intro();
       let completed = false;
+      let skip = false;
       if (this.startProductGuide) {
         intro.start();
-        intro.oncomplete(() => {
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
           completed = true;
-          this.$router.push("/teacher-meeting");
+          if (state != "skip") this.$router.push("/teacher-meeting");
         });
         intro.onexit(() => {
           if (!completed) this.$store.commit("setStartProductGuide", false);

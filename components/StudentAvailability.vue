@@ -45,38 +45,43 @@
                   flex-column
                 "
               >
-              <div
-              @click="setSessionType('assignment', false)"
-              class="
-                row
-                card card-void
-                rounded-22
-                m-0
-                mb-4
-                p-4
-                flex-row
-                cursor-pointer
-              "
-              data-intro="Start sessions for completing an assignment from here. Choose an assignment, select your study method and configure your study session for starting a new study session"
-            >
-              <div class="col-sm-7 col-md-8 col-xl-7">
-                <h2 class="color-primary font-semi-bold mb-1">
-                  Why do we use it
-                </h2>
-                <p class="mb-0 color-dark font-semi-bold text-16">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                </p>
-              </div>
-              <div
-                class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
-              >
-                <img
-                  src="../static/image/calendar-2.svg"
-                  alt=""
-                  class="card-img small-size"
-                />
-              </div>
-            </div>
+                <div
+                  @click="setSessionType('assignment', false)"
+                  class="
+                    row
+                    card card-void
+                    rounded-22
+                    m-0
+                    mb-4
+                    p-4
+                    flex-row
+                    cursor-pointer
+                  "
+                  data-intro="Start sessions for completing an assignment from here. Choose an assignment, select your study method and configure your study session for starting a new study session"
+                >
+                  <div class="col-sm-7 col-md-8 col-xl-7">
+                    <h2 class="color-primary font-semi-bold mb-1">
+                      Why do we use it
+                    </h2>
+                    <p class="mb-0 color-dark font-semi-bold text-16">
+                      Lorem Ipsum is simply dummy text of the printing and
+                      typesetting industry.
+                    </p>
+                  </div>
+                  <div
+                    class="
+                      col-sm-5 col-md-4 col-xl-5
+                      d-flex
+                      justify-content-end
+                    "
+                  >
+                    <img
+                      src="../static/image/calendar-2.svg"
+                      alt=""
+                      class="card-img small-size"
+                    />
+                  </div>
+                </div>
                 <div
                   class="
                     time-slot
@@ -91,8 +96,6 @@
                 >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-
-              
               </div>
               <div
                 class="
@@ -650,11 +653,17 @@ export default {
     startIntro() {
       const intro = this.$intro();
       let completed = false;
+      let skip = false;
       if (this.startProductGuide) {
         intro.start();
-        intro.oncomplete(() => {
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
           completed = true;
-          this.$router.push("/viewall-meeting");
+          if (state != "skip") this.$router.push("/viewall-meeting");
         });
         intro.onexit(() => {
           if (!completed) this.$store.commit("setStartProductGuide", false);
