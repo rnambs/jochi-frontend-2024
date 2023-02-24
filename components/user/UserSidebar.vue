@@ -556,7 +556,6 @@
                   </div>
                 </div>
               </div>
-              
             </div>
           </div>
         </div>
@@ -741,6 +740,44 @@
         </div>
       </div>
     </div>
+    <!--  Logout  confirmation  -->
+    <div
+      class="modal fade"
+      id="logoutConfirmation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="ModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h3 class="modal-title" id="logoutConfirmationModalLongTitle">
+              Logout Confirmation
+            </h3>
+          </div>
+          <div class="modal-body px-4">Are you sure you want to logout?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              @click="logout()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Logout confirmation end  -->
   </section>
 </template>
 <script>
@@ -930,16 +967,14 @@ export default {
     },
 
     async GetLogout() {
-      let confirm = window.confirm("You will be logged out now");
-      if (confirm) {
-        await this.getLogout({
-          auth_token: localStorage.getItem("token").replace("Bearer ", ""),
-        });
-        window.localStorage.clear();
-        window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
-      } else {
-        return;
-      }
+      $("#logoutConfirmation").modal({ backdrop: true });
+    },
+    async logout() {
+      await this.getLogout({
+        auth_token: localStorage.getItem("token").replace("Bearer ", ""),
+      });
+      window.localStorage.clear();
+      window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
     },
     async UserDetails() {
       this.loading = true;

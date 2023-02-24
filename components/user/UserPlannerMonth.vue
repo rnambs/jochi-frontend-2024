@@ -3835,21 +3835,19 @@ export default {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
-            mappedData = this.mapData(data);
+            if (!mappedData) mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedAssignmentsList.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-
-            mappedData = this.mapSharedData(data);
+            if (!mappedData) mappedData = this.mapSharedData(data);
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-
-            mappedData = this.mapSharedData(data);
+            if (!mappedData) mappedData = this.mapSharedData(data);
           }
           if (!mappedData) {
             this.alertMessage = "This assignment has been completed!";
@@ -3865,6 +3863,47 @@ export default {
           return;
         }
       } else {
+        if (
+          idVal.groupId == "assignment" ||
+          idVal.groupId == "shared-assignment"
+        ) {
+          console.log("asst");
+
+          let data = {};
+          let mappedData = {};
+          if (idVal.groupId == "assignment") {
+            data = this.assignmentsList.find(
+              (e) => e.id.toString() == idVal.id.toString()
+            );
+            mappedData = this.mapData(data);
+          }
+          if (idVal.groupId == "assignment") {
+            data = this.overdues.find(
+              (e) => e.id.toString() == idVal.id.toString()
+            );
+            if (!mappedData) mappedData = this.mapData(data);
+          }
+          if (idVal.groupId == "shared-assignment") {
+            data = this.sharedAssignmentsList.find(
+              (e) => e.assignment_id.toString() == idVal.id.toString()
+            );
+            if (!mappedData) mappedData = this.mapSharedData(data);
+          }
+          if (idVal.groupId == "shared-assignment") {
+            data = this.sharedOverdues.find(
+              (e) => e.assignment_id.toString() == idVal.id.toString()
+            );
+            if (!mappedData) mappedData = this.mapSharedData(data);
+          }
+          if (!mappedData) {
+            this.alertMessage = "This assignment has been completed!";
+            $("#alertModal").modal({ backdrop: true });
+            return;
+          }
+          this.assignmentPlanner();
+
+          this.onCardClick(mappedData);
+        }
         if (idVal.groupId == "study") {
           let session = this.sessionList.find(
             (e) => e.id.toString() == idVal.id.toString()
@@ -4817,7 +4856,6 @@ export default {
       this.completeAssignment(false);
     },
     confirmDeletion() {
-      console.log("confirm delete");
       $("#deleteAssignmentConfirmation").modal({ backdrop: true });
     },
     async deleteAssts() {
