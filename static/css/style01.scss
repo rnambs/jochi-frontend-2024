@@ -5754,7 +5754,7 @@ switch to violet when it is active*/
 
 // common popUp
 .modal{
-    z-index: 1050;
+    z-index: 99999;
     overflow: unset !important;
     .modal-dialog{
         @media (max-width:1024.98px) {

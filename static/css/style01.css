@@ -685,7 +685,7 @@ input[type=radio] {
 .form-row span.vue__time-picker.time-picker .dropdown.drop-down, .form-group span.vue__time-picker.time-picker .dropdown.drop-down {
   background-color: #ffffff;
   position: absolute;
-  z-index: 5;
+  z-index: 99;
   top: calc(2.2em + 2px);
   left: 0;
   background: #fff;
@@ -4385,7 +4385,7 @@ switch to violet when it is active*/
 }
 
 .modal {
-  z-index: 1050;
+  z-index: 99999;
   overflow: unset !important;
 }
 @media (max-width: 1024.98px) {
