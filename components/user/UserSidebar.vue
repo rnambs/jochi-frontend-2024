@@ -634,7 +634,7 @@
                   class="card-header bg-transparent border-0 p-1"
                   id="headingOne"
                 >
-                  <div class="mb-0 d-flex">
+                  <div class="mb-0 d-flex justify-content-center">
                     <button
                       class="
                         btn btn-link
@@ -664,12 +664,12 @@
                             alt=""
                           />
                         </div> -->
-                        <i class="fab fa-jira mr-2"></i>
+                        <i class="fab fa-jira"></i>
                         <span
                           class="
                             color-secondary
                             text-capitalize
-                            font-medium
+                            font-medium pl-2
                           "
                           >Tutorial</span
                         >

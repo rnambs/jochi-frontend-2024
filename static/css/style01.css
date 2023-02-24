@@ -850,6 +850,11 @@ input[type=radio] {
   width: 100%;
   background-color: #ffdfdf;
 }
+@media screen and (max-width: 991.98px) {
+  .tutorial-btn {
+    width: auto;
+  }
+}
 .tutorial-btn span, .tutorial-btn i {
   color: #FF6D6D !important;
 }
@@ -857,7 +862,7 @@ input[type=radio] {
   margin: initial !important;
 }
 .tutorial-btn:hover {
-  background-color: #FF6D6D;
+  background-color: #FF6D6D !important;
 }
 .tutorial-btn:hover span, .tutorial-btn:hover i {
   color: #FFf !important;
@@ -2168,7 +2173,7 @@ img.dark-icon {
 }
 @media (max-width: 1199.98px) {
   .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-    height: 64vh !important;
+    height: 50vh !important;
   }
 }
 @media (max-height: 768.98px) and (max-width: 1199.98px) {
