@@ -2869,6 +2869,8 @@ export default {
         unselectAuto: false,
         selectable: true,
         events: eventList,
+        eventTextColor: "black",
+        eventDisplay: "block",
         eventClick: this.eventClicked,
         datesSet: this.handleMonthChange,
         dayMaxEventRows: true, // for all non-TimeGrid views
@@ -2876,6 +2878,9 @@ export default {
           dayGrid: {
             dayMaxEventRows: 4, // adjust to 6 only for timeGridWeek/timeGridDay
           },
+        },
+        eventAfterAllRender: function (view) {
+          $(view.el).find(".fc-day-grid-event").css("border", "1px solid #000");
         },
       },
       draggable: "Drag Me",
@@ -3212,6 +3217,9 @@ export default {
 
           plannerObj["title"] = title;
           plannerObj["color"] = color;
+          plannerObj["eventDisplay"] = "block";
+          plannerObj["borderColor"] = "#000000";
+
           plannerObj["start"] = start;
           plannerObj["id"] = id;
           plannerObj["groupId"] = "assignment";
@@ -3241,6 +3249,9 @@ export default {
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
+        meetingobj["eventDisplay"] = "block";
+        meetingobj["borderColor"] = "#000000";
+
         meetingobj["start"] = start;
         meetingobj["id"] = element.clubs?.id;
         // meetingobj["groupId"] = "Meeting";
@@ -3278,6 +3289,9 @@ export default {
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
+        meetingobj["eventDisplay"] = "block";
+        meetingobj["borderColor"] = "#000000";
+
         meetingobj["start"] = start;
         meetingobj["id"] = element.id;
         // meetingobj["groupId"] = "Meeting";
@@ -3310,6 +3324,9 @@ export default {
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
+        meetingobj["eventDisplay"] = "block";
+        meetingobj["borderColor"] = "#000000";
+
         meetingobj["start"] = start;
         meetingobj["id"] = element.id;
         meetingobj["groupId"] = "study";
@@ -3360,6 +3377,9 @@ export default {
 
           plannerObj["title"] = title;
           plannerObj["color"] = color;
+          plannerObj["eventDisplay"] = "block";
+          plannerObj["borderColor"] = "#000000";
+
           plannerObj["start"] = start;
           plannerObj["id"] = id;
           plannerObj["groupId"] = "shared-assignment";
@@ -3388,6 +3408,9 @@ export default {
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
+        meetingobj["eventDisplay"] = "block";
+        meetingobj["borderColor"] = "#000000";
+
         meetingobj["start"] = start;
         meetingobj["id"] = element.session_id;
         meetingobj["groupId"] = "shared-study";
@@ -3418,6 +3441,9 @@ export default {
 
           plannerObj["title"] = element.title;
           plannerObj["color"] = color;
+          plannerObj["eventDisplay"] = "block";
+          plannerObj["borderColor"] = "#000000";
+
           plannerObj["start"] = start;
           plannerObj["id"] = element.id;
           plannerObj["groupId"] =
@@ -3835,12 +3861,12 @@ export default {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
-             if (
+            if (
               !mappedData ||
               (Object.keys(mappedData).length === 0 &&
                 mappedData.constructor === Object)
             )
-              mappedData = this.mapData(data); 
+              mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedAssignmentsList.find(
@@ -3852,12 +3878,12 @@ export default {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-             if (
+            if (
               !mappedData ||
               (Object.keys(mappedData).length === 0 &&
                 mappedData.constructor === Object)
             )
-              mappedData = this.mapSharedData(data); 
+              mappedData = this.mapSharedData(data);
           }
           if (!mappedData) {
             this.alertMessage = "This assignment has been completed!";
@@ -3891,7 +3917,7 @@ export default {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
-             if (
+            if (
               !mappedData ||
               (Object.keys(mappedData).length === 0 &&
                 mappedData.constructor === Object)
@@ -3908,7 +3934,7 @@ export default {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-             if (
+            if (
               !mappedData ||
               (Object.keys(mappedData).length === 0 &&
                 mappedData.constructor === Object)
@@ -4080,6 +4106,9 @@ export default {
         var id = element.id;
         plannerObj["title"] = title;
         plannerObj["color"] = color;
+        plannerObj["eventDisplay"] = "block";
+        plannerObj["borderColor"] = "#000000";
+
         plannerObj["start"] = start;
         plannerObj["id"] = id;
         plannerObj["groupId"] = "assignment";
@@ -4110,6 +4139,9 @@ export default {
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
+        meetingobj["eventDisplay"] = "block";
+        meetingobj["borderColor"] = "#000000";
+
         meetingobj["start"] = start;
         meetingobj["id"] = element.id;
         // meetingobj["groupId"] = "Meeting";
@@ -4142,6 +4174,9 @@ export default {
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
+        meetingobj["eventDisplay"] = "block";
+        meetingobj["borderColor"] = "#000000";
+
         meetingobj["start"] = start;
         meetingobj["id"] = element.id;
         meetingobj["groupId"] = "study";
@@ -4178,6 +4213,9 @@ export default {
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
         meetingobj["color"] = color;
+        meetingobj["eventDisplay"] = "block";
+        meetingobj["borderColor"] = "black";
+
         meetingobj["start"] = start;
         // meetingobj["id"] = element.id;
         meetingobj["id"] = element.session_id;
@@ -4229,6 +4267,9 @@ export default {
 
           plannerObj["title"] = title;
           plannerObj["color"] = color;
+          plannerObj["eventDisplay"] = "block";
+          plannerObj["borderColor"] = "black";
+
           plannerObj["start"] = start;
           plannerObj["id"] = id;
           plannerObj["groupId"] = "shared-assignment";
