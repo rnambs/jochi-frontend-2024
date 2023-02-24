@@ -608,16 +608,10 @@
                 class="col-md-4 col-xs-12 py-2 py-md-0"
               >
                 <div
-                  class="
-                    inner-tab
-                    default
-                    d-flex
-                    flex-column
-                    align-items-center
-                    justify-content-center
-                    p-2
-                    rounded-10
-                    h-100
+                  :class="
+                    enableEdit
+                      ? 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100 cursor-pointer'
+                      : 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100'
                   "
                 >
                   <span class="text-24 color-primary font-semi-bold"
