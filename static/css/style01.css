@@ -588,7 +588,7 @@ input[type=radio] {
   border-radius: 1.2rem;
   background-color: #ffffff;
   padding: 0.75rem 0.75rem;
-  z-index: 10;
+  z-index: 999;
   position: absolute;
   left: 0;
   width: 100%;
@@ -5106,6 +5106,10 @@ select.form-control.is-invalid {
   background-color: transparent !important;
 }
 
+.calendar-box {
+  flex: 0 !important;
+}
+
 .cd-cover-pic-section {
   background-image: url("./../image/cover-pic.jpg");
   background-position: top;
@@ -5383,4 +5387,8 @@ select.form-control.is-invalid {
 
 .no-cursor {
   cursor: initial !important;
+}
+
+.multiselect {
+  z-index: 999 !important;
 }/*# sourceMappingURL=style01.css.map */

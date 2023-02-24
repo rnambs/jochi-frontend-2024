@@ -56,22 +56,21 @@
                 p-4
                 flex-row
                 cursor-pointer
-              "
-              data-intro="Start sessions for completing an assignment from here. Choose an assignment, select your study method and configure your study session for starting a new study session"
-            >
+                calendar-box
+              ">
               <div class="col-sm-7 col-md-8 col-xl-7">
                 <h2 class="color-primary font-semi-bold mb-1">
-                  Why do we use it
+                  When are you free?
                 </h2>
                 <p class="mb-0 color-dark font-semi-bold text-16">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                  Use this page to set your availability so that your peers know when works best for you. 
                 </p>
               </div>
               <div
                 class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
               >
                 <img
-                  src="../static/image/calendar-2.svg"
+                  src="../static/image/Calendar.png"
                   alt=""
                   class="card-img small-size"
                 />
