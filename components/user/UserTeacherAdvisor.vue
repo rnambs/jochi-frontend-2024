@@ -511,7 +511,7 @@
                       </div>
                       <div
                         v-if="showOverdueAssingments"
-                        class="custom-overflow px-4 pt-3 mb-3"
+                        class="custom-overflow px-4 pt-3 mb-3 h-100"
                       >
                         <div class="row">
                           <div
@@ -760,9 +760,26 @@
                             </div>
                           </div>
                         </div>
-                        <div class="row">
-                          <div v-if="!overdueAssts || overdueAssts.length <= 0">
-                            No overdue assignments
+                        <div
+                          class="
+                            row
+                            text-center
+                            w-100
+                            h-100
+                            justify-content-center
+                          "
+                        >
+                          <div
+                            v-if="!overdueAssts || overdueAssts.length <= 0"
+                            class="
+                              empty-shedule
+                              d-flex
+                              justify-content-center
+                              align-items-center
+                              h-100
+                            "
+                          >
+                            <p>No overdue assignments</p>
                           </div>
                         </div>
                       </div>
