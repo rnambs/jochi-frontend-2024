@@ -1748,7 +1748,12 @@
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link cursor-pointer"
+                                          class="
+                                            ld-heading
+                                            mb-1
+                                            text-link
+                                            cursor-pointer
+                                          "
                                         >
                                           {{ item.link }}
                                         </p>
@@ -1781,7 +1786,12 @@
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link cursor-pointer"
+                                          class="
+                                            ld-heading
+                                            mb-1
+                                            text-link
+                                            cursor-pointer
+                                          "
                                         >
                                           {{
                                             item.file_type &&
@@ -2218,7 +2228,12 @@
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link cursor-pointer"
+                                          class="
+                                            ld-heading
+                                            mb-1
+                                            text-link
+                                            cursor-pointer
+                                          "
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{ item.link }}
@@ -2722,6 +2737,37 @@
         </div>
       </div>
       <!-- Delete assignment confirmation end  -->
+      <!-- Alert modal  -->
+      <div
+        class="modal fade"
+        id="alertModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="alertModalModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered add-assmt"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header pb-1">
+              <h3 class="modal-title" id="alertModalModalLongTitle">Alert</h3>
+            </div>
+            <div class="modal-body px-4">{{ alertMessage }}</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+                data-dismiss="modal"
+              >
+                Ok
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Alert modal end  -->
     </div>
   </div>
 </template>
@@ -2881,6 +2927,7 @@ export default {
       removedPeerList: [],
       prior: "4",
       startTime: null,
+      alertMessage: "",
     };
   },
   mounted() {
@@ -3144,8 +3191,7 @@ export default {
             var color = "#F6D73C";
           } else if (element.priority == "3") {
             var color = "#00CCA0";
-          }
-          else if (element.priority == "4") {
+          } else if (element.priority == "4") {
             var color = "#ffffff";
           }
           if (element.task_status == "Completed") {
@@ -3293,8 +3339,7 @@ export default {
             var color = "#F6D73C";
           } else if (element.priority == "3") {
             var color = "#00CCA0";
-          }
-          else if (element.priority == "4") {
+          } else if (element.priority == "4") {
             var color = "#ffffff";
           }
           if (element.task_status == "Completed") {
@@ -3807,12 +3852,16 @@ export default {
             mappedData = this.mapSharedData(data);
           }
           if (!mappedData) {
-            return alert("This assignment has been completed!");
+            this.alertMessage = "This assignment has been completed!";
+            $("#alertModal").modal({ backdrop: true });
+            return;
           }
           this.assignmentPlanner();
           this.onCardClick(mappedData);
         } else {
-          alert("No actions can be performed on past events");
+          this.alertMessage = "No actions can be performed on past events";
+          $("#alertModal").modal({ backdrop: true });
+
           return;
         }
       } else {
@@ -3822,7 +3871,8 @@ export default {
           );
 
           if (session.status == "STOP") {
-            alert("This session has already been completed");
+            this.alertMessage = "This session has already been completed!";
+            $("#alertModal").modal({ backdrop: true });
             return;
           } else {
             return this.$router.push(`/study-time?id=${idVal.id}`);
@@ -3833,7 +3883,8 @@ export default {
             (e) => e.session_id.toString() == idVal.id.toString()
           );
           if (studySession.studyroom?.status == "STOP") {
-            alert("This session has already been completed");
+            this.alertMessage = "This session has already been completed!";
+            $("#alertModal").modal({ backdrop: true });
             return;
           } else {
             return this.$router.push(`/study-time?id=${idVal.id}`);
@@ -3954,8 +4005,7 @@ export default {
           var color = "#F6D73C";
         } else if (element.priority == "3") {
           var color = "#00CCA0";
-        }
-        else if (element.priority == "4") {
+        } else if (element.priority == "4") {
           var color = "#ffffff";
         }
         if (element.task_status == "Completed") {
@@ -4099,8 +4149,7 @@ export default {
             var color = "#F6D73C";
           } else if (element.priority == "3") {
             var color = "#00CCA0";
-          }
-           else if (element.priority == "4") {
+          } else if (element.priority == "4") {
             var color = "#ffffff";
           }
           if (element.task_status == "Completed") {

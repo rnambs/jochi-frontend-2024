@@ -2184,7 +2184,12 @@
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-truncate cursor-pointer"
+                                          class="
+                                            ld-heading
+                                            mb-1
+                                            text-truncate
+                                            cursor-pointer
+                                          "
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{ item.link }}
@@ -2218,7 +2223,12 @@
                                       <div class="ld-details-section w-100">
                                         <p
                                           @click="openLink(item)"
-                                          class="ld-heading mb-1 text-truncate cursor-pointer"
+                                          class="
+                                            ld-heading
+                                            mb-1
+                                            text-truncate
+                                            cursor-pointer
+                                          "
                                         >
                                           <!-- {{ peer.first_name }} -->
                                           {{
@@ -2595,6 +2605,34 @@
       </div>
     </div>
     <!-- Delete assignment confirmation end  -->
+    <!-- Alert modal  -->
+    <div
+      class="modal fade"
+      id="alertModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="alertModalModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h3 class="modal-title" id="alertModalModalLongTitle">Alert</h3>
+          </div>
+          <div class="modal-body px-4">{{ alertMessage }}</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Alert modal end  -->
   </div>
 </template>
 <script>
@@ -2749,6 +2787,7 @@ export default {
       removedPeerList: [],
       prior: "4",
       startTime: null,
+      alertMessage: "",
     };
   },
 
@@ -3631,12 +3670,15 @@ export default {
             mappedData = this.mapSharedData(data);
           }
           if (!mappedData) {
-            return alert("This assignment has been completed!");
+            this.alertMessage = "This assignment has been completed!";
+            $("#alertModal").modal({ backdrop: true });
+            return;
           }
           this.assignmentPlanner();
           this.onCardClick(mappedData);
         } else {
-          alert("No actions can be performed on past events");
+          this.alertMessage = "No actions can be performed on past events!";
+          $("#alertModal").modal({ backdrop: true });
           return;
         }
       } else {
@@ -3646,7 +3688,8 @@ export default {
           );
 
           if (session.status == "STOP") {
-            alert("This session has already been completed");
+            this.alertMessage = "This session has already been completed!";
+            $("#alertModal").modal({ backdrop: true });
             return;
           } else {
             return this.$router.push(`/study-time?id=${idVal.id}`);
@@ -3657,7 +3700,9 @@ export default {
             (e) => e.session_id.toString() == idVal.id.toString()
           );
           if (studySession.studyroom?.status == "STOP") {
-            alert("This session has already been completed");
+            this.alertMessage = "This session has already been completed!";
+            $("#alertModal").modal({ backdrop: true });
+
             return;
           } else {
             return this.$router.push(`/study-time?id=${idVal.id}`);
@@ -4467,7 +4512,7 @@ export default {
         });
         return false;
       }
-      
+
       this.processingUpload = true;
       const data = new FormData();
       if (this.materialType == "file") {
@@ -4479,12 +4524,12 @@ export default {
             },
           });
           if (this.errorMessageQuote != "") {
-        return this.$toast.open({
-          message: this.errorMessageQuote,
-          type: this.errorTypeQuote,
-          duration: 4000,
-        });
-      }
+            return this.$toast.open({
+              message: this.errorMessageQuote,
+              type: this.errorTypeQuote,
+              duration: 4000,
+            });
+          }
 
           this.additionalMaterialList.push({
             id: this.newAdditionalMaterial.id,
