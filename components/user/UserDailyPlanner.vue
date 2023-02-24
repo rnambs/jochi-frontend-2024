@@ -21,9 +21,11 @@
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
               <div class="col-lg-5 col-md-12">
-                <div class="jochi-components-light-bg p-4 h-100">
+                <div
+                  data-intro="Find all your assignments, study sessions, meetings, trainings and matches in the planner below"
+                  class="jochi-components-light-bg p-4 h-100"
+                >
                   <h2
-                    data-intro="Find all your assignments, study sessions, meetings, trainings and matches in the planner below"
                     v-if="showToday"
                     class="color-primary font-semi-bold mb-1"
                   >
@@ -3028,7 +3030,7 @@ export default {
       removedPeerList: [],
       prior: "4",
       startTime: null,
-      alertMessage:''
+      alertMessage: "",
     };
   },
   mounted() {
@@ -3885,37 +3887,40 @@ export default {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
-            if(!mappedData)
-
-            mappedData = this.mapData(data);
+            if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedAssignmentsList.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-            if(!mappedData)
-
-            mappedData = this.mapSharedData(data);
+            if (!mappedData) mappedData = this.mapSharedData(data);
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-            if(!mappedData)
-
-            mappedData = this.mapSharedData(data);
+            if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapSharedData(data);
           }
           if (!mappedData) {
-            
-            this.alertMessage = "This assignment has been completed!"
-                $("#alertModal").modal({ backdrop: true });
-                return;
+            this.alertMessage = "This assignment has been completed!";
+            $("#alertModal").modal({ backdrop: true });
+            return;
           }
-
+          console.log("past", mappedData);
           this.onCardClick(mappedData);
         } else {
-          this.alertMessage = "No actions can be performed on past events"
-                $("#alertModal").modal({ backdrop: true });
+          this.alertMessage = "No actions can be performed on past events";
+          $("#alertModal").modal({ backdrop: true });
 
           return;
         }
@@ -3938,33 +3943,37 @@ export default {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
-            if(!mappedData)
-
-            mappedData = this.mapData(data);
+            if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedAssignmentsList.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-            if(!mappedData)
-
-            mappedData = this.mapSharedData(data);
+            if (!mappedData) mappedData = this.mapSharedData(data);
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-            if(!mappedData)
+            if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapSharedData(data);
+          }
 
-            mappedData = this.mapSharedData(data);
-          }
-          
           if (!mappedData) {
-            
-            this.alertMessage = "This assignment has been completed!"
-                $("#alertModal").modal({ backdrop: true });
-                return;
+            this.alertMessage = "This assignment has been completed!";
+            $("#alertModal").modal({ backdrop: true });
+            return;
           }
+          console.log("future", mappedData);
 
           this.onCardClick(mappedData);
         }
@@ -3974,9 +3983,8 @@ export default {
           );
 
           if (session.status == "STOP") {
-            
-            this.alertMessage = "This session has already been completed"
-                $("#alertModal").modal({ backdrop: true });
+            this.alertMessage = "This session has already been completed";
+            $("#alertModal").modal({ backdrop: true });
             return;
           } else {
             return this.$router.push(`/study-time?id=${idVal.id}`);
@@ -3987,8 +3995,8 @@ export default {
             (e) => e.session_id.toString() == idVal.id.toString()
           );
           if (studySession.studyroom?.status == "STOP") {
-            this.alertMessage = "This session has already been completed"
-                $("#alertModal").modal({ backdrop: true });
+            this.alertMessage = "This session has already been completed";
+            $("#alertModal").modal({ backdrop: true });
             return;
           } else {
             return this.$router.push(`/study-time?id=${idVal.id}`);
@@ -4238,6 +4246,7 @@ export default {
       }
     },
     mapSharedData(e) {
+      console.log(e);
       let item = {};
       this.assignmentMaterials = [];
 
@@ -4415,6 +4424,7 @@ export default {
       this.completeSubTask(false);
     },
     onCardClick(data) {
+      console.log(data);
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
       this.openAssignment = true;
@@ -4719,11 +4729,17 @@ export default {
     startIntro() {
       const intro = this.$intro();
       let completed = false;
+      let skip = false;
       if (this.startProductGuide) {
         intro.start();
-        intro.oncomplete(() => {
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
           completed = true;
-          this.$router.push("/teacher-meeting");
+          if (state != "skip") this.$router.push("/teacher-meeting");
         });
         intro.onexit(() => {
           if (!completed) this.$store.commit("setStartProductGuide", false);
