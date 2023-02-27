@@ -15,6 +15,7 @@
         >
           <h2 class="color-primary font-semi-bold mb-0">Study Analytics</h2>
           <div
+            data-intro="Configure the target study time for the day from here"
             @click="openModal"
             class="d-flex align-items-center cursor-pointer"
           >
@@ -41,10 +42,20 @@
         <div class="study-row d-flex flex-column px-2 pb-3">
           <div class="row header-row mb-1">
             <div class="col-md-6 pt-2 pb-0">
-              <h4 class="color-dark font-semi-bold mb-0">Weekly Dashboard</h4>
+              <h4
+                data-intro="View the dashboard for the week here"
+                class="color-dark font-semi-bold mb-0"
+              >
+                Weekly Dashboard
+              </h4>
             </div>
             <div class="col-md-6 pt-2 pb-0">
-              <h4 class="color-dark font-semi-bold mb-0">Dashboard</h4>
+              <h4
+                data-intro="View the overall dashboard here"
+                class="color-dark font-semi-bold mb-0"
+              >
+                Dashboard
+              </h4>
             </div>
           </div>
           <div class="row inner-row mt-0 text-center mb-2">
@@ -324,7 +335,13 @@ export default {
   },
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [
+        { rel: "stylesheet", href: "/css/style01.css" },
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
     };
   },
   data() {
@@ -352,13 +369,20 @@ export default {
       durationRemaining: 0,
       dailyTimerId: 0,
       isAdditionalCovered: false,
+      startTime: null,
     };
   },
   mounted() {
+    const page = "StudyAnalytics";
+    const distinct_id = localStorage.getItem("distinctId");
+    this.$mixpanel.track("Page View", { distinct_id, page });
+    this.startTime = new Date().getTime();
+
     console.log("mounting student id", this.studentId);
     this.GetMySession();
     this.getConfiguredGoal();
     // this.InitPieChart();
+    this.startIntro();
   },
   computed: {
     ...mapState("userStudyAnalytics", {
@@ -369,6 +393,9 @@ export default {
       mySession: (state) => state.mySession,
       goal: (state) => state.goal,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("userStudyAnalytics", {
@@ -728,6 +755,25 @@ export default {
         this.minutes = m;
       }
     },
+    startIntro() {
+      const intro = this.$intro();
+      if (this.startProductGuide) {
+        intro.start();
+        intro.oncomplete(() => {
+          this.$store.commit("setStartProductGuide", false);
+        });
+        intro.onexit(() => {
+          this.$store.commit("setStartProductGuide", false);
+        });
+      }
+    },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "StudyAnalytics";
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
   },
 };
 </script>

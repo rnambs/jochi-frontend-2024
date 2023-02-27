@@ -24,6 +24,7 @@ import { emailVerified } from './emailVerified';
 import { teacherMeeting } from './teacherMeeting';
 import { customAvailability } from './customAvailability';
 import { studentCustomAvailability } from './studentCustomAvailability';
+import { clubUpdates } from './clubUpdates';
 import { teacherAppointment } from './teacherAppointment';
 import { viewAllMeeting } from './viewAllMeeting';
 import { appointmentVerified } from './appointmentVerified';
@@ -91,12 +92,14 @@ export const store = new Vuex.Store({
         teacherDashboard,
         userStudyAnalytics,
         teacherSyncCalendar,
-        studentCustomAvailability
+        studentCustomAvailability,
+        clubUpdates
     }
 });
 
 export const state = () => ({
-    isTimerRunning: false
+    isTimerRunning: false,
+    startProductGuide: false
 })
 
 export const mutations = {
@@ -104,6 +107,10 @@ export const mutations = {
         console.log('SET_IS_TIMER_RUNNING', value)
         state.isTimerRunning = value
     },
+
+    setStartProductGuide(state, value) {
+        state.startProductGuide = value
+    }
 
 }
 

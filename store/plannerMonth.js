@@ -14,7 +14,9 @@ import { BASE_URL } from "../assets/js/constants"; const state = {
   sessionList: [],
   sharedAstList: [],
   sharedSessionList: [],
-  clubMeetings: []
+  clubMeetings: [],
+  trainingsMatches: []
+
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -34,6 +36,8 @@ const actions = {
       commit('setSharedAstList', response.shared_assignments);
       commit('setSharedSessionList', response.shared_sessions);
       commit('setClubMeetings', response.club_meeting);
+      commit('setTrainingsMatches', response.team_match_trainings);
+
 
 
     } catch (e) {
@@ -306,6 +310,9 @@ const mutations = {
   setClubMeetings(state, data) {
     state.clubMeetings = data;
   },
+  setTrainingsMatches(state, data) {
+    state.trainingsMatches = data;
+  },
 
 }
 const getters = {
@@ -347,6 +354,9 @@ const getters = {
   },
   clubMeetings: () => {
     return state.clubMeetings;
+  },
+  trainingsMatches: () => {
+    return state.trainingsMatches;
   },
 }
 

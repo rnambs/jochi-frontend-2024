@@ -51,17 +51,6 @@
                   <div class="d-flex flex-column px-4">
                     <h3 class="color-dark font-semi-bold mb-0">Students</h3>
                   </div>
-                  <!-- <div class="form-row position-relative mb-3 px-2">
-                            <input
-                              class="form-control w-100 tab-form-control"
-                              type="text"
-                              placeholder="Search"
-                            />
-                            <span class="input-icon custom-search-icon position-absolute">
-                              <i class="fa fa-search" aria-hidden="true"></i>
-                            </span>
-                        </div> -->
-                  <!-- student list -->
                   <div class="hidden-scroll d-flex flex-column">
                     <div
                       @click="onStudentClick(student)"
@@ -94,82 +83,7 @@
                         </p>
                       </div>
                     </div>
-                    <!-- <div
-                      class="
-                        d-flex
-                        align-items-center
-                        flex-row
-                        p-3
-                        student-list
-                        border-bottom
-                      "
-                    >
-                      <div class="ld-img-section mr-3">
-                        <div class="ld-img-holder"></div>
-                      </div>
-                      <div class="ld-details-section">
-                        <p class="ld-heading mb-1">Devon Lane</p>
-                      </div>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        align-items-center
-                        flex-row
-                        p-3
-                        student-list
-                        border-bottom
-                      "
-                    >
-                      <div class="ld-img-section mr-3">
-                        <div class="ld-img-holder"></div>
-                      </div>
-                      <div class="ld-details-section">
-                        <p class="ld-heading mb-1">Eleanor Pena</p>
-                      </div>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        align-items-center
-                        flex-row
-                        p-3
-                        student-list
-                        border-bottom
-                      "
-                    >
-                      <div class="ld-img-section mr-3">
-                        <div class="ld-img-holder"></div>
-                      </div>
-                      <div class="ld-details-section">
-                        <p class="ld-heading mb-1">Jane Cooper</p>
-                      </div>
-                    </div>
-                    <div
-                      class="
-                        d-flex
-                        align-items-center
-                        flex-row
-                        p-3
-                        student-list
-                        border-bottom
-                        active
-                      "
-                    >
-                      <div class="ld-img-section mr-3">
-                        <div class="ld-img-holder"></div>
-                      </div>
-                      <div class="ld-details-section">
-                        <p class="ld-heading mb-1">Kathryn Murphy</p>
-                      </div>
-                    </div> -->
                   </div>
-                  <!-- end student list -->
-                  <!-- rounded black button -->
-                  <!-- <button class="btn btn-rounded position-absolute bg-dark rounded-circle p-0">
-                            <i class="fas fa-plus color-white"></i>
-                        </button> -->
-                  <!-- end rounded black button -->
                 </div>
               </div>
               <div class="col-12 col-md-7 col-lg-8 col-xl-9 h-100">
@@ -222,7 +136,7 @@
                       mt-5
                     "
                   >
-                    <div class="d-flex py-1 py-md-4 px-0 px-xl-4">
+                    <div class="d-flex py-1 py-md-4 px-0 px-xl-4 pt-xl-0">
                       <div class="ld-img-section mr-3 mb-0">
                         <div class="ld-img-holder img-holder-lg">
                           <img
@@ -304,31 +218,6 @@
                               </p>
                             </div>
                           </div>
-                          <!-- <div class="row m-0">
-                            <div class="col-12 col-sm-3 col-md-12 col-lg-2 p-1">
-                              <p class="mb-0 color-dark text-16 font-regular">
-                                <span>Class</span>
-                              </p>
-                            </div>
-                            <div class="col-1 p-1">
-                              <p
-                                class="
-                                  mb-0
-                                  color-dark
-                                  text-16
-                                  font-regular
-                                  text-right
-                                "
-                              >
-                                <span>: </span>
-                              </p>
-                            </div>
-                            <div class="col-7 col-md-11 col-lg-8 p-1">
-                              <p class="mb-0 color-dark text-16 font-semi-bold">
-                                <span>7</span>
-                              </p>
-                            </div>
-                          </div> -->
                         </div>
                       </div>
                     </div>
@@ -341,30 +230,33 @@
                         h-min-400
                       "
                     >
-                      <h2
-                        class="
-                          color-primary
-                          font-semi-bold
-                          px-4
-                          pt-2 pt-md-4
-                          mb-2
-                        "
-                        @click="onTabClickAssignment(1)"
-                      >
-                        Assignments
-                      </h2>
-                      <h2
-                        class="
-                          color-primary
-                          font-semi-bold
-                          px-4
-                          pt-2 pt-md-4
-                          mb-2
-                        "
-                        @click="onTabClickAssignment(2)"
-                      >
-                        Overdue Assignments
-                      </h2>
+                      <div class="tab-btns d-flex align-items-center z-index-">
+                        <button
+                          @click="
+                            onTabClickAssignment(1);
+                            showOverdueAssingments = false;
+                            showAssignments = true;
+                          "
+                          class="tab-btn mr-3"
+                          id="filterPlanner"
+                          :class="{ selected: showAssignments }"
+                        >
+                          Assignments
+                        </button>
+                        <button
+                          @click="
+                            onTabClickAssignment(2);
+                            showOverdueAssingments = true;
+                            showAssignments = false;
+                          "
+                          class="btn tab-btn"
+                          id="assignmentPlanner"
+                          :class="{ selected: showOverdueAssingments }"
+                        >
+                          Overdue Assignments
+                        </button>
+                      </div>
+
                       <div
                         v-if="showAssignments"
                         class="custom-overflow px-4 pt-3 mb-3"
@@ -408,9 +300,11 @@
                                       detail.priority == '1'
                                         ? 'red'
                                         : detail.priority == '2'
-                                        ? 'orange'
-                                        : detail.priority == '3'
                                         ? 'yellow'
+                                        : detail.priority == '3'
+                                        ? 'green'
+                                        : detail.priority == '4'
+                                        ? 'orange'
                                         : ''
                                     "
                                   >
@@ -421,6 +315,8 @@
                                         ? "Important"
                                         : detail.priority == "3"
                                         ? "Can Wait"
+                                        : detail.priority == "4"
+                                        ? "Overdue"
                                         : ""
                                     }}
                                   </div>
@@ -615,11 +511,11 @@
                       </div>
                       <div
                         v-if="showOverdueAssingments"
-                        class="custom-overflow px-4 pt-3 mb-3"
+                        class="custom-overflow px-4 pt-3 mb-3 h-100"
                       >
-                        <div class="row d-none">
+                        <div class="row">
                           <div
-                            v-for="detail in pendingAssignments"
+                            v-for="detail in overdueAssts"
                             :key="detail.id"
                             class="col-12 col-lg-6 col-xl-4"
                           >
@@ -656,9 +552,11 @@
                                       detail.priority == '1'
                                         ? 'red'
                                         : detail.priority == '2'
-                                        ? 'orange'
-                                        : detail.priority == '3'
                                         ? 'yellow'
+                                        : detail.priority == '3'
+                                        ? 'green'
+                                        : detail.priority == '4'
+                                        ? 'orange'
                                         : ''
                                     "
                                   >
@@ -669,6 +567,8 @@
                                         ? "Important"
                                         : detail.priority == "3"
                                         ? "Can Wait"
+                                        : detail.priority == "4"
+                                        ? "Overdue"
                                         : ""
                                     }}
                                   </div>
@@ -860,6 +760,28 @@
                             </div>
                           </div>
                         </div>
+                        <div
+                          class="
+                            row
+                            text-center
+                            w-100
+                            h-100
+                            justify-content-center
+                          "
+                        >
+                          <div
+                            v-if="!overdueAssts || overdueAssts.length <= 0"
+                            class="
+                              empty-shedule
+                              d-flex
+                              justify-content-center
+                              align-items-center
+                              h-100
+                            "
+                          >
+                            <p>No overdue assignments</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -915,34 +837,9 @@
               <h3 class="modal-title" id="inviteStudentModalLongTitle">
                 Choose Student
               </h3>
-              <!-- <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button> -->
             </div>
             <div class="modal-body no-overflow px-4">
               <div class="form-row">
-                <!-- <select
-                  class="custom-select custom-select-sm form-control mb-3"
-                  tabindex=""
-                  v-model="selectedStudent"
-                  :class="{
-                    'is-invalid': submitted && !selectedStudent,
-                  }"
-                >
-                  <option
-                    :value="Student.id"
-                    v-for="(Student, index) in studentsList"
-                    :key="index"
-                  >
-                    {{ Student.first_name }}
-                  </option>
-                  <option v-if="studentsList.length == 0">No data</option>
-                </select> -->
                 <multiselect
                   v-model="selectedStudent"
                   :options="studentsList"
@@ -1014,6 +911,7 @@ export default {
       submitted: false,
       studentDetail: {},
       pendingAssignments: [],
+      overdueAssts: [],
       showAssignments: true,
       showOverdueAssingments: false,
     };
@@ -1032,6 +930,8 @@ export default {
       errorType: (state) => state.errorType,
       assignmentList: (state) => state.assignmentList,
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
+      overdueAssignments: (state) => state.overdueAssignments,
+      sharedOverdueAssignments: (state) => state.sharedOverdueAssignments,
     }),
   },
   methods: {
@@ -1060,7 +960,6 @@ export default {
     },
     async inviteStudentAdv() {
       this.submitted = true;
-      console.log("selected student ", this.selectedStudent);
       if (this.selectedStudent.id) {
         await this.inviteStudent({ id: this.selectedStudent.id });
         if (this.errorMessage != "") {
@@ -1096,6 +995,10 @@ export default {
       this.showStudentProfile = true;
       this.showStudentAnalytics = false;
       this.studentDetail = student;
+      this.showOverdueAssingments = false;
+      this.showAssignments = true;
+      this.pendingAssignments = [];
+      this.overdueAssts = [];
       this.getAssignments();
     },
     onTabClick(tab) {
@@ -1109,42 +1012,117 @@ export default {
     },
     async getAssignments() {
       await this.getAssignmentsList({ id: this.studentDetail.id });
+
       this.mapAssignments();
       this.mapSharedAssignments();
+      this.mapOverdueAssignments();
+      this.mapOverdueSharedAssignments();
+      console.log(this.overdueAssts);
     },
     mapAssignments() {
       if (this.assignmentList && this.assignmentList.length > 0) {
         this.assignmentList.forEach((e) => {
-          let item = {};
-          item.assignment_description = e.assignment_description;
-          item.assignment_materials = e.assignment_materials;
-          item.completed_date = e.completed_date;
-          item.dueTimeFormat = e.dueTimeFormat;
-          item.due_date = moment(e.due_date).format("MM/DD/YYYY");
-          item.due_time = e.due_time;
-          item.id = e.id;
-          item.priority = e.priority;
-          item.schoologyAssignment = e.schoologyAssignment;
-          item.schoologyAssignmentId = e.schoologyAssignmentId;
-          item.subTasks = e.subTasks;
-          item.subject = e.subject;
-          item.subjects = e.subjects;
-          item.task = e.task;
-          item.task_status = e.task_status;
-          item.updatedAt = e.updatedAt;
-          item.user_id = e.user_id;
-          item.peers = this.mapPeers(e);
-          item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-          item.isShared = false;
-          this.pendingAssignments.push(item);
+          this.mapSingleAsst(e);
         });
       }
+    },
+    mapSingleAsst(e) {
+      let item = {};
+      item.assignment_description = e.assignment_description;
+      item.assignment_materials = e.assignment_materials;
+      item.completed_date = e.completed_date;
+      item.dueTimeFormat = e.dueTimeFormat;
+      item.due_date = moment(e.due_date).format("MM/DD/YYYY");
+      item.due_time = e.due_time;
+      item.id = e.id;
+      item.priority = e.priority;
+      item.schoologyAssignment = e.schoologyAssignment;
+      item.schoologyAssignmentId = e.schoologyAssignmentId;
+      item.subTasks = e.subTasks;
+      item.subject = e.subject;
+      item.subjects = e.subjects;
+      item.task = e.task;
+      item.task_status = e.task_status;
+      item.updatedAt = e.updatedAt;
+      item.user_id = e.user_id;
+      item.peers = this.mapPeers(e);
+      item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+      item.isShared = false;
+      this.pendingAssignments.push(item);
     },
     mapSharedAssignments() {
       if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
         this.sharedAssignmentsList.forEach((e) => {
-          let item = {};
-          if (e.assignments) {
+          this.mapSingleSharedAsst(e);
+        });
+      }
+    },
+    mapSingleSharedAsst(e) {
+      let item = {};
+      if (e.assignments) {
+        item.assignment_description = e.assignments.assignment_description;
+        item.assignment_materials = e.assignments.assignment_materials;
+        item.completed_date = e.assignments.completed_date;
+        item.dueTimeFormat = e.assignments.dueTimeFormat;
+        item.due_date = moment(e.assignments.due_date).format("MM/DD/YYYY");
+        item.due_time = e.assignments.due_time;
+        item.id = e.assignments.id;
+        item.priority = e.assignments.priority;
+        item.schoologyAssignment = e.assignments.schoologyAssignment;
+        item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+        item.subTasks = e.assignments?.subTasks;
+        item.subject = e.assignments?.subjects?.subject_name;
+        item.subjects = e.subjects;
+        item.task = e.assignments.task;
+        item.task_status = e.assignments.task_status;
+        item.updatedAt = e.assignments.updatedAt;
+        item.user_id = e.assignments.user_id;
+        item.peers = this.mapPeers(e);
+        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        item.isShared = true;
+        this.pendingAssignments.push(item);
+      }
+    },
+    mapOverdueAssignments() {
+      if (this.overdueAssignments && this.overdueAssignments.length > 0) {
+        this.overdueAssignments.forEach((e) => {
+          if (e.task_status != "Completed") {
+            let item = {};
+            item.assignment_description = e.assignment_description;
+            item.assignment_materials = e.assignment_materials;
+            item.completed_date = e.completed_date;
+            item.dueTimeFormat = e.dueTimeFormat;
+            item.due_date = moment(e.due_date).format("MM/DD/YYYY");
+            item.due_time = e.due_time;
+            item.id = e.id;
+            item.priority = e.priority;
+            item.schoologyAssignment = e.schoologyAssignment;
+            item.schoologyAssignmentId = e.schoologyAssignmentId;
+            item.subTasks = e.subTasks;
+            item.subject = e.subject;
+            item.subjects = e.subjects;
+            item.task = e.task;
+            item.task_status = e.task_status;
+            item.updatedAt = e.updatedAt;
+            item.user_id = e.user_id;
+            item.peers = this.mapPeers(e);
+            item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+            item.isShared = false;
+            this.overdueAssts.push(item);
+          } else {
+            this.mapSingleAsst(e);
+          }
+        });
+      }
+    },
+    mapOverdueSharedAssignments() {
+      if (
+        this.sharedOverdueAssignments &&
+        this.sharedOverdueAssignments.length > 0
+      ) {
+        this.sharedOverdueAssignments.forEach((e) => {
+          if (e.assignments && e.assignments.task_status != "Completed") {
+            let item = {};
             item.assignment_description = e.assignments.assignment_description;
             item.assignment_materials = e.assignments.assignment_materials;
             item.completed_date = e.assignments.completed_date;
@@ -1165,7 +1143,9 @@ export default {
             item.peers = this.mapPeers(e);
             item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
             item.isShared = true;
-            this.pendingAssignments.push(item);
+            this.overdueAssts.push(item);
+          } else if (e.assignments.task_status == "Completed") {
+            this.mapSingleSharedAsst(e);
           }
         });
       }
@@ -1176,7 +1156,7 @@ export default {
       if (e.assignment_shared_users && e.assignment_shared_users.length > 0) {
         e.assignment_shared_users.forEach((item) => {
           let peer = {};
-          if (item.shared_users_id != user_id) {
+          if (item.users && item.shared_users_id != user_id) {
             peer = item.users;
             peer.id = item.shared_users_id;
             peers.push(peer);

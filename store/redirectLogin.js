@@ -16,6 +16,8 @@ const state = {
     isGg4lDataSynced: '',
     phone: '',
     notifyStatus: '',
+    distinctId: '',
+    studentSignUp: false,
 }
 const actions = {
 
@@ -38,6 +40,8 @@ const actions = {
                 commit('setIsGg4lDataSynced', response.data.isGg4lDataSynced);
                 commit('setPhone', response.data.phone_number);
                 commit('setNotifyStatus', response.data.notification);
+                commit('setDistinctId', response.data.distinct_id);
+                commit('setStudentSignUp', response.data.studentSignUp);
                 if (response.data.user_type_id == 1) {
                     this.$router.push('/dashboard');
                 }
@@ -90,8 +94,7 @@ const actions = {
                     'Authorization': ` ${token}`
                 },
             });
-            commit('setAssignmentList', response.assignments);
-            commit('setSharedAssignmentsList', response.shared_assignments);
+
         } catch (e) {
             if (e.response && e.response.status == 401) {
                 commit('setSuccessMessage', "");
@@ -179,6 +182,15 @@ const mutations = {
         state.notifyStatus = data;
         localStorage.setItem('notifyStatus', data);
     },
+    setDistinctId(state, data) {
+        state.distinctId = data;
+        localStorage.setItem('distinctId', data);
+    },
+    setStudentSignUp(state, data) {
+        state.studentSignUp = data;
+        localStorage.setItem('studentSignUp', data)
+
+    },
 }
 const getters = {
 
@@ -219,6 +231,12 @@ const getters = {
     },
     notifyStatus: () => {
         return state.notifyStatus;
+    },
+    distinctId: () => {
+        return state.distinctId;
+    },
+    studentSignUp: () => {
+        return state.studentSignUp;
     }
 }
 

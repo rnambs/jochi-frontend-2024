@@ -45,6 +45,37 @@
                   flex-column
                 "
               >
+              <div
+              @click="setSessionType('assignment', false)"
+              class="
+                row
+                card card-void
+                rounded-22
+                m-0
+                mb-4
+                p-4
+                flex-row
+                cursor-pointer
+                calendar-box
+              ">
+              <div class="col-sm-7 col-md-8 col-xl-7">
+                <h2 class="color-primary font-semi-bold mb-1">
+                  When are you free?
+                </h2>
+                <p class="mb-0 color-dark font-semi-bold text-16">
+                  Use this page to set your availability so that your peers know when works best for you. 
+                </p>
+              </div>
+              <div
+                class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
+              >
+                <img
+                  src="../static/image/Calendar.png"
+                  alt=""
+                  class="card-img small-size"
+                />
+              </div>
+            </div>
                 <div
                   class="
                     time-slot
@@ -59,18 +90,6 @@
                 >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-                <!-- <div
-                  class="
-                    time-slot-week
-                    container
-                    card card-primary-sm
-                    rounded-22
-                    p-3
-                    pt-4
-                  "
-                >
-                  <FullCalendar :options="calendar" />
-                </div> -->
               </div>
               <div
                 class="
@@ -96,7 +115,9 @@
                     <span class="color-dark text-16 font-semi-bold">{{
                       date_string
                     }}</span>
-                    <span class="color-secondary text-14 font-normal"
+                    <span
+                      data-intro="Select the 30 minute slots on which you are available"
+                      class="color-secondary text-14 font-normal"
                       ><i>30 Minute Slot</i></span
                     >
                   </p>
@@ -116,7 +137,10 @@
                     </span>
                   </div>
                   <form action="" class="">
-                    <div class="row slot-form">
+                    <div
+                      data-intro="Apply the selected slots for a month or week, include weekends and set as default time from here"
+                      class="row slot-form"
+                    >
                       <div class="col">
                         <div class="custom-switch mb-3">
                           <input
@@ -128,7 +152,12 @@
                             name="default-cal"
                           />
                           <label
-                            class="custom-control-label font-normal color-dark  form-label"
+                            class="
+                              custom-control-label
+                              font-normal
+                              color-dark
+                              form-label
+                            "
                             for="switch_month"
                             >Apply for the month</label
                           >
@@ -251,6 +280,16 @@ export default {
     FullCalendar,
     lottie,
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
+  },
   data() {
     return {
       currentTime: "",
@@ -324,13 +363,19 @@ export default {
         unselectAuto: false,
         dayClick: this.clickedDay,
       },
+      startTime: null,
     };
   },
   mounted() {
+    const page = "MeetingAvailability";
+    const distinct_id = localStorage.getItem("distinctId");
+    this.$mixpanel.track("Page View", { distinct_id, page });
+    this.startTime = new Date().getTime();
     ismounted = true;
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.TeacherAvailableSlot();
     this.AvailabilitySlotswithId();
+    this.startIntro();
   },
 
   computed: {
@@ -342,6 +387,9 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("studentCustomAvailability", {
@@ -575,15 +623,12 @@ export default {
         " " +
         date.format("MMMM");
 
-      // this.date_string =
-      //   weekDay + "," + clickedDate + " " + month + " " + clickedYear;
       this.slotList.forEach((e) => {
         this.slotsArray.push({ exist: false, time: e });
       });
       let dates = this.teacherSlot.filter((elem) => elem.date == arg.dateStr);
       dates.forEach((element) => {
         let exist = this.checkSlot(element.default_slots.start_time);
-        // this.slots.push(element.default_slots.start_time);
         let index = this.slotsArray.findIndex(
           (item) => item.time == element.default_slots.start_time
         );
@@ -599,10 +644,39 @@ export default {
       }
       ismounted = false;
     },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      let skip = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
+          completed = true;
+          if (state != "skip") this.$router.push("/viewall-meeting");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
+    },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "MeetingAvailability";
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
   },
 };
 </script>
 <style>
-.custom-switch .custom-control-label::after{top: calc(0.0375rem + 2px) !important;}
+.custom-switch .custom-control-label::after {
+  top: calc(0.0375rem + 2px) !important;
+}
 </style>
 

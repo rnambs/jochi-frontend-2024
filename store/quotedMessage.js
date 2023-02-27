@@ -23,7 +23,8 @@ const state = {
   clubMeetings: [],
   allSubTskCompleted: false,
   overdues: [],
-  sharedOverdues: []
+  sharedOverdues: [],
+  trainingsMatches: []
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -102,6 +103,8 @@ const actions = {
       commit('setSessionList', response.session);
       commit('setSharedSessionList', response.shared_sessions);
       commit('setClubMeetings', response.club_meeting);
+      commit('setTrainingsMatches', response.team_match_trainings);
+
 
     } catch (e) {
       if (e?.response?.data?.message == "Unauthorized") {
@@ -388,6 +391,7 @@ const actions = {
 
       }
     } catch (e) {
+
       if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -438,6 +442,11 @@ const actions = {
         commit('setErrorMessage', "Please upload a file!");
         commit('setErrorType', "error");
 
+      } else if (e?.response?.data?.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e?.response?.data?.message);
+        commit('setErrorType', "error");
       }
     }
 
@@ -590,6 +599,9 @@ const mutations = {
   setSharedOverdues(state, data) {
     state.sharedOverdues = data;
   },
+  setTrainingsMatches(state, data) {
+    state.trainingsMatches = data;
+  },
 }
 const getters = {
 
@@ -661,6 +673,9 @@ const getters = {
   },
   sharedOverdues: () => {
     return state.sharedOverdues;
+  },
+  trainingsMatches: () => {
+    return state.trainingsMatches;
   },
 }
 

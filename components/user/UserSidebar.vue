@@ -400,20 +400,21 @@
                           >Peer</nuxt-link
                         >
                       </li> -->
-                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
-                        <nuxt-link
-                          to="/viewall-meeting"
-                          @click="$event.target.classList.toggle('active')"
-                          class="nav-link text-nowrap"
-                          >View All</nuxt-link
-                        >
-                      </li>
+
                       <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
                         <nuxt-link
                           to="/custom-availability-student"
                           @click="$event.target.classList.toggle('active')"
                           class="nav-link text-nowrap"
                           >Availability</nuxt-link
+                        >
+                      </li>
+                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
+                        <nuxt-link
+                          to="/viewall-meeting"
+                          @click="$event.target.classList.toggle('active')"
+                          class="nav-link text-nowrap"
+                          >View All</nuxt-link
                         >
                       </li>
                     </ul>
@@ -625,6 +626,59 @@
               </div>
             </div>
           </div> -->
+          <div class="menu-items position-relative py-0 mb-2">
+            <div class="accordion" id="accordionExample">
+              <div class="card bg-transparent shadow-none border-0 mb-2">
+                <div
+                  class="card-header bg-transparent border-0 p-1"
+                  id="headingOne"
+                >
+                  <div class="mb-0 d-flex justify-content-center">
+                    <button
+                      class="
+                        btn btn-link
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                        text-decoration-none text-18
+                        btn-block
+                        text-left
+                        collapsed
+                        justify-content-start
+                        tutorial-btn
+                      "
+                      @click="
+                        $event.target.classList.toggle('active');
+                        startGuide();
+                      "
+                      type="button"
+                      data-toggle="collapse"
+                      aria-expanded="false"
+                      aria-controls="collapseOne"
+                    >
+                      <div class="bottum-btn align-items-center">
+                        <!-- <div class="font-icon d-inline-block">
+                          <img
+                            src="../../static/image/advisor.png"
+                            alt=""
+                          />
+                        </div> -->
+                        <i class="fab fa-jira"></i>
+                        <span
+                          class="
+                            color-secondary
+                            text-capitalize
+                            font-medium pl-2
+                          "
+                          >Tutorial</span
+                        >
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="menu-items position-relative py-0">
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
@@ -686,6 +740,44 @@
         </div>
       </div>
     </div>
+    <!--  Logout  confirmation  -->
+    <div
+      class="modal fade"
+      id="logoutConfirmation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="ModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h3 class="modal-title" id="logoutConfirmationModalLongTitle">
+              Logout Confirmation
+            </h3>
+          </div>
+          <div class="modal-body px-4">Are you sure you want to logout?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              @click="logout()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Logout confirmation end  -->
   </section>
 </template>
 <script>
@@ -713,6 +805,12 @@ export default {
     this.getNotifications();
     this.getCount();
     this.syncGg4lData();
+
+    const studentSignUpSetting = localStorage.getItem("studentSignUpSetting");
+    if (studentSignUpSetting == "true") {
+      this.$store.commit("setStartProductGuide", true);
+      localStorage.setItem("studentSignUpSetting", "false");
+    }
 
     // window.addEventListener("keydown", (e) => {
     //   if (e.keyCode == 123) {
@@ -774,6 +872,9 @@ export default {
       notificationList: (state) => state.notificationList,
       notificationCount: (state) => state.notificationCount,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("studentSignIn", {
@@ -866,16 +967,14 @@ export default {
     },
 
     async GetLogout() {
-      let confirm = window.confirm("You will be logged out now");
-      if (confirm) {
-        await this.getLogout({
-          auth_token: localStorage.getItem("token").replace("Bearer ", ""),
-        });
-        window.localStorage.clear();
-        window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
-      } else {
-        return;
-      }
+      $("#logoutConfirmation").modal({ backdrop: true });
+    },
+    async logout() {
+      await this.getLogout({
+        auth_token: localStorage.getItem("token").replace("Bearer ", ""),
+      });
+      window.localStorage.clear();
+      window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
     },
     async UserDetails() {
       this.loading = true;
@@ -911,17 +1010,37 @@ export default {
       if (isGg4lDataSynced != "1") {
         await this.syncData();
         localStorage.setItem("isGg4lDataSynced", "1");
+        if (this.startProductGuide) {
+          localStorage.setItem("studentSignUpSetting", "true");
+        } else {
+          localStorage.setItem("studentSignUpSetting", "false");
+        }
         this.$router.go();
       }
+    },
+    startGuide() {
+      this.$store.commit("setStartProductGuide", true);
+      this.$router.push("/planner-day");
     },
   },
   // // middleware: "authenticated",
 };
 </script>
 <style>
-@media (max-width: 991.98px) { 
-  .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a{font-size: 0.7rem;}
+@media (max-width: 991.98px) {
+  .inner-section
+    .header-section
+    .sidebar-section
+    .menu-items
+    .card-body
+    .inner-custom-list
+    li
+    a {
+    font-size: 0.7rem;
+  }
 
- .dropdown .dropdown-menu.notify{top:-40px !important}
+  .dropdown .dropdown-menu.notify {
+    top: -40px !important;
+  }
 }
 </style>

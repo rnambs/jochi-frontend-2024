@@ -60,7 +60,7 @@
                             name="default-cal"
                           />
                           <label
-                            class="custom-control-label form-label"
+                            class="custom-control-label form-label color-dark"
                             for="switch_month"
                             >Apply for the month</label
                           >

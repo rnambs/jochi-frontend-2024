@@ -51,7 +51,7 @@ const actions = {
         },
       });
       commit('setTeacherList', response.data);
-    } catch {
+    } catch (e) {
       if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");

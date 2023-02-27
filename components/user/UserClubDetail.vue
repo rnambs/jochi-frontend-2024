@@ -19,7 +19,12 @@
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-3">
-            <h2 class="tab-head color-primary font-semi-bold">Club details</h2>
+            <h2
+              data-intro="View all your clubs here and click on the club for futher details"
+              class="tab-head color-primary font-semi-bold"
+            >
+              Club details
+            </h2>
             <div class="inner-tab-section container-fluid p-0">
               <div
                 class="
@@ -31,7 +36,10 @@
                   align-items-center
                 "
               >
-                <div class="col-md-4 px-0">
+                <div
+                  data-intro="Filter the clubs based on the tags"
+                  class="col-md-4 px-0"
+                >
                   <div class="input-icon-area form-row">
                     <multiselect
                       v-model="value"
@@ -44,9 +52,6 @@
                     >
                       <span slot="noResult">No data found</span>
                     </multiselect>
-                    <!-- <span class="input-icon"
-                      ><i class="fa fa-filter" aria-hidden="true"></i
-                    ></span> -->
                   </div>
                 </div>
                 <div v-if="user == '3'" class="col-md-4 px-0">
@@ -65,6 +70,7 @@
                         color-dark
                         text-14
                       "
+                      data-intro="Sync your team and club meetings to your planner from here"
                       for="custom-Switches"
                       >Sync to Planner
                     </label>
@@ -221,6 +227,16 @@ export default {
     Multiselect,
     lottie,
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
+  },
   data() {
     return {
       list_data: [],
@@ -232,17 +248,21 @@ export default {
       availability: "",
       tags: [],
       user: "",
+      startTime: null,
     };
   },
   mounted() {
+    const page = "ClubExisting";
+    const distinct_id = localStorage.getItem("distinctId");
+    this.$mixpanel.track("Page View", { distinct_id, page });
+    this.startTime = new Date().getTime();
+
     SelectValue = "";
     this.user = localStorage.getItem("user_type");
-    // if (user == 3) {
+
     this.GetTag();
     this.MyClubList();
-    // } else {
-    // this.$router.push("/");
-    // }
+    this.startIntro();
   },
   computed: {
     ...mapState("myClub", {
@@ -254,6 +274,9 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("myClub", {
@@ -339,6 +362,33 @@ export default {
       }
       this.MyClubList();
     },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      let skip = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
+          completed = true;
+          if (state != "skip") this.$router.push("/club-catalogue");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
+    },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "ClubExisting";
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
   },
 };
 </script>

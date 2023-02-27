@@ -452,7 +452,7 @@ input[type="radio"]{
         border: none;
         border-radius: 0.45rem;
         padding: .75rem .75rem;
-        z-index: 10;
+        z-index: 999;
         position: absolute;
         left: 0;
         width: 100%;
@@ -571,7 +571,7 @@ input[type="radio"]{
         border-radius: 1.2rem;
         background-color: $white;
         padding: .75rem .75rem;
-        z-index: 10;
+        z-index: 999;
         position: absolute;
         left: 0;
         width: 100%;
@@ -698,7 +698,7 @@ input[type="radio"]{
             // border-radius: 5px;
             background-color: $white;    
             position: absolute;
-            z-index: 5;
+            z-index: 99;
             top: calc(2.2em + 2px);
             left: 0;
             background: #fff;
@@ -848,9 +848,194 @@ input[type="radio"]{
             }
         } 
     }
-   
+   button{
+    &::before{
+        position: absolute;
+        content: "\f078";
+        right: 10px;
+        bottom: 0;
+        height: 15px;
+        width: 15px;
+        top: 0;
+        font-style: normal;
+        font-family: "Font Awesome 5 Pro";
+        margin: auto;
+        color: #c8c2c0;
+        line-height: 1;
+    }
+   }
 }
 
+.vdp-datepicker, .time-picker{
+    input{
+        width: 100%;
+        position: relative;
+        z-index: 99;
+    }
+    &::before{
+        position: absolute;
+        content: "\f073";
+        right: 10px;
+        bottom: 0;
+        height: 15px;
+        width: 15px;
+        top: 0;
+        font-style: normal;
+        font-family: "Font Awesome 5 Pro";
+        margin: auto;
+        color: #c8c2c0;
+        line-height: 1;
+    }
+}
+
+.time-picker{
+    &::before{
+        content: "\f017";
+    }
+}
+
+.ml-05 {
+    margin-left: 2px;
+}
+
+.bold-6{
+    font-weight: 600;
+}
+
+.tutorial-btn {
+	border: 1px solid #FF6D6D !important;
+	width: 100%;
+    background-color: #ffdfdf;
+    @media screen and (max-width: $md-screen) {
+        width: auto;
+    }
+    span, i {
+        color: #FF6D6D !important;
+    }
+    span{
+        margin: initial !important;
+    }
+    &:hover{
+        background-color: #FF6D6D !important;
+        span, i {
+            color: #FFf !important;
+        }
+    }
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+	margin-bottom: 2em !important;
+}
+
+.color-ref {
+	position: absolute;
+	top: 5.5rem;
+	right: 3rem;
+    &.mnth{
+        top: 4.7rem;
+        right: 3.5rem;
+    }
+    ul {
+        justify-content: flex-end;
+        li {
+            padding: 5px;
+            list-style: none;
+            position: relative;
+            min-width: 18px;
+            width: 18px;
+            min-height: 18px;
+            height: 18px;
+            margin: 0 5px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: ease-in-out .3s all;
+            font-size: 14px;
+            background: #0000000f;
+            border-radius: 20px;
+            box-shadow: 0px 1px 7px #00000021;
+            overflow: hidden;
+            text-align: right;
+            &:hover{
+                width: 100%;
+                transition: ease-in-out .5s all;
+                span{
+                    opacity: 1;
+                    padding-left: 18px;
+                    padding-right: 5px;
+                    transition: ease-in-out .5s all;
+                }
+            }
+            &::before{
+                content: "";
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                background-color: #EF382E;
+                border-radius: 15px;
+                top: 0;
+                left: 0;
+                z-index: 9;
+            }
+            span{
+                opacity: 0;
+                display: inline-block;
+                white-space: nowrap;
+                text-align: right;
+                transition: ease-in-out .5s all;
+            }
+            &:nth-child(2){
+                &::before{
+                    background-color: #F6D73C;
+                }
+            }
+            &:nth-child(3){
+                &::before{
+                    background-color: #00CCA0;
+                }
+            }
+            &:nth-child(4){
+                &::before{
+                    background-color: #a7a7a7;
+                }
+            }
+            &:nth-child(5){
+                &::before{
+                    background-color: #07BEB8;
+                }
+            }
+            &:nth-child(6){
+                &::before{
+                    background-color: #64B5FC;
+                }
+            }
+            &:nth-child(7){
+                &::before{
+                    background-color: #073BBF;
+                }
+            }
+            &:nth-child(8){
+                &::before{
+                    background-color: White;
+                }
+            }
+            // &:nth-child(9){
+            //     &::before{
+            //         background-color: rgb(18, 9, 103);
+            //     }
+            // }
+            // &:nth-child(10){
+            //     &::before{
+            //         background-color: rgb(18, 9, 103);
+            //     }
+            // }
+        }
+    }
+}
+
+.small-size{
+    height: 100px;
+}
 
 // Card
 
@@ -5572,7 +5757,7 @@ switch to violet when it is active*/
 
 // common popUp
 .modal{
-    z-index: 1050;
+    z-index: 99999;
     overflow: unset !important;
     .modal-dialog{
         @media (max-width:1024.98px) {
@@ -6455,7 +6640,9 @@ select.form-control{
     background-color: transparent !important;
 }
 
-
+.calendar-box{
+    flex: 0 !important;
+}
 
 .cd-cover-pic-section {
     background-image: url("./../image/cover-pic.jpg");
@@ -6818,4 +7005,12 @@ $b-toaster-zindex: 1100 !default;
 .drag-blur{
     filter: blur(6px);
     position: relative;
+}
+
+.no-cursor{
+    cursor: initial !important;
+}
+
+.multiselect{
+    z-index: 999 !important;
 }

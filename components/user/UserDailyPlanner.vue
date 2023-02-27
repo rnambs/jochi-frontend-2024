@@ -20,8 +20,11 @@
         >
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
-              <div class="col-lg-5 col-md-12 h-100">
-                <div class="jochi-components-light-bg p-4 h-100">
+              <div class="col-lg-5 col-md-12">
+                <div
+                  data-intro="Find all your assignments, study sessions, meetings, trainings and matches in the planner below"
+                  class="jochi-components-light-bg p-4 h-100"
+                >
                   <h2
                     v-if="showToday"
                     class="color-primary font-semi-bold mb-1"
@@ -67,7 +70,10 @@
                   >
                     <div class="row">
                       <div class="col-md-4">
-                        <h2 class="color-primary font-semi-bold mb-0">
+                        <h2
+                          data-intro="Find all your pending assignments here"
+                          class="color-primary font-semi-bold mb-0"
+                        >
                           Pending
                         </h2>
                       </div>
@@ -79,6 +85,7 @@
                         "
                       >
                         <button
+                          data-intro="Add new assignments from here"
                           @click="
                             openAssignment = true;
                             isAddAssignment = true;
@@ -266,7 +273,7 @@
                                         !item.subTasks ||
                                         item.subTasks.length <= 0
                                       "
-                                      class="pl-2 d-flex align-items-center"
+                                      class="d-flex align-items-center"
                                     >
                                       <span class="color-secondary text-12"
                                         >No sub tasks added!</span
@@ -563,7 +570,7 @@
                                       !item.subTasks ||
                                       item.subTasks.length <= 0
                                     "
-                                    class="pl-2 d-flex align-items-center"
+                                    class="d-flex align-items-center"
                                   >
                                     <span class="color-secondary text-12"
                                       >No sub tasks added!</span
@@ -850,7 +857,10 @@
                       "
                       @drop="handleDrop"
                     >
-                      <h2 class="color-primary font-semi-bold px-4">
+                      <h2
+                        data-intro="Find all your assignments completed today here"
+                        class="color-primary font-semi-bold px-4"
+                      >
                         Completed Today
                       </h2>
                       <p
@@ -1475,7 +1485,7 @@
                               <div
                                 v-for="peer of peerList"
                                 :key="peer.id"
-                                class="h-fit-content  show-icon"
+                                class="h-fit-content show-icon"
                               >
                                 <div
                                   class="d-flex align-items-center my-2 mr-3"
@@ -1500,7 +1510,6 @@
                                         alt=""
                                       />
                                     </div>
-                                    
                                   </div>
                                   <div class="ld-details-section">
                                     <p class="ld-heading mb-0">
@@ -1509,13 +1518,22 @@
                                   </div>
                                 </div>
                                 <button
-                                    type="button"
-                                    role="button"
-                                    @click="
-                                      removePeerConfirm(peer.id, $event)
+                                  type="button"
+                                  role="button"
+                                  @click="removePeerConfirm(peer.id, $event)"
+                                >
+                                  <span
+                                    class="
+                                      color-primary
+                                      fa-icon
+                                      show-hover
+                                      d-none
+                                      btn
+                                      p-0
+                                      ml-05
                                     "
-                                  >
-                                    <span class="color-primary fa-icon show-hover d-none btn p-0"><i class="fas fa-trash-alt ml-3"></i></span>
+                                    ><i class="fas fa-trash-alt ml-3"></i
+                                  ></span>
                                 </button>
                               </div>
                             </div>
@@ -1564,7 +1582,7 @@
                                       class="form-control px-2 cursor-pointer"
                                       placeholder="Upload File"
                                       @change="onFileChange"
-                                      accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
+                                      accept=".png,.jpeg,.jpg,.pdf"
                                     />
                                   </div>
                                   <div class="col-9 py-0 pl-0">
@@ -1610,7 +1628,12 @@
                                   <div class="ld-details-section w-100">
                                     <p
                                       @click="openLink(item)"
-                                      class="ld-heading mb-1 text-link"
+                                      class="
+                                        ld-heading
+                                        mb-1
+                                        text-link
+                                        cursor-pointer
+                                      "
                                     >
                                       {{ item.link }}
                                     </p>
@@ -1643,7 +1666,12 @@
                                   <div class="ld-details-section w-100">
                                     <p
                                       @click="openLink(item)"
-                                      class="ld-heading mb-1 text-link"
+                                      class="
+                                        ld-heading
+                                        mb-1
+                                        text-link
+                                        cursor-pointer
+                                      "
                                     >
                                       {{
                                         item.file_type &&
@@ -1701,7 +1729,61 @@
                                     for="recipient-name"
                                     class="col-form-label"
                                     >Priority:</label
-                                  >&nbsp;{{ priorityVal }}
+                                  >&nbsp;
+                                  <!-- <span v-if="priorityVal != 'Overdue'"> -->
+                                  <span> {{ priorityVal }}</span>
+                                  <!-- <div v-else class="dropdown input-icon-area">
+                                    <button
+                                      id="dLabel"
+                                      class="
+                                        dropdown-select
+                                        form-control
+                                        text-left
+                                      "
+                                      type="button"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                      requ
+                                    >
+                                      <span class="caret">
+                                        {{
+                                          priorityVal && !prior
+                                            ? priorityVal
+                                            : prior == 1
+                                            ? "Urgent"
+                                            : prior == 2
+                                            ? "Important"
+                                            : prior == 3
+                                            ? "Can Wait"
+                                            : "Select priority"
+                                        }}</span
+                                      >
+                                    </button>
+                                    <ul
+                                      class="dropdown-menu"
+                                      aria-labelledby="dLabel"
+                                    >
+                                      <li
+                                        @click="prior = 3"
+                                        class="item low-color"
+                                      >
+                                        <span>Can Wait</span>
+                                      </li>
+                                      <li
+                                        @click="prior = 2"
+                                        class="item medium-color"
+                                      >
+                                        <span>Important</span>
+                                      </li>
+                                      <li
+                                        @click="prior = 1"
+                                        class="item high-color"
+                                      >
+                                        <span>Urgent</span>
+                                      </li>
+                                    </ul>
+                                  </div> -->
                                 </div>
                               </div>
                               <div class="col-md-6 ml-auto">
@@ -1965,7 +2047,7 @@
                                       class="form-control px-2 cursor-pointer"
                                       placeholder="Upload File"
                                       @change="onFileChange"
-                                      accept=".png,.jpeg,.jpg,.doc,.docx,.pdf"
+                                      accept=".png,.jpeg,.jpg,.pdf"
                                     />
                                   </div>
                                   <div class="col-9 py-0 pl-0">
@@ -2011,7 +2093,12 @@
                                   <div class="ld-details-section w-100">
                                     <p
                                       @click="openLink(item)"
-                                      class="ld-heading mb-1 text-link"
+                                      class="
+                                        ld-heading
+                                        mb-1
+                                        text-link
+                                        cursor-pointer
+                                      "
                                     >
                                       {{ item.link }}
                                     </p>
@@ -2044,7 +2131,12 @@
                                   <div class="ld-details-section w-100">
                                     <p
                                       @click="openLink(item)"
-                                      class="ld-heading mb-1 text-link"
+                                      class="
+                                        ld-heading
+                                        mb-1
+                                        text-link
+                                        cursor-pointer
+                                      "
                                     >
                                       {{
                                         item.file_type &&
@@ -2507,7 +2599,9 @@
               Complete Assignment Confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">Mark assignment as completed?</div>
+          <div class="modal-body px-3 bold-6">
+            Mark assignment as completed?
+          </div>
           <div class="modal-footer">
             <button
               type="button"
@@ -2632,7 +2726,9 @@
               Remove Peer Confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">Remove the peer?</div>
+          <div class="modal-body px-4">
+            Are you sure want to remove the peer?
+          </div>
           <div class="modal-footer">
             <button
               type="button"
@@ -2740,6 +2836,35 @@
       </div>
     </div>
     <!-- Delete assignment confirmation end  -->
+
+    <!-- Alert modal  -->
+    <div
+      class="modal fade"
+      id="alertModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="alertModalModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h3 class="modal-title" id="alertModalModalLongTitle">Alert</h3>
+          </div>
+          <div class="modal-body px-4">{{ alertMessage }}</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Alert modal end  -->
   </div>
 </template>
 <script>
@@ -2771,6 +2896,16 @@ export default {
     FullCalendar,
     draggable,
     InfiniteLoading,
+  },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
   },
   data() {
     return {
@@ -2893,9 +3028,17 @@ export default {
       undoSubtaskId: 0,
       user_id: "",
       removedPeerList: [],
+      prior: "4",
+      startTime: null,
+      alertMessage: "",
     };
   },
   mounted() {
+    const page = "PlannerDay";
+    const distinct_id = localStorage.getItem("distinctId");
+    this.$mixpanel.track("Page View", { distinct_id, page });
+    this.startTime = new Date().getTime();
+
     this.user_id = localStorage.getItem("id");
     socket.on("notifications", (data) => {
       console.log("socket data", data);
@@ -2922,7 +3065,6 @@ export default {
       $(".dropdown-select").text(getValue);
       _this.filterOption(getValue);
     });
-    //datepicker
 
     var today = new Date();
     var future = new Date();
@@ -2970,6 +3112,7 @@ export default {
         }
       );
     });
+    this.startIntro();
   },
   validations: {
     subject: { required },
@@ -2989,6 +3132,8 @@ export default {
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
+      errorMessageQuote: (state) => state.errorMessage,
+      errorTypeQuote: (state) => state.errorType,
       subjectsData: (state) => state.subjectsData,
       assignmentsList: (state) => state.assignmentsList,
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
@@ -3002,10 +3147,21 @@ export default {
       allSubTskCompleted: (state) => state.allSubTskCompleted,
       overdues: (state) => state.overdues,
       sharedOverdues: (state) => state.sharedOverdues,
+      trainingsMatches: (state) => state.trainingsMatches,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
+  },
+  watch: {
+    startProductGuide(newValue, oldValue) {
+      if (newValue) {
+        this.startIntro();
+      }
+    },
   },
   methods: {
     ...mapActions("quotedMessage", {
@@ -3041,7 +3197,6 @@ export default {
       }
     },
     viewMoreClick(event, item) {
-      console.log("view more", event, item);
       event.preventDefault();
       event.stopPropagation();
       this.viewMore = true;
@@ -3288,6 +3443,31 @@ export default {
         listobj["timeValNum"] = timeValNum;
         eventList.push(meetingobj);
       });
+      this.trainingsMatches?.forEach((element) => {
+        if (element.date) {
+          var plannerObj = {};
+
+          if (element.session_type == "Match") {
+            var color = "#ad2b89";
+          } else {
+            var color = "#da70d6";
+          }
+          var dateMeeting = element.date;
+          var tmeMeeting = "";
+          if (element.time) {
+            tmeMeeting = this.formatAMPM(element.time);
+          }
+          var start = dateMeeting + "T" + tmeMeeting;
+
+          plannerObj["title"] = element.title;
+          plannerObj["color"] = color;
+          plannerObj["start"] = start;
+          plannerObj["id"] = element.id;
+          plannerObj["groupId"] =
+            element.session_type == "Match" ? "matches" : "trainings";
+          eventList.push(plannerObj);
+        }
+      });
 
       this.calendarOptions.events = eventList;
     },
@@ -3434,9 +3614,7 @@ export default {
       this.GetDailyPlanner();
     },
     async UpdateAssignment() {
-      console.log(this.priorityVal);
-
-      if (this.priorityVal == "Overdue") {
+      if (this.priorityVal == "Overdue" && !this.isSharedAssignment) {
         this.$toast.open({
           message: "Please select the priority",
           type: "error",
@@ -3461,6 +3639,8 @@ export default {
         priority = "2";
       } else if (this.priorityVal == "Can Wait") {
         priority = "3";
+      } else if (this.priorityVal == "Overdue") {
+        priority = this.prior;
       }
 
       this.processing = true;
@@ -3478,7 +3658,6 @@ export default {
       this.removedPeerList.forEach((e) => {
         const index = this.peerList.findIndex((item) => item.id == e);
         if (index < 0) {
-          console.log("index", index);
           removed.push(e);
         }
       });
@@ -3548,6 +3727,7 @@ export default {
       this.processing = false;
     },
     async resetAssignment() {
+      this.choosenAssignments = [];
       this.schoologyAssignment = "";
       this.validTime = false;
       this.peerSelected = [];
@@ -3589,7 +3769,6 @@ export default {
       let clearTimeBtn = document.getElementsByClassName("clear-btn")[0];
       clearTimeBtn?.click();
     },
-
     dateConversion(value) {
       const monthNames = [
         "January",
@@ -3690,16 +3869,122 @@ export default {
           moment().format("YYYY-MM-DD")
         )
       ) {
-        alert("No actions can be performed on past events");
-        return;
+        if (
+          idVal.groupId == "assignment" ||
+          idVal.groupId == "shared-assignment"
+        ) {
+          console.log("asst");
+
+          let data = {};
+          let mappedData = {};
+          if (idVal.groupId == "assignment") {
+            data = this.assignmentsList.find(
+              (e) => e.id.toString() == idVal.id.toString()
+            );
+            mappedData = this.mapData(data);
+          }
+          if (idVal.groupId == "assignment") {
+            data = this.overdues.find(
+              (e) => e.id.toString() == idVal.id.toString()
+            );
+            if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapData(data);
+          }
+          if (idVal.groupId == "shared-assignment") {
+            data = this.sharedAssignmentsList.find(
+              (e) => e.assignment_id.toString() == idVal.id.toString()
+            );
+            if (!mappedData) mappedData = this.mapSharedData(data);
+          }
+          if (idVal.groupId == "shared-assignment") {
+            data = this.sharedOverdues.find(
+              (e) => e.assignment_id.toString() == idVal.id.toString()
+            );
+            if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapSharedData(data);
+          }
+          if (!mappedData) {
+            this.alertMessage = "This assignment has been completed!";
+            $("#alertModal").modal({ backdrop: true });
+            return;
+          }
+          console.log("past", mappedData);
+          this.onCardClick(mappedData);
+        } else {
+          this.alertMessage = "No actions can be performed on past events";
+          $("#alertModal").modal({ backdrop: true });
+
+          return;
+        }
       } else {
+        if (
+          idVal.groupId == "assignment" ||
+          idVal.groupId == "shared-assignment"
+        ) {
+          console.log("asst");
+
+          let data = {};
+          let mappedData = {};
+          if (idVal.groupId == "assignment") {
+            data = this.assignmentsList.find(
+              (e) => e.id.toString() == idVal.id.toString()
+            );
+            mappedData = this.mapData(data);
+          }
+          if (idVal.groupId == "assignment") {
+            data = this.overdues.find(
+              (e) => e.id.toString() == idVal.id.toString()
+            );
+            if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapData(data);
+          }
+          if (idVal.groupId == "shared-assignment") {
+            data = this.sharedAssignmentsList.find(
+              (e) => e.assignment_id.toString() == idVal.id.toString()
+            );
+            if (!mappedData) mappedData = this.mapSharedData(data);
+          }
+          if (idVal.groupId == "shared-assignment") {
+            data = this.sharedOverdues.find(
+              (e) => e.assignment_id.toString() == idVal.id.toString()
+            );
+            if (
+              !mappedData ||
+              (Object.keys(mappedData).length === 0 &&
+                mappedData.constructor === Object)
+            )
+              mappedData = this.mapSharedData(data);
+          }
+
+          if (!mappedData) {
+            this.alertMessage = "This assignment has been completed!";
+            $("#alertModal").modal({ backdrop: true });
+            return;
+          }
+          console.log("future", mappedData);
+
+          this.onCardClick(mappedData);
+        }
         if (idVal.groupId == "study") {
           let session = this.sessionList.find(
             (e) => e.id.toString() == idVal.id.toString()
           );
 
           if (session.status == "STOP") {
-            alert("This session has already been completed");
+            this.alertMessage = "This session has already been completed";
+            $("#alertModal").modal({ backdrop: true });
             return;
           } else {
             return this.$router.push(`/study-time?id=${idVal.id}`);
@@ -3710,7 +3995,8 @@ export default {
             (e) => e.session_id.toString() == idVal.id.toString()
           );
           if (studySession.studyroom?.status == "STOP") {
-            alert("This session has already been completed");
+            this.alertMessage = "This session has already been completed";
+            $("#alertModal").modal({ backdrop: true });
             return;
           } else {
             return this.$router.push(`/study-time?id=${idVal.id}`);
@@ -3723,34 +4009,16 @@ export default {
           return this.$router.push(
             `/viewall-meeting?id=${idVal.id}&type=${idVal.groupId}`
           );
-        } else if (
-          idVal.groupId == "assignment" ||
-          idVal.groupId == "shared-assignment"
-        ) {
-          let data = {};
-          let mappedData = {};
-          if (idVal.groupId == "assignment") {
-            data = this.assignmentsList.find(
-              (e) => e.id.toString() == idVal.id.toString()
-            );
-            mappedData = this.mapData(data);
-          }
-          if (idVal.groupId == "shared-assignment") {
-            data = this.sharedAssignmentsList.find(
-              (e) => e.assignment_id.toString() == idVal.id.toString()
-            );
-            mappedData = this.mapSharedData(data);
-          }
-          if (!mappedData) {
-            return alert("This assignment has been completed!");
-          }
-
-          this.onCardClick(mappedData);
         } else if (idVal.groupId == "club-meeting") {
           let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
 
           return this.$router.push(
             `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
+          );
+        } else if (idVal.groupId == "matches" || idVal.groupId == "trainings") {
+          let club = this.trainingsMatches.find((e) => e.id == idVal.id);
+          return this.$router.push(
+            `/club-moreInfo?id=${club.clubs.id}&name=${club.clubs.name}&type=${club.clubs.activity_type}`
           );
         }
       }
@@ -3850,7 +4118,7 @@ export default {
         this.subTasksList.push(sub);
       } else {
         this.$toast.open({
-          message: "Please add a valid subTask ",
+          message: "Please add a valid sub task ",
           type: "warning",
           duration: 5000,
         });
@@ -3884,7 +4152,6 @@ export default {
       if (this.tempOffset != this.offset || this.reloadNext) {
         this.reloadNext = false;
         this.tempOffset = this.offset;
-        console.log("inside load next", this.offset);
         this.pendingAssignments = [];
         await this.getAssignments({ offset: this.offset, limit: this.limit });
         if (this.offset == 0) {
@@ -3939,7 +4206,6 @@ export default {
         this.assignmentMaterials = [];
 
         item.assignment_description = e.assignment_description;
-        // item.assignment_materials = e.assignment_materials;
         if (e.assignment_materials && e.assignment_materials.length > 0) {
           e.assignment_materials.forEach((m) => {
             let data = {};
@@ -3980,6 +4246,7 @@ export default {
       }
     },
     mapSharedData(e) {
+      console.log(e);
       let item = {};
       this.assignmentMaterials = [];
 
@@ -4157,6 +4424,7 @@ export default {
       this.completeSubTask(false);
     },
     onCardClick(data) {
+      console.log(data);
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
       this.openAssignment = true;
@@ -4172,7 +4440,6 @@ export default {
       }
     },
     mapAssignmentDetail(data) {
-      console.log(data);
       this.isSharedAssignment = data.isShared;
       this.schoologyAssignment = data.schoologyAssignment;
       this.assignmentId = data.id;
@@ -4276,6 +4543,15 @@ export default {
       }
     },
     async UploadAttachment() {
+      if (!this.materialType) {
+        return this.$toast.open({
+          message: "Please choose file type",
+          type: "warning",
+          duration: 5000,
+        });
+        return false;
+      }
+
       this.processingUpload = true;
       const data = new FormData();
       if (this.materialType == "file") {
@@ -4286,6 +4562,14 @@ export default {
               "Content-Type": "multipart/form-data",
             },
           });
+
+          if (this.errorMessageQuote != "") {
+            return this.$toast.open({
+              message: this.errorMessageQuote,
+              type: this.errorTypeQuote,
+              duration: 4000,
+            });
+          }
 
           this.additionalMaterialList.push({
             id: this.newAdditionalMaterial.id,
@@ -4367,8 +4651,6 @@ export default {
         // only splice array when item is found
         this.additionalMaterialList.splice(index, 1); // 2nd parameter means remove one item only
       }
-
-      console.log(this.additionalMaterialList);
     },
     removePeerConfirm(id, event) {
       event.stopPropagation();
@@ -4397,18 +4679,15 @@ export default {
       } else {
         this.choosenAssignments.push(id);
       }
-      console.log(this.choosenAssignments);
     },
     confirmUndo(id) {
       this.undoAsstId = id;
       $("#undoAssignmentConfirmation").modal({ backdrop: true });
     },
     undoAsstComplete() {
-      console.log(this.undoAsstId);
       this.completeAssignment(false);
     },
     confirmDeletion() {
-      console.log("confirm delete");
       $("#deleteAssignmentConfirmation").modal({ backdrop: true });
     },
     async deleteAssts() {
@@ -4422,7 +4701,6 @@ export default {
         this.reloadNext = true;
         this.reloadCount += 1;
         this.openAssignment = false;
-        // this.getAllCompletedAssignments();
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -4448,6 +4726,33 @@ export default {
       this.getDailyPlanner();
       this.openAssignment = false;
     },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      let skip = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
+          completed = true;
+          if (state != "skip") this.$router.push("/teacher-meeting");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
+    },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "PlannerDay";
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
   },
 };
 </script>
@@ -4466,11 +4771,8 @@ export default {
 .h-60 {
   height: 60%;
 }
-.squaredThree {
-  /* position: relative;
-  float:left; */
-  /* margin: 10px */
-}
+/* .squaredThree {
+} */
 .squaredThree label {
   width: 24px;
   height: 24px;
@@ -4514,8 +4816,6 @@ export default {
   transition: all ease-in-out 300ms;
 }
 .label-text {
-  /* position: relative; */
-  /* left: 10px; */
 }
 .completed-vh-10 {
   height: 10vh;

@@ -61,6 +61,7 @@ export default {
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
+      studentSignUp: (state) => state.studentSignUp,
     }),
   },
   methods: {
@@ -120,6 +121,11 @@ export default {
       } else {
         let user_type = localStorage.getItem("user_type");
         if (user_type == 3 || user_type == "3") {
+          console.log("studentSignUp value", this.studentSignUp);
+          if (this.studentSignUp == true || this.studentSignUp == "true") {
+            localStorage.setItem("studentSignUp", this.studentSignUp);
+            this.$store.commit("setStartProductGuide", true);
+          }
           this.$router.push("/student-dashboard");
         } else {
           this.$router.push("/teacher-dashboard");
