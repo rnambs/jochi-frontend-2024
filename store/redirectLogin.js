@@ -18,6 +18,8 @@ const state = {
     notifyStatus: '',
     distinctId: '',
     studentSignUp: false,
+    schoolAdminRequested: '',
+    schoolAdmin: '',
 }
 const actions = {
 
@@ -42,6 +44,8 @@ const actions = {
                 commit('setNotifyStatus', response.data.notification);
                 commit('setDistinctId', response.data.distinct_id);
                 commit('setStudentSignUp', response.data.studentSignUp);
+                commit('setSchoolAdminRequested', response.data.school_admin_requested);
+                commit('setSchoolAdmin', response.data.school_admin);
                 if (response.data.user_type_id == 1) {
                     this.$router.push('/dashboard');
                 }
@@ -191,6 +195,16 @@ const mutations = {
         localStorage.setItem('studentSignUp', data)
 
     },
+    setSchoolAdminRequested(state, data) {
+        state.schoolAdminRequested = data;
+        localStorage.setItem('schoolAdminRequested', data)
+
+    },
+    setSchoolAdmin(state, data) {
+        state.schoolAdmin = data;
+        localStorage.setItem('schoolAdmin', data)
+
+    },
 }
 const getters = {
 
@@ -237,6 +251,12 @@ const getters = {
     },
     studentSignUp: () => {
         return state.studentSignUp;
+    },
+    schoolAdminRequested: () => {
+        return state.schoolAdminRequested;
+    },
+    schoolAdmin: () => {
+        return state.schoolAdmin;
     }
 }
 

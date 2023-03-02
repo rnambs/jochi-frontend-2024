@@ -403,6 +403,72 @@ const actions = {
 
 
   },
+  async upgradeUser({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$post(BASE_URL + 'teacher/school_admin_request', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+      console.log("response of upload profile pic", response, response.message)
+
+      if (response.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', "success");
+
+
+      }
+    } catch (e) {
+      if (e?.response?.data?.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else if (e?.response?.data?.message == "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.");
+        commit('setErrorType', "error");
+
+      }
+      else if (e?.response?.data?.message == "Validation error") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "Oops! Something went wrong. Please try again later");
+        commit('setErrorType', "error");
+      }
+      else if (e?.response?.data?.message == "File size cannot be larger than 4MB!") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "File size cannot be larger than 4MB!");
+        commit('setErrorType', "error");
+
+      }
+
+      else if (e?.response?.data?.message == "No user found") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "No user found");
+        commit('setErrorType', "error");
+
+      }
+      else if (e?.response?.data?.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e?.response?.data?.message);
+        commit('setErrorType', "error");
+
+      }
+    }
+
+  },
 
 }
 const mutations = {

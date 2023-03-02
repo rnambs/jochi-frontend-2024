@@ -3,37 +3,17 @@
     <!-- profile Page -->
     <section id="study-detail" class="">
       <div
-        class="
-          study-section
-          jochi-components-light-bg
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-        "
+        class="study-section jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <div class="inner-study p-4 d-flex flex-column flex-fill h-100">
           <div class="d-flex justify-content-between align-items-center">
             <h2 class="color-primary font-bold">Profile</h2>
           </div>
           <div
-            class="
-              profile-row
-              study-row
-              px-2
-              d-flex
-              flex-column flex-fill
-              justify-content-start
-              pt-3
-            "
+            class="profile-row study-row px-2 d-flex flex-column flex-fill justify-content-start pt-3"
           >
             <div
-              class="
-                study-col
-                d-flex
-                flex-column
-                justify-content-start
-                flex-fill
-              "
+              class="study-col d-flex flex-column justify-content-start flex-fill"
             >
               <div class="form-section mx-auto w-100 py-3">
                 <!-- <form action="" class="container"> -->
@@ -53,27 +33,13 @@
                     <!----image-->
                     <div class="col-md-6">
                       <div
-                        class="
-                          study-col
-                          profile-col
-                          d-flex
-                          flex-column
-                          justify-content-end
-                          align-items-center
-                          flex-fill
-                        "
+                        class="study-col profile-col d-flex flex-column justify-content-end align-items-center flex-fill"
                       >
                         <form id="form" enctype="multipart/form-data">
                           <div class="">
                             <div class="upload-image position-relative">
                               <div
-                                class="
-                                  proof-img-wrp
-                                  position-relative
-                                  cursor-pointer
-                                  d-flex
-                                  justify-content-center
-                                "
+                                class="proof-img-wrp position-relative cursor-pointer d-flex justify-content-center"
                               >
                                 <img
                                   v-if="profileImageUrl"
@@ -109,11 +75,7 @@
                                   >
                                     <i class="far fa-trash-alt"></i>
                                     <p
-                                      class="
-                                        text-remove
-                                        color-secondary
-                                        text-14 text-nowrap
-                                      "
+                                      class="text-remove color-secondary text-14 text-nowrap"
                                     >
                                       Remove profile
                                     </p>
@@ -138,27 +100,10 @@
                               </div>
                               <div v-if="profileImageUrl">
                                 <span
-                                  class="
-                                    pic-edit
-                                    w-100
-                                    d-flex
-                                    flex-row-reverse
-                                    position-absolute
-                                  "
+                                  class="pic-edit w-100 d-flex flex-row-reverse position-absolute"
                                 >
                                   <i
-                                    class="
-                                      fas
-                                      fa-pen
-                                      rounded-circle
-                                      position-relative
-                                      text-16
-                                      d-flex
-                                      align-items-center
-                                      justify-content-center
-                                      bg-theme
-                                      text-white
-                                    "
+                                    class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-theme text-white"
                                   >
                                     <!-- accept=".png,.jpeg,.jpg,.doc,.docx,.pdf" -->
                                     <input
@@ -167,15 +112,7 @@
                                       ref="profilePic"
                                       name="profilePic"
                                       id="fileUpload"
-                                      class="
-                                        rg-img-upload
-                                        img-up-two
-                                        cursor-pointer
-                                        position-absolute
-                                        w-100
-                                        h-100
-                                        rounded-circle
-                                      "
+                                      class="rg-img-upload img-up-two cursor-pointer position-absolute w-100 h-100 rounded-circle"
                                       @change="onFileChange()"
                                       accept=".jpeg,.jpg,.png"
                                     />
@@ -187,27 +124,10 @@
                                 class="custom-upload-with-msg text-center"
                               >
                                 <span
-                                  class="
-                                    pic-edit
-                                    w-100
-                                    d-flex
-                                    flex-row-reverse
-                                    position-absolute
-                                  "
+                                  class="pic-edit w-100 d-flex flex-row-reverse position-absolute"
                                 >
                                   <i
-                                    class="
-                                      fas
-                                      fa-pen
-                                      rounded-circle
-                                      position-relative
-                                      text-16
-                                      d-flex
-                                      align-items-center
-                                      justify-content-center
-                                      bg-theme
-                                      text-white
-                                    "
+                                    class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-theme text-white"
                                   >
                                     <input
                                       id="actual-btn"
@@ -215,15 +135,7 @@
                                       :v-model="profilePic"
                                       ref="profilePic"
                                       name="profilePic"
-                                      class="
-                                        rg-img-upload
-                                        img-up-two
-                                        cursor-pointer
-                                        position-absolute
-                                        w-100
-                                        h-100
-                                        rounded-circle
-                                      "
+                                      class="rg-img-upload img-up-two cursor-pointer position-absolute w-100 h-100 rounded-circle"
                                       @change="onFileChange"
                                       accept=".jpeg,.jpg,.png"
                                     />
@@ -252,14 +164,7 @@
                           class="card card-primary p-2 h-100 d-flex flex-column"
                         >
                           <p
-                            class="
-                              mb-0
-                              text-16
-                              color-secondary
-                              d-flex
-                              flex-row
-                              align-items-center
-                            "
+                            class="mb-0 text-16 color-secondary d-flex flex-row align-items-center"
                           >
                             <span class="text-20"
                               ><i class="fas fa-envelope"></i
@@ -271,20 +176,30 @@
                       <div class="col-md-12">
                         <div class="card card-primary p-2 h-100">
                           <p
-                            class="
-                              mb-0
-                              text-16
-                              color-secondary
-                              d-flex
-                              flex-row
-                              align-items-baseline
-                            "
+                            class="mb-0 text-16 color-secondary d-flex flex-row align-items-baseline"
                           >
                             <span class="text-20"
                               ><i class="fas fa-school"></i
                             ></span>
                             <span class="ml-2">{{ schoolName }}</span>
                           </p>
+                        </div>
+                      </div>
+                      <div
+                        v-if="
+                          user_type == 2 &&
+                          requestSent != '1' &&
+                          isSchoolAdmin != '1'
+                        "
+                        class="col-md-12"
+                      >
+                        <div class="text-center">
+                          <button
+                            @click="upgrade()"
+                            class="btn btn-primary py-1 px-4 rounded-12 font-semi-bold"
+                          >
+                            Upgrade to School Admin
+                          </button>
                         </div>
                       </div>
                       <div v-if="user_type == 3" class="col-md-12">
@@ -320,14 +235,7 @@
 
                             <div class="card card-primary p-2">
                               <p
-                                class="
-                                  mb-0
-                                  text-16
-                                  color-secondary
-                                  d-flex
-                                  flex-row
-                                  align-items-center
-                                "
+                                class="mb-0 text-16 color-secondary d-flex flex-row align-items-center"
                               >
                                 <span class="text-20"
                                   ><i class="fas fa-phone"></i
@@ -351,139 +259,106 @@
                               code</span
                             >
                           </div>
-                          
-                          
+
                           <div class="col-xl-12">
-                            <div class="card card-primary p-3 h-100 d-flex flex-column">
-                            <h4 class="color-dark font-semi-bold">
-                            Notification Settings
-                          </h4>
                             <div
-                              class="
-                                col-xl-12
-                                align-items-center
-                              "
+                              class="card card-primary p-3 h-100 d-flex flex-column"
                             >
-                              <div class="d-flex flex-wrap">
-                                <div class="custom-switch pb-1 mr-3">
-                                  <input
-                                    @change="updateNotification($event, 'sms')"
-                                    type="checkbox"
-                                    id="smsNotify"
-                                    name="smsNotify"
-                                    class="custom-control-input color-primary"
-                                    v-model="smsNotify"
-                                  />
-                                  <label
-                                    class="
-                                      custom-control-label
-                                      font-normal
-                                      color-dark
-                                      text-14
-                                      cursor-pointer
-                                    "
-                                    for="smsNotify"
-                                    >SMS Notification
-                                  </label>
-                                </div>
-                                <div class="custom-switch pb-1 mr-3">
-                                  <input
-                                    @change="
-                                      updateNotification($event, 'meeting')
-                                    "
-                                    type="checkbox"
-                                    id="meetingNotify"
-                                    name="meetingNotify"
-                                    class="custom-control-input color-primary"
-                                    v-model="meetingNotify"
-                                  />
-                                  <label
-                                    class="
-                                      custom-control-label
-                                      font-normal
-                                      color-dark
-                                      text-14
-                                      cursor-pointer
-                                    "
-                                    for="meetingNotify"
-                                    >Meeting Notification
-                                  </label>
-                                </div>
-                              
-                                <div class="custom-switch pb-1 mr-3">
-                                  <input
-                                    @change="updateNotification($event, 'club')"
-                                    type="checkbox"
-                                    id="clubNotify"
-                                    name="clubNotify"
-                                    class="custom-control-input color-primary"
-                                    v-model="clubNotify"
-                                  />
-                                  <label
-                                    class="
-                                      custom-control-label
-                                      font-normal
-                                      color-dark
-                                      text-14
-                                      cursor-pointer
-                                    "
-                                    for="clubNotify"
-                                    >Club Notification
-                                  </label>
-                                </div>
-                                <div class="custom-switch pb-1 mr-3">
-                                  <input
-                                    @change="
-                                      updateNotification($event, 'assignment')
-                                    "
-                                    type="checkbox"
-                                    id="assignmentNotify"
-                                    name="assignmentNotify"
-                                    class="custom-control-input color-primary"
-                                    v-model="assignmentNotify"
-                                  />
-                                  <label
-                                    class="
-                                      custom-control-label
-                                      font-normal
-                                      color-dark
-                                      text-14
-                                      cursor-pointer
-                                    "
-                                    for="assignmentNotify"
-                                    >Assignment Notification
-                                  </label>
-                                </div>
-                                <div class="custom-switch pb-1 mr-3">
-                                  <input
-                                    @change="
-                                      updateNotification($event, 'session')
-                                    "
-                                    type="checkbox"
-                                    id="sessionNotify"
-                                    name="sessionNotify"
-                                    class="custom-control-input color-primary"
-                                    v-model="sessionNotify"
-                                  />
-                                  <label
-                                    class="
-                                      custom-control-label
-                                      font-normal
-                                      color-dark
-                                      text-14
-                                      cursor-pointer
-                                    "
-                                    for="sessionNotify"
-                                    >Study Session Notification
-                                  </label>
+                              <h4 class="color-dark font-semi-bold">
+                                Notification Settings
+                              </h4>
+                              <div class="col-xl-12 align-items-center">
+                                <div class="d-flex flex-wrap">
+                                  <div class="custom-switch pb-1 mr-3">
+                                    <input
+                                      @change="
+                                        updateNotification($event, 'sms')
+                                      "
+                                      type="checkbox"
+                                      id="smsNotify"
+                                      name="smsNotify"
+                                      class="custom-control-input color-primary"
+                                      v-model="smsNotify"
+                                    />
+                                    <label
+                                      class="custom-control-label font-normal color-dark text-14 cursor-pointer"
+                                      for="smsNotify"
+                                      >SMS Notification
+                                    </label>
+                                  </div>
+                                  <div class="custom-switch pb-1 mr-3">
+                                    <input
+                                      @change="
+                                        updateNotification($event, 'meeting')
+                                      "
+                                      type="checkbox"
+                                      id="meetingNotify"
+                                      name="meetingNotify"
+                                      class="custom-control-input color-primary"
+                                      v-model="meetingNotify"
+                                    />
+                                    <label
+                                      class="custom-control-label font-normal color-dark text-14 cursor-pointer"
+                                      for="meetingNotify"
+                                      >Meeting Notification
+                                    </label>
+                                  </div>
+
+                                  <div class="custom-switch pb-1 mr-3">
+                                    <input
+                                      @change="
+                                        updateNotification($event, 'club')
+                                      "
+                                      type="checkbox"
+                                      id="clubNotify"
+                                      name="clubNotify"
+                                      class="custom-control-input color-primary"
+                                      v-model="clubNotify"
+                                    />
+                                    <label
+                                      class="custom-control-label font-normal color-dark text-14 cursor-pointer"
+                                      for="clubNotify"
+                                      >Club Notification
+                                    </label>
+                                  </div>
+                                  <div class="custom-switch pb-1 mr-3">
+                                    <input
+                                      @change="
+                                        updateNotification($event, 'assignment')
+                                      "
+                                      type="checkbox"
+                                      id="assignmentNotify"
+                                      name="assignmentNotify"
+                                      class="custom-control-input color-primary"
+                                      v-model="assignmentNotify"
+                                    />
+                                    <label
+                                      class="custom-control-label font-normal color-dark text-14 cursor-pointer"
+                                      for="assignmentNotify"
+                                      >Assignment Notification
+                                    </label>
+                                  </div>
+                                  <div class="custom-switch pb-1 mr-3">
+                                    <input
+                                      @change="
+                                        updateNotification($event, 'session')
+                                      "
+                                      type="checkbox"
+                                      id="sessionNotify"
+                                      name="sessionNotify"
+                                      class="custom-control-input color-primary"
+                                      v-model="sessionNotify"
+                                    />
+                                    <label
+                                      class="custom-control-label font-normal color-dark text-14 cursor-pointer"
+                                      for="sessionNotify"
+                                      >Study Session Notification
+                                    </label>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          </div>
-
-
-
                         </div>
                       </div>
                     </div>
@@ -496,31 +371,25 @@
                       "
                       class="col-md-6"
                     >
-
                       <div class="jochi-components-light-bg p-4 h-100">
                         <div class="">
                           <div v-if="user_type == '3'" class="col-md-12">
                             <div
                               v-if="advisorDetail && advisorDetail.first_name"
-                              class="card card-primary p-3 "
+                              class="card card-primary p-3"
                             >
                               <h4 class="color-dark font-semi-bold">
                                 Your Advisor
                               </h4>
                               <div
-                                class="
-                                  d-flex
-                                  align-items-center
-                                  my-2
-                                  mr-3
-                                  min-w-200
-                                "
+                                class="d-flex align-items-center my-2 mr-3 min-w-200"
                               >
                                 <div class="ld-img-section mr-3">
                                   <div class="ld-img-holder">
                                     <img
                                       v-if="
-                                        advisorDetail && advisorDetail.profile_pic
+                                        advisorDetail &&
+                                        advisorDetail.profile_pic
                                       "
                                       :src="advisorDetail.profile_pic"
                                       alt=""
@@ -545,23 +414,14 @@
                             </div>
                           </div>
                           <div v-if="requestList.length > 0" class="col-md-12">
-                            <div
-                              class="card card-primary p-3"
-                            >
+                            <div class="card card-primary p-3">
                               <h4 class="color-dark font-semi-bold">
                                 Advisor Requests
                               </h4>
                               <div
                                 v-for="advisor in requestList"
                                 :key="advisor.id"
-                                class="
-                                  d-flex
-                                  flex-column flex-md-row
-                                  align-items-center
-                                  my-2
-                                  mr-3
-                                  min-w-200
-                                "
+                                class="d-flex flex-column flex-md-row align-items-center my-2 mr-3 min-w-200"
                               >
                                 <div
                                   class="ld-img-section mr-0 mr-md-3 mb-2 mb-md-0"
@@ -584,13 +444,7 @@
                                   </div>
                                 </div>
                                 <div
-                                  class="
-                                    d-flex
-                                    flex-column flex-md-row
-                                    align-items-center
-                                    justify-content-between
-                                    w-100 flex-wrap
-                                  "
+                                  class="d-flex flex-column flex-md-row align-items-center justify-content-between w-100 flex-wrap"
                                 >
                                   <div class="ld-details-section">
                                     <p
@@ -606,20 +460,10 @@
                                   </div>
 
                                   <div
-                                    class="
-                                      d-flex
-                                      align-items-center
-                                      justify-content-center flex-wrap
-                                    "
+                                    class="d-flex align-items-center justify-content-center flex-wrap"
                                   >
                                     <button
-                                      class="
-                                        btn btn-secondary
-                                        px-3
-                                        py-1
-                                        rounded-pill
-                                        mr-2 mb-2
-                                      "
+                                      class="btn btn-secondary px-3 py-1 rounded-pill mr-2 mb-2"
                                       @click="respondRequest(2, advisor)"
                                     >
                                       Reject
@@ -637,9 +481,6 @@
                           </div>
                         </div>
                       </div>
-
-
-
                     </div>
 
                     <!-- <div class="col-12 col-md-4">
@@ -779,12 +620,16 @@ export default {
       clubNotify: false,
       assignmentNotify: false,
       sessionNotify: false,
+      requestSent: "0",
+      isSchoolAdmin: "0",
     };
   },
 
   created() {
     this.UserDetails();
     this.user_type = localStorage.getItem("user_type");
+    this.requestSent = localStorage.getItem("schoolAdminRequested");
+    this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     if (this.user_type == "3") {
       this.getAllAdvisors();
       this.getAdvisor();
@@ -817,6 +662,7 @@ export default {
       updatePhone: "updatePhone",
       notificationUpdate: "notificationUpdate",
       getSettings: "getSettings",
+      upgradeUser: "upgradeUser",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -1072,6 +918,26 @@ export default {
       this.clubNotify = this.notificationSettings.clubs ? true : false;
       this.meetingNotify = this.notificationSettings.meetings ? true : false;
       this.sessionNotify = this.notificationSettings.sessions ? true : false;
+    },
+    async upgrade() {
+      this.loading = true;
+      await this.upgradeUser({ teacher_id: localStorage.getItem("id") });
+      this.loading = false;
+      if (this.successMessage != "") {
+        this.requestSent = "1";
+        localStorage.setItem("schoolAdminRequested", "1");
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
     },
   },
   // // middleware: "authenticated",

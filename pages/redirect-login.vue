@@ -1,24 +1,11 @@
 <template>
   <div class="inner-section">
     <div
-      class="
-        main-section
-        sufee-login
-        d-flex
-        vh-100
-        align-content-center
-        flex-wrap
-      "
+      class="main-section sufee-login d-flex vh-100 align-content-center flex-wrap"
     >
       <div class="container">
         <div
-          class="
-            login-content
-            d-flex
-            flex-column
-            align-items-center
-            justify-content-center
-          "
+          class="login-content d-flex flex-column align-items-center justify-content-center"
         >
           <div class="login-logo">
             <img
@@ -62,6 +49,8 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
       studentSignUp: (state) => state.studentSignUp,
+      schoolAdminRequested: (state) => state.schoolAdminRequested,
+      schoolAdmin: (state) => state.schoolAdmin,
     }),
   },
   methods: {
