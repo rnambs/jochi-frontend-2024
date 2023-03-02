@@ -9,12 +9,7 @@
     <div class="main-section">
       <!-- tab for club info -->
       <div
-        class="
-          jochi-components-light-bg
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-        "
+        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
         <div
@@ -30,14 +25,7 @@
         >
           <div class="black-grad"></div>
           <div
-            class="
-              position-absolute
-              cover-button
-              mr-3
-              mb-1
-              d-flex
-              align-items-center
-            "
+            class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center"
           >
             <button
               v-if="enableEdit"
@@ -67,41 +55,57 @@
               'dropdown-club--visible': dropdownVisible,
             }"
           >
-            <ul class="m-0">
-              <ul class="m-0">
-                <li>
-                  <button
-                    class="btn btn-primary btn-sm py-1 mb-2 col-12"
-                    @click="openConfirm('info')"
-                  >
-                    Info
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="btn btn-primary btn-sm py-1 mb-2 col-12"
-                    @click="openConfirm('leave')"
-                  >
-                    Leave
-                  </button>
-                </li>
-                <li v-if="userType == '3' && enableEdit">
-                  <button
-                    class="btn btn-primary btn-sm py-1 mb-2 col-12"
-                    @click="openConfirm('remove_leader')"
-                  >
-                    Remove As Leader
-                  </button>
-                </li>
-                <li v-if="enableEdit">
-                  <button
-                    class="btn btn-primary btn-sm py-1 col-12"
-                    @click="openConfirm('delete')"
-                  >
-                    Delete
-                  </button>
-                </li>
-              </ul>
+            <ul v-if="isSchoolAdmin != '1'" class="m-0">
+              <li>
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                  @click="openConfirm('info')"
+                >
+                  Info
+                </button>
+              </li>
+              <li>
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                  @click="openConfirm('leave')"
+                >
+                  Leave
+                </button>
+              </li>
+              <li v-if="userType == '3' && enableEdit">
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                  @click="openConfirm('remove_leader')"
+                >
+                  Remove As Leader
+                </button>
+              </li>
+              <li v-if="enableEdit">
+                <button
+                  class="btn btn-primary btn-sm py-1 col-12"
+                  @click="openConfirm('delete')"
+                >
+                  Delete
+                </button>
+              </li>
+            </ul>
+            <ul v-else class="m-0">
+              <li>
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                  @click="openConfirm('info')"
+                >
+                  Info
+                </button>
+              </li>
+              <li >
+                <button
+                  class="btn btn-primary btn-sm py-1 col-12"
+                  @click="openConfirm('delete')"
+                >
+                  Delete
+                </button>
+              </li>
             </ul>
             <!-- dropdown content here -->
           </div>
@@ -111,42 +115,16 @@
 
         <section id="club-detail" class="d-flex flex-column flex-fill h-40">
           <div
-            class="
-              club-section
-              container-fluid
-              mt-2
-              d-flex
-              flex-column flex-fill
-              h-40
-              custom-overflow
-            "
+            class="club-section container-fluid mt-2 d-flex flex-column flex-fill h-40 custom-overflow"
           >
             <div
-              class="
-                inner-club
-                club-info
-                d-flex
-                flex-column
-                container-fluid
-                h-40
-                flex-fill
-                pt-3
-                px-3
-              "
+              class="inner-club club-info d-flex flex-column container-fluid h-40 flex-fill pt-3 px-3"
             >
               <div class="info-head my-2">
                 <h3 class="color-primary font-bold">{{ headingName }}</h3>
               </div>
               <div
-                class="
-                  inner-info
-                  container-fluid
-                  my-1
-                  d-flex
-                  flex-column
-                  h-40
-                  flex-fill
-                "
+                class="inner-info container-fluid my-1 d-flex flex-column h-40 flex-fill"
               >
                 <div class="row my-0 h-40 flex-fill">
                   <div
@@ -154,25 +132,10 @@
                     class="col-md-6 col-xs-12 h-md-100 d-flex"
                   >
                     <div
-                      class="
-                        inner-info
-                        container-fluid
-                        p-2
-                        d-flex
-                        flex-column
-                        card card-secondary-sm
-                        rounded-22
-                        p-4
-                      "
+                      class="inner-info container-fluid p-2 d-flex flex-column card card-secondary-sm rounded-22 p-4"
                     >
                       <div
-                        class="
-                          d-flex
-                          align-items-center
-                          justify-content-between
-                          mb-3
-                          px-2
-                        "
+                        class="d-flex align-items-center justify-content-between mb-3 px-2"
                       >
                         <h5 class="color-dark mb-0 font-bold">
                           Trainings/Matches
@@ -197,56 +160,29 @@
                           >
                             <div class="d-flex flex-column">
                               <div
-                                class="
-                                  d-flex
-                                  flex-row flex-sm-column flex-xl-row
-                                  justify-content-between
-                                  w-100
-                                "
+                                class="d-flex flex-row flex-sm-column flex-xl-row justify-content-between w-100"
                               >
                                 <div class="left-side">
                                   <h4
                                     @click="openEditSportsActivity(item)"
-                                    class="
-                                      color-primary
-                                      text-truncate
-                                      mb-1
-                                      font-semi-bold
-                                      text-18
-                                      cursor-pointer
-                                    "
+                                    class="color-primary text-truncate mb-1 font-semi-bold text-18 cursor-pointer"
                                   >
                                     {{ item.title }}
                                   </h4>
                                   <p
                                     @click="openEditSportsActivity(item)"
-                                    class="
-                                      color-dark
-                                      text-16
-                                      font-semi-bold
-                                      mb-0
-                                      cursor-pointer
-                                    "
+                                    class="color-dark text-16 font-semi-bold mb-0 cursor-pointer"
                                   >
                                     {{ item.first_name }}
                                     <span>{{ headingName }}</span>
                                     <span
-                                      class="
-                                        color-primary
-                                        text-18
-                                        font-semi-bold
-                                      "
+                                      class="color-primary text-18 font-semi-bold"
                                       >Vs</span
                                     >
                                     <span>{{ item.opponent_team }}</span>
                                   </p>
                                   <p
-                                    class="
-                                      color-secondary
-                                      text-14
-                                      font-regular
-                                      mb-1
-                                    "
+                                    class="color-secondary text-14 font-regular mb-1"
                                   >
                                     <span>{{ item.formattedDate }}</span
                                     ><span> &nbsp; </span
@@ -254,16 +190,7 @@
                                   </p>
                                 </div>
                                 <div
-                                  class="
-                                    right-side
-                                    h-100
-                                    d-flex
-                                    align-items-end
-                                    align-items-sm-center
-                                    align-items-xl-end
-                                    justify-content-between
-                                    flex-column flex-sm-row flex-xl-column
-                                  "
+                                  class="right-side h-100 d-flex align-items-end align-items-sm-center align-items-xl-end justify-content-between flex-column flex-sm-row flex-xl-column"
                                 >
                                   <p class="mb-0 color-secondary text-right">
                                     <span
@@ -295,12 +222,7 @@
                                 </div>
                               </div>
                               <p
-                                class="
-                                  mb-0
-                                  color-secondary
-                                  text-14
-                                  font-regular
-                                "
+                                class="mb-0 color-secondary text-14 font-regular"
                               >
                                 {{ item.desc }}
                               </p>
@@ -308,12 +230,7 @@
                           </div>
                           <div v-else class="card card-void px-3 py-2 mb-3">
                             <div
-                              class="
-                                d-flex
-                                flex-row flex-sm-column flex-xl-row
-                                justify-content-between
-                                w-100
-                              "
+                              class="d-flex flex-row flex-sm-column flex-xl-row justify-content-between w-100"
                             >
                               <div
                                 @click="openEditSportsActivity(item)"
@@ -326,51 +243,25 @@
                                 </p>
                                 <p
                                   @click="openEditSportsActivity(item)"
-                                  class="
-                                    color-primary
-                                    word-break
-                                    cursor-pointer
-                                    mb-0
-                                    line-break-anywhere
-                                    font-semi-bold
-                                  "
+                                  class="color-primary word-break cursor-pointer mb-0 line-break-anywhere font-semi-bold"
                                 >
                                   {{ item.title }}
                                 </p>
                               </div>
                               <div
-                                class="
-                                  right-side
-                                  h-100
-                                  d-flex
-                                  align-items-end
-                                  align-items-sm-center
-                                  align-items-xl-end
-                                  justify-content-between
-                                  flex-column flex-sm-row flex-xl-column
-                                "
+                                class="right-side h-100 d-flex align-items-end align-items-sm-center align-items-xl-end justify-content-between flex-column flex-sm-row flex-xl-column"
                               >
                                 <div
                                   class="d-flex flex-wrap justify-content-end"
                                 >
                                   <p
-                                    class="
-                                      color-secondary
-                                      text-14
-                                      font-regular
-                                      mb-1
-                                    "
+                                    class="color-secondary text-14 font-regular mb-1"
                                   >
                                     {{ item.formattedDate }}
                                   </p>
                                   &nbsp;
                                   <p
-                                    class="
-                                      color-secondary
-                                      text-14
-                                      font-regular
-                                      mb-0
-                                    "
+                                    class="color-secondary text-14 font-regular mb-0"
                                   >
                                     {{ item.time }}
                                   </p>
@@ -430,25 +321,10 @@
                               class="row m-0"
                             >
                               <p
-                                class="
-                                  mb-0
-                                  col-8
-                                  p-0
-                                  color-secondary
-                                  font-regular
-                                  text-16
-                                  d-flex
-                                  align-items-center
-                                "
+                                class="mb-0 col-8 p-0 color-secondary font-regular text-16 d-flex align-items-center"
                               >
                                 <span
-                                  class="
-                                    d-flex
-                                    rounded-circle
-                                    border
-                                    bullet
-                                    mr-2
-                                  "
+                                  class="d-flex rounded-circle border bullet mr-2"
                                 ></span>
                                 <span
                                   class="input-name color-dark text-truncate"
@@ -497,25 +373,10 @@
                   </div>
                   <div class="col-md-6 col-xs-12 h-100 d-flex">
                     <div
-                      class="
-                        inner-info
-                        container
-                        p-2
-                        d-flex
-                        flex-column
-                        card card-secondary-sm
-                        rounded-22
-                        p-4
-                      "
+                      class="inner-info container p-2 d-flex flex-column card card-secondary-sm rounded-22 p-4"
                     >
                       <div
-                        class="
-                          d-flex
-                          align-items-center
-                          justify-content-between
-                          mb-2
-                          px-2
-                        "
+                        class="d-flex align-items-center justify-content-between mb-2 px-2"
                       >
                         <h5 class="color-dark font-bold mb-0">Announcements</h5>
                         <a
@@ -539,12 +400,7 @@
                             "
                           >
                             <div
-                              class="
-                                d-flex
-                                justify-content-between
-                                flex-row flex-sm-column flex-xl-row
-                                w-100
-                              "
+                              class="d-flex justify-content-between flex-row flex-sm-column flex-xl-row w-100"
                             >
                               <div class="left-side">
                                 <p
@@ -554,51 +410,24 @@
                                 </p>
                                 <p
                                   @click="openEdit(item)"
-                                  class="
-                                    color-primary
-                                    word-break
-                                    cursor-pointer
-                                    line-break-anywhere
-                                    mb-0
-                                    font-semi-bold
-                                  "
+                                  class="color-primary word-break cursor-pointer line-break-anywhere mb-0 font-semi-bold"
                                 >
                                   {{ item.title }}
                                 </p>
                               </div>
                               <div
-                                class="
-                                  right-side
-                                  h-100
-                                  d-flex
-                                  align-items-end
-                                  align-items-sm-center
-                                  align-items-xl-end
-                                  justify-content-between
-                                  flex-column flex-sm-row flex-xl-column
-                                "
+                                class="right-side h-100 d-flex align-items-end align-items-sm-center align-items-xl-end justify-content-between flex-column flex-sm-row flex-xl-column"
                               >
                                 <div
                                   class="d-flex flex-wrap justify-content-end"
                                 >
                                   <p
-                                    class="
-                                      color-secondary
-                                      font-regular
-                                      text-nowrap text-14
-                                      mb-1
-                                    "
+                                    class="color-secondary font-regular text-nowrap text-14 mb-1"
                                   >
                                     {{ item.date }}<span> &nbsp; </span>
                                   </p>
                                   <p
-                                    class="
-                                      color-secondary
-                                      text-nowrap
-                                      font-regular
-                                      text-14
-                                      mb-0
-                                    "
+                                    class="color-secondary text-nowrap font-regular text-14 mb-0"
                                   >
                                     {{ item.time }}
                                   </p>
@@ -646,15 +475,7 @@
                     path: '/club-info',
                     query: { id: clubId, name: headingName, type: type },
                   }"
-                  class="
-                    inner-tab
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    p-2
-                    rounded-10
-                    h-100
-                  "
+                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
                   <span class="text-24 color-primary font-semi-bold"
                     >Club Details</span
@@ -667,15 +488,7 @@
                     path: '/club-files',
                     query: { id: clubId, name: headingName, type: type },
                   }"
-                  class="
-                    inner-tab
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    p-2
-                    rounded-10
-                    h-100
-                  "
+                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
                   <span class="text-24 color-primary font-semi-bold"
                     >Files/Slides</span
@@ -1258,13 +1071,7 @@
                   "
                 >
                   <a
-                    class="
-                      btn
-                      date-picker
-                      badge badge-pill badge-color
-                      active
-                      mx-1
-                    "
+                    class="btn date-picker badge badge-pill badge-color active mx-1"
                     :id="day"
                     v-if="checkSlot(day)"
                     >{{ day }}</a
@@ -1322,16 +1129,7 @@
             <div class="d-flex flex-column overflow-hidden h-100">
               <div
                 size="120"
-                class="
-                  user
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                  py-4
-                  rounded
-                  card card-primary-sm
-                  mb-3
-                "
+                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-sm mb-3"
               >
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"
@@ -1347,14 +1145,7 @@
                 />
               </div>
               <v-card
-                class="
-                  bg-transparent
-                  shadow-none
-                  h-100
-                  overflow-hidden
-                  d-flex
-                  flex-column
-                "
+                class="bg-transparent shadow-none h-100 overflow-hidden d-flex flex-column"
               >
                 <v-card-text
                   v-show="selectedFile"
@@ -1371,33 +1162,14 @@
                 <v-card-actions class="justify-content-end">
                   <v-btn
                     color="primary"
-                    class="
-                      btn btn-secondary
-                      font-semi-bold
-                      color-white
-                      mr-2
-                      py-1
-                      px-3
-                      rounded-12
-                      text-capitalize
-                    "
+                    class="btn btn-secondary font-semi-bold color-white mr-2 py-1 px-3 rounded-12 text-capitalize"
                     text
                     data-dismiss="modal"
                     @click="clearCrop"
                     ><span class="font-semi-bold">Cancel</span></v-btn
                   >
                   <v-btn
-                    class="
-                      btn btn-success
-                      font-semi-bold
-                      bg-primary
-                      color-dark
-                      py-1
-                      px-3
-                      rounded-12
-                      text-capitalize
-                      shadow-none
-                    "
+                    class="btn btn-success font-semi-bold bg-primary color-dark py-1 px-3 rounded-12 text-capitalize shadow-none"
                     @click="saveImage(), (dialog = false)"
                     ><span class="font-semi-bold">Upload</span></v-btn
                   >
@@ -1591,6 +1363,7 @@ export default {
       clubCreatedAt: "",
       userType: "",
       startTime: null,
+      isSchoolAdmin: "0",
     };
   },
   validations: {
@@ -1616,6 +1389,9 @@ export default {
     },
   },
   mounted() {
+    if (localStorage.getItem("schoolAdmin")) {
+      this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
+    }
     const page = "ClubHomepage";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });

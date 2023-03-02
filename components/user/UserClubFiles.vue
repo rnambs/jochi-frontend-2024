@@ -4,15 +4,7 @@
       <lottie :options="lottieOptions" v-on:animCreated="handleAnimation" />
       <div
         id="fountainTextG"
-        class="
-          d-flex
-          align-items-center
-          justify-content-center
-          w-100
-          m-0
-          h-100
-          position-absolute
-        "
+        class="d-flex align-items-center justify-content-center w-100 m-0 h-100 position-absolute"
       >
         <div id="fountainTextG_1" class="fountainTextG">L</div>
         <div id="fountainTextG_2" class="fountainTextG">o</div>
@@ -29,12 +21,7 @@
     <div class="main-section">
       <!-- tab for club files -->
       <div
-        class="
-          jochi-components-light-bg
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-        "
+        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club files -->
         <!-- Club files -->
@@ -51,14 +38,7 @@
         >
           <div class="black-grad"></div>
           <div
-            class="
-              position-absolute
-              cover-button
-              mr-3
-              mb-1
-              d-flex
-              align-items-center
-            "
+            class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center"
           >
             <button
               v-if="enableEdit"
@@ -87,7 +67,7 @@
               'dropdown-club--visible': dropdownVisible,
             }"
           >
-            <ul class="m-0">
+            <ul v-if="isSchoolAdmin != '1'" class="m-0">
               <li>
                 <button
                   class="btn btn-primary btn-sm py-1 mb-2 col-12"
@@ -121,31 +101,34 @@
                 </button>
               </li>
             </ul>
+            <ul v-else class="m-0">
+              <li>
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                  @click="openConfirm('info')"
+                >
+                  Info
+                </button>
+              </li>
+              <li>
+                <button
+                  class="btn btn-primary btn-sm py-1 col-12"
+                  @click="openConfirm('delete')"
+                >
+                  Delete
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
         <section id="club-detail" class="flex-fill d-flex flex-column h-40">
           <div
-            class="
-              club-section
-              container-fluid
-              pt-2
-              d-flex
-              flex-column
-              custom-overflow
-              flex-fill
-            "
+            class="club-section container-fluid pt-2 d-flex flex-column custom-overflow flex-fill"
           >
             <div class="row my-0 flex-fill">
               <div class="col d-flex h-md-100">
                 <div
-                  class="
-                    inner-club
-                    club-files
-                    container-fluid
-                    p-3
-                    d-flex
-                    flex-column
-                  "
+                  class="inner-club club-files container-fluid p-3 d-flex flex-column"
                 >
                   <div class="info-head container-fluid mb-2">
                     <h3 class="color-primary font-semi-bold mb-1">
@@ -153,23 +136,10 @@
                     </h3>
                   </div>
                   <div
-                    class="
-                      custom-overflow
-                      image-overflow
-                      d-flex
-                      flex-column
-                      h-100
-                    "
+                    class="custom-overflow image-overflow d-flex flex-column h-100"
                   >
                     <div
-                      class="
-                        row
-                        info-row
-                        container-fluid
-                        my-0
-                        mx-auto
-                        align-items-start
-                      "
+                      class="row info-row container-fluid my-0 mx-auto align-items-start"
                     >
                       <div
                         class="col-md-3 col-sm-6 p-2"
@@ -186,12 +156,7 @@
                             v-on:click="modalPopUp(list.id, list.file_name)"
                           >
                             <i
-                              class="
-                                fa fa-times
-                                p-1
-                                w-100
-                                text-right text-secondary
-                              "
+                              class="fa fa-times p-1 w-100 text-right text-secondary"
                               aria-hidden="true"
                               v-if="enableEdit"
                               data-toggle="modal"
@@ -226,12 +191,7 @@
                             v-on:click="modalPopUp(list.id, list.file_name)"
                           >
                             <i
-                              class="
-                                fa fa-times
-                                p-1
-                                w-100
-                                text-right text-secondary
-                              "
+                              class="fa fa-times p-1 w-100 text-right text-secondary"
                               aria-hidden="true"
                               v-if="enableEdit"
                               data-toggle="modal"
@@ -265,12 +225,7 @@
                             v-on:click="modalPopUp(list.id, list.file_name)"
                           >
                             <i
-                              class="
-                                fa fa-times
-                                p-1
-                                w-100
-                                text-right text-secondary
-                              "
+                              class="fa fa-times p-1 w-100 text-right text-secondary"
                               aria-hidden="true"
                               v-if="enableEdit"
                               data-toggle="modal"
@@ -302,43 +257,18 @@
                           <!-- The Modal -->
                           <div id="myModal" class="modal">
                             <div
-                              class="
-                                d-flex
-                                align-items-center
-                                justify-content-center
-                                h-100
-                              "
+                              class="d-flex align-items-center justify-content-center h-100"
                             >
                               <div
                                 class="d-flex flex-column w-50 align-items-end"
                               >
                                 <span
-                                  class="
-                                    close
-                                    d-flex
-                                    align-items-center
-                                    justify-content-center
-                                    rounded-circle
-                                    bg-white
-                                    color-primary
-                                    mb-1
-                                    font-regular
-                                    position-absolute
-                                    z-index-9
-                                    mr-2
-                                    mt-2
-                                  "
+                                  class="close d-flex align-items-center justify-content-center rounded-circle bg-white color-primary mb-1 font-regular position-absolute z-index-9 mr-2 mt-2"
                                   @click="spanClose()"
                                   >&times;</span
                                 >
                                 <div
-                                  class="
-                                    modal-content
-                                    h-100
-                                    border-white
-                                    card card-white
-                                    rounded-22
-                                  "
+                                  class="modal-content h-100 border-white card card-white rounded-22"
                                 >
                                   <img id="img01" class="img-preview" />
                                   <div id="caption" class="pl-3 py-2"></div>
@@ -350,14 +280,7 @@
                       </div>
                       <div
                         v-if="allList.length == 0"
-                        class="
-                          w-100
-                          text-center
-                          d-flex
-                          align-items-center
-                          justify-content-center
-                          h-100
-                        "
+                        class="w-100 text-center d-flex align-items-center justify-content-center h-100"
                       >
                         <p class="no-data mb-0">No Files</p>
                       </div>
@@ -395,26 +318,14 @@
                     <div class="modal-footer">
                       <button
                         type="button"
-                        class="
-                          btn btn-secondary
-                          px-4
-                          py-1
-                          rounded-12
-                          font-semi-bold
-                        "
+                        class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
                         data-dismiss="modal"
                       >
                         No
                       </button>
                       <button
                         type="button"
-                        class="
-                          btn btn-success
-                          px-4
-                          py-1
-                          rounded-12
-                          font-semi-bold
-                        "
+                        class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
                         data-dismiss="modal"
                         @click="FileRemove"
                       >
@@ -426,28 +337,10 @@
               </div>
               <div v-if="enableEdit" class="col-lg-4 d-flex flex-column py-3">
                 <div
-                  class="
-                    inner-club
-                    club-files
-                    card card-primary
-                    rounded-22
-                    p-3
-                    h-40
-                    flex-fill
-                    d-flex
-                  "
+                  class="inner-club club-files card card-primary rounded-22 p-3 h-40 flex-fill d-flex"
                 >
                   <div
-                    class="
-                      container-fluid
-                      p-2
-                      text-center
-                      d-flex
-                      flex-column
-                      justify-content-center
-                      align-items-center
-                      flex-fill
-                    "
+                    class="container-fluid p-2 text-center d-flex flex-column justify-content-center align-items-center flex-fill"
                   >
                     <form
                       method="post"
@@ -563,15 +456,7 @@
                       type: activity_type,
                     },
                   }"
-                  class="
-                    inner-tab
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    p-2
-                    rounded-10
-                    h-100
-                  "
+                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
                   <span class="text-24 color-primary font-semi-bold"
                     >Home Page</span
@@ -588,15 +473,7 @@
                       type: activity_type,
                     },
                   }"
-                  class="
-                    inner-tab
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    p-2
-                    rounded-10
-                    h-100
-                  "
+                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
                   <span class="text-24 color-primary font-semi-bold"
                     >Club Details</span
@@ -739,16 +616,7 @@
             <div class="d-flex flex-column overflow-hidden h-100">
               <div
                 size="120"
-                class="
-                  user
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                  py-4
-                  rounded
-                  card card-primary-sm
-                  mb-3
-                "
+                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-sm mb-3"
               >
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"
@@ -764,14 +632,7 @@
                 />
               </div>
               <v-card
-                class="
-                  bg-transparent
-                  shadow-none
-                  h-100
-                  overflow-hidden
-                  d-flex
-                  flex-column
-                "
+                class="bg-transparent shadow-none h-100 overflow-hidden d-flex flex-column"
               >
                 <v-card-text class="p-0 h-100 overflow-hidden">
                   <VueCropper
@@ -786,33 +647,14 @@
                 <v-card-actions class="justify-content-end">
                   <v-btn
                     color="primary"
-                    class="
-                      btn btn-secondary
-                      font-semi-bold
-                      color-white
-                      mr-2
-                      py-1
-                      px-3
-                      rounded-12
-                      text-capitalize
-                    "
+                    class="btn btn-secondary font-semi-bold color-white mr-2 py-1 px-3 rounded-12 text-capitalize"
                     text
                     data-dismiss="modal"
                     @click="clearCrop"
                     ><span class="font-semi-bold">Cancel</span></v-btn
                   >
                   <v-btn
-                    class="
-                      btn btn-success
-                      font-semi-bold
-                      bg-primary
-                      color-dark
-                      py-1
-                      px-3
-                      rounded-12
-                      text-capitalize
-                      shadow-none
-                    "
+                    class="btn btn-success font-semi-bold bg-primary color-dark py-1 px-3 rounded-12 text-capitalize shadow-none"
                     @click="saveImage(), (dialog = false)"
                     ><span class="font-semi-bold">Upload</span></v-btn
                   >
@@ -962,9 +804,13 @@ export default {
       clubCreatedAt: "",
       userType: "",
       startTime: null,
+      isSchoolAdmin: "0",
     };
   },
   mounted() {
+    if (localStorage.getItem("schoolAdmin")) {
+      this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
+    }
     const page = "ClubFiles";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });

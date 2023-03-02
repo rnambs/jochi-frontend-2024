@@ -9,12 +9,7 @@
     <div class="main-section">
       <!-- tab for club info -->
       <div
-        class="
-          jochi-components-light-bg
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-        "
+        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
 
@@ -33,14 +28,7 @@
         >
           <div class="black-grad"></div>
           <div
-            class="
-              position-absolute
-              cover-button
-              mr-3
-              mb-1
-              d-flex
-              align-items-center
-            "
+            class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center"
           >
             <button
               v-if="enableEdit"
@@ -70,58 +58,64 @@
               'dropdown-club--visible': dropdownVisible,
             }"
           >
-            <ul class="m-0">
-              <ul class="m-0">
-                <li>
-                  <button
-                    class="btn btn-primary btn-sm py-1 mb-2 col-12"
-                    @click="openConfirm('info')"
-                  >
-                    Info
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="btn btn-primary btn-sm py-1 mb-2 col-12"
-                    @click="openConfirm('leave')"
-                  >
-                    Leave
-                  </button>
-                </li>
-                <li v-if="userType == '3' && enableEdit">
-                  <button
-                    class="btn btn-primary btn-sm py-1 mb-2 col-12"
-                    @click="openConfirm('remove_leader')"
-                  >
-                    Remove As Leader
-                  </button>
-                </li>
-                <li v-if="enableEdit">
-                  <button
-                    class="btn btn-primary btn-sm py-1 col-12"
-                    @click="openConfirm('delete')"
-                  >
-                    Delete
-                  </button>
-                </li>
-              </ul>
+            <ul v-if="isSchoolAdmin != '1'" class="m-0">
+              <li>
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                  @click="openConfirm('info')"
+                >
+                  Info
+                </button>
+              </li>
+              <li>
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                  @click="openConfirm('leave')"
+                >
+                  Leave
+                </button>
+              </li>
+              <li v-if="userType == '3' && enableEdit">
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                  @click="openConfirm('remove_leader')"
+                >
+                  Remove As Leader
+                </button>
+              </li>
+              <li v-if="enableEdit">
+                <button
+                  class="btn btn-primary btn-sm py-1 col-12"
+                  @click="openConfirm('delete')"
+                >
+                  Delete
+                </button>
+              </li>
+            </ul>
+            <ul v-else class="m-0">
+              <li>
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                  @click="openConfirm('info')"
+                >
+                  Info
+                </button>
+              </li>
+              <li >
+                <button
+                  class="btn btn-primary btn-sm py-1 col-12"
+                  @click="openConfirm('delete')"
+                >
+                  Delete
+                </button>
+              </li>
             </ul>
           </div>
         </div>
         <section id="club-detail" class="flex-fill custom-overflow">
           <div class="club-section container-fluid mt-2">
             <div
-              class="
-                inner-club
-                club-info
-                d-flex
-                flex-column
-                justify-content-top
-                container-fluid
-                pr-3
-                py-0
-                pl-0
-              "
+              class="inner-club club-info d-flex flex-column justify-content-top container-fluid pr-3 py-0 pl-0"
             >
               <div class="my-2 px-2">
                 <h3 class="color-primary font-semi-bold mb-1">Club Details</h3>
@@ -172,13 +166,7 @@
 
                       <button
                         href=""
-                        class="
-                          btn btn-dark
-                          custom-theme-color-btn
-                          px-4
-                          mb-0
-                          mt-3
-                        "
+                        class="btn btn-dark custom-theme-color-btn px-4 mb-0 mt-3"
                         v-if="enableEdit"
                         :disabled="!clubDetails.description"
                         @click.prevent="
@@ -193,13 +181,7 @@
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div
-                          class="
-                            d-flex
-                            mb-3
-                            justify-content-end
-                            align-items-center
-                            mb-2
-                          "
+                          class="d-flex mb-3 justify-content-end align-items-center mb-2"
                         >
                           <h4 class="color-dark mb-0 mr-2 font-bold">
                             Leaders
@@ -222,21 +204,10 @@
                                 >
                                   <div
                                     v-if="index < 2"
-                                    class="
-                                      d-flex
-                                      align-items-center
-                                      justify-content-end
-                                      mt-2
-                                    "
+                                    class="d-flex align-items-center justify-content-end mt-2"
                                   >
                                     <div
-                                      class="
-                                        col-3
-                                        d-flex
-                                        justify-content-end
-                                        p-0
-                                        mr-1
-                                      "
+                                      class="col-3 d-flex justify-content-end p-0 mr-1"
                                     >
                                       <div class="ld-img-section">
                                         <div
@@ -258,12 +229,7 @@
                                       <div class="ld-details-section">
                                         <p
                                           v-if="data.user_info"
-                                          class="
-                                            mb-1
-                                            text-18
-                                            color-dark
-                                            font-semi-bold
-                                          "
+                                          class="mb-1 text-18 color-dark font-semi-bold"
                                         >
                                           {{
                                             data.user_info.first_name +
@@ -279,13 +245,7 @@
                                         </p>
                                         <p
                                           v-if="data.user_info"
-                                          class="
-                                            color-secondary
-                                            text-16
-                                            font-regular
-                                            mb-0
-                                            text-truncate
-                                          "
+                                          class="color-secondary text-16 font-regular mb-0 text-truncate"
                                         >
                                           {{ data.user_info.email }}
                                         </p>
@@ -329,15 +289,7 @@
                       <h4 class="color-dark mb-2 font-bold">Members</h4>
                     </div>
                     <div
-                      class="
-                        members-thumbnail-list
-                        d-flex
-                        flex-column
-                        align-items-center
-                        justify-content-start
-                        mt-3
-                        position-relative
-                      "
+                      class="members-thumbnail-list d-flex flex-column align-items-center justify-content-start mt-3 position-relative"
                     >
                       <div class="first-row">
                         <div class="d-flex align-items-center">
@@ -411,13 +363,7 @@
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div
-                          class="
-                            inner-info-head
-                            mb-2
-                            d-flex
-                            align-items-center
-                            justify-content-end
-                          "
+                          class="inner-info-head mb-2 d-flex align-items-center justify-content-end"
                         >
                           <h4 class="color-dark mb-0 mr-2 font-bold">Tags</h4>
                         </div>
@@ -435,18 +381,7 @@
                                       ? tagColorMap[value.name]
                                       : red,
                                   }"
-                                  class="
-                                    px-4
-                                    py-1
-                                    rounded-6
-                                    color-white
-                                    d-flex
-                                    justify-content-center
-                                    min-w-100
-                                    text-14
-                                    bg-theme
-                                    align-items-center
-                                  "
+                                  class="px-4 py-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 bg-theme align-items-center"
                                   >{{ value.name }}
                                   <span
                                     class="input-icon color-white btn p-0"
@@ -517,15 +452,7 @@
                       type: clubDetails.activity_type,
                     },
                   }"
-                  class="
-                    inner-tab
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    p-2
-                    rounded-10
-                    h-100
-                  "
+                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
                   <span class="text-24 color-primary font-semi-bold"
                     >Home Page</span
@@ -542,15 +469,7 @@
                       type: clubDetails.activity_type,
                     },
                   }"
-                  class="
-                    inner-tab
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    p-2
-                    rounded-10
-                    h-100
-                  "
+                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
                   <span class="text-24 color-primary font-semi-bold"
                     >Files & Slides</span
@@ -637,13 +556,7 @@
                   "
                 >
                   <a
-                    class="
-                      btn
-                      date-picker
-                      badge badge-pill badge-color
-                      active
-                      mx-1
-                    "
+                    class="btn date-picker badge badge-pill badge-color active mx-1"
                     :id="day"
                     v-if="checkSlot(day)"
                     >{{ day }}</a
@@ -745,13 +658,7 @@
                         </p>
                         <p
                           v-if="data.user_info"
-                          class="
-                            color-secondary
-                            text-16
-                            font-regular
-                            mb-0
-                            text-truncate
-                          "
+                          class="color-secondary text-16 font-regular mb-0 text-truncate"
                         >
                           {{ data.user_info.email }}
                         </p>
@@ -806,13 +713,7 @@
                         </p>
                         <p
                           v-if="data.user_info"
-                          class="
-                            color-secondary
-                            text-16
-                            font-regular
-                            mb-0
-                            text-truncate
-                          "
+                          class="color-secondary text-16 font-regular mb-0 text-truncate"
                         >
                           {{ data.user_info.email }}
                         </p>
@@ -908,16 +809,7 @@
             <div class="d-flex flex-column overflow-hidden h-100">
               <div
                 size="120"
-                class="
-                  user
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                  py-4
-                  rounded
-                  card card-primary-sm
-                  mb-3
-                "
+                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-sm mb-3"
               >
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"
@@ -933,14 +825,7 @@
                 />
               </div>
               <v-card
-                class="
-                  bg-transparent
-                  shadow-none
-                  h-100
-                  overflow-hidden
-                  d-flex
-                  flex-column
-                "
+                class="bg-transparent shadow-none h-100 overflow-hidden d-flex flex-column"
               >
                 <v-card-text class="p-0 h-100 overflow-hidden">
                   <VueCropper
@@ -955,33 +840,14 @@
                 <v-card-actions class="justify-content-end">
                   <v-btn
                     color="primary"
-                    class="
-                      btn btn-secondary
-                      color-white
-                      font-semi-bold
-                      mr-2
-                      py-1
-                      px-3
-                      rounded-12
-                      text-capitalize
-                    "
+                    class="btn btn-secondary color-white font-semi-bold mr-2 py-1 px-3 rounded-12 text-capitalize"
                     text
                     data-dismiss="modal"
                     @click="clearCrop"
                     ><span class="font-semi-bold">Cancel</span></v-btn
                   >
                   <v-btn
-                    class="
-                      btn btn-success
-                      font-semi-bold
-                      bg-primary
-                      color-dark
-                      py-1
-                      px-3
-                      rounded-12
-                      text-capitalize
-                      shadow-none
-                    "
+                    class="btn btn-success font-semi-bold bg-primary color-dark py-1 px-3 rounded-12 text-capitalize shadow-none"
                     @click="saveImage(), (dialog = false)"
                     ><span class="font-semi-bold">Upload</span></v-btn
                   >
@@ -1146,10 +1012,14 @@ export default {
       clubCreatedAt: "",
       userType: "",
       startTime: null,
+      isSchoolAdmin: "0",
     };
   },
 
   mounted() {
+    if (localStorage.getItem("schoolAdmin")) {
+      this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
+    }
     const page = "ClubDetail";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
