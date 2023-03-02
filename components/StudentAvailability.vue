@@ -70,7 +70,7 @@
                 class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
               >
                 <img
-                  src="../static/image/calendar-2.png"
+                  src="~/static/image/Calendar-2.png"
                   alt=""
                   class="card-img small-size"
                 />
