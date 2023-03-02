@@ -909,16 +909,18 @@ input[type="radio"]{
     @media screen and (max-width: $md-screen) {
         width: auto;
     }
-    span, i {
+    span, svg {
         color: #FF6D6D !important;
+        fill: #FF6D6D;
     }
     span{
         margin: initial !important;
     }
     &:hover{
         background-color: #FF6D6D !important;
-        span, i {
+        span, svg * {
             color: #FFf !important;
+            fill: #fff !important
         }
     }
 }

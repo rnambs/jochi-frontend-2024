@@ -855,8 +855,9 @@ input[type=radio] {
     width: auto;
   }
 }
-.tutorial-btn span, .tutorial-btn i {
+.tutorial-btn span, .tutorial-btn svg {
   color: #FF6D6D !important;
+  fill: #FF6D6D;
 }
 .tutorial-btn span {
   margin: initial !important;
@@ -864,8 +865,9 @@ input[type=radio] {
 .tutorial-btn:hover {
   background-color: #FF6D6D !important;
 }
-.tutorial-btn:hover span, .tutorial-btn:hover i {
+.tutorial-btn:hover span, .tutorial-btn:hover svg * {
   color: #FFf !important;
+  fill: #fff !important;
 }
 
 .fc .fc-toolbar.fc-header-toolbar {
