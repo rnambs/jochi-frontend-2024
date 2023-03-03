@@ -1098,7 +1098,14 @@ export default {
         if (blob) {
           var file = new File([blob], "name");
           blob.fileName = this.fileName;
-          formData.append("file", blob, this.fileName);
+          let uploadedName = this.fileName.split(".")[0];
+          let timestampName =
+            uploadedName +
+            "_" +
+            new Date().getTime() +
+            "." +
+            this.fileName.split(".")[1];
+          formData.append("file", blob, timestampName);
           formData.append("club_id", this.$route.query.id);
           formData.append("user_id", localStorage.getItem("id"));
           formData.append("club_banner", "1");
