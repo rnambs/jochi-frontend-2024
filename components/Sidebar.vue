@@ -1,12 +1,7 @@
 <template>
   <aside id="left-panel" class="left-panel">
     <nav
-      class="
-        navbar navbar-expand-sm navbar-default
-        py-4
-        h-100
-        align-items-start
-      "
+      class="navbar navbar-expand-sm navbar-default py-4 h-100 align-items-start"
     >
       <div
         id="main-menu"
@@ -41,6 +36,12 @@
             <nuxt-link to="/email-dispatch"
               ><i class="fas fa-envelope mr-2 menu-icon"></i
               ><span class="menu-title-text">Email Dispatch</span>
+            </nuxt-link>
+          </li>
+          <li>
+            <nuxt-link to="/signin-logs"
+              ><i class="fas fa-sign-in mr-2 menu-icon"></i
+              ><span class="menu-title-text">Sign in Logs</span>
             </nuxt-link>
           </li>
           <!-- <li>
