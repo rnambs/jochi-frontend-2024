@@ -124,6 +124,30 @@ const actions = {
         }
 
     },
+
+    async redirectLog({ commit }, payLoad) {
+        try {
+            const response = await this.$axios.$post(BASE_URL + 'auth/redirect_log', payLoad)
+
+        }
+        catch (err) {
+            console.log(err)
+            if (err?.response?.data?.error) {
+                commit('setLoginStatus', false);
+                window.$nuxt.$cookies.removeAll();
+                commit('setUserId', '');
+                commit('setErrorType', "error");
+                commit('setErrorMessage', err?.response?.data?.error);
+            }
+            else if (status = 422) {
+                commit('setLoginStatus', false);
+                window.$nuxt.$cookies.removeAll();
+                commit('setUserId', '');
+                commit('setErrorType', "error");
+                commit('setErrorMessage', "You have entered invalid credentials");
+            }
+        }
+    },
 }
 const mutations = {
     setErrorMessage(state, data) {
