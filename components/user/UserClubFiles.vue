@@ -624,6 +624,7 @@
                   >mdi-upload</v-icon
                 >
                 <input
+                  id="file-input"
                   ref="FileInput"
                   type="file"
                   accept="image/*"
@@ -1172,6 +1173,8 @@ export default {
       return false;
     },
     clearCrop() {
+      const fileInput = document.getElementById("file-input");
+      fileInput.value = "";
       this.selectedFile = "";
       this.$refs.cropper.destroy();
     },

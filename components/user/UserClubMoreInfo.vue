@@ -98,7 +98,7 @@
                   Info
                 </button>
               </li>
-              <li >
+              <li>
                 <button
                   class="btn btn-primary btn-sm py-1 col-12"
                   @click="openConfirm('delete')"
@@ -1137,6 +1137,7 @@
                   >mdi-upload</v-icon
                 >
                 <input
+                  id="file-input"
                   ref="FileInput"
                   type="file"
                   accept="image/*"
@@ -2072,6 +2073,8 @@ export default {
       return isValid;
     },
     clearCrop() {
+      const fileInput = document.getElementById("file-input");
+      fileInput.value = "";
       this.selectedFile = "";
       this.$refs.cropper.destroy();
     },
