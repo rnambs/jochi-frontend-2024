@@ -445,7 +445,7 @@ input[type="radio"]{
     }
     .dropdown-menu{
         background-color: $white;
-        box-shadow: 0px 0px 15px -3px rgb(0 1 0 / 14%);
+        box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
         font-size: 0.9rem;
         padding: inherit;
         list-style-type: none;
@@ -1072,7 +1072,7 @@ input[type="radio"]{
     &.card-void{
         background-color: transparent;
         // box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
-        box-shadow: 0px 0px 15px -3px rgb(0 1 0 / 14%)
+        box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22)
     }
     &.card-transparent{
         background-color: transparent;

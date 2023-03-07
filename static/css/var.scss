@@ -19,7 +19,7 @@ $text-secondary    : #C5C0BD;
     border: 1px solid $white;
 }
 @mixin jochi-components-bg {
-    box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+    box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
     border: 1px solid $white;
 }
 @mixin jochi-sub-components-light-bg{
