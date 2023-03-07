@@ -272,6 +272,13 @@
                                         class="pl-2 d-flex align-items-center mb-1 cursor-pointer"
                                       >
                                         <input
+                                          :id="subtask.title"
+                                          v-model="subtask.title"
+                                          :value="
+                                            subtask.task_status == 'Completed'
+                                              ? subtask.title
+                                              : ''
+                                          "
                                           type="radio"
                                           class="mr-2 color-secondary cursor-pointer"
                                         />
@@ -450,6 +457,13 @@
                                         class="pl-2 d-flex align-items-center mb-1 cursor-pointer"
                                       >
                                         <input
+                                          :id="subtask.title"
+                                          v-model="subtask.title"
+                                          :value="
+                                            subtask.task_status == 'Completed'
+                                              ? subtask.title
+                                              : ''
+                                          "
                                           type="radio"
                                           class="mr-2 color-secondary cursor-pointer"
                                         />
