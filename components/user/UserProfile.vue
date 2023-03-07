@@ -186,20 +186,18 @@
                         </div>
                       </div>
                       <div
-                        v-if="
-                          user_type == 2 &&
-                          requestSent != '1' &&
-                          isSchoolAdmin != '1'
-                        "
+                        v-if="user_type == 2 && isSchoolAdmin != '1'"
                         class="col-md-12"
                       >
                         <div class="text-center">
                           <button
+                            v-if="requestSent != '1'"
                             @click="upgrade()"
                             class="btn btn-primary py-1 px-4 rounded-12 font-semi-bold"
                           >
-                            Upgrade to School Admin
+                            Request to become a School Admin
                           </button>
+                          <span v-if="requestSent == '1'">Pending</span>
                         </div>
                       </div>
                       <div v-if="user_type == 3" class="col-md-12">

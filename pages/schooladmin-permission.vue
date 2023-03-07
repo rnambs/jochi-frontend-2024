@@ -17,8 +17,8 @@
         />
       </div>
       <h5 v-if="!processed" class="border-top pt-2 color-black">
-        Your request for {{ response == 1 ? "approving" : "rejecting" }} the
-        school admin user is in progress...
+        {{ response == 1 ? "Approving" : "Rejecting" }} the school admin user is
+        in progress...
       </h5>
       <h5 v-if="processed && isSuccess" class="border-top pt-2 color-black">
         School admin successfully {{ response == 1 ? "approved" : "rejected" }}
