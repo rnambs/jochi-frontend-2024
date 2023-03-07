@@ -115,7 +115,7 @@
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
                 <h2 class="color-primary font-semi-bold mb-1">
-                  Start a new Study Session
+                  Start A New Study Session
                 </h2>
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Stay focused while you study, and monitor your productivity

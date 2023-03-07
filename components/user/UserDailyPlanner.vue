@@ -12,17 +12,13 @@
 
       <section id="Daily-Calander" class="">
         <div
-          class="
-            custom-margin-for-main-section custom-full-height
-            d-flex
-            planner-day-responsive
-          "
+          class="custom-margin-for-main-section custom-full-height d-flex planner-day-responsive"
         >
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
               <div class="col-lg-5 col-md-12">
                 <div
-                  data-intro="Find all your assignments, study sessions, meetings, trainings and matches in the planner below"
+                  data-intro="Find your upcoming assignments and commitments in the calendar"
                   class="jochi-components-light-bg p-4 h-100"
                 >
                   <h2
@@ -35,23 +31,10 @@
                 </div>
               </div>
               <div
-                class="
-                  col-lg-7 col-md-12
-                  position-realtive
-                  h-100
-                  pb-0 pb-xl-3
-                  pt-lg-24 pt-xl-auto
-                "
+                class="col-lg-7 col-md-12 position-realtive h-100 pb-0 pb-xl-3 pt-lg-24 pt-xl-auto"
               >
                 <div
-                  class="
-                    jochi-components-light-bg
-                    py-4
-                    h-100
-                    d-flex
-                    flex-column
-                    position-relative
-                  "
+                  class="jochi-components-light-bg py-4 h-100 d-flex flex-column position-relative"
                 >
                   <lottie
                     v-if="playCelebration"
@@ -60,32 +43,22 @@
                     class="position-absolute top-0 w-100 h-100 z-index-9"
                   />
                   <div
-                    class="
-                      d-flex
-                      justify-content-md-end justify-content-start
-                      align-items-center
-                      px-4
-                      pb-0
-                    "
+                    class="d-flex justify-content-md-end justify-content-start align-items-center px-4 pb-0"
                   >
                     <div class="row">
                       <div class="col-md-4">
                         <h2
-                          data-intro="Find all your pending assignments here"
+                          data-intro="Manage your upcoming assignments"
                           class="color-primary font-semi-bold mb-0"
                         >
                           Pending
                         </h2>
                       </div>
                       <div
-                        class="
-                          col-md-8
-                          d-flex
-                          justify-content-start justify-content-md-end
-                        "
+                        class="col-md-8 d-flex justify-content-start justify-content-md-end"
                       >
                         <button
-                          data-intro="Add new assignments from here"
+                          data-intro="Manually add new assignments"
                           @click="
                             openAssignment = true;
                             isAddAssignment = true;
@@ -109,15 +82,7 @@
                   </div>
                   <!-- drag -->
                   <div
-                    class="
-                      d-flex
-                      flex-column
-                      h-60
-                      flex-fill
-                      custom-overflow
-                      py-2
-                      px-4
-                    "
+                    class="d-flex flex-column h-60 flex-fill custom-overflow py-2 px-4"
                   >
                     <div class="row d-none">
                       <!-- drag and drop for mobile -->
@@ -139,26 +104,11 @@
                             <div class="h-100">
                               <div
                                 @click="onCardClick(item)"
-                                class="
-                                  jochi-sub-components-light-bg
-                                  drag-drop
-                                  p-4
-                                  position-realtive
-                                  h-100
-                                  cursor-pointer
-                                  d-flex
-                                  flex-column
-                                  justify-content-between
-                                "
+                                class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
                               >
                                 <div class="d-flex flex-column">
                                   <div
-                                    class="
-                                      assignment-tag-section
-                                      d-flex
-                                      align-items-center
-                                      mb-2
-                                    "
+                                    class="assignment-tag-section d-flex align-items-center mb-2"
                                   >
                                     <div
                                       class="assignment-tag mr-2 text-nowrap"
@@ -193,12 +143,7 @@
                                   </div>
                                   <div class="assignment-add-section">
                                     <h4
-                                      class="
-                                        mb-1
-                                        text-center
-                                        word-break
-                                        text-capitalize
-                                      "
+                                      class="mb-1 text-center word-break text-capitalize"
                                     >
                                       {{ item.task }}
                                     </h4>
@@ -228,14 +173,7 @@
                                         "
                                         v-for="sub in item.subTasks"
                                         :key="sub.id"
-                                        class="
-                                          pl-2
-                                          d-flex
-                                          align-items-center
-                                          color-secondary
-                                          cursor-pointer
-                                          mb-1
-                                        "
+                                        class="pl-2 d-flex align-items-center color-secondary cursor-pointer mb-1"
                                       >
                                         <input
                                           :id="sub.title"
@@ -250,11 +188,7 @@
                                         />
                                         <label
                                           for=""
-                                          class="
-                                            mb-0
-                                            text-truncate
-                                            cursor-pointer
-                                          "
+                                          class="mb-0 text-truncate cursor-pointer"
                                           >{{ sub.title }}</label
                                         >
                                       </div>
@@ -289,21 +223,10 @@
                                     Additional Material
                                   </h6>
                                   <div
-                                    class="
-                                      d-flex
-                                      align-items-center
-                                      justify-content-between
-                                    "
+                                    class="d-flex align-items-center justify-content-between"
                                   >
                                     <div
-                                      class="
-                                        col-8
-                                        py-0
-                                        pl-0
-                                        text-12
-                                        d-flex
-                                        flex-column
-                                      "
+                                      class="col-8 py-0 pl-0 text-12 d-flex flex-column"
                                     >
                                       <div
                                         class="d-flex flex-column lext-limited"
@@ -317,11 +240,7 @@
                                         >
                                           <span
                                             v-if="index < 2"
-                                            class="
-                                              color-secondary
-                                              text-truncate
-                                              w-100
-                                            "
+                                            class="color-secondary text-truncate w-100"
                                           >
                                             {{
                                               material.file_type == "link"
@@ -354,12 +273,7 @@
                                       </span>
                                     </div>
                                     <div
-                                      class="
-                                        col-4
-                                        material-date
-                                        py-0
-                                        text-right
-                                      "
+                                      class="col-4 material-date py-0 text-right"
                                     >
                                       {{ item.formattedDate }}
                                     </div>
@@ -367,11 +281,7 @@
                                 </div>
                                 <div class="position-relative">
                                   <div
-                                    class="
-                                      add-person-section
-                                      position-absolute
-                                      top-0
-                                    "
+                                    class="add-person-section position-absolute top-0"
                                   >
                                     <div
                                       v-for="(peer, index) in item.peers"
@@ -391,16 +301,7 @@
                                     </div>
                                     <div
                                       v-if="!item.formattedDate"
-                                      class="
-                                        ap-img-section
-                                        mr--3
-                                        shadow-sm
-                                        exclamation
-                                        d-flex
-                                        align-items-center
-                                        justify-content-center
-                                        bg-primary
-                                      "
+                                      class="ap-img-section mr--3 shadow-sm exclamation d-flex align-items-center justify-content-center bg-primary"
                                     >
                                       <span class="color-white"
                                         ><i class="fas fa-exclamation"></i
@@ -422,14 +323,7 @@
                       >
                         <div
                           v-if="item.shared_users_id != user_id"
-                          class="
-                            position-absolute
-                            multiple-select-checkbox
-                            jochi-components-light-bg
-                            d-flex
-                            align-items-center
-                            justify-content-center
-                          "
+                          class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center"
                         >
                           <div class="squaredThree">
                             <input
@@ -445,26 +339,11 @@
                           <div class="h-100">
                             <div
                               @click="onCardClick(item)"
-                              class="
-                                jochi-sub-components-light-bg
-                                drag-drop
-                                p-4
-                                position-realtive
-                                h-100
-                                cursor-pointer
-                                d-flex
-                                flex-column
-                                justify-content-between
-                              "
+                              class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
                             >
                               <div class="d-flex flex-column">
                                 <div
-                                  class="
-                                    assignment-tag-section
-                                    d-flex
-                                    align-items-center
-                                    mb-2
-                                  "
+                                  class="assignment-tag-section d-flex align-items-center mb-2"
                                 >
                                   <div
                                     class="assignment-tag mr-2 text-nowrap"
@@ -499,12 +378,7 @@
                                 </div>
                                 <div class="assignment-add-section">
                                   <h4
-                                    class="
-                                      mb-1
-                                      text-center
-                                      word-break
-                                      text-truncate text-capitalize
-                                    "
+                                    class="mb-1 text-center word-break text-truncate text-capitalize"
                                   >
                                     {{ item.task }}
                                   </h4>
@@ -534,14 +408,7 @@
                                       "
                                       v-for="sub in item.subTasks"
                                       :key="sub.id"
-                                      class="
-                                        pl-2
-                                        d-flex
-                                        align-items-center
-                                        color-secondary
-                                        cursor-pointer
-                                        mb-1
-                                      "
+                                      class="pl-2 d-flex align-items-center color-secondary cursor-pointer mb-1"
                                     >
                                       <input
                                         :id="sub.title"
@@ -556,11 +423,7 @@
                                       />
                                       <label
                                         for=""
-                                        class="
-                                          mb-0
-                                          text-truncate
-                                          cursor-pointer
-                                        "
+                                        class="mb-0 text-truncate cursor-pointer"
                                         >{{ sub.title }}</label
                                       >
                                     </div>
@@ -597,21 +460,10 @@
                                   Additional Material
                                 </h6>
                                 <div
-                                  class="
-                                    d-flex
-                                    align-items-center
-                                    justify-content-between
-                                  "
+                                  class="d-flex align-items-center justify-content-between"
                                 >
                                   <div
-                                    class="
-                                      col-8
-                                      py-0
-                                      pl-0
-                                      text-12
-                                      d-flex
-                                      flex-column
-                                    "
+                                    class="col-8 py-0 pl-0 text-12 d-flex flex-column"
                                   >
                                     <div
                                       class="d-flex flex-column lext-limited"
@@ -625,11 +477,7 @@
                                       >
                                         <span
                                           v-if="index < 2"
-                                          class="
-                                            color-secondary
-                                            text-truncate
-                                            w-100
-                                          "
+                                          class="color-secondary text-truncate w-100"
                                         >
                                           <!-- Rubric: -->
                                           {{
@@ -670,11 +518,7 @@
                                 </div>
                               </div>
                               <div
-                                class="
-                                  add-person-section
-                                  position-absolute
-                                  top-0
-                                "
+                                class="add-person-section position-absolute top-0"
                               >
                                 <div
                                   v-for="(peer, index) in item.peers"
@@ -694,16 +538,7 @@
                                 </div>
                                 <div
                                   v-if="!item.formattedDate"
-                                  class="
-                                    ap-img-section
-                                    mr--3
-                                    shadow-sm
-                                    exclamation
-                                    d-flex
-                                    align-items-center
-                                    justify-content-center
-                                    bg-primary
-                                  "
+                                  class="ap-img-section mr--3 shadow-sm exclamation d-flex align-items-center justify-content-center bg-primary"
                                 >
                                   <span class="color-white"
                                     ><i class="fas fa-exclamation"></i
@@ -716,12 +551,7 @@
                       </div>
                       <client-only>
                         <infinite-loading
-                          class="
-                            d-flex
-                            align-items-center
-                            w-100
-                            justify-content-center
-                          "
+                          class="d-flex align-items-center w-100 justify-content-center"
                           :identifier="reloadCount"
                           @infinite="loadNext"
                         >
@@ -734,38 +564,18 @@
 
                   <div class="d-none flex-column pt-3 h-40 flex-fill">
                     <div
-                      class="
-                        drop
-                        color-secondary
-                        text-16
-                        h-100
-                        d-flex
-                        flex-column
-                      "
+                      class="drop color-secondary text-16 h-100 d-flex flex-column"
                     >
                       <h2 class="color-primary font-semi-bold px-4">
                         Completed Today
                       </h2>
                       <p
-                        class="
-                          d-none d-lg-block
-                          mb-0
-                          px-4
-                          color-secondary
-                          font-regular
-                        "
+                        class="d-none d-lg-block mb-0 px-4 color-secondary font-regular"
                       >
                         Drag and drop your assignment here when it is completed
                       </p>
                       <div
-                        class="
-                          d-flex
-                          flex-column
-                          custom-overflow
-                          px-5
-                          pb-3
-                          h-100
-                        "
+                        class="d-flex flex-column custom-overflow px-5 pb-3 h-100"
                         :class="{ 'drag-blur': drag }"
                       >
                         <draggable
@@ -786,27 +596,12 @@
                             >
                               <div
                                 @click="confirmUndo(item.id)"
-                                class="
-                                  position-absolute
-                                  multiple-select-checkbox
-                                  jochi-components-light-bg
-                                  d-flex
-                                  align-items-center
-                                  justify-content-center
-                                  cursor-pointer
-                                "
+                                class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
                               >
                                 <i class="fas fa-undo"></i>
                               </div>
                               <div
-                                class="
-                                  jochi-sub-components-light-bg
-                                  py-4
-                                  px-2
-                                  completed-assignments
-                                  text-center
-                                  h-100
-                                "
+                                class="jochi-sub-components-light-bg py-4 px-2 completed-assignments text-center h-100"
                               >
                                 <h4
                                   class="mb-0 blue word-break text-capitalize"
@@ -825,12 +620,7 @@
                           </div>
 
                           <div
-                            class="
-                              h-100
-                              d-flex
-                              align-items-center
-                              justify-content-center
-                            "
+                            class="h-100 d-flex align-items-center justify-content-center"
                             v-if="
                               !completedAssignmentList ||
                               completedAssignmentList.length <= 0
@@ -847,42 +637,22 @@
 
                   <div class="d-flex flex-column pt-3 h-40 flex-fill">
                     <drop
-                      class="
-                        drop
-                        color-secondary
-                        text-16
-                        h-100
-                        d-flex
-                        flex-column
-                      "
+                      class="drop color-secondary text-16 h-100 d-flex flex-column"
                       @drop="handleDrop"
                     >
                       <h2
-                        data-intro="Find all your assignments completed today here"
+                        data-intro="View your completed assignments"
                         class="color-primary font-semi-bold px-4"
                       >
                         Completed Today
                       </h2>
                       <p
-                        class="
-                          d-none d-xl-block
-                          mb-0
-                          px-4
-                          color-secondary
-                          font-regular
-                        "
+                        class="d-none d-xl-block mb-0 px-4 color-secondary font-regular"
                       >
                         Drag and drop your assignment here when it is completed
                       </p>
                       <div
-                        class="
-                          d-flex
-                          flex-column
-                          custom-overflow
-                          px-4
-                          pb-3
-                          h-100
-                        "
+                        class="d-flex flex-column custom-overflow px-4 pb-3 h-100"
                       >
                         <div class="row mt-1">
                           <div
@@ -892,36 +662,16 @@
                           >
                             <div
                               @click="confirmUndo(item.id)"
-                              class="
-                                position-absolute
-                                multiple-select-checkbox
-                                jochi-components-light-bg
-                                d-flex
-                                align-items-center
-                                justify-content-center
-                                cursor-pointer
-                              "
+                              class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
                             >
                               <i class="fas fa-undo"></i>
                             </div>
 
                             <div
-                              class="
-                                jochi-sub-components-light-bg
-                                py-4
-                                px-2
-                                completed-assignments
-                                text-center
-                                h-100
-                              "
+                              class="jochi-sub-components-light-bg py-4 px-2 completed-assignments text-center h-100"
                             >
                               <h4
-                                class="
-                                  mb-0
-                                  blue
-                                  word-break
-                                  text-truncate text-capitalize
-                                "
+                                class="mb-0 blue word-break text-truncate text-capitalize"
                               >
                                 {{ item.task }}
                               </h4>
@@ -950,14 +700,7 @@
                                   "
                                   v-for="sub in item.subTasks"
                                   :key="sub.id"
-                                  class="
-                                    pl-2
-                                    d-flex
-                                    justify-content-center
-                                    color-secondary
-                                    cursor-pointer
-                                    mb-1
-                                  "
+                                  class="pl-2 d-flex justify-content-center color-secondary cursor-pointer mb-1"
                                 >
                                   <label
                                     for=""
@@ -977,12 +720,7 @@
                           </div>
                         </div>
                         <div
-                          class="
-                            h-100
-                            d-flex
-                            align-items-center
-                            justify-content-center
-                          "
+                          class="h-100 d-flex align-items-center justify-content-center"
                           v-if="
                             !completedAssignmentList ||
                             completedAssignmentList.length <= 0
@@ -1000,23 +738,10 @@
                     class="position-absolute w-100 h-100 top-0 left-0 p-3"
                   >
                     <div
-                      class="
-                        d-flex
-                        card card-primary-void
-                        flex-column
-                        h-100
-                        p-4
-                        rounded-22
-                      "
+                      class="d-flex card card-primary-void flex-column h-100 p-4 rounded-22"
                     >
                       <div
-                        class="
-                          d-flex
-                          flex-column flex-md-row
-                          justify-content-between
-                          mb-2
-                          border-bottom
-                        "
+                        class="d-flex flex-column flex-md-row justify-content-between mb-2 border-bottom"
                       >
                         <h3 class="color-primary font-semi-bold">
                           {{ isAddAssignment ? "Add" : "Edit" }} Assignment
@@ -1037,15 +762,7 @@
                         >
                           <button
                             v-if="!isAddAssignment"
-                            class="
-                              btn btn-success
-                              border border-dark
-                              py-0
-                              px-4
-                              rounded-12
-                              font-semi-bold
-                              mb-2
-                            "
+                            class="btn btn-success border border-dark py-0 px-4 rounded-12 font-semi-bold mb-2"
                             @click="confirmComplete"
                           >
                             <span>Mark as complete</span>
@@ -1053,24 +770,10 @@
                         </div>
                       </div>
                       <div
-                        class="
-                          d-flex
-                          flex-column
-                          justify-content-between
-                          h-40
-                          flex-fill
-                        "
+                        class="d-flex flex-column justify-content-between h-40 flex-fill"
                       >
                         <div
-                          class="
-                            d-flex
-                            flex-column
-                            custom-overflow
-                            px-2
-                            pr-3
-                            me--3
-                            mb-2
-                          "
+                          class="d-flex flex-column custom-overflow px-2 pr-3 me--3 mb-2"
                         >
                           <form
                             v-if="!isSharedAssignment"
@@ -1186,11 +889,7 @@
                                   <div class="dropdown input-icon-area">
                                     <button
                                       id="dLabel"
-                                      class="
-                                        dropdown-select
-                                        form-control
-                                        text-left
-                                      "
+                                      class="dropdown-select form-control text-left"
                                       type="button"
                                       data-toggle="dropdown"
                                       aria-haspopup="true"
@@ -1320,12 +1019,7 @@
                               </div>
                             </div>
                             <div
-                              class="
-                                d-flex
-                                justify-content-between
-                                align-items-center
-                                mb-2
-                              "
+                              class="d-flex justify-content-between align-items-center mb-2"
                             >
                               <h6 class="color-dark font-semi-bold mb-0">
                                 Sub Tasks
@@ -1362,43 +1056,20 @@
                             </div>
 
                             <div
-                              class="
-                                custom-overflow
-                                pr-2
-                                mr--2
-                                d-flex
-                                flex-column
-                              "
+                              class="custom-overflow pr-2 mr--2 d-flex flex-column"
                             >
                               <div
                                 v-for="subTask in subTasksList"
                                 :key="subTask"
                               >
                                 <div
-                                  class="
-                                    card card-transparent
-                                    show-icon
-                                    p-1
-                                    mb-1
-                                  "
+                                  class="card card-transparent show-icon p-1 mb-1"
                                 >
                                   <div
-                                    class="
-                                      d-flex
-                                      align-items-center
-                                      justify-content-between
-                                    "
+                                    class="d-flex align-items-center justify-content-between"
                                   >
                                     <p
-                                      class="
-                                        d-flex
-                                        mb-0
-                                        color-secondary
-                                        text-16
-                                        font-regular
-                                        word-break
-                                        pr-3
-                                      "
+                                      class="d-flex mb-0 color-secondary text-16 font-regular word-break pr-3"
                                     >
                                       <span
                                         class="subtask-btn mr-1"
@@ -1413,14 +1084,7 @@
                                     <span
                                       v-if="subTask.task_status != 'Completed'"
                                       @click="deleteSubTask(subTask)"
-                                      class="
-                                        color-primary
-                                        fa-icon
-                                        show-hover
-                                        d-none
-                                        btn
-                                        p-0
-                                      "
+                                      class="color-primary fa-icon show-hover d-none btn p-0"
                                       ><i class="fas fa-trash-alt"></i
                                     ></span>
                                   </div>
@@ -1429,12 +1093,7 @@
                             </div>
 
                             <div
-                              class="
-                                d-flex
-                                justify-content-between
-                                align-items-center
-                                mb-2
-                              "
+                              class="d-flex justify-content-between align-items-center mb-2"
                             >
                               <h6 class="color-dark font-semi-bold mb-0">
                                 Invite Peers
@@ -1491,12 +1150,7 @@
                                   class="d-flex align-items-center my-2 mr-3"
                                 >
                                   <div
-                                    class="
-                                      ld-img-section
-                                      mr-2
-                                      d-flex
-                                      flex-column
-                                    "
+                                    class="ld-img-section mr-2 d-flex flex-column"
                                   >
                                     <div class="ld-img-holder">
                                       <img
@@ -1523,15 +1177,7 @@
                                   @click="removePeerConfirm(peer.id, $event)"
                                 >
                                   <span
-                                    class="
-                                      color-primary
-                                      fa-icon
-                                      show-hover
-                                      d-none
-                                      btn
-                                      p-0
-                                      ml-05
-                                    "
+                                    class="color-primary fa-icon show-hover d-none btn p-0 ml-05"
                                     ><i class="fas fa-trash-alt ml-3"></i
                                   ></span>
                                 </button>
@@ -1540,12 +1186,7 @@
 
                             <!-- Additional Material Add -->
                             <div
-                              class="
-                                d-flex
-                                justify-content-between
-                                align-items-center
-                                mb-2
-                              "
+                              class="d-flex justify-content-between align-items-center mb-2"
                             >
                               <h6 class="color-dark font-semi-bold mb-0">
                                 Additional Material
@@ -1616,62 +1257,30 @@
                               >
                                 <div
                                   v-if="item.link"
-                                  class="
-                                    d-flex
-                                    align-items-center
-                                    my-2
-                                    mr-3
-                                    w-100
-                                    show-icon
-                                  "
+                                  class="d-flex align-items-center my-2 mr-3 w-100 show-icon"
                                 >
                                   <div class="ld-details-section w-100">
                                     <p
                                       @click="openLink(item)"
-                                      class="
-                                        ld-heading
-                                        mb-1
-                                        text-link
-                                        cursor-pointer
-                                      "
+                                      class="ld-heading mb-1 text-link cursor-pointer"
                                     >
                                       {{ item.link }}
                                     </p>
                                   </div>
                                   <span
-                                    class="
-                                      color-primary
-                                      fa-icon
-                                      show-hover
-                                      d-none
-                                      btn
-                                      p-0
-                                    "
+                                    class="color-primary fa-icon show-hover d-none btn p-0"
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
                                 </div>
                                 <div
                                   v-else
-                                  class="
-                                    d-flex
-                                    align-items-center
-                                    my-2
-                                    mr-3
-                                    min-w-200
-                                    w-100
-                                    show-icon
-                                  "
+                                  class="d-flex align-items-center my-2 mr-3 min-w-200 w-100 show-icon"
                                 >
                                   <div class="ld-details-section w-100">
                                     <p
                                       @click="openLink(item)"
-                                      class="
-                                        ld-heading
-                                        mb-1
-                                        text-link
-                                        cursor-pointer
-                                      "
+                                      class="ld-heading mb-1 text-link cursor-pointer"
                                     >
                                       {{
                                         item.file_type &&
@@ -1682,14 +1291,7 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="
-                                      color-primary
-                                      fa-icon
-                                      show-hover
-                                      d-none
-                                      btn
-                                      p-0
-                                    "
+                                    class="color-primary fa-icon show-hover d-none btn p-0"
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
@@ -1810,12 +1412,7 @@
                               </div>
                             </div>
                             <div
-                              class="
-                                d-flex
-                                justify-content-between
-                                align-items-center
-                                mb-2
-                              "
+                              class="d-flex justify-content-between align-items-center mb-2"
                             >
                               <h6 class="color-dark font-semi-bold mb-0">
                                 Sub Tasks
@@ -1851,42 +1448,20 @@
                               </div>
                             </div>
                             <div
-                              class="
-                                custom-overflow
-                                pr-2
-                                mr--2
-                                d-flex
-                                flex-column
-                              "
+                              class="custom-overflow pr-2 mr--2 d-flex flex-column"
                             >
                               <div
                                 v-for="subTask in subTasksList"
                                 :key="subTask"
                               >
                                 <div
-                                  class="
-                                    card card-transparent
-                                    show-icon
-                                    p-1
-                                    mb-1
-                                  "
+                                  class="card card-transparent show-icon p-1 mb-1"
                                 >
                                   <div
-                                    class="
-                                      d-flex
-                                      align-items-center
-                                      justify-content-between
-                                    "
+                                    class="d-flex align-items-center justify-content-between"
                                   >
                                     <p
-                                      class="
-                                        mb-0
-                                        color-secondary
-                                        text-16
-                                        font-regular
-                                        word-break
-                                        pr-3
-                                      "
+                                      class="mb-0 color-secondary text-16 font-regular word-break pr-3"
                                     >
                                       <span
                                         class="subtask-btn mr-1"
@@ -1901,14 +1476,7 @@
                                     <span
                                       v-if="subTask.task_status != 'Completed'"
                                       @click="deleteSubTask(subTask)"
-                                      class="
-                                        color-primary
-                                        fa-icon
-                                        show-hover
-                                        d-none
-                                        btn
-                                        p-0
-                                      "
+                                      class="color-primary fa-icon show-hover d-none btn p-0"
                                       ><i class="fas fa-trash-alt"></i
                                     ></span>
                                   </div>
@@ -1917,12 +1485,7 @@
                             </div>
 
                             <div
-                              class="
-                                d-flex
-                                justify-content-between
-                                align-items-center
-                                mb-2
-                              "
+                              class="d-flex justify-content-between align-items-center mb-2"
                             >
                               <h6 class="color-dark font-semi-bold mb-0">
                                 Invited Peers
@@ -1971,13 +1534,7 @@
                                 class="h-fit-content"
                               >
                                 <div
-                                  class="
-                                    d-flex
-                                    align-items-center
-                                    my-2
-                                    mr-3
-                                    min-w-200
-                                  "
+                                  class="d-flex align-items-center my-2 mr-3 min-w-200"
                                 >
                                   <div class="ld-img-section mr-3">
                                     <div class="ld-img-holder">
@@ -2005,12 +1562,7 @@
 
                             <!-- Additional Material Add -->
                             <div
-                              class="
-                                d-flex
-                                justify-content-between
-                                align-items-center
-                                mb-2
-                              "
+                              class="d-flex justify-content-between align-items-center mb-2"
                             >
                               <h6 class="color-dark font-semi-bold mb-0">
                                 Additional Material
@@ -2080,63 +1632,30 @@
                               >
                                 <div
                                   v-if="item.link"
-                                  class="
-                                    d-flex
-                                    align-items-center
-                                    my-2
-                                    mr-3
-                                    min-w-200
-                                    w-100
-                                    show-icon
-                                  "
+                                  class="d-flex align-items-center my-2 mr-3 min-w-200 w-100 show-icon"
                                 >
                                   <div class="ld-details-section w-100">
                                     <p
                                       @click="openLink(item)"
-                                      class="
-                                        ld-heading
-                                        mb-1
-                                        text-link
-                                        cursor-pointer
-                                      "
+                                      class="ld-heading mb-1 text-link cursor-pointer"
                                     >
                                       {{ item.link }}
                                     </p>
                                   </div>
                                   <span
-                                    class="
-                                      color-primary
-                                      fa-icon
-                                      show-hover
-                                      d-none
-                                      btn
-                                      p-0
-                                    "
+                                    class="color-primary fa-icon show-hover d-none btn p-0"
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
                                 </div>
                                 <div
                                   v-else
-                                  class="
-                                    d-flex
-                                    align-items-center
-                                    my-2
-                                    mr-3
-                                    min-w-200
-                                    w-100
-                                    show-icon
-                                  "
+                                  class="d-flex align-items-center my-2 mr-3 min-w-200 w-100 show-icon"
                                 >
                                   <div class="ld-details-section w-100">
                                     <p
                                       @click="openLink(item)"
-                                      class="
-                                        ld-heading
-                                        mb-1
-                                        text-link
-                                        cursor-pointer
-                                      "
+                                      class="ld-heading mb-1 text-link cursor-pointer"
                                     >
                                       {{
                                         item.file_type &&
@@ -2147,14 +1666,7 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="
-                                      color-primary
-                                      fa-icon
-                                      show-hover
-                                      d-none
-                                      btn
-                                      p-0
-                                    "
+                                    class="color-primary fa-icon show-hover d-none btn p-0"
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
@@ -2168,13 +1680,7 @@
                         <div class="d-flex justify-content-end">
                           <button
                             type="button"
-                            class="
-                              btn btn-secondary
-                              py-1
-                              px-3
-                              rounded-pill
-                              mr-2
-                            "
+                            class="btn btn-secondary py-1 px-3 rounded-pill mr-2"
                             @click="
                               openAssignment = false;
                               closePopup();
@@ -2474,14 +1980,7 @@
                       class="d-flex align-items-center justify-content-between"
                     >
                       <p
-                        class="
-                          mb-0
-                          color-secondary
-                          text-16
-                          font-regular
-                          text-truncate
-                          pr-3
-                        "
+                        class="mb-0 color-secondary text-16 font-regular text-truncate pr-3"
                       >
                         <span><i class="far fa-circle"></i></span> {{ subTask }}
                       </p>

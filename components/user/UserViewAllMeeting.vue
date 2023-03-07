@@ -10,18 +10,12 @@
     <div class="main-section">
       <!-- tab section for View all meeting -->
       <div
-        class="
-          jochi-components-light-bg
-          p-4
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-        "
+        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid">
             <h2
-              data-intro="View all your meetings here. Accept or Reject meeting requests from peers or Edit your meeting requests from here"
+              data-intro="View all of your meetings. Here you can accept or reject requests or edit upcoming meetings"
               class="color-primary font-semi-bold"
             >
               My Meetings
@@ -34,15 +28,7 @@
                     class="dropdown form-row custom-sort-by-btn"
                   >
                     <div
-                      class="
-                        dropdown-select
-                        btn btn-void
-                        p-0
-                        color-secondary
-                        font-normal
-                        text-16
-                        pr-2
-                      "
+                      class="dropdown-select btn btn-void p-0 color-secondary font-normal text-16 pr-2"
                       type="button"
                       data-toggle="dropdown"
                       aria-haspopup="true"
@@ -76,15 +62,7 @@
 
         <section id="view-all-section" class="d-flex h-40 flex-fill">
           <div
-            class="
-              meeting-section
-              d-flex
-              custom-overflow
-              pe-2
-              mr--2
-              flex-fill
-              pt-3 pt-lg-0
-            "
+            class="meeting-section d-flex custom-overflow pe-2 mr--2 flex-fill pt-3 pt-lg-0"
           >
             <div class="inner-meeting container-fluid p-0">
               <div class="row Meeting-row pl-0 pr-3 pt-0">
@@ -95,15 +73,7 @@
                   :key="index"
                 >
                   <div
-                    class="
-                      meeting-list
-                      p-3
-                      position-realtive
-                      cursor-pointer
-                      card card-void
-                      align-items-center
-                      h-100
-                    "
+                    class="meeting-list p-3 position-realtive cursor-pointer card card-void align-items-center h-100"
                   >
                     <div class="approved-tag position-absolute">
                       <div
@@ -144,13 +114,7 @@
               </div>
               <div
                 v-if="slot_date.length == 0"
-                class="
-                  empty-schedule
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                  h-100
-                "
+                class="empty-schedule d-flex align-items-center justify-content-center h-100"
               >
                 <p>No meetings found</p>
               </div>
@@ -231,14 +195,7 @@
                     <td class="tmodal-data">Date</td>
                     <td class="tmodal-data">
                       <div
-                        class="
-                          mb-0
-                          col-12
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                        "
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0"
                       >
                         <span class="pr-2"></span>
 
@@ -288,24 +245,10 @@
                           class="col-11 p-0 position-relative"
                         >
                           <div
-                            class="
-                              row
-                              Meeting-row
-                              pl-0
-                              pr-1
-                              pt-1
-                              my-2
-                              custom-modal-ts-height
-                            "
+                            class="row Meeting-row pl-0 pr-1 pt-1 my-2 custom-modal-ts-height"
                           >
                             <div
-                              class="
-                                col-12
-                                py-1
-                                pr-1
-                                text-center
-                                modal-time-schedules
-                              "
+                              class="col-12 py-1 pr-1 text-center modal-time-schedules"
                               v-for="(Schedule, index) in slot_date_selection"
                               :key="index"
                               @click="slotClick(Schedule.slot_id, Schedule.id)"
@@ -355,14 +298,7 @@
                     <td class="tmodal-data text-nowrap">Meeting Name</td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                        "
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0"
                       >
                         <span class="pr-2"></span>
 
@@ -393,14 +329,7 @@
                     <td class="tmodal-data text-nowrap">Description</td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                        "
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0"
                       >
                         <span class="pr-2"></span>
 
@@ -431,14 +360,7 @@
                     <td class="tmodal-data text-nowrap">Type of Meeting</td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                        "
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0"
                       >
                         <span class="pr-2"></span>
                         <select
@@ -477,14 +399,7 @@
                     </td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                        "
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0"
                       >
                         <span class="pr-2"> </span>
 
@@ -525,14 +440,7 @@
             >
               <button
                 type="button"
-                class="
-                  btn btn-secondary
-                  py-1
-                  px-4
-                  rounded-12
-                  mr-2
-                  font-semi-bold
-                "
+                class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
                 data-dismiss="modal"
                 @click="acceptOrReject(2)"
               >
@@ -556,14 +464,7 @@
             >
               <button
                 type="button"
-                class="
-                  btn btn-secondary
-                  py-1
-                  px-4
-                  rounded-12
-                  mr-2
-                  font-semi-bold
-                "
+                class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
                 data-dismiss="modal"
               >
                 Close

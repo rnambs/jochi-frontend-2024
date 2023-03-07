@@ -10,29 +10,22 @@
     <div class="main-section">
       <!-- tab section for teacher meeting -->
       <div
-        class="
-          jochi-components-light-bg
-          p-4
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-          position-realtive
-        "
+        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid w-100">
-            <h2 class="color-primary font-semi-bold">Schedule a Meeting!</h2>
+            <h2
+              data-intro="How to book a meeting with your teachers/peers in just 3 clicks"
+              class="color-primary font-semi-bold"
+            >
+              Schedule A Meeting!
+            </h2>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0">
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
-                    data-intro="Choose teacher meeting or peer meeting"
-                    class="
-                      form-row
-                      d-flex
-                      position-relative
-                      schedule-meeting-section
-                    "
+                    data-intro="First, choose your meeting type. Will you be meeting with a teacher or peer?"
+                    class="form-row d-flex position-relative schedule-meeting-section"
                   >
                     <multiselect
                       v-model="meetingType"
@@ -49,13 +42,8 @@
                 </div>
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
-                    data-intro="Choose one teacher or upto four peers"
-                    class="
-                      form-row
-                      d-flex
-                      position-relative
-                      schedule-meeting-section
-                    "
+                    data-intro="Next, add the meeting participants. You can add up to four peers."
+                    class="form-row d-flex position-relative schedule-meeting-section"
                   >
                     <multiselect
                       v-if="meetingType == 'Teachers'"
@@ -93,14 +81,7 @@
                       <span slot="noResult">No data found</span>
                     </multiselect>
                     <span
-                      class="
-                        input-icon
-                        custom-search-icon
-                        position-absolute
-                        d-flex
-                        align-items-center
-                        justify-content-center
-                      "
+                      class="input-icon custom-search-icon position-absolute d-flex align-items-center justify-content-center"
                       ><i
                         class="fa fa-search color-secondary"
                         aria-hidden="true"
@@ -111,12 +92,7 @@
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
                     data-intro="Choose date range"
-                    class="
-                      form-row
-                      d-flex
-                      position-relative
-                      schedule-meeting-section
-                    "
+                    class="form-row d-flex position-relative schedule-meeting-section"
                   >
                     <input
                       type="text"
@@ -140,13 +116,7 @@
                       v-on:click="weekToggle()"
                     />
                     <label
-                      class="
-                        custom-control-label
-                        font-normal
-                        color-dark
-                        text-14
-                        cursor-pointer
-                      "
+                      class="custom-control-label font-normal color-dark text-14 cursor-pointer"
                       for="custom-Switches"
                       >Include weekends
                     </label>
@@ -161,13 +131,7 @@
                       v-on:click="availabilityToggle()"
                     />
                     <label
-                      class="
-                        custom-control-label
-                        font-normal
-                        color-dark
-                        text-14
-                        cursor-pointer
-                      "
+                      class="custom-control-label font-normal color-dark text-14 cursor-pointer"
                       for="customSwitches"
                       >Based on my availability
                     </label>
@@ -184,28 +148,13 @@
 
         <section id="teacher-section" class="d-flex h-40 flex-fill">
           <div
-            class="
-              meeting-section
-              container-fluid
-              d-flex
-              custom-overflow
-              pe-2
-              mr--2
-              flex-fill
-            "
+            class="meeting-section container-fluid d-flex custom-overflow pe-2 mr--2 flex-fill"
           >
             <div
               class="inner-meeting flex-fill container-fluid py-3 pl-0 scroll"
             >
               <div
-                class="
-                  row
-                  Meeting-row
-                  text-center
-                  h-100
-                  align-items-center
-                  px-4 px-md-5 px-lg-3 px-xl-5
-                "
+                class="row Meeting-row text-center h-100 align-items-center px-4 px-md-5 px-lg-3 px-xl-5"
                 v-show="isShowing"
               >
                 <div class="col-md-4 p-3">
@@ -262,14 +211,7 @@
                     :key="index"
                   >
                     <div
-                      class="
-                        meeting-list
-                        p-3
-                        cursor-pointer
-                        card card-void
-                        align-items-center
-                        h-100
-                      "
+                      class="meeting-list p-3 cursor-pointer card card-void align-items-center h-100"
                       v-on:click="
                         modalValue(
                           Schedule.dateFormat,
@@ -285,14 +227,7 @@
                         {{ Schedule["dateFormat"] }}
                       </h6>
                       <p
-                        class="
-                          time
-                          color-primary
-                          font-normal
-                          text-14
-                          mb-1
-                          text-center
-                        "
+                        class="time color-primary font-normal text-14 mb-1 text-center"
                       >
                         {{ Schedule["from"] }}
                         {{ Schedule["end"] ? "to " + Schedule["end"] : "" }}
@@ -302,14 +237,7 @@
                   </div>
                   <div
                     v-if="slot_date.length == 0 && isMounted"
-                    class="
-                      empty-schedule
-                      d-flex
-                      align-items-center
-                      justify-content-center
-                      h-40
-                      m-auto
-                    "
+                    class="empty-schedule d-flex align-items-center justify-content-center h-40 m-auto"
                   >
                     <p class="color-secondary text-16">
                       No time slot is available
@@ -370,27 +298,14 @@
                       </h4>
 
                       <div
-                        class="
-                          mb-0
-                          d-flex
-                          col-12 col-md-10 col-lg-9
-                          align-items-center
-                          form-row
-                          py-0
-                          px-1
-                          mb-3
-                        "
+                        class="mb-0 d-flex col-12 col-md-10 col-lg-9 align-items-center form-row py-0 px-1 mb-3"
                       >
                         <input
                           type="text"
                           name="meeting_name"
                           autocomplete="off"
                           maxlength="100"
-                          class="
-                            form-control
-                            bg-transparent
-                            custom-form-control
-                          "
+                          class="form-control bg-transparent custom-form-control"
                           placeholder="Meeting Name"
                           v-model="meeting_name"
                           :class="{
@@ -407,16 +322,7 @@
                         </div>
                       </div>
                       <div
-                        class="
-                          mb-0
-                          col-12 col-md-11 col-lg-10
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                          px-1
-                          mb-3
-                        "
+                        class="mb-0 col-12 col-md-11 col-lg-10 d-flex align-items-center form-row py-0 px-1 mb-3"
                       >
                         <textarea
                           type="text"
@@ -424,11 +330,7 @@
                           autocomplete="off"
                           maxlength="500"
                           row="3"
-                          class="
-                            form-control
-                            custom-form-control
-                            bg-transparent
-                          "
+                          class="form-control custom-form-control bg-transparent"
                           placeholder="Description"
                           v-model="meeting_description"
                           :class="{
@@ -447,16 +349,7 @@
                       </div>
 
                       <div
-                        class="
-                          mb-0
-                          col-12 col-md-7 col-lg-6
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                          px-1
-                          mb-3
-                        "
+                        class="mb-0 col-12 col-md-7 col-lg-6 d-flex align-items-center form-row py-0 px-1 mb-3"
                       >
                         <select
                           class="form-control bg-transparent mb-0"
@@ -486,26 +379,14 @@
                         </div>
                       </div>
                       <div
-                        class="
-                          mb-0
-                          col-12 col-md-10 col-lg-9
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                          px-1
-                        "
+                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0 px-1"
                       >
                         <input
                           type="text"
                           name="venue"
                           autocomplete="off"
                           maxlength="200"
-                          class="
-                            form-control
-                            custom-form-control
-                            bg-transparent
-                          "
+                          class="form-control custom-form-control bg-transparent"
                           :placeholder="
                             conversation_type == 'Video Conference'
                               ? 'Meeting Link'
@@ -526,13 +407,7 @@
                     </button>
                     <button
                       type="button"
-                      class="
-                        btn btn-success
-                        py-1
-                        px-4
-                        rounded-12
-                        font-semi-bold
-                      "
+                      class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
                       :disabled="processing"
                       @click="ScheduleConfirm()"
                     >
@@ -549,14 +424,7 @@
             v-if="playCelebration"
             :options="lottieOptionsSuccess"
             v-on:animCreated="handleAnimation"
-            class="
-              d-flex
-              position-absolute
-              end-0
-              bottom-0
-              meeting-celebration
-              z-index-9
-            "
+            class="d-flex position-absolute end-0 bottom-0 meeting-celebration z-index-9"
           />
         </div>
       </div>

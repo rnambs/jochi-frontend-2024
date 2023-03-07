@@ -93,16 +93,7 @@
 
       <!-- Teacher Sidebar -->
       <div
-        class="
-          sidebar-section
-          col-sm-4 col-md-5 col-lg-6
-          d-flex
-          justify-content-between
-          jochi-components-light-bg
-          p-3 p-lg-4
-          position-fixed
-          flex-column
-        "
+        class="sidebar-section col-sm-4 col-md-5 col-lg-6 d-flex justify-content-between jochi-components-light-bg p-3 p-lg-4 position-fixed flex-column"
         id="clickableId"
       >
         <!-- <div class="logo-section mt-3 p-2">
@@ -126,13 +117,7 @@
         </div> -->
         <div class="position-relative profile-sidebar">
           <div
-            class="
-              user-icon
-              d-flex
-              notification-icon-section
-              align-items-center
-              justify-content-end
-            "
+            class="user-icon d-flex notification-icon-section align-items-center justify-content-end"
           >
             <a class="position-relative p-2" href="#">
               <img
@@ -221,13 +206,7 @@
               alt=""
             />
             <h4
-              class="
-                color-primary
-                mb-0
-                mt-2
-                font-semi-bold
-                text-18 text-center text-lg-left
-              "
+              class="color-primary mb-0 mt-2 font-semi-bold text-18 text-center text-lg-left"
             >
               Tophia
             </h4>
@@ -242,7 +221,7 @@
                   <span>Reset Password</span>
                 </nuxt-link>
                 <a class="dropdown-item" href="#" @click="GetLogout()"
-                  >Logout</a
+                  >Log Out</a
                 >
               </div>
             </div>
@@ -261,35 +240,14 @@
           </div> -->
         </div>
         <div
-          class="
-            menu-items
-            pt-4
-            d-flex
-            flex-column
-            h-100
-            justify-content-between
-          "
+          class="menu-items pt-4 d-flex flex-column h-100 justify-content-between"
         >
           <ul class="custom-list">
             <li class="active menu-list nav-item">
               <nuxt-link
                 to="/teacher-dashboard"
                 data-toggle="collapse"
-                class="
-                  btn btn-link
-                  d-flex
-                  align-items-center
-                  justify-content-between
-                  bg-transparent
-                  text-decoration-none text-18
-                  color-secondary
-                  btn-block
-                  text-left
-                  collapsed
-                  flex-fill
-                  px-0
-                  py-2 py-lg-2
-                "
+                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
               >
                 <div class="font-icon d-inline-block">
                   <img src="../../static/image/home-solid.png" alt="" />
@@ -304,20 +262,7 @@
               <nuxt-link
                 to="/teacher-appointment"
                 data-toggle="collapse"
-                class="
-                  btn btn-link
-                  d-flex
-                  align-items-center
-                  justify-content-between
-                  bg-transparent
-                  text-decoration-none text-18
-                  color-secondary
-                  btn-block
-                  text-left
-                  flex-fill
-                  px-0
-                  py-2 py-lg-2
-                "
+                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
               >
                 <div class="font-icon d-inline-block">
                   <img src="../../static/image/user-tag.png" alt="" />
@@ -331,20 +276,7 @@
               <nuxt-link
                 to="/custom-availability"
                 data-toggle="collapse"
-                class="
-                  btn btn-link
-                  d-flex
-                  align-items-center
-                  justify-content-between
-                  bg-transparent
-                  text-decoration-none text-18
-                  color-secondary
-                  btn-block
-                  text-left
-                  flex-fill
-                  px-0
-                  py-2 py-lg-2
-                "
+                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
               >
                 <div class="font-icon d-inline-block">
                   <img src="../../static/image/calendar-check.png" alt="" />
@@ -358,20 +290,7 @@
               <nuxt-link
                 to="/teacher-syncCalendar"
                 data-toggle="collapse"
-                class="
-                  btn btn-link
-                  d-flex
-                  align-items-center
-                  justify-content-between
-                  bg-transparent
-                  text-decoration-none text-18
-                  color-secondary
-                  btn-block
-                  text-left
-                  flex-fill
-                  px-0
-                  py-2 py-lg-2
-                "
+                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
               >
                 <div class="font-icon d-inline-block">
                   <img src="../../static/image/sync-solid.png" alt="" />
@@ -385,20 +304,7 @@
               <nuxt-link
                 to="/club-detail"
                 data-toggle="collapse"
-                class="
-                  btn btn-link
-                  d-flex
-                  align-items-center
-                  justify-content-between
-                  bg-transparent
-                  text-decoration-none text-18
-                  color-secondary
-                  btn-block
-                  text-left
-                  flex-fill
-                  px-0
-                  py-2 py-lg-2
-                "
+                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
               >
                 <div class="font-icon d-inline-block">
                   <img src="../../static/image/club-type.png" alt="" />
@@ -412,20 +318,7 @@
               <nuxt-link
                 to="/club-catalogue"
                 data-toggle="collapse"
-                class="
-                  btn btn-link
-                  d-flex
-                  align-items-center
-                  justify-content-between
-                  bg-transparent
-                  text-decoration-none text-18
-                  color-secondary
-                  btn-block
-                  text-left
-                  flex-fill
-                  px-0
-                  py-2 py-lg-2
-                "
+                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
               >
                 <div class="font-icon d-inline-block">
                   <img
@@ -443,20 +336,7 @@
               <nuxt-link
                 to="/teacher-advisor"
                 data-toggle="collapse"
-                class="
-                  btn btn-link
-                  d-flex
-                  align-items-center
-                  justify-content-between
-                  bg-transparent
-                  text-decoration-none text-18
-                  color-secondary
-                  btn-block
-                  text-left
-                  flex-fill
-                  px-0
-                  py-2 py-lg-2
-                "
+                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
               >
                 <div class="font-icon d-inline-block">
                   <img src="../../static/image/advisor.png" alt="" />
@@ -519,20 +399,7 @@
             <li @click="openLink()" class="active menu-list nav-item">
               <div
                 data-toggle="collapse"
-                class="
-                  btn btn-link
-                  d-flex
-                  align-items-center
-                  justify-content-between
-                  bg-transparent
-                  text-decoration-none text-18
-                  color-secondary
-                  btn-block
-                  text-left
-                  flex-fill
-                  px-0
-                  py-2 py-lg-2
-                "
+                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
               >
                 <div class="font-icon d-inline-block">
                   <i class="fas fa-comments"></i>
@@ -547,20 +414,7 @@
               <nuxt-link
                 to="/privacy-policy"
                 data-toggle="collapse"
-                class="
-                  btn btn-link
-                  d-flex
-                  align-items-center
-                  justify-content-between
-                  bg-transparent
-                  text-decoration-none text-18
-                  color-secondary
-                  btn-block
-                  text-left
-                  flex-fill
-                  px-0
-                  py-2 py-lg-2
-                "
+                class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-2 py-lg-2"
               >
                 <div class="font-icon d-inline-block">
                   <i class="fas fa-shield-alt"></i>
