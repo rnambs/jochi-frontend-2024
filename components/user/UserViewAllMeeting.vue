@@ -200,7 +200,13 @@
                         <span class="pr-2"></span>
 
                         <date-picker
-                          class="form-control"
+                          :class="
+                            (detailType == 'Peer' &&
+                              detailTeacherId != studentId) ||
+                            detailMeetingRequest != 1
+                              ? 'no-cursor'
+                              : 'form-control'
+                          "
                           placeholder="MM/DD/YYYY"
                           format="MM/dd/yyyy"
                           :value="detailDate"
@@ -371,6 +377,10 @@
                           :class="{
                             'is-invalid':
                               submitted && $v.detailConversationType.$error,
+                            'no-cursor':
+                              (detailType == 'Peer' &&
+                                detailTeacherId != studentId) ||
+                              detailMeetingRequest != 1,
                           }"
                         >
                           <option value="Video Conference">
