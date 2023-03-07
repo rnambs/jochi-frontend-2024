@@ -17,7 +17,7 @@
                   class="row shadow-sm p-3 bg-white rounded justify-content-between w-100 m-0"
                 >
                   <div class="col-md-4 col-lg-3">
-                    <h4 class="text-dark text-left">Signin Logs</h4>
+                    <h4 class="text-dark text-left">Sign In Logs</h4>
                   </div>
                 </div>
 
