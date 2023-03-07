@@ -58,13 +58,14 @@
                 <div
                   class="time-slot container card card-primary-sm rounded-22 p-4 flex-fill h-40"
                 >
-                  <p class="time-head pb-1">
+                  <p
+                    data-intro="Set your custom availability by choosing 30 minute slots that work for you."
+                    class="time-head pb-1"
+                  >
                     <span class="color-dark text-16 font-semi-bold">{{
                       date_string
                     }}</span>
-                    <span
-                      data-intro="Set your custom availability by choosing 30 minute slots that work for you."
-                      class="color-secondary text-14 font-normal"
+                    <span class="color-secondary text-14 font-normal"
                       ><i>30 Minute Slot</i></span
                     >
                   </p>
