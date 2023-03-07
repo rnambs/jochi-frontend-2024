@@ -274,7 +274,7 @@ export default {
         pageNum = (pageNum - 1) * this.selectValue;
       }
       await this.getLogs({
-        limit: this.limit,
+        limit: this.selectValue,
         offset: pageNum,
         fromDate: fromDate,
         toDate: endDate,
