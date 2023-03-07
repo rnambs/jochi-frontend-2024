@@ -15,13 +15,13 @@
             <div class="d-flex justify-content-between align-item-center">
               <div class="d-flex flex-column">
                 <h2
-                  data-intro="Find the list of all the clubs in your school. Click on Learn More to see the club details and join to the club from there"
+                  data-intro="View all the community service, sports teams, and clubs available at your school. To learn more about different activities, click learn more"
                   class="color-primary font-semi-bold mb-1"
                 >
                   Club Catalog
                 </h2>
                 <h4 class="mb-2 color-dark font-semi-bold">
-                  Find your People!
+                  Find Your People!
                 </h4>
               </div>
 
@@ -32,7 +32,7 @@
                   class="btn btn-dark py-2 mt-1 h-fit-content px-4"
                   @click="openCreateNewModal"
                 >
-                  Create New
+                  Create your own club
                 </button>
               </div>
             </div>
@@ -187,7 +187,9 @@
           >
             <div class="modal-content">
               <div class="modal-header pb-1">
-                <h3 class="modal-title" id="exampleModalLabel">Create New</h3>
+                <h3 class="modal-title" id="exampleModalLabel">
+                  Create your own club
+                </h3>
               </div>
               <div class="modal-body px-4">
                 <form action="">

@@ -522,7 +522,7 @@
                         </div>
                         <span
                           class="ml-3 color-secondary text-capitalize font-medium"
-                          >Logout</span
+                          >Log Out</span
                         >
                       </a>
                     </button>
@@ -547,10 +547,10 @@
         <div class="modal-content">
           <div class="modal-header pb-1">
             <h3 class="modal-title" id="logoutConfirmationModalLongTitle">
-              Logout Confirmation
+              Log Out Confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">Are you sure you want to logout?</div>
+          <div class="modal-body px-4">Are you sure you want to log out?</div>
           <div class="modal-footer">
             <button
               type="button"

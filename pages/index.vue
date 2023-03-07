@@ -23,15 +23,7 @@
     <div
       v-if="loading && loadingMessage"
       id="fountainTextG"
-      class="
-        d-flex
-        align-items-center
-        justify-content-center
-        w-100
-        m-0
-        h-100
-        position-absolute
-      "
+      class="d-flex align-items-center justify-content-center w-100 m-0 h-100 position-absolute"
     >
       <div class="fountainTextG">{{ loadingMessage }} &nbsp;</div>
 
@@ -41,17 +33,7 @@
     </div>
     <div class="row main-row flex-row custom-full-height m-0 w-100">
       <div
-        class="
-          col-md-6
-          img-section
-          login-cover
-          d-flex
-          flex-column
-          align-items-center
-          justify-content-between
-          h-md-100
-          flex-fill
-        "
+        class="col-md-6 img-section login-cover d-flex flex-column align-items-center justify-content-between h-md-100 flex-fill"
       >
         <div class="logo-img d-flex align-items-center w-100">
           <img src="../static/image/logo.png" alt="" class="logo-icon" />
@@ -69,14 +51,7 @@
         </p>
       </div>
       <div
-        class="
-          col-md-6
-          form-section
-          d-flex
-          align-items-center
-          justify-content-center
-          h-md-100
-        "
+        class="col-md-6 form-section d-flex align-items-center justify-content-center h-md-100"
       >
         <!-- Sign-Up -->
 
@@ -85,25 +60,10 @@
           class="login-box d-flex flex-column h-100 justify-content-between"
         >
           <div
-            class="
-              d-flex
-              flex-column
-              h-100
-              justify-content-center
-              p-3
-              px-3 px-md-5 px-lg-3
-            "
+            class="d-flex flex-column h-100 justify-content-center p-3 px-3 px-md-5 px-lg-3"
           >
             <div
-              class="
-                card
-                rounded-22
-                p-4 p-xl-5
-                d-flex
-                flex-column
-                justify-content-center
-                align-items-center
-              "
+              class="card rounded-22 p-4 p-xl-5 d-flex flex-column justify-content-center align-items-center"
             >
               <img
                 src="../static/image/school_passport.png"
@@ -233,13 +193,7 @@
               </form> -->
             </div>
             <div
-              class="
-                login-icon-area
-                d-flex
-                align-items-center
-                justify-content-between
-                p-4
-              "
+              class="login-icon-area d-flex align-items-center justify-content-between p-4"
             >
               <a class="btn" href="https://www.instagram.com/jochi.info/"
                 ><img
@@ -294,6 +248,7 @@ import {
   REDIRECT_LOGIN_URL,
   GG4L_REDIRECT_LOGIN_URL,
 } from "~/assets/js/constants";
+const crypto = require("crypto");
 
 var schoolSelectValue = "";
 
@@ -330,7 +285,10 @@ export default {
     value: { required },
     studentId: { required },
   },
+
   mounted() {
+    window.localStorage.clear();
+
     this.redirect = GG4L_REDIRECT_LOGIN_URL + REDIRECT_LOGIN_URL;
     if (localStorage.getItem("email")) {
       var userType = localStorage.getItem("user_type");
@@ -342,7 +300,9 @@ export default {
         this.$router.push("/custom-availability");
       }
     }
-    this.getSchool();
+    const log_code = this.generateRandomString(16);
+    localStorage.setItem("log_code", log_code);
+    console.log("log_code", log_code);
   },
   computed: {
     ...mapState("studentSignUp", {
@@ -358,6 +318,9 @@ export default {
     ...mapActions("studentSignUp", {
       getSignUp: "getSignUp",
       getSchool: "getSchool",
+    }),
+    ...mapActions("redirectLogin", {
+      redirectLog: "redirectLog",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -396,8 +359,18 @@ export default {
         schoolSelectValue = val.id;
       }
     },
-    redirectToGg4L() {
+    async redirectToGg4L() {
+      await this.redirectLog({
+        log_code: localStorage.getItem("log_code"),
+        logged_in_date: moment().format("YYYY-MM-DD"),
+        status: "Pending",
+      });
       window.location.href = this.redirect;
+    },
+    generateRandomString(length) {
+      const buffer = crypto.randomBytes(Math.ceil(length / 2));
+      const hexString = buffer.toString("hex").slice(0, length);
+      return hexString;
     },
   },
 };

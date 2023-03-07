@@ -9,27 +9,25 @@
     <div class="main-section">
       <!-- tab for club info -->
       <div
-        class="
-          
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-        "
+        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
 
         <!-- Club info -->
-        <div class="cd-cover-pic-section position-relative">
+        <div
+          class="cd-cover-pic-section position-relative"
+          v-bind:style="{
+            'background-image':
+              'url(' +
+              (clubBannerImage
+                ? clubBannerImage
+                : '../../image/cover-pic.jpg') +
+              ')',
+          }"
+        >
           <div class="black-grad"></div>
           <div
-            class="
-              position-absolute
-              cover-button
-              mr-3
-              mb-1
-              d-flex
-              align-items-center
-            "
+            class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center"
           >
             <button class="d-none btn p-1 m-2">
               <i class="fas fa-pen color-white"></i>
@@ -50,19 +48,7 @@
         >
           <div class="club-section container-fluid h-100">
             <div
-              class="
-                inner-club
-                club-info
-                d-flex
-                flex-column
-                justify-content-top
-                container-fluid
-                pr-3
-                py-0
-                pl-0
-                custom-overflow
-                h-100
-              "
+              class="inner-club club-info d-flex flex-column justify-content-top container-fluid pr-3 py-0 pl-0 custom-overflow h-100"
             >
               <div class="info-head my-2 mt-4">
                 <div
@@ -128,14 +114,7 @@
 
                       <button
                         href=""
-                        class="
-                          btn btn-info-edit
-                          custom-theme-color-btn
-                          pl-4
-                          pr-4
-                          mb-0
-                          button
-                        "
+                        class="btn btn-info-edit custom-theme-color-btn pl-4 pr-4 mb-0 button"
                         v-if="enableEdit"
                         :disabled="!clubDetails.description"
                         @click.prevent="
@@ -164,20 +143,10 @@
                                   <!-- <span class="input-name">{{ data }}</span> -->
                                   <div
                                     v-if="data.user_info && index < 2"
-                                    class="
-                                      d-flex
-                                      align-items-center
-                                      justify-content-end
-                                      mt-2
-                                    "
+                                    class="d-flex align-items-center justify-content-end mt-2"
                                   >
                                     <div
-                                      class="
-                                        col-3
-                                        d-flex
-                                        justify-content-end
-                                        p-0
-                                      "
+                                      class="col-3 d-flex justify-content-end p-0"
                                     >
                                       <div class="ld-img-section">
                                         <div
@@ -201,12 +170,7 @@
                                         class="ld-details-section"
                                       >
                                         <p
-                                          class="
-                                            mb-1
-                                            color-dark
-                                            text-18
-                                            font-semi-bold
-                                          "
+                                          class="mb-1 color-dark text-18 font-semi-bold"
                                         >
                                           {{
                                             data.user_info.first_name +
@@ -221,12 +185,7 @@
                                           }}
                                         </p>
                                         <p
-                                          class="
-                                            text-16
-                                            color-secondary
-                                            mb-0
-                                            text-truncate
-                                          "
+                                          class="text-16 color-secondary mb-0 text-truncate"
                                         >
                                           {{ data.user_info.email }}
                                         </p>
@@ -269,13 +228,7 @@
                         </div>
 
                         <div
-                          class="
-                            form-row
-                            m-0
-                            d-flex
-                            align-items-center
-                            justify-content-end
-                          "
+                          class="form-row m-0 d-flex align-items-center justify-content-end"
                         >
                           <multiselect
                             v-model="leaderUpdate"
@@ -310,15 +263,7 @@
                       <h4 class="color-dark mb-2 font-bold">Members</h4>
                     </div>
                     <div
-                      class="
-                        members-thumbnail-list
-                        d-flex
-                        flex-column
-                        align-items-center
-                        justify-content-start
-                        mt-3
-                        position-relative
-                      "
+                      class="members-thumbnail-list d-flex flex-column align-items-center justify-content-start mt-3 position-relative"
                     >
                       <div class="first-row">
                         <div class="d-flex align-items-center">
@@ -400,20 +345,7 @@
                           <div class="col-10 col-lg-8 info-tag pr-0">
                             <div class="input-group mb-0 justify-content-end">
                               <div
-                                class="
-                                  px-4
-                                  py-1
-                                  ml-1
-                                  mb-1
-                                  rounded-6
-                                  color-white
-                                  d-flex
-                                  justify-content-center
-                                  min-w-100
-                                  text-14
-                                  bg-theme
-                                  align-items-center
-                                "
+                                class="px-4 py-1 ml-1 mb-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 bg-theme align-items-center"
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
                                 :style="{
@@ -443,12 +375,7 @@
                                   class="color-secondary text-14 font-regular"
                                 />
                                 <span
-                                  class="
-                                    color-secondary
-                                    text-14
-                                    font-normal
-                                    text-nowrap
-                                  "
+                                  class="color-secondary text-14 font-normal text-nowrap"
                                   >No data</span
                                 >
                               </div>
@@ -715,6 +642,7 @@ export default {
     }),
     ...mapState("clubMoreInfo", {
       clubMoreDetails: (state) => state.clubMoreDetails,
+      clubBannerImage: (state) => state.clubBannerImage,
       slots: (state) => state.slots,
       successMessageClub: (state) => state.successMessage,
       SuccessTypeClub: (state) => state.SuccessType,

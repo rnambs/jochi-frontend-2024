@@ -8,7 +8,29 @@
         <div class="inner-study p-4 d-flex flex-column flex-fill h-100">
           <div class="d-flex justify-content-between align-items-center">
             <h2 class="color-primary font-bold">Profile</h2>
+            <div
+              v-if="user_type == 2 && isSchoolAdmin != '1'"
+              class="d-flex justify-content-between align-items-center"
+            >
+              <div class="text-center">
+                <button
+                  v-if="requestSent != '1'"
+                  @click="upgrade()"
+                  class="btn btn-primary py-1 px-4 rounded-12 font-semi-bold"
+                >
+                  Request to become a School Admin
+                </button>
+                <span v-if="requestSent == '1'">Pending</span>
+              </div>
+            </div>
+            <div
+              class="d-flex justify-content-between align-items-center"
+              v-if="user_type == 2 && isSchoolAdmin == '1'"
+            >
+              School Admin
+            </div>
           </div>
+
           <div
             class="profile-row study-row px-2 d-flex flex-column flex-fill justify-content-start pt-3"
           >
@@ -185,23 +207,7 @@
                           </p>
                         </div>
                       </div>
-                      <div
-                        v-if="
-                          user_type == 2 &&
-                          requestSent != '1' &&
-                          isSchoolAdmin != '1'
-                        "
-                        class="col-md-12"
-                      >
-                        <div class="text-center">
-                          <button
-                            @click="upgrade()"
-                            class="btn btn-primary py-1 px-4 rounded-12 font-semi-bold"
-                          >
-                            Upgrade to School Admin
-                          </button>
-                        </div>
-                      </div>
+
                       <div v-if="user_type == 3" class="col-md-12">
                         <div class="row">
                           <div class="col-xl-12">
@@ -628,11 +634,11 @@ export default {
   created() {
     this.UserDetails();
     this.user_type = localStorage.getItem("user_type");
-    this.requestSent = localStorage.getItem("schoolAdminRequested");
-    this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     if (this.user_type == "3") {
       this.getAllAdvisors();
       this.getAdvisor();
+    } else {
+      this.schoolAdminStatus();
     }
     this.fetchSettings();
   },
@@ -649,6 +655,8 @@ export default {
       phone: (state) => state.phone,
       notification: (state) => state.notification,
       notificationSettings: (state) => state.notificationSettings,
+      schoolAdminRequested: (state) => state.schoolAdminRequested,
+      schoolAdmin: (state) => state.schoolAdmin,
     }),
   },
   methods: {
@@ -663,6 +671,7 @@ export default {
       notificationUpdate: "notificationUpdate",
       getSettings: "getSettings",
       upgradeUser: "upgradeUser",
+      getSchoolAdminStatus: "getSchoolAdminStatus",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -839,16 +848,8 @@ export default {
       $(".modal").modal("hide");
       $(".modal-backdrop").remove();
     },
-    checkValue() {
-      // console.log(this.phoneNumber);
-      // const phonePattern = /^(\+\d{1,3}[- ]?)?\d{10,15}$/;
-      // if (!phonePattern.test(this.phoneNumber)) {
-      //   this.phoneNumber = this.phoneNumber.slice(0, -1);
-      // }
-      // console.log(this.phoneNumber);
-    },
+    checkValue() {},
     checkValueChange() {
-      console.log(this.phoneNumber);
       const phonePattern = /^(\+\d{1,3}[- ]?)?\d{10,15}$/;
       if (
         !phonePattern.test(this.phoneNumber) ||
@@ -882,8 +883,6 @@ export default {
       }
     },
     async updateNotification(event, type) {
-      console.log(event.target.checked, type);
-
       await this.notificationUpdate({
         enable_status: event.target.checked,
         assignments: type == "assignment" ? 1 : "",
@@ -908,7 +907,6 @@ export default {
     },
     async fetchSettings() {
       await this.getSettings();
-      console.log(this.notificationSettings);
       this.smsNotify = this.notificationSettings.SMS_notification
         ? true
         : false;
@@ -938,6 +936,11 @@ export default {
           duration: 5000,
         });
       }
+    },
+    async schoolAdminStatus() {
+      await this.getSchoolAdminStatus();
+      this.requestSent = this.schoolAdminRequested;
+      this.isSchoolAdmin = this.schoolAdmin;
     },
   },
   // // middleware: "authenticated",

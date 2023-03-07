@@ -92,6 +92,8 @@ export default {
     async gg4lLogin() {
       await this.loginUsingGg4l({
         code: this.$route.query.code,
+        log_code: localStorage.getItem("log_code"),
+        logged_in_date: moment().format("YYYY-MM-DD"),
       });
       await this.getTokenDevice();
       const token = localStorage.getItem("token");

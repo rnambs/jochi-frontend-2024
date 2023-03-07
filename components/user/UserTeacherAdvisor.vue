@@ -235,6 +235,7 @@
                                     }}
                                   </div>
                                   <div
+                                    v-if="detail.subject"
                                     class="assignment-tag pink text-truncate"
                                   >
                                     {{ detail.subject }}
@@ -354,11 +355,11 @@
                                 class="position-absolute w-100 h-100 d-flex align-items-start justify-content-end success-image"
                               >
                                 <!-- <img src="../../static/image/done.png" alt="" class="position-absolute"> -->
-                                <span
+                                <!-- <span
                                   v-if="detail.task_status == 'Completed'"
                                   class="color-primary text-30 check position-absolute"
                                   ><i class="fas fa-check-circle"></i
-                                ></span>
+                                ></span> -->
                               </div>
                             </div>
                           </div>
@@ -412,6 +413,7 @@
                                     }}
                                   </div>
                                   <div
+                                    v-if="detail.subject"
                                     class="assignment-tag pink text-truncate"
                                   >
                                     {{ detail.subject }}
