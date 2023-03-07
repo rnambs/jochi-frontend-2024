@@ -47,6 +47,7 @@
                   </div>
                 </div>
                 <div
+                  data-intro="Select the upcoming date to set your availability"
                   class="time-slot calendar-sm container card card-primary-sm rounded-22 p-3 pt-4 mb-4"
                 >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />

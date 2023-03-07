@@ -41,8 +41,14 @@
                     </multiselect>
                   </div>
                 </div>
-                <div v-if="user == '3'" class="col-md-4 px-0">
-                  <div class="custom-switch pb-2 float-right">
+                <div
+                  data-intro="Turn on sync to planner to sync your team and club meetings to your planner"
+                  class="col-md-4 px-0"
+                >
+                  <div
+                    v-if="user == '3'"
+                    class="custom-switch pb-2 float-right"
+                  >
                     <input
                       type="checkbox"
                       class="custom-control-input"
@@ -52,7 +58,6 @@
                     />
                     <label
                       class="custom-control-label font-normal color-dark text-14"
-                      data-intro="Sync your team and club meetings to your planner from here"
                       for="custom-Switches"
                       >Sync to Planner
                     </label>
