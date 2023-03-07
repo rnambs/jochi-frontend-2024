@@ -3263,7 +3263,7 @@ img.dark-icon{
                 .inner-tab{
                     text-decoration: none;
                     background-color: rgba($color: $white, $alpha: 0.45);
-                    box-shadow: 0px 0px 32px -4px rgba($color: #000100, $alpha: 0.09);
+                    box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
                     min-height: 56px;
                     &:hover, &.nuxt-link-exact-active.nuxt-link-active{
                         background-color: $theme-color;
