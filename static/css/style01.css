@@ -5399,4 +5399,15 @@ select.form-control.is-invalid {
 
 .no-cursor {
   cursor: initial !important;
+}
+
+.sch-admin {
+  color: #6c6c6c;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+.sch-admin i {
+  color: #FF6D6D;
+  font-size: 18px;
 }/*# sourceMappingURL=style01.css.map */

@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-12">
         <div class="bg-light">
-          <div class="tab-content p-1" id="myTabContent">
+          <div class="tab-content p-3" id="myTabContent">
             <!-- student tab -->
             <div
-              class="tab-pane fade container-fluid show active in"
+              class="tab-pane fade show active in"
               id="profile"
               role="tabpanel"
               aria-labelledby="profile-tab"
@@ -17,17 +17,15 @@
                   class="row shadow-sm p-3 bg-white rounded justify-content-between w-100 m-0"
                 >
                   <div class="col-md-4 col-lg-3">
-                    <h4 class="text-dark text-left">Sign In Logs</h4>
+                    <h4 class="text-dark text-left mb-0">Sign In Logs</h4>
                   </div>
                 </div>
 
                 <!-- end search tab -->
               </div>
-              <div class="bg-white mt-2 p-1 rounded row overflow-hidden">
                 <!-- table -->
-                <div class="bg-white mt-2 p-1 rounded row">
                   <div
-                    class="col-lg-4 d-flex align-items-center align-items-start"
+                    class="col-lg-4 p-0 my-3"
                   >
                     <div class="input-group rounded d-flex">
                       <input
@@ -40,12 +38,9 @@
                       />
                     </div>
                   </div>
-                </div>
-                <!-- end table -->
-              </div>
             </div>
             <!-- table -->
-            <div class="bg-white mt-2 p-1 rounded">
+            <div class="bg-white mt-2 p-2 rounded">
               <table class="user-table table">
                 <tr class="text-secondary bg-light">
                   <th>Date</th>
@@ -221,7 +216,7 @@ export default {
         autoUpdateInput: false,
         // minDate: today,
         maxDate: today,
-        opens: "left",
+        opens: "right",
         locale: {
           format: "DD-MM-YYYY",
           cancelLabel: "Clear",

@@ -24,10 +24,10 @@
               </div>
             </div>
             <div
-              class="d-flex justify-content-between align-items-center"
+              class="d-flex justify-content-between align-items-center sch-admin"
               v-if="user_type == 2 && isSchoolAdmin == '1'"
             >
-              School Admin
+            <i class="fas fa-user-tie mr-2"></i> School Admin
             </div>
           </div>
 

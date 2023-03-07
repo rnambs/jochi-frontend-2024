@@ -7026,3 +7026,14 @@ $b-toaster-zindex: 1100 !default;
 // .multiselect{
 //     z-index: 999 !important;
 // }
+
+.sch-admin {
+	color: #6c6c6c;
+	font-weight: 600;
+	padding: 5px 15px;
+	border-radius: 10px;
+    i {
+        color: $theme-color;
+        font-size: 18px;
+    }
+}
