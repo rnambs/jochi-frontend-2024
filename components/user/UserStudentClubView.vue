@@ -10,7 +10,7 @@
       <!-- tab for club info -->
       <div
         class="
-          jochi-components-light-bg
+          
           custom-margin-for-main-section custom-full-height
           d-flex
           flex-column

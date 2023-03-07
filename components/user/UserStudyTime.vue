@@ -1083,7 +1083,7 @@
         p-4
         custom-margin-for-main-section custom-full-height
         d-flex
-        hidden-scroll
+        show-scroll
       "
     >
       <div class="d-flex flex-column flex-fill">

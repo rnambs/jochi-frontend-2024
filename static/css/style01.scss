@@ -1188,6 +1188,11 @@ input[type="radio"]{
     }
 }
 
+.show-scroll{
+    overflow-y: scroll;
+    scrollbar-color: $theme-color #fff;
+}
+
 .planner-day-responsive{
     @media (max-width:$lg-screen) {
         overflow: hidden;
@@ -1293,6 +1298,8 @@ img.dark-icon{
 .bullet{
     width: 12px;
     height: 12px;
+    min-width: 12px;
+    min-height: 12px;
     border-color: $text-secondary !important;
 }
 
@@ -5614,6 +5621,7 @@ img.dark-icon{
 ::-webkit-scrollbar  {
     width: 6px;
     height: 6px;
+    scrollbar-width: thin;
     @media (max-width:$lg-screen) {
         width: 4px;
         height: 4px;
@@ -5630,6 +5638,7 @@ img.dark-icon{
     border-radius: 10px;
     overflow: hidden;
     box-shadow: none;
+    scrollbar-width: thin;
 }
 
 /* Handle */
@@ -5637,6 +5646,7 @@ img.dark-icon{
     background: $theme-color;
     border-radius: 10px;
     box-shadow: none;
+    scrollbar-color: $theme-color;
 }
 
 /* Handle on hover */
@@ -7013,6 +7023,6 @@ $b-toaster-zindex: 1100 !default;
     cursor: initial !important;
 }
 
-.multiselect{
-    z-index: 999 !important;
-}
+// .multiselect{
+//     z-index: 999 !important;
+// }
