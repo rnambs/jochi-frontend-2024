@@ -27,7 +27,7 @@
               class="d-flex justify-content-between align-items-center sch-admin"
               v-if="user_type == 2 && isSchoolAdmin == '1'"
             >
-            <i class="fas fa-user-tie mr-2"></i> School Admin
+              <i class="fas fa-user-tie mr-2"></i> School Admin
             </div>
           </div>
 
@@ -55,6 +55,7 @@
                     <!----image-->
                     <div class="col-md-6">
                       <div
+                        data-intro="Upload your profile picture"
                         class="study-col profile-col d-flex flex-column justify-content-end align-items-center flex-fill"
                       >
                         <form id="form" enctype="multipart/form-data">
@@ -210,7 +211,10 @@
 
                       <div v-if="user_type == 3" class="col-md-12">
                         <div class="row">
-                          <div class="col-xl-12">
+                          <div
+                            data-intro="Update your mobile number"
+                            class="col-xl-12"
+                          >
                             <button
                               class="mr-2"
                               v-if="!enableEdit"
@@ -268,6 +272,7 @@
 
                           <div class="col-xl-12">
                             <div
+                              data-intro="Update your notification settings"
                               class="card card-primary p-3 h-100 d-flex flex-column"
                             >
                               <h4 class="color-dark font-semi-bold">
@@ -377,7 +382,10 @@
                       "
                       class="col-md-6"
                     >
-                      <div class="jochi-components-light-bg p-4 h-100">
+                      <div
+                        data-intro="Find your advisor details"
+                        class="jochi-components-light-bg p-4 h-100"
+                      >
                         <div class="">
                           <div v-if="user_type == '3'" class="col-md-12">
                             <div
@@ -599,6 +607,16 @@ export default {
   components: {
     lottie,
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
+  },
   data() {
     return {
       email: "",
@@ -642,6 +660,9 @@ export default {
     }
     this.fetchSettings();
   },
+  mounted() {
+    this.startIntro();
+  },
   computed: {
     ...mapState("profilePage", {
       allList: (state) => state.allList,
@@ -658,6 +679,9 @@ export default {
       schoolAdminRequested: (state) => state.schoolAdminRequested,
       schoolAdmin: (state) => state.schoolAdmin,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("profilePage", {
@@ -941,6 +965,26 @@ export default {
       await this.getSchoolAdminStatus();
       this.requestSent = this.schoolAdminRequested;
       this.isSchoolAdmin = this.schoolAdmin;
+    },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      let skip = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
+          completed = true;
+          if (state != "skip") this.$router.push("/planner-day");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
     },
   },
   // // middleware: "authenticated",

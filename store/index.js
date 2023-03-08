@@ -99,7 +99,8 @@ export const store = new Vuex.Store({
 
 export const state = () => ({
     isTimerRunning: false,
-    startProductGuide: false
+    startProductGuide: false,
+    startProductGuideNotification: false,
 })
 
 export const mutations = {
@@ -110,8 +111,10 @@ export const mutations = {
 
     setStartProductGuide(state, value) {
         state.startProductGuide = value
+    },
+    setStartProductGuideNotification(state, value) {
+        state.startProductGuideNotification = value
     }
-
 }
 
 

@@ -2655,13 +2655,6 @@ export default {
       return this.$store.state.startProductGuide;
     },
   },
-  watch: {
-    startProductGuide(newValue, oldValue) {
-      if (newValue) {
-        this.startIntro();
-      }
-    },
-  },
   methods: {
     ...mapActions("quotedMessage", {
       showQuotedMessage: "showQuotedMessage",

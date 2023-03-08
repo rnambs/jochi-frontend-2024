@@ -500,7 +500,7 @@
               </div>
             </div>
           </div> -->
-          
+
           <div class="menu-items position-relative py-0">
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
@@ -511,7 +511,6 @@
                   <div
                     class="mb-0 d-flex justify-content-center justify-content-lg-start flex-column"
                   >
-
                     <button
                       class="btn btn-link d-flex align-items-center justify-content-between text-decoration-none text-18 btn-block text-left collapsed justify-content-start pl-2"
                       @click="
@@ -573,8 +572,6 @@
                         </span>
                       </a>
                     </button>
-
-                    
                   </div>
                 </div>
               </div>
@@ -717,6 +714,16 @@ export default {
     }),
     startProductGuide() {
       return this.$store.state.startProductGuide;
+    },
+    startProductGuideNotification() {
+      return this.$store.state.startProductGuideNotification;
+    },
+  },
+  watch: {
+    startProductGuideNotification(newValue, oldValue) {
+      if (newValue) {
+        this.startIntro();
+      }
     },
   },
   methods: {
@@ -863,7 +870,37 @@ export default {
     },
     startGuide() {
       this.$store.commit("setStartProductGuide", true);
-      this.$router.push("/planner-day");
+      if (this.$route.name != "student-dashboard") {
+        this.$router.push("/student-dashboard");
+      }
+      // this.$router.push("/planner-day");
+    },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      let skip = false;
+      if (this.startProductGuideNotification) {
+        intro.start();
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+          this.$store.commit("setStartProductGuideNotification", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
+          completed = true;
+          if (state != "skip") {
+            this.$store.commit("setStartProductGuide", false);
+            this.$store.commit("setStartProductGuideNotification", false);
+          }
+        });
+        intro.onexit(() => {
+          if (!completed) {
+            this.$store.commit("setStartProductGuide", false);
+            this.$store.commit("setStartProductGuideNotification", false);
+          }
+        });
+      }
     },
   },
   // // middleware: "authenticated",

@@ -2,12 +2,7 @@
   <div class="main-section">
     <!-- Study Page -->
     <div
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-      "
+      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex"
     >
       <div class="study-section d-flex flex-column">
         <div
@@ -119,15 +114,7 @@
           <div class="row inner-row mt-0 mb-2">
             <div class="col-md-6 py-2">
               <div
-                class="
-                  inner-col
-                  card card-void
-                  p-3
-                  h-100
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                "
+                class="inner-col card card-void p-3 h-100 d-flex align-items-center justify-content-center"
               >
                 <!-- {{mySession.weekly_pi_chart}} -->
                 <div class="d-flex">
@@ -160,15 +147,7 @@
             </div>
             <div class="col-md-6 py-2">
               <div
-                class="
-                  inner-col
-                  card card-void
-                  p-3
-                  h-100
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                "
+                class="inner-col card card-void p-3 h-100 d-flex align-items-center justify-content-center"
               >
                 <div class="d-flex">
                   <div class="d-flex flex-column justify-content-center">
@@ -759,8 +738,10 @@ export default {
       const intro = this.$intro();
       if (this.startProductGuide) {
         intro.start();
-        intro.oncomplete(() => {
-          this.$store.commit("setStartProductGuide", false);
+        intro.oncomplete((step, state) => {
+          if (state != "skip") {
+            this.$store.commit("setStartProductGuideNotification", true);
+          }
         });
         intro.onexit(() => {
           this.$store.commit("setStartProductGuide", false);

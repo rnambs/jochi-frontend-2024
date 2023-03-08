@@ -2,17 +2,7 @@
   <div>
     <div
       id="pageLoader"
-      class="
-        bg-light
-        d-flex
-        align-items-center
-        justify-content-center
-        position-fixed
-        vh-100
-        vw-100
-        left-0
-        top-0
-      "
+      class="bg-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
       style="z-index: 9"
       v-if="!isHidden"
     >
@@ -21,15 +11,7 @@
 
     <div class="main-section">
       <div
-        class="
-          jochi-components-light-bg
-          p-4
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-          position-realtive
-          hidden-scroll
-        "
+        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
       >
         <div class="dmc-head d-flex justify-content-between align-items-start">
           <div class="greet-with-name-sec">
@@ -57,13 +39,7 @@
             <div class="col-xl-8 h-100 height-md-unset">
               <div class="d-flex flex-column h-100">
                 <div
-                  class="
-                    jochi-sub-components-light-bg
-                    p-4
-                    pr-1
-                    pb-1
-                    h-fit-content
-                  "
+                  class="jochi-sub-components-light-bg p-4 pr-1 pb-1 h-fit-content"
                 >
                   <div class="row position-relative justify-content-between">
                     <div class="col-7"></div>
@@ -86,25 +62,15 @@
                 </div>
                 <div class="d-flex flex-column h-40 flex-fill">
                   <div
-                    class="
-                      row
-                      mt-1
-                      h-100
-                      height-md-unset
-                      flex-column flex-lg-row
-                    "
+                    class="row mt-1 h-100 height-md-unset flex-column flex-lg-row"
                   >
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
-                      <div class="jochi-sub-components-light-bg h-100">
+                      <div
+                        data-intro="View your total study time"
+                        class="jochi-sub-components-light-bg h-100"
+                      >
                         <div
-                          class="
-                            study-status-card
-                            d-flex
-                            flex-row flex-lg-column
-                            justify-content-center
-                            align-items-center
-                            h-100
-                          "
+                          class="study-status-card d-flex flex-row flex-lg-column justify-content-center align-items-center h-100"
                         >
                           <div
                             class="position-relative d-flex mr-3 mr-lg-0 mt-2"
@@ -115,26 +81,13 @@
                               class="d-flex justify-content-center w-100"
                             />
                             <div
-                              class="
-                                study-status-img
-                                position-absolute
-                                d-flex
-                                w-100
-                                h-100
-                                align-items-center
-                                justify-content-center
-                              "
+                              class="study-status-img position-absolute d-flex w-100 h-100 align-items-center justify-content-center"
                             >
                               <img src="~/static/image/alarm.png" alt="" />
                             </div>
                           </div>
                           <div
-                            class="
-                              study-status-text
-                              text-left text-lg-center
-                              mb-2
-                              px-2
-                            "
+                            class="study-status-text text-left text-lg-center mb-2 px-2"
                           >
                             <p class="study-status-studied mb-1 break-word">
                               {{ duration }} Minutes Studied Today
@@ -151,18 +104,12 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill">
+                    <div
+                      data-intro="View your upcoming meetings list "
+                      class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill"
+                    >
                       <div
-                        class="
-                          d-flex
-                          flex-column
-                          custom-overflow
-                          faculty-availability-card-outer
-                          h-100
-                          p-3
-                          py-4
-                          h-max-lg-400
-                        "
+                        class="d-flex flex-column custom-overflow faculty-availability-card-outer h-100 p-3 py-4 h-max-lg-400"
                       >
                         <div class="row">
                           <div class="col-12 mb-2">
@@ -174,27 +121,13 @@
                               <div class="row">
                                 <div class="col-3 py-0">
                                   <div
-                                    class="
-                                      jochi-sub-components-light-bg
-                                      fa-card-date
-                                      d-flex
-                                      flex-column
-                                      align-items-center
-                                      justify-content-center
-                                      w-100
-                                      p-3
-                                    "
+                                    class="jochi-sub-components-light-bg fa-card-date d-flex flex-column align-items-center justify-content-center w-100 p-3"
                                   >
                                     <p class="color-primary text-12 mb-1">
                                       {{ list.date_day }}
                                     </p>
                                     <p
-                                      class="
-                                        color-primary
-                                        font-regular
-                                        text-30
-                                        mb-0
-                                      "
+                                      class="color-primary font-regular text-30 mb-0"
                                     >
                                       {{ list.date_number }}
                                     </p>
@@ -202,22 +135,12 @@
                                 </div>
                                 <div class="col-9">
                                   <div
-                                    class="
-                                      d-flex
-                                      justify-content-between
-                                      align-items-center
-                                      cursor-pointer
-                                    "
+                                    class="d-flex justify-content-between align-items-center cursor-pointer"
                                     @click="onCardClick(list)"
                                   >
                                     <div class="fa-meeting-faculty-details">
                                       <p
-                                        class="
-                                          mb-1
-                                          color-seccondary
-                                          text-14
-                                          font-regular
-                                        "
+                                        class="mb-1 color-seccondary text-14 font-regular"
                                       >
                                         {{
                                           list.type == "Teacher"
@@ -226,25 +149,12 @@
                                         }}
                                       </p>
                                       <p
-                                        class="
-                                          mb-1
-                                          color-dark
-                                          text-18
-                                          font-bold
-                                        "
+                                        class="mb-1 color-dark text-18 font-bold"
                                       >
                                         {{ list.new_title }}
                                       </p>
                                       <div
-                                        class="
-                                          w-fit-content
-                                          text-12
-                                          px-3
-                                          py-1
-                                          bg-theme
-                                          rounded-pill
-                                          color-white
-                                        "
+                                        class="w-fit-content text-12 px-3 py-1 bg-theme rounded-pill color-white"
                                       >
                                         {{ list.start_time }}
                                       </div>
@@ -261,14 +171,7 @@
                           v-if="!slot_date || slot_date.length <= 0"
                         >
                           <span
-                            class="
-                              d-flex
-                              w-100
-                              justify-content-center
-                              color-secondary
-                              text-16
-                              font-regular
-                            "
+                            class="d-flex w-100 justify-content-center color-secondary text-16 font-regular"
                             >No meetings scheduled for this month!</span
                           >
                         </div>
@@ -280,36 +183,20 @@
             </div>
             <div class="col-xl-4 h-100 mt-3 mt-xl-0 height-md-unset">
               <div
-                class="
-                  jochi-sub-components-light-bg
-                  h-100
-                  d-flex
-                  flex-column
-                  overflow-hidden
-                "
+                class="jochi-sub-components-light-bg h-100 d-flex flex-column overflow-hidden"
               >
                 <div class="calendar-dashboard px-4 pt-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
                 <div
+                  data-intro="View your upcoming assignments list "
                   class="d-flex flex-column h-40 flex-fill pb-3 assignment-list"
                 >
                   <h4 class="color-black font-semi-bold px-4">
                     Assignments List
                   </h4>
                   <div
-                    class="
-                      d-flex
-                      flex-column
-                      h-40
-                      flex-fill
-                      custom-overflow
-                      px-3
-                      mb-3
-                      pt-2
-                      mx-2
-                      h-max-lg-600
-                    "
+                    class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
                   >
                     <div
                       v-for="item in assignmentList"
@@ -317,13 +204,7 @@
                       class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                     >
                       <p
-                        class="
-                          mb-2
-                          word-break
-                          text-16
-                          font-semi-bold
-                          color-dark
-                        "
+                        class="mb-2 word-break text-16 font-semi-bold color-dark"
                       >
                         {{ item.task }}
                       </p>
@@ -337,13 +218,7 @@
                       class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                     >
                       <p
-                        class="
-                          mb-2
-                          word-break
-                          text-16
-                          font-semi-bold
-                          color-dark
-                        "
+                        class="mb-2 word-break text-16 font-semi-bold color-dark"
                       >
                         No assignments for this day!
                       </p>
@@ -396,15 +271,7 @@
                     <td class="tmodal-data text-nowrap">Meeting Name</td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12 col-md-10 col-lg-9
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                          line-break-anywhere
-                        "
+                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0 line-break-anywhere"
                       >
                         {{ meetingDetail.meeting_name }}
                       </p>
@@ -414,15 +281,7 @@
                     <td class="tmodal-data text-nowrap">Description</td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12 col-md-11 col-lg-10
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                          line-break-anywhere
-                        "
+                        class="mb-0 col-12 col-md-11 col-lg-10 d-flex align-items-center form-row py-0 line-break-anywhere"
                       >
                         {{ meetingDetail.meeting_description }}
                       </p>
@@ -432,14 +291,7 @@
                     <td class="tmodal-data text-nowrap">Type of Meeting</td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12 col-md-10 col-lg-9
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                        "
+                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0"
                       >
                         {{ meetingDetail.conversation_type }}
                       </p>
@@ -455,15 +307,7 @@
                     </td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12 col-md-10 col-lg-9
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                          line-break-anywhere
-                        "
+                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0 line-break-anywhere"
                       >
                         {{
                           meetingDetail.conversation_type == "Video Conference"
@@ -561,6 +405,10 @@ export default {
         {
           rel: "stylesheet",
           href: "/css/style01.css",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
         },
       ],
     };
@@ -683,6 +531,13 @@ export default {
     if (!phone && skipped != "true") {
       $("#promptModal").modal();
     }
+  },
+  watch: {
+    startProductGuide(newValue, oldValue) {
+      if (newValue) {
+        this.startIntro();
+      }
+    },
   },
   methods: {
     async skipPromt() {
@@ -1045,6 +900,26 @@ export default {
       this.calendarApi.next();
       this.GetDailyPlanner(this.calendarApi.view.activeStart);
       this.ListAllMeeting();
+    },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      let skip = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
+          completed = true;
+          if (state != "skip") this.$router.push("/user-profile");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
     },
   },
   beforeDestroy() {
