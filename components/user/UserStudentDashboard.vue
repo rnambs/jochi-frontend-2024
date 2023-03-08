@@ -531,6 +531,7 @@ export default {
     if (!phone && skipped != "true") {
       $("#promptModal").modal();
     }
+    this.startIntro();
   },
   watch: {
     startProductGuide(newValue, oldValue) {
