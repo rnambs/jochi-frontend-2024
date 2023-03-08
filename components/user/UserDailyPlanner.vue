@@ -700,7 +700,7 @@
                                   "
                                   v-for="sub in item.subTasks"
                                   :key="sub.id"
-                                  class="pl-2 d-flex justify-content-center color-secondary cursor-pointer mb-1"
+                                  class="pl-2 d-flex justify-content-center color-dark cursor-pointer mb-1"
                                 >
                                   <label
                                     for=""

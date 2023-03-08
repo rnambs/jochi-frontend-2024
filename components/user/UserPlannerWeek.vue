@@ -988,7 +988,7 @@
                                         pl-2
                                         d-flex
                                         justify-content-center
-                                        color-secondary
+                                        color-dark
                                         cursor-pointer
                                         mb-1
                                       "
