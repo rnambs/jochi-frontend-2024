@@ -15,7 +15,7 @@
               <div class="text-center">
                 <button
                   v-if="requestSent != '1'"
-                  @click="upgrade()"
+                  @click="openRequestConfirm()"
                   class="btn btn-primary py-1 px-4 rounded-12 font-semi-bold"
                 >
                   Request to become a School Admin
@@ -589,6 +589,50 @@
         </div>
       </div>
       <!-- Modal End -->
+
+      <!-- Send request to upgrade user confirmation end  -->
+      <div
+        class="modal fade"
+        id="upgradeConfirm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="upgradeConfirmModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered add-assmt"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header pb-1">
+              <h3 class="modal-title" id="upgradeConfirmModalLongTitle">
+                Request Confirmation
+              </h3>
+            </div>
+            <div class="modal-body px-3 bold-6">
+              Send request to become a school admin?
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+                :disabled="processingUpgrade"
+                @click="upgrade()"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Send request to upgrade user confirmation end  -->
     </section>
 
     <!-- End Study Page -->
@@ -646,6 +690,7 @@ export default {
       sessionNotify: false,
       requestSent: "0",
       isSchoolAdmin: "0",
+      processingUpgrade: false,
     };
   },
 
@@ -945,8 +990,10 @@ export default {
     },
     async upgrade() {
       this.loading = true;
+      this.processingUpgrade = true;
       await this.upgradeUser({ teacher_id: localStorage.getItem("id") });
       this.loading = false;
+      this.processingUpgrade = false;
       if (this.successMessage != "") {
         this.requestSent = "1";
         localStorage.setItem("schoolAdminRequested", "1");
@@ -987,6 +1034,9 @@ export default {
           if (!completed) this.$store.commit("setStartProductGuide", false);
         });
       }
+    },
+    async openRequestConfirm() {
+      $("#upgradeConfirm").modal({ backdrop: true });
     },
   },
   // // middleware: "authenticated",
