@@ -994,6 +994,8 @@ export default {
       await this.upgradeUser({ teacher_id: localStorage.getItem("id") });
       this.loading = false;
       this.processingUpgrade = false;
+      $(".modal").modal("hide");
+      $(".modal-backdrop").remove();
       if (this.successMessage != "") {
         this.requestSent = "1";
         localStorage.setItem("schoolAdminRequested", "1");
