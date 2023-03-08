@@ -663,7 +663,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.startIntro();
-    }, 2500);
+    }, 1000);
   },
   computed: {
     ...mapState("profilePage", {
