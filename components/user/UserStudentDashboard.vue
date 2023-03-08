@@ -531,7 +531,6 @@ export default {
     if (!phone && skipped != "true") {
       $("#promptModal").modal();
     }
-    this.startIntro();
   },
   watch: {
     startProductGuide(newValue, oldValue) {
@@ -547,6 +546,9 @@ export default {
     activate() {
       console.log("inside hide timeout");
       setTimeout(() => (this.isHidden = true), 1500);
+      setTimeout(() => {
+        this.startIntro();
+      }, 2500);
     },
     handleAnimation: function (anim) {
       this.anim = anim;
