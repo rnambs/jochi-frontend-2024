@@ -66,7 +66,7 @@
                   >
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                       <div
-                        data-intro="View your total study time"
+                        data-intro="View your total study time for a day"
                         class="jochi-sub-components-light-bg h-100"
                       >
                         <div
@@ -105,7 +105,7 @@
                       </div>
                     </div>
                     <div
-                      data-intro="View your upcoming meetings list "
+                      data-intro="View your upcoming meetings for the month "
                       class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill"
                     >
                       <div
@@ -189,7 +189,7 @@
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
                 <div
-                  data-intro="View your upcoming assignments list "
+                  data-intro="View your upcoming assignments list by choosing a date from calendar"
                   class="d-flex flex-column h-40 flex-fill pb-3 assignment-list"
                 >
                   <h4 class="color-black font-semi-bold px-4">

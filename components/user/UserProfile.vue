@@ -661,7 +661,9 @@ export default {
     this.fetchSettings();
   },
   mounted() {
-    this.startIntro();
+    setTimeout(() => {
+      this.startIntro();
+    }, 2500);
   },
   computed: {
     ...mapState("profilePage", {
