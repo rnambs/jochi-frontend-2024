@@ -214,7 +214,7 @@
                       </p>
                     </div>
                     <div
-                      v-if="!plannerList || plannerList.length <= 0"
+                      v-if="!assignmentList || assignmentList.length <= 0"
                       class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                     >
                       <p
@@ -497,6 +497,7 @@ export default {
     ...mapState("quotedMessage", {
       quoteMessage: (state) => state.quoteMessage,
       plannerList: (state) => state.plannerList,
+      sharedAstList: (state) => state.sharedAstList,
     }),
     ...mapState("userStudyAnalytics", {
       goal: (state) => state.goal,
@@ -850,33 +851,17 @@ export default {
         this.meetingDetails.push(listobj);
         eventList.push(meetingobj);
       });
-      this.sessionList?.forEach((element) => {
-        var meetingobj = {};
-        var listobj = {};
-        let title = "";
-        if (element.assignment_id) {
-          title = "Study Session " + element.assignments?.task;
-        } else {
-          title = "Study Session " + element.subject?.subject_name;
-        }
-
-        const color = element.subject?.color_code;
-        // }
-        var dateMeeting = element.date;
-        var timeValNum = element.time;
-        var tmeMeeting = this.formatAMPM(element.time);
-        var start = dateMeeting + "T" + tmeMeeting;
-        meetingobj["title"] = title;
-        meetingobj["color"] = color;
-        meetingobj["start"] = start;
-        meetingobj["id"] = element.id;
-        meetingobj["groupId"] = "study";
-
-        listobj["title"] = title;
-        listobj["meeting"] = "Study Session";
-        listobj["dateMeeting"] = dateMeeting;
-        listobj["timeValNum"] = timeValNum;
-        eventList.push(meetingobj);
+      this.sharedAstList.forEach((element) => {
+        let planner = {};
+        planner.task = element.task;
+        planner.task_status = element.task_status;
+        planner.id = element.id;
+        planner.subject = element.subject;
+        planner.due_date = moment(element.due_date).format("MM/DD/YYYY");
+        planner.due_time = element.due_time;
+        planner.assignment_description = element.assignment_description;
+        planner.subjects = element.assignment_description;
+        this.assignmentList.push(planner);
       });
     },
     handleMonthChange(dateInfo) {
