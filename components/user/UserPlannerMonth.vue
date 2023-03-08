@@ -27,9 +27,9 @@
                       <li><span>Club Meeting</span></li>
                       <li><span>Peer Meeting</span></li>
                       <li><span>Teacher Meeting</span></li>
-                      <!-- <li><span>color-8</span></li>
-                      <li><span>color-9</span></li>
-                      <li><span>color-10</span></li> -->
+                      <li><span>Trainings</span></li>
+                      <li><span>Matches</span></li>
+                      <!-- <li><span>color-10</span></li> -->
                     </ul>
                   </div>
                 </div>
@@ -2646,7 +2646,7 @@ export default {
           } else if (element.priority == "2") {
             var color = "#F6D73C";
           } else if (element.priority == "3") {
-            var color = "#00CCA0";
+            var color = "#38a272";
           } else if (element.priority == "4") {
             var color = "#ffffff";
           }
@@ -2806,7 +2806,7 @@ export default {
           } else if (element.priority == "2") {
             var color = "#F6D73C";
           } else if (element.priority == "3") {
-            var color = "#00CCA0";
+            var color = "#38a272";
           } else if (element.priority == "4") {
             var color = "#ffffff";
           }
@@ -3450,7 +3450,7 @@ export default {
       var timestandard = new Date(dateData).toLocaleString();
       if (meetingData == "#64B5FC") {
         var color = "Peer";
-      } else if (meetingData == "#07BEB8") {
+      } else if (meetingData == "#8b4cbc") {
         var color = "Club";
       } else if (meetingData == "#073BBF") {
         var color = "Teacher";
@@ -3540,7 +3540,7 @@ export default {
         } else if (element.priority == "2") {
           var color = "#F6D73C";
         } else if (element.priority == "3") {
-          var color = "#00CCA0";
+          var color = "#38a272";
         } else if (element.priority == "4") {
           var color = "#ffffff";
         }
@@ -3696,7 +3696,7 @@ export default {
           } else if (element.priority == "2") {
             var color = "#F6D73C";
           } else if (element.priority == "3") {
-            var color = "#00CCA0";
+            var color = "#38a272";
           } else if (element.priority == "4") {
             var color = "#ffffff";
           }
