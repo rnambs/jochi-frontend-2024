@@ -668,7 +668,7 @@
                             </div>
 
                             <div
-                              class="jochi-sub-components-light-bg py-4 px-2 completed-assignments text-center h-100"
+                              class="jochi-sub-components-light-bg py-4 px-2 completed-assignments text-center h-100 bg-redShade"
                             >
                               <h4
                                 class="mb-0 blue word-break text-truncate text-capitalize"

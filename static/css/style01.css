@@ -5410,4 +5410,8 @@ select.form-control.is-invalid {
 .sch-admin i {
   color: #FF6D6D;
   font-size: 18px;
+}
+
+.bg-redShade {
+  background: rgba(187, 118, 118, 0.35) !important;
 }/*# sourceMappingURL=style01.css.map */

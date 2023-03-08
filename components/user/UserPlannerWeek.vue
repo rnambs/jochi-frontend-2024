@@ -952,6 +952,7 @@
                                     completed-assignments
                                     text-center
                                     h-100
+                                    bg-redShade
                                   "
                                 >
                                   <h4
