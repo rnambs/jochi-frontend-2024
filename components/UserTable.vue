@@ -304,6 +304,7 @@
                   <tr class="text-secondary bg-light">
                     <th>Name</th>
                     <th>Email Id</th>
+                    <th>Role</th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
@@ -315,6 +316,11 @@
                   <tr v-for="teacher in teachers" :key="teacher.id">
                     <td>{{ teacher.first_name }}</td>
                     <td>{{ teacher.email }}</td>
+                    <td>
+                      {{
+                        teacher.school_admin == "1" ? "School Admin" : "Teacher"
+                      }}
+                    </td>
                     <td @click="setId(teacher.id)">
                       <select
                         @change="onchange($event)"
