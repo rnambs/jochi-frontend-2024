@@ -3505,7 +3505,7 @@ export default {
           let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
 
           return this.$router.push(
-            `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
+            `/club-moreInfo?id=1111&name=${club.club_name}&type=${club.clubs.activity_type}`
           );
         } else if (idVal.groupId == "matches" || idVal.groupId == "trainings") {
           let club = this.trainingsMatches.find((e) => e.id == idVal.id);

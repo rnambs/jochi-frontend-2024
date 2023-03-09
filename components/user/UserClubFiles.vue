@@ -70,7 +70,7 @@
             <ul v-if="isSchoolAdmin != '1'" class="m-0">
               <li>
                 <button
-                  class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12 w-100"
                   @click="openConfirm('info')"
                 >
                   Info
