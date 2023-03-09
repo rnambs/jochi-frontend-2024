@@ -603,6 +603,9 @@ export default {
     this.getPushNotifications();
     this.getNotifications();
     this.getCount();
+    if (this.user_type != "3") {
+      this.schoolAdminStatus();
+    }
 
     // window.addEventListener("keydown", (e) => {
     //   if (e.keyCode == 123) {
@@ -664,6 +667,10 @@ export default {
       notificationList: (state) => state.notificationList,
       notificationCount: (state) => state.notificationCount,
     }),
+    ...mapState("profilePage", {
+      schoolAdminRequested: (state) => state.schoolAdminRequested,
+      schoolAdmin: (state) => state.schoolAdmin,
+    }),
   },
   methods: {
     ...mapActions("studentSignIn", {
@@ -673,6 +680,9 @@ export default {
       clearNotificationsList: "clearNotificationsList",
       markAsRead: "markAsRead",
       getNotificationCount: "getNotificationCount",
+    }),
+    ...mapActions("profilePage", {
+      getSchoolAdminStatus: "getSchoolAdminStatus",
     }),
     async getPushNotifications() {
       this.$fire.messaging.onMessage((payload) => {
@@ -775,6 +785,11 @@ export default {
     },
     async getCount() {
       await this.getNotificationCount();
+    },
+    async schoolAdminStatus() {
+      await this.getSchoolAdminStatus();
+      this.requestSent = this.schoolAdminRequested;
+      this.isSchoolAdmin = this.schoolAdmin;
     },
   },
   // // middleware: "authenticated",

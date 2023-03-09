@@ -66,7 +66,7 @@
                   >
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                       <div
-                        data-intro="View your total study time"
+                        data-intro="View your total study time for a day"
                         class="jochi-sub-components-light-bg h-100"
                       >
                         <div
@@ -105,7 +105,7 @@
                       </div>
                     </div>
                     <div
-                      data-intro="View your upcoming meetings list "
+                      data-intro="View meetings for the selected month "
                       class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill"
                     >
                       <div
@@ -189,7 +189,7 @@
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
                 <div
-                  data-intro="View your upcoming assignments list "
+                  data-intro="View assignments list by choosing a date from calendar"
                   class="d-flex flex-column h-40 flex-fill pb-3 assignment-list"
                 >
                   <h4 class="color-black font-semi-bold px-4">
@@ -214,7 +214,7 @@
                       </p>
                     </div>
                     <div
-                      v-if="!plannerList || plannerList.length <= 0"
+                      v-if="!assignmentList || assignmentList.length <= 0"
                       class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                     >
                       <p
@@ -497,6 +497,7 @@ export default {
     ...mapState("quotedMessage", {
       quoteMessage: (state) => state.quoteMessage,
       plannerList: (state) => state.plannerList,
+      sharedAstList: (state) => state.sharedAstList,
     }),
     ...mapState("userStudyAnalytics", {
       goal: (state) => state.goal,
@@ -531,7 +532,6 @@ export default {
     if (!phone && skipped != "true") {
       $("#promptModal").modal();
     }
-    this.startIntro();
   },
   watch: {
     startProductGuide(newValue, oldValue) {
@@ -547,6 +547,9 @@ export default {
     activate() {
       console.log("inside hide timeout");
       setTimeout(() => (this.isHidden = true), 1500);
+      setTimeout(() => {
+        this.startIntro();
+      }, 2500);
     },
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -848,33 +851,17 @@ export default {
         this.meetingDetails.push(listobj);
         eventList.push(meetingobj);
       });
-      this.sessionList?.forEach((element) => {
-        var meetingobj = {};
-        var listobj = {};
-        let title = "";
-        if (element.assignment_id) {
-          title = "Study Session " + element.assignments?.task;
-        } else {
-          title = "Study Session " + element.subject?.subject_name;
-        }
-
-        const color = element.subject?.color_code;
-        // }
-        var dateMeeting = element.date;
-        var timeValNum = element.time;
-        var tmeMeeting = this.formatAMPM(element.time);
-        var start = dateMeeting + "T" + tmeMeeting;
-        meetingobj["title"] = title;
-        meetingobj["color"] = color;
-        meetingobj["start"] = start;
-        meetingobj["id"] = element.id;
-        meetingobj["groupId"] = "study";
-
-        listobj["title"] = title;
-        listobj["meeting"] = "Study Session";
-        listobj["dateMeeting"] = dateMeeting;
-        listobj["timeValNum"] = timeValNum;
-        eventList.push(meetingobj);
+      this.sharedAstList.forEach((element) => {
+        let planner = {};
+        planner.task = element.task;
+        planner.task_status = element.task_status;
+        planner.id = element.id;
+        planner.subject = element.subject;
+        planner.due_date = moment(element.due_date).format("MM/DD/YYYY");
+        planner.due_time = element.due_time;
+        planner.assignment_description = element.assignment_description;
+        planner.subjects = element.assignment_description;
+        this.assignmentList.push(planner);
       });
     },
     handleMonthChange(dateInfo) {

@@ -23,21 +23,19 @@
 
                 <!-- end search tab -->
               </div>
-                <!-- table -->
-                  <div
-                    class="col-lg-4 p-0 my-3"
-                  >
-                    <div class="input-group rounded d-flex">
-                      <input
-                        type="text"
-                        name="daterange"
-                        autocomplete="off"
-                        placeholder="Date Range"
-                        class="form-control tab-form-control custom-form-control"
-                        readonly="readonly"
-                      />
-                    </div>
-                  </div>
+              <!-- table -->
+              <div class="col-lg-4 p-0 my-3">
+                <div class="input-group rounded d-flex">
+                  <input
+                    type="text"
+                    name="daterange"
+                    autocomplete="off"
+                    placeholder="Date Range"
+                    class="form-control tab-form-control custom-form-control"
+                    readonly="readonly"
+                  />
+                </div>
+              </div>
             </div>
             <!-- table -->
             <div class="bg-white mt-2 p-2 rounded">
@@ -80,7 +78,7 @@
                   }}
                   of {{ logCount }}
                 </div>
-                <div class="pr-2">logs per page</div>
+                <div class="pr-2">Logs per page</div>
                 <div>
                   <select
                     name="rows per page"

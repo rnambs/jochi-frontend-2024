@@ -1983,7 +1983,11 @@ export default {
 
           let uploadedName = this.fileName.split(".")[0];
           let timestampName =
-            uploadedName +"_"+ new Date().getTime() +"."+ this.fileName.split(".")[1];
+            uploadedName +
+            "_" +
+            new Date().getTime() +
+            "." +
+            this.fileName.split(".")[1];
           formData.append("file", blob, timestampName);
           formData.append("club_id", this.$route.query.id);
           formData.append("user_id", localStorage.getItem("id"));
@@ -2151,7 +2155,11 @@ export default {
         club_id: this.clubId,
       });
       if (this.successMessageClubUpdate != "") {
-        this.$router.push("/club-detail");
+        if (this.isSchoolAdmin == "1") {
+          this.$router.push("/club-catalogue");
+        } else {
+          this.$router.push("/club-detail");
+        }
         this.$toast.open({
           message: this.successMessageClubUpdate,
           type: this.successTypeClubUpdate,

@@ -21,7 +21,7 @@
                   Club Catalog
                 </h2>
                 <h4 class="mb-2 color-dark font-semi-bold">
-                  Find Your People!
+                  Find your people!
                 </h4>
               </div>
 

@@ -1605,7 +1605,11 @@ export default {
         club_id: this.clubId,
       });
       if (this.successMessageClubUpdate != "") {
-        this.$router.push("/club-detail");
+        if (this.isSchoolAdmin == "1") {
+          this.$router.push("/club-catalogue");
+        } else {
+          this.$router.push("/club-detail");
+        }
         this.$toast.open({
           message: this.successMessageClubUpdate,
           type: this.successTypeClubUpdate,

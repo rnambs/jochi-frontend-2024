@@ -700,7 +700,7 @@
                                   "
                                   v-for="sub in item.subTasks"
                                   :key="sub.id"
-                                  class="pl-2 d-flex justify-content-center color-secondary cursor-pointer mb-1"
+                                  class="pl-2 d-flex justify-content-center color-dark cursor-pointer mb-1"
                                 >
                                   <label
                                     for=""
@@ -2734,7 +2734,7 @@ export default {
           } else if (element.priority == "2") {
             var color = "#F6D73C";
           } else if (element.priority == "3") {
-            var color = "#00CCA0";
+            var color = "#38a272";
           }
           // else if (element.priority == "4") {
           //   var color = "#a7a7a7";
@@ -2875,7 +2875,7 @@ export default {
           } else if (element.priority == "2") {
             var color = "#F6D73C";
           } else if (element.priority == "3") {
-            var color = "#00CCA0";
+            var color = "#38a272";
           }
           //  else if (element.priority == "4") {
           //   var color = "#a7a7a7";
