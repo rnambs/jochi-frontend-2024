@@ -31,7 +31,7 @@
                     name="daterange"
                     autocomplete="off"
                     placeholder="Date Range"
-                    class="form-control tab-form-control custom-form-control"
+                    class="form-control tab-form-control custom-form-control cursor-pointer"
                     readonly="readonly"
                   />
                 </div>
@@ -308,3 +308,9 @@ export default {
   },
 };
 </script>
+
+<style>
+  .cursor-pointer{
+    cursor: pointer;
+  }
+</style>
