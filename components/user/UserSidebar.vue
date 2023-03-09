@@ -509,10 +509,10 @@
                   id="headingOne"
                 >
                   <div
-                    class="mb-0 d-flex justify-content-center justify-content-lg-start flex-column"
+                    class="mb-0 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start flex-column"
                   >
                     <button
-                      class="btn btn-link d-flex align-items-center justify-content-between text-decoration-none text-18 btn-block text-left collapsed justify-content-start pl-2"
+                      class="btn btn-link d-flex align-items-center justify-content-between text-decoration-none text-18 btn-block text-left collapsed justify-content-start pl-2 pr-2"
                       @click="
                         $event.target.classList.toggle('active');
                         startGuide();
