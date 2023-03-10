@@ -1219,8 +1219,8 @@ export default {
         club_id: this.$route.query.id,
         user_id: localStorage.getItem("id"),
       });
-      this.activity_type = this.allList[0].activity_type;
       this.loading = false;
+      this.activity_type = this.allList[0].activity_type;
       this.list_data = [];
       this.clubDetails = this.allList[0];
       this.leadersInfo = this.allList[1].Leaders_info;
