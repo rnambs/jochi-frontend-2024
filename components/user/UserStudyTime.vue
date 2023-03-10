@@ -2687,7 +2687,7 @@ export default {
         e.assignment_session_shared_users.length > 0
       ) {
         e.assignment_session_shared_users.forEach((item) => {
-          if (item.session_shared_user_id != user_id) {
+          if (item.session_shared_user_id.toString() != user_id && item.users) {
             let peer = {};
             peer = item.users;
             peer.id = item.session_shared_user_id;
@@ -2701,7 +2701,7 @@ export default {
         e.assignments?.assignment_shared_users.length > 0
       ) {
         e.assignments.assignment_shared_users.forEach((item) => {
-          if (item.shared_users_id != user_id) {
+          if (item.shared_users_id.toString() != user_id && item.users) {
             let peer = {};
             peer = item.users;
             peer.id = item.shared_users_id;
