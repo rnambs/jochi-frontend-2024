@@ -175,7 +175,7 @@
                             </a>
 
                             <figcaption class="figure-caption">
-                              <p class="fig-caption mb-0">
+                              <p class="fig-caption mb-0 text-center">
                                 {{ list.file_name }}
                               </p>
                             </figcaption>
@@ -209,7 +209,7 @@
                               </div>
                             </a>
                             <figcaption class="figure-caption">
-                              <p class="fig-caption mb-0">
+                              <p class="fig-caption mb-0 text-center">
                                 {{ list.file_name }}
                               </p>
                             </figcaption>
@@ -249,7 +249,7 @@
                               />
                             </div>
                             <figcaption class="figure-caption">
-                              <p class="fig-caption mb-0">
+                              <p class="fig-caption mb-0 text-center">
                                 {{ list.file_name }}
                               </p>
                             </figcaption>
