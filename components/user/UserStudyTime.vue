@@ -350,6 +350,7 @@
                       red: detail.priority == '1',
                       yellow: detail.priority == '2',
                       green: detail.priority == '3',
+                      orange: detail.priority == '4',
                     }"
                   >
                     {{
@@ -359,6 +360,8 @@
                         ? "Important"
                         : detail.priority == "3"
                         ? "Can Wait"
+                        : detail.priority == "4"
+                        ? "Overdue"
                         : ""
                     }}
                   </div>
@@ -1547,6 +1550,9 @@ export default {
       startStudyResponse: (state) => state.startStudyResponse,
       assignmentsCount: (state) => state.assignmentsCount,
       sharedAssignmentsCount: (state) => state.sharedAssignmentsCount,
+      overdueAssignmentsList: (state) => state.overdueAssignmentsList,
+      sharedOverdueAssignmentsList: (state) =>
+        state.sharedOverdueAssignmentsList,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -2515,11 +2521,17 @@ export default {
         offset: this.offset,
         limit: this.limit,
       });
-      console.log(this.assignmentsList, this.sharedAssignmentsList);
+      console.log(
+        "asst list",
+        this.assignmentsList,
+        this.sharedAssignmentsList
+      );
       this.mapCount();
       this.pendingAssignments = [];
       this.mapAssignments();
       this.mapSharedAssignments();
+      this.mapOverdueAssignments();
+      this.mapSharedOverdueAssignments();
     },
 
     mapCount() {
@@ -2544,6 +2556,18 @@ export default {
     mapAssignments() {
       if (this.assignmentsList && this.assignmentsList.length > 0) {
         this.assignmentsList.forEach((e) => {
+          let asst = this.mapData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
+      console.log("pending assts ", this.pendingAssignments);
+    },
+    mapOverdueAssignments() {
+      if (
+        this.overdueAssignmentsList &&
+        this.overdueAssignmentsList.length > 0
+      ) {
+        this.overdueAssignmentsList.forEach((e) => {
           let asst = this.mapData(e);
           this.pendingAssignments.push(asst);
         });
@@ -2594,6 +2618,18 @@ export default {
     mapSharedAssignments() {
       if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
         this.sharedAssignmentsList.forEach((e) => {
+          let asst = this.mapSharedData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
+      console.log("pending assts ", this.pendingAssignments);
+    },
+    mapSharedOverdueAssignments() {
+      if (
+        this.sharedOverdueAssignmentsList &&
+        this.sharedOverdueAssignmentsList.length > 0
+      ) {
+        this.sharedOverdueAssignmentsList.forEach((e) => {
           let asst = this.mapSharedData(e);
           this.pendingAssignments.push(asst);
         });
@@ -2676,7 +2712,7 @@ export default {
       }
       if (e.assignment_shared_users && e.assignment_shared_users?.length > 0) {
         e.assignment_shared_users.forEach((item) => {
-          if (item.shared_users_id != user_id) {
+          if (item.shared_users_id.toString() != user_id && item.users) {
             let peer = {};
             peer = item.users;
             peer.id = item.shared_users_id;
