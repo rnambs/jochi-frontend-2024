@@ -190,7 +190,7 @@
                 </div>
                 <div
                   data-intro="View assignments list by choosing a date from calendar"
-                  class="d-flex flex-column h-40 flex-fill pb-3 assignment-list"
+                  class="d-md-flex flex-column h-40 flex-fill pb-3 assignment-list d-none"
                 >
                   <h4 class="color-black font-semi-bold px-4">
                     Assignments List
@@ -224,6 +224,37 @@
                       </p>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div
+              data-intro="View assignments list by choosing a date from calendar"
+              class="d-flex flex-column h-40 flex-fill pb-3 assignment-list d-md-none"
+            >
+              <h4 class="color-black font-semi-bold px-4">Assignments List</h4>
+              <div
+                class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
+              >
+                <div
+                  v-for="item in assignmentList"
+                  :key="item.id"
+                  class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                >
+                  <p class="mb-2 word-break text-16 font-semi-bold color-dark">
+                    {{ item.task }}
+                  </p>
+                  <p class="mb-0 text-14">
+                    <span>{{ item.due_date }}</span
+                    >&nbsp;<span>{{ item.due_time }}</span>
+                  </p>
+                </div>
+                <div
+                  v-if="!assignmentList || assignmentList.length <= 0"
+                  class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                >
+                  <p class="mb-2 word-break text-16 font-semi-bold color-dark">
+                    No assignments for this day!
+                  </p>
                 </div>
               </div>
             </div>
