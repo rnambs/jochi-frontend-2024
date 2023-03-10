@@ -189,7 +189,7 @@
 
                       <div
                         v-if="showAssignments"
-                        class="custom-overflow px-4 pt-3 mb-3"
+                        class="custom-overflow px-4 pt-3 mb-3 h-100"
                       >
                         <div class="row">
                           <div
@@ -197,7 +197,6 @@
                             :key="detail.id"
                             class="col-12 col-lg-6 col-xl-4"
                           >
-                            <!-- @click="onAssignmentSelect(detail)" -->
                             <div
                               class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
                               :class="{
@@ -360,15 +359,21 @@
                               </div>
                               <div
                                 class="position-absolute w-100 h-100 d-flex align-items-start justify-content-end success-image"
-                              >
-                                <!-- <img src="../../static/image/done.png" alt="" class="position-absolute"> -->
-                                <!-- <span
-                                  v-if="detail.task_status == 'Completed'"
-                                  class="color-primary text-30 check position-absolute"
-                                  ><i class="fas fa-check-circle"></i
-                                ></span> -->
-                              </div>
+                              ></div>
                             </div>
+                          </div>
+                        </div>
+                        <div
+                          class="row text-center w-100 h-100 justify-content-center"
+                        >
+                          <div
+                            v-if="
+                              !pendingAssignments ||
+                              pendingAssignments.length <= 0
+                            "
+                            class="empty-shedule d-flex justify-content-center align-items-center h-100"
+                          >
+                            <p>No assignments</p>
                           </div>
                         </div>
                       </div>
@@ -382,7 +387,6 @@
                             :key="detail.id"
                             class="col-12 col-lg-6 col-xl-4"
                           >
-                            <!-- @click="onAssignmentSelect(detail)" -->
                             <div
                               class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
                               :class="{
@@ -546,7 +550,6 @@
                               <div
                                 class="position-absolute w-100 h-100 d-flex align-items-start justify-content-end success-image"
                               >
-                                <!-- <img src="../../static/image/done.png" alt="" class="position-absolute"> -->
                                 <span
                                   v-if="detail.task_status == 'Completed'"
                                   class="color-primary text-30 check position-absolute"
@@ -560,7 +563,10 @@
                           class="row text-center w-100 h-100 justify-content-center"
                         >
                           <div
-                            v-if="!overdueAssts || overdueAssts.length <= 0"
+                            v-if="
+                              !overdueAssignments ||
+                              overdueAssignments.length <= 0
+                            "
                             class="empty-shedule d-flex justify-content-center align-items-center h-100"
                           >
                             <p>No overdue assignments</p>
