@@ -188,9 +188,10 @@
                 <div class="calendar-dashboard px-4 pt-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
+               <div>
                 <div
                   data-intro="View assignments list by choosing a date from calendar"
-                  class="d-md-flex flex-column h-40 flex-fill pb-3 assignment-list d-none"
+                  class="d-md-flex flex-column h-40 flex-fill pb-3 assignment-list assignment-md-show"
                 >
                   <h4 class="color-black font-semi-bold px-4">
                     Assignments List
@@ -225,11 +226,14 @@
                     </div>
                   </div>
                 </div>
+               </div>
               </div>
             </div>
-            <div
+            <div>
+
+              <div
               data-intro="View assignments list by choosing a date from calendar"
-              class="d-flex flex-column h-40 flex-fill pb-3 assignment-list d-md-none"
+              class="d-flex flex-column h-40 flex-fill pb-3 assignment-list assignment-md-hide"
             >
               <h4 class="color-black font-semi-bold px-4">Assignments List</h4>
               <div
@@ -258,6 +262,9 @@
                 </div>
               </div>
             </div>
+
+            </div>
+
           </div>
         </div>
       </div>
@@ -1049,4 +1056,26 @@ export default {
     width: 100%;
   }
 }
+
+.assignment-md-show {
+  display:none !important
+}
+
+.assignment-md-hide{
+  display: flex !important;
+}
+
+@media (min-width: 768px) {
+  
+  .assignment-md-show {
+  display:flex !important
+}
+
+.assignment-md-hide{
+  display: none !important;
+}
+  
+}
+
+
 </style>
