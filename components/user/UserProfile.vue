@@ -26,7 +26,7 @@
                   style="color: white"
                   v-if="requestSent == '1'"
                 >
-                  <i class="fas fa-hourglass-half mr-2"></i>Pending approval for
+                  <i class="fas fa-hourglass-half mr-2"></i>Pending Approval For
                   School Admin</span
                 >
               </div>
