@@ -20,11 +20,15 @@
                 >
                   Request to become a School Admin
                 </button>
-                
-                <span class="bg-primary py-1 px-4 rounded-12 font-semi-bold" v-if="requestSent == '1'"
-                  >
-                    <i class="fas fa-hourglass-half mr-2"></i>Pending approval for School Admin</span
-                  >
+
+                <span
+                  class="bg-primary py-1 px-4 rounded-12 font-semi-bold"
+                  style="color: white"
+                  v-if="requestSent == '1'"
+                >
+                  <i class="fas fa-hourglass-half mr-2"></i>Pending approval for
+                  School Admin</span
+                >
               </div>
             </div>
             <div
