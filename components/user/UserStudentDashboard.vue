@@ -188,83 +188,86 @@
                 <div class="calendar-dashboard px-4 pt-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-               <div>
-                <div
-                  data-intro="View assignments list by choosing a date from calendar"
-                  class="d-md-flex flex-column h-40 flex-fill pb-3 assignment-list assignment-md-show"
-                >
-                  <h4 class="color-black font-semi-bold px-4">
-                    Assignments List
-                  </h4>
+                <div v-if="isLargeScreen">
                   <div
-                    class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
+                    data-intro="View assignments list by choosing a date from calendar"
+                    class="d-md-flex flex-column h-40 flex-fill pb-3 assignment-list assignment-md-show"
                   >
+                    <h4 class="color-black font-semi-bold px-4">
+                      Assignments List
+                    </h4>
                     <div
-                      v-for="item in assignmentList"
-                      :key="item.id"
-                      class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                      class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
                     >
-                      <p
-                        class="mb-2 word-break text-16 font-semi-bold color-dark"
+                      <div
+                        v-for="item in assignmentList"
+                        :key="item.id"
+                        class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                       >
-                        {{ item.task }}
-                      </p>
-                      <p class="mb-0 text-14">
-                        <span>{{ item.due_date }}</span
-                        >&nbsp;<span>{{ item.due_time }}</span>
-                      </p>
-                    </div>
-                    <div
-                      v-if="!assignmentList || assignmentList.length <= 0"
-                      class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
-                    >
-                      <p
-                        class="mb-2 word-break text-16 font-semi-bold color-dark"
+                        <p
+                          class="mb-2 word-break text-16 font-semi-bold color-dark"
+                        >
+                          {{ item.task }}
+                        </p>
+                        <p class="mb-0 text-14">
+                          <span>{{ item.due_date }}</span
+                          >&nbsp;<span>{{ item.due_time }}</span>
+                        </p>
+                      </div>
+                      <div
+                        v-if="!assignmentList || assignmentList.length <= 0"
+                        class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                       >
-                        No assignments for this day!
-                      </p>
+                        <p
+                          class="mb-2 word-break text-16 font-semi-bold color-dark"
+                        >
+                          No assignments for this day!
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-               </div>
               </div>
             </div>
-            <div>
-
+            <div v-if="!isLargeScreen">
               <div
-              data-intro="View assignments list by choosing a date from calendar"
-              class="d-flex flex-column h-40 flex-fill pb-3 assignment-list assignment-md-hide"
-            >
-              <h4 class="color-black font-semi-bold px-4">Assignments List</h4>
-              <div
-                class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
+                data-intro="View assignments list by choosing a date from calendar"
+                class="d-flex flex-column h-40 flex-fill pb-3 assignment-list assignment-md-hide"
               >
+                <h4 class="color-black font-semi-bold px-4">
+                  Assignments List
+                </h4>
                 <div
-                  v-for="item in assignmentList"
-                  :key="item.id"
-                  class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                  class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
                 >
-                  <p class="mb-2 word-break text-16 font-semi-bold color-dark">
-                    {{ item.task }}
-                  </p>
-                  <p class="mb-0 text-14">
-                    <span>{{ item.due_date }}</span
-                    >&nbsp;<span>{{ item.due_time }}</span>
-                  </p>
-                </div>
-                <div
-                  v-if="!assignmentList || assignmentList.length <= 0"
-                  class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
-                >
-                  <p class="mb-2 word-break text-16 font-semi-bold color-dark">
-                    No assignments for this day!
-                  </p>
+                  <div
+                    v-for="item in assignmentList"
+                    :key="item.id"
+                    class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                  >
+                    <p
+                      class="mb-2 word-break text-16 font-semi-bold color-dark"
+                    >
+                      {{ item.task }}
+                    </p>
+                    <p class="mb-0 text-14">
+                      <span>{{ item.due_date }}</span
+                      >&nbsp;<span>{{ item.due_time }}</span>
+                    </p>
+                  </div>
+                  <div
+                    v-if="!assignmentList || assignmentList.length <= 0"
+                    class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                  >
+                    <p
+                      class="mb-2 word-break text-16 font-semi-bold color-dark"
+                    >
+                      No assignments for this day!
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-
-            </div>
-
           </div>
         </div>
       </div>
@@ -453,6 +456,9 @@ export default {
   },
   data() {
     return {
+      isSmallScreen: false,
+      isMediumScreen: false,
+      isLargeScreen: false,
       loading: true,
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
@@ -570,6 +576,7 @@ export default {
     if (!phone && skipped != "true") {
       $("#promptModal").modal();
     }
+    this.findDeviceSize();
   },
   watch: {
     startProductGuide(newValue, oldValue) {
@@ -579,6 +586,27 @@ export default {
     },
   },
   methods: {
+    findDeviceSize() {
+      const smallScreen = window.matchMedia("(max-width: 640px)");
+      const mediumScreen = window.matchMedia("(min-width: 640px)");
+      const largeScreen = window.matchMedia("(min-width: 1024px)");
+
+      this.isSmallScreen = smallScreen.matches;
+      this.isMediumScreen = mediumScreen.matches;
+      this.isLargeScreen = largeScreen.matches;
+
+      smallScreen.addListener((e) => {
+        this.isSmallScreen = e.matches;
+      });
+
+      mediumScreen.addListener((e) => {
+        this.isMediumScreen = e.matches;
+      });
+
+      largeScreen.addListener((e) => {
+        this.isLargeScreen = e.matches;
+      });
+    },
     async skipPromt() {
       localStorage.setItem("skippedPrompt", "true");
     },
@@ -1057,25 +1085,21 @@ export default {
   }
 }
 
-.assignment-md-show {
-  display:none !important
+/* .assignment-md-show {
+  display: none !important;
 }
 
-.assignment-md-hide{
+.assignment-md-hide {
   display: flex !important;
 }
 
 @media (min-width: 768px) {
-  
   .assignment-md-show {
-  display:flex !important
-}
+    display: flex !important;
+  }
 
-.assignment-md-hide{
-  display: none !important;
-}
-  
-}
-
-
+  .assignment-md-hide {
+    display: none !important;
+  } 
+}*/
 </style>
