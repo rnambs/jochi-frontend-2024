@@ -191,48 +191,50 @@
                 <div v-if="isLargeScreen">
                   <div
                     data-intro="View assignments list by choosing a date from calendar"
-                    class="d-md-flex flex-column h-40 flex-fill pb-3 assignment-list assignment-md-show"
+                    class="d-md-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-show"
                   >
                     <h4 class="color-black font-semi-bold px-4">
                       Assignments List
                     </h4>
-                    <div
-                      class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
-                    >
+                    <div class="h-40">
                       <div
-                        v-for="item in assignmentList"
-                        :key="item.id"
-                        class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                        class="d-flex flex-column h-75 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
                       >
-                        <p
-                          class="mb-2 word-break text-16 font-semi-bold color-dark"
+                        <div
+                          v-for="item in assignmentList"
+                          :key="item.id"
+                          class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                         >
-                          {{ item.task }}
-                        </p>
-                        <p class="mb-0 text-14">
-                          <span>{{ item.due_date }}</span
-                          >&nbsp;<span>{{ item.due_time }}</span>
-                        </p>
-                      </div>
-                      <div
-                        v-if="!assignmentList || assignmentList.length <= 0"
-                        class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
-                      >
-                        <p
-                          class="mb-2 word-break text-16 font-semi-bold color-dark"
+                          <p
+                            class="mb-2 word-break text-16 font-semi-bold color-dark"
+                          >
+                            {{ item.task }}
+                          </p>
+                          <p class="mb-0 text-14">
+                            <span>{{ item.due_date }}</span
+                            >&nbsp;<span>{{ item.due_time }}</span>
+                          </p>
+                        </div>
+                        <div
+                          v-if="!assignmentList || assignmentList.length <= 0"
+                          class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                         >
-                          No assignments for this day!
-                        </p>
+                          <p
+                            class="mb-2 word-break text-16 font-semi-bold color-dark"
+                          >
+                            No assignments for this day!
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div v-if="!isLargeScreen">
+            <div class="w-100" v-if="!isLargeScreen">
               <div
                 data-intro="View assignments list by choosing a date from calendar"
-                class="d-flex flex-column h-40 flex-fill pb-3 assignment-list assignment-md-hide"
+                class="d-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-hide"
               >
                 <h4 class="color-black font-semi-bold px-4">
                   Assignments List
@@ -240,20 +242,22 @@
                 <div
                   class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
                 >
-                  <div
-                    v-for="item in assignmentList"
-                    :key="item.id"
-                    class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
-                  >
-                    <p
-                      class="mb-2 word-break text-16 font-semi-bold color-dark"
+                  <div class="h-40">
+                    <div
+                      v-for="item in assignmentList"
+                      :key="item.id"
+                      class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                     >
-                      {{ item.task }}
-                    </p>
-                    <p class="mb-0 text-14">
-                      <span>{{ item.due_date }}</span
-                      >&nbsp;<span>{{ item.due_time }}</span>
-                    </p>
+                      <p
+                        class="mb-2 word-break text-16 font-semi-bold color-dark"
+                      >
+                        {{ item.task }}
+                      </p>
+                      <p class="mb-0 text-14">
+                        <span>{{ item.due_date }}</span
+                        >&nbsp;<span>{{ item.due_time }}</span>
+                      </p>
+                    </div>
                   </div>
                   <div
                     v-if="!assignmentList || assignmentList.length <= 0"
