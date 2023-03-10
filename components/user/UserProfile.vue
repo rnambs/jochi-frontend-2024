@@ -20,7 +20,9 @@
                 >
                   Request to become a School Admin
                 </button>
-                <span v-if="requestSent == '1'">Pending</span>
+                <span v-if="requestSent == '1'"
+                  ><i class="fas fa-hourglass-half"></i>Pending</span
+                >
               </div>
             </div>
             <div
