@@ -517,10 +517,7 @@ export default {
       }
       this.loading = false;
     },
-    async sendToken() {
-      // const currentToken = await this.$fire.messaging.getToken();
-      // console.log("current token consoling", currentToken);
-    },
+    async sendToken() {},
     async getNotifications() {
       await this.getNotificationsList();
     },

@@ -2395,7 +2395,6 @@ export default {
     this.user_id = localStorage.getItem("id");
 
     socket.on("notifications", (data) => {
-      console.log("socket data", data);
       if (data) this.updateOverdueStatus(data);
     });
     this.GetStudents();
@@ -2907,7 +2906,6 @@ export default {
     },
 
     viewMoreClick(event, item) {
-      console.log("view more", event, item);
       event.preventDefault();
       event.stopPropagation();
       this.viewMore = true;
@@ -2975,8 +2973,6 @@ export default {
       this.subTasksList.forEach((e) => {
         subTaskLists.push(e.title);
       });
-
-      console.log(assignment_materials);
 
       await this.addAssignment({
         user_id: localStorage.getItem("id"),
@@ -3073,7 +3069,6 @@ export default {
       this.removedPeerList.forEach((e) => {
         const index = this.peerList.findIndex((item) => item.id == e);
         if (index < 0) {
-          console.log("index", index);
           removed.push(e);
         }
       });
@@ -3282,12 +3277,7 @@ export default {
 
     eventClicked(info) {
       var idVal = info.event;
-      // console.log("idVal", idVal);
-      console.log(
-        "idVal",
-        idVal.startStr,
-        !moment(idVal.startStr.split("T")).isBefore(moment())
-      );
+
       var idVal = info.event;
       if (
         moment(idVal.startStr.split("T")[0]).isBefore(
@@ -3298,8 +3288,6 @@ export default {
           idVal.groupId == "assignment" ||
           idVal.groupId == "shared-assignment"
         ) {
-          console.log("asst");
-
           let data = {};
           let mappedData = {};
           if (idVal.groupId == "assignment") {
@@ -3354,8 +3342,6 @@ export default {
           idVal.groupId == "assignment" ||
           idVal.groupId == "shared-assignment"
         ) {
-          console.log("asst");
-
           let data = {};
           let mappedData = {};
           if (idVal.groupId == "assignment") {
@@ -3528,10 +3514,7 @@ export default {
       $(".modal").modal("hide");
       $(".modal-backdrop").remove();
       this.meetingDetails = [];
-      console.log("planner list", this.plannerList);
-      console.log("meeting list", this.meetingList);
-      console.log("session list", this.sessionList);
-      console.log("shared list", this.sharedSessionList);
+
       this.plannerList.forEach((element) => {
         var plannerObj = {};
         var title = element.task;
@@ -3729,7 +3712,6 @@ export default {
         }
       });
 
-      console.log("events console", eventList);
       this.calendarOptions.events = eventList;
       this.loading = false;
     },
@@ -3760,7 +3742,6 @@ export default {
     deleteSubTask(subTask) {
       if (this.assignmentId) {
         // deleted_subTask
-        console.log("edit", this.subTasksList, subTask);
         this.deletedSubTasksArray.push(subTask.id);
       }
       this.subTasksList = this.subTasksList.filter((e) => e != subTask);
@@ -3788,7 +3769,6 @@ export default {
       if (this.tempOffset != this.offset || this.reloadNext) {
         this.reloadNext = false;
         this.tempOffset = this.offset;
-        console.log("inside load next", this.offset);
 
         this.pendingAssignments = [];
         await this.getAssignments({ offset: this.offset, limit: this.limit });
@@ -4073,16 +4053,13 @@ export default {
       let asst = this.pendingAssignments.find(
         (e) => e.id == this.completeAsstId
       );
-      console.log(asst);
       let sub = asst.subTasks;
-      console.log(sub);
       let incomplete = false;
       sub.forEach((e) => {
         if (!incomplete && e.task_status != "Completed") {
           incomplete = true;
         }
       });
-      console.log(incomplete);
       return !incomplete;
     },
     async undoCompleteSubTask() {
@@ -4096,18 +4073,15 @@ export default {
       this.mapPeerInvited(data);
     },
     mapPeerInvited(data) {
-      console.log("map peer ", data, this.students);
       this.peerSelected = [];
       if (data.peers && data.peers?.length > 0 && this.students.length > 0) {
         data.peers.forEach((e) => {
           let studs = this.students.find(
             (s) => s.id.toString() == e.id.toString()
           );
-          console.log(studs);
           // this.peerSelected.push(studs);
           this.peerSelected.push(studs);
         });
-        console.log("peers", this.peerSelected);
       }
       // peerSelected
     },
@@ -4156,7 +4130,6 @@ export default {
       // this.subTasksList = data.subTasks;
       this.peerList = data.peers;
       this.additionalMaterialList = data.assignment_materials;
-      console.log("map ", data);
     },
     async getAllCompletedAssignments() {
       await this.getCompletedAssignments({
@@ -4164,8 +4137,6 @@ export default {
         date: moment().format("YYYY-MM-DD"),
         type: "Monthly",
       });
-      console.log(this.completedAssignments);
-      console.log(this.completedSharedAssignments);
       let completed = [];
       completed = this.completedAssignments;
       this.completedAssignmentList = [];
@@ -4280,7 +4251,6 @@ export default {
       // this.ClubFiles();
     },
     openLink(material) {
-      console.log(material);
       let link = material.link
         ? material.link
         : material.name
@@ -4320,7 +4290,6 @@ export default {
       return valid;
     },
     deleteAdditionalMat(item) {
-      console.log(item);
       this.additionalMaterialList;
       const index = this.additionalMaterialList.indexOf(item);
       if (index > -1) {
@@ -4329,7 +4298,6 @@ export default {
       }
 
       // array = [2, 9]
-      console.log(this.additionalMaterialList);
     },
     removePeerConfirm(id, event) {
       event.stopPropagation();
@@ -4358,7 +4326,6 @@ export default {
       } else {
         this.choosenAssignments.push(id);
       }
-      console.log(this.choosenAssignments);
     },
     confirmUndo(id) {
       this.undoAsstId = id;

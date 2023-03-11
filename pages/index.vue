@@ -302,7 +302,6 @@ export default {
     }
     const log_code = this.generateRandomString(16);
     localStorage.setItem("log_code", log_code);
-    console.log("log_code", log_code);
   },
   computed: {
     ...mapState("studentSignUp", {

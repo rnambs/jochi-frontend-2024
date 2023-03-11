@@ -592,7 +592,6 @@ export default {
   },
 
   mounted() {
-    console.log("schoolAdmin", localStorage.getItem("schoolAdmin"));
     if (localStorage.getItem("schoolAdmin")) {
       this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     }
@@ -686,8 +685,6 @@ export default {
     }),
     async getPushNotifications() {
       this.$fire.messaging.onMessage((payload) => {
-        // alert("alerting" + payload.notification.body);
-        // console.info("Message received: ", payload);
         this.getCount();
         this.getNotifications();
       });

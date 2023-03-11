@@ -1184,7 +1184,6 @@ export default {
             }
           });
           this.tagColorMap = obj;
-          console.log("color", this.tagColorMap);
         }
       });
     },
@@ -1501,7 +1500,6 @@ export default {
         const file = e.target.files[0];
         this.mime_type = file.type;
         this.fileName = file.name;
-        console.log(this.mime_type, file);
         if (typeof FileReader === "function") {
           this.dialog = true;
           const reader = new FileReader();

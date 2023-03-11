@@ -32,11 +32,7 @@ export default {
     if (!localStorage.getItem("email")) {
       this.$router.push("/");
     }
-    console.log(
-      this.$route.query.teacher_id,
-      this.$route.query.status,
-      this.$route.query.advisor_token
-    );
+
     this.TeacherAdvisorConfirm();
   },
 

@@ -2270,7 +2270,6 @@ export default {
     this.user_id = localStorage.getItem("id");
 
     socket.on("notifications", (data) => {
-      console.log("socket data", data);
       if (data) this.updateOverdueStatus(data);
     });
     this.GetStudents();
@@ -2683,7 +2682,6 @@ export default {
         // this.meetingDetails.push(listobj);
         eventList.push(meetingobj);
       });
-      console.log("inside taining match", this.trainingsMatches);
       this.trainingsMatches?.forEach((element) => {
         if (element.date) {
           var plannerObj = {};
@@ -2709,7 +2707,6 @@ export default {
           eventList.push(plannerObj);
         }
       });
-      console.log(eventList);
       this.calendarOptions.events = eventList;
       this.loading = false;
     },
@@ -2770,8 +2767,6 @@ export default {
       this.subTasksList.forEach((e) => {
         subTaskLists.push(e.title);
       });
-
-      console.log(assignment_materials);
 
       await this.addAssignment({
         user_id: localStorage.getItem("id"),
@@ -2867,7 +2862,6 @@ export default {
       this.removedPeerList.forEach((e) => {
         const index = this.peerList.findIndex((item) => item.id == e);
         if (index < 0) {
-          console.log("index", index);
           removed.push(e);
         }
       });
@@ -2984,7 +2978,6 @@ export default {
     },
 
     viewMoreClick(event, item) {
-      console.log("view more", event, item);
       event.preventDefault();
       event.stopPropagation();
       this.viewMore = true;
@@ -3089,16 +3082,7 @@ export default {
     },
     eventClicked(info) {
       var idVal = info.event;
-      console.log(
-        moment().format("YYYY-MM-DD"),
-        "idVal",
-        idVal,
-        idVal.startStr.split("T")[0],
-        moment().format("YYYY-MM-DD"),
-        !moment(idVal.startStr.split("T")[0]).isBefore(
-          moment().format("YYYY-MM-DD")
-        )
-      );
+
       var idVal = info.event;
       if (
         moment(idVal.startStr.split("T")[0]).isBefore(
@@ -3109,8 +3093,6 @@ export default {
           idVal.groupId == "assignment" ||
           idVal.groupId == "shared-assignment"
         ) {
-          console.log("asst");
-
           let data = {};
           let mappedData = {};
           if (idVal.groupId == "assignment") {
@@ -3164,8 +3146,6 @@ export default {
           idVal.groupId == "assignment" ||
           idVal.groupId == "shared-assignment"
         ) {
-          console.log("asst");
-
           let data = {};
           let mappedData = {};
           if (idVal.groupId == "assignment") {
@@ -3328,7 +3308,6 @@ export default {
       if (this.tempOffset != this.offset || this.reloadNext) {
         this.reloadNext = false;
         this.tempOffset = this.offset;
-        console.log("inside load next", this.offset);
         this.pendingAssignments = [];
         await this.getAssignments({ offset: this.offset, limit: this.limit });
         if (this.offset == 0) {
@@ -3374,10 +3353,7 @@ export default {
       $(".modal").modal("hide");
       $(".modal-backdrop").remove();
       this.meetingDetails = [];
-      console.log("planner list", this.plannerList);
-      console.log("meeting list", this.meetingList);
-      console.log("session list", this.sessionList);
-      console.log("shared session list", this.sharedSessionList);
+
       this.plannerList.forEach((element) => {
         var plannerObj = {};
         var title = element.task;
@@ -3558,7 +3534,6 @@ export default {
         }
       });
 
-      console.log("events console", eventList);
       this.calendarOptions.events = eventList;
       this.loading = false;
     },
@@ -3623,7 +3598,6 @@ export default {
     deleteSubTask(subTask) {
       if (this.assignmentId) {
         // deleted_subTask
-        console.log("edit", this.subTasksList, subTask);
         this.deletedSubTasksArray.push(subTask.id);
       }
       this.subTasksList = this.subTasksList.filter((e) => e != subTask);
@@ -3892,16 +3866,13 @@ export default {
       let asst = this.pendingAssignments.find(
         (e) => e.id == this.completeAsstId
       );
-      console.log(asst);
       let sub = asst.subTasks;
-      console.log(sub);
       let incomplete = false;
       sub.forEach((e) => {
         if (!incomplete && e.task_status != "Completed") {
           incomplete = true;
         }
       });
-      console.log(incomplete);
       return !incomplete;
     },
     async undoCompleteSubTask() {
@@ -3915,17 +3886,14 @@ export default {
       this.mapPeerInvited(data);
     },
     mapPeerInvited(data) {
-      console.log("map peer ", data, this.students);
       this.peerSelected = [];
       if (data.peers && data.peers?.length > 0 && this.students.length > 0) {
         data.peers.forEach((e) => {
           let studs = this.students.find(
             (s) => s.id.toString() == e.id.toString()
           );
-          console.log(studs);
           this.peerSelected.push(studs);
         });
-        console.log("peers", this.peerSelected);
       }
     },
     mapAssignmentDetail(data) {
@@ -3971,7 +3939,6 @@ export default {
       }
       this.peerList = data.peers;
       this.additionalMaterialList = data.assignment_materials;
-      console.log("map ", data);
     },
     async getAllCompletedAssignments() {
       await this.getCompletedAssignments({
@@ -3979,8 +3946,6 @@ export default {
         date: moment().format("YYYY-MM-DD"),
         type: "Weekly",
       });
-      console.log(this.completedAssignments);
-      console.log(this.completedSharedAssignments);
       let completed = [];
       completed = this.completedAssignments;
       this.completedAssignmentList = [];
@@ -4094,7 +4059,6 @@ export default {
       this.processingUpload = false;
     },
     openLink(material) {
-      console.log(material);
       let link = material.link
         ? material.link
         : material.name
@@ -4134,14 +4098,11 @@ export default {
       return valid;
     },
     deleteAdditionalMat(item) {
-      console.log(item);
       this.additionalMaterialList;
       const index = this.additionalMaterialList.indexOf(item);
       if (index > -1) {
         this.additionalMaterialList.splice(index, 1); // 2nd parameter means remove one item only
       }
-
-      console.log(this.additionalMaterialList);
     },
     removePeerConfirm(id, event) {
       event.stopPropagation();
@@ -4170,7 +4131,6 @@ export default {
       } else {
         this.choosenAssignments.push(id);
       }
-      console.log(this.choosenAssignments);
     },
     confirmUndo(id) {
       this.undoAsstId = id;
@@ -4180,7 +4140,6 @@ export default {
       this.completeAssignment(false);
     },
     confirmDeletion() {
-      console.log("confirm delete");
       $("#deleteAssignmentConfirmation").modal({ backdrop: true });
     },
     async deleteAssts() {

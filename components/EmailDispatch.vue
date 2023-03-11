@@ -14,16 +14,7 @@
               <div id="app" class="custom-container pt-3 px-0">
                 <!-- search tab -->
                 <div
-                  class="
-                    row
-                    shadow-sm
-                    p-3
-                    bg-white
-                    rounded
-                    justify-content-between
-                    w-100
-                    m-0
-                  "
+                  class="row shadow-sm p-3 bg-white rounded justify-content-between w-100 m-0"
                 >
                   <div class="col-md-4 col-lg-3">
                     <h4 class="text-dark text-left">Email Dispatch</h4>
@@ -40,7 +31,8 @@
                   >
                     <div class="input-group rounded d-flex">
                       <input
-                        class="mr-1" role="button"
+                        class="mr-1"
+                        role="button"
                         type="checkbox"
                         aria-describedby="search-addon"
                         v-model="selectAll"
@@ -51,7 +43,8 @@
                     </div>
                     <div class="input-group rounded">
                       <input
-                        class="mr-1" role="button"
+                        class="mr-1"
+                        role="button"
                         type="checkbox"
                         aria-describedby="search-addon1"
                         v-model="custom"
@@ -123,7 +116,8 @@
                             <tr class="text-secondary bg-light">
                               <th>
                                 <input
-                                  type="checkbox" role="button"
+                                  type="checkbox"
+                                  role="button"
                                   name="chooseAll"
                                   v-model="chooseAll"
                                   @change="changeSelection()"
@@ -147,7 +141,8 @@
                             >
                               <td>
                                 <input
-                                  type="checkbox" role="button"
+                                  type="checkbox"
+                                  role="button"
                                   :name="index"
                                   v-model="school.checked"
                                   @change="individualSelect()"
@@ -170,7 +165,8 @@
                             <tr class="text-secondary bg-light">
                               <th>
                                 <input
-                                  type="checkbox" role="button"
+                                  type="checkbox"
+                                  role="button"
                                   name="chooseAllStudent"
                                   v-model="chooseAllStudent"
                                   @change="changeSelectionStudent()"
@@ -195,7 +191,8 @@
                             >
                               <td>
                                 <input
-                                  type="checkbox" role="button"
+                                  type="checkbox"
+                                  role="button"
                                   :name="index"
                                   v-model="student.checked"
                                   @change="individualSelectStudent()"
@@ -331,13 +328,11 @@ export default {
     },
     async dispatchEmail() {
       let selectedIds = [];
-      console.log("check", this.selectAll, this.schoolList);
       if (!this.selectAll) {
         let selectedSchools = this.schoolList.filter((e) => e.checked);
         selectedSchools.forEach((e) => {
           selectedIds.push(e.schoolId);
         });
-        console.log("check", selectedSchools, selectedIds);
       }
       let selectedIdStudents = [];
       if (!this.selectAll && this.schoolSelected()) {
@@ -479,14 +474,12 @@ export default {
       if (!multiple) {
         const selected = this.schoolList.filter((e) => e.checked);
         if (selected.length == 1) {
-          console.log("selected", selected);
           this.schoolId = selected[0].schoolId;
         }
         return selected.length == 1 ? true : false;
       } else {
         const selected = this.schoolList.filter((e) => e.checked);
         if (selected.length == 1) {
-          console.log("selected", selected);
           this.schoolId = selected[0].schoolId;
         }
         return selected.length > 0 ? true : false;

@@ -357,10 +357,8 @@ export default {
     this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
 
-    console.log("mounting student id", this.studentId);
     this.GetMySession();
     this.getConfiguredGoal();
-    // this.InitPieChart();
     this.startIntro();
   },
   computed: {
@@ -646,13 +644,6 @@ export default {
     async configureGoal() {
       this.submitted = true;
       this.processing = true;
-
-      console.log(
-        this.hours,
-        this.minutes,
-        Number(this.hours),
-        Number(this.minutes)
-      );
 
       let duration = 0;
       duration = Number(this.hours) * 60 + Number(this.minutes);

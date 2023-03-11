@@ -519,8 +519,6 @@ export default {
               const key = tag;
 
               obj[key] = color;
-
-              console.log(obj);
             }
             this.tagColorMap = obj;
           });

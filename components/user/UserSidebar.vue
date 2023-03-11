@@ -739,7 +739,6 @@ export default {
     async getPushNotifications() {
       this.$fire.messaging.onMessage((payload) => {
         // alert("alerting" + payload.notification.body);
-        // console.info("Message received: ", payload);
         this.getCount();
         this.getNotifications();
       });
@@ -767,7 +766,6 @@ export default {
       // Team Activation
 
       await this.markNotificationAsRead(id);
-      console.log(type);
 
       if (type == "Peer" || type == "Teacher") {
         this.$router.push("/viewall-meeting");
