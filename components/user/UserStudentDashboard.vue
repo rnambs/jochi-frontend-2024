@@ -240,9 +240,9 @@
                   Assignments List
                 </h4>
                 <div
-                  class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
+                  class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2 h-max-100"
                 >
-                  <div class="h-25 overflow-auto">
+                  <div class="h-100 overflow-auto">
                     <div
                       v-for="item in assignmentList"
                       :key="item.id"
@@ -1088,6 +1088,8 @@ export default {
     width: 100%;
   }
 }
+
+.h-max-100 {max-height: 100px;}
 
 /* .assignment-md-show {
   display: none !important;
