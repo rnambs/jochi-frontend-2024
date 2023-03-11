@@ -794,7 +794,6 @@ export default {
       this.mapSharedAssignments();
       this.mapOverdueAssignments();
       this.mapOverdueSharedAssignments();
-      console.log(this.overdueAssts);
     },
     mapAssignments() {
       if (this.assignmentList && this.assignmentList.length > 0) {

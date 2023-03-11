@@ -615,7 +615,6 @@ export default {
       localStorage.setItem("skippedPrompt", "true");
     },
     activate() {
-      console.log("inside hide timeout");
       setTimeout(() => (this.isHidden = true), 1500);
       setTimeout(() => {
         this.startIntro();
@@ -945,7 +944,6 @@ export default {
       this.ListAllMeeting();
     },
     handleDateClick: function (arg) {
-      console.log("arg", arg);
       this.GetDailyPlanner(arg.date);
     },
     goPrev() {

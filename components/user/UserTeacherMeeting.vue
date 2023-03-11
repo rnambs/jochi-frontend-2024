@@ -655,7 +655,6 @@ export default {
           });
         } else {
           this.studentsValue = [];
-          console.log("inside slot clear");
           this.slot_date = [];
         }
         if (this.studentsValue.length === 0) {

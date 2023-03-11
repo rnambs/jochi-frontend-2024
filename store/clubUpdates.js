@@ -126,7 +126,6 @@ const actions = {
                     'Authorization': ` ${token}`
                 },
             });
-            console.log(response);
             commit('setClubInformation', response.data)
             if (response.message) {
                 commit('setSuccessMessage', response.message);

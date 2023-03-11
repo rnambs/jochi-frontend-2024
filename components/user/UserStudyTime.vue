@@ -1613,7 +1613,6 @@ export default {
       }
     },
     redirectMap(e) {
-      console.log("session detail", e, this.studySessionDetail);
       let session = {};
       session.type = e.assignment_id ? "assignment" : "study";
       if (e.assignment_id) {
@@ -1689,7 +1688,6 @@ export default {
     },
     async getDetail(id) {
       await this.getSessionDetail({ id });
-      console.log(this.studySessionDetail);
     },
     async GetStatusTimer() {
       await this.getStatusTimer({});
@@ -1878,7 +1876,6 @@ export default {
 
     checkScheduleLaterValidations() {
       let valid = true;
-      console.log(!this.checkValidTime(this.scheduledTime));
 
       if (!this.checkValidTime(this.scheduledTime)) {
         this.$toast.open({
@@ -2059,12 +2056,7 @@ export default {
         });
         valid = false;
       }
-      console.log(
-        this.studyTypes,
-        this.targetDuration,
-        this.breatTime,
-        this.breakAt
-      );
+
       if (this.studyTypes?.id == 2) {
         if (!this.targetDuration || this.targetDuration == "0") {
           this.$toast.open({
@@ -2160,7 +2152,6 @@ export default {
       return valid;
     },
     async AddStudyTime(studyStatus) {
-      console.log("study time paused");
       this.submitted = true;
       if (studyStatus == "STOP") {
         this.onNext();
@@ -2172,7 +2163,6 @@ export default {
 
       let addStudyPayload = {};
       if (this.sessionDetail.isSharedSession) {
-        console.log("session detail add study", this.sessionDetail);
         addStudyPayload = {
           sessionId: this.sharedNewSessionId,
           old_sessionId: this.sessionDetail.id,
@@ -2350,7 +2340,6 @@ export default {
       var presentTime = new Date().getTime();
       this.totalStudyTime += (presentTime - this.studyTimeStart) / 1000;
       clearInterval(this.limitedInterval);
-      console.log(this.studyStatus + "custom interval cleared!");
       this.AddStudyTime("PAUSE");
     },
     async getAllStudySessions() {
@@ -2405,7 +2394,6 @@ export default {
       });
 
       this.sharedSessions.forEach((e) => {
-        console.log(e);
         let session = {};
         session.type = e.assignment_id ? "assignment" : "study";
         session.id = e.session_id;
@@ -2521,11 +2509,7 @@ export default {
         offset: this.offset,
         limit: this.limit,
       });
-      console.log(
-        "asst list",
-        this.assignmentsList,
-        this.sharedAssignmentsList
-      );
+
       this.mapCount();
       this.pendingAssignments = [];
       this.mapAssignments();
@@ -2560,7 +2544,6 @@ export default {
           this.pendingAssignments.push(asst);
         });
       }
-      console.log("pending assts ", this.pendingAssignments);
     },
     mapOverdueAssignments() {
       if (
@@ -2572,7 +2555,6 @@ export default {
           this.pendingAssignments.push(asst);
         });
       }
-      console.log("pending assts ", this.pendingAssignments);
     },
     mapData(e) {
       if (e) {
@@ -2622,7 +2604,6 @@ export default {
           this.pendingAssignments.push(asst);
         });
       }
-      console.log("pending assts ", this.pendingAssignments);
     },
     mapSharedOverdueAssignments() {
       if (
@@ -2634,7 +2615,6 @@ export default {
           this.pendingAssignments.push(asst);
         });
       }
-      console.log("pending assts ", this.pendingAssignments);
     },
     mapSharedData(e) {
       let item = {};
@@ -2691,7 +2671,6 @@ export default {
             let peer = {};
             peer = item.users;
             peer.id = item.session_shared_user_id;
-            console.log("console", item, peer);
             peers.push(peer);
           }
         });
@@ -2705,7 +2684,6 @@ export default {
             let peer = {};
             peer = item.users;
             peer.id = item.shared_users_id;
-            console.log("console", item, peer);
             peers.push(peer);
           }
         });
@@ -2746,7 +2724,6 @@ export default {
       } else {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 1);
       }
-      console.log(this.studyTypesData, this.studyTypes);
       if (this.sessionType == "assignment") {
         this.subjectName = this.selectedAssignment.task;
       }
@@ -2875,7 +2852,6 @@ export default {
         this.sessionDetail.study_goals =
           this.sessionDetail.studyroom.study_goals;
       }
-      console.log(this.sessionDetail, session);
       clearInterval(this.intervalCountDown);
       this.counter = false;
       if (this.sessionDetail.isToday) {
@@ -2944,7 +2920,6 @@ export default {
       this.mapPeersInvited();
 
       // this.UpdateStudyTechnique();
-      console.log("session details", this.sessionDetail);
       // this.goalsList = this.sessionDetail.goals;
       // this.sessionMode =
       //   this.sessionDetail.studyMethod == "1"

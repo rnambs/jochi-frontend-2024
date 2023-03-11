@@ -2540,7 +2540,6 @@ export default {
 
     this.user_id = localStorage.getItem("id");
     socket.on("notifications", (data) => {
-      console.log("socket data", data);
       if (data) this.updateOverdueStatus(data);
     });
 
@@ -3365,8 +3364,6 @@ export default {
           idVal.groupId == "assignment" ||
           idVal.groupId == "shared-assignment"
         ) {
-          console.log("asst");
-
           let data = {};
           let mappedData = {};
           if (idVal.groupId == "assignment") {
@@ -3408,7 +3405,6 @@ export default {
             $("#alertModal").modal({ backdrop: true });
             return;
           }
-          console.log("past", mappedData);
           this.onCardClick(mappedData);
         } else {
           this.alertMessage = "No actions can be performed on past events";
@@ -3421,8 +3417,6 @@ export default {
           idVal.groupId == "assignment" ||
           idVal.groupId == "shared-assignment"
         ) {
-          console.log("asst");
-
           let data = {};
           let mappedData = {};
           if (idVal.groupId == "assignment") {
@@ -3465,7 +3459,6 @@ export default {
             $("#alertModal").modal({ backdrop: true });
             return;
           }
-          console.log("future", mappedData);
 
           this.onCardClick(mappedData);
         }
@@ -3738,7 +3731,6 @@ export default {
       }
     },
     mapSharedData(e) {
-      console.log(e);
       let item = {};
       this.assignmentMaterials = [];
 
@@ -3916,7 +3908,6 @@ export default {
       this.completeSubTask(false);
     },
     onCardClick(data) {
-      console.log(data);
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
       this.openAssignment = true;

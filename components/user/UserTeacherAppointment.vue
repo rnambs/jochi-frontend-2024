@@ -11,31 +11,14 @@
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
-          class="
-            teacher-section
-            jochi-components-light-bg
-            custom-margin-for-main-section custom-full-height
-            d-flex
-            flex-column
-          "
+          class="teacher-section jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
         >
           <h2 class="color-primary font-semi-bold m-0 px-4 pt-4">
             Teacher Appointment
           </h2>
 
           <div
-            class="
-              inner-teacher
-              px-4
-              pt-4
-              pb-2
-              mb-2
-              d-flex
-              flex-column
-              h-40
-              flex-fill
-              custom-overflow
-            "
+            class="inner-teacher px-4 pt-4 pb-2 mb-2 d-flex flex-column h-40 flex-fill custom-overflow"
           >
             <div class="d-flex h-100 flex-column">
               <div>
@@ -45,16 +28,7 @@
                     class="col-md-6 custom-teacher-container d-flex flex-column"
                   >
                     <div
-                      class="
-                        inner-custom-teacher
-                        text-light
-                        p-3
-                        pt-4
-                        card card-primary-sm
-                        rounded-22
-                        flex-fill
-                        calendar-sm
-                      "
+                      class="inner-custom-teacher text-light p-3 pt-4 card card-primary-sm rounded-22 flex-fill calendar-sm"
                     >
                       <FullCalendar :options="calendarOptions" />
                     </div>
@@ -66,14 +40,7 @@
                     class="col-md-6 custom-teacher-container d-flex flex-column"
                   >
                     <div
-                      class="
-                        inner-custom-teacher
-                        p-3
-                        card card-primary-sm
-                        rounded-22
-                        flex-fill
-                        calendar-sm
-                      "
+                      class="inner-custom-teacher p-3 card card-primary-sm rounded-22 flex-fill calendar-sm"
                     >
                       <h4 class="font-semi-bold color-dark text-center">
                         Meetings
@@ -85,24 +52,11 @@
                           :key="index"
                           @click="setMeetingView(list)"
                         >
-                          <div class="card card-white w-100
-                            d-flex
-                            flex-row
-                            align-items-center
-                            mb-2
-                            px-3 py-2 cursor-pointer">
-
+                          <div
+                            class="card card-white w-100 d-flex flex-row align-items-center mb-2 px-3 py-2 cursor-pointer"
+                          >
                             <span
-                              class="
-                                image-icon
-                                py-0
-                                d-flex
-                                align-items-center
-                                justify-content-center
-                                bg-primary
-                                rounded-circle
-                                p-2
-                              "
+                              class="image-icon py-0 d-flex align-items-center justify-content-center bg-primary rounded-circle p-2"
                             >
                               <i
                                 class="fas fa-users color-white"
@@ -110,16 +64,21 @@
                               ></i>
                             </span>
 
-                            <div class="time-detail pl-3 py-0 d-flex align-items-center
-                                justify-content-between flex-wrap w-100">
-                              <h4 class="color-dark font-semi-bold text-18 mb-1 me-3">
+                            <div
+                              class="time-detail pl-3 py-0 d-flex align-items-center justify-content-between flex-wrap w-100"
+                            >
+                              <h4
+                                class="color-dark font-semi-bold text-18 mb-1 me-3"
+                              >
                                 {{ list["title"] }}
                               </h4>
                               <div>
                                 <span class="color-secondary"
                                   ><i class="far fa-clock"></i>
                                 </span>
-                                <span class="color-secondary font-regular text-16">
+                                <span
+                                  class="color-secondary font-regular text-16"
+                                >
                                   {{ list["time"] }}
                                 </span>
                               </div>
@@ -156,21 +115,11 @@
                                 <span class="club-i"><i></i> </span>
                               </p>
                             </div> -->
-
-
-
                           </div>
-                          
                         </div>
                         <div
                           v-if="listAgenda.length == 0"
-                          class="
-                            empty-shedule
-                            d-flex
-                            justify-content-center
-                            align-items-center
-                            h-100
-                          "
+                          class="empty-shedule d-flex justify-content-center align-items-center h-100"
                         >
                           <p>No meetings for the day</p>
                         </div>
@@ -186,28 +135,14 @@
                 class="teacher-row d-flex flex-column flex-fill h-40 mt-4 p-0"
               >
                 <div
-                  class="
-                    col-md-12
-                    p-0
-                    custom-teacher-container
-                    d-flex
-                    flex-column
-                    card card-primary-sm
-                    rounded-22
-                  "
+                  class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary-sm rounded-22"
                 >
                   <div class="appointment-req d-flex flex-column h-100 pb-2">
                     <h4 class="text-center color-dark font-semi-bold pt-4 mb-3">
                       Meeting Requests
                     </h4>
                     <div
-                      class="
-                        table-req
-                        hidden-scroll
-                        custom-overflow-x
-                        container
-                        py-0
-                      "
+                      class="table-req hidden-scroll custom-overflow-x container py-0"
                     >
                       <table class="table">
                         <thead>
@@ -242,14 +177,7 @@
                             <td class="text-14">30 Min</td>
                             <td>
                               <button
-                                class="
-                                  d-flex
-                                  btn
-                                  border border-success
-                                  text-success
-                                  px-3
-                                  py-1
-                                "
+                                class="d-flex btn border border-success text-success px-3 py-1"
                                 @click="
                                   openModal(
                                     teacher.studentId,
@@ -267,14 +195,7 @@
                             </td>
                             <td>
                               <button
-                                class="
-                                  d-flex
-                                  btn
-                                  border border-danger
-                                  text-danger
-                                  px-3
-                                  py-1
-                                "
+                                class="d-flex btn border border-danger text-danger px-3 py-1"
                                 @click="
                                   openModal(teacher.studentId, teacher.reqId, 2)
                                 "
@@ -288,14 +209,7 @@
                             <td>
                               <button
                                 @click="setMeeting(teacher)"
-                                class="
-                                  d-flex
-                                  btn
-                                  border border-primary
-                                  text-primary
-                                  px-3
-                                  py-1
-                                "
+                                class="d-flex btn border border-primary text-primary px-3 py-1"
                               >
                                 <i class="fas fa-eye text-12"></i>
                               </button>
@@ -488,15 +402,7 @@
                   meetingDetail.studentId &&
                   meetingDetail.reqId
                 "
-                class="
-                  d-flex
-                  btn btn-secondary
-                  rounded-12
-                  px-4
-                  py-1
-                  mx-2
-                  font-semi-bold
-                "
+                class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -514,14 +420,7 @@
                   meetingDetail.reqId &&
                   meetingDetail.selectableDate
                 "
-                class="
-                  d-flex
-                  btn btn-success
-                  rounded-12
-                  px-4
-                  py-1
-                  font-semi-bold
-                "
+                class="d-flex btn btn-success rounded-12 px-4 py-1 font-semi-bold"
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -536,15 +435,7 @@
               <button
                 v-else
                 data-dismiss="modal"
-                class="
-                  d-flex
-                  btn btn-secondary
-                  rounded-12
-                  px-4
-                  py-1
-                  mx-2
-                  font-semi-bold
-                "
+                class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
               >
                 <span class="text-16">Close</span>
               </button>
@@ -849,15 +740,10 @@ export default {
 
     setMeeting(teacher) {
       $("#mediumModal").modal("show");
-      console.log(teacher);
       this.meetingDetail = teacher;
     },
     setMeetingView(teacher) {
-      console.log(teacher, this.agendaList);
-
       let element = this.agendaList.find((e) => e.id == teacher.id);
-
-      // console.log(data);
 
       var Scheduleobj = {};
       var title = element.title;
@@ -879,10 +765,8 @@ export default {
       Scheduleobj["meeting_location"] = element.meeting_location;
       Scheduleobj["meeting_link"] = element.meeting_link;
       Scheduleobj["meeting_name"] = element.meeting_name;
-      // this.teachersList.push(Scheduleobj);
 
       $("#mediumModal").modal("show");
-      // console.log(teacher);
       this.meetingDetail = Scheduleobj;
     },
     async openModal(studentId, reqId, status, date = "") {

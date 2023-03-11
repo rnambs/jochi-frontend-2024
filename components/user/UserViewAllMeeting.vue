@@ -904,7 +904,6 @@ export default {
       let date = "";
       date = moment(this.detailDate).format("YYYY-MM-DD");
       this.updatedDate = moment(date).format("YYYY-MM-DD");
-      console.log(this.updatedDate, date);
       this.UpdateTimeSchedule(moment(date).format("YYYY-MM-DD"));
     },
     async UpdateTimeSchedule(dateSelected) {
