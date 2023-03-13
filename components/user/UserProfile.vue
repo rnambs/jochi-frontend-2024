@@ -18,14 +18,15 @@
                   @click="openRequestConfirm()"
                   class="btn btn-primary py-1 px-4 rounded-12 font-semi-bold"
                 >
-                  Request to become a School Admin
+                  Request To Become A School Admin
                 </button>
 
                 <span
                   class="bg-primary py-1 px-4 rounded-12 font-semi-bold"
+                  style="color: white"
                   v-if="requestSent == '1'"
                 >
-                  <i class="fas fa-hourglass-half mr-2"></i>Pending approval for
+                  <i class="fas fa-hourglass-half mr-2"></i>Pending Approval For
                   School Admin</span
                 >
               </div>

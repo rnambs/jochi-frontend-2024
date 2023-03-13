@@ -483,6 +483,7 @@
                 type="button"
                 class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
                 @click="updateDetails()"
+                :disabled="disableUpload"
               >
                 Update
               </button>
@@ -569,6 +570,7 @@ export default {
       redirectId: this.$route.query.id,
       redirectType: this.$route.query.type,
       startTime: null,
+      disableUpload: false,
     };
   },
   validations: {
@@ -815,6 +817,8 @@ export default {
       }
     },
     async updateDetails() {
+      this.disableUpload = true;
+
       let valid = true;
       if (this.detailConversationType == "Video Conference") {
         valid = this.isValidHttpUrl(this.detailVenue);
@@ -823,9 +827,12 @@ export default {
         this.submitted = true;
         this.$v.$touch();
         if (this.$v.$invalid) {
+          this.disableUpload = false;
           return;
         } else {
           if (this.isDateChanged && !this.selectedSlot) {
+            this.disableUpload = false;
+
             return this.$toast.open({
               message: "Please choose a slot before proceeding",
               type: "warning",
@@ -855,8 +862,10 @@ export default {
                 ? this.detailVenue
                 : "",
           };
+          this.disableUpload = true;
 
           await this.updateMeeting(payLoad);
+          this.disableUpload = false;
 
           this.loading = false;
           if (this.successMessages != "") {
