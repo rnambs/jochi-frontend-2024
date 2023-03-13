@@ -1492,6 +1492,7 @@ export default {
     }
   },
   async mounted() {
+    window.addEventListener("orientationchange", this.handleOrientationChange);
     const page = "StudySession";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
@@ -3088,10 +3089,19 @@ export default {
         });
       }
     },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
   },
 
   destroyed() {
     window.removeEventListener("beforeunload", this.preventNav);
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
   },
   beforeDestroy() {
     const endTime = new Date().getTime();

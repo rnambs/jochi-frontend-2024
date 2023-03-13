@@ -20,11 +20,14 @@
                 >
                   Request to become a School Admin
                 </button>
-                
-                <span class="bg-primary py-1 px-4 rounded-12 font-semi-bold" v-if="requestSent == '1'"
-                  >
-                    <i class="fas fa-hourglass-half mr-2"></i>Pending approval for School Admin</span
-                  >
+
+                <span
+                  class="bg-primary py-1 px-4 rounded-12 font-semi-bold"
+                  v-if="requestSent == '1'"
+                >
+                  <i class="fas fa-hourglass-half mr-2"></i>Pending approval for
+                  School Admin</span
+                >
               </div>
             </div>
             <div
@@ -710,6 +713,7 @@ export default {
     this.fetchSettings();
   },
   mounted() {
+    window.addEventListener("orientationchange", this.handleOrientationChange);
     setTimeout(() => {
       this.startIntro();
     }, 1000);
@@ -1044,6 +1048,17 @@ export default {
     async openRequestConfirm() {
       $("#upgradeConfirm").modal({ backdrop: true });
     },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
+  },
+  destroyed() {
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
   },
   // // middleware: "authenticated",
 };

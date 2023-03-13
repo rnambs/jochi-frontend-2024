@@ -901,6 +901,12 @@ export default {
       }
     },
   },
+  destroyed() {
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
+  },
   // // middleware: "authenticated",
 };
 </script>

@@ -363,6 +363,7 @@ export default {
     description: { required },
   },
   mounted() {
+    window.addEventListener("orientationchange", this.handleOrientationChange);
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     const page = "ClubCatalog";
     const distinct_id = localStorage.getItem("distinctId");
@@ -622,6 +623,11 @@ export default {
         });
       }
     },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
   },
   beforeDestroy() {
     const endTime = new Date().getTime();
@@ -629,6 +635,12 @@ export default {
     const distinct_id = localStorage.getItem("distinctId");
     const page = "ClubCatalog";
     this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
+  },
+  destroyed() {
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
   },
 };
 </script>

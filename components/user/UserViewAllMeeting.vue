@@ -578,6 +578,7 @@ export default {
     detailVenue: { required },
   },
   mounted() {
+    window.addEventListener("orientationchange", this.handleOrientationChange);
     const page = "MeetingViewAll";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
@@ -1106,6 +1107,11 @@ export default {
         });
       }
     },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
   },
   beforeDestroy() {
     const endTime = new Date().getTime();
@@ -1113,6 +1119,12 @@ export default {
     const distinct_id = localStorage.getItem("distinctId");
     const page = "MeetingViewAll";
     this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
+  },
+  destroyed() {
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
   },
 };
 </script>
