@@ -61,8 +61,8 @@
               <div class="custom-paginate d-flex justify-content-center p-3">
                 <paginate
                   :page-count="pageTotal"
-                  :page-range="this.paginateRange"
-                  :margin-pages="this.paginateRange"
+                  :page-range="3"
+                  :margin-pages="2"
                   :click-handler="clickCallback"
                   :prev-text="'Prev'"
                   :next-text="'Next'"
@@ -310,7 +310,7 @@ export default {
 </script>
 
 <style>
-  .cursor-pointer{
-    cursor: pointer;
-  }
+.cursor-pointer {
+  cursor: pointer;
+}
 </style>
