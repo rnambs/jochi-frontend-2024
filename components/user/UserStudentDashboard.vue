@@ -231,7 +231,7 @@
             </div>
             <div class="w-100 h-40 flex-fill" v-if="!isLargeScreen">
               <div
-                data-intro="View assignments list by choosing a date from calendar"
+                data-intro="See a brief overview of upcoming assignments day-by-day"
                 class="d-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-hide"
               >
                 <h4 class="color-black font-semi-bold px-4">
