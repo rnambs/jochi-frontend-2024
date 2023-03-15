@@ -66,7 +66,7 @@
                   >
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                       <div
-                        data-intro="View your total study time for a day"
+                        data-intro="See how your working towards your daily study goal"
                         class="jochi-sub-components-light-bg h-100"
                       >
                         <div
@@ -105,7 +105,7 @@
                       </div>
                     </div>
                     <div
-                      data-intro="View meetings for the selected month "
+                      data-intro="View your upcoming meetings for the month "
                       class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill"
                     >
                       <div
@@ -190,7 +190,7 @@
                 </div>
                 <div v-if="isLargeScreen" class="h-40 flex-fill">
                   <div
-                    data-intro="View assignments list by choosing a date from calendar"
+                    data-intro="See a brief overview of upcoming assignments day-by-day"
                     class="d-md-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-show"
                   >
                     <h4 class="color-black font-semi-bold px-4">
