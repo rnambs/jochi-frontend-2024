@@ -2540,9 +2540,9 @@ export default {
     this.startTime = new Date().getTime();
 
     this.user_id = localStorage.getItem("id");
-    socket.on("notifications", (data) => {
-      if (data) this.updateOverdueStatus(data);
-    });
+    // socket.on("notifications", (data) => {
+    //   if (data) this.updateOverdueStatus(data);
+    // });
 
     this.GetStudents();
 

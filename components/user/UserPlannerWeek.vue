@@ -2269,9 +2269,9 @@ export default {
 
     this.user_id = localStorage.getItem("id");
 
-    socket.on("notifications", (data) => {
-      if (data) this.updateOverdueStatus(data);
-    });
+    // socket.on("notifications", (data) => {
+    //   if (data) this.updateOverdueStatus(data);
+    // });
     this.GetStudents();
     this.disabledDates.to = new Date(
       this.date_today.getFullYear(),

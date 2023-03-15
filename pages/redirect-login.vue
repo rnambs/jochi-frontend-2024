@@ -29,9 +29,9 @@ import { required, minLength, sameAs } from "vuelidate/lib/validators";
 import { mapState, mapActions } from "vuex";
 import VueToast from "vue-toast-notification";
 import { FRONTEND_BASE_URL, GG4L_REDIRECT_URL } from "~/assets/js/constants";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
-const socket = io("ws://localhost:3000");
+// const socket = io("ws://localhost:3000");
 
 export default {
   data() {
@@ -97,7 +97,7 @@ export default {
       });
       await this.getTokenDevice();
       const token = localStorage.getItem("token");
-      socket.emit("login", token?.split("Bearer ")[1]);
+      // socket.emit("login", token?.split("Bearer ")[1]);
 
       if (this.errorMessage != "") {
         this.$toast.open({
