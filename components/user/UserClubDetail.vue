@@ -42,7 +42,7 @@
                   </div>
                 </div>
                 <div
-                  data-intro="Turn on sync to planner to sync your team and club meetings to your planner"
+                  data-intro="Turn on ‘Sync to Planner’ to sync your extracurricular commitments to your calendar on Jochi."
                   class="col-md-4 px-0"
                 >
                   <div

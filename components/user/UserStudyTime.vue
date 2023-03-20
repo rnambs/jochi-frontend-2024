@@ -24,7 +24,7 @@
           <div class="col-lg-7 d-flex flex-column">
             <div class="position-relative">
               <div
-                data-intro="Schedule study sessions for completing study sessions for later from here"
+                data-intro="The study room is a tool for you to use to tackle your assignments/tasks. Click here to schedule a study session for sometime later."
                 @click="scheduleLaterClick('assignment', $event)"
                 class="position-absolute send-later jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
               >
@@ -34,7 +34,7 @@
             <div
               @click="setSessionType('assignment', false)"
               class="row card card-void rounded-22 m-0 mb-4 p-4 flex-row cursor-pointer"
-              data-intro="Start sessions for completing an assignment from here. Choose an assignment, select your study method and configure your study session for starting a new study session"
+              data-intro="To start a session right away, click here. You will be prompted to choose what assignment you want to work on, invite your classmates to join you, a chance to set some goals, the option to choose a structured study method and other options to configure a new study session."
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
                 <h2 class="color-primary font-semi-bold mb-1">
@@ -56,7 +56,7 @@
             </div>
             <div class="position-relative">
               <div
-                data-intro="Schedule normal study sessions for later from here"
+                data-intro="Want to just set yourself accountable while getting general work here? Click here to schedule a regular study session for later."
                 @click="scheduleLaterClick('study', $event)"
                 class="position-absolute send-later jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
               >
@@ -64,7 +64,7 @@
               </div>
             </div>
             <div
-              data-intro="Start normal study sessions from here. Select your study method and configure your study session for starting a new study session"
+              data-intro="Get started with a general study session right away by clicking here. You will be shown similar options such as setting goals, duration, and other options to configure your session."
               @click="setSessionType('study', false)"
               class="row card card-void rounded-22 p-4 m-0 flex-row cursor-pointer"
             >
@@ -93,7 +93,7 @@
             >
               <div class="d-flex flex-column h-100">
                 <h2
-                  data-intro="View all your configured study sessions and the study sessions shared by your peers here"
+                  data-intro="View upcoming study sessions that you’ve blocked out for later and sessions that your classmates have invited you to"
                   class="color-primary font-semi-bold mb-2 px-4"
                 >
                   Upcoming Sessions

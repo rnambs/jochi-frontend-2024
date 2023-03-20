@@ -25,7 +25,9 @@
                 </h4>
               </div>
 
-              <div data-intro="Create your own clubs from here">
+              <div
+                data-intro="You can even create your own extracurricular here. It may take some time to appear as an administrator at your school and will have to approve this before other students can see your new extracurricular activity."
+              >
                 <button
                   v-if="user_type == 3"
                   type="button"
@@ -40,7 +42,7 @@
               <div class="col-md-4">
                 <div class="form-row position-relative">
                   <input
-                    data-intro="Search for clubs from here"
+                    data-intro="Search for different extracurriculars (sports, clubs, extracurriculars) from this search bar"
                     class="form-control w-100 tab-form-control"
                     type="text"
                     v-model="search"
@@ -54,7 +56,7 @@
               </div>
               <div class="col-md-4">
                 <div
-                  data-intro="Filter clubs based on tags from here"
+                  data-intro="Filter extracurriculars based on different tags here"
                   class="input-icon-area custom-multiselect-adj-text form-row"
                 >
                   <multiselect

@@ -18,7 +18,7 @@
             <div class="row h-100">
               <div class="col-lg-5 col-md-12">
                 <div
-                  data-intro="Find your upcoming assignments and commitments in the calendar"
+                  data-intro="Find your upcoming assignments and commitments in your daily calendar"
                   class="jochi-components-light-bg p-4 h-100"
                 >
                   <h2

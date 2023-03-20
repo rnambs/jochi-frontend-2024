@@ -47,7 +47,7 @@
                   </div>
                 </div>
                 <div
-                  data-intro="Select the upcoming date to set your availability"
+                  data-intro="Pre-set your availability so your peers know when you are available to meet. If you don’t set custom availability, Jochi will rely on your commitments that appear on your Jochi calendar. Here, you can choose a specific upcoming date to set your availability"
                   class="time-slot calendar-sm container card card-primary-sm rounded-22 p-3 pt-4 mb-4"
                 >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
@@ -60,7 +60,7 @@
                   class="time-slot container card card-primary-sm rounded-22 p-4 flex-fill h-40"
                 >
                   <p
-                    data-intro="Set your custom availability by choosing 30 minute slots that work for you."
+                    data-intro="To set your custom availability, choose a series of 30 minute slots that work for you."
                     class="time-head pb-1"
                   >
                     <span class="color-dark text-16 font-semi-bold">{{
@@ -87,7 +87,7 @@
                   </div>
                   <form action="" class="">
                     <div
-                      data-intro="Apply the selected slots for an entire week or month. Access other preferences here"
+                      data-intro="Save time and block out these slots for an entire week or month. You can also set this as your default preferences."
                       class="row slot-form"
                     >
                       <div class="col">

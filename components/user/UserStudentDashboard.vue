@@ -66,7 +66,7 @@
                   >
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                       <div
-                        data-intro="See how your working towards your daily study goal"
+                        data-intro="See how you are working towards your daily study goals"
                         class="jochi-sub-components-light-bg h-100"
                       >
                         <div

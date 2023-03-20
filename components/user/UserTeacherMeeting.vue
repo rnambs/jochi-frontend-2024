@@ -91,7 +91,7 @@
                 </div>
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
-                    data-intro="Choose date range"
+                    data-intro="Choose your date range"
                     class="form-row d-flex position-relative schedule-meeting-section"
                   >
                     <input
