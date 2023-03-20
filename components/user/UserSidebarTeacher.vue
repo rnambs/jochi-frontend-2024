@@ -316,7 +316,7 @@
                       </div>
                       <span
                         class="ml-3 color-secondary text-capitalize font-medium"
-                        >Extracurriculars</span
+                        >Teams & Clubs</span
                       >
                       <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
