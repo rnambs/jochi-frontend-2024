@@ -15,7 +15,7 @@
             <div class="d-flex justify-content-between align-item-center">
               <div class="d-flex flex-column">
                 <h2
-                  data-intro="View all the community service, sports teams, and clubs available at your school. To learn more about different activities, click learn more"
+                  data-intro="View all the community service, sports teams, and clubs available at your school. To learn more about different activities, click learn more."
                   class="color-primary font-semi-bold mb-1"
                 >
                   Club Catalog
@@ -42,7 +42,7 @@
               <div class="col-md-4">
                 <div class="form-row position-relative">
                   <input
-                    data-intro="Search for different extracurriculars (sports, clubs, extracurriculars) from this search bar"
+                    data-intro="Search for different extracurriculars (sports, clubs, extracurriculars) from this search bar."
                     class="form-control w-100 tab-form-control"
                     type="text"
                     v-model="search"
@@ -56,7 +56,7 @@
               </div>
               <div class="col-md-4">
                 <div
-                  data-intro="Filter extracurriculars based on different tags here"
+                  data-intro="Filter extracurriculars based on different tags here."
                   class="input-icon-area custom-multiselect-adj-text form-row"
                 >
                   <multiselect

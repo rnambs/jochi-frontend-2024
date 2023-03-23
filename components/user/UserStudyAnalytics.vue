@@ -38,7 +38,7 @@
           <div class="row header-row mb-1">
             <div class="col-md-6 pt-2 pb-0">
               <h4
-                data-intro="Here you can break down how you’ve spent the week studying so far"
+                data-intro="Here you can break down how you’ve spent the week studying so far."
                 class="color-dark font-semi-bold mb-0"
               >
                 Weekly Dashboard
@@ -46,7 +46,7 @@
             </div>
             <div class="col-md-6 pt-2 pb-0">
               <h4
-                data-intro="Or you can view a general overview of your studying across the school year"
+                data-intro="Or you can view a general overview of your studying across the school year."
                 class="color-dark font-semi-bold mb-0"
               >
                 Dashboard

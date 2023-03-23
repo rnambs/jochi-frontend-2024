@@ -18,7 +18,7 @@
             <div class="row h-100">
               <div class="col-lg-5 col-md-12">
                 <div
-                  data-intro="Find your upcoming assignments and commitments in your daily calendar"
+                  data-intro="Find your upcoming assignments and commitments in your daily calendar."
                   class="jochi-components-light-bg p-4 h-100"
                 >
                   <h2
@@ -48,7 +48,7 @@
                     <div class="row">
                       <div class="col-md-4">
                         <h2
-                          data-intro="Manage your upcoming assignments"
+                          data-intro="Manage your upcoming assignments."
                           class="color-primary font-semi-bold mb-0"
                         >
                           Pending
@@ -58,7 +58,7 @@
                         class="col-md-8 d-flex justify-content-start justify-content-md-end"
                       >
                         <button
-                          data-intro="Manually add new assignments"
+                          data-intro="Manually add new assignments."
                           @click="
                             openAssignment = true;
                             isAddAssignment = true;
@@ -641,7 +641,7 @@
                       @drop="handleDrop"
                     >
                       <h2
-                        data-intro="View your completed assignments"
+                        data-intro="View your completed assignments."
                         class="color-primary font-semi-bold px-4"
                       >
                         Completed Today

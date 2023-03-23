@@ -47,7 +47,7 @@
                   </div>
                 </div>
                 <div
-                  data-intro="Pre-set your availability so your peers know when you are available to meet. If you don’t set custom availability, Jochi will rely on your commitments that appear on your Jochi calendar. Here, you can choose a specific upcoming date to set your availability"
+                  data-intro="Pre-set your availability so your peers know when you are available to meet. If you don’t set custom availability, Jochi will rely on your commitments that appear on your Jochi calendar. Here, you can choose a specific upcoming date to set your availability."
                   class="time-slot calendar-sm container card card-primary-sm rounded-22 p-3 pt-4 mb-4"
                 >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />

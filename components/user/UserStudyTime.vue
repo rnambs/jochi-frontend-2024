@@ -93,7 +93,7 @@
             >
               <div class="d-flex flex-column h-100">
                 <h2
-                  data-intro="View upcoming study sessions that you’ve blocked out for later and sessions that your classmates have invited you to"
+                  data-intro="View upcoming study sessions that you’ve blocked out for later and sessions that your classmates have invited you to."
                   class="color-primary font-semi-bold mb-2 px-4"
                 >
                   Upcoming Sessions

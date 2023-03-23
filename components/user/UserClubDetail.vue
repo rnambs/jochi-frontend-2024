@@ -14,7 +14,7 @@
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-3">
             <h2
-              data-intro="View and manage all of your existing commitments"
+              data-intro="View and manage all of your existing commitments."
               class="tab-head color-primary font-semi-bold"
             >
               Club Details
@@ -24,7 +24,7 @@
                 class="row m-auto px-2 d-flex justify-content-between align-items-center"
               >
                 <div
-                  data-intro="Filter through your commitments based on different tags"
+                  data-intro="Filter through your commitments based on different tags."
                   class="col-md-4 px-0"
                 >
                   <div class="input-icon-area form-row">

@@ -63,7 +63,7 @@
                     <!----image-->
                     <div class="col-md-6">
                       <div
-                        data-intro="Custom your profile on Jochi by uploading a profile picture"
+                        data-intro="Custom your profile on Jochi by uploading a profile picture."
                         class="study-col profile-col d-flex flex-column justify-content-end align-items-center flex-fill"
                       >
                         <form id="form" enctype="multipart/form-data">
@@ -220,7 +220,7 @@
                       <div v-if="user_type == 3" class="col-md-12">
                         <div class="row">
                           <div
-                            data-intro="Want to receive text updates about upcoming assignments, meetings, and more? Add your phone number to do so. Please note that this is entirely optional and if you are under the age of 18 you must get parental/guardian consent to opt in"
+                            data-intro="Want to receive text updates about upcoming assignments, meetings, and more? Add your phone number to do so. Please note that this is entirely optional and if you are under the age of 18 you must get parental/guardian consent to opt in."
                             class="col-xl-12"
                           >
                             <button
@@ -280,7 +280,7 @@
 
                           <div class="col-xl-12">
                             <div
-                              data-intro="With the guidelines previous mentioned in mind, opt in/choose your preferences to receive certain notifications via your school email and SMS"
+                              data-intro="With the guidelines previous mentioned in mind, opt in/choose your preferences to receive certain notifications via your school email and SMS."
                               class="card card-primary p-3 h-100 d-flex flex-column"
                             >
                               <h4 class="color-dark font-semi-bold">
@@ -391,7 +391,7 @@
                       class="col-md-6"
                     >
                       <div
-                        data-intro="Find your advisor details"
+                        data-intro="Find your advisor details."
                         class="jochi-components-light-bg p-4 h-100"
                       >
                         <div class="">

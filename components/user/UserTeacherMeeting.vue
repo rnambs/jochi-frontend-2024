@@ -15,7 +15,7 @@
         <section id="tab" class="">
           <div class="tab-section container-fluid w-100">
             <h2
-              data-intro="How to book a meeting with your teachers/peers in just 3 clicks"
+              data-intro="How to book a meeting with your teachers/peers in just 3 clicks."
               class="color-primary font-semi-bold"
             >
               Schedule A Meeting!
@@ -91,7 +91,7 @@
                 </div>
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
-                    data-intro="Choose your date range"
+                    data-intro="Choose your date range."
                     class="form-row d-flex position-relative schedule-meeting-section"
                   >
                     <input

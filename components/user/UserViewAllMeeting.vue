@@ -15,7 +15,7 @@
         <section id="tab" class="">
           <div class="tab-section container-fluid">
             <h2
-              data-intro="View all of your meetings. Here you can accept or reject requests or edit upcoming meetings"
+              data-intro="View all of your meetings. Here you can accept or reject requests or edit upcoming meetings."
               class="color-primary font-semi-bold"
             >
               My Meetings
@@ -24,7 +24,7 @@
               <div class="row m-0 mb-3">
                 <div class="col-md-4 p-0 mx-1">
                   <div
-                    data-intro="Filter teacher and peer meetings from here"
+                    data-intro="Filter teacher and peer meetings from here."
                     class="dropdown form-row custom-sort-by-btn"
                   >
                     <div
