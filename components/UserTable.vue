@@ -96,14 +96,7 @@
               <div id="app" class="custom-container container">
                 <!-- search tab -->
                 <div
-                  class="
-                    row
-                    justify-content-between
-                    shadow-sm
-                    p-3
-                    bg-white
-                    rounded
-                  "
+                  class="row justify-content-between shadow-sm p-3 bg-white rounded"
                 >
                   <div class="col-md-4 col-lg-3">
                     <!-- <h4 class="text-dark">Student List</h4> -->
@@ -199,7 +192,7 @@
                     }}
                     of {{ studentsCount }}
                   </div>
-                  <div class="pr-2">students per page</div>
+                  <div class="pr-2">Students per page</div>
 
                   <div>
                     <select
@@ -254,11 +247,7 @@
                         <button
                           type="button"
                           data-dismiss="modal"
-                          class="
-                            btn btn-light
-                            border border-secondary
-                            color-dark
-                          "
+                          class="btn btn-light border border-secondary color-dark"
                           aria-label="Close"
                         >
                           No
@@ -281,14 +270,7 @@
               <div id="app" class="custom-container container">
                 <!-- search tab -->
                 <div
-                  class="
-                    row
-                    justify-content-between
-                    shadow-sm
-                    p-3
-                    bg-white
-                    rounded
-                  "
+                  class="row justify-content-between shadow-sm p-3 bg-white rounded"
                 >
                   <div class="col-md-4 col-lg-3">
                     <!-- <h4 class="text-dark">Teacher List</h4> -->
@@ -322,6 +304,7 @@
                   <tr class="text-secondary bg-light">
                     <th>Name</th>
                     <th>Email Id</th>
+                    <th>Role</th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
@@ -333,6 +316,11 @@
                   <tr v-for="teacher in teachers" :key="teacher.id">
                     <td>{{ teacher.first_name }}</td>
                     <td>{{ teacher.email }}</td>
+                    <td>
+                      {{
+                        teacher.school_admin == "1" ? "School Admin" : "Teacher"
+                      }}
+                    </td>
                     <td @click="setId(teacher.id)">
                       <select
                         @change="onchange($event)"
@@ -381,7 +369,7 @@
                     }}
                     of {{ teachersCount }}
                   </div>
-                  <div class="pr-2">teacher per page</div>
+                  <div class="pr-2">Teachers per page</div>
                   <div>
                     <select
                       name="rows per page"
@@ -434,11 +422,7 @@
                         <button
                           type="button"
                           data-dismiss="modal"
-                          class="
-                            btn btn-light
-                            border border-secondary
-                            color-dark
-                          "
+                          class="btn btn-light border border-secondary color-dark"
                           aria-label="Close"
                         >
                           No

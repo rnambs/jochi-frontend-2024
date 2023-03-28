@@ -213,7 +213,6 @@ export default {
     },
     async getTokenDevice() {
       this.currentToken = await this.$fire.messaging.getToken();
-      console.log("consoling token", this.currentToken);
       this.$fire.messaging.onMessage((payload) => {
         console.info("Message received: ", payload);
       });

@@ -1,24 +1,11 @@
 <template>
   <div class="inner-section">
     <div
-      class="
-        main-section
-        sufee-login
-        d-flex
-        vh-100
-        align-content-center
-        flex-wrap
-      "
+      class="main-section sufee-login d-flex vh-100 align-content-center flex-wrap"
     >
       <div class="container">
         <div
-          class="
-            login-content
-            d-flex
-            flex-column
-            align-items-center
-            justify-content-center
-          "
+          class="login-content d-flex flex-column align-items-center justify-content-center"
         >
           <div class="login-logo">
             <img
@@ -42,6 +29,9 @@ import { required, minLength, sameAs } from "vuelidate/lib/validators";
 import { mapState, mapActions } from "vuex";
 import VueToast from "vue-toast-notification";
 import { FRONTEND_BASE_URL, GG4L_REDIRECT_URL } from "~/assets/js/constants";
+// import io from "socket.io-client";
+
+// const socket = io("ws://localhost:3000");
 
 export default {
   data() {
@@ -58,6 +48,9 @@ export default {
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
+      studentSignUp: (state) => state.studentSignUp,
+      schoolAdminRequested: (state) => state.schoolAdminRequested,
+      schoolAdmin: (state) => state.schoolAdmin,
     }),
   },
   methods: {
@@ -99,8 +92,12 @@ export default {
     async gg4lLogin() {
       await this.loginUsingGg4l({
         code: this.$route.query.code,
+        log_code: localStorage.getItem("log_code"),
+        logged_in_date: moment().format("YYYY-MM-DD"),
       });
       await this.getTokenDevice();
+      const token = localStorage.getItem("token");
+      // socket.emit("login", token?.split("Bearer ")[1]);
 
       if (this.errorMessage != "") {
         this.$toast.open({
@@ -115,6 +112,11 @@ export default {
       } else {
         let user_type = localStorage.getItem("user_type");
         if (user_type == 3 || user_type == "3") {
+          console.log("studentSignUp value", this.studentSignUp);
+          if (this.studentSignUp == true || this.studentSignUp == "true") {
+            localStorage.setItem("studentSignUp", this.studentSignUp);
+            this.$store.commit("setStartProductGuide", true);
+          }
           this.$router.push("/student-dashboard");
         } else {
           this.$router.push("/teacher-dashboard");

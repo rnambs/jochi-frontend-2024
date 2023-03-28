@@ -81,7 +81,6 @@ export default {
         if (blob) {
           var file = new File([blob], "name");
 
-          console.log("consoling image outputs ", blob, file);
           formData.append("file", blob, this.fileName);
           formData.append("club_id", this.$route.query.id);
           formData.append("user_id", localStorage.getItem("id"));
@@ -147,7 +146,6 @@ export default {
     onFileSelect(e) {
       const file = e.target.files[0];
       this.mime_type = file.type;
-      console.log(this.mime_type);
       if (typeof FileReader === "function") {
         this.dialog = true;
         const reader = new FileReader();

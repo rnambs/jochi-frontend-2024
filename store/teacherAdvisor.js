@@ -5,6 +5,8 @@ const state = {
     sharedAssignmentsList: [],
     studentsList: [],
     studentsListAdvisor: [],
+    overdueAssignments: [],
+    sharedOverdueAssignments: [],
     errorMessage: "",
     errorType: "",
     successMessage: "",
@@ -135,6 +137,8 @@ const actions = {
             });
             commit('setAssignmentList', response.assignments);
             commit('setSharedAssignmentsList', response.shared_assignments);
+            commit('setOverdueAssignments', response.overdue_assignments);
+            commit('setSharedOverdueAssignments', response.overdue_shared_assignments);
         } catch (e) {
             if (e.response.data.message == "Unauthorized") {
                 commit('setSuccessMessage', "");
@@ -181,6 +185,12 @@ const mutations = {
     setSuccessType(state, data) {
         state.successType = data;
     },
+    setOverdueAssignments(state, data) {
+        state.overdueAssignments = data;
+    },
+    setSharedOverdueAssignments(state, data) {
+        state.sharedOverdueAssignments = data;
+    },
 
 }
 const getters = {
@@ -208,6 +218,13 @@ const getters = {
     successType: () => {
         return state.successType;
     },
+    overdueAssignments: () => {
+        return state.overdueAssignments;
+    },
+    sharedOverdueAssignments: () => {
+        return state.sharedOverdueAssignments;
+    },
+
 
 }
 

@@ -52,6 +52,25 @@ const actions = {
       }
     }
   },
+  //student list
+  async getStudentFullList({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+
+    try {
+      const response = await this.$axios.$get(BASE_URL + `admin/school_students_list?school_id=${payLoad.school_id}&search=${payLoad.search}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      commit('setStudent', response.data[0].rows);
+      commit('setStudentsCount', response.data[0].count);
+    } catch (e) {
+      if (e.response && e.response.status == 401) {
+        window.localStorage.clear();
+        this.$router.push('/admin-login');
+      }
+    }
+  },
   //accept/reject by admin
   async adminSelect({ commit }, payLoad) {
     const token = localStorage.getItem('token')

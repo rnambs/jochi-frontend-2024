@@ -320,8 +320,6 @@ export default {
       userData = userData?.reverse();
       appointmentData = appointmentData?.reverse();
 
-      console.log("chartData", chartData);
-
       const myChart = new Chart(ctx, {
         type: "line",
         data: {

@@ -2,12 +2,7 @@
   <div class="main-section">
     <!-- Study Page -->
     <div
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-      "
+      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex"
     >
       <div class="study-section d-flex flex-column">
         <div
@@ -15,6 +10,7 @@
         >
           <h2 class="color-primary font-semi-bold mb-0">Study Analytics</h2>
           <div
+            data-intro="Here you can set a daily study goal for yourself. How many hours/minutes do you want to allocate on working every day?"
             @click="openModal"
             class="d-flex align-items-center cursor-pointer"
           >
@@ -41,10 +37,20 @@
         <div class="study-row d-flex flex-column px-2 pb-3">
           <div class="row header-row mb-1">
             <div class="col-md-6 pt-2 pb-0">
-              <h4 class="color-dark font-semi-bold mb-0">Weekly Dashboard</h4>
+              <h4
+                data-intro="Here you can break down how you’ve spent the week studying so far."
+                class="color-dark font-semi-bold mb-0"
+              >
+                Weekly Dashboard
+              </h4>
             </div>
             <div class="col-md-6 pt-2 pb-0">
-              <h4 class="color-dark font-semi-bold mb-0">Dashboard</h4>
+              <h4
+                data-intro="Or you can view a general overview of your studying across the school year."
+                class="color-dark font-semi-bold mb-0"
+              >
+                Dashboard
+              </h4>
             </div>
           </div>
           <div class="row inner-row mt-0 text-center mb-2">
@@ -108,15 +114,7 @@
           <div class="row inner-row mt-0 mb-2">
             <div class="col-md-6 py-2">
               <div
-                class="
-                  inner-col
-                  card card-void
-                  p-3
-                  h-100
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                "
+                class="inner-col card card-void p-3 h-100 d-flex align-items-center justify-content-center"
               >
                 <!-- {{mySession.weekly_pi_chart}} -->
                 <div class="d-flex">
@@ -149,15 +147,7 @@
             </div>
             <div class="col-md-6 py-2">
               <div
-                class="
-                  inner-col
-                  card card-void
-                  p-3
-                  h-100
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                "
+                class="inner-col card card-void p-3 h-100 d-flex align-items-center justify-content-center"
               >
                 <div class="d-flex">
                   <div class="d-flex flex-column justify-content-center">
@@ -324,7 +314,13 @@ export default {
   },
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [
+        { rel: "stylesheet", href: "/css/style01.css" },
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
     };
   },
   data() {
@@ -352,13 +348,19 @@ export default {
       durationRemaining: 0,
       dailyTimerId: 0,
       isAdditionalCovered: false,
+      startTime: null,
     };
   },
   mounted() {
-    console.log("mounting student id", this.studentId);
+    window.addEventListener("orientationchange", this.handleOrientationChange);
+    const page = "StudyAnalytics";
+    const distinct_id = localStorage.getItem("distinctId");
+    this.$mixpanel.track("Page View", { distinct_id, page });
+    this.startTime = new Date().getTime();
+
     this.GetMySession();
     this.getConfiguredGoal();
-    // this.InitPieChart();
+    this.startIntro();
   },
   computed: {
     ...mapState("userStudyAnalytics", {
@@ -369,6 +371,9 @@ export default {
       mySession: (state) => state.mySession,
       goal: (state) => state.goal,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("userStudyAnalytics", {
@@ -641,13 +646,6 @@ export default {
       this.submitted = true;
       this.processing = true;
 
-      console.log(
-        this.hours,
-        this.minutes,
-        Number(this.hours),
-        Number(this.minutes)
-      );
-
       let duration = 0;
       duration = Number(this.hours) * 60 + Number(this.minutes);
 
@@ -728,6 +726,38 @@ export default {
         this.minutes = m;
       }
     },
+    startIntro() {
+      const intro = this.$intro();
+      if (this.startProductGuide) {
+        intro.start();
+        intro.oncomplete((step, state) => {
+          if (state != "skip") {
+            this.$store.commit("setStartProductGuideNotification", true);
+          }
+        });
+        intro.onexit(() => {
+          this.$store.commit("setStartProductGuide", false);
+        });
+      }
+    },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "StudyAnalytics";
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
+  },
+  destroyed() {
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
   },
 };
 </script>

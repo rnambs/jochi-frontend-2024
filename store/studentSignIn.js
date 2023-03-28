@@ -274,7 +274,7 @@ const actions = {
     async syncData({ commit }) {
         try {
             const token = localStorage.getItem('token')
-            const response = await this.$axios.$post(BASE_URL + `/auth/gg4l_data_sync`, {}, {
+            const response = await this.$axios.$post(BASE_URL + `auth/gg4l_data_sync`, {}, {
                 headers: {
                     'Authorization': ` ${token}`
                 },

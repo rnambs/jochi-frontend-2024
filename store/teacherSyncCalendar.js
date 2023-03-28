@@ -70,7 +70,6 @@ const actions = {
                     'Authorization': ` ${token}`
                 },
             });
-            console.log(response)
             commit('setSyncStatus', response.data.teacher_sync_calendar);
         } catch (e) {
             if (e.response.data.message == "Unauthorized") {

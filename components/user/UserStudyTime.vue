@@ -1,40 +1,40 @@
+<style>
+.send-later {
+  right: 1rem;
+  top: 1rem;
+  width: 32px;
+  height: 32px !important;
+  border-radius: 50%;
+  background-color: unset;
+  z-index: 99;
+}
+</style>
 <template>
   <div class="main-section">
     <!-- Study Page -->
     <!-- session  -->
     <div
       v-if="currentTab == 0"
-      class="
-        jochi-components-light-bg
-        custom-margin-for-main-section custom-full-height
-        d-flex
-      "
+      class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex"
     >
       <div
-        class="
-          study-section
-          d-flex
-          flex-column flex-fill
-          px-4
-          custom-overflow
-          my-3
-          py-md-2 py-lg-3
-        "
+        class="study-section d-flex flex-column flex-fill px-4 custom-overflow my-3 py-md-2 py-lg-3"
       >
         <div class="row h-lg-100">
           <div class="col-lg-7 d-flex flex-column">
+            <div class="position-relative">
+              <div
+                data-intro="The study room is a tool for you to use to tackle your assignments/tasks. Click here to schedule a study session for sometime later."
+                @click="scheduleLaterClick('assignment', $event)"
+                class="position-absolute send-later jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
+              >
+                <img src="~/assets/images/send-later.png" />
+              </div>
+            </div>
             <div
-              @click="setSessionType('assignment')"
-              class="
-                row
-                card card-void
-                rounded-22
-                m-0
-                mb-4
-                p-4
-                flex-row
-                cursor-pointer
-              "
+              @click="setSessionType('assignment', false)"
+              class="row card card-void rounded-22 m-0 mb-4 p-4 flex-row cursor-pointer"
+              data-intro="To start a session right away, click here. You will be prompted to choose what assignment you want to work on, invite your classmates to join you, a chance to set some goals, the option to choose a structured study method and other options to configure a new study session."
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
                 <h2 class="color-primary font-semi-bold mb-1">
@@ -54,21 +54,23 @@
                 />
               </div>
             </div>
+            <div class="position-relative">
+              <div
+                data-intro="Want to just set yourself accountable while getting general work here? Click here to schedule a regular study session for later."
+                @click="scheduleLaterClick('study', $event)"
+                class="position-absolute send-later jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
+              >
+                <img src="~/assets/images/send-later.png" />
+              </div>
+            </div>
             <div
-              @click="setSessionType('study')"
-              class="
-                row
-                card card-void
-                rounded-22
-                p-4
-                m-0
-                flex-row
-                cursor-pointer
-              "
+              data-intro="Get started with a general study session right away by clicking here. You will be shown similar options such as setting goals, duration, and other options to configure your session."
+              @click="setSessionType('study', false)"
+              class="row card card-void rounded-22 p-4 m-0 flex-row cursor-pointer"
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
                 <h2 class="color-primary font-semi-bold mb-1">
-                  Start a new Study Session
+                  Start A New Study Session
                 </h2>
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Stay focused while you study, and monitor your productivity
@@ -87,29 +89,13 @@
           </div>
           <div class="col-lg-5 h-lg-100">
             <div
-              class="
-                card card-void
-                rounded-22
-                py-4
-                h-100
-                position-realtive
-                h-min-70
-              "
+              class="card card-void rounded-22 py-4 h-100 position-realtive h-min-70"
             >
-              <!-- default -->
-              <!-- <div class="d-flex justify-content-between flex-column h-100">
-                      <div class="head-section">
-                          <h2 class="color-primary font-semi-bold mb-1">Enhance your studying with research-backed technqiues</h2>
-                          <button class="btn btn-dark my-2">Swipe to Learn More</button>
-                      </div>
-                      <div class="img-section">
-                          <img src="../../static/image/student_img.png" alt="" class="img-fluid">
-                      </div>
-                  </div> -->
-              <!-- end -->
-              <!-- listing -->
               <div class="d-flex flex-column h-100">
-                <h2 class="color-primary font-semi-bold mb-2 px-4">
+                <h2
+                  data-intro="View upcoming study sessions that you’ve blocked out for later and sessions that your classmates have invited you to."
+                  class="color-primary font-semi-bold mb-2 px-4"
+                >
                   Upcoming Sessions
                 </h2>
                 <div class="custom-overflow px-4 pt-2 h-max-lg-600">
@@ -120,15 +106,7 @@
                       showSessionDetail = true;
                       setDetail(sessionItem);
                     "
-                    class="
-                      d-flex
-                      card card-void
-                      p-3
-                      d-flex
-                      flex-column
-                      mb-3
-                      cursor-pointer
-                    "
+                    class="d-flex card card-void p-3 d-flex flex-column mb-3 cursor-pointer"
                   >
                     <h6 class="color-dark font-semi-bold mb-1">
                       {{ sessionItem.name }}
@@ -138,102 +116,6 @@
                       <span>{{ sessionItem.time }}</span>
                     </p>
                   </div>
-                  <!-- <div
-                    class="
-                      d-flex
-                      card card-secondary
-                      p-3
-                      d-flex
-                      flex-column
-                      mb-3
-                    "
-                  >
-                    <h6 class="color-dark font-semi-bold mb-1">Title</h6>
-                    <p class="mb-0 color-secondary font-normal text-14">
-                      <span>02 Jan 2022 </span> <span>|</span
-                      ><span>02:03 pm</span>
-                    </p>
-                  </div>
-                  <div
-                    class="
-                      d-flex
-                      card card-secondary
-                      p-3
-                      d-flex
-                      flex-column
-                      mb-3
-                    "
-                  >
-                    <h6 class="color-dark font-semi-bold mb-1">Title</h6>
-                    <p class="mb-0 color-secondary font-normal text-14">
-                      <span>02 Jan 2022 </span> <span>|</span
-                      ><span>02:03 pm</span>
-                    </p>
-                  </div>
-                  <div
-                    class="
-                      d-flex
-                      card card-secondary
-                      p-3
-                      d-flex
-                      flex-column
-                      mb-3
-                    "
-                  >
-                    <h6 class="color-dark font-semi-bold mb-1">Title</h6>
-                    <p class="mb-0 color-secondary font-normal text-14">
-                      <span>02 Jan 2022 </span> <span>|</span
-                      ><span>02:03 pm</span>
-                    </p>
-                  </div>
-                  <div
-                    class="
-                      d-flex
-                      card card-secondary
-                      p-3
-                      d-flex
-                      flex-column
-                      mb-3
-                    "
-                  >
-                    <h6 class="color-dark font-semi-bold mb-1">Title</h6>
-                    <p class="mb-0 color-secondary font-normal text-14">
-                      <span>02 Jan 2022 </span> <span>|</span
-                      ><span>02:03 pm</span>
-                    </p>
-                  </div>
-                  <div
-                    class="
-                      d-flex
-                      card card-secondary
-                      p-3
-                      d-flex
-                      flex-column
-                      mb-3
-                    "
-                  >
-                    <h6 class="color-dark font-semi-bold mb-1">Title</h6>
-                    <p class="mb-0 color-secondary font-normal text-14">
-                      <span>02 Jan 2022 </span> <span>|</span
-                      ><span>02:03 pm</span>
-                    </p>
-                  </div>
-                  <div
-                    class="
-                      d-flex
-                      card card-secondary
-                      p-3
-                      d-flex
-                      flex-column
-                      mb-3
-                    "
-                  >
-                    <h6 class="color-dark font-semi-bold mb-1">Title</h6>
-                    <p class="mb-0 color-secondary font-normal text-14">
-                      <span>02 Jan 2022 </span> <span>|</span
-                      ><span>02:03 pm</span>
-                    </p>
-                  </div> -->
                 </div>
                 <div
                   v-if="!studySessionList || studySessionList.length <= 0"
@@ -241,23 +123,11 @@
                 >
                   <div class="custom-overflow pr-2 mr--2">
                     <div
-                      class="
-                        d-flex
-                        card card-secondary
-                        p-3
-                        d-flex
-                        flex-column
-                        mb-3
-                      "
+                      class="d-flex card card-secondary p-3 d-flex flex-column mb-3"
                     >
                       <h6 class="color-dark font-semi-bold mb-1"></h6>
                       <p
-                        class="
-                          mb-0
-                          color-secondary
-                          font-normal
-                          text-14 text-center
-                        "
+                        class="mb-0 color-secondary font-normal text-14 text-center"
                       >
                         <span> No sessions configured yet!</span>
                       </p>
@@ -272,14 +142,7 @@
                 class="position-absolute w-100 h-100 top-0 left-0 p-0"
               >
                 <div
-                  class="
-                    d-flex
-                    card card-primary-void
-                    flex-column
-                    h-100
-                    p-3
-                    rounded-22
-                  "
+                  class="d-flex card card-primary-void flex-column h-100 p-3 rounded-22"
                 >
                   <div
                     class="d-flex justify-content-between mb-2 border-bottom"
@@ -303,30 +166,14 @@
                       <p class="mb-0 color-secondary font-regular text-16">
                         {{ sessionDetail.name }}
                       </p>
-                      <p class="mb-0 color-secondary font-regular text-16">
-                        <!-- subject -->
-                      </p>
-                      <!-- <p class="mb-0 color-secondary font-regular text-16">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Expedita perspiciatis, nesciunt corporis, nisi eius
-                        fugiat, minima blanditiis rem possimus itaque molestias
-                        modi nostrum eos veniam repellat mollitia quia vitae
-                        beatae.
-                      </p> -->
+                      <p class="mb-0 color-secondary font-regular text-16"></p>
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">Goals</h5>
                       <p
                         v-for="goal in sessionDetail.goals"
                         :key="goal"
-                        class="
-                          mb-0
-                          color-secondary
-                          font-regular
-                          text-16
-                          d-flex
-                          align-items-center
-                        "
+                        class="mb-0 color-secondary font-regular text-16 d-flex align-items-center"
                       >
                         <span
                           class="d-flex rounded-circle border bullet mr-2 my-1"
@@ -339,32 +186,10 @@
                           !sessionDetail.goals ||
                           sessionDetail.goals.length <= 0
                         "
-                        class="
-                          mb-0
-                          color-secondary
-                          font-regular
-                          text-16
-                          d-flex
-                          align-items-center
-                        "
+                        class="mb-0 color-secondary font-regular text-16 d-flex align-items-center"
                       >
                         No goals set!
                       </p>
-                      <!-- <p
-                        class="
-                          mb-0
-                          color-secondary
-                          font-regular
-                          text-16
-                          d-flex
-                          align-items-center
-                        "
-                      >
-                        <span
-                          class="d-flex rounded-circle border bullet mr-2 my-1"
-                        ></span>
-                        Invite friends
-                      </p> -->
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">
@@ -438,14 +263,6 @@
                         >
                           <span class="color-secondary">No peers invited!</span>
                         </div>
-                        <!-- <div class="d-flex align-items-center my-2 mr-3">
-                          <div class="ld-img-section mr-3">
-                            <div class="ld-img-holder"></div>
-                          </div>
-                          <div class="ld-details-section">
-                            <p class="ld-heading mb-1">Mark Jones, President</p>
-                          </div>
-                        </div> -->
                       </div>
                     </div>
                     <div class="d-flex flex-column mb-2">
@@ -472,14 +289,7 @@
 
     <div
       v-if="currentTab == 1"
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-        flex-column
-        hidden-scroll
-      "
+      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
       <h2 class="color-primary font-bold mb-1">Step One:</h2>
       <h2 class="color-primary font-bold mb-1">Choose An Assignment</h2>
@@ -490,7 +300,6 @@
               ><i class="fas fa-long-arrow-alt-left"></i></span
             ><span class="arrow-text">Back</span>
           </button>
-          <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
         </div>
         <div
           v-if="
@@ -502,28 +311,13 @@
         >
           <button :disabled="disablePrevious" @click="previous" class="btn p-1">
             <span
-              class="
-                bg-theme
-                d-flex
-                align-items-center
-                justify-content-center
-                rounded-circle
-                btn-circle
-              "
+              class="bg-theme d-flex align-items-center justify-content-center rounded-circle btn-circle"
               ><i class="fa-solid fa-chevron-left color-white text-12"></i
             ></span>
           </button>
           <button :disabled="disableNext" @click="next" class="btn p-1">
             <span
-              class="
-                ml-1
-                bg-theme
-                d-flex
-                align-items-center
-                justify-content-center
-                rounded-circle
-                btn-circle
-              "
+              class="ml-1 bg-theme d-flex align-items-center justify-content-center rounded-circle btn-circle"
               ><i class="fa-solid fa-chevron-right color-white text-12"></i
             ></span>
           </button>
@@ -544,17 +338,7 @@
           >
             <div
               @click="onAssignmentSelect(detail)"
-              class="
-                jochi-sub-components-light-bg
-                drag-drop
-                p-4
-                position-realtive
-                h-100
-                d-flex
-                flex-column
-                justify-content-between
-                cursor-pointer
-              "
+              class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between cursor-pointer"
             >
               <div class="d-flex flex-column">
                 <div
@@ -566,6 +350,7 @@
                       red: detail.priority == '1',
                       yellow: detail.priority == '2',
                       green: detail.priority == '3',
+                      orange: detail.priority == '4',
                     }"
                   >
                     {{
@@ -575,6 +360,8 @@
                         ? "Important"
                         : detail.priority == "3"
                         ? "Can Wait"
+                        : detail.priority == "4"
+                        ? "Overdue"
                         : ""
                     }}
                   </div>
@@ -589,12 +376,7 @@
                   </h4>
                   <div class="text-center px-3">
                     <p
-                      class="
-                        color-secondary
-                        text-16
-                        line-height-1
-                        font-semi-bold
-                      "
+                      class="color-secondary text-16 line-height-1 font-semi-bold"
                     >
                       <!-- Practice for mock oral exam in class -->
                       {{ detail.subject }}
@@ -609,13 +391,7 @@
                   <div class="to-do-list">
                     <div v-for="subtask in detail.subTasks" :key="subtask.id">
                       <div
-                        class="
-                          pl-2
-                          d-flex
-                          align-items-center
-                          mb-1
-                          cursor-pointer
-                        "
+                        class="d-flex align-items-center mb-1 cursor-pointer"
                       >
                         <input
                           :id="subtask.title"
@@ -630,22 +406,10 @@
                         />
                         <label
                           for=""
-                          class="
-                            mb-0
-                            text-14
-                            color-secondary
-                            cursor-pointer
-                            text-truncate
-                          "
+                          class="mb-0 text-14 color-secondary cursor-pointer text-truncate"
                           >{{ subtask.title }}</label
                         >
                       </div>
-                      <!-- <div class="pl-2 d-flex align-items-center">
-                      <input type="radio" class="mr-2" />
-                      <label for="" class="mb-0 text-12"
-                        >Start typing to add subtasks</label
-                      >
-                    </div> -->
                     </div>
                   </div>
                   <div v-if="detail.subTasks && detail.subTasks.length > 4">
@@ -672,12 +436,7 @@
                         :key="index"
                       >
                         <span
-                          class="
-                            text-capitalize
-                            color-secondary
-                            text-truncate
-                            w-100
-                          "
+                          class="text-capitalize color-secondary text-truncate w-100"
                         >
                           {{ file.file_type }} &nbsp;:&nbsp;{{ file.file_name }}
                         </span>
@@ -704,498 +463,13 @@
               </div>
             </div>
           </div>
-          <!-- <div class="col-md-6 col-lg-4">
-          <div
-            class="
-              jochi-sub-components-light-bg
-              drag-drop
-              p-4
-              position-realtive
-            "
-          >
-            <div class="assignment-tag-section d-flex align-items-center mb-2">
-              <div class="assignment-tag red mr-2">Urgent</div>
-              <div class="assignment-tag pink">AP French</div>
-            </div>
-            <div class="text-center">
-              <h4 class="color-primary font-semi-bold mb-0">
-                French Oral Practice
-              </h4>
-              <div class="text-center px-3">
-                <p class="color-secondary text-16 line-height-1 font-semi-bold">
-                  Practice for mock oral exam in class
-                </p>
-              </div>
-            </div>
-            <div class="mb-3">
-              <h6 class="color-primary">Sub-tasks</h6>
-              <div class="pl-2 d-flex align-items-center">
-                <input type="radio" class="mr-2" />
-                <label for="" class="mb-0 text-12">Study Vocab List</label>
-              </div>
-              <div class="pl-2 d-flex align-items-center">
-                <input type="radio" class="mr-2" />
-                <label for="" class="mb-0 text-12"
-                  >Start typing to add subtasks</label
-                >
-              </div>
-            </div>
-            <div class="">
-              <h6 class="mb-1 color-primary">Additional Material</h6>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="col-8 py-0 pl-0 material-link">
-                  Rubric: https://docs.google.com/document/...
-                </div>
-                <div class="col-4 material-date py-0 text-right">12/04/22</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div
-            class="
-              jochi-sub-components-light-bg
-              drag-drop
-              p-4
-              position-realtive
-            "
-          >
-            <div class="assignment-tag-section d-flex align-items-center mb-2">
-              <div class="assignment-tag red mr-2">Urgent</div>
-              <div class="assignment-tag pink">AP French</div>
-            </div>
-            <div class="text-center">
-              <h4 class="color-primary font-semi-bold mb-0">
-                French Oral Practice
-              </h4>
-              <div class="text-center px-3">
-                <p class="color-secondary text-16 line-height-1 font-semi-bold">
-                  Practice for mock oral exam in class
-                </p>
-              </div>
-            </div>
-            <div class="mb-3">
-              <h6 class="color-primary">Sub-tasks</h6>
-              <div class="pl-2 d-flex align-items-center">
-                <input type="radio" class="mr-2" />
-                <label for="" class="mb-0 text-12">Study Vocab List</label>
-              </div>
-              <div class="pl-2 d-flex align-items-center">
-                <input type="radio" class="mr-2" />
-                <label for="" class="mb-0 text-12"
-                  >Start typing to add subtasks</label
-                >
-              </div>
-            </div>
-            <div class="">
-              <h6 class="mb-1 color-primary">Additional Material</h6>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="col-8 py-0 pl-0 material-link">
-                  Rubric: https://docs.google.com/document/...
-                </div>
-                <div class="col-4 material-date py-0 text-right">12/04/22</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div
-            class="
-              jochi-sub-components-light-bg
-              drag-drop
-              p-4
-              position-realtive
-            "
-          >
-            <div class="assignment-tag-section d-flex align-items-center mb-2">
-              <div class="assignment-tag red mr-2">Urgent</div>
-              <div class="assignment-tag pink">AP French</div>
-            </div>
-            <div class="text-center">
-              <h4 class="color-primary font-semi-bold mb-0">
-                French Oral Practice
-              </h4>
-              <div class="text-center px-3">
-                <p class="color-secondary text-16 line-height-1 font-semi-bold">
-                  Practice for mock oral exam in class
-                </p>
-              </div>
-            </div>
-            <div class="mb-3">
-              <h6 class="color-primary">Sub-tasks</h6>
-              <div class="pl-2 d-flex align-items-center">
-                <input type="radio" class="mr-2" />
-                <label for="" class="mb-0 text-12">Study Vocab List</label>
-              </div>
-              <div class="pl-2 d-flex align-items-center">
-                <input type="radio" class="mr-2" />
-                <label for="" class="mb-0 text-12"
-                  >Start typing to add subtasks</label
-                >
-              </div>
-            </div>
-            <div class="">
-              <h6 class="mb-1 color-primary">Additional Material</h6>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="col-8 py-0 pl-0 material-link">
-                  Rubric: https://docs.google.com/document/...
-                </div>
-                <div class="col-4 material-date py-0 text-right">12/04/22</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div
-            class="
-              jochi-sub-components-light-bg
-              drag-drop
-              p-4
-              position-realtive
-            "
-          >
-            <div class="assignment-tag-section d-flex align-items-center mb-2">
-              <div class="assignment-tag red mr-2">Urgent</div>
-              <div class="assignment-tag pink">AP French</div>
-            </div>
-            <div class="text-center">
-              <h4 class="color-primary font-semi-bold mb-0">
-                French Oral Practice
-              </h4>
-              <div class="text-center px-3">
-                <p class="color-secondary text-16 line-height-1 font-semi-bold">
-                  Practice for mock oral exam in class
-                </p>
-              </div>
-            </div>
-            <div class="mb-3">
-              <h6 class="color-primary">Sub-tasks</h6>
-              <div class="pl-2 d-flex align-items-center">
-                <input type="radio" class="mr-2" />
-                <label for="" class="mb-0 text-12">Study Vocab List</label>
-              </div>
-              <div class="pl-2 d-flex align-items-center">
-                <input type="radio" class="mr-2" />
-                <label for="" class="mb-0 text-12"
-                  >Start typing to add subtasks</label
-                >
-              </div>
-            </div>
-            <div class="">
-              <h6 class="mb-1 color-primary">Additional Material</h6>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="col-8 py-0 pl-0 material-link">
-                  Rubric: https://docs.google.com/document/...
-                </div>
-                <div class="col-4 material-date py-0 text-right">12/04/22</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <div
-            class="
-              jochi-sub-components-light-bg
-              drag-drop
-              p-4
-              position-realtive
-            "
-          >
-            <div class="assignment-tag-section d-flex align-items-center mb-2">
-              <div class="assignment-tag red mr-2">Urgent</div>
-              <div class="assignment-tag pink">AP French</div>
-            </div>
-            <div class="text-center">
-              <h4 class="color-primary font-semi-bold mb-0">
-                French Oral Practice
-              </h4>
-              <div class="text-center px-3">
-                <p class="color-secondary text-16 line-height-1 font-semi-bold">
-                  Practice for mock oral exam in class
-                </p>
-              </div>
-            </div>
-            <div class="mb-3">
-              <h6 class="color-primary">Sub-tasks</h6>
-              <div class="pl-2 d-flex align-items-center">
-                <input type="radio" class="mr-2" />
-                <label for="" class="mb-0 text-12">Study Vocab List</label>
-              </div>
-              <div class="pl-2 d-flex align-items-center">
-                <input type="radio" class="mr-2" />
-                <label for="" class="mb-0 text-12"
-                  >Start typing to add subtasks</label
-                >
-              </div>
-            </div>
-            <div class="">
-              <h6 class="mb-1 color-primary">Additional Material</h6>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="col-8 py-0 pl-0 material-link">
-                  Rubric: https://docs.google.com/document/...
-                </div>
-                <div class="col-4 material-date py-0 text-right">12/04/22</div>
-              </div>
-            </div>
-          </div>
-        </div> -->
         </div>
       </div>
     </div>
 
-    <!-- end step one -->
-
-    <!-- step two configure -->
-    <!-- <div
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-        flex-column
-        hidden-scroll
-      "
-    >
-      <h2 class="color-primary font-semi-bold mb-3">
-        Step Two: <br />
-        Configure your Session
-      </h2>
-      <div class="row h-40 flex-grow-1">
-        <div class="col-lg-7 h-100 d-flex flex-column">
-          <div class="card card-primary rounded-22 p-4 h-40 flex-fill mb-4">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h3 class="color-dark font-semi-bold mb-0">Goals</h3>
-              <span class="color-secondary"><i class="fas fa-plus"></i></span>
-            </div>
-            <div class="d-flex flex-row align-items-start">
-              <div class="form-row mb-2 mx-0 mr-2">
-                <label class="form-label" for="name">Set goal</label>
-                <input type="text" class="form-control" />
-              </div>
-              <div class="pt-4">
-                <button class="btn btn-primary btn-sm mt-2">Add</button>
-              </div>
-            </div>
-            <div class="custom-overflow pr-2 mr--2 d-flex flex-column">
-              <div class="card card-transparent show-icon p-1 mt-1">
-                <div class="d-flex align-items-center justify-content-between">
-                  <p
-                    class="
-                      mb-0
-                      color-secondary
-                      text-16
-                      font-regular
-                      text-truncate
-                      pr-3
-                    "
-                  >
-                    <span><i class="far fa-circle"></i></span> study vocab list
-                  </p>
-                  <span class="color-primary fa-icon show-hover d-none btn p-0"
-                    ><i class="fas fa-trash-alt"></i
-                  ></span>
-                </div>
-              </div>
-              <div class="card card-transparent show-icon p-1 mt-1">
-                <div class="d-flex align-items-center justify-content-between">
-                  <p
-                    class="
-                      mb-0
-                      color-secondary
-                      text-16
-                      font-regular
-                      text-truncate
-                      pr-3
-                    "
-                  >
-                    <span><i class="far fa-circle"></i></span> study vocab list
-                  </p>
-                  <span class="color-primary fa-icon show-hover d-none btn p-0"
-                    ><i class="fas fa-trash-alt"></i
-                  ></span>
-                </div>
-              </div>
-              <div class="card card-transparent show-icon p-1 mt-1">
-                <div class="d-flex align-items-center justify-content-between">
-                  <p
-                    class="
-                      mb-0
-                      color-secondary
-                      text-16
-                      font-regular
-                      text-truncate
-                      pr-3
-                    "
-                  >
-                    <span><i class="far fa-circle"></i></span> study vocab list
-                  </p>
-                  <span class="color-primary fa-icon show-hover d-none btn p-0"
-                    ><i class="fas fa-trash-alt"></i
-                  ></span>
-                </div>
-              </div>
-              <div class="card card-transparent show-icon p-1 mt-1">
-                <div class="d-flex align-items-center justify-content-between">
-                  <p
-                    class="
-                      mb-0
-                      color-secondary
-                      text-16
-                      font-regular
-                      text-truncate
-                      pr-3
-                    "
-                  >
-                    <span><i class="far fa-circle"></i></span> study vocab list
-                  </p>
-                  <span class="color-primary fa-icon show-hover d-none btn p-0"
-                    ><i class="fas fa-trash-alt"></i
-                  ></span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card card-primary rounded-22 h-40 flex-fill p-4">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
-              <span class="color-secondary"><i class="fas fa-plus"></i></span>
-            </div>
-            <div class="d-flex flex-row align-items-start">
-              <div class="form-row mb-2 mx-0 mr-2">
-                <label class="form-label" for="name">Invite peers</label>
-                <input type="text" class="form-control" />
-              </div>
-              <div class="pt-4">
-                <button class="btn btn-primary btn-sm mt-2">Submit</button>
-              </div>
-            </div>
-            <div class="hidden-scroll p-3 row my-0">
-              <div class="d-flex align-items-center my-2 mr-3">
-                <div class="ld-img-section mr-3">
-                  <div class="ld-img-holder"></div>
-                </div>
-                <div class="ld-details-section">
-                  <p class="ld-heading mb-1">Mark Jones, President</p>
-                </div>
-              </div>
-              <div class="d-flex align-items-center my-2 mr-3">
-                <div class="ld-img-section mr-3">
-                  <div class="ld-img-holder"></div>
-                </div>
-                <div class="ld-details-section">
-                  <p class="ld-heading mb-1">Mark Jones, President</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5 d-flex flex-column h-100">
-          <div class="card card-primary rounded-22 p-4 m-0 flex-column h-100">
-            <div class="d-flex flex-column justify-content-between h-100">
-              <div class="d-flex flex-column h-40 flex-fill">
-                <h2 class="color-dark font-semi-bold mb-1">Regular studying</h2>
-                <div
-                  class="
-                    d-flex
-                    flex-column
-                    align-items-start
-                    custom-overflow
-                    pr-2
-                    mr--2
-                    h-40
-                    flex-fill
-                  "
-                >
-                  <div class="form-row w-100 mb-2 mx-0 mr-2 pr-2 required">
-                   
-                    <label class="form-label">Subject</label>
-                    <select
-                      @change="UpdateSubject()"
-                      class="form-control"
-                      tabindex=""
-                      v-model="Subject"
-                      :class="{
-                        'is-invalid': submitted && $v.Subject.$error,
-                      }"
-                    >
-                      <option value="">Select Subject</option>
-                      <option
-                        v-bind:value="{
-                          id: subjects.id,
-                          text: subjects.subject_name,
-                        }"
-                        v-for="(subjects, index) in subjectsData"
-                        :key="index"
-                      >
-                        {{ subjects.subject_name }}
-                      </option>
-                      <option v-if="subjectsData.length == 0">No data</option>
-                    </select>
-                    <div
-                      v-if="submitted && $v.Subject.$error"
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.Subject.required"
-                        >This field is required</span
-                      >
-                    </div>
-                  </div>
-                  <div class="form-row w-100 mb-2 mx-0 mr-2 pr-2">
-                    <label for="" class="form-label"
-                      >Number of repetitions</label
-                    >
-
-                    <select
-                      @change="UpdateSubject()"
-                      class="form-control"
-                      tabindex=""
-                      v-model="repetitionCount"
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
-                  <div class="form-row mb-2 mx-0 mr-2">
-                    <label class="form-label" for="name">lorem</label>
-                    <input type="text" class="form-control" />
-                  </div>
-                  <div class="py-1">
-                    <button class="btn btn-primary btn-sm">
-                      Start Session
-                    </button>
-                  </div>
-                  <div class="py-1">
-                    <button class="btn btn-dark btn-sm">
-                      Schedule for later
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="d-flex justify-content-end">
-                <img
-                  src="../../static/image/dashboard_img.png"
-                  alt=""
-                  class="img-fluid card-img"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
     <div
       v-if="currentTab == 2"
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-        flex-column
-        hidden-scroll
-      "
+      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
       <h2 class="color-primary font-bold mb-1">
         Step {{ sessionType == "study" ? "One" : "Two" }}:
@@ -1207,7 +481,6 @@
             ><i class="fas fa-long-arrow-alt-left"></i></span
           ><span class="arrow-text">Back</span>
         </button>
-        <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
       </div>
       <div class="d-flex flex-column flex-fill justify-content-center">
         <div>
@@ -1217,19 +490,7 @@
               class="col-12 col-md-5 col-lg-4"
             >
               <div
-                class="
-                  jochi-sub-components-light-bg
-                  drag-drop
-                  px-4
-                  py-5
-                  position-realtive
-                  h-100
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                  flex-column
-                  cursor-pointer
-                "
+                class="jochi-sub-components-light-bg drag-drop px-4 py-5 position-realtive h-100 d-flex align-items-center justify-content-center flex-column cursor-pointer"
               >
                 <h2 class="color-primary text-center font-bold mb-1">
                   Regular Studying
@@ -1244,18 +505,7 @@
               class="col-12 col-md-5 col-lg-4"
             >
               <div
-                class="
-                  jochi-sub-components-light-bg
-                  drag-drop
-                  px-4
-                  py-5
-                  position-realtive
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                  flex-column
-                  cursor-pointer
-                "
+                class="jochi-sub-components-light-bg drag-drop px-4 py-5 position-realtive d-flex align-items-center justify-content-center flex-column cursor-pointer"
               >
                 <h2 class="color-primary font-bold mb-1 text-center">
                   Pomodoro Technique
@@ -1286,14 +536,7 @@
     <!-- step two configure -->
     <div
       v-if="currentTab == 3"
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-        flex-column
-        hidden-scroll
-      "
+      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
       <h2 class="color-primary font-bold mb-1">
         Step {{ sessionType == "study" ? "Two" : "Three" }}:
@@ -1305,7 +548,6 @@
             ><i class="fas fa-long-arrow-alt-left"></i></span
           ><span class="arrow-text">Back</span>
         </button>
-        <!-- <button @click="onNext()" class="btn color-secondary"><span>Next</span><span class="ml-2"><i class="fas fa-long-arrow-alt-right"></i></span></button> -->
       </div>
       <div class="row h-40 flex-grow-1">
         <div class="col-lg-7 h-md-100 d-flex flex-column">
@@ -1359,14 +601,7 @@
                     class="d-flex align-items-center justify-content-between"
                   >
                     <p
-                      class="
-                        mb-0
-                        color-secondary
-                        text-16
-                        font-regular
-                        pr-3
-                        d-flex
-                      "
+                      class="mb-0 color-secondary text-16 font-regular pr-3 d-flex"
                     >
                       <span><i class="far fa-circle"></i></span>
                       <span class="word-break ml-2">{{ goal }}</span>
@@ -1386,15 +621,7 @@
                       class="d-flex align-items-center justify-content-between"
                     >
                       <p
-                        class="
-                          mb-0
-                          color-secondary
-                          text-16
-                          font-regular
-                          pr-3
-                          d-flex
-                          w-100
-                        "
+                        class="mb-0 color-secondary text-16 font-regular pr-3 d-flex w-100"
                       >
                         <span><i class="far fa-circle"></i></span>
                         <span class="ml-2 w-100">{{ task.title }}</span>
@@ -1422,7 +649,6 @@
             <div v-if="invitePeer" class="d-flex flex-row align-items-start">
               <div class="form-row mb-2 mx-0 mr-2">
                 <label class="form-label" for="name">Invite peers</label>
-                <!-- <input type="text" class="form-control" /> -->
                 <multiselect
                   v-model="peerSelected"
                   :options="students"
@@ -1455,7 +681,6 @@
               >
                 <div class="d-flex align-items-center my-2 mr-3 min-w-200">
                   <div class="ld-img-section mr-3">
-                    <!-- <div class="ld-img-holder"></div> -->
                     <img
                       v-if="peer.profile_pic"
                       class="ld-img-holder shadow-none"
@@ -1485,94 +710,8 @@
                   {{ sessionMode == "regular" ? "Regular" : "Pomodoro" }}
                   Studying
                 </h2>
-                <!-- <div
-                  class="
-                    d-flex
-                    flex-column
-                    align-items-start
-                    custom-overflow
-                    pr-2
-                    mr--2
-                    h-40
-                    flex-fill
-                  "
-                >
-                  <div class="form-row w-100 mb-2 mx-0 mr-2 pr-2 required">
-                    
-                    <label class="form-label">Subject</label>
-                    <select
-                      @change="UpdateSubject()"
-                      class="form-control"
-                      tabindex=""
-                      v-model="Subject"
-                      :class="{
-                        'is-invalid': submitted && $v.Subject.$error,
-                      }"
-                    >
-                      <option value="">Select Subject</option>
-                      <option
-                        v-bind:value="{
-                          id: subjects.id,
-                          text: subjects.subject_name,
-                        }"
-                        v-for="(subjects, index) in subjectsData"
-                        :key="index"
-                      >
-                        {{ subjects.subject_name }}
-                      </option>
-                      <option v-if="subjectsData.length == 0">No data</option>
-                    </select>
-                    <div
-                      v-if="submitted && $v.Subject.$error"
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.Subject.required"
-                        >This field is required</span
-                      >
-                    </div>
-                  </div>
-                  <div class="form-row w-100 mb-2 mx-0 mr-2 pr-2">
-                    <label for="" class="form-label"
-                      >Number of repetitions</label
-                    >
-
-                    <select
-                      @change="UpdateSubject()"
-                      class="form-control"
-                      tabindex=""
-                      v-model="repetitionCount"
-                    >
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                    </select>
-                  </div>
-                  <div class="form-row mb-2 mx-0 mr-2">
-                    <label class="form-label" for="name">lorem</label>
-                    <input type="text" class="form-control" />
-                  </div>
-                  <div class="py-1">
-                    <button class="btn btn-primary btn-sm">
-                      Start Session
-                    </button>
-                  </div>
-                  <div class="py-1">
-                    <button class="btn btn-dark btn-sm">
-                      Schedule for later
-                    </button>
-                  </div>
-                </div> -->
                 <div
-                  class="
-                    form-section
-                    study-room-form
-                    py-0
-                    d-flex
-                    flex-column
-                    h-40
-                    flex-fill
-                    custom-overflow
-                  "
+                  class="form-section study-room-form py-0 d-flex flex-column h-40 flex-fill custom-overflow"
                 >
                   <form
                     @submit.prevent="StartStudySession()"
@@ -1583,7 +722,6 @@
                       v-if="sessionType == 'study'"
                       class="form-group required"
                     >
-                      <!-- {{subjectsData}} -->
                       <label class="typo__label">Subject</label>
                       <select
                         :disabled="sessionDetail.id"
@@ -1636,46 +774,6 @@
                       </div>
                     </div>
 
-                    <!-- <div class="form-group required">
-                      <label class="typo__label">Study Technique</label>
-                      <select
-                        @change="UpdateStudyTechnique()"
-                        class="form-control"
-                        tabindex=""
-                        v-model="studyTypes"
-                        :class="{
-                          'is-invalid': submitted && $v.studyTypes.$error,
-                        }"
-                      >
-                        <option value="">Select Study Technique</option>
-
-                        <option
-                          v-for="(studyTypes, index) in studyTypesData"
-                          :key="index"
-                          v-bind:value="{
-                            id: studyTypes.id,
-                            text: studyTypes.type,
-                            startTime: studyTypes.start_time,
-                            breakTime: studyTypes.break_time,
-                            cycle: studyTypes.cycle,
-                            long_break: studyTypes.long_break,
-                          }"
-                        >
-                          {{ studyTypes.type }}
-                        </option>
-                        <option v-if="studyTypesData.length == 0">
-                          No data
-                        </option>
-                      </select>
-                      <div
-                        v-if="submitted && $v.studyTypes.$error"
-                        class="invalid-feedback"
-                      >
-                        <span v-if="!$v.studyTypes.required"
-                          >This field is required</span
-                        >
-                      </div>
-                    </div> -->
                     <div class="form-group" v-if="this.studyTypes.id != 2">
                       <label for="">Number of repetitions</label>
 
@@ -1724,30 +822,14 @@
                         class="form-control"
                       />
                     </div>
-                    <!-- <button
-                      type="submit"
-                      class="
-                        btn btn-color
-                        mb-2
-                        pl-3
-                        pr-3
-                        d-flex
-                        justify-conetent-center
-                      "
-                    >
-                      Start Session
-                    </button> -->
+
                     <div
-                      class="
-                        d-flex
-                        flex-column flex-sm-row flex-lg-column flex-xl-row
-                        justify-content-between
-                        position-relative
-                      "
+                      class="d-flex flex-column flex-sm-row flex-lg-column flex-xl-row justify-content-between position-relative"
                     >
                       <div class="d-flex flex-column">
                         <div class="py-1">
                           <button
+                            v-if="!scheduleLater"
                             type="submit"
                             :disabled="processingStudySession"
                             class="btn btn-primary btn-sm"
@@ -1792,25 +874,12 @@
 
     <div
       v-if="currentTab == 4"
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-        hidden-scroll
-      "
+      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex show-scroll"
     >
       <div class="d-flex flex-column flex-fill">
         <div class="row">
           <div
-            class="
-              col-lg-7
-              study-col
-              d-flex
-              flex-column
-              justify-content-center
-              flex-fill
-            "
+            class="col-lg-7 study-col d-flex flex-column justify-content-center flex-fill"
           >
             <div class="card card-void rounded-22 p-4 flex-fill mb-4">
               <div class="">
@@ -1834,25 +903,15 @@
                     : "Pomodoro Studying"
                 }}</span>
               </p>
-              <!-- v-if="studyTypes.id != 3" -->
               <p class="color-secondary text-16 font-regular mb-1">
                 Remaining Cycles :
                 {{ totalCycles - currentCycle }}
               </p>
-              <!-- v-if="studyTypes.id != 3" -->
               <p class="color-secondary text-16 font-regular mb-1">
                 Remaining Repetitions :
                 {{ repetitionCount - currentRepetitionNum }}
               </p>
-              <!-- <input type="text" v-model="remainingTime" id="remainingTime"> -->
-              <!-- <button
-                type="button"
-                data-toggle="modal"
-                data-target="#exampleModalCenter"
-                class="btn btn-primary mb-2 mt-2 pl-3 pr-3"
-              >
-                End Session
-              </button> -->
+
               <h3 class="color-dark font-semi-bold mb-0">Goals</h3>
               <div v-for="goal in goalsList" :key="goal">
                 <div class="card card-transparent show-icon p-1 mt-1">
@@ -1860,14 +919,7 @@
                     class="d-flex align-items-center justify-content-between"
                   >
                     <p
-                      class="
-                        mb-0
-                        color-secondary
-                        text-16
-                        font-regular
-                        pr-3
-                        d-flex
-                      "
+                      class="mb-0 color-secondary text-16 font-regular pr-3 d-flex"
                     >
                       <span><i class="far fa-circle"></i></span>
                       <span class="word-break ml-2">{{ goal }}</span>
@@ -1882,15 +934,7 @@
                       class="d-flex align-items-center justify-content-between"
                     >
                       <p
-                        class="
-                          mb-0
-                          color-secondary
-                          text-16
-                          font-regular
-                          pr-3
-                          d-flex
-                          w-100
-                        "
+                        class="mb-0 color-secondary text-16 font-regular pr-3 d-flex w-100"
                       >
                         <span><i class="far fa-circle"></i></span>
                         <span class="ml-2 w-100">{{ task.title }}</span>
@@ -1932,7 +976,6 @@
                       src="../../static/image/avatar.png"
                       alt=""
                     />
-                    <!-- <div v-else class="ld-img-holder shadow-none"></div> -->
                   </div>
                   <div class="ld-details-section">
                     <p class="ld-heading mb-1">{{ peer.first_name }}</p>
@@ -1951,23 +994,10 @@
           </div>
 
           <div
-            class="
-              col-lg-5
-              study-col
-              d-flex
-              justify-content-center
-              align-items-center
-            "
+            class="col-lg-5 study-col d-flex justify-content-center align-items-center"
           >
             <div
-              class="
-                card card-void
-                rounded-22
-                p-4
-                flex-fill
-                h-100
-                justify-constent-center
-              "
+              class="card card-void rounded-22 p-4 flex-fill h-100 justify-constent-center"
             >
               <div class="d-flex flex-column flex-fill justify-content-between">
                 <div class="d-flex flex-column mb-4">
@@ -1978,13 +1008,7 @@
                 </div>
                 <div
                   id="app"
-                  class="
-                    mb-3
-                    flex-fill
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                  "
+                  class="mb-3 flex-fill d-flex align-items-center justify-content-center"
                 >
                   <div class="base-timer m-auto">
                     <svg
@@ -2021,7 +1045,6 @@
                         class="color-dark text-24 font-semi-bold"
                         >{{ timerDurationDisplay }}</span
                       >
-                      <!-- <span class="color-dark text-24 font-semi-bold">22</span> -->
                       <span class="color-dark base-timer-text">{{
                         studyStatus == "break" ? "BREAK" : ""
                       }}</span>
@@ -2030,15 +1053,8 @@
                 </div>
               </div>
               <div
-                class="
-                  btn-area
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                "
+                class="btn-area d-flex align-items-center justify-content-center"
               >
-                <!-- && !studyTimePaused -->
-                <!-- this.studyTypes.id == 3 && -->
                 <button
                   v-show="studyStatus != 'break'"
                   @click.prevent="
@@ -2076,15 +1092,7 @@
 
     <div
       v-if="currentTab == 5"
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-        align-items-center
-        justify-content-center
-        hidden-scroll
-      "
+      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex align-items-center justify-content-center hidden-scroll"
     >
       <div
         class="px-5 py-4 d-flex flex-column card card-void rounded-22 col-lg-7"
@@ -2163,432 +1171,6 @@
 
     <!-- end rating -->
 
-    <!-- <section id="study-detail" class="">
-      <div class="study-section container-fluid">
-        <h3 class="color-primary text-18 mb-2 mt-4">Study Room</h3>
-        <div class="inner-study p-3">
-          <div
-            class="
-              study-row
-              room-form
-              d-flex
-              flex-column
-              w-100
-              align-items-center
-              justify-content-center
-            "
-            v-if="!addedStudyTime && timerStatus == 0"
-          >
-            <div class="d-flex flex-column w-100">
-              <div class="study-col d-flex flex-column justify-content-center">
-               
-              </div>
-              <div
-                class="
-                  study-col
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  col-8
-                  mx-auto
-                  py-0
-                "
-              >
-                <div
-                  class="
-                    form-section
-                    study-room-form
-                    py-0
-                    d-flex
-                    flex-column
-                    h-40
-                    flex-fill
-                    custom-overflow
-                  "
-                >
-                  <form
-                    @submit.prevent="StartStudySession"
-                    ref="studyTimeForm"
-                    class="container"
-                  >
-                    <div class="form-group required">
-                      <label class="typo__label">Subject</label>
-                      <select
-                        @change="UpdateSubject()"
-                        class="form-control"
-                        tabindex=""
-                        v-model="Subject"
-                        :class="{
-                          'is-invalid': submitted && $v.Subject.$error,
-                        }"
-                      >
-                        <option value="">Select Subject</option>
-                        <option
-                          v-bind:value="{
-                            id: subjects.id,
-                            text: subjects.subject_name,
-                          }"
-                          v-for="(subjects, index) in subjectsData"
-                          :key="index"
-                        >
-                          {{ subjects.subject_name }}
-                        </option>
-                        <option v-if="subjectsData.length == 0">No data</option>
-                      </select>
-                      <div
-                        v-if="submitted && $v.Subject.$error"
-                        class="invalid-feedback"
-                      >
-                        <span v-if="!$v.Subject.required"
-                          >This field is required</span
-                        >
-                      </div>
-                    </div>
-                    <div class="form-group required">
-                      <label class="typo__label">Study Technique</label>
-                      <select
-                        @change="UpdateStudyTechnique()"
-                        class="form-control"
-                        tabindex=""
-                        v-model="studyTypes"
-                        :class="{
-                          'is-invalid': submitted && $v.studyTypes.$error,
-                        }"
-                      >
-                        <option value="">Select Study Technique</option>
-
-                        <option
-                          v-for="(studyTypes, index) in studyTypesData"
-                          :key="index"
-                          v-bind:value="{
-                            id: studyTypes.id,
-                            text: studyTypes.type,
-                            startTime: studyTypes.start_time,
-                            breakTime: studyTypes.break_time,
-                            cycle: studyTypes.cycle,
-                            long_break: studyTypes.long_break,
-                          }"
-                        >
-                          {{ studyTypes.type }}
-                        </option>
-                        <option v-if="studyTypesData.length == 0">
-                          No data
-                        </option>
-                      </select>
-                      <div
-                        v-if="submitted && $v.studyTypes.$error"
-                        class="invalid-feedback"
-                      >
-                        <span v-if="!$v.studyTypes.required"
-                          >This field is required</span
-                        >
-                      </div>
-                    </div>
-                    <div class="form-group" v-if="this.studyTypes.id != 3">
-                      <label for="">Number of repetitions</label>
-
-                      <select
-                        @change="UpdateSubject()"
-                        class="form-control"
-                        tabindex=""
-                        v-model="repetitionCount"
-                      >
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group" v-show="this.studyTypes.id == 3">
-                      <label for="">Duration (In Minutes)</label>
-                      <input
-                        type="number"
-                        id="targetDuration"
-                        v-model="targetDuration"
-                        class="form-control"
-                      />
-                    </div>
-                    <div class="form-group" v-show="this.studyTypes.id == 3">
-                      <label for="">Break Time At (In Minutes)</label>
-                      <input
-                        type="number"
-                        id="breakAt"
-                        v-model="breakAt"
-                        class="form-control"
-                      />
-                    </div>
-                    <div class="form-group" v-show="this.studyTypes.id == 3">
-                      <label for="">Break Time (In Minutes)</label>
-                      <input
-                        type="number"
-                        id="breakTime"
-                        v-model="breakTime"
-                        class="form-control"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      class="
-                        btn btn-color
-                        mb-2
-                        pl-3
-                        pr-3
-                        d-flex
-                        justify-conetent-center
-                      "
-                    >
-                      Start Session
-                    </button>
-                  </form>
-                </div>
-              </div>
-              <div class="discription-area py-3 px-5" v-if="studyTypes.id == 1">
-                <p class="discription-text mb-1 text-center color-dark text-14">
-                  25-minute chunks separated by five-minute breaks. After about
-                  four pomodoros, you take a longer break of about 15 minutes
-                  <span>
-                    <a
-                      href="https://www.jochi.info/post/what-is-the-pomodoro-technique"
-                      target="_blank"
-                      >(Read more...)</a
-                    >
-                  </span>
-                </p>
-              </div>
-              <div class="discription-area py-3 px-5" v-if="studyTypes.id == 2">
-                <p class="discription-text mb-1 text-center color-dark text-14">
-                  The 52/17 Rule is a time management method that recommends 52
-                  minutes of focused working alternated by 17 minutes of
-                  complete resting and recharging
-                  <span>
-                    <a
-                      href="https://www.jochi.info/post/what-is-the-52-17-study-method"
-                      target="_blank"
-                      >(Read more...)</a
-                    >
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-          Study Room End
-          Timer
-          <form
-            @submit.prevent="AddStudyTime('STOP')"
-            v-if="!addedStudyTime && timerStatus == 1"
-          >
-            <div class="row study-row">
-              <div
-                class="
-                  col-md-6
-                  study-col
-                  d-flex
-                  flex-column
-                  justify-content-center
-                "
-              >
-                <div class="m-5">
-                  <div class="study-heading mb-2"><h1>Working on</h1></div>
-                  <p class="subject-name mb-1">
-                    {{ timerStatusData.subjectName }}
-                  </p>
-                  <p class="subject-name mb-1">{{ SubjectName }}</p>
-                  <p
-                    class="subject-name subject-time mb-1"
-                    v-if="studyTypes.id != 3"
-                  >
-                    Remaining Cycles :
-                    {{ this.totalCycles - this.currentCycle }}
-                  </p>
-                  <p
-                    class="subject-name subject-time mb-1"
-                    v-if="studyTypes.id != 3"
-                  >
-                    Remaining Repetitions :
-                    {{ this.repetitionCount - this.currentRepetitionNum }}
-                  </p>
-                  <button
-                    type="button"
-                    data-toggle="modal"
-                    data-target="#exampleModalCenter"
-                    class="btn btn-color mb-2 mt-2 pl-3 pr-3"
-                  >
-                    End Session
-                  </button>
-                </div>
-              </div>
-
-              <div
-                class="
-                  col-md-6
-                  study-col
-                  d-flex
-                  flex-column
-                  justify-content-center
-                "
-              >
-                <div>
-                  <div id="app" class="mb-3">
-                    <div class="base-timer m-auto">
-                      <svg
-                        class="base-timer__svg"
-                        viewBox="0 0 100 100"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g class="base-timer__circle">
-                          <circle
-                            class="base-timer__path-elapsed"
-                            cx="50"
-                            cy="50"
-                            r="45"
-                          ></circle>
-                          <path
-                            id="base-timer-path-remaining"
-                            stroke-dasharray="283"
-                            class="base-timer__path-remaining arc"
-                            d="
-                                    M 50, 50
-                                    m -45, 0
-                                    a 45,45 0 1,0 90,0
-                                    a 45,45 0 1,0 -90,0
-                                    "
-                          ></path>
-                        </g>
-                      </svg>
-                      <div class="inner-timer">
-                        <span id="base-timer-label" class="base-timer__label">{{
-                          timerDurationDisplay
-                        }}</span>
-                        <span class="color-dark base-timer-text">{{
-                          studyStatus == "break" ? "BREAK" : ""
-                        }}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="
-                      btn-area
-                      d-flex
-                      align-items-center
-                      justify-content-center
-                    "
-                  >
-                    
-                    <button
-                      v-show="this.studyTypes.id == 3 && studyStatus != 'break'"
-                      @click.prevent="
-                        showResume ? onResumeSession() : onPauseSession()
-                      "
-                      class="btn btn-color mb-2 mt-2 pl-3 pr-3"
-                      id="pause-button"
-                    >
-                      <i class="fa fa-pause"></i>
-                      {{ showResume ? "Resume" : "Pause" }}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-          Timer End
-          Rating Section
-          <div v-show="addedStudyTime" class="container study-row">
-            <div class="header-row containStarRating er">
-              <div class="col-md-12 py-3">
-                <h4>Rate your session</h4>
-               </div>
-            </div>
-            <div class="inner-row mt-0 container">
-              <div class="inner-col px-5 py-4 d-flex flex-column">
-                <div class="mb-3 col-5 mx-0 mx-md-auto">
-                  <div class="d-flex justify-content-between">
-                    <h6 class="py-2 color-dark font-semi-bold">Focus</h6>
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <star-rating
-                      class="mb-2"
-                      v-model="focusRating"
-                      inactive-color="#2b2b2b"
-                      active-color="#F49196"
-                      border-color="#F49196"
-                      v-bind:border-width="4"
-                      v-bind:star-size="21"
-                      v-bind:padding="1"
-                      v-bind:animate="true"
-                      v-bind:rounded-corners="true"
-                      v-bind:max-rating="5"
-                    ></star-rating>
-                    <p class="total-value px-4">
-                      {{ focusRating }}<sub>/5</sub>
-                    </p>
-                  </div>
-                </div>
-                <div class="mb-3 col-5 mx-0 mx-md-auto">
-                  <div class="d-flex justify-content-between">
-                    <h6 class="py-2">Efficiency</h6>
-                  </div>
-
-                  <div class="d-flex justify-content-between">
-                    <star-rating
-                      class="mb-2"
-                      v-model="focusEfficiency"
-                      inactive-color="#2b2b2b"
-                      active-color="#F49196"
-                      border-color="#F49196"
-                      v-bind:border-width="4"
-                      v-bind:star-size="21"
-                      v-bind:padding="1"
-                      v-bind:animate="true"
-                      v-bind:rounded-corners="true"
-                      v-bind:max-rating="5"
-                    ></star-rating>
-                    <p class="total-value px-4">
-                      {{ focusEfficiency }}<sub>/5</sub>
-                    </p>
-                  </div>
-                </div>
-                <div class="mb-3 col-5 mx-0 mx-md-auto">
-                  <div class="d-flex justify-content-between">
-                    <h6 class="py-2">Work Completed</h6>
-                  </div>
-
-                  <div class="d-flex justify-content-between">
-                    <star-rating
-                      class="mb-2"
-                      v-model="focusWorkComplete"
-                      inactive-color="#2b2b2b"
-                      active-color="#F49196"
-                      border-color="#F49196"
-                      v-bind:border-width="4"
-                      v-bind:star-size="21"
-                      v-bind:padding="1"
-                      v-bind:animate="true"
-                      v-bind:rounded-corners="true"
-                      v-bind:max-rating="5"
-                    ></star-rating>
-                    <p class="total-value px-4">
-                      {{ focusWorkComplete }}<sub>/5</sub>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row button-row container">
-              <div class="col-md-12 text-center py-3">
-                <button
-                  type="button"
-                  @click.prevent="onLogSession()"
-                  class="btn btn-color mb-3 mt-2 pl-3 pr-3"
-                >
-                  Log Session
-                </button>
-              </div>
-            </div>
-          </div>
-          Rating Section End
-        </div>
-      </div>
-    </section> -->
     <!-- Modal -->
     <div
       class="modal fade"
@@ -2600,17 +1182,6 @@
     >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <!-- <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">End Session</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> -->
           <div class="modal-body p-4">
             <h3
               class="modal-title color-primary font-semi-bold"
@@ -2673,18 +1244,9 @@
             <h3 class="modal-title" id="scheduleModalLongTitle">
               Schedule Time
             </h3>
-            <!-- <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button> -->
           </div>
           <div class="modal-body overflow-initial">
             <div class="form-group required">
-              <!-- <label class="typo__label">Date</label> -->
               <date-picker
                 class="form-control bg-white"
                 placeholder="Date"
@@ -2696,7 +1258,6 @@
               />
             </div>
             <div class="form-group required">
-              <!-- <label class="typo__label">Time</label> -->
               <vue-timepicker
                 close-on-complete
                 format="hh:mm A"
@@ -2786,7 +1347,6 @@
 import { required, requiredIf } from "vuelidate/lib/validators";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
-// import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
 import VueTimepicker from "vue2-timepicker";
 import { NavigationGuardNext, Route } from "vue-router";
@@ -2798,9 +1358,16 @@ export default {
   },
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [
+        { rel: "stylesheet", href: "/css/style01.css" },
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
     };
   },
+
   data() {
     return {
       Subject: "",
@@ -2896,6 +1463,8 @@ export default {
       disablePrevious: true,
       disableNext: false,
       pageCount: 0,
+      scheduleLater: false,
+      startTimeMixpanel: null,
     };
   },
 
@@ -2923,6 +1492,11 @@ export default {
     }
   },
   async mounted() {
+    window.addEventListener("orientationchange", this.handleOrientationChange);
+    const page = "StudySession";
+    const distinct_id = localStorage.getItem("distinctId");
+    this.$mixpanel.track("Page View", { distinct_id, page });
+    this.startTimeMixpanel = new Date().getTime();
     this.userId = localStorage.getItem("id");
     if (this.sessionRedirectId) {
       await this.getDetail(this.sessionRedirectId);
@@ -2948,6 +1522,7 @@ export default {
     this.GetSubjectList();
     this.GetStudyTypes();
     this.getAllStudySessions();
+    this.startIntro();
   },
 
   validations: {
@@ -2976,10 +1551,16 @@ export default {
       startStudyResponse: (state) => state.startStudyResponse,
       assignmentsCount: (state) => state.assignmentsCount,
       sharedAssignmentsCount: (state) => state.sharedAssignmentsCount,
+      overdueAssignmentsList: (state) => state.overdueAssignmentsList,
+      sharedOverdueAssignmentsList: (state) =>
+        state.sharedOverdueAssignmentsList,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("studyRoom", {
@@ -3033,7 +1614,6 @@ export default {
       }
     },
     redirectMap(e) {
-      console.log("session detail", e, this.studySessionDetail);
       let session = {};
       session.type = e.assignment_id ? "assignment" : "study";
       if (e.assignment_id) {
@@ -3095,7 +1675,6 @@ export default {
       this.repeatLoopBy = e.study_method == "1" || e.study_method == 1 ? 4 : 1;
       this.repetitionCount =
         e.study_method == "1" || e.study_method == 1 ? e.repeat : 1;
-      // this.totalCycles = 1;
 
       session.id = e.id;
       this.studyTypes = {};
@@ -3110,7 +1689,6 @@ export default {
     },
     async getDetail(id) {
       await this.getSessionDetail({ id });
-      console.log(this.studySessionDetail);
     },
     async GetStatusTimer() {
       await this.getStatusTimer({});
@@ -3140,18 +1718,6 @@ export default {
         // this.totalCycles = 1;
       }
     },
-    // async UpdateStudyTechnique() {
-    //   this.CustomMode = "active";
-    //   if (this.studyTypes?.id != 2) {
-    //     this.targetDuration = this.studyTypes.startTime;
-    //     this.breakTime = this.studyTypes.breakTime;
-    //     this.repeatLoopBy = this.studyTypes.cycle;
-    //   } else {
-    //     this.targetDuration = 5;
-    //     this.breakTime = 2;
-    //     this.breakAt = 2;
-    //   }
-    // },
 
     async UpdateSubject() {
       this.SubjectName = this.Subject.subject_name;
@@ -3311,7 +1877,6 @@ export default {
 
     checkScheduleLaterValidations() {
       let valid = true;
-      console.log(!this.checkValidTime(this.scheduledTime));
 
       if (!this.checkValidTime(this.scheduledTime)) {
         this.$toast.open({
@@ -3492,8 +2057,9 @@ export default {
         });
         valid = false;
       }
+
       if (this.studyTypes?.id == 2) {
-        if (!this.targetDuration) {
+        if (!this.targetDuration || this.targetDuration == "0") {
           this.$toast.open({
             message: "Durartion is required",
             type: "warning",
@@ -3501,7 +2067,7 @@ export default {
           });
           valid = false;
         }
-        if (!this.breakTime) {
+        if (!this.breakTime || this.breakTime == "0") {
           this.$toast.open({
             message: "Breaktime is required",
             type: "warning",
@@ -3509,7 +2075,7 @@ export default {
           });
           valid = false;
         }
-        if (!this.breakAt) {
+        if (!this.breakAt || this.breakAt == "0") {
           this.$toast.open({
             message: "Break At is required",
             type: "warning",
@@ -3598,7 +2164,6 @@ export default {
 
       let addStudyPayload = {};
       if (this.sessionDetail.isSharedSession) {
-        console.log("session detail add study", this.sessionDetail);
         addStudyPayload = {
           sessionId: this.sharedNewSessionId,
           old_sessionId: this.sessionDetail.id,
@@ -3776,7 +2341,6 @@ export default {
       var presentTime = new Date().getTime();
       this.totalStudyTime += (presentTime - this.studyTimeStart) / 1000;
       clearInterval(this.limitedInterval);
-      console.log(this.studyStatus + "custom interval cleared!");
       this.AddStudyTime("PAUSE");
     },
     async getAllStudySessions() {
@@ -3831,7 +2395,6 @@ export default {
       });
 
       this.sharedSessions.forEach((e) => {
-        console.log(e);
         let session = {};
         session.type = e.assignment_id ? "assignment" : "study";
         session.id = e.session_id;
@@ -3925,7 +2488,8 @@ export default {
         this.loadAssignments();
       }
     },
-    async setSessionType(type) {
+    async setSessionType(type, later = false) {
+      this.scheduleLater = later;
       this.sessionType = type;
       if (this.sessionType == "study") {
         this.resetAssignment();
@@ -3946,11 +2510,13 @@ export default {
         offset: this.offset,
         limit: this.limit,
       });
-      console.log(this.assignmentsList, this.sharedAssignmentsList);
+
       this.mapCount();
       this.pendingAssignments = [];
       this.mapAssignments();
       this.mapSharedAssignments();
+      this.mapOverdueAssignments();
+      this.mapSharedOverdueAssignments();
     },
 
     mapCount() {
@@ -3979,7 +2545,17 @@ export default {
           this.pendingAssignments.push(asst);
         });
       }
-      console.log("pending assts ", this.pendingAssignments);
+    },
+    mapOverdueAssignments() {
+      if (
+        this.overdueAssignmentsList &&
+        this.overdueAssignmentsList.length > 0
+      ) {
+        this.overdueAssignmentsList.forEach((e) => {
+          let asst = this.mapData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
     },
     mapData(e) {
       if (e) {
@@ -4029,7 +2605,17 @@ export default {
           this.pendingAssignments.push(asst);
         });
       }
-      console.log("pending assts ", this.pendingAssignments);
+    },
+    mapSharedOverdueAssignments() {
+      if (
+        this.sharedOverdueAssignmentsList &&
+        this.sharedOverdueAssignmentsList.length > 0
+      ) {
+        this.sharedOverdueAssignmentsList.forEach((e) => {
+          let asst = this.mapSharedData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
     },
     mapSharedData(e) {
       let item = {};
@@ -4082,11 +2668,10 @@ export default {
         e.assignment_session_shared_users.length > 0
       ) {
         e.assignment_session_shared_users.forEach((item) => {
-          if (item.session_shared_user_id != user_id) {
+          if (item.session_shared_user_id.toString() != user_id && item.users) {
             let peer = {};
             peer = item.users;
             peer.id = item.session_shared_user_id;
-            console.log("console", item, peer);
             peers.push(peer);
           }
         });
@@ -4096,18 +2681,17 @@ export default {
         e.assignments?.assignment_shared_users.length > 0
       ) {
         e.assignments.assignment_shared_users.forEach((item) => {
-          if (item.shared_users_id != user_id) {
+          if (item.shared_users_id.toString() != user_id && item.users) {
             let peer = {};
             peer = item.users;
             peer.id = item.shared_users_id;
-            console.log("console", item, peer);
             peers.push(peer);
           }
         });
       }
       if (e.assignment_shared_users && e.assignment_shared_users?.length > 0) {
         e.assignment_shared_users.forEach((item) => {
-          if (item.shared_users_id != user_id) {
+          if (item.shared_users_id.toString() != user_id && item.users) {
             let peer = {};
             peer = item.users;
             peer.id = item.shared_users_id;
@@ -4141,7 +2725,6 @@ export default {
       } else {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 1);
       }
-      console.log(this.studyTypesData, this.studyTypes);
       if (this.sessionType == "assignment") {
         this.subjectName = this.selectedAssignment.task;
       }
@@ -4270,7 +2853,6 @@ export default {
         this.sessionDetail.study_goals =
           this.sessionDetail.studyroom.study_goals;
       }
-      console.log(this.sessionDetail, session);
       clearInterval(this.intervalCountDown);
       this.counter = false;
       if (this.sessionDetail.isToday) {
@@ -4339,7 +2921,6 @@ export default {
       this.mapPeersInvited();
 
       // this.UpdateStudyTechnique();
-      console.log("session details", this.sessionDetail);
       // this.goalsList = this.sessionDetail.goals;
       // this.sessionMode =
       //   this.sessionDetail.studyMethod == "1"
@@ -4483,10 +3064,51 @@ export default {
       this.Subject = "";
       this.repetitionCount = 1;
     },
+    scheduleLaterClick(type, e) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.setSessionType(type, true);
+    },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      let skip = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
+          completed = true;
+          if (state != "skip") this.$router.push("/study-analytics");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
+    },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
   },
 
   destroyed() {
     window.removeEventListener("beforeunload", this.preventNav);
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTimeMixpanel) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "StudySession";
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
   },
 };
 </script>

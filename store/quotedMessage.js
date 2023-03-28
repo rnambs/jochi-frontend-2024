@@ -21,7 +21,10 @@ const state = {
   sharedAstList: [],
   sharedSessionList: [],
   clubMeetings: [],
-  allSubTskCompleted: false
+  allSubTskCompleted: false,
+  overdues: [],
+  sharedOverdues: [],
+  trainingsMatches: []
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -100,6 +103,9 @@ const actions = {
       commit('setSessionList', response.session);
       commit('setSharedSessionList', response.shared_sessions);
       commit('setClubMeetings', response.club_meeting);
+      commit('setTrainingsMatches', response.team_match_trainings);
+
+
     } catch (e) {
       if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -129,6 +135,8 @@ const actions = {
       });
       commit('setAssignmentsList', response.assignments);
       commit('setSharedAssignmentsList', response.shared_assignments);
+      commit('setOverdues', response.overdue_assignments);
+      commit('setSharedOverdues', response.overdue_shared_assignments);
     } catch (e) {
       if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -383,6 +391,85 @@ const actions = {
 
       }
     } catch (e) {
+
+      if (e?.response?.data?.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else if (e?.response?.data?.message == "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.");
+        commit('setErrorType', "error");
+
+      }
+      else if (e?.response?.data?.message == "Validation error") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "Oops! Something went wrong. Please try again later");
+        commit('setErrorType', "error");
+      }
+      else if (e?.response?.data?.message == "File size cannot be larger than 4MB!") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "File size cannot be larger than 4MB!");
+        commit('setErrorType', "error");
+
+      }
+
+      else if (e?.response?.data?.message == "No club found") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "This club is not exist");
+        commit('setErrorType', "error");
+        // this.$router.push("/club-detail");
+
+      }
+      else if (e?.response?.data?.message == "Club is not active") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "Club is not active");
+        commit('setErrorType', "error");
+
+      }
+      else if (e?.response?.data?.message == "Please upload a file!") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "Please upload a file!");
+        commit('setErrorType', "error");
+
+      } else if (e?.response?.data?.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e?.response?.data?.message);
+        commit('setErrorType', "error");
+      }
+    }
+
+  },
+
+  async deleteAssignments({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$post(BASE_URL + 'planner/delete-assignments', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+      // commit('setAdditionalMaterial', response.data);
+
+      // if (response.message == "File uploaded successfully") {
+      commit('setErrorMessage', "");
+      commit('setErrorType', "");
+      commit('setSuccessMessage', response.message);
+      commit('setSuccessType', "success");
+      // }
+    } catch (e) {
       if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -506,6 +593,15 @@ const mutations = {
   setAllSubTskCompleted(state, data) {
     state.allSubTskCompleted = data;
   },
+  setOverdues(state, data) {
+    state.overdues = data;
+  },
+  setSharedOverdues(state, data) {
+    state.sharedOverdues = data;
+  },
+  setTrainingsMatches(state, data) {
+    state.trainingsMatches = data;
+  },
 }
 const getters = {
 
@@ -571,6 +667,15 @@ const getters = {
   },
   allSubTskCompleted: () => {
     return state.allSubTskCompleted;
+  },
+  overdues: () => {
+    return state.overdues;
+  },
+  sharedOverdues: () => {
+    return state.sharedOverdues;
+  },
+  trainingsMatches: () => {
+    return state.trainingsMatches;
   },
 }
 

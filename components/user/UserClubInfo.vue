@@ -9,16 +9,10 @@
     <div class="main-section">
       <!-- tab for club info -->
       <div
-        class="
-          jochi-components-light-bg
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-        "
+        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
 
-        <!-- :style="{ 'background-image': clubDetails.club_banner_image }" -->
         <!-- Club info -->
 
         <div
@@ -34,14 +28,7 @@
         >
           <div class="black-grad"></div>
           <div
-            class="
-              position-absolute
-              cover-button
-              mr-3
-              mb-1
-              d-flex
-              align-items-center
-            "
+            class="position-absolute cover-button mr-3 mb-1 d-flex align-items-center"
           >
             <button
               v-if="enableEdit"
@@ -50,14 +37,7 @@
             >
               <i class="fas fa-pen color-white"></i>
             </button>
-            <!-- <div class="d-flex align-items-center">
-              <button class="btn p-1 m-2">
-                <i class="fas fa-info-circle color-white"></i>
-              </button>
-              <p class="mb-0 color-secondary text-14 font-regular">
-                1200 X 180
-              </p>
-            </div> -->
+
             <button
               v-if="enableEdit"
               class="btn p-0 tooltip01 right-tip"
@@ -65,23 +45,77 @@
             >
               <i class="fas fa-info-circle color-white"></i>
             </button>
+
+            <button class="btn p-1 m-2" v-on:click="toggleDropdown">
+              <i class="fas fa-cog color-white"></i>
+            </button>
           </div>
         </div>
-
+        <div class="position-relative">
+          <div
+            v-bind:class="{
+              'dropdown-club jochi-components-light-bg': true,
+              'dropdown-club--visible': dropdownVisible,
+            }"
+          >
+            <ul v-if="isSchoolAdmin != '1'" class="m-0">
+              <li>
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 w-100"
+                  @click="openConfirm('info')"
+                >
+                  Info
+                </button>
+              </li>
+              <li>
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12 w-100"
+                  @click="openConfirm('leave')"
+                >
+                  Leave
+                </button>
+              </li>
+              <li v-if="userType == '3' && enableEdit">
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12 w-100"
+                  @click="openConfirm('remove_leader')"
+                >
+                  Remove As Leader
+                </button>
+              </li>
+              <li v-if="enableEdit">
+                <button
+                  class="btn btn-primary btn-sm py-1 col-12 w-100"
+                  @click="openConfirm('delete')"
+                >
+                  Delete
+                </button>
+              </li>
+            </ul>
+            <ul v-else class="m-0">
+              <li>
+                <button
+                  class="btn btn-primary btn-sm py-1 mb-2 col-12"
+                  @click="openConfirm('info')"
+                >
+                  Info
+                </button>
+              </li>
+              <li>
+                <button
+                  class="btn btn-primary btn-sm py-1 col-12"
+                  @click="openConfirm('delete')"
+                >
+                  Delete
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
         <section id="club-detail" class="flex-fill custom-overflow">
           <div class="club-section container-fluid mt-2">
             <div
-              class="
-                inner-club
-                club-info
-                d-flex
-                flex-column
-                justify-content-top
-                container-fluid
-                pr-3
-                py-0
-                pl-0
-              "
+              class="inner-club club-info d-flex flex-column justify-content-top container-fluid pr-3 py-0 pl-0"
             >
               <div class="my-2 px-2">
                 <h3 class="color-primary font-semi-bold mb-1">Club Details</h3>
@@ -132,13 +166,7 @@
 
                       <button
                         href=""
-                        class="
-                          btn btn-dark
-                          custom-theme-color-btn
-                          px-4
-                          mb-0
-                          mt-3
-                        "
+                        class="btn btn-dark custom-theme-color-btn px-4 mb-0 mt-3"
                         v-if="enableEdit"
                         :disabled="!clubDetails.description"
                         @click.prevent="
@@ -148,34 +176,12 @@
                         Update
                       </button>
                     </div>
-                    <!-- <div class="custom-switch pb-2" v-if="enableEdit">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="custom-Switches"
-                        v-model="availability"
-                        @change="ShowClubInCatalog()"
-                        v-on:click="availabilityToggle()"
-                      />
-                      <label class="custom-control-label
-                        font-normal
-                        color-dark
-                        text-14" for="custom-Switches"
-                        >Show club in catalog
-                      </label>
-                    </div> -->
                   </div>
                   <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div
-                          class="
-                            d-flex
-                            mb-3
-                            justify-content-end
-                            align-items-center
-                            mb-2
-                          "
+                          class="d-flex mb-3 justify-content-end align-items-center mb-2"
                         >
                           <h4 class="color-dark mb-0 mr-2 font-bold">
                             Leaders
@@ -196,29 +202,20 @@
                                   v-for="(data, index) in leadersInfo"
                                   :key="index"
                                 >
-                                  <!-- <span class="input-name">{{ data }}</span> -->
                                   <div
                                     v-if="index < 2"
-                                    class="
-                                      d-flex
-                                      align-items-center
-                                      justify-content-end
-                                      mt-2
-                                    "
+                                    class="d-flex align-items-center justify-content-end mt-2"
                                   >
                                     <div
-                                      class="
-                                        col-3
-                                        d-flex
-                                        justify-content-end
-                                        p-0
-                                        mr-1
-                                      "
+                                      class="col-3 d-flex justify-content-end p-0 mr-1"
                                     >
                                       <div class="ld-img-section">
-                                        <div class="ld-img-holder">
+                                        <div
+                                          v-if="data.user_info"
+                                          class="ld-img-holder"
+                                        >
                                           <img
-                                            v-if="data.user_info.profile_pic"
+                                            v-if="data.user_info"
                                             :src="data.user_info.profile_pic"
                                             alt=""
                                           />
@@ -231,12 +228,8 @@
                                     <div class="col-9 p-0">
                                       <div class="ld-details-section">
                                         <p
-                                          class="
-                                            mb-1
-                                            text-18
-                                            color-dark
-                                            font-semi-bold
-                                          "
+                                          v-if="data.user_info"
+                                          class="mb-1 text-18 color-dark font-semi-bold"
                                         >
                                           {{
                                             data.user_info.first_name +
@@ -251,13 +244,8 @@
                                           }}
                                         </p>
                                         <p
-                                          class="
-                                            color-secondary
-                                            text-16
-                                            font-regular
-                                            mb-0
-                                            text-truncate
-                                          "
+                                          v-if="data.user_info"
+                                          class="color-secondary text-16 font-regular mb-0 text-truncate"
                                         >
                                           {{ data.user_info.email }}
                                         </p>
@@ -269,7 +257,7 @@
                                 <button
                                   v-if="leadersInfo.length >= 3"
                                   @click="openViewMoreMembers(true)"
-                                  class="btn btn-void mt-3 py-1 px-0"
+                                  class="btn btn-void mt-2 py-1 px-0"
                                 >
                                   <span class="font-semi-bold mr-1"
                                     >View More</span
@@ -278,20 +266,6 @@
                                   ></span>
                                 </button>
 
-                                <!-- <li
-                                  v-for="(leader, index) in list.todoLeader"
-                                  :key="index"
-                                >
-                                  <span class="input-name">{{ leader }}</span>
-                                  <span
-                                    class="input-icon"
-                                    v-if="enableEdit"
-                                    @click.prevent="RemoveLeader(leader)"
-                                  >
-                                    <i class="fa fa-times p-1" aria-hidden="true"></i
-                                  ></span> 
-                                </li> -->
-                                <!-- list.todoArr.length == 0 && -->
                                 <li
                                   v-if="!leadersInfo || leadersInfo.length == 0"
                                 >
@@ -305,24 +279,6 @@
                           </div>
                         </div>
                       </div>
-                      <!-- <div
-                        class="col-12 text-right inner-col py-12"
-                        v-if="enableEdit"
-                      >
-                        <div class="inner-info-head mb-0">
-                          <h4 class="color-dark mb-2 font-bold">Add Leaders</h4>
-                        </div>
-
-                        <div
-                          class="
-                            form-row
-                            m-0
-                            d-flex
-                            align-items-center
-                            justify-content-end
-                          "
-                        ></div>
-                      </div> -->
                     </div>
                   </div>
                   <div
@@ -333,15 +289,7 @@
                       <h4 class="color-dark mb-2 font-bold">Members</h4>
                     </div>
                     <div
-                      class="
-                        members-thumbnail-list
-                        d-flex
-                        flex-column
-                        align-items-center
-                        justify-content-start
-                        mt-3
-                        position-relative
-                      "
+                      class="members-thumbnail-list d-flex flex-column align-items-center justify-content-start mt-3 position-relative"
                     >
                       <div class="first-row">
                         <div class="d-flex align-items-center">
@@ -355,7 +303,6 @@
                                 : 'd-none'
                             "
                           >
-                            <!-- {{ membersInfo[index].user_info }} -->
                             <img
                               v-if="
                                 membersInfo[index - 1] &&
@@ -376,9 +323,6 @@
                                 : ""
                             }}</span>
                           </div>
-                          <!-- <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div> -->
                         </div>
                       </div>
                       <div v-if="membersInfo.length > 4" class="second-row">
@@ -404,8 +348,6 @@
                               alt=""
                             />
                           </div>
-                          <!-- <div class="mlist-thumb-holder"></div>
-                          <div class="mlist-thumb-holder"></div> -->
                         </div>
                       </div>
                       <div
@@ -421,18 +363,9 @@
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div
-                          class="
-                            inner-info-head
-                            mb-2
-                            d-flex
-                            align-items-center
-                            justify-content-end
-                          "
+                          class="inner-info-head mb-2 d-flex align-items-center justify-content-end"
                         >
                           <h4 class="color-dark mb-0 mr-2 font-bold">Tags</h4>
-                          <!-- <a href="#" class="btn p-1 color-secondary">
-                            <span><i class="fas fa-plus-circle"></i></span>
-                          </a> -->
                         </div>
                         <div class="row justify-content-end">
                           <div class="col-10 col-lg-8 info-tag">
@@ -442,36 +375,13 @@
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
                               >
-                                <!-- <input type="text" class="pl" hidden />{{
-                                  value.name
-                                }} -->
-
-                                <!-- <input
-                                  type="text"
-                                  :style="{
-                                    'background-color': tagColorMap[value.name],
-                                  }"
-                                  class="pl"
-                                  hidden
-                                />{{ value.name }} -->
                                 <span
                                   :style="{
                                     'background-color': tagColorMap[value.name]
                                       ? tagColorMap[value.name]
                                       : red,
                                   }"
-                                  class="
-                                    px-4
-                                    py-1
-                                    rounded-6
-                                    color-white
-                                    d-flex
-                                    justify-content-center
-                                    min-w-100
-                                    text-14
-                                    bg-theme
-                                    align-items-center
-                                  "
+                                  class="px-4 py-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 bg-theme align-items-center"
                                   >{{ value.name }}
                                   <span
                                     class="input-icon color-white btn p-0"
@@ -504,7 +414,7 @@
                         <div
                           class="d-flex align-items-center justify-content-end"
                         >
-                          <div class="input-icon-area col-6 pr-0 form-row">
+                          <div class="input-icon-area col-6 pr-0 pt-0 form-row">
                             <multiselect
                               v-model="value"
                               :options="taglist"
@@ -542,17 +452,8 @@
                       type: clubDetails.activity_type,
                     },
                   }"
-                  class="
-                    inner-tab
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    p-2
-                    rounded-10
-                    h-100
-                  "
+                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <!-- <i class="fas fa-info"></i> -->
                   <span class="text-24 color-primary font-semi-bold"
                     >Home Page</span
                   >
@@ -568,17 +469,8 @@
                       type: clubDetails.activity_type,
                     },
                   }"
-                  class="
-                    inner-tab
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    p-2
-                    rounded-10
-                    h-100
-                  "
+                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <!-- <i class="fas fa-file-alt"></i> -->
                   <span class="text-24 color-primary font-semi-bold"
                     >Files & Slides</span
                   >
@@ -589,31 +481,12 @@
                 class="col-md-4 col-xs-12 py-2 py-md-0"
               >
                 <div
-                  class="
-                    inner-tab
-                    default
-                    d-flex
-                    flex-column
-                    align-items-center
-                    justify-content-center
-                    p-2
-                    rounded-10
-                    h-100
+                  :class="
+                    enableEdit
+                      ? 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100 cursor-pointer'
+                      : 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100'
                   "
                 >
-                  <!-- <nuxt-link
-                    :to="{
-                      path: '/club-moreInfo',
-                      query: {
-                        id: clubId,
-                        name: headingName,
-                        type: activity_type,
-                      },
-                    }"
-                    class="inner-tab"
-                  > -->
-                  <!-- <i class="fas fa-ellipsis-h"></i> -->
-                  <!-- <span class="pl">More</span> -->
                   <span class="text-24 color-primary font-semi-bold"
                     >Next Meeting</span
                   >
@@ -640,21 +513,7 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <!-- <div class="modal-header">
-            <h3 class="modal-title" id="nextMeetingModalLongTitle">
-              Configure Meeting Days
-            </h3>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> -->
           <div class="modal-body no-overflow px-4 pt-4">
-            <!-- <div class="col-md-5 col-xs-12"> -->
             <h3
               class="modal-title color-primary font-semi-bold"
               id="nextMeetingModalLongTitle"
@@ -662,9 +521,6 @@
               Configure Meeting Days
             </h3>
             <div class="inner-info">
-              <!-- <div class="inner-info-head mb-3">
-                <h6 class="color-dark mb-0">Meeting Time</h6>
-              </div> -->
               <p class="color-dark text-24 font-semi-bold">
                 Next meeting:
                 {{
@@ -675,16 +531,6 @@
               </p>
 
               <div class="row inner-col mb-3" v-if="enableEdit">
-                <!-- <div
-                  class="
-                    col-lg-4 col-md-12
-                    inner-inner-info-head
-                    d-flex
-                    align-items-center
-                  "
-                >
-                  <h6 class="color-dark mb-0">Choose time</h6>
-                </div> -->
                 <div class="col-lg-8 col-md-12 input-icon-area form-row">
                   <multiselect
                     v-model="valueMeeting"
@@ -710,13 +556,7 @@
                   "
                 >
                   <a
-                    class="
-                      btn
-                      date-picker
-                      badge badge-pill badge-color
-                      active
-                      mx-1
-                    "
+                    class="btn date-picker badge badge-pill badge-color active mx-1"
                     :id="day"
                     v-if="checkSlot(day)"
                     >{{ day }}</a
@@ -730,25 +570,9 @@
                   >
                 </div>
               </div>
-              <!-- <button
-                v-if="enableEdit"
-                class="btn btn-info-edit mt-2"
-                :disabled="!value"
-                @click.prevent="UpdateTime"
-              >
-                Update the next meeting
-              </button> -->
             </div>
-            <!-- </div> -->
           </div>
           <div class="modal-footer px-4">
-            <!-- <button
-              type="button"
-              class="btn btn-color-close"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button> -->
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-12"
@@ -759,7 +583,7 @@
             <button
               v-if="enableEdit"
               class="btn btn-success rounded-12 mt-2 py-1 px-4 font-semi-bold"
-              :disabled="!valueMeeting"
+              :disabled="!valueMeeting || dayArrVal.length <= 0"
               @click.prevent="UpdateTime"
             >
               Update the next meeting
@@ -799,13 +623,12 @@
             <div v-if="isLeaderView" class="inner-info-text">
               <ul class="mb-0 leader-list-style">
                 <li v-for="(data, index) in leadersInfo" :key="index">
-                  <!-- <span class="input-name">{{ data }}</span> -->
                   <div class="d-flex align-items-center mt-3">
                     <div class="d-flex justify-content-end p-0">
                       <div class="ld-img-section mr-3">
-                        <div class="ld-img-holder">
+                        <div v-if="data.user_info" class="ld-img-holder">
                           <img
-                            v-if="data.user_info.profile_pic"
+                            v-if="data.user_info"
                             :src="data.user_info.profile_pic"
                             alt=""
                           />
@@ -817,7 +640,10 @@
                     </div>
                     <div class="p-0">
                       <div class="ld-details-section">
-                        <p class="mb-0 text-18 color-dark font-semi-bold">
+                        <p
+                          v-if="data.user_info"
+                          class="mb-0 text-18 color-dark font-semi-bold"
+                        >
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name
@@ -831,13 +657,8 @@
                           }}
                         </p>
                         <p
-                          class="
-                            color-secondary
-                            text-16
-                            font-regular
-                            mb-0
-                            text-truncate
-                          "
+                          v-if="data.user_info"
+                          class="color-secondary text-16 font-regular mb-0 text-truncate"
                         >
                           {{ data.user_info.email }}
                         </p>
@@ -857,13 +678,12 @@
             <div v-if="!isLeaderView" class="inner-info-text">
               <ul class="mb-0 leader-list-style">
                 <li v-for="(data, index) in membersInfo" :key="index">
-                  <!-- <span class="input-name">{{ data }}</span> -->
                   <div class="d-flex align-items-center mt-3">
                     <div class="d-flex justify-content-end p-0">
                       <div class="ld-img-section mr-3">
-                        <div class="ld-img-holder">
+                        <div v-if="data.user_info" class="ld-img-holder">
                           <img
-                            v-if="data.user_info.profile_pic"
+                            v-if="data.user_info"
                             :src="data.user_info.profile_pic"
                             alt=""
                           />
@@ -875,7 +695,10 @@
                     </div>
                     <div class="p-0">
                       <div class="ld-details-section">
-                        <p class="mb-0 text-18 color-dark font-semi-bold">
+                        <p
+                          v-if="data.user_info"
+                          class="mb-0 text-18 color-dark font-semi-bold"
+                        >
                           {{
                             data.user_info.first_name +
                             (data.user_info.last_name
@@ -889,13 +712,8 @@
                           }}
                         </p>
                         <p
-                          class="
-                            color-secondary
-                            text-16
-                            font-regular
-                            mb-0
-                            text-truncate
-                          "
+                          v-if="data.user_info"
+                          class="color-secondary text-16 font-regular mb-0 text-truncate"
                         >
                           {{ data.user_info.email }}
                         </p>
@@ -928,21 +746,7 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <!-- <div class="modal-header">
-            <h4 class="modal-title color-dark" id="addLeaderModalLongTitle">
-              Add Leaders
-            </h4>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div> -->
           <div class="modal-body no-overflow px-4 pt-4">
-            <!-- <div class="col-md-5 col-xs-12"> -->
             <h3
               class="modal-title color-primary font-semi-bold"
               id="addLeaderModalLongTitle"
@@ -962,8 +766,6 @@
                 <span slot="noResult">No data found</span>
               </multiselect>
             </div>
-
-            <!-- </div> -->
           </div>
           <div class="modal-footer px-4">
             <button
@@ -1002,37 +804,20 @@
             <h3 class="modal-title color-primary" id="addBannerModalLongTitle">
               Add Banner
             </h3>
-            <!-- <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button> -->
           </div>
           <div class="modal-body overflow-hidden d-flex flex-column px-4">
             <div class="d-flex flex-column overflow-hidden h-100">
               <div
                 size="120"
-                class="
-                  user
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                  py-4
-                  rounded
-                  card card-primary-sm
-                  mb-3
-                "
+                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-sm mb-3"
               >
-                <!-- <v-img :src="image_name" class="profile-img"></v-img> -->
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"
                   @click="$refs.FileInput.click()"
                   >mdi-upload</v-icon
                 >
                 <input
+                  id="file-input"
                   ref="FileInput"
                   type="file"
                   accept="image/*"
@@ -1040,16 +825,8 @@
                   @change="onFileSelect"
                 />
               </div>
-              <!-- <v-dialog v-model="dialog" width="500"> -->
               <v-card
-                class="
-                  bg-transparent
-                  shadow-none
-                  h-100
-                  overflow-hidden
-                  d-flex
-                  flex-column
-                "
+                class="bg-transparent shadow-none h-100 overflow-hidden d-flex flex-column"
               >
                 <v-card-text class="p-0 h-100 overflow-hidden">
                   <VueCropper
@@ -1064,55 +841,109 @@
                 <v-card-actions class="justify-content-end">
                   <v-btn
                     color="primary"
-                    class="
-                      btn btn-secondary
-                      color-white
-                      font-semi-bold
-                      mr-2
-                      py-1
-                      px-3
-                      rounded-12
-                      text-capitalize
-                    "
+                    class="btn btn-secondary color-white font-semi-bold mr-2 py-1 px-3 rounded-12 text-capitalize"
                     text
                     data-dismiss="modal"
                     @click="clearCrop"
                     ><span class="font-semi-bold">Cancel</span></v-btn
                   >
                   <v-btn
-                    class="
-                      btn btn-success
-                      font-semi-bold
-                      bg-primary
-                      color-dark
-                      py-1
-                      px-3
-                      rounded-12
-                      text-capitalize
-                      shadow-none
-                    "
+                    class="btn btn-success font-semi-bold bg-primary color-dark py-1 px-3 rounded-12 text-capitalize shadow-none"
                     @click="saveImage(), (dialog = false)"
                     ><span class="font-semi-bold">Upload</span></v-btn
                   >
                 </v-card-actions>
               </v-card>
-              <!-- </v-dialog> -->
             </div>
           </div>
-
-          <!-- <div class="modal-footer px-4">
-            <button
-              class="btn btn-primary"
-              :disabled="!leaderUpdate"
-              @click.prevent="addLeader()"
-            >
-              Update
-            </button>
-          </div> -->
         </div>
       </div>
     </div>
     <!-- modal add banner -->
+
+    <!-- modal for confirmation pop up -->
+    <div
+      class="modal fade"
+      id="confirmationModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="confirmationModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-0">
+            <h2 class="modal-title font-bold" id="confirmationModalLongTitle">
+              {{ showClubInfo ? "Club Information" : "Confirmation" }}
+            </h2>
+          </div>
+          <div v-if="!showClubInfo" class="modal-body">
+            <p class="confirm-text d-flexconfirm-text d-flex">
+              <span class="w-100 color-dark font-semi-bold"
+                >{{ confirmationMessage }}
+              </span>
+            </p>
+          </div>
+          <div v-if="showClubInfo && clubInformation" class="modal-body">
+            <div class="confirm-text">
+              <div>
+                <label for="created_at">Type: </label>
+                <span class="color-dark font-semi-bold"
+                  >{{
+                    clubInformation.activity_type == "Clubs" ? "Club" : "Team"
+                  }}
+                </span>
+              </div>
+              <div>
+                <label for="created_at">Created By: </label>
+                <span
+                  v-if="clubInformation.student"
+                  class="color-dark font-semi-bold"
+                  >{{
+                    clubInformation.student.first_name +
+                    " " +
+                    clubInformation.student.last_name
+                  }}
+                </span>
+              </div>
+              <div>
+                <label for="created_at">Created At: </label>
+                <span class="color-dark font-semi-bold"
+                  >{{ clubCreatedAt }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div v-if="!showClubInfo" class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              No
+            </button>
+            <button
+              type="button"
+              class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+              @click="confirmAction()"
+            >
+              Yes
+            </button>
+          </div>
+          <div v-if="showClubInfo" class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal for confirmation pop up end -->
   </div>
 </template>
 <script>
@@ -1175,22 +1006,33 @@ export default {
       image: "",
       dialog: false,
       files: "",
+      dropdownVisible: false,
+      confirmEvent: "",
+      confirmationMessage: "",
+      showClubInfo: false,
+      clubCreatedAt: "",
+      userType: "",
+      startTime: null,
+      isSchoolAdmin: "0",
     };
   },
 
   mounted() {
-    var user = localStorage.getItem("user_type");
+    if (localStorage.getItem("schoolAdmin")) {
+      this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
+    }
+    const page = "ClubDetail";
+    const distinct_id = localStorage.getItem("distinctId");
+    this.$mixpanel.track("Page View", { distinct_id, page });
+    this.startTime = new Date().getTime();
+
+    this.userType = localStorage.getItem("user_type");
     this.getClubMoreInfo();
     this.SlotswithId();
-    // load students for add leader
     this.GetStudents();
 
-    // if (user == 3) {
     this.ClubInfo();
     this.GetTag();
-    // } else {
-    //   this.$router.push("/");
-    // }
   },
   computed: {
     ...mapState("clubInfo", {
@@ -1212,14 +1054,19 @@ export default {
       errorTypeClub: (state) => state.errorType,
       clubBannerImage: (state) => state.clubBannerImage,
     }),
-    ...mapState("teacherMeeting", {
-      // students: (state) => state.students,
-    }),
+    ...mapState("teacherMeeting", {}),
     ...mapState("clubFiles", {
       successMessageClubFile: (state) => state.successMessage,
       SuccessTypeClubFile: (state) => state.SuccessType,
       errorMessageClubFile: (state) => state.errorMessage,
       errorTypeClubFile: (state) => state.errorType,
+    }),
+    ...mapState("clubUpdates", {
+      successTypeClubUpdate: (state) => state.successTypeClubUpdate,
+      successMessageClubUpdate: (state) => state.successMessageClubUpdate,
+      errorMessageClubUpdate: (state) => state.errorMessageClubUpdate,
+      errorTypeClubUpdate: (state) => state.errorTypeClubUpdate,
+      clubInformation: (state) => state.clubInformation,
     }),
   },
   methods: {
@@ -1239,14 +1086,18 @@ export default {
       updateTime: "updateTime",
       slotswithId: "slotswithId",
     }),
-    ...mapActions("teacherMeeting", {
-      // getStudents: "getStudents",
-    }),
+    ...mapActions("teacherMeeting", {}),
     ...mapActions("clubFiles", {
       clubFiles: "clubFiles",
       uploadFile: "uploadFile",
       fileRemove: "fileRemove",
       uploadBanner: "uploadBanner",
+    }),
+    ...mapActions("clubUpdates", {
+      clubDelete: "clubDelete",
+      clubLeave: "clubLeave",
+      leaderRemove: "leaderRemove",
+      getInformation: "getInformation",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -1325,7 +1176,6 @@ export default {
       this.list_data.forEach((e) => {
         if (e.taglists && e.taglists.length > 0) {
           e.taglists.forEach((tag) => {
-            // let index = this.tagColorMap.find((index) => index.tag == tag);
             if (!this.tagColorMap[tag.name]) {
               let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
               const key = tag.name;
@@ -1334,7 +1184,6 @@ export default {
             }
           });
           this.tagColorMap = obj;
-          console.log("color", this.tagColorMap);
         }
       });
     },
@@ -1369,8 +1218,8 @@ export default {
         club_id: this.$route.query.id,
         user_id: localStorage.getItem("id"),
       });
-      this.activity_type = this.allList[0].activity_type;
       this.loading = false;
+      this.activity_type = this.allList[0].activity_type;
       this.list_data = [];
       this.clubDetails = this.allList[0];
       this.leadersInfo = this.allList[1].Leaders_info;
@@ -1414,7 +1263,6 @@ export default {
         Scheduleobj["todoArr"] = todoArr;
         Scheduleobj["taglists"] = taglists;
         this.list_data.push(Scheduleobj);
-        // this.taglist = this.taglist.filter( ( el ) => !this.list_data.includes( el ) );
       });
       this.generateRandomColor();
       if (statusValue == "active") {
@@ -1505,6 +1353,7 @@ export default {
           duration: 5000,
         });
       }
+      this.getClubMoreInfo();
       this.ClubInfo();
     },
     async RemoveTag(val) {
@@ -1535,14 +1384,20 @@ export default {
     },
     onNextMeeting() {
       if (this.enableEdit) {
+        this.valueMeeting = "";
+        this.dayArrVal = [];
         $("#nextMeetingModal").modal();
+        let activeElements = document.getElementsByClassName(
+          "btn date-picker badge badge-pill badge-color active"
+        );
+        Array.prototype.forEach.call(activeElements, function (element) {
+          element.classList.remove("active");
+        });
       }
     },
     // adding student leader
     async GetStudents() {
       await this.getStudents({
-        // school_id: localStorage.getItem("school_id"),
-        // studentId: localStorage.getItem("id"),
         clubId: this.$route.query.id,
       });
     },
@@ -1591,36 +1446,19 @@ export default {
         if (blob) {
           var file = new File([blob], "name");
           blob.fileName = this.fileName;
-          console.log("consoling image outputs ", blob, file);
-          formData.append("file", blob, this.fileName);
+          let uploadedName = this.fileName.split(".")[0];
+          let timestampName =
+            uploadedName +
+            "_" +
+            new Date().getTime() +
+            "." +
+            this.fileName.split(".")[1];
+          formData.append("file", blob, timestampName);
           formData.append("club_id", this.$route.query.id);
           formData.append("user_id", localStorage.getItem("id"));
           formData.append("club_banner", "1");
 
           this.upload(formData);
-
-          // this.uploadBanner(formData, {
-          //   headers: {
-          //     "Content-Type": "multipart/form-data",
-          //   },
-          //   club_id: this.$route.query.id,
-          // });
-          // if (this.successMessageClubFile != "") {
-          //   $(".modal").modal("hide");
-          //   $(".modal-backdrop").remove();
-          //   this.$toast.open({
-          //     message: this.successMessageClubFile,
-          //     type: this.SuccessTypeClubFile,
-          //     duration: 5000,
-          //   });
-          //   this.getClubMoreInfo();
-          // } else if (this.errorMessageClubFile != "") {
-          //   this.$toast.open({
-          //     message: this.errorMessageClubFile,
-          //     type: this.errorTypeClubFile,
-          //     duration: 5000,
-          //   });
-          // }
         }
       }, this.mime_type);
     },
@@ -1631,7 +1469,6 @@ export default {
         },
         club_id: this.$route.query.id,
       });
-      //   this.loading = false;
       if (this.successMessageClubFile != "") {
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
@@ -1663,7 +1500,6 @@ export default {
         const file = e.target.files[0];
         this.mime_type = file.type;
         this.fileName = file.name;
-        console.log(this.mime_type, file);
         if (typeof FileReader === "function") {
           this.dialog = true;
           const reader = new FileReader();
@@ -1693,9 +1529,149 @@ export default {
     },
 
     clearCrop() {
+      const fileInput = document.getElementById("file-input");
+      fileInput.value = "";
       this.selectedFile = "";
       this.$refs.cropper.destroy();
     },
+    toggleDropdown() {
+      this.dropdownVisible = !this.dropdownVisible;
+    },
+    openConfirm(event) {
+      this.showClubInfo = false;
+      this.confirmEvent = event;
+      $("#confirmationModal").modal();
+      this.confirmationMessage = this.setConfirmationMessage(event);
+    },
+    setConfirmationMessage(event) {
+      const type = this.type == "Sports" ? " team" : " club";
+
+      switch (event) {
+        case "delete": {
+          return (
+            "Are you sure you want to delete this " +
+            type +
+            "? This action is not reversible!"
+          );
+        }
+        case "remove_leader": {
+          return (
+            "Are you sure you want to remove yourself as a leader of this " +
+            type +
+            "? This action is not reversible!"
+          );
+        }
+        case "leave": {
+          return (
+            "Are you sure you want to leave this " +
+            type +
+            "? This action is not reversible!"
+          );
+        }
+        case "info": {
+          this.showClubInfo = true;
+          this.getClubInformation();
+          return "";
+        }
+        default: {
+          return "";
+        }
+      }
+    },
+    confirmAction() {
+      switch (this.confirmEvent) {
+        case "delete": {
+          this.deleteClub();
+          break;
+        }
+        case "remove_leader": {
+          this.removeAsLeader();
+          break;
+        }
+        case "leave": {
+          this.leaveClub();
+          break;
+        }
+
+        default: {
+          return "";
+        }
+      }
+    },
+    async deleteClub() {
+      await this.clubDelete({
+        club_id: this.clubId,
+      });
+      if (this.successMessageClubUpdate != "") {
+        if (this.isSchoolAdmin == "1") {
+          this.$router.push("/club-catalogue");
+        } else {
+          this.$router.push("/club-detail");
+        }
+        this.$toast.open({
+          message: this.successMessageClubUpdate,
+          type: this.successTypeClubUpdate,
+          duration: 5000,
+        });
+      } else if (this.errorMessageClubUpdate != "") {
+        this.$toast.open({
+          message: this.errorMessageClubUpdate,
+          type: this.errorTypeClubUpdate,
+          duration: 5000,
+        });
+      }
+    },
+    async removeAsLeader() {
+      await this.leaderRemove({
+        club_id: this.clubId,
+      });
+      if (this.successMessageClubUpdate != "") {
+        this.$toast.open({
+          message: this.successMessageClubUpdate,
+          type: this.successTypeClubUpdate,
+          duration: 5000,
+        });
+      } else if (this.errorMessageClubUpdate != "") {
+        this.$toast.open({
+          message: this.errorMessageClubUpdate,
+          type: this.errorTypeClubUpdate,
+          duration: 5000,
+        });
+      }
+      this.ClubInfo();
+    },
+    async leaveClub() {
+      await this.clubLeave({
+        club_id: this.clubId,
+      });
+      if (this.successMessageClubUpdate != "") {
+        this.$router.push("/club-detail");
+        this.$toast.open({
+          message: this.successMessageClubUpdate,
+          type: this.successTypeClubUpdate,
+          duration: 5000,
+        });
+      } else if (this.errorMessageClubUpdate != "") {
+        this.$toast.open({
+          message: this.errorMessageClubUpdate,
+          type: this.errorTypeClubUpdate,
+          duration: 5000,
+        });
+      }
+    },
+    async getClubInformation() {
+      await this.getInformation({
+        club_id: this.clubId,
+      });
+      this.clubCreatedAt = this.clubInformation.createdAt;
+    },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "ClubDetail";
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
   },
 };
 </script>
@@ -1705,5 +1681,20 @@ export default {
   height: 600px;
   width: 600px;
   background: #ddd;
+}
+
+.dropdown-club {
+  display: none;
+}
+.dropdown-club--visible {
+  display: block;
+  position: absolute;
+  width: 235px;
+  height: auto;
+  z-index: 999;
+  border-radius: 0px 0px 1rem 1rem;
+  right: 10px;
+  padding: 1rem;
+  color: #fff;
 }
 </style>
