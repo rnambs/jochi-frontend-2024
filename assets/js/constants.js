@@ -4,16 +4,16 @@ export const defaultImage = 'https://jochi-live.s3.amazonaws.com/profilePic/defa
 // export const defaultImage = '~/assets/images/avatar/man_green.svg';
 
 
-// export const BASE_URL = 'https://api.jochi.live/';
-export const BASE_URL = 'https://api.jochi.devateam.com/';
+export const BASE_URL = 'https://api.jochi.live/';
+// export const BASE_URL = 'https://api.jochi.devateam.com/';
 // export const BASE_URL = 'http://localhost:3000/';
 
-// export const REDIRECT_LOGIN_URL = 'https://www.jochi.live/redirect-login';
-export const REDIRECT_LOGIN_URL = 'https://jochi.devateam.com/redirect-login';
+export const REDIRECT_LOGIN_URL = 'https://www.jochi.live/redirect-login';
+// export const REDIRECT_LOGIN_URL = 'https://jochi.devateam.com/redirect-login';
 // export const REDIRECT_LOGIN_URL = 'http://localhost:3101/redirect-login';
 
-// export const FRONTEND_BASE_URL = 'https://www.jochi.live';
-export const FRONTEND_BASE_URL = 'https://jochi.devateam.com/';
+export const FRONTEND_BASE_URL = 'https://www.jochi.live';
+// export const FRONTEND_BASE_URL = 'https://jochi.devateam.com/';
 // export const FRONTEND_BASE_URL = 'http://localhost:3101/';
 
 export const MIXPANEL_TOKEN = 'b9cdd17303381147a3e2c53700e2da94'; //client account
