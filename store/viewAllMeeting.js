@@ -21,10 +21,9 @@ const actions = {
                     'Authorization': ` ${token}`
                 },
             });
-            console.log("response ", response)
             commit('setAllList', response.data);
             commit('setTimeZone', response.timeZone);
-        } catch {
+        } catch (e) {
             if (e?.response?.data?.message == "Unauthorized") {
                 commit('setSuccessMessages', "");
                 commit('setSuccessTypes', "");
@@ -46,7 +45,7 @@ const actions = {
                 },
             });
             commit('setAllData', response.data);
-        } catch {
+        } catch (e) {
             if (e?.response?.data?.message == "Unauthorized") {
                 commit('setSuccessMessages', "");
                 commit('setSuccessTypes', "");
@@ -157,10 +156,9 @@ const actions = {
                     'Authorization': ` ${token}`
                 },
             });
-            console.log("response ", response)
             commit('setAllMeetingMonthList', response.data);
             commit('setTimeZone', response.timeZone);
-        } catch {
+        } catch (e) {
             if (e?.response?.data?.message == "Unauthorized") {
                 commit('setSuccessMessages', "");
                 commit('setSuccessTypes', "");

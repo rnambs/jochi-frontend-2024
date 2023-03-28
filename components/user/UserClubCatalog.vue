@@ -7,40 +7,42 @@
       class="lottie-loader"
     />
     <div class="main-section">
-      <!-- tab for club catalog -->
       <div
-        class="
-          jochi-components-light-bg
-          p-4
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-        "
+        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid">
             <div class="d-flex justify-content-between align-item-center">
               <div class="d-flex flex-column">
-                <h2 class="color-primary font-semi-bold mb-1">Club Catalog</h2>
+                <h2
+                  data-intro="View all the community service, sports teams, and clubs available at your school. To learn more about different activities, click learn more."
+                  class="color-primary font-semi-bold mb-1"
+                >
+                  Club Catalog
+                </h2>
                 <h4 class="mb-2 color-dark font-semi-bold">
-                  Find your People!
+                  Find your people!
                 </h4>
               </div>
-              <!-- data-toggle="modal"
-                data-target="#createNewModal" -->
-              <button
-                v-if="user_type == 3"
-                type="button"
-                class="btn btn-dark py-2 mt-1 h-fit-content px-4"
-                @click="openCreateNewModal"
+
+              <div
+                data-intro="You can even create your own extracurricular here. It may take some time to appear as an administrator at your school and will have to approve this before other students can see your new extracurricular activity."
               >
-                Create New
-              </button>
+                <button
+                  v-if="user_type == 3"
+                  type="button"
+                  class="btn btn-dark py-2 mt-1 h-fit-content px-4"
+                  @click="openCreateNewModal"
+                >
+                  Create your own club
+                </button>
+              </div>
             </div>
             <div class="row p-2">
               <div class="col-md-4">
                 <div class="form-row position-relative">
                   <input
+                    data-intro="Search for different extracurriculars (sports, clubs, extracurriculars) from this search bar."
                     class="form-control w-100 tab-form-control"
                     type="text"
                     v-model="search"
@@ -54,6 +56,7 @@
               </div>
               <div class="col-md-4">
                 <div
+                  data-intro="Filter extracurriculars based on different tags here."
                   class="input-icon-area custom-multiselect-adj-text form-row"
                 >
                   <multiselect
@@ -66,9 +69,6 @@
                   >
                     <span slot="noResult">No data found</span>
                   </multiselect>
-                  <!-- <span class="input-icon">
-                      <i class="fa fa-filter" aria-hidden="true"></i>
-                    </span> -->
                 </div>
               </div>
             </div>
@@ -84,95 +84,39 @@
           class="d-flex flex-column flex-fill h-40 pr-3"
         >
           <div
-            class="
-              inner-club
-              container-fluid
-              bg-transparent
-              custom-overflow
-              pe-2
-              mr--2
-              mt-0
-              d-flex
-              flex-column flex-fill
-            "
+            class="inner-club container-fluid bg-transparent custom-overflow pe-2 mr--2 mt-0 d-flex flex-column flex-fill"
           >
             <div
               class="pt-4 pb-3 border-bottom"
               v-for="(list, index) in list_data"
               :key="index"
             >
-              <!-- <div class="row-heading col-12">
-                    <h6 class="mb-0">{{ list["name"] }}</h6>
-                  </div> -->
               <div class="row catalog-row">
                 <div class="col-lg-4">
-                  <h4 class="mb-2 color-dark font-semi-bold">
+                  <h4 class="mb-2 color-dark font-semi-bold text-capitalize">
                     {{ list["name"] }}
                   </h4>
-                  <!-- <p class="catalog-text">
-                        {{ list.part ? list.part : "No data "
-                        }}<span :id="'dots' + list.id" v-if="list.remaining"
-                          >...</span
-                        ><span :id="'more' + list.id" style="display: none">
-                          {{ list.remaining }}
-                        </span>
-                      </p> -->
+
                   <p class="color-secondary fort-regular text-14 mb-0">
                     {{ list.activity_type == "Clubs" ? "Club" : "Team" }}
                   </p>
                 </div>
                 <div
-                  class="
-                    col-lg-6
-                    d-flex
-                    justify-content-start justify-content-lg-end
-                  "
+                  class="col-lg-6 d-flex justify-content-start justify-content-lg-end"
                 >
                   <div
-                    class="
-                      p-0
-                      pr-2 pr-sm-0 pr-md-4 pr-xl-2
-                      d-flex
-                      justify-content-start justify-content-lg-end
-                    "
+                    class="p-0 pr-2 pr-sm-0 pr-md-4 pr-xl-2 d-flex justify-content-start justify-content-lg-end"
                   >
                     <div
-                      class="
-                        to-do-ul
-                        d-flex
-                        align-items-center
-                        justify-content-start justify-content-lg-end
-                        flex-wrap
-                      "
+                      class="to-do-ul d-flex align-items-center justify-content-start justify-content-lg-end flex-wrap"
                     >
                       <p
                         v-for="(todos, index) in list.tagList"
                         :key="index"
                         class="mb-2"
                       >
-                        <!-- <li
-                              class="to-do-li"
-                              v-if="
-                                index % 2 == 0 &&
-                                (!(expandId == list.id) ? index < 4 : true)
-                              "
-                            >
-                              {{ todos }}
-                            </li> -->
                         <span
-                          class="
-                            to-do-li
-                            color-white
-                            text-14
-                            rounded-6
-                            px-4
-                            py-1
-                            m-1
-                            min-w-100
-                            d-flex
-                            justify-content-center
-                            bg-theme
-                          "
+                          class="to-do-li color-white text-14 rounded-6 px-4 py-1 m-1 min-w-100 d-flex justify-content-center bg-theme"
                           :style="{
                             'background-color': tagColorMap[todos]
                               ? tagColorMap[todos]
@@ -191,82 +135,30 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div class="col-md-3">
-                      <ul class="to-do-ul">
-                        <span
-                          v-for="(todos, index) in list.tagList"
-                          :key="index"
-                        >
-                          <li
-                            class="to-do-li"
-                            v-if="
-                              index % 2 != 0 &&
-                              (!(expandId == list.id) ? index < 4 : true)
-                            "
-                          >
-                            {{ todos }}
-                          </li>
-                        </span>
-                      </ul>
-                    </div> -->
-                <!-- <div class="col-md-2">
-                      <a
-                        href="#"
-                        class="btn btn-join-now"
-                        @click="JoinClub(list.id)"
-                        >Join Now</a
-                      >
-                      <a
-                        v-if="
-                          (list.part && list.remaining) ||
-                          list.tagList.length >= 5
-                        "
-                        class="btn readmore-btn"
-                        @click="myFunction(list.id)"
-                        :id="list.id"
-                        >Read more<i class="fas fa-chevron-right pl-1"></i
-                      ></a>
-                    </div> -->
-
-                <!-- <div class="col-lg-2 d-flex justify-content-start justify-content-lg-end">
-                      <nuxt-link
-                        :to="{
-                          path: '/student-club-view',
-                          query: { id: list.id, name: list.activity_type },
-                        }"
-                        class="
-                          btn
-                          btn-primary
-                          py-2
-                          px-4
-                          mt-2
-                          h-fit-content
-                        "
-                      >
-                        View More
-                      </nuxt-link>
-                    </div>
-                  </div>
-                </div> -->
                 <div
-                  class="
-                    col-lg-2
-                    d-flex
-                    justify-content-start justify-content-lg-end
-                  "
+                  class="col-lg-2 d-flex justify-content-start justify-content-lg-end"
                 >
                   <nuxt-link
+                    v-if="isSchoolAdmin != '1'"
                     :to="{
                       path: '/student-club-view',
                       query: { id: list.id, name: list.name },
                     }"
-                    class="
-                      btn btn-primary
-                      py-1
-                      mt-2
-                      h-fit-content
-                      px-lg-3 px-xl-4
-                    "
+                    class="btn btn-primary py-1 mt-2 h-fit-content px-lg-3 px-xl-4"
+                  >
+                    Learn More
+                  </nuxt-link>
+                  <nuxt-link
+                    v-else
+                    :to="{
+                      path: '/club-moreInfo',
+                      query: {
+                        id: list.id,
+                        name: list.name,
+                        type: list.activity_type,
+                      },
+                    }"
+                    class="btn btn-primary py-1 mt-2 h-fit-content px-lg-3 px-xl-4"
                   >
                     Learn More
                   </nuxt-link>
@@ -297,34 +189,17 @@
           >
             <div class="modal-content">
               <div class="modal-header pb-1">
-                <h3 class="modal-title" id="exampleModalLabel">Create New</h3>
-                <!-- <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  @click="resetClubData"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button> -->
+                <h3 class="modal-title" id="exampleModalLabel">
+                  Create your own club
+                </h3>
               </div>
               <div class="modal-body px-4">
                 <form action="">
                   <table class="w-100 table-modal custom-row-table">
                     <tr>
-                      <!-- <td class="tmodal-data text-nowrap">Name</td> -->
                       <td class="tmodal-data d-flex">
                         <p
-                          class="
-                            mb-0
-                            tdata-overflow
-                            d-flex
-                            align-items-center
-                            form-row
-                            px-0
-                            py-1
-                            col-12 col-md-10 col-lg-9
-                          "
+                          class="mb-0 tdata-overflow d-flex align-items-center form-row px-0 py-1 col-12 col-md-10 col-lg-9"
                         >
                           <span class="pr-2"></span>
                           <input
@@ -350,19 +225,9 @@
                       </td>
                     </tr>
                     <tr>
-                      <!-- <td class="tmodal-data text-nowrap">Description</td> -->
                       <td class="tmodal-data d-flex">
                         <p
-                          class="
-                            mb-0
-                            tdata-overflow
-                            d-flex
-                            align-items-center
-                            form-row
-                            col-12 col-md-11 col-lg-10
-                            px-0
-                            py-1
-                          "
+                          class="mb-0 tdata-overflow d-flex align-items-center form-row col-12 col-md-11 col-lg-10 px-0 py-1"
                         >
                           <span class="pr-2"></span>
                           <textarea
@@ -389,19 +254,9 @@
                       </td>
                     </tr>
                     <tr>
-                      <!-- <td class="tmodal-data text-nowrap">Type</td> -->
                       <td class="tmodal-data d-flex">
                         <p
-                          class="
-                            mb-0
-                            tdata-overflow
-                            d-flex
-                            align-items-center
-                            form-row
-                            col-12 col-md-7 col-lg-6
-                            px-0
-                            py-1
-                          "
+                          class="mb-0 tdata-overflow d-flex align-items-center form-row col-12 col-md-7 col-lg-6 px-0 py-1"
                         >
                           <span class="pr-2"></span>
                           <select
@@ -427,23 +282,6 @@
                         </div>
                       </td>
                     </tr>
-
-                    <!-- <tr>
-                      <td class="tmodal-data text-nowrap">Tags</td>
-                      <td class="tmodal-data">
-                        <p class="mb-0 tdata-overflow  d-flex align-items-center">
-                          <span class="pr-2">:</span>
-                          <select
-                            class="custom-select custom-select-sm mb-3"
-                          >
-                            <option value="Video Conference">
-                              Tag 1
-                            </option>
-                            <option value="In Person">Tag 2</option>
-                          </select>
-                        </p>
-                      </td>
-                    </tr> -->
                   </table>
                 </form>
               </div>
@@ -489,6 +327,16 @@ export default {
     Multiselect,
     lottie,
   },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
+  },
   data() {
     return {
       user_type: 0,
@@ -500,7 +348,6 @@ export default {
       search: "",
       todoList: false,
       expandId: "",
-      // taglist: [],
       activity_type: "",
       name: "",
       description: "",
@@ -508,6 +355,8 @@ export default {
       tags: [],
       debounce: null,
       tagColorMap: {},
+      startTime: null,
+      isSchoolAdmin: "0",
     };
   },
   validations: {
@@ -516,10 +365,18 @@ export default {
     description: { required },
   },
   mounted() {
+    window.addEventListener("orientationchange", this.handleOrientationChange);
+    this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
+    const page = "ClubCatalog";
+    const distinct_id = localStorage.getItem("distinctId");
+    this.$mixpanel.track("Page View", { distinct_id, page });
+    this.startTime = new Date().getTime();
+
     this.user_type = localStorage.getItem("user_type");
     SelectValue = "";
     this.GetTag();
     this.ClubCatalogue();
+    this.startIntro();
   },
   computed: {
     ...mapState("clubCatalogue", {
@@ -530,6 +387,9 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("clubCatalogue", {
@@ -654,18 +514,14 @@ export default {
     generateRandomColor() {
       this.tagColorMap = {};
       const obj = {};
-      // console.log("color", this.list_data);
       this.list_data.forEach((e) => {
         if (e.tagList && e.tagList.length > 0) {
           e.tagList.forEach((tag) => {
-            // let index = this.tagColorMap.find((index) => index.tag == tag);
             if (!this.tagColorMap[tag]) {
               let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
               const key = tag;
 
               obj[key] = color;
-
-              console.log(obj);
             }
             this.tagColorMap = obj;
           });
@@ -723,7 +579,6 @@ export default {
           this.resetClubData();
           $("#createNewModal").modal("hide");
           $(".modal-backdrop").remove();
-          // $(".modal").modal("hide");
           this.$toast.open({
             message: this.successMessage,
             type: this.SuccessType,
@@ -750,6 +605,44 @@ export default {
       this.resetClubData();
       $("#createNewModal").modal({ backdrop: true });
     },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      let skip = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
+          completed = true;
+          if (state != "skip") this.$router.push("/study-time");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
+    },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
+  },
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "ClubCatalog";
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
+  },
+  destroyed() {
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
   },
 };
 </script>
