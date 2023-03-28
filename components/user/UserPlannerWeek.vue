@@ -25,9 +25,9 @@
                       <li><span>Club Meeting</span></li>
                       <li><span>Peer Meeting</span></li>
                       <li><span>Teacher Meeting</span></li>
-                      <li><span>Trainings</span></li>
-                      <li><span>Matches</span></li>
                       <li><span>Overdue Assignments</span></li>
+                      <li><span>Matches</span></li>
+                      <li><span>Trainings</span></li>
                       <!-- <li><span>color-10</span></li> -->
                     </ul>
                   </div>
