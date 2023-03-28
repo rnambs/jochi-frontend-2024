@@ -2,17 +2,7 @@
   <div>
     <div
       id="pageLoader"
-      class="
-        bg-light
-        d-flex
-        align-items-center
-        justify-content-center
-        position-fixed
-        vh-100
-        vw-100
-        left-0
-        top-0
-      "
+      class="bg-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
       style="z-index: 9"
       v-if="!isHidden"
     >
@@ -29,13 +19,7 @@
       <section id="teacher-detail" class="">
         <div class="teacher-section">
           <div
-            class="
-              inner-teacher
-              jochi-components-light-bg
-              custom-margin-for-main-section custom-full-height
-              d-flex
-              flex-column
-            "
+            class="inner-teacher jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
           >
             <div
               class="d-flex justify-content-between align-items-start pt-4 px-4"
@@ -47,10 +31,22 @@
                 <h2 class="color-primary font-semi-bold">Have a great day</h2>
               </div>
               <div class="d-flex align-items-center">
-                <div class="btn color-dark font-semi-bold mr-3">FAQs</div>
-                <div class="btn color-dark font-semi-bold mr-4">
+                <!-- <div class="btn color-dark font-semi-bold mr-3">FAQs</div> -->
+                <a
+                  class="btn color-dark font-semi-bold mr-3"
+                  href="https://www.jochi.info/faqs"
+                >
+                  FAQ's
+                </a>
+                <!-- <div class="btn color-dark font-semi-bold mr-4">
                   Privacy Policy
-                </div>
+                </div> -->
+                <a
+                  class="btn color-dark font-semi-bold mr-4"
+                  href="https://www.jochi.info/privacy-policy"
+                >
+                  Privacy Policy
+                </a>
               </div>
             </div>
             <div class="h-40 flex-fill custom-overflow px-4 pt-4 pb-2 mb-2">
@@ -58,52 +54,22 @@
                 <!-- CALANDER -->
                 <!-- AGENDA -->
                 <div
-                  class="
-                    col-md-6
-                    container
-                    custom-teacher-container
-                    d-flex
-                    flex-column
-                    h-100
-                  "
+                  class="col-md-6 container custom-teacher-container d-flex flex-column h-100"
                 >
                   <div
-                    class="
-                      time-slot
-                      container
-                      p-4
-                      card card-primary-sm
-                      rounded-22
-                      h-100
-                    "
+                    class="time-slot container p-4 card card-primary-sm rounded-22 h-100"
                   >
                     <h4 class="color-dark mb-4 px-2 font-semi-bold">
                       Meetings for {{ showDate }}
                     </h4>
                     <div class="h-40 flex-fill hidden-scroll">
                       <div
-                        class="
-                          card card-white
-                          d-flex
-                          flex-row
-                          align-items-center
-                          mb-2
-                          p-3
-                        "
+                        class="card card-white d-flex flex-row align-items-center mb-2 p-3"
                         v-for="(list, index) in listAgenda"
                         :key="index"
                       >
                         <span
-                          class="
-                            image-icon
-                            py-0
-                            d-flex
-                            align-items-center
-                            justify-content-center
-                            bg-primary
-                            rounded-circle
-                            p-2
-                          "
+                          class="image-icon py-0 d-flex align-items-center justify-content-center bg-primary rounded-circle p-2"
                         >
                           <i
                             class="fas fa-users color-white"
@@ -122,7 +88,10 @@
                           </span>
                         </div>
                       </div>
-                      <div v-if="listAgenda.length == 0" class="empty-shedule">
+                      <div
+                        v-if="listAgenda.length == 0"
+                        class="empty-shedule d-flex h-100 justify-content-center align-items-center"
+                      >
                         <p class="color-secondary text-center">
                           No meetings for the day
                         </p>
@@ -135,39 +104,18 @@
                 </div>
                 <!-- END AGENDA -->
                 <div
-                  class="
-                    col-md-6
-                    custom-teacher-container
-                    d-flex
-                    flex-column
-                    h-100
-                  "
+                  class="col-md-6 custom-teacher-container d-flex flex-column h-100"
                 >
                   <!-- TABLE  -->
                   <div
-                    class="
-                      teacher-row
-                      container
-                      mb-4
-                      card card-primary-sm
-                      rounded-22
-                      p-0
-                      h-40
-                      flex-fill
-                    "
+                    class="teacher-row container mb-4 card card-primary-sm rounded-22 p-0 h-40 flex-fill"
                   >
                     <div class="appointment-req d-flex flex-column h-100 p-2">
                       <h6 class="text-center color-primary pt-3 mb-0">
                         Meeting Requests
                       </h6>
                       <div
-                        class="
-                          table-req
-                          container
-                          py-3
-                          custom-overflow-x custom-overflow
-                          h-100
-                        "
+                        class="table-req container py-3 custom-overflow-x custom-overflow h-100"
                       >
                         <table class="table mb-0">
                           <thead>
@@ -212,15 +160,7 @@
                               <td class="text-12">30 Min</td>
                               <td>
                                 <button
-                                  class="
-                                    d-flex
-                                    btn
-                                    border border-success
-                                    text-success
-                                    meet-req
-                                    px-3
-                                    py-1
-                                  "
+                                  class="d-flex btn border border-success text-success meet-req px-3 py-1"
                                   @click="
                                     TeacherMeetingConfirm(
                                       teacher.studentId,
@@ -238,14 +178,7 @@
                               </td>
                               <td>
                                 <button
-                                  class="
-                                    d-flex
-                                    btn
-                                    border border-danger
-                                    text-danger
-                                    px-3
-                                    py-1
-                                  "
+                                  class="d-flex btn border border-danger text-danger px-3 py-1"
                                   @click="
                                     TeacherMeetingConfirm(
                                       teacher.studentId,
@@ -263,14 +196,7 @@
                               <td>
                                 <button
                                   @click="setMeeting(teacher)"
-                                  class="
-                                    d-flex
-                                    btn
-                                    border border-primary
-                                    text-primary
-                                    px-3
-                                    py-1
-                                  "
+                                  class="d-flex btn border border-primary text-primary px-3 py-1"
                                 >
                                   <i class="fas fa-eye text-12"></i>
                                 </button>
@@ -289,16 +215,7 @@
                   </div>
                   <!-- END TABLE  -->
                   <div
-                    class="
-                      inner-custom-teacher
-                      dashboard-cal
-                      calendar-sm
-                      container
-                      p-3
-                      pt-4
-                      card card-primary-sm
-                      rounded-22
-                    "
+                    class="inner-custom-teacher dashboard-cal calendar-sm container p-3 pt-4 card card-primary-sm rounded-22"
                   >
                     <FullCalendar :options="calendarOptions" />
                   </div>
@@ -479,15 +396,7 @@
                   meetingDetail.studentId &&
                   meetingDetail.reqId
                 "
-                class="
-                  d-flex
-                  btn btn-secondary
-                  rounded-12
-                  px-4
-                  py-1
-                  mx-2
-                  font-semi-bold
-                "
+                class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -505,14 +414,7 @@
                   meetingDetail.reqId &&
                   meetingDetail.selectableDate
                 "
-                class="
-                  d-flex
-                  btn btn-success
-                  rounded-12
-                  px-4
-                  py-1
-                  font-semi-bold
-                "
+                class="d-flex btn btn-success rounded-12 px-4 py-1 font-semi-bold"
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -527,15 +429,7 @@
               <button
                 v-else
                 data-dismiss="modal"
-                class="
-                  d-flex
-                  btn btn-secondary
-                  rounded-12
-                  px-4
-                  py-1
-                  mx-2
-                  font-semi-bold
-                "
+                class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
               >
                 <span class="text-16">Close</span>
               </button>
@@ -618,7 +512,6 @@ export default {
   },
   methods: {
     activate() {
-      console.log("inside hide timeout");
       setTimeout(() => (this.isHidden = true), 1500);
     },
     ...mapActions("teacherAppointment", {
@@ -631,7 +524,6 @@ export default {
     },
     setMeeting(teacher) {
       $("#mediumModal").modal("show");
-      console.log(teacher);
       this.meetingDetail = teacher;
     },
     async TeacherMeetingList() {

@@ -22,6 +22,9 @@
               >
                 <i class="fas fa-info"></i><span class="pl">Info</span>
               </nuxt-link>
+              <button class="btn p-1 m-2" CustomTitle="1200 X 180">
+                <i class="fas fa-cog color-white"></i>
+              </button>
             </div>
             <div class="col-md-4 col-xs-12">
               <nuxt-link
@@ -183,7 +186,7 @@
                     <button
                       v-if="enableEdit"
                       class="btn btn-primary rounded-pill mt-2 py-1 px-4"
-                      :disabled="!value"
+                      :disabled="!value || dayArrVal.length <= 0"
                       @click.prevent="UpdateTime"
                     >
                       Update the next meeting

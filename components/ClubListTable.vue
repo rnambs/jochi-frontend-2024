@@ -167,7 +167,7 @@
                     of {{ clubCount }}
                   </div>
 
-                  <div class="pr-2">clubs per page</div>
+                  <div class="pr-2">Clubs per page</div>
                   <div>
                     <select
                       name="rows per page"

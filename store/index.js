@@ -23,6 +23,8 @@ import { teacherLogin } from './teacherSignInRequest';
 import { emailVerified } from './emailVerified';
 import { teacherMeeting } from './teacherMeeting';
 import { customAvailability } from './customAvailability';
+import { studentCustomAvailability } from './studentCustomAvailability';
+import { clubUpdates } from './clubUpdates';
 import { teacherAppointment } from './teacherAppointment';
 import { viewAllMeeting } from './viewAllMeeting';
 import { appointmentVerified } from './appointmentVerified';
@@ -89,12 +91,16 @@ export const store = new Vuex.Store({
         dashBoard,
         teacherDashboard,
         userStudyAnalytics,
-        teacherSyncCalendar
+        teacherSyncCalendar,
+        studentCustomAvailability,
+        clubUpdates
     }
 });
 
 export const state = () => ({
-    isTimerRunning: false
+    isTimerRunning: false,
+    startProductGuide: false,
+    startProductGuideNotification: false,
 })
 
 export const mutations = {
@@ -103,6 +109,12 @@ export const mutations = {
         state.isTimerRunning = value
     },
 
+    setStartProductGuide(state, value) {
+        state.startProductGuide = value
+    },
+    setStartProductGuideNotification(state, value) {
+        state.startProductGuideNotification = value
+    }
 }
 
 

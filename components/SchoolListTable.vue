@@ -14,16 +14,7 @@
               <div id="app" class="custom-container pt-3 px-0">
                 <!-- search tab -->
                 <div
-                  class="
-                    row
-                    shadow-sm
-                    p-3
-                    bg-white
-                    rounded
-                    justify-content-between
-                    w-100
-                    m-0
-                  "
+                  class="row shadow-sm p-3 bg-white rounded justify-content-between w-100 m-0"
                 >
                   <div class="col-md-4 col-lg-3">
                     <h4 class="text-dark text-left">School</h4>
@@ -110,10 +101,7 @@
                           />
 
                           <label
-                            class="custom-control-label
-                        font-normal
-                        color-dark
-                        text-14"
+                            class="custom-control-label font-normal color-dark text-14"
                             :for="school.schoolId"
                           >
                             <span>
@@ -160,7 +148,7 @@
                     }}
                     of {{ schoolCount }}
                   </div>
-                  <div class="pr-2">schools per page</div>
+                  <div class="pr-2">Schools per page</div>
                   <div>
                     <select
                       name="rows per page"
@@ -219,11 +207,7 @@
                         <button
                           type="button"
                           data-dismiss="modal"
-                          class="
-                            btn btn-light
-                            border border-secondary
-                            color-dark
-                          "
+                          class="btn btn-light border border-secondary color-dark"
                           @click="cancel()"
                           aria-label="Close"
                         >

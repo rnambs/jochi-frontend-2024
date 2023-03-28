@@ -14,6 +14,12 @@ const state = {
     school_id: '',
     school_name: '',
     isGg4lDataSynced: '',
+    phone: '',
+    notifyStatus: '',
+    distinctId: '',
+    studentSignUp: false,
+    schoolAdminRequested: '',
+    schoolAdmin: '',
 }
 const actions = {
 
@@ -22,6 +28,8 @@ const actions = {
         try {
             const response = await this.$axios.$post(BASE_URL + 'auth/gg4l_passport_auth', payLoad)
             if (status = 200) {
+
+                localStorage.setItem("skippedPrompt", "false")
                 commit('setLoginStatus', true);
                 commit('setUserToken', response.data.auth_token);
                 commit('setUserEmail', response.data.email);
@@ -32,6 +40,12 @@ const actions = {
                 commit('setSchoolId', response.data.school_id);
                 commit('setSchoolName', response.data.school_name);
                 commit('setIsGg4lDataSynced', response.data.isGg4lDataSynced);
+                commit('setPhone', response.data.phone_number);
+                commit('setNotifyStatus', response.data.notification);
+                commit('setDistinctId', response.data.distinct_id);
+                commit('setStudentSignUp', response.data.studentSignUp);
+                commit('setSchoolAdminRequested', response.data.school_admin_requested);
+                commit('setSchoolAdmin', response.data.school_admin);
                 if (response.data.user_type_id == 1) {
                     this.$router.push('/dashboard');
                 }
@@ -84,8 +98,7 @@ const actions = {
                     'Authorization': ` ${token}`
                 },
             });
-            commit('setAssignmentList', response.assignments);
-            commit('setSharedAssignmentsList', response.shared_assignments);
+
         } catch (e) {
             if (e.response && e.response.status == 401) {
                 commit('setSuccessMessage', "");
@@ -110,9 +123,31 @@ const actions = {
             }
         }
 
-    }
+    },
 
+    async redirectLog({ commit }, payLoad) {
+        try {
+            const response = await this.$axios.$post(BASE_URL + 'auth/redirect_log', payLoad)
 
+        }
+        catch (err) {
+            console.log(err)
+            if (err?.response?.data?.error) {
+                commit('setLoginStatus', false);
+                window.$nuxt.$cookies.removeAll();
+                commit('setUserId', '');
+                commit('setErrorType', "error");
+                commit('setErrorMessage', err?.response?.data?.error);
+            }
+            else if (status = 422) {
+                commit('setLoginStatus', false);
+                window.$nuxt.$cookies.removeAll();
+                commit('setUserId', '');
+                commit('setErrorType', "error");
+                commit('setErrorMessage', "You have entered invalid credentials");
+            }
+        }
+    },
 }
 const mutations = {
     setErrorMessage(state, data) {
@@ -165,6 +200,35 @@ const mutations = {
         state.isGg4lDataSynced = data;
         localStorage.setItem('isGg4lDataSynced', data);
     },
+    setPhone(state, data) {
+        if (data) {
+            state.phone = data;
+            localStorage.setItem('phone', data);
+        }
+    },
+    setNotifyStatus(state, data) {
+        state.notifyStatus = data;
+        localStorage.setItem('notifyStatus', data);
+    },
+    setDistinctId(state, data) {
+        state.distinctId = data;
+        localStorage.setItem('distinctId', data);
+    },
+    setStudentSignUp(state, data) {
+        state.studentSignUp = data;
+        localStorage.setItem('studentSignUp', data)
+
+    },
+    setSchoolAdminRequested(state, data) {
+        state.schoolAdminRequested = data;
+        localStorage.setItem('schoolAdminRequested', data)
+
+    },
+    setSchoolAdmin(state, data) {
+        state.schoolAdmin = data;
+        localStorage.setItem('schoolAdmin', data)
+
+    },
 }
 const getters = {
 
@@ -200,7 +264,24 @@ const getters = {
     isGg4lDataSynced: () => {
         return state.isGg4lDataSynced;
     },
-
+    phone: () => {
+        return state.phone;
+    },
+    notifyStatus: () => {
+        return state.notifyStatus;
+    },
+    distinctId: () => {
+        return state.distinctId;
+    },
+    studentSignUp: () => {
+        return state.studentSignUp;
+    },
+    schoolAdminRequested: () => {
+        return state.schoolAdminRequested;
+    },
+    schoolAdmin: () => {
+        return state.schoolAdmin;
+    }
 }
 
 export default {

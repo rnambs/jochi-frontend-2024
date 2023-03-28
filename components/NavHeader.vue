@@ -36,7 +36,7 @@
             >
 
             <a class="nav-link" href="#" @click="GetLogout()"
-              ><i class="fa fa-power -off"></i>Logout</a
+              ><i class="fa fa-power -off"></i>Log Out</a
             >
           </div>
         </div>

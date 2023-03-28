@@ -10,48 +10,25 @@
     <div class="main-section">
       <!-- tab section for View all meeting -->
       <div
-        class="
-          jochi-components-light-bg
-          p-4
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-        "
+        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid">
-            <h2 class="color-primary font-semi-bold">My Meetings</h2>
+            <h2
+              data-intro="View all of your meetings. Here you can accept or reject requests or edit upcoming meetings."
+              class="color-primary font-semi-bold"
+            >
+              My Meetings
+            </h2>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0 mb-3">
-                <!-- <div class="col-md-4">
-                  <div class="input-icon-area">
-                    <multiselect
-                      v-model="value"
-                      :options="allData"
-                      track-by="first_name"
-                      label="first_name"
-                      placeholder="Search name"
-                      @input="ListAllMeeting"
-                    >
-                      <span slot="noResult">No data found</span>
-                    </multiselect>
-                    <span class="input-icon"
-                      ><i class="fa fa-search" aria-hidden="true"></i
-                    ></span>
-                  </div>
-                </div> -->
                 <div class="col-md-4 p-0 mx-1">
-                  <div class="dropdown form-row custom-sort-by-btn">
+                  <div
+                    data-intro="Filter teacher and peer meetings from here."
+                    class="dropdown form-row custom-sort-by-btn"
+                  >
                     <div
-                      class="
-                        dropdown-select
-                        btn btn-void
-                        p-0
-                        color-secondary
-                        font-normal
-                        text-16
-                        pr-2
-                      "
+                      class="dropdown-select btn btn-void p-0 color-secondary font-normal text-16 pr-2"
                       type="button"
                       data-toggle="dropdown"
                       aria-haspopup="true"
@@ -65,9 +42,6 @@
                       ></span>
                     </div>
 
-                    <!-- <span class="input-icon"
-                      ><i class="fa fa-filter" aria-hidden="true"></i
-                    ></span> -->
                     <ul
                       class="dropdown-menu w-50 rounded-12"
                       aria-labelledby="dLabel"
@@ -88,15 +62,7 @@
 
         <section id="view-all-section" class="d-flex h-40 flex-fill">
           <div
-            class="
-              meeting-section
-              d-flex
-              custom-overflow
-              pe-2
-              mr--2
-              flex-fill
-              pt-3 pt-lg-0
-            "
+            class="meeting-section d-flex custom-overflow pe-2 mr--2 flex-fill pt-3 pt-lg-0"
           >
             <div class="inner-meeting container-fluid p-0">
               <div class="row Meeting-row pl-0 pr-3 pt-0">
@@ -107,18 +73,9 @@
                   :key="index"
                 >
                   <div
-                    class="
-                      meeting-list
-                      p-3
-                      position-realtive
-                      cursor-pointer
-                      card card-void
-                      align-items-center
-                      h-100
-                    "
+                    class="meeting-list p-3 position-realtive cursor-pointer card card-void align-items-center h-100"
                   >
                     <div class="approved-tag position-absolute">
-                      <!-- {{ list }} -->
                       <div
                         :class="
                           list.meeting_request == 0
@@ -145,7 +102,6 @@
                       {{ list["dateFormat"] }}
                     </p>
                     <p class="color-primary text-center mb-1">
-                      <!-- {{ list["from"] }} to {{ list["end"] }} -->
                       {{ list["from"] }}
                       {{ list["end"] ? "to " + list["end"] : "" }}
 
@@ -158,13 +114,7 @@
               </div>
               <div
                 v-if="slot_date.length == 0"
-                class="
-                  empty-schedule
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                  h-100
-                "
+                class="empty-schedule d-flex align-items-center justify-content-center h-100"
               >
                 <p>No meetings found</p>
               </div>
@@ -191,17 +141,6 @@
             <h3 class="modal-title" id="meetingDetailModalLongTitle">
               Meeting Details
             </h3>
-            <!-- <button type="button" class="close">
-              <span aria-hidden="true">Edit</span>
-            </button> -->
-            <!-- <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button> -->
           </div>
           <div class="modal-body">
             <form action="">
@@ -256,28 +195,18 @@
                     <td class="tmodal-data">Date</td>
                     <td class="tmodal-data">
                       <div
-                        class="
-                          mb-0
-                          col-12
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                        "
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0"
                       >
                         <span class="pr-2"></span>
-                        <!-- <div class="col-md-6 ml-auto"> -->
-                        <!-- <div class="form-group"> -->
-                        <!-- <label for="recipient-name" class="col-form-label"
-                          >Date<em>*</em></label
-                        > -->
-                        <!-- v-model="dateValue"
-                              :class="{
-                                'is-invalid': submitted && $v.dateValue.$error,
-                              }"
-                              :disabled-dates="disabledDates" -->
+
                         <date-picker
-                          class="form-control"
+                          :class="
+                            (detailType == 'Peer' &&
+                              detailTeacherId != studentId) ||
+                            detailMeetingRequest != 1
+                              ? 'no-cursor'
+                              : 'form-control'
+                          "
                           placeholder="MM/DD/YYYY"
                           format="MM/dd/yyyy"
                           :value="detailDate"
@@ -285,16 +214,6 @@
                           :disabled-dates="disabledDates"
                           @selected="onDateChange($event)"
                         />
-                        <!-- <div
-                              v-if="submitted && $v.dateValue.$error"
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.dateValue.required"
-                                >This field is required</span
-                              >
-                            </div> -->
-                        <!-- </div> -->
-                        <!-- </div> -->
                       </div>
                     </td>
                   </tr>
@@ -309,15 +228,21 @@
                       )
                     "
                   >
-                  <td class="tmodal-data">Change Slot Time</td>
-                  <span class="pr-2"></span>
-                    <button type="button" @click="changeSlot" class="btn btn-primary py-2 rounded-12">
+                    <td class="tmodal-data">Change Slot Time</td>
+                    <span class="pr-2"></span>
+                    <button
+                      type="button"
+                      @click="changeSlot"
+                      class="btn btn-primary py-2 rounded-12"
+                    >
                       <i class="fas fa-clock mr-2"></i><span>Change slot</span>
                     </button>
                   </tr>
 
                   <tr v-if="isDateChanged && slot_date_selection.length > 0">
-                    <td style="vertical-align: top;" class="pt-3">Select Time</td>
+                    <td style="vertical-align: top" class="pt-3">
+                      Select Time
+                    </td>
                     <td>
                       <div class="d-flex align-items-center">
                         <span class="pr-2"></span>
@@ -325,21 +250,8 @@
                           v-if="slot_date_selection.length > 0"
                           class="col-11 p-0 position-relative"
                         >
-                          <!-- <button
-                            class="btn up-btn up-arrow-icon position-absolute"
-                          >
-                            <i class="fa-solid fa-circle-chevron-up"></i>
-                          </button> -->
                           <div
-                            class="
-                              row
-                              Meeting-row
-                              pl-0
-                              pr-1
-                              pt-1
-                              my-2
-                              custom-modal-ts-height
-                            "
+                            class="row Meeting-row pl-0 pr-1 pt-1 my-2 custom-modal-ts-height"
                           >
                             <div
                               class="col-12 py-1 pr-1 text-center modal-time-schedules"
@@ -357,8 +269,6 @@
                               >
                                 <h6>{{ Schedule["dateFormat"] }}</h6>
                                 <p class="time">
-                                  <!-- {{ Schedule["from"] }} to
-                                  {{ Schedule["end"] }} -->
                                   {{ Schedule["from"] }}
                                   {{
                                     Schedule["end"]
@@ -378,15 +288,6 @@
                               <p>No time slot is available</p>
                             </div>
                           </div>
-                          <!-- <button
-                            class="
-                              btn
-                              down-btn down-arrow-icon
-                              position-absolute
-                            "
-                          >
-                            <i class="fa-solid fa-circle-chevron-down"></i>
-                          </button> -->
                         </div>
                       </div>
                     </td>
@@ -397,30 +298,16 @@
                     <td class="tmodal-data">
                       <span class="pr-2"></span>
                       {{ detailTime }}
-                      <!-- {{ popupFrom[0] }} to {{ popupEnd[0] }} -->
                     </td>
                   </tr>
                   <tr>
                     <td class="tmodal-data text-nowrap">Meeting Name</td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                        "
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0"
                       >
                         <span class="pr-2"></span>
-                        <!-- <span v-if="value">
-                              {{
-                                value.first_name +
-                                " " +
-                                (value.last_name ? value.last_name : "")
-                              }}
-                            </span> -->
+
                         <input
                           type="text"
                           name="detailMeetingName"
@@ -448,23 +335,10 @@
                     <td class="tmodal-data text-nowrap">Description</td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                        "
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0"
                       >
                         <span class="pr-2"></span>
-                        <!-- <span v-if="value">
-                              {{
-                                value.first_name +
-                                " " +
-                                (value.last_name ? value.last_name : "")
-                              }}
-                            </span> -->
+
                         <textarea
                           type="text"
                           name="detailMeetingDesc"
@@ -492,14 +366,7 @@
                     <td class="tmodal-data text-nowrap">Type of Meeting</td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                        "
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0"
                       >
                         <span class="pr-2"></span>
                         <select
@@ -510,6 +377,10 @@
                           :class="{
                             'is-invalid':
                               submitted && $v.detailConversationType.$error,
+                            'no-cursor':
+                              (detailType == 'Peer' &&
+                                detailTeacherId != studentId) ||
+                              detailMeetingRequest != 1,
                           }"
                         >
                           <option value="Video Conference">
@@ -538,23 +409,10 @@
                     </td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                        "
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0"
                       >
                         <span class="pr-2"> </span>
-                        <!-- <span v-if="value">
-                              {{
-                                value.first_name +
-                                " " +
-                                (value.last_name ? value.last_name : "")
-                              }}
-                            </span> -->
+
                         <input
                           type="text"
                           name="detailVenue"
@@ -577,22 +435,6 @@
                       </div>
                     </td>
                   </tr>
-
-                  <!-- <tr>
-                        <td class="tmodal-data">Date</td>
-                        <td class="tmodal-data">
-                          <span class="pr-2">:</span>
-                          {{ popupValue[0] }}
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="tmodal-data">Time</td>
-                        <td class="tmodal-data">
-                          <span class="pr-2">:</span>
-                          {{ popupFrom[0] }} to {{ popupEnd[0] }}
-                        </td> 
-                      </tr>-->
                 </table>
               </fieldset>
             </form>
@@ -608,14 +450,7 @@
             >
               <button
                 type="button"
-                class="
-                  btn btn-secondary
-                  py-1
-                  px-4
-                  rounded-12
-                  mr-2
-                  font-semi-bold
-                "
+                class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
                 data-dismiss="modal"
                 @click="acceptOrReject(2)"
               >
@@ -639,14 +474,7 @@
             >
               <button
                 type="button"
-                class="
-                  btn btn-secondary
-                  py-1
-                  px-4
-                  rounded-12
-                  mr-2
-                  font-semi-bold
-                "
+                class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
                 data-dismiss="modal"
               >
                 Close
@@ -655,6 +483,7 @@
                 type="button"
                 class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
                 @click="updateDetails()"
+                :disabled="disableUpload"
               >
                 Update
               </button>
@@ -685,6 +514,16 @@ export default {
   components: {
     Multiselect,
     lottie,
+  },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
   },
   data() {
     return {
@@ -730,6 +569,8 @@ export default {
       date_today: new Date(),
       redirectId: this.$route.query.id,
       redirectType: this.$route.query.type,
+      startTime: null,
+      disableUpload: false,
     };
   },
   validations: {
@@ -739,9 +580,11 @@ export default {
     detailVenue: { required },
   },
   mounted() {
-    if (this.redirectId && this.redirectType) {
-      // alert(this.redirectId + this.redirectType);
-    }
+    window.addEventListener("orientationchange", this.handleOrientationChange);
+    const page = "MeetingViewAll";
+    const distinct_id = localStorage.getItem("distinctId");
+    this.$mixpanel.track("Page View", { distinct_id, page });
+    this.startTime = new Date().getTime();
 
     this.disabledDates.to = new Date(
       this.date_today.getFullYear(),
@@ -765,6 +608,7 @@ export default {
       $(".dropdown-select").text(getValue);
       _this.filterOption(getValue);
     });
+    this.startIntro();
   },
   computed: {
     ...mapState("viewAllMeeting", {
@@ -786,6 +630,9 @@ export default {
       timeZones: (state) => state.timeZones,
       invitedMembers: (state) => state.invitedMembers,
     }),
+    startProductGuide() {
+      return this.$store.state.startProductGuide;
+    },
   },
   methods: {
     ...mapActions("viewAllMeeting", {
@@ -824,7 +671,6 @@ export default {
         search_id: selectValue,
         student_id: localStorage.getItem("id"),
       });
-      console.log("consoling time zones ", this.timeZones);
       this.loading = false;
       this.dateConversion();
     },
@@ -864,7 +710,6 @@ export default {
         var end = element.end_time;
 
         var date = moment(element.date, "YYYY-MM-DD");
-        // var date = moment(element.date, "YYYY-MM-DD");
         var dateFormat =
           date.format("dddd") +
           ", " +
@@ -966,13 +811,14 @@ export default {
       this.detailTeacherId = list.teacher_id;
       this.detailSlotId = list.slot_id;
       this.date_formatted = list.date_formatted;
-      // var dateF = list.date.split("-");
       this.date = new Date(moment(list.date));
       if (this.detailType != "Teacher") {
         this.getMemberDetails();
       }
     },
     async updateDetails() {
+      this.disableUpload = true;
+
       let valid = true;
       if (this.detailConversationType == "Video Conference") {
         valid = this.isValidHttpUrl(this.detailVenue);
@@ -981,9 +827,12 @@ export default {
         this.submitted = true;
         this.$v.$touch();
         if (this.$v.$invalid) {
+          this.disableUpload = false;
           return;
         } else {
           if (this.isDateChanged && !this.selectedSlot) {
+            this.disableUpload = false;
+
             return this.$toast.open({
               message: "Please choose a slot before proceeding",
               type: "warning",
@@ -993,7 +842,6 @@ export default {
           this.loading = true;
 
           let payLoad = {};
-          // if (this.detailType == "Teacher") {
           payLoad = {
             id: this.detailMeetingId,
             schedule_id: this.isDateChanged
@@ -1014,27 +862,10 @@ export default {
                 ? this.detailVenue
                 : "",
           };
-          // } else {
-          //   payLoad = {
-          //     id: this.detailMeetingId,
-
-          //     slot_id: this.isDateChanged ? this.selectedSlot : this.detailSlotId,
-          //     date: this.isDateChanged ? this.updatedDate : this.detailDateFormat,
-          //     conversation_type: this.detailConversationType,
-          //     meeting_name: this.detailMeetingName,
-          //     meeting_description: this.detailMeetingDesc,
-          //     meeting_link:
-          //       this.detailConversationType == "Video Conference"
-          //         ? this.detailVenue
-          //         : "",
-          //     meeting_location:
-          //       this.detailConversationType == "In Person"
-          //         ? this.detailVenue
-          //         : "",
-          //   };
-          // }
+          this.disableUpload = true;
 
           await this.updateMeeting(payLoad);
+          this.disableUpload = false;
 
           this.loading = false;
           if (this.successMessages != "") {
@@ -1060,8 +891,6 @@ export default {
     resetValues() {
       this.isDateChanged = false;
       this.detailMeetingId = "";
-      // teacher_id: this.value?.id,
-      // student_id: localStorage.getItem("id"),
       this.detailScheduleId = "";
       this.detailSlotId = "";
       this.date = "";
@@ -1073,17 +902,11 @@ export default {
 
     onDateChange(event) {
       if (moment(event).format("YYYY-MM-DD") == this.date_formatted) {
-        // alert("matching");
         this.isDateChanged = false;
       } else {
-        // this.detailDate = moment(this.event, "YYYY-MM-DD");
-        // if (this.initialDateSelect) {
-        //   this.initialDateSelect = !this.initialDateSelect;
-        // } else {
         this.isDateChanged = true;
         this.updatedDate = moment(event).format("YYYY-MM-DD");
         this.UpdateTimeSchedule(moment(event).format("YYYY-MM-DD"));
-        // }
       }
     },
     changeSlot() {
@@ -1091,20 +914,11 @@ export default {
       let date = "";
       date = moment(this.detailDate).format("YYYY-MM-DD");
       this.updatedDate = moment(date).format("YYYY-MM-DD");
-      console.log(this.updatedDate, date);
       this.UpdateTimeSchedule(moment(date).format("YYYY-MM-DD"));
     },
     async UpdateTimeSchedule(dateSelected) {
       if (this.detailType == "Teacher") {
-        // if (!this.date) {
-        //   $('input[name="daterange"]').val("");
-        //   fromDate = "";
-        //   endDate = "";
-        //   this.slot_date = [];
-        // }
-
         if (dateSelected) {
-          // this.isMounted = true;
           this.loading = true;
           await this.updateTimeSchedule({
             student_id: parseInt(localStorage.getItem("id")),
@@ -1124,20 +938,10 @@ export default {
           this.studentsValue = [];
           this.students_name = [];
           this.invitedMembers?.forEach((element) => {
-            this.studentsValue.push(element.student_id);
+            if (element.student_id.toString() != localStorage.getItem("id"))
+              this.studentsValue.push(element.student_id);
           });
         }
-        // if (this.studentsValue.length === 0) {
-        //   this.value = "";
-        //   $('input[name="daterange"]').val("");
-        //   fromDate = "";
-        //   endDate = "";
-        //   this.studentsValue = "";
-        //   this.loading = false;
-        //   this.slot_date = [];
-        //   this.isShowing = true;
-        //   this.isMounted = false;
-        // }
 
         if (this.studentsValue.length != 0) {
           this.isMounted = true;
@@ -1292,9 +1096,45 @@ export default {
 
       return valid;
     },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      let skip = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
+          completed = true;
+          if (state != "skip") this.$router.push("/club-detail");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
+    },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
   },
-
-  // https://api.jochi.devateam.com/view/all/group_members_detail?group_id=36
+  beforeDestroy() {
+    const endTime = new Date().getTime();
+    const duration = (endTime - this.startTime) / 1000;
+    const distinct_id = localStorage.getItem("distinctId");
+    const page = "MeetingViewAll";
+    this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
+  },
+  destroyed() {
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
+  },
 };
 </script>
 

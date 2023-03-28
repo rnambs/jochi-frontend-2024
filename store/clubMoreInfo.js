@@ -66,6 +66,13 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      else if (e.response.data.message == "No club found") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+        this.$router.push('/club-detail');
+      }
     }
 
   },
@@ -306,6 +313,20 @@ const actions = {
         commit('setErrorType', "");
         window.localStorage.clear();
         this.$router.push('/');
+      }
+      else if (e.response.data.error == "You are not member of this club") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+        this.$router.push('/club-detail');
+      }
+      else if (e.response.data.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e.response.data.message);
+        commit('setErrorType', "error");
+
       }
 
     }

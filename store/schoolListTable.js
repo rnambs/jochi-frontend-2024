@@ -28,7 +28,24 @@ const actions = {
       }
     }
   },
+  async getSchoolFullList({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
 
+    try {
+      const response = await this.$axios.$get(BASE_URL + `schools/school_listing?search=${payLoad.search}`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      commit('setSchool', response.data[0].rows);
+      commit('setschoolCount', response.data[0].count);
+    } catch (e) {
+      if (e.response && e.response.status == 401) {
+        window.localStorage.clear();
+        this.$router.push('/admin-login');
+      }
+    }
+  },
 
   //   },
   // // school delete

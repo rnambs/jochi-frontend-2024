@@ -2,31 +2,13 @@
   <section id="header" class="">
     <div class="header-section position-fixed top-0 position-relative">
       <div
-        class="
-          sidebar-section
-          col-sm-4 col-md-5 col-lg-6
-          d-flex
-          justify-content-between
-          jochi-components-light-bg
-          p-3 p-lg-4
-          position-fixed
-          flex-column
-        "
+        class="sidebar-section col-sm-4 col-md-5 col-lg-6 d-flex justify-content-between jochi-components-light-bg p-3 p-lg-4 position-fixed flex-column"
         id="clickableId"
       >
         <div class="d-flex flex-column h-40 flex-fill">
           <div class="position-relative profile-sidebar">
             <div
-              class="
-                user-icon
-                d-flex
-                flex-column flex-lg-row
-                notification-icon-section
-                align-items-center
-                justify-content-end
-                position-md-absolute
-                mb-3 mb-lg-0
-              "
+              class="user-icon d-flex flex-column flex-lg-row notification-icon-section align-items-center justify-content-end position-md-absolute mb-3 mb-lg-0"
             >
               <!-- <a class="position-relative p-2" href="#">
                 <img
@@ -58,13 +40,7 @@
                     v-if="notificationList && notificationList.length > 0"
                   >
                     <div
-                      class="
-                        d-flex
-                        justify-content-between
-                        align-items-center
-                        px-3
-                        my-2
-                      "
+                      class="d-flex justify-content-between align-items-center px-3 my-2"
                     >
                       <h5 class="color-primary font-semi-bold mb-0">
                         Notifications
@@ -88,25 +64,12 @@
                         @click="onNotificationClick(data.id, data.meetingType)"
                       >
                         <p
-                          class="
-                            color-dark
-                            font-semi-bold
-                            text-14 text-wrap
-                            mb-0
-                          "
+                          class="color-dark font-semi-bold text-14 text-wrap mb-0"
                         >
                           {{ data.message }}
                         </p>
                         <p
-                          class="
-                            color-secondary
-                            text-12
-                            font-regulat
-                            mb-0
-                            d-flex
-                            justify-content-end
-                            align-items-center
-                          "
+                          class="color-secondary text-12 font-regulat mb-0 d-flex justify-content-end align-items-center"
                         >
                           <span class="mr-2">{{ data.timestamp }}</span>
                           <span
@@ -134,12 +97,7 @@
             </div>
             <nuxt-link
               to="/user-profile"
-              class="
-                pr-0 pr-lg-4
-                d-flex
-                flex-column
-                align-items-center align-items-lg-start
-              "
+              class="pr-0 pr-lg-4 d-flex flex-column align-items-center align-items-lg-start"
             >
               <img
                 v-bind:src="
@@ -150,21 +108,10 @@
                 id="profileImage"
               />
               <div
-                class="
-                  d-flex
-                  flex-column flex-lg-row
-                  align-items-center
-                  justify-cotent-center
-                "
+                class="d-flex flex-column flex-lg-row align-items-center justify-cotent-center"
               >
                 <h4
-                  class="
-                    color-primary
-                    mb-0
-                    font-semi-bold
-                    text-18 text-center text-lg-left
-                    word-break
-                  "
+                  class="color-primary mb-0 font-semi-bold text-18 text-center text-lg-left word-break"
                 >
                   {{ firstName }}
                 </h4>
@@ -172,15 +119,7 @@
             </nuxt-link>
           </div>
           <div
-            class="
-              menu-items
-              position-relative
-              py-4
-              custom-scroll-for-side-menus
-              d-flex
-              flex-column flex-fill
-              h-40
-            "
+            class="menu-items position-relative py-4 custom-scroll-for-side-menus d-flex flex-column flex-fill h-40"
           >
             <div class="accordion" id="accordionExample">
               <!-- Home Menu -->
@@ -193,21 +132,7 @@
                     >
                       <div class="mb-0 d-flex">
                         <button
-                          class="
-                            btn btn-link
-                            d-flex
-                            align-items-center
-                            justify-content-between
-                            bg-transparent
-                            text-decoration-none text-18
-                            color-secondary
-                            btn-block
-                            px-0
-                            text-left
-                            collapsed
-                            justify-content-start
-                            py-0 py-lg-0
-                          "
+                          class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block px-0 text-left collapsed justify-content-start py-0 py-lg-0"
                           @click="$event.target.classList.toggle('active')"
                           type="button"
                           data-toggle="collapse"
@@ -218,21 +143,7 @@
                             <nuxt-link
                               to="/teacher-dashboard"
                               data-toggle="collapse"
-                              class="
-                                btn btn-link
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                                bg-transparent
-                                text-decoration-none text-18
-                                color-secondary
-                                btn-block
-                                text-left
-                                collapsed
-                                flex-fill
-                                px-0
-                                py-1 py-xl-2
-                              "
+                              class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-1 py-xl-2"
                             >
                               <div class="font-icon d-inline-block">
                                 <img
@@ -241,12 +152,7 @@
                                 />
                               </div>
                               <span
-                                class="
-                                  ml-3
-                                  color-secondary
-                                  text-capitalize
-                                  font-medium
-                                "
+                                class="ml-3 color-secondary text-capitalize font-medium"
                                 >Home</span
                               >
                             </nuxt-link>
@@ -268,21 +174,7 @@
                     >
                       <div class="mb-0 d-flex">
                         <button
-                          class="
-                            btn btn-link
-                            d-flex
-                            align-items-center
-                            justify-content-between
-                            bg-transparent
-                            text-decoration-none text-18
-                            color-secondary
-                            btn-block
-                            px-0
-                            text-left
-                            collapsed
-                            justify-content-start
-                            py-0 py-lg-0
-                          "
+                          class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block px-0 text-left collapsed justify-content-start py-0 py-lg-0"
                           @click="$event.target.classList.toggle('active')"
                           type="button"
                           data-toggle="collapse"
@@ -293,20 +185,7 @@
                             <nuxt-link
                               to="/teacher-appointment"
                               data-toggle="collapse"
-                              class="
-                                btn btn-link
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                                bg-transparent
-                                text-decoration-none text-18
-                                color-secondary
-                                btn-block
-                                text-left
-                                flex-fill
-                                px-0
-                                py-1 py-xl-2
-                              "
+                              class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-1 py-xl-2"
                             >
                               <div class="font-icon d-inline-block">
                                 <img
@@ -315,12 +194,7 @@
                                 />
                               </div>
                               <span
-                                class="
-                                  ml-3
-                                  color-secondary
-                                  text-capitalize
-                                  font-medium
-                                "
+                                class="ml-3 color-secondary text-capitalize font-medium"
                                 >Appoinments</span
                               >
                             </nuxt-link>
@@ -342,21 +216,7 @@
                     >
                       <div class="mb-0 d-flex">
                         <button
-                          class="
-                            btn btn-link
-                            d-flex
-                            align-items-center
-                            justify-content-between
-                            bg-transparent
-                            text-decoration-none text-18
-                            color-secondary
-                            btn-block
-                            px-0
-                            text-left
-                            collapsed
-                            justify-content-start
-                            py-0 py-lg-0
-                          "
+                          class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block px-0 text-left collapsed justify-content-start py-0 py-lg-0"
                           @click="$event.target.classList.toggle('active')"
                           type="button"
                           data-toggle="collapse"
@@ -367,20 +227,7 @@
                             <nuxt-link
                               to="/custom-availability"
                               data-toggle="collapse"
-                              class="
-                                btn btn-link
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                                bg-transparent
-                                text-decoration-none text-18
-                                color-secondary
-                                btn-block
-                                text-left
-                                flex-fill
-                                px-0
-                                py-1 py-xl-2
-                              "
+                              class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-1 py-xl-2"
                             >
                               <div class="font-icon d-inline-block">
                                 <img
@@ -389,12 +236,7 @@
                                 />
                               </div>
                               <span
-                                class="
-                                  ml-3
-                                  color-secondary
-                                  text-capitalize
-                                  font-medium
-                                "
+                                class="ml-3 color-secondary text-capitalize font-medium"
                                 >Availability</span
                               >
                             </nuxt-link>
@@ -416,21 +258,7 @@
                     >
                       <div class="mb-0 d-flex">
                         <button
-                          class="
-                            btn btn-link
-                            d-flex
-                            align-items-center
-                            justify-content-between
-                            bg-transparent
-                            text-decoration-none text-18
-                            color-secondary
-                            btn-block
-                            px-0
-                            text-left
-                            collapsed
-                            justify-content-start
-                            py-0 py-lg-0
-                          "
+                          class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block px-0 text-left collapsed justify-content-start py-0 py-lg-0"
                           @click="$event.target.classList.toggle('active')"
                           type="button"
                           data-toggle="collapse"
@@ -441,20 +269,7 @@
                             <nuxt-link
                               to="/teacher-syncCalendar"
                               data-toggle="collapse"
-                              class="
-                                btn btn-link
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                                bg-transparent
-                                text-decoration-none text-18
-                                color-secondary
-                                btn-block
-                                text-left
-                                flex-fill
-                                px-0
-                                py-1 py-xl-2
-                              "
+                              class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-1 py-xl-2"
                             >
                               <div class="font-icon d-inline-block">
                                 <img
@@ -463,12 +278,7 @@
                                 />
                               </div>
                               <span
-                                class="
-                                  ml-3
-                                  color-secondary
-                                  text-capitalize
-                                  font-medium
-                                "
+                                class="ml-3 color-secondary text-capitalize font-medium"
                                 >Sync Calendar</span
                               >
                             </nuxt-link>
@@ -489,21 +299,7 @@
                 >
                   <div class="mb-0 d-flex">
                     <button
-                      class="
-                        btn btn-link
-                        d-flex
-                        align-items-center
-                        justify-content-between
-                        bg-transparent
-                        text-decoration-none text-18
-                        color-secondary
-                        btn-block
-                        text-left
-                        collapsed
-                        flex-fill
-                        px-0
-                        py-1 py-xl-2
-                      "
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-1 py-xl-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -520,7 +316,7 @@
                       </div>
                       <span
                         class="ml-3 color-secondary text-capitalize font-medium"
-                        >Extracurriculars</span
+                        >Teams & Clubs</span
                       >
                       <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
@@ -534,7 +330,10 @@
                 >
                   <div class="card-body py-0">
                     <ul class="inner-custom-list ml-4 mb-2">
-                      <li class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0">
+                      <li
+                        v-if="isSchoolAdmin != '1'"
+                        class="nav-item pb-1 pb-md-0 mb-1 mb-lg-0"
+                      >
                         <nuxt-link to="/club-detail" class="nav-link"
                           >Existing</nuxt-link
                         >
@@ -560,21 +359,7 @@
                     >
                       <div class="mb-0 d-flex">
                         <button
-                          class="
-                            btn btn-link
-                            d-flex
-                            align-items-center
-                            justify-content-between
-                            bg-transparent
-                            text-decoration-none text-18
-                            color-secondary
-                            btn-block
-                            px-0
-                            text-left
-                            collapsed
-                            justify-content-start
-                            py-0 py-lg-0
-                          "
+                          class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block px-0 text-left collapsed justify-content-start py-0 py-lg-0"
                           @click="$event.target.classList.toggle('active')"
                           type="button"
                           data-toggle="collapse"
@@ -585,20 +370,7 @@
                             <nuxt-link
                               to="/teacher-advisor"
                               data-toggle="collapse"
-                              class="
-                                btn btn-link
-                                d-flex
-                                align-items-center
-                                justify-content-between
-                                bg-transparent
-                                text-decoration-none text-18
-                                color-secondary
-                                btn-block
-                                text-left
-                                flex-fill
-                                px-0
-                                py-1 py-xl-2
-                              "
+                              class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left flex-fill px-0 py-1 py-xl-2"
                             >
                               <div class="font-icon d-inline-block">
                                 <img
@@ -607,12 +379,7 @@
                                 />
                               </div>
                               <span
-                                class="
-                                  ml-3
-                                  color-secondary
-                                  text-capitalize
-                                  font-medium
-                                "
+                                class="ml-3 color-secondary text-capitalize font-medium"
                                 >Advisor</span
                               >
                             </nuxt-link>
@@ -739,28 +506,10 @@
                   id="headingOne"
                 >
                   <div
-                    class="
-                      mb-0
-                      d-flex
-                      justify-content-center justify-content-lg-start
-                    "
+                    class="mb-0 d-flex justify-content-center justify-content-lg-start"
                   >
                     <button
-                      class="
-                        btn btn-link
-                        d-flex
-                        align-items-center
-                        justify-content-between
-                        bg-transparent
-                        text-decoration-none text-18
-                        color-secondary
-                        btn-block
-                        px-0
-                        text-left
-                        collapsed
-                        justify-content-start
-                        py-2 py-lg-0
-                      "
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block px-0 text-left collapsed justify-content-start py-2 py-lg-0"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -772,13 +521,8 @@
                           <i class="fas fa-sign-out-alt"></i>
                         </div>
                         <span
-                          class="
-                            ml-3
-                            color-secondary
-                            text-capitalize
-                            font-medium
-                          "
-                          >Logout</span
+                          class="ml-3 color-secondary text-capitalize font-medium"
+                          >Log Out</span
                         >
                       </a>
                     </button>
@@ -790,6 +534,44 @@
         </div>
       </div>
     </div>
+    <!--  Logout  confirmation  -->
+    <div
+      class="modal fade"
+      id="logoutConfirmation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="ModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h3 class="modal-title" id="logoutConfirmationModalLongTitle">
+              Log Out Confirmation
+            </h3>
+          </div>
+          <div class="modal-body px-4">Are you sure you want to log out?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              @click="logout()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Logout confirmation end  -->
   </section>
 </template>
 <script>
@@ -805,10 +587,14 @@ export default {
       firstName: "",
       profile: "",
       defaultImage: defaultImage,
+      isSchoolAdmin: "0",
     };
   },
 
   mounted() {
+    if (localStorage.getItem("schoolAdmin")) {
+      this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
+    }
     if (!localStorage.getItem("email")) {
       this.$router.push("/");
     }
@@ -816,6 +602,9 @@ export default {
     this.getPushNotifications();
     this.getNotifications();
     this.getCount();
+    if (this.user_type != "3") {
+      this.schoolAdminStatus();
+    }
 
     // window.addEventListener("keydown", (e) => {
     //   if (e.keyCode == 123) {
@@ -877,6 +666,10 @@ export default {
       notificationList: (state) => state.notificationList,
       notificationCount: (state) => state.notificationCount,
     }),
+    ...mapState("profilePage", {
+      schoolAdminRequested: (state) => state.schoolAdminRequested,
+      schoolAdmin: (state) => state.schoolAdmin,
+    }),
   },
   methods: {
     ...mapActions("studentSignIn", {
@@ -887,10 +680,11 @@ export default {
       markAsRead: "markAsRead",
       getNotificationCount: "getNotificationCount",
     }),
+    ...mapActions("profilePage", {
+      getSchoolAdminStatus: "getSchoolAdminStatus",
+    }),
     async getPushNotifications() {
       this.$fire.messaging.onMessage((payload) => {
-        // alert("alerting" + payload.notification.body);
-        // console.info("Message received: ", payload);
         this.getCount();
         this.getNotifications();
       });
@@ -951,16 +745,14 @@ export default {
     //   window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
     // },
     async GetLogout() {
-      let confirm = window.confirm("You will be logged out now");
-      if (confirm) {
-        await this.getLogout({
-          auth_token: localStorage.getItem("token").replace("Bearer ", ""),
-        });
-        window.localStorage.clear();
-        window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
-      } else {
-        return;
-      }
+      $("#logoutConfirmation").modal({ backdrop: true });
+    },
+    async logout() {
+      await this.getLogout({
+        auth_token: localStorage.getItem("token").replace("Bearer ", ""),
+      });
+      window.localStorage.clear();
+      window.location.href = GG4L_REDIRECT_URL + FRONTEND_BASE_URL;
     },
     async UserDetails() {
       this.loading = true;
@@ -990,6 +782,11 @@ export default {
     },
     async getCount() {
       await this.getNotificationCount();
+    },
+    async schoolAdminStatus() {
+      await this.getSchoolAdminStatus();
+      this.requestSent = this.schoolAdminRequested;
+      this.isSchoolAdmin = this.schoolAdmin;
     },
   },
   // // middleware: "authenticated",
