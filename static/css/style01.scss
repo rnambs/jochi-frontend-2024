@@ -1021,16 +1021,16 @@ input[type="radio"]{
                     background-color: White;
                 }
             }
-            // &:nth-child(9){
-            //     &::before{
-            //         background-color: rgb(18, 9, 103);
-            //     }
-            // }
-            // &:nth-child(10){
-            //     &::before{
-            //         background-color: rgb(18, 9, 103);
-            //     }
-            // }
+            &:nth-child(9){
+                &::before{
+                    background-color: #ad2b89;
+                }
+            }
+            &:nth-child(10){
+                &::before{
+                    background-color: #da70d6;
+                }
+            }
         }
     }
 }
