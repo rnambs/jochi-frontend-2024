@@ -9,35 +9,22 @@
     <div class="main-section">
       <!-- tab for club detail -->
       <div
-        class="
-          jochi-components-light-bg
-          p-4
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-        "
+        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-3">
             <h2
-              data-intro="View all your clubs here and click on the club for futher details"
+              data-intro="View and manage all of your existing commitments."
               class="tab-head color-primary font-semi-bold"
             >
-              Club details
+              Club Details
             </h2>
             <div class="inner-tab-section container-fluid p-0">
               <div
-                class="
-                  row
-                  m-auto
-                  px-2
-                  d-flex
-                  justify-content-between
-                  align-items-center
-                "
+                class="row m-auto px-2 d-flex justify-content-between align-items-center"
               >
                 <div
-                  data-intro="Filter the clubs based on the tags"
+                  data-intro="Filter through your commitments based on different tags."
                   class="col-md-4 px-0"
                 >
                   <div class="input-icon-area form-row">
@@ -54,8 +41,14 @@
                     </multiselect>
                   </div>
                 </div>
-                <div v-if="user == '3'" class="col-md-4 px-0">
-                  <div class="custom-switch pb-2 float-right">
+                <div
+                  data-intro="Turn on ‘Sync to Planner’ to sync your extracurricular commitments to your calendar on Jochi."
+                  class="col-md-4 px-0"
+                >
+                  <div
+                    v-if="user == '3'"
+                    class="custom-switch pb-2 float-right"
+                  >
                     <input
                       type="checkbox"
                       class="custom-control-input"
@@ -64,13 +57,7 @@
                       @change="SyncClub()"
                     />
                     <label
-                      class="
-                        custom-control-label
-                        font-normal
-                        color-dark
-                        text-14
-                      "
-                      data-intro="Sync your team and club meetings to your planner from here"
+                      class="custom-control-label font-normal color-dark text-14"
                       for="custom-Switches"
                       >Sync to Planner
                     </label>
@@ -87,27 +74,10 @@
 
         <section id="club-detail" class="d-flex flex-column h-40 flex-fill">
           <div
-            class="
-              club-section
-              container-fluid
-              mt-2
-              px-0
-              d-flex
-              flex-column
-              h-40
-              flex-fill
-            "
+            class="club-section container-fluid mt-2 px-0 d-flex flex-column h-40 flex-fill"
           >
             <div
-              class="
-                inner-club
-                club-datail
-                container-fluid
-                p-0
-                custom-overflow
-                mr--2
-                pr-2
-              "
+              class="inner-club club-datail container-fluid p-0 custom-overflow mr--2 pr-2"
             >
               <div class="row club-row m-1">
                 <div
@@ -116,14 +86,7 @@
                   :key="index"
                 >
                   <div
-                    class="
-                      club-list
-                      card card-secondary-sm
-                      justify-content-between
-                      p-4
-                      position-relative
-                      h-100
-                    "
+                    class="club-list card card-secondary-sm justify-content-between p-4 position-relative h-100"
                   >
                     <div
                       :class="
@@ -145,13 +108,7 @@
                     </div>
                     <div class="d-flex flex-column">
                       <h5
-                        class="
-                          list-title
-                          mb-3
-                          color-primary
-                          font-semi-bold
-                          pr-3
-                        "
+                        class="list-title mb-3 color-primary font-semi-bold pr-3"
                       >
                         {{ list["description"] }}
                       </h5>
@@ -252,6 +209,7 @@ export default {
     };
   },
   mounted() {
+    window.addEventListener("orientationchange", this.handleOrientationChange);
     const page = "ClubExisting";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
@@ -382,6 +340,11 @@ export default {
         });
       }
     },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
   },
   beforeDestroy() {
     const endTime = new Date().getTime();
@@ -389,6 +352,12 @@ export default {
     const distinct_id = localStorage.getItem("distinctId");
     const page = "ClubExisting";
     this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
+  },
+  destroyed() {
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
   },
 };
 </script>

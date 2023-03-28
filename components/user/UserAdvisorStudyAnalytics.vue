@@ -91,15 +91,7 @@
           <div class="row inner-row mt-0 mb-2">
             <div class="col-12 col-sm-6 col-md-12 col-lg-6 py-2">
               <div
-                class="
-                  inner-col
-                  card card-void
-                  p-3
-                  h-100
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                "
+                class="inner-col card card-void p-3 h-100 d-flex align-items-center justify-content-center"
               >
                 <!-- {{mySession.weekly_pi_chart}} -->
                 <div class="d-flex">
@@ -132,15 +124,7 @@
             </div>
             <div class="col-12 col-sm-6 col-md-12 col-lg-6 py-2">
               <div
-                class="
-                  inner-col
-                  card card-void
-                  p-3
-                  h-100
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                "
+                class="inner-col card card-void p-3 h-100 d-flex align-items-center justify-content-center"
               >
                 <div class="d-flex">
                   <div class="d-flex flex-column justify-content-center">
@@ -337,7 +321,6 @@ export default {
     };
   },
   mounted() {
-    console.log("mounting student id", this.studentId);
     this.GetMySession();
     this.getConfiguredGoal();
     // this.InitPieChart();
@@ -620,13 +603,6 @@ export default {
     async configureGoal() {
       this.submitted = true;
       this.processing = true;
-
-      console.log(
-        this.hours,
-        this.minutes,
-        Number(this.hours),
-        Number(this.minutes)
-      );
 
       let duration = 0;
       duration = Number(this.hours) * 60 + Number(this.minutes);

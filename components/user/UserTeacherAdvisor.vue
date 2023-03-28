@@ -11,42 +11,24 @@
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
-          class="
-            teacher-section
-            jochi-components-light-bg
-            p-4
-            custom-margin-for-main-section custom-full-height
-            d-flex
-            flex-column
-            custom-overflow
-          "
+          class="teacher-section jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column custom-overflow"
         >
-          <div class="d-flex align-items-center justify-content-between px-3">
+          <div
+            v-if="isSchoolAdmin != '1'"
+            class="d-flex align-items-center justify-content-between px-3"
+          >
             <h2 class="color-primary font-semi-bold m-0">Advisor</h2>
             <button class="btn btn-primary px-4" @click="openModal">
               Send Request
             </button>
           </div>
           <div
-            class="
-              inner-teacher
-              container-fluid
-              p-3
-              d-flex
-              flex-column flex-fill
-              h-40
-            "
+            class="inner-teacher container-fluid p-3 d-flex flex-column flex-fill h-40"
           >
             <div class="row h-100">
               <div class="col-12 col-md-5 col-lg-4 col-xl-3 h-50 h-md-100">
                 <div
-                  class="
-                    card card-primary-void
-                    rounded-22
-                    py-4
-                    h-100
-                    position-realtive
-                  "
+                  class="card card-primary-void rounded-22 py-4 h-100 position-realtive"
                 >
                   <div class="d-flex flex-column px-4">
                     <h3 class="color-dark font-semi-bold mb-0">Students</h3>
@@ -57,15 +39,7 @@
                       v-for="student in studentsListAdvisor"
                       :key="student.id"
                       :class="{ 'bg-gray': student.id == studentDetail.id }"
-                      class="
-                        d-flex
-                        align-items-center
-                        flex-row
-                        p-3
-                        student-list
-                        border-bottom
-                        cursor-pointer
-                      "
+                      class="d-flex align-items-center flex-row p-3 student-list border-bottom cursor-pointer"
                     >
                       <div class="ld-img-section mr-3">
                         <div class="ld-img-holder">
@@ -89,21 +63,10 @@
               <div class="col-12 col-md-7 col-lg-8 col-xl-9 h-100">
                 <div
                   v-if="showStudentAnalytics || showStudentProfile"
-                  class="
-                    card card-primary-void
-                    rounded-22
-                    h-100
-                    position-realtive
-                  "
+                  class="card card-primary-void rounded-22 h-100 position-realtive"
                 >
                   <div
-                    class="
-                      tab-btns
-                      d-flex
-                      align-items-center
-                      position-absolute
-                      z-index-9
-                    "
+                    class="tab-btns d-flex align-items-center position-absolute z-index-9"
                   >
                     <button
                       @click="onTabClick(1)"
@@ -124,17 +87,7 @@
                   </div>
                   <div
                     v-if="showStudentProfile"
-                    class="
-                      d-flex
-                      flex-column
-                      h-40
-                      flex-fill
-                      p-4
-                      pt-0
-                      custom-overflow
-                      my-3
-                      mt-5
-                    "
+                    class="d-flex flex-column h-40 flex-fill p-4 pt-0 custom-overflow my-3 mt-5"
                   >
                     <div class="d-flex py-1 py-md-4 px-0 px-xl-4 pt-xl-0">
                       <div class="ld-img-section mr-3 mb-0">
@@ -152,12 +105,7 @@
                         </div>
                       </div>
                       <div
-                        class="
-                          d-flex
-                          flex-column flex-fill
-                          justify-content-center
-                          w-50
-                        "
+                        class="d-flex flex-column flex-fill justify-content-center w-50"
                       >
                         <h2 class="color-primary font-semi-bold mb-1 mb-md-2">
                           {{
@@ -175,13 +123,7 @@
                             </div>
                             <div class="col-1 p-1">
                               <p
-                                class="
-                                  mb-0
-                                  color-dark
-                                  text-16
-                                  font-regular
-                                  text-right
-                                "
+                                class="mb-0 color-dark text-16 font-regular text-right"
                               >
                                 <span>: </span>
                               </p>
@@ -200,13 +142,7 @@
                             </div>
                             <div class="col-1 p-1">
                               <p
-                                class="
-                                  mb-0
-                                  color-dark
-                                  text-16
-                                  font-regular
-                                  text-right
-                                "
+                                class="mb-0 color-dark text-16 font-regular text-right"
                               >
                                 <span>: </span>
                               </p>
@@ -222,13 +158,7 @@
                       </div>
                     </div>
                     <div
-                      class="
-                        card card-primary-void
-                        rounded-22
-                        h-40
-                        flex-fill
-                        h-min-400
-                      "
+                      class="card card-primary-void rounded-22 h-40 flex-fill h-min-400"
                     >
                       <div class="tab-btns d-flex align-items-center z-index-">
                         <button
@@ -259,7 +189,7 @@
 
                       <div
                         v-if="showAssignments"
-                        class="custom-overflow px-4 pt-3 mb-3"
+                        class="custom-overflow px-4 pt-3 mb-3 h-100"
                       >
                         <div class="row">
                           <div
@@ -267,32 +197,15 @@
                             :key="detail.id"
                             class="col-12 col-lg-6 col-xl-4"
                           >
-                            <!-- @click="onAssignmentSelect(detail)" -->
                             <div
-                              class="
-                                jochi-sub-components-light-bg
-                                drag-drop
-                                p-4
-                                position-realtive
-                                h-100
-                                d-flex
-                                flex-column
-                                justify-content-between
-                                assignment-status
-                                position-relative
-                              "
+                              class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
                               :class="{
                                 selected: detail.task_status == 'Completed',
                               }"
                             >
                               <div class="d-flex flex-column">
                                 <div
-                                  class="
-                                    assignment-tag-section
-                                    d-flex
-                                    align-items-center
-                                    mb-2
-                                  "
+                                  class="assignment-tag-section d-flex align-items-center mb-2"
                                 >
                                   <div
                                     class="assignment-tag mr-2 text-nowrap"
@@ -321,6 +234,7 @@
                                     }}
                                   </div>
                                   <div
+                                    v-if="detail.subject"
                                     class="assignment-tag pink text-truncate"
                                   >
                                     {{ detail.subject }}
@@ -332,12 +246,7 @@
                                   </h4>
                                   <div class="text-center px-3">
                                     <p
-                                      class="
-                                        color-secondary
-                                        text-16
-                                        line-height-1
-                                        font-semi-bold
-                                      "
+                                      class="color-secondary text-16 line-height-1 font-semi-bold"
                                     >
                                       {{ detail.subject }}
                                     </p>
@@ -359,30 +268,22 @@
                                       :key="subtask.id"
                                     >
                                       <div
-                                        class="
-                                          pl-2
-                                          d-flex
-                                          align-items-center
-                                          mb-1
-                                          cursor-pointer
-                                        "
+                                        class="pl-2 d-flex align-items-center mb-1 cursor-pointer"
                                       >
                                         <input
-                                          type="radio"
-                                          class="
-                                            mr-2
-                                            color-secondary
-                                            cursor-pointer
+                                          :id="subtask.title"
+                                          v-model="subtask.title"
+                                          :value="
+                                            subtask.task_status == 'Completed'
+                                              ? subtask.title
+                                              : ''
                                           "
+                                          type="radio"
+                                          class="mr-2 color-secondary cursor-pointer"
                                         />
                                         <label
                                           for=""
-                                          class="
-                                            mb-0
-                                            text-12
-                                            color-secondary
-                                            cursor-pointer
-                                          "
+                                          class="mb-0 text-12 color-secondary cursor-pointer"
                                           >{{ subtask.title }}</label
                                         >
                                       </div>
@@ -395,24 +296,14 @@
                                   Additional Material
                                 </h6>
                                 <div
-                                  class="
-                                    d-flex
-                                    align-items-center
-                                    justify-content-between
-                                  "
+                                  class="d-flex align-items-center justify-content-between"
                                 >
                                   <div
                                     v-if="
                                       detail.assignment_materials &&
                                       detail.assignment_materials.length > 0
                                     "
-                                    class="
-                                      col-8
-                                      py-0
-                                      pl-0
-                                      material-link
-                                      text-12
-                                    "
+                                    class="col-8 py-0 pl-0 material-link text-12"
                                   >
                                     <div
                                       class="d-flex w-100"
@@ -423,11 +314,7 @@
                                     >
                                       <span
                                         v-if="index < 2"
-                                        class="
-                                          color-secondary
-                                          text-truncate
-                                          w-100
-                                        "
+                                        class="color-secondary text-truncate w-100"
                                       >
                                         {{
                                           material.file_type == "link"
@@ -455,26 +342,14 @@
                                       !detail.assignment_materials ||
                                       detail.assignment_materials.length <= 0
                                     "
-                                    class="
-                                      col-8
-                                      py-0
-                                      pl-0
-                                      material-link
-                                      text-12
-                                    "
+                                    class="col-8 py-0 pl-0 material-link text-12"
                                   >
                                     <span class="color-secondary text-12"
                                       >No documents added!</span
                                     >
                                   </div>
                                   <div
-                                    class="
-                                      col-4
-                                      material-date
-                                      py-0
-                                      text-right
-                                      pr-0
-                                    "
+                                    class="col-4 material-date py-0 text-right pr-0"
                                   >
                                     <span class="text-12">{{
                                       detail.due_date
@@ -483,29 +358,22 @@
                                 </div>
                               </div>
                               <div
-                                class="
-                                  position-absolute
-                                  w-100
-                                  h-100
-                                  d-flex
-                                  align-items-start
-                                  justify-content-end
-                                  success-image
-                                "
-                              >
-                                <!-- <img src="../../static/image/done.png" alt="" class="position-absolute"> -->
-                                <span
-                                  v-if="detail.task_status == 'Completed'"
-                                  class="
-                                    color-primary
-                                    text-30
-                                    check
-                                    position-absolute
-                                  "
-                                  ><i class="fas fa-check-circle"></i
-                                ></span>
-                              </div>
+                                class="position-absolute w-100 h-100 d-flex align-items-start justify-content-end success-image"
+                              ></div>
                             </div>
+                          </div>
+                        </div>
+                        <div
+                          class="row text-center w-100 h-100 justify-content-center"
+                        >
+                          <div
+                            v-if="
+                              !pendingAssignments ||
+                              pendingAssignments.length <= 0
+                            "
+                            class="empty-shedule d-flex justify-content-center align-items-center h-100"
+                          >
+                            <p>No assignments</p>
                           </div>
                         </div>
                       </div>
@@ -519,32 +387,15 @@
                             :key="detail.id"
                             class="col-12 col-lg-6 col-xl-4"
                           >
-                            <!-- @click="onAssignmentSelect(detail)" -->
                             <div
-                              class="
-                                jochi-sub-components-light-bg
-                                drag-drop
-                                p-4
-                                position-realtive
-                                h-100
-                                d-flex
-                                flex-column
-                                justify-content-between
-                                assignment-status
-                                position-relative
-                              "
+                              class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
                               :class="{
                                 selected: detail.task_status == 'Completed',
                               }"
                             >
                               <div class="d-flex flex-column">
                                 <div
-                                  class="
-                                    assignment-tag-section
-                                    d-flex
-                                    align-items-center
-                                    mb-2
-                                  "
+                                  class="assignment-tag-section d-flex align-items-center mb-2"
                                 >
                                   <div
                                     class="assignment-tag mr-2 text-nowrap"
@@ -573,6 +424,7 @@
                                     }}
                                   </div>
                                   <div
+                                    v-if="detail.subject"
                                     class="assignment-tag pink text-truncate"
                                   >
                                     {{ detail.subject }}
@@ -584,12 +436,7 @@
                                   </h4>
                                   <div class="text-center px-3">
                                     <p
-                                      class="
-                                        color-secondary
-                                        text-16
-                                        line-height-1
-                                        font-semi-bold
-                                      "
+                                      class="color-secondary text-16 line-height-1 font-semi-bold"
                                     >
                                       {{ detail.subject }}
                                     </p>
@@ -611,30 +458,22 @@
                                       :key="subtask.id"
                                     >
                                       <div
-                                        class="
-                                          pl-2
-                                          d-flex
-                                          align-items-center
-                                          mb-1
-                                          cursor-pointer
-                                        "
+                                        class="pl-2 d-flex align-items-center mb-1 cursor-pointer"
                                       >
                                         <input
-                                          type="radio"
-                                          class="
-                                            mr-2
-                                            color-secondary
-                                            cursor-pointer
+                                          :id="subtask.title"
+                                          v-model="subtask.title"
+                                          :value="
+                                            subtask.task_status == 'Completed'
+                                              ? subtask.title
+                                              : ''
                                           "
+                                          type="radio"
+                                          class="mr-2 color-secondary cursor-pointer"
                                         />
                                         <label
                                           for=""
-                                          class="
-                                            mb-0
-                                            text-12
-                                            color-secondary
-                                            cursor-pointer
-                                          "
+                                          class="mb-0 text-12 color-secondary cursor-pointer"
                                           >{{ subtask.title }}</label
                                         >
                                       </div>
@@ -647,24 +486,14 @@
                                   Additional Material
                                 </h6>
                                 <div
-                                  class="
-                                    d-flex
-                                    align-items-center
-                                    justify-content-between
-                                  "
+                                  class="d-flex align-items-center justify-content-between"
                                 >
                                   <div
                                     v-if="
                                       detail.assignment_materials &&
                                       detail.assignment_materials.length > 0
                                     "
-                                    class="
-                                      col-8
-                                      py-0
-                                      pl-0
-                                      material-link
-                                      text-12
-                                    "
+                                    class="col-8 py-0 pl-0 material-link text-12"
                                   >
                                     <div
                                       class="d-flex w-100"
@@ -675,11 +504,7 @@
                                     >
                                       <span
                                         v-if="index < 2"
-                                        class="
-                                          color-secondary
-                                          text-truncate
-                                          w-100
-                                        "
+                                        class="color-secondary text-truncate w-100"
                                       >
                                         {{
                                           material.file_type == "link"
@@ -707,26 +532,14 @@
                                       !detail.assignment_materials ||
                                       detail.assignment_materials.length <= 0
                                     "
-                                    class="
-                                      col-8
-                                      py-0
-                                      pl-0
-                                      material-link
-                                      text-12
-                                    "
+                                    class="col-8 py-0 pl-0 material-link text-12"
                                   >
                                     <span class="color-secondary text-12"
                                       >No documents added!</span
                                     >
                                   </div>
                                   <div
-                                    class="
-                                      col-4
-                                      material-date
-                                      py-0
-                                      text-right
-                                      pr-0
-                                    "
+                                    class="col-4 material-date py-0 text-right pr-0"
                                   >
                                     <span class="text-12">{{
                                       detail.due_date
@@ -735,25 +548,11 @@
                                 </div>
                               </div>
                               <div
-                                class="
-                                  position-absolute
-                                  w-100
-                                  h-100
-                                  d-flex
-                                  align-items-start
-                                  justify-content-end
-                                  success-image
-                                "
+                                class="position-absolute w-100 h-100 d-flex align-items-start justify-content-end success-image"
                               >
-                                <!-- <img src="../../static/image/done.png" alt="" class="position-absolute"> -->
                                 <span
                                   v-if="detail.task_status == 'Completed'"
-                                  class="
-                                    color-primary
-                                    text-30
-                                    check
-                                    position-absolute
-                                  "
+                                  class="color-primary text-30 check position-absolute"
                                   ><i class="fas fa-check-circle"></i
                                 ></span>
                               </div>
@@ -761,23 +560,14 @@
                           </div>
                         </div>
                         <div
-                          class="
-                            row
-                            text-center
-                            w-100
-                            h-100
-                            justify-content-center
-                          "
+                          class="row text-center w-100 h-100 justify-content-center"
                         >
                           <div
-                            v-if="!overdueAssts || overdueAssts.length <= 0"
-                            class="
-                              empty-shedule
-                              d-flex
-                              justify-content-center
-                              align-items-center
-                              h-100
+                            v-if="
+                              !overdueAssignments ||
+                              overdueAssignments.length <= 0
                             "
+                            class="empty-shedule d-flex justify-content-center align-items-center h-100"
                           >
                             <p>No overdue assignments</p>
                           </div>
@@ -796,15 +586,7 @@
                 </div>
                 <div
                   v-else
-                  class="
-                    card card-primary-void
-                    rounded-22
-                    p-4
-                    h-100
-                    position-realtive
-                    align-items-center
-                    justify-content-center
-                  "
+                  class="card card-primary-void rounded-22 p-4 h-100 position-realtive align-items-center justify-content-center"
                 >
                   <h6 class="color-secondary">
                     Select a student to show details
@@ -863,14 +645,7 @@
               </button>
               <button
                 type="button"
-                class="
-                  btn btn-success
-                  color-black
-                  rounded-12
-                  font-semi-bold
-                  py-1
-                  px-4
-                "
+                class="btn btn-success color-black rounded-12 font-semi-bold py-1 px-4"
                 @click="inviteStudentAdv"
                 :disabled="submitted"
               >
@@ -914,9 +689,11 @@ export default {
       overdueAssts: [],
       showAssignments: true,
       showOverdueAssingments: false,
+      isSchoolAdmin: "0",
     };
   },
   mounted() {
+    this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     this.getStudentList();
   },
 
@@ -1017,7 +794,6 @@ export default {
       this.mapSharedAssignments();
       this.mapOverdueAssignments();
       this.mapOverdueSharedAssignments();
-      console.log(this.overdueAssts);
     },
     mapAssignments() {
       if (this.assignmentList && this.assignmentList.length > 0) {

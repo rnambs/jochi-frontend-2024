@@ -219,7 +219,7 @@ body {
 }
 
 .component-bg {
-  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
   border: 1px solid #ffffff;
 }
 
@@ -460,7 +460,7 @@ input[type=radio] {
 }
 .form-row .dropdown-menu, .form-group .dropdown-menu {
   background-color: #ffffff;
-  box-shadow: 0px 0px 15px -3px rgba(0, 1, 0, 0.14);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
   font-size: 0.9rem;
   padding: inherit;
   list-style-type: none;
@@ -816,7 +816,7 @@ input[type=radio] {
 .vdp-datepicker input, .time-picker input {
   width: 100%;
   position: relative;
-  z-index: 99;
+  z-index: 9;
 }
 .vdp-datepicker::before, .time-picker::before {
   position: absolute;
@@ -855,8 +855,9 @@ input[type=radio] {
     width: auto;
   }
 }
-.tutorial-btn span, .tutorial-btn i {
+.tutorial-btn span, .tutorial-btn svg {
   color: #FF6D6D !important;
+  fill: #FF6D6D;
 }
 .tutorial-btn span {
   margin: initial !important;
@@ -864,8 +865,9 @@ input[type=radio] {
 .tutorial-btn:hover {
   background-color: #FF6D6D !important;
 }
-.tutorial-btn:hover span, .tutorial-btn:hover i {
+.tutorial-btn:hover span, .tutorial-btn:hover svg * {
   color: #FFf !important;
+  fill: #fff !important;
 }
 
 .fc .fc-toolbar.fc-header-toolbar {
@@ -983,7 +985,7 @@ input[type=radio] {
 }
 .card.card-secondary-sm {
   background-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0px 0px 32px -4px rgba(0, 1, 0, 0.09);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
 }
 .card.card-secondary {
   background-color: rgba(255, 255, 255, 0.45);
@@ -991,7 +993,7 @@ input[type=radio] {
 }
 .card.card-void {
   background-color: transparent;
-  box-shadow: 0px 0px 15px -3px rgba(0, 1, 0, 0.14);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
 }
 .card.card-transparent {
   background-color: transparent;
@@ -1084,6 +1086,11 @@ input[type=radio] {
 }
 .hidden-scroll::-webkit-scrollbar {
   display: none;
+}
+
+.show-scroll {
+  overflow-y: scroll;
+  scrollbar-color: #FF6D6D #fff;
 }
 
 @media (max-width: 1199.98px) {
@@ -1202,6 +1209,8 @@ img.dark-icon {
 .bullet {
   width: 12px;
   height: 12px;
+  min-width: 12px;
+  min-height: 12px;
   border-color: #C5C0BD !important;
 }
 
@@ -2989,7 +2998,7 @@ img.dark-icon {
 .inner-section .main-section .info-tab .tab-row .inner-tab {
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0px 0px 32px -4px rgba(0, 1, 0, 0.09);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
   min-height: 56px;
 }
 .inner-section .main-section .info-tab .tab-row .inner-tab:hover, .inner-section .main-section .info-tab .tab-row .inner-tab.nuxt-link-exact-active.nuxt-link-active {
@@ -3208,7 +3217,7 @@ img.dark-icon {
   width: 140px;
   height: 140px;
   background-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0px 0px 32px -4px rgba(0, 1, 0, 0.09);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
   border-radius: 22px;
 }
 .inner-section .main-section .study-section .upload-image .proof-img-wrp .middle {
@@ -3274,7 +3283,7 @@ img.dark-icon {
   padding: 5px 10px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .teacher-row .custom-teacher-container .appointment-req .table-req table tbody tr {
-  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
   border: 1px solid #ffffff;
   border-radius: 12px;
 }
@@ -3313,7 +3322,7 @@ img.dark-icon {
   padding: 5px 10px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .appointment-req .table-req table tbody tr {
-  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
   border: 1px solid #ffffff;
   border-radius: 12px;
 }
@@ -3680,7 +3689,7 @@ img.dark-icon {
   font-size: 0.8rem;
   font-weight: 450;
   color: #431F1C;
-  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
   border: 1px solid #ffffff;
   cursor: pointer;
 }
@@ -3728,13 +3737,13 @@ img.dark-icon {
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color.disabled {
   background-color: #ffffff;
-  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
   border: 1px solid #ffffff;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color.active, .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color:hover {
   color: #ffffff;
   background-color: #FF6D6D;
-  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
   border: 1px solid #ffffff;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .slot-form {
@@ -4264,6 +4273,7 @@ img.dark-icon {
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
+  scrollbar-width: thin;
 }
 @media (max-width: 1199.98px) {
   ::-webkit-scrollbar {
@@ -4284,6 +4294,7 @@ img.dark-icon {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: none;
+  scrollbar-width: thin;
 }
 
 /* Handle */
@@ -4291,6 +4302,7 @@ img.dark-icon {
   background: #FF6D6D;
   border-radius: 10px;
   box-shadow: none;
+  scrollbar-color: #FF6D6D;
 }
 
 /* Handle on hover */
@@ -5052,7 +5064,7 @@ select.form-control.is-invalid {
 
 .jochi-sub-components-light-bg {
   background-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0px 0px 32px -4px rgba(0, 1, 0, 0.09);
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
   border-radius: 22px;
 }
 
@@ -5389,6 +5401,17 @@ select.form-control.is-invalid {
   cursor: initial !important;
 }
 
-.multiselect {
-  z-index: 999 !important;
+.sch-admin {
+  color: #6c6c6c;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+.sch-admin i {
+  color: #FF6D6D;
+  font-size: 18px;
+}
+
+.bg-redShade {
+  background: rgba(187, 118, 118, 0.35) !important;
 }/*# sourceMappingURL=style01.css.map */

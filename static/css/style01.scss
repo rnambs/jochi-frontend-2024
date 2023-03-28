@@ -445,7 +445,7 @@ input[type="radio"]{
     }
     .dropdown-menu{
         background-color: $white;
-        box-shadow: 0px 0px 15px -3px rgb(0 1 0 / 14%);
+        box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
         font-size: 0.9rem;
         padding: inherit;
         list-style-type: none;
@@ -870,7 +870,7 @@ input[type="radio"]{
     input{
         width: 100%;
         position: relative;
-        z-index: 99;
+        z-index: 9;
     }
     &::before{
         position: absolute;
@@ -909,16 +909,18 @@ input[type="radio"]{
     @media screen and (max-width: $md-screen) {
         width: auto;
     }
-    span, i {
+    span, svg {
         color: #FF6D6D !important;
+        fill: #FF6D6D;
     }
     span{
         margin: initial !important;
     }
     &:hover{
         background-color: #FF6D6D !important;
-        span, i {
+        span, svg * {
             color: #FFf !important;
+            fill: #fff !important
         }
     }
 }
@@ -1070,7 +1072,7 @@ input[type="radio"]{
     &.card-void{
         background-color: transparent;
         // box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
-        box-shadow: 0px 0px 15px -3px rgb(0 1 0 / 14%)
+        box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22)
     }
     &.card-transparent{
         background-color: transparent;
@@ -1186,6 +1188,11 @@ input[type="radio"]{
     }
 }
 
+.show-scroll{
+    overflow-y: scroll;
+    scrollbar-color: $theme-color #fff;
+}
+
 .planner-day-responsive{
     @media (max-width:$lg-screen) {
         overflow: hidden;
@@ -1291,6 +1298,8 @@ img.dark-icon{
 .bullet{
     width: 12px;
     height: 12px;
+    min-width: 12px;
+    min-height: 12px;
     border-color: $text-secondary !important;
 }
 
@@ -3254,7 +3263,7 @@ img.dark-icon{
                 .inner-tab{
                     text-decoration: none;
                     background-color: rgba($color: $white, $alpha: 0.45);
-                    box-shadow: 0px 0px 32px -4px rgba($color: #000100, $alpha: 0.09);
+                    box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
                     min-height: 56px;
                     &:hover, &.nuxt-link-exact-active.nuxt-link-active{
                         background-color: $theme-color;
@@ -5612,6 +5621,7 @@ img.dark-icon{
 ::-webkit-scrollbar  {
     width: 6px;
     height: 6px;
+    scrollbar-width: thin;
     @media (max-width:$lg-screen) {
         width: 4px;
         height: 4px;
@@ -5628,6 +5638,7 @@ img.dark-icon{
     border-radius: 10px;
     overflow: hidden;
     box-shadow: none;
+    scrollbar-width: thin;
 }
 
 /* Handle */
@@ -5635,6 +5646,7 @@ img.dark-icon{
     background: $theme-color;
     border-radius: 10px;
     box-shadow: none;
+    scrollbar-color: $theme-color;
 }
 
 /* Handle on hover */
@@ -7011,6 +7023,21 @@ $b-toaster-zindex: 1100 !default;
     cursor: initial !important;
 }
 
-.multiselect{
-    z-index: 999 !important;
+// .multiselect{
+//     z-index: 999 !important;
+// }
+
+.sch-admin {
+	color: #6c6c6c;
+	font-weight: 600;
+	padding: 5px 15px;
+	border-radius: 10px;
+    i {
+        color: $theme-color;
+        font-size: 18px;
+    }
+}
+
+.bg-redShade {
+    background: rgba(187, 118, 118, 0.35) !important;
 }

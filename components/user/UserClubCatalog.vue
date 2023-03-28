@@ -8,37 +8,33 @@
     />
     <div class="main-section">
       <div
-        class="
-          jochi-components-light-bg
-          p-4
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-        "
+        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid">
             <div class="d-flex justify-content-between align-item-center">
               <div class="d-flex flex-column">
                 <h2
-                  data-intro="Find the list of all the clubs in your school. Click on Learn More to see the club details and join to the club from there"
+                  data-intro="View all the community service, sports teams, and clubs available at your school. To learn more about different activities, click learn more."
                   class="color-primary font-semi-bold mb-1"
                 >
                   Club Catalog
                 </h2>
                 <h4 class="mb-2 color-dark font-semi-bold">
-                  Find your People!
+                  Find your people!
                 </h4>
               </div>
 
-              <div data-intro="Create your own clubs from here">
+              <div
+                data-intro="You can even create your own extracurricular here. It may take some time to appear as an administrator at your school and will have to approve this before other students can see your new extracurricular activity."
+              >
                 <button
                   v-if="user_type == 3"
                   type="button"
                   class="btn btn-dark py-2 mt-1 h-fit-content px-4"
                   @click="openCreateNewModal"
                 >
-                  Create New
+                  Create your own club
                 </button>
               </div>
             </div>
@@ -46,7 +42,7 @@
               <div class="col-md-4">
                 <div class="form-row position-relative">
                   <input
-                    data-intro="Search for clubs from here"
+                    data-intro="Search for different extracurriculars (sports, clubs, extracurriculars) from this search bar."
                     class="form-control w-100 tab-form-control"
                     type="text"
                     v-model="search"
@@ -60,7 +56,7 @@
               </div>
               <div class="col-md-4">
                 <div
-                  data-intro="Filter clubs based on tags from here"
+                  data-intro="Filter extracurriculars based on different tags here."
                   class="input-icon-area custom-multiselect-adj-text form-row"
                 >
                   <multiselect
@@ -88,17 +84,7 @@
           class="d-flex flex-column flex-fill h-40 pr-3"
         >
           <div
-            class="
-              inner-club
-              container-fluid
-              bg-transparent
-              custom-overflow
-              pe-2
-              mr--2
-              mt-0
-              d-flex
-              flex-column flex-fill
-            "
+            class="inner-club container-fluid bg-transparent custom-overflow pe-2 mr--2 mt-0 d-flex flex-column flex-fill"
           >
             <div
               class="pt-4 pb-3 border-bottom"
@@ -116,28 +102,13 @@
                   </p>
                 </div>
                 <div
-                  class="
-                    col-lg-6
-                    d-flex
-                    justify-content-start justify-content-lg-end
-                  "
+                  class="col-lg-6 d-flex justify-content-start justify-content-lg-end"
                 >
                   <div
-                    class="
-                      p-0
-                      pr-2 pr-sm-0 pr-md-4 pr-xl-2
-                      d-flex
-                      justify-content-start justify-content-lg-end
-                    "
+                    class="p-0 pr-2 pr-sm-0 pr-md-4 pr-xl-2 d-flex justify-content-start justify-content-lg-end"
                   >
                     <div
-                      class="
-                        to-do-ul
-                        d-flex
-                        align-items-center
-                        justify-content-start justify-content-lg-end
-                        flex-wrap
-                      "
+                      class="to-do-ul d-flex align-items-center justify-content-start justify-content-lg-end flex-wrap"
                     >
                       <p
                         v-for="(todos, index) in list.tagList"
@@ -145,19 +116,7 @@
                         class="mb-2"
                       >
                         <span
-                          class="
-                            to-do-li
-                            color-white
-                            text-14
-                            rounded-6
-                            px-4
-                            py-1
-                            m-1
-                            min-w-100
-                            d-flex
-                            justify-content-center
-                            bg-theme
-                          "
+                          class="to-do-li color-white text-14 rounded-6 px-4 py-1 m-1 min-w-100 d-flex justify-content-center bg-theme"
                           :style="{
                             'background-color': tagColorMap[todos]
                               ? tagColorMap[todos]
@@ -177,24 +136,29 @@
                   </div>
                 </div>
                 <div
-                  class="
-                    col-lg-2
-                    d-flex
-                    justify-content-start justify-content-lg-end
-                  "
+                  class="col-lg-2 d-flex justify-content-start justify-content-lg-end"
                 >
                   <nuxt-link
+                    v-if="isSchoolAdmin != '1'"
                     :to="{
                       path: '/student-club-view',
                       query: { id: list.id, name: list.name },
                     }"
-                    class="
-                      btn btn-primary
-                      py-1
-                      mt-2
-                      h-fit-content
-                      px-lg-3 px-xl-4
-                    "
+                    class="btn btn-primary py-1 mt-2 h-fit-content px-lg-3 px-xl-4"
+                  >
+                    Learn More
+                  </nuxt-link>
+                  <nuxt-link
+                    v-else
+                    :to="{
+                      path: '/club-moreInfo',
+                      query: {
+                        id: list.id,
+                        name: list.name,
+                        type: list.activity_type,
+                      },
+                    }"
+                    class="btn btn-primary py-1 mt-2 h-fit-content px-lg-3 px-xl-4"
                   >
                     Learn More
                   </nuxt-link>
@@ -225,7 +189,9 @@
           >
             <div class="modal-content">
               <div class="modal-header pb-1">
-                <h3 class="modal-title" id="exampleModalLabel">Create New</h3>
+                <h3 class="modal-title" id="exampleModalLabel">
+                  Create your own club
+                </h3>
               </div>
               <div class="modal-body px-4">
                 <form action="">
@@ -233,16 +199,7 @@
                     <tr>
                       <td class="tmodal-data d-flex">
                         <p
-                          class="
-                            mb-0
-                            tdata-overflow
-                            d-flex
-                            align-items-center
-                            form-row
-                            px-0
-                            py-1
-                            col-12 col-md-10 col-lg-9
-                          "
+                          class="mb-0 tdata-overflow d-flex align-items-center form-row px-0 py-1 col-12 col-md-10 col-lg-9"
                         >
                           <span class="pr-2"></span>
                           <input
@@ -270,16 +227,7 @@
                     <tr>
                       <td class="tmodal-data d-flex">
                         <p
-                          class="
-                            mb-0
-                            tdata-overflow
-                            d-flex
-                            align-items-center
-                            form-row
-                            col-12 col-md-11 col-lg-10
-                            px-0
-                            py-1
-                          "
+                          class="mb-0 tdata-overflow d-flex align-items-center form-row col-12 col-md-11 col-lg-10 px-0 py-1"
                         >
                           <span class="pr-2"></span>
                           <textarea
@@ -308,16 +256,7 @@
                     <tr>
                       <td class="tmodal-data d-flex">
                         <p
-                          class="
-                            mb-0
-                            tdata-overflow
-                            d-flex
-                            align-items-center
-                            form-row
-                            col-12 col-md-7 col-lg-6
-                            px-0
-                            py-1
-                          "
+                          class="mb-0 tdata-overflow d-flex align-items-center form-row col-12 col-md-7 col-lg-6 px-0 py-1"
                         >
                           <span class="pr-2"></span>
                           <select
@@ -417,6 +356,7 @@ export default {
       debounce: null,
       tagColorMap: {},
       startTime: null,
+      isSchoolAdmin: "0",
     };
   },
   validations: {
@@ -425,6 +365,8 @@ export default {
     description: { required },
   },
   mounted() {
+    window.addEventListener("orientationchange", this.handleOrientationChange);
+    this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     const page = "ClubCatalog";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
@@ -580,8 +522,6 @@ export default {
               const key = tag;
 
               obj[key] = color;
-
-              console.log(obj);
             }
             this.tagColorMap = obj;
           });
@@ -685,6 +625,11 @@ export default {
         });
       }
     },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
   },
   beforeDestroy() {
     const endTime = new Date().getTime();
@@ -692,6 +637,12 @@ export default {
     const distinct_id = localStorage.getItem("distinctId");
     const page = "ClubCatalog";
     this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
+  },
+  destroyed() {
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
   },
 };
 </script>

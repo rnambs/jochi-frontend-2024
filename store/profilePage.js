@@ -12,7 +12,9 @@ const state = {
   profile: '',
   phone: '',
   notification: '',
-  notificationSettings: {}
+  notificationSettings: {},
+  schoolAdminRequested: '',
+  schoolAdmin: '',
 }
 
 const actions = {
@@ -70,7 +72,6 @@ const actions = {
         },
       });
 
-      console.log("response of upload profile pic", response, response.message)
 
       if (response.message == "Image uploaded successfully") {
         commit('setErrorMessage', "");
@@ -252,7 +253,6 @@ const actions = {
         },
       });
 
-      console.log("response of upload profile pic", response, response.message)
 
       // if (response.message == "Image uploaded successfully") {
       commit('setErrorMessage', "");
@@ -403,6 +403,114 @@ const actions = {
 
 
   },
+  async upgradeUser({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$post(BASE_URL + 'teacher/school_admin_request', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+
+      if (response.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', "success");
+
+
+      }
+    } catch (e) {
+      if (e?.response?.data?.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else if (e?.response?.data?.message == "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.");
+        commit('setErrorType', "error");
+
+      }
+      else if (e?.response?.data?.message == "Validation error") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "Oops! Something went wrong. Please try again later");
+        commit('setErrorType', "error");
+      }
+      else if (e?.response?.data?.message == "File size cannot be larger than 4MB!") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "File size cannot be larger than 4MB!");
+        commit('setErrorType', "error");
+
+      }
+
+      else if (e?.response?.data?.message == "No user found") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "No user found");
+        commit('setErrorType', "error");
+
+      }
+      else if (e?.response?.data?.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e?.response?.data?.message);
+        commit('setErrorType', "error");
+
+      }
+    }
+
+  },
+  // get school admin status
+  async getSchoolAdminStatus({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$get(BASE_URL + `teacher/get_school_admin_status`, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+
+      if (response.message == "Success") {
+        commit('setSchoolAdminRequested', response.data.school_admin_requested);
+        commit('setSchoolAdmin', response.data.school_admin);
+      }
+
+    } catch (e) {
+      if (e?.response?.data?.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else if (e?.response?.data?.message == "User not found") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "User not found");
+        commit('setErrorType', "error");
+
+      }
+      else if (e?.response?.data?.message == "Validation error") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "error");
+        // this.$router.push("/club-detail");
+
+      }
+    }
+
+
+  },
 
 }
 const mutations = {
@@ -444,6 +552,16 @@ const mutations = {
   setNotificationSettings(state, data) {
     state.notificationSettings = data;
   },
+  setSchoolAdminRequested(state, data) {
+    state.schoolAdminRequested = data;
+    localStorage.setItem('schoolAdminRequested', data)
+
+  },
+  setSchoolAdmin(state, data) {
+    state.schoolAdmin = data;
+    localStorage.setItem('schoolAdmin', data)
+
+  },
 
 }
 const getters = {
@@ -481,6 +599,12 @@ const getters = {
   notificationSettings: () => {
     return state.notificationSettings;
   },
+  schoolAdminRequested: () => {
+    return state.schoolAdminRequested;
+  },
+  schoolAdmin: () => {
+    return state.schoolAdmin;
+  }
 
 }
 

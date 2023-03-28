@@ -2,17 +2,7 @@
   <div>
     <div
       id="pageLoader"
-      class="
-        bg-light
-        d-flex
-        align-items-center
-        justify-content-center
-        position-fixed
-        vh-100
-        vw-100
-        left-0
-        top-0
-      "
+      class="bg-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
       style="z-index: 9"
       v-if="!isHidden"
     >
@@ -21,15 +11,7 @@
 
     <div class="main-section">
       <div
-        class="
-          jochi-components-light-bg
-          p-4
-          custom-margin-for-main-section custom-full-height
-          d-flex
-          flex-column
-          position-realtive
-          hidden-scroll
-        "
+        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
       >
         <div class="dmc-head d-flex justify-content-between align-items-start">
           <div class="greet-with-name-sec">
@@ -57,13 +39,7 @@
             <div class="col-xl-8 h-100 height-md-unset">
               <div class="d-flex flex-column h-100">
                 <div
-                  class="
-                    jochi-sub-components-light-bg
-                    p-4
-                    pr-1
-                    pb-1
-                    h-fit-content
-                  "
+                  class="jochi-sub-components-light-bg p-4 pr-1 pb-1 h-fit-content"
                 >
                   <div class="row position-relative justify-content-between">
                     <div class="col-7"></div>
@@ -86,25 +62,15 @@
                 </div>
                 <div class="d-flex flex-column h-40 flex-fill">
                   <div
-                    class="
-                      row
-                      mt-1
-                      h-100
-                      height-md-unset
-                      flex-column flex-lg-row
-                    "
+                    class="row mt-1 h-100 height-md-unset flex-column flex-lg-row"
                   >
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
-                      <div class="jochi-sub-components-light-bg h-100">
+                      <div
+                        data-intro="See how you are working towards your daily study goals."
+                        class="jochi-sub-components-light-bg h-100"
+                      >
                         <div
-                          class="
-                            study-status-card
-                            d-flex
-                            flex-row flex-lg-column
-                            justify-content-center
-                            align-items-center
-                            h-100
-                          "
+                          class="study-status-card d-flex flex-row flex-lg-column justify-content-center align-items-center h-100"
                         >
                           <div
                             class="position-relative d-flex mr-3 mr-lg-0 mt-2"
@@ -115,26 +81,13 @@
                               class="d-flex justify-content-center w-100"
                             />
                             <div
-                              class="
-                                study-status-img
-                                position-absolute
-                                d-flex
-                                w-100
-                                h-100
-                                align-items-center
-                                justify-content-center
-                              "
+                              class="study-status-img position-absolute d-flex w-100 h-100 align-items-center justify-content-center"
                             >
                               <img src="~/static/image/alarm.png" alt="" />
                             </div>
                           </div>
                           <div
-                            class="
-                              study-status-text
-                              text-left text-lg-center
-                              mb-2
-                              px-2
-                            "
+                            class="study-status-text text-left text-lg-center mb-2 px-2"
                           >
                             <p class="study-status-studied mb-1 break-word">
                               {{ duration }} Minutes Studied Today
@@ -151,18 +104,12 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill">
+                    <div
+                      data-intro="View your upcoming meetings for the month. "
+                      class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill"
+                    >
                       <div
-                        class="
-                          d-flex
-                          flex-column
-                          custom-overflow
-                          faculty-availability-card-outer
-                          h-100
-                          p-3
-                          py-4
-                          h-max-lg-400
-                        "
+                        class="d-flex flex-column custom-overflow faculty-availability-card-outer h-100 p-3 py-4 h-max-lg-400"
                       >
                         <div class="row">
                           <div class="col-12 mb-2">
@@ -174,27 +121,13 @@
                               <div class="row">
                                 <div class="col-3 py-0">
                                   <div
-                                    class="
-                                      jochi-sub-components-light-bg
-                                      fa-card-date
-                                      d-flex
-                                      flex-column
-                                      align-items-center
-                                      justify-content-center
-                                      w-100
-                                      p-3
-                                    "
+                                    class="jochi-sub-components-light-bg fa-card-date d-flex flex-column align-items-center justify-content-center w-100 p-3"
                                   >
                                     <p class="color-primary text-12 mb-1">
                                       {{ list.date_day }}
                                     </p>
                                     <p
-                                      class="
-                                        color-primary
-                                        font-regular
-                                        text-30
-                                        mb-0
-                                      "
+                                      class="color-primary font-regular text-30 mb-0"
                                     >
                                       {{ list.date_number }}
                                     </p>
@@ -202,22 +135,12 @@
                                 </div>
                                 <div class="col-9">
                                   <div
-                                    class="
-                                      d-flex
-                                      justify-content-between
-                                      align-items-center
-                                      cursor-pointer
-                                    "
+                                    class="d-flex justify-content-between align-items-center cursor-pointer"
                                     @click="onCardClick(list)"
                                   >
                                     <div class="fa-meeting-faculty-details">
                                       <p
-                                        class="
-                                          mb-1
-                                          color-seccondary
-                                          text-14
-                                          font-regular
-                                        "
+                                        class="mb-1 color-seccondary text-14 font-regular"
                                       >
                                         {{
                                           list.type == "Teacher"
@@ -226,25 +149,12 @@
                                         }}
                                       </p>
                                       <p
-                                        class="
-                                          mb-1
-                                          color-dark
-                                          text-18
-                                          font-bold
-                                        "
+                                        class="mb-1 color-dark text-18 font-bold"
                                       >
                                         {{ list.new_title }}
                                       </p>
                                       <div
-                                        class="
-                                          w-fit-content
-                                          text-12
-                                          px-3
-                                          py-1
-                                          bg-theme
-                                          rounded-pill
-                                          color-white
-                                        "
+                                        class="w-fit-content text-12 px-3 py-1 bg-theme rounded-pill color-white"
                                       >
                                         {{ list.start_time }}
                                       </div>
@@ -261,14 +171,7 @@
                           v-if="!slot_date || slot_date.length <= 0"
                         >
                           <span
-                            class="
-                              d-flex
-                              w-100
-                              justify-content-center
-                              color-secondary
-                              text-16
-                              font-regular
-                            "
+                            class="d-flex w-100 justify-content-center color-secondary text-16 font-regular"
                             >No meetings scheduled for this month!</span
                           >
                         </div>
@@ -278,38 +181,68 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-4 h-100 mt-3 mt-xl-0 height-md-unset">
+            <div class="col-xl-4 mt-3 mt-xl-0 h-md-100">
               <div
-                class="
-                  jochi-sub-components-light-bg
-                  h-100
-                  d-flex
-                  flex-column
-                  overflow-hidden
-                "
+                class="jochi-sub-components-light-bg h-100 d-flex flex-column overflow-hidden"
               >
                 <div class="calendar-dashboard px-4 pt-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-                <div
-                  class="d-flex flex-column h-40 flex-fill pb-3 assignment-list"
-                >
-                  <h4 class="color-black font-semi-bold px-4">
-                    Assignments List
-                  </h4>
+                <div v-if="isLargeScreen" class="h-40 flex-fill">
                   <div
-                    class="
-                      d-flex
-                      flex-column
-                      h-40
-                      flex-fill
-                      custom-overflow
-                      px-3
-                      mb-3
-                      pt-2
-                      mx-2
-                      h-max-lg-600
-                    "
+                    data-intro="See a brief overview of upcoming assignments day-by-day."
+                    class="d-md-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-show"
+                  >
+                    <h4 class="color-black font-semi-bold px-4">
+                      Assignments List
+                    </h4>
+                    <div
+                      class="d-flex flex-column h-100 custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
+                    >
+                      <div
+                        v-for="item in assignmentList"
+                        :key="item.id"
+                        class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                      >
+                        <p
+                          class="mb-2 word-break text-16 font-semi-bold color-dark"
+                        >
+                          {{ item.task }}
+                        </p>
+                        <p class="mb-0 text-14">
+                          <span>{{ item.due_date }}</span
+                          >&nbsp;<span>{{ item.due_time }}</span>
+                        </p>
+                      </div>
+                      <div
+                        v-if="!assignmentList || assignmentList.length <= 0"
+                        class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                      >
+                        <p
+                          class="mb-2 word-break text-16 font-semi-bold color-dark"
+                        >
+                          No assignments for this day!
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-100 h-40 flex-fill" v-if="!isLargeScreen">
+              <div
+                data-intro="See a brief overview of upcoming assignments day-by-day."
+                class="d-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-hide"
+              >
+                <h4 class="color-black font-semi-bold px-4">
+                  Assignments List
+                </h4>
+                <div
+                  class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2"
+                >
+                  <div
+                    v-if="assignmentList && assignmentList.length > 0"
+                    class="h-100 overflow-auto"
                   >
                     <div
                       v-for="item in assignmentList"
@@ -317,13 +250,7 @@
                       class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
                     >
                       <p
-                        class="
-                          mb-2
-                          word-break
-                          text-16
-                          font-semi-bold
-                          color-dark
-                        "
+                        class="mb-2 word-break text-16 font-semi-bold color-dark"
                       >
                         {{ item.task }}
                       </p>
@@ -332,22 +259,16 @@
                         >&nbsp;<span>{{ item.due_time }}</span>
                       </p>
                     </div>
-                    <div
-                      v-if="!plannerList || plannerList.length <= 0"
-                      class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                  </div>
+                  <div
+                    v-if="!assignmentList || assignmentList.length <= 0"
+                    class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                  >
+                    <p
+                      class="mb-2 word-break text-16 font-semi-bold color-dark"
                     >
-                      <p
-                        class="
-                          mb-2
-                          word-break
-                          text-16
-                          font-semi-bold
-                          color-dark
-                        "
-                      >
-                        No assignments for this day!
-                      </p>
-                    </div>
+                      No assignments for this day!
+                    </p>
                   </div>
                 </div>
               </div>
@@ -396,15 +317,7 @@
                     <td class="tmodal-data text-nowrap">Meeting Name</td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12 col-md-10 col-lg-9
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                          line-break-anywhere
-                        "
+                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0 line-break-anywhere"
                       >
                         {{ meetingDetail.meeting_name }}
                       </p>
@@ -414,15 +327,7 @@
                     <td class="tmodal-data text-nowrap">Description</td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12 col-md-11 col-lg-10
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                          line-break-anywhere
-                        "
+                        class="mb-0 col-12 col-md-11 col-lg-10 d-flex align-items-center form-row py-0 line-break-anywhere"
                       >
                         {{ meetingDetail.meeting_description }}
                       </p>
@@ -432,14 +337,7 @@
                     <td class="tmodal-data text-nowrap">Type of Meeting</td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12 col-md-10 col-lg-9
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                        "
+                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0"
                       >
                         {{ meetingDetail.conversation_type }}
                       </p>
@@ -455,15 +353,7 @@
                     </td>
                     <td class="tmodal-data">
                       <p
-                        class="
-                          mb-0
-                          col-12 col-md-10 col-lg-9
-                          d-flex
-                          align-items-center
-                          form-row
-                          py-0
-                          line-break-anywhere
-                        "
+                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0 line-break-anywhere"
                       >
                         {{
                           meetingDetail.conversation_type == "Video Conference"
@@ -562,11 +452,18 @@ export default {
           rel: "stylesheet",
           href: "/css/style01.css",
         },
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
       ],
     };
   },
   data() {
     return {
+      isSmallScreen: false,
+      isMediumScreen: false,
+      isLargeScreen: false,
       loading: true,
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
@@ -649,6 +546,7 @@ export default {
     ...mapState("quotedMessage", {
       quoteMessage: (state) => state.quoteMessage,
       plannerList: (state) => state.plannerList,
+      sharedAstList: (state) => state.sharedAstList,
     }),
     ...mapState("userStudyAnalytics", {
       goal: (state) => state.goal,
@@ -667,6 +565,7 @@ export default {
     },
   },
   mounted() {
+    window.addEventListener("orientationchange", this.handleOrientationChange);
     const page = "Dashboard";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
@@ -683,14 +582,45 @@ export default {
     if (!phone && skipped != "true") {
       $("#promptModal").modal();
     }
+    this.findDeviceSize();
+  },
+  watch: {
+    startProductGuide(newValue, oldValue) {
+      if (newValue) {
+        this.startIntro();
+      }
+    },
   },
   methods: {
+    findDeviceSize() {
+      const smallScreen = window.matchMedia("(max-width: 640px)");
+      const mediumScreen = window.matchMedia("(min-width: 640px)");
+      const largeScreen = window.matchMedia("(min-width: 1024px)");
+
+      this.isSmallScreen = smallScreen.matches;
+      this.isMediumScreen = mediumScreen.matches;
+      this.isLargeScreen = largeScreen.matches;
+
+      smallScreen.addListener((e) => {
+        this.isSmallScreen = e.matches;
+      });
+
+      mediumScreen.addListener((e) => {
+        this.isMediumScreen = e.matches;
+      });
+
+      largeScreen.addListener((e) => {
+        this.isLargeScreen = e.matches;
+      });
+    },
     async skipPromt() {
       localStorage.setItem("skippedPrompt", "true");
     },
     activate() {
-      console.log("inside hide timeout");
       setTimeout(() => (this.isHidden = true), 1500);
+      setTimeout(() => {
+        this.startIntro();
+      }, 2500);
     },
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -992,33 +922,17 @@ export default {
         this.meetingDetails.push(listobj);
         eventList.push(meetingobj);
       });
-      this.sessionList?.forEach((element) => {
-        var meetingobj = {};
-        var listobj = {};
-        let title = "";
-        if (element.assignment_id) {
-          title = "Study Session " + element.assignments?.task;
-        } else {
-          title = "Study Session " + element.subject?.subject_name;
-        }
-
-        const color = element.subject?.color_code;
-        // }
-        var dateMeeting = element.date;
-        var timeValNum = element.time;
-        var tmeMeeting = this.formatAMPM(element.time);
-        var start = dateMeeting + "T" + tmeMeeting;
-        meetingobj["title"] = title;
-        meetingobj["color"] = color;
-        meetingobj["start"] = start;
-        meetingobj["id"] = element.id;
-        meetingobj["groupId"] = "study";
-
-        listobj["title"] = title;
-        listobj["meeting"] = "Study Session";
-        listobj["dateMeeting"] = dateMeeting;
-        listobj["timeValNum"] = timeValNum;
-        eventList.push(meetingobj);
+      this.sharedAstList.forEach((element) => {
+        let planner = {};
+        planner.task = element.task;
+        planner.task_status = element.task_status;
+        planner.id = element.id;
+        planner.subject = element.subject;
+        planner.due_date = moment(element.due_date).format("MM/DD/YYYY");
+        planner.due_time = element.due_time;
+        planner.assignment_description = element.assignment_description;
+        planner.subjects = element.assignment_description;
+        this.assignmentList.push(planner);
       });
     },
     handleMonthChange(dateInfo) {
@@ -1032,7 +946,6 @@ export default {
       this.ListAllMeeting();
     },
     handleDateClick: function (arg) {
-      console.log("arg", arg);
       this.GetDailyPlanner(arg.date);
     },
     goPrev() {
@@ -1046,6 +959,31 @@ export default {
       this.GetDailyPlanner(this.calendarApi.view.activeStart);
       this.ListAllMeeting();
     },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      let skip = false;
+      if (this.startProductGuide) {
+        intro.start();
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
+          completed = true;
+          if (state != "skip") this.$router.push("/user-profile");
+        });
+        intro.onexit(() => {
+          if (!completed) this.$store.commit("setStartProductGuide", false);
+        });
+      }
+    },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
   },
   beforeDestroy() {
     const endTime = new Date().getTime();
@@ -1053,6 +991,12 @@ export default {
     const distinct_id = localStorage.getItem("distinctId");
     const page = "Dashboard";
     this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
+  },
+  destroyed() {
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
   },
 };
 </script>
@@ -1155,4 +1099,26 @@ export default {
     width: 100%;
   }
 }
+
+.h-max-100 {
+  max-height: 100px;
+}
+
+/* .assignment-md-show {
+  display: none !important;
+}
+
+.assignment-md-hide {
+  display: flex !important;
+}
+
+@media (min-width: 768px) {
+  .assignment-md-show {
+    display: flex !important;
+  }
+
+  .assignment-md-hide {
+    display: none !important;
+  } 
+}*/
 </style>

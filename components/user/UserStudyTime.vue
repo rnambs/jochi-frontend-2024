@@ -15,55 +15,26 @@
     <!-- session  -->
     <div
       v-if="currentTab == 0"
-      class="
-        jochi-components-light-bg
-        custom-margin-for-main-section custom-full-height
-        d-flex
-      "
+      class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex"
     >
       <div
-        class="
-          study-section
-          d-flex
-          flex-column flex-fill
-          px-4
-          custom-overflow
-          my-3
-          py-md-2 py-lg-3
-        "
+        class="study-section d-flex flex-column flex-fill px-4 custom-overflow my-3 py-md-2 py-lg-3"
       >
         <div class="row h-lg-100">
           <div class="col-lg-7 d-flex flex-column">
             <div class="position-relative">
               <div
-                data-intro="Schedule study sessions for completing study sessions for later from here"
+                data-intro="The study room is a tool for you to use to tackle your assignments/tasks. Click here to schedule a study session for sometime later."
                 @click="scheduleLaterClick('assignment', $event)"
-                class="
-                  position-absolute
-                  send-later
-                  jochi-components-light-bg
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                  cursor-pointer
-                "
+                class="position-absolute send-later jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
               >
                 <img src="~/assets/images/send-later.png" />
               </div>
             </div>
             <div
               @click="setSessionType('assignment', false)"
-              class="
-                row
-                card card-void
-                rounded-22
-                m-0
-                mb-4
-                p-4
-                flex-row
-                cursor-pointer
-              "
-              data-intro="Start sessions for completing an assignment from here. Choose an assignment, select your study method and configure your study session for starting a new study session"
+              class="row card card-void rounded-22 m-0 mb-4 p-4 flex-row cursor-pointer"
+              data-intro="To start a session right away, click here. You will be prompted to choose what assignment you want to work on, invite your classmates to join you, a chance to set some goals, the option to choose a structured study method and other options to configure a new study session."
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
                 <h2 class="color-primary font-semi-bold mb-1">
@@ -85,37 +56,21 @@
             </div>
             <div class="position-relative">
               <div
-                data-intro="Schedule normal study sessions for later from here"
+                data-intro="Want to just set yourself accountable while getting general work here? Click here to schedule a regular study session for later."
                 @click="scheduleLaterClick('study', $event)"
-                class="
-                  position-absolute
-                  send-later
-                  jochi-components-light-bg
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                  cursor-pointer
-                "
+                class="position-absolute send-later jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
               >
                 <img src="~/assets/images/send-later.png" />
               </div>
             </div>
             <div
-              data-intro="Start normal study sessions from here. Select your study method and configure your study session for starting a new study session"
+              data-intro="Get started with a general study session right away by clicking here. You will be shown similar options such as setting goals, duration, and other options to configure your session."
               @click="setSessionType('study', false)"
-              class="
-                row
-                card card-void
-                rounded-22
-                p-4
-                m-0
-                flex-row
-                cursor-pointer
-              "
+              class="row card card-void rounded-22 p-4 m-0 flex-row cursor-pointer"
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
                 <h2 class="color-primary font-semi-bold mb-1">
-                  Start a new Study Session
+                  Start A New Study Session
                 </h2>
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Stay focused while you study, and monitor your productivity
@@ -134,18 +89,11 @@
           </div>
           <div class="col-lg-5 h-lg-100">
             <div
-              class="
-                card card-void
-                rounded-22
-                py-4
-                h-100
-                position-realtive
-                h-min-70
-              "
+              class="card card-void rounded-22 py-4 h-100 position-realtive h-min-70"
             >
               <div class="d-flex flex-column h-100">
                 <h2
-                  data-intro="View all your configured study sessions and the study sessions shared by your peers here"
+                  data-intro="View upcoming study sessions that you’ve blocked out for later and sessions that your classmates have invited you to."
                   class="color-primary font-semi-bold mb-2 px-4"
                 >
                   Upcoming Sessions
@@ -158,15 +106,7 @@
                       showSessionDetail = true;
                       setDetail(sessionItem);
                     "
-                    class="
-                      d-flex
-                      card card-void
-                      p-3
-                      d-flex
-                      flex-column
-                      mb-3
-                      cursor-pointer
-                    "
+                    class="d-flex card card-void p-3 d-flex flex-column mb-3 cursor-pointer"
                   >
                     <h6 class="color-dark font-semi-bold mb-1">
                       {{ sessionItem.name }}
@@ -183,23 +123,11 @@
                 >
                   <div class="custom-overflow pr-2 mr--2">
                     <div
-                      class="
-                        d-flex
-                        card card-secondary
-                        p-3
-                        d-flex
-                        flex-column
-                        mb-3
-                      "
+                      class="d-flex card card-secondary p-3 d-flex flex-column mb-3"
                     >
                       <h6 class="color-dark font-semi-bold mb-1"></h6>
                       <p
-                        class="
-                          mb-0
-                          color-secondary
-                          font-normal
-                          text-14 text-center
-                        "
+                        class="mb-0 color-secondary font-normal text-14 text-center"
                       >
                         <span> No sessions configured yet!</span>
                       </p>
@@ -214,14 +142,7 @@
                 class="position-absolute w-100 h-100 top-0 left-0 p-0"
               >
                 <div
-                  class="
-                    d-flex
-                    card card-primary-void
-                    flex-column
-                    h-100
-                    p-3
-                    rounded-22
-                  "
+                  class="d-flex card card-primary-void flex-column h-100 p-3 rounded-22"
                 >
                   <div
                     class="d-flex justify-content-between mb-2 border-bottom"
@@ -252,14 +173,7 @@
                       <p
                         v-for="goal in sessionDetail.goals"
                         :key="goal"
-                        class="
-                          mb-0
-                          color-secondary
-                          font-regular
-                          text-16
-                          d-flex
-                          align-items-center
-                        "
+                        class="mb-0 color-secondary font-regular text-16 d-flex align-items-center"
                       >
                         <span
                           class="d-flex rounded-circle border bullet mr-2 my-1"
@@ -272,14 +186,7 @@
                           !sessionDetail.goals ||
                           sessionDetail.goals.length <= 0
                         "
-                        class="
-                          mb-0
-                          color-secondary
-                          font-regular
-                          text-16
-                          d-flex
-                          align-items-center
-                        "
+                        class="mb-0 color-secondary font-regular text-16 d-flex align-items-center"
                       >
                         No goals set!
                       </p>
@@ -382,14 +289,7 @@
 
     <div
       v-if="currentTab == 1"
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-        flex-column
-        hidden-scroll
-      "
+      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
       <h2 class="color-primary font-bold mb-1">Step One:</h2>
       <h2 class="color-primary font-bold mb-1">Choose An Assignment</h2>
@@ -411,28 +311,13 @@
         >
           <button :disabled="disablePrevious" @click="previous" class="btn p-1">
             <span
-              class="
-                bg-theme
-                d-flex
-                align-items-center
-                justify-content-center
-                rounded-circle
-                btn-circle
-              "
+              class="bg-theme d-flex align-items-center justify-content-center rounded-circle btn-circle"
               ><i class="fa-solid fa-chevron-left color-white text-12"></i
             ></span>
           </button>
           <button :disabled="disableNext" @click="next" class="btn p-1">
             <span
-              class="
-                ml-1
-                bg-theme
-                d-flex
-                align-items-center
-                justify-content-center
-                rounded-circle
-                btn-circle
-              "
+              class="ml-1 bg-theme d-flex align-items-center justify-content-center rounded-circle btn-circle"
               ><i class="fa-solid fa-chevron-right color-white text-12"></i
             ></span>
           </button>
@@ -453,17 +338,7 @@
           >
             <div
               @click="onAssignmentSelect(detail)"
-              class="
-                jochi-sub-components-light-bg
-                drag-drop
-                p-4
-                position-realtive
-                h-100
-                d-flex
-                flex-column
-                justify-content-between
-                cursor-pointer
-              "
+              class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between cursor-pointer"
             >
               <div class="d-flex flex-column">
                 <div
@@ -475,6 +350,7 @@
                       red: detail.priority == '1',
                       yellow: detail.priority == '2',
                       green: detail.priority == '3',
+                      orange: detail.priority == '4',
                     }"
                   >
                     {{
@@ -484,6 +360,8 @@
                         ? "Important"
                         : detail.priority == "3"
                         ? "Can Wait"
+                        : detail.priority == "4"
+                        ? "Overdue"
                         : ""
                     }}
                   </div>
@@ -498,12 +376,7 @@
                   </h4>
                   <div class="text-center px-3">
                     <p
-                      class="
-                        color-secondary
-                        text-16
-                        line-height-1
-                        font-semi-bold
-                      "
+                      class="color-secondary text-16 line-height-1 font-semi-bold"
                     >
                       <!-- Practice for mock oral exam in class -->
                       {{ detail.subject }}
@@ -533,13 +406,7 @@
                         />
                         <label
                           for=""
-                          class="
-                            mb-0
-                            text-14
-                            color-secondary
-                            cursor-pointer
-                            text-truncate
-                          "
+                          class="mb-0 text-14 color-secondary cursor-pointer text-truncate"
                           >{{ subtask.title }}</label
                         >
                       </div>
@@ -569,12 +436,7 @@
                         :key="index"
                       >
                         <span
-                          class="
-                            text-capitalize
-                            color-secondary
-                            text-truncate
-                            w-100
-                          "
+                          class="text-capitalize color-secondary text-truncate w-100"
                         >
                           {{ file.file_type }} &nbsp;:&nbsp;{{ file.file_name }}
                         </span>
@@ -607,14 +469,7 @@
 
     <div
       v-if="currentTab == 2"
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-        flex-column
-        hidden-scroll
-      "
+      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
       <h2 class="color-primary font-bold mb-1">
         Step {{ sessionType == "study" ? "One" : "Two" }}:
@@ -635,19 +490,7 @@
               class="col-12 col-md-5 col-lg-4"
             >
               <div
-                class="
-                  jochi-sub-components-light-bg
-                  drag-drop
-                  px-4
-                  py-5
-                  position-realtive
-                  h-100
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                  flex-column
-                  cursor-pointer
-                "
+                class="jochi-sub-components-light-bg drag-drop px-4 py-5 position-realtive h-100 d-flex align-items-center justify-content-center flex-column cursor-pointer"
               >
                 <h2 class="color-primary text-center font-bold mb-1">
                   Regular Studying
@@ -662,18 +505,7 @@
               class="col-12 col-md-5 col-lg-4"
             >
               <div
-                class="
-                  jochi-sub-components-light-bg
-                  drag-drop
-                  px-4
-                  py-5
-                  position-realtive
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                  flex-column
-                  cursor-pointer
-                "
+                class="jochi-sub-components-light-bg drag-drop px-4 py-5 position-realtive d-flex align-items-center justify-content-center flex-column cursor-pointer"
               >
                 <h2 class="color-primary font-bold mb-1 text-center">
                   Pomodoro Technique
@@ -704,14 +536,7 @@
     <!-- step two configure -->
     <div
       v-if="currentTab == 3"
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-        flex-column
-        hidden-scroll
-      "
+      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
       <h2 class="color-primary font-bold mb-1">
         Step {{ sessionType == "study" ? "Two" : "Three" }}:
@@ -776,14 +601,7 @@
                     class="d-flex align-items-center justify-content-between"
                   >
                     <p
-                      class="
-                        mb-0
-                        color-secondary
-                        text-16
-                        font-regular
-                        pr-3
-                        d-flex
-                      "
+                      class="mb-0 color-secondary text-16 font-regular pr-3 d-flex"
                     >
                       <span><i class="far fa-circle"></i></span>
                       <span class="word-break ml-2">{{ goal }}</span>
@@ -803,15 +621,7 @@
                       class="d-flex align-items-center justify-content-between"
                     >
                       <p
-                        class="
-                          mb-0
-                          color-secondary
-                          text-16
-                          font-regular
-                          pr-3
-                          d-flex
-                          w-100
-                        "
+                        class="mb-0 color-secondary text-16 font-regular pr-3 d-flex w-100"
                       >
                         <span><i class="far fa-circle"></i></span>
                         <span class="ml-2 w-100">{{ task.title }}</span>
@@ -901,16 +711,7 @@
                   Studying
                 </h2>
                 <div
-                  class="
-                    form-section
-                    study-room-form
-                    py-0
-                    d-flex
-                    flex-column
-                    h-40
-                    flex-fill
-                    custom-overflow
-                  "
+                  class="form-section study-room-form py-0 d-flex flex-column h-40 flex-fill custom-overflow"
                 >
                   <form
                     @submit.prevent="StartStudySession()"
@@ -1023,12 +824,7 @@
                     </div>
 
                     <div
-                      class="
-                        d-flex
-                        flex-column flex-sm-row flex-lg-column flex-xl-row
-                        justify-content-between
-                        position-relative
-                      "
+                      class="d-flex flex-column flex-sm-row flex-lg-column flex-xl-row justify-content-between position-relative"
                     >
                       <div class="d-flex flex-column">
                         <div class="py-1">
@@ -1078,25 +874,12 @@
 
     <div
       v-if="currentTab == 4"
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-        hidden-scroll
-      "
+      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex show-scroll"
     >
       <div class="d-flex flex-column flex-fill">
         <div class="row">
           <div
-            class="
-              col-lg-7
-              study-col
-              d-flex
-              flex-column
-              justify-content-center
-              flex-fill
-            "
+            class="col-lg-7 study-col d-flex flex-column justify-content-center flex-fill"
           >
             <div class="card card-void rounded-22 p-4 flex-fill mb-4">
               <div class="">
@@ -1136,14 +919,7 @@
                     class="d-flex align-items-center justify-content-between"
                   >
                     <p
-                      class="
-                        mb-0
-                        color-secondary
-                        text-16
-                        font-regular
-                        pr-3
-                        d-flex
-                      "
+                      class="mb-0 color-secondary text-16 font-regular pr-3 d-flex"
                     >
                       <span><i class="far fa-circle"></i></span>
                       <span class="word-break ml-2">{{ goal }}</span>
@@ -1158,15 +934,7 @@
                       class="d-flex align-items-center justify-content-between"
                     >
                       <p
-                        class="
-                          mb-0
-                          color-secondary
-                          text-16
-                          font-regular
-                          pr-3
-                          d-flex
-                          w-100
-                        "
+                        class="mb-0 color-secondary text-16 font-regular pr-3 d-flex w-100"
                       >
                         <span><i class="far fa-circle"></i></span>
                         <span class="ml-2 w-100">{{ task.title }}</span>
@@ -1226,23 +994,10 @@
           </div>
 
           <div
-            class="
-              col-lg-5
-              study-col
-              d-flex
-              justify-content-center
-              align-items-center
-            "
+            class="col-lg-5 study-col d-flex justify-content-center align-items-center"
           >
             <div
-              class="
-                card card-void
-                rounded-22
-                p-4
-                flex-fill
-                h-100
-                justify-constent-center
-              "
+              class="card card-void rounded-22 p-4 flex-fill h-100 justify-constent-center"
             >
               <div class="d-flex flex-column flex-fill justify-content-between">
                 <div class="d-flex flex-column mb-4">
@@ -1253,13 +1008,7 @@
                 </div>
                 <div
                   id="app"
-                  class="
-                    mb-3
-                    flex-fill
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                  "
+                  class="mb-3 flex-fill d-flex align-items-center justify-content-center"
                 >
                   <div class="base-timer m-auto">
                     <svg
@@ -1304,12 +1053,7 @@
                 </div>
               </div>
               <div
-                class="
-                  btn-area
-                  d-flex
-                  align-items-center
-                  justify-content-center
-                "
+                class="btn-area d-flex align-items-center justify-content-center"
               >
                 <button
                   v-show="studyStatus != 'break'"
@@ -1348,15 +1092,7 @@
 
     <div
       v-if="currentTab == 5"
-      class="
-        jochi-components-light-bg
-        p-4
-        custom-margin-for-main-section custom-full-height
-        d-flex
-        align-items-center
-        justify-content-center
-        hidden-scroll
-      "
+      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex align-items-center justify-content-center hidden-scroll"
     >
       <div
         class="px-5 py-4 d-flex flex-column card card-void rounded-22 col-lg-7"
@@ -1756,6 +1492,7 @@ export default {
     }
   },
   async mounted() {
+    window.addEventListener("orientationchange", this.handleOrientationChange);
     const page = "StudySession";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
@@ -1814,6 +1551,9 @@ export default {
       startStudyResponse: (state) => state.startStudyResponse,
       assignmentsCount: (state) => state.assignmentsCount,
       sharedAssignmentsCount: (state) => state.sharedAssignmentsCount,
+      overdueAssignmentsList: (state) => state.overdueAssignmentsList,
+      sharedOverdueAssignmentsList: (state) =>
+        state.sharedOverdueAssignmentsList,
     }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
@@ -1874,7 +1614,6 @@ export default {
       }
     },
     redirectMap(e) {
-      console.log("session detail", e, this.studySessionDetail);
       let session = {};
       session.type = e.assignment_id ? "assignment" : "study";
       if (e.assignment_id) {
@@ -1950,7 +1689,6 @@ export default {
     },
     async getDetail(id) {
       await this.getSessionDetail({ id });
-      console.log(this.studySessionDetail);
     },
     async GetStatusTimer() {
       await this.getStatusTimer({});
@@ -2139,7 +1877,6 @@ export default {
 
     checkScheduleLaterValidations() {
       let valid = true;
-      console.log(!this.checkValidTime(this.scheduledTime));
 
       if (!this.checkValidTime(this.scheduledTime)) {
         this.$toast.open({
@@ -2320,12 +2057,7 @@ export default {
         });
         valid = false;
       }
-      console.log(
-        this.studyTypes,
-        this.targetDuration,
-        this.breatTime,
-        this.breakAt
-      );
+
       if (this.studyTypes?.id == 2) {
         if (!this.targetDuration || this.targetDuration == "0") {
           this.$toast.open({
@@ -2432,7 +2164,6 @@ export default {
 
       let addStudyPayload = {};
       if (this.sessionDetail.isSharedSession) {
-        console.log("session detail add study", this.sessionDetail);
         addStudyPayload = {
           sessionId: this.sharedNewSessionId,
           old_sessionId: this.sessionDetail.id,
@@ -2610,7 +2341,6 @@ export default {
       var presentTime = new Date().getTime();
       this.totalStudyTime += (presentTime - this.studyTimeStart) / 1000;
       clearInterval(this.limitedInterval);
-      console.log(this.studyStatus + "custom interval cleared!");
       this.AddStudyTime("PAUSE");
     },
     async getAllStudySessions() {
@@ -2665,7 +2395,6 @@ export default {
       });
 
       this.sharedSessions.forEach((e) => {
-        console.log(e);
         let session = {};
         session.type = e.assignment_id ? "assignment" : "study";
         session.id = e.session_id;
@@ -2781,11 +2510,13 @@ export default {
         offset: this.offset,
         limit: this.limit,
       });
-      console.log(this.assignmentsList, this.sharedAssignmentsList);
+
       this.mapCount();
       this.pendingAssignments = [];
       this.mapAssignments();
       this.mapSharedAssignments();
+      this.mapOverdueAssignments();
+      this.mapSharedOverdueAssignments();
     },
 
     mapCount() {
@@ -2814,7 +2545,17 @@ export default {
           this.pendingAssignments.push(asst);
         });
       }
-      console.log("pending assts ", this.pendingAssignments);
+    },
+    mapOverdueAssignments() {
+      if (
+        this.overdueAssignmentsList &&
+        this.overdueAssignmentsList.length > 0
+      ) {
+        this.overdueAssignmentsList.forEach((e) => {
+          let asst = this.mapData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
     },
     mapData(e) {
       if (e) {
@@ -2864,7 +2605,17 @@ export default {
           this.pendingAssignments.push(asst);
         });
       }
-      console.log("pending assts ", this.pendingAssignments);
+    },
+    mapSharedOverdueAssignments() {
+      if (
+        this.sharedOverdueAssignmentsList &&
+        this.sharedOverdueAssignmentsList.length > 0
+      ) {
+        this.sharedOverdueAssignmentsList.forEach((e) => {
+          let asst = this.mapSharedData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
     },
     mapSharedData(e) {
       let item = {};
@@ -2917,11 +2668,10 @@ export default {
         e.assignment_session_shared_users.length > 0
       ) {
         e.assignment_session_shared_users.forEach((item) => {
-          if (item.session_shared_user_id != user_id) {
+          if (item.session_shared_user_id.toString() != user_id && item.users) {
             let peer = {};
             peer = item.users;
             peer.id = item.session_shared_user_id;
-            console.log("console", item, peer);
             peers.push(peer);
           }
         });
@@ -2931,18 +2681,17 @@ export default {
         e.assignments?.assignment_shared_users.length > 0
       ) {
         e.assignments.assignment_shared_users.forEach((item) => {
-          if (item.shared_users_id != user_id) {
+          if (item.shared_users_id.toString() != user_id && item.users) {
             let peer = {};
             peer = item.users;
             peer.id = item.shared_users_id;
-            console.log("console", item, peer);
             peers.push(peer);
           }
         });
       }
       if (e.assignment_shared_users && e.assignment_shared_users?.length > 0) {
         e.assignment_shared_users.forEach((item) => {
-          if (item.shared_users_id != user_id) {
+          if (item.shared_users_id.toString() != user_id && item.users) {
             let peer = {};
             peer = item.users;
             peer.id = item.shared_users_id;
@@ -2976,7 +2725,6 @@ export default {
       } else {
         this.studyTypes = this.studyTypesData.find((e) => e.id == 1);
       }
-      console.log(this.studyTypesData, this.studyTypes);
       if (this.sessionType == "assignment") {
         this.subjectName = this.selectedAssignment.task;
       }
@@ -3105,7 +2853,6 @@ export default {
         this.sessionDetail.study_goals =
           this.sessionDetail.studyroom.study_goals;
       }
-      console.log(this.sessionDetail, session);
       clearInterval(this.intervalCountDown);
       this.counter = false;
       if (this.sessionDetail.isToday) {
@@ -3174,7 +2921,6 @@ export default {
       this.mapPeersInvited();
 
       // this.UpdateStudyTechnique();
-      console.log("session details", this.sessionDetail);
       // this.goalsList = this.sessionDetail.goals;
       // this.sessionMode =
       //   this.sessionDetail.studyMethod == "1"
@@ -3343,10 +3089,19 @@ export default {
         });
       }
     },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
   },
 
   destroyed() {
     window.removeEventListener("beforeunload", this.preventNav);
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
   },
   beforeDestroy() {
     const endTime = new Date().getTime();

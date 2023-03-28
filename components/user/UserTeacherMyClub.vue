@@ -10,7 +10,7 @@
       <!-- tab for club detail -->
       <section id="tab" class="">
         <div class="tab-section container-fluid mt-3">
-          <h5 class="tab-head">Club details</h5>
+          <h5 class="tab-head">Club Details</h5>
           <div class="inner-tab-section container-fluid py-3">
             <div class="row m-auto d-flex justify-content-between">
               <div class="col-md-4">

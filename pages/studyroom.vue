@@ -119,7 +119,7 @@
               </div>
               <div class="row jochi-components-light-bg p-4">
                 <div class="col-7">
-                  <h2 class="jochi-headings mb-1">Start a new Study Session</h2>
+                  <h2 class="jochi-headings mb-1">Start A New Study Session</h2>
                   Stay focused while you study, and monitor your productivity
                 </div>
                 <div class="col-5 d-flex justify-content-end">

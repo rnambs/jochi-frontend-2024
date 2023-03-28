@@ -7,16 +7,7 @@
       <!-- <h5 class="mr-3 mb-0 mt-0 text-light">{{ firstName }}</h5> -->
       <!-- Student Sidebar -->
       <div
-        class="
-          sidebar-section
-          col-sm-4 col-md-5 col-lg-6
-          d-flex
-          justify-content-between
-          jochi-components-light-bg
-          p-3 p-lg-4
-          position-fixed
-          flex-column
-        "
+        class="sidebar-section col-sm-4 col-md-5 col-lg-6 d-flex justify-content-between jochi-components-light-bg p-3 p-lg-4 position-fixed flex-column"
         id="clickableId"
       >
         <div class="d-flex flex-column h-40 flex-fill">
@@ -46,16 +37,7 @@
           </div> -->
           <div class="position-relative profile-sidebar">
             <div
-              class="
-                user-icon
-                d-flex
-                flex-column flex-lg-row
-                notification-icon-section
-                align-items-center
-                justify-content-end
-                position-md-absolute
-                mb-3 mb-lg-0
-              "
+              class="user-icon d-flex flex-column flex-lg-row notification-icon-section align-items-center justify-content-end position-md-absolute mb-3 mb-lg-0"
             >
               <nuxt-link to="/student-dashboard" class="nav-link btn p-0 mb-3">
                 <img
@@ -87,13 +69,7 @@
                     v-if="notificationList && notificationList.length > 0"
                   >
                     <div
-                      class="
-                        d-flex
-                        justify-content-between
-                        align-items-center
-                        px-3
-                        my-2
-                      "
+                      class="d-flex justify-content-between align-items-center px-3 my-2"
                     >
                       <h5 class="color-primary font-semi-bold mb-0">
                         Notifications
@@ -112,39 +88,18 @@
                             : 'read d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer'
                         " -->
                       <div
-                        class="
-                          d-flex
-                          flex-column
-                          p-3
-                          card card-void
-                          rounded-22
-                          my-3
-                          cursor-pointer
-                        "
+                        class="d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer"
                         v-for="(data, index) in notificationList"
                         :key="index"
                         @click="onNotificationClick(data.id, data.meetingType)"
                       >
                         <p
-                          class="
-                            color-dark
-                            font-semi-bold
-                            text-14 text-wrap
-                            mb-0
-                          "
+                          class="color-dark font-semi-bold text-14 text-wrap mb-0"
                         >
                           {{ data.message }}
                         </p>
                         <p
-                          class="
-                            color-secondary
-                            text-12
-                            font-regulat
-                            mb-0
-                            d-flex
-                            justify-content-end
-                            align-items-center
-                          "
+                          class="color-secondary text-12 font-regulat mb-0 d-flex justify-content-end align-items-center"
                         >
                           <span class="mr-2">{{ data.timestamp }}</span>
 
@@ -172,12 +127,7 @@
             </div>
             <nuxt-link
               to="/user-profile"
-              class="
-                pr-0 pr-lg-4
-                d-flex
-                flex-column
-                align-items-center align-items-lg-start
-              "
+              class="pr-0 pr-lg-4 d-flex flex-column align-items-center align-items-lg-start"
             >
               <img
                 v-bind:src="
@@ -189,21 +139,10 @@
               />
               <!-- <img v-else src="../../assets/images/avatar/man_green.svg" class="rounded-circle img-profile" alt="" > -->
               <div
-                class="
-                  d-flex
-                  flex-column flex-lg-row
-                  align-items-center
-                  justify-cotent-center
-                "
+                class="d-flex flex-column flex-lg-row align-items-center justify-cotent-center"
               >
                 <h4
-                  class="
-                    color-primary
-                    mb-0
-                    font-semi-bold
-                    text-18 text-center text-lg-left
-                    word-break
-                  "
+                  class="color-primary mb-0 font-semi-bold text-18 text-center text-lg-left word-break"
                 >
                   {{ firstName }}
                 </h4>
@@ -241,15 +180,7 @@
             </div> -->
           </div>
           <div
-            class="
-              menu-items
-              position-relative
-              py-4
-              custom-scroll-for-side-menus
-              d-flex
-              flex-column flex-fill
-              h-40
-            "
+            class="menu-items position-relative py-4 custom-scroll-for-side-menus d-flex flex-column flex-fill h-40"
           >
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
@@ -259,21 +190,7 @@
                 >
                   <div class="mb-0 d-flex">
                     <button
-                      class="
-                        btn btn-link
-                        d-flex
-                        align-items-center
-                        justify-content-between
-                        bg-transparent
-                        text-decoration-none text-18
-                        color-secondary
-                        btn-block
-                        text-left
-                        collapsed
-                        flex-fill
-                        px-0
-                        py-2 py-lg-2
-                      "
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -339,21 +256,7 @@
                 >
                   <div class="mb-0 d-flex">
                     <button
-                      class="
-                        btn btn-link
-                        d-flex
-                        align-items-center
-                        justify-content-between
-                        bg-transparent
-                        text-decoration-none text-18
-                        color-secondary
-                        btn-block
-                        text-left
-                        collapsed
-                        flex-fill
-                        px-0
-                        py-2 py-lg-2
-                      "
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -428,21 +331,7 @@
                 >
                   <div class="mb-0 d-flex">
                     <button
-                      class="
-                        btn btn-link
-                        d-flex
-                        align-items-center
-                        justify-content-between
-                        bg-transparent
-                        text-decoration-none text-18
-                        color-secondary
-                        btn-block
-                        text-left
-                        collapsed
-                        flex-fill
-                        px-0
-                        py-2 py-lg-2
-                      "
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 py-2 py-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -459,7 +348,7 @@
                       </div>
                       <span
                         class="ml-3 color-secondary text-capitalize font-medium"
-                        >Extracurriculars</span
+                        >Teams & Clubs</span
                       >
                       <i class="fas fa-chevron-right color-secondary ms-2"></i>
                     </button>
@@ -494,22 +383,7 @@
                 >
                   <div class="mb-0 d-flex">
                     <button
-                      class="
-                        btn btn-link
-                        d-flex
-                        align-items-center
-                        justify-content-between
-                        bg-transparent
-                        text-decoration-none text-18
-                        color-secondary
-                        btn-block
-                        text-left
-                        collapsed
-                        flex-fill
-                        px-0
-                        pt-0 pt-lg-0
-                        pb-2 pb-lg-2
-                      "
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block text-left collapsed flex-fill px-0 pt-0 pt-lg-0 pb-2 pb-lg-2"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -626,27 +500,19 @@
               </div>
             </div>
           </div> -->
-          <div class="menu-items position-relative py-0 mb-2">
+
+          <div class="menu-items position-relative py-0">
             <div class="accordion" id="accordionExample">
               <div class="card bg-transparent shadow-none border-0 mb-2">
                 <div
                   class="card-header bg-transparent border-0 p-1"
                   id="headingOne"
                 >
-                  <div class="mb-0 d-flex justify-content-center">
+                  <div
+                    class="mb-0 d-flex justify-content-center justify-content-lg-start align-items-center align-items-lg-start flex-column"
+                  >
                     <button
-                      class="
-                        btn btn-link
-                        d-flex
-                        align-items-center
-                        justify-content-between
-                        text-decoration-none text-18
-                        btn-block
-                        text-left
-                        collapsed
-                        justify-content-start
-                        tutorial-btn
-                      "
+                      class="btn btn-link d-flex align-items-center justify-content-between text-decoration-none text-18 btn-block text-left collapsed justify-content-start pl-2 pr-2"
                       @click="
                         $event.target.classList.toggle('active');
                         startGuide();
@@ -663,52 +529,31 @@
                             alt=""
                           />
                         </div> -->
-                        <i class="fab fa-jira"></i>
+                        <!-- <i class="fab fa-jira"></i> -->
+                        <svg
+                          width="15"
+                          height="16"
+                          viewBox="0 0 15 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M2.06861 0.0332069C1.10417 0.193875 0.310535 0.935562 0.0662749 1.90446C0.00132947 2.16215 0 2.28313 0 8.00647C0 13.7298 0.00132947 13.8508 0.0662749 14.1085C0.290127 14.9964 0.969461 15.6893 1.86128 15.9394C2.06665 15.997 2.37127 16 8.02677 16C13.5034 16 13.9842 15.9956 14.0766 15.9449C14.3329 15.8043 14.4895 15.5451 14.4907 15.2594C14.4919 14.9691 14.3455 14.7211 14.1013 14.5997C13.9809 14.5399 13.7546 14.5369 8.10986 14.5209L2.24351 14.5043L2.07732 14.4221C1.61267 14.1921 1.38562 13.6592 1.54859 13.181C1.61263 12.993 1.8536 12.7164 2.04033 12.6165L2.17703 12.5433L8.04339 12.5267C13.6045 12.511 13.9167 12.507 14.0427 12.4502C14.2183 12.371 14.3528 12.2412 14.4284 12.078C14.4875 11.9503 14.49 11.7227 14.4907 6.25972L14.4914 0.574407L14.4072 0.40543C14.3173 0.224985 14.1484 0.0836941 13.9569 0.0287864C13.8134 -0.0123612 2.31653 -0.00807362 2.06861 0.0332069ZM7.72471 2.30626C8.83221 2.54088 9.62498 3.64642 9.47654 4.74926C9.38009 5.46605 9.01674 6.03946 8.41528 6.42405C8.21001 6.5553 8.15975 6.60635 8.09155 6.75286C8.04239 6.85839 8.01068 6.98742 8.01049 7.08251C8.00962 7.50176 7.85806 7.79036 7.56777 7.9255C7.33767 8.03262 7.14107 8.03063 6.91682 7.91889C6.56979 7.74595 6.45113 7.44612 6.51235 6.89698C6.59884 6.12135 6.94567 5.57736 7.63058 5.14299C8.12445 4.82979 8.0977 4.11436 7.58202 3.84494C7.34415 3.72067 7.14725 3.72067 6.90937 3.84494C6.62353 3.99428 6.55024 4.13318 6.46502 4.68714C6.43654 4.87247 6.27145 5.07399 6.07209 5.16682C5.68073 5.34906 5.27979 5.21468 5.07418 4.83232C5.01698 4.72596 5.00329 4.64616 5.00568 4.43347C5.01519 3.59666 5.51022 2.84494 6.30083 2.4668C6.72324 2.26478 7.24905 2.20549 7.72471 2.30626ZM7.48757 8.80615C7.55663 8.82533 7.66595 8.88738 7.7305 8.94409C8.17694 9.33605 8.01846 10.0563 7.44941 10.2218C6.82505 10.4033 6.28897 9.75258 6.58272 9.16977C6.74515 8.84747 7.10936 8.70112 7.48757 8.80615Z"
+                            fill="#B4B4B4"
+                          />
+                        </svg>
+
                         <span
-                          class="
-                            color-secondary
-                            text-capitalize
-                            font-medium pl-2
-                          "
-                          >Tutorial</span
+                          class="color-secondary text-capitalize font-medium pl-2 ml-2"
+                          >Walkthrough</span
                         >
                       </div>
                     </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="menu-items position-relative py-0">
-            <div class="accordion" id="accordionExample">
-              <div class="card bg-transparent shadow-none border-0 mb-2">
-                <div
-                  class="card-header bg-transparent border-0 p-1"
-                  id="headingOne"
-                >
-                  <div
-                    class="
-                      mb-0
-                      d-flex
-                      justify-content-center justify-content-lg-start
-                    "
-                  >
+
                     <button
-                      class="
-                        btn btn-link
-                        d-flex
-                        align-items-center
-                        justify-content-between
-                        bg-transparent
-                        text-decoration-none text-18
-                        color-secondary
-                        btn-block
-                        px-0
-                        text-left
-                        collapsed
-                        justify-content-start
-                        py-auto py-lg-0
-                      "
+                      class="btn btn-link d-flex align-items-center justify-content-between bg-transparent text-decoration-none text-18 color-secondary btn-block px-0 text-left collapsed justify-content-start py-auto py-lg-0"
                       @click="$event.target.classList.toggle('active')"
                       type="button"
                       data-toggle="collapse"
@@ -721,14 +566,9 @@
                           <i class="fas fa-sign-out-alt"></i>
                         </div>
                         <span
-                          class="
-                            ml-3
-                            color-secondary
-                            text-capitalize
-                            font-medium
-                          "
+                          class="ml-2 color-secondary text-capitalize font-medium"
                         >
-                          Logout
+                          Log Out
                         </span>
                       </a>
                     </button>
@@ -753,10 +593,10 @@
         <div class="modal-content">
           <div class="modal-header pb-1">
             <h3 class="modal-title" id="logoutConfirmationModalLongTitle">
-              Logout Confirmation
+              Log Out Confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">Are you sure you want to logout?</div>
+          <div class="modal-body px-4">Are you sure you want to log out?</div>
           <div class="modal-footer">
             <button
               type="button"
@@ -875,6 +715,16 @@ export default {
     startProductGuide() {
       return this.$store.state.startProductGuide;
     },
+    startProductGuideNotification() {
+      return this.$store.state.startProductGuideNotification;
+    },
+  },
+  watch: {
+    startProductGuideNotification(newValue, oldValue) {
+      if (newValue) {
+        this.startIntro();
+      }
+    },
   },
   methods: {
     ...mapActions("studentSignIn", {
@@ -889,7 +739,6 @@ export default {
     async getPushNotifications() {
       this.$fire.messaging.onMessage((payload) => {
         // alert("alerting" + payload.notification.body);
-        // console.info("Message received: ", payload);
         this.getCount();
         this.getNotifications();
       });
@@ -917,7 +766,6 @@ export default {
       // Team Activation
 
       await this.markNotificationAsRead(id);
-      console.log(type);
 
       if (type == "Peer" || type == "Teacher") {
         this.$router.push("/viewall-meeting");
@@ -1020,8 +868,44 @@ export default {
     },
     startGuide() {
       this.$store.commit("setStartProductGuide", true);
-      this.$router.push("/planner-day");
+      if (this.$route.name != "student-dashboard") {
+        this.$router.push("/student-dashboard");
+      }
+      // this.$router.push("/planner-day");
     },
+    startIntro() {
+      const intro = this.$intro();
+      let completed = false;
+      let skip = false;
+      if (this.startProductGuideNotification) {
+        intro.start();
+        intro.onskip(() => {
+          skip = true;
+          this.$store.commit("setStartProductGuide", false);
+          this.$store.commit("setStartProductGuideNotification", false);
+        });
+        if (skip) return;
+        intro.oncomplete((step, state) => {
+          completed = true;
+          if (state != "skip") {
+            this.$store.commit("setStartProductGuide", false);
+            this.$store.commit("setStartProductGuideNotification", false);
+          }
+        });
+        intro.onexit(() => {
+          if (!completed) {
+            this.$store.commit("setStartProductGuide", false);
+            this.$store.commit("setStartProductGuideNotification", false);
+          }
+        });
+      }
+    },
+  },
+  destroyed() {
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
   },
   // // middleware: "authenticated",
 };

@@ -11,113 +11,62 @@
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
-          class="
-            teacher-section
-            jochi-components-light-bg
-            custom-margin-for-main-section custom-full-height
-            d-flex
-            flex-column
-          "
+          class="teacher-section jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
         >
           <h2 class="color-primary font-semi-bold m-0 p-4">
             Custom Avaliability
           </h2>
           <div
-            class="
-              inner-teacher
-              container-fluid
-              p-4
-              pb-2
-              mb-2
-              d-flex
-              flex-column flex-fill
-              h-40
-              custom-overflow
-            "
+            class="inner-teacher container-fluid p-4 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow"
           >
             <div class="row h-100">
               <div
-                class="
-                  col-md-7
-                  text-light
-                  custom-teacher-container
-                  d-flex
-                  flex-column
-                "
+                class="col-md-7 text-light custom-teacher-container d-flex flex-column"
               >
-              <div
-              @click="setSessionType('assignment', false)"
-              class="
-                row
-                card card-void
-                rounded-22
-                m-0
-                mb-4
-                p-4
-                flex-row
-                cursor-pointer
-                calendar-box
-              ">
-              <div class="col-sm-7 col-md-8 col-xl-7">
-                <h2 class="color-primary font-semi-bold mb-1">
-                  When are you free?
-                </h2>
-                <p class="mb-0 color-dark font-semi-bold text-16">
-                  Use this page to set your availability so that your peers know when works best for you. 
-                </p>
-              </div>
-              <div
-                class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
-              >
-                <img
-                  src="../static/image/Calendar.png"
-                  alt=""
-                  class="card-img small-size"
-                />
-              </div>
-            </div>
                 <div
-                  class="
-                    time-slot
-                    calendar-sm
-                    container
-                    card card-primary-sm
-                    rounded-22
-                    p-3
-                    pt-4
-                    mb-4
-                  "
+                  @click="setSessionType('assignment', false)"
+                  class="row card card-void rounded-22 m-0 mb-4 p-4 flex-row cursor-pointer calendar-box"
+                >
+                  <div class="col-sm-7 col-md-8 col-xl-7">
+                    <h2 class="color-primary font-semi-bold mb-1">
+                      When Are You Free?
+                    </h2>
+                    <p class="mb-0 color-dark font-semi-bold text-16">
+                      Use this page to set your availability so that your peers
+                      know when works best for you.
+                    </p>
+                  </div>
+                  <div
+                    class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
+                  >
+                    <img
+                      src="~/static/image/Calendar-2.png"
+                      alt=""
+                      class="card-img small-size"
+                    />
+                  </div>
+                </div>
+                <div
+                  data-intro="Pre-set your availability so your peers know when you are available to meet. If you don’t set custom availability, Jochi will rely on your commitments that appear on your Jochi calendar. Here, you can choose a specific upcoming date to set your availability."
+                  class="time-slot calendar-sm container card card-primary-sm rounded-22 p-3 pt-4 mb-4"
                 >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
               </div>
               <div
-                class="
-                  col-md-5
-                  custom-teacher-container
-                  d-flex
-                  flex-column
-                  h-100
-                "
+                class="col-md-5 custom-teacher-container d-flex flex-column h-100"
               >
                 <div
-                  class="
-                    time-slot
-                    container
-                    card card-primary-sm
-                    rounded-22
-                    p-4
-                    flex-fill
-                    h-40
-                  "
+                  class="time-slot container card card-primary-sm rounded-22 p-4 flex-fill h-40"
                 >
-                  <p class="time-head pb-1">
+                  <p
+                    data-intro="To set your custom availability, choose a series of 30 minute slots that work for you."
+                    class="time-head pb-1"
+                  >
                     <span class="color-dark text-16 font-semi-bold">{{
                       date_string
                     }}</span>
-                    <span
-                      data-intro="Select the 30 minute slots on which you are available"
-                      class="color-secondary text-14 font-normal"
+                    <span class="color-secondary text-14 font-normal"
                       ><i>30 Minute Slot</i></span
                     >
                   </p>
@@ -138,7 +87,7 @@
                   </div>
                   <form action="" class="">
                     <div
-                      data-intro="Apply the selected slots for a month or week, include weekends and set as default time from here"
+                      data-intro="Save time and block out these slots for an entire week or month. You can also set this as your default preferences."
                       class="row slot-form"
                     >
                       <div class="col">
@@ -152,12 +101,7 @@
                             name="default-cal"
                           />
                           <label
-                            class="
-                              custom-control-label
-                              font-normal
-                              color-dark
-                              form-label
-                            "
+                            class="custom-control-label font-normal color-dark form-label"
                             for="switch_month"
                             >Apply for the month</label
                           >
@@ -173,13 +117,7 @@
                             @change="weekToggle"
                           />
                           <label
-                            class="
-                              custom-control-label
-                              font-normal
-                              color-dark
-                              text-14
-                              form-label
-                            "
+                            class="custom-control-label font-normal color-dark text-14 form-label"
                             for="switch_week"
                             >Apply for the week</label
                           >
@@ -195,13 +133,7 @@
                             @change="defaultToggle"
                           />
                           <label
-                            class="
-                              custom-control-label
-                              font-normal
-                              color-dark
-                              text-14
-                              form-label
-                            "
+                            class="custom-control-label font-normal color-dark text-14 form-label"
                             for="switch_time"
                             >Set default time
                           </label>
@@ -219,13 +151,7 @@
                             v-model="weekend"
                           />
                           <label
-                            class="
-                              custom-control-label
-                              font-normal
-                              color-dark
-                              text-14
-                              form-label
-                            "
+                            class="custom-control-label font-normal color-dark text-14 form-label"
                             for="switch_day"
                             >Include weekends</label
                           >
@@ -236,14 +162,7 @@
                       <div class="form-group col-12">
                         <button
                           type="submit"
-                          class="
-                            btn btn-primary
-                            my-2
-                            py-1
-                            px-4
-                            rounded-pill
-                            float-right
-                          "
+                          class="btn btn-primary my-2 py-1 px-4 rounded-pill float-right"
                           @click.prevent="UpdateTeacherAvailability()"
                         >
                           Update
@@ -367,6 +286,7 @@ export default {
     };
   },
   mounted() {
+    window.addEventListener("orientationchange", this.handleOrientationChange);
     const page = "MeetingAvailability";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
@@ -664,6 +584,11 @@ export default {
         });
       }
     },
+    handleOrientationChange() {
+      const intro = this.$intro();
+      intro.exit();
+      this.$store.commit("setStartProductGuide", false);
+    },
   },
   beforeDestroy() {
     const endTime = new Date().getTime();
@@ -671,6 +596,12 @@ export default {
     const distinct_id = localStorage.getItem("distinctId");
     const page = "MeetingAvailability";
     this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
+  },
+  destroyed() {
+    window.removeEventListener(
+      "orientationchange",
+      this.handleOrientationChange
+    );
   },
 };
 </script>

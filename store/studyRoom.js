@@ -21,7 +21,10 @@ const state = {
   sharedAssignmentsList: [],
   startStudyResponse: {},
   assignmentsCount: 0,
-  sharedAssignmentsCount: 0
+  sharedAssignmentsCount: 0,
+  overdueAssignmentsList: [],
+  sharedOverdueAssignmentsList: [],
+  overdueAssignmentsCount: 0
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -335,6 +338,10 @@ const actions = {
       commit('setSharedAssignmentsList', response.shared_assignments);
       commit('setAssignmentsCount', response.assignments_count);
       commit('setSharedAssignmentsCount', response.shared_assignments_count);
+      commit('setOverdueAssignmentsList', response.overdue_assignments);
+      commit('setSharedOverdueAssignmentsList', response.overdue_shared_assignments);
+      // commit('setOverdueAssignmentsCount', response.shared_assignments_count);
+      // commit('setSharedOverdueAssignmentsCount', response.shared_assignments_count);
 
       // } else {
       //   commit('setStatusTimer', 'ended');
@@ -440,10 +447,18 @@ const mutations = {
   setAssignmentsCount(state, data) {
     state.assignmentsCount = data;
   },
+  setOverdueAssignmentsCount(state, data) {
+    state.overdueAssignmentsCount = data;
+  },
   setSharedAssignmentsCount(state, data) {
     state.sharedAssignmentsCount = data;
   },
-
+  setOverdueAssignmentsList(state, data) {
+    state.overdueAssignmentsList = data;
+  },
+  setSharedOverdueAssignmentsList(state, data) {
+    state.sharedOverdueAssignmentsList = data;
+  },
 
 }
 const getters = {
@@ -504,8 +519,17 @@ const getters = {
   assignmentsCount: () => {
     return state.assignmentsCount;
   },
+  overdueAssignmentsCount: () => {
+    return state.overdueAssignmentsCount;
+  },
   sharedAssignmentsCount: () => {
     return state.sharedAssignmentsCount;
+  },
+  overdueAssignmentsList: () => {
+    return state.overdueAssignmentsList;
+  },
+  sharedOverdueAssignmentsList: () => {
+    return state.sharedOverdueAssignmentsList;
   },
 
 
