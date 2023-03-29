@@ -577,12 +577,14 @@ export default {
     this.GetDailyPlanner(this.calendarApi.getDate());
     this.firstName = localStorage.getItem("firstName");
     this.activate();
+    this.findDeviceSize();
     const phone = localStorage.getItem("phone");
     const skipped = localStorage.getItem("skippedPrompt");
-    if (!phone && skipped != "true") {
-      $("#promptModal").modal();
-    }
-    this.findDeviceSize();
+    setTimeout(() => {
+      if (!phone && skipped != "true") {
+        $("#promptModal").modal();
+      }
+    }, 3000);
   },
   watch: {
     startProductGuide(newValue, oldValue) {
