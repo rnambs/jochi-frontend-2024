@@ -237,7 +237,10 @@
                             <button
                               class="mr-2"
                               v-if="enableEdit"
-                              @click="enableEdit = false"
+                              @click="
+                                enableEdit = false;
+                                cancelEditPhone();
+                              "
                             >
                               <span class="mr-1"
                                 ><i class="fas fa-times color-primary"></i
@@ -1053,6 +1056,12 @@ export default {
       const intro = this.$intro();
       intro.exit();
       this.$store.commit("setStartProductGuide", false);
+    },
+    cancelEditPhone() {
+      this.phoneInvalid = false;
+      if (localStorage.getItem("phone")) {
+        this.phoneNumber = localStorage.getItem("phone");
+      }
     },
   },
   destroyed() {
