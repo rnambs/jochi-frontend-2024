@@ -2244,8 +2244,8 @@ var idValue = "";
 var eventList = [];
 var dateValueNum = "";
 import InfiniteLoading from "vue-infinite-loading";
-import io from "socket.io-client";
-const socket = io("ws://localhost:3000");
+// import io from "socket.io-client";
+// const socket = io("ws://localhost:3000");
 
 export default {
   name: "PlannerMonth",
@@ -2773,7 +2773,7 @@ export default {
         }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
-        meetingobj["color"] = color;
+        meetingobj["color"] = "#fff";
         meetingobj["eventDisplay"] = "block";
         meetingobj["borderColor"] = "#000000";
 
@@ -2857,7 +2857,7 @@ export default {
         }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
-        meetingobj["color"] = color;
+        meetingobj["color"] = "#fff";
         meetingobj["eventDisplay"] = "block";
         meetingobj["borderColor"] = "#000000";
 
@@ -3275,9 +3275,166 @@ export default {
       return strTime;
     },
 
-    eventClicked(info) {
-      var idVal = info.event;
+    // eventClicked(info) {
+    //   var idVal = info.event;
 
+    //   var idVal = info.event;
+    //   if (
+    //     moment(idVal.startStr.split("T")[0]).isBefore(
+    //       moment().format("YYYY-MM-DD")
+    //     )
+    //   ) {
+    //     if (
+    //       idVal.groupId == "assignment" ||
+    //       idVal.groupId == "shared-assignment"
+    //     ) {
+    //       let data = {};
+    //       let mappedData = {};
+    //       if (idVal.groupId == "assignment") {
+    //         data = this.assignmentsList.find(
+    //           (e) => e.id.toString() == idVal.id.toString()
+    //         );
+    //         mappedData = this.mapData(data);
+    //       }
+    //       if (idVal.groupId == "assignment") {
+    //         data = this.overdues.find(
+    //           (e) => e.id.toString() == idVal.id.toString()
+    //         );
+    //         if (
+    //           !mappedData ||
+    //           (Object.keys(mappedData).length === 0 &&
+    //             mappedData.constructor === Object)
+    //         )
+    //           mappedData = this.mapData(data);
+    //       }
+    //       if (idVal.groupId == "shared-assignment") {
+    //         data = this.sharedAssignmentsList.find(
+    //           (e) => e.assignment_id.toString() == idVal.id.toString()
+    //         );
+    //         if (!mappedData) mappedData = this.mapSharedData(data);
+    //       }
+    //       if (idVal.groupId == "shared-assignment") {
+    //         data = this.sharedOverdues.find(
+    //           (e) => e.assignment_id.toString() == idVal.id.toString()
+    //         );
+    //         if (
+    //           !mappedData ||
+    //           (Object.keys(mappedData).length === 0 &&
+    //             mappedData.constructor === Object)
+    //         )
+    //           mappedData = this.mapSharedData(data);
+    //       }
+    //       if (!mappedData) {
+    //         this.alertMessage = "This assignment has been completed!";
+    //         $("#alertModal").modal({ backdrop: true });
+    //         return;
+    //       }
+    //       this.assignmentPlanner();
+    //       this.onCardClick(mappedData);
+    //     } else {
+    //       this.alertMessage = "No actions can be performed on past events";
+    //       $("#alertModal").modal({ backdrop: true });
+
+    //       return;
+    //     }
+    //   } else {
+    //     if (
+    //       idVal.groupId == "assignment" ||
+    //       idVal.groupId == "shared-assignment"
+    //     ) {
+    //       let data = {};
+    //       let mappedData = {};
+    //       if (idVal.groupId == "assignment") {
+    //         data = this.assignmentsList.find(
+    //           (e) => e.id.toString() == idVal.id.toString()
+    //         );
+    //         mappedData = this.mapData(data);
+    //       }
+    //       if (idVal.groupId == "assignment") {
+    //         data = this.overdues.find(
+    //           (e) => e.id.toString() == idVal.id.toString()
+    //         );
+    //         if (
+    //           !mappedData ||
+    //           (Object.keys(mappedData).length === 0 &&
+    //             mappedData.constructor === Object)
+    //         )
+    //           mappedData = this.mapData(data);
+    //       }
+    //       if (idVal.groupId == "shared-assignment") {
+    //         data = this.sharedAssignmentsList.find(
+    //           (e) => e.assignment_id.toString() == idVal.id.toString()
+    //         );
+    //         if (!mappedData) mappedData = this.mapSharedData(data);
+    //       }
+    //       if (idVal.groupId == "shared-assignment") {
+    //         data = this.sharedOverdues.find(
+    //           (e) => e.assignment_id.toString() == idVal.id.toString()
+    //         );
+    //         if (
+    //           !mappedData ||
+    //           (Object.keys(mappedData).length === 0 &&
+    //             mappedData.constructor === Object)
+    //         )
+    //           mappedData = this.mapSharedData(data);
+    //       }
+    //       if (!mappedData) {
+    //         this.alertMessage = "This assignment has been completed!";
+    //         $("#alertModal").modal({ backdrop: true });
+    //         return;
+    //       }
+    //       this.assignmentPlanner();
+
+    //       this.onCardClick(mappedData);
+    //     }
+    //     if (idVal.groupId == "study") {
+    //       let session = this.sessionList.find(
+    //         (e) => e.id.toString() == idVal.id.toString()
+    //       );
+
+    //       if (session.status == "STOP") {
+    //         this.alertMessage = "This session has already been completed!";
+    //         $("#alertModal").modal({ backdrop: true });
+    //         return;
+    //       } else {
+    //         return this.$router.push(`/study-time?id=${idVal.id}`);
+    //       }
+    //     }
+    //     if (idVal.groupId == "shared-study") {
+    //       let studySession = this.sharedSessionList.find(
+    //         (e) => e.session_id.toString() == idVal.id.toString()
+    //       );
+    //       if (studySession.studyroom?.status == "STOP") {
+    //         this.alertMessage = "This session has already been completed!";
+    //         $("#alertModal").modal({ backdrop: true });
+    //         return;
+    //       } else {
+    //         return this.$router.push(`/study-time?id=${idVal.id}`);
+    //       }
+    //     }
+    //     if (
+    //       idVal.groupId == "peer-meeting" ||
+    //       idVal.groupId == "teacher-meeting"
+    //     ) {
+    //       return this.$router.push(
+    //         `/viewall-meeting?id=${idVal.id}&type=${idVal.groupId}`
+    //       );
+    //     } else if (idVal.groupId == "club-meeting") {
+    //       let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
+    //       return this.$router.push(
+    //         `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
+    //       );
+    //     } else if (idVal.groupId == "matches" || idVal.groupId == "trainings") {
+    //       let club = this.trainingsMatches.find((e) => e.id == idVal.id);
+    //       return this.$router.push(
+    //         `/club-moreInfo?id=${club.clubs.id}&name=${club.clubs.name}&type=${club.clubs.activity_type}`
+    //       );
+    //     }
+    //   }
+    // },
+    eventClicked(info) {
+      let data = {};
+      let mappedData = {};
       var idVal = info.event;
       if (
         moment(idVal.startStr.split("T")[0]).isBefore(
@@ -3288,15 +3445,16 @@ export default {
           idVal.groupId == "assignment" ||
           idVal.groupId == "shared-assignment"
         ) {
-          let data = {};
-          let mappedData = {};
           if (idVal.groupId == "assignment") {
             data = this.assignmentsList.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
             mappedData = this.mapData(data);
           }
-          if (idVal.groupId == "assignment") {
+          if (
+            (!mappedData || Object.keys(mappedData).length === 0) &&
+            idVal.groupId == "assignment"
+          ) {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
@@ -3311,9 +3469,13 @@ export default {
             data = this.sharedAssignmentsList.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-            if (!mappedData) mappedData = this.mapSharedData(data);
+            if (Object.keys(mappedData).length === 0)
+              mappedData = this.mapSharedData(data);
           }
-          if (idVal.groupId == "shared-assignment") {
+          if (
+            (!mappedData || Object.keys(mappedData).length === 0) &&
+            idVal.groupId == "shared-assignment"
+          ) {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
@@ -3324,7 +3486,7 @@ export default {
             )
               mappedData = this.mapSharedData(data);
           }
-          if (!mappedData) {
+          if (!mappedData || Object.keys(mappedData).length === 0) {
             this.alertMessage = "This assignment has been completed!";
             $("#alertModal").modal({ backdrop: true });
             return;
@@ -3342,15 +3504,16 @@ export default {
           idVal.groupId == "assignment" ||
           idVal.groupId == "shared-assignment"
         ) {
-          let data = {};
-          let mappedData = {};
           if (idVal.groupId == "assignment") {
             data = this.assignmentsList.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
             mappedData = this.mapData(data);
           }
-          if (idVal.groupId == "assignment") {
+          if (
+            (!mappedData || Object.keys(mappedData).length === 0) &&
+            idVal.groupId == "assignment"
+          ) {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
@@ -3365,9 +3528,14 @@ export default {
             data = this.sharedAssignmentsList.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-            if (!mappedData) mappedData = this.mapSharedData(data);
+            if (Object.keys(mappedData).length === 0) {
+              mappedData = this.mapSharedData(data);
+            }
           }
-          if (idVal.groupId == "shared-assignment") {
+          if (
+            (!mappedData || Object.keys(mappedData).length === 0) &&
+            idVal.groupId == "shared-assignment"
+          ) {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
@@ -3378,13 +3546,13 @@ export default {
             )
               mappedData = this.mapSharedData(data);
           }
-          if (!mappedData) {
+
+          if (!mappedData || Object.keys(mappedData).length === 0) {
             this.alertMessage = "This assignment has been completed!";
             $("#alertModal").modal({ backdrop: true });
             return;
           }
           this.assignmentPlanner();
-
           this.onCardClick(mappedData);
         }
         if (idVal.groupId == "study") {
@@ -3393,7 +3561,7 @@ export default {
           );
 
           if (session.status == "STOP") {
-            this.alertMessage = "This session has already been completed!";
+            this.alertMessage = "This session has already been completed";
             $("#alertModal").modal({ backdrop: true });
             return;
           } else {
@@ -3405,7 +3573,7 @@ export default {
             (e) => e.session_id.toString() == idVal.id.toString()
           );
           if (studySession.studyroom?.status == "STOP") {
-            this.alertMessage = "This session has already been completed!";
+            this.alertMessage = "This session has already been completed";
             $("#alertModal").modal({ backdrop: true });
             return;
           } else {
@@ -3421,8 +3589,9 @@ export default {
           );
         } else if (idVal.groupId == "club-meeting") {
           let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
+
           return this.$router.push(
-            `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
+            `/club-moreInfo?id=1111&name=${club.club_name}&type=${club.clubs.activity_type}`
           );
         } else if (idVal.groupId == "matches" || idVal.groupId == "trainings") {
           let club = this.trainingsMatches.find((e) => e.id == idVal.id);
@@ -3607,7 +3776,7 @@ export default {
         }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
-        meetingobj["color"] = color;
+        meetingobj["color"] = "#fff";
         meetingobj["eventDisplay"] = "block";
         meetingobj["borderColor"] = "#000000";
 
@@ -3646,7 +3815,7 @@ export default {
         }
         var start = dateMeeting + "T" + tmeMeeting;
         meetingobj["title"] = title;
-        meetingobj["color"] = color;
+        meetingobj["color"] = "#fff";
         meetingobj["eventDisplay"] = "block";
         meetingobj["borderColor"] = "black";
 
