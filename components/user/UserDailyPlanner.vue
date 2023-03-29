@@ -2380,9 +2380,9 @@ import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
 import draggable from "vuedraggable";
 import InfiniteLoading from "vue-infinite-loading";
-import io from "socket.io-client";
+// import io from "socket.io-client";
 
-const socket = io("ws://localhost:3000");
+// const socket = io("ws://localhost:3000");
 
 var fromDate = "";
 var endDate = "";
@@ -3355,6 +3355,8 @@ export default {
       }
     },
     eventClicked(info) {
+      let data = {};
+      let mappedData = {};
       var idVal = info.event;
       if (
         moment(idVal.startStr.split("T")[0]).isBefore(
@@ -3365,15 +3367,16 @@ export default {
           idVal.groupId == "assignment" ||
           idVal.groupId == "shared-assignment"
         ) {
-          let data = {};
-          let mappedData = {};
           if (idVal.groupId == "assignment") {
             data = this.assignmentsList.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
             mappedData = this.mapData(data);
           }
-          if (idVal.groupId == "assignment") {
+          if (
+            (!mappedData || Object.keys(mappedData).length === 0) &&
+            idVal.groupId == "assignment"
+          ) {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
@@ -3388,9 +3391,13 @@ export default {
             data = this.sharedAssignmentsList.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-            if (!mappedData) mappedData = this.mapSharedData(data);
+            if (Object.keys(mappedData).length === 0)
+              mappedData = this.mapSharedData(data);
           }
-          if (idVal.groupId == "shared-assignment") {
+          if (
+            (!mappedData || Object.keys(mappedData).length === 0) &&
+            idVal.groupId == "shared-assignment"
+          ) {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
@@ -3401,7 +3408,7 @@ export default {
             )
               mappedData = this.mapSharedData(data);
           }
-          if (!mappedData) {
+          if (!mappedData || Object.keys(mappedData).length === 0) {
             this.alertMessage = "This assignment has been completed!";
             $("#alertModal").modal({ backdrop: true });
             return;
@@ -3418,15 +3425,16 @@ export default {
           idVal.groupId == "assignment" ||
           idVal.groupId == "shared-assignment"
         ) {
-          let data = {};
-          let mappedData = {};
           if (idVal.groupId == "assignment") {
             data = this.assignmentsList.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
             mappedData = this.mapData(data);
           }
-          if (idVal.groupId == "assignment") {
+          if (
+            (!mappedData || Object.keys(mappedData).length === 0) &&
+            idVal.groupId == "assignment"
+          ) {
             data = this.overdues.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
@@ -3441,9 +3449,14 @@ export default {
             data = this.sharedAssignmentsList.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
-            if (!mappedData) mappedData = this.mapSharedData(data);
+            if (Object.keys(mappedData).length === 0) {
+              mappedData = this.mapSharedData(data);
+            }
           }
-          if (idVal.groupId == "shared-assignment") {
+          if (
+            (!mappedData || Object.keys(mappedData).length === 0) &&
+            idVal.groupId == "shared-assignment"
+          ) {
             data = this.sharedOverdues.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
@@ -3455,7 +3468,7 @@ export default {
               mappedData = this.mapSharedData(data);
           }
 
-          if (!mappedData) {
+          if (!mappedData || Object.keys(mappedData).length === 0) {
             this.alertMessage = "This assignment has been completed!";
             $("#alertModal").modal({ backdrop: true });
             return;
@@ -3499,7 +3512,7 @@ export default {
           let club = this.clubMeetings.find((e) => e.clubs?.id == idVal.id);
 
           return this.$router.push(
-            `/club-moreInfo?id=1111&name=${club.club_name}&type=${club.clubs.activity_type}`
+            `/club-moreInfo?id=${idVal.id}&name=${club.club_name}&type=${club.clubs.activity_type}`
           );
         } else if (idVal.groupId == "matches" || idVal.groupId == "trainings") {
           let club = this.trainingsMatches.find((e) => e.id == idVal.id);
