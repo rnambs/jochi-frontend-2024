@@ -3446,7 +3446,7 @@ export default {
           idVal.groupId == "shared-assignment"
         ) {
           if (idVal.groupId == "assignment") {
-            data = this.assignmentsList.find(
+            data = this.plannerList.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
             mappedData = this.mapData(data);
@@ -3505,10 +3505,10 @@ export default {
           idVal.groupId == "shared-assignment"
         ) {
           if (idVal.groupId == "assignment") {
-            data = this.assignmentsList.find(
+            data = this.plannerList.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
-            mappedData = this.mapData(data);
+            if (data) mappedData = this.mapData(data);
           }
           if (
             (!mappedData || Object.keys(mappedData).length === 0) &&
@@ -3522,14 +3522,14 @@ export default {
               (Object.keys(mappedData).length === 0 &&
                 mappedData.constructor === Object)
             )
-              mappedData = this.mapData(data);
+              if (data) mappedData = this.mapData(data);
           }
           if (idVal.groupId == "shared-assignment") {
             data = this.sharedAssignmentsList.find(
               (e) => e.assignment_id.toString() == idVal.id.toString()
             );
             if (Object.keys(mappedData).length === 0) {
-              mappedData = this.mapSharedData(data);
+              if (data) mappedData = this.mapSharedData(data);
             }
           }
           if (
@@ -3544,7 +3544,7 @@ export default {
               (Object.keys(mappedData).length === 0 &&
                 mappedData.constructor === Object)
             )
-              mappedData = this.mapSharedData(data);
+              if (data) mappedData = this.mapSharedData(data);
           }
 
           if (!mappedData || Object.keys(mappedData).length === 0) {
