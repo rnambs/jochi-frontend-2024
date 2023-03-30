@@ -3446,7 +3446,7 @@ export default {
           idVal.groupId == "shared-assignment"
         ) {
           if (idVal.groupId == "assignment") {
-            data = this.plannerList.find(
+            data = this.pendingAssignments.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
             mappedData = this.mapData(data);
@@ -3505,7 +3505,7 @@ export default {
           idVal.groupId == "shared-assignment"
         ) {
           if (idVal.groupId == "assignment") {
-            data = this.plannerList.find(
+            data = this.pendingAssignments.find(
               (e) => e.id.toString() == idVal.id.toString()
             );
             if (data) mappedData = this.mapData(data);
