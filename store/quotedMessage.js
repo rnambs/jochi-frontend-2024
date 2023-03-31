@@ -9,6 +9,7 @@ const state = {
   errorMessage: "",
   errorType: "",
   assignment: [],
+  sharedAssignment: [],
   subjectsData: [],
   assignmentsList: [],
   sharedAssignmentsList: [],
@@ -220,7 +221,8 @@ const actions = {
           'Authorization': ` ${token}`
         },
       });
-      commit('setAssignmentList', response.data);
+      commit('setAssignmentList', response.assignments[0]);
+      commit('setSharedAssignmentList', response.shared_assignments[0]);
     } catch (e) {
       if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
@@ -550,6 +552,9 @@ const mutations = {
   setAssignmentList(state, data) {
     state.assignment = data;
   },
+  setSharedAssignmentList(state, data) {
+    state.sharedAssignment = data;
+  },
   setQuoteMessage(state, data) {
     state.quoteMessage = data;
   },
@@ -625,6 +630,9 @@ const getters = {
   },
   assignment: () => {
     return state.assignment;
+  },
+  sharedAssignment: () => {
+    return state.sharedAssignment;
   },
   quoteMessage: () => {
     return state.quoteMessage;

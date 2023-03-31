@@ -2367,6 +2367,7 @@ export default {
       // plannerList: (state) => state.plannerList,
       // meetingList: (state) => state.meetingList,
       assignment: (state) => state.assignment,
+      sharedAssignment: (state) => state.sharedAssignment,
       successMessage: (state) => state.successMessage,
       SuccessType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
@@ -2988,36 +2989,100 @@ export default {
       $("#exampleModalCenter").modal({ backdrop: true });
     },
 
-    async GetAssignment(value) {
-      if (value) {
+    // async GetAssignment(val, isCalendarView = false) {
+    //   if (value) {
+    //     await this.getAssignment({
+    //       id: value,
+    //     });
+    //   }
+    //   this.idNum = this.assignment.id;
+    //   let subject = this.subjectsData.find(
+    //     (e) => e.subject_name == this.assignment.subject
+    //   );
+    //   this.subject = {
+    //     id: subject?.id,
+    //     text: subject?.subject_name,
+    //   };
+    //   this.task = this.assignment.task;
+    //   let date = "";
+    //   if (this.assignment.due_date) {
+    //     let dateSplit = this.assignment.due_date.split("-");
+    //     date = new Date(dateSplit[0], Number(dateSplit[1] - 1), dateSplit[2]);
+    //   }
+    //   this.dateValue = date ? date : "";
+    //   if (this.assignment.priority == "1") {
+    //     this.priorityVal = "High";
+    //   } else if (this.assignment.priority == "2") {
+    //     this.priorityVal = "Medium";
+    //   } else {
+    //     this.priorityVal = "Low";
+    //   }
+    //   $(".dropdown-select").text(this.priorityVal);
+    //   this.timeValue = this.assignment.due_time;
+    // },
+    async GetAssignment(val, isCalendarView = false) {
+      if (val) {
+        this.loading = true;
         await this.getAssignment({
-          id: value,
+          id: val,
         });
       }
-      this.idNum = this.assignment.id;
-      let subject = this.subjectsData.find(
-        (e) => e.subject_name == this.assignment.subject
-      );
-      this.subject = {
-        id: subject?.id,
-        text: subject?.subject_name,
-      };
-      this.task = this.assignment.task;
-      let date = "";
-      if (this.assignment.due_date) {
-        let dateSplit = this.assignment.due_date.split("-");
-        date = new Date(dateSplit[0], Number(dateSplit[1] - 1), dateSplit[2]);
+      this.loading = false;
+      if (this.assignment?.id || this.sharedAssignment?.id) {
+        if (this.assignment?.id) {
+          this.idNum = this.assignment.id;
+          let subject = this.subjectsData.find(
+            (e) => e.subject_name == this.assignment.subject
+          );
+          this.subject = {
+            id: subject?.id,
+            text: subject?.subject_name,
+          };
+          this.task = this.assignment.task;
+          let date = "";
+          if (this.assignment.due_date) {
+            let dateSplit = this.assignment.due_date.split("-");
+            date = new Date(
+              dateSplit[0],
+              Number(dateSplit[1] - 1),
+              dateSplit[2]
+            );
+          }
+          this.dateValue = date ? date : "";
+          this.timeValue = this.assignment.due_time;
+          if (this.assignment.priority == 1) {
+            this.priorityVal = "Urgent";
+          } else if (this.assignment.priority == 2) {
+            this.priorityVal = "Important";
+          } else if (this.assignment.priority == 3) {
+            this.priorityVal = "Can Wait";
+          }
+          $(".dropdown-select").text(this.priorityVal);
+        }
+        if (isCalendarView) {
+          if (
+            this.assignment?.task_status == "Completed" ||
+            this.sharedAssignment?.task_status == "Completed"
+          ) {
+            this.alertMessage = "This assignment has been completed!";
+            $("#alertModal").modal({ backdrop: true });
+            return;
+          } else {
+            let mappedData = {};
+            if (this.sharedAssignment.id) {
+              let data = this.sharedAssignment.assignments;
+              let mapData = { assignments: {}, assignment_shared_users: {} };
+              mapData.assignments = data;
+              mapData.assignment_shared_users = data.assignment_shared_users;
+              mappedData = this.mapSharedData(mapData);
+            } else {
+              mappedData = this.mapData(this.assignment);
+            }
+            this.assignmentPlanner();
+            this.onCardClick(mappedData);
+          }
+        }
       }
-      this.dateValue = date ? date : "";
-      if (this.assignment.priority == "1") {
-        this.priorityVal = "High";
-      } else if (this.assignment.priority == "2") {
-        this.priorityVal = "Medium";
-      } else {
-        this.priorityVal = "Low";
-      }
-      $(".dropdown-select").text(this.priorityVal);
-      this.timeValue = this.assignment.due_time;
     },
     filterOption(val) {
       var high = /High/g;
@@ -3250,54 +3315,57 @@ export default {
           idVal.groupId == "assignment" ||
           idVal.groupId == "shared-assignment"
         ) {
-          if (idVal.groupId == "assignment") {
-            data = this.assignmentsList.find(
-              (e) => e.id.toString() == idVal.id.toString()
-            );
-            mappedData = this.mapData(data);
-          }
-          if (
-            (!mappedData || Object.keys(mappedData).length === 0) &&
-            idVal.groupId == "assignment"
-          ) {
-            data = this.overdues.find(
-              (e) => e.id.toString() == idVal.id.toString()
-            );
-            if (
-              !mappedData ||
-              (Object.keys(mappedData).length === 0 &&
-                mappedData.constructor === Object)
-            )
-              mappedData = this.mapData(data);
-          }
-          if (idVal.groupId == "shared-assignment") {
-            data = this.sharedAssignmentsList.find(
-              (e) => e.assignment_id.toString() == idVal.id.toString()
-            );
-            if (Object.keys(mappedData).length === 0)
-              mappedData = this.mapSharedData(data);
-          }
-          if (
-            (!mappedData || Object.keys(mappedData).length === 0) &&
-            idVal.groupId == "shared-assignment"
-          ) {
-            data = this.sharedOverdues.find(
-              (e) => e.assignment_id.toString() == idVal.id.toString()
-            );
-            if (
-              !mappedData ||
-              (Object.keys(mappedData).length === 0 &&
-                mappedData.constructor === Object)
-            )
-              mappedData = this.mapSharedData(data);
-          }
-          if (!mappedData || Object.keys(mappedData).length === 0) {
-            this.alertMessage = "This assignment has been completed!";
-            $("#alertModal").modal({ backdrop: true });
-            return;
-          }
-          this.assignmentPlanner();
-          this.onCardClick(mappedData);
+          this.GetAssignment(idVal.id, true);
+
+          // if (idVal.groupId == "assignment") {
+          //   data = this.assignmentsList.find(
+          //     (e) => e.id.toString() == idVal.id.toString()
+          //   );
+          //   mappedData = this.mapData(data);
+          // }
+          // if (
+          //   (!mappedData || Object.keys(mappedData).length === 0) &&
+          //   idVal.groupId == "assignment"
+          // ) {
+          //   data = this.overdues.find(
+          //     (e) => e.id.toString() == idVal.id.toString()
+          //   );
+          //   if (
+          //     !mappedData ||
+          //     (Object.keys(mappedData).length === 0 &&
+          //       mappedData.constructor === Object)
+          //   )
+          //     mappedData = this.mapData(data);
+          // }
+          // if (idVal.groupId == "shared-assignment") {
+          //   data = this.sharedAssignmentsList.find(
+          //     (e) => e.assignment_id.toString() == idVal.id.toString()
+          //   );
+          //   if (Object.keys(mappedData).length === 0)
+          //     mappedData = this.mapSharedData(data);
+          // }
+          // if (
+          //   (!mappedData || Object.keys(mappedData).length === 0) &&
+          //   idVal.groupId == "shared-assignment"
+          // ) {
+          //   data = this.sharedOverdues.find(
+          //     (e) => e.assignment_id.toString() == idVal.id.toString()
+          //   );
+          //   if (
+          //     !mappedData ||
+          //     (Object.keys(mappedData).length === 0 &&
+          //       mappedData.constructor === Object)
+          //   )
+          //     mappedData = this.mapSharedData(data);
+          // }
+          // if (!mappedData || Object.keys(mappedData).length === 0) {
+          //   this.alertMessage = "This assignment has been completed!";
+          //   $("#alertModal").modal({ backdrop: true });
+          //   return;
+          // }
+
+          // mappedData = this.assignment;
+          // this.onCardClick(mappedData);
         } else {
           this.alertMessage = "No actions can be performed on past events";
           $("#alertModal").modal({ backdrop: true });
@@ -3309,56 +3377,61 @@ export default {
           idVal.groupId == "assignment" ||
           idVal.groupId == "shared-assignment"
         ) {
-          if (idVal.groupId == "assignment") {
-            data = this.assignmentsList.find(
-              (e) => e.id.toString() == idVal.id.toString()
-            );
-            mappedData = this.mapData(data);
-          }
-          if (
-            (!mappedData || Object.keys(mappedData).length === 0) &&
-            idVal.groupId == "assignment"
-          ) {
-            data = this.overdues.find(
-              (e) => e.id.toString() == idVal.id.toString()
-            );
-            if (
-              !mappedData ||
-              (Object.keys(mappedData).length === 0 &&
-                mappedData.constructor === Object)
-            )
-              mappedData = this.mapData(data);
-          }
-          if (idVal.groupId == "shared-assignment") {
-            data = this.sharedAssignmentsList.find(
-              (e) => e.assignment_id.toString() == idVal.id.toString()
-            );
-            if (Object.keys(mappedData).length === 0) {
-              mappedData = this.mapSharedData(data);
-            }
-          }
-          if (
-            (!mappedData || Object.keys(mappedData).length === 0) &&
-            idVal.groupId == "shared-assignment"
-          ) {
-            data = this.sharedOverdues.find(
-              (e) => e.assignment_id.toString() == idVal.id.toString()
-            );
-            if (
-              !mappedData ||
-              (Object.keys(mappedData).length === 0 &&
-                mappedData.constructor === Object)
-            )
-              mappedData = this.mapSharedData(data);
-          }
+          this.GetAssignment(idVal.id, true);
 
-          if (!mappedData || Object.keys(mappedData).length === 0) {
+          // if (idVal.groupId == "assignment") {
+          //   data = this.assignmentsList.find(
+          //     (e) => e.id.toString() == idVal.id.toString()
+          //   );
+          //   if (data) mappedData = this.mapData(data);
+          // }
+          // if (
+          //   (!mappedData || Object.keys(mappedData).length === 0) &&
+          //   idVal.groupId == "assignment"
+          // ) {
+          //   data = this.overdues.find(
+          //     (e) => e.id.toString() == idVal.id.toString()
+          //   );
+          //   if (
+          //     !mappedData ||
+          //     (Object.keys(mappedData).length === 0 &&
+          //       mappedData.constructor === Object)
+          //   )
+          //     if (data) mappedData = this.mapData(data);
+          // }
+          // if (idVal.groupId == "shared-assignment") {
+          //   data = this.sharedAssignmentsList.find(
+          //     (e) => e.assignment_id.toString() == idVal.id.toString()
+          //   );
+          //   if (Object.keys(mappedData).length === 0) {
+          //     if (data) mappedData = this.mapSharedData(data);
+          //   }
+          // }
+          // if (
+          //   (!mappedData || Object.keys(mappedData).length === 0) &&
+          //   idVal.groupId == "shared-assignment"
+          // ) {
+          //   data = this.sharedOverdues.find(
+          //     (e) => e.assignment_id.toString() == idVal.id.toString()
+          //   );
+          //   if (
+          //     !mappedData ||
+          //     (Object.keys(mappedData).length === 0 &&
+          //       mappedData.constructor === Object)
+          //   )
+          //     if (data) mappedData = this.mapSharedData(data);
+          // }
+
+          // if (!mappedData || Object.keys(mappedData).length === 0) {
+          //   this.alertMessage = "This assignment has been completed!";
+          //   $("#alertModal").modal({ backdrop: true });
+          //   return;
+          // }
+          if (this.notExist) {
             this.alertMessage = "This assignment has been completed!";
             $("#alertModal").modal({ backdrop: true });
             return;
           }
-          this.assignmentPlanner();
-          this.onCardClick(mappedData);
         }
         if (idVal.groupId == "study") {
           let session = this.sessionList.find(
@@ -4107,7 +4180,9 @@ export default {
         });
       }
       this.peerList = data.peers;
-      this.additionalMaterialList = data.assignment_materials;
+      this.additionalMaterialList = data.assignment_materials
+        ? data.assignment_materials
+        : [];
     },
     async getAllCompletedAssignments() {
       await this.getCompletedAssignments({
