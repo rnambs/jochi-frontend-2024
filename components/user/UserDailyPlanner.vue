@@ -3014,7 +3014,7 @@ export default {
             return;
           } else {
             let mappedData = {};
-            if (this.sharedAssignment.id) {
+            if (this.sharedAssignment?.id) {
               let data = this.sharedAssignment.assignments;
               let mapData = { assignments: {}, assignment_shared_users: {} };
               mapData.assignments = data;
