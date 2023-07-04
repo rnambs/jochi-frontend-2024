@@ -576,7 +576,7 @@ input[type=radio] {
   font-size: 0.9rem;
 }
 .form-row .multiselect__tags span.multiselect__tag, .form-group .multiselect__tags span.multiselect__tag {
-  background-color: #FF6D6D;
+  background-color: #5534A5;
   margin: 5px;
 }
 @media (max-width: 1128.98px) {
@@ -585,7 +585,7 @@ input[type=radio] {
   }
 }
 .form-row .multiselect__tags span.multiselect__tag i.multiselect__tag-icon:hover, .form-group .multiselect__tags span.multiselect__tag i.multiselect__tag-icon:hover {
-  background-color: #FF6D6D;
+  background-color: #5534A5;
 }
 .form-row .multiselect__tags span.multiselect__tag i.multiselect__tag-icon::after, .form-group .multiselect__tags span.multiselect__tag i.multiselect__tag-icon::after {
   color: #ffffff;
@@ -983,10 +983,10 @@ input[type=radio] {
   border-radius: 10px;
   border: none;
   margin-bottom: 0px;
+  box-shadow: none !important;
 }
 .card.card-white {
   background-color: #ffffff;
-  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
 }
 .card.card-primary {
   background-color: #ffffff;
@@ -996,7 +996,7 @@ input[type=radio] {
   background-color: transparent;
   -webkit-backdrop-filter: blur(60px);
           backdrop-filter: blur(60px);
-  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
+  border: 1px solid #EAEAEA;
 }
 .card.card-secondary-sm {
   background-color: rgba(255, 255, 255, 0.45);
@@ -1004,11 +1004,11 @@ input[type=radio] {
 }
 .card.card-secondary {
   background-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0.1rem 0.1rem 0.4rem rgba(255, 255, 255, 0.45);
+  border: 1px solid #EAEAEA;
 }
 .card.card-void {
   background-color: transparent;
-  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
+  border: 1px solid #EAEAEA;
 }
 .card.card-transparent {
   background-color: transparent;
@@ -1912,7 +1912,7 @@ img.dark-icon {
 }
 .inner-section .main-section #Daily-Calander .sb-user-name, .inner-section .main-section #Weekly-Calander .sb-user-name, .inner-section .main-section #Monthly-Calander .sb-user-name {
   font-size: 26px;
-  color: #ff6d6d;
+  color: #757575;
   font-weight: 700;
 }
 .inner-section .main-section #Daily-Calander .sb-settings-btn, .inner-section .main-section #Weekly-Calander .sb-settings-btn, .inner-section .main-section #Monthly-Calander .sb-settings-btn {
@@ -2405,7 +2405,7 @@ img.dark-icon {
   background: none;
 }
 .inner-section .main-section #Daily-Calander .fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-thumb {
-  background: #ff6d6d;
+  background: #5534A5;
 }
 .inner-section .main-section #Daily-Calander .fc-timegrid-event-harness > .fc-timegrid-event {
   left: 15px;
@@ -2617,7 +2617,7 @@ img.dark-icon {
   background: none;
 }
 .inner-section .main-section #Weekly-Calander .fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-thumb {
-  background: $theme-color;
+  background: #5534A5;
 }
 .inner-section .main-section #Weekly-Calander .fc-timegrid-event-harness > .fc-timegrid-event {
   left: 15px;

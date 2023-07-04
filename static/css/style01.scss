@@ -501,14 +501,14 @@ input[type="radio"]{
             }
         }
         span.multiselect__tag{
-            background-color: $selected-color;
+            background-color: $theme-color;
             margin: 5px;
             @media (max-width:1128.98px) {
                 margin: 3px;
             }
             i.multiselect__tag-icon{
                 &:hover{
-                    background-color: $selected-color;
+                    background-color: $theme-color;
                 }
                 &::after{
                     color: $white;
@@ -1002,9 +1002,10 @@ input[type="radio"]{
     @include borderRadius(10);
     border: none;
     margin-bottom: 0px;
+    box-shadow: none !important;
     &.card-white{
         background-color: #ffffff;
-        box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+        // box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
     }
     &.card-primary{
         background-color: $white;
@@ -1013,19 +1014,22 @@ input[type="radio"]{
     &.card-primary-void{
         background-color: transparent;
         backdrop-filter: blur(60px);
-        box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
+        // box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
+        border: 1px solid $border-color;
     }
     &.card-secondary-sm{
         @include jochi-sub-components-bg();
     }
     &.card-secondary{
         background-color: $Global-background-element;
-        box-shadow: 0.1rem 0.1rem 0.4rem $global-box-shadow;
+        border: 1px solid $border-color;
+        // box-shadow: 0.1rem 0.1rem 0.4rem $global-box-shadow;
     }
     &.card-void{
         background-color: transparent;
+        border: 1px solid $border-color;
         // box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
-        box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22)
+        // box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22)
     }
     &.card-transparent{
         background-color: transparent;
@@ -3561,14 +3565,14 @@ img.dark-icon{
         //                                     }
         //                                 }
         //                                 span.multiselect__tag{
-        //                                     background-color: $selected-color;
+        //                                     background-color: $theme-color;
         //                                     margin: 5px;
         //                                     @media (max-width:1128.98px) {
         //                                         margin: 3px;
         //                                     }
         //                                     i.multiselect__tag-icon{
         //                                         &:hover{
-        //                                             background-color: $selected-color;
+        //                                             background-color: $theme-color;
         //                                         }
         //                                     }
         //                                 }
@@ -3803,14 +3807,14 @@ img.dark-icon{
         //                                     }
         //                                 }
         //                                 span.multiselect__tag{
-        //                                     background-color: $selected-color;
+        //                                     background-color: $theme-color;
         //                                     margin: 5px;
         //                                     @media (max-width:1128.98px) {
         //                                         margin: 3px;
         //                                     }
         //                                     i.multiselect__tag-icon{
         //                                         &:hover{
-        //                                             background-color: $selected-color;
+        //                                             background-color: $theme-color;
         //                                         }
         //                                     }
         //                                 }

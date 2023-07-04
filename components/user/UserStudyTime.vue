@@ -33,7 +33,7 @@
             </div>
             <div
               @click="setSessionType('assignment', false)"
-              class="row card card-void rounded-22 m-0 mb-4 p-4 flex-row cursor-pointer"
+              class="row card card-void m-0 mb-4 p-4 flex-row cursor-pointer"
               data-intro="To start a session right away, click here. You will be prompted to choose what assignment you want to work on, invite your classmates to join you, a chance to set some goals, the option to choose a structured study method and other options to configure a new study session."
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
@@ -66,7 +66,7 @@
             <div
               data-intro="Get started with a general study session right away by clicking here. You will be shown similar options such as setting goals, duration, and other options to configure your session."
               @click="setSessionType('study', false)"
-              class="row card card-void rounded-22 p-4 m-0 flex-row cursor-pointer"
+              class="row card card-void p-4 m-0 flex-row cursor-pointer"
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
                 <h2 class="color-primary-dark font-semi-bold mb-1">
@@ -89,7 +89,7 @@
           </div>
           <div class="col-lg-5 h-lg-100">
             <div
-              class="card card-void rounded-22 py-4 h-100 position-realtive h-min-70"
+              class="card card-void py-4 h-100 position-realtive h-min-70"
             >
               <div class="d-flex flex-column h-100">
                 <h2
@@ -552,7 +552,7 @@
       <div class="row h-40 flex-grow-1">
         <div class="col-lg-7 h-md-100 d-flex flex-column">
           <div
-            class="card card-void rounded-22 p-4 h-40 flex-fill mb-4 h-min-200"
+            class="card card-void p-4 h-40 flex-fill mb-4 h-min-200"
           >
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">
@@ -633,7 +633,7 @@
             </div>
           </div>
 
-          <div class="card card-void rounded-22 h-40 flex-fill p-4 h-min-200">
+          <div class="card card-void h-40 flex-fill p-4 h-min-200">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
               <a
@@ -703,7 +703,7 @@
           </div>
         </div>
         <div class="col-lg-5 d-flex flex-column h-100">
-          <div class="card card-void rounded-22 p-4 m-0 flex-column h-100">
+          <div class="card card-void p-4 m-0 flex-column h-100">
             <div class="d-flex flex-column justify-content-between h-100">
               <div class="d-flex flex-column h-40 flex-fill">
                 <h2 class="color-dark font-semi-bold mb-1">
@@ -881,7 +881,7 @@
           <div
             class="col-lg-7 study-col d-flex flex-column justify-content-center flex-fill"
           >
-            <div class="card card-void rounded-22 p-4 flex-fill mb-4">
+            <div class="card card-void p-4 flex-fill mb-4">
               <div class="">
                 <h1 class="color-primary-dark font-bold mb-2">Working on</h1>
               </div>
@@ -955,7 +955,7 @@
                 >
               </div>
             </div>
-            <div class="card card-void rounded-22 p-4">
+            <div class="card card-void p-4">
               <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
               <div class="hidden-scroll p-3 pl-4 row my-0">
                 <div
@@ -997,7 +997,7 @@
             class="col-lg-5 study-col d-flex justify-content-center align-items-center"
           >
             <div
-              class="card card-void rounded-22 p-4 flex-fill h-100 justify-constent-center"
+              class="card card-void p-4 flex-fill h-100 justify-constent-center"
             >
               <div class="d-flex flex-column flex-fill justify-content-between">
                 <div class="d-flex flex-column mb-4">
@@ -1095,7 +1095,7 @@
       class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex align-items-center justify-content-center hidden-scroll"
     >
       <div
-        class="px-5 py-4 d-flex flex-column card card-void rounded-22 col-lg-7"
+        class="px-5 py-4 d-flex flex-column card card-void col-lg-7"
       >
         <h2 class="color-primary-dark font-semi-bold mb-1">Rate your session</h2>
         <div class="d-flex flex-column py-3 px-0">

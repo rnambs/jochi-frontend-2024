@@ -85,10 +85,10 @@
                       <!-- :class="
                           data.isViewed
                             ? 'unread d-flex flex-column p-3 card card-primary bg-white rounded-22 my-3 cursor-pointer'
-                            : 'read d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer'
+                            : 'read d-flex flex-column p-3 card card-void my-3 cursor-pointer'
                         " -->
                       <div
-                        class="d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer"
+                        class="d-flex flex-column p-3 card card-void my-3 cursor-pointer"
                         v-for="(data, index) in notificationList"
                         :key="index"
                         @click="onNotificationClick(data.id, data.meetingType)"

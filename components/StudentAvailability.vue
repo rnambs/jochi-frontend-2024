@@ -25,7 +25,7 @@
               >
                 <div
                   @click="setSessionType('assignment', false)"
-                  class="row card card-void rounded-22 m-0 mb-4 p-4 flex-row cursor-pointer calendar-box"
+                  class="row card card-void m-0 mb-4 p-4 flex-row cursor-pointer calendar-box"
                 >
                   <div class="col-sm-7 col-md-8 col-xl-7">
                     <h2 class="color-primary-dark font-semi-bold mb-1">

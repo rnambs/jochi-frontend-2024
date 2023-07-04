@@ -56,8 +56,8 @@
                       <div
                         :class="
                           data.isViewed
-                            ? 'unread d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer'
-                            : 'read d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer'
+                            ? 'unread d-flex flex-column p-3 card card-void my-3 cursor-pointer'
+                            : 'read d-flex flex-column p-3 card card-void my-3 cursor-pointer'
                         "
                         v-for="(data, index) in notificationList"
                         :key="index"
