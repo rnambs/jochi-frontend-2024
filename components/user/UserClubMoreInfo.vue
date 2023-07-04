@@ -9,7 +9,7 @@
     <div class="main-section">
       <!-- tab for club info -->
       <div
-        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
         <div
@@ -51,7 +51,7 @@
         <div class="position-relative">
           <div
             v-bind:class="{
-              'dropdown-club jochi-components-light-bg': true,
+              'dropdown-club bg-white border rounded-10': true,
               'dropdown-club--visible': dropdownVisible,
             }"
           >
@@ -121,7 +121,7 @@
               class="inner-club club-info d-flex flex-column container-fluid h-40 flex-fill pt-3 px-3"
             >
               <div class="info-head my-2">
-                <h3 class="color-primary font-bold">{{ headingName }}</h3>
+                <h3 class="color-primary-dark font-bold">{{ headingName }}</h3>
               </div>
               <div
                 class="inner-info container-fluid my-1 d-flex flex-column h-40 flex-fill"
@@ -165,7 +165,7 @@
                                 <div class="left-side">
                                   <h4
                                     @click="openEditSportsActivity(item)"
-                                    class="color-primary text-truncate mb-1 font-semi-bold text-18 cursor-pointer"
+                                    class="color-primary-dark text-truncate mb-1 font-semi-bold text-18 cursor-pointer"
                                   >
                                     {{ item.title }}
                                   </h4>
@@ -176,7 +176,7 @@
                                     {{ item.first_name }}
                                     <span>{{ headingName }}</span>
                                     <span
-                                      class="color-primary text-18 font-semi-bold"
+                                      class="color-primary-dark text-18 font-semi-bold"
                                       >Vs</span
                                     >
                                     <span>{{ item.opponent_team }}</span>
@@ -243,7 +243,7 @@
                                 </p>
                                 <p
                                   @click="openEditSportsActivity(item)"
-                                  class="color-primary word-break cursor-pointer mb-0 line-break-anywhere font-semi-bold"
+                                  class="color-primary-dark word-break cursor-pointer mb-0 line-break-anywhere font-semi-bold"
                                 >
                                   {{ item.title }}
                                 </p>
@@ -410,7 +410,7 @@
                                 </p>
                                 <p
                                   @click="openEdit(item)"
-                                  class="color-primary word-break cursor-pointer line-break-anywhere mb-0 font-semi-bold"
+                                  class="color-primary-dark word-break cursor-pointer line-break-anywhere mb-0 font-semi-bold"
                                 >
                                   {{ item.title }}
                                 </p>
@@ -477,7 +477,7 @@
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Club Details</span
                   >
                 </nuxt-link>
@@ -490,7 +490,7 @@
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Files/Slides</span
                   >
                 </nuxt-link>
@@ -506,10 +506,10 @@
                       : 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100'
                   "
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Next Meeting</span
                   >
-                  <span class="text-16 color-primary font-regular">{{
+                  <span class="text-16 color-primary-dark font-regular">{{
                     clubMoreDetails.announcement
                   }}</span>
                 </div>
@@ -534,7 +534,7 @@
         <div class="modal-content h-auto">
           <div class="modal-body px-4 pt-4">
             <h3
-              class="modal-title color-primary font-bold"
+              class="modal-title color-primary-dark font-bold"
               id="mediumModalLabel"
             >
               Delete
@@ -583,7 +583,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h3
-              class="color-primary font-semi-bold"
+              class="color-primary-dark font-semi-bold"
               id="announcementModalLongTitle"
             >
               {{ enableEdit ? (isAnnouncementEdit ? "Edit" : "Add") : "" }}
@@ -712,7 +712,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h3
-              class="color-primary font-semi-bold"
+              class="color-primary-dark font-semi-bold"
               id="activityModalLongTitle"
             >
               {{ enableEdit ? (isActivityEdit ? "Edit" : "Add") : "" }}
@@ -1030,7 +1030,7 @@
         <div class="modal-content">
           <div class="modal-body no-overflow px-4 pt-4">
             <h3
-              class="modal-title color-primary font-semi-bold"
+              class="modal-title color-primary-dark font-semi-bold"
               id="nextMeetingModalLongTitle"
             >
               Configure Meeting Days
@@ -1121,7 +1121,7 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header px-4">
-            <h3 class="modal-title color-primary" id="addBannerModalLongTitle">
+            <h3 class="modal-title color-primary-dark" id="addBannerModalLongTitle">
               Add Banner
             </h3>
           </div>
@@ -1129,7 +1129,7 @@
             <div class="d-flex flex-column overflow-hidden h-100">
               <div
                 size="120"
-                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-sm mb-3"
+                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary mb-3"
               >
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"

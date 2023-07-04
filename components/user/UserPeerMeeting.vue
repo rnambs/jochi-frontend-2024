@@ -8,7 +8,7 @@
     />
     <div class="main-section">
       <!-- tab section for peer meeting -->
-      <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+      <div class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height">
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-4">
             <h4 class="tab-head">Peer Meeting</h4>

@@ -11,9 +11,9 @@
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
-          class="teacher-section jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+          class="teacher-section bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
         >
-          <h2 class="color-primary font-semi-bold m-0 px-4 pt-4">
+          <h2 class="color-primary-dark font-semi-bold m-0 px-4 pt-4">
             Teacher Appointment
           </h2>
 
@@ -28,7 +28,7 @@
                     class="col-md-6 custom-teacher-container d-flex flex-column"
                   >
                     <div
-                      class="inner-custom-teacher text-light p-3 pt-4 card card-primary-sm rounded-22 flex-fill calendar-sm"
+                      class="inner-custom-teacher text-light p-3 pt-4 card card-primary rounded-22 flex-fill calendar-sm"
                     >
                       <FullCalendar :options="calendarOptions" />
                     </div>
@@ -40,7 +40,7 @@
                     class="col-md-6 custom-teacher-container d-flex flex-column"
                   >
                     <div
-                      class="inner-custom-teacher p-3 card card-primary-sm rounded-22 flex-fill calendar-sm"
+                      class="inner-custom-teacher p-3 card card-primary rounded-22 flex-fill calendar-sm"
                     >
                       <h4 class="font-semi-bold color-dark text-center">
                         Meetings
@@ -135,7 +135,7 @@
                 class="teacher-row d-flex flex-column flex-fill h-40 mt-4 p-0"
               >
                 <div
-                  class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary-sm rounded-22"
+                  class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary rounded-22"
                 >
                   <div class="appointment-req d-flex flex-column h-100 pb-2">
                     <h4 class="text-center color-dark font-semi-bold pt-4 mb-3">
@@ -271,7 +271,7 @@
                   meetingDetail.default_slots.start_time &&
                   meetingDetail.default_slots.end_time
                 "
-                class="mb-1 font-semi-bold text-18 color-primary"
+                class="mb-1 font-semi-bold text-18 color-primary-dark"
               >
                 {{ meetingDetail.default_slots.start_time }} -
                 {{ meetingDetail.default_slots.end_time }}

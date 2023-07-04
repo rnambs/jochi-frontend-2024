@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="jochi-page">
         <div class="jochi-sidebar-main">
-          <div class="sd-sidebar jochi-components-light-bg p-4">
+          <div class="sd-sidebar bg-white border rounded-10 p-4">
             <div class="sb-head-section">
               <div
                 class="d-flex align-items-start justify-content-between mb-3"
@@ -91,7 +91,7 @@
         <div class="col-12 jochi-main-content-container">
           <div class="row">
             <div class="col-12 position-realtive">
-                <div class="dashboard-main-content jochi-components-light-bg py-4 px-5 position-relative">
+                <div class="dashboard-main-content bg-white border rounded-10 py-4 px-5 position-relative">
                     <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                     <div class="planner-action-btns d-flex align-items-center position-absolute">
                       <button class="pa-btn btn filter-btn mr-3" @click="filterPlanner()" id="filterPlanner">Filter Planner</button>
@@ -99,7 +99,7 @@
                     </div>
                     <div class="col-lg-8 col-md-12 p-0 position-absolute assignment-planner-section" id="assignPlanSection">
                       <div class="position-realtive h-100">
-                        <div class="dashboard-main-content jochi-components-light-bg p-4 pl-5">
+                        <div class="dashboard-main-content bg-white border rounded-10 p-4 pl-5">
                           <div class="d-flex justify-content-between align-items-center">
                             <h3 class="jochi-headings">Pending</h3>
                             <button class="add-assignment-btn btn">
@@ -107,7 +107,7 @@
                             </button>
                           </div>
                           <div class="col-6 px-0">
-                            <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive" @click="addAssignment()">
+                            <div class="bg-white border rounded-8 drag-drop p-4 position-realtive" @click="addAssignment()">
                               <div class="assignment-tag-section d-flex align-items-center mb-2">
                                 <div class="assignment-tag red mr-2">Urgent</div>
                                 <div class="assignment-tag pink">AP French</div>
@@ -190,7 +190,7 @@
                             <div class="col-6">
                               <div
                                 class="
-                                  jochi-sub-components-light-bg
+                                  bg-white border rounded-8
                                   py-4
                                   px-2
                                   completed-assignments
@@ -204,7 +204,7 @@
                             <div class="col-6">
                               <div
                                 class="
-                                  jochi-sub-components-light-bg
+                                  bg-white border rounded-8
                                   py-4
                                   px-2
                                   completed-assignments
@@ -217,7 +217,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="jochi-components-light-bg p-4 pl-5 position-absolute pending-assignment-popup">
+                        <div class="bg-white border rounded-10 p-4 pl-5 position-absolute pending-assignment-popup">
                           <div class="d-flex justify-content-between align-items-center">
                             <h1>Test</h1>
                             <button class="btn pending-popup-close-btn" @click="pendingPopupclose()">x</button>
@@ -820,7 +820,7 @@ body {
   margin: 0;
 }
 
-.jochi-sub-components-light-bg {
+.bg-white border rounded-8 {
   background-color: rgba(255, 255, 255, 0.45);
   -webkit-box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 9%);
   box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 9%);
@@ -828,7 +828,7 @@ body {
 }
 
 .jochi-headings {
-  color: #ff6d6d;
+  
 }
 
 .sd-sidebar {
@@ -871,7 +871,7 @@ body {
 
 .sb-user-name {
   font-size: 26px;
-  color: #ff6d6d;
+  
   font-weight: 700;
 }
 
@@ -1186,7 +1186,7 @@ body {
 }
 
 .fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-thumb {
-  background: #ff6d6d;
+  background: #5534A5;
 }
 
 .fc-timegrid-event-harness > .fc-timegrid-event {
@@ -1225,7 +1225,7 @@ body {
   word-break: break-all;
 }
 
-.jochi-components-light-bg.pending-assignment-popup {
+.bg-white border rounded-10.pending-assignment-popup {
   top: 12px;
   bottom: 12px;
   left: 12px;
@@ -1235,7 +1235,7 @@ body {
   transition: transform 1s ease;
 }
 
-.jochi-components-light-bg.pending-assignment-popup.active {
+.bg-white border rounded-10.pending-assignment-popup.active {
   transform: scale(1);
   transition: transform 1s ease;
 }
@@ -1273,7 +1273,7 @@ body {
   display: block;
 }
 
-.assignment-planner-section .jochi-components-light-bg {
+.assignment-planner-section .bg-white border rounded-10 {
   background-color: #ffffff;
   height: 100%;
 }

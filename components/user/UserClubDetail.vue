@@ -9,13 +9,13 @@
     <div class="main-section">
       <!-- tab for club detail -->
       <div
-        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-3">
             <h2
               data-intro="View and manage all of your existing commitments."
-              class="tab-head color-primary font-semi-bold"
+              class="tab-head color-primary-dark font-semi-bold"
             >
               Club Details
             </h2>
@@ -108,7 +108,7 @@
                     </div>
                     <div class="d-flex flex-column">
                       <h5
-                        class="list-title mb-3 color-primary font-semi-bold pr-3"
+                        class="list-title mb-3 color-primary-dark font-semi-bold pr-3"
                       >
                         {{ list["description"] }}
                       </h5>

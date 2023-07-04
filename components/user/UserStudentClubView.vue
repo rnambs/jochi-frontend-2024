@@ -9,7 +9,7 @@
     <div class="main-section">
       <!-- tab for club info -->
       <div
-        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
 
@@ -54,7 +54,7 @@
                 <div
                   class="d-flex align-items-center justify-content-between mb-3"
                 >
-                  <h3 class="color-primary font-semi-bold mb-1">
+                  <h3 class="color-primary-dark font-semi-bold mb-1">
                     Club Details
                   </h3>
 
@@ -345,7 +345,7 @@
                           <div class="col-10 col-lg-8 info-tag pr-0">
                             <div class="input-group mb-0 justify-content-end">
                               <div
-                                class="px-4 py-1 ml-1 mb-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 bg-theme align-items-center"
+                                class="px-4 py-1 ml-1 mb-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 bg-primary align-items-center"
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
                                 :style="{

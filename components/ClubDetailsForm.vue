@@ -147,7 +147,7 @@
                         border border-secondary
                         text-decoration-none text-dark
                         btn
-                        bg-light
+                        bg-primary-light
                       "
                     >
                       cancel</nuxt-link

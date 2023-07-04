@@ -11,9 +11,9 @@
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
-          class="teacher-section jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+          class="teacher-section bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
         >
-          <h2 class="color-primary font-semi-bold m-0 p-4">
+          <h2 class="color-primary-dark font-semi-bold m-0 p-4">
             Custom Avaliability
           </h2>
           <div
@@ -28,7 +28,7 @@
                   class="row card card-void rounded-22 m-0 mb-4 p-4 flex-row cursor-pointer calendar-box"
                 >
                   <div class="col-sm-7 col-md-8 col-xl-7">
-                    <h2 class="color-primary font-semi-bold mb-1">
+                    <h2 class="color-primary-dark font-semi-bold mb-1">
                       When Are You Free?
                     </h2>
                     <p class="mb-0 color-dark font-semi-bold text-16">
@@ -48,7 +48,7 @@
                 </div>
                 <div
                   data-intro="Pre-set your availability so your peers know when you are available to meet. If you don’t set custom availability, Jochi will rely on your commitments that appear on your Jochi calendar. Here, you can choose a specific upcoming date to set your availability."
-                  class="time-slot calendar-sm container card card-primary-sm rounded-22 p-3 pt-4 mb-4"
+                  class="time-slot calendar-sm container card card-primary rounded-22 p-3 pt-4 mb-4"
                 >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
@@ -57,7 +57,7 @@
                 class="col-md-5 custom-teacher-container d-flex flex-column h-100"
               >
                 <div
-                  class="time-slot container card card-primary-sm rounded-22 p-4 flex-fill h-40"
+                  class="time-slot container card card-primary rounded-22 p-4 flex-fill h-40"
                 >
                   <p
                     data-intro="To set your custom availability, choose a series of 30 minute slots that work for you."

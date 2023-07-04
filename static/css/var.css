@@ -1,3 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap");
+.color-primary-dark {
+  color: #141522;
+}
+
+.color-black {
+  color: #000000;
+}
+
+.color-dark {
+  color: #431F1C !important;
+}
+
+.color-secondary {
+  color: #757575;
+}
+
+.color-label-green {
+  color: #159E00;
+}
+
+.bg-white {
+  background-color: #ffffff;
+  background: #ffffff;
+}
+
+.bg-primary {
+  background-color: #5534A5 !important;
+}
+
+.bg-gray-light {
+  background-color: #F9F9F9 !important;
+}
+
+.bg-primary-light {
+  background-color: #F1EEF6 !important;
+}
+
+.bg-secondary-light {
+  background-color: #D9E1E7 !important;
+}
+
+.component-bg {
+  box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
+  border: 1px solid #ffffff;
+}
+
+.border {
+  border: 1px solid #EAEAEA !important;
+}
+
+.border-theme {
+  border: 1px solid #FF4E71 !important;
+}
+
+.border-white {
+  border: 1px solid #ffffff !important;
+}
+
+.rounded-8 {
+  border-radius: 8px;
+}
+
+.rounded-10 {
+  border-radius: 10px;
+}
+
 .lext-limited {
   max-height: 36px;
   overflow: hidden;

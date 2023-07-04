@@ -15,7 +15,7 @@
     <!-- session  -->
     <div
       v-if="currentTab == 0"
-      class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex"
+      class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex"
     >
       <div
         class="study-section d-flex flex-column flex-fill px-4 custom-overflow my-3 py-md-2 py-lg-3"
@@ -26,7 +26,7 @@
               <div
                 data-intro="The study room is a tool for you to use to tackle your assignments/tasks. Click here to schedule a study session for sometime later."
                 @click="scheduleLaterClick('assignment', $event)"
-                class="position-absolute send-later jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
+                class="position-absolute send-later bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
               >
                 <img src="~/assets/images/send-later.png" />
               </div>
@@ -37,7 +37,7 @@
               data-intro="To start a session right away, click here. You will be prompted to choose what assignment you want to work on, invite your classmates to join you, a chance to set some goals, the option to choose a structured study method and other options to configure a new study session."
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
-                <h2 class="color-primary font-semi-bold mb-1">
+                <h2 class="color-primary-dark font-semi-bold mb-1">
                   Complete An Assignment
                 </h2>
                 <p class="mb-0 color-dark font-semi-bold text-16">
@@ -58,7 +58,7 @@
               <div
                 data-intro="Want to just set yourself accountable while getting general work here? Click here to schedule a regular study session for later."
                 @click="scheduleLaterClick('study', $event)"
-                class="position-absolute send-later jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
+                class="position-absolute send-later bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
               >
                 <img src="~/assets/images/send-later.png" />
               </div>
@@ -69,7 +69,7 @@
               class="row card card-void rounded-22 p-4 m-0 flex-row cursor-pointer"
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
-                <h2 class="color-primary font-semi-bold mb-1">
+                <h2 class="color-primary-dark font-semi-bold mb-1">
                   Start A New Study Session
                 </h2>
                 <p class="mb-0 color-dark font-semi-bold text-16">
@@ -94,7 +94,7 @@
               <div class="d-flex flex-column h-100">
                 <h2
                   data-intro="View upcoming study sessions that you’ve blocked out for later and sessions that your classmates have invited you to."
-                  class="color-primary font-semi-bold mb-2 px-4"
+                  class="color-primary-dark font-semi-bold mb-2 px-4"
                 >
                   Upcoming Sessions
                 </h2>
@@ -147,7 +147,7 @@
                   <div
                     class="d-flex justify-content-between mb-2 border-bottom"
                   >
-                    <h3 class="color-primary font-semi-bold">Session</h3>
+                    <h3 class="color-primary-dark font-semi-bold">Session</h3>
                     <p
                       @click="
                         showSessionDetail = false;
@@ -289,10 +289,10 @@
 
     <div
       v-if="currentTab == 1"
-      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
+      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
-      <h2 class="color-primary font-bold mb-1">Step One:</h2>
-      <h2 class="color-primary font-bold mb-1">Choose An Assignment</h2>
+      <h2 class="color-primary-dark font-bold mb-1">Step One:</h2>
+      <h2 class="color-primary-dark font-bold mb-1">Choose An Assignment</h2>
       <div class="d-flex align-items-center justify-content-between">
         <div class="d-flex">
           <button @click="onBack()" class="btn color-secondary">
@@ -311,13 +311,13 @@
         >
           <button :disabled="disablePrevious" @click="previous" class="btn p-1">
             <span
-              class="bg-theme d-flex align-items-center justify-content-center rounded-circle btn-circle"
+              class="bg-primary d-flex align-items-center justify-content-center rounded-circle btn-circle"
               ><i class="fa-solid fa-chevron-left color-white text-12"></i
             ></span>
           </button>
           <button :disabled="disableNext" @click="next" class="btn p-1">
             <span
-              class="ml-1 bg-theme d-flex align-items-center justify-content-center rounded-circle btn-circle"
+              class="ml-1 bg-primary d-flex align-items-center justify-content-center rounded-circle btn-circle"
               ><i class="fa-solid fa-chevron-right color-white text-12"></i
             ></span>
           </button>
@@ -338,7 +338,7 @@
           >
             <div
               @click="onAssignmentSelect(detail)"
-              class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between cursor-pointer"
+              class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between cursor-pointer"
             >
               <div class="d-flex flex-column">
                 <div
@@ -387,7 +387,7 @@
                   v-if="detail.subTasks && detail.subTasks.length > 0"
                   class="mb-3"
                 >
-                  <h6 class="color-primary">Sub-tasks</h6>
+                  <h6 class="color-primary-dark">Sub-tasks</h6>
                   <div class="to-do-list">
                     <div v-for="subtask in detail.subTasks" :key="subtask.id">
                       <div
@@ -469,12 +469,12 @@
 
     <div
       v-if="currentTab == 2"
-      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
+      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
-      <h2 class="color-primary font-bold mb-1">
+      <h2 class="color-primary-dark font-bold mb-1">
         Step {{ sessionType == "study" ? "One" : "Two" }}:
       </h2>
-      <h2 class="color-primary font-bold mb-1">Configure your Session</h2>
+      <h2 class="color-primary-dark font-bold mb-1">Configure your Session</h2>
       <div class="d-flex">
         <button @click="onBack()" class="btn color-secondary">
           <span class="mr-2 arrow"
@@ -490,9 +490,9 @@
               class="col-12 col-md-5 col-lg-4"
             >
               <div
-                class="jochi-sub-components-light-bg drag-drop px-4 py-5 position-realtive h-100 d-flex align-items-center justify-content-center flex-column cursor-pointer"
+                class="bg-white border rounded-8 drag-drop px-4 py-5 position-realtive h-100 d-flex align-items-center justify-content-center flex-column cursor-pointer"
               >
-                <h2 class="color-primary text-center font-bold mb-1">
+                <h2 class="color-primary-dark text-center font-bold mb-1">
                   Regular Studying
                 </h2>
                 <p class="color-dark font-semi-bold text-center text-18">
@@ -505,9 +505,9 @@
               class="col-12 col-md-5 col-lg-4"
             >
               <div
-                class="jochi-sub-components-light-bg drag-drop px-4 py-5 position-realtive d-flex align-items-center justify-content-center flex-column cursor-pointer"
+                class="bg-white border rounded-8 drag-drop px-4 py-5 position-realtive d-flex align-items-center justify-content-center flex-column cursor-pointer"
               >
-                <h2 class="color-primary font-bold mb-1 text-center">
+                <h2 class="color-primary-dark font-bold mb-1 text-center">
                   Pomodoro Technique
                 </h2>
                 <p class="color-dark font-semi-bold text-18 text-center">
@@ -536,12 +536,12 @@
     <!-- step two configure -->
     <div
       v-if="currentTab == 3"
-      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
+      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
-      <h2 class="color-primary font-bold mb-1">
+      <h2 class="color-primary-dark font-bold mb-1">
         Step {{ sessionType == "study" ? "Two" : "Three" }}:
       </h2>
-      <h2 class="color-primary font-bold mb-1">Configure your Session</h2>
+      <h2 class="color-primary-dark font-bold mb-1">Configure your Session</h2>
       <div class="d-flex">
         <button @click="onBack()" class="btn color-secondary">
           <span class="mr-2 arrow"
@@ -608,7 +608,7 @@
                     </p>
                     <span
                       @click="deleteGoal(goal)"
-                      class="color-primary fa-icon show-hover d-none btn p-0"
+                      class="color-primary-dark fa-icon show-hover d-none btn p-0"
                       ><i class="fas fa-trash-alt"></i
                     ></span>
                   </div>
@@ -874,7 +874,7 @@
 
     <div
       v-if="currentTab == 4"
-      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex show-scroll"
+      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex show-scroll"
     >
       <div class="d-flex flex-column flex-fill">
         <div class="row">
@@ -883,7 +883,7 @@
           >
             <div class="card card-void rounded-22 p-4 flex-fill mb-4">
               <div class="">
-                <h1 class="color-primary font-bold mb-2">Working on</h1>
+                <h1 class="color-primary-dark font-bold mb-2">Working on</h1>
               </div>
               <p class="color-dark text-24 font-semi-bold mb-1">
                 <span>Subject Name: </span>
@@ -1001,7 +1001,7 @@
             >
               <div class="d-flex flex-column flex-fill justify-content-between">
                 <div class="d-flex flex-column mb-4">
-                  <h1 class="color-primary font-bold mb-0">Timer</h1>
+                  <h1 class="color-primary-dark font-bold mb-0">Timer</h1>
                   <p class="color-dark text-24 font-semi-bold mb-1">
                     You got this!
                   </p>
@@ -1092,12 +1092,12 @@
 
     <div
       v-if="currentTab == 5"
-      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex align-items-center justify-content-center hidden-scroll"
+      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex align-items-center justify-content-center hidden-scroll"
     >
       <div
         class="px-5 py-4 d-flex flex-column card card-void rounded-22 col-lg-7"
       >
-        <h2 class="color-primary font-semi-bold mb-1">Rate your session</h2>
+        <h2 class="color-primary-dark font-semi-bold mb-1">Rate your session</h2>
         <div class="d-flex flex-column py-3 px-0">
           <div class="mb-3">
             <h4 class="color-dark font-semi-bold">Focus</h4>
@@ -1184,7 +1184,7 @@
         <div class="modal-content">
           <div class="modal-body p-4">
             <h3
-              class="modal-title color-primary font-semi-bold"
+              class="modal-title color-primary-dark font-semi-bold"
               id="exampleModalLongTitle"
             >
               End Session

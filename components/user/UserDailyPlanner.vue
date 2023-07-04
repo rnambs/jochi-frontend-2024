@@ -19,11 +19,11 @@
               <div class="col-lg-5 col-md-12">
                 <div
                   data-intro="Find your upcoming assignments and commitments in your daily calendar."
-                  class="jochi-components-light-bg p-4 h-100"
+                  class="bg-white border rounded-10 p-4 h-100"
                 >
                   <h2
                     v-if="showToday"
-                    class="color-primary font-semi-bold mb-1"
+                    class="color-primary-dark font-semi-bold mb-1"
                   >
                     Today,
                   </h2>
@@ -34,7 +34,7 @@
                 class="col-lg-7 col-md-12 position-realtive h-100 pb-0 pb-xl-3 pt-lg-24 pt-xl-auto"
               >
                 <div
-                  class="jochi-components-light-bg py-4 h-100 d-flex flex-column position-relative"
+                  class="bg-white border rounded-10 py-4 h-100 d-flex flex-column position-relative"
                 >
                   <lottie
                     v-if="playCelebration"
@@ -49,7 +49,7 @@
                       <div class="col-md-4">
                         <h2
                           data-intro="Manage your upcoming assignments."
-                          class="color-primary font-semi-bold mb-0"
+                          class="color-primary-dark font-semi-bold mb-0"
                         >
                           Pending
                         </h2>
@@ -104,7 +104,7 @@
                             <div class="h-100">
                               <div
                                 @click="onCardClick(item)"
-                                class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
+                                class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
                               >
                                 <div class="d-flex flex-column">
                                   <div
@@ -323,7 +323,7 @@
                       >
                         <div
                           v-if="item.shared_users_id != user_id"
-                          class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center"
+                          class="position-absolute multiple-select-checkbox bg-white border rounded-10 d-flex align-items-center justify-content-center"
                         >
                           <div class="squaredThree">
                             <input
@@ -339,7 +339,7 @@
                           <div class="h-100">
                             <div
                               @click="onCardClick(item)"
-                              class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
+                              class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
                             >
                               <div class="d-flex flex-column">
                                 <div
@@ -566,7 +566,7 @@
                     <div
                       class="drop color-secondary text-16 h-100 d-flex flex-column"
                     >
-                      <h2 class="color-primary font-semi-bold px-4">
+                      <h2 class="color-primary-dark font-semi-bold px-4">
                         Completed Today
                       </h2>
                       <p
@@ -596,12 +596,12 @@
                             >
                               <div
                                 @click="confirmUndo(item.id)"
-                                class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
+                                class="position-absolute multiple-select-checkbox bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
                               >
                                 <i class="fas fa-undo"></i>
                               </div>
                               <div
-                                class="jochi-sub-components-light-bg py-4 px-2 completed-assignments text-center h-100"
+                                class="bg-white border rounded-8 py-4 px-2 completed-assignments text-center h-100"
                               >
                                 <h4
                                   class="mb-0 blue word-break text-capitalize"
@@ -642,7 +642,7 @@
                     >
                       <h2
                         data-intro="View your completed assignments."
-                        class="color-primary font-semi-bold px-4"
+                        class="color-primary-dark font-semi-bold px-4"
                       >
                         Completed Today
                       </h2>
@@ -662,13 +662,13 @@
                           >
                             <div
                               @click="confirmUndo(item.id)"
-                              class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
+                              class="position-absolute multiple-select-checkbox bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
                             >
                               <i class="fas fa-undo"></i>
                             </div>
 
                             <div
-                              class="jochi-sub-components-light-bg py-4 px-2 completed-assignments text-center h-100 bg-redShade"
+                              class="bg-white border rounded-8 py-4 px-2 completed-assignments text-center h-100 bg-redShade"
                             >
                               <h4
                                 class="mb-0 blue word-break text-truncate text-capitalize"
@@ -743,7 +743,7 @@
                       <div
                         class="d-flex flex-column flex-md-row justify-content-between mb-2 border-bottom"
                       >
-                        <h3 class="color-primary font-semi-bold">
+                        <h3 class="color-primary-dark font-semi-bold">
                           {{ isAddAssignment ? "Add" : "Edit" }} Assignment
                         </h3>
                         <p class="mb-0 cursor-pointer d-none d-xl-block">
@@ -1084,7 +1084,7 @@
                                     <span
                                       v-if="subTask.task_status != 'Completed'"
                                       @click="deleteSubTask(subTask)"
-                                      class="color-primary fa-icon show-hover d-none btn p-0"
+                                      class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                       ><i class="fas fa-trash-alt"></i
                                     ></span>
                                   </div>
@@ -1177,7 +1177,7 @@
                                   @click="removePeerConfirm(peer.id, $event)"
                                 >
                                   <span
-                                    class="color-primary fa-icon show-hover d-none btn p-0 ml-05"
+                                    class="color-primary-dark fa-icon show-hover d-none btn p-0 ml-05"
                                     ><i class="fas fa-trash-alt ml-3"></i
                                   ></span>
                                 </button>
@@ -1268,7 +1268,7 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="color-primary fa-icon show-hover d-none btn p-0"
+                                    class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
@@ -1291,7 +1291,7 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="color-primary fa-icon show-hover d-none btn p-0"
+                                    class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
@@ -1476,7 +1476,7 @@
                                     <span
                                       v-if="subTask.task_status != 'Completed'"
                                       @click="deleteSubTask(subTask)"
-                                      class="color-primary fa-icon show-hover d-none btn p-0"
+                                      class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                       ><i class="fas fa-trash-alt"></i
                                     ></span>
                                   </div>
@@ -1643,7 +1643,7 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="color-primary fa-icon show-hover d-none btn p-0"
+                                    class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
@@ -1666,7 +1666,7 @@
                                     </p>
                                   </div>
                                   <span
-                                    class="color-primary fa-icon show-hover d-none btn p-0"
+                                    class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                     @click="deleteAdditionalMat(item)"
                                     ><i class="fas fa-trash-alt"></i
                                   ></span>
@@ -1987,7 +1987,7 @@
                       <span
                         v-if="subTask.task_status != 'Completed'"
                         @click="deleteSubTask(subTask)"
-                        class="color-primary fa-icon show-hover d-none btn p-0"
+                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
                         ><i class="fas fa-trash-alt"></i
                       ></span>
                     </div>
@@ -2135,7 +2135,7 @@
         <div class="modal-content">
           <div class="modal-body px-4">
             <h3
-              class="modal-title color-primary font-bold mt-3"
+              class="modal-title color-primary-dark font-bold mt-3"
               id="completeConfirmModalLongTitle"
             >
               Complete Sub-Task Confirmation
@@ -2181,7 +2181,7 @@
         <div class="modal-content">
           <div class="modal-body px-4">
             <h3
-              class="modal-title color-primary font-bold mt-3"
+              class="modal-title color-primary-dark font-bold mt-3"
               id="undoSubTaskConfirmModalLongTitle"
             >
               Undo Sub-Task Completion Confirmation

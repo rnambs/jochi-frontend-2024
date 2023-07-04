@@ -2,7 +2,7 @@
   <div>
     <div
       id="pageLoader"
-      class="bg-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
+      class="bg-primary-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
       style="z-index: 9"
       v-if="!isHidden"
     >
@@ -11,12 +11,12 @@
 
     <div class="main-section">
       <div
-        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
+        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
       >
         <div class="dmc-head d-flex justify-content-between align-items-start">
           <div class="greet-with-name-sec">
             <p class="text-24 color-black font-semi-bold mb-2">Hello,</p>
-            <p class="color-primary text-40 font-bold mb-4">{{ firstName }}</p>
+            <p class="color-primary-dark text-40 font-bold mb-4">{{ firstName }}</p>
           </div>
           <div class="faq-section d-flex align-items-center">
             <div class="faq-btn color-dark font-semi-bold mr-4">
@@ -39,7 +39,7 @@
             <div class="col-xl-8 h-100 height-md-unset">
               <div class="d-flex flex-column h-100">
                 <div
-                  class="jochi-sub-components-light-bg p-4 pr-1 pb-1 h-fit-content"
+                  class="bg-white border rounded-8 p-4 pr-1 pb-1 h-fit-content"
                 >
                   <div class="row position-relative justify-content-between">
                     <div class="col-7"></div>
@@ -67,7 +67,7 @@
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                       <div
                         data-intro="See how you are working towards your daily study goals."
-                        class="jochi-sub-components-light-bg h-100"
+                        class="bg-white border rounded-8 h-100"
                       >
                         <div
                           class="study-status-card d-flex flex-row flex-lg-column justify-content-center align-items-center h-100"
@@ -121,13 +121,13 @@
                               <div class="row">
                                 <div class="col-3 py-0">
                                   <div
-                                    class="jochi-sub-components-light-bg fa-card-date d-flex flex-column align-items-center justify-content-center w-100 p-3"
+                                    class="bg-white border rounded-8 fa-card-date d-flex flex-column align-items-center justify-content-center w-100 p-3"
                                   >
-                                    <p class="color-primary text-12 mb-1">
+                                    <p class="color-primary-dark text-12 mb-1">
                                       {{ list.date_day }}
                                     </p>
                                     <p
-                                      class="color-primary font-regular text-30 mb-0"
+                                      class="color-primary-dark font-regular text-30 mb-0"
                                     >
                                       {{ list.date_number }}
                                     </p>
@@ -154,7 +154,7 @@
                                         {{ list.new_title }}
                                       </p>
                                       <div
-                                        class="w-fit-content text-12 px-3 py-1 bg-theme rounded-pill color-white"
+                                        class="w-fit-content text-12 px-3 py-1 bg-primary rounded-pill color-white"
                                       >
                                         {{ list.start_time }}
                                       </div>
@@ -183,7 +183,7 @@
             </div>
             <div class="col-xl-4 mt-3 mt-xl-0 h-md-100">
               <div
-                class="jochi-sub-components-light-bg h-100 d-flex flex-column overflow-hidden"
+                class="bg-white border rounded-8 h-100 d-flex flex-column overflow-hidden"
               >
                 <div class="calendar-dashboard px-4 pt-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
@@ -202,7 +202,7 @@
                       <div
                         v-for="item in assignmentList"
                         :key="item.id"
-                        class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                        class="bg-white border rounded-8 p-4 pr-1 pb-1 mb-3"
                       >
                         <p
                           class="mb-2 word-break text-16 font-semi-bold color-dark"
@@ -216,7 +216,7 @@
                       </div>
                       <div
                         v-if="!assignmentList || assignmentList.length <= 0"
-                        class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                        class="bg-white border rounded-8 p-4 pr-1 pb-1 mb-3"
                       >
                         <p
                           class="mb-2 word-break text-16 font-semi-bold color-dark"
@@ -247,7 +247,7 @@
                     <div
                       v-for="item in assignmentList"
                       :key="item.id"
-                      class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                      class="bg-white border rounded-8 p-4 pr-1 pb-1 mb-3"
                     >
                       <p
                         class="mb-2 word-break text-16 font-semi-bold color-dark"
@@ -262,7 +262,7 @@
                   </div>
                   <div
                     v-if="!assignmentList || assignmentList.length <= 0"
-                    class="jochi-sub-components-light-bg p-4 pr-1 pb-1 mb-3"
+                    class="bg-white border rounded-8 p-4 pr-1 pb-1 mb-3"
                   >
                     <p
                       class="mb-2 word-break text-16 font-semi-bold color-dark"
@@ -294,11 +294,11 @@
           <div class="modal-content px-4">
             <div class="modal-header pb-0">
               <h2
-                class="modal-title color-primary font-semi-bold mb-0"
+                class="modal-title color-primary-dark font-semi-bold mb-0"
                 id="meetingDetailModalLongTitle"
               >
                 <span>{{ meetingDetail.type }}</span> Meeting with
-                <h5 class="color-primary font-semi-bold mb-0">
+                <h5 class="color-primary-dark font-semi-bold mb-0">
                   <span>{{ meetingDetail.new_title }}</span>
                 </h5>
               </h2>
@@ -307,10 +307,10 @@
               <h3 class="color-black font-semi-bold">
                 {{ meetingDetail.dateFormat }}
               </h3>
-              <h4 class="color-primary font-regular mb-2">
+              <h4 class="color-primary-dark font-regular mb-2">
                 {{ meetingDetail.start_time }}
               </h4>
-              <h4 class="color-primary font-regular mb-2"></h4>
+              <h4 class="color-primary-dark font-regular mb-2"></h4>
               <form action="">
                 <table class="w-100 table-modal custom-row-table">
                   <tr>
@@ -389,7 +389,7 @@
         >
           <div class="modal-content px-4 py-4">
             <div class="modal-body">
-              <h3 class="modal-title color-primary font-bold">
+              <h3 class="modal-title color-primary-dark font-bold">
                 Update Phone Number
               </h3>
               Update your phone number to receive SMS notification on your
@@ -520,7 +520,7 @@ export default {
           hideText: true,
         },
         progress: {
-          color: "#ff6d6d",
+          color: "#5534A5",
           backgroundColor: "#000000",
           inverted: false,
         },
@@ -1033,7 +1033,7 @@ export default {
 .dashboard-text-content {
   font-size: 24px;
   font-weight: 700;
-  color: #ff6d6d;
+  
   line-height: 30px;
   font-style: italic;
 }
@@ -1049,7 +1049,7 @@ export default {
 }
 .study-status-studied {
   font-weight: 600;
-  color: #ff6d6d;
+  
 }
 @media (min-width: 991.98px) {
   .h-lg-100 {

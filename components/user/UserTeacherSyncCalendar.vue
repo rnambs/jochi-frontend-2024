@@ -3,11 +3,11 @@
     <!-- teacher syncCalendar Page -->
 
     <section id="study-detail" class="">
-      <div class="study-section jochi-sub-components-light-bg
+      <div class="study-section bg-white border rounded-8
       custom-margin-for-main-section custom-full-height
       d-flex
       flex-column">
-          <h2 class="color-primary font-semi-bold px-4 pb-2 pt-4">Sync Calendar</h2>
+          <h2 class="color-primary-dark font-semi-bold px-4 pb-2 pt-4">Sync Calendar</h2>
           <div class="px-4 pb-2 mb-2 pt-4 custom-overflow h-100">
             <div class="card card-primary rounded-22 p-4 h-100">
               <div class="row">

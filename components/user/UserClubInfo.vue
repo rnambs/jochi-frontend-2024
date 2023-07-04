@@ -9,7 +9,7 @@
     <div class="main-section">
       <!-- tab for club info -->
       <div
-        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
 
@@ -54,7 +54,7 @@
         <div class="position-relative">
           <div
             v-bind:class="{
-              'dropdown-club jochi-components-light-bg': true,
+              'dropdown-club bg-white border rounded-10': true,
               'dropdown-club--visible': dropdownVisible,
             }"
           >
@@ -118,7 +118,7 @@
               class="inner-club club-info d-flex flex-column justify-content-top container-fluid pr-3 py-0 pl-0"
             >
               <div class="my-2 px-2">
-                <h3 class="color-primary font-semi-bold mb-1">Club Details</h3>
+                <h3 class="color-primary-dark font-semi-bold mb-1">Club Details</h3>
               </div>
               <div class="inner-info">
                 <div
@@ -381,7 +381,7 @@
                                       ? tagColorMap[value.name]
                                       : red,
                                   }"
-                                  class="px-4 py-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 bg-theme align-items-center"
+                                  class="px-4 py-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 bg-primary align-items-center"
                                   >{{ value.name }}
                                   <span
                                     class="input-icon color-white btn p-0"
@@ -454,7 +454,7 @@
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Home Page</span
                   >
                 </nuxt-link>
@@ -471,7 +471,7 @@
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Files & Slides</span
                   >
                 </nuxt-link>
@@ -487,10 +487,10 @@
                       : 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100'
                   "
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Next Meeting</span
                   >
-                  <span class="text-16 color-primary font-regular">{{
+                  <span class="text-16 color-primary-dark font-regular">{{
                     clubMoreDetails.announcement
                   }}</span>
                 </div>
@@ -515,7 +515,7 @@
         <div class="modal-content">
           <div class="modal-body no-overflow px-4 pt-4">
             <h3
-              class="modal-title color-primary font-semi-bold"
+              class="modal-title color-primary-dark font-semi-bold"
               id="nextMeetingModalLongTitle"
             >
               Configure Meeting Days
@@ -748,7 +748,7 @@
         <div class="modal-content">
           <div class="modal-body no-overflow px-4 pt-4">
             <h3
-              class="modal-title color-primary font-semi-bold"
+              class="modal-title color-primary-dark font-semi-bold"
               id="addLeaderModalLongTitle"
             >
               Add Leaders
@@ -801,7 +801,7 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header px-4">
-            <h3 class="modal-title color-primary" id="addBannerModalLongTitle">
+            <h3 class="modal-title color-primary-dark" id="addBannerModalLongTitle">
               Add Banner
             </h3>
           </div>
@@ -809,7 +809,7 @@
             <div class="d-flex flex-column overflow-hidden h-100">
               <div
                 size="120"
-                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-sm mb-3"
+                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary mb-3"
               >
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"

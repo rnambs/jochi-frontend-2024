@@ -21,7 +21,7 @@
     <div class="main-section">
       <!-- tab for club files -->
       <div
-        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club files -->
         <!-- Club files -->
@@ -63,7 +63,7 @@
         <div class="position-relative">
           <div
             v-bind:class="{
-              'dropdown-club jochi-components-light-bg': true,
+              'dropdown-club bg-white border rounded-10': true,
               'dropdown-club--visible': dropdownVisible,
             }"
           >
@@ -131,7 +131,7 @@
                   class="inner-club club-files container-fluid p-3 d-flex flex-column"
                 >
                   <div class="info-head container-fluid mb-2">
-                    <h3 class="color-primary font-semi-bold mb-1">
+                    <h3 class="color-primary-dark font-semi-bold mb-1">
                       {{ headingName }}
                     </h3>
                   </div>
@@ -263,7 +263,7 @@
                                 class="d-flex flex-column w-50 align-items-end"
                               >
                                 <span
-                                  class="close d-flex align-items-center justify-content-center rounded-circle bg-white color-primary mb-1 font-regular position-absolute z-index-9 mr-2 mt-2"
+                                  class="close d-flex align-items-center justify-content-center rounded-circle bg-white color-primary-dark mb-1 font-regular position-absolute z-index-9 mr-2 mt-2"
                                   @click="spanClose()"
                                   >&times;</span
                                 >
@@ -458,7 +458,7 @@
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Home Page</span
                   >
                 </nuxt-link>
@@ -475,7 +475,7 @@
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Club Details</span
                   >
                 </nuxt-link>
@@ -491,10 +491,10 @@
                       : 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100'
                   "
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Next Meeting</span
                   >
-                  <span class="text-16 color-primary font-regular">{{
+                  <span class="text-16 color-primary-dark font-regular">{{
                     clubMoreDetails.announcement
                   }}</span>
                 </div>
@@ -517,7 +517,7 @@
         <div class="modal-content">
           <div class="modal-body no-overflow px-4 pt-4">
             <h3
-              class="modal-title color-primary font-semi-bold"
+              class="modal-title color-primary-dark font-semi-bold"
               id="nextMeetingModalLongTitle"
             >
               Configure Meeting Days
@@ -608,7 +608,7 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header px-4">
-            <h3 class="modal-title color-primary" id="addBannerModalLongTitle">
+            <h3 class="modal-title color-primary-dark" id="addBannerModalLongTitle">
               Add Banner
             </h3>
           </div>
@@ -616,7 +616,7 @@
             <div class="d-flex flex-column overflow-hidden h-100">
               <div
                 size="120"
-                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-sm mb-3"
+                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary mb-3"
               >
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"

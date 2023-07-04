@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <div class="bg-light">
+        <div class="bg-primary-light">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item active">
               <a
@@ -128,7 +128,7 @@
               <!-- table -->
               <div class="bg-white mt-2 p-1 rounded">
                 <table class="user-table table">
-                  <tr class="text-secondary bg-light">
+                  <tr class="text-secondary bg-primary-light">
                     <th>Name</th>
                     <th>Email Id</th>
                     <th>Status</th>
@@ -219,7 +219,7 @@
                 >
                   <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content delete-modal h-auto">
-                      <div class="modal-header bg-light text-dark">
+                      <div class="modal-header bg-primary-light text-dark">
                         <h5 class="modal-title" id="mediumModalLabel">
                           Delete
                         </h5>
@@ -301,7 +301,7 @@
               <!-- table -->
               <div class="bg-white mt-2 p-1 rounded">
                 <table class="user-table table">
-                  <tr class="text-secondary bg-light">
+                  <tr class="text-secondary bg-primary-light">
                     <th>Name</th>
                     <th>Email Id</th>
                     <th>Role</th>
@@ -394,7 +394,7 @@
                 >
                   <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content h-auto">
-                      <div class="modal-header bg-light text-dark">
+                      <div class="modal-header bg-primary-light text-dark">
                         <h5 class="modal-title" id="mediumModalLabel">
                           Delete
                         </h5>

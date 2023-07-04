@@ -2,13 +2,13 @@
   <div class="main-section">
     <!-- Study Page -->
     <div
-      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex"
+      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex"
     >
       <div class="study-section d-flex flex-column">
         <div
           class="d-flex align-items-center justify-content-between mb-1 px-2"
         >
-          <h2 class="color-primary font-semi-bold mb-0">Study Analytics</h2>
+          <h2 class="color-primary-dark font-semi-bold mb-0">Study Analytics</h2>
           <div
             data-intro="Here you can set a daily study goal for yourself. How many hours/minutes do you want to allocate on working every day?"
             @click="openModal"

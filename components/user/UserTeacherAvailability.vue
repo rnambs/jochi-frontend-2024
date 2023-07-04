@@ -10,23 +10,23 @@
     <div class="main-section">
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
-        <div class="teacher-section jochi-components-light-bg
+        <div class="teacher-section bg-white border rounded-10
         custom-margin-for-main-section custom-full-height
         d-flex
         flex-column">
-          <h2 class="color-primary font-semi-bold m-0 p-4">Custom Avaliability</h2>
+          <h2 class="color-primary-dark font-semi-bold m-0 p-4">Custom Avaliability</h2>
           <div class="inner-teacher container-fluid p-4 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow">
             <div class="row h-100">
               <div class="col-md-7 text-light custom-teacher-container d-flex flex-column ">
-                <div class="time-slot calendar-sm container card card-primary-sm rounded-22 p-3 pt-4 mb-4">
+                <div class="time-slot calendar-sm container card card-primary rounded-22 p-3 pt-4 mb-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-                <div class="time-slot-week container card card-primary-sm rounded-22 p-3 pt-4">
+                <div class="time-slot-week container card card-primary rounded-22 p-3 pt-4">
                   <FullCalendar :options="calendar" />
                 </div>
               </div>
               <div class="col-md-5 custom-teacher-container d-flex flex-column h-100">
-                <div class="time-slot container card card-primary-sm rounded-22 p-4 flex-fill h-40">
+                <div class="time-slot container card card-primary rounded-22 p-4 flex-fill h-40">
                   <p class="time-head pb-1">
                     <span class="color-dark text-16 font-semi-bold">{{ date_string }}</span>
                     <span class="color-secondary text-14 font-normal"><i>30 Minute Slot</i></span>

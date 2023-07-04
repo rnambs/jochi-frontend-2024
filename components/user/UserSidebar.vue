@@ -7,7 +7,7 @@
       <!-- <h5 class="mr-3 mb-0 mt-0 text-light">{{ firstName }}</h5> -->
       <!-- Student Sidebar -->
       <div
-        class="sidebar-section col-sm-4 col-md-5 col-lg-6 d-flex justify-content-between jochi-components-light-bg p-3 p-lg-4 position-fixed flex-column"
+        class="sidebar-section col-sm-4 col-md-5 col-lg-6 d-flex justify-content-between bg-white border rounded-10 p-3 p-lg-4 position-fixed flex-column"
         id="clickableId"
       >
         <div class="d-flex flex-column h-40 flex-fill">
@@ -71,7 +71,7 @@
                     <div
                       class="d-flex justify-content-between align-items-center px-3 my-2"
                     >
-                      <h5 class="color-primary font-semi-bold mb-0">
+                      <h5 class="color-primary-dark font-semi-bold mb-0">
                         Notifications
                       </h5>
                       <button
@@ -84,7 +84,7 @@
                     <div class="notification-text px-3 py-1 hidden-scroll">
                       <!-- :class="
                           data.isViewed
-                            ? 'unread d-flex flex-column p-3 card card-primary-sm bg-white rounded-22 my-3 cursor-pointer'
+                            ? 'unread d-flex flex-column p-3 card card-primary bg-white rounded-22 my-3 cursor-pointer'
                             : 'read d-flex flex-column p-3 card card-void rounded-22 my-3 cursor-pointer'
                         " -->
                       <div
@@ -142,7 +142,7 @@
                 class="d-flex flex-column flex-lg-row align-items-center justify-cotent-center"
               >
                 <h4
-                  class="color-primary mb-0 font-semi-bold text-18 text-center text-lg-left word-break"
+                  class="color-primary-dark mb-0 font-semi-bold text-18 text-center text-lg-left word-break"
                 >
                   {{ firstName }}
                 </h4>

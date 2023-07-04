@@ -10,13 +10,13 @@
     <div class="main-section">
       <!-- tab section for View all meeting -->
       <div
-        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid">
             <h2
               data-intro="View all of your meetings. Here you can accept or reject requests or edit upcoming meetings."
-              class="color-primary font-semi-bold"
+              class="color-primary-dark font-semi-bold"
             >
               My Meetings
             </h2>
@@ -101,7 +101,7 @@
                     <p class="color-secondary text-center mb-1">
                       {{ list["dateFormat"] }}
                     </p>
-                    <p class="color-primary text-center mb-1">
+                    <p class="color-primary-dark text-center mb-1">
                       {{ list["from"] }}
                       {{ list["end"] ? "to " + list["end"] : "" }}
 
@@ -263,7 +263,7 @@
                                 class="p-3"
                                 :class="
                                   Schedule.slot_id == selectedSlot
-                                    ? 'card card-primary-sm border-theme'
+                                    ? 'card card-primary border-theme'
                                     : 'card card-white'
                                 "
                               >

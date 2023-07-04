@@ -2,7 +2,7 @@
   <div>
     <div
       id="pageLoader"
-      class="bg-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
+      class="bg-primary-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
       style="z-index: 9"
       v-if="!isHidden"
     >
@@ -19,7 +19,7 @@
       <section id="teacher-detail" class="">
         <div class="teacher-section">
           <div
-            class="inner-teacher jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+            class="inner-teacher bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
           >
             <div
               class="d-flex justify-content-between align-items-start pt-4 px-4"
@@ -28,7 +28,7 @@
                 <h5 class="mb-1 color-dark font-semi-bold">
                   Hello {{ firstName }}
                 </h5>
-                <h2 class="color-primary font-semi-bold">Have a great day</h2>
+                <h2 class="color-primary-dark font-semi-bold">Have a great day</h2>
               </div>
               <div class="d-flex align-items-center">
                 <!-- <div class="btn color-dark font-semi-bold mr-3">FAQs</div> -->
@@ -57,7 +57,7 @@
                   class="col-md-6 container custom-teacher-container d-flex flex-column h-100"
                 >
                   <div
-                    class="time-slot container p-4 card card-primary-sm rounded-22 h-100"
+                    class="time-slot container p-4 card card-primary rounded-22 h-100"
                   >
                     <h4 class="color-dark mb-4 px-2 font-semi-bold">
                       Meetings for {{ showDate }}
@@ -108,10 +108,10 @@
                 >
                   <!-- TABLE  -->
                   <div
-                    class="teacher-row container mb-4 card card-primary-sm rounded-22 p-0 h-40 flex-fill"
+                    class="teacher-row container mb-4 card card-primary rounded-22 p-0 h-40 flex-fill"
                   >
                     <div class="appointment-req d-flex flex-column h-100 p-2">
-                      <h6 class="text-center color-primary pt-3 mb-0">
+                      <h6 class="text-center color-primary-dark pt-3 mb-0">
                         Meeting Requests
                       </h6>
                       <div
@@ -215,7 +215,7 @@
                   </div>
                   <!-- END TABLE  -->
                   <div
-                    class="inner-custom-teacher dashboard-cal calendar-sm container p-3 pt-4 card card-primary-sm rounded-22"
+                    class="inner-custom-teacher dashboard-cal calendar-sm container p-3 pt-4 card card-primary rounded-22"
                   >
                     <FullCalendar :options="calendarOptions" />
                   </div>
@@ -265,7 +265,7 @@
                   meetingDetail.default_slots.start_time &&
                   meetingDetail.default_slots.end_time
                 "
-                class="mb-1 font-semi-bold text-18 color-primary"
+                class="mb-1 font-semi-bold text-18 color-primary-dark"
               >
                 {{ meetingDetail.default_slots.start_time }} -
                 {{ meetingDetail.default_slots.end_time }}

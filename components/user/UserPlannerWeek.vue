@@ -14,7 +14,7 @@
         >
           <div class="row">
             <div class="col-12 position-realtive h-100 d-flex flex-column">
-              <div class="jochi-components-light-bg position-relative h-100">
+              <div class="bg-white border rounded-10 position-relative h-100">
                 <div class="planner-week p-4 pt-5 px-3 px-sm-5">
                   <div class="color-ref">
                     <ul class="d-flex align-itmes-center">
@@ -58,7 +58,7 @@
                 >
                   <div class="position-realtive h-100">
                     <div
-                      class="jochi-components-light-bg py-4 h-100 d-flex flex-column position-relative bg-light"
+                      class="bg-white border rounded-10 py-4 h-100 d-flex flex-column position-relative bg-primary-light"
                     >
                       <lottie
                         v-if="playCelebration"
@@ -70,7 +70,7 @@
                         class="row d-flex justify-content-between align-items-center px-5 pb-2"
                       >
                         <div class="col-md-4">
-                          <h2 class="color-primary font-semi-bold mb-0">
+                          <h2 class="color-primary-dark font-semi-bold mb-0">
                             Pending
                           </h2>
                         </div>
@@ -123,7 +123,7 @@
                                 <div class="h-100">
                                   <div
                                     @click="onCardClick(item)"
-                                    class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
+                                    class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
                                   >
                                     <div class="d-flex flex-column">
                                       <div
@@ -350,7 +350,7 @@
                           >
                             <div
                               v-if="item.shared_users_id != user_id"
-                              class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center"
+                              class="position-absolute multiple-select-checkbox bg-white border rounded-10 d-flex align-items-center justify-content-center"
                             >
                               <div class="squaredThree">
                                 <input
@@ -366,7 +366,7 @@
                               <div class="h-100">
                                 <div
                                   @click="onCardClick(item)"
-                                  class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
+                                  class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
                                 >
                                   <div class="d-flex flex-column">
                                     <div
@@ -595,7 +595,7 @@
                         <div
                           class="drop color-secondary text-16 h-100 d-flex flex-column"
                         >
-                          <h2 class="color-primary font-semi-bold px-5">
+                          <h2 class="color-primary-dark font-semi-bold px-5">
                             Completed This Week
                           </h2>
                           <p
@@ -625,7 +625,7 @@
                                   class="col-6"
                                 >
                                   <div
-                                    class="jochi-sub-components-light-bg py-4 px-2 completed-assignments text-center h-100"
+                                    class="bg-white border rounded-8 py-4 px-2 completed-assignments text-center h-100"
                                   >
                                     <h4
                                       class="mb-0 blue word-break text-capitalize"
@@ -663,7 +663,7 @@
                           class="drop color-secondary text-16 h-100 d-flex flex-column"
                           @drop="handleDrop"
                         >
-                          <h2 class="color-primary font-semi-bold px-5">
+                          <h2 class="color-primary-dark font-semi-bold px-5">
                             Completed This Week
                           </h2>
                           <p class="mb-0 px-5 color-secondary font-regular">
@@ -681,12 +681,12 @@
                               >
                                 <div
                                   @click="confirmUndo(item.id)"
-                                  class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
+                                  class="position-absolute multiple-select-checkbox bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
                                 >
                                   <i class="fas fa-undo"></i>
                                 </div>
                                 <div
-                                  class="jochi-sub-components-light-bg py-4 px-2 completed-assignments text-center h-100 bg-redShade"
+                                  class="bg-white border rounded-8 py-4 px-2 completed-assignments text-center h-100 bg-redShade"
                                 >
                                   <h4
                                     class="mb-0 blue word-break text-truncate text-capitalize"
@@ -757,7 +757,7 @@
                           <div
                             class="d-flex flex-column flex-md-row justify-content-between mb-2 border-bottom"
                           >
-                            <h3 class="color-primary font-semi-bold">
+                            <h3 class="color-primary-dark font-semi-bold">
                               {{ isAddAssignment ? "Add" : "Edit" }} Assignment
                             </h3>
                             <p class="mb-0 cursor-pointer d-none d-xl-block">
@@ -1112,7 +1112,7 @@
                                             subTask.task_status != 'Completed'
                                           "
                                           @click="deleteSubTask(subTask)"
-                                          class="color-primary fa-icon show-hover d-none btn p-0"
+                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                           ><i class="fas fa-trash-alt"></i
                                         ></span>
                                       </div>
@@ -1208,7 +1208,7 @@
                                       "
                                     >
                                       <span
-                                        class="color-primary fa-icon show-hover d-none btn p-0 ml-05"
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0 ml-05"
                                         ><i class="fas fa-trash-alt ml-3"></i
                                       ></span>
                                     </button>
@@ -1305,7 +1305,7 @@
                                         </p>
                                       </div>
                                       <span
-                                        class="color-primary fa-icon show-hover d-none btn p-0"
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                         @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
@@ -1329,7 +1329,7 @@
                                         </p>
                                       </div>
                                       <span
-                                        class="color-primary fa-icon show-hover d-none btn p-0"
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                         @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
@@ -1526,7 +1526,7 @@
                                             subTask.task_status != 'Completed'
                                           "
                                           @click="deleteSubTask(subTask)"
-                                          class="color-primary fa-icon show-hover d-none btn p-0"
+                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                           ><i class="fas fa-trash-alt"></i
                                         ></span>
                                       </div>
@@ -1699,7 +1699,7 @@
                                         </p>
                                       </div>
                                       <span
-                                        class="color-primary fa-icon show-hover d-none btn p-0"
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                         @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
@@ -1723,7 +1723,7 @@
                                         </p>
                                       </div>
                                       <span
-                                        class="color-primary fa-icon show-hover d-none btn p-0"
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                         @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
@@ -1875,7 +1875,7 @@
         <div class="modal-content">
           <div class="modal-body px-4">
             <h3
-              class="modal-title color-primary font-bold mt-3"
+              class="modal-title color-primary-dark font-bold mt-3"
               id="completeConfirmModalLongTitle"
             >
               Complete Sub-Task Confirmation
@@ -1921,7 +1921,7 @@
         <div class="modal-content">
           <div class="modal-body px-4">
             <h3
-              class="modal-title color-primary font-bold mt-3"
+              class="modal-title color-primary-dark font-bold mt-3"
               id="undoSubTaskConfirmModalLongTitle"
             >
               Undo Sub-Task Completion Confirmation

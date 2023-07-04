@@ -8,7 +8,7 @@
     />
     <div class="main-section">
       <div
-        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid">
@@ -16,7 +16,7 @@
               <div class="d-flex flex-column">
                 <h2
                   data-intro="View all the community service, sports teams, and clubs available at your school. To learn more about different activities, click learn more."
-                  class="color-primary font-semi-bold mb-1"
+                  class="color-primary-dark font-semi-bold mb-1"
                 >
                   Club Catalog
                 </h2>
@@ -116,7 +116,7 @@
                         class="mb-2"
                       >
                         <span
-                          class="to-do-li color-white text-14 rounded-6 px-4 py-1 m-1 min-w-100 d-flex justify-content-center bg-theme"
+                          class="to-do-li color-white text-14 rounded-6 px-4 py-1 m-1 min-w-100 d-flex justify-content-center bg-primary"
                           :style="{
                             'background-color': tagColorMap[todos]
                               ? tagColorMap[todos]

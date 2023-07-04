@@ -3,11 +3,11 @@
     <!-- profile Page -->
     <section id="study-detail" class="">
       <div
-        class="study-section jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="study-section bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <div class="inner-study p-4 d-flex flex-column flex-fill h-100">
           <div class="d-flex justify-content-between align-items-center">
-            <h2 class="color-primary font-bold">Profile</h2>
+            <h2 class="color-primary-dark font-bold">Profile</h2>
             <div
               v-if="user_type == 2 && isSchoolAdmin != '1'"
               class="d-flex justify-content-between align-items-center"
@@ -134,7 +134,7 @@
                                   class="pic-edit w-100 d-flex flex-row-reverse position-absolute"
                                 >
                                   <i
-                                    class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-theme text-white"
+                                    class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-primary text-white"
                                   >
                                     <!-- accept=".png,.jpeg,.jpg,.doc,.docx,.pdf" -->
                                     <input
@@ -158,7 +158,7 @@
                                   class="pic-edit w-100 d-flex flex-row-reverse position-absolute"
                                 >
                                   <i
-                                    class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-theme text-white"
+                                    class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-primary text-white"
                                   >
                                     <input
                                       id="actual-btn"
@@ -229,7 +229,7 @@
                               @click="enableEdit = true"
                             >
                               <span class="mr-1"
-                                ><i class="fas fa-pencil color-primary"></i
+                                ><i class="fas fa-pencil color-primary-dark"></i
                               ></span>
                               <span>Edit</span>
                             </button>
@@ -243,13 +243,13 @@
                               "
                             >
                               <span class="mr-1"
-                                ><i class="fas fa-times color-primary"></i
+                                ><i class="fas fa-times color-primary-dark"></i
                               ></span>
                               <span>Cancel</span>
                             </button>
                             <button v-if="enableEdit" @click="phoneUpdate()">
                               <span class="mr-1"
-                                ><i class="fas fa-save color-primary"></i
+                                ><i class="fas fa-save color-primary-dark"></i
                               ></span>
                               <span>Update</span>
                             </button>
@@ -299,7 +299,7 @@
                                       type="checkbox"
                                       id="smsNotify"
                                       name="smsNotify"
-                                      class="custom-control-input color-primary"
+                                      class="custom-control-input color-primary-dark"
                                       v-model="smsNotify"
                                     />
                                     <label
@@ -316,7 +316,7 @@
                                       type="checkbox"
                                       id="meetingNotify"
                                       name="meetingNotify"
-                                      class="custom-control-input color-primary"
+                                      class="custom-control-input color-primary-dark"
                                       v-model="meetingNotify"
                                     />
                                     <label
@@ -334,7 +334,7 @@
                                       type="checkbox"
                                       id="clubNotify"
                                       name="clubNotify"
-                                      class="custom-control-input color-primary"
+                                      class="custom-control-input color-primary-dark"
                                       v-model="clubNotify"
                                     />
                                     <label
@@ -351,7 +351,7 @@
                                       type="checkbox"
                                       id="assignmentNotify"
                                       name="assignmentNotify"
-                                      class="custom-control-input color-primary"
+                                      class="custom-control-input color-primary-dark"
                                       v-model="assignmentNotify"
                                     />
                                     <label
@@ -368,7 +368,7 @@
                                       type="checkbox"
                                       id="sessionNotify"
                                       name="sessionNotify"
-                                      class="custom-control-input color-primary"
+                                      class="custom-control-input color-primary-dark"
                                       v-model="sessionNotify"
                                     />
                                     <label
@@ -395,7 +395,7 @@
                     >
                       <div
                         data-intro="Find your advisor details."
-                        class="jochi-components-light-bg p-4 h-100"
+                        class="bg-white border rounded-10 p-4 h-100"
                       >
                         <div class="">
                           <div v-if="user_type == '3'" class="col-md-12">

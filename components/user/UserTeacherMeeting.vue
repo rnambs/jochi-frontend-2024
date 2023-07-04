@@ -10,13 +10,13 @@
     <div class="main-section">
       <!-- tab section for teacher meeting -->
       <div
-        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive"
+        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid w-100">
             <h2
               data-intro="How to book a meeting with your teachers/peers in just 3 clicks."
-              class="color-primary font-semi-bold"
+              class="color-primary-dark font-semi-bold"
             >
               Schedule A Meeting!
             </h2>
@@ -109,7 +109,7 @@
                   <div class="custom-switch pb-1">
                     <input
                       type="checkbox"
-                      class="custom-control-input color-primary"
+                      class="custom-control-input color-primary-dark"
                       id="custom-Switches"
                       v-model="week"
                       @change="UpdateTimeSchedule()"
@@ -124,7 +124,7 @@
                   <div class="custom-switch">
                     <input
                       type="checkbox"
-                      class="custom-control-input color-primary"
+                      class="custom-control-input color-primary-dark"
                       id="customSwitches"
                       v-model="availability"
                       @change="UpdateTimeSchedule()"
@@ -165,7 +165,7 @@
                       alt=""
                     />
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="color-primary font-medium">Step 1</h6>
+                      <h6 class="color-primary-dark font-medium">Step 1</h6>
                       <p class="color-secondary text-12">
                         Search & Select Meeting Participants
                       </p>
@@ -180,7 +180,7 @@
                       alt=""
                     />
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="color-primary font-medium">Step 2</h6>
+                      <h6 class="color-primary-dark font-medium">Step 2</h6>
                       <p class="color-secondary text-12">
                         Choose Your Date Range
                       </p>
@@ -195,7 +195,7 @@
                       alt=""
                     />
                     <div class="d-flex flex-column justify-content-center">
-                      <h6 class="color-primary font-medium">Step 3</h6>
+                      <h6 class="color-primary-dark font-medium">Step 3</h6>
                       <p class="color-secondary text-12">
                         Confirm Meeting Details
                       </p>
@@ -227,7 +227,7 @@
                         {{ Schedule["dateFormat"] }}
                       </h6>
                       <p
-                        class="time color-primary font-normal text-14 mb-1 text-center"
+                        class="time color-primary-dark font-normal text-14 mb-1 text-center"
                       >
                         {{ Schedule["from"] }}
                         {{ Schedule["end"] ? "to " + Schedule["end"] : "" }}
@@ -265,7 +265,7 @@
                   <div class="modal-body mt-4">
                     <form action="">
                       <h1
-                        class="modal-title color-primary font-semi-bold mb-0"
+                        class="modal-title color-primary-dark font-semi-bold mb-0"
                         id="exampleModalLongTitle"
                       >
                         Meeting with
@@ -277,7 +277,7 @@
                           }}
                         </span>
                         <span v-if="selectedStudents.length > 0">
-                          <h4 class="color-primary font-semi-bold">
+                          <h4 class="color-primary-dark font-semi-bold">
                             <span
                               v-for="(student, index) in selectedStudents"
                               :key="index"
@@ -292,7 +292,7 @@
                       <h3 class="color-black font-semi-bold">
                         {{ popupValue[0] }}
                       </h3>
-                      <h4 class="color-primary font-regular mb-2">
+                      <h4 class="color-primary-dark font-regular mb-2">
                         {{ popupFrom[0] }}
                         {{ popupEnd[0] ? "to " + popupEnd[0] : "" }}
                       </h4>
