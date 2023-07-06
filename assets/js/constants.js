@@ -4,8 +4,8 @@ export const defaultImage = 'https://jochi-live.s3.amazonaws.com/profilePic/defa
 // export const defaultImage = '~/assets/images/avatar/man_green.svg';
 
 
-// export const BASE_URL = 'https://api.jochi.live/';
-export const BASE_URL = 'https://api.jochi.devateam.com/';
+export const BASE_URL = 'https://api.jochi.live/';
+// export const BASE_URL = 'https://api.jochi.devateam.com/';
 // export const BASE_URL = 'http://localhost:3000/';
 
 // export const REDIRECT_LOGIN_URL = 'https://www.jochi.live/redirect-login';

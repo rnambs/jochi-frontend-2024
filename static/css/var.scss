@@ -1,4 +1,7 @@
+// Primary font family
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+// Secondary font family
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 // Colors
 $theme-color       : #5534A5;
@@ -37,15 +40,6 @@ $confirm-green     : #86FD97;
 
 $font-secondary-dark         : #431F1C;
 // $font-gray01    : #C5C0BD;
-// element color
-@mixin jochi-components-bg {
-    box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
-    border: 1px solid $white;
-}
-@mixin jochi-sub-components-bg{
-    background-color: rgba($color: $white, $alpha: 0.45);
-    box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
-}
 
 
 $global-background-color : rgba($color: $white, $alpha: 0.45);
@@ -74,9 +68,7 @@ $label-green: #159E00;
 .bg-gray-light{background-color: $bg-gray-light !important;}
 .bg-primary-light{background-color: $bg-primary-light !important;}
 .bg-secondary-light{background-color: $bg-secondary-light !important;}
-.component-bg{
-    @include jochi-components-bg();
-}
+.bg-primary-dark{background-color: $font-primary-dark !important;}
 
 // BOrders
 .border{
@@ -90,7 +82,11 @@ $label-green: #159E00;
 }
 
 // font
-$text-style: 'Syne', sans-serif !important;
+$text-primary-style : 'Syne', sans-serif !important;
+$text-secondary-style : 'Plus Jakarta Sans', sans-serif !important;
+
+.font-primary{font-family: $text-primary-style;}
+.font-secondary{font-family: $text-secondary-style;}
 
 // Responsive Screens
 $hd-screen           : 1700px;
@@ -143,6 +139,9 @@ $sm-screen-h         : 767.98px;
     @else if $br==12 {
         border-radius: 12px;
     }
+    @else if $br==14 {
+        border-radius: 14px;
+    }
     @else if $br==15 {
         border-radius: 15px;
     }
@@ -166,8 +165,13 @@ $sm-screen-h         : 767.98px;
     }
 }
 
-.rounded-8{@include borderRadius(8)}
-.rounded-10{@include borderRadius(10)}
+.rounded-8{@include borderRadius(8);}
+.rounded-10{@include borderRadius(10);}
+.rounded-14{@include borderRadius(14);}
+
+// Image fit
+.object-fit-cover{object-fit: cover;}
+.object-fit-contain{object-fit: contain;}
 
 // element color
 @mixin jochi-components-light-bg{
@@ -938,7 +942,6 @@ $sm-screen-h         : 767.98px;
         }
         tbody{
             tr{
-                @include jochi-components-bg();
                 @include borderRadius(12);
                 td{
                     text-transform: capitalize;

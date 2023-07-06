@@ -12,7 +12,7 @@ body{
     padding: 0;
     // background-color: $global-sidebar-bg !important;
     background-color: $white;
-    font-family: $text-style;
+    font-family: $text-primary-style;
     font-weight: 400;
     font-size: 1rem;
     color: #000000;
@@ -21,41 +21,41 @@ body{
 // responsie small device
 
 
-.small-device{
-    .main-section{
-        &::after{
-            content: 'www.jochi.live';
-            text-align: center;
-            left: 45%;
-            bottom: 40px;
-            position: absolute;
-            color: #b6b6b6;
-            @media (max-width:$md-screen) {
-                left: 44%;
-            }
-            @media (max-width:$sm-screen) {
-                left: 42%;
-            }
-        }
-    }
-    .header-section .sidebar-section{
-        height: calc(100vh - 96px - 24px) !important;
-    }
-    .custom-full-height{
-        height: calc(100vh - 96px - 24px) !important;
-        transition: all 0.3s;
-        &.planner-day-responsive{
-            position: fixed;
-            width: calc(100% - 15.625rem); 
-            @media (max-width:1023.98px) {
-                width: calc(100% - 14.625rem);
-            }
-            @media (max-width:$md-screen) {
-                width: calc(100% - 6.625rem);
-            }
-        }
-    }
-}
+// .small-device{
+//     .main-section{
+//         &::after{
+//             content: 'www.jochi.live';
+//             text-align: center;
+//             left: 45%;
+//             bottom: 40px;
+//             position: absolute;
+//             color: #b6b6b6;
+//             @media (max-width:$md-screen) {
+//                 left: 44%;
+//             }
+//             @media (max-width:$sm-screen) {
+//                 left: 42%;
+//             }
+//         }
+//     }
+//     .header-section .sidebar-section{
+//         height: calc(100vh - 96px - 24px) !important;
+//     }
+//     .custom-full-height{
+//         height: calc(100vh - 96px - 24px) !important;
+//         transition: all 0.3s;
+//         &.planner-day-responsive{
+//             position: fixed;
+//             width: calc(100% - 15.625rem); 
+//             @media (max-width:1023.98px) {
+//                 width: calc(100% - 14.625rem);
+//             }
+//             @media (max-width:$md-screen) {
+//                 width: calc(100% - 6.625rem);
+//             }
+//         }
+//     }
+// }
 @media (max-height:768.98px) and (max-width:$lg-screen) {
     .height-md-unset{
         height: unset !important;
@@ -402,7 +402,6 @@ input[type="radio"]{
     }
     .dropdown-menu{
         background-color: $white;
-        box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
         font-size: 0.9rem;
         padding: inherit;
         list-style-type: none;
@@ -1016,9 +1015,6 @@ input[type="radio"]{
         backdrop-filter: blur(60px);
         // box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
         border: 1px solid $border-color;
-    }
-    &.card-secondary-sm{
-        @include jochi-sub-components-bg();
     }
     &.card-secondary{
         background-color: $Global-background-element;
@@ -1687,7 +1683,9 @@ img.dark-icon{
     // }
 // planner vue
 
-    
+
+
+
 .inner-section{
     position: relative;
     background-color: transparent;
@@ -2230,23 +2228,23 @@ img.dark-icon{
      // quotes
 
     .main-section{
-        padding-left: 15.625rem;
+        padding-left: 6rem;
         background-color: $white;
         // background-color: $global-background-color;
         // background-image: url("./../image/jochi-light-bg.png");
         // background-position:center;
         // background-repeat:no-repeat;
         // background-size:cover;
-        height: 100vh;
+        height: calc(100vh - 56px);
         width: 100vw;
         overflow: hidden;
         overflow-y: auto;
-        @media (max-width: 1023.98px) {
-            padding-left: 14.625rem;
-        }
-        @media (max-width: 991.98px) {
-            padding-left: 6.625rem;
-        }
+        // @media (max-width: 1023.98px) {
+        //     padding-left: 14.625rem;
+        // }
+        // @media (max-width: 991.98px) {
+        //     padding-left: 6.625rem;
+        // }
         // @media (max-width: 510.98px) {
         //     padding-left: 0;
         //     padding-top: 4rem;
@@ -3223,11 +3221,9 @@ img.dark-icon{
                 .inner-tab{
                     text-decoration: none;
                     background-color: rgba($color: $white, $alpha: 0.45);
-                    box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22);
                     min-height: 56px;
                     &:hover, &.nuxt-link-exact-active.nuxt-link-active{
                         background-color: $theme-color;
-                        box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
                         span{
                             
                         color: $white !important;
@@ -5296,7 +5292,6 @@ img.dark-icon{
                                         font-size: .8rem;
                                         font-weight: 450;
                                         color: $font-secondary-dark;
-                                        @include jochi-components-bg();
                                         cursor: pointer;
                                         @media (max-width: 1396.98px) {
                                             font-size: 0.7rem;
@@ -5330,12 +5325,10 @@ img.dark-icon{
                                         }
                                         &.disabled{
                                             background-color: $white;
-                                            @include jochi-components-bg();
                                         }
                                         &.active, &:hover{
                                             color: $white;
                                             background-color: $theme-color;
-                                            @include jochi-components-bg();
                                         }
                                     }
                                 }
@@ -6424,7 +6417,7 @@ switch to violet when it is active*/
     top: 38px;
     right: 0;
     color: $font-gray01;
-    font-family: $text-style;
+    font-family: $text-primary-style;
     font-size: 14px;
     line-height: 1em;
     @include borderRadius(15);
@@ -6994,4 +6987,36 @@ $b-toaster-zindex: 1100 !default;
 
 .bg-redShade {
     background: $bg-primary-light!important;
+}
+
+.navbar{
+    .navbar-brand{
+        width: 96px;
+        height: 56px;
+        .img-logo-v4{
+            width: 22px;
+            min-width: 22px;
+            height: 22px;
+        }
+    }
+    &.navbar-expand-md{
+        min-height: 56px;
+        z-index: 1031;
+        @media (max-width: $sm-screen) {
+            height: unset;
+            min-height: unset;
+        }
+        .vertical-nav {
+            @media (min-width: $sm-screen) {  
+                position: fixed !important;
+                top: 56px;
+                left: 0;
+                width: 96px;
+                height: calc(100% - 56px);
+                background-color: #f8f8f8;
+                overflow-y: auto;
+                padding-top: 30px;
+            }
+        }
+    }
 }
