@@ -1,4 +1,5 @@
 @import 'var.scss';
+@import 'icon.scss';
 :root { 
     font-size: 16px; 
     @media (max-width: 991.98px) {font-size: 14px; }
@@ -7006,16 +7007,68 @@ $b-toaster-zindex: 1100 !default;
             height: unset;
             min-height: unset;
         }
-        .vertical-nav {
-            @media (min-width: $sm-screen) {  
-                position: fixed !important;
-                top: 56px;
-                left: 0;
-                width: 96px;
-                height: calc(100% - 56px);
-                background-color: #f8f8f8;
-                overflow-y: auto;
-                padding-top: 30px;
+        ul{
+            &.vertical-nav {
+                @media (min-width: $sm-screen) {  
+                    position: fixed !important;
+                    top: 56px;
+                    left: 0;
+                    width: 96px;
+                    height: calc(100% - 56px);
+                    background-color: #f8f8f8;
+                    overflow-y: auto;
+                    padding-top: 30px;
+                }
+                li.nav-item{
+                    &.parent-menu{
+                        .nav-link{
+                            position: relative;
+                            &.nuxt-link-active,&.accordion-link:not(.collapsed){
+                                &::after{
+                                    content: '';
+                                    position: absolute;
+                                    width: 0.17581rem;
+                                    height: 1.52719rem;
+                                    background-color: $theme-color;
+                                    @include borderRadius(8);
+                                    right: -4px;
+                                    top: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+                ul{
+                    // Sub menu items
+                    &.sub-menu{
+                        .nav-item{
+                            .nav-link{
+                                font-size: 0.75rem;
+                                line-height: 1rem;
+                                &.nuxt-link-active{
+                                    background: $theme-light-color !important;
+                                    color: $white;
+                                    &::after{
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // Header
+        ul.header{
+            li.nav-item{
+                .nav-link{
+                    .img-profile{
+                        width: 34px;
+                        min-width: 34px;
+                        height: 34px;
+                        object-fit: cover;
+                    }
+                }
             }
         }
     }
