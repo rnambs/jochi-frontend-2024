@@ -16,50 +16,55 @@
           id="accordionExample">
           <!-- Dashboard -->
           <li class="nav-item px-1 parent-menu">
-            <nuxt-link to="/student-dashboard" class="nav-link btn">
-              <i class="mx-auto icon icon--dashboard"></i>
+            <nuxt-link to="/student-dashboard" class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
+              <i class="icon icon--dashboard"></i>
+              <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Dashboard</span>
             </nuxt-link>
           </li>
           <!-- Planner -->
           <li class="nav-item px-1 parent-menu">
-            <a @click="$event.target.classList.toggle('active')" class="nav-link btn accordion-link collapsed" type="button"
-              data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              <i class="mx-auto icon icon--planner"></i>
+            <a @click="$event.target.classList.toggle('active')" class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
+              type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+              aria-controls="collapseOne">
+              <i class="icon icon--planner"></i>
+              <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Planner</span>
             </a>
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-              <ul class="flex-column nav sub-menu">
-                <li class="nav-item px-1">
-                  <nuxt-link to="/planner-day" @click="$event.target.classList.toggle('active')"
-                    class="nav-link btn p-1 text-center">Daily</nuxt-link>
-                </li>
-                <li class="nav-item px-1">
-                  <nuxt-link to="/planner-week" @click="$event.target.classList.toggle('active')"
-                    class="nav-link btn p-1 text-center">Weekly</nuxt-link>
-                </li>
-                <li class="nav-item px-1">
-                  <nuxt-link to="/planner-month" @click="$event.target.classList.toggle('active')"
-                    class="nav-link btn p-1 text-center">Monthly</nuxt-link>
-                </li>
-              </ul>
-            </div>
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <ul class="ml-4 ml-md-0 flex-row flex-md-column nav sub-menu">
+                  <li class="nav-item px-1 w-auto mb-1">
+                    <nuxt-link to="/planner-day" @click="$event.target.classList.toggle('active')"
+                      class="nav-link btn p-1 text-center">Daily</nuxt-link>
+                  </li>
+                  <li class="nav-item px-1 w-auto mb-1">
+                    <nuxt-link to="/planner-week" @click="$event.target.classList.toggle('active')"
+                      class="nav-link btn p-1 text-center">Weekly</nuxt-link>
+                  </li>
+                  <li class="nav-item px-1 w-auto mb-1">
+                    <nuxt-link to="/planner-month" @click="$event.target.classList.toggle('active')"
+                      class="nav-link btn p-1 text-center">Monthly</nuxt-link>
+                  </li>
+                </ul>
+              </div>
           </li>
           <!-- Meeting -->
           <li class="nav-item px-1 parent-menu">
-            <a @click="$event.target.classList.toggle('active')" class="nav-link btn accordion-link collapsed" type="button"
-              data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              <i class="mx-auto icon icon--meeting"></i>
+            <a @click="$event.target.classList.toggle('active')" class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
+              type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+              aria-controls="collapseTwo">
+              <i class="icon icon--meeting"></i>
+              <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Meeting</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-              <ul class="flex-column nav sub-menu">
-                <li class="nav-item px-1">
+              <ul class="ml-4 ml-md-0 flex-row flex-md-column nav sub-menu">
+                <li class="nav-item px-1 w-auto mb-1">
                   <nuxt-link to="/teacher-meeting" @click="$event.target.classList.toggle('active')"
                     class="nav-link btn p-1 text-center text-nowrap">Schedule</nuxt-link>
                 </li>
-                <li class="nav-item px-1">
+                <li class="nav-item px-1 w-auto mb-1">
                   <nuxt-link to="/custom-availability-student" @click="$event.target.classList.toggle('active')"
                     class="nav-link btn p-1 text-center text-nowrap">Availability</nuxt-link>
                 </li>
-                <li class="nav-item px-1">
+                <li class="nav-item px-1 w-auto mb-1">
                   <nuxt-link to="/viewall-meeting" @click="$event.target.classList.toggle('active')"
                     class="nav-link btn p-1 text-center text-nowrap">View All</nuxt-link>
                 </li>
@@ -68,16 +73,18 @@
           </li>
           <!-- Teams & Clubs -->
           <li class="nav-item px-1 parent-menu">
-            <a @click="$event.target.classList.toggle('active')" class="nav-link btn accordion-link collapsed" type="button"
-              data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              <i class="mx-auto icon icon--club"></i>
+            <a @click="$event.target.classList.toggle('active')" class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
+              type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+              aria-controls="collapseThree">
+              <i class="icon icon--club"></i>
+              <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Teams & Clubs</span>
             </a>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-              <ul class="flex-column nav sub-menu">
-                <li class="nav-item px-1">
+              <ul class="ml-4 ml-md-0 flex-row flex-md-column nav sub-menu">
+                <li class="nav-item px-1 w-auto mb-1">
                   <nuxt-link to="/club-detail" class="nav-link btn p-1 text-center">Existing</nuxt-link>
                 </li>
-                <li class="nav-item px-1">
+                <li class="nav-item px-1 w-auto mb-1">
                   <nuxt-link to="/club-catalogue" class="nav-link btn p-1 text-center">Catalog</nuxt-link>
                 </li>
               </ul>
@@ -85,16 +92,18 @@
           </li>
           <!-- Study Room -->
           <li class="nav-item px-1 parent-menu">
-            <a @click="$event.target.classList.toggle('active')" class="nav-link btn accordion-link collapsed" type="button"
-              data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-              <i class="mx-auto icon icon--club"></i>
+            <a @click="$event.target.classList.toggle('active')" class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
+              type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"
+              aria-controls="collapseFour">
+              <i class="icon icon--club"></i>
+              <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Study Room</span>
             </a>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-              <ul class="flex-column nav sub-menu">
-                <li class="nav-item px-1">
+              <ul class="ml-4 ml-md-0 flex-row flex-md-column nav sub-menu">
+                <li class="nav-item px-1 w-auto mb-1">
                   <nuxt-link to="/study-time" class="nav-link btn p-1 text-center">Session</nuxt-link>
                 </li>
-                <li class="nav-item px-1">
+                <li class="nav-item px-1 w-auto mb-1">
                   <nuxt-link to="/study-analytics"
                     class="nav-link btn p-1 text-center text-nowrap">Analytics</nuxt-link>
                 </li>
@@ -104,15 +113,15 @@
           <!-- nav bottom -->
           <!-- settings -->
           <li class="nav-item px-1 mt-auto">
-            <nuxt-link to="/student-dashboard" class="nav-link btn">
-              <i class="mx-auto icon icon--settings"></i>
+            <nuxt-link to="/student-dashboard" class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
+              <i class="icon icon--settings"></i>
+              <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Settings</span>
             </nuxt-link>
           </li>
           <li class="nav-item px-1">
-            <a @click="GetLogout()" href="#" class="nav-link btn">
-              <div class="font-icon d-inline-block">
-                <i class="mx-auto icon icon--logout"></i>
-              </div>
+            <a @click="GetLogout()" href="#" class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
+                <i class="icon icon--logout"></i>
+                <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Logout</span>
             </a>
           </li>
         </ul>
@@ -120,36 +129,28 @@
           <!-- <li class="nav-item">
             <a class="nav-link" href="#">Cloud</a>
           </li> -->
-          <li class="nav-item d-flex justify-content-center p-2">
+          <li class="nav-item d-flex justify-content-start justify-content-md-center p-2">
             <div class="dropdown my-auto">
-              <a
-                class="dropdown-toggle position-relative d-flex"
-                href="#"
-                data-toggle="dropdown"
-                @click="getNotifications()"
-              >
-                <i class="icon icon--notification"></i>
-                <!-- <span v-if="notificationCount > 0" class="notify-span">{{
-                  notificationCount
-                }}</span> -->
-                <span v-if="notificationCount > 0" class="position-absolute top-0 right-0 bg-danger p-1 mr-1 rounded-circle"></span>
+              <a class="dropdown-toggle ml-4 mx-md-auto d-inline-flex align-items-center justify-content-start justify-content-md-center" href="#" data-toggle="dropdown"
+                @click="getNotifications()">
+                <span class="position-relative d-flex">
+                  <i class="icon icon--notification"></i>
+                  <!-- <span v-if="notificationCount > 0" class="notify-span">{{
+                    notificationCount
+                  }}</span> -->
+                  <span v-if="notificationCount > 0"
+                    class="position-absolute top-0 right-0 bg-danger p-1 mr-1 rounded-circle"></span>
+                </span>
+                  <span class="ml-3 text-14 color-secondary text-capitalize font-medium d-block d-md-none text-decoration-none">Notifications</span>
               </a>
               <div class="dropdown-menu notify border-0">
                 <!-- notification -->
-                <div
-                  class="notifications dropdown-item px-2"
-                  v-if="notificationList && notificationList.length > 0"
-                >
-                  <div
-                    class="d-flex justify-content-between align-items-center px-3 my-2"
-                  >
+                <div class="notifications dropdown-item px-2" v-if="notificationList && notificationList.length > 0">
+                  <div class="d-flex justify-content-between align-items-center px-3 my-2">
                     <h5 class="color-primary-dark font-semi-bold mb-0">
                       Notifications
                     </h5>
-                    <button
-                      class="color-dark font-semi-bold text-18"
-                      @click="clearNotifications()"
-                    >
+                    <button class="color-dark font-semi-bold text-18" @click="clearNotifications()">
                       Clear all
                     </button>
                   </div>
@@ -159,38 +160,28 @@
                           ? 'unread d-flex flex-column p-3 card card-primary bg-white rounded-22 my-3 cursor-pointer'
                           : 'read d-flex flex-column p-3 card card-void my-3 cursor-pointer'
                       " -->
-                    <div
-                      class="d-flex flex-column p-3 card card-void my-3 cursor-pointer"
-                      v-for="(data, index) in notificationList"
-                      :key="index"
-                      @click="onNotificationClick(data.id, data.meetingType)"
-                    >
-                      <p
-                        class="color-dark font-semi-bold text-14 text-wrap mb-0"
-                      >
+                    <div class="d-flex flex-column p-3 card card-void my-3 cursor-pointer"
+                      v-for="(data, index) in notificationList" :key="index"
+                      @click="onNotificationClick(data.id, data.meetingType)">
+                      <p class="color-dark font-semi-bold text-14 text-wrap mb-0">
                         {{ data.message }}
                       </p>
                       <p
-                        class="color-secondary text-12 font-regulat mb-0 d-flex justify-content-end align-items-center"
-                      >
+                        class="color-secondary text-12 font-regulat mb-0 d-flex justify-content-end align-items-center">
                         <span class="mr-2">{{ data.timestamp }}</span>
 
-                        <span
-                          :class="
+                        <span :class="
                             data.isViewed
                               ? 'unread bg-transparent '
                               : 'read bg-primary d-block notify-span-icon rounded-circle'
-                          "
-                        >
+                          ">
                         </span>
                       </p>
                     </div>
                   </div>
                 </div>
-                <div
-                  class="notifications dropdown-item px-2 no-notify"
-                  v-if="!notificationList || notificationList.length == 0"
-                >
+                <div class="notifications dropdown-item px-2 no-notify"
+                  v-if="!notificationList || notificationList.length == 0">
                   No notifications to display
                 </div>
                 <!-- notification End -->
@@ -198,18 +189,11 @@
             </div>
           </li>
           <li class="nav-item d-flex justify-content-center p-2">
-            <nuxt-link
-              to="/user-profile"
-              class="d-flex nav-link"
-            >
-              <img
-                v-bind:src="
+            <nuxt-link to="/user-profile" class="ml-4 mx-md-auto nav-link d-inline-flex justify-content-start justify-content-md-center">
+              <img v-bind:src="
                   profile && profile != 'null' ? profile : defaultImage
-                "
-                class="rounded-circle img-profile mx-auto"
-                alt="Profile image"
-                id="profileImage"
-              />
+                " class="rounded-circle img-profile" alt="Profile image" id="profileImage" />
+                <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Profile</span>
             </nuxt-link>
           </li>
         </ul>

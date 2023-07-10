@@ -72,6 +72,11 @@
   font-family: "Plus Jakarta Sans", sans-serif !important;
 }
 
+.text-14 {
+  font-size: 0.875rem;
+  font-weight: 1.125rem;
+}
+
 .rounded-8 {
   border-radius: 8px;
 }
@@ -174,6 +179,11 @@
 
 .font-secondary {
   font-family: "Plus Jakarta Sans", sans-serif !important;
+}
+
+.text-14 {
+  font-size: 0.875rem;
+  font-weight: 1.125rem;
 }
 
 .rounded-8 {
@@ -488,7 +498,7 @@ body {
   color: #ffffff;
 }
 .btn.btn-primary:hover, .btn.btn-primary:focus, .btn.btn-primary:active, .btn.btn-primary:active:focus {
-  background-color: #FF4E71;
+  background-color: #A85CF9;
 }
 .btn.btn-dark {
   font-weight: 600;
@@ -2051,12 +2061,17 @@ img.dark-icon {
   left: 0;
 }
 .inner-section .main-section {
-  padding-left: 6rem;
+  padding-left: 96px;
   background-color: #ffffff;
   height: calc(100vh - 56px);
   width: 100vw;
   overflow: hidden;
   overflow-y: auto;
+}
+@media (max-width: 767.98px) {
+  .inner-section .main-section {
+    padding-left: 0px;
+  }
 }
 .inner-section .main-section #Daily-Calander .display-picture-holder, .inner-section .main-section #Weekly-Calander .display-picture-holder, .inner-section .main-section #Monthly-Calander .display-picture-holder {
   width: 80px;
@@ -5586,6 +5601,7 @@ select.form-control.is-invalid {
 }
 .navbar.navbar-expand-md ul.vertical-nav li.nav-item.parent-menu .nav-link {
   position: relative;
+  display: inline-flex;
 }
 .navbar.navbar-expand-md ul.vertical-nav li.nav-item.parent-menu .nav-link.nuxt-link-active::after, .navbar.navbar-expand-md ul.vertical-nav li.nav-item.parent-menu .nav-link.accordion-link:not(.collapsed)::after {
   content: "";
@@ -5600,6 +5616,7 @@ select.form-control.is-invalid {
 .navbar.navbar-expand-md ul.vertical-nav ul.sub-menu .nav-item .nav-link {
   font-size: 0.75rem;
   line-height: 1rem;
+  border: 1px solid #EAEAEA;
 }
 .navbar.navbar-expand-md ul.vertical-nav ul.sub-menu .nav-item .nav-link.nuxt-link-active {
   background: #A85CF9 !important;

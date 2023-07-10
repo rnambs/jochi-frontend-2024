@@ -89,6 +89,12 @@ $text-secondary-style : 'Plus Jakarta Sans', sans-serif !important;
 .font-primary{font-family: $text-primary-style;}
 .font-secondary{font-family: $text-secondary-style;}
 
+// font size
+.text-14{
+    font-size: 14px;
+    font-weight: 18px;
+}
+
 // Responsive Screens
 $hd-screen           : 1700px;
 $xl-screen           : 1399.98px;

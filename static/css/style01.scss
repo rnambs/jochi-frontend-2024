@@ -225,7 +225,7 @@ body{
         background-color: $theme-color;
         color: $white;
         &:hover,&:focus,&:active,&:active:focus{
-            background-color: $dark-theme;
+            background-color: $theme-light-color;
         }
     }
     &.btn-dark{
@@ -2229,7 +2229,7 @@ img.dark-icon{
      // quotes
 
     .main-section{
-        padding-left: 6rem;
+        padding-left: 96px;
         background-color: $white;
         // background-color: $global-background-color;
         // background-image: url("./../image/jochi-light-bg.png");
@@ -2243,9 +2243,9 @@ img.dark-icon{
         // @media (max-width: 1023.98px) {
         //     padding-left: 14.625rem;
         // }
-        // @media (max-width: 991.98px) {
-        //     padding-left: 6.625rem;
-        // }
+        @media (max-width: $sm-screen) {
+            padding-left: 0px;
+        }
         // @media (max-width: 510.98px) {
         //     padding-left: 0;
         //     padding-top: 4rem;
@@ -7023,6 +7023,7 @@ $b-toaster-zindex: 1100 !default;
                     &.parent-menu{
                         .nav-link{
                             position: relative;
+                            display: inline-flex;
                             &.nuxt-link-active,&.accordion-link:not(.collapsed){
                                 &::after{
                                     content: '';
@@ -7045,6 +7046,7 @@ $b-toaster-zindex: 1100 !default;
                             .nav-link{
                                 font-size: 0.75rem;
                                 line-height: 1rem;
+                                border: 1px solid $border-color;
                                 &.nuxt-link-active{
                                     background: $theme-light-color !important;
                                     color: $white;
