@@ -577,7 +577,7 @@ body {
 }
 .calendar-dashboard .fc-toolbar-chunk .fc-next-button.fc-button, .fc-toolbar-chunk .fc-prev-button.fc-button {
 	 background: none;
-	 border: 1px solid #f0deeb;
+	 border: 1px solid #F1EEF6;
 	 display: flex;
 	 justify-content: center;
 	 align-items: center;
@@ -606,7 +606,7 @@ body {
 	 border-bottom: none;
 	 border-right: none;
 	 border-left: none;
-	 background-color: #f0deeb;
+	 background-color: #F1EEF6;
 	 padding: 5px;
 }
 .calendar-dashboard .fc-theme-standard th .fc-col-header-cell-cushion {

@@ -35,7 +35,7 @@ $dark-theme        : #FF4E71;
 
 $icon-bg-green     : #4AC55E;
 $icon-color        : #D7F9FF;
-$cal-border        : #F5E4F0;
+$cal-border         : #F5E4F0;
 $confirm-green     : #86FD97;
 
 
@@ -305,7 +305,7 @@ $sm-screen-h         : 767.98px;
                                 th{
                                     background: unset;
                                     backdrop-filter: blur(0px);
-                                    // border-right: 1px solid $cal-border !important;
+                                    // border-right: 1px solid $border-color !important;
                                     &:nth-child(7){
                                         border-right: none;
                                     }
@@ -335,8 +335,8 @@ $sm-screen-h         : 767.98px;
                         }
                         th.fc-col-header-cell.fc-day{
                             font-weight: 500;
-                            border-bottom: 1px solid $cal-border !important;
-                            border-right: 1px solid $cal-border !important;
+                            border-bottom: 1px solid $border-color !important;
+                            border-right: 1px solid $border-color !important;
                             &:last-child{
                                 border-right: none !important;
                             }
@@ -346,8 +346,8 @@ $sm-screen-h         : 767.98px;
                 tbody{
                     tr{
                         td{
-                            border-top: 1px solid $cal-border;
-                            border-right: 1px solid $cal-border !important;
+                            border-top: 1px solid $border-color;
+                            border-right: 1px solid $border-color !important;
                             border-bottom: none !important;
                             &:last-child{
                                 border-right: none !important;
@@ -369,7 +369,7 @@ $sm-screen-h         : 767.98px;
                                     color: #7E7EA0 !important;
                                 }
                                 &:hover{
-                                    background-color: $cal-border !important;
+                                    background-color: $border-color !important;
                                     .fc-daygrid-day-number{
                                         color: #7E7EA0 !important;
                                     }
@@ -460,7 +460,7 @@ $sm-screen-h         : 767.98px;
     .fc-toolbar-chunk .fc-next-button.fc-button,
     .fc-toolbar-chunk .fc-prev-button.fc-button {
         background: none;
-        border: 1px solid #f0deeb;
+        border: 1px solid #F1EEF6;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -686,7 +686,7 @@ $sm-screen-h         : 767.98px;
                                     min-height: 2.5rem !important;
                                 }
                                 &:hover{
-                                    background-color: $cal-border;
+                                    background-color: $border-color;
                                 } 
                             }
                         }
@@ -914,7 +914,7 @@ $sm-screen-h         : 767.98px;
         border-bottom: none;
         border-right: none;
         border-left: none;
-        background-color: #f0deeb;
+        background-color: $primary-light02;
         padding: 5px;
       }
       
@@ -923,7 +923,7 @@ $sm-screen-h         : 767.98px;
       }
       
       .fc-theme-standard td {
-        border-color: #e9d7ee;
+        border-color: $primary-light02;
       }
 }
 

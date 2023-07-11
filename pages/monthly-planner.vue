@@ -1092,7 +1092,7 @@ body {
 .fc-theme-standard th {
     border-right: none;
     border-left: none;
-    background-color: #f0deeb;
+    background-color: #F1EEF6;
     padding: 5px;
 }
 

@@ -750,16 +750,13 @@ input[type="radio"]{
     }
     
     .dropdown-menu.notify{
-        background-color: transparent;
-        backdrop-filter: blur(60px);
-        box-shadow: 0px 0px 40px 7px rgba($color: #ff7c7c, $alpha: 0.22);
+        background-color: $white;
+        border: 1px solid $border-color;
+        box-shadow: 0px 1px 13px 13px rgba(0, 0, 0, 0.035);
         @include borderRadius(20);
         right: 0 !important;
         top: 25px !important;
-        @media (max-width: $md-screen) {
-            left: 50px !important;
-            top: -8px !important;
-        }
+        left: unset;
         @media (max-width: $sm-screen) {
             font-size: .75rem;
         }
@@ -2229,14 +2226,14 @@ img.dark-icon{
      // quotes
 
     .main-section{
-        padding-left: 96px;
+        padding-left: calc(96px + 32px);
         background-color: $white;
         // background-color: $global-background-color;
         // background-image: url("./../image/jochi-light-bg.png");
         // background-position:center;
         // background-repeat:no-repeat;
         // background-size:cover;
-        height: calc(100vh - 56px);
+        height: calc(100vh - 74px);
         width: 100vw;
         overflow: hidden;
         overflow-y: auto;
@@ -3340,7 +3337,7 @@ img.dark-icon{
             color: $white;
             border: none;
             border-radius: 4px;
-            background-color: $cal-border;
+            background-color: $border-color;
             padding: 0.3rem 1.5rem;
             font-size: 0.8rem;
         }
@@ -4456,8 +4453,8 @@ img.dark-icon{
                                 //                     }
                                 //                     th.fc-col-header-cell.fc-day{
                                 //                         font-weight: 500;
-                                //                         border-bottom: 1px solid $cal-border !important;
-                                //                         border-right: 1px solid $cal-border !important;
+                                //                         border-bottom: 1px solid $border-color !important;
+                                //                         border-right: 1px solid $border-color !important;
                                 //                         &:last-child{
                                 //                             border-right: none !important;
                                 //                         }
@@ -4467,8 +4464,8 @@ img.dark-icon{
                                 //             tbody{
                                 //                 tr{
                                 //                     td{
-                                //                         border-top: 1px solid $cal-border;
-                                //                         border-right: 1px solid $cal-border !important;
+                                //                         border-top: 1px solid $border-color;
+                                //                         border-right: 1px solid $border-color !important;
                                 //                         border-bottom: none !important;
                                 //                         &:last-child{
                                 //                             border-right: none !important;
@@ -4483,7 +4480,7 @@ img.dark-icon{
                                 //                         .fc-daygrid-day-frame.fc-scrollgrid-sync-inner{
                                 //                             cursor: pointer;
                                 //                             &:hover{
-                                //                                 background-color: $cal-border !important;
+                                //                                 background-color: $border-color !important;
                                 //                             }
                                 //                             .fc-daygrid-day-events{
                                 //                                 display: none;
@@ -4873,7 +4870,7 @@ img.dark-icon{
                                 //                         table.fc-col-header{
                                 //                             border-bottom: hidden;
                                 //                             th{
-                                //                                 border-right: 1px solid $cal-border !important;
+                                //                                 border-right: 1px solid $border-color !important;
                                 //                                 &:nth-child(7){
                                 //                                     border-right: none;
                                 //                                 }
@@ -5190,7 +5187,7 @@ img.dark-icon{
                                     //                                 min-height: 2.5rem !important;
                                     //                             }
                                     //                             &:hover{
-                                    //                                 background-color: $cal-border;
+                                    //                                 background-color: $border-color;
                                     //                             } 
                                     //                         }
                                     //                     }
@@ -6993,7 +6990,13 @@ $b-toaster-zindex: 1100 !default;
 .navbar{
     .navbar-brand{
         width: 96px;
-        height: 56px;
+        height: 70px;
+        margin-left: 24px;
+        border-right: 1px solid $border-color;
+        @media (max-width:$sm-screen) {
+            margin-left: 0px;
+            border-right: none;
+        }
         .img-logo-v4{
             width: 22px;
             min-width: 22px;
@@ -7009,15 +7012,17 @@ $b-toaster-zindex: 1100 !default;
         }
         ul{
             &.vertical-nav {
+                padding-left: 0px;
                 @media (min-width: $sm-screen) {  
                     position: fixed !important;
                     top: 56px;
                     left: 0;
-                    width: 96px;
+                    width: 120px;
                     height: calc(100% - 56px);
                     background-color: #f8f8f8;
                     overflow-y: auto;
                     padding-top: 30px;
+                    padding-left: 24px;
                 }
                 li.nav-item{
                     &.parent-menu{

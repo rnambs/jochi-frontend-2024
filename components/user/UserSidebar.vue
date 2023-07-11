@@ -1,7 +1,7 @@
 <template>
   <section id="header" class="">
     <nav class="navbar navbar-expand-md navbar-light bg-white p-0" id="clickableId">
-      <a class="navbar-brand border-right d-flex align-items-center justify-content-center" href="#">
+      <a class="navbar-brand d-flex align-items-center justify-content-center" href="#">
         <span class="bg-primary-dark rounded-14 d-flex  align-items-center justify-content-center p-2">
           <img src="../../static/image/v4/logo-ms.png" alt="jochi logo" class="img-logo-v4 object-fit-contain">
         </span>
@@ -12,17 +12,17 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarContent">
-        <ul class="navbar-nav mr-auto flex-column vertical-nav accordion bg-white border-right pb-5"
+        <ul class="navbar-nav mr-auto flex-column vertical-nav accordion bg-white border-right pb-0 pb-md-5"
           id="accordionExample">
           <!-- Dashboard -->
-          <li class="nav-item px-1 parent-menu">
+          <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <nuxt-link to="/student-dashboard" class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
               <i class="icon icon--dashboard"></i>
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Dashboard</span>
             </nuxt-link>
           </li>
           <!-- Planner -->
-          <li class="nav-item px-1 parent-menu">
+          <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <a @click="$event.target.classList.toggle('active')" class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
               aria-controls="collapseOne">
@@ -31,11 +31,11 @@
             </a>
               <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <ul class="ml-4 ml-md-0 flex-row flex-md-column nav sub-menu">
-                  <li class="nav-item px-1 w-auto mb-1">
+                  <li class="nav-item px-1 w-auto mb-1 mb-md-2">
                     <nuxt-link to="/planner-day" @click="$event.target.classList.toggle('active')"
                       class="nav-link btn p-1 text-center">Daily</nuxt-link>
                   </li>
-                  <li class="nav-item px-1 w-auto mb-1">
+                  <li class="nav-item px-1 w-auto mb-1 mb-md-2">
                     <nuxt-link to="/planner-week" @click="$event.target.classList.toggle('active')"
                       class="nav-link btn p-1 text-center">Weekly</nuxt-link>
                   </li>
@@ -47,7 +47,7 @@
               </div>
           </li>
           <!-- Meeting -->
-          <li class="nav-item px-1 parent-menu">
+          <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <a @click="$event.target.classList.toggle('active')" class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
               aria-controls="collapseTwo">
@@ -56,11 +56,11 @@
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
               <ul class="ml-4 ml-md-0 flex-row flex-md-column nav sub-menu">
-                <li class="nav-item px-1 w-auto mb-1">
+                <li class="nav-item px-1 w-auto mb-1 mb-md-2">
                   <nuxt-link to="/teacher-meeting" @click="$event.target.classList.toggle('active')"
                     class="nav-link btn p-1 text-center text-nowrap">Schedule</nuxt-link>
                 </li>
-                <li class="nav-item px-1 w-auto mb-1">
+                <li class="nav-item px-1 w-auto mb-1 mb-md-2">
                   <nuxt-link to="/custom-availability-student" @click="$event.target.classList.toggle('active')"
                     class="nav-link btn p-1 text-center text-nowrap">Availability</nuxt-link>
                 </li>
@@ -72,7 +72,7 @@
             </div>
           </li>
           <!-- Teams & Clubs -->
-          <li class="nav-item px-1 parent-menu">
+          <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <a @click="$event.target.classList.toggle('active')" class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
               aria-controls="collapseThree">
@@ -81,7 +81,7 @@
             </a>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
               <ul class="ml-4 ml-md-0 flex-row flex-md-column nav sub-menu">
-                <li class="nav-item px-1 w-auto mb-1">
+                <li class="nav-item px-1 w-auto mb-1 mb-md-2">
                   <nuxt-link to="/club-detail" class="nav-link btn p-1 text-center">Existing</nuxt-link>
                 </li>
                 <li class="nav-item px-1 w-auto mb-1">
@@ -91,7 +91,7 @@
             </div>
           </li>
           <!-- Study Room -->
-          <li class="nav-item px-1 parent-menu">
+          <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <a @click="$event.target.classList.toggle('active')" class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"
               aria-controls="collapseFour">
@@ -100,7 +100,7 @@
             </a>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
               <ul class="ml-4 ml-md-0 flex-row flex-md-column nav sub-menu">
-                <li class="nav-item px-1 w-auto mb-1">
+                <li class="nav-item px-1 w-auto mb-1 mb-md-2">
                   <nuxt-link to="/study-time" class="nav-link btn p-1 text-center">Session</nuxt-link>
                 </li>
                 <li class="nav-item px-1 w-auto mb-1">
@@ -112,13 +112,13 @@
           </li>
           <!-- nav bottom -->
           <!-- settings -->
-          <li class="nav-item px-1 mt-auto">
-            <nuxt-link to="/student-dashboard" class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
+          <li class="nav-item px-1 parent-menu mb-1 mb-md-2 mt-auto">
+            <nuxt-link to="#" class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
               <i class="icon icon--settings"></i>
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Settings</span>
             </nuxt-link>
           </li>
-          <li class="nav-item px-1">
+          <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <a @click="GetLogout()" href="#" class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
                 <i class="icon icon--logout"></i>
                 <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Logout</span>
@@ -129,7 +129,7 @@
           <!-- <li class="nav-item">
             <a class="nav-link" href="#">Cloud</a>
           </li> -->
-          <li class="nav-item d-flex justify-content-start justify-content-md-center p-2">
+          <li class="nav-item d-flex justify-content-start justify-content-md-center p-1">
             <div class="dropdown my-auto">
               <a class="dropdown-toggle ml-4 mx-md-auto d-inline-flex align-items-center justify-content-start justify-content-md-center" href="#" data-toggle="dropdown"
                 @click="getNotifications()">
@@ -143,7 +143,7 @@
                 </span>
                   <span class="ml-3 text-14 color-secondary text-capitalize font-medium d-block d-md-none text-decoration-none">Notifications</span>
               </a>
-              <div class="dropdown-menu notify border-0">
+              <div class="dropdown-menu notify">
                 <!-- notification -->
                 <div class="notifications dropdown-item px-2" v-if="notificationList && notificationList.length > 0">
                   <div class="d-flex justify-content-between align-items-center px-3 my-2">
@@ -189,7 +189,7 @@
             </div>
           </li>
           <li class="nav-item d-flex justify-content-center p-2">
-            <nuxt-link to="/user-profile" class="ml-4 mx-md-auto nav-link d-inline-flex justify-content-start justify-content-md-center">
+            <nuxt-link to="/user-profile" class="ml-3 mx-md-auto nav-link d-inline-flex justify-content-start justify-content-md-center">
               <img v-bind:src="
                   profile && profile != 'null' ? profile : defaultImage
                 " class="rounded-circle img-profile" alt="Profile image" id="profileImage" />
@@ -521,10 +521,6 @@
   @media (max-width: 991.98px) {
     .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a {
       font-size: 0.7rem;
-    }
-
-    .dropdown .dropdown-menu.notify {
-      top: -40px !important;
     }
   }
 </style>
