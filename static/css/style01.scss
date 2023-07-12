@@ -349,9 +349,9 @@ input[type="radio"]{
         color: $font-gray01;
     }
     input.form-control,select.form-control,.form-control{
-        border: none;
-        background-color: rgba(255, 255, 255, 0.5);
-        box-shadow: 0 0 5px rgb(0 0 0 / 5%);
+        border: 1px solid $border-form-color;
+        background-color: $white;
+        // box-shadow: 0 0 5px rgb(0 0 0 / 5%);
         @include borderRadius(12);
         font-size: 1rem;
         color: $font-secondary-dark;
@@ -392,7 +392,7 @@ input[type="radio"]{
         // background: url("../../static/image/chevron-down-solid.svg") no-repeat right #000000;
     }
     textarea.form-control{
-        border: none;
+        border: 1px solid $border-form-color;
         background-color: rgba(255, 255, 255, 0.5);
         box-shadow: 0 0 5px rgb(0 0 0 / 5%);
         @include borderRadius(12);
@@ -474,12 +474,12 @@ input[type="radio"]{
     .multiselect__tags {
         @include borderRadius(12);
         font-size: 0.9rem;
-        border: none;
+        border: 1px solid $border-form-color;
         background-color: rgba($color: $white, $alpha: 0.2);
         color: $font-secondary-dark;
         padding: .375rem 2.5rem .375rem 1rem;
         min-height: calc(2.8rem + 2px);
-        box-shadow: 0 0 7px -4px rgba($color: #000000, $alpha: 0.25);  
+        // box-shadow: 0 0 7px -4px rgba($color: #000000, $alpha: 0.25);  
         @media (max-width: 1024.98px) {
             min-height: calc(2.8rem + 0px); 
         }
@@ -523,8 +523,8 @@ input[type="radio"]{
     // Drop Down
     .multiselect__content-wrapper{
         list-style-type: none;
-        box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
-        border: none;
+        // box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+        border: 1px solid $border-form-color;
         border-radius: 1.2rem;
         background-color: $white;
         padding: .75rem .75rem;
@@ -542,31 +542,27 @@ input[type="radio"]{
                 .multiselect__option--highlight{
                     font-size: 0.9rem;
                     color: $font-secondary-dark; 
-                    background: $white;
-                    box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+                    background: $primary-light02;
+                    // box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+                    border: none;
                     border-radius: .6rem;
                     &:target, &:visited, &:active{
-                        background: #FF646F;
+                        background: $theme-color;
                         color: $white;
                     }
                 }
                 .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
-                    background: #FF646F;
+                    background: $theme-color;
                     color: $white;
                     font-weight: 500;
                     border-radius: .4rem;
                 }
                 span{
-                    &::after{
-                        display: none !important;
-                    }
+                    &::after{display: none !important;}
                 }
                 
             }
-            .vs__dropdown-option--highlight {
-               
-                color: $white;
-            }
+            .vs__dropdown-option--highlight {color: $white;}
         }
     }
     // time Picker
@@ -576,9 +572,7 @@ input[type="radio"]{
         position: relative;
         vertical-align: middle;
         &.form-white{
-            input.display-time{
-                background-color: $white;
-            }
+            input.display-time{background-color: $white;}
         }
         &.dropdown-menu-top{
             .dropdown.drop-down{
@@ -589,8 +583,8 @@ input[type="radio"]{
         }
         input.display-time{
             border: none;
-            background-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 5px rgb(0 0 0 / 5%);
+            background-color: $white;
+            // box-shadow: 0 0 5px rgb(0 0 0 / 5%);
             border-radius: 0.4rem;
             font-size: 0.9rem;
             color: $font-label-color;
@@ -658,9 +652,9 @@ input[type="radio"]{
             z-index: 99;
             top: calc(2.2em + 2px);
             left: 0;
-            background: #fff;
-            -webkit-box-shadow: 0 1px 6px rgb(0 0 0 / 15%);
-            box-shadow: 0 1px 6px rgb(0 0 0 / 15%);
+            background: $white;
+            // -webkit-box-shadow: 0 1px 6px rgb(0 0 0 / 15%);
+            // box-shadow: 0 1px 6px rgb(0 0 0 / 15%);
             width: 10em;
             height: 10em;
             font-weight: 400;
@@ -684,8 +678,8 @@ input[type="radio"]{
                 -ms-flex-pack: justify;
                 justify-content: space-between;
                 ul{
-                    background-color: rgba(255, 255, 255, 0.5);
-                    box-shadow: 0 0 5px rgb(0 0 0 / 5%);
+                    background-color: $white;
+                    // box-shadow: 0 0 5px rgb(0 0 0 / 5%);
                     list-style-type: none;
                     padding: 0;
                     margin: 0;
@@ -752,7 +746,7 @@ input[type="radio"]{
     .dropdown-menu.notify{
         background-color: $white;
         border: 1px solid $border-color;
-        box-shadow: 0px 1px 13px 13px rgba(0, 0, 0, 0.035);
+        // box-shadow: 0px 1px 13px 13px rgba(0, 0, 0, 0.035);
         @include borderRadius(20);
         right: 0 !important;
         top: 25px !important;
@@ -1496,8 +1490,8 @@ img.dark-icon{
                     display: block !important;
                 }
                 .form-control{
-                    border: none;
-                    background-color: rgba($color: $white, $alpha: 0.5);
+                    border: 1px solid $border-form-color;
+                    background-color: $white;
                     box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.05);
                     border-radius: 0.4rem;
                     font-size: 1rem;

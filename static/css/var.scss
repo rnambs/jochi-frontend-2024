@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
 // Secondary font family
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+// prppins font family
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 // Colors
 $theme-color       : #5534A5;
@@ -14,6 +16,7 @@ $white             : #ffffff;
 
 // Border color
 $border-color      : #EAEAEA;
+$border-form-color  : #BCBCBC;
 
 $bg-secondary-light : #D9E1E7;
 $bg-primary-light   : #F1EEF6;
@@ -83,11 +86,11 @@ $label-green: #159E00;
 }
 
 // font
-$text-primary-style : 'Syne', sans-serif !important;
-$text-secondary-style : 'Plus Jakarta Sans', sans-serif !important;
+// $text-primary-style : 'Syne', sans-serif !important;
+// $text-secondary-style : 'Plus Jakarta Sans', sans-serif !important;
+$text-primary-style : 'Poppins', sans-serif !important;
 
 .font-primary{font-family: $text-primary-style;}
-.font-secondary{font-family: $text-secondary-style;}
 
 // font size
 .text-14{
@@ -144,7 +147,7 @@ $sm-screen-h         : 767.98px;
         border-radius: 10px;
     }
     @else if $br==12 {
-        border-radius: 12px;
+        border-radius: 12px !important;
     }
     @else if $br==14 {
         border-radius: 14px;
