@@ -222,14 +222,14 @@
                   <div class="modal-footer">
                     <button
                       type="button"
-                      class="btn btn-secondary py-1 px-4 rounded-pill"
+                      class="btn btn-secondary py-1 px-4 "
                       data-dismiss="modal"
                     >
                       Close
                     </button>
                     <button
                       type="button"
-                      class="btn btn-primary py-1 px-4 rounded-pill"
+                      class="btn btn-primary py-1 px-4 "
                       data-dismiss="modal"
                       @click="ScheduleConfirm()"
                     >

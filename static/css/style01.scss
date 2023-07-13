@@ -991,7 +991,7 @@ input[type="radio"]{
 
 .card{
     @include borderRadius(10);
-    border: none;
+    border: 1px solid $border-color;
     margin-bottom: 0px;
     box-shadow: none !important;
     &.card-white{
@@ -2227,7 +2227,7 @@ img.dark-icon{
         // background-position:center;
         // background-repeat:no-repeat;
         // background-size:cover;
-        height: calc(100vh - 74px);
+        height: calc(100vh - 70px);
         width: 100vw;
         overflow: hidden;
         overflow-y: auto;
@@ -4669,7 +4669,7 @@ img.dark-icon{
                     }
                     .inner-custom-teacher.dashboard-cal{
                         // height: 100%;
-                        // background-color: $Global-background-element;
+                        background-color: $primary-light02;
                         // border-radius: .5rem;
                         // box-shadow: 
                         //         0px 2px 8px $global-box-shadow;
@@ -5276,14 +5276,15 @@ img.dark-icon{
                                 // overflow-y: auto;
                                 // max-height: 36vh;
                                 span{
-                                    display: inline-block;
+                                    display: inline-flex;
+                                    justify-content: center;
                                     min-width: 25%;
                                     .badge-color{
                                         padding: .73rem .75rem;
                                         margin: .3rem .1rem;
                                         font-size: .8rem;
                                         font-weight: 450;
-                                        color: $font-secondary-dark;
+                                        color: $font-secondary-light;
                                         cursor: pointer;
                                         @media (max-width: 1396.98px) {
                                             font-size: 0.7rem;
@@ -5317,6 +5318,7 @@ img.dark-icon{
                                         }
                                         &.disabled{
                                             background-color: $white;
+                                            border: 1px solid $border-color;
                                         }
                                         &.active, &:hover{
                                             color: $white;
@@ -6552,7 +6554,7 @@ select.form-control{
 }
 
 .custom-full-height {
-    height: calc(100vh - 24px);
+    height: calc(100vh - 24px - 70px);
 }
 
 .profile-sidebar .profile-name {

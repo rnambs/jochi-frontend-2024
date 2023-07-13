@@ -25,6 +25,7 @@ $bg-gray-light      : #F9F9F9;
 // font color
 $font-primary-dark    : #141522;
 $font-secondary-dark  : #0D062D;
+$font-secondary-light : #696969;
 $font-gray01          : #757575;
 $font-label-color     : #344054;
 $font-secondary-color : #475467;
@@ -200,7 +201,7 @@ $sm-screen-h         : 767.98px;
         .fc-header-toolbar.fc-toolbar{
             justify-content: center;
             position: absolute;
-            top: -12px;
+            top: 0;
             width: 93%;
         }
     }

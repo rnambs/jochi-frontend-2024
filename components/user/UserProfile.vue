@@ -488,13 +488,13 @@
                                     class="d-flex align-items-center justify-content-center flex-wrap"
                                   >
                                     <button
-                                      class="btn btn-secondary px-3 py-1 rounded-pill mr-2 mb-2"
+                                      class="btn btn-secondary px-3 py-1  mr-2 mb-2"
                                       @click="respondRequest(2, advisor)"
                                     >
                                       Reject
                                     </button>
                                     <button
-                                      class="btn btn-primary px-3 py-1 mb-2 rounded-pill"
+                                      class="btn btn-primary px-3 py-1 mb-2 "
                                       @click="respondRequest(1, advisor)"
                                     >
                                       Accept

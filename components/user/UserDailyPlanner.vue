@@ -1680,7 +1680,7 @@
                         <div class="d-flex justify-content-end">
                           <button
                             type="button"
-                            class="btn btn-secondary py-1 px-3 rounded-pill mr-2"
+                            class="btn btn-secondary py-1 px-3  mr-2"
                             @click="
                               openAssignment = false;
                               closePopup();
@@ -1690,7 +1690,7 @@
                           </button>
                           <button
                             type="button"
-                            class="btn btn-primary py-1 px-3 rounded-pill"
+                            class="btn btn-primary py-1 px-3 "
                             :disabled="processing"
                             @click="
                               isAddAssignment
@@ -2063,14 +2063,14 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-pill"
+              class="btn btn-secondary py-1 px-3 "
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-primary py-1 px-3 rounded-pill"
+              class="btn btn-primary py-1 px-3 "
               :disabled="processing"
               @click="isAssignmentEdit ? UpdateAssignment() : AddAssignment()"
             >

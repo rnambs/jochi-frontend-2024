@@ -1141,7 +1141,7 @@ input[type=radio] {
 
 .card {
   border-radius: 10px;
-  border: none;
+  border: 1px solid #EAEAEA;
   margin-bottom: 0px;
   box-shadow: none !important;
 }
@@ -2044,7 +2044,7 @@ img.dark-icon {
 .inner-section .main-section {
   padding-left: 128px;
   background-color: #ffffff;
-  height: calc(100vh - 74px);
+  height: calc(100vh - 70px);
   width: 100vw;
   overflow: hidden;
   overflow-y: auto;
@@ -3458,6 +3458,9 @@ img.dark-icon {
   width: 40px;
   height: 40px;
 }
+.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal {
+  background-color: #F1EEF6;
+}
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher .inner-agenda {
   height: 29vh !important;
   min-height: 276px;
@@ -3560,7 +3563,7 @@ img.dark-icon {
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: center;
   position: absolute;
-  top: -12px;
+  top: 0;
   width: 93%;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active {
@@ -3832,7 +3835,8 @@ img.dark-icon {
   }
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
   min-width: 25%;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color {
@@ -3840,7 +3844,7 @@ img.dark-icon {
   margin: 0.3rem 0.1rem;
   font-size: 0.8rem;
   font-weight: 450;
-  color: #431F1C;
+  color: #696969;
   cursor: pointer;
 }
 @media (max-width: 1396.98px) {
@@ -3887,6 +3891,7 @@ img.dark-icon {
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color.disabled {
   background-color: #ffffff;
+  border: 1px solid #EAEAEA;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color.active, .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color:hover {
   color: #ffffff;
@@ -4035,7 +4040,7 @@ img.dark-icon {
 .calendar-sm .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: center;
   position: absolute;
-  top: -12px;
+  top: 0;
   width: 93%;
 }
 .calendar-sm .fc .fc-scrollgrid {
@@ -5216,7 +5221,7 @@ select.form-control.is-invalid {
 }
 
 .custom-full-height {
-  height: calc(100vh - 24px);
+  height: calc(100vh - 24px - 70px);
 }
 
 .profile-sidebar .profile-name {

@@ -1320,7 +1320,7 @@
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-pill"
+              class="btn btn-secondary px-4 py-1 "
               data-dismiss="modal"
             >
               Close
@@ -1328,7 +1328,7 @@
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-primary rounded-pill px-4 py-1"
+              class="btn btn-primary  px-4 py-1"
               @click="goToSession()"
             >
               Confirm

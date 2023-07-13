@@ -37,8 +37,8 @@
 
                         :class="
                           slot.exist
-                            ? 'badge badge-pill badge-color active'
-                            : 'badge badge-pill badge-color disabled'
+                            ? 'badge badge-color active'
+                            : 'badge badge-color disabled'
                         "
                         @click="slot.exist = !slot.exist"
                         :id="slot.time"
@@ -130,7 +130,7 @@
                       <div class="form-group col-12">
                         <button
                           type="submit"
-                          class="btn btn-primary my-2 py-1 px-4 rounded-pill float-right"
+                          class="btn btn-primary my-2 py-1 px-4 float-right"
                           @click.prevent="UpdateTeacherAvailability()"
                         >
                           Update

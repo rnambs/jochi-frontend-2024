@@ -235,14 +235,14 @@
                   <div class="modal-footer">
                     <button
                       type="button"
-                      class="btn btn-secondary px-3 py-1 rounded-pill"
+                      class="btn btn-secondary px-3 py-1 "
                       data-dismiss="modal"
                     >
                       No
                     </button>
                     <button
                       type="button"
-                      class="btn btn-primary px-3 py-1 rounded-pill"
+                      class="btn btn-primary px-3 py-1 "
                       data-dismiss="modal"
                       @click="FileRemove"
                     >

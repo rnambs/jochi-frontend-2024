@@ -154,7 +154,7 @@
                                         {{ list.new_title }}
                                       </p>
                                       <div
-                                        class="w-fit-content text-12 px-3 py-1 bg-primary rounded-pill color-white"
+                                        class="w-fit-content text-12 px-3 py-1 bg-primary color-white"
                                       >
                                         {{ list.start_time }}
                                       </div>

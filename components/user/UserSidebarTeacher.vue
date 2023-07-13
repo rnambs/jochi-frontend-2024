@@ -48,7 +48,7 @@
           </li>
           <!-- Teams & Clubs -->
           <li class="nav-item px-1 parent-menu my-1 my-md-2">
-            <a @click="$event.target.classList.toggle('active')"
+            <a @click="$event.target.classList.toggle('active')" 
               class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
               aria-controls="collapseOne">
