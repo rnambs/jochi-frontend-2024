@@ -15,7 +15,7 @@
           <div class="row">
             <div class="col-12 position-realtive h-100 d-flex flex-column">
               <div class="bg-white border rounded-10 position-relative h-100">
-                <div class="planner-week p-4 pt-5 px-3 px-sm-5">
+                <div class="planner-week p-4 pt-5 px-3 px-sm-5 d-flex flex-column h-100">
                   <div class="color-ref">
                     <ul class="d-flex align-itmes-center">
                       <li><span>Urgent assignments</span></li>

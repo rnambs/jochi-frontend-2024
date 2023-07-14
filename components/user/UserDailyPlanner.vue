@@ -16,10 +16,10 @@
         >
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row h-100">
-              <div class="col-lg-5 col-md-12">
+              <div class="col-lg-5 col-md-12 h-100">
                 <div
                   data-intro="Find your upcoming assignments and commitments in your daily calendar."
-                  class="bg-white border rounded-10 p-4 h-100"
+                  class="bg-white border rounded-10 p-4 h-100 d-flex flex-column"
                 >
                   <h2
                     v-if="showToday"

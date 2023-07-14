@@ -16,7 +16,7 @@
           <div class="element-section container-fluid h-100">
             <div class="row mt-0 h-100">
               <div class="col-12 position-realtive">
-                <div class="planner-Month p-4 px-3 px-md-5">
+                <div class="planner-Month p-4 px-3 px-md-5 h-100 d-flex flex-column">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                   <div class="color-ref mnth">
                     <ul class="d-flex align-itmes-center">

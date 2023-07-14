@@ -248,10 +248,12 @@ body{
         }
     }
     &.btn-secondary{
-        background-color: $font-gray01;
-        color: $white;
+        background-color: $white;
+        color: $font-label-color;
+        border: 1px solid $border-color;
+        font-weight: 600;
         &:hover{
-            background-color: $black;
+            background-color: $bg-gray-light;
         }
     }
     span.arrow{
@@ -2246,6 +2248,7 @@ img.dark-icon{
 
         #Daily-Calander, #Weekly-Calander, #Monthly-Calander{
             @include plannerAssignment();
+            .fc-media-screen.fc-direction-ltr{height: 100%;}
             .fc-popover.fc-more-popover{
                 &.fc-day-sat{
                     right: 0 !important;
@@ -2306,16 +2309,16 @@ img.dark-icon{
             @include plannerCommonMonth();
             @include plannerCommon();
             .fc-view-harness.fc-view-harness-active{
-                height: 80vh !important;
-                @media (max-width:$lg-screen) {
-                    height: 68vh !important;
-                }
-                @media (max-height:768.98px) and (max-width:$lg-screen) {
-                    height: 58vh !important;
-                }
-                @media (max-height:524.98px) and (max-width:$lg-screen) {
-                    height: 50vh !important;
-                }
+                height: 100% !important;
+                // @media (max-width:$lg-screen) {
+                //     height: calc(68vh - 70px) !important;
+                // }
+                // @media (max-height:768.98px) and (max-width:$lg-screen) {
+                //     height: calc(58vh - 70px) !important;
+                // }
+                // @media (max-height:524.98px) and (max-width:$lg-screen) {
+                //     height: calc(50vh - 70px) !important;
+                // }
             }
             .fc-timegrid-col-events{
                 .fc-timegrid-event-harness.fc-timegrid-event-harness-inset{
@@ -2343,16 +2346,16 @@ img.dark-icon{
         }
         #Monthly-Calander{
              .fc-view-harness.fc-view-harness-active{
-                height: 78vh !important;
-                @media (max-width:$lg-screen) {
-                    height: 72vh !important;
-                }
-                @media (max-height:768.98px) and (max-width:$lg-screen) {
-                    height: 60vh !important;
-                }
-                @media (max-height:524.98px) and (max-width:$lg-screen) {
-                    height: 50vh !important;
-                }
+                height: 100% !important;
+                // @media (max-width:$lg-screen) {
+                //     height: calc(72vh - 70px) !important;
+                // }
+                // @media (max-height:768.98px) and (max-width:$lg-screen) {
+                //     height: calc(60vh - 70px) !important;
+                // }
+                // @media (max-height:524.98px) and (max-width:$lg-screen) {
+                //     height: calc(50vh - 70px) !important;
+                // }
                 .fc-popover.fc-more-popover{
                     z-index: 9;
                 }
@@ -5373,6 +5376,7 @@ img.dark-icon{
                                         &::before {
                                             left: unset;
                                             right: -2.25rem;
+
                                         }
                                         &::after{
                                             left:unset;
@@ -5606,9 +5610,14 @@ img.dark-icon{
     .custom-control-label::before {
         top: 0.025rem;
         cursor: pointer;
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.40) 100%), #F0F0F0;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04), 0px 1px 0px 0px #FFF, 0px 0px 8px 0px rgba(0, 0, 0, 0.02) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.06) inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.04) inset, 0px 1px 1px 0px rgba(0, 0, 0, 0.04) inset;
+        border: none;
     }
     .custom-control-label::after {
         top: calc(0.0375rem + 2px);
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 35.42%, rgba(0, 0, 0, 0.08) 100%), #FFF;
+        box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.12), 0px 3px 3px 0px rgba(0, 0, 0, 0.04), 0px 5px 4px 0px rgba(0, 0, 0, 0.02), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.02), 0px 1px 0px 0px #FFF inset, 0px 0px 2px 1px #FFF inset;
         cursor: pointer;
     }
 }
@@ -5629,14 +5638,14 @@ switch to violet when it is checked*/
   .custom-control-input:checked ~ 
 .custom-control-label::before {
       border-color: $theme-color !important;
-      background-color: $theme-color !important;
+      background: $theme-color !important;
   }
 
   /*sets the background color of
 switch to violet when it is active*/
   .custom-control-input:active ~ 
 .custom-control-label::before {
-      background-color: $theme-color !important;
+      background: $theme-color !important;
       border-color: $theme-color !important;
   }
 
@@ -5713,7 +5722,8 @@ switch to violet when it is active*/
 }
 
 .modal-backdrop.fade.show{
-    opacity: 0;
+    opacity: 0.5;
+    display: block;
 }
 
 // common popUp
@@ -5731,17 +5741,18 @@ switch to violet when it is active*/
             height: auto;
             border: none;
             border-radius: 0.5rem;
+            background-color: $white;
+            background-size:cover;
+            border: 1px solid $border-color;
+            @include borderRadius(12);
             // background: url("./../image/jochi-light-bg.png");
-            border: 1px solid $white;
             // background-position:center;
             // background-repeat:no-repeat;
-            background-size:cover;
-            backdrop-filter: blur(22px);
-            background-color: transparent;
-            -webkit-box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
-            -moz-box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
-            box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
-            border-radius: 22px;
+            // backdrop-filter: blur(22px);
+            // -webkit-box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
+            // -moz-box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
+            // box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
+            // border-radius: 22px;
             .modal-header{
                 background-color: transparent;
                 border-radius: 6px 6px 0px 0px;
