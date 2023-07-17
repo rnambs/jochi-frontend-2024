@@ -366,7 +366,7 @@
                 </table>
               </form>
             </div>
-            <div class="modal-footer"></div>
+            <div class="modal-footer justify-content-center border-top-0"></div>
           </div>
         </div>
       </div>
@@ -397,7 +397,7 @@
                 mobile phone!
               </p>
             </div>
-            <div class="modal-footer d-flex justify-content-center pb-0">
+            <div class="modal-footer justify-content-center border-top-0 d-flex justify-content-center pb-0">
               <button
                 type="button"
                 data-dismiss="modal"

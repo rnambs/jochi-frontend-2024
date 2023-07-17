@@ -219,7 +219,7 @@
                       </tr>
                     </table>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer justify-content-center border-top-0">
                     <button
                       type="button"
                       class="btn btn-secondary py-1 px-4 "

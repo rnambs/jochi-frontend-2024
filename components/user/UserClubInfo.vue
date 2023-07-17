@@ -166,7 +166,7 @@
 
                       <button
                         href=""
-                        class="btn btn-dark custom-theme-color-btn px-4 mb-0 mt-3"
+                        class="btn btn-primary custom-theme-color-btn px-4 mb-0 mt-3"
                         v-if="enableEdit"
                         :disabled="!clubDetails.description"
                         @click.prevent="
@@ -572,17 +572,17 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer px-4">
+          <div class="modal-footer justify-content-center border-top-0 px-4">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12"
+              class="btn btn-secondary px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               v-if="enableEdit"
-              class="btn btn-success rounded-12 mt-2 py-1 px-4 font-semi-bold"
+              class="btn btn-primary rounded-8 mt-2 py-1 px-4 font-semi-bold"
               :disabled="!valueMeeting || dayArrVal.length <= 0"
               @click.prevent="UpdateTime"
             >
@@ -729,7 +729,7 @@
             </div>
             <!-- details end -->
           </div>
-          <div class="modal-footer"></div>
+          <div class="modal-footer justify-content-center border-top-0"></div>
         </div>
       </div>
     </div>
@@ -767,17 +767,17 @@
               </multiselect>
             </div>
           </div>
-          <div class="modal-footer px-4">
+          <div class="modal-footer justify-content-center border-top-0 px-4">
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
               aria-label="Close"
             >
               Close
             </button>
             <button
-              class="btn btn-success py-1 rounded-12 font-semi-bold px-4"
+              class="btn btn-primary py-1 rounded-8 font-semi-bold px-4"
               :disabled="!leaderUpdate"
               @click.prevent="addLeader()"
             >
@@ -841,14 +841,14 @@
                 <v-card-actions class="justify-content-end">
                   <v-btn
                     color="primary"
-                    class="btn btn-secondary color-white font-semi-bold mr-2 py-1 px-3 rounded-12 text-capitalize"
+                    class="btn btn-secondary color-white font-semi-bold mr-2 py-1 px-3 rounded-8 text-capitalize"
                     text
                     data-dismiss="modal"
                     @click="clearCrop"
                     ><span class="font-semi-bold">Cancel</span></v-btn
                   >
                   <v-btn
-                    class="btn btn-success font-semi-bold bg-primary color-dark py-1 px-3 rounded-12 text-capitalize shadow-none"
+                    class="btn btn-primary font-semi-bold bg-primary color-dark py-1 px-3 rounded-8 text-capitalize shadow-none"
                     @click="saveImage(), (dialog = false)"
                     ><span class="font-semi-bold">Upload</span></v-btn
                   >
@@ -914,27 +914,27 @@
               </div>
             </div>
           </div>
-          <div v-if="!showClubInfo" class="modal-footer">
+          <div v-if="!showClubInfo" class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               No
             </button>
             <button
               type="button"
-              class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-primary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
               @click="confirmAction()"
             >
               Yes
             </button>
           </div>
-          <div v-if="showClubInfo" class="modal-footer">
+          <div v-if="showClubInfo" class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Close

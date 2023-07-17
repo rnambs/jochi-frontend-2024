@@ -315,17 +315,17 @@
                         </span>
                       </p>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer justify-content-center border-top-0">
                       <button
                         type="button"
-                        class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+                        class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
                         data-dismiss="modal"
                       >
                         No
                       </button>
                       <button
                         type="button"
-                        class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+                        class="btn btn-primary px-4 py-1 rounded-8 font-semi-bold"
                         data-dismiss="modal"
                         @click="FileRemove"
                       >
@@ -574,17 +574,17 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12"
+              class="btn btn-secondary px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               v-if="enableEdit"
-              class="btn btn-success rounded-12 mt-2 py-1 px-4 font-semi-bold"
+              class="btn btn-primary rounded-8 mt-2 py-1 px-4 font-semi-bold"
               :disabled="!valueMeeting || dayArrVal.length <= 0"
               @click.prevent="UpdateTime"
             >
@@ -648,14 +648,14 @@
                 <v-card-actions class="justify-content-end">
                   <v-btn
                     color="primary"
-                    class="btn btn-secondary font-semi-bold color-white mr-2 py-1 px-3 rounded-12 text-capitalize"
+                    class="btn btn-secondary font-semi-bold color-white mr-2 py-1 px-3 rounded-8 text-capitalize"
                     text
                     data-dismiss="modal"
                     @click="clearCrop"
                     ><span class="font-semi-bold">Cancel</span></v-btn
                   >
                   <v-btn
-                    class="btn btn-success font-semi-bold bg-primary color-dark py-1 px-3 rounded-12 text-capitalize shadow-none"
+                    class="btn btn-primary font-semi-bold bg-primary color-dark py-1 px-3 rounded-8 text-capitalize shadow-none"
                     @click="saveImage(), (dialog = false)"
                     ><span class="font-semi-bold">Upload</span></v-btn
                   >
@@ -722,24 +722,24 @@
               </div>
             </div>
           </div>
-          <div v-if="!showClubInfo" class="modal-footer">
+          <div v-if="!showClubInfo" class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               No
             </button>
             <button
               type="button"
-              class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-primary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
               @click="confirmAction()"
             >
               Yes
             </button>
           </div>
-          <div v-if="showClubInfo" class="modal-footer">
+          <div v-if="showClubInfo" class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"

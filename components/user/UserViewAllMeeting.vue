@@ -439,7 +439,7 @@
               </fieldset>
             </form>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-center border-top-0">
             <div
               v-if="
                 detailType == 'Peer' &&
@@ -450,7 +450,7 @@
             >
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+                class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
                 data-dismiss="modal"
                 @click="acceptOrReject(2)"
               >
@@ -458,7 +458,7 @@
               </button>
               <button
                 type="button"
-                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                 data-dismiss="modal"
                 @click="acceptOrReject(1)"
               >
@@ -474,14 +474,14 @@
             >
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+                class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
                 data-dismiss="modal"
               >
                 Close
               </button>
               <button
                 type="button"
-                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                 @click="updateDetails()"
                 :disabled="disableUpload"
               >

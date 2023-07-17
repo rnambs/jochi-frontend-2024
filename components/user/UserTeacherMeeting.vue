@@ -397,17 +397,17 @@
                       </div>
                     </form>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer justify-content-center border-top-0">
                     <button
                       type="button"
-                      class="btn btn-secondary py-1 px-4 rounded-12"
+                      class="btn btn-secondary py-1 px-4 rounded-8"
                       data-dismiss="modal"
                     >
                       Close
                     </button>
                     <button
                       type="button"
-                      class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                      class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                       :disabled="processing"
                       @click="ScheduleConfirm()"
                     >

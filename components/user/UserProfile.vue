@@ -16,13 +16,13 @@
                 <button
                   v-if="requestSent != '1'"
                   @click="openRequestConfirm()"
-                  class="btn btn-primary py-1 px-4 rounded-12 font-semi-bold"
+                  class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                 >
                   Request To Become A School Admin
                 </button>
 
                 <span
-                  class="bg-primary py-1 px-4 rounded-12 font-semi-bold"
+                  class="bg-primary py-1 px-4 rounded-8 font-semi-bold"
                   style="color: white"
                   v-if="requestSent == '1'"
                 >
@@ -579,17 +579,17 @@
             <div class="modal-body">
               <div>Are you sure you want to delete the profile image?</div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-center border-top-0">
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-12 font-semi-bold"
+                class="btn btn-secondary py-1 px-4 rounded-8 font-semi-bold"
                 data-dismiss="modal"
               >
                 Close
               </button>
               <button
                 type="button"
-                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                 data-dismiss="modal"
                 @click="confirmDelete()"
               >
@@ -623,17 +623,17 @@
             <div class="modal-body px-3 bold-6">
               Send request to become a school admin?
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-center border-top-0">
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
                 data-dismiss="modal"
               >
                 Cancel
               </button>
               <button
                 type="button"
-                class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+                class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
                 :disabled="processingUpgrade"
                 @click="upgrade()"
               >

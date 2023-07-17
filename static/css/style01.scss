@@ -240,13 +240,13 @@ body{
             color: $font-secondary-dark;
         }
     }
-    &.btn-success{
-        background-color: $confirm-green !important;
-        color: $black;
-        &:hover{
-            background-color: $icon-bg-green !important;
-        }
-    }
+    // &.btn-success{
+    //     background-color: $confirm-green !important;
+    //     color: $black;
+    //     &:hover{
+    //         background-color: $icon-bg-green !important;
+    //     }
+    // }
     &.btn-secondary{
         background-color: $white;
         color: $font-label-color;
@@ -5739,12 +5739,10 @@ switch to violet when it is active*/
         // }
         .modal-content{
             height: auto;
-            border: none;
-            border-radius: 0.5rem;
+            border-top: 4px solid $theme-color;
             background-color: $white;
             background-size:cover;
-            border: 1px solid $border-color;
-            @include borderRadius(12);
+            @include borderRadius(0);
             // background: url("./../image/jochi-light-bg.png");
             // background-position:center;
             // background-repeat:no-repeat;
@@ -5964,7 +5962,7 @@ switch to violet when it is active*/
                     }
                 }
             }
-            .modal-footer{
+            .modal-footer justify-content-center border-top-0{
                 // border-top: 1px solid $border-color;
                 // background-color: $global-box-shadow;
                 // border-radius: 0px 0px 10px 10px;

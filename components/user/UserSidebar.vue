@@ -211,11 +211,11 @@
             </h3>
           </div>
           <div class="modal-body px-4">Are you sure you want to log out?</div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold" data-dismiss="modal">
+          <div class="modal-footer justify-content-center border-top-0">
+            <button type="button" class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
               Cancel
             </button>
-            <button data-dismiss="modal" type="button" class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+            <button data-dismiss="modal" type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               @click="logout()">
               Confirm
             </button>

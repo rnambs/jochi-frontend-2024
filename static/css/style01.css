@@ -506,13 +506,6 @@ body {
 .btn.btn-void:hover {
   color: #431F1C;
 }
-.btn.btn-success {
-  background-color: #86FD97 !important;
-  color: #000000;
-}
-.btn.btn-success:hover {
-  background-color: #4AC55E !important;
-}
 .btn.btn-secondary {
   background-color: #ffffff;
   color: #344054;
@@ -4475,12 +4468,10 @@ switch to violet when it is active*/
 }
 .modal .modal-dialog .modal-content {
   height: auto;
-  border: none;
-  border-radius: 0.5rem;
+  border-top: 4px solid #5534A5;
   background-color: #ffffff;
   background-size: cover;
-  border: 1px solid #EAEAEA;
-  border-radius: 12px !important;
+  border-radius: 0;
 }
 .modal .modal-dialog .modal-content .modal-header {
   background-color: transparent;
@@ -4643,7 +4634,7 @@ switch to violet when it is active*/
   background-color: #5534A5;
   color: #ffffff;
 }
-.modal .modal-dialog .modal-content .modal-footer {
+.modal .modal-dialog .modal-content .modal-footer justify-content-center border-top-0 {
   background-color: transparent !important;
   border: none;
 }

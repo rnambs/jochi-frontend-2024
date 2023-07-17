@@ -276,17 +276,17 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
-              class="btn btn-secondary rounded-12 font-semi-bold px-4 py-1"
+              class="btn btn-secondary rounded-8 font-semi-bold px-4 py-1"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-success rounded-12 font-semi-bold px-4 py-1"
+              class="btn btn-primary rounded-8 font-semi-bold px-4 py-1"
               @click="configureGoal()"
               :disabled="processing"
             >

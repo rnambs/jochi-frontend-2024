@@ -331,7 +331,7 @@
                     </div>
                   </form>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer justify-content-center border-top-0">
                   <button
                     type="button"
                     class="btn btn-color-close"

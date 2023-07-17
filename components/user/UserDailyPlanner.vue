@@ -64,7 +64,7 @@
                             isAddAssignment = true;
                             resetAssignment();
                           "
-                          class="btn btn-dark py-1 px-3 mr-3"
+                          class="btn btn-primary py-1 px-3 mr-3"
                         >
                           Add Assignment
                         </button>
@@ -73,7 +73,7 @@
                           v-if="
                             choosenAssignments && choosenAssignments.length > 0
                           "
-                          class="btn btn-dark py-1 px-3"
+                          class="btn btn-primary py-1 px-3"
                         >
                           Delete selected
                         </button>
@@ -762,7 +762,7 @@
                         >
                           <button
                             v-if="!isAddAssignment"
-                            class="btn btn-success border border-dark py-0 px-4 rounded-12 font-semi-bold mb-2"
+                            class="btn btn-primary border border-dark py-0 px-4 rounded-8 font-semi-bold mb-2"
                             @click="confirmComplete"
                           >
                             <span>Mark as complete</span>
@@ -2060,7 +2060,7 @@
               </div>
             </form>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
               class="btn btn-secondary py-1 px-3 "
@@ -2101,17 +2101,17 @@
           <div class="modal-body px-3 bold-6">
             Mark assignment as completed?
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               :disabled="processingCompleteAssignment"
               @click="completeAssignment()"
             >
@@ -2144,17 +2144,17 @@
               Mark sub-task as completed?
             </h5>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+              class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
               :disabled="processingSubCompleteAssignment"
               @click="
                 processingSubCompleteAssignment = true;
@@ -2188,17 +2188,17 @@
             </h3>
             <h5 class="color-dark font-semi-bold">Undo sub-task completion?</h5>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+              class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
               :disabled="processingSubCompleteAssignment"
               @click="undoCompleteSubTask()"
             >
@@ -2228,10 +2228,10 @@
           <div class="modal-body px-4">
             Are you sure want to remove the peer?
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
@@ -2239,7 +2239,7 @@
             <button
               data-dismiss="modal"
               type="button"
-              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               @click="removePeer()"
             >
               Confirm
@@ -2273,10 +2273,10 @@
               Undo assignment completion?
             </h5>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
@@ -2284,7 +2284,7 @@
             <button
               data-dismiss="modal"
               type="button"
-              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               @click="undoAsstComplete()"
             >
               Confirm
@@ -2314,10 +2314,10 @@
             </h3>
           </div>
           <div class="modal-body px-4">Delete selected assignments?</div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
@@ -2325,7 +2325,7 @@
             <button
               data-dismiss="modal"
               type="button"
-              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               @click="deleteAssts()"
             >
               Confirm
@@ -2351,10 +2351,10 @@
             <h3 class="modal-title" id="alertModalModalLongTitle">Alert</h3>
           </div>
           <div class="modal-body px-4">{{ alertMessage }}</div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-center border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Ok
