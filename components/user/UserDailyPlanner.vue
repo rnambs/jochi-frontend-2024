@@ -738,7 +738,7 @@
                     class="position-absolute w-100 h-100 top-0 left-0 p-3"
                   >
                     <div
-                      class="d-flex card card-primary-void flex-column h-100 p-4 rounded-22"
+                      class="d-flex card flex-column h-100 p-4 rounded-22"
                     >
                       <div
                         class="d-flex flex-column flex-md-row justify-content-between mb-2 border-bottom"

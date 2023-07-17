@@ -44,7 +44,7 @@ $cal-border         : #F5E4F0;
 $confirm-green     : #86FD97;
 
 
-$font-secondary-dark         : #431F1C;
+// $font-secondary-dark         : #431F1C;
 // $font-gray01    : #C5C0BD;
 
 
@@ -1417,7 +1417,7 @@ $sm-screen-h         : 767.98px;
         pointer-events: visible;
         right: 3rem;
         transition: ease-in-out all 0.8s;
-        z-index: 1050;
+        z-index: 9;
       }
       .text-link{
         &:hover{

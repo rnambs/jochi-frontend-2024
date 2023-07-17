@@ -353,7 +353,7 @@ input[type="radio"]{
     input.form-control,select.form-control,.form-control{
         border: 1px solid $border-form-color;
         background-color: $white;
-        // box-shadow: 0 0 5px rgb(0 0 0 / 5%);
+        box-shadow: none;
         @include borderRadius(12);
         font-size: 1rem;
         color: $font-secondary-dark;
@@ -362,6 +362,7 @@ input[type="radio"]{
         &::placeholder{
             color: $font-gray01;
         }
+        &:hover,&:active,&:focus,&:focus-visible,&:focus-within,&:visited,&:target{box-shadow: none;}
         &.tab-form-control{
             height: calc(2.25rem + 10px);
             font-size: 12px;
@@ -1692,12 +1693,12 @@ img.dark-icon{
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        background: #f49196;
+        // background: #f49196;
         z-index: 9;
-        background: -moz-linear-gradient(-45deg,  #f49196 0%, #ff4e71 100%);
-        background: -webkit-linear-gradient(-45deg,  #f49196 0%,#ff4e71 100%);
-        background: linear-gradient(135deg,  #f49196 0%,#ff4e71 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f49196', endColorstr='#ff4e71',GradientType=1 );
+        // background: -moz-linear-gradient(-45deg,  #f49196 0%, #ff4e71 100%);
+        // background: -webkit-linear-gradient(-45deg,  #f49196 0%,#ff4e71 100%);
+        // background: linear-gradient(135deg,  #f49196 0%,#ff4e71 100%);
+        // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f49196', endColorstr='#ff4e71',GradientType=1 );
         @media (max-width: 510.98px) {
             height: 4rem;
         }
@@ -4316,8 +4317,8 @@ img.dark-icon{
                 position: relative;
                 &.selected{
                     .success-image{
-                        background-color: rgb(187 118 118 / 35%);
-                        @include borderRadius(22);
+                        background-color: rgba(221, 214, 237, 0.40);
+                        @include borderRadius(8);
                         top: 0;
                         left: 0;
                         span.check{
@@ -5689,7 +5690,7 @@ switch to violet when it is active*/
                 //     color: $white;
                 // }
                 td.in-range.available{
-                    background-color: #fbdcdc;
+                    background-color: $primary-light01;
                     color: $global-sidebar-bg;
                 }
                 td.active.start-date.available{
@@ -5709,12 +5710,12 @@ switch to violet when it is active*/
             font-weight: 700;
         }
         button.cancelBtn.btn.btn-sm.btn-default{
-            background-color: #fbdcdc;
-            color: $white;
-            border: none;
+            background-color: $white;
+            color: $font-label-color;
+            border: 1px solid $border-color;
         }
         button.applyBtn.btn.btn-sm.btn-primary{
-            background-color: $dark-theme;
+            background-color: $theme-color;
             color: $white;
             border: none;
         }
@@ -5756,8 +5757,9 @@ switch to violet when it is active*/
                 border-radius: 6px 6px 0px 0px;
                 border: none;
                 .modal-title{
-                    color: $theme-color;
-                    font-weight: 700;
+                    color: $black;
+                    font-weight: 600;
+                    font-size: 0.875rem;
                     // @media (max-width:1024.98px) {
                     //     font-size: 1rem;
                     // }
@@ -5777,6 +5779,7 @@ switch to violet when it is active*/
             .modal-body{
                 background-color: transparent;
                 max-height: 75vh;
+                font-size: 0.813rem;
                 padding: 4px 16px;
                 @media (max-width:$lg-screen) {
                     max-height: 50vh;
@@ -5962,12 +5965,14 @@ switch to violet when it is active*/
                     }
                 }
             }
-            .modal-footer justify-content-center border-top-0{
+            .modal-footer{
                 // border-top: 1px solid $border-color;
                 // background-color: $global-box-shadow;
                 // border-radius: 0px 0px 10px 10px;
-                background-color: transparent !important;
+                // background-color: transparent !important;
                 border: none;
+                .btn-primary {font-size: 0.875rem;}
+                .btn-secondary {font-size: 0.875rem;}
                 // .btn-color-close{
                 //     color: $white;
                 //     background-color: $theme-color;

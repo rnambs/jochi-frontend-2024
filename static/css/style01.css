@@ -14,7 +14,7 @@
 }
 
 .color-dark {
-  color: #431F1C !important;
+  color: #0D062D !important;
 }
 
 .color-secondary {
@@ -119,7 +119,7 @@
 }
 
 .color-dark {
-  color: #431F1C !important;
+  color: #0D062D !important;
 }
 
 .color-secondary {
@@ -504,7 +504,7 @@ body {
   color: #757575;
 }
 .btn.btn-void:hover {
-  color: #431F1C;
+  color: #0D062D;
 }
 .btn.btn-secondary {
   background-color: #ffffff;
@@ -597,9 +597,10 @@ input[type=radio] {
 .form-row input.form-control, .form-row select.form-control, .form-row .form-control, .form-group input.form-control, .form-group select.form-control, .form-group .form-control {
   border: 1px solid #BCBCBC;
   background-color: #ffffff;
+  box-shadow: none;
   border-radius: 12px !important;
   font-size: 1rem;
-  color: #431F1C;
+  color: #0D062D;
   padding: 0.375rem 0.75rem;
   height: calc(2.25rem + 4px);
 }
@@ -608,6 +609,9 @@ input[type=radio] {
 }
 .form-row input.form-control::placeholder, .form-row select.form-control::placeholder, .form-row .form-control::placeholder, .form-group input.form-control::placeholder, .form-group select.form-control::placeholder, .form-group .form-control::placeholder {
   color: #757575;
+}
+.form-row input.form-control:hover, .form-row input.form-control:active, .form-row input.form-control:focus, .form-row input.form-control:focus-visible, .form-row input.form-control:focus-within, .form-row input.form-control:visited, .form-row input.form-control:target, .form-row select.form-control:hover, .form-row select.form-control:active, .form-row select.form-control:focus, .form-row select.form-control:focus-visible, .form-row select.form-control:focus-within, .form-row select.form-control:visited, .form-row select.form-control:target, .form-row .form-control:hover, .form-row .form-control:active, .form-row .form-control:focus, .form-row .form-control:focus-visible, .form-row .form-control:focus-within, .form-row .form-control:visited, .form-row .form-control:target, .form-group input.form-control:hover, .form-group input.form-control:active, .form-group input.form-control:focus, .form-group input.form-control:focus-visible, .form-group input.form-control:focus-within, .form-group input.form-control:visited, .form-group input.form-control:target, .form-group select.form-control:hover, .form-group select.form-control:active, .form-group select.form-control:focus, .form-group select.form-control:focus-visible, .form-group select.form-control:focus-within, .form-group select.form-control:visited, .form-group select.form-control:target, .form-group .form-control:hover, .form-group .form-control:active, .form-group .form-control:focus, .form-group .form-control:focus-visible, .form-group .form-control:focus-within, .form-group .form-control:visited, .form-group .form-control:target {
+  box-shadow: none;
 }
 .form-row input.form-control.tab-form-control, .form-row select.form-control.tab-form-control, .form-row .form-control.tab-form-control, .form-group input.form-control.tab-form-control, .form-group select.form-control.tab-form-control, .form-group .form-control.tab-form-control {
   height: calc(2.25rem + 10px);
@@ -635,7 +639,7 @@ input[type=radio] {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
   border-radius: 12px !important;
   font-size: 1rem;
-  color: #431F1C;
+  color: #0D062D;
   padding: 0.375rem 0.75rem;
   height: unset;
 }
@@ -658,7 +662,7 @@ input[type=radio] {
 .form-row .dropdown-menu .item, .form-group .dropdown-menu .item {
   padding: 0.75rem 1rem;
   font-size: 0.8rem;
-  color: #431F1C;
+  color: #0D062D;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -706,7 +710,7 @@ input[type=radio] {
   font-size: 0.9rem;
   border: 1px solid #BCBCBC;
   background-color: rgba(255, 255, 255, 0.2);
-  color: #431F1C;
+  color: #0D062D;
   padding: 0.375rem 2.5rem 0.375rem 1rem;
   min-height: calc(2.8rem + 2px);
 }
@@ -729,7 +733,7 @@ input[type=radio] {
   height: unset;
   line-height: unset;
   color: #344054;
-  color: #431F1C;
+  color: #0D062D;
   font-size: 0.8rem;
   margin: 6px 2px;
 }
@@ -779,7 +783,7 @@ input[type=radio] {
 }
 .form-row .multiselect__content-wrapper ul li .multiselect__option--highlight, .form-group .multiselect__content-wrapper ul li .multiselect__option--highlight {
   font-size: 0.9rem;
-  color: #431F1C;
+  color: #0D062D;
   background: #F1EEF6;
   border: none;
   border-radius: 0.6rem;
@@ -892,12 +896,12 @@ input[type=radio] {
   overflow-y: auto;
 }
 .form-row span.vue__time-picker.time-picker .dropdown.drop-down .select-list ul li.hint, .form-group span.vue__time-picker.time-picker .dropdown.drop-down .select-list ul li.hint {
-  color: #431F1C;
+  color: #0D062D;
   cursor: default;
   font-size: 0.8em;
 }
 .form-row span.vue__time-picker.time-picker .dropdown.drop-down .select-list ul li, .form-group span.vue__time-picker.time-picker .dropdown.drop-down .select-list ul li {
-  color: #431F1C;
+  color: #0D062D;
   list-style: none;
   text-align: center;
   padding: 0.3em 0;
@@ -1770,10 +1774,7 @@ img.dark-icon {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: #f49196;
   z-index: 9;
-  background: linear-gradient(135deg, #f49196 0%, #ff4e71 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f49196", endColorstr="#ff4e71",GradientType=1 );
 }
 @media (max-width: 510.98px) {
   .inner-section .header-section {
@@ -1885,7 +1886,7 @@ img.dark-icon {
   }
 }
 .inner-section .header-section .sidebar-section .menu-items span.active, .inner-section .header-section .sidebar-section .menu-items span:hover {
-  color: #431F1C;
+  color: #0D062D;
 }
 .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link::after {
   display: none;
@@ -1915,7 +1916,7 @@ img.dark-icon {
   }
 }
 .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link span.active {
-  color: #431F1C;
+  color: #0D062D;
 }
 .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .fa-chevron-right {
   font-weight: 500;
@@ -1999,7 +2000,7 @@ img.dark-icon {
 .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a.nav-link.nuxt-link-exact-active.nuxt-link-active {
   padding: 0.5rem;
   border-radius: 0.3rem;
-  color: #431F1C;
+  color: #0D062D;
 }
 @media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a.nav-link.nuxt-link-exact-active.nuxt-link-active {
@@ -2009,7 +2010,7 @@ img.dark-icon {
 .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a:hover, .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a .active {
   padding: 0.5rem;
   border-radius: 0.3rem;
-  color: #431F1C;
+  color: #0D062D;
 }
 @media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a:hover, .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a .active {
@@ -2249,7 +2250,7 @@ img.dark-icon {
   pointer-events: visible;
   right: 3rem;
   transition: ease-in-out all 0.8s;
-  z-index: 1050;
+  z-index: 9;
 }
 .inner-section .main-section #Daily-Calander .text-link:hover, .inner-section .main-section #Weekly-Calander .text-link:hover, .inner-section .main-section #Monthly-Calander .text-link:hover {
   color: #000000 !important;
@@ -2266,18 +2267,18 @@ img.dark-icon {
   left: unset !important;
 }
 .inner-section .main-section #Daily-Calander .fc-popover.fc-more-popover span.fc-popover-title, .inner-section .main-section #Weekly-Calander .fc-popover.fc-more-popover span.fc-popover-title, .inner-section .main-section #Monthly-Calander .fc-popover.fc-more-popover span.fc-popover-title {
-  color: #431F1C;
+  color: #0D062D;
   font-size: 0.85rem;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
 .inner-section .main-section #Daily-Calander .fc-popover.fc-more-popover span.fc-popover-close.fc-icon.fc-icon-x::after, .inner-section .main-section #Weekly-Calander .fc-popover.fc-more-popover span.fc-popover-close.fc-icon.fc-icon-x::after, .inner-section .main-section #Monthly-Calander .fc-popover.fc-more-popover span.fc-popover-close.fc-icon.fc-icon-x::after {
   content: "×";
-  color: #431F1C;
+  color: #0D062D;
   font-size: 14px;
 }
 .inner-section .main-section #Daily-Calander .fc-popover.fc-more-popover span.fc-popover-close.fc-icon.fc-icon-x::before, .inner-section .main-section #Weekly-Calander .fc-popover.fc-more-popover span.fc-popover-close.fc-icon.fc-icon-x::before, .inner-section .main-section #Monthly-Calander .fc-popover.fc-more-popover span.fc-popover-close.fc-icon.fc-icon-x::before {
-  color: #431F1C;
+  color: #0D062D;
 }
 .inner-section .main-section #Daily-Calander .fc-popover.fc-more-popover .fc-popover-body, .inner-section .main-section #Weekly-Calander .fc-popover.fc-more-popover .fc-popover-body, .inner-section .main-section #Monthly-Calander .fc-popover.fc-more-popover .fc-popover-body {
   max-height: 140px;
@@ -3369,8 +3370,8 @@ img.dark-icon {
   position: relative;
 }
 .inner-section .main-section .teacher-section .assignment-status.selected .success-image {
-  background-color: rgba(187, 118, 118, 0.35);
-  border-radius: 22px;
+  background-color: rgba(221, 214, 237, 0.4);
+  border-radius: 8px;
   top: 0;
   left: 0;
 }
@@ -4426,7 +4427,7 @@ switch to violet when it is active*/
   border-width: 0 2px 2px 0;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-calendar .calendar-table tbody td.in-range.available {
-  background-color: #fbdcdc;
+  background-color: #DDD6ED;
   color: #2D2D2F;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-calendar .calendar-table tbody td.active.start-date.available {
@@ -4442,12 +4443,12 @@ switch to violet when it is active*/
   font-weight: 700;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-buttons button.cancelBtn.btn.btn-sm.btn-default {
-  background-color: #fbdcdc;
-  color: #ffffff;
-  border: none;
+  background-color: #ffffff;
+  color: #344054;
+  border: 1px solid #EAEAEA;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-buttons button.applyBtn.btn.btn-sm.btn-primary {
-  background-color: #FF4E71;
+  background-color: #5534A5;
   color: #ffffff;
   border: none;
 }
@@ -4479,8 +4480,9 @@ switch to violet when it is active*/
   border: none;
 }
 .modal .modal-dialog .modal-content .modal-header .modal-title {
-  color: #5534A5;
-  font-weight: 700;
+  color: #000000;
+  font-weight: 600;
+  font-size: 0.875rem;
 }
 .modal .modal-dialog .modal-content .modal-header .close {
   color: #5534A5;
@@ -4495,6 +4497,7 @@ switch to violet when it is active*/
 .modal .modal-dialog .modal-content .modal-body {
   background-color: transparent;
   max-height: 75vh;
+  font-size: 0.813rem;
   padding: 4px 16px;
 }
 @media (max-width: 1199.98px) {
@@ -4627,16 +4630,21 @@ switch to violet when it is active*/
 .modal .modal-dialog .modal-content .modal-body .date-picker.badge.badge-pill.badge-color {
   background-color: rgba(255, 255, 255, 0.45);
   box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
-  color: #431F1C;
+  color: #0D062D;
   width: 56px;
 }
 .modal .modal-dialog .modal-content .modal-body .date-picker.badge.badge-pill.badge-color.active {
   background-color: #5534A5;
   color: #ffffff;
 }
-.modal .modal-dialog .modal-content .modal-footer justify-content-center border-top-0 {
-  background-color: transparent !important;
+.modal .modal-dialog .modal-content .modal-footer {
   border: none;
+}
+.modal .modal-dialog .modal-content .modal-footer .btn-primary {
+  font-size: 0.875rem;
+}
+.modal .modal-dialog .modal-content .modal-footer .btn-secondary {
+  font-size: 0.875rem;
 }
 
 .dropdown-menu {
@@ -4976,7 +4984,7 @@ switch to violet when it is active*/
   }
 }
 .vdp-datepicker.form-control input[type=text] {
-  color: #431F1C;
+  color: #0D062D;
   cursor: pointer;
   padding-top: 0.15em;
 }
@@ -5019,7 +5027,7 @@ switch to violet when it is active*/
   border-width: 0 2px 2px 0;
 }
 .vdp-datepicker__calendar header span.day__month_btn.up {
-  color: #431F1C;
+  color: #0D062D;
   font-weight: 600;
   font-size: 13px;
 }
@@ -5046,7 +5054,7 @@ switch to violet when it is active*/
   font-size: 12px;
 }
 .vdp-datepicker__calendar span.cell.day {
-  color: #431F1C;
+  color: #0D062D;
   font-size: 12px;
   white-space: nowrap;
   text-align: center;
