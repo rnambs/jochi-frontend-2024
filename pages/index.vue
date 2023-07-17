@@ -74,7 +74,7 @@
                 class="btn btn-primary font-semi-bold px-5 px-md-3 px-lg-5"
                 @click="redirectToGg4L()"
               >
-                Sign in with School Passport
+                Sign in with Edink
               </button>
               <!-- <form action="" class="sign-in" @submit.prevent="GetSignUp">
                 <div class="row mb-3">
