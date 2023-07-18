@@ -532,7 +532,7 @@
     >
       <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content h-auto">
-          <div class="modal-body px-4 pt-4">
+          <div class="modal-body px-3 pt-4">
             <h3
               class="modal-title color-primary-dark font-bold"
               id="mediumModalLabel"
@@ -543,7 +543,7 @@
               Are you sure you want to delete this item?
             </p>
           </div>
-          <div class="modal-footer justify-content-center border-top-0 bg-white text-dark">
+          <div class="modal-footer justify-content-end border-top-0 bg-white text-dark">
             <button
               type="button"
               data-dismiss="modal"
@@ -672,7 +672,7 @@
               </fieldset>
             </form>
           </div>
-          <div v-if="enableEdit" class="modal-footer justify-content-center border-top-0">
+          <div v-if="enableEdit" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary px-3 py-1 rounded-8 font-semi-bold"
@@ -995,7 +995,7 @@
               </form>
             </div>
           </div>
-          <div v-if="enableEdit" class="modal-footer justify-content-center border-top-0">
+          <div v-if="enableEdit" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary px-3 py-1 rounded-8 font-semi-bold"
@@ -1087,7 +1087,7 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer justify-content-center border-top-0 px-4">
+          <div class="modal-footer justify-content-end border-top-0 px-4">
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-8"
@@ -1235,7 +1235,7 @@
               </div>
             </div>
           </div>
-          <div v-if="!showClubInfo" class="modal-footer justify-content-center border-top-0">
+          <div v-if="!showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
@@ -1252,7 +1252,7 @@
               Yes
             </button>
           </div>
-          <div v-if="showClubInfo" class="modal-footer justify-content-center border-top-0">
+          <div v-if="showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"

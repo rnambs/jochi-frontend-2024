@@ -579,7 +579,7 @@
             <div class="modal-body">
               <div>Are you sure you want to delete the profile image?</div>
             </div>
-            <div class="modal-footer justify-content-center border-top-0">
+            <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
                 class="btn btn-secondary py-1 px-4 rounded-8 font-semi-bold"
@@ -623,7 +623,7 @@
             <div class="modal-body px-3 bold-6">
               Send request to become a school admin?
             </div>
-            <div class="modal-footer justify-content-center border-top-0">
+            <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
                 class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"

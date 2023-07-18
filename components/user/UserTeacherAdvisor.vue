@@ -635,7 +635,7 @@
                 </multiselect>
               </div>
             </div>
-            <div class="modal-footer justify-content-center border-top-0">
+            <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
                 class="btn btn-secondary font-semi-bold rounded-8 py-1 px-4"

@@ -389,7 +389,7 @@
                 </div>
               </div>
             </div>
-            <div class="modal-footer justify-content-center border-top-0 bg-white text-dark">
+            <div class="modal-footer justify-content-end border-top-0 bg-white text-dark">
               <button
                 v-if="
                   meetingDetail &&

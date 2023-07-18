@@ -1144,7 +1144,7 @@
                               <div
                                 v-for="peer of peerList"
                                 :key="peer.id"
-                                class="h-fit-content show-icon"
+                                class="h-fit-content show-icon d-flex align-items-center position-relative"
                               >
                                 <div
                                   class="d-flex align-items-center my-2 mr-3"
@@ -1175,10 +1175,11 @@
                                   type="button"
                                   role="button"
                                   @click="removePeerConfirm(peer.id, $event)"
+                                  class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none"
                                 >
                                   <span
-                                    class="color-primary-dark fa-icon show-hover d-none btn p-0 ml-05"
-                                    ><i class="fas fa-trash-alt ml-3"></i
+                                    class="color-primary-dark fa-icon show-hover btn p-0 ml-05"
+                                    ><i class="fas fa-trash-alt color-danger"></i
                                   ></span>
                                 </button>
                               </div>
@@ -1739,7 +1740,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body px-4">
+          <div class="modal-body px-3">
             <form ref="assignmentForm" id="assignmentForm">
               <div class="form-group">
                 <label for="recipient-name" class="col-form-label"
@@ -2060,7 +2061,7 @@
               </div>
             </form>
           </div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary py-1 px-3 "
@@ -2101,7 +2102,7 @@
           <div class="modal-body px-3 bold-6">
             Mark assignment as completed?
           </div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
@@ -2133,7 +2134,7 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-body px-4">
+          <div class="modal-body px-3">
             <h3
               class="modal-title color-primary-dark font-bold mt-3"
               id="completeConfirmModalLongTitle"
@@ -2144,7 +2145,7 @@
               Mark sub-task as completed?
             </h5>
           </div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
@@ -2179,7 +2180,7 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-body px-4">
+          <div class="modal-body px-3">
             <h3
               class="modal-title color-primary-dark font-bold mt-3"
               id="undoSubTaskConfirmModalLongTitle"
@@ -2188,7 +2189,7 @@
             </h3>
             <h5 class="color-dark font-semi-bold">Undo sub-task completion?</h5>
           </div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
@@ -2225,10 +2226,10 @@
               Remove Peer Confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">
+          <div class="modal-body px-3">
             Are you sure want to remove the peer?
           </div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
@@ -2273,7 +2274,7 @@
               Undo assignment completion?
             </h5>
           </div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
@@ -2313,8 +2314,8 @@
               Delete assignment confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">Delete selected assignments?</div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-body px-3">Delete selected assignments?</div>
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
@@ -2350,8 +2351,8 @@
           <div class="modal-header pb-1">
             <h3 class="modal-title" id="alertModalModalLongTitle">Alert</h3>
           </div>
-          <div class="modal-body px-4">{{ alertMessage }}</div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-body px-3">{{ alertMessage }}</div>
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"

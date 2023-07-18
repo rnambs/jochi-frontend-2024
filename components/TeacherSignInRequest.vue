@@ -155,7 +155,7 @@
                           Are you sure you want to continue?
                         </p>
                       </div>
-                      <div class="modal-footer justify-content-center border-top-0 bg-white">
+                      <div class="modal-footer justify-content-end border-top-0 bg-white">
                         <button
                           type="button"
                           data-dismiss="modal"

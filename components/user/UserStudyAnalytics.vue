@@ -276,7 +276,7 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary rounded-8 font-semi-bold px-4 py-1"

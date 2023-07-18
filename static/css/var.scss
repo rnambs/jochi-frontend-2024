@@ -61,11 +61,12 @@ $label-green: #159E00;
 
 // TEXT COLORS
 
+.color-primary{color: $theme-color;}
 .color-primary-dark{color: $font-primary-dark;}
 .color-black{color: $black;}
 .color-dark{color: $font-secondary-dark !important;}
 .color-secondary{color: $font-gray01;}
-
+.color-danger{color: $danger-color;}
 .color-label-green{color: $label-green;}
 
 // BG COLORS

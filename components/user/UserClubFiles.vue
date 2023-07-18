@@ -315,7 +315,7 @@
                         </span>
                       </p>
                     </div>
-                    <div class="modal-footer justify-content-center border-top-0">
+                    <div class="modal-footer justify-content-end border-top-0">
                       <button
                         type="button"
                         class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
@@ -574,7 +574,7 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-8"
@@ -722,7 +722,7 @@
               </div>
             </div>
           </div>
-          <div v-if="!showClubInfo" class="modal-footer justify-content-center border-top-0">
+          <div v-if="!showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
@@ -739,7 +739,7 @@
               Yes
             </button>
           </div>
-          <div v-if="showClubInfo" class="modal-footer justify-content-center border-top-0">
+          <div v-if="showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"

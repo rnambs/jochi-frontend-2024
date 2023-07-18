@@ -109,7 +109,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body px-4">
+                <div class="modal-body px-3">
                   <p class="data-overflow">
                     Subject:<span>{{ assignment.subject }} </span>
                   </p>
@@ -331,7 +331,7 @@
                     </div>
                   </form>
                 </div>
-                <div class="modal-footer justify-content-center border-top-0">
+                <div class="modal-footer justify-content-end border-top-0">
                   <button
                     type="button"
                     class="btn btn-color-close"
@@ -380,7 +380,7 @@
                   </button>
                 </div>
 
-                <div class="modal-body px-4">
+                <div class="modal-body px-3">
                   <table class="table-modal w-100">
                     <tr>
                       <td class="tmodal-data mb-2 text-nowrap">Meeting With</td>

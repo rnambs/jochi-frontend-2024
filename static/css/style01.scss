@@ -1038,6 +1038,15 @@ input[type="radio"]{
         }
     }
 }
+.show-icon:hover{
+    .btn-tag-remove{
+        background-color: rgba($color: $black, $alpha: 0.3);
+        width: 50px;
+        min-width: 50px;
+        height: 50px;
+        display: flex !important;
+    }
+}
 .rounded-10{
     border-radius: 12px;
 }
@@ -1371,16 +1380,18 @@ img.dark-icon{
 // SIGN-IN
 
 .main-container{
-    color: $font-label-color;       
-        background-image: url("./../image/jochi-light-bg.png");
-    background-position:center;
-    background-repeat:no-repeat;
-    background-size:cover;
+    color: $font-label-color;  
+    background: rgb(221,214,237);
+    background: linear-gradient(135deg, rgba(221,214,237,1) 0%, rgba(255,255,255,1) 55%);
+        // background-image: url("./../image/jochi-light-bg.png");
+    // background-position:center;
+    // background-repeat:no-repeat;
+    // background-size:cover;
     &.register{
-        background-image: url("../../image/login-bg.jpg");
-        @media (max-width: $min-sm-screen ) {
-            background-image: url("../../image/login-bg-rotate.jpg");
-        }
+        // background-image: url("../../image/login-bg.jpg");
+        // @media (max-width: $min-sm-screen ) {
+        //     background-image: url("../../image/login-bg-rotate.jpg");
+        // }
         .logo-icon{
             max-width: 140px;
             width: 100%;
@@ -1403,7 +1414,7 @@ img.dark-icon{
             max-width: 500px;
             width: 100%;
             img.passport-img{
-                max-width: 120px;
+                max-width: 250px;
                 width: 100%;
             }
         }
@@ -5759,7 +5770,7 @@ switch to violet when it is active*/
                 .modal-title{
                     color: $black;
                     font-weight: 600;
-                    font-size: 0.875rem;
+                    font-size: 1.25rem;
                     // @media (max-width:1024.98px) {
                     //     font-size: 1rem;
                     // }

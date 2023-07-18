@@ -1194,7 +1194,7 @@
               session will be lost. Are you sure you want to exit?
             </p>
           </div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-8"
@@ -1268,7 +1268,7 @@
               ></vue-timepicker>
             </div>
           </div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-8"
@@ -1317,7 +1317,7 @@
           <div class="modal-body overflow-initial">
             This assignment has already been completed. Do you want to continue?
           </div>
-          <div class="modal-footer justify-content-center border-top-0">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 "

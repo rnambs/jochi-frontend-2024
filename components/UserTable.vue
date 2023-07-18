@@ -235,7 +235,7 @@
                       <div class="modal-body">
                         <p>Are you sure you want to delete this item?</p>
                       </div>
-                      <div class="modal-footer justify-content-center border-top-0 bg-white">
+                      <div class="modal-footer justify-content-end border-top-0 bg-white">
                         <button
                           type="button"
                           data-dismiss="modal"
@@ -410,7 +410,7 @@
                       <div class="modal-body">
                         <p>Are you sure you want to delete this item?</p>
                       </div>
-                      <div class="modal-footer justify-content-center border-top-0 bg-white">
+                      <div class="modal-footer justify-content-end border-top-0 bg-white">
                         <button
                           type="button"
                           data-dismiss="modal"

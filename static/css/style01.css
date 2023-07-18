@@ -5,6 +5,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+.color-primary {
+  color: #5534A5;
+}
+
 .color-primary-dark {
   color: #141522;
 }
@@ -19,6 +23,10 @@
 
 .color-secondary {
   color: #757575;
+}
+
+.color-danger {
+  color: #FF4D5E;
 }
 
 .color-label-green {
@@ -110,6 +118,10 @@
   overflow: hidden;
 }
 
+.color-primary {
+  color: #5534A5;
+}
+
 .color-primary-dark {
   color: #141522;
 }
@@ -124,6 +136,10 @@
 
 .color-secondary {
   color: #757575;
+}
+
+.color-danger {
+  color: #FF4D5E;
 }
 
 .color-label-green {
@@ -1177,6 +1193,14 @@ input[type=radio] {
   display: block !important;
 }
 
+.show-icon:hover .btn-tag-remove {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 50px;
+  min-width: 50px;
+  height: 50px;
+  display: flex !important;
+}
+
 .rounded-10 {
   border-radius: 12px;
 }
@@ -1501,18 +1525,8 @@ img.dark-icon {
 
 .main-container {
   color: #344054;
-  background-image: url("./../image/jochi-light-bg.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.main-container.register {
-  background-image: url("../../image/login-bg.jpg");
-}
-@media (max-width: 768px) {
-  .main-container.register {
-    background-image: url("../../image/login-bg-rotate.jpg");
-  }
+  background: rgb(221, 214, 237);
+  background: linear-gradient(135deg, rgb(221, 214, 237) 0%, rgb(255, 255, 255) 55%);
 }
 .main-container.register .logo-icon {
   max-width: 140px;
@@ -1532,7 +1546,7 @@ img.dark-icon {
   width: 100%;
 }
 .main-container.register section.login-box img.passport-img {
-  max-width: 120px;
+  max-width: 250px;
   width: 100%;
 }
 .main-container.register .login-icon-area a.btn img {
@@ -4482,7 +4496,7 @@ switch to violet when it is active*/
 .modal .modal-dialog .modal-content .modal-header .modal-title {
   color: #000000;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 1.25rem;
 }
 .modal .modal-dialog .modal-content .modal-header .close {
   color: #5534A5;
