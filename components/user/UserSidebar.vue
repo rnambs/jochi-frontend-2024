@@ -447,11 +447,15 @@ export default {
     }
 
     const activeLink = document.querySelector(".nuxt-link-active");
-    const parentElement = activeLink?.closest(".collapse-for-link");
-    const siblingDiv = parentElement.previousElementSibling;
-    siblingDiv?.classList.add("show");
-    if (siblingDiv.classList.contains("collapsed")) {
-      siblingDiv.click();
+    if (activeLink) {
+      const parentElement = activeLink?.closest(".collapse-for-link");
+      if (parentElement) {
+        const siblingDiv = parentElement?.previousElementSibling;
+        siblingDiv?.classList.add("show");
+        if (siblingDiv?.classList?.contains("collapsed")) {
+          siblingDiv.click();
+        }
+      }
     }
 
     // window.addEventListener("keydown", (e) => {
