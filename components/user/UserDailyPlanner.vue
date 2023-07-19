@@ -904,7 +904,7 @@
                                       >
                                     </button>
                                     <ul
-                                      class="dropdown-menu"
+                                      class="dropdown-menu border"
                                       aria-labelledby="dLabel"
                                     >
                                       <li
@@ -1857,7 +1857,7 @@
                           }}</span
                         >
                       </button>
-                      <ul class="dropdown-menu" aria-labelledby="dLabel">
+                      <ul class="dropdown-menu border" aria-labelledby="dLabel">
                         <li class="item low-color">
                           <span>Can Wait</span>
                         </li>

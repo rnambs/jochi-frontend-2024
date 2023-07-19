@@ -614,7 +614,7 @@ input[type=radio] {
   border: 1px solid #BCBCBC;
   background-color: #ffffff;
   box-shadow: none;
-  border-radius: 12px !important;
+  border-radius: 8px;
   font-size: 1rem;
   color: #0D062D;
   padding: 0.375rem 0.75rem;
@@ -653,7 +653,7 @@ input[type=radio] {
   border: 1px solid #BCBCBC;
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
-  border-radius: 12px !important;
+  border-radius: 8px;
   font-size: 1rem;
   color: #0D062D;
   padding: 0.375rem 0.75rem;
@@ -722,7 +722,7 @@ input[type=radio] {
   background: unset;
 }
 .form-row .multiselect__tags, .form-group .multiselect__tags {
-  border-radius: 12px !important;
+  border-radius: 8px;
   font-size: 0.9rem;
   border: 1px solid #BCBCBC;
   background-color: rgba(255, 255, 255, 0.2);
@@ -825,6 +825,8 @@ input[type=radio] {
   display: inline-block;
   position: relative;
   vertical-align: middle;
+  border: 1px solid #BCBCBC;
+  border-radius: 8px;
 }
 .form-row span.vue__time-picker.time-picker.form-white input.display-time, .form-group span.vue__time-picker.time-picker.form-white input.display-time {
   background-color: #ffffff;
@@ -892,7 +894,8 @@ input[type=radio] {
 }
 .form-row span.vue__time-picker.time-picker .dropdown.drop-down .select-list, .form-group span.vue__time-picker.time-picker .dropdown.drop-down .select-list {
   width: 13.3em;
-  border-radius: 15px;
+  border-radius: 8px;
+  border: 1px solid #BCBCBC;
   background-color: #ffffff;
   height: 10em;
   overflow: hidden;
@@ -1549,6 +1552,11 @@ img.dark-icon {
   max-width: 250px;
   width: 100%;
 }
+@media (max-width: 1399.98px) {
+  .main-container.register section.login-box img.passport-img {
+    max-width: 180px;
+  }
+}
 .main-container.register .login-icon-area a.btn img {
   width: 30px;
   min-width: 24px;
@@ -1571,11 +1579,16 @@ img.dark-icon {
   .main-container .img-section .img-responsive {
     padding: 0;
     margin: 0px auto 20px;
-    max-width: 180px;
+    max-width: 240px;
     width: 100%;
   }
 }
-@media (max-height: 689.98px) {
+@media (max-width: 991.98px) {
+  .main-container .img-section .img-responsive {
+    max-width: 180px;
+  }
+}
+@media (max-height: 589.98px) {
   .main-container .img-section .img-responsive {
     max-width: 180px;
   }

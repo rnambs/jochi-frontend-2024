@@ -927,7 +927,7 @@
                                           >
                                         </button>
                                         <ul
-                                          class="dropdown-menu"
+                                          class="dropdown-menu border"
                                           aria-labelledby="dLabel"
                                         >
                                           <li
