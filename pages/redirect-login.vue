@@ -137,7 +137,7 @@ export default {
 .inner-section .sufee-login::before {
   content: "";
   position: absolute;
-  background-image: url(../static/image/jochi-light-bg-rotate.png);
+  background-image: url(../static/image/v4/jochi-light-bg-rotate.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
