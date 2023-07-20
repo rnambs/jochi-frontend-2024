@@ -15,7 +15,7 @@
           <div class="row">
             <div class="col-12 position-realtive h-100 d-flex flex-column">
               <div class="bg-white border rounded-10 position-relative h-100">
-                <div class="planner-week p-4 pt-5 px-3 px-sm-5">
+                <div class="planner-week p-4 pt-5 px-3 px-sm-5 d-flex flex-column h-100">
                   <div class="color-ref">
                     <ul class="d-flex align-itmes-center">
                       <li><span>Urgent assignments</span></li>
@@ -83,7 +83,7 @@
                               isAddAssignment = true;
                               resetAssignment();
                             "
-                            class="btn btn-dark py-1 px-3 mr-3"
+                            class="btn btn-primary py-1 px-3 mr-3"
                           >
                             Add Assignment
                           </button>
@@ -93,7 +93,7 @@
                               choosenAssignments &&
                               choosenAssignments.length > 0
                             "
-                            class="btn btn-dark py-1 px-3"
+                            class="btn btn-primary py-1 px-3"
                           >
                             Delete selected
                           </button>
@@ -752,7 +752,7 @@
                         class="position-absolute w-100 h-100 top-0 left-0 p-3"
                       >
                         <div
-                          class="d-flex card card-primary-void flex-column h-100 p-4 rounded-22 col-12 col-lg-8 float-right"
+                          class="d-flex card flex-column h-100 p-4 rounded-22 col-12 col-lg-8 float-right"
                         >
                           <div
                             class="d-flex flex-column flex-md-row justify-content-between mb-2 border-bottom"
@@ -776,7 +776,7 @@
                             >
                               <button
                                 v-if="!isAddAssignment"
-                                class="btn btn-success border border-dark py-0 px-4 rounded-12 font-semi-bold mb-2"
+                                class="btn btn-primary border border-dark py-0 px-4 rounded-8 font-semi-bold mb-2"
                                 @click="confirmComplete"
                               >
                                 <span>Mark as complete</span>
@@ -927,7 +927,7 @@
                                           >
                                         </button>
                                         <ul
-                                          class="dropdown-menu"
+                                          class="dropdown-menu border"
                                           aria-labelledby="dLabel"
                                         >
                                           <li
@@ -1173,7 +1173,7 @@
                                   <div
                                     v-for="peer of peerList"
                                     :key="peer.id"
-                                    class="h-fit-content show-icon"
+                                    class="h-fit-content show-icon d-flex align-items-center position-realtive"
                                   >
                                     <div
                                       class="d-flex align-items-center my-2 mr-3"
@@ -1203,13 +1203,14 @@
                                     <button
                                       type="button"
                                       role="button"
+                                      class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none"
                                       @click="
                                         removePeerConfirm(peer.id, $event)
                                       "
                                     >
                                       <span
-                                        class="color-primary-dark fa-icon show-hover d-none btn p-0 ml-05"
-                                        ><i class="fas fa-trash-alt ml-3"></i
+                                        class="color-primary-dark fa-icon show-hover btn p-0 ml-05"
+                                        ><i class="fas fa-trash-alt color-danger"></i
                                       ></span>
                                     </button>
                                   </div>
@@ -1737,7 +1738,7 @@
                             <div class="d-flex justify-content-end">
                               <button
                                 type="button"
-                                class="btn btn-secondary py-1 px-3 rounded-pill mr-2"
+                                class="btn btn-secondary py-1 px-3  mr-2"
                                 @click="
                                   openAssignment = false;
                                   closePopup();
@@ -1747,7 +1748,7 @@
                               </button>
                               <button
                                 type="button"
-                                class="btn btn-primary py-1 px-3 rounded-pill"
+                                class="btn btn-primary py-1 px-3 "
                                 :disabled="processing"
                                 @click="
                                   isAddAssignment
@@ -1787,7 +1788,7 @@
               Choose Filter
             </h3>
           </div>
-          <div class="modal-body px-4">
+          <div class="modal-body px-3">
             <div class="form-row">
               <select class="form-control" tabindex="" v-model="filterType">
                 <option value="">All</option>
@@ -1798,11 +1799,11 @@
               </select>
             </div>
           </div>
-          <div class="modal-footer px-4">
+          <div class="modal-footer justify-content-end border-top-0 px-4">
             <button
               aria-label="Close"
               data-dismiss="modal"
-              class="btn btn-secondary px-4 py-1 rounded-12"
+              class="btn btn-secondary px-4 py-1 rounded-8"
             >
               Cancel
             </button>
@@ -1811,7 +1812,7 @@
                 applyFilter();
                 closeAssignmentPlanner();
               "
-              class="btn btn-success px-4 py-1 rounded-12"
+              class="btn btn-primary px-4 py-1 rounded-8"
             >
               Apply Filter
             </button>
@@ -1841,17 +1842,17 @@
           <div class="modal-body px-3 bold-6">
             Mark assignment as completed?
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               :disabled="processingCompleteAssignment"
               @click="completeAssignment()"
             >
@@ -1873,7 +1874,7 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-body px-4">
+          <div class="modal-body px-3">
             <h3
               class="modal-title color-primary-dark font-bold mt-3"
               id="completeConfirmModalLongTitle"
@@ -1884,17 +1885,17 @@
               Mark sub-task as completed?
             </h5>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+              class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
               :disabled="processingSubCompleteAssignment"
               @click="
                 processingSubCompleteAssignment = true;
@@ -1919,7 +1920,7 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-body px-4">
+          <div class="modal-body px-3">
             <h3
               class="modal-title color-primary-dark font-bold mt-3"
               id="undoSubTaskConfirmModalLongTitle"
@@ -1928,17 +1929,17 @@
             </h3>
             <h5 class="color-dark font-semi-bold">Undo sub-task completion?</h5>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+              class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
               :disabled="processingSubCompleteAssignment"
               @click="undoCompleteSubTask()"
             >
@@ -1965,13 +1966,13 @@
               Remove Peer Confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">
+          <div class="modal-body px-3">
             Are you sure want to remove the peer?
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
@@ -1979,7 +1980,7 @@
             <button
               data-dismiss="modal"
               type="button"
-              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               @click="removePeer()"
             >
               Confirm
@@ -2013,10 +2014,10 @@
               Undo assignment completion?
             </h5>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
@@ -2024,7 +2025,7 @@
             <button
               data-dismiss="modal"
               type="button"
-              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               @click="undoAsstComplete()"
             >
               Confirm
@@ -2053,11 +2054,11 @@
               Delete assignment confirmation
             </h3>
           </div>
-          <div class="modal-body px-4">Delete selected assignments?</div>
-          <div class="modal-footer">
+          <div class="modal-body px-3">Delete selected assignments?</div>
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
@@ -2065,7 +2066,7 @@
             <button
               data-dismiss="modal"
               type="button"
-              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               @click="deleteAssts()"
             >
               Confirm
@@ -2089,11 +2090,11 @@
           <div class="modal-header pb-1">
             <h3 class="modal-title" id="alertModalModalLongTitle">Alert</h3>
           </div>
-          <div class="modal-body px-4">{{ alertMessage }}</div>
-          <div class="modal-footer">
+          <div class="modal-body px-3">{{ alertMessage }}</div>
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Ok

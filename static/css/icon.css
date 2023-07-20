@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+.color-primary {
+  color: #5534A5;
+}
+
 .color-primary-dark {
   color: #141522;
 }
@@ -9,11 +14,15 @@
 }
 
 .color-dark {
-  color: #431F1C !important;
+  color: #0D062D !important;
 }
 
 .color-secondary {
   color: #757575;
+}
+
+.color-danger {
+  color: #FF4D5E;
 }
 
 .color-label-green {
@@ -62,11 +71,7 @@
 }
 
 .font-primary {
-  font-family: "Syne", sans-serif !important;
-}
-
-.font-secondary {
-  font-family: "Plus Jakarta Sans", sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
 .text-14 {

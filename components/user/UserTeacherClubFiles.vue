@@ -232,17 +232,17 @@
                       <!-- {{ remove_name }}  -->
                     </p>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer justify-content-end border-top-0">
                     <button
                       type="button"
-                      class="btn btn-secondary px-3 py-1 rounded-pill"
+                      class="btn btn-secondary px-3 py-1 "
                       data-dismiss="modal"
                     >
                       No
                     </button>
                     <button
                       type="button"
-                      class="btn btn-primary px-3 py-1 rounded-pill"
+                      class="btn btn-primary px-3 py-1 "
                       data-dismiss="modal"
                       @click="FileRemove"
                     >

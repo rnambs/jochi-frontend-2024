@@ -269,7 +269,7 @@
                       <button
                         v-if="sessionDetail.startSession"
                         @click="checkIfCompletedAsst()"
-                        class="btn btn-dark py-2 text-center"
+                        class="btn btn-primary py-2 text-center"
                       >
                         Start Session Now
                       </button>
@@ -515,7 +515,7 @@
                 </p>
                 <button
                   @click="$event.stopPropagation()"
-                  class="btn btn-dark py-2 text-center"
+                  class="btn btn-primary py-2 text-center"
                 >
                   <a
                     style="color: #ffffff"
@@ -845,7 +845,7 @@
                             "
                             type="button"
                             @click="openScheduleForLater()"
-                            class="btn btn-dark btn-sm"
+                            class="btn btn-primary btn-sm"
                           >
                             Schedule for later
                           </button>
@@ -1194,17 +1194,17 @@
               session will be lost. Are you sure you want to exit?
             </p>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12"
+              class="btn btn-secondary px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-primary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
               @click="onEndSession()"
               :disabled="processing"
@@ -1268,17 +1268,17 @@
               ></vue-timepicker>
             </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12"
+              class="btn btn-secondary px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-success rounded-12 px-4 py-1"
+              class="btn btn-primary rounded-8 px-4 py-1"
               @click="StartStudySession(false)"
               :disabled="processingStudySession"
             >
@@ -1317,10 +1317,10 @@
           <div class="modal-body overflow-initial">
             This assignment has already been completed. Do you want to continue?
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-pill"
+              class="btn btn-secondary px-4 py-1 "
               data-dismiss="modal"
             >
               Close
@@ -1328,7 +1328,7 @@
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-primary rounded-pill px-4 py-1"
+              class="btn btn-primary  px-4 py-1"
               @click="goToSession()"
             >
               Confirm

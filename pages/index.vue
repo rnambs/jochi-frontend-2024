@@ -3,7 +3,7 @@
     <!-- <div class="text-center" v-if="loading && loadingMessage">
       {{ loadingMessage }}
     </div> -->
-    <img
+    <!-- <img
       src="../static/image/login-bg.jpg"
       alt=""
       class="bg-img d-none d-md-flex"
@@ -12,7 +12,7 @@
       src="../static/image/login-bg-rotate.jpg"
       alt=""
       class="bg-img d-flex d-md-none"
-    />
+    /> -->
 
     <lottie
       v-if="loading"
@@ -43,9 +43,9 @@
           alt="undraw"
           class="img-responsive jump"
         />
-        <p class="mb-0 color-white text-16 font-regular">
-          <a class="color-white" href="https://www.jochi.info/faqs"> FAQ's </a>|
-          <a class="color-white" href="  https://www.jochi.info/privacy-policy">
+        <p class="mb-0 color-dark text-16 font-regular">
+          <a class="color-dark" href="https://www.jochi.info/faqs"> FAQ's </a>|
+          <a class="color-dark" href="  https://www.jochi.info/privacy-policy">
             Privacy Policy
           </a>
         </p>
@@ -63,10 +63,10 @@
             class="d-flex flex-column h-100 justify-content-center p-3 px-3 px-md-5 px-lg-3"
           >
             <div
-              class="card rounded-22 p-4 p-xl-5 d-flex flex-column justify-content-center align-items-center"
+              class="card bg-primary-light rounded-22 p-4 p-xl-5 d-flex flex-column justify-content-center align-items-center mt-0 mt-lg-5"
             >
               <img
-                src="../static/image/school_passport.png"
+                src="../static/image/edlink-jochi.png"
                 alt=""
                 class="mb-2 mb-lg-4 passport-img py-4 py-md-2 py-xl-4"
               />
@@ -74,7 +74,7 @@
                 class="btn btn-primary font-semi-bold px-5 px-md-3 px-lg-5"
                 @click="redirectToGg4L()"
               >
-                Sign in with Edink
+                Sign in with EDLINK
               </button>
               <!-- <form action="" class="sign-in" @submit.prevent="GetSignUp">
                 <div class="row mb-3">

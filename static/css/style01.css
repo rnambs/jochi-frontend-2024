@@ -5,6 +5,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+.color-primary {
+  color: #5534A5;
+}
+
 .color-primary-dark {
   color: #141522;
 }
@@ -14,11 +18,15 @@
 }
 
 .color-dark {
-  color: #431F1C !important;
+  color: #0D062D !important;
 }
 
 .color-secondary {
   color: #757575;
+}
+
+.color-danger {
+  color: #FF4D5E;
 }
 
 .color-label-green {
@@ -110,6 +118,10 @@
   overflow: hidden;
 }
 
+.color-primary {
+  color: #5534A5;
+}
+
 .color-primary-dark {
   color: #141522;
 }
@@ -119,11 +131,15 @@
 }
 
 .color-dark {
-  color: #431F1C !important;
+  color: #0D062D !important;
 }
 
 .color-secondary {
   color: #757575;
+}
+
+.color-danger {
+  color: #FF4D5E;
 }
 
 .color-label-green {
@@ -504,21 +520,16 @@ body {
   color: #757575;
 }
 .btn.btn-void:hover {
-  color: #431F1C;
-}
-.btn.btn-success {
-  background-color: #86FD97 !important;
-  color: #000000;
-}
-.btn.btn-success:hover {
-  background-color: #4AC55E !important;
+  color: #0D062D;
 }
 .btn.btn-secondary {
-  background-color: #757575;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #344054;
+  border: 1px solid #EAEAEA;
+  font-weight: 600;
 }
 .btn.btn-secondary:hover {
-  background-color: #000000;
+  background-color: #F9F9F9;
 }
 .btn span.arrow {
   padding-left: 0.5rem;
@@ -602,9 +613,10 @@ input[type=radio] {
 .form-row input.form-control, .form-row select.form-control, .form-row .form-control, .form-group input.form-control, .form-group select.form-control, .form-group .form-control {
   border: 1px solid #BCBCBC;
   background-color: #ffffff;
-  border-radius: 12px !important;
+  box-shadow: none;
+  border-radius: 8px;
   font-size: 1rem;
-  color: #431F1C;
+  color: #0D062D;
   padding: 0.375rem 0.75rem;
   height: calc(2.25rem + 4px);
 }
@@ -613,6 +625,9 @@ input[type=radio] {
 }
 .form-row input.form-control::placeholder, .form-row select.form-control::placeholder, .form-row .form-control::placeholder, .form-group input.form-control::placeholder, .form-group select.form-control::placeholder, .form-group .form-control::placeholder {
   color: #757575;
+}
+.form-row input.form-control:hover, .form-row input.form-control:active, .form-row input.form-control:focus, .form-row input.form-control:focus-visible, .form-row input.form-control:focus-within, .form-row input.form-control:visited, .form-row input.form-control:target, .form-row select.form-control:hover, .form-row select.form-control:active, .form-row select.form-control:focus, .form-row select.form-control:focus-visible, .form-row select.form-control:focus-within, .form-row select.form-control:visited, .form-row select.form-control:target, .form-row .form-control:hover, .form-row .form-control:active, .form-row .form-control:focus, .form-row .form-control:focus-visible, .form-row .form-control:focus-within, .form-row .form-control:visited, .form-row .form-control:target, .form-group input.form-control:hover, .form-group input.form-control:active, .form-group input.form-control:focus, .form-group input.form-control:focus-visible, .form-group input.form-control:focus-within, .form-group input.form-control:visited, .form-group input.form-control:target, .form-group select.form-control:hover, .form-group select.form-control:active, .form-group select.form-control:focus, .form-group select.form-control:focus-visible, .form-group select.form-control:focus-within, .form-group select.form-control:visited, .form-group select.form-control:target, .form-group .form-control:hover, .form-group .form-control:active, .form-group .form-control:focus, .form-group .form-control:focus-visible, .form-group .form-control:focus-within, .form-group .form-control:visited, .form-group .form-control:target {
+  box-shadow: none;
 }
 .form-row input.form-control.tab-form-control, .form-row select.form-control.tab-form-control, .form-row .form-control.tab-form-control, .form-group input.form-control.tab-form-control, .form-group select.form-control.tab-form-control, .form-group .form-control.tab-form-control {
   height: calc(2.25rem + 10px);
@@ -638,9 +653,9 @@ input[type=radio] {
   border: 1px solid #BCBCBC;
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
-  border-radius: 12px !important;
+  border-radius: 8px;
   font-size: 1rem;
-  color: #431F1C;
+  color: #0D062D;
   padding: 0.375rem 0.75rem;
   height: unset;
 }
@@ -663,7 +678,7 @@ input[type=radio] {
 .form-row .dropdown-menu .item, .form-group .dropdown-menu .item {
   padding: 0.75rem 1rem;
   font-size: 0.8rem;
-  color: #431F1C;
+  color: #0D062D;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -707,11 +722,11 @@ input[type=radio] {
   background: unset;
 }
 .form-row .multiselect__tags, .form-group .multiselect__tags {
-  border-radius: 12px !important;
+  border-radius: 8px;
   font-size: 0.9rem;
   border: 1px solid #BCBCBC;
   background-color: rgba(255, 255, 255, 0.2);
-  color: #431F1C;
+  color: #0D062D;
   padding: 0.375rem 2.5rem 0.375rem 1rem;
   min-height: calc(2.8rem + 2px);
 }
@@ -734,7 +749,7 @@ input[type=radio] {
   height: unset;
   line-height: unset;
   color: #344054;
-  color: #431F1C;
+  color: #0D062D;
   font-size: 0.8rem;
   margin: 6px 2px;
 }
@@ -784,7 +799,7 @@ input[type=radio] {
 }
 .form-row .multiselect__content-wrapper ul li .multiselect__option--highlight, .form-group .multiselect__content-wrapper ul li .multiselect__option--highlight {
   font-size: 0.9rem;
-  color: #431F1C;
+  color: #0D062D;
   background: #F1EEF6;
   border: none;
   border-radius: 0.6rem;
@@ -810,6 +825,8 @@ input[type=radio] {
   display: inline-block;
   position: relative;
   vertical-align: middle;
+  border: 1px solid #BCBCBC;
+  border-radius: 8px;
 }
 .form-row span.vue__time-picker.time-picker.form-white input.display-time, .form-group span.vue__time-picker.time-picker.form-white input.display-time {
   background-color: #ffffff;
@@ -877,7 +894,8 @@ input[type=radio] {
 }
 .form-row span.vue__time-picker.time-picker .dropdown.drop-down .select-list, .form-group span.vue__time-picker.time-picker .dropdown.drop-down .select-list {
   width: 13.3em;
-  border-radius: 15px;
+  border-radius: 8px;
+  border: 1px solid #BCBCBC;
   background-color: #ffffff;
   height: 10em;
   overflow: hidden;
@@ -897,12 +915,12 @@ input[type=radio] {
   overflow-y: auto;
 }
 .form-row span.vue__time-picker.time-picker .dropdown.drop-down .select-list ul li.hint, .form-group span.vue__time-picker.time-picker .dropdown.drop-down .select-list ul li.hint {
-  color: #431F1C;
+  color: #0D062D;
   cursor: default;
   font-size: 0.8em;
 }
 .form-row span.vue__time-picker.time-picker .dropdown.drop-down .select-list ul li, .form-group span.vue__time-picker.time-picker .dropdown.drop-down .select-list ul li {
-  color: #431F1C;
+  color: #0D062D;
   list-style: none;
   text-align: center;
   padding: 0.3em 0;
@@ -1141,7 +1159,7 @@ input[type=radio] {
 
 .card {
   border-radius: 10px;
-  border: none;
+  border: 1px solid #EAEAEA;
   margin-bottom: 0px;
   box-shadow: none !important;
 }
@@ -1176,6 +1194,14 @@ input[type=radio] {
 
 .show-icon:hover span.fa-icon.show-hover {
   display: block !important;
+}
+
+.show-icon:hover .btn-tag-remove {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 50px;
+  min-width: 50px;
+  height: 50px;
+  display: flex !important;
 }
 
 .rounded-10 {
@@ -1502,18 +1528,8 @@ img.dark-icon {
 
 .main-container {
   color: #344054;
-  background-image: url("./../image/jochi-light-bg.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.main-container.register {
-  background-image: url("../../image/login-bg.jpg");
-}
-@media (max-width: 768px) {
-  .main-container.register {
-    background-image: url("../../image/login-bg-rotate.jpg");
-  }
+  background: rgb(221, 214, 237);
+  background: linear-gradient(135deg, rgb(221, 214, 237) 0%, rgb(255, 255, 255) 55%);
 }
 .main-container.register .logo-icon {
   max-width: 140px;
@@ -1533,8 +1549,13 @@ img.dark-icon {
   width: 100%;
 }
 .main-container.register section.login-box img.passport-img {
-  max-width: 120px;
+  max-width: 250px;
   width: 100%;
+}
+@media (max-width: 1399.98px) {
+  .main-container.register section.login-box img.passport-img {
+    max-width: 180px;
+  }
 }
 .main-container.register .login-icon-area a.btn img {
   width: 30px;
@@ -1558,11 +1579,16 @@ img.dark-icon {
   .main-container .img-section .img-responsive {
     padding: 0;
     margin: 0px auto 20px;
-    max-width: 180px;
+    max-width: 240px;
     width: 100%;
   }
 }
-@media (max-height: 689.98px) {
+@media (max-width: 991.98px) {
+  .main-container .img-section .img-responsive {
+    max-width: 180px;
+  }
+}
+@media (max-height: 589.98px) {
   .main-container .img-section .img-responsive {
     max-width: 180px;
   }
@@ -1775,10 +1801,7 @@ img.dark-icon {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: #f49196;
   z-index: 9;
-  background: linear-gradient(135deg, #f49196 0%, #ff4e71 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#f49196", endColorstr="#ff4e71",GradientType=1 );
 }
 @media (max-width: 510.98px) {
   .inner-section .header-section {
@@ -1890,7 +1913,7 @@ img.dark-icon {
   }
 }
 .inner-section .header-section .sidebar-section .menu-items span.active, .inner-section .header-section .sidebar-section .menu-items span:hover {
-  color: #431F1C;
+  color: #0D062D;
 }
 .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link::after {
   display: none;
@@ -1920,7 +1943,7 @@ img.dark-icon {
   }
 }
 .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link span.active {
-  color: #431F1C;
+  color: #0D062D;
 }
 .inner-section .header-section .sidebar-section .menu-items .accordion button.btn-link .fa-chevron-right {
   font-weight: 500;
@@ -2004,7 +2027,7 @@ img.dark-icon {
 .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a.nav-link.nuxt-link-exact-active.nuxt-link-active {
   padding: 0.5rem;
   border-radius: 0.3rem;
-  color: #431F1C;
+  color: #0D062D;
 }
 @media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a.nav-link.nuxt-link-exact-active.nuxt-link-active {
@@ -2014,7 +2037,7 @@ img.dark-icon {
 .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a:hover, .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a .active {
   padding: 0.5rem;
   border-radius: 0.3rem;
-  color: #431F1C;
+  color: #0D062D;
 }
 @media (max-width: 991.98px) {
   .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a:hover, .inner-section .header-section .sidebar-section .menu-items .card-body .inner-custom-list li a .active {
@@ -2044,7 +2067,7 @@ img.dark-icon {
 .inner-section .main-section {
   padding-left: 128px;
   background-color: #ffffff;
-  height: calc(100vh - 74px);
+  height: calc(100vh - 70px);
   width: 100vw;
   overflow: hidden;
   overflow-y: auto;
@@ -2254,10 +2277,13 @@ img.dark-icon {
   pointer-events: visible;
   right: 3rem;
   transition: ease-in-out all 0.8s;
-  z-index: 1050;
+  z-index: 9;
 }
 .inner-section .main-section #Daily-Calander .text-link:hover, .inner-section .main-section #Weekly-Calander .text-link:hover, .inner-section .main-section #Monthly-Calander .text-link:hover {
   color: #000000 !important;
+}
+.inner-section .main-section #Daily-Calander .fc-media-screen.fc-direction-ltr, .inner-section .main-section #Weekly-Calander .fc-media-screen.fc-direction-ltr, .inner-section .main-section #Monthly-Calander .fc-media-screen.fc-direction-ltr {
+  height: 100%;
 }
 .inner-section .main-section #Daily-Calander .fc-popover.fc-more-popover.fc-day-sat, .inner-section .main-section #Weekly-Calander .fc-popover.fc-more-popover.fc-day-sat, .inner-section .main-section #Monthly-Calander .fc-popover.fc-more-popover.fc-day-sat {
   right: 0 !important;
@@ -2268,18 +2294,18 @@ img.dark-icon {
   left: unset !important;
 }
 .inner-section .main-section #Daily-Calander .fc-popover.fc-more-popover span.fc-popover-title, .inner-section .main-section #Weekly-Calander .fc-popover.fc-more-popover span.fc-popover-title, .inner-section .main-section #Monthly-Calander .fc-popover.fc-more-popover span.fc-popover-title {
-  color: #431F1C;
+  color: #0D062D;
   font-size: 0.85rem;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
 .inner-section .main-section #Daily-Calander .fc-popover.fc-more-popover span.fc-popover-close.fc-icon.fc-icon-x::after, .inner-section .main-section #Weekly-Calander .fc-popover.fc-more-popover span.fc-popover-close.fc-icon.fc-icon-x::after, .inner-section .main-section #Monthly-Calander .fc-popover.fc-more-popover span.fc-popover-close.fc-icon.fc-icon-x::after {
   content: "×";
-  color: #431F1C;
+  color: #0D062D;
   font-size: 14px;
 }
 .inner-section .main-section #Daily-Calander .fc-popover.fc-more-popover span.fc-popover-close.fc-icon.fc-icon-x::before, .inner-section .main-section #Weekly-Calander .fc-popover.fc-more-popover span.fc-popover-close.fc-icon.fc-icon-x::before, .inner-section .main-section #Monthly-Calander .fc-popover.fc-more-popover span.fc-popover-close.fc-icon.fc-icon-x::before {
-  color: #431F1C;
+  color: #0D062D;
 }
 .inner-section .main-section #Daily-Calander .fc-popover.fc-more-popover .fc-popover-body, .inner-section .main-section #Weekly-Calander .fc-popover.fc-more-popover .fc-popover-body, .inner-section .main-section #Monthly-Calander .fc-popover.fc-more-popover .fc-popover-body {
   max-height: 140px;
@@ -2337,22 +2363,7 @@ img.dark-icon {
   border-radius: 10px;
 }
 .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-  height: 75vh !important;
-}
-@media (max-width: 1199.98px) {
-  .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-    height: 50vh !important;
-  }
-}
-@media (max-height: 768.98px) and (max-width: 1199.98px) {
-  .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-    height: 52vh !important;
-  }
-}
-@media (max-height: 524.98px) and (max-width: 1199.98px) {
-  .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active {
-    height: 44vh !important;
-  }
+  height: 100% !important;
 }
 .inner-section .main-section #Daily-Calander .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid {
   border: none !important;
@@ -2815,22 +2826,7 @@ img.dark-icon {
   }
 }
 .inner-section .main-section #Weekly-Calander .fc-view-harness.fc-view-harness-active {
-  height: 80vh !important;
-}
-@media (max-width: 1199.98px) {
-  .inner-section .main-section #Weekly-Calander .fc-view-harness.fc-view-harness-active {
-    height: 68vh !important;
-  }
-}
-@media (max-height: 768.98px) and (max-width: 1199.98px) {
-  .inner-section .main-section #Weekly-Calander .fc-view-harness.fc-view-harness-active {
-    height: 58vh !important;
-  }
-}
-@media (max-height: 524.98px) and (max-width: 1199.98px) {
-  .inner-section .main-section #Weekly-Calander .fc-view-harness.fc-view-harness-active {
-    height: 50vh !important;
-  }
+  height: 100% !important;
 }
 .inner-section .main-section #Weekly-Calander .fc-timegrid-col-events .fc-timegrid-event-harness.fc-timegrid-event-harness-inset {
   min-height: 100px;
@@ -2850,22 +2846,7 @@ img.dark-icon {
   color: #ffffff;
 }
 .inner-section .main-section #Monthly-Calander .fc-view-harness.fc-view-harness-active {
-  height: 78vh !important;
-}
-@media (max-width: 1199.98px) {
-  .inner-section .main-section #Monthly-Calander .fc-view-harness.fc-view-harness-active {
-    height: 72vh !important;
-  }
-}
-@media (max-height: 768.98px) and (max-width: 1199.98px) {
-  .inner-section .main-section #Monthly-Calander .fc-view-harness.fc-view-harness-active {
-    height: 60vh !important;
-  }
-}
-@media (max-height: 524.98px) and (max-width: 1199.98px) {
-  .inner-section .main-section #Monthly-Calander .fc-view-harness.fc-view-harness-active {
-    height: 50vh !important;
-  }
+  height: 100% !important;
 }
 .inner-section .main-section #Monthly-Calander .fc-view-harness.fc-view-harness-active .fc-popover.fc-more-popover {
   z-index: 9;
@@ -3416,8 +3397,8 @@ img.dark-icon {
   position: relative;
 }
 .inner-section .main-section .teacher-section .assignment-status.selected .success-image {
-  background-color: rgba(187, 118, 118, 0.35);
-  border-radius: 22px;
+  background-color: rgba(221, 214, 237, 0.4);
+  border-radius: 8px;
   top: 0;
   left: 0;
 }
@@ -3457,6 +3438,9 @@ img.dark-icon {
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .image-icon {
   width: 40px;
   height: 40px;
+}
+.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal {
+  background-color: #F1EEF6;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher .inner-agenda {
   height: 29vh !important;
@@ -3560,12 +3544,12 @@ img.dark-icon {
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: center;
   position: absolute;
-  top: -12px;
+  top: 0;
   width: 93%;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active {
-  height: 16vh !important;
-  min-height: 160px;
+  height: 15vh !important;
+  min-height: 100px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid {
   border: none !important;
@@ -3695,42 +3679,27 @@ img.dark-icon {
 }
 @media (min-width: 1396.98px) {
   .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day::after {
-    top: 36px;
+    top: 18px;
   }
 }
 @media (max-width: 1396.98px) {
   .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day::after {
-    top: 29px;
+    top: 18px;
   }
 }
 @media (max-width: 1270.98px) {
   .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day::after {
-    top: 22px;
+    top: 18px;
   }
 }
 @media (max-width: 1024.98px) {
   .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day::after {
-    top: 17px;
-  }
-}
-@media (max-width: 964.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day::after {
-    top: 15px;
-  }
-}
-@media (max-width: 767.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day::after {
-    top: 26px;
-  }
-}
-@media (max-width: 590.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day::after {
-    top: 18px;
+    top: 11px;
   }
 }
 @media (max-width: 485.98px) {
   .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day::after {
-    top: 16px;
+    top: 11px;
   }
 }
 @media (max-width: 425.98px) {
@@ -3743,48 +3712,9 @@ img.dark-icon {
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
   background-color: #ffffff;
   box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
-  border-radius: 50%;
+  border-radius: 8px;
+  min-height: 1.5rem !important;
   cursor: pointer;
-}
-@media (min-width: 1396.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
-    min-height: 4.2rem !important;
-  }
-}
-@media (max-width: 1396.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
-    min-height: 3.5rem !important;
-  }
-}
-@media (max-width: 1270.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
-    min-height: 2.5rem !important;
-  }
-}
-@media (max-width: 1024.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
-    min-height: 2.5rem !important;
-  }
-}
-@media (max-width: 964.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
-    min-height: 2.75rem !important;
-  }
-}
-@media (max-width: 767.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
-    min-height: 4.3rem !important;
-  }
-}
-@media (max-width: 590.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
-    min-height: 3rem !important;
-  }
-}
-@media (max-width: 425.98px) {
-  .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
-    min-height: 2.5rem !important;
-  }
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day .fc-daygrid-day-frame.fc-scrollgrid-sync-inner:hover {
   background-color: #EAEAEA;
@@ -3797,7 +3727,7 @@ img.dark-icon {
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day.fc-day-today .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
   background-color: #5534A5;
-  border-radius: 50%;
+  border-radius: 8px;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td .fc-scroller.fc-scroller-liquid-absolute {
   overflow: hidden !important;
@@ -3832,7 +3762,8 @@ img.dark-icon {
   }
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
   min-width: 25%;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color {
@@ -3840,7 +3771,7 @@ img.dark-icon {
   margin: 0.3rem 0.1rem;
   font-size: 0.8rem;
   font-weight: 450;
-  color: #431F1C;
+  color: #696969;
   cursor: pointer;
 }
 @media (max-width: 1396.98px) {
@@ -3887,6 +3818,7 @@ img.dark-icon {
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color.disabled {
   background-color: #ffffff;
+  border: 1px solid #EAEAEA;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color.active, .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color:hover {
   color: #ffffff;
@@ -4035,7 +3967,7 @@ img.dark-icon {
 .calendar-sm .fc.fc-media-screen.fc-direction-ltr.fc-theme-standard .fc-header-toolbar.fc-toolbar {
   justify-content: center;
   position: absolute;
-  top: -12px;
+  top: 0;
   width: 93%;
 }
 .calendar-sm .fc .fc-scrollgrid {
@@ -4459,9 +4391,14 @@ img.dark-icon {
 .custom-switch .custom-control-label::before {
   top: 0.025rem;
   cursor: pointer;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.4) 100%), #F0F0F0;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04), 0px 1px 0px 0px #FFF, 0px 0px 8px 0px rgba(0, 0, 0, 0.02) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.06) inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.04) inset, 0px 1px 1px 0px rgba(0, 0, 0, 0.04) inset;
+  border: none;
 }
 .custom-switch .custom-control-label::after {
   top: calc(0.0375rem + 2px);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 35.42%, rgba(0, 0, 0, 0.08) 100%), #FFF;
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.12), 0px 3px 3px 0px rgba(0, 0, 0, 0.04), 0px 5px 4px 0px rgba(0, 0, 0, 0.02), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.02), 0px 1px 0px 0px #FFF inset, 0px 0px 2px 1px #FFF inset;
   cursor: pointer;
 }
 
@@ -4479,13 +4416,13 @@ img.dark-icon {
 switch to violet when it is checked*/
 .custom-control-input:checked ~ .custom-control-label::before {
   border-color: #5534A5 !important;
-  background-color: #5534A5 !important;
+  background: #5534A5 !important;
 }
 
 /*sets the background color of
 switch to violet when it is active*/
 .custom-control-input:active ~ .custom-control-label::before {
-  background-color: #5534A5 !important;
+  background: #5534A5 !important;
   border-color: #5534A5 !important;
 }
 
@@ -4517,7 +4454,7 @@ switch to violet when it is active*/
   border-width: 0 2px 2px 0;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-calendar .calendar-table tbody td.in-range.available {
-  background-color: #fbdcdc;
+  background-color: #DDD6ED;
   color: #2D2D2F;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-calendar .calendar-table tbody td.active.start-date.available {
@@ -4533,18 +4470,19 @@ switch to violet when it is active*/
   font-weight: 700;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-buttons button.cancelBtn.btn.btn-sm.btn-default {
-  background-color: #fbdcdc;
-  color: #ffffff;
-  border: none;
+  background-color: #ffffff;
+  color: #344054;
+  border: 1px solid #EAEAEA;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-buttons button.applyBtn.btn.btn-sm.btn-primary {
-  background-color: #FF4E71;
+  background-color: #5534A5;
   color: #ffffff;
   border: none;
 }
 
 .modal-backdrop.fade.show {
-  opacity: 0;
+  opacity: 0.5;
+  display: block;
 }
 
 .modal {
@@ -4558,15 +4496,10 @@ switch to violet when it is active*/
 }
 .modal .modal-dialog .modal-content {
   height: auto;
-  border: none;
-  border-radius: 0.5rem;
-  border: 1px solid #ffffff;
+  border-top: 4px solid #5534A5;
+  background-color: #ffffff;
   background-size: cover;
-  -webkit-backdrop-filter: blur(22px);
-          backdrop-filter: blur(22px);
-  background-color: transparent;
-  box-shadow: 0 0px 12px rgba(0, 0, 0, 0.12);
-  border-radius: 22px;
+  border-radius: 0;
 }
 .modal .modal-dialog .modal-content .modal-header {
   background-color: transparent;
@@ -4574,8 +4507,9 @@ switch to violet when it is active*/
   border: none;
 }
 .modal .modal-dialog .modal-content .modal-header .modal-title {
-  color: #5534A5;
-  font-weight: 700;
+  color: #000000;
+  font-weight: 600;
+  font-size: 1.25rem;
 }
 .modal .modal-dialog .modal-content .modal-header .close {
   color: #5534A5;
@@ -4590,6 +4524,7 @@ switch to violet when it is active*/
 .modal .modal-dialog .modal-content .modal-body {
   background-color: transparent;
   max-height: 75vh;
+  font-size: 0.813rem;
   padding: 4px 16px;
 }
 @media (max-width: 1199.98px) {
@@ -4722,7 +4657,7 @@ switch to violet when it is active*/
 .modal .modal-dialog .modal-content .modal-body .date-picker.badge.badge-pill.badge-color {
   background-color: rgba(255, 255, 255, 0.45);
   box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
-  color: #431F1C;
+  color: #0D062D;
   width: 56px;
 }
 .modal .modal-dialog .modal-content .modal-body .date-picker.badge.badge-pill.badge-color.active {
@@ -4730,8 +4665,13 @@ switch to violet when it is active*/
   color: #ffffff;
 }
 .modal .modal-dialog .modal-content .modal-footer {
-  background-color: transparent !important;
   border: none;
+}
+.modal .modal-dialog .modal-content .modal-footer .btn-primary {
+  font-size: 0.875rem;
+}
+.modal .modal-dialog .modal-content .modal-footer .btn-secondary {
+  font-size: 0.875rem;
 }
 
 .dropdown-menu {
@@ -5071,7 +5011,7 @@ switch to violet when it is active*/
   }
 }
 .vdp-datepicker.form-control input[type=text] {
-  color: #431F1C;
+  color: #0D062D;
   cursor: pointer;
   padding-top: 0.15em;
 }
@@ -5114,7 +5054,7 @@ switch to violet when it is active*/
   border-width: 0 2px 2px 0;
 }
 .vdp-datepicker__calendar header span.day__month_btn.up {
-  color: #431F1C;
+  color: #0D062D;
   font-weight: 600;
   font-size: 13px;
 }
@@ -5141,7 +5081,7 @@ switch to violet when it is active*/
   font-size: 12px;
 }
 .vdp-datepicker__calendar span.cell.day {
-  color: #431F1C;
+  color: #0D062D;
   font-size: 12px;
   white-space: nowrap;
   text-align: center;
@@ -5216,7 +5156,7 @@ select.form-control.is-invalid {
 }
 
 .custom-full-height {
-  height: calc(100vh - 24px);
+  height: calc(100vh - 24px - 70px);
 }
 
 .profile-sidebar .profile-name {

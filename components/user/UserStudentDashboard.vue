@@ -154,7 +154,7 @@
                                         {{ list.new_title }}
                                       </p>
                                       <div
-                                        class="w-fit-content text-12 px-3 py-1 bg-primary rounded-pill color-white"
+                                        class="w-fit-content text-12 px-3 py-1 bg-primary color-white"
                                       >
                                         {{ list.start_time }}
                                       </div>
@@ -366,7 +366,7 @@
                 </table>
               </form>
             </div>
-            <div class="modal-footer"></div>
+            <div class="modal-footer justify-content-end border-top-0"></div>
           </div>
         </div>
       </div>
@@ -392,19 +392,19 @@
               <h3 class="modal-title color-primary-dark font-bold">
                 Update Phone Number
               </h3>
-              Update your phone number to receive SMS notification on your
-              mobile phone!
+              <p class="mb-0 color-secondary">
+                Update your phone number to receive SMS notification on your
+                mobile phone!
+              </p>
             </div>
-            <div class="modal-footer d-flex justify-content-between pb-0">
+            <div class="modal-footer justify-content-end border-top-0 pb-0">
               <button
                 type="button"
                 data-dismiss="modal"
-                class="btn btn-primary color-white"
+                class="btn btn-secondary"
                 @click="skipPromt()"
               >
-                <nuxt-link to="/user-profile" class="text-white">
-                  Update Now
-                </nuxt-link>
+                Skip for Now
               </button>
               <button
                 type="button"
@@ -412,7 +412,9 @@
                 class="btn btn-primary color-white"
                 @click="skipPromt()"
               >
-                Skip for Now
+                <nuxt-link to="/user-profile" class="text-white text-decoration-none">
+                  Update Now
+                </nuxt-link>
               </button>
             </div>
           </div>

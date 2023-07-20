@@ -395,14 +395,14 @@
                 </div>
               </div>
             </div>
-            <div class="modal-footer bg-white text-dark">
+            <div class="modal-footer justify-content-end border-top-0 bg-white text-dark">
               <button
                 v-if="
                   meetingDetail &&
                   meetingDetail.studentId &&
                   meetingDetail.reqId
                 "
-                class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
+                class="d-flex btn btn-secondary rounded-8 px-4 py-1 mx-2 font-semi-bold"
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -420,7 +420,7 @@
                   meetingDetail.reqId &&
                   meetingDetail.selectableDate
                 "
-                class="d-flex btn btn-success rounded-12 px-4 py-1 font-semi-bold"
+                class="d-flex btn btn-primary rounded-8 px-4 py-1 font-semi-bold"
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -435,7 +435,7 @@
               <button
                 v-else
                 data-dismiss="modal"
-                class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
+                class="d-flex btn btn-secondary rounded-8 px-4 py-1 mx-2 font-semi-bold"
               >
                 <span class="text-16">Close</span>
               </button>
@@ -478,17 +478,17 @@
                 scheduled?
               </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-12 font-semi-bold"
+                class="btn btn-secondary py-1 px-4 rounded-8 font-semi-bold"
                 data-dismiss="modal"
               >
                 Close
               </button>
               <button
                 type="button"
-                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                 data-dismiss="modal"
                 @click="confirmAcceptReject()"
               >

@@ -17,6 +17,7 @@ $white             : #ffffff;
 // Border color
 $border-color      : #EAEAEA;
 $border-form-color  : #BCBCBC;
+$form-check-bg      : #F6F6F6;
 
 $bg-secondary-light : #D9E1E7;
 $bg-primary-light   : #F1EEF6;
@@ -25,6 +26,7 @@ $bg-gray-light      : #F9F9F9;
 // font color
 $font-primary-dark    : #141522;
 $font-secondary-dark  : #0D062D;
+$font-secondary-light : #696969;
 $font-gray01          : #757575;
 $font-label-color     : #344054;
 $font-secondary-color : #475467;
@@ -42,7 +44,7 @@ $cal-border         : #F5E4F0;
 $confirm-green     : #86FD97;
 
 
-$font-secondary-dark         : #431F1C;
+// $font-secondary-dark         : #431F1C;
 // $font-gray01    : #C5C0BD;
 
 
@@ -59,11 +61,12 @@ $label-green: #159E00;
 
 // TEXT COLORS
 
+.color-primary{color: $theme-color;}
 .color-primary-dark{color: $font-primary-dark;}
 .color-black{color: $black;}
 .color-dark{color: $font-secondary-dark !important;}
 .color-secondary{color: $font-gray01;}
-
+.color-danger{color: $danger-color;}
 .color-label-green{color: $label-green;}
 
 // BG COLORS
@@ -200,7 +203,7 @@ $sm-screen-h         : 767.98px;
         .fc-header-toolbar.fc-toolbar{
             justify-content: center;
             position: absolute;
-            top: -12px;
+            top: 0;
             width: 93%;
         }
     }
@@ -479,8 +482,8 @@ $sm-screen-h         : 767.98px;
 @mixin calendar-sm-week {
     @include head-center();
     .fc-view-harness.fc-view-harness-active{
-        height: 16vh !important;
-        min-height: 160px;
+        height: 15vh !important;
+        min-height: 100px;
         // height: calc(100vh - 542px) !important;
         // @media (min-width:1596.98px) {
         //     height: calc(100vh - 800px) !important;
@@ -614,28 +617,19 @@ $sm-screen-h         : 767.98px;
                                 letter-spacing: 2px;
                                 font-family: monospace;
                                 @media (min-width: 1396.98px) {
-                                    top: 36px;
-                                }
-                                @media (max-width: 1396.98px) {
-                                    top: 29px;
-                                }
-                                @media (max-width:1270.98px) {
-                                    top: 22px;
-                                }
-                                @media (max-width:1024.98px) {
-                                    top: 17px;
-                                }
-                                @media (max-width: 964.98px) {
-                                    top: 15px;
-                                }
-                                @media (max-width: 767.98px) {
-                                    top: 26px;
-                                }
-                                @media (max-width: 590.98px) {
                                     top: 18px;
                                 }
+                                @media (max-width: 1396.98px) {
+                                    top: 18px;
+                                }
+                                @media (max-width:1270.98px) {
+                                    top: 18px;
+                                }
+                                @media (max-width:1024.98px) {
+                                    top: 11px;
+                                }
                                 @media (max-width: 485.98px) {
-                                    top: 16px;
+                                    top: 11px;
                                     
                                 }
                                 @media (max-width: 425.98px) {
@@ -662,32 +656,33 @@ $sm-screen-h         : 767.98px;
                             .fc-daygrid-day-frame.fc-scrollgrid-sync-inner{
                                 background-color: $white;
                                 box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
-                                border-radius: 50%;
+                                @include borderRadius(8);
+                                min-height: 1.5rem !important;
                                 cursor: pointer;
-                                @media (min-width: 1396.98px) {
-                                    min-height: 4.2rem !important;
-                                }
-                                @media (max-width: 1396.98px) {
-                                    min-height: 3.5rem !important;
-                                }
-                                @media (max-width:1270.98px) {
-                                    min-height: 2.5rem !important;
-                                }
-                                @media (max-width:1024.98px) {
-                                    min-height: 2.5rem !important;
-                                }
-                                @media (max-width: 964.98px) {
-                                    min-height: 2.75rem !important;
-                                }
-                                @media (max-width: 767.98px) {
-                                    min-height: 4.3rem !important;
-                                }
-                                @media (max-width: 590.98px) {
-                                    min-height: 3rem !important;
-                                }
-                                @media (max-width: 425.98px) {
-                                    min-height: 2.5rem !important;
-                                }
+                                // @media (min-width: 1396.98px) {
+                                //     min-height: 4.2rem !important;
+                                // }
+                                // @media (max-width: 1396.98px) {
+                                //     min-height: 3.5rem !important;
+                                // }
+                                // @media (max-width:1270.98px) {
+                                //     min-height: 2.5rem !important;
+                                // }
+                                // @media (max-width:1024.98px) {
+                                //     min-height: 2.5rem !important;
+                                // }
+                                // @media (max-width: 964.98px) {
+                                //     min-height: 2.75rem !important;
+                                // }
+                                // @media (max-width: 767.98px) {
+                                //     min-height: 4.3rem !important;
+                                // }
+                                // @media (max-width: 590.98px) {
+                                //     min-height: 3rem !important;
+                                // }
+                                // @media (max-width: 425.98px) {
+                                //     min-height: 2.5rem !important;
+                                // }
                                 &:hover{
                                     background-color: $border-color;
                                 } 
@@ -715,7 +710,7 @@ $sm-screen-h         : 767.98px;
                             }
                             .fc-daygrid-day-frame.fc-scrollgrid-sync-inner{
                                 background-color: $theme-color;
-                                border-radius: 50%;
+                                @include borderRadius(8);
                             }
                         }
                         .fc-scroller.fc-scroller-liquid-absolute{
@@ -1040,17 +1035,17 @@ $sm-screen-h         : 767.98px;
         //     }
         // }
         .fc-view-harness.fc-view-harness-active{
-            height: 75vh !important;
+            height: 100% !important;
             // margin-top: 20px;
-            @media (max-width:$lg-screen) {
-                height: 50vh !important;
-            }
-            @media (max-height:768.98px) and (max-width:$lg-screen) {
-                height: 52vh !important;
-            }
-            @media (max-height:524.98px) and (max-width:$lg-screen) {
-                height: 44vh !important;
-            }
+            // @media (max-width:$lg-screen) {
+            //     height: calc(50vh - 70px) !important;
+            // }
+            // @media (max-height:768.98px) and (max-width:$lg-screen) {
+            //     height: calc(52vh - 70px) !important;
+            // }
+            // @media (max-height:524.98px) and (max-width:$lg-screen) {
+            //     height: calc(44vh - 70px) !important;
+            // }
             table.fc-scrollgrid.fc-scrollgrid-liquid{
                 border: none !important;
                 thead,tbody{
@@ -1423,7 +1418,7 @@ $sm-screen-h         : 767.98px;
         pointer-events: visible;
         right: 3rem;
         transition: ease-in-out all 0.8s;
-        z-index: 1050;
+        z-index: 9;
       }
       .text-link{
         &:hover{

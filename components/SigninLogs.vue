@@ -125,7 +125,7 @@
                         school?
                       </p>
                     </div>
-                    <div class="modal-footer bg-white text-dark">
+                    <div class="modal-footer justify-content-end border-top-0 bg-white text-dark">
                       <button
                         type="button"
                         data-dismiss="modal"

@@ -240,18 +240,20 @@ body{
             color: $font-secondary-dark;
         }
     }
-    &.btn-success{
-        background-color: $confirm-green !important;
-        color: $black;
-        &:hover{
-            background-color: $icon-bg-green !important;
-        }
-    }
+    // &.btn-success{
+    //     background-color: $confirm-green !important;
+    //     color: $black;
+    //     &:hover{
+    //         background-color: $icon-bg-green !important;
+    //     }
+    // }
     &.btn-secondary{
-        background-color: $font-gray01;
-        color: $white;
+        background-color: $white;
+        color: $font-label-color;
+        border: 1px solid $border-color;
+        font-weight: 600;
         &:hover{
-            background-color: $black;
+            background-color: $bg-gray-light;
         }
     }
     span.arrow{
@@ -351,8 +353,8 @@ input[type="radio"]{
     input.form-control,select.form-control,.form-control{
         border: 1px solid $border-form-color;
         background-color: $white;
-        // box-shadow: 0 0 5px rgb(0 0 0 / 5%);
-        @include borderRadius(12);
+        box-shadow: none;
+        @include borderRadius(8);
         font-size: 1rem;
         color: $font-secondary-dark;
         padding: 0.375rem 0.75rem;
@@ -360,6 +362,7 @@ input[type="radio"]{
         &::placeholder{
             color: $font-gray01;
         }
+        &:hover,&:active,&:focus,&:focus-visible,&:focus-within,&:visited,&:target{box-shadow: none;}
         &.tab-form-control{
             height: calc(2.25rem + 10px);
             font-size: 12px;
@@ -395,7 +398,7 @@ input[type="radio"]{
         border: 1px solid $border-form-color;
         background-color: rgba(255, 255, 255, 0.5);
         box-shadow: 0 0 5px rgb(0 0 0 / 5%);
-        @include borderRadius(12);
+        @include borderRadius(8);
         font-size: 1rem;
         color: $font-secondary-dark;
         padding: 0.375rem 0.75rem;
@@ -472,7 +475,7 @@ input[type="radio"]{
         }
     }
     .multiselect__tags {
-        @include borderRadius(12);
+        @include borderRadius(8);
         font-size: 0.9rem;
         border: 1px solid $border-form-color;
         background-color: rgba($color: $white, $alpha: 0.2);
@@ -571,6 +574,8 @@ input[type="radio"]{
         display: inline-block;
         position: relative;
         vertical-align: middle;
+        border: 1px solid $border-form-color;
+        @include borderRadius(8);
         &.form-white{
             input.display-time{background-color: $white;}
         }
@@ -660,7 +665,8 @@ input[type="radio"]{
             font-weight: 400;
             .select-list{
                 width: 13.3em;
-                @include borderRadius(15);
+                @include borderRadius(8);
+                border: 1px solid $border-form-color;
                 background-color: $white;
                 height: 10em;
                 overflow: hidden;
@@ -991,7 +997,7 @@ input[type="radio"]{
 
 .card{
     @include borderRadius(10);
-    border: none;
+    border: 1px solid $border-color;
     margin-bottom: 0px;
     box-shadow: none !important;
     &.card-white{
@@ -1033,6 +1039,15 @@ input[type="radio"]{
         &.show-hover{
             display: block !important;
         }
+    }
+}
+.show-icon:hover{
+    .btn-tag-remove{
+        background-color: rgba($color: $black, $alpha: 0.3);
+        width: 50px;
+        min-width: 50px;
+        height: 50px;
+        display: flex !important;
     }
 }
 .rounded-10{
@@ -1368,16 +1383,18 @@ img.dark-icon{
 // SIGN-IN
 
 .main-container{
-    color: $font-label-color;       
-        background-image: url("./../image/jochi-light-bg.png");
-    background-position:center;
-    background-repeat:no-repeat;
-    background-size:cover;
+    color: $font-label-color;  
+    background: rgb(221,214,237);
+    background: linear-gradient(135deg, rgba(221,214,237,1) 0%, rgba(255,255,255,1) 55%);
+        // background-image: url("./../image/jochi-light-bg.png");
+    // background-position:center;
+    // background-repeat:no-repeat;
+    // background-size:cover;
     &.register{
-        background-image: url("../../image/login-bg.jpg");
-        @media (max-width: $min-sm-screen ) {
-            background-image: url("../../image/login-bg-rotate.jpg");
-        }
+        // background-image: url("../../image/login-bg.jpg");
+        // @media (max-width: $min-sm-screen ) {
+        //     background-image: url("../../image/login-bg-rotate.jpg");
+        // }
         .logo-icon{
             max-width: 140px;
             width: 100%;
@@ -1400,8 +1417,11 @@ img.dark-icon{
             max-width: 500px;
             width: 100%;
             img.passport-img{
-                max-width: 120px;
+                max-width: 250px;
                 width: 100%;
+                @media (max-width:$xl-screen) {
+                    max-width: 180px;
+                }
             }
         }
         .login-icon-area{
@@ -1432,10 +1452,13 @@ img.dark-icon{
             @media (max-width: $lg-screen) {
                 padding: 0;
                 margin: 0px auto 20px;
-                max-width: 180px;
+                max-width: 240px;
                 width: 100%;
             }
-            @media (max-height:689.98px){
+            @media (max-width: $md-screen) {
+                max-width: 180px;
+            }
+            @media (max-height: 589.98px){
                 max-width: 180px;
             }
             @media (max-width: 575.98px) {
@@ -1690,12 +1713,12 @@ img.dark-icon{
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        background: #f49196;
+        // background: #f49196;
         z-index: 9;
-        background: -moz-linear-gradient(-45deg,  #f49196 0%, #ff4e71 100%);
-        background: -webkit-linear-gradient(-45deg,  #f49196 0%,#ff4e71 100%);
-        background: linear-gradient(135deg,  #f49196 0%,#ff4e71 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f49196', endColorstr='#ff4e71',GradientType=1 );
+        // background: -moz-linear-gradient(-45deg,  #f49196 0%, #ff4e71 100%);
+        // background: -webkit-linear-gradient(-45deg,  #f49196 0%,#ff4e71 100%);
+        // background: linear-gradient(135deg,  #f49196 0%,#ff4e71 100%);
+        // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f49196', endColorstr='#ff4e71',GradientType=1 );
         @media (max-width: 510.98px) {
             height: 4rem;
         }
@@ -2227,7 +2250,7 @@ img.dark-icon{
         // background-position:center;
         // background-repeat:no-repeat;
         // background-size:cover;
-        height: calc(100vh - 74px);
+        height: calc(100vh - 70px);
         width: 100vw;
         overflow: hidden;
         overflow-y: auto;
@@ -2246,6 +2269,7 @@ img.dark-icon{
 
         #Daily-Calander, #Weekly-Calander, #Monthly-Calander{
             @include plannerAssignment();
+            .fc-media-screen.fc-direction-ltr{height: 100%;}
             .fc-popover.fc-more-popover{
                 &.fc-day-sat{
                     right: 0 !important;
@@ -2306,16 +2330,16 @@ img.dark-icon{
             @include plannerCommonMonth();
             @include plannerCommon();
             .fc-view-harness.fc-view-harness-active{
-                height: 80vh !important;
-                @media (max-width:$lg-screen) {
-                    height: 68vh !important;
-                }
-                @media (max-height:768.98px) and (max-width:$lg-screen) {
-                    height: 58vh !important;
-                }
-                @media (max-height:524.98px) and (max-width:$lg-screen) {
-                    height: 50vh !important;
-                }
+                height: 100% !important;
+                // @media (max-width:$lg-screen) {
+                //     height: calc(68vh - 70px) !important;
+                // }
+                // @media (max-height:768.98px) and (max-width:$lg-screen) {
+                //     height: calc(58vh - 70px) !important;
+                // }
+                // @media (max-height:524.98px) and (max-width:$lg-screen) {
+                //     height: calc(50vh - 70px) !important;
+                // }
             }
             .fc-timegrid-col-events{
                 .fc-timegrid-event-harness.fc-timegrid-event-harness-inset{
@@ -2343,16 +2367,16 @@ img.dark-icon{
         }
         #Monthly-Calander{
              .fc-view-harness.fc-view-harness-active{
-                height: 78vh !important;
-                @media (max-width:$lg-screen) {
-                    height: 72vh !important;
-                }
-                @media (max-height:768.98px) and (max-width:$lg-screen) {
-                    height: 60vh !important;
-                }
-                @media (max-height:524.98px) and (max-width:$lg-screen) {
-                    height: 50vh !important;
-                }
+                height: 100% !important;
+                // @media (max-width:$lg-screen) {
+                //     height: calc(72vh - 70px) !important;
+                // }
+                // @media (max-height:768.98px) and (max-width:$lg-screen) {
+                //     height: calc(60vh - 70px) !important;
+                // }
+                // @media (max-height:524.98px) and (max-width:$lg-screen) {
+                //     height: calc(50vh - 70px) !important;
+                // }
                 .fc-popover.fc-more-popover{
                     z-index: 9;
                 }
@@ -4313,8 +4337,8 @@ img.dark-icon{
                 position: relative;
                 &.selected{
                     .success-image{
-                        background-color: rgb(187 118 118 / 35%);
-                        @include borderRadius(22);
+                        background-color: rgba(221, 214, 237, 0.40);
+                        @include borderRadius(8);
                         top: 0;
                         left: 0;
                         span.check{
@@ -4669,7 +4693,7 @@ img.dark-icon{
                     }
                     .inner-custom-teacher.dashboard-cal{
                         // height: 100%;
-                        // background-color: $Global-background-element;
+                        background-color: $primary-light02;
                         // border-radius: .5rem;
                         // box-shadow: 
                         //         0px 2px 8px $global-box-shadow;
@@ -5276,14 +5300,15 @@ img.dark-icon{
                                 // overflow-y: auto;
                                 // max-height: 36vh;
                                 span{
-                                    display: inline-block;
+                                    display: inline-flex;
+                                    justify-content: center;
                                     min-width: 25%;
                                     .badge-color{
                                         padding: .73rem .75rem;
                                         margin: .3rem .1rem;
                                         font-size: .8rem;
                                         font-weight: 450;
-                                        color: $font-secondary-dark;
+                                        color: $font-secondary-light;
                                         cursor: pointer;
                                         @media (max-width: 1396.98px) {
                                             font-size: 0.7rem;
@@ -5317,6 +5342,7 @@ img.dark-icon{
                                         }
                                         &.disabled{
                                             background-color: $white;
+                                            border: 1px solid $border-color;
                                         }
                                         &.active, &:hover{
                                             color: $white;
@@ -5371,6 +5397,7 @@ img.dark-icon{
                                         &::before {
                                             left: unset;
                                             right: -2.25rem;
+
                                         }
                                         &::after{
                                             left:unset;
@@ -5604,9 +5631,14 @@ img.dark-icon{
     .custom-control-label::before {
         top: 0.025rem;
         cursor: pointer;
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0.40) 100%), #F0F0F0;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04), 0px 1px 0px 0px #FFF, 0px 0px 8px 0px rgba(0, 0, 0, 0.02) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.06) inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.04) inset, 0px 1px 1px 0px rgba(0, 0, 0, 0.04) inset;
+        border: none;
     }
     .custom-control-label::after {
         top: calc(0.0375rem + 2px);
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 35.42%, rgba(0, 0, 0, 0.08) 100%), #FFF;
+        box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 1px 2px 0px rgba(0, 0, 0, 0.12), 0px 3px 3px 0px rgba(0, 0, 0, 0.04), 0px 5px 4px 0px rgba(0, 0, 0, 0.02), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.02), 0px 1px 0px 0px #FFF inset, 0px 0px 2px 1px #FFF inset;
         cursor: pointer;
     }
 }
@@ -5627,14 +5659,14 @@ switch to violet when it is checked*/
   .custom-control-input:checked ~ 
 .custom-control-label::before {
       border-color: $theme-color !important;
-      background-color: $theme-color !important;
+      background: $theme-color !important;
   }
 
   /*sets the background color of
 switch to violet when it is active*/
   .custom-control-input:active ~ 
 .custom-control-label::before {
-      background-color: $theme-color !important;
+      background: $theme-color !important;
       border-color: $theme-color !important;
   }
 
@@ -5678,7 +5710,7 @@ switch to violet when it is active*/
                 //     color: $white;
                 // }
                 td.in-range.available{
-                    background-color: #fbdcdc;
+                    background-color: $primary-light01;
                     color: $global-sidebar-bg;
                 }
                 td.active.start-date.available{
@@ -5698,12 +5730,12 @@ switch to violet when it is active*/
             font-weight: 700;
         }
         button.cancelBtn.btn.btn-sm.btn-default{
-            background-color: #fbdcdc;
-            color: $white;
-            border: none;
+            background-color: $white;
+            color: $font-label-color;
+            border: 1px solid $border-color;
         }
         button.applyBtn.btn.btn-sm.btn-primary{
-            background-color: $dark-theme;
+            background-color: $theme-color;
             color: $white;
             border: none;
         }
@@ -5711,7 +5743,8 @@ switch to violet when it is active*/
 }
 
 .modal-backdrop.fade.show{
-    opacity: 0;
+    opacity: 0.5;
+    display: block;
 }
 
 // common popUp
@@ -5727,26 +5760,26 @@ switch to violet when it is active*/
         // }
         .modal-content{
             height: auto;
-            border: none;
-            border-radius: 0.5rem;
+            border-top: 4px solid $theme-color;
+            background-color: $white;
+            background-size:cover;
+            @include borderRadius(0);
             // background: url("./../image/jochi-light-bg.png");
-            border: 1px solid $white;
             // background-position:center;
             // background-repeat:no-repeat;
-            background-size:cover;
-            backdrop-filter: blur(22px);
-            background-color: transparent;
-            -webkit-box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
-            -moz-box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
-            box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
-            border-radius: 22px;
+            // backdrop-filter: blur(22px);
+            // -webkit-box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
+            // -moz-box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
+            // box-shadow: 0 0px 12px rgb(0 0 0 / 12%);
+            // border-radius: 22px;
             .modal-header{
                 background-color: transparent;
                 border-radius: 6px 6px 0px 0px;
                 border: none;
                 .modal-title{
-                    color: $theme-color;
-                    font-weight: 700;
+                    color: $black;
+                    font-weight: 600;
+                    font-size: 1.25rem;
                     // @media (max-width:1024.98px) {
                     //     font-size: 1rem;
                     // }
@@ -5766,6 +5799,7 @@ switch to violet when it is active*/
             .modal-body{
                 background-color: transparent;
                 max-height: 75vh;
+                font-size: 0.813rem;
                 padding: 4px 16px;
                 @media (max-width:$lg-screen) {
                     max-height: 50vh;
@@ -5955,8 +5989,10 @@ switch to violet when it is active*/
                 // border-top: 1px solid $border-color;
                 // background-color: $global-box-shadow;
                 // border-radius: 0px 0px 10px 10px;
-                background-color: transparent !important;
+                // background-color: transparent !important;
                 border: none;
+                .btn-primary {font-size: 0.875rem;}
+                .btn-secondary {font-size: 0.875rem;}
                 // .btn-color-close{
                 //     color: $white;
                 //     background-color: $theme-color;
@@ -6552,7 +6588,7 @@ select.form-control{
 }
 
 .custom-full-height {
-    height: calc(100vh - 24px);
+    height: calc(100vh - 24px - 70px);
 }
 
 .profile-sidebar .profile-name {

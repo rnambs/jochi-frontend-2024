@@ -635,17 +635,17 @@
                 </multiselect>
               </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
-                class="btn btn-secondary font-semi-bold rounded-12 py-1 px-4"
+                class="btn btn-secondary font-semi-bold rounded-8 py-1 px-4"
                 data-dismiss="modal"
               >
                 Cancel
               </button>
               <button
                 type="button"
-                class="btn btn-success color-black rounded-12 font-semi-bold py-1 px-4"
+                class="btn btn-primary color-black rounded-8 font-semi-bold py-1 px-4"
                 @click="inviteStudentAdv"
                 :disabled="submitted"
               >

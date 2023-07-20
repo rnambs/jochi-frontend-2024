@@ -155,19 +155,19 @@
                           Are you sure you want to continue?
                         </p>
                       </div>
-                      <div class="modal-footer bg-white">
+                      <div class="modal-footer justify-content-end border-top-0 bg-white">
                         <button
                           type="button"
                           data-dismiss="modal"
                           @click="AdminSelect(1)"
-                          class="btn btn-primary px-3 py-1 rounded-pill"
+                          class="btn btn-primary px-3 py-1 "
                         >
                           Yes
                         </button>
                         <button
                           type="button"
                           data-dismiss="modal"
-                          class="btn btn-secondary px-3 py-1 rounded-pill"
+                          class="btn btn-secondary px-3 py-1 "
                           aria-label="Close"
                         >
                           No

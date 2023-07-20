@@ -557,7 +557,7 @@
             </div>
             <!-- details end -->
           </div>
-          <div class="modal-footer"></div>
+          <div class="modal-footer justify-content-end border-top-0"></div>
         </div>
       </div>
     </div>

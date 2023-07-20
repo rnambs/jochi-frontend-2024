@@ -37,7 +37,7 @@
                   schoolDetails.states.state_name
                 }}</span>
               </div>
-              <!-- <div>LMS Id : <span class="text-muted m-b-15">32</span> <button class="btn btn-dark bg-secondary">edit</button></div> -->
+              <!-- <div>LMS Id : <span class="text-muted m-b-15">32</span> <button class="btn btn-primary bg-secondary">edit</button></div> -->
 
               <!-- <div class="form-row lms-form">
                 <label class="form-label mt-1">LMS ID:</label>
@@ -235,7 +235,7 @@
                       <div class="modal-body">
                         <p>Are you sure you want to delete this item?</p>
                       </div>
-                      <div class="modal-footer bg-white">
+                      <div class="modal-footer justify-content-end border-top-0 bg-white">
                         <button
                           type="button"
                           data-dismiss="modal"
@@ -410,7 +410,7 @@
                       <div class="modal-body">
                         <p>Are you sure you want to delete this item?</p>
                       </div>
-                      <div class="modal-footer bg-white">
+                      <div class="modal-footer justify-content-end border-top-0 bg-white">
                         <button
                           type="button"
                           data-dismiss="modal"

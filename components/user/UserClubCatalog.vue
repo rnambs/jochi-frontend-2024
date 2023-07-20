@@ -31,7 +31,7 @@
                 <button
                   v-if="user_type == 3"
                   type="button"
-                  class="btn btn-dark py-2 mt-1 h-fit-content px-4"
+                  class="btn btn-primary py-2 mt-1 h-fit-content px-4"
                   @click="openCreateNewModal"
                 >
                   Create your own club
@@ -193,7 +193,7 @@
                   Create your own club
                 </h3>
               </div>
-              <div class="modal-body px-4">
+              <div class="modal-body px-3">
                 <form action="">
                   <table class="w-100 table-modal custom-row-table">
                     <tr>
@@ -285,10 +285,10 @@
                   </table>
                 </form>
               </div>
-              <div class="modal-footer">
+              <div class="modal-footer justify-content-end border-top-0">
                 <button
                   type="button"
-                  class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+                  class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
                   data-dismiss="modal"
                   @click="resetClubData"
                 >
@@ -297,7 +297,7 @@
                 <button
                   type="button"
                   @click="createNewClub"
-                  class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+                  class="btn btn-primary px-4 py-1 rounded-8 font-semi-bold"
                 >
                   Save
                 </button>

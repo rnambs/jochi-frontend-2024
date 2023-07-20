@@ -219,17 +219,17 @@
                       </tr>
                     </table>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer justify-content-end border-top-0">
                     <button
                       type="button"
-                      class="btn btn-secondary py-1 px-4 rounded-pill"
+                      class="btn btn-secondary py-1 px-4 "
                       data-dismiss="modal"
                     >
                       Close
                     </button>
                     <button
                       type="button"
-                      class="btn btn-primary py-1 px-4 rounded-pill"
+                      class="btn btn-primary py-1 px-4 "
                       data-dismiss="modal"
                       @click="ScheduleConfirm()"
                     >
