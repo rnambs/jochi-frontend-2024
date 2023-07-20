@@ -446,17 +446,17 @@ export default {
       localStorage.setItem("studentSignUpSetting", "false");
     }
 
-    const activeLink = document.querySelector(".nuxt-link-active");
-    if (activeLink) {
-      const parentElement = activeLink?.closest(".collapse-for-link");
-      if (parentElement) {
-        const siblingDiv = parentElement?.previousElementSibling;
-        siblingDiv?.classList.add("show");
-        if (siblingDiv?.classList?.contains("collapsed")) {
-          siblingDiv.click();
-        }
-      }
-    }
+    // const activeLink = document.querySelector(".nuxt-link-active");
+    // if (activeLink) {
+    //   const parentElement = activeLink?.closest(".collapse-for-link");
+    //   if (parentElement) {
+    //     const siblingDiv = parentElement?.previousElementSibling;
+    //     siblingDiv?.classList.add("show");
+    //     if (siblingDiv?.classList?.contains("collapsed")) {
+    //       siblingDiv.click();
+    //     }
+    //   }
+    // }
 
     // window.addEventListener("keydown", (e) => {
     //   if (e.keyCode == 123) {
@@ -492,6 +492,18 @@ export default {
     // });
   },
   updated() {
+    const activeLink = document.querySelector(".nuxt-link-active");
+    if (activeLink) {
+      const parentElement = activeLink?.closest(".collapse-for-link");
+      if (parentElement) {
+        const siblingDiv = parentElement?.previousElementSibling;
+        siblingDiv?.classList.add("show");
+        if (siblingDiv?.classList?.contains("collapsed")) {
+          siblingDiv.click();
+        }
+      }
+    }
+    ``;
     document.addEventListener("DOMContentLoaded", function () {
       document.onkeydown = function (e) {
         if (e.keyCode == 123) {
