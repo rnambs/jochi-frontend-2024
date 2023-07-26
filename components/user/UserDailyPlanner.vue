@@ -1677,7 +1677,7 @@
                           </button>
                           <button
                             type="button"
-                            class="btn btn-primary py-1 px-3 "
+                            class="btn btn-primary py-1 px-3"
                             :disabled="processing"
                             @click="
                               isAddAssignment
@@ -1689,7 +1689,9 @@
                           </button>
 
                           <button
-                            v-if="!isAddAssignment"
+                            v-if="
+                              !isAddAssignment && schoologyAssignment == '1'
+                            "
                             type="button"
                             class="btn btn-primary py-1 px-3"
                             :disabled="processing || submissionId"
