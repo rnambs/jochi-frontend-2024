@@ -3887,7 +3887,7 @@ export default {
         item.updatedAt = e.updatedAt;
         item.user_id = e.user_id;
         item.schoologyAssignment = e.schoologyAssignment;
-        item.submission_id = e.submission_id;
+        item.submission_id = (e.submission_id && e.submission_id!='')?e.submission_id:null;
         item.peers = this.mapPeers(e);
         if (e.due_date) {
           item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
