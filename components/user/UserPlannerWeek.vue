@@ -112,7 +112,11 @@
                             group="people"
                             @start="
                               drag = true;
-                              dragCard(item.id);
+                              dragCard(
+                                item.id,
+                                item.schoologyAssignment,
+                                item.submission_id
+                              );
                             "
                             @end="drag = false"
                             :sort="false"
@@ -1855,6 +1859,15 @@
               @click="completeAssignment()"
             >
               Confirm
+            </button>
+            <button
+              v-if="schoologyAssignment == '1'"
+              type="button"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+              @click="submitAndCompleteAssignment()"
+              :disabled="submissionId"
+            >
+              Confirm & Submit Assignment
             </button>
           </div>
         </div>
@@ -4030,7 +4043,8 @@ export default {
         item.updatedAt = e.updatedAt;
         item.user_id = e.user_id;
         item.shared_users_id = e.shared_users_id;
-        item.submission_id = e.submission_id;
+        item.submission_id =
+          e.submission_id && e.submission_id != "" ? e.submission_id : null;
         item.peers = this.mapPeers(e);
         if (e.due_date) {
           item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
@@ -4080,7 +4094,8 @@ export default {
         item.updatedAt = e.assignments.updatedAt;
         item.user_id = e.assignments.user_id;
         item.shared_users_id = e.shared_users_id;
-        item.submission_id = e.submission_id;
+        item.submission_id =
+          e.submission_id && e.submission_id != "" ? e.submission_id : null;
         item.peers = this.mapPeers(e);
         if (e.assignments.due_date) {
           item.formattedDate = moment(e.assignments.due_date).format(
@@ -4133,14 +4148,18 @@ export default {
       }
       return peers;
     },
-    dragCard(data) {
+    dragCard(data, schoologyAssignment, submissionId) {
       this.completeAsstId = data;
+      this.schoologyAssignment = schoologyAssignment;
+      this.submissionId = submissionId;
     },
     handleDrop(data, event) {
       $("#completeConfirm").modal({ backdrop: true });
 
       let assignment = data.item;
       this.completeAsstId = assignment.id;
+      this.schoologyAssignment = assignment.schoologyAssignment;
+      this.submissionId = assignment.submission_id;
     },
     handleDropDraggable(data, event) {
       this.drag = false;
@@ -4604,6 +4623,11 @@ export default {
       this.materialTypeSubmit = "";
       this.linkSubmit = "";
       this.textSubmit = "";
+    },
+    submitAndCompleteAssignment() {
+      $(".modal").modal("hide");
+      $(".modal-backdrop").remove();
+      this.submitAssignment();
     },
   },
   beforeDestroy() {
