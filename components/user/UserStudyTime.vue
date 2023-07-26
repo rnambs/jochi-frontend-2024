@@ -37,9 +37,9 @@
               data-intro="To start a session right away, click here. You will be prompted to choose what assignment you want to work on, invite your classmates to join you, a chance to set some goals, the option to choose a structured study method and other options to configure a new study session."
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
-                <h2 class="color-primary-dark font-semi-bold mb-1">
+                <h3 class="color-primary-dark heading3 font-semi-bold mb-1">
                   Complete An Assignment
-                </h2>
+                </h3>
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Tackle your upcoming assignments
                 </p>
@@ -69,9 +69,9 @@
               class="row card card-void p-4 m-0 flex-row cursor-pointer"
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
-                <h2 class="color-primary-dark font-semi-bold mb-1">
+                <h3 class="color-primary-dark heading3 font-semi-bold mb-1">
                   Start A New Study Session
-                </h2>
+                </h3>
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Stay focused while you study, and monitor your productivity
                 </p>
@@ -92,12 +92,12 @@
               class="card card-void py-4 h-100 position-realtive h-min-70"
             >
               <div class="d-flex flex-column h-100">
-                <h2
+                <h3
                   data-intro="View upcoming study sessions that you’ve blocked out for later and sessions that your classmates have invited you to."
-                  class="color-primary-dark font-semi-bold mb-2 px-4"
+                  class="color-primary-dark heading3 font-semi-bold mb-2 px-4"
                 >
                   Upcoming Sessions
-                </h2>
+                </h3>
                 <div class="custom-overflow px-4 pt-2 h-max-lg-600">
                   <div
                     v-for="sessionItem in studySessionList"
@@ -291,8 +291,8 @@
       v-if="currentTab == 1"
       class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
-      <h2 class="color-primary-dark font-bold mb-1">Step One:</h2>
-      <h2 class="color-primary-dark font-bold mb-1">Choose An Assignment</h2>
+      <h3 class="color-primary-dark heading3 font-bold mb-1">Step One:</h3>
+      <h3 class="color-primary-dark heading3 font-bold mb-1">Choose An Assignment</h3>
       <div class="d-flex align-items-center justify-content-between">
         <div class="d-flex">
           <button @click="onBack()" class="btn color-secondary">
@@ -471,10 +471,10 @@
       v-if="currentTab == 2"
       class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
-      <h2 class="color-primary-dark font-bold mb-1">
+      <h3 class="color-primary-dark heading3 font-bold mb-1">
         Step {{ sessionType == "study" ? "One" : "Two" }}:
-      </h2>
-      <h2 class="color-primary-dark font-bold mb-1">Configure your Session</h2>
+      </h3>
+      <h3 class="color-primary-dark heading3 font-bold mb-1">Configure your Session</h3>
       <div class="d-flex">
         <button @click="onBack()" class="btn color-secondary">
           <span class="mr-2 arrow"
@@ -492,9 +492,9 @@
               <div
                 class="bg-white border rounded-8 drag-drop px-4 py-5 position-realtive h-100 d-flex align-items-center justify-content-center flex-column cursor-pointer"
               >
-                <h2 class="color-primary-dark text-center font-bold mb-1">
+                <h3 class="color-primary-dark heading3 text-center font-bold mb-1">
                   Regular Studying
-                </h2>
+                </h3>
                 <p class="color-dark font-semi-bold text-center text-18">
                   Set your own timer, goals, and breaks.
                 </p>
@@ -507,9 +507,9 @@
               <div
                 class="bg-white border rounded-8 drag-drop px-4 py-5 position-realtive d-flex align-items-center justify-content-center flex-column cursor-pointer"
               >
-                <h2 class="color-primary-dark font-bold mb-1 text-center">
+                <h3 class="color-primary-dark heading3 font-bold mb-1 text-center">
                   Pomodoro Technique
-                </h2>
+                </h3>
                 <p class="color-dark font-semi-bold text-18 text-center">
                   Definition of this technique will go here...
                 </p>
@@ -538,10 +538,10 @@
       v-if="currentTab == 3"
       class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
-      <h2 class="color-primary-dark font-bold mb-1">
+      <h3 class="color-primary-dark heading3 font-bold mb-1">
         Step {{ sessionType == "study" ? "Two" : "Three" }}:
-      </h2>
-      <h2 class="color-primary-dark font-bold mb-1">Configure your Session</h2>
+      </h3>
+      <h3 class="color-primary-dark heading3 font-bold mb-1">Configure your Session</h3>
       <div class="d-flex">
         <button @click="onBack()" class="btn color-secondary">
           <span class="mr-2 arrow"
@@ -706,10 +706,10 @@
           <div class="card card-void p-4 m-0 flex-column h-100">
             <div class="d-flex flex-column justify-content-between h-100">
               <div class="d-flex flex-column h-40 flex-fill">
-                <h2 class="color-dark font-semi-bold mb-1">
+                <h3 class="color-dark heading3 font-semi-bold mb-1">
                   {{ sessionMode == "regular" ? "Regular" : "Pomodoro" }}
                   Studying
-                </h2>
+                </h3>
                 <div
                   class="form-section study-room-form py-0 d-flex flex-column h-40 flex-fill custom-overflow"
                 >
@@ -1097,7 +1097,7 @@
       <div
         class="px-5 py-4 d-flex flex-column card card-void col-lg-7"
       >
-        <h2 class="color-primary-dark font-semi-bold mb-1">Rate your session</h2>
+        <h3 class="color-primary-dark heading3 font-semi-bold mb-1">Rate your session</h3>
         <div class="d-flex flex-column py-3 px-0">
           <div class="mb-3">
             <h4 class="color-dark font-semi-bold">Focus</h4>

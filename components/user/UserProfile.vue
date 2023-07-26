@@ -8,7 +8,7 @@
         <div class="inner-study d-flex flex-column flex-fill h-100">
           <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center justify-content-between w-100">
-              <h2 class="color-primary-dark font-bold">Profile</h2>
+              <h3 class="color-primary-dark heading3 font-bold">Profile</h3>
               <div class="faq-section d-flex align-items-center">
                 <div class="faq-btn color-dark font-semi-bold mr-4">
                   <a style="color: #000000" href="https://www.jochi.info/faqs">

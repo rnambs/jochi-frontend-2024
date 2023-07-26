@@ -8,7 +8,7 @@
       flex-column custom-overflow">
           <div class="study-row">
             <div class="py-3 px-5">
-              <h2 class="color-primary-dark font-semi-bold text-center mb-5 mt-2">Privacy Policy</h2>
+              <h3 class="color-primary-dark heading3 font-semi-bold text-center mb-5 mt-2">Privacy Policy</h3>
 
               <p class="color-dark font-regular text-16">
                 Jochi.live is owned and operated by Jochi Limited (“Jochi”). This

@@ -13,9 +13,9 @@
         <div
           class="teacher-section bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
         >
-          <h2 class="color-primary-dark font-semi-bold m-0 px-4 pt-4">
+          <h3 class="color-primary-dark heading3 font-semi-bold m-0 px-4 pt-4">
             Teacher Appointment
-          </h2>
+          </h3>
 
           <div
             class="inner-teacher px-4 pt-4 pb-2 mb-2 d-flex flex-column h-40 flex-fill custom-overflow"
@@ -247,7 +247,7 @@
         >
           <div class="modal-content h-auto">
             <div class="modal-header text-dark pb-1">
-              <h2 class="modal-title" id="mediumModalLabel">Meeting Request</h2>
+              <h3 class="modal-title heading3" id="mediumModalLabel">Meeting Request</h3>
               <!-- <button
                 type="button"
                 class="close"

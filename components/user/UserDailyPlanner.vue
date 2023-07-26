@@ -21,12 +21,12 @@
                   data-intro="Find your upcoming assignments and commitments in your daily calendar."
                   class="bg-white border rounded-10 p-4 h-100 d-flex flex-column"
                 >
-                  <h2
+                  <h3
                     v-if="showToday"
-                    class="color-primary-dark font-semi-bold mb-1"
+                    class="color-primary-dark heading3 font-semi-bold mb-1"
                   >
                     Today,
-                  </h2>
+                  </h3>
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
               </div>
@@ -47,12 +47,12 @@
                   >
                     <div class="row">
                       <div class="col-md-4">
-                        <h2
+                        <h3
                           data-intro="Manage your upcoming assignments."
-                          class="color-primary-dark font-semi-bold mb-0"
+                          class="color-primary-dark heading3 font-semi-bold mb-0"
                         >
                           Pending
-                        </h2>
+                        </h3>
                       </div>
                       <div
                         class="col-md-8 d-flex justify-content-start justify-content-md-end"
@@ -571,9 +571,9 @@
                     <div
                       class="drop color-secondary text-16 h-100 d-flex flex-column"
                     >
-                      <h2 class="color-primary-dark font-semi-bold px-4">
+                      <h3 class="color-primary-dark heading3 font-semi-bold px-4">
                         Completed Today
-                      </h2>
+                      </h3>
                       <p
                         class="d-none d-lg-block mb-0 px-4 color-secondary font-regular"
                       >
@@ -645,12 +645,12 @@
                       class="drop color-secondary text-16 h-100 d-flex flex-column"
                       @drop="handleDrop"
                     >
-                      <h2
+                      <h3
                         data-intro="View your completed assignments."
-                        class="color-primary-dark font-semi-bold px-4"
+                        class="color-primary-dark heading3 font-semi-bold px-4"
                       >
                         Completed Today
-                      </h2>
+                      </h3>
                       <p
                         class="d-none d-xl-block mb-0 px-4 color-secondary font-regular"
                       >

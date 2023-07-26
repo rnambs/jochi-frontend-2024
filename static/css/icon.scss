@@ -20,7 +20,10 @@
         background-image: url('../image/v4/icon/meeting.svg');
     }
     &--club {
-        background-image: url('../image/v4/icon/club.svg');
+        background-image: url('../image/v4/icon/activities.svg');
+    }
+    &--study {
+        background-image: url('../image/v4/icon/study.svg');
     }
     &--settings {
         background-image: url('../image/v4/icon/cog.svg');
@@ -79,7 +82,10 @@
                     background-image: url('../image/v4/icon/meeting-active.svg');
                 }
                 &--club {
-                    background-image: url('../image/v4/icon/club-active.svg');
+                    background-image: url('../image/v4/icon/activities-active.svg');
+                }
+                &--study {
+                    background-image: url('../image/v4/icon/study-active.svg');
                 }
             }
         }

@@ -250,7 +250,10 @@
   background-image: url("../image/v4/icon/meeting.svg");
 }
 .icon--club {
-  background-image: url("../image/v4/icon/club.svg");
+  background-image: url("../image/v4/icon/activities.svg");
+}
+.icon--study {
+  background-image: url("../image/v4/icon/study.svg");
 }
 .icon--settings {
   background-image: url("../image/v4/icon/cog.svg");
@@ -298,7 +301,10 @@
   background-image: url("../image/v4/icon/meeting-active.svg");
 }
 .nav-link.accordion-link.active .icon--club, .nav-link.accordion-link:not(.collapsed) .icon--club {
-  background-image: url("../image/v4/icon/club-active.svg");
+  background-image: url("../image/v4/icon/activities-active.svg");
+}
+.nav-link.accordion-link.active .icon--study, .nav-link.accordion-link:not(.collapsed) .icon--study {
+  background-image: url("../image/v4/icon/study-active.svg");
 }
 
 :root {
@@ -722,7 +728,7 @@ input[type=radio] {
   background: unset;
 }
 .form-row .multiselect__tags, .form-group .multiselect__tags {
-  border-radius: 8px;
+  border-radius: 8px !important;
   font-size: 0.9rem;
   border: 1px solid #BCBCBC;
   background-color: rgba(255, 255, 255, 0.2);
@@ -3555,9 +3561,7 @@ img.dark-icon {
   border: none !important;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th {
-  background: rgba(138, 116, 225, 0.26);
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
+  background-color: #e1dbf7;
   border: none;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th .fc-scroller-harness {
@@ -4025,9 +4029,7 @@ img.dark-icon {
   border: none;
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th {
-  background: rgba(138, 116, 225, 0.26);
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
+  background-color: #e1dbf7;
   border-right: none;
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th .fc-scroller-harness .fc-scroller {
@@ -4085,6 +4087,8 @@ img.dark-icon {
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td .fc-daygrid-body.fc-daygrid-body-unbalanced {
   width: 100% !important;
+  background-color: #F1EEF6;
+  border-radius: 0px 0px 12px 12px;
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td table.fc-scrollgrid-sync-table {
   width: 100% !important;
@@ -4212,9 +4216,7 @@ img.dark-icon {
   border: none;
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th {
-  background: rgba(138, 116, 225, 0.26);
-  -webkit-backdrop-filter: blur(9px);
-          backdrop-filter: blur(9px);
+  background-color: #e1dbf7;
   border-right: none;
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tr.fc-scrollgrid-section.fc-scrollgrid-section-header th .fc-scroller-harness .fc-scroller {
@@ -4272,6 +4274,8 @@ img.dark-icon {
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td .fc-daygrid-body.fc-daygrid-body-unbalanced {
   width: 100% !important;
+  background-color: #F1EEF6;
+  border-radius: 0px 0px 12px 12px;
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td table.fc-scrollgrid-sync-table {
   width: 100% !important;

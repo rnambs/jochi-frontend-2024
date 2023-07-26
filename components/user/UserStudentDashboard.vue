@@ -11,7 +11,7 @@
 
     <div class="main-section">
       <div
-        class="bg-white rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
+        class="bg-white custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
       >
         <div class="dmc-head d-flex align-items-start">
           <div class="greet-with-name-sec">
@@ -19,7 +19,7 @@
             <p class="color-primary-dark text-40 font-bold mb-4">{{ firstName }}</p>
           </div>
         </div>
-        <div class="d-flex flex-column h-40 flex-fill min-h-dashboard">
+        <div class="d-flex flex-column h-40 flex-fill">
           <div class="row h-100">
             <div class="col-xl-8 h-100 height-md-unset">
               <div class="d-flex flex-column h-100">

@@ -7,7 +7,7 @@
       custom-margin-for-main-section custom-full-height
       d-flex
       flex-column">
-          <h2 class="color-primary-dark font-semi-bold px-4 pb-2 pt-4">Sync Calendar</h2>
+          <h3 class="color-primary-dark heading3 font-semi-bold px-4 pb-2 pt-4">Sync Calendar</h3>
           <div class="px-4 pb-2 mb-2 pt-4 custom-overflow h-100">
             <div class="card card-primary rounded-22 p-4 h-100">
               <div class="row">

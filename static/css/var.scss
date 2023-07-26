@@ -298,8 +298,9 @@ $sm-screen-h         : 767.98px;
             table.fc-scrollgrid.fc-scrollgrid-liquid{
                 tr.fc-scrollgrid-section.fc-scrollgrid-section-header{
                     th{
-                        background: rgba(138, 116, 225, 0.26);
-                        backdrop-filter: blur(9px);
+                        // background: rgba(138, 116, 225, 0.26);
+                        // backdrop-filter: blur(9px);
+                        background-color: #e1dbf7;
                         border-right: none;
                         .fc-scroller-harness{
                             .fc-scroller{
@@ -360,6 +361,8 @@ $sm-screen-h         : 767.98px;
                             }
                             .fc-daygrid-body.fc-daygrid-body-unbalanced{
                                 width: 100% !important;
+                                background-color: #F1EEF6;
+                                border-radius: 0px 0px 12px 12px;
                             }
                             table.fc-scrollgrid-sync-table{
                                 width: 100% !important;
@@ -504,8 +507,9 @@ $sm-screen-h         : 767.98px;
         table.fc-scrollgrid.fc-scrollgrid-liquid{
             tr.fc-scrollgrid-section.fc-scrollgrid-section-header{
                 th{
-                    background: rgba(138, 116, 225, 0.26);
-                    backdrop-filter: blur(9px);
+                    // background: rgba(138, 116, 225, 0.26);
+                    // backdrop-filter: blur(9px);
+                    background-color: #e1dbf7;
                     border: none;
                     .fc-scroller-harness{
                         margin-bottom: 10px;
