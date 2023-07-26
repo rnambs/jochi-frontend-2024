@@ -3,11 +3,28 @@
     <!-- profile Page -->
     <section id="study-detail" class="">
       <div
-        class="study-section bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="study-section bg-white rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
-        <div class="inner-study p-4 d-flex flex-column flex-fill h-100">
+        <div class="inner-study d-flex flex-column flex-fill h-100">
           <div class="d-flex justify-content-between align-items-center">
-            <h2 class="color-primary-dark font-bold">Profile</h2>
+            <div class="d-flex align-items-center justify-content-between w-100">
+              <h2 class="color-primary-dark font-bold">Profile</h2>
+              <div class="faq-section d-flex align-items-center">
+                <div class="faq-btn color-dark font-semi-bold mr-4">
+                  <a style="color: #000000" href="https://www.jochi.info/faqs">
+                    FAQ's
+                  </a>
+                </div>
+                <div class="privacy-btn mr-4 color-dark font-semi-bold">
+                  <a
+                    style="color: #000000"
+                    href="https://www.jochi.info/privacy-policy"
+                  >
+                    Privacy Policy
+                  </a>
+                </div>
+              </div>
+            </div>
             <div
               v-if="user_type == 2 && isSchoolAdmin != '1'"
               class="d-flex justify-content-between align-items-center"
