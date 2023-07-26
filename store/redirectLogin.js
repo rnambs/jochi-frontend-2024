@@ -26,7 +26,7 @@ const actions = {
     // login using gg4l
     async loginUsingGg4l({ commit }, payLoad) {
         try {
-            const response = await this.$axios.$post(BASE_URL + 'auth/gg4l_passport_auth', payLoad)
+            const response = await this.$axios.$post(BASE_URL + 'auth/edlink_auth', payLoad)
             if (status = 200) {
 
                 localStorage.setItem("skippedPrompt", "false")

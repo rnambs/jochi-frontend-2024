@@ -289,7 +289,8 @@ export default {
   mounted() {
     window.localStorage.clear();
 
-    this.redirect = GG4L_REDIRECT_LOGIN_URL + REDIRECT_LOGIN_URL;
+    // this.redirect = GG4L_REDIRECT_LOGIN_URL + REDIRECT_LOGIN_URL;
+    this.redirect = GG4L_REDIRECT_LOGIN_URL;
     if (localStorage.getItem("email")) {
       var userType = localStorage.getItem("user_type");
       if (userType == "1") {

@@ -16,7 +16,9 @@
           <div class="element-section container-fluid h-100">
             <div class="row mt-0 h-100">
               <div class="col-12 position-realtive">
-                <div class="planner-Month p-4 px-3 px-md-5 h-100 d-flex flex-column">
+                <div
+                  class="planner-Month p-4 px-3 px-md-5 h-100 d-flex flex-column"
+                >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                   <div class="color-ref mnth">
                     <ul class="d-flex align-itmes-center">
@@ -109,7 +111,11 @@
                             group="people"
                             @start="
                               drag = true;
-                              dragCard(item.id);
+                              dragCard(
+                            item.id,
+                            item.schoologyAssignment,
+                            item.submission_id
+                          );
                             "
                             @end="drag = false"
                             :sort="false"
@@ -913,24 +919,7 @@
                                     v-model="assignmentDescription"
                                     maxlength="500"
                                     placeholder="Enter assignment description"
-                                    :class="{
-                                      'is-invalid':
-                                        submitted &&
-                                        $v.assignmentDescription.$error,
-                                    }"
                                   ></textarea>
-                                  <div
-                                    v-if="
-                                      submitted &&
-                                      $v.assignmentDescription.$error
-                                    "
-                                    class="invalid-feedback"
-                                  >
-                                    <span
-                                      v-if="!$v.assignmentDescription.required"
-                                      >This field is required</span
-                                    >
-                                  </div>
                                 </div>
                                 <div class="row">
                                   <div class="col-md-6 ml-auto">
@@ -1074,11 +1063,20 @@
                                     </div>
                                   </div>
                                 </div>
+                                <!-- grades section -->
+                                  <div
+                                    class="d-flex justify-content-between align-items-center mb-2"
+                                    v-if="submissionId"
+                                  >
+                                  <span v-if="grade">Grade</span>:<span>{{ grade }}</span>
+                                  <span v-if="gradePossible">Grade Possible</span>:<span>{{ gradePossible }}</span>
+                                </div>
+                                <!-- grades section end -->
                                 <div
                                   class="d-flex justify-content-between align-items-center mb-2"
                                 >
                                   <h6 class="color-dark font-semi-bold mb-0">
-                                    Sub Tasks
+                                    Sub Tasks 1
                                   </h6>
                                   <a @click="onAddSubTaskClick" class="btn p-0">
                                     <span class="color-secondary"
@@ -1233,14 +1231,16 @@
                                     <button
                                       type="button"
                                       role="button"
-                                      class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none "
+                                      class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none"
                                       @click="
                                         removePeerConfirm(peer.id, $event)
                                       "
                                     >
                                       <span
                                         class="color-primary-dark fa-icon show-hover btn p-0 ml-05"
-                                        ><i class="fas fa-trash-alt  color-danger"></i
+                                        ><i
+                                          class="fas fa-trash-alt color-danger"
+                                        ></i
                                       ></span>
                                     </button>
                                   </div>
@@ -1763,7 +1763,7 @@
                             <div class="d-flex justify-content-end">
                               <button
                                 type="button"
-                                class="btn btn-secondary py-1 px-3  mr-2"
+                                class="btn btn-secondary py-1 px-3 mr-2"
                                 @click="
                                   openAssignment = false;
                                   closePopup();
@@ -1773,7 +1773,7 @@
                               </button>
                               <button
                                 type="button"
-                                class="btn btn-primary py-1 px-3 "
+                                class="btn btn-primary py-1 px-3"
                                 :disabled="processing"
                                 @click="
                                   isAddAssignment
@@ -1782,6 +1782,17 @@
                                 "
                               >
                                 {{ isAddAssignment ? "Add" : "Update" }}
+                              </button>
+                              <button
+                                v-if="
+                                  !isAddAssignment && schoologyAssignment == '1'
+                                "
+                                type="button"
+                                class="btn btn-primary py-1 px-3"
+                                :disabled="processing || submissionId"
+                                @click="submitAssignment()"
+                              >
+                                Submit Assignment
                               </button>
                             </div>
                           </div>
@@ -1954,6 +1965,15 @@
               >
                 Confirm
               </button>
+              <button
+              v-if="schoologyAssignment == '1'"
+              type="button"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+              @click="submitAndCompleteAssignment()"
+              :disabled="submissionId"
+            >
+              Confirm & Submit Assignment
+            </button>
             </div>
           </div>
         </div>
@@ -2220,6 +2240,120 @@
         </div>
       </div>
       <!-- Alert modal end  -->
+
+      <!-- Submit assignment -->
+      <div
+        class="modal fade"
+        id="submitAssignmentConfirmation"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="submitAssignmentConfirmationModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered add-assmt"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header pb-1">
+              <h3
+                class="modal-title"
+                id="submitAssignmentConfirmationModalLongTitle"
+              >
+                Submit assignments
+              </h3>
+            </div>
+            <!-- Additional Material Add -->
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h6 class="color-dark font-semi-bold mb-0">
+                Submit Additional Material
+              </h6>
+              <!-- <a class="btn p-0">
+              <span class="color-secondary"
+                ><i class="fas fa-plus-circle"></i
+              ></span>
+            </a> -->
+            </div>
+            <div class="d-flex flex-row align-items-start">
+              <div class="form-row mb-2 mx-0 mr-2 w-100">
+                <label class="form-label" for="name"
+                  >Add Additional Material</label
+                >
+                <select
+                  v-model="materialTypeSubmit"
+                  class="form-select form-control mb-2"
+                  aria-label="Default select example"
+                >
+                  <option value="">Choose material type</option>
+                  <!-- <option value="file">File</option> -->
+                  <option value="link">Link</option>
+                  <option value="text">Text</option>
+                </select>
+                <div class="row m-0">
+                  <div class="col-9 py-0 pl-0">
+                    <input
+                      id="fileUploadSubmit"
+                      v-if="materialTypeSubmit == 'file'"
+                      type="file"
+                      class="form-control px-2 cursor-pointer"
+                      placeholder="Upload File"
+                      @change="onFileChangeSubmit"
+                      accept=".png,.jpeg,.jpg,.pdf"
+                    />
+                  </div>
+                  <div class="col-9 py-0 pl-0">
+                    <input
+                      v-if="materialTypeSubmit == 'link'"
+                      type="text"
+                      class="form-control px-2"
+                      placeholder="Paste Link"
+                      v-model="linkSubmit"
+                    />
+                  </div>
+                  <div class="col-3 p-0">
+                    <textarea
+                      v-if="materialTypeSubmit == 'text'"
+                      class="form-control px-2"
+                      placeholder="Enter description"
+                      v-model="textSubmit"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="pt-4">
+              <button
+                type="button"
+                @click="UploadAttachment"
+                class="btn btn-primary btn-sm mt-2"
+                :disabled="processingUpload"
+              >
+                Add
+              </button>
+            </div> -->
+            </div>
+
+            <!-- Additional Material Add End -->
+            <div class="modal-footer justify-content-end border-top-0">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                data-dismiss="modal"
+                type="button"
+                class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+                @click="submitAsst()"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Submit assignment end -->
     </div>
   </div>
 </template>
@@ -2267,6 +2401,7 @@ export default {
       submitted: false,
       processing: false,
       processingUpload: false,
+      processingUploadSubmit: false,
       processingCompleteAssignment: false,
       processingSubCompleteAssignment: false,
       subject: "",
@@ -2355,8 +2490,11 @@ export default {
       additionalMaterial: false,
       materialType: "",
       additionalMaterialList: [],
+      additionalMaterialListSubmit: [],
       link: "",
+      linkSubmit: "",
       file: "",
+      fileSubmit: "",
       assignmentId: 0,
       isSharedAssignment: false,
       assignmentList: [],
@@ -2385,6 +2523,10 @@ export default {
       prior: "4",
       startTime: null,
       alertMessage: "",
+      materialTypeSubmit: "",
+      submissionId: "",
+      grade:'',
+      gradePossible:''
     };
   },
   mounted() {
@@ -2470,7 +2612,7 @@ export default {
     dateValue: { required },
     timeValue: { required },
     assignmentName: { required },
-    assignmentDescription: { required },
+    // assignmentDescription: { required },
   },
   computed: {
     ...mapState("plannerMonth", {
@@ -2560,6 +2702,7 @@ export default {
       getCompletedAssignments: "getCompletedAssignments",
       uploadAdditionalMaterial: "uploadAdditionalMaterial",
       deleteAssignments: "deleteAssignments",
+      assignmentSubmit: "assignmentSubmit",
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
@@ -3165,6 +3308,10 @@ export default {
       this.dateValue = "";
       this.file = "";
       this.link = "";
+      this.submissionId = "";
+      this.schoologyAssignment = "";
+      this.grade='';
+      this.gradePossible='';
 
       $('input[name="daterange"]').val("");
       fromDate = "";
@@ -4094,6 +4241,9 @@ export default {
         item.updatedAt = e.updatedAt;
         item.user_id = e.user_id;
         item.shared_users_id = e.shared_users_id;
+        item.submission_id = (e.submission_id && e.submission_id!='')?e.submission_id:null;
+         item.grade = e.grade;
+        item.grade_possible = e.grade_possible;
         item.peers = this.mapPeers(e);
         if (e.due_date) {
           item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
@@ -4144,6 +4294,7 @@ export default {
         item.updatedAt = e.assignments.updatedAt;
         item.user_id = e.assignments.user_id;
         item.shared_users_id = e.shared_users_id;
+        item.submission_id = (e.submission_id && e.submission_id!='')?e.submission_id:null;
         item.peers = this.mapPeers(e);
         if (e.assignments.due_date) {
           item.formattedDate = moment(e.assignments.due_date).format(
@@ -4196,14 +4347,18 @@ export default {
       }
       return peers;
     },
-    dragCard(data) {
+    dragCard(data, schoologyAssignment, submissionId) {
       this.completeAsstId = data;
+      this.schoologyAssignment = schoologyAssignment;
+      this.submissionId = submissionId;
     },
     handleDrop(data, event) {
       $("#completeConfirm").modal({ backdrop: true });
 
       let assignment = data.item;
       this.completeAsstId = assignment.id;
+      this.schoologyAssignment = assignment.schoologyAssignment;
+      this.submissionId = assignment.submission_id;
     },
     handleDropDraggable(data, event) {
       this.drag = false;
@@ -4334,6 +4489,9 @@ export default {
       this.assignmentId = data.id;
       this.assignmentName = data.task;
       this.assignmentDescription = data.assignment_description;
+      this.submissionId = data.submission_id;
+      this.grade = data.grade;
+      this.gradePossible = data.grade_possible;
       this.priorityVal =
         data.priority == "1"
           ? "Urgent"
@@ -4430,6 +4588,25 @@ export default {
       }
       if (e.target.files[0]) {
         this.file = e.target.files[0];
+      }
+    },
+    onFileChangeSubmit(e) {
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        if (document.querySelector("#fileUploadSubmit"))
+          document.querySelector("#fileUploadSubmit").value = "";
+
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
+
+      if (e.target.files[0]) {
+        this.fileSubmit = e.target.files[0];
+        e.target.files[0].value = "";
       }
     },
     async UploadAttachment() {
@@ -4619,6 +4796,42 @@ export default {
       this.getMonthlyPlanner();
       this.openAssignment = false;
     },
+    submitAssignment() {
+      $("#submitAssignmentConfirmation").modal({ backdrop: true });
+    },
+    async submitAsst() {
+      var payload = {};
+      if (this.materialTypeSubmit == "text") {
+        payload = {
+          assignment_id: this.assignmentId,
+          type: "text",
+          text: this.textSubmit,
+        };
+      } else if (this.materialTypeSubmit == "link") {
+        payload = {
+          assignment_id: this.assignmentId,
+          type: "link",
+          url: this.linkSubmit,
+        };
+      }
+
+      await this.assignmentSubmit(payload);
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 4000,
+        });
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+    },
   },
   beforeDestroy() {
     const endTime = new Date().getTime();
@@ -4626,6 +4839,11 @@ export default {
     const distinct_id = localStorage.getItem("distinctId");
     const page = "PlannerMonth";
     this.$mixpanel.track("Page Duration", { duration, distinct_id, page });
+  },
+  submitAndCompleteAssignment() {
+    $(".modal").modal("hide");
+    $(".modal-backdrop").remove();
+    this.submitAssignment();
   },
 };
 </script>

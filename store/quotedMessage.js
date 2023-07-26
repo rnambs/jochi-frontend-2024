@@ -526,7 +526,39 @@ const actions = {
     }
 
   },
+  // submit an assignment to GG4L
+  async assignmentSubmit({ commit }, payLoad) {
+    const token = localStorage.getItem('token')
+    try {
+      const response = await this.$axios.$post(BASE_URL + 'lms/assignment_submit', payLoad, {
+        headers: {
+          'Authorization': ` ${token}`
+        },
+      });
+      if (response.message) {
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        commit('setSuccessMessage', response.message);
+        commit('setSuccessType', "success");
+      }
+    } catch (e) {
+      if (e?.response?.data?.message == "Unauthorized") {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', "");
+        commit('setErrorType', "");
+        window.localStorage.clear();
+        this.$router.push('/');
+      }
+      else if (e?.response?.data?.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage', e?.response?.data?.message);
+        commit('setErrorType', "error");
+      }
+    }
 
+  },
 
 }
 const mutations = {
