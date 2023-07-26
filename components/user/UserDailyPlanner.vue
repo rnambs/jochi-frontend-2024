@@ -1006,6 +1006,15 @@
                                 </div>
                               </div>
                             </div>
+                          <!-- grades section -->
+                            <div
+                              class="d-flex justify-content-between align-items-center mb-2"
+                              v-if="submissionId"
+                            >
+                            <span v-if="grade">Grade</span>:<span>{{ grade }}</span>
+                            <span v-if="gradePossible">Grade Possible</span>:<span>{{ gradePossible }}</span>
+                          </div>
+                          <!-- grades section end -->
                             <div
                               class="d-flex justify-content-between align-items-center mb-2"
                             >
@@ -2648,6 +2657,8 @@ export default {
       alertMessage: "",
       materialTypeSubmit: "",
       submissionId: "",
+      grade:'',
+      gradePossible:''
     };
   },
   mounted() {
@@ -3392,6 +3403,10 @@ export default {
       this.dateValue = "";
       this.file = "";
       this.link = "";
+      this.submissionId = "";
+      this.schoologyAssignment = "";
+      this.grade='';
+      this.gradePossible='';
 
       $('input[name="daterange"]').val("");
       fromDate = "";
@@ -3887,7 +3902,10 @@ export default {
         item.updatedAt = e.updatedAt;
         item.user_id = e.user_id;
         item.schoologyAssignment = e.schoologyAssignment;
-        item.submission_id = (e.submission_id && e.submission_id!='')?e.submission_id:null;
+        item.submission_id =
+          e.submission_id && e.submission_id != "" ? e.submission_id : null;
+        item.grade = e.grade;
+        item.grade_possible = e.grade_possible;
         item.peers = this.mapPeers(e);
         if (e.due_date) {
           item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
@@ -3938,7 +3956,10 @@ export default {
         item.user_id = e.assignments.user_id;
         item.schoologyAssignment = e.schoologyAssignment;
         item.shared_users_id = e.shared_users_id;
-        item.submission_id = (e.submission_id && e.submission_id!='')?e.submission_id:null;
+        item.submission_id =
+          e.submission_id && e.submission_id != "" ? e.submission_id : null;
+          item.grade=e.grade;
+          item.grade_possible=e.grade_possible;
         item.peers = this.mapPeers(e);
         if (e.assignments.due_date) {
           item.formattedDate = moment(e.assignments.due_date).format(
@@ -4108,6 +4129,8 @@ export default {
       this.assignmentName = data.task;
       this.assignmentDescription = data.assignment_description;
       this.submissionId = data.submission_id;
+      this.grade = data.grade;
+      this.gradePossible = data.grade_possible;
       this.priorityVal =
         data.priority == "1"
           ? "Urgent"

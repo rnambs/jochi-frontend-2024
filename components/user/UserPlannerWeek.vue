@@ -1032,11 +1032,24 @@
                                     </div>
                                   </div>
                                 </div>
+                                <!-- grades section -->
+                                <div
+                                  class="d-flex justify-content-between align-items-center mb-2"
+                                  v-if="submissionId"
+                                >
+                                  <span v-if="grade">Grade</span>:<span>{{
+                                    grade
+                                  }}</span>
+                                  <span v-if="gradePossible"
+                                    >Grade Possible</span
+                                  >:<span>{{ gradePossible }}</span>
+                                </div>
+                                <!-- grades section end -->
                                 <div
                                   class="d-flex justify-content-between align-items-center mb-2"
                                 >
                                   <h6 class="color-dark font-semi-bold mb-0">
-                                    Sub Tasks
+                                    Sub Tasks 1
                                   </h6>
                                   <a @click="onAddSubTaskClick" class="btn p-0">
                                     <span class="color-secondary"
@@ -2387,6 +2400,8 @@ export default {
       alertMessage: "",
       materialTypeSubmit: "",
       submissionId: "",
+      grade: "",
+      gradePossible: "",
     };
   },
 
@@ -3088,6 +3103,10 @@ export default {
       this.dateValue = "";
       this.file = "";
       this.link = "";
+      this.submissionId = "";
+      this.schoologyAssignment = "";
+      this.grade = "";
+      this.gradePossible = "";
 
       $('input[name="daterange"]').val("");
       fromDate = "";
@@ -4045,6 +4064,8 @@ export default {
         item.shared_users_id = e.shared_users_id;
         item.submission_id =
           e.submission_id && e.submission_id != "" ? e.submission_id : null;
+        item.grade = e.grade;
+        item.grade_possible = e.grade_possible;
         item.peers = this.mapPeers(e);
         if (e.due_date) {
           item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
@@ -4283,6 +4304,8 @@ export default {
       this.assignmentName = data.task;
       this.assignmentDescription = data.assignment_description;
       this.submissionId = data.submission_id;
+      this.grade = data.grade;
+      this.gradePossible = data.grade_possible;
       this.priorityVal =
         data.priority == "1"
           ? "Urgent"
