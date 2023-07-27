@@ -38,6 +38,10 @@
   background-color: #5534A5 !important;
 }
 
+.bg-primary-light01 {
+  background-color: #DDD6ED;
+}
+
 .bg-gray-light {
   background-color: #F9F9F9 !important;
 }
@@ -107,6 +111,10 @@
 
 .left-0 {
   left: 0;
+}
+
+.px--12 {
+  padding: 0px 12px;
 }
 
 .lext-limited {

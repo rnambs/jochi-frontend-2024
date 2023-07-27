@@ -235,7 +235,7 @@
                                   </div>
                                   <div
                                     v-if="detail.subject"
-                                    class="assignment-tag pink text-truncate"
+                                    class="assignment-tag bg-primary text-truncate"
                                   >
                                     {{ detail.subject }}
                                   </div>
@@ -425,7 +425,7 @@
                                   </div>
                                   <div
                                     v-if="detail.subject"
-                                    class="assignment-tag pink text-truncate"
+                                    class="assignment-tag bg-primary text-truncate"
                                   >
                                     {{ detail.subject }}
                                   </div>

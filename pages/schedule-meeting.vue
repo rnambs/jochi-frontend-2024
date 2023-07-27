@@ -167,7 +167,7 @@ export default {
   }
 
   .dashboard-text-content {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 700;
     color: #ff6d6d;
     line-height: 30px;

@@ -440,7 +440,7 @@ body {
 }
 
 .dashboard-text-content {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
   
   line-height: 30px;
@@ -448,7 +448,7 @@ body {
 }
 @media (max-width:764.98px) {
   .dashboard-text-content{
-    font-size: 18px;
+    font-size: 16px;
     line-height: 22px;
   }
 }
