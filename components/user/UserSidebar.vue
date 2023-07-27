@@ -234,7 +234,7 @@
           </li>
           <!-- nav bottom -->
           <!-- settings -->
-          <li class="nav-item px-1 parent-menu mb-1 mb-md-2 mt-auto">
+          <li @click="startGuide()" class="nav-item px-1 parent-menu mb-1 mb-md-2 mt-auto">
             <nuxt-link
               to="#"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center"
