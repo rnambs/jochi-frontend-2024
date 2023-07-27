@@ -72,9 +72,9 @@
                         class="row d-flex justify-content-between align-items-center px-5 pb-2"
                       >
                         <div class="col-md-4">
-                          <h2 class="color-primary-dark font-semi-bold mb-0">
+                          <h3 class="color-primary-dark heading3 font-semi-bold mb-0">
                             Pending
-                          </h2>
+                          </h3>
                         </div>
                         <div
                           class="col-md-8 d-flex justify-content-start justify-content-md-end"
@@ -601,9 +601,9 @@
                         <div
                           class="drop color-secondary text-16 h-100 d-flex flex-column"
                         >
-                          <h2 class="color-primary-dark font-semi-bold px-5">
+                          <h3 class="color-primary-dark heading3 font-semi-bold px-5">
                             Completed This Week
-                          </h2>
+                          </h3>
                           <p
                             class="d-none d-xl-block mb-0 px-5 color-secondary font-regular"
                           >
@@ -669,9 +669,9 @@
                           class="drop color-secondary text-16 h-100 d-flex flex-column"
                           @drop="handleDrop"
                         >
-                          <h2 class="color-primary-dark font-semi-bold px-5">
+                          <h3 class="color-primary-dark heading3 font-semi-bold px-5">
                             Completed This Week
-                          </h2>
+                          </h3>
                           <p class="mb-0 px-5 color-secondary font-regular">
                             Drag and drop your assignment here when it is
                             completed

@@ -28,7 +28,7 @@
                 <h5 class="mb-1 color-dark font-semi-bold">
                   Hello {{ firstName }}
                 </h5>
-                <h2 class="color-primary-dark font-semi-bold">Have a great day</h2>
+                <h3 class="color-primary-dark heading3 font-semi-bold">Have a great day</h3>
               </div>
               <div class="d-flex align-items-center">
                 <!-- <div class="btn color-dark font-semi-bold mr-3">FAQs</div> -->
@@ -241,7 +241,7 @@
         >
           <div class="modal-content h-auto">
             <div class="modal-header text-dark pb-1">
-              <h2 class="modal-title" id="mediumModalLabel">Meeting Request</h2>
+              <h3 class="modal-title heading3" id="mediumModalLabel">Meeting Request</h3>
               <!-- <button
                 type="button"
                 class="close"

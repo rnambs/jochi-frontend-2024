@@ -17,7 +17,7 @@
             v-if="isSchoolAdmin != '1'"
             class="d-flex align-items-center justify-content-between px-3"
           >
-            <h2 class="color-primary-dark font-semi-bold m-0">Advisor</h2>
+            <h3 class="color-primary-dark heading3 font-semi-bold m-0">Advisor</h3>
             <button class="btn btn-primary px-4" @click="openModal">
               Send Request
             </button>
@@ -107,13 +107,13 @@
                       <div
                         class="d-flex flex-column flex-fill justify-content-center w-50"
                       >
-                        <h2 class="color-primary-dark font-semi-bold mb-1 mb-md-2">
+                        <h3 class="color-primary-dark heading3 font-semi-bold mb-1 mb-md-2">
                           {{
                             studentDetail.first_name +
                             " " +
                             studentDetail.last_name
                           }}
-                        </h2>
+                        </h3>
                         <div>
                           <div class="row m-0">
                             <div class="col-12 col-sm-3 col-md-12 col-lg-2 p-1">
@@ -577,7 +577,7 @@
                   </div>
                   <!-- analytics -->
                   <div v-if="showStudentAnalytics" class="h-100 p-4 pt-5">
-                    <!-- <h2 class="color-primary-dark font-semi-bold">Analytics</h2> -->
+                    <!-- <h3 class="color-primary-dark heading3 font-semi-bold">Analytics</h3> -->
                     <UserAdvisorStudyAnalytics
                       :studentId="studentDetail.id"
                     ></UserAdvisorStudyAnalytics>

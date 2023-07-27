@@ -133,7 +133,10 @@
   background-image: url("../image/v4/icon/meeting.svg");
 }
 .icon--club {
-  background-image: url("../image/v4/icon/club.svg");
+  background-image: url("../image/v4/icon/activities.svg");
+}
+.icon--study {
+  background-image: url("../image/v4/icon/study.svg");
 }
 .icon--settings {
   background-image: url("../image/v4/icon/cog.svg");
@@ -181,5 +184,8 @@
   background-image: url("../image/v4/icon/meeting-active.svg");
 }
 .nav-link.accordion-link.active .icon--club, .nav-link.accordion-link:not(.collapsed) .icon--club {
-  background-image: url("../image/v4/icon/club-active.svg");
+  background-image: url("../image/v4/icon/activities-active.svg");
+}
+.nav-link.accordion-link.active .icon--study, .nav-link.accordion-link:not(.collapsed) .icon--study {
+  background-image: url("../image/v4/icon/study-active.svg");
 }/*# sourceMappingURL=icon.css.map */

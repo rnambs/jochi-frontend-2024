@@ -1,7 +1,7 @@
 <template>
   <section id="header" class="">
     <nav class="navbar navbar-expand-md navbar-light bg-white p-0" id="clickableId">
-      <a class="navbar-brand d-flex align-items-center justify-content-center" href="#">
+      <a class="navbar-brand d-flex align-items-center justify-content-center mr-0" href="#">
         <span class="bg-primary-dark rounded-14 d-flex  align-items-center justify-content-center p-2">
           <img src="../../static/image/v4/logo-ms.png" alt="jochi logo" class="img-logo-v4 object-fit-contain">
         </span>
@@ -11,7 +11,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarContent">
+      <div class="collapse navbar-collapse border-bottom" id="navbarContent">
         <ul class="navbar-nav mr-auto flex-column vertical-nav accordion bg-white border-right pb-0 pb-md-5"
           id="accordionExample">
           <!-- Home -->

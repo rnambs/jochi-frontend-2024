@@ -5,7 +5,7 @@
       id="clickableId"
     >
       <a
-        class="navbar-brand d-flex align-items-center justify-content-center"
+        class="navbar-brand d-flex align-items-center justify-content-center mr-0"
         href="#"
       >
         <span
@@ -30,7 +30,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarContent">
+      <div class="collapse navbar-collapse border-bottom" id="navbarContent">
         <ul
           class="navbar-nav mr-auto flex-column vertical-nav accordion bg-white border-right pb-0 pb-md-5"
           id="accordionExample"
@@ -202,7 +202,7 @@
               aria-expanded="false"
               aria-controls="collapseFour"
             >
-              <i class="icon icon--club"></i>
+              <i class="icon icon--study"></i>
               <span
                 class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none"
                 >Study Room</span

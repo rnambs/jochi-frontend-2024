@@ -11,30 +11,15 @@
 
     <div class="main-section">
       <div
-        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
+        class="bg-white custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
       >
-        <div class="dmc-head d-flex justify-content-between align-items-start">
+        <div class="dmc-head d-flex align-items-start">
           <div class="greet-with-name-sec">
             <p class="text-24 color-black font-semi-bold mb-2">Hello,</p>
             <p class="color-primary-dark text-40 font-bold mb-4">{{ firstName }}</p>
           </div>
-          <div class="faq-section d-flex align-items-center">
-            <div class="faq-btn color-dark font-semi-bold mr-4">
-              <a style="color: #000000" href="https://www.jochi.info/faqs">
-                FAQ's
-              </a>
-            </div>
-            <div class="privacy-btn mr-4 color-dark font-semi-bold">
-              <a
-                style="color: #000000"
-                href="https://www.jochi.info/privacy-policy"
-              >
-                Privacy Policy
-              </a>
-            </div>
-          </div>
         </div>
-        <div class="d-flex flex-column h-40 flex-fill min-h-dashboard">
+        <div class="d-flex flex-column h-40 flex-fill">
           <div class="row h-100">
             <div class="col-xl-8 h-100 height-md-unset">
               <div class="d-flex flex-column h-100">

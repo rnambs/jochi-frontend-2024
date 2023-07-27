@@ -13,9 +13,9 @@
         <div
           class="teacher-section bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
         >
-          <h2 class="color-primary-dark font-semi-bold m-0 p-4">
+          <h3 class="color-primary-dark heading3 font-semi-bold m-0 p-4">
             Custom Avaliability
-          </h2>
+          </h3>
           <div
             class="inner-teacher container-fluid p-4 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow"
           >
@@ -28,9 +28,9 @@
                   class="row card card-void m-0 mb-4 p-4 flex-row cursor-pointer calendar-box"
                 >
                   <div class="col-sm-7 col-md-8 col-xl-7">
-                    <h2 class="color-primary-dark font-semi-bold mb-1">
+                    <h3 class="color-primary-dark heading3 font-semi-bold mb-1">
                       When Are You Free?
-                    </h2>
+                    </h3>
                     <p class="mb-0 color-dark font-semi-bold text-16">
                       Use this page to set your availability so that your peers
                       know when works best for you.

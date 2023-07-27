@@ -8,7 +8,7 @@
         <div
           class="d-flex align-items-center justify-content-between mb-1 px-2"
         >
-          <h2 class="color-primary-dark font-semi-bold mb-0">Study Analytics</h2>
+          <h3 class="color-primary-dark heading3 font-semi-bold mb-0">Study Analytics</h3>
           <div
             data-intro="Here you can set a daily study goal for yourself. How many hours/minutes do you want to allocate on working every day?"
             @click="openModal"
