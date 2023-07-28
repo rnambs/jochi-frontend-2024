@@ -42,6 +42,10 @@
   background-color: #5534A5 !important;
 }
 
+.bg-primary-light01 {
+  background-color: #DDD6ED;
+}
+
 .bg-gray-light {
   background-color: #F9F9F9 !important;
 }
@@ -111,6 +115,10 @@
 
 .left-0 {
   left: 0;
+}
+
+.px--12 {
+  padding: 0px 12px;
 }
 
 .lext-limited {
@@ -155,6 +163,10 @@
   background-color: #5534A5 !important;
 }
 
+.bg-primary-light01 {
+  background-color: #DDD6ED;
+}
+
 .bg-gray-light {
   background-color: #F9F9F9 !important;
 }
@@ -224,6 +236,10 @@
 
 .left-0 {
   left: 0;
+}
+
+.px--12 {
+  padding: 0px 12px;
 }
 
 .lext-limited {
@@ -453,7 +469,7 @@ body {
   background-color: #fb3e80;
 }
 .assignment-tag.orange {
-  background-color: #FF6F69;
+  background-color: #EE544D;
 }
 .assignment-tag.yellow {
   background-color: #daa112;
@@ -610,7 +626,7 @@ body {
 }
 
 input[type=radio] {
-  accent-color: #dd6d81;
+  accent-color: #5534A5;
 }
 
 .form-row label.form-label, .form-group label.form-label {
@@ -2073,7 +2089,7 @@ img.dark-icon {
 .inner-section .main-section {
   padding-left: 128px;
   background-color: #ffffff;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 71px);
   width: 100vw;
   overflow: hidden;
   overflow-y: auto;
@@ -2154,7 +2170,7 @@ img.dark-icon {
   height: 86px;
 }
 .inner-section .main-section #Daily-Calander .sub-task-section h6, .inner-section .main-section #Weekly-Calander .sub-task-section h6, .inner-section .main-section #Monthly-Calander .sub-task-section h6 {
-  color: #e48194;
+  color: #5534A5;
 }
 .inner-section .main-section #Daily-Calander .sub-task-section label, .inner-section .main-section #Weekly-Calander .sub-task-section label, .inner-section .main-section #Monthly-Calander .sub-task-section label {
   font-size: 12px;
@@ -5160,7 +5176,7 @@ select.form-control.is-invalid {
 }
 
 .custom-full-height {
-  height: calc(100vh - 24px - 70px);
+  height: calc(100vh - 24px - 71px);
 }
 
 .profile-sidebar .profile-name {
@@ -5235,8 +5251,6 @@ select.form-control.is-invalid {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #5534A5;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
 .ld-img-holder img {
@@ -5568,4 +5582,8 @@ select.form-control.is-invalid {
   height: 34px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.row {
+  margin: 0px -12px !important;
 }/*# sourceMappingURL=style01.css.map */

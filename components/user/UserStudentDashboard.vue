@@ -15,8 +15,8 @@
       >
         <div class="dmc-head d-flex align-items-start">
           <div class="greet-with-name-sec">
-            <p class="text-24 color-black font-semi-bold mb-2">Hello,</p>
-            <p class="color-primary-dark text-40 font-bold mb-4">{{ firstName }}</p>
+            <p class="text-18 color-black font-semi-bold mb-1">Hello,</p>
+            <h3 class="color-primary-dark heading3 font-bold mb-0">{{ firstName }}</h3>
           </div>
         </div>
         <div class="d-flex flex-column h-40 flex-fill">
@@ -47,7 +47,7 @@
                 </div>
                 <div class="d-flex flex-column h-40 flex-fill">
                   <div
-                    class="row mt-1 h-100 height-md-unset flex-column flex-lg-row"
+                    class="row mt-1 h-100 height-md-unset flex-column flex-lg-row pt-2"
                   >
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                       <div
@@ -187,10 +187,10 @@
                       <div
                         v-for="item in assignmentList"
                         :key="item.id"
-                        class="bg-white border rounded-8 p-4 pr-1 pb-1 mb-3"
+                        class="bg-gray-light rounded-8 p-3 pr-1 pb-1 mb-3"
                       >
                         <p
-                          class="mb-2 word-break text-16 font-semi-bold color-dark"
+                          class="mb-1 word-break text-16 font-semi-bold color-dark"
                         >
                           {{ item.task }}
                         </p>
@@ -201,10 +201,10 @@
                       </div>
                       <div
                         v-if="!assignmentList || assignmentList.length <= 0"
-                        class="bg-white border rounded-8 p-4 pr-1 pb-1 mb-3"
+                        class="bg-gray-light rounded-8 p-3 pr-1 pb-1 mb-3"
                       >
                         <p
-                          class="mb-2 word-break text-16 font-semi-bold color-dark"
+                          class="mb-1 word-break text-16 font-semi-bold color-dark"
                         >
                           No assignments for this day!
                         </p>
@@ -232,10 +232,10 @@
                     <div
                       v-for="item in assignmentList"
                       :key="item.id"
-                      class="bg-white border rounded-8 p-4 pr-1 pb-1 mb-3"
+                      class="bg-gray-light rounded-8 p-3 pr-1 pb-1 mb-3"
                     >
                       <p
-                        class="mb-2 word-break text-16 font-semi-bold color-dark"
+                        class="mb-1 word-break text-16 font-semi-bold color-dark"
                       >
                         {{ item.task }}
                       </p>
@@ -247,10 +247,10 @@
                   </div>
                   <div
                     v-if="!assignmentList || assignmentList.length <= 0"
-                    class="bg-white border rounded-8 p-4 pr-1 pb-1 mb-3"
+                    class="bg-gray-light rounded-8 p-3 pr-1 pb-1 mb-3"
                   >
                     <p
-                      class="mb-2 word-break text-16 font-semi-bold color-dark"
+                      class="mb-1 word-break text-16 font-semi-bold color-dark"
                     >
                       No assignments for this day!
                     </p>
@@ -1023,7 +1023,7 @@ export default {
 }
 
 .dashboard-text-content {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
   
   line-height: 30px;
@@ -1031,7 +1031,7 @@ export default {
 }
 @media (max-width: 764.98px) {
   .dashboard-text-content {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 22px;
   }
 }

@@ -365,7 +365,7 @@
                         : ""
                     }}
                   </div>
-                  <div class="assignment-tag pink text-truncate">
+                  <div class="assignment-tag bg-primary text-truncate">
                     {{ detail.subject }}
                   </div>
                 </div>

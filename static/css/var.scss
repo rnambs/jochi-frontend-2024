@@ -72,6 +72,7 @@ $label-green: #159E00;
 // BG COLORS
 .bg-white{background-color: $white; background: $white;}
 .bg-primary{background-color: $theme-color !important;}
+.bg-primary-light01{background-color: $primary-light01;}
 .bg-gray-light{background-color: $bg-gray-light !important;}
 .bg-primary-light{background-color: $bg-primary-light !important;}
 .bg-secondary-light{background-color: $bg-secondary-light !important;}
@@ -189,6 +190,9 @@ $sm-screen-h         : 767.98px;
 // Position
 .right-0{right: 0;}
 .left-0{left: 0;}
+
+// Additional padding
+.px--12{padding: 0px 12px}
 
 // element color
 @mixin jochi-components-light-bg{
@@ -1288,7 +1292,7 @@ $sm-screen-h         : 767.98px;
             height: 86px;
         }
         h6 {
-            color: #e48194;
+            color: $theme-color;
           }
           label {
             font-size: 12px;

@@ -156,7 +156,7 @@
                                           }}
                                         </div>
                                         <div
-                                          class="assignment-tag pink text-truncate"
+                                          class="assignment-tag bg-primary text-truncate"
                                         >
                                           {{
                                             item.subject.subject_name
@@ -399,7 +399,7 @@
                                         }}
                                       </div>
                                       <div
-                                        class="assignment-tag pink text-truncate"
+                                        class="assignment-tag bg-primary text-truncate"
                                       >
                                         {{
                                           item.subject.subject_name
@@ -786,18 +786,34 @@
                       </div>
                       <div
                         v-if="openAssignment"
-                        class="position-absolute w-100 h-100 top-0 left-0 p-3"
+                        class="position-absolute w-100 h-100 top-0 left-0"
                       >
                         <div
-                          class="d-flex card flex-column h-100 p-4 rounded-22 col-12 col-lg-8 float-right"
+                          class="d-flex card flex-column h-100 p-4 rounded-10 col-12 col-lg-8 float-right border-0"
                         >
                           <div
                             class="d-flex flex-column flex-md-row justify-content-between mb-2 border-bottom"
                           >
+                          <div class="d-flex flex-wrap w-100">
                             <h3 class="color-primary-dark font-semi-bold">
                               {{ isAddAssignment ? "Add" : "Edit" }} Assignment
                             </h3>
-                            <p class="mb-0 cursor-pointer d-none d-xl-block">
+                            <!-- grades section -->
+                            <div
+                            class="d-flex align-items-center mb-2 ml-auto"
+                                v-if="submissionId"
+                              >
+                              <p class="mb-0" v-if="grade">Grade</p><span class="px-1">:</span>
+                                    <p class="mb-0 bg-primary-light01 px-2 rounded-pill font-semi-bold color-primary"><span>{{
+                                      grade
+                                    }}</span>/<span>{{ gradePossible }}</span></p>
+                                    <!-- <span v-if="gradePossible"
+                                      >Grade Possible</span
+                                    >: -->
+                            </div>
+                            <!-- grades section end -->
+                          </div>
+                            <p class="mb-0 cursor-pointer d-none d-xl-block ml-3 pt-1">
                               <span
                                 @click="
                                   openAssignment = false;
@@ -809,7 +825,7 @@
                               ></span>
                             </p>
                             <div
-                              class="d-flex justify-content-end d-block d-xl-none"
+                              class="d-flex justify-content-end d-block d-xl-none ml-3"
                             >
                               <button
                                 v-if="!isAddAssignment"
@@ -1063,15 +1079,6 @@
                                     </div>
                                   </div>
                                 </div>
-                                <!-- grades section -->
-                                  <div
-                                    class="d-flex justify-content-between align-items-center mb-2"
-                                    v-if="submissionId"
-                                  >
-                                  <span v-if="grade">Grade</span>:<span>{{ grade }}</span>
-                                  <span v-if="gradePossible">Grade Possible</span>:<span>{{ gradePossible }}</span>
-                                </div>
-                                <!-- grades section end -->
                                 <div
                                   class="d-flex justify-content-between align-items-center mb-2"
                                 >
@@ -1762,6 +1769,17 @@
 
                             <div class="d-flex justify-content-end">
                               <button
+                                v-if="
+                                  !isAddAssignment && schoologyAssignment == '1'
+                                "
+                                type="button"
+                                class="btn btn-primary py-1 px-3 mr-auto"
+                                :disabled="processing || submissionId"
+                                @click="submitAssignment()"
+                              >
+                                Submit Assignment
+                              </button>
+                              <button
                                 type="button"
                                 class="btn btn-secondary py-1 px-3 mr-2"
                                 @click="
@@ -1782,17 +1800,6 @@
                                 "
                               >
                                 {{ isAddAssignment ? "Add" : "Update" }}
-                              </button>
-                              <button
-                                v-if="
-                                  !isAddAssignment && schoologyAssignment == '1'
-                                "
-                                type="button"
-                                class="btn btn-primary py-1 px-3"
-                                :disabled="processing || submissionId"
-                                @click="submitAssignment()"
-                              >
-                                Submit Assignment
                               </button>
                             </div>
                           </div>
@@ -1889,9 +1896,9 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h3 class="modal-title" id="exampleModalLongTitle">
+              <h4 class="modal-title" id="exampleModalLongTitle">
                 Choose Filter
-              </h3>
+              </h4>
             </div>
             <div class="modal-body px-3">
               <div class="form-row">
@@ -1942,12 +1949,12 @@
         >
           <div class="modal-content">
             <div class="modal-header pb-1">
-              <h3 class="modal-title" id="completeConfirmModalLongTitle">
+              <h4 class="modal-title" id="completeConfirmModalLongTitle">
                 Complete Assignment Confirmation
-              </h3>
+              </h4>
             </div>
             <div class="modal-body px-3 bold-6">
-              Mark assignment as completed?
+              <p class="mb-0">Mark assignment as completed?</p>
             </div>
             <div class="modal-footer justify-content-end border-top-0">
               <button
@@ -1994,15 +2001,15 @@
         >
           <div class="modal-content">
             <div class="modal-body px-3">
-              <h3
+              <h4
                 class="modal-title color-primary-dark font-bold mt-3"
                 id="completeConfirmModalLongTitle"
               >
                 Complete Sub-Task Confirmation
-              </h3>
-              <h5 class="color-dark font-semi-bold">
+              </h4>
+              <p class="mb-0">
                 Mark sub-task as completed?
-              </h5>
+              </p>
             </div>
             <div class="modal-footer justify-content-end border-top-0">
               <button
@@ -2043,15 +2050,15 @@
         >
           <div class="modal-content">
             <div class="modal-body px-3">
-              <h3
+              <h4
                 class="modal-title color-primary-dark font-bold mt-3"
                 id="undoSubTaskConfirmModalLongTitle"
               >
                 Undo Sub-Task Completion Confirmation
-              </h3>
-              <h5 class="color-dark font-semi-bold">
+              </h4>
+              <p class="mb-0">
                 Undo sub-task completion?
-              </h5>
+              </p>
             </div>
             <div class="modal-footer justify-content-end border-top-0">
               <button
@@ -2089,9 +2096,9 @@
         >
           <div class="modal-content">
             <div class="modal-header pb-1">
-              <h3 class="modal-title" id="removePeerConfirmationModalLongTitle">
-                Remove Peer Confirmation
-              </h3>
+              <h4 class="modal-title" id="removePeerConfirmationModalLongTitle">
+                <p class="mb-0">Remove Peer Confirmation</p>
+              </h4>
             </div>
             <div class="modal-body px-3">
               Are you sure want to remove the peer?
@@ -2132,17 +2139,17 @@
         >
           <div class="modal-content">
             <div class="modal-header pb-1">
-              <h3
+              <h4
                 class="modal-title"
                 id="undoAssignmentConfirmationModalLongTitle"
               >
                 Undo complete assignment confirmation
-              </h3>
+              </h4>
             </div>
             <div class="modal-body px-3">
-              <h5 class="color-dark font-semi-bold">
+              <p class="mb-0">
                 Undo assignment completion?
-              </h5>
+              </p>
             </div>
             <div class="modal-footer justify-content-end border-top-0">
               <button
@@ -2180,14 +2187,16 @@
         >
           <div class="modal-content">
             <div class="modal-header pb-1">
-              <h3
+              <h4
                 class="modal-title"
                 id="deleteAssignmentConfirmationModalLongTitle"
               >
                 Delete assignment confirmation
-              </h3>
+              </h4>
             </div>
-            <div class="modal-body px-3">Delete selected assignments?</div>
+            <div class="modal-body px-3">
+              <p class="mb-0">Delete selected assignments?</p>
+            </div>
             <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
@@ -2224,9 +2233,11 @@
         >
           <div class="modal-content">
             <div class="modal-header pb-1">
-              <h3 class="modal-title" id="alertModalModalLongTitle">Alert</h3>
+              <h4 class="modal-title" id="alertModalModalLongTitle">Alert</h4>
             </div>
-            <div class="modal-body px-3">{{ alertMessage }}</div>
+            <div class="modal-body px-3">
+              <p class="mb-0">{{ alertMessage }}</p>
+            </div>
             <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
@@ -2256,81 +2267,89 @@
         >
           <div class="modal-content">
             <div class="modal-header pb-1">
-              <h3
+              <h4
                 class="modal-title"
                 id="submitAssignmentConfirmationModalLongTitle"
               >
                 Submit assignments
-              </h3>
+              </h4>
             </div>
-            <!-- Additional Material Add -->
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h6 class="color-dark font-semi-bold mb-0">
-                Submit Additional Material
-              </h6>
-              <!-- <a class="btn p-0">
-              <span class="color-secondary"
-                ><i class="fas fa-plus-circle"></i
-              ></span>
-            </a> -->
-            </div>
-            <div class="d-flex flex-row align-items-start">
-              <div class="form-row mb-2 mx-0 mr-2 w-100">
-                <label class="form-label" for="name"
-                  >Add Additional Material</label
-                >
-                <select
-                  v-model="materialTypeSubmit"
-                  class="form-select form-control mb-2"
-                  aria-label="Default select example"
-                >
-                  <option value="">Choose material type</option>
-                  <!-- <option value="file">File</option> -->
-                  <option value="link">Link</option>
-                  <option value="text">Text</option>
-                </select>
-                <div class="row m-0">
-                  <div class="col-9 py-0 pl-0">
-                    <input
-                      id="fileUploadSubmit"
-                      v-if="materialTypeSubmit == 'file'"
-                      type="file"
-                      class="form-control px-2 cursor-pointer"
-                      placeholder="Upload File"
-                      @change="onFileChangeSubmit"
-                      accept=".png,.jpeg,.jpg,.pdf"
-                    />
-                  </div>
-                  <div class="col-9 py-0 pl-0">
-                    <input
-                      v-if="materialTypeSubmit == 'link'"
-                      type="text"
-                      class="form-control px-2"
-                      placeholder="Paste Link"
-                      v-model="linkSubmit"
-                    />
-                  </div>
-                  <div class="col-3 p-0">
-                    <textarea
-                      v-if="materialTypeSubmit == 'text'"
-                      class="form-control px-2"
-                      placeholder="Enter description"
-                      v-model="textSubmit"
-                      maxlength="1000"
-                    ></textarea>
+            <div class="modal-body px-3">
+              <!-- Additional Material Add -->
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <p class="mb-0">
+                  Submit Additional Material
+                </p>
+                <!-- <a class="btn p-0">
+                <span class="color-secondary"
+                  ><i class="fas fa-plus-circle"></i
+                ></span>
+              </a> -->
+              </div>
+              <div class="d-flex flex-row align-items-start">
+                <div class="form-row mb-2 mx-0 mr-2 w-100">
+                  <label class="form-label" for="name"
+                    >Add Additional Material</label
+                  >
+                  <select
+                    v-model="materialTypeSubmit"
+                    class="form-select form-control mb-2"
+                    aria-label="Default select example"
+                  >
+                    <option value="">Choose material type</option>
+                    <!-- <option value="file">File</option> -->
+                    <option value="link">Link</option>
+                    <option value="text">Text</option>
+                  </select>
+                  <div class="d-flex flex-column w-100">
+                    <div class="row m-0 px--12">
+                      <div class="col-12 py-0 p-0">
+                        <input
+                          id="fileUploadSubmit"
+                          v-if="materialTypeSubmit == 'file'"
+                          type="file"
+                          class="form-control px-2 cursor-pointer"
+                          placeholder="Upload File"
+                          @change="onFileChangeSubmit"
+                          accept=".png,.jpeg,.jpg,.pdf"
+                        />
+                      </div>
+                    </div>
+                    <div class="row m-0 px--12">
+                      <div class="col-12 py-0 p-0">
+                        <input
+                          v-if="materialTypeSubmit == 'link'"
+                          type="text"
+                          class="form-control px-2"
+                          placeholder="Paste Link"
+                          v-model="linkSubmit"
+                        />
+                      </div>
+                    </div>
+                    <div class="row m-0 px--12">
+                      <div class="col-12 p-0">
+                        <textarea
+                          v-if="materialTypeSubmit == 'text'"
+                          class="form-control px-2"
+                          placeholder="Enter description"
+                          v-model="textSubmit"
+                          maxlength="1000"
+                        ></textarea>
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <!-- <div class="pt-4">
+                <button
+                  type="button"
+                  @click="UploadAttachment"
+                  class="btn btn-primary btn-sm mt-2"
+                  :disabled="processingUpload"
+                >
+                  Add
+                </button>
+              </div> -->
               </div>
-              <!-- <div class="pt-4">
-              <button
-                type="button"
-                @click="UploadAttachment"
-                class="btn btn-primary btn-sm mt-2"
-                :disabled="processingUpload"
-              >
-                Add
-              </button>
-            </div> -->
             </div>
 
             <!-- Additional Material Add End -->
@@ -4876,7 +4895,7 @@ export default {
   position: absolute;
   top: 3px;
   left: 3px;
-  background: #ffb5b2;
+  background: #DDD6ED;
   border-radius: 50%;
 }
 .squaredThree label:after {
