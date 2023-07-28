@@ -2201,6 +2201,7 @@
                     class="form-control px-2"
                     placeholder="Enter description"
                     v-model="textSubmit"
+                    maxlength="1000"
                   ></textarea>
                 </div>
               </div>
