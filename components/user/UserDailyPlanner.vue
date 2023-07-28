@@ -2109,6 +2109,7 @@
           </div>
           <div class="modal-body px-3">
             <p class="mb-0">Mark assignment as completed?</p>
+            <p class="mb-0">Did you forget to submit your work?</p>
           </div>
           <div class="modal-footer justify-content-end border-top-0">
             <button
@@ -2124,7 +2125,7 @@
               :disabled="processingCompleteAssignment"
               @click="completeAssignment()"
             >
-              Confirm
+              Complete
             </button>
             <button
               v-if="schoologyAssignment == '1'"
@@ -2133,7 +2134,7 @@
               @click="submitAndCompleteAssignment()"
               :disabled="submissionId"
             >
-              Confirm & Submit Assignment
+              Submit Assignment
             </button>
           </div>
         </div>
@@ -2412,17 +2413,11 @@
               <p class="mb-0">
                 Submit Additional Material
               </p>
-              <!-- <a class="btn p-0">
-                <span class="color-secondary"
-                  ><i class="fas fa-plus-circle"></i
-                ></span>
-              </a> -->
+            
             </div>
             <div class="d-flex flex-row align-items-start">
               <div class="form-row mb-2 mx-0 mr-2 w-100">
-                <label class="form-label" for="name"
-                  >Add Additional Material</label
-                >
+               
                 <select
                   v-model="materialTypeSubmit"
                   class="form-select form-control mb-2"
@@ -2471,16 +2466,6 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="pt-4">
-                <button
-                  type="button"
-                  @click="UploadAttachment"
-                  class="btn btn-primary btn-sm mt-2"
-                  :disabled="processingUpload"
-                >
-                  Add
-                </button>
-              </div> -->
             </div>
           </div>
           <!-- Additional Material Add End -->
@@ -2498,7 +2483,7 @@
               class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               @click="submitAsst()"
             >
-              Save
+              Submit
             </button>
           </div>
         </div>
