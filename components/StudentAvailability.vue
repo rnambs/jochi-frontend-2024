@@ -13,21 +13,21 @@
         <div
           class="teacher-section bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
         >
-          <h3 class="color-primary-dark heading3 font-semi-bold m-0 p-4">
+          <h3 class="color-primary-dark heading3 font-semi-bold m-0 px-4 pt-4">
             Custom Avaliability
           </h3>
           <div
-            class="inner-teacher container-fluid p-4 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow"
+            class="inner-teacher container-fluid px-4 py-2 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow"
           >
             <div class="row h-100">
               <div
-                class="col-md-7 text-light custom-teacher-container d-flex flex-column"
+                class="col-md-7 text-light custom-teacher-container d-flex flex-column align-items-center"
               >
                 <div
                   @click="setSessionType('assignment', false)"
-                  class="row card card-void m-0 mb-4 p-4 flex-row cursor-pointer calendar-box"
+                  class="row card card-void m-0 mb-4 py-4 px-2 flex-row cursor-pointer calendar-box w-100"
                 >
-                  <div class="col-sm-7 col-md-8 col-xl-7">
+                  <div class="col-sm-7 col-md-8 col-xl-7 col-xxl-12 d-flex flex-column justify-content-center justify-content-xxl-start">
                     <h3 class="color-primary-dark heading3 font-semi-bold mb-1">
                       When Are You Free?
                     </h3>
@@ -37,7 +37,7 @@
                     </p>
                   </div>
                   <div
-                    class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
+                    class="col-sm-5 col-md-4 col-xl-5 col-xxl-12 d-flex align-items-center align-items-xxl-start justify-content-end"
                   >
                     <img
                       src="~/static/image/Calendar-2.png"
@@ -48,7 +48,7 @@
                 </div>
                 <div
                   data-intro="Pre-set your availability so your peers know when you are available to meet. If you don’t set custom availability, Jochi will rely on your commitments that appear on your Jochi calendar. Here, you can choose a specific upcoming date to set your availability."
-                  class="time-slot calendar-sm container card card-primary rounded-22 p-3 pt-4 mb-4"
+                  class="time-slot calendar-sm container card card-primary rounded-22 border-0 pt-4 mt-4 p-0"
                 >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>

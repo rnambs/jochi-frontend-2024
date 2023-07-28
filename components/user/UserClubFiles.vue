@@ -494,7 +494,7 @@
                   <span class="text-24 color-primary-dark font-semi-bold"
                     >Next Meeting</span
                   >
-                  <span class="text-16 color-primary-dark font-regular">{{
+                  <span class="text-16 color-secondary font-regular">{{
                     clubMoreDetails.announcement
                   }}</span>
                 </div>
