@@ -211,7 +211,7 @@
                     :key="index"
                   >
                     <div
-                      class="meeting-list p-3 cursor-pointer card card-void align-items-center h-100"
+                      class="meeting-list p-3 cursor-pointer card card-void bg-primary-light border-0 align-items-center h-100"
                       v-on:click="
                         modalValue(
                           Schedule.dateFormat,
@@ -227,7 +227,7 @@
                         {{ Schedule["dateFormat"] }}
                       </h6>
                       <p
-                        class="time color-primary-dark font-normal text-14 mb-1 text-center"
+                        class="time color-secondary font-normal text-14 mb-1 text-center"
                       >
                         {{ Schedule["from"] }}
                         {{ Schedule["end"] ? "to " + Schedule["end"] : "" }}

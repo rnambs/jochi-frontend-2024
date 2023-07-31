@@ -542,6 +542,7 @@ input[type="radio"]{
         ul{
             li{
                 color: $font-label-color;
+                margin-bottom: 2px;
                 .multiselect__option--highlight{
                     font-size: 0.9rem;
                     color: $font-secondary-dark; 
@@ -1618,6 +1619,7 @@ img.dark-icon{
                             overflow-y: auto;
                             li{
                                 color: $font-label-color;
+                                margin-bottom: 2px;
                                 .multiselect__option--highlight{
                                     font-size: 1rem;
                                     color: $white; background: $theme-color;
@@ -3236,7 +3238,7 @@ img.dark-icon{
             .tab-row{   
                 .inner-tab{
                     text-decoration: none;
-                    background-color: rgba($color: $white, $alpha: 0.45);
+                    background-color: $bg-primary-light;
                     min-height: 56px;
                     &:hover, &.nuxt-link-exact-active.nuxt-link-active{
                         background-color: $theme-color;
@@ -5305,20 +5307,21 @@ img.dark-icon{
                                     min-width: 25%;
                                     .badge-color{
                                         padding: .73rem .75rem;
-                                        margin: .3rem .1rem;
+                                        margin: .3rem .3rem;
                                         font-size: .8rem;
                                         font-weight: 450;
                                         color: $font-secondary-light;
                                         cursor: pointer;
+                                        width: 100%;
                                         @media (max-width: 1396.98px) {
                                             font-size: 0.7rem;
                                             padding: .57rem .45rem;
-                                            margin: .4rem .3rem;
+                                            margin: .4rem .4rem;
                                         }
                                         @media (max-width: 1200.98px) {
                                             font-size: 0.55rem;
                                             padding: .45rem .2rem;
-                                            margin: .3rem 0rem;
+                                            margin: .3rem 0.2rem;
                                         }
                                         @media (max-width: 1024.98px) {
                                             font-size: 0.5rem;
@@ -6639,7 +6642,7 @@ select.form-control{
     width: 100%;
     height: 175px;
     min-height: 175px;
-    border-radius: 22px 22px 0 0;
+    border-radius: 8px 8px 0 0;
     overflow: hidden;
     .black-grad {
         background-color: rgba($color: $black, $alpha: 0.3);

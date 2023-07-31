@@ -328,7 +328,7 @@
                       >
                         <div
                           v-if="item.shared_users_id != user_id"
-                          class="position-absolute multiple-select-checkbox bg-white border rounded-10 d-flex align-items-center justify-content-center"
+                          class="position-absolute multiple-select-checkbox bg-white border rounded-circle d-flex align-items-center justify-content-center"
                         >
                           <div class="squaredThree">
                             <input
@@ -601,7 +601,7 @@
                             >
                               <div
                                 @click="confirmUndo(item.id)"
-                                class="position-absolute multiple-select-checkbox bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
+                                class="position-absolute multiple-select-checkbox bg-white border rounded-circle d-flex align-items-center justify-content-center cursor-pointer"
                               >
                                 <i class="fas fa-undo"></i>
                               </div>
@@ -667,7 +667,7 @@
                           >
                             <div
                               @click="confirmUndo(item.id)"
-                              class="position-absolute multiple-select-checkbox bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
+                              class="position-absolute multiple-select-checkbox bg-white border rounded-circle d-flex align-items-center justify-content-center cursor-pointer"
                             >
                               <i class="fas fa-undo"></i>
                             </div>
