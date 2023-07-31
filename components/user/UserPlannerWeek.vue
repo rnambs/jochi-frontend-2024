@@ -896,7 +896,7 @@
                                   <label
                                     for="message-text"
                                     class="col-form-label"
-                                    >Task<em>*</em></label
+                                    >Task</label
                                   >
                                   <textarea
                                     class="form-control"
@@ -1860,7 +1860,7 @@
           </div>
           <div class="modal-body px-3 bold-6">
             <p class="mb-0">Mark assignment as completed?</p>
-            <p class="mb-0">Did you forget to submit your work?</p>
+            <p class="mb-0" v-if="schoologyAssignment == '1' && !submissionId">Did you forget to submit your work?</p>
           </div>
           <div class="modal-footer justify-content-end border-top-0">
             <button
@@ -4643,7 +4643,7 @@ export default {
     async submitAsst() {
       if(!this.materialTypeSubmit) {
         this.$toast.open({
-          message: "Please fill in the details",
+          message: "Please fill the details",
           type: "warning",
           duration: 4000,
         });
