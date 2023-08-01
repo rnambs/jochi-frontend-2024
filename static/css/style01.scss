@@ -6160,7 +6160,7 @@ switch to violet when it is active*/
   }
   
   .base-timer__path-remaining.arc {
-    color: #FF7068
+    color: $theme-color
   }
   .inner-timer{
     position: absolute;
@@ -6208,7 +6208,7 @@ switch to violet when it is active*/
   }
   
   .buttons button:hover {
-    background-color: #F49196;
+    background-color: $theme-color;
     color: white;
   }
   

@@ -301,25 +301,25 @@
   height: 1.875rem;
 }
 
-.nav-link.nuxt-link-active .icon--dashboard {
+.nav-link.nuxt-link-active .icon--dashboard, .nav-link:hover .icon--dashboard {
   background-image: url("../image/v4/icon/dash-active.svg");
 }
-.nav-link.nuxt-link-active .icon--settings {
+.nav-link.nuxt-link-active .icon--settings, .nav-link:hover .icon--settings {
   background-image: url("../image/v4/icon/cog-active.svg");
 }
-.nav-link.nuxt-link-active .icon--logout {
+.nav-link.nuxt-link-active .icon--logout, .nav-link:hover .icon--logout {
   background-image: url("../image/v4/icon/logout-active.svg");
 }
-.nav-link.accordion-link.active .icon--planner, .nav-link.accordion-link:not(.collapsed) .icon--planner {
+.nav-link.accordion-link.active .icon--planner, .nav-link.accordion-link:not(.collapsed) .icon--planner, .nav-link.accordion-link:hover .icon--planner {
   background-image: url("../image/v4/icon/calendar-active.svg");
 }
-.nav-link.accordion-link.active .icon--meeting, .nav-link.accordion-link:not(.collapsed) .icon--meeting {
+.nav-link.accordion-link.active .icon--meeting, .nav-link.accordion-link:not(.collapsed) .icon--meeting, .nav-link.accordion-link:hover .icon--meeting {
   background-image: url("../image/v4/icon/meeting-active.svg");
 }
-.nav-link.accordion-link.active .icon--club, .nav-link.accordion-link:not(.collapsed) .icon--club {
+.nav-link.accordion-link.active .icon--club, .nav-link.accordion-link:not(.collapsed) .icon--club, .nav-link.accordion-link:hover .icon--club {
   background-image: url("../image/v4/icon/activities-active.svg");
 }
-.nav-link.accordion-link.active .icon--study, .nav-link.accordion-link:not(.collapsed) .icon--study {
+.nav-link.accordion-link.active .icon--study, .nav-link.accordion-link:not(.collapsed) .icon--study, .nav-link.accordion-link:hover .icon--study {
   background-image: url("../image/v4/icon/study-active.svg");
 }
 
@@ -4817,7 +4817,7 @@ switch to violet when it is active*/
 }
 
 .base-timer__path-remaining.arc {
-  color: #FF7068;
+  color: #5534A5;
 }
 
 .inner-timer {
@@ -4862,7 +4862,7 @@ switch to violet when it is active*/
 }
 
 .buttons button:hover {
-  background-color: #F49196;
+  background-color: #5534A5;
   color: white;
 }
 

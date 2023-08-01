@@ -854,7 +854,7 @@
 
                       <div class="d-flex justify-content-end mt-4">
                         <img
-                          src="../../static/image/dashboard_img.png"
+                          src="../../static/image/v4/dashboard_img.png"
                           alt=""
                           class="img-fluid card-img"
                         />
@@ -1037,7 +1037,7 @@
                       </g>
                     </svg>
                     <div class="inner-timer">
-                      <img src="../../static/image/alarm.png" alt="" />
+                      <img src="../../static/image/v4/alarm.png" alt="" />
                     </div>
                     <p class="mb-2">
                       <span
@@ -1105,9 +1105,9 @@
               <star-rating
                 class="mb-2"
                 v-model="focusRating"
-                inactive-color="#FFDCDB"
-                active-color="#F49196"
-                border-color="#ffeded"
+                inactive-color="#DDD6ED"
+                active-color="#5534A5"
+                border-color="#F9F9F9"
                 v-bind:border-width="4"
                 v-bind:star-size="21"
                 v-bind:padding="1"
@@ -1124,9 +1124,9 @@
               <star-rating
                 class="mb-2"
                 v-model="focusEfficiency"
-                inactive-color="#FFDCDB"
-                active-color="#F49196"
-                border-color="#ffeded"
+                inactive-color="#DDD6ED"
+                active-color="#5534A5"
+                border-color="#F9F9F9"
                 v-bind:border-width="4"
                 v-bind:star-size="21"
                 v-bind:padding="1"
@@ -1143,9 +1143,9 @@
               <star-rating
                 class="mb-2"
                 v-model="focusWorkComplete"
-                inactive-color="#FFDCDB"
-                active-color="#F49196"
-                border-color="#ffeded"
+                inactive-color="#DDD6ED"
+                active-color="#5534A5"
+                border-color="#F9F9F9"
                 v-bind:border-width="4"
                 v-bind:star-size="21"
                 v-bind:padding="1"

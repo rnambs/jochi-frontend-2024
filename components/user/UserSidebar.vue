@@ -267,7 +267,7 @@
           <li
             class="nav-item d-flex justify-content-start justify-content-md-center p-1"
           >
-            <div class="dropdown my-auto">
+            <div class="dropdown my-auto d-flex flex-column">
               <a
                 class="dropdown-toggle ml-4 mx-md-auto d-inline-flex align-items-center justify-content-start justify-content-md-center"
                 href="#"

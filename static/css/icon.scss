@@ -59,7 +59,7 @@
 }
 
 .nav-link{
-    &.nuxt-link-active{
+    &.nuxt-link-active,&:hover{
         .icon{
             &--dashboard {
                 background-image: url('../image/v4/icon/dash-active.svg');
@@ -73,7 +73,7 @@
         }
     }
     &.accordion-link{
-        &.active,&:not(.collapsed){
+        &.active,&:not(.collapsed),&:hover{
             .icon{
                 &--planner {
                     background-image: url('../image/v4/icon/calendar-active.svg');
