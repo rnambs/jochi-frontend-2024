@@ -3136,7 +3136,7 @@ export default {
       this.submittedAsst=false;
       this.disableSubmit=false;
       this.invalidSubmitText=false;
-
+      this.additionalMaterial = false;
 
       $('input[name="daterange"]').val("");
       fromDate = "";
@@ -4310,6 +4310,7 @@ export default {
       this.completeSubTask(false);
     },
     onCardClick(data) {
+      this.resetAssignment();
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
       this.openAssignment = true;
