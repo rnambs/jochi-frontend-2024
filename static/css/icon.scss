@@ -34,6 +34,18 @@
     &--notification{
         background-image: url('../image/v4/icon/notification-bell.svg');
     }
+    &--home{
+        background-image: url('../image/v4/icon/home.svg');
+    }
+    &--appoinments{
+        background-image: url('../image/v4/icon/appoinments.svg');
+    }
+    &--availability{
+        background-image: url('../image/v4/icon/availability.svg');
+    }
+    &--advisor{
+        background-image: url('../image/v4/icon/advisor.svg');
+    }
     // Icon size
     &.icon-xs {
         width: 0.875rem;
@@ -63,6 +75,18 @@
         .icon{
             &--dashboard {
                 background-image: url('../image/v4/icon/dash-active.svg');
+            }
+            &--home{
+                background-image: url('../image/v4/icon/home-active.svg');
+            }
+            &--appoinments{
+                background-image: url('../image/v4/icon/appoinments-active.svg');
+            }
+            &--availability{
+                background-image: url('../image/v4/icon/availability-active.svg');
+            }
+            &--advisor{
+                background-image: url('../image/v4/icon/advisor-active.svg');
             }
             &--settings {
                 background-image: url('../image/v4/icon/cog-active.svg');

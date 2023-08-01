@@ -18,7 +18,7 @@
           <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <nuxt-link to="/teacher-dashboard"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
-              <img src="../../static/image/home-solid.png" alt="Home Icon" />
+              <i class="icon icon--home"></i>
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Home</span>
             </nuxt-link>
           </li>
@@ -26,7 +26,7 @@
           <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <nuxt-link to="/teacher-appointment"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
-              <img src="../../static/image/user-tag.png" alt="Appoinments Icon" />
+              <i class="icon icon--appoinments"></i>
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Appoinments</span>
             </nuxt-link>
           </li>
@@ -34,25 +34,25 @@
           <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <nuxt-link to="/custom-availability"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
-              <img src="../../static/image/calendar-check.png" alt="Availability Icon" />
+              <i class="icon icon--availability"></i>
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Availability</span>
             </nuxt-link>
           </li>
           <!-- Sync Calendar -->
-          <li class="nav-item px-1 parent-menu my-1 my-md-2">
+          <!-- <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <nuxt-link to="/teacher-syncCalendar"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
               <img src="../../static/image/sync-solid.png" alt="Sync Calendar Icon" />
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Sync Calendar</span>
             </nuxt-link>
-          </li>
+          </li> -->
           <!-- Teams & Clubs -->
           <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <a @click="$event.target.classList.toggle('active')" 
               class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
               aria-controls="collapseOne">
-              <img src="../../static/image/Football.png" alt="Teams & Clubs Icon" class="teams-clubs" />
+              <i class="icon icon--club"></i>
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Teams & Clubs</span>
             </a>
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -72,7 +72,7 @@
           <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <nuxt-link to="/teacher-advisor"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
-              <img src="../../static/image/advisor.png" alt="Advisor Icon" />
+              <i class="icon icon--advisor"></i>
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Advisor</span>
             </nuxt-link>
           </li>

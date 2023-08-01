@@ -155,6 +155,18 @@
 .icon--notification {
   background-image: url("../image/v4/icon/notification-bell.svg");
 }
+.icon--home {
+  background-image: url("../image/v4/icon/home.svg");
+}
+.icon--appoinments {
+  background-image: url("../image/v4/icon/appoinments.svg");
+}
+.icon--availability {
+  background-image: url("../image/v4/icon/availability.svg");
+}
+.icon--advisor {
+  background-image: url("../image/v4/icon/advisor.svg");
+}
 .icon.icon-xs {
   width: 0.875rem;
   min-width: 0.875rem;
@@ -178,6 +190,18 @@
 
 .nav-link.nuxt-link-active .icon--dashboard, .nav-link:hover .icon--dashboard {
   background-image: url("../image/v4/icon/dash-active.svg");
+}
+.nav-link.nuxt-link-active .icon--home, .nav-link:hover .icon--home {
+  background-image: url("../image/v4/icon/home-active.svg");
+}
+.nav-link.nuxt-link-active .icon--appoinments, .nav-link:hover .icon--appoinments {
+  background-image: url("../image/v4/icon/appoinments-active.svg");
+}
+.nav-link.nuxt-link-active .icon--availability, .nav-link:hover .icon--availability {
+  background-image: url("../image/v4/icon/availability-active.svg");
+}
+.nav-link.nuxt-link-active .icon--advisor, .nav-link:hover .icon--advisor {
+  background-image: url("../image/v4/icon/advisor-active.svg");
 }
 .nav-link.nuxt-link-active .icon--settings, .nav-link:hover .icon--settings {
   background-image: url("../image/v4/icon/cog-active.svg");

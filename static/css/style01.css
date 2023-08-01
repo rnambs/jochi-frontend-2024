@@ -280,6 +280,18 @@
 .icon--notification {
   background-image: url("../image/v4/icon/notification-bell.svg");
 }
+.icon--home {
+  background-image: url("../image/v4/icon/home.svg");
+}
+.icon--appoinments {
+  background-image: url("../image/v4/icon/appoinments.svg");
+}
+.icon--availability {
+  background-image: url("../image/v4/icon/availability.svg");
+}
+.icon--advisor {
+  background-image: url("../image/v4/icon/advisor.svg");
+}
 .icon.icon-xs {
   width: 0.875rem;
   min-width: 0.875rem;
@@ -303,6 +315,18 @@
 
 .nav-link.nuxt-link-active .icon--dashboard, .nav-link:hover .icon--dashboard {
   background-image: url("../image/v4/icon/dash-active.svg");
+}
+.nav-link.nuxt-link-active .icon--home, .nav-link:hover .icon--home {
+  background-image: url("../image/v4/icon/home-active.svg");
+}
+.nav-link.nuxt-link-active .icon--appoinments, .nav-link:hover .icon--appoinments {
+  background-image: url("../image/v4/icon/appoinments-active.svg");
+}
+.nav-link.nuxt-link-active .icon--availability, .nav-link:hover .icon--availability {
+  background-image: url("../image/v4/icon/availability-active.svg");
+}
+.nav-link.nuxt-link-active .icon--advisor, .nav-link:hover .icon--advisor {
+  background-image: url("../image/v4/icon/advisor-active.svg");
 }
 .nav-link.nuxt-link-active .icon--settings, .nav-link:hover .icon--settings {
   background-image: url("../image/v4/icon/cog-active.svg");
@@ -735,6 +759,15 @@ input[type=radio] {
 .form-row .input-icon.custom-search-icon, .form-group .input-icon.custom-search-icon {
   margin: 9px;
   right: 0;
+}
+.form-row .inputfield-icon.date-icon, .form-group .inputfield-icon.date-icon {
+  background-image: url("./../image/v4/icon/field-calendar.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 24px;
+  height: 24px;
+  margin: 10px;
 }
 .form-row .multiselect.multiselect--disabled, .form-group .multiselect.multiselect--disabled {
   background-color: unset;
@@ -3380,6 +3413,8 @@ img.dark-icon {
   border: 1px solid #EAEAEA;
   border-radius: 8px;
   background-color: #ffffff;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .inner-section .main-section .study-section .upload-image .proof-img-wrp .middle {
   transition: 0.5s ease;
@@ -5475,8 +5510,29 @@ select.form-control.is-invalid {
   border-bottom: none !important;
 }
 
-.schedule-meeting-section .multiselect__select:before {
-  content: none;
+.schedule-meeting-section.meeting-type .multiselect__select, .schedule-meeting-section.participants-section .multiselect__select {
+  transition: unset;
+  padding: 8px;
+  margin: 4px;
+  transform: unset !important;
+}
+.schedule-meeting-section.meeting-type .multiselect__select:before, .schedule-meeting-section.participants-section .multiselect__select:before {
+  content: "";
+  border: none;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 24px;
+  height: 24px;
+  top: 0;
+  margin: 7px;
+}
+.schedule-meeting-section.meeting-type .multiselect__select:before {
+  background-image: url("./../image/v4/icon/search.png");
+}
+.schedule-meeting-section.participants-section .multiselect__select:before {
+  background-image: url("./../image/v4/icon/participant.svg");
 }
 .schedule-meeting-section .form-control {
   background-color: rgba(255, 255, 255, 0.2) !important;

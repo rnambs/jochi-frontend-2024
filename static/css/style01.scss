@@ -467,6 +467,17 @@ input[type="radio"]{
             right: 0;
         }
     }
+    .inputfield-icon{
+        &.date-icon{
+            background-image: url("./../image/v4/icon/field-calendar.svg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 24px;
+            height: 24px;
+            margin: 10px;
+        }
+    }
     .multiselect.multiselect--disabled{
         background-color: unset;
         opacity: 1;
@@ -4288,6 +4299,7 @@ img.dark-icon{
                         border: 1px solid $border-color;
                         @include borderRadius(8);
                         background-color: $white;
+                        object-fit: contain;
                     }
                     .middle {
                         transition: .5s ease;
@@ -6980,8 +6992,46 @@ select.form-control{
 }
 
 .schedule-meeting-section {
-    .multiselect__select:before {
-        content: none;
+    // &:not(.meeting-type){
+    //     .multiselect__select{
+    //         &:before {
+    //             display: none;
+    //         }
+    //     }
+    // }
+    &.meeting-type,&.participants-section{
+        .multiselect__select{
+            transition: unset;
+            padding: 8px;
+            margin: 4px;
+            transform: unset !important;
+            &:before {
+                content: '';
+                border: none;
+                position: absolute;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                width: 24px;
+                height: 24px;
+                top: 0;
+                margin: 7px;
+            }
+        }
+    }
+    &.meeting-type{
+        .multiselect__select{
+            &:before {
+                background-image: url("./../image/v4/icon/search.png");
+            }
+        }
+    }
+    &.participants-section{
+        .multiselect__select{
+            &:before {
+                background-image: url("./../image/v4/icon/participant.svg");
+            }
+        }
     }
     .form-control {
         background-color: rgba($color: $white, $alpha: 0.2) !important;

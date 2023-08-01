@@ -25,7 +25,7 @@
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
                     data-intro="First, choose your meeting type. Will you be meeting with a teacher or peer?"
-                    class="form-row d-flex position-relative schedule-meeting-section"
+                    class="form-row d-flex position-relative schedule-meeting-section meeting-type"
                   >
                     <multiselect
                       v-model="meetingType"
@@ -43,7 +43,7 @@
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
                     data-intro="Next, add the meeting participants. You can add up to four peers."
-                    class="form-row d-flex position-relative schedule-meeting-section"
+                    class="form-row d-flex position-relative schedule-meeting-section participants-section"
                   >
                     <multiselect
                       v-if="meetingType == 'Teachers'"
@@ -80,13 +80,13 @@
                       >
                       <span slot="noResult">No data found</span>
                     </multiselect>
-                    <span
+                    <!-- <span
                       class="input-icon custom-search-icon position-absolute d-flex align-items-center justify-content-center"
                       ><i
                         class="fa fa-search color-secondary"
                         aria-hidden="true"
                       ></i
-                    ></span>
+                    ></span> -->
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
@@ -99,10 +99,11 @@
                       name="daterange"
                       autocomplete="off"
                       placeholder="Date Range"
-                      class="form-control tab-form-control custom-form-control"
+                      class="form-control tab-form-control custom-form-control pr-5"
                       readonly="readonly"
                       :disabled="!value && !(selectedStudents.length > 0)"
                     />
+                    <span class="inputfield-icon date-icon position-absolute top-0 right-0"></span>
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-3 px-2 justify-content-md-end">
@@ -160,7 +161,7 @@
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img
-                      src="~/assets/images/undraw/step1.png"
+                      src="~/assets/images/v4/undraw/step1.png"
                       class="img-illustrate"
                       alt=""
                     />
@@ -175,7 +176,7 @@
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img
-                      src="~/assets/images/undraw/step2.png"
+                      src="~/assets/images/v4/undraw/step2.png"
                       class="img-illustrate"
                       alt=""
                     />
@@ -190,7 +191,7 @@
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img
-                      src="~/assets/images/undraw/step3.png"
+                      src="~/assets/images/v4/undraw/step3.png"
                       class="img-illustrate"
                       alt=""
                     />
@@ -264,8 +265,8 @@
                 <div class="modal-content px-4">
                   <div class="modal-body mt-4">
                     <form action="">
-                      <h1
-                        class="modal-title color-primary-dark font-semi-bold mb-0"
+                      <h3
+                        class="modal-title color-primary-dark heading3 font-semi-bold mb-0"
                         id="exampleModalLongTitle"
                       >
                         Meeting with
@@ -288,14 +289,14 @@
                             >
                           </h4>
                         </span>
-                      </h1>
-                      <h3 class="color-black font-semi-bold">
-                        {{ popupValue[0] }}
                       </h3>
-                      <h4 class="color-primary-dark font-regular mb-2">
+                      <h5 class="color-secondary font-semi-bold">
+                        {{ popupValue[0] }}
+                      </h5>
+                      <p class="color-primary font-regular mb-2">
                         {{ popupFrom[0] }}
                         {{ popupEnd[0] ? "to " + popupEnd[0] : "" }}
-                      </h4>
+                      </p>
 
                       <div
                         class="mb-0 d-flex col-12 col-md-10 col-lg-9 align-items-center form-row py-0 px-1 mb-3"
@@ -305,7 +306,7 @@
                           name="meeting_name"
                           autocomplete="off"
                           maxlength="100"
-                          class="form-control bg-transparent custom-form-control"
+                          class="form-control custom-form-control"
                           placeholder="Meeting Name"
                           v-model="meeting_name"
                           :class="{
@@ -330,7 +331,7 @@
                           autocomplete="off"
                           maxlength="500"
                           row="3"
-                          class="form-control custom-form-control bg-transparent"
+                          class="form-control custom-form-control"
                           placeholder="Description"
                           v-model="meeting_description"
                           :class="{
@@ -352,7 +353,7 @@
                         class="mb-0 col-12 col-md-7 col-lg-6 d-flex align-items-center form-row py-0 px-1 mb-3"
                       >
                         <select
-                          class="form-control bg-transparent mb-0"
+                          class="form-control mb-0"
                           tabindex=""
                           name="conversation_type"
                           v-model="conversation_type"
@@ -386,7 +387,7 @@
                           name="venue"
                           autocomplete="off"
                           maxlength="200"
-                          class="form-control custom-form-control bg-transparent"
+                          class="form-control custom-form-control"
                           :placeholder="
                             conversation_type == 'Video Conference'
                               ? 'Meeting Link'
