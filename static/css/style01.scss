@@ -1306,8 +1306,8 @@ img.dark-icon{
     width: auto;
     padding: 0.438rem;
     height: auto;
-    background-color: $dark-theme;
-    border: 1px solid $dark-theme;
+    background-color: $theme-color;
+    border: 1px solid $theme-color;
     -webkit-box-shadow: 0px 4px 20px rgb(90 114 123 / 11%);
     box-shadow: 0px 4px 20px rgb(90 114 123 / 11%);
     position: absolute;
@@ -1345,7 +1345,7 @@ img.dark-icon{
     position: absolute;
     width: 9px;
     height: 6px;
-    background-image: url("data:image/svg+xml,%3Csvg width='9' height='6' viewBox='0 0 9 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L4.5 5.5L9 0H0Z' fill='%23FF4E71'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='9' height='6' viewBox='0 0 9 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L4.5 5.5L9 0H0Z' fill='%235534A5'/%3E%3C/svg%3E");
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -1483,7 +1483,7 @@ img.dark-icon{
         h1{
             font-size: 3rem;
             font-weight: 600;
-            color: #ff7272;
+            color: $theme-color;
             @media (max-width: 767.98px) {
                 text-align: center;
             }
@@ -1636,11 +1636,11 @@ img.dark-icon{
                                     color: $white; background: $theme-color;
                                     border-radius: 0.4rem;
                                     &:target, &:visited, &:active{
-                                        background: #FF646F;
+                                        background: $theme-color;
                                     }
                                 }
                                 .multiselect__option--selected, .multiselect__option--select,.multiselect__option--deselect{
-                                    background: #FF646F;
+                                    background: $theme-color;
                                     color: $white;
                                     font-weight: 500;
                                     border-radius: .4rem;
@@ -5982,7 +5982,7 @@ switch to violet when it is active*/
                 }
                 .required-button{
                     font-size: 80%;
-                    color: #dc3545;
+                    color: #5534A5;
                 }
                 table.table-modal{
                     .tmodal-data, .tmodal-data{
@@ -6728,7 +6728,7 @@ select.form-control{
         width: 130px;
         height: 130px;
         background-color: $white;
-        box-shadow: 0px 0px 12px 7px rgba($color: #ff7c7c, $alpha: 0.1);
+        box-shadow: 0px 0px 12px 7px rgba($color: #5534A5, $alpha: 0.1);
         img{
             width: 130px;
             height: 130px;
@@ -6897,7 +6897,7 @@ select.form-control{
             border-radius: 8px;
             height: unset;
             &.selected{
-                box-shadow: 0px 0px 12px 7px rgba($color: #ff7c7c, $alpha: 0.1);
+                box-shadow: 0px 0px 12px 7px rgba($color: #5534A5, $alpha: 0.1);
             }
         }
     }
@@ -6905,7 +6905,7 @@ select.form-control{
 
 .down-arrow-icon,
 .up-arrow-icon {
-    color: $dark-theme;
+    color: $theme-color
 }
 
 .up-arrow-icon {
