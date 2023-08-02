@@ -298,7 +298,7 @@
                   </div>
                   <div v-else class="col-md-6 col-xs-12 h-md-100 d-flex">
                     <div
-                      class="inner-info container-fluid p-2 d-flex flex-column"
+                      class="inner-info container-fluid p-4 d-flex flex-column border rounded-10"
                     >
                       <div class="h-40 flex-fill custom-overflow">
                         <div class="inner-info-head mb-2">
@@ -324,7 +324,7 @@
                                 class="mb-0 col-8 p-0 color-secondary font-regular text-16 d-flex align-items-center"
                               >
                                 <span
-                                  class="d-flex rounded-circle border bullet mr-2"
+                                  class="d-flex rounded-circle border-form-color bullet mr-2"
                                 ></span>
                                 <span
                                   class="input-name color-dark text-truncate"
@@ -373,7 +373,7 @@
                   </div>
                   <div class="col-md-6 col-xs-12 h-100 d-flex">
                     <div
-                      class="inner-info container p-2 d-flex flex-column card card-secondary-sm rounded-22 p-4"
+                      class="inner-info container p-2 d-flex flex-column card card-secondary-sm rounded-10 p-4"
                     >
                       <div
                         class="d-flex align-items-center justify-content-between mb-2 px-2"

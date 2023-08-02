@@ -66,6 +66,10 @@
   border: 1px solid #EAEAEA !important;
 }
 
+.border-form-color {
+  border: 1px solid #BCBCBC !important;
+}
+
 .border-theme {
   border: 1px solid #5534A5 !important;
 }
