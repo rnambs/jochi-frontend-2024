@@ -11,7 +11,7 @@
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
-          class="teacher-section bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column custom-overflow"
+          class="teacher-section bg-white border-0 px-4 py-3 custom-margin-for-main-section custom-full-height d-flex flex-column custom-overflow"
         >
           <div
             v-if="isSchoolAdmin != '1'"
@@ -38,7 +38,7 @@
                       @click="onStudentClick(student)"
                       v-for="student in studentsListAdvisor"
                       :key="student.id"
-                      :class="{ 'bg-gray-light': student.id == studentDetail.id }"
+                      :class="{ 'bg-primary-light': student.id == studentDetail.id }"
                       class="d-flex align-items-center flex-row p-3 student-list border-bottom cursor-pointer"
                     >
                       <div class="ld-img-section mr-3">
@@ -364,7 +364,7 @@
                           </div>
                         </div>
                         <div
-                          class="row text-center w-100 h-100 justify-content-center"
+                          class="row text-center w-100 flex-fill justify-content-center"
                         >
                           <div
                             v-if="

@@ -300,12 +300,12 @@ body{
     top: 0;
     button.tab-btn{
         padding: 5px 20px;
-        background-color: #b8b8b8;
+        background-color: $primary-light01;
         color: #ffffff;
         border-radius: 0 0 14px 14px;
         transition: background-color 0.5s ease;
         &.selected{
-            background-color: #000000;
+            background-color: $theme-color;
         }
     }
 }
@@ -828,6 +828,11 @@ input[type="radio"]{
         margin: auto;
         color: #c8c2c0;
         line-height: 1;
+    }
+   }
+   &.btn-notification{
+    button{
+        &::before{display: none;}
     }
    }
 }
@@ -4707,7 +4712,7 @@ img.dark-icon{
                     }
                     .inner-custom-teacher.dashboard-cal{
                         // height: 100%;
-                        background-color: $primary-light02;
+                        // background-color: $primary-light02;
                         // border-radius: .5rem;
                         // box-shadow: 
                         //         0px 2px 8px $global-box-shadow;
@@ -6728,7 +6733,8 @@ select.form-control{
         width: 130px;
         height: 130px;
         background-color: $white;
-        box-shadow: 0px 0px 12px 7px rgba($color: #5534A5, $alpha: 0.1);
+        border: 1px solid $border-color;
+        // box-shadow: 0px 0px 12px 7px rgba($color: #5534A5, $alpha: 0.1);
         img{
             width: 130px;
             height: 130px;

@@ -19,7 +19,7 @@
       <section id="teacher-detail" class="">
         <div class="teacher-section">
           <div
-            class="inner-teacher bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
+            class="inner-teacher bg-white custom-margin-for-main-section custom-full-height d-flex flex-column"
           >
             <div
               class="d-flex justify-content-between align-items-start pt-4 px-4"
@@ -64,7 +64,7 @@
                     </h4>
                     <div class="h-40 flex-fill hidden-scroll">
                       <div
-                        class="card card-white d-flex flex-row align-items-center mb-2 p-3"
+                        class="card bg-primary-light border-0 d-flex flex-row align-items-center mb-2 p-3"
                         v-for="(list, index) in listAgenda"
                         :key="index"
                       >

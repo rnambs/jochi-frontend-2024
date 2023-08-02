@@ -98,7 +98,7 @@
             <a class="nav-link" href="#">Cloud</a>
           </li> -->
           <li class="nav-item d-flex justify-content-start justify-content-md-center p-1">
-            <div class="dropdown my-auto d-flex flex-column">
+            <div class="dropdown btn-notification my-auto d-flex flex-column">
               <a class="dropdown-toggle ml-4 mx-md-auto d-inline-flex align-items-center justify-content-start justify-content-md-center"
                 href="#" data-toggle="dropdown" @click="getNotifications()">
                 <span class="position-relative d-flex">

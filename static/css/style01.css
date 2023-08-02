@@ -646,13 +646,13 @@ body {
 }
 .tab-btns button.tab-btn {
   padding: 5px 20px;
-  background-color: #b8b8b8;
+  background-color: #DDD6ED;
   color: #ffffff;
   border-radius: 0 0 14px 14px;
   transition: background-color 0.5s ease;
 }
 .tab-btns button.tab-btn.selected {
-  background-color: #000000;
+  background-color: #5534A5;
 }
 
 .subtask-btn i::after {
@@ -1084,6 +1084,9 @@ input[type=radio] {
   margin: auto;
   color: #c8c2c0;
   line-height: 1;
+}
+.dropdown.btn-notification button::before {
+  display: none;
 }
 
 .vdp-datepicker input, .time-picker input {
@@ -3527,9 +3530,6 @@ img.dark-icon {
   width: 40px;
   height: 40px;
 }
-.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal {
-  background-color: #F1EEF6;
-}
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher .inner-agenda {
   height: 29vh !important;
   min-height: 276px;
@@ -4214,7 +4214,7 @@ img.dark-icon {
   color: #ffffff !important;
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day.fc-day-today .fc-daygrid-day-frame.fc-scrollgrid-sync-inner:hover .fc-daygrid-day-number {
-  color: #7E7EA0 !important;
+  color: #A85CF9 !important;
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight {
   background: #5534A5 !important;
@@ -4402,7 +4402,7 @@ img.dark-icon {
   color: #ffffff !important;
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day.fc-day-today .fc-daygrid-day-frame.fc-scrollgrid-sync-inner:hover .fc-daygrid-day-number {
-  color: #7E7EA0 !important;
+  color: #A85CF9 !important;
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight {
   background: #5534A5 !important;
@@ -5350,7 +5350,7 @@ select.form-control.is-invalid {
   width: 130px;
   height: 130px;
   background-color: #ffffff;
-  box-shadow: 0px 0px 12px 7px rgba(85, 52, 165, 0.1);
+  border: 1px solid #EAEAEA;
 }
 .ld-img-holder.img-holder-lg img {
   width: 130px;

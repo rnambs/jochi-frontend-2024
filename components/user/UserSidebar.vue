@@ -267,7 +267,7 @@
           <li
             class="nav-item d-flex justify-content-start justify-content-md-center p-1"
           >
-            <div class="dropdown my-auto d-flex flex-column">
+            <div class="dropdown btn-notification my-auto d-flex flex-column">
               <a
                 class="dropdown-toggle ml-4 mx-md-auto d-inline-flex align-items-center justify-content-start justify-content-md-center"
                 href="#"
@@ -302,7 +302,7 @@
                       Notifications
                     </h5>
                     <button
-                      class="color-dark font-semi-bold text-18"
+                      class="color-dark font-semi-bold text-18 btn p-0"
                       @click="clearNotifications()"
                     >
                       Clear all
