@@ -5684,15 +5684,31 @@ switch to violet when it is active*/
       background: $theme-color !important;
       border-color: $theme-color !important;
   }
-
 .lottie-loader{
     position: fixed;
     display: flex;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0,0,0,0.7);
+    align-items: center;
+    justify-content: center;
+    width: 300px !important;
+    height: 300px !important;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto !important;
     z-index: 1080;
-    backdrop-filter: blur(1.4px);
+    &::before{
+        content: '';
+        position: fixed;
+        top: 0;
+        background: rgba(0, 0, 0, 0.7);
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        -webkit-backdrop-filter: blur(1.4px);
+        backdrop-filter: blur(1.4px);
+    }
 }
 .z-index-9{
     z-index: 9;
@@ -5775,10 +5791,11 @@ switch to violet when it is active*/
         // }
         .modal-content{
             height: auto;
+            border: none;
             border-top: 4px solid $theme-color;
             background-color: $white;
             background-size:cover;
-            @include borderRadius(0);
+            @include borderRadius(12);
             // background: url("./../image/jochi-light-bg.png");
             // background-position:center;
             // background-repeat:no-repeat;

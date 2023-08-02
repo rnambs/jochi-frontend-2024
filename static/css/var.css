@@ -117,6 +117,15 @@
   padding: 0px 12px;
 }
 
+.h-lg-50 {
+  height: 50%;
+}
+@media (max-width: 1199.98px) {
+  .h-lg-50 {
+    height: auto;
+  }
+}
+
 .lext-limited {
   max-height: 36px;
   overflow: hidden;

@@ -194,6 +194,14 @@ $sm-screen-h         : 767.98px;
 // Additional padding
 .px--12{padding: 0px 12px}
 
+// Additional height
+.h-lg-50{
+    height: 50%;
+    @media (max-width: $lg-screen) {
+        height: auto;
+    }
+}
+
 // element color
 @mixin jochi-components-light-bg{
     background-color: $white;
@@ -914,6 +922,7 @@ $sm-screen-h         : 767.98px;
       .fc .fc-daygrid-day-number {
         color: #8c8bac !important;
         font-weight: 600;
+        padding: 4px 10px;
       }
       
       .fc-theme-standard th {

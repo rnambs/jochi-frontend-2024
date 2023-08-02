@@ -44,7 +44,8 @@
                          </span>
                           <span>Welcome Back, </span>
                           <span>{{ firstName }}</span></p>
-                      <p v-if="quoteMessage" class="dashboard-text-content">
+                          <p class="dashboard-text-content font-bold font-italic">Quote of the Day</p>
+                      <p v-if="quoteMessage" class="dashboard-text-content font-semi-bold">
                         “{{ quoteMessage }}”<br />
                       </p>
                     </div>
@@ -58,7 +59,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="d-flex flex-column h-50 flex-fill">
+                <div class="d-flex flex-column h-lg-50 flex-fill">
                   <div
                     class="row mt-1 h-100 height-md-unset flex-column flex-lg-row pt-2"
                   >
@@ -1032,10 +1033,7 @@ export default {
 
 .dashboard-text-content {
   font-size: 18px;
-  font-weight: 700;
-  
   line-height: 30px;
-  font-style: italic;
 }
 @media (max-width: 764.98px) {
   .dashboard-text-content {
