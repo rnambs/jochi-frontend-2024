@@ -22,19 +22,19 @@
             </h2>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0 mb-3">
-                <div class="col-md-4 p-0 mx-1">
+                <div class="col-md-6 col-lg-3 pb-0 pr-3">
                   <div
                     data-intro="Filter teacher and peer meetings from here."
-                    class="dropdown form-row custom-sort-by-btn"
+                    class="dropdown form-row"
                   >
                     <div
-                      class="dropdown-select btn btn-void p-0 color-secondary font-normal text-16 pr-2"
+                      class="dropdown-select d-inline-flex form-control rounded-8 border color-secondary font-normal text-16 pr-2"
                       type="button"
                       data-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <span id="dLabel" class="mr-2 color-secondary">
+                      <span id="dLabel" class="mr-auto color-secondary">
                         Sort by</span
                       >
                       <span class="caret color-secondary"
@@ -43,12 +43,12 @@
                     </div>
 
                     <ul
-                      class="dropdown-menu w-50 rounded-12"
+                      class="dropdown-menu w-100 rounded-12 border p-2"
                       aria-labelledby="dLabel"
                     >
-                      <li class="item">Teacher Meeting</li>
-                      <li class="item">Peer Meeting</li>
-                      <li class="item">All</li>
+                      <li class="item p-2">Teacher Meeting</li>
+                      <li class="item p-2">Peer Meeting</li>
+                      <li class="item p-2">All</li>
                     </ul>
                   </div>
                 </div>
