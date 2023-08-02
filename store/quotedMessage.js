@@ -542,6 +542,7 @@ const actions = {
         commit('setSuccessType', "success");
       }
     } catch (e) {
+      console.log(e);
       if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -550,10 +551,10 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      else if (e?.response?.data?.message) {
+      else if (e?.response?.data?.error) {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
-        commit('setErrorMessage', e?.response?.data?.message);
+        commit('setErrorMessage', e?.response?.data?.error);
         commit('setErrorType', "error");
       }
     }

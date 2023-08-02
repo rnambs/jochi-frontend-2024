@@ -215,7 +215,7 @@
                                           class="ld-img-holder"
                                         >
                                           <img
-                                            v-if="data.user_info"
+                                            v-if="data.user_info && data.user_info.profile_pic && data.user_info.profile_pic!=''"
                                             :src="data.user_info.profile_pic"
                                             alt=""
                                           />
@@ -307,7 +307,8 @@
                               v-if="
                                 membersInfo[index - 1] &&
                                 membersInfo[index - 1].user_info &&
-                                membersInfo[index - 1].user_info.profile_pic
+                                membersInfo[index - 1].user_info.profile_pic &&
+                                membersInfo[index - 1].user_info.profile_pic !='' 
                               "
                               :src="
                                 membersInfo[index - 1].user_info.profile_pic
@@ -340,7 +341,8 @@
                             <img
                               v-if="
                                 membersInfo[index + 3] &&
-                                membersInfo[index + 3].user_info.profile_pic
+                                membersInfo[index + 3].user_info.profile_pic &&
+                                membersInfo[index + 3].user_info.profile_pic !=''
                               "
                               :src="
                                 membersInfo[index + 3].user_info.profile_pic
@@ -628,7 +630,7 @@
                       <div class="ld-img-section mr-3">
                         <div v-if="data.user_info" class="ld-img-holder">
                           <img
-                            v-if="data.user_info"
+                            v-if="data.user_info && data.user_info.profile_pic && data.user_info.profile_pic!=''"
                             :src="data.user_info.profile_pic"
                             alt=""
                           />
@@ -683,7 +685,7 @@
                       <div class="ld-img-section mr-3">
                         <div v-if="data.user_info" class="ld-img-holder">
                           <img
-                            v-if="data.user_info"
+                            v-if="data.user_info && data.user_info.profile_pic && data.user_info.profile_pic!=''"
                             :src="data.user_info.profile_pic"
                             alt=""
                           />

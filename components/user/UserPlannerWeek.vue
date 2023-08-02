@@ -770,9 +770,9 @@
                             <!-- grades section -->
                             <div
                             class="d-flex align-items-center mb-2 ml-auto"
-                                v-if="submissionId"
+                                 v-if="submissionId && grade && gradePossible"
                               >
-                              <p class="mb-0" v-if="grade">Grade</p><span class="px-1">:</span>
+                              <p class="mb-0">Grade</p><span class="px-1">:</span>
                                     <p class="mb-0 bg-primary-light01 px-2 rounded-pill font-semi-bold color-primary"><span>{{
                                       grade
                                     }}</span>/<span>{{ gradePossible }}</span></p>
@@ -896,7 +896,7 @@
                                   <label
                                     for="message-text"
                                     class="col-form-label"
-                                    >Task<em>*</em></label
+                                    >Task</label
                                   >
                                   <textarea
                                     class="form-control"
@@ -1861,6 +1861,7 @@
           </div>
           <div class="modal-body px-3 bold-6">
             <p class="mb-0">Mark assignment as completed?</p>
+            <p class="mb-0" v-if="schoologyAssignment == '1' && !submissionId">Did you forget to submit your work?</p>
           </div>
           <div class="modal-footer justify-content-end border-top-0">
             <button
@@ -1876,7 +1877,7 @@
               :disabled="processingCompleteAssignment"
               @click="completeAssignment()"
             >
-              Confirm
+              Complete
             </button>
             <button
               v-if="schoologyAssignment == '1'"
@@ -1885,7 +1886,7 @@
               @click="submitAndCompleteAssignment()"
               :disabled="submissionId"
             >
-              Confirm & Submit Assignment
+              Submit Assignment
             </button>
           </div>
         </div>
@@ -2154,7 +2155,7 @@
               class="modal-title"
               id="submitAssignmentConfirmationModalLongTitle"
             >
-              Submit assignments
+              Submit assignment
             </h4>
           </div>
           <div class="modal-body px-3">
@@ -2163,17 +2164,11 @@
               <p class="mb-0">
                 Submit Additional Material
               </p>
-              <!-- <a class="btn p-0">
-                <span class="color-secondary"
-                  ><i class="fas fa-plus-circle"></i
-                ></span>
-              </a> -->
+              
             </div>
             <div class="d-flex flex-row align-items-start">
               <div class="form-row mb-2 mx-0 mr-2 w-100">
-                <label class="form-label" for="name"
-                  >Add Additional Material</label
-                >
+                
                 <select
                   v-model="materialTypeSubmit"
                   class="form-select form-control mb-2"
@@ -2206,7 +2201,17 @@
                         class="form-control px-2"
                         placeholder="Paste Link"
                         v-model="linkSubmit"
+                        maxlength="500"
+                        @input="onChangeLink()"
                       />
+                    </div>
+                    <div
+                      v-if="submittedAsst && materialTypeSubmit == 'link'"
+                      class="invalid-feedback" style="display:block !important"
+                    > 
+                      <span v-if="!linkSubmit || invalidSubmitUrl"
+                        >Please add a valid URL</span
+                      >
                     </div>
                   </div>
                   <div class="row m-0 px--12">
@@ -2217,21 +2222,21 @@
                         rows="4"
                         placeholder="Enter description"
                         v-model="textSubmit"
+                        maxlength="1000"
+                        @input="onChangeText()"
                       ></textarea>
+                    </div>
+                    <div
+                      v-if="submittedAsst && materialTypeSubmit == 'text'"
+                      class="invalid-feedback" style="display:block !important"
+                    >
+                      <span v-if="invalidSubmitText"
+                        >Please add a valid description</span
+                      >
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- <div class="pt-4">
-                <button
-                  type="button"
-                  @click="UploadAttachment"
-                  class="btn btn-primary btn-sm mt-2"
-                  :disabled="processingUpload"
-                >
-                  Add
-                </button>
-              </div> -->
             </div>
           </div>
 
@@ -2245,12 +2250,12 @@
               Cancel
             </button>
             <button
-              data-dismiss="modal"
+              :disabled="disableSubmit"
               type="button"
               class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               @click="submitAsst()"
             >
-              Save
+              Submit
             </button>
           </div>
         </div>
@@ -2420,6 +2425,10 @@ export default {
       submissionId: "",
       grade: "",
       gradePossible: "",
+      invalidSubmitUrl:false,
+      submittedAsst:false,
+      disableSubmit:false,
+      invalidSubmitText:false
     };
   },
 
@@ -3125,6 +3134,11 @@ export default {
       this.schoologyAssignment = "";
       this.grade = "";
       this.gradePossible = "";
+      this.invalidSubmitUrl=false;
+      this.submittedAsst=false;
+      this.disableSubmit=false;
+      this.invalidSubmitText=false;
+
 
       $('input[name="daterange"]').val("");
       fromDate = "";
@@ -4515,17 +4529,19 @@ export default {
         "_blank" // <- This is what makes it open in a new window.
       );
     },
-    isValidHttpUrl(string) {
+    isValidHttpUrl(urlLink, showError=true) {
       let url;
 
       try {
-        url = new URL(string);
+        url = new URL(urlLink);
       } catch (_) {
+        if(showError){
         this.$toast.open({
           message: "Please add valid URL",
           type: "warning",
           duration: 5000,
         });
+      }
         return false;
       }
 
@@ -4622,26 +4638,53 @@ export default {
       this.openAssignment = false;
     },
     submitAssignment() {
-      this.resetSubmission();
+      this.submittedAsst=false;
+      this.onResetSubmit();
       $("#submitAssignmentConfirmation").modal({ backdrop: true });
     },
     async submitAsst() {
+      if(!this.materialTypeSubmit) {
+        this.$toast.open({
+          message: "Please fill the details",
+          type: "warning",
+          duration: 4000,
+        });
+        return;
+      }
+      this.submittedAsst = true;
+      this.disableSubmit=true;
+      this.invalidSubmitUrl=false;
       var payload = {};
       if (this.materialTypeSubmit == "text") {
+        debugger
+        if(!this.textSubmit || this.onChangeText()){
+          this.invalidSubmitText=true;
+          this.disableSubmit=false;
+          return
+        }else{
+          this.invalidSubmitText=false;
+        }
         payload = {
           assignment_id: this.assignmentId,
           type: "text",
           text: this.textSubmit,
         };
       } else if (this.materialTypeSubmit == "link") {
+        const isValidHttpUrl = this.onChangeLink()
+        if(!isValidHttpUrl){
+          this.disableSubmit=false;
+          return
+        }
         payload = {
           assignment_id: this.assignmentId,
           type: "link",
           url: this.linkSubmit,
         };
       }
-
+      
       await this.assignmentSubmit(payload);
+      this.disableSubmit=false;
+      this.submittedAsst=false;
       if (this.successMessage != "") {
         this.$toast.open({
           message: this.successMessage,
@@ -4650,8 +4693,7 @@ export default {
         });
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
-        this.submissionId = "1";
-        this.resetSubmission();
+        this.submissionId="1"
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -4660,15 +4702,40 @@ export default {
         });
       }
     },
-    resetSubmission() {
-      this.materialTypeSubmit = "";
-      this.linkSubmit = "";
-      this.textSubmit = "";
-    },
     submitAndCompleteAssignment() {
       $(".modal").modal("hide");
       $(".modal-backdrop").remove();
       this.submitAssignment();
+    },
+    onChangeLink(){
+      if(this.submittedAsst){
+        if(!this.isValidHttpUrl(this.linkSubmit, false)){
+          this.invalidSubmitUrl=true;
+          return false;
+        }else{
+          this.invalidSubmitUrl=false;
+          return true;
+        }
+
+      }
+    },
+
+    onChangeText(){
+      if(this.submittedAsst && this.textSubmit){
+       this.invalidSubmitText=false;
+      }else if(this.submittedAsst && !this.textSubmit){
+       this.invalidSubmitText=true;
+      }
+      return this.invalidSubmitText;
+    },
+    onResetSubmit(){
+      this.invalidSubmitUrl=false;
+      this.submittedAsst=false;
+      this.disableSubmit=false;
+      this.invalidSubmitText=false;
+      this.materialTypeSubmit='';
+      this.linkSubmit='';
+      this.textSubmit='';
     },
   },
   beforeDestroy() {

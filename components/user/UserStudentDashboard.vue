@@ -409,11 +409,11 @@
                 type="button"
                 data-dismiss="modal"
                 class="btn btn-primary color-white"
-                @click="skipPromt()"
+                @click="skipPromt(true)"
               >
-                <nuxt-link to="/user-profile" class="text-white text-decoration-none">
+                <!-- <nuxt-link to="/user-profile" class="text-white text-decoration-none"> -->
                   Update Now
-                </nuxt-link>
+                <!-- </nuxt-link> -->
               </button>
             </div>
           </div>
@@ -616,8 +616,13 @@ export default {
         this.isLargeScreen = e.matches;
       });
     },
-    async skipPromt() {
+    async skipPromt(updateNow=false) {
+      console.log("skkip promt");
       localStorage.setItem("skippedPrompt", "true");
+      if(updateNow){
+        this.$router.push("/user-profile");
+      }
+      
     },
     activate() {
       setTimeout(() => (this.isHidden = true), 1500);
