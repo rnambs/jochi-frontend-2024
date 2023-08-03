@@ -34,10 +34,10 @@ import { FRONTEND_BASE_URL, GG4L_REDIRECT_URL } from "~/assets/js/constants";
 // const socket = io("ws://localhost:3000");
 
 export default {
+  middleware: 'authenticated',
   data() {
     return {};
   },
-
   mounted() {
     this.login();
   },

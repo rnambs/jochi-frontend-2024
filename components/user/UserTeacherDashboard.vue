@@ -685,5 +685,9 @@ export default {
       return month + "-" + day + "-" + year;
     },
   },
+  beforeRouteLeave: function(route, redirect, next) {
+    console.log("before route leave",route, redirect, next);
+    if (next) next();
+  },
 };
 </script>

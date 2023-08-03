@@ -253,6 +253,7 @@ const crypto = require("crypto");
 var schoolSelectValue = "";
 
 export default {
+  middleware: 'authenticated',
   name: "student-signup",
   head() {
     return {
@@ -286,8 +287,8 @@ export default {
     studentId: { required },
   },
 
-  mounted() {
-    window.localStorage.clear();
+  beforeMount() {
+    // window.localStorage.clear();
 
     // this.redirect = GG4L_REDIRECT_LOGIN_URL + REDIRECT_LOGIN_URL;
     this.redirect = GG4L_REDIRECT_LOGIN_URL;
@@ -296,9 +297,9 @@ export default {
       if (userType == "1") {
         this.$router.push("/dashboard");
       } else if (userType == "3") {
-        this.$router.push("/planner-day");
+        this.$router.push("/student-dashboard");
       } else if (userType == "2") {
-        this.$router.push("/custom-availability");
+        this.$router.push("/teacher-dashboard");
       }
     }
     const log_code = this.generateRandomString(16);
