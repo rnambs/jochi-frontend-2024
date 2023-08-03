@@ -4,9 +4,9 @@
       class="navbar navbar-expand-md navbar-light bg-white p-0"
       id="clickableId"
     >
-      <a
+      <nuxt-link
+        to="/student-dashboard"
         class="navbar-brand d-flex align-items-center justify-content-center mr-0"
-        href="#"
       >
         <span
           class="bg-primary-dark rounded-14 d-flex align-items-center justify-content-center p-2"
@@ -17,7 +17,7 @@
             class="img-logo-v4 object-fit-contain"
           />
         </span>
-      </a>
+      </nuxt-link>
       <button
         class="navbar-toggler mr-3"
         type="button"
@@ -315,7 +315,7 @@
                           : 'read d-flex flex-column p-3 card card-void my-3 cursor-pointer'
                       " -->
                     <div
-                      class="d-flex flex-column p-3 card card-void my-3 cursor-pointer"
+                      class="d-flex flex-column p-3 card bg-primary-light border-0 my-3 cursor-pointer"
                       v-for="(data, index) in notificationList"
                       :key="index"
                       @click="onNotificationClick(data.id, data.meetingType)"
