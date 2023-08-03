@@ -1,14 +1,19 @@
 <template>
   <div>
-    <div
+    <!-- <div
       id="pageLoader"
       class="bg-primary-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
       style="z-index: 9"
       v-if="!isHidden"
     >
       <h1 data-loading-text="loading..." class="display-4 loading"></h1>
-    </div>
-
+    </div> -->
+    <lottie
+      v-if="loading"
+      :options="lottieOptions"
+      v-on:animCreated="handleAnimation"
+      class="lottie-loader"
+    />
     <div class="main-section">
       <div
         class="bg-white custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
@@ -565,6 +570,9 @@ export default {
       return this.$store.state.startProductGuide;
     },
   },
+  created() {
+    this.loading=true;
+  },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);
     const page = "Dashboard";
@@ -582,6 +590,7 @@ export default {
     const phone = localStorage.getItem("phone");
     const skipped = localStorage.getItem("skippedPrompt");
     setTimeout(() => {
+      this.loading=false;
       if (!phone && skipped != "true") {
         $("#promptModal").modal();
       }

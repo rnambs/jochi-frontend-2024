@@ -5,19 +5,34 @@
     >
       <div class="container">
         <div
-          class="login-content d-flex flex-column align-items-center justify-content-center"
+          class="login-content d-flex flex-column"
         >
           <div class="login-logo">
             <img
               class="align-content"
-              src="~/assets/images/jochi..svg"
-              alt=""
+              src="../static/image/logo.png"
+              alt="logo-icon"
             />
-          </div>
-          <div class="text-center">
-            <span class="text-center"
-              >Please wait! Your credentials are being verified!</span
-            >
+          </div>  
+          <div class="d-flex flex-column align-items-center justify-content-center">
+            <!-- <div class="login-logo">
+              <img
+                class="align-content"
+                src="../static/image/logo.png"
+                alt="logo-icon"
+              />
+            </div> -->
+            <!-- <div class="text-center">
+              <span class="text-center"
+                >Please wait! Your credentials are being verified!</span
+              >
+            </div> -->
+            <lottie
+              v-if="loading"
+              :options="lottieOptions"
+              v-on:animCreated="handleAnimation"
+              class="lottie-loader"
+            />
           </div>
         </div>
       </div>
@@ -29,16 +44,26 @@ import { required, minLength, sameAs } from "vuelidate/lib/validators";
 import { mapState, mapActions } from "vuex";
 import VueToast from "vue-toast-notification";
 import { FRONTEND_BASE_URL, GG4L_REDIRECT_URL } from "~/assets/js/constants";
+import lottie from "vue-lottie/src/lottie.vue";
+import * as animationData from "~/assets/animation.json";
 // import io from "socket.io-client";
 
 // const socket = io("ws://localhost:3000");
 
 export default {
+  components: {
+    lottie,
+  },
   data() {
-    return {};
+    return {
+      loading: false,
+      anim: null, // for saving the reference to the animation
+      lottieOptions: { animationData: animationData.default },
+    };
   },
 
   mounted() {
+    this.loading=true;
     this.login();
   },
 
@@ -58,6 +83,9 @@ export default {
       loginUsingGg4l: "loginUsingGg4l",
       sendDeviceToken: "sendDeviceToken",
     }),
+    handleAnimation: function (anim) {
+      this.anim = anim;
+    },
     async login() {
       await this.gg4lLogin();
     },
@@ -138,6 +166,7 @@ export default {
   content: "";
   position: absolute;
   background-image: url(../static/image/v4/jochi-light-bg-rotate.png);
+  background-color: #beafde;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
