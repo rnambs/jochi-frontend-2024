@@ -70,8 +70,12 @@
   border: 1px solid #EAEAEA !important;
 }
 
+.border-form-color {
+  border: 1px solid #BCBCBC !important;
+}
+
 .border-theme {
-  border: 1px solid #FF4E71 !important;
+  border: 1px solid #5534A5 !important;
 }
 
 .border-white {
@@ -119,6 +123,15 @@
 
 .px--12 {
   padding: 0px 12px;
+}
+
+.h-lg-50 {
+  height: 50%;
+}
+@media (max-width: 1199.98px) {
+  .h-lg-50 {
+    height: auto;
+  }
 }
 
 .lext-limited {
@@ -191,8 +204,12 @@
   border: 1px solid #EAEAEA !important;
 }
 
+.border-form-color {
+  border: 1px solid #BCBCBC !important;
+}
+
 .border-theme {
-  border: 1px solid #FF4E71 !important;
+  border: 1px solid #5534A5 !important;
 }
 
 .border-white {
@@ -242,6 +259,15 @@
   padding: 0px 12px;
 }
 
+.h-lg-50 {
+  height: 50%;
+}
+@media (max-width: 1199.98px) {
+  .h-lg-50 {
+    height: auto;
+  }
+}
+
 .lext-limited {
   max-height: 36px;
   overflow: hidden;
@@ -280,6 +306,18 @@
 .icon--notification {
   background-image: url("../image/v4/icon/notification-bell.svg");
 }
+.icon--home {
+  background-image: url("../image/v4/icon/home.svg");
+}
+.icon--appoinments {
+  background-image: url("../image/v4/icon/appoinments.svg");
+}
+.icon--availability {
+  background-image: url("../image/v4/icon/availability.svg");
+}
+.icon--advisor {
+  background-image: url("../image/v4/icon/advisor.svg");
+}
 .icon.icon-xs {
   width: 0.875rem;
   min-width: 0.875rem;
@@ -301,25 +339,37 @@
   height: 1.875rem;
 }
 
-.nav-link.nuxt-link-active .icon--dashboard {
+.nav-link.nuxt-link-active .icon--dashboard, .nav-link:hover .icon--dashboard {
   background-image: url("../image/v4/icon/dash-active.svg");
 }
-.nav-link.nuxt-link-active .icon--settings {
+.nav-link.nuxt-link-active .icon--home, .nav-link:hover .icon--home {
+  background-image: url("../image/v4/icon/home-active.svg");
+}
+.nav-link.nuxt-link-active .icon--appoinments, .nav-link:hover .icon--appoinments {
+  background-image: url("../image/v4/icon/appoinments-active.svg");
+}
+.nav-link.nuxt-link-active .icon--availability, .nav-link:hover .icon--availability {
+  background-image: url("../image/v4/icon/availability-active.svg");
+}
+.nav-link.nuxt-link-active .icon--advisor, .nav-link:hover .icon--advisor {
+  background-image: url("../image/v4/icon/advisor-active.svg");
+}
+.nav-link.nuxt-link-active .icon--settings, .nav-link:hover .icon--settings {
   background-image: url("../image/v4/icon/cog-active.svg");
 }
-.nav-link.nuxt-link-active .icon--logout {
+.nav-link.nuxt-link-active .icon--logout, .nav-link:hover .icon--logout {
   background-image: url("../image/v4/icon/logout-active.svg");
 }
-.nav-link.accordion-link.active .icon--planner, .nav-link.accordion-link:not(.collapsed) .icon--planner {
+.nav-link.accordion-link.active .icon--planner, .nav-link.accordion-link:not(.collapsed) .icon--planner, .nav-link.accordion-link:hover .icon--planner {
   background-image: url("../image/v4/icon/calendar-active.svg");
 }
-.nav-link.accordion-link.active .icon--meeting, .nav-link.accordion-link:not(.collapsed) .icon--meeting {
+.nav-link.accordion-link.active .icon--meeting, .nav-link.accordion-link:not(.collapsed) .icon--meeting, .nav-link.accordion-link:hover .icon--meeting {
   background-image: url("../image/v4/icon/meeting-active.svg");
 }
-.nav-link.accordion-link.active .icon--club, .nav-link.accordion-link:not(.collapsed) .icon--club {
+.nav-link.accordion-link.active .icon--club, .nav-link.accordion-link:not(.collapsed) .icon--club, .nav-link.accordion-link:hover .icon--club {
   background-image: url("../image/v4/icon/activities-active.svg");
 }
-.nav-link.accordion-link.active .icon--study, .nav-link.accordion-link:not(.collapsed) .icon--study {
+.nav-link.accordion-link.active .icon--study, .nav-link.accordion-link:not(.collapsed) .icon--study, .nav-link.accordion-link:hover .icon--study {
   background-image: url("../image/v4/icon/study-active.svg");
 }
 
@@ -596,13 +646,13 @@ body {
 }
 .tab-btns button.tab-btn {
   padding: 5px 20px;
-  background-color: #b8b8b8;
+  background-color: #DDD6ED;
   color: #ffffff;
   border-radius: 0 0 14px 14px;
   transition: background-color 0.5s ease;
 }
 .tab-btns button.tab-btn.selected {
-  background-color: #000000;
+  background-color: #5534A5;
 }
 
 .subtask-btn i::after {
@@ -735,6 +785,15 @@ input[type=radio] {
 .form-row .input-icon.custom-search-icon, .form-group .input-icon.custom-search-icon {
   margin: 9px;
   right: 0;
+}
+.form-row .inputfield-icon.date-icon, .form-group .inputfield-icon.date-icon {
+  background-image: url("./../image/v4/icon/field-calendar.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 24px;
+  height: 24px;
+  margin: 10px;
 }
 .form-row .multiselect.multiselect--disabled, .form-group .multiselect.multiselect--disabled {
   background-color: unset;
@@ -1025,6 +1084,9 @@ input[type=radio] {
   margin: auto;
   color: #c8c2c0;
   line-height: 1;
+}
+.dropdown.btn-notification button::before {
+  display: none;
 }
 
 .vdp-datepicker input, .time-picker input {
@@ -1460,8 +1522,8 @@ img.dark-icon {
   width: auto;
   padding: 0.438rem;
   height: auto;
-  background-color: #FF4E71;
-  border: 1px solid #FF4E71;
+  background-color: #5534A5;
+  border: 1px solid #5534A5;
   box-shadow: 0px 4px 20px rgba(90, 114, 123, 0.11);
   position: absolute;
   bottom: 100%;
@@ -1498,7 +1560,7 @@ img.dark-icon {
   position: absolute;
   width: 9px;
   height: 6px;
-  background-image: url("data:image/svg+xml,%3Csvg width='9' height='6' viewBox='0 0 9 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L4.5 5.5L9 0H0Z' fill='%23FF4E71'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='9' height='6' viewBox='0 0 9 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L4.5 5.5L9 0H0Z' fill='%235534A5'/%3E%3C/svg%3E");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -1627,7 +1689,7 @@ img.dark-icon {
 .main-container .form-section h1 {
   font-size: 3rem;
   font-weight: 600;
-  color: #ff7272;
+  color: #5534A5;
 }
 @media (max-width: 767.98px) {
   .main-container .form-section h1 {
@@ -1773,10 +1835,10 @@ img.dark-icon {
   border-radius: 0.4rem;
 }
 .main-container .form-section .sign-in .col-12 .form-row .multiselect__content-wrapper ul li .multiselect__option--highlight:target, .main-container .form-section .sign-in .col-12 .form-row .multiselect__content-wrapper ul li .multiselect__option--highlight:visited, .main-container .form-section .sign-in .col-12 .form-row .multiselect__content-wrapper ul li .multiselect__option--highlight:active, .main-container .form-section .sign-in .col .form-row .multiselect__content-wrapper ul li .multiselect__option--highlight:target, .main-container .form-section .sign-in .col .form-row .multiselect__content-wrapper ul li .multiselect__option--highlight:visited, .main-container .form-section .sign-in .col .form-row .multiselect__content-wrapper ul li .multiselect__option--highlight:active {
-  background: #FF646F;
+  background: #5534A5;
 }
 .main-container .form-section .sign-in .col-12 .form-row .multiselect__content-wrapper ul li .multiselect__option--selected, .main-container .form-section .sign-in .col-12 .form-row .multiselect__content-wrapper ul li .multiselect__option--select, .main-container .form-section .sign-in .col-12 .form-row .multiselect__content-wrapper ul li .multiselect__option--deselect, .main-container .form-section .sign-in .col .form-row .multiselect__content-wrapper ul li .multiselect__option--selected, .main-container .form-section .sign-in .col .form-row .multiselect__content-wrapper ul li .multiselect__option--select, .main-container .form-section .sign-in .col .form-row .multiselect__content-wrapper ul li .multiselect__option--deselect {
-  background: #FF646F;
+  background: #5534A5;
   color: #ffffff;
   font-weight: 500;
   border-radius: 0.4rem;
@@ -2647,6 +2709,7 @@ img.dark-icon {
 .inner-section .main-section #Daily-Calander .fc .fc-daygrid-day-number {
   color: #8c8bac !important;
   font-weight: 600;
+  padding: 4px 10px;
 }
 .inner-section .main-section #Daily-Calander .fc-theme-standard th {
   border-bottom: none;
@@ -2715,6 +2778,7 @@ img.dark-icon {
 .inner-section .main-section #Weekly-Calander .fc .fc-daygrid-day-number {
   color: #8c8bac !important;
   font-weight: 600;
+  padding: 4px 10px;
 }
 .inner-section .main-section #Weekly-Calander .fc-theme-standard th {
   border-bottom: none;
@@ -2929,6 +2993,7 @@ img.dark-icon {
 .inner-section .main-section #Monthly-Calander .fc .fc-daygrid-day-number {
   color: #8c8bac !important;
   font-weight: 600;
+  padding: 4px 10px;
 }
 .inner-section .main-section #Monthly-Calander .fc-theme-standard th {
   border-bottom: none;
@@ -3380,6 +3445,8 @@ img.dark-icon {
   border: 1px solid #EAEAEA;
   border-radius: 8px;
   background-color: #ffffff;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .inner-section .main-section .study-section .upload-image .proof-img-wrp .middle {
   transition: 0.5s ease;
@@ -3462,9 +3529,6 @@ img.dark-icon {
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .image-icon {
   width: 40px;
   height: 40px;
-}
-.inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher.dashboard-cal {
-  background-color: #F1EEF6;
 }
 .inner-section .main-section .teacher-section .inner-teacher .custom-teacher-container .inner-custom-teacher .inner-agenda {
   height: 29vh !important;
@@ -4150,7 +4214,7 @@ img.dark-icon {
   color: #ffffff !important;
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day.fc-day-today .fc-daygrid-day-frame.fc-scrollgrid-sync-inner:hover .fc-daygrid-day-number {
-  color: #7E7EA0 !important;
+  color: #A85CF9 !important;
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight {
   background: #5534A5 !important;
@@ -4168,6 +4232,7 @@ img.dark-icon {
 .calendar-sm .fc .fc-daygrid-day-number {
   color: #8c8bac !important;
   font-weight: 600;
+  padding: 4px 10px;
 }
 .calendar-sm .fc-theme-standard th {
   border-bottom: none;
@@ -4337,7 +4402,7 @@ img.dark-icon {
   color: #ffffff !important;
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td.fc-daygrid-day.fc-day.fc-day-today .fc-daygrid-day-frame.fc-scrollgrid-sync-inner:hover .fc-daygrid-day-number {
-  color: #7E7EA0 !important;
+  color: #A85CF9 !important;
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr .fc-highlight {
   background: #5534A5 !important;
@@ -4355,6 +4420,7 @@ img.dark-icon {
 .calendar-dashboard .fc .fc-daygrid-day-number {
   color: #8c8bac !important;
   font-weight: 600;
+  padding: 4px 10px;
 }
 .calendar-dashboard .fc-theme-standard th {
   border-bottom: none;
@@ -4452,12 +4518,28 @@ switch to violet when it is active*/
 .lottie-loader {
   position: fixed;
   display: flex;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  justify-content: center;
+  width: 300px !important;
+  height: 300px !important;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto !important;
   z-index: 1080;
+}
+.lottie-loader::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  z-index: 0;
   -webkit-backdrop-filter: blur(1.4px);
-          backdrop-filter: blur(1.4px);
+  backdrop-filter: blur(1.4px);
 }
 
 .z-index-9 {
@@ -4519,10 +4601,11 @@ switch to violet when it is active*/
 }
 .modal .modal-dialog .modal-content {
   height: auto;
+  border: none;
   border-top: 4px solid #5534A5;
   background-color: #ffffff;
   background-size: cover;
-  border-radius: 0;
+  border-radius: 12px !important;
 }
 .modal .modal-dialog .modal-content .modal-header {
   background-color: transparent;
@@ -4656,7 +4739,7 @@ switch to violet when it is active*/
 }
 .modal .modal-dialog .modal-content .modal-body .required-button {
   font-size: 80%;
-  color: #dc3545;
+  color: #5534A5;
 }
 .modal .modal-dialog .modal-content .modal-body table.table-modal .tmodal-data, .modal .modal-dialog .modal-content .modal-body table.table-modal .tmodal-data {
   color: #2D2D2F;
@@ -4817,7 +4900,7 @@ switch to violet when it is active*/
 }
 
 .base-timer__path-remaining.arc {
-  color: #FF7068;
+  color: #5534A5;
 }
 
 .inner-timer {
@@ -4862,7 +4945,7 @@ switch to violet when it is active*/
 }
 
 .buttons button:hover {
-  background-color: #F49196;
+  background-color: #5534A5;
   color: white;
 }
 
@@ -5254,6 +5337,7 @@ select.form-control.is-invalid {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  border: 1px solid #DDD6ED;
   overflow: hidden;
 }
 .ld-img-holder img {
@@ -5266,7 +5350,7 @@ select.form-control.is-invalid {
   width: 130px;
   height: 130px;
   background-color: #ffffff;
-  box-shadow: 0px 0px 12px 7px rgba(255, 124, 124, 0.1);
+  border: 1px solid #EAEAEA;
 }
 .ld-img-holder.img-holder-lg img {
   width: 130px;
@@ -5415,12 +5499,12 @@ select.form-control.is-invalid {
   height: unset;
 }
 .custom-modal-ts-height .modal-time-schedules .meeting-list.selected {
-  box-shadow: 0px 0px 12px 7px rgba(255, 124, 124, 0.1);
+  box-shadow: 0px 0px 12px 7px rgba(85, 52, 165, 0.1);
 }
 
 .down-arrow-icon,
 .up-arrow-icon {
-  color: #FF4E71;
+  color: #5534A5;
 }
 
 .up-arrow-icon {
@@ -5475,8 +5559,29 @@ select.form-control.is-invalid {
   border-bottom: none !important;
 }
 
-.schedule-meeting-section .multiselect__select:before {
-  content: none;
+.schedule-meeting-section.meeting-type .multiselect__select, .schedule-meeting-section.participants-section .multiselect__select {
+  transition: unset;
+  padding: 8px;
+  margin: 4px;
+  transform: unset !important;
+}
+.schedule-meeting-section.meeting-type .multiselect__select:before, .schedule-meeting-section.participants-section .multiselect__select:before {
+  content: "";
+  border: none;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 24px;
+  height: 24px;
+  top: 0;
+  margin: 7px;
+}
+.schedule-meeting-section.meeting-type .multiselect__select:before {
+  background-image: url("./../image/v4/icon/search.png");
+}
+.schedule-meeting-section.participants-section .multiselect__select:before {
+  background-image: url("./../image/v4/icon/participant.svg");
 }
 .schedule-meeting-section .form-control {
   background-color: rgba(255, 255, 255, 0.2) !important;

@@ -199,6 +199,7 @@
                       <textarea
                         class="form-control"
                         id="message-text"
+                        rows="3"
                         v-model="task"
                         maxlength="125"
                         placeholder="Enter task description"

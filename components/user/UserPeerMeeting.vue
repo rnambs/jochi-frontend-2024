@@ -102,7 +102,7 @@
               <div class="row Meeting-row" v-show="isShowing">
                 <div class="col-md-4 p-3">
                   <div class="default-section">
-                    <img src="~/assets/images/undraw/step1.png" alt="" />
+                    <img src="~/assets/images/v4/undraw/step1.png" alt="" />
                     <div class="default-area">
                       <h6 class="default-head">Step 1</h6>
                       <p class="default-text">
@@ -113,7 +113,7 @@
                 </div>
                 <div class="col-md-4 p-3">
                   <div class="default-section">
-                    <img src="~/assets/images/undraw/step2.png" alt="" />
+                    <img src="~/assets/images/v4/undraw/step2.png" alt="" />
                     <div class="default-area">
                       <h6 class="default-head">Step 2</h6>
                       <p class="default-text">Choose Your Date Range</p>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="col-md-4 p-3">
                   <div class="default-section">
-                    <img src="~/assets/images/undraw/step3.png" alt="" />
+                    <img src="~/assets/images/v4/undraw/step3.png" alt="" />
                     <div class="default-area">
                       <h6 class="default-head">Step 3</h6>
                       <p class="default-text">Select Your Time and Confirm</p>

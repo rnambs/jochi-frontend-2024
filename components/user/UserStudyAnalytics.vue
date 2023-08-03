@@ -28,7 +28,7 @@
               >
             </p>
             <img
-              src="../../static/image/alarm.png"
+              src="../../static/image/v4/alarm.png"
               alt=""
               class="img-fluid icon-img ml-2 clock-icon"
             />

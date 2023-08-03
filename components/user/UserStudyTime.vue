@@ -15,10 +15,10 @@
     <!-- session  -->
     <div
       v-if="currentTab == 0"
-      class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex"
+      class="bg-white custom-margin-for-main-section custom-full-height d-flex"
     >
       <div
-        class="study-section d-flex flex-column flex-fill px-4 custom-overflow my-3 py-md-2 py-lg-3"
+        class="study-section d-flex flex-column flex-fill px-4 custom-overflow py-md-2 py-lg-3"
       >
         <div class="row h-lg-100">
           <div class="col-lg-7 d-flex flex-column">
@@ -28,7 +28,7 @@
                 @click="scheduleLaterClick('assignment', $event)"
                 class="position-absolute send-later bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
               >
-                <img src="~/assets/images/send-later.png" />
+                <img src="~/assets/images/v4/send-later.png" />
               </div>
             </div>
             <div
@@ -54,13 +54,13 @@
                 />
               </div>
             </div>
-            <div class="position-relative">
+            <div class="position-relative mt-3">
               <div
                 data-intro="Want to just set yourself accountable while getting general work here? Click here to schedule a regular study session for later."
                 @click="scheduleLaterClick('study', $event)"
                 class="position-absolute send-later bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
               >
-                <img src="~/assets/images/send-later.png" />
+                <img src="~/assets/images/v4/send-later.png" />
               </div>
             </div>
             <div
@@ -106,7 +106,7 @@
                       showSessionDetail = true;
                       setDetail(sessionItem);
                     "
-                    class="d-flex card card-void p-3 d-flex flex-column mb-3 cursor-pointer"
+                    class="d-flex card border-0 bg-gray-light p-3 d-flex flex-column mb-3 cursor-pointer"
                   >
                     <h6 class="color-dark font-semi-bold mb-1">
                       {{ sessionItem.name }}
@@ -123,7 +123,7 @@
                 >
                   <div class="custom-overflow pr-2 mr--2">
                     <div
-                      class="d-flex card card-secondary p-3 d-flex flex-column mb-3"
+                      class="d-flex card card-secondary p-3 d-flex flex-column mb-3 mx-4"
                     >
                       <h6 class="color-dark font-semi-bold mb-1"></h6>
                       <p
@@ -142,7 +142,7 @@
                 class="position-absolute w-100 h-100 top-0 left-0 p-0"
               >
                 <div
-                  class="d-flex card card-primary-void flex-column h-100 p-3 rounded-22"
+                  class="d-flex card bg-gray-light border-0 flex-column h-100 p-3 rounded-10"
                 >
                   <div
                     class="d-flex justify-content-between mb-2 border-bottom"
@@ -520,6 +520,7 @@
                   <a
                     style="color: #ffffff"
                     href="https://www.jochi.info/post/what-is-the-pomodoro-technique"
+                    class="text-decoration-none"
                   >
                     Click to Learn More</a
                   >
@@ -854,7 +855,7 @@
 
                       <div class="d-flex justify-content-end mt-4">
                         <img
-                          src="../../static/image/dashboard_img.png"
+                          src="../../static/image/v4/dashboard_img.png"
                           alt=""
                           class="img-fluid card-img"
                         />
@@ -1037,7 +1038,7 @@
                       </g>
                     </svg>
                     <div class="inner-timer">
-                      <img src="../../static/image/alarm.png" alt="" />
+                      <img src="../../static/image/v4/alarm.png" alt="" />
                     </div>
                     <p class="mb-2">
                       <span
@@ -1105,9 +1106,9 @@
               <star-rating
                 class="mb-2"
                 v-model="focusRating"
-                inactive-color="#FFDCDB"
-                active-color="#F49196"
-                border-color="#ffeded"
+                inactive-color="#DDD6ED"
+                active-color="#5534A5"
+                border-color="#F9F9F9"
                 v-bind:border-width="4"
                 v-bind:star-size="21"
                 v-bind:padding="1"
@@ -1124,9 +1125,9 @@
               <star-rating
                 class="mb-2"
                 v-model="focusEfficiency"
-                inactive-color="#FFDCDB"
-                active-color="#F49196"
-                border-color="#ffeded"
+                inactive-color="#DDD6ED"
+                active-color="#5534A5"
+                border-color="#F9F9F9"
                 v-bind:border-width="4"
                 v-bind:star-size="21"
                 v-bind:padding="1"
@@ -1143,9 +1144,9 @@
               <star-rating
                 class="mb-2"
                 v-model="focusWorkComplete"
-                inactive-color="#FFDCDB"
-                active-color="#F49196"
-                border-color="#ffeded"
+                inactive-color="#DDD6ED"
+                active-color="#5534A5"
+                border-color="#F9F9F9"
                 v-bind:border-width="4"
                 v-bind:star-size="21"
                 v-bind:padding="1"

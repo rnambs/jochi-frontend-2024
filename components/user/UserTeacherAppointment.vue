@@ -47,7 +47,7 @@
                       </h4>
                       <div class="inner-agenda custom-overflow pr-2 mr--2">
                         <div
-                          class="row container my-2 mx-0 p-0"
+                          class="row container my-2 mx-0 py-0"
                           v-for="(list, index) in listAgenda"
                           :key="index"
                           @click="setMeetingView(list)"

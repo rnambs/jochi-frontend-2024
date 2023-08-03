@@ -1,12 +1,12 @@
 
 <template>
   <div>
-    <lottie
-      v-if="loading"
-      :options="lottieOptions"
-      v-on:animCreated="handleAnimation"
-      class="lottie-loader"
-    />
+      <lottie
+        v-if="loading"
+        :options="lottieOptions"
+        v-on:animCreated="handleAnimation"
+        class="lottie-loader"
+      />
     <div class="main-section">
       <!-- Daily Calander -->
 
@@ -73,7 +73,7 @@
                           v-if="
                             choosenAssignments && choosenAssignments.length > 0
                           "
-                          class="btn btn-primary py-1 px-3"
+                          class="btn btn-danger py-1 px-3"
                         >
                           Delete selected
                         </button>
@@ -855,6 +855,7 @@
                                 class="form-control"
                                 id="message-text"
                                 v-model="assignmentName"
+                                rows="3"
                                 maxlength="60"
                                 placeholder="Enter assignment name"
                                 :class="{
@@ -878,6 +879,7 @@
                               <textarea
                                 class="form-control"
                                 id="message-text"
+                                rows="3"
                                 v-model="assignmentDescription"
                                 maxlength="500"
                                 placeholder="Enter assignment description"
@@ -1838,6 +1840,7 @@
                 <textarea
                   class="form-control"
                   id="message-text"
+                  rows="3"
                   v-model="assignmentDescription"
                   maxlength="500"
                   placeholder="Enter assignment description"
@@ -2468,6 +2471,7 @@
                       <textarea
                         v-if="materialTypeSubmit == 'text'"
                         class="form-control px-2"
+                        rows="4"
                         placeholder="Enter description"
                         v-model="textSubmit"
                         maxlength="1000"
@@ -4665,7 +4669,7 @@ export default {
   opacity: 1 !important;
 }
 .squaredThree input[type="checkbox"]:checked + label {
-  background: #ed7672;
+  background: #5534A5;
   transition: all ease-in-out 300ms;
 }
 .label-text {

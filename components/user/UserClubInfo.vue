@@ -117,7 +117,7 @@
             <div
               class="inner-club club-info d-flex flex-column justify-content-top container-fluid pr-3 py-0 pl-0"
             >
-              <div class="my-2 px-2">
+              <div class="my-2">
                 <h3 class="color-primary-dark font-semi-bold mb-1">Club Details</h3>
               </div>
               <div class="inner-info">
@@ -843,7 +843,7 @@
                 <v-card-actions class="justify-content-end">
                   <v-btn
                     color="primary"
-                    class="btn btn-secondary color-white font-semi-bold mr-2 py-1 px-3 rounded-8 text-capitalize"
+                    class="btn btn-secondary font-semi-bold mr-2 py-1 px-3 rounded-8 text-capitalize"
                     text
                     data-dismiss="modal"
                     @click="clearCrop"
@@ -852,7 +852,7 @@
                   <v-btn
                     class="btn btn-primary font-semi-bold bg-primary color-dark py-1 px-3 rounded-8 text-capitalize shadow-none"
                     @click="saveImage(), (dialog = false)"
-                    ><span class="font-semi-bold">Upload</span></v-btn
+                    ><span class="font-semi-bold color-white">Upload</span></v-btn
                   >
                 </v-card-actions>
               </v-card>

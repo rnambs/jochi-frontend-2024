@@ -14,7 +14,7 @@
         custom-margin-for-main-section custom-full-height
         d-flex
         flex-column">
-          <h3 class="color-primary-dark heading3 font-semi-bold m-0 p-4">Custom Avaliability</h3>
+          <h3 class="color-primary-dark heading3 font-semi-bold m-0 px-4 pt-4">Custom Avaliability</h3>
           <div class="inner-teacher container-fluid p-4 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow">
             <div class="row h-100">
               <div class="col-md-7 text-light custom-teacher-container d-flex flex-column ">

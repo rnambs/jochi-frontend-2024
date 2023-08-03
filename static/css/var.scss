@@ -82,8 +82,11 @@ $label-green: #159E00;
 .border{
     border: 1px solid $border-color !important;
 }
+.border-form-color{
+    border: 1px solid $border-form-color !important;
+}
 .border-theme{
-    border: 1px solid $dark-theme !important;
+    border: 1px solid $theme-color !important;
 }
 .border-white{
     border: 1px solid $white !important;
@@ -193,6 +196,14 @@ $sm-screen-h         : 767.98px;
 
 // Additional padding
 .px--12{padding: 0px 12px}
+
+// Additional height
+.h-lg-50{
+    height: 50%;
+    @media (max-width: $lg-screen) {
+        height: auto;
+    }
+}
 
 // element color
 @mixin jochi-components-light-bg{
@@ -412,7 +423,7 @@ $sm-screen-h         : 767.98px;
                                 }
                                 &:hover{
                                     .fc-daygrid-day-number{
-                                        color: #7E7EA0 !important;
+                                        color: #A85CF9 !important;
                                     }
                                     
                                 }
@@ -914,6 +925,7 @@ $sm-screen-h         : 767.98px;
       .fc .fc-daygrid-day-number {
         color: #8c8bac !important;
         font-weight: 600;
+        padding: 4px 10px;
       }
       
       .fc-theme-standard th {

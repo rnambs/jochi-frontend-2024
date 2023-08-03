@@ -66,8 +66,12 @@
   border: 1px solid #EAEAEA !important;
 }
 
+.border-form-color {
+  border: 1px solid #BCBCBC !important;
+}
+
 .border-theme {
-  border: 1px solid #FF4E71 !important;
+  border: 1px solid #5534A5 !important;
 }
 
 .border-white {
@@ -117,6 +121,15 @@
   padding: 0px 12px;
 }
 
+.h-lg-50 {
+  height: 50%;
+}
+@media (max-width: 1199.98px) {
+  .h-lg-50 {
+    height: auto;
+  }
+}
+
 .lext-limited {
   max-height: 36px;
   overflow: hidden;
@@ -155,6 +168,18 @@
 .icon--notification {
   background-image: url("../image/v4/icon/notification-bell.svg");
 }
+.icon--home {
+  background-image: url("../image/v4/icon/home.svg");
+}
+.icon--appoinments {
+  background-image: url("../image/v4/icon/appoinments.svg");
+}
+.icon--availability {
+  background-image: url("../image/v4/icon/availability.svg");
+}
+.icon--advisor {
+  background-image: url("../image/v4/icon/advisor.svg");
+}
 .icon.icon-xs {
   width: 0.875rem;
   min-width: 0.875rem;
@@ -176,24 +201,36 @@
   height: 1.875rem;
 }
 
-.nav-link.nuxt-link-active .icon--dashboard {
+.nav-link.nuxt-link-active .icon--dashboard, .nav-link:hover .icon--dashboard {
   background-image: url("../image/v4/icon/dash-active.svg");
 }
-.nav-link.nuxt-link-active .icon--settings {
+.nav-link.nuxt-link-active .icon--home, .nav-link:hover .icon--home {
+  background-image: url("../image/v4/icon/home-active.svg");
+}
+.nav-link.nuxt-link-active .icon--appoinments, .nav-link:hover .icon--appoinments {
+  background-image: url("../image/v4/icon/appoinments-active.svg");
+}
+.nav-link.nuxt-link-active .icon--availability, .nav-link:hover .icon--availability {
+  background-image: url("../image/v4/icon/availability-active.svg");
+}
+.nav-link.nuxt-link-active .icon--advisor, .nav-link:hover .icon--advisor {
+  background-image: url("../image/v4/icon/advisor-active.svg");
+}
+.nav-link.nuxt-link-active .icon--settings, .nav-link:hover .icon--settings {
   background-image: url("../image/v4/icon/cog-active.svg");
 }
-.nav-link.nuxt-link-active .icon--logout {
+.nav-link.nuxt-link-active .icon--logout, .nav-link:hover .icon--logout {
   background-image: url("../image/v4/icon/logout-active.svg");
 }
-.nav-link.accordion-link.active .icon--planner, .nav-link.accordion-link:not(.collapsed) .icon--planner {
+.nav-link.accordion-link.active .icon--planner, .nav-link.accordion-link:not(.collapsed) .icon--planner, .nav-link.accordion-link:hover .icon--planner {
   background-image: url("../image/v4/icon/calendar-active.svg");
 }
-.nav-link.accordion-link.active .icon--meeting, .nav-link.accordion-link:not(.collapsed) .icon--meeting {
+.nav-link.accordion-link.active .icon--meeting, .nav-link.accordion-link:not(.collapsed) .icon--meeting, .nav-link.accordion-link:hover .icon--meeting {
   background-image: url("../image/v4/icon/meeting-active.svg");
 }
-.nav-link.accordion-link.active .icon--club, .nav-link.accordion-link:not(.collapsed) .icon--club {
+.nav-link.accordion-link.active .icon--club, .nav-link.accordion-link:not(.collapsed) .icon--club, .nav-link.accordion-link:hover .icon--club {
   background-image: url("../image/v4/icon/activities-active.svg");
 }
-.nav-link.accordion-link.active .icon--study, .nav-link.accordion-link:not(.collapsed) .icon--study {
+.nav-link.accordion-link.active .icon--study, .nav-link.accordion-link:not(.collapsed) .icon--study, .nav-link.accordion-link:hover .icon--study {
   background-image: url("../image/v4/icon/study-active.svg");
 }/*# sourceMappingURL=icon.css.map */

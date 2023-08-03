@@ -1,11 +1,12 @@
 <template>
   <section id="header" class="">
     <nav class="navbar navbar-expand-md navbar-light bg-white p-0" id="clickableId">
-      <a class="navbar-brand d-flex align-items-center justify-content-center mr-0" href="#">
+      <nuxt-link to="/teacher-dashboard"
+        class="navbar-brand d-flex align-items-center justify-content-center mr-0">
         <span class="bg-primary-dark rounded-14 d-flex  align-items-center justify-content-center p-2">
           <img src="../../static/image/v4/logo-ms.png" alt="jochi logo" class="img-logo-v4 object-fit-contain">
         </span>
-      </a>
+      </nuxt-link>
       <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarContent"
         aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -18,7 +19,7 @@
           <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <nuxt-link to="/teacher-dashboard"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
-              <img src="../../static/image/home-solid.png" alt="Home Icon" />
+              <i class="icon icon--home"></i>
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Home</span>
             </nuxt-link>
           </li>
@@ -26,7 +27,7 @@
           <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <nuxt-link to="/teacher-appointment"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
-              <img src="../../static/image/user-tag.png" alt="Appoinments Icon" />
+              <i class="icon icon--appoinments"></i>
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Appoinments</span>
             </nuxt-link>
           </li>
@@ -34,25 +35,25 @@
           <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <nuxt-link to="/custom-availability"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
-              <img src="../../static/image/calendar-check.png" alt="Availability Icon" />
+              <i class="icon icon--availability"></i>
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Availability</span>
             </nuxt-link>
           </li>
           <!-- Sync Calendar -->
-          <li class="nav-item px-1 parent-menu my-1 my-md-2">
+          <!-- <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <nuxt-link to="/teacher-syncCalendar"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
               <img src="../../static/image/sync-solid.png" alt="Sync Calendar Icon" />
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Sync Calendar</span>
             </nuxt-link>
-          </li>
+          </li> -->
           <!-- Teams & Clubs -->
           <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <a @click="$event.target.classList.toggle('active')" 
               class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
               aria-controls="collapseOne">
-              <img src="../../static/image/Football.png" alt="Teams & Clubs Icon" class="teams-clubs" />
+              <i class="icon icon--club"></i>
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Teams & Clubs</span>
             </a>
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -72,7 +73,7 @@
           <li class="nav-item px-1 parent-menu my-1 my-md-2">
             <nuxt-link to="/teacher-advisor"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
-              <img src="../../static/image/advisor.png" alt="Advisor Icon" />
+              <i class="icon icon--advisor"></i>
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Advisor</span>
             </nuxt-link>
           </li>
@@ -98,7 +99,7 @@
             <a class="nav-link" href="#">Cloud</a>
           </li> -->
           <li class="nav-item d-flex justify-content-start justify-content-md-center p-1">
-            <div class="dropdown my-auto">
+            <div class="dropdown btn-notification my-auto d-flex flex-column">
               <a class="dropdown-toggle ml-4 mx-md-auto d-inline-flex align-items-center justify-content-start justify-content-md-center"
                 href="#" data-toggle="dropdown" @click="getNotifications()">
                 <span class="position-relative d-flex">
@@ -126,7 +127,7 @@
                   <div class="notification-text px-3 py-1 hidden-scroll">
                     <div :class="
                         data.isViewed
-                          ? 'unread d-flex flex-column p-3 card card-void my-3 cursor-pointer'
+                          ? 'unread d-flex flex-column p-3 card bg-primary-light border-0 my-3 cursor-pointer'
                           : 'read d-flex flex-column p-3 card card-void my-3 cursor-pointer'
                       " v-for="(data, index) in notificationList" :key="index"
                       @click="onNotificationClick(data.id, data.meetingType)">

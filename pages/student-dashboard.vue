@@ -441,10 +441,7 @@ body {
 
 .dashboard-text-content {
   font-size: 18px;
-  font-weight: 700;
-  
   line-height: 30px;
-  font-style: italic;
 }
 @media (max-width:764.98px) {
   .dashboard-text-content{
