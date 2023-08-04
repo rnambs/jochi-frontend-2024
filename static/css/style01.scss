@@ -224,7 +224,7 @@ body{
         font-weight: 500;
         background-color: $theme-color;
         color: $white;
-        &:hover,&:focus,&:active,&:active:focus{
+        &:hover,&:focus,&:active,&:active,&:focus{
             background-color: $theme-light-color;
         }
     }
@@ -7122,13 +7122,13 @@ $b-toaster-zindex: 1100 !default;
                 padding-left: 0px;
                 @media (min-width: $sm-screen) {  
                     position: fixed !important;
-                    top: 56px;
+                    top: 70px;
                     left: 0;
                     width: 120px;
-                    height: calc(100% - 56px);
+                    height: calc(100% - 70px);
                     background-color: #f8f8f8;
                     overflow-y: auto;
-                    padding-top: 30px;
+                    padding-top: 16px;
                     padding-left: 24px;
                 }
                 li.nav-item{
