@@ -345,7 +345,7 @@
                           <div class="col-10 col-lg-8 info-tag">
                             <div class="input-group mb-0 justify-content-end">
                               <div
-                                class="px-4 py-1 ml-1 mb-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 bg-primary align-items-center"
+                                class="px-4 py-1 ml-1 mb-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 align-items-center"
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
                                 :style="{

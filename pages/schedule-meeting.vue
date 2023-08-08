@@ -161,7 +161,8 @@ export default {
   }
 
   .dashboard-head {
-    font-size: 32px;
+    font-size: 26px;
+    line-height: 30px;
     font-weight: 700;
     color: #000000;
   }
