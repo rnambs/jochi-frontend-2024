@@ -35,8 +35,8 @@
                       <div
                       class="dashboard-text-content-section position-absolute w-100"
                     >
-                      <p class="dashboard-head">
-                        <span>
+                      <p class="dashboard-head d-flex align-items-center ">
+                        <span class="mr-2">
                             <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                               <path d="M2 30.96H30V2.96H2V30.96Z" fill="url(#pattern0)"/>
                               <defs>
@@ -48,7 +48,7 @@
                             </svg>
                          </span>
                           <span>Welcome Back, </span>
-                          <span>{{ firstName }}</span></p>
+                          <span> {{ firstName }}</span></p>
                           <p class="dashboard-text-content font-bold font-italic">Quote of the Day</p>
                       <p v-if="quoteMessage" class="dashboard-text-content font-semi-bold">
                         “{{ quoteMessage }}”<br />
