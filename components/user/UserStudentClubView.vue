@@ -46,9 +46,9 @@
           id="club-detail"
           class="custom-height-for-club-detail-section h-40 flex-fill"
         >
-          <div class="club-section container-fluid h-100">
+          <div class="club-section container-fluid h-100 pr-0">
             <div
-              class="inner-club club-info d-flex flex-column justify-content-top container-fluid pr-3 py-0 pl-0 custom-overflow h-100"
+              class="inner-club club-info d-flex flex-column justify-content-top container-fluid py-0 pl-0 custom-overflow h-100"
             >
               <div class="info-head my-2 mt-4">
                 <div
@@ -126,7 +126,7 @@
                     </div>
                   </div>
 
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 py-12">
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div class="inner-info-head mb-3">
@@ -335,17 +335,17 @@
                     </div>
                   </div>
 
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12">
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div class="inner-info-head mb-3">
                           <h4 class="color-dark mb-2 font-bold">Tags</h4>
                         </div>
                         <div class="row justify-content-end">
-                          <div class="col-10 col-lg-8 info-tag pr-0">
+                          <div class="col-10 col-lg-8 info-tag">
                             <div class="input-group mb-0 justify-content-end">
                               <div
-                                class="px-4 py-1 ml-1 mb-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 bg-primary align-items-center"
+                                class="px-4 py-1 ml-1 mb-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 align-items-center"
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
                                 :style="{

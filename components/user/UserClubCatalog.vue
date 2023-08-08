@@ -116,7 +116,7 @@
                         class="mb-2"
                       >
                         <span
-                          class="to-do-li color-white text-14 rounded-6 px-4 py-1 m-1 min-w-100 d-flex justify-content-center bg-primary"
+                          class="to-do-li color-white text-14 rounded-6 px-4 py-1 m-1 min-w-100 d-flex justify-content-center"
                           :style="{
                             'background-color': tagColorMap[todos]
                               ? tagColorMap[todos]

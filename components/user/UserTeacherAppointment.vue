@@ -11,7 +11,7 @@
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
-          class="teacher-section bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
+          class="teacher-section bg-white border-0 rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
         >
           <h3 class="color-primary-dark heading3 font-semi-bold m-0 px-4 pt-4">
             Teacher Appointment

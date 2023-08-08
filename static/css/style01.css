@@ -1610,6 +1610,9 @@ img.dark-icon {
 .faculty-availability-card {
   min-height: 90px;
 }
+.faculty-availability-card:hover .fa-card-date {
+  background-color: #DDD6ED !important;
+}
 
 .main-container {
   color: #344054;
@@ -3797,13 +3800,13 @@ img.dark-icon {
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day .fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
   background-color: #ffffff;
-  box-shadow: 0px 0px 8px -4px rgba(0, 1, 0, 0.25);
+  border: 1px solid #EAEAEA;
   border-radius: 8px;
   min-height: 1.5rem !important;
   cursor: pointer;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day .fc-daygrid-day-frame.fc-scrollgrid-sync-inner:hover {
-  background-color: #EAEAEA;
+  background-color: #DDD6ED;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot-week .fc-view-harness.fc-view-harness-active table.fc-scrollgrid.fc-scrollgrid-liquid tbody tr td td.fc-daygrid-day.fc-day.fc-day-today {
   background-color: unset;
@@ -3907,9 +3910,13 @@ img.dark-icon {
   background-color: #ffffff;
   border: 1px solid #EAEAEA;
 }
-.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color.active, .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color:hover {
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color.active {
   color: #ffffff;
   background-color: #5534A5;
+}
+.inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .inner-slot span .badge-color:hover {
+  background-color: #DDD6ED;
+  color: #696969;
 }
 .inner-section .main-section .teacher-section .inner-teacher .row .custom-teacher-container .time-slot .slot-form {
   display: flex;

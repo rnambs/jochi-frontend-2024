@@ -115,7 +115,7 @@
         <section id="club-detail" class="flex-fill custom-overflow">
           <div class="club-section container-fluid mt-2">
             <div
-              class="inner-club club-info d-flex flex-column justify-content-top container-fluid pr-3 py-0 pl-0"
+              class="inner-club club-info d-flex flex-column justify-content-top container-fluid pr-0 py-0 pl-0"
             >
               <div class="my-2">
                 <h3 class="color-primary-dark font-semi-bold mb-1">Club Details</h3>
@@ -177,7 +177,7 @@
                       </button>
                     </div>
                   </div>
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 py-12">
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div
@@ -361,7 +361,7 @@
                       </div>
                     </div>
                   </div>
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 py-12">
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div
@@ -416,7 +416,7 @@
                         <div
                           class="d-flex align-items-center justify-content-end"
                         >
-                          <div class="input-icon-area col-6 pr-0 pt-0 form-row">
+                          <div class="input-icon-area col-6 pr-1 pt-0 form-row">
                             <multiselect
                               v-model="value"
                               :options="taglist"
