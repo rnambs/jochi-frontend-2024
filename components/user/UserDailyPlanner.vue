@@ -1225,7 +1225,7 @@
                                   <option value="link">Link</option>
                                 </select>
                                 <div class="row m-0">
-                                  <div class="col-9 py-0 pl-0">
+                                  <div class="col-9 py-0">
                                     <input
                                       id="fileUpload"
                                       v-if="materialType == 'file'"
@@ -1236,7 +1236,7 @@
                                       accept=".png,.jpeg,.jpg,.pdf"
                                     />
                                   </div>
-                                  <div class="col-9 py-0 pl-0">
+                                  <div class="col-9 py-0">
                                     <input
                                       v-if="materialType == 'link'"
                                       type="text"
@@ -1602,7 +1602,7 @@
                                   <option value="link">Link</option>
                                 </select>
                                 <div class="row m-0">
-                                  <div class="col-9 py-0 pl-0">
+                                  <div class="col-9 py-0">
                                     <input
                                       v-if="materialType == 'file'"
                                       type="file"
@@ -1612,7 +1612,7 @@
                                       accept=".png,.jpeg,.jpg,.pdf"
                                     />
                                   </div>
-                                  <div class="col-9 py-0 pl-0">
+                                  <div class="col-9 py-0">
                                     <input
                                       v-if="materialType == 'link'"
                                       type="text"
@@ -1687,7 +1687,7 @@
                           </form>
                         </div>
 
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex justify-content-end px-2">
 
                           <button
                             v-if="
@@ -2407,7 +2407,7 @@
               class="modal-title"
               id="submitAssignmentConfirmationModalLongTitle"
             >
-              Submit assignment
+              Submit Assignment
             </h4>
           </div>
           <div class="modal-body px-3">

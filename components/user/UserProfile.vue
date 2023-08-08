@@ -6,7 +6,7 @@
         class="study-section bg-white rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <div class="inner-study d-flex flex-column flex-fill h-100">
-          <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex flex-column justify-content-between align-items-center">
             <div class="d-flex align-items-center justify-content-between w-100">
               <h3 class="color-primary-dark heading3 font-bold">Profile</h3>
               <div class="faq-section d-flex align-items-center">
@@ -15,7 +15,7 @@
                     FAQ's
                   </a>
                 </div>
-                <div class="privacy-btn mr-4 color-dark font-semi-bold">
+                <div class="privacy-btn color-dark font-semi-bold">
                   <a
                     style="color: #000000"
                     href="https://www.jochi.info/privacy-policy"
@@ -27,7 +27,7 @@
             </div>
             <div
               v-if="user_type == 2 && isSchoolAdmin != '1'"
-              class="d-flex justify-content-between align-items-center"
+              class="d-flex justify-content-end align-items-center w-100"
             >
               <div class="text-center">
                 <button
@@ -39,12 +39,12 @@
                 </button>
 
                 <span
-                  class="bg-primary py-1 px-4 rounded-8 font-semi-bold"
+                  class="bg-primary py-1 px-4 rounded-8 font-semi-bold text-nowrap"
                   style="color: white"
                   v-if="requestSent == '1'"
                 >
-                  <i class="fas fa-hourglass-half mr-2"></i>Pending Approval For
-                  School Admin</span
+                  <i class="fas fa-hourglass-half mr-2"></i>
+                  <span class="text-nowrap">Pending Approval</span></span
                 >
               </div>
             </div>

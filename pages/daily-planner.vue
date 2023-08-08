@@ -313,7 +313,7 @@
                     <option value="3">Three</option>
                   </select>
                   <div class="row m-0">
-                    <div class="col-9 py-0 pl-0">
+                    <div class="col-9 py-0">
                       <input
                         type="text"
                         class="form-control px-2"
