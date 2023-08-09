@@ -383,7 +383,7 @@
                                       ? tagColorMap[value.name]
                                       : red,
                                   }"
-                                  class="px-4 py-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 bg-primary align-items-center"
+                                  class="px-4 py-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 align-items-center"
                                   >{{ value.name }}
                                   <span
                                     class="input-icon color-white btn p-0"
