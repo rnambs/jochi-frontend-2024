@@ -224,8 +224,8 @@ body{
         font-weight: 500;
         background-color: $theme-color;
         color: $white;
-        &:hover,&:focus,&:active,&:active,&:focus{
-            background-color: $theme-light-color;
+        &:hover,&:focus,&:active,&:active:focus{
+            background-color: $theme-light-color !important;
         }
     }
     &.btn-dark{
