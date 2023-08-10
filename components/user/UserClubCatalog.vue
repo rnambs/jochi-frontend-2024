@@ -367,7 +367,7 @@ export default {
   created(){
     this.GetTag();
     this.ClubCatalogue();
-    this.startIntro();
+    
   },
   mounted() {
     if (process.client) { 
@@ -383,7 +383,7 @@ export default {
     SelectValue = "";
     // this.GetTag();
     // this.ClubCatalogue();
-    // this.startIntro();
+    this.startIntro();
   },
   computed: {
     ...mapState("clubCatalogue", {
