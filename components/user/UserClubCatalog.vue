@@ -364,11 +364,6 @@ export default {
     name: { required },
     description: { required },
   },
-  created(){
-    this.GetTag();
-    this.ClubCatalogue();
-    
-  },
   mounted() {
     if (process.client) { 
       window.addEventListener("orientationchange", this.handleOrientationChange);
@@ -381,8 +376,8 @@ export default {
     
     this.user_type = localStorage.getItem("user_type");
     SelectValue = "";
-    // this.GetTag();
-    // this.ClubCatalogue();
+    this.GetTag();
+    this.ClubCatalogue();
     this.startIntro();
   },
   computed: {
