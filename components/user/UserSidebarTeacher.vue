@@ -98,6 +98,18 @@
           <!-- <li class="nav-item">
             <a class="nav-link" href="#">Cloud</a>
           </li> -->
+          <li class="nav-item d-flex justify-content-start justify-content-md-center p-1 mr-2">
+            <div class="dropdown btn-notification my-auto d-flex flex-column">
+              <a class="dropdown-toggle ml-4 mx-md-auto d-inline-flex align-items-center justify-content-start justify-content-md-center"
+                href="#" data-toggle="dropdown">
+                <span class="position-relative d-flex">
+                  <i class="icon icon--school"></i>
+                </span>
+                <span
+                  class="ml-3 text-14 color-secondary text-capitalize font-medium d-block d-md-none text-decoration-none">School</span>
+              </a>
+            </div>
+          </li>
           <li class="nav-item d-flex justify-content-start justify-content-md-center p-1">
             <div class="dropdown btn-notification my-auto d-flex flex-column">
               <a class="dropdown-toggle ml-4 mx-md-auto d-inline-flex align-items-center justify-content-start justify-content-md-center"

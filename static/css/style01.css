@@ -306,6 +306,9 @@
 .icon--notification {
   background-image: url("../image/v4/icon/notification-bell.svg");
 }
+.icon--school {
+  background-image: url("../image/v4/icon/school.svg");
+}
 .icon--home {
   background-image: url("../image/v4/icon/home.svg");
 }
