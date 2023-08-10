@@ -365,18 +365,18 @@ export default {
     description: { required },
   },
   mounted() {
-    window.addEventListener("orientationchange", this.handleOrientationChange);
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     const page = "ClubCatalog";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
-
+    
     this.user_type = localStorage.getItem("user_type");
     SelectValue = "";
     this.GetTag();
     this.ClubCatalogue();
     this.startIntro();
+    // window.addEventListener("orientationchange", this.handleOrientationChange);
   },
   computed: {
     ...mapState("clubCatalogue", {
