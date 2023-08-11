@@ -16,11 +16,13 @@
         flex-column">
           <div class="d-flex flex-wrap align-items-center justify-content-between px-4 pt-4">
             <h3 class="color-primary-dark heading3 font-semi-bold m-0 me-2 mb-2">Custom Avaliability</h3>
-            <button class="btn btn-primary mb-2 px-5 ml-auto" @click="syncToGoogle()">
+            <nuxt-link to="/teacher-syncCalendar">
+            <button class="btn btn-primary mb-2 px-5 ml-auto">
               <span class="mr-2">{{ syncStatus == 1 ? "Disable" : "Enable" }}</span>
               <i class="fab fa-google"></i>
               <span class="ml-2">Calendar Sync</span>
             </button>
+            </nuxt-link>
           </div>
           <div class="inner-teacher container-fluid px-4 pb-4 pt-3 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow">
             <div class="row h-100">

@@ -3139,6 +3139,7 @@ export default {
       this.disableSubmit=false;
       this.invalidSubmitText=false;
       this.additionalMaterial = false;
+      this.assignmentId='';
 
       $('input[name="daterange"]').val("");
       fromDate = "";
@@ -4203,6 +4204,7 @@ export default {
     },
     dragCard(data, schoologyAssignment, submissionId) {
       this.completeAsstId = data;
+      this.assignmentId = data;
       this.schoologyAssignment = schoologyAssignment;
       this.submissionId = submissionId;
     },
@@ -4211,6 +4213,7 @@ export default {
 
       let assignment = data.item;
       this.completeAsstId = assignment.id;
+      this.assignmentId = assignment.id;
       this.schoologyAssignment = assignment.schoologyAssignment;
       this.submissionId = assignment.submission_id;
     },

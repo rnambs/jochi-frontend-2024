@@ -1,19 +1,25 @@
 <template>
   <div>
-    <div
+    <!-- <div
       id="pageLoader"
       class="bg-primary-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
       style="z-index: 9"
       v-if="!isHidden"
     >
       <h1 data-loading-text="Loading..." class="display-4 loading"></h1>
-    </div>
+    </div> -->
     <!-- <lottie
       v-if="loading"
       :options="lottieOptions"
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     /> -->
+    <lottie
+      v-if="loading"
+      :options="lottieOptions"
+      v-on:animCreated="handleAnimation"
+      class="lottie-loader"
+    />
     <div class="main-section">
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
@@ -493,11 +499,15 @@ export default {
     };
   },
   mounted() {
+    this.loading=true;
     ismounted = true;
     this.ListTeacherAgenda();
     this.TeacherMeetingList();
     this.firstName = localStorage.getItem("first_name");
     this.activate();
+    setTimeout(() => {
+      this.loading=false;
+    }, 3000);
   },
 
   computed: {
