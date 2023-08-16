@@ -112,12 +112,12 @@
             </div>
           </div>
           <div class="row inner-row mt-0 mb-2">
-            <div class="col-md-6 py-2">
+            <div class="col-12 col-lg-6 py-2">
               <div
                 class="inner-col card card-void p-3 h-100 d-flex align-items-center justify-content-center"
               >
                 <!-- {{mySession.weekly_pi_chart}} -->
-                <div class="d-flex">
+                <div class="d-flex h-100">
                   <div class="d-flex flex-column justify-content-center">
                     <div
                       v-for="item in legends"
@@ -134,7 +134,7 @@
                       </span>
                     </div>
                   </div>
-                  <div id="weeklyContainer" class="chart color-secondary">
+                  <div id="weeklyContainer" class="chart p-2 color-secondary my-auto">
                     <canvas
                       id="weekly"
                       width="600"
@@ -145,7 +145,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6 py-2">
+            <div class="col-12 col-lg-6 py-2">
               <div
                 class="inner-col card card-void p-3 h-100 d-flex align-items-center justify-content-center"
               >
@@ -168,7 +168,7 @@
                   </div>
                   <div
                     id="totalPieContainer"
-                    class="chart p-2 text-center color-secondary"
+                    class="chart p-2 text-center color-secondary my-auto"
                   >
                     <canvas
                       id="totalPie"

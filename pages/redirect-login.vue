@@ -7,13 +7,13 @@
         <div
           class="login-content d-flex flex-column"
         >
-          <div class="login-logo">
+          <!-- <div class="login-logo">
             <img
               class="align-content"
               src="../static/image/rid-logo.png"
               alt="logo-icon"
             />
-          </div>  
+          </div>   -->
           <div class="d-flex flex-column align-items-center justify-content-center">
             <!-- <div class="login-logo">
               <img
