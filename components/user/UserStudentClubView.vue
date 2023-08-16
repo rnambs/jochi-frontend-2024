@@ -777,7 +777,7 @@ export default {
           e.taglists.forEach((tag) => {
             // let index = this.tagColorMap.find((index) => index.tag == tag);
             if (!this.tagColorMap[tag.name]) {
-              let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+              let color = this.randomColorMap();
               const key = tag.name;
 
               obj[key] = color;
@@ -786,6 +786,38 @@ export default {
           this.tagColorMap = obj;
         }
       });
+    },
+    randomColorMap(){
+     let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+     color = color.length<7 ? color + "0".repeat(7 - color.length) : color
+     const isWhiteSpectrumColor = this.isColorInWhiteSpectrum(color);
+
+      if(isWhiteSpectrumColor){
+        return this.randomColorMap()
+      }
+      return color;
+      
+    },
+
+    isColorInWhiteSpectrum(hexColor, threshold = 50) {
+      // Convert hexadecimal color to RGB values
+
+      const hex = hexColor.replace(/^#/, '');
+      const bigint = parseInt(hex, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+
+      // Calculate the difference between each RGB component and the maximum value (255 for white)
+      const diffR = 255 - r;
+      const diffG = 255 - g;
+      const diffB = 255 - b;
+
+      // Calculate the overall difference as a sum of squared differences
+      const overallDiff = diffR ** 2 + diffG ** 2 + diffB ** 2;
+
+      // Compare the overall difference with the squared threshold
+      return overallDiff <= threshold ** 2;
     },
     async ShowClubInCatalog() {
       this.loading = true;

@@ -3,7 +3,7 @@
     <!-- teacher syncCalendar Page -->
 
     <section id="study-detail" class="">
-      <div class="study-section bg-white border rounded-8
+      <div class="study-section bg-white border-0 rounded-8
       custom-margin-for-main-section custom-full-height
       d-flex
       flex-column">

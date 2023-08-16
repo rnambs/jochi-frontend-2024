@@ -51,6 +51,7 @@ import * as animationData from "~/assets/animation.json";
 // const socket = io("ws://localhost:3000");
 
 export default {
+  middleware: 'authenticated',
   components: {
     lottie,
   },
@@ -61,7 +62,6 @@ export default {
       lottieOptions: { animationData: animationData.default },
     };
   },
-
   mounted() {
     this.loading=true;
     this.login();

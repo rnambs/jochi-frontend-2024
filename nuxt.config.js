@@ -14,7 +14,7 @@ export default {
             { hid: 'description', name: 'description', content: '' }
         ],
         link: [
-            { rel: 'icon', type: 'image/x-icon', href: '/image/favicon.png' },
+            { rel: 'icon', type: 'image/x-icon', href: '/image/fav-icon.ico' },
             { rel: 'stylesheet', type: 'text/css', href: "https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" },
             { rel: 'stylesheet', type: 'text/css', href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" },
             { rel: 'stylesheet', type: 'text/css', href: "https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css" },

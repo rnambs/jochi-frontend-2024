@@ -2490,6 +2490,7 @@ export default {
       }
     },
     async setSessionType(type, later = false) {
+      this.sessionDetail={}
       this.scheduleLater = later;
       this.sessionType = type;
       if (this.sessionType == "study") {
