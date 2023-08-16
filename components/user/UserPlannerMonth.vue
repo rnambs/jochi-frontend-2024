@@ -172,8 +172,7 @@
                                           {{ item.task }}
                                         </h4>
                                         <div class="text-center px-3">
-                                          <p class="text-truncate pb-3 mb-0">
-                                            {{ item.assignment_description }}
+                                          <p class="text-truncate pb-3 mb-0" v-html="item.assignment_description">
                                           </p>
                                         </div>
                                       </div>
@@ -415,8 +414,7 @@
                                         {{ item.task }}
                                       </h4>
                                       <div class="text-center px-3">
-                                        <p class="text-truncate pb-3 mb-0">
-                                          {{ item.assignment_description }}
+                                        <p class="text-truncate pb-3 mb-0" v-html="item.assignment_description">
                                         </p>
                                       </div>
                                     </div>
@@ -3346,7 +3344,8 @@ export default {
       this.submittedAsst=false;
       this.disableSubmit=false;
       this.invalidSubmitText=false;
-
+      this.additionalMaterial = false;
+      this.assignmentId='';
 
       $('input[name="daterange"]').val("");
       fromDate = "";
@@ -4384,6 +4383,7 @@ export default {
     },
     dragCard(data, schoologyAssignment, submissionId) {
       this.completeAsstId = data;
+      this.assignmentId = data;
       this.schoologyAssignment = schoologyAssignment;
       this.submissionId = submissionId;
     },
@@ -4392,6 +4392,7 @@ export default {
 
       let assignment = data.item;
       this.completeAsstId = assignment.id;
+      this.assignmentId = assignment.id;
       this.schoologyAssignment = assignment.schoologyAssignment;
       this.submissionId = assignment.submission_id;
     },
@@ -4499,6 +4500,7 @@ export default {
       this.completeSubTask(false);
     },
     onCardClick(data) {
+      this.resetAssignment();
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
       this.openAssignment = true;

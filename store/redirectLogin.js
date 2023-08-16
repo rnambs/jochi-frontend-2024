@@ -56,14 +56,14 @@ const actions = {
         catch (err) {
             console.log(err)
             if (err?.response?.data?.error) {
-                commit('setLoginStatus', false);
+                // commit('setLoginStatus', false);
                 window.$nuxt.$cookies.removeAll();
                 commit('setUserId', '');
                 commit('setErrorType', "error");
                 commit('setErrorMessage', err?.response?.data?.error);
             }
             else if (status = 422) {
-                commit('setLoginStatus', false);
+                // commit('setLoginStatus', false);
                 window.$nuxt.$cookies.removeAll();
                 commit('setUserId', '');
                 commit('setErrorType', "error");
@@ -158,7 +158,6 @@ const mutations = {
     },
     setLoginStatus(state, data) {
         state.loginStatus = data;
-
     },
     setUserType(state, data) {
         state.user_type = data;

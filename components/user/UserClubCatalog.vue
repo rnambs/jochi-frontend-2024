@@ -365,13 +365,15 @@ export default {
     description: { required },
   },
   mounted() {
-    window.addEventListener("orientationchange", this.handleOrientationChange);
+    if (process.client) { 
+      window.addEventListener("orientationchange", this.handleOrientationChange);
+    }
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     const page = "ClubCatalog";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
-
+    
     this.user_type = localStorage.getItem("user_type");
     SelectValue = "";
     this.GetTag();
@@ -518,7 +520,8 @@ export default {
         if (e.tagList && e.tagList.length > 0) {
           e.tagList.forEach((tag) => {
             if (!this.tagColorMap[tag]) {
-              let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+              let color = this.randomColorMap();
+              
               const key = tag;
 
               obj[key] = color;
@@ -527,6 +530,39 @@ export default {
           });
         }
       });
+    },
+
+    randomColorMap(){
+     let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+     color = color.length<7 ? color + "0".repeat(7 - color.length) : color
+     const isWhiteSpectrumColor = this.isColorInWhiteSpectrum(color);
+
+      if(isWhiteSpectrumColor){
+        return this.randomColorMap()
+      }
+      return color;
+      
+    },
+
+    isColorInWhiteSpectrum(hexColor, threshold = 50) {
+      // Convert hexadecimal color to RGB values
+
+      const hex = hexColor.replace(/^#/, '');
+      const bigint = parseInt(hex, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+
+      // Calculate the difference between each RGB component and the maximum value (255 for white)
+      const diffR = 255 - r;
+      const diffG = 255 - g;
+      const diffB = 255 - b;
+
+      // Calculate the overall difference as a sum of squared differences
+      const overallDiff = diffR ** 2 + diffG ** 2 + diffB ** 2;
+
+      // Compare the overall difference with the squared threshold
+      return overallDiff <= threshold ** 2;
     },
 
     async JoinClub(value) {

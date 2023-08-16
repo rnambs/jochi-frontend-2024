@@ -349,6 +349,9 @@ export default {
       dailyTimerId: 0,
       isAdditionalCovered: false,
       startTime: null,
+      subject:[],
+      percentage:[],
+      bgColor:[]
     };
   },
   mounted() {
@@ -402,24 +405,27 @@ export default {
     },
     async InitPieChart() {
       var ctx = document.getElementById("weekly").getContext("2d");
-      const subject = [];
-      const percentage = [];
-      const bgColor = [];
+      this.subject = [];
+      this.percentage = [];
+      this.bgColor = [];
       this.legends = [];
 
       for (var i = 0; i < this.mySession.weekly_pi_chart.length; i++) {
+        let color = this.randomColorMap();
         var obj = this.mySession.weekly_pi_chart[i];
         let percentageVal = obj.percentage ? obj.percentage : 0;
-        subject.push(percentageVal?.toFixed(2) + "% " + obj.subject_name);
-        percentage.push(percentageVal?.toFixed(2));
-        bgColor.push("#" + obj.subjectColor?.toString().substr(4));
+        this.subject.push(percentageVal?.toFixed(2) + "% " + obj.subject_name);
+        this.percentage.push(percentageVal?.toFixed(2));
+        // bgColor.push("#" + obj.subjectColor?.toString().substr(4));
+        this.bgColor.push(color);
         this.legends.push({
           value: percentageVal?.toFixed(2) + "% " + obj.subject_name,
-          color: "#" + obj.subjectColor?.toString().substr(4),
+          // color: "#" + obj.subjectColor?.toString().substr(4),
+          color: color,
         });
       }
 
-      if (percentage.length < 1) {
+      if (this.percentage.length < 1) {
         document.getElementById("weeklyContainer").innerHTML =
           "No data to display!";
       }
@@ -427,13 +433,13 @@ export default {
         type: "doughnut",
         data: {
           // formatted_session_status_week
-          labels: subject,
+          labels: this.subject,
           datasets: [
             {
-              data: percentage, // Specify the data values array
+              data: this.percentage, // Specify the data values array
 
-              borderColor: bgColor, // Add custom color border
-              backgroundColor: bgColor, // Add custom color background (Points and Fill)
+              borderColor: this.bgColor, // Add custom color border
+              backgroundColor: this.bgColor, // Add custom color background (Points and Fill)
               borderWidth: 1, // Specify bar border width
             },
           ],
@@ -455,15 +461,19 @@ export default {
       const bgColorTotal = [];
       this.legendsTotal = [];
 
-      for (var i = 0; i < this.mySession.monthly_pi_chart.length; i++) {
-        var obj = this.mySession.monthly_pi_chart[i];
+      for (const element of this.mySession.monthly_pi_chart) {
+        const obj = element;
         let percentageVal = obj.percentage ? obj.percentage : 0;
-        subjectTotal.push(percentageVal?.toFixed(2) + "% " + obj.subject_name);
+        const subName = percentageVal?.toFixed(2) + "% " + obj.subject_name
+        let color = this.checkSubjectExists(obj.subject_name);
+        subjectTotal.push(subName);
         percentageTotal.push(percentageVal?.toFixed(2));
-        bgColorTotal.push("#" + obj.subjectColor?.toString().substr(4));
+        // bgColorTotal.push("#" + obj.subjectColor?.toString().substr(4));
+        bgColorTotal.push(color);
         this.legendsTotal.push({
           value: percentageVal?.toFixed(2) + "% " + obj.subject_name,
-          color: "#" + obj.subjectColor?.toString().substr(4),
+          // color: "#" + obj.subjectColor?.toString().substr(4),
+          color: color,
         });
       }
 
@@ -745,6 +755,48 @@ export default {
       intro.exit();
       this.$store.commit("setStartProductGuide", false);
     },
+    // generate random tag colours
+
+    randomColorMap(){
+     let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+     color = color.length<7 ? color + "0".repeat(7 - color.length) : color
+     const isWhiteSpectrumColor = this.isColorInWhiteSpectrum(color);
+
+      if(isWhiteSpectrumColor){
+        return this.randomColorMap()
+      }
+      return color;
+      
+    },
+
+    isColorInWhiteSpectrum(hexColor, threshold = 50) {
+      // Convert hexadecimal color to RGB values
+
+      const hex = hexColor.replace(/^#/, '');
+      const bigint = parseInt(hex, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+
+      // Calculate the difference between each RGB component and the maximum value (255 for white)
+      const diffR = 255 - r;
+      const diffG = 255 - g;
+      const diffB = 255 - b;
+
+      // Calculate the overall difference as a sum of squared differences
+      const overallDiff = diffR ** 2 + diffG ** 2 + diffB ** 2;
+
+      // Compare the overall difference with the squared threshold
+      return overallDiff <= threshold ** 2;
+    },
+    checkSubjectExists(subject){
+      for (let i = 0; i < this.mySession.weekly_pi_chart.length; i++) {
+          if (this.mySession.weekly_pi_chart[i]["subject_name"] === subject) {
+              return this.bgColor[i];
+          }
+      }
+        return this.randomColorMap(); 
+    }
   },
   beforeDestroy() {
     const endTime = new Date().getTime();
