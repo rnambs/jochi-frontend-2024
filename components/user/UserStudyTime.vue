@@ -855,7 +855,7 @@
 
                       <div class="d-flex justify-content-end mt-4">
                         <img
-                          src="../../static/image/v4/dashboard_img.png"
+                          src="../../static/image/v4/dashboard_img.svg"
                           alt=""
                           class="img-fluid card-img"
                         />

@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-md-3 d-flex flex-column justify-content-center">
                   <img
-                    src="../../static/image/v4/dashboard_img.png"
+                    src="../../static/image/v4/dashboard_img.svg"
                     alt=""
                     class="img-fluid"
                   />

@@ -161,7 +161,7 @@
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img
-                      src="~/assets/images/v4/undraw/step1.png"
+                      src="~/assets/images/v4/undraw/step1.svg"
                       class="img-illustrate"
                       alt=""
                     />
@@ -176,7 +176,7 @@
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img
-                      src="~/assets/images/v4/undraw/step2.png"
+                      src="~/assets/images/v4/undraw/step2.svg"
                       class="img-illustrate"
                       alt=""
                     />
@@ -191,7 +191,7 @@
                 <div class="col-md-4 p-3">
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img
-                      src="~/assets/images/v4/undraw/step3.png"
+                      src="~/assets/images/v4/undraw/step3.svg"
                       class="img-illustrate"
                       alt=""
                     />

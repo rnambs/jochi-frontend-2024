@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-4 p-0 h-100 d-flex flex-column">
                       <img
-                        src="~/static/image/v4/dashboard_img.png"
+                        src="~/static/image/v4/dashboard_img.svg"
                         alt=""
                         class="img-fluid mt-4 h-100 w-auto object-fit-contain"
                       />
