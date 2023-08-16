@@ -4,7 +4,7 @@ export default {
     target: 'static',
 
     head: {
-        title: 'JOCHI',
+        title: 'Jochi',
         htmlAttrs: {
             lang: 'en'
         },
