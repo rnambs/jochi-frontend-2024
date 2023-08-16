@@ -153,8 +153,7 @@
                                       {{ item.task }}
                                     </h4>
                                     <div class="text-center px-3">
-                                      <p class="text-truncate pb-3 mb-0">
-                                        {{ item.assignment_description }}
+                                      <p class="text-truncate pb-3 mb-0" v-html="item.assignment_description">
                                       </p>
                                     </div>
                                   </div>
@@ -388,8 +387,7 @@
                                     {{ item.task }}
                                   </h4>
                                   <div class="text-center px-3">
-                                    <p class="text-truncate pb-3 mb-0">
-                                      {{ item.assignment_description }}
+                                    <p class="text-truncate pb-3 mb-0" v-html="item.assignment_description">
                                     </p>
                                   </div>
                                 </div>
