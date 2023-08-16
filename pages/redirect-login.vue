@@ -10,7 +10,7 @@
           <div class="login-logo">
             <img
               class="align-content"
-              src="../static/image/logo.png"
+              src="../static/image/rid-logo.png"
               alt="logo-icon"
             />
           </div>  
@@ -180,9 +180,9 @@ export default {
   margin: auto;
   top: -48%;
   opacity: 0.7;
-  transform-origin: 50% 50%;
+  /* transform-origin: 50% 50%;
   -webkit-animation: rotating 5s linear infinite;
-  animation: rotating 30s linear infinite;
+  animation: rotating 30s linear infinite; */
 }
 .login-content {
   position: relative;
