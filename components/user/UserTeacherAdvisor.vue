@@ -591,9 +591,9 @@
                   <h6 class="color-secondary">
                     Select a student to show details
                   </h6>
-                  <div class="position-absolute advisor-image col-3">
+                  <!-- <div class="position-absolute advisor-image col-3">
                     <img src="../../static/image/advisor-image.png" alt="" />
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
