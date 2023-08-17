@@ -2054,10 +2054,10 @@
                 class="modal-title color-primary-dark font-bold mt-3"
                 id="undoSubTaskConfirmModalLongTitle"
               >
-                Undo Sub-Task Completion Confirmation
+              Re-Open Sub-Task
               </h4>
               <p class="mb-0">
-                Undo sub-task completion?
+                This action will mark this sub-task as incomplete again
               </p>
             </div>
             <div class="modal-footer justify-content-end border-top-0">
@@ -2143,12 +2143,12 @@
                 class="modal-title"
                 id="undoAssignmentConfirmationModalLongTitle"
               >
-                Undo complete assignment confirmation
+              Re-Open Assignment
               </h4>
             </div>
             <div class="modal-body px-3">
               <p class="mb-0">
-                Undo assignment completion?
+                This action will mark this assignment as incomplete again
               </p>
             </div>
             <div class="modal-footer justify-content-end border-top-0">
