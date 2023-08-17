@@ -387,10 +387,10 @@
         <div class="modal-content">
           <div class="modal-header pb-1">
             <h3 class="modal-title" id="logoutConfirmationModalLongTitle">
-              Log Out Confirmation
+              Log Out
             </h3>
           </div>
-          <div class="modal-body px-3">Are you sure you want to log out?</div>
+          <div class="modal-body px-3">This will log you out of your account</div>
           <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
