@@ -14,7 +14,7 @@
           class="teacher-section bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
         >
           <h3 class="color-primary-dark heading3 font-semi-bold m-0 px-4 pt-4">
-            Custom Avaliability
+            When Are You Free?
           </h3>
           <div
             class="inner-teacher container-fluid px-4 py-2 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow"

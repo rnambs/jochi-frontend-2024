@@ -32,9 +32,9 @@
             >
               <div class="d-flex flex-column">
                 <h5 class="mb-1 color-dark font-semi-bold">
-                  Hello {{ firstName }}
+                  Hello {{ firstName? (firstName+'!'):'' }}
                 </h5>
-                <h3 class="color-primary-dark heading3 font-semi-bold">Have a great day</h3>
+                <h3 class="color-primary-dark heading3 font-semi-bold">Welcome Back to Jochi</h3>
               </div>
               <div class="d-flex align-items-center">
                 <!-- <div class="btn color-dark font-semi-bold mr-3">FAQs</div> -->
@@ -503,7 +503,7 @@ export default {
     ismounted = true;
     this.ListTeacherAgenda();
     this.TeacherMeetingList();
-    this.firstName = localStorage.getItem("first_name");
+    this.firstName = localStorage.getItem("firstName");
     this.activate();
     setTimeout(() => {
       this.loading=false;

@@ -228,14 +228,14 @@
                       )
                     "
                   >
-                    <td class="tmodal-data">Change Slot Time</td>
+                    <td class="tmodal-data">Change Time</td>
                     <span class="pr-2"></span>
                     <button
                       type="button"
                       @click="changeSlot"
                       class="btn btn-primary py-2 rounded-12"
                     >
-                      <i class="fas fa-clock mr-2"></i><span>Change slot</span>
+                      <i class="fas fa-clock mr-2"></i><span>Other Options</span>
                     </button>
                   </tr>
 

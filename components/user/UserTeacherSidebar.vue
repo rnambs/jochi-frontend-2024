@@ -342,7 +342,7 @@
                   <img src="../../static/image/advisor.png" alt="" />
                 </div>
                 <span class="ml-3 color-secondary text-capitalize font-medium"
-                  >Advisor</span
+                  >Your Students</span
                 >
               </nuxt-link>
             </li>
