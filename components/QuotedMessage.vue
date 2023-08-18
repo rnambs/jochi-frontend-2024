@@ -3,7 +3,7 @@
     <div class="content col-lg-12">
       <div class="row">
         <div class="col-12">
-          <div class="bg-light w-100">
+          <div class="bg-primary-light w-100">
             <div class="container pt-3">
               <div class="bg-white shadow-sm p-4">
                 <h4>Daily Quotes</h4>

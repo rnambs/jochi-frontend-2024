@@ -14,8 +14,10 @@
         >
           <div class="row">
             <div class="col-12 position-realtive h-100 d-flex flex-column">
-              <div class="jochi-components-light-bg position-relative h-100">
-                <div class="planner-week p-4 pt-5 px-3 px-sm-5">
+              <div class="bg-white border rounded-10 position-relative h-100">
+                <div
+                  class="planner-week p-4 pt-5 px-3 px-sm-5 d-flex flex-column h-100"
+                >
                   <div class="color-ref">
                     <ul class="d-flex align-itmes-center">
                       <li><span>Urgent assignments</span></li>
@@ -58,7 +60,7 @@
                 >
                   <div class="position-realtive h-100">
                     <div
-                      class="jochi-components-light-bg py-4 h-100 d-flex flex-column position-relative bg-light"
+                      class="bg-white border rounded-10 py-4 h-100 d-flex flex-column position-relative bg-primary-light"
                     >
                       <lottie
                         v-if="playCelebration"
@@ -70,9 +72,9 @@
                         class="row d-flex justify-content-between align-items-center px-5 pb-2"
                       >
                         <div class="col-md-4">
-                          <h2 class="color-primary font-semi-bold mb-0">
+                          <h3 class="color-primary-dark heading3 font-semi-bold mb-0">
                             Pending
-                          </h2>
+                          </h3>
                         </div>
                         <div
                           class="col-md-8 d-flex justify-content-start justify-content-md-end"
@@ -83,7 +85,7 @@
                               isAddAssignment = true;
                               resetAssignment();
                             "
-                            class="btn btn-dark py-1 px-3 mr-3"
+                            class="btn btn-primary py-1 px-3 mr-3"
                           >
                             Add Assignment
                           </button>
@@ -93,7 +95,7 @@
                               choosenAssignments &&
                               choosenAssignments.length > 0
                             "
-                            class="btn btn-dark py-1 px-3"
+                            class="btn btn-danger py-1 px-3"
                           >
                             Delete selected
                           </button>
@@ -110,7 +112,11 @@
                             group="people"
                             @start="
                               drag = true;
-                              dragCard(item.id);
+                              dragCard(
+                                item.id,
+                                item.schoologyAssignment,
+                                item.submission_id
+                              );
                             "
                             @end="drag = false"
                             :sort="false"
@@ -123,7 +129,7 @@
                                 <div class="h-100">
                                   <div
                                     @click="onCardClick(item)"
-                                    class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
+                                    class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
                                   >
                                     <div class="d-flex flex-column">
                                       <div
@@ -151,7 +157,7 @@
                                           }}
                                         </div>
                                         <div
-                                          class="assignment-tag pink text-truncate"
+                                          class="assignment-tag bg-primary text-truncate"
                                         >
                                           {{
                                             item.subject.subject_name
@@ -167,8 +173,7 @@
                                           {{ item.task }}
                                         </h4>
                                         <div class="text-center px-3">
-                                          <p class="text-truncate pb-3 mb-0">
-                                            {{ item.assignment_description }}
+                                          <p class="text-truncate pb-3 mb-0" v-html="item.assignment_description">
                                           </p>
                                         </div>
                                       </div>
@@ -350,7 +355,7 @@
                           >
                             <div
                               v-if="item.shared_users_id != user_id"
-                              class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center"
+                              class="position-absolute multiple-select-checkbox bg-white border rounded-circle d-flex align-items-center justify-content-center"
                             >
                               <div class="squaredThree">
                                 <input
@@ -366,7 +371,7 @@
                               <div class="h-100">
                                 <div
                                   @click="onCardClick(item)"
-                                  class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
+                                  class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 cursor-pointer d-flex flex-column justify-content-between"
                                 >
                                   <div class="d-flex flex-column">
                                     <div
@@ -394,7 +399,7 @@
                                         }}
                                       </div>
                                       <div
-                                        class="assignment-tag pink text-truncate"
+                                        class="assignment-tag bg-primary text-truncate"
                                       >
                                         {{
                                           item.subject.subject_name
@@ -410,8 +415,7 @@
                                         {{ item.task }}
                                       </h4>
                                       <div class="text-center px-3">
-                                        <p class="text-truncate pb-3 mb-0">
-                                          {{ item.assignment_description }}
+                                        <p class="text-truncate pb-3 mb-0" v-html="item.assignment_description">
                                         </p>
                                       </div>
                                     </div>
@@ -595,9 +599,9 @@
                         <div
                           class="drop color-secondary text-16 h-100 d-flex flex-column"
                         >
-                          <h2 class="color-primary font-semi-bold px-5">
+                          <h3 class="color-primary-dark heading3 font-semi-bold px-5">
                             Completed This Week
-                          </h2>
+                          </h3>
                           <p
                             class="d-none d-xl-block mb-0 px-5 color-secondary font-regular"
                           >
@@ -625,7 +629,7 @@
                                   class="col-6"
                                 >
                                   <div
-                                    class="jochi-sub-components-light-bg py-4 px-2 completed-assignments text-center h-100"
+                                    class="bg-white border rounded-8 py-4 px-2 completed-assignments text-center h-100"
                                   >
                                     <h4
                                       class="mb-0 blue word-break text-capitalize"
@@ -663,9 +667,9 @@
                           class="drop color-secondary text-16 h-100 d-flex flex-column"
                           @drop="handleDrop"
                         >
-                          <h2 class="color-primary font-semi-bold px-5">
+                          <h3 class="color-primary-dark heading3 font-semi-bold px-5">
                             Completed This Week
-                          </h2>
+                          </h3>
                           <p class="mb-0 px-5 color-secondary font-regular">
                             Drag and drop your assignment here when it is
                             completed
@@ -681,12 +685,12 @@
                               >
                                 <div
                                   @click="confirmUndo(item.id)"
-                                  class="position-absolute multiple-select-checkbox jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
+                                  class="position-absolute multiple-select-checkbox bg-white border rounded-circle d-flex align-items-center justify-content-center cursor-pointer"
                                 >
                                   <i class="fas fa-undo"></i>
                                 </div>
                                 <div
-                                  class="jochi-sub-components-light-bg py-4 px-2 completed-assignments text-center h-100 bg-redShade"
+                                  class="bg-white border rounded-8 py-4 px-2 completed-assignments text-center h-100"
                                 >
                                   <h4
                                     class="mb-0 blue word-break text-truncate text-capitalize"
@@ -749,18 +753,34 @@
                       </div>
                       <div
                         v-if="openAssignment"
-                        class="position-absolute w-100 h-100 top-0 left-0 p-3"
+                        class="position-absolute w-100 h-100 top-0 left-0"
                       >
                         <div
-                          class="d-flex card card-primary-void flex-column h-100 p-4 rounded-22 col-12 col-lg-8 float-right"
+                          class="d-flex card flex-column h-100 p-4 rounded-10 col-12 col-lg-8 float-right border-0"
                         >
                           <div
                             class="d-flex flex-column flex-md-row justify-content-between mb-2 border-bottom"
                           >
-                            <h3 class="color-primary font-semi-bold">
+                          <div class="d-flex flex-wrap w-100">
+                            <h3 class="color-primary-dark font-semi-bold">
                               {{ isAddAssignment ? "Add" : "Edit" }} Assignment
                             </h3>
-                            <p class="mb-0 cursor-pointer d-none d-xl-block">
+                            <!-- grades section -->
+                            <div
+                            class="d-flex align-items-center mb-2 ml-auto"
+                                 v-if="submissionId && grade && gradePossible"
+                              >
+                              <p class="mb-0">Grade</p><span class="px-1">:</span>
+                                    <p class="mb-0 bg-primary-light01 px-2 rounded-pill font-semi-bold color-primary"><span>{{
+                                      grade
+                                    }}</span>/<span>{{ gradePossible }}</span></p>
+                                    <!-- <span v-if="gradePossible"
+                                      >Grade Possible</span
+                                    >: -->
+                            </div>
+                            <!-- grades section end -->
+                          </div>
+                            <p class="mb-0 cursor-pointer d-none d-xl-block ml-3 pt-1">
                               <span
                                 @click="
                                   openAssignment = false;
@@ -772,11 +792,11 @@
                               ></span>
                             </p>
                             <div
-                              class="d-flex justify-content-end d-block d-xl-none"
+                              class="d-flex justify-content-end d-block d-xl-none ml-3"
                             >
                               <button
                                 v-if="!isAddAssignment"
-                                class="btn btn-success border border-dark py-0 px-4 rounded-12 font-semi-bold mb-2"
+                                class="btn btn-primary border border-dark py-0 px-4 rounded-8 font-semi-bold mb-2"
                                 @click="confirmComplete"
                               >
                                 <span>Mark as complete</span>
@@ -874,32 +894,16 @@
                                   <label
                                     for="message-text"
                                     class="col-form-label"
-                                    >Task<em>*</em></label
+                                    >Task</label
                                   >
                                   <textarea
                                     class="form-control"
                                     id="message-text"
+                                    rows="3"
                                     v-model="assignmentDescription"
                                     maxlength="500"
                                     placeholder="Enter assignment description"
-                                    :class="{
-                                      'is-invalid':
-                                        submitted &&
-                                        $v.assignmentDescription.$error,
-                                    }"
                                   ></textarea>
-                                  <div
-                                    v-if="
-                                      submitted &&
-                                      $v.assignmentDescription.$error
-                                    "
-                                    class="invalid-feedback"
-                                  >
-                                    <span
-                                      v-if="!$v.assignmentDescription.required"
-                                      >This field is required</span
-                                    >
-                                  </div>
                                 </div>
                                 <div class="row">
                                   <div class="col-md-6 ml-auto">
@@ -927,7 +931,7 @@
                                           >
                                         </button>
                                         <ul
-                                          class="dropdown-menu"
+                                          class="dropdown-menu border"
                                           aria-labelledby="dLabel"
                                         >
                                           <li
@@ -1047,7 +1051,7 @@
                                   class="d-flex justify-content-between align-items-center mb-2"
                                 >
                                   <h6 class="color-dark font-semi-bold mb-0">
-                                    Sub Tasks
+                                    Sub Tasks 1
                                   </h6>
                                   <a @click="onAddSubTaskClick" class="btn p-0">
                                     <span class="color-secondary"
@@ -1112,7 +1116,7 @@
                                             subTask.task_status != 'Completed'
                                           "
                                           @click="deleteSubTask(subTask)"
-                                          class="color-primary fa-icon show-hover d-none btn p-0"
+                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                           ><i class="fas fa-trash-alt"></i
                                         ></span>
                                       </div>
@@ -1173,7 +1177,7 @@
                                   <div
                                     v-for="peer of peerList"
                                     :key="peer.id"
-                                    class="h-fit-content show-icon"
+                                    class="h-fit-content show-icon d-flex align-items-center position-realtive"
                                   >
                                     <div
                                       class="d-flex align-items-center my-2 mr-3"
@@ -1203,13 +1207,16 @@
                                     <button
                                       type="button"
                                       role="button"
+                                      class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none"
                                       @click="
                                         removePeerConfirm(peer.id, $event)
                                       "
                                     >
                                       <span
-                                        class="color-primary fa-icon show-hover d-none btn p-0 ml-05"
-                                        ><i class="fas fa-trash-alt ml-3"></i
+                                        class="color-primary-dark fa-icon show-hover btn p-0 ml-05"
+                                        ><i
+                                          class="fas fa-trash-alt color-danger"
+                                        ></i
                                       ></span>
                                     </button>
                                   </div>
@@ -1252,7 +1259,7 @@
                                       <option value="link">Link</option>
                                     </select>
                                     <div class="row m-0">
-                                      <div class="col-9 py-0 pl-0">
+                                      <div class="col-9 py-0">
                                         <input
                                           v-if="materialType == 'file'"
                                           type="file"
@@ -1263,7 +1270,7 @@
                                           accept=".png,.jpeg,.jpg,.pdf"
                                         />
                                       </div>
-                                      <div class="col-9 py-0 pl-0">
+                                      <div class="col-9 py-0">
                                         <input
                                           v-if="materialType == 'link'"
                                           type="text"
@@ -1305,7 +1312,7 @@
                                         </p>
                                       </div>
                                       <span
-                                        class="color-primary fa-icon show-hover d-none btn p-0"
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                         @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
@@ -1329,7 +1336,7 @@
                                         </p>
                                       </div>
                                       <span
-                                        class="color-primary fa-icon show-hover d-none btn p-0"
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                         @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
@@ -1526,7 +1533,7 @@
                                             subTask.task_status != 'Completed'
                                           "
                                           @click="deleteSubTask(subTask)"
-                                          class="color-primary fa-icon show-hover d-none btn p-0"
+                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                           ><i class="fas fa-trash-alt"></i
                                         ></span>
                                       </div>
@@ -1646,7 +1653,7 @@
                                       <option value="link">Link</option>
                                     </select>
                                     <div class="row m-0">
-                                      <div class="col-9 py-0 pl-0">
+                                      <div class="col-9 py-0">
                                         <input
                                           v-if="materialType == 'file'"
                                           type="file"
@@ -1657,7 +1664,7 @@
                                           accept=".png,.jpeg,.jpg,.pdf"
                                         />
                                       </div>
-                                      <div class="col-9 py-0 pl-0">
+                                      <div class="col-9 py-0">
                                         <input
                                           v-if="materialType == 'link'"
                                           type="text"
@@ -1699,7 +1706,7 @@
                                         </p>
                                       </div>
                                       <span
-                                        class="color-primary fa-icon show-hover d-none btn p-0"
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                         @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
@@ -1723,7 +1730,7 @@
                                         </p>
                                       </div>
                                       <span
-                                        class="color-primary fa-icon show-hover d-none btn p-0"
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
                                         @click="deleteAdditionalMat(item)"
                                         ><i class="fas fa-trash-alt"></i
                                       ></span>
@@ -1734,10 +1741,22 @@
                               </form>
                             </div>
 
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-end px-2">
+                              
+                              <button
+                                v-if="
+                                  !isAddAssignment && schoologyAssignment == '1'
+                                "
+                                type="button"
+                                class="btn btn-primary py-1 px-3 mr-auto"
+                                :disabled="processing || submissionId"
+                                @click="submitAssignment()"
+                              >
+                                Submit Assignment
+                              </button>
                               <button
                                 type="button"
-                                class="btn btn-secondary py-1 px-3 rounded-pill mr-2"
+                                class="btn btn-secondary py-1 px-3 mr-2"
                                 @click="
                                   openAssignment = false;
                                   closePopup();
@@ -1747,7 +1766,7 @@
                               </button>
                               <button
                                 type="button"
-                                class="btn btn-primary py-1 px-3 rounded-pill"
+                                class="btn btn-primary py-1 px-3"
                                 :disabled="processing"
                                 @click="
                                   isAddAssignment
@@ -1783,11 +1802,11 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLongTitle">
+            <h4 class="modal-title" id="exampleModalLongTitle">
               Choose Filter
-            </h3>
+            </h4>
           </div>
-          <div class="modal-body px-4">
+          <div class="modal-body px-3">
             <div class="form-row">
               <select class="form-control" tabindex="" v-model="filterType">
                 <option value="">All</option>
@@ -1798,11 +1817,11 @@
               </select>
             </div>
           </div>
-          <div class="modal-footer px-4">
+          <div class="modal-footer justify-content-end border-top-0 px-4">
             <button
               aria-label="Close"
               data-dismiss="modal"
-              class="btn btn-secondary px-4 py-1 rounded-12"
+              class="btn btn-secondary px-4 py-1 rounded-8"
             >
               Cancel
             </button>
@@ -1811,7 +1830,7 @@
                 applyFilter();
                 closeAssignmentPlanner();
               "
-              class="btn btn-success px-4 py-1 rounded-12"
+              class="btn btn-primary px-4 py-1 rounded-8"
             >
               Apply Filter
             </button>
@@ -1834,28 +1853,38 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header pb-1">
-            <h3 class="modal-title" id="completeConfirmModalLongTitle">
+            <h4 class="modal-title" id="completeConfirmModalLongTitle">
               Complete Assignment Confirmation
-            </h3>
+            </h4>
           </div>
           <div class="modal-body px-3 bold-6">
-            Mark assignment as completed?
+            <p class="mb-0">Mark assignment as completed?</p>
+            <p class="mb-0" v-if="schoologyAssignment == '1' && !submissionId">Did you forget to submit your work?</p>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               :disabled="processingCompleteAssignment"
               @click="completeAssignment()"
             >
-              Confirm
+              Complete
+            </button>
+            <button
+              v-if="schoologyAssignment == '1'"
+              type="button"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+              @click="submitAndCompleteAssignment()"
+              :disabled="submissionId"
+            >
+              Submit Assignment
             </button>
           </div>
         </div>
@@ -1873,28 +1902,28 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-body px-4">
-            <h3
-              class="modal-title color-primary font-bold mt-3"
+          <div class="modal-body px-3">
+            <h4
+              class="modal-title color-primary-dark font-bold mt-3"
               id="completeConfirmModalLongTitle"
             >
               Complete Sub-Task Confirmation
-            </h3>
-            <h5 class="color-dark font-semi-bold">
+            </h4>
+            <p class="mb-0">
               Mark sub-task as completed?
-            </h5>
+            </p>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+              class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
               :disabled="processingSubCompleteAssignment"
               @click="
                 processingSubCompleteAssignment = true;
@@ -1919,26 +1948,26 @@
     >
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
-          <div class="modal-body px-4">
-            <h3
-              class="modal-title color-primary font-bold mt-3"
+          <div class="modal-body px-3">
+            <h4
+              class="modal-title color-primary-dark font-bold mt-3"
               id="undoSubTaskConfirmModalLongTitle"
             >
-              Undo Sub-Task Completion Confirmation
-            </h3>
-            <h5 class="color-dark font-semi-bold">Undo sub-task completion?</h5>
+            Re-Open Sub-Task
+            </h4>
+            <p class="mb-0">This action will mark this sub-task as incomplete again</p>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+              class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
               :disabled="processingSubCompleteAssignment"
               @click="undoCompleteSubTask()"
             >
@@ -1961,17 +1990,17 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header pb-1">
-            <h3 class="modal-title" id="removePeerConfirmationModalLongTitle">
+            <h4 class="modal-title" id="removePeerConfirmationModalLongTitle">
               Remove Peer Confirmation
-            </h3>
+            </h4>
           </div>
-          <div class="modal-body px-4">
-            Are you sure want to remove the peer?
+          <div class="modal-body px-3">
+            <p class="mb-0">Are you sure want to remove the peer?</p>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
@@ -1979,7 +2008,7 @@
             <button
               data-dismiss="modal"
               type="button"
-              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               @click="removePeer()"
             >
               Confirm
@@ -2001,22 +2030,22 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header pb-1">
-            <h3
+            <h4
               class="modal-title"
               id="undoAssignmentConfirmationModalLongTitle"
             >
-              Undo complete assignment confirmation
-            </h3>
+            Re-Open Assignment
+            </h4>
           </div>
           <div class="modal-body px-3">
-            <h5 class="color-dark font-semi-bold">
-              Undo assignment completion?
-            </h5>
+            <p class="mb-0">
+              This action will mark this assignment as incomplete again
+            </p>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
@@ -2024,7 +2053,7 @@
             <button
               data-dismiss="modal"
               type="button"
-              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               @click="undoAsstComplete()"
             >
               Confirm
@@ -2046,18 +2075,20 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header pb-1">
-            <h3
+            <h4
               class="modal-title"
               id="deleteAssignmentConfirmationModalLongTitle"
             >
               Delete assignment confirmation
-            </h3>
+            </h4>
           </div>
-          <div class="modal-body px-4">Delete selected assignments?</div>
-          <div class="modal-footer">
+          <div class="modal-body px-3">
+            <p class="mb-0">Delete selected assignments?</p>
+          </div>
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
@@ -2065,7 +2096,7 @@
             <button
               data-dismiss="modal"
               type="button"
-              class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
               @click="deleteAssts()"
             >
               Confirm
@@ -2087,13 +2118,15 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header pb-1">
-            <h3 class="modal-title" id="alertModalModalLongTitle">Alert</h3>
+            <h4 class="modal-title" id="alertModalModalLongTitle">Alert</h4>
           </div>
-          <div class="modal-body px-4">{{ alertMessage }}</div>
-          <div class="modal-footer">
+          <div class="modal-body px-3">
+            <p class="mb-0">{{ alertMessage }}</p>
+          </div>
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Ok
@@ -2103,6 +2136,130 @@
       </div>
     </div>
     <!-- Alert modal end  -->
+
+    <!-- Submit assignment -->
+    <div
+      class="modal fade"
+      id="submitAssignmentConfirmation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="submitAssignmentConfirmationModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h4
+              class="modal-title"
+              id="submitAssignmentConfirmationModalLongTitle"
+            >
+              Submit Assignment
+            </h4>
+          </div>
+          <div class="modal-body px-3">
+            <!-- Additional Material Add -->
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <p class="mb-0">
+                Submit Additional Material
+              </p>
+              
+            </div>
+            <div class="d-flex flex-row align-items-start">
+              <div class="form-row mb-2 mx-0 mr-2 w-100">
+                
+                <select
+                  v-model="materialTypeSubmit"
+                  class="form-select form-control mb-2"
+                  aria-label="Default select example"
+                >
+                  <option value="">Choose material type</option>
+                  <!-- <option value="file">File</option> -->
+                  <option value="link">Link</option>
+                  <option value="text">Text</option>
+                </select>
+                <div class="d-flex flex-column w-100">
+                  <div class="row m-0 px--12">
+                    <div class="col-12 py-0 p-0">
+                      <input
+                        id="fileUploadSubmit"
+                        v-if="materialTypeSubmit == 'file'"
+                        type="file"
+                        class="form-control px-2 cursor-pointer"
+                        placeholder="Upload File"
+                        @change="onFileChangeSubmit"
+                        accept=".png,.jpeg,.jpg,.pdf"
+                      />
+                    </div>
+                  </div>
+                  <div class="row m-0 px--12">
+                    <div class="col-12 py-0 p-0">
+                      <input
+                        v-if="materialTypeSubmit == 'link'"
+                        type="text"
+                        class="form-control px-2"
+                        placeholder="Paste Link"
+                        v-model="linkSubmit"
+                        maxlength="500"
+                        @input="onChangeLink()"
+                      />
+                    </div>
+                    <div
+                      v-if="submittedAsst && materialTypeSubmit == 'link'"
+                      class="invalid-feedback" style="display:block !important"
+                    > 
+                      <span v-if="!linkSubmit || invalidSubmitUrl"
+                        >Please add a valid URL</span
+                      >
+                    </div>
+                  </div>
+                  <div class="row m-0 px--12">
+                    <div class="col-12 p-0">
+                      <textarea
+                        v-if="materialTypeSubmit == 'text'"
+                        class="form-control px-2"
+                        rows="4"
+                        placeholder="Enter description"
+                        v-model="textSubmit"
+                        maxlength="1000"
+                        @input="onChangeText()"
+                      ></textarea>
+                    </div>
+                    <div
+                      v-if="submittedAsst && materialTypeSubmit == 'text'"
+                      class="invalid-feedback" style="display:block !important"
+                    >
+                      <span v-if="invalidSubmitText"
+                        >Please add a valid description</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Material Add End -->
+          <div class="modal-footer justify-content-end border-top-0">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              :disabled="disableSubmit"
+              type="button"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+              @click="submitAsst()"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Submit assignment end -->
   </div>
 </template>
 <script>
@@ -2146,6 +2303,7 @@ export default {
       submitted: false,
       processing: false,
       processingUpload: false,
+      processingUploadSubmit: false,
       processingCompleteAssignment: false,
       processingSubCompleteAssignment: false,
       subject: "",
@@ -2228,8 +2386,11 @@ export default {
       additionalMaterial: false,
       materialType: "",
       additionalMaterialList: [],
+      additionalMaterialListSubmit: [],
       link: "",
+      linkSubmit: "",
       file: "",
+      fileSubmit: "",
       assignmentId: 0,
       isSharedAssignment: false,
       assignmentList: [],
@@ -2258,6 +2419,14 @@ export default {
       prior: "4",
       startTime: null,
       alertMessage: "",
+      materialTypeSubmit: "",
+      submissionId: "",
+      grade: "",
+      gradePossible: "",
+      invalidSubmitUrl:false,
+      submittedAsst:false,
+      disableSubmit:false,
+      invalidSubmitText:false
     };
   },
 
@@ -2343,7 +2512,7 @@ export default {
     dateValue: { required },
     timeValue: { required },
     assignmentName: { required },
-    assignmentDescription: { required },
+    // assignmentDescription: { required },
   },
   computed: {
     ...mapState("plannerWeek", {
@@ -2430,6 +2599,7 @@ export default {
       getCompletedAssignments: "getCompletedAssignments",
       uploadAdditionalMaterial: "uploadAdditionalMaterial",
       deleteAssignments: "deleteAssignments",
+      assignmentSubmit: "assignmentSubmit",
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
@@ -2958,6 +3128,16 @@ export default {
       this.dateValue = "";
       this.file = "";
       this.link = "";
+      this.submissionId = "";
+      this.schoologyAssignment = "";
+      this.grade = "";
+      this.gradePossible = "";
+      this.invalidSubmitUrl=false;
+      this.submittedAsst=false;
+      this.disableSubmit=false;
+      this.invalidSubmitText=false;
+      this.additionalMaterial = false;
+      this.assignmentId='';
 
       $('input[name="daterange"]').val("");
       fromDate = "";
@@ -3913,6 +4093,10 @@ export default {
         item.updatedAt = e.updatedAt;
         item.user_id = e.user_id;
         item.shared_users_id = e.shared_users_id;
+        item.submission_id =
+          e.submission_id && e.submission_id != "" ? e.submission_id : null;
+        item.grade = e.grade;
+        item.grade_possible = e.grade_possible;
         item.peers = this.mapPeers(e);
         if (e.due_date) {
           item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
@@ -3962,6 +4146,8 @@ export default {
         item.updatedAt = e.assignments.updatedAt;
         item.user_id = e.assignments.user_id;
         item.shared_users_id = e.shared_users_id;
+        item.submission_id =
+          e.submission_id && e.submission_id != "" ? e.submission_id : null;
         item.peers = this.mapPeers(e);
         if (e.assignments.due_date) {
           item.formattedDate = moment(e.assignments.due_date).format(
@@ -4014,14 +4200,20 @@ export default {
       }
       return peers;
     },
-    dragCard(data) {
+    dragCard(data, schoologyAssignment, submissionId) {
       this.completeAsstId = data;
+      this.assignmentId = data;
+      this.schoologyAssignment = schoologyAssignment;
+      this.submissionId = submissionId;
     },
     handleDrop(data, event) {
       $("#completeConfirm").modal({ backdrop: true });
 
       let assignment = data.item;
       this.completeAsstId = assignment.id;
+      this.assignmentId = assignment.id;
+      this.schoologyAssignment = assignment.schoologyAssignment;
+      this.submissionId = assignment.submission_id;
     },
     handleDropDraggable(data, event) {
       this.drag = false;
@@ -4121,6 +4313,7 @@ export default {
       this.completeSubTask(false);
     },
     onCardClick(data) {
+      this.resetAssignment();
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
       this.openAssignment = true;
@@ -4144,6 +4337,9 @@ export default {
       this.assignmentId = data.id;
       this.assignmentName = data.task;
       this.assignmentDescription = data.assignment_description;
+      this.submissionId = data.submission_id;
+      this.grade = data.grade;
+      this.gradePossible = data.grade_possible;
       this.priorityVal =
         data.priority == "1"
           ? "Urgent"
@@ -4241,6 +4437,25 @@ export default {
         this.file = e.target.files[0];
       }
     },
+    onFileChangeSubmit(e) {
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        if (document.querySelector("#fileUploadSubmit"))
+          document.querySelector("#fileUploadSubmit").value = "";
+
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
+
+      if (e.target.files[0]) {
+        this.fileSubmit = e.target.files[0];
+        e.target.files[0].value = "";
+      }
+    },
     async UploadAttachment() {
       if (!this.materialType) {
         return this.$toast.open({
@@ -4316,17 +4531,19 @@ export default {
         "_blank" // <- This is what makes it open in a new window.
       );
     },
-    isValidHttpUrl(string) {
+    isValidHttpUrl(urlLink, showError=true) {
       let url;
 
       try {
-        url = new URL(string);
+        url = new URL(urlLink);
       } catch (_) {
+        if(showError){
         this.$toast.open({
           message: "Please add valid URL",
           type: "warning",
           duration: 5000,
         });
+      }
         return false;
       }
 
@@ -4422,6 +4639,106 @@ export default {
       this.GetWeeklyPlanner();
       this.openAssignment = false;
     },
+    submitAssignment() {
+      this.submittedAsst=false;
+      this.onResetSubmit();
+      $("#submitAssignmentConfirmation").modal({ backdrop: true });
+    },
+    async submitAsst() {
+      if(!this.materialTypeSubmit) {
+        this.$toast.open({
+          message: "Please fill the details",
+          type: "warning",
+          duration: 4000,
+        });
+        return;
+      }
+      this.submittedAsst = true;
+      this.disableSubmit=true;
+      this.invalidSubmitUrl=false;
+      var payload = {};
+      if (this.materialTypeSubmit == "text") {
+        debugger
+        if(!this.textSubmit || this.onChangeText()){
+          this.invalidSubmitText=true;
+          this.disableSubmit=false;
+          return
+        }else{
+          this.invalidSubmitText=false;
+        }
+        payload = {
+          assignment_id: this.assignmentId,
+          type: "text",
+          text: this.textSubmit,
+        };
+      } else if (this.materialTypeSubmit == "link") {
+        const isValidHttpUrl = this.onChangeLink()
+        if(!isValidHttpUrl){
+          this.disableSubmit=false;
+          return
+        }
+        payload = {
+          assignment_id: this.assignmentId,
+          type: "link",
+          url: this.linkSubmit,
+        };
+      }
+      
+      await this.assignmentSubmit(payload);
+      this.disableSubmit=false;
+      this.submittedAsst=false;
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 4000,
+        });
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+        this.submissionId="1"
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+    },
+    submitAndCompleteAssignment() {
+      $(".modal").modal("hide");
+      $(".modal-backdrop").remove();
+      this.submitAssignment();
+    },
+    onChangeLink(){
+      if(this.submittedAsst){
+        if(!this.isValidHttpUrl(this.linkSubmit, false)){
+          this.invalidSubmitUrl=true;
+          return false;
+        }else{
+          this.invalidSubmitUrl=false;
+          return true;
+        }
+
+      }
+    },
+
+    onChangeText(){
+      if(this.submittedAsst && this.textSubmit){
+       this.invalidSubmitText=false;
+      }else if(this.submittedAsst && !this.textSubmit){
+       this.invalidSubmitText=true;
+      }
+      return this.invalidSubmitText;
+    },
+    onResetSubmit(){
+      this.invalidSubmitUrl=false;
+      this.submittedAsst=false;
+      this.disableSubmit=false;
+      this.invalidSubmitText=false;
+      this.materialTypeSubmit='';
+      this.linkSubmit='';
+      this.textSubmit='';
+    },
   },
   beforeDestroy() {
     const endTime = new Date().getTime();
@@ -4460,7 +4777,7 @@ export default {
   position: absolute;
   top: 3px;
   left: 3px;
-  background: #ffb5b2;
+  background: #DDD6ED;
   border-radius: 50%;
 }
 .squaredThree label:after {
@@ -4492,7 +4809,7 @@ export default {
   opacity: 1 !important;
 }
 .squaredThree input[type="checkbox"]:checked + label {
-  background: #ed7672;
+  background: #5534A5;
   transition: all ease-in-out 300ms;
 }
 .label-text {

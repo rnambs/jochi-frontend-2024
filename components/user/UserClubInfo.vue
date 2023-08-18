@@ -9,7 +9,7 @@
     <div class="main-section">
       <!-- tab for club info -->
       <div
-        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
 
@@ -54,7 +54,7 @@
         <div class="position-relative">
           <div
             v-bind:class="{
-              'dropdown-club jochi-components-light-bg': true,
+              'dropdown-club bg-white border rounded-10': true,
               'dropdown-club--visible': dropdownVisible,
             }"
           >
@@ -115,10 +115,10 @@
         <section id="club-detail" class="flex-fill custom-overflow">
           <div class="club-section container-fluid mt-2">
             <div
-              class="inner-club club-info d-flex flex-column justify-content-top container-fluid pr-3 py-0 pl-0"
+              class="inner-club club-info d-flex flex-column justify-content-top container-fluid pr-0 py-0 pl-0"
             >
-              <div class="my-2 px-2">
-                <h3 class="color-primary font-semi-bold mb-1">Club Details</h3>
+              <div class="my-2">
+                <h3 class="color-primary-dark font-semi-bold mb-1">Club Details</h3>
               </div>
               <div class="inner-info">
                 <div
@@ -166,7 +166,7 @@
 
                       <button
                         href=""
-                        class="btn btn-dark custom-theme-color-btn px-4 mb-0 mt-3"
+                        class="btn btn-primary custom-theme-color-btn px-4 mb-0 mt-3"
                         v-if="enableEdit"
                         :disabled="!clubDetails.description"
                         @click.prevent="
@@ -177,7 +177,7 @@
                       </button>
                     </div>
                   </div>
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 py-12">
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div
@@ -215,7 +215,7 @@
                                           class="ld-img-holder"
                                         >
                                           <img
-                                            v-if="data.user_info"
+                                            v-if="data.user_info && data.user_info.profile_pic && data.user_info.profile_pic!=''"
                                             :src="data.user_info.profile_pic"
                                             alt=""
                                           />
@@ -307,7 +307,8 @@
                               v-if="
                                 membersInfo[index - 1] &&
                                 membersInfo[index - 1].user_info &&
-                                membersInfo[index - 1].user_info.profile_pic
+                                membersInfo[index - 1].user_info.profile_pic &&
+                                membersInfo[index - 1].user_info.profile_pic !='' 
                               "
                               :src="
                                 membersInfo[index - 1].user_info.profile_pic
@@ -340,7 +341,8 @@
                             <img
                               v-if="
                                 membersInfo[index + 3] &&
-                                membersInfo[index + 3].user_info.profile_pic
+                                membersInfo[index + 3].user_info.profile_pic &&
+                                membersInfo[index + 3].user_info.profile_pic !=''
                               "
                               :src="
                                 membersInfo[index + 3].user_info.profile_pic
@@ -359,7 +361,7 @@
                       </div>
                     </div>
                   </div>
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 py-12">
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div
@@ -381,7 +383,7 @@
                                       ? tagColorMap[value.name]
                                       : red,
                                   }"
-                                  class="px-4 py-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 bg-theme align-items-center"
+                                  class="px-4 py-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 align-items-center"
                                   >{{ value.name }}
                                   <span
                                     class="input-icon color-white btn p-0"
@@ -414,7 +416,7 @@
                         <div
                           class="d-flex align-items-center justify-content-end"
                         >
-                          <div class="input-icon-area col-6 pr-0 pt-0 form-row">
+                          <div class="input-icon-area col-6 pr-1 pt-0 form-row">
                             <multiselect
                               v-model="value"
                               :options="taglist"
@@ -454,7 +456,7 @@
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Home Page</span
                   >
                 </nuxt-link>
@@ -471,7 +473,7 @@
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Files & Slides</span
                   >
                 </nuxt-link>
@@ -487,10 +489,10 @@
                       : 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100'
                   "
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Next Meeting</span
                   >
-                  <span class="text-16 color-primary font-regular">{{
+                  <span class="text-16 color-secondary font-regular">{{
                     clubMoreDetails.announcement
                   }}</span>
                 </div>
@@ -515,7 +517,7 @@
         <div class="modal-content">
           <div class="modal-body no-overflow px-4 pt-4">
             <h3
-              class="modal-title color-primary font-semi-bold"
+              class="modal-title color-primary-dark font-semi-bold"
               id="nextMeetingModalLongTitle"
             >
               Configure Meeting Days
@@ -572,17 +574,17 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer px-4">
+          <div class="modal-footer justify-content-end border-top-0 px-4">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12"
+              class="btn btn-secondary px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               v-if="enableEdit"
-              class="btn btn-success rounded-12 mt-2 py-1 px-4 font-semi-bold"
+              class="btn btn-primary rounded-8 mt-2 py-1 px-4 font-semi-bold"
               :disabled="!valueMeeting || dayArrVal.length <= 0"
               @click.prevent="UpdateTime"
             >
@@ -628,7 +630,7 @@
                       <div class="ld-img-section mr-3">
                         <div v-if="data.user_info" class="ld-img-holder">
                           <img
-                            v-if="data.user_info"
+                            v-if="data.user_info && data.user_info.profile_pic && data.user_info.profile_pic!=''"
                             :src="data.user_info.profile_pic"
                             alt=""
                           />
@@ -683,7 +685,7 @@
                       <div class="ld-img-section mr-3">
                         <div v-if="data.user_info" class="ld-img-holder">
                           <img
-                            v-if="data.user_info"
+                            v-if="data.user_info && data.user_info.profile_pic && data.user_info.profile_pic!=''"
                             :src="data.user_info.profile_pic"
                             alt=""
                           />
@@ -729,7 +731,7 @@
             </div>
             <!-- details end -->
           </div>
-          <div class="modal-footer"></div>
+          <div class="modal-footer justify-content-end border-top-0"></div>
         </div>
       </div>
     </div>
@@ -748,7 +750,7 @@
         <div class="modal-content">
           <div class="modal-body no-overflow px-4 pt-4">
             <h3
-              class="modal-title color-primary font-semi-bold"
+              class="modal-title color-primary-dark font-semi-bold"
               id="addLeaderModalLongTitle"
             >
               Add Leaders
@@ -767,17 +769,17 @@
               </multiselect>
             </div>
           </div>
-          <div class="modal-footer px-4">
+          <div class="modal-footer justify-content-end border-top-0 px-4">
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
               aria-label="Close"
             >
               Close
             </button>
             <button
-              class="btn btn-success py-1 rounded-12 font-semi-bold px-4"
+              class="btn btn-primary py-1 rounded-8 font-semi-bold px-4"
               :disabled="!leaderUpdate"
               @click.prevent="addLeader()"
             >
@@ -801,7 +803,7 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header px-4">
-            <h3 class="modal-title color-primary" id="addBannerModalLongTitle">
+            <h3 class="modal-title color-primary-dark" id="addBannerModalLongTitle">
               Add Banner
             </h3>
           </div>
@@ -809,7 +811,7 @@
             <div class="d-flex flex-column overflow-hidden h-100">
               <div
                 size="120"
-                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-sm mb-3"
+                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary mb-3"
               >
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"
@@ -841,16 +843,16 @@
                 <v-card-actions class="justify-content-end">
                   <v-btn
                     color="primary"
-                    class="btn btn-secondary color-white font-semi-bold mr-2 py-1 px-3 rounded-12 text-capitalize"
+                    class="btn btn-secondary font-semi-bold mr-2 py-1 px-3 rounded-8 text-capitalize"
                     text
                     data-dismiss="modal"
                     @click="clearCrop"
                     ><span class="font-semi-bold">Cancel</span></v-btn
                   >
                   <v-btn
-                    class="btn btn-success font-semi-bold bg-primary color-dark py-1 px-3 rounded-12 text-capitalize shadow-none"
+                    class="btn btn-primary font-semi-bold bg-primary color-dark py-1 px-3 rounded-8 text-capitalize shadow-none"
                     @click="saveImage(), (dialog = false)"
-                    ><span class="font-semi-bold">Upload</span></v-btn
+                    ><span class="font-semi-bold color-white">Upload</span></v-btn
                   >
                 </v-card-actions>
               </v-card>
@@ -914,27 +916,27 @@
               </div>
             </div>
           </div>
-          <div v-if="!showClubInfo" class="modal-footer">
+          <div v-if="!showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               No
             </button>
             <button
               type="button"
-              class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-primary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
               @click="confirmAction()"
             >
               Yes
             </button>
           </div>
-          <div v-if="showClubInfo" class="modal-footer">
+          <div v-if="showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Close
@@ -1177,7 +1179,7 @@ export default {
         if (e.taglists && e.taglists.length > 0) {
           e.taglists.forEach((tag) => {
             if (!this.tagColorMap[tag.name]) {
-              let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+              let color = this.randomColorMap();
               const key = tag.name;
 
               obj[key] = color;
@@ -1186,6 +1188,38 @@ export default {
           this.tagColorMap = obj;
         }
       });
+    },
+    randomColorMap(){
+     let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+     color = color.length<7 ? color + "0".repeat(7 - color.length) : color
+     const isWhiteSpectrumColor = this.isColorInWhiteSpectrum(color);
+
+      if(isWhiteSpectrumColor){
+        return this.randomColorMap()
+      }
+      return color;
+      
+    },
+
+    isColorInWhiteSpectrum(hexColor, threshold = 50) {
+      // Convert hexadecimal color to RGB values
+
+      const hex = hexColor.replace(/^#/, '');
+      const bigint = parseInt(hex, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+
+      // Calculate the difference between each RGB component and the maximum value (255 for white)
+      const diffR = 255 - r;
+      const diffG = 255 - g;
+      const diffB = 255 - b;
+
+      // Calculate the overall difference as a sum of squared differences
+      const overallDiff = diffR ** 2 + diffG ** 2 + diffB ** 2;
+
+      // Compare the overall difference with the squared threshold
+      return overallDiff <= threshold ** 2;
     },
     async ShowClubInCatalog() {
       this.loading = true;
@@ -1431,6 +1465,7 @@ export default {
     },
     // add student leaders
     openAddLeader() {
+      this.leaderUpdate={};
       $("#addLeaderModal").modal({ backdrop: true });
     },
     openAddBanner() {

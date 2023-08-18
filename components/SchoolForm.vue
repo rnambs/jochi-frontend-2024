@@ -102,7 +102,7 @@
                   </div>
 
                   <!-- GG4L details -->
-                  <div class="form-group required">
+                  <!-- <div class="form-group required">
                     <label for="contact-person" class="form-control-label"
                       >GG4L Client Id</label
                     ><input
@@ -144,25 +144,36 @@
                         >This field is required</span
                       >
                     </div>
-                  </div>
+                  </div> -->
 
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="contact-person" class="form-control-label"
-                      >GG4L School ID </label
+                      >School ID </label
                     ><input
                       type="text"
-                      id="GG4L_school_id"
+                      id="school_lms_id"
                       class="form-control"
-                      v-model="GG4L_school_id"
+                      v-model="school_lms_id"
+                      :class="{
+                        'is-invalid': submitted && $v.school_lms_id.$error,
+                      }"
                     />
-                    <!-- :class="{
-                        'is-invalid': submitted && $v.GG4L_school_id.$error,
-                      }" -->
-                    <!-- <div
-                      v-if="submitted && $v.GG4L_school_id.$error"
+                    <div
+                      v-if="submitted && $v.school_lms_id.$error"
                       class="invalid-feedback"
                     >
-                      <span v-if="!$v.GG4L_school_id.required"
+                      <span v-if="!$v.school_lms_id.required"
+                        >This field is required</span
+                      >
+                    </div>
+                    <!-- :class="{
+                        'is-invalid': submitted && $v.school_lms_id.$error,
+                      }" -->
+                    <!-- <div
+                      v-if="submitted && $v.school_lms_id.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.school_lms_id.required"
                         >This field is required</span
                       >
                     </div> -->
@@ -170,18 +181,19 @@
 
                   <div class="form-group required">
                     <label for="contact-person" class="form-control-label"
-                      >GG4L District ID</label
+                      >District Access Token</label
                     ><input
                       type="text"
-                      id="GG4L_district_id"
+                      id="district_access_token"
                       class="form-control"
-                      v-model="GG4L_district_id"
+                      v-model="district_access_token"
                       :class="{
-                        'is-invalid': submitted && $v.GG4L_district_id.$error,
+                        'is-invalid':
+                          submitted && $v.district_access_token.$error,
                       }"
                     />
                     <div
-                      v-if="submitted && $v.GG4L_district_id.$error"
+                      v-if="submitted && $v.district_access_token.$error"
                       class="invalid-feedback"
                     >
                       <span v-if="!$v.ContactPerson.required"
@@ -190,7 +202,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="contact-person" class="form-control-label"
                       >GG4L Sis ID </label
                     ><input
@@ -199,18 +211,7 @@
                       class="form-control"
                       v-model="GG4L_sis_id"
                     />
-                    <!-- :class="{
-                        'is-invalid': submitted && $v.GG4L_sis_id.$error,
-                      }" -->
-                    <!-- <div
-                      v-if="submitted && $v.GG4L_sis_id.$error"
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.GG4L_sis_id.required"
-                        >This field is required</span
-                      >
                     </div> -->
-                  </div>
                   <!-- GG4L details end -->
 
                   <div class="form-group required">
@@ -305,12 +306,7 @@
                   >
                     <nuxt-link
                       to="/school-list-table"
-                      class="
-                        border border-secondary
-                        text-decoration-none text-dark
-                        btn
-                        bg-light
-                      "
+                      class="border border-secondary text-decoration-none text-dark btn bg-primary-light"
                     >
                       cancel</nuxt-link
                     >
@@ -347,11 +343,11 @@ export default {
       timezonelist: "",
       submitted: false,
       processing: false,
-      GG4L_client_id: "",
-      GG4L_client_secret: "",
-      GG4L_school_id: "",
-      GG4L_district_id: "",
-      GG4L_sis_id: "",
+      // GG4L_client_id: "",
+      // GG4L_client_secret: "",
+      school_lms_id: "",
+      district_access_token: "",
+      // GG4L_sis_id: "",
     };
   },
   validations: {
@@ -362,10 +358,10 @@ export default {
     statelist: { required },
     timezonelist: { required },
     Description: { required },
-    GG4L_client_id: { required },
-    GG4L_client_secret: { required },
-    // GG4L_school_id: { required },
-    GG4L_district_id: { required },
+    // GG4L_client_id: { required },
+    // GG4L_client_secret: { required },
+    school_lms_id: { required },
+    district_access_token: { required },
     // GG4L_sis_id: { required },
   },
   mounted() {
@@ -412,11 +408,11 @@ export default {
           name: this.Schoolname,
           contact_person: this.ContactPerson,
           time_zone: this.timezonelist,
-          GG4L_client_id: this.GG4L_client_id,
-          GG4L_client_secret: this.GG4L_client_secret,
-          GG4L_school_id: this.GG4L_school_id,
-          GG4L_district_id: this.GG4L_district_id,
-          GG4L_sis_id: this.GG4L_sis_id,
+          // GG4L_client_id: this.GG4L_client_id,
+          // GG4L_client_secret: this.GG4L_client_secret,
+          school_lms_id: this.school_lms_id,
+          district_access_token: this.district_access_token,
+          // GG4L_sis_id: this.GG4L_sis_id,
         });
         if (this.successMessage != "") {
           this.$toast.open({

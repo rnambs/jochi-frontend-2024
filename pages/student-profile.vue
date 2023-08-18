@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="row">
         <div class="col-2">
-          <div class="sd-sidebar jochi-components-light-bg p-4">
+          <div class="sd-sidebar bg-white border rounded-10 p-4">
             <div class="sb-head-section">
               <div
                 class="d-flex align-items-start justify-content-between mb-3"
@@ -90,7 +90,7 @@
         </div>
         <div class="col-10">
           <div
-            class="dashboard-main-content jochi-components-light-bg p-4 pl-5"
+            class="dashboard-main-content bg-white border rounded-10 p-4 pl-5"
           >
             <div
               class="dmc-head d-flex justify-content-between align-items-start"
@@ -214,7 +214,7 @@ body {
 }
 
 .jochi-headings {
-  color: #ff6d6d;
+  
 }
 
 .sd-sidebar {
@@ -257,7 +257,7 @@ body {
 
 .sb-user-name {
   font-size: 26px;
-  color: #ff6d6d;
+  
   font-weight: 700;
 }
 
@@ -291,7 +291,7 @@ body {
 }
 
 label {
-  color: #ff6d6d;
+  
   font-weight: 400;
 }
 

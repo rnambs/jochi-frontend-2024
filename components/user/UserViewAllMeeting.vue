@@ -10,31 +10,31 @@
     <div class="main-section">
       <!-- tab section for View all meeting -->
       <div
-        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid">
             <h2
               data-intro="View all of your meetings. Here you can accept or reject requests or edit upcoming meetings."
-              class="color-primary font-semi-bold"
+              class="color-primary-dark font-semi-bold"
             >
               My Meetings
             </h2>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row m-0 mb-3">
-                <div class="col-md-4 p-0 mx-1">
+                <div class="col-md-6 col-lg-3 pb-0 pr-3">
                   <div
                     data-intro="Filter teacher and peer meetings from here."
-                    class="dropdown form-row custom-sort-by-btn"
+                    class="dropdown form-row"
                   >
                     <div
-                      class="dropdown-select btn btn-void p-0 color-secondary font-normal text-16 pr-2"
+                      class="dropdown-select d-inline-flex form-control rounded-8 border color-secondary font-normal text-16 pr-2"
                       type="button"
                       data-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <span id="dLabel" class="mr-2 color-secondary">
+                      <span id="dLabel" class="mr-auto color-secondary">
                         Sort by</span
                       >
                       <span class="caret color-secondary"
@@ -43,12 +43,12 @@
                     </div>
 
                     <ul
-                      class="dropdown-menu w-50 rounded-12"
+                      class="dropdown-menu w-100 rounded-12 border p-2"
                       aria-labelledby="dLabel"
                     >
-                      <li class="item">Teacher Meeting</li>
-                      <li class="item">Peer Meeting</li>
-                      <li class="item">All</li>
+                      <li class="item p-2">Teacher Meeting</li>
+                      <li class="item p-2">Peer Meeting</li>
+                      <li class="item p-2">All</li>
                     </ul>
                   </div>
                 </div>
@@ -101,7 +101,7 @@
                     <p class="color-secondary text-center mb-1">
                       {{ list["dateFormat"] }}
                     </p>
-                    <p class="color-primary text-center mb-1">
+                    <p class="color-primary-dark text-center mb-1">
                       {{ list["from"] }}
                       {{ list["end"] ? "to " + list["end"] : "" }}
 
@@ -228,14 +228,14 @@
                       )
                     "
                   >
-                    <td class="tmodal-data">Change Slot Time</td>
+                    <td class="tmodal-data">Change Time</td>
                     <span class="pr-2"></span>
                     <button
                       type="button"
                       @click="changeSlot"
                       class="btn btn-primary py-2 rounded-12"
                     >
-                      <i class="fas fa-clock mr-2"></i><span>Change slot</span>
+                      <i class="fas fa-clock mr-2"></i><span>Other Options</span>
                     </button>
                   </tr>
 
@@ -263,7 +263,7 @@
                                 class="p-3"
                                 :class="
                                   Schedule.slot_id == selectedSlot
-                                    ? 'card card-primary-sm border-theme'
+                                    ? 'card card-primary border-theme'
                                     : 'card card-white'
                                 "
                               >
@@ -439,7 +439,7 @@
               </fieldset>
             </form>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <div
               v-if="
                 detailType == 'Peer' &&
@@ -450,7 +450,7 @@
             >
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+                class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
                 data-dismiss="modal"
                 @click="acceptOrReject(2)"
               >
@@ -458,7 +458,7 @@
               </button>
               <button
                 type="button"
-                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                 data-dismiss="modal"
                 @click="acceptOrReject(1)"
               >
@@ -474,14 +474,14 @@
             >
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-12 mr-2 font-semi-bold"
+                class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
                 data-dismiss="modal"
               >
                 Close
               </button>
               <button
                 type="button"
-                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                 @click="updateDetails()"
                 :disabled="disableUpload"
               >

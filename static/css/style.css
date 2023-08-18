@@ -2792,7 +2792,7 @@ form.example::after {
   color: white;
 }
 
-.modal-footer {
+.modal-footer justify-content-end border-top-0 {
   padding: 2px 16px;
   background-color: #5cb85c;
   

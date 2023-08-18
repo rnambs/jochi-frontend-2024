@@ -10,23 +10,32 @@
     <div class="main-section">
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
-        <div class="teacher-section jochi-components-light-bg
+        <div class="teacher-section bg-white border-0 rounded-10
         custom-margin-for-main-section custom-full-height
         d-flex
         flex-column">
-          <h2 class="color-primary font-semi-bold m-0 p-4">Custom Avaliability</h2>
-          <div class="inner-teacher container-fluid p-4 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow">
+          <div class="d-flex flex-wrap align-items-center justify-content-between px-4 pt-4">
+            <h3 class="color-primary-dark heading3 font-semi-bold m-0 me-2 mb-2">Custom Avaliability</h3>
+            <nuxt-link to="/teacher-syncCalendar">
+            <button class="btn btn-primary mb-2 px-5 ml-auto">
+              <span class="mr-2">{{ syncStatus == 1 ? "Disable" : "Enable" }}</span>
+              <i class="fab fa-google"></i>
+              <span class="ml-2">Calendar Sync</span>
+            </button>
+            </nuxt-link>
+          </div>
+          <div class="inner-teacher container-fluid px-4 pb-4 pt-3 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow">
             <div class="row h-100">
               <div class="col-md-7 text-light custom-teacher-container d-flex flex-column ">
-                <div class="time-slot calendar-sm container card card-primary-sm rounded-22 p-3 pt-4 mb-4">
+                <div class="time-slot calendar-sm container card card-primary rounded-22 p-3 pt-4 mb-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-                <div class="time-slot-week container card card-primary-sm rounded-22 p-3 pt-4">
+                <div class="time-slot-week container card card-primary rounded-22 p-3 pt-4">
                   <FullCalendar :options="calendar" />
                 </div>
               </div>
               <div class="col-md-5 custom-teacher-container d-flex flex-column h-100">
-                <div class="time-slot container card card-primary-sm rounded-22 p-4 flex-fill h-40">
+                <div class="time-slot container card card-primary rounded-22 p-4 flex-fill h-40">
                   <p class="time-head pb-1">
                     <span class="color-dark text-16 font-semi-bold">{{ date_string }}</span>
                     <span class="color-secondary text-14 font-normal"><i>30 Minute Slot</i></span>
@@ -37,8 +46,8 @@
 
                         :class="
                           slot.exist
-                            ? 'badge badge-pill badge-color active'
-                            : 'badge badge-pill badge-color disabled'
+                            ? 'badge badge-color active'
+                            : 'badge badge-color disabled'
                         "
                         @click="slot.exist = !slot.exist"
                         :id="slot.time"
@@ -130,7 +139,7 @@
                       <div class="form-group col-12">
                         <button
                           type="submit"
-                          class="btn btn-primary my-2 py-1 px-4 rounded-pill float-right"
+                          class="btn btn-primary my-2 py-1 px-4 float-right"
                           @click.prevent="UpdateTeacherAvailability()"
                         >
                           Update
@@ -297,6 +306,7 @@ export default {
     this.calendarApi = this.$refs.fullCalendar.getApi();
     this.TeacherAvailableSlot();
     this.AvailabilitySlotswithId();
+    this.getCalendatSyncStatus();
   },
 
   computed: {
@@ -308,12 +318,24 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    ...mapState("teacherSyncCalendar", {
+      syncStatus: (state) => state.syncStatus,
+      successMessage: (state) => state.successMessage,
+      SuccessType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+    }),
   },
   methods: {
     ...mapActions("customAvailability", {
       teacherAvailableSlot: "teacherAvailableSlot",
       updateTeacherAvailability: "updateTeacherAvailability",
       availabilitySlotswithId: "availabilitySlotswithId",
+    }),
+    ...mapActions("teacherSyncCalendar", {
+      syncGoogleCalendar: "syncGoogleCalendar",
+      updateToken: "updateToken",
+      getSyncStatus: "getSyncStatus",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
@@ -397,6 +419,37 @@ export default {
     },
     async AvailabilitySlotswithId() {
       await this.availabilitySlotswithId({});
+    },
+    async getCalendatSyncStatus() {
+      await this.getSyncStatus();
+    },
+    async syncToGoogle() {
+      let authCode = "";
+      if (this.syncStatus == 0) {
+        authCode = await this.$gAuth.getAuthCode();
+      }
+      this.loading = true;
+      await this.updateToken({
+        user_id: localStorage.getItem("id"),
+        status: this.syncStatus == 1 ? false : true,
+        token: authCode,
+      });
+      this.loading = false;
+
+      if (this.successMessage != "") {
+        this.getSyncStatus();
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
     },
 
     formatAMPM(date) {

@@ -9,7 +9,7 @@
     <div class="main-section">
       <!-- tab for club info -->
       <div
-        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
         <div
@@ -51,7 +51,7 @@
         <div class="position-relative">
           <div
             v-bind:class="{
-              'dropdown-club jochi-components-light-bg': true,
+              'dropdown-club bg-white border rounded-10': true,
               'dropdown-club--visible': dropdownVisible,
             }"
           >
@@ -121,7 +121,7 @@
               class="inner-club club-info d-flex flex-column container-fluid h-40 flex-fill pt-3 px-3"
             >
               <div class="info-head my-2">
-                <h3 class="color-primary font-bold">{{ headingName }}</h3>
+                <h3 class="color-primary-dark font-bold">{{ headingName }}</h3>
               </div>
               <div
                 class="inner-info container-fluid my-1 d-flex flex-column h-40 flex-fill"
@@ -165,7 +165,7 @@
                                 <div class="left-side">
                                   <h4
                                     @click="openEditSportsActivity(item)"
-                                    class="color-primary text-truncate mb-1 font-semi-bold text-18 cursor-pointer"
+                                    class="color-primary-dark text-truncate mb-1 font-semi-bold text-18 cursor-pointer"
                                   >
                                     {{ item.title }}
                                   </h4>
@@ -176,7 +176,7 @@
                                     {{ item.first_name }}
                                     <span>{{ headingName }}</span>
                                     <span
-                                      class="color-primary text-18 font-semi-bold"
+                                      class="color-primary-dark text-18 font-semi-bold"
                                       >Vs</span
                                     >
                                     <span>{{ item.opponent_team }}</span>
@@ -243,7 +243,7 @@
                                 </p>
                                 <p
                                   @click="openEditSportsActivity(item)"
-                                  class="color-primary word-break cursor-pointer mb-0 line-break-anywhere font-semi-bold"
+                                  class="color-primary-dark word-break cursor-pointer mb-0 line-break-anywhere font-semi-bold"
                                 >
                                   {{ item.title }}
                                 </p>
@@ -298,7 +298,7 @@
                   </div>
                   <div v-else class="col-md-6 col-xs-12 h-md-100 d-flex">
                     <div
-                      class="inner-info container-fluid p-2 d-flex flex-column"
+                      class="inner-info container-fluid p-4 d-flex flex-column border rounded-10"
                     >
                       <div class="h-40 flex-fill custom-overflow">
                         <div class="inner-info-head mb-2">
@@ -324,7 +324,7 @@
                                 class="mb-0 col-8 p-0 color-secondary font-regular text-16 d-flex align-items-center"
                               >
                                 <span
-                                  class="d-flex rounded-circle border bullet mr-2"
+                                  class="d-flex rounded-circle border-form-color bullet mr-2"
                                 ></span>
                                 <span
                                   class="input-name color-dark text-truncate"
@@ -373,7 +373,7 @@
                   </div>
                   <div class="col-md-6 col-xs-12 h-100 d-flex">
                     <div
-                      class="inner-info container p-2 d-flex flex-column card card-secondary-sm rounded-22 p-4"
+                      class="inner-info container p-2 d-flex flex-column card card-secondary-sm rounded-10 p-4"
                     >
                       <div
                         class="d-flex align-items-center justify-content-between mb-2 px-2"
@@ -410,7 +410,7 @@
                                 </p>
                                 <p
                                   @click="openEdit(item)"
-                                  class="color-primary word-break cursor-pointer line-break-anywhere mb-0 font-semi-bold"
+                                  class="color-primary-dark word-break cursor-pointer line-break-anywhere mb-0 font-semi-bold"
                                 >
                                   {{ item.title }}
                                 </p>
@@ -477,7 +477,7 @@
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Club Details</span
                   >
                 </nuxt-link>
@@ -490,7 +490,7 @@
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Files/Slides</span
                   >
                 </nuxt-link>
@@ -506,10 +506,10 @@
                       : 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100'
                   "
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Next Meeting</span
                   >
-                  <span class="text-16 color-primary font-regular">{{
+                  <span class="text-16 color-secondary font-regular">{{
                     clubMoreDetails.announcement
                   }}</span>
                 </div>
@@ -532,9 +532,9 @@
     >
       <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content h-auto">
-          <div class="modal-body px-4 pt-4">
+          <div class="modal-body px-3 pt-4">
             <h3
-              class="modal-title color-primary font-bold"
+              class="modal-title color-primary-dark font-bold"
               id="mediumModalLabel"
             >
               Delete
@@ -543,11 +543,11 @@
               Are you sure you want to delete this item?
             </p>
           </div>
-          <div class="modal-footer bg-white text-dark">
+          <div class="modal-footer justify-content-end border-top-0 bg-white text-dark">
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
               aria-label="Close"
             >
               No
@@ -555,7 +555,7 @@
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-primary px-4 py-1 rounded-8 font-semi-bold"
               @click="
                 deleteActivityClickId
                   ? onDeleteActivity()
@@ -583,7 +583,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h3
-              class="color-primary font-semi-bold"
+              class="color-primary-dark font-semi-bold"
               id="announcementModalLongTitle"
             >
               {{ enableEdit ? (isAnnouncementEdit ? "Edit" : "Add") : "" }}
@@ -672,10 +672,10 @@
               </fieldset>
             </form>
           </div>
-          <div v-if="enableEdit" class="modal-footer">
+          <div v-if="enableEdit" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-3 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-3 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
               @click="resetAnnouncement"
             >
@@ -683,7 +683,7 @@
             </button>
             <button
               type="button"
-              class="btn btn-success px-3 py-1 rounded-12 font-semi-bold"
+              class="btn btn-primary px-3 py-1 rounded-8 font-semi-bold"
               :disabled="processing && !$v.announcement.$invalid"
               @click="
                 isAnnouncementEdit
@@ -712,7 +712,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h3
-              class="color-primary font-semi-bold"
+              class="color-primary-dark font-semi-bold"
               id="activityModalLongTitle"
             >
               {{ enableEdit ? (isActivityEdit ? "Edit" : "Add") : "" }}
@@ -995,17 +995,17 @@
               </form>
             </div>
           </div>
-          <div v-if="enableEdit" class="modal-footer">
+          <div v-if="enableEdit" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-3 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-3 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-success px-3 py-1 rounded-12 font-semi-bold"
+              class="btn btn-primary px-3 py-1 rounded-8 font-semi-bold"
               :disabled="processingActivity && !$v.activity.$invalid"
               @click="isActivityEdit ? updateActivity() : addNewActivity()"
             >
@@ -1030,7 +1030,7 @@
         <div class="modal-content">
           <div class="modal-body no-overflow px-4 pt-4">
             <h3
-              class="modal-title color-primary font-semi-bold"
+              class="modal-title color-primary-dark font-semi-bold"
               id="nextMeetingModalLongTitle"
             >
               Configure Meeting Days
@@ -1087,17 +1087,17 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer px-4">
+          <div class="modal-footer justify-content-end border-top-0 px-4">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12"
+              class="btn btn-secondary px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               v-if="enableEdit"
-              class="btn btn-success rounded-12 mt-2 py-1 px-4 font-semi-bold"
+              class="btn btn-primary rounded-8 mt-2 py-1 px-4 font-semi-bold"
               :disabled="!value || dayArrVal.length <= 0"
               @click.prevent="UpdateTime"
             >
@@ -1121,7 +1121,7 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header px-4">
-            <h3 class="modal-title color-primary" id="addBannerModalLongTitle">
+            <h3 class="modal-title color-primary-dark" id="addBannerModalLongTitle">
               Add Banner
             </h3>
           </div>
@@ -1129,7 +1129,7 @@
             <div class="d-flex flex-column overflow-hidden h-100">
               <div
                 size="120"
-                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-sm mb-3"
+                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary mb-3"
               >
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"
@@ -1163,16 +1163,16 @@
                 <v-card-actions class="justify-content-end">
                   <v-btn
                     color="primary"
-                    class="btn btn-secondary font-semi-bold color-white mr-2 py-1 px-3 rounded-12 text-capitalize"
+                    class="btn btn-secondary font-semi-bold mr-2 py-1 px-3 rounded-8 text-capitalize"
                     text
                     data-dismiss="modal"
                     @click="clearCrop"
                     ><span class="font-semi-bold">Cancel</span></v-btn
                   >
                   <v-btn
-                    class="btn btn-success font-semi-bold bg-primary color-dark py-1 px-3 rounded-12 text-capitalize shadow-none"
+                    class="btn btn-primary font-semi-bold bg-primary color-dark py-1 px-3 rounded-8 text-capitalize shadow-none"
                     @click="saveImage(), (dialog = false)"
-                    ><span class="font-semi-bold">Upload</span></v-btn
+                    ><span class="font-semi-bold color-white">Upload</span></v-btn
                   >
                 </v-card-actions>
               </v-card>
@@ -1235,27 +1235,27 @@
               </div>
             </div>
           </div>
-          <div v-if="!showClubInfo" class="modal-footer">
+          <div v-if="!showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               No
             </button>
             <button
               type="button"
-              class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-primary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
               @click="confirmAction()"
             >
               Yes
             </button>
           </div>
-          <div v-if="showClubInfo" class="modal-footer">
+          <div v-if="showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Close

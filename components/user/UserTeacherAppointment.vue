@@ -11,11 +11,11 @@
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
-          class="teacher-section jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+          class="teacher-section bg-white border-0 rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
         >
-          <h2 class="color-primary font-semi-bold m-0 px-4 pt-4">
-            Teacher Appointment
-          </h2>
+          <h3 class="color-primary-dark heading3 font-semi-bold m-0 px-4 pt-4">
+            Your Meetings
+          </h3>
 
           <div
             class="inner-teacher px-4 pt-4 pb-2 mb-2 d-flex flex-column h-40 flex-fill custom-overflow"
@@ -28,7 +28,7 @@
                     class="col-md-6 custom-teacher-container d-flex flex-column"
                   >
                     <div
-                      class="inner-custom-teacher text-light p-3 pt-4 card card-primary-sm rounded-22 flex-fill calendar-sm"
+                      class="inner-custom-teacher text-light p-3 pt-4 card card-primary rounded-22 flex-fill calendar-sm"
                     >
                       <FullCalendar :options="calendarOptions" />
                     </div>
@@ -40,14 +40,14 @@
                     class="col-md-6 custom-teacher-container d-flex flex-column"
                   >
                     <div
-                      class="inner-custom-teacher p-3 card card-primary-sm rounded-22 flex-fill calendar-sm"
+                      class="inner-custom-teacher p-3 card card-primary rounded-22 flex-fill calendar-sm"
                     >
                       <h4 class="font-semi-bold color-dark text-center">
                         Meetings
                       </h4>
                       <div class="inner-agenda custom-overflow pr-2 mr--2">
                         <div
-                          class="row container my-2 mx-0 p-0"
+                          class="row container my-2 mx-0 py-0"
                           v-for="(list, index) in listAgenda"
                           :key="index"
                           @click="setMeetingView(list)"
@@ -135,7 +135,7 @@
                 class="teacher-row d-flex flex-column flex-fill h-40 mt-4 p-0"
               >
                 <div
-                  class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary-sm rounded-22"
+                  class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary rounded-22"
                 >
                   <div class="appointment-req d-flex flex-column h-100 pb-2">
                     <h4 class="text-center color-dark font-semi-bold pt-4 mb-3">
@@ -247,7 +247,7 @@
         >
           <div class="modal-content h-auto">
             <div class="modal-header text-dark pb-1">
-              <h2 class="modal-title" id="mediumModalLabel">Meeting Request</h2>
+              <h3 class="modal-title heading3" id="mediumModalLabel">Meeting Request</h3>
               <!-- <button
                 type="button"
                 class="close"
@@ -271,7 +271,7 @@
                   meetingDetail.default_slots.start_time &&
                   meetingDetail.default_slots.end_time
                 "
-                class="mb-1 font-semi-bold text-18 color-primary"
+                class="mb-1 font-semi-bold text-18 color-primary-dark"
               >
                 {{ meetingDetail.default_slots.start_time }} -
                 {{ meetingDetail.default_slots.end_time }}
@@ -395,14 +395,14 @@
                 </div>
               </div>
             </div>
-            <div class="modal-footer bg-white text-dark">
+            <div class="modal-footer justify-content-end border-top-0 bg-white text-dark">
               <button
                 v-if="
                   meetingDetail &&
                   meetingDetail.studentId &&
                   meetingDetail.reqId
                 "
-                class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
+                class="d-flex btn btn-secondary rounded-8 px-4 py-1 mx-2 font-semi-bold"
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -420,7 +420,7 @@
                   meetingDetail.reqId &&
                   meetingDetail.selectableDate
                 "
-                class="d-flex btn btn-success rounded-12 px-4 py-1 font-semi-bold"
+                class="d-flex btn btn-primary rounded-8 px-4 py-1 font-semi-bold"
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -435,7 +435,7 @@
               <button
                 v-else
                 data-dismiss="modal"
-                class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
+                class="d-flex btn btn-secondary rounded-8 px-4 py-1 mx-2 font-semi-bold"
               >
                 <span class="text-16">Close</span>
               </button>
@@ -478,17 +478,17 @@
                 scheduled?
               </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-12 font-semi-bold"
+                class="btn btn-secondary py-1 px-4 rounded-8 font-semi-bold"
                 data-dismiss="modal"
               >
                 Close
               </button>
               <button
                 type="button"
-                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                 data-dismiss="modal"
                 @click="confirmAcceptReject()"
               >
