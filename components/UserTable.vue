@@ -37,7 +37,7 @@
                   schoolDetails.states.state_name
                 }}</span>
               </div>
-              <!-- <div>LMS Id : <span class="text-muted m-b-15">32</span> <button class="btn btn-dark bg-secondary">edit</button></div> -->
+              <!-- <div>LMS Id : <span class="text-muted m-b-15">32</span> <button class="btn btn-primary bg-secondary">edit</button></div> -->
 
               <!-- <div class="form-row lms-form">
                 <label class="form-label mt-1">LMS ID:</label>
@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <div class="bg-light">
+        <div class="bg-primary-light">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item active">
               <a
@@ -128,7 +128,7 @@
               <!-- table -->
               <div class="bg-white mt-2 p-1 rounded">
                 <table class="user-table table">
-                  <tr class="text-secondary bg-light">
+                  <tr class="text-secondary bg-primary-light">
                     <th>Name</th>
                     <th>Email Id</th>
                     <th>Status</th>
@@ -219,7 +219,7 @@
                 >
                   <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content delete-modal h-auto">
-                      <div class="modal-header bg-light text-dark">
+                      <div class="modal-header bg-primary-light text-dark">
                         <h5 class="modal-title" id="mediumModalLabel">
                           Delete
                         </h5>
@@ -235,7 +235,7 @@
                       <div class="modal-body">
                         <p>Are you sure you want to delete this item?</p>
                       </div>
-                      <div class="modal-footer bg-white">
+                      <div class="modal-footer justify-content-end border-top-0 bg-white">
                         <button
                           type="button"
                           data-dismiss="modal"
@@ -301,7 +301,7 @@
               <!-- table -->
               <div class="bg-white mt-2 p-1 rounded">
                 <table class="user-table table">
-                  <tr class="text-secondary bg-light">
+                  <tr class="text-secondary bg-primary-light">
                     <th>Name</th>
                     <th>Email Id</th>
                     <th>Role</th>
@@ -394,7 +394,7 @@
                 >
                   <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content h-auto">
-                      <div class="modal-header bg-light text-dark">
+                      <div class="modal-header bg-primary-light text-dark">
                         <h5 class="modal-title" id="mediumModalLabel">
                           Delete
                         </h5>
@@ -410,7 +410,7 @@
                       <div class="modal-body">
                         <p>Are you sure you want to delete this item?</p>
                       </div>
-                      <div class="modal-footer bg-white">
+                      <div class="modal-footer justify-content-end border-top-0 bg-white">
                         <button
                           type="button"
                           data-dismiss="modal"

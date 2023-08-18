@@ -161,13 +161,14 @@ export default {
   }
 
   .dashboard-head {
-    font-size: 32px;
+    font-size: 26px;
+    line-height: 30px;
     font-weight: 700;
     color: #000000;
   }
 
   .dashboard-text-content {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 700;
     color: #ff6d6d;
     line-height: 30px;

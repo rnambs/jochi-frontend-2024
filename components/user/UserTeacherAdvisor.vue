@@ -11,13 +11,13 @@
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
-          class="teacher-section jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column custom-overflow"
+          class="teacher-section bg-white border-0 px-4 py-3 custom-margin-for-main-section custom-full-height d-flex flex-column custom-overflow"
         >
           <div
             v-if="isSchoolAdmin != '1'"
             class="d-flex align-items-center justify-content-between px-3"
           >
-            <h2 class="color-primary font-semi-bold m-0">Advisor</h2>
+            <h3 class="color-primary-dark heading3 font-semi-bold m-0">Advisor</h3>
             <button class="btn btn-primary px-4" @click="openModal">
               Send Request
             </button>
@@ -38,7 +38,7 @@
                       @click="onStudentClick(student)"
                       v-for="student in studentsListAdvisor"
                       :key="student.id"
-                      :class="{ 'bg-gray': student.id == studentDetail.id }"
+                      :class="{ 'bg-primary-light': student.id == studentDetail.id }"
                       class="d-flex align-items-center flex-row p-3 student-list border-bottom cursor-pointer"
                     >
                       <div class="ld-img-section mr-3">
@@ -107,13 +107,13 @@
                       <div
                         class="d-flex flex-column flex-fill justify-content-center w-50"
                       >
-                        <h2 class="color-primary font-semi-bold mb-1 mb-md-2">
+                        <h3 class="color-primary-dark heading3 font-semi-bold mb-1 mb-md-2">
                           {{
                             studentDetail.first_name +
                             " " +
                             studentDetail.last_name
                           }}
-                        </h2>
+                        </h3>
                         <div>
                           <div class="row m-0">
                             <div class="col-12 col-sm-3 col-md-12 col-lg-2 p-1">
@@ -198,7 +198,7 @@
                             class="col-12 col-lg-6 col-xl-4"
                           >
                             <div
-                              class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
+                              class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
                               :class="{
                                 selected: detail.task_status == 'Completed',
                               }"
@@ -235,7 +235,7 @@
                                   </div>
                                   <div
                                     v-if="detail.subject"
-                                    class="assignment-tag pink text-truncate"
+                                    class="assignment-tag bg-primary text-truncate"
                                   >
                                     {{ detail.subject }}
                                   </div>
@@ -259,7 +259,7 @@
                                   "
                                   class="mb-3"
                                 >
-                                  <h6 class="color-primary font-semi-bold">
+                                  <h6 class="color-primary-dark font-semi-bold">
                                     Sub-tasks
                                   </h6>
                                   <div class="to-do-list">
@@ -292,7 +292,7 @@
                                 </div>
                               </div>
                               <div class="">
-                                <h6 class="mb-1 color-primary font-semi-bold">
+                                <h6 class="mb-1 color-primary-dark font-semi-bold">
                                   Additional Material
                                 </h6>
                                 <div
@@ -364,7 +364,7 @@
                           </div>
                         </div>
                         <div
-                          class="row text-center w-100 h-100 justify-content-center"
+                          class="row text-center w-100 flex-fill justify-content-center"
                         >
                           <div
                             v-if="
@@ -388,7 +388,7 @@
                             class="col-12 col-lg-6 col-xl-4"
                           >
                             <div
-                              class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
+                              class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
                               :class="{
                                 selected: detail.task_status == 'Completed',
                               }"
@@ -425,7 +425,7 @@
                                   </div>
                                   <div
                                     v-if="detail.subject"
-                                    class="assignment-tag pink text-truncate"
+                                    class="assignment-tag bg-primary text-truncate"
                                   >
                                     {{ detail.subject }}
                                   </div>
@@ -449,7 +449,7 @@
                                   "
                                   class="mb-3"
                                 >
-                                  <h6 class="color-primary font-semi-bold">
+                                  <h6 class="color-primary-dark font-semi-bold">
                                     Sub-tasks
                                   </h6>
                                   <div class="to-do-list">
@@ -482,7 +482,7 @@
                                 </div>
                               </div>
                               <div class="">
-                                <h6 class="mb-1 color-primary font-semi-bold">
+                                <h6 class="mb-1 color-primary-dark font-semi-bold">
                                   Additional Material
                                 </h6>
                                 <div
@@ -552,7 +552,7 @@
                               >
                                 <span
                                   v-if="detail.task_status == 'Completed'"
-                                  class="color-primary text-30 check position-absolute"
+                                  class="color-primary-dark text-30 check position-absolute"
                                   ><i class="fas fa-check-circle"></i
                                 ></span>
                               </div>
@@ -577,7 +577,7 @@
                   </div>
                   <!-- analytics -->
                   <div v-if="showStudentAnalytics" class="h-100 p-4 pt-5">
-                    <!-- <h2 class="color-primary font-semi-bold">Analytics</h2> -->
+                    <!-- <h3 class="color-primary-dark heading3 font-semi-bold">Analytics</h3> -->
                     <UserAdvisorStudyAnalytics
                       :studentId="studentDetail.id"
                     ></UserAdvisorStudyAnalytics>
@@ -591,9 +591,9 @@
                   <h6 class="color-secondary">
                     Select a student to show details
                   </h6>
-                  <div class="position-absolute advisor-image col-3">
+                  <!-- <div class="position-absolute advisor-image col-3">
                     <img src="../../static/image/advisor-image.png" alt="" />
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -635,17 +635,17 @@
                 </multiselect>
               </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
-                class="btn btn-secondary font-semi-bold rounded-12 py-1 px-4"
+                class="btn btn-secondary font-semi-bold rounded-8 py-1 px-4"
                 data-dismiss="modal"
               >
                 Cancel
               </button>
               <button
                 type="button"
-                class="btn btn-success color-black rounded-12 font-semi-bold py-1 px-4"
+                class="btn btn-primary color-black rounded-8 font-semi-bold py-1 px-4"
                 @click="inviteStudentAdv"
                 :disabled="submitted"
               >

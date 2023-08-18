@@ -8,7 +8,7 @@
     />
     <div class="main-section">
       <div
-        class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid">
@@ -16,7 +16,7 @@
               <div class="d-flex flex-column">
                 <h2
                   data-intro="View all the community service, sports teams, and clubs available at your school. To learn more about different activities, click learn more."
-                  class="color-primary font-semi-bold mb-1"
+                  class="color-primary-dark font-semi-bold mb-1"
                 >
                   Club Catalog
                 </h2>
@@ -31,7 +31,7 @@
                 <button
                   v-if="user_type == 3"
                   type="button"
-                  class="btn btn-dark py-2 mt-1 h-fit-content px-4"
+                  class="btn btn-primary py-2 mt-1 h-fit-content px-4"
                   @click="openCreateNewModal"
                 >
                   Create your own club
@@ -116,7 +116,7 @@
                         class="mb-2"
                       >
                         <span
-                          class="to-do-li color-white text-14 rounded-6 px-4 py-1 m-1 min-w-100 d-flex justify-content-center bg-theme"
+                          class="to-do-li color-white text-14 rounded-6 px-4 py-1 m-1 min-w-100 d-flex justify-content-center"
                           :style="{
                             'background-color': tagColorMap[todos]
                               ? tagColorMap[todos]
@@ -193,7 +193,7 @@
                   Create your own club
                 </h3>
               </div>
-              <div class="modal-body px-4">
+              <div class="modal-body px-3">
                 <form action="">
                   <table class="w-100 table-modal custom-row-table">
                     <tr>
@@ -285,10 +285,10 @@
                   </table>
                 </form>
               </div>
-              <div class="modal-footer">
+              <div class="modal-footer justify-content-end border-top-0">
                 <button
                   type="button"
-                  class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+                  class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
                   data-dismiss="modal"
                   @click="resetClubData"
                 >
@@ -297,7 +297,7 @@
                 <button
                   type="button"
                   @click="createNewClub"
-                  class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+                  class="btn btn-primary px-4 py-1 rounded-8 font-semi-bold"
                 >
                   Save
                 </button>
@@ -365,13 +365,15 @@ export default {
     description: { required },
   },
   mounted() {
-    window.addEventListener("orientationchange", this.handleOrientationChange);
+    if (process.client) { 
+      window.addEventListener("orientationchange", this.handleOrientationChange);
+    }
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     const page = "ClubCatalog";
     const distinct_id = localStorage.getItem("distinctId");
     this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTime = new Date().getTime();
-
+    
     this.user_type = localStorage.getItem("user_type");
     SelectValue = "";
     this.GetTag();
@@ -518,7 +520,8 @@ export default {
         if (e.tagList && e.tagList.length > 0) {
           e.tagList.forEach((tag) => {
             if (!this.tagColorMap[tag]) {
-              let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+              let color = this.randomColorMap();
+              
               const key = tag;
 
               obj[key] = color;
@@ -527,6 +530,39 @@ export default {
           });
         }
       });
+    },
+
+    randomColorMap(){
+     let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+     color = color.length<7 ? color + "0".repeat(7 - color.length) : color
+     const isWhiteSpectrumColor = this.isColorInWhiteSpectrum(color);
+
+      if(isWhiteSpectrumColor){
+        return this.randomColorMap()
+      }
+      return color;
+      
+    },
+
+    isColorInWhiteSpectrum(hexColor, threshold = 50) {
+      // Convert hexadecimal color to RGB values
+
+      const hex = hexColor.replace(/^#/, '');
+      const bigint = parseInt(hex, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+
+      // Calculate the difference between each RGB component and the maximum value (255 for white)
+      const diffR = 255 - r;
+      const diffG = 255 - g;
+      const diffB = 255 - b;
+
+      // Calculate the overall difference as a sum of squared differences
+      const overallDiff = diffR ** 2 + diffG ** 2 + diffB ** 2;
+
+      // Compare the overall difference with the squared threshold
+      return overallDiff <= threshold ** 2;
     },
 
     async JoinClub(value) {

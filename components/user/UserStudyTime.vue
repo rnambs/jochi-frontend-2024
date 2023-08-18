@@ -15,10 +15,10 @@
     <!-- session  -->
     <div
       v-if="currentTab == 0"
-      class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex"
+      class="bg-white custom-margin-for-main-section custom-full-height d-flex"
     >
       <div
-        class="study-section d-flex flex-column flex-fill px-4 custom-overflow my-3 py-md-2 py-lg-3"
+        class="study-section d-flex flex-column flex-fill px-4 custom-overflow py-md-2 py-lg-3"
       >
         <div class="row h-lg-100">
           <div class="col-lg-7 d-flex flex-column">
@@ -26,20 +26,20 @@
               <div
                 data-intro="The study room is a tool for you to use to tackle your assignments/tasks. Click here to schedule a study session for sometime later."
                 @click="scheduleLaterClick('assignment', $event)"
-                class="position-absolute send-later jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
+                class="position-absolute send-later bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
               >
-                <img src="~/assets/images/send-later.png" />
+                <img src="~/assets/images/v4/send-later.png" />
               </div>
             </div>
             <div
               @click="setSessionType('assignment', false)"
-              class="row card card-void rounded-22 m-0 mb-4 p-4 flex-row cursor-pointer"
+              class="row card card-void m-0 mb-4 p-4 flex-row cursor-pointer"
               data-intro="To start a session right away, click here. You will be prompted to choose what assignment you want to work on, invite your classmates to join you, a chance to set some goals, the option to choose a structured study method and other options to configure a new study session."
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
-                <h2 class="color-primary font-semi-bold mb-1">
+                <h3 class="color-primary-dark heading3 font-semi-bold mb-1">
                   Complete An Assignment
-                </h2>
+                </h3>
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Tackle your upcoming assignments
                 </p>
@@ -54,24 +54,24 @@
                 />
               </div>
             </div>
-            <div class="position-relative">
+            <div class="position-relative mt-3">
               <div
                 data-intro="Want to just set yourself accountable while getting general work here? Click here to schedule a regular study session for later."
                 @click="scheduleLaterClick('study', $event)"
-                class="position-absolute send-later jochi-components-light-bg d-flex align-items-center justify-content-center cursor-pointer"
+                class="position-absolute send-later bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
               >
-                <img src="~/assets/images/send-later.png" />
+                <img src="~/assets/images/v4/send-later.png" />
               </div>
             </div>
             <div
               data-intro="Get started with a general study session right away by clicking here. You will be shown similar options such as setting goals, duration, and other options to configure your session."
               @click="setSessionType('study', false)"
-              class="row card card-void rounded-22 p-4 m-0 flex-row cursor-pointer"
+              class="row card card-void p-4 m-0 flex-row cursor-pointer"
             >
               <div class="col-sm-7 col-md-8 col-xl-7">
-                <h2 class="color-primary font-semi-bold mb-1">
+                <h3 class="color-primary-dark heading3 font-semi-bold mb-1">
                   Start A New Study Session
-                </h2>
+                </h3>
                 <p class="mb-0 color-dark font-semi-bold text-16">
                   Stay focused while you study, and monitor your productivity
                 </p>
@@ -89,15 +89,15 @@
           </div>
           <div class="col-lg-5 h-lg-100">
             <div
-              class="card card-void rounded-22 py-4 h-100 position-realtive h-min-70"
+              class="card card-void py-4 h-100 position-realtive h-min-70"
             >
               <div class="d-flex flex-column h-100">
-                <h2
+                <h3
                   data-intro="View upcoming study sessions that you’ve blocked out for later and sessions that your classmates have invited you to."
-                  class="color-primary font-semi-bold mb-2 px-4"
+                  class="color-primary-dark heading3 font-semi-bold mb-2 px-4"
                 >
                   Upcoming Sessions
-                </h2>
+                </h3>
                 <div class="custom-overflow px-4 pt-2 h-max-lg-600">
                   <div
                     v-for="sessionItem in studySessionList"
@@ -106,7 +106,7 @@
                       showSessionDetail = true;
                       setDetail(sessionItem);
                     "
-                    class="d-flex card card-void p-3 d-flex flex-column mb-3 cursor-pointer"
+                    class="d-flex card border-0 bg-gray-light p-3 d-flex flex-column mb-3 cursor-pointer"
                   >
                     <h6 class="color-dark font-semi-bold mb-1">
                       {{ sessionItem.name }}
@@ -123,7 +123,7 @@
                 >
                   <div class="custom-overflow pr-2 mr--2">
                     <div
-                      class="d-flex card card-secondary p-3 d-flex flex-column mb-3"
+                      class="d-flex card card-secondary p-3 d-flex flex-column mb-3 mx-4"
                     >
                       <h6 class="color-dark font-semi-bold mb-1"></h6>
                       <p
@@ -142,12 +142,12 @@
                 class="position-absolute w-100 h-100 top-0 left-0 p-0"
               >
                 <div
-                  class="d-flex card card-primary-void flex-column h-100 p-3 rounded-22"
+                  class="d-flex card bg-gray-light border-0 flex-column h-100 p-3 rounded-10"
                 >
                   <div
                     class="d-flex justify-content-between mb-2 border-bottom"
                   >
-                    <h3 class="color-primary font-semi-bold">Session</h3>
+                    <h3 class="color-primary-dark font-semi-bold">Session</h3>
                     <p
                       @click="
                         showSessionDetail = false;
@@ -269,7 +269,7 @@
                       <button
                         v-if="sessionDetail.startSession"
                         @click="checkIfCompletedAsst()"
-                        class="btn btn-dark py-2 text-center"
+                        class="btn btn-primary py-2 text-center"
                       >
                         Start Session Now
                       </button>
@@ -289,10 +289,10 @@
 
     <div
       v-if="currentTab == 1"
-      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
+      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
-      <h2 class="color-primary font-bold mb-1">Step One:</h2>
-      <h2 class="color-primary font-bold mb-1">Choose An Assignment</h2>
+      <h3 class="color-primary-dark heading3 font-bold mb-1">Step One:</h3>
+      <h3 class="color-primary-dark heading3 font-bold mb-1">Choose An Assignment</h3>
       <div class="d-flex align-items-center justify-content-between">
         <div class="d-flex">
           <button @click="onBack()" class="btn color-secondary">
@@ -311,13 +311,13 @@
         >
           <button :disabled="disablePrevious" @click="previous" class="btn p-1">
             <span
-              class="bg-theme d-flex align-items-center justify-content-center rounded-circle btn-circle"
+              class="bg-primary d-flex align-items-center justify-content-center rounded-circle btn-circle"
               ><i class="fa-solid fa-chevron-left color-white text-12"></i
             ></span>
           </button>
           <button :disabled="disableNext" @click="next" class="btn p-1">
             <span
-              class="ml-1 bg-theme d-flex align-items-center justify-content-center rounded-circle btn-circle"
+              class="ml-1 bg-primary d-flex align-items-center justify-content-center rounded-circle btn-circle"
               ><i class="fa-solid fa-chevron-right color-white text-12"></i
             ></span>
           </button>
@@ -338,7 +338,7 @@
           >
             <div
               @click="onAssignmentSelect(detail)"
-              class="jochi-sub-components-light-bg drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between cursor-pointer"
+              class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between cursor-pointer"
             >
               <div class="d-flex flex-column">
                 <div
@@ -365,7 +365,7 @@
                         : ""
                     }}
                   </div>
-                  <div class="assignment-tag pink text-truncate">
+                  <div class="assignment-tag bg-primary text-truncate">
                     {{ detail.subject }}
                   </div>
                 </div>
@@ -387,7 +387,7 @@
                   v-if="detail.subTasks && detail.subTasks.length > 0"
                   class="mb-3"
                 >
-                  <h6 class="color-primary">Sub-tasks</h6>
+                  <h6 class="color-primary-dark">Sub-tasks</h6>
                   <div class="to-do-list">
                     <div v-for="subtask in detail.subTasks" :key="subtask.id">
                       <div
@@ -469,12 +469,12 @@
 
     <div
       v-if="currentTab == 2"
-      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
+      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
-      <h2 class="color-primary font-bold mb-1">
+      <h3 class="color-primary-dark heading3 font-bold mb-1">
         Step {{ sessionType == "study" ? "One" : "Two" }}:
-      </h2>
-      <h2 class="color-primary font-bold mb-1">Configure your Session</h2>
+      </h3>
+      <h3 class="color-primary-dark heading3 font-bold mb-1">Configure your Session</h3>
       <div class="d-flex">
         <button @click="onBack()" class="btn color-secondary">
           <span class="mr-2 arrow"
@@ -490,11 +490,11 @@
               class="col-12 col-md-5 col-lg-4"
             >
               <div
-                class="jochi-sub-components-light-bg drag-drop px-4 py-5 position-realtive h-100 d-flex align-items-center justify-content-center flex-column cursor-pointer"
+                class="bg-white border rounded-8 drag-drop px-4 py-5 position-realtive h-100 d-flex align-items-center justify-content-center flex-column cursor-pointer"
               >
-                <h2 class="color-primary text-center font-bold mb-1">
+                <h3 class="color-primary-dark heading3 text-center font-bold mb-1">
                   Regular Studying
-                </h2>
+                </h3>
                 <p class="color-dark font-semi-bold text-center text-18">
                   Set your own timer, goals, and breaks.
                 </p>
@@ -505,21 +505,22 @@
               class="col-12 col-md-5 col-lg-4"
             >
               <div
-                class="jochi-sub-components-light-bg drag-drop px-4 py-5 position-realtive d-flex align-items-center justify-content-center flex-column cursor-pointer"
+                class="bg-white border rounded-8 drag-drop px-4 py-5 position-realtive d-flex align-items-center justify-content-center flex-column cursor-pointer"
               >
-                <h2 class="color-primary font-bold mb-1 text-center">
+                <h3 class="color-primary-dark heading3 font-bold mb-1 text-center">
                   Pomodoro Technique
-                </h2>
+                </h3>
                 <p class="color-dark font-semi-bold text-18 text-center">
                   Definition of this technique will go here...
                 </p>
                 <button
                   @click="$event.stopPropagation()"
-                  class="btn btn-dark py-2 text-center"
+                  class="btn btn-primary py-2 text-center"
                 >
                   <a
                     style="color: #ffffff"
                     href="https://www.jochi.info/post/what-is-the-pomodoro-technique"
+                    class="text-decoration-none"
                   >
                     Click to Learn More</a
                   >
@@ -536,12 +537,12 @@
     <!-- step two configure -->
     <div
       v-if="currentTab == 3"
-      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
+      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
     >
-      <h2 class="color-primary font-bold mb-1">
+      <h3 class="color-primary-dark heading3 font-bold mb-1">
         Step {{ sessionType == "study" ? "Two" : "Three" }}:
-      </h2>
-      <h2 class="color-primary font-bold mb-1">Configure your Session</h2>
+      </h3>
+      <h3 class="color-primary-dark heading3 font-bold mb-1">Configure your Session</h3>
       <div class="d-flex">
         <button @click="onBack()" class="btn color-secondary">
           <span class="mr-2 arrow"
@@ -552,7 +553,7 @@
       <div class="row h-40 flex-grow-1">
         <div class="col-lg-7 h-md-100 d-flex flex-column">
           <div
-            class="card card-void rounded-22 p-4 h-40 flex-fill mb-4 h-min-200"
+            class="card card-void p-4 h-40 flex-fill mb-4 h-min-200"
           >
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">
@@ -608,7 +609,7 @@
                     </p>
                     <span
                       @click="deleteGoal(goal)"
-                      class="color-primary fa-icon show-hover d-none btn p-0"
+                      class="color-primary-dark fa-icon show-hover d-none btn p-0"
                       ><i class="fas fa-trash-alt"></i
                     ></span>
                   </div>
@@ -633,7 +634,7 @@
             </div>
           </div>
 
-          <div class="card card-void rounded-22 h-40 flex-fill p-4 h-min-200">
+          <div class="card card-void h-40 flex-fill p-4 h-min-200">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
               <a
@@ -703,13 +704,13 @@
           </div>
         </div>
         <div class="col-lg-5 d-flex flex-column h-100">
-          <div class="card card-void rounded-22 p-4 m-0 flex-column h-100">
+          <div class="card card-void p-4 m-0 flex-column h-100">
             <div class="d-flex flex-column justify-content-between h-100">
               <div class="d-flex flex-column h-40 flex-fill">
-                <h2 class="color-dark font-semi-bold mb-1">
+                <h3 class="color-dark heading3 font-semi-bold mb-1">
                   {{ sessionMode == "regular" ? "Regular" : "Pomodoro" }}
                   Studying
-                </h2>
+                </h3>
                 <div
                   class="form-section study-room-form py-0 d-flex flex-column h-40 flex-fill custom-overflow"
                 >
@@ -845,7 +846,7 @@
                             "
                             type="button"
                             @click="openScheduleForLater()"
-                            class="btn btn-dark btn-sm"
+                            class="btn btn-primary btn-sm"
                           >
                             Schedule for later
                           </button>
@@ -854,7 +855,7 @@
 
                       <div class="d-flex justify-content-end mt-4">
                         <img
-                          src="../../static/image/dashboard_img.png"
+                          src="../../static/image/v4/dashboard_img.svg"
                           alt=""
                           class="img-fluid card-img"
                         />
@@ -874,16 +875,16 @@
 
     <div
       v-if="currentTab == 4"
-      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex show-scroll"
+      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex show-scroll"
     >
       <div class="d-flex flex-column flex-fill">
         <div class="row">
           <div
             class="col-lg-7 study-col d-flex flex-column justify-content-center flex-fill"
           >
-            <div class="card card-void rounded-22 p-4 flex-fill mb-4">
+            <div class="card card-void p-4 flex-fill mb-4">
               <div class="">
-                <h1 class="color-primary font-bold mb-2">Working on</h1>
+                <h1 class="color-primary-dark font-bold mb-2">Working on</h1>
               </div>
               <p class="color-dark text-24 font-semi-bold mb-1">
                 <span>Subject Name: </span>
@@ -955,7 +956,7 @@
                 >
               </div>
             </div>
-            <div class="card card-void rounded-22 p-4">
+            <div class="card card-void p-4">
               <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
               <div class="hidden-scroll p-3 pl-4 row my-0">
                 <div
@@ -997,11 +998,11 @@
             class="col-lg-5 study-col d-flex justify-content-center align-items-center"
           >
             <div
-              class="card card-void rounded-22 p-4 flex-fill h-100 justify-constent-center"
+              class="card card-void p-4 flex-fill h-100 justify-constent-center"
             >
               <div class="d-flex flex-column flex-fill justify-content-between">
                 <div class="d-flex flex-column mb-4">
-                  <h1 class="color-primary font-bold mb-0">Timer</h1>
+                  <h1 class="color-primary-dark font-bold mb-0">Timer</h1>
                   <p class="color-dark text-24 font-semi-bold mb-1">
                     You got this!
                   </p>
@@ -1037,7 +1038,7 @@
                       </g>
                     </svg>
                     <div class="inner-timer">
-                      <img src="../../static/image/alarm.png" alt="" />
+                      <img src="../../static/image/v4/alarm.png" alt="" />
                     </div>
                     <p class="mb-2">
                       <span
@@ -1092,12 +1093,12 @@
 
     <div
       v-if="currentTab == 5"
-      class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height d-flex align-items-center justify-content-center hidden-scroll"
+      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex align-items-center justify-content-center hidden-scroll"
     >
       <div
-        class="px-5 py-4 d-flex flex-column card card-void rounded-22 col-lg-7"
+        class="px-5 py-4 d-flex flex-column card card-void col-lg-7"
       >
-        <h2 class="color-primary font-semi-bold mb-1">Rate your session</h2>
+        <h3 class="color-primary-dark heading3 font-semi-bold mb-1">Rate your session</h3>
         <div class="d-flex flex-column py-3 px-0">
           <div class="mb-3">
             <h4 class="color-dark font-semi-bold">Focus</h4>
@@ -1105,9 +1106,9 @@
               <star-rating
                 class="mb-2"
                 v-model="focusRating"
-                inactive-color="#FFDCDB"
-                active-color="#F49196"
-                border-color="#ffeded"
+                inactive-color="#DDD6ED"
+                active-color="#5534A5"
+                border-color="#F9F9F9"
                 v-bind:border-width="4"
                 v-bind:star-size="21"
                 v-bind:padding="1"
@@ -1124,9 +1125,9 @@
               <star-rating
                 class="mb-2"
                 v-model="focusEfficiency"
-                inactive-color="#FFDCDB"
-                active-color="#F49196"
-                border-color="#ffeded"
+                inactive-color="#DDD6ED"
+                active-color="#5534A5"
+                border-color="#F9F9F9"
                 v-bind:border-width="4"
                 v-bind:star-size="21"
                 v-bind:padding="1"
@@ -1143,9 +1144,9 @@
               <star-rating
                 class="mb-2"
                 v-model="focusWorkComplete"
-                inactive-color="#FFDCDB"
-                active-color="#F49196"
-                border-color="#ffeded"
+                inactive-color="#DDD6ED"
+                active-color="#5534A5"
+                border-color="#F9F9F9"
                 v-bind:border-width="4"
                 v-bind:star-size="21"
                 v-bind:padding="1"
@@ -1184,7 +1185,7 @@
         <div class="modal-content">
           <div class="modal-body p-4">
             <h3
-              class="modal-title color-primary font-semi-bold"
+              class="modal-title color-primary-dark font-semi-bold"
               id="exampleModalLongTitle"
             >
               End Session
@@ -1194,17 +1195,17 @@
               session will be lost. Are you sure you want to exit?
             </p>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12"
+              class="btn btn-secondary px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-primary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
               @click="onEndSession()"
               :disabled="processing"
@@ -1268,17 +1269,17 @@
               ></vue-timepicker>
             </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12"
+              class="btn btn-secondary px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Close
             </button>
             <button
               type="button"
-              class="btn btn-success rounded-12 px-4 py-1"
+              class="btn btn-primary rounded-8 px-4 py-1"
               @click="StartStudySession(false)"
               :disabled="processingStudySession"
             >
@@ -1317,10 +1318,10 @@
           <div class="modal-body overflow-initial">
             This assignment has already been completed. Do you want to continue?
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-pill"
+              class="btn btn-secondary px-4 py-1 "
               data-dismiss="modal"
             >
               Close
@@ -1328,7 +1329,7 @@
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-primary rounded-pill px-4 py-1"
+              class="btn btn-primary  px-4 py-1"
               @click="goToSession()"
             >
               Confirm
@@ -2489,6 +2490,7 @@ export default {
       }
     },
     async setSessionType(type, later = false) {
+      this.sessionDetail={}
       this.scheduleLater = later;
       this.sessionType = type;
       if (this.sessionType == "study") {

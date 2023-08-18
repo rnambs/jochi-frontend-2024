@@ -8,7 +8,7 @@
     />
     <div class="main-section">
       <!-- tab section for peer meeting -->
-      <div class="jochi-components-light-bg p-4 custom-margin-for-main-section custom-full-height">
+      <div class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height">
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-4">
             <h4 class="tab-head">Peer Meeting</h4>
@@ -102,7 +102,7 @@
               <div class="row Meeting-row" v-show="isShowing">
                 <div class="col-md-4 p-3">
                   <div class="default-section">
-                    <img src="~/assets/images/undraw/step1.png" alt="" />
+                    <img src="~/assets/images/v4/undraw/step1.svg" alt="" />
                     <div class="default-area">
                       <h6 class="default-head">Step 1</h6>
                       <p class="default-text">
@@ -113,7 +113,7 @@
                 </div>
                 <div class="col-md-4 p-3">
                   <div class="default-section">
-                    <img src="~/assets/images/undraw/step2.png" alt="" />
+                    <img src="~/assets/images/v4/undraw/step2.svg" alt="" />
                     <div class="default-area">
                       <h6 class="default-head">Step 2</h6>
                       <p class="default-text">Choose Your Date Range</p>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="col-md-4 p-3">
                   <div class="default-section">
-                    <img src="~/assets/images/undraw/step3.png" alt="" />
+                    <img src="~/assets/images/v4/undraw/step3.svg" alt="" />
                     <div class="default-area">
                       <h6 class="default-head">Step 3</h6>
                       <p class="default-text">Select Your Time and Confirm</p>
@@ -219,17 +219,17 @@
                       </tr>
                     </table>
                   </div>
-                  <div class="modal-footer">
+                  <div class="modal-footer justify-content-end border-top-0">
                     <button
                       type="button"
-                      class="btn btn-secondary py-1 px-4 rounded-pill"
+                      class="btn btn-secondary py-1 px-4 "
                       data-dismiss="modal"
                     >
                       Close
                     </button>
                     <button
                       type="button"
-                      class="btn btn-primary py-1 px-4 rounded-pill"
+                      class="btn btn-primary py-1 px-4 "
                       data-dismiss="modal"
                       @click="ScheduleConfirm()"
                     >
