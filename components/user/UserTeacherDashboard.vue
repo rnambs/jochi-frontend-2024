@@ -1,34 +1,40 @@
 <template>
   <div>
-    <div
+    <!-- <div
       id="pageLoader"
-      class="bg-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
+      class="bg-primary-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
       style="z-index: 9"
       v-if="!isHidden"
     >
       <h1 data-loading-text="Loading..." class="display-4 loading"></h1>
-    </div>
+    </div> -->
     <!-- <lottie
       v-if="loading"
       :options="lottieOptions"
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     /> -->
+    <lottie
+      v-if="loading"
+      :options="lottieOptions"
+      v-on:animCreated="handleAnimation"
+      class="lottie-loader"
+    />
     <div class="main-section">
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div class="teacher-section">
           <div
-            class="inner-teacher jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+            class="inner-teacher bg-white custom-margin-for-main-section custom-full-height d-flex flex-column"
           >
             <div
               class="d-flex justify-content-between align-items-start pt-4 px-4"
             >
               <div class="d-flex flex-column">
                 <h5 class="mb-1 color-dark font-semi-bold">
-                  Hello {{ firstName }}
+                  Hello {{ firstName? (firstName+'!'):'' }}
                 </h5>
-                <h2 class="color-primary font-semi-bold">Have a great day</h2>
+                <h3 class="color-primary-dark heading3 font-semi-bold">Welcome Back to Jochi</h3>
               </div>
               <div class="d-flex align-items-center">
                 <!-- <div class="btn color-dark font-semi-bold mr-3">FAQs</div> -->
@@ -57,14 +63,14 @@
                   class="col-md-6 container custom-teacher-container d-flex flex-column h-100"
                 >
                   <div
-                    class="time-slot container p-4 card card-primary-sm rounded-22 h-100"
+                    class="time-slot container p-4 card card-primary rounded-22 h-100"
                   >
                     <h4 class="color-dark mb-4 px-2 font-semi-bold">
                       Meetings for {{ showDate }}
                     </h4>
                     <div class="h-40 flex-fill hidden-scroll">
                       <div
-                        class="card card-white d-flex flex-row align-items-center mb-2 p-3"
+                        class="card bg-primary-light border-0 d-flex flex-row align-items-center mb-2 p-3"
                         v-for="(list, index) in listAgenda"
                         :key="index"
                       >
@@ -108,10 +114,10 @@
                 >
                   <!-- TABLE  -->
                   <div
-                    class="teacher-row container mb-4 card card-primary-sm rounded-22 p-0 h-40 flex-fill"
+                    class="teacher-row container mb-4 card card-primary rounded-22 p-0 h-40 flex-fill"
                   >
                     <div class="appointment-req d-flex flex-column h-100 p-2">
-                      <h6 class="text-center color-primary pt-3 mb-0">
+                      <h6 class="text-center color-primary-dark pt-3 mb-0">
                         Meeting Requests
                       </h6>
                       <div
@@ -215,7 +221,7 @@
                   </div>
                   <!-- END TABLE  -->
                   <div
-                    class="inner-custom-teacher dashboard-cal calendar-sm container p-3 pt-4 card card-primary-sm rounded-22"
+                    class="inner-custom-teacher dashboard-cal calendar-sm container p-3 pt-4 card card-primary rounded-22"
                   >
                     <FullCalendar :options="calendarOptions" />
                   </div>
@@ -241,7 +247,7 @@
         >
           <div class="modal-content h-auto">
             <div class="modal-header text-dark pb-1">
-              <h2 class="modal-title" id="mediumModalLabel">Meeting Request</h2>
+              <h3 class="modal-title heading3" id="mediumModalLabel">Meeting Request</h3>
               <!-- <button
                 type="button"
                 class="close"
@@ -265,7 +271,7 @@
                   meetingDetail.default_slots.start_time &&
                   meetingDetail.default_slots.end_time
                 "
-                class="mb-1 font-semi-bold text-18 color-primary"
+                class="mb-1 font-semi-bold text-18 color-primary-dark"
               >
                 {{ meetingDetail.default_slots.start_time }} -
                 {{ meetingDetail.default_slots.end_time }}
@@ -389,14 +395,14 @@
                 </div>
               </div>
             </div>
-            <div class="modal-footer bg-white text-dark">
+            <div class="modal-footer justify-content-end border-top-0 bg-white text-dark">
               <button
                 v-if="
                   meetingDetail &&
                   meetingDetail.studentId &&
                   meetingDetail.reqId
                 "
-                class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
+                class="d-flex btn btn-secondary rounded-8 px-4 py-1 mx-2 font-semi-bold"
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -414,7 +420,7 @@
                   meetingDetail.reqId &&
                   meetingDetail.selectableDate
                 "
-                class="d-flex btn btn-success rounded-12 px-4 py-1 font-semi-bold"
+                class="d-flex btn btn-primary rounded-8 px-4 py-1 font-semi-bold"
                 @click="
                   TeacherMeetingConfirm(
                     meetingDetail.studentId,
@@ -429,7 +435,7 @@
               <button
                 v-else
                 data-dismiss="modal"
-                class="d-flex btn btn-secondary rounded-12 px-4 py-1 mx-2 font-semi-bold"
+                class="d-flex btn btn-secondary rounded-8 px-4 py-1 mx-2 font-semi-bold"
               >
                 <span class="text-16">Close</span>
               </button>
@@ -493,11 +499,15 @@ export default {
     };
   },
   mounted() {
+    this.loading=true;
     ismounted = true;
     this.ListTeacherAgenda();
     this.TeacherMeetingList();
-    this.firstName = localStorage.getItem("first_name");
+    this.firstName = localStorage.getItem("firstName");
     this.activate();
+    setTimeout(() => {
+      this.loading=false;
+    }, 3000);
   },
 
   computed: {
@@ -684,6 +694,10 @@ export default {
 
       return month + "-" + day + "-" + year;
     },
+  },
+  beforeRouteLeave: function(route, redirect, next) {
+    console.log("before route leave",route, redirect, next);
+    if (next) next();
   },
 };
 </script>

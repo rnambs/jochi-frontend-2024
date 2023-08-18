@@ -109,7 +109,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body px-4">
+                <div class="modal-body px-3">
                   <p class="data-overflow">
                     Subject:<span>{{ assignment.subject }} </span>
                   </p>
@@ -199,6 +199,7 @@
                       <textarea
                         class="form-control"
                         id="message-text"
+                        rows="3"
                         v-model="task"
                         maxlength="125"
                         placeholder="Enter task description"
@@ -331,7 +332,7 @@
                     </div>
                   </form>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer justify-content-end border-top-0">
                   <button
                     type="button"
                     class="btn btn-color-close"
@@ -380,7 +381,7 @@
                   </button>
                 </div>
 
-                <div class="modal-body px-4">
+                <div class="modal-body px-3">
                   <table class="table-modal w-100">
                     <tr>
                       <td class="tmodal-data mb-2 text-nowrap">Meeting With</td>
@@ -444,7 +445,7 @@
                 w-100
               "
             >
-              <h4 class="mb-5 color-primary">Welcome</h4>
+              <h4 class="mb-5 color-primary-dark">Welcome</h4>
               <div class="quotes-section mb-4 color-dark">
                 {{ quoteMessage }}
               </div>
@@ -1101,7 +1102,7 @@ body {
   margin: 0;
 }
 
-.jochi-sub-components-light-bg {
+.bg-white border rounded-8 {
   background-color: rgba(255, 255, 255, 0.45);
   -webkit-box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 9%);
   box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 9%);
@@ -1109,7 +1110,7 @@ body {
 }
 
 .jochi-headings {
-  color: #ff6d6d;
+  
 }
 
 .sd-sidebar {
@@ -1161,7 +1162,7 @@ body {
 
 .sb-user-name {
   font-size: 26px;
-  color: #ff6d6d;
+  
   font-weight: 700;
 }
 
@@ -1383,7 +1384,7 @@ body {
 }
 
 .fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-thumb {
-  background: #ff6d6d;
+  background: #5534A5;
 }
 
 .fc-timegrid-event-harness > .fc-timegrid-event {
@@ -1403,7 +1404,7 @@ body {
   color: #000000;
 }
 
-.jochi-components-light-bg.pending-assignment-popup {
+.bg-white border rounded-10.pending-assignment-popup {
   top: 12px;
   bottom: 12px;
   left: 12px;
@@ -1413,7 +1414,7 @@ body {
   transition: transform 1s ease;
 }
 
-.jochi-components-light-bg.pending-assignment-popup.active {
+.bg-white border rounded-10.pending-assignment-popup.active {
   transform: scale(1);
   transition: transform 1s ease;
 }

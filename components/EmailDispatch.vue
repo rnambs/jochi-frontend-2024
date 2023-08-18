@@ -2,7 +2,7 @@
   <div class="content col-lg-12">
     <div class="row">
       <div class="col-12">
-        <div class="bg-light">
+        <div class="bg-primary-light">
           <div class="tab-content p-1" id="myTabContent">
             <!-- student tab -->
             <div
@@ -113,7 +113,7 @@
                       <div class="row">
                         <div class="col-md-12 col-lg-6">
                           <table class="user-table table">
-                            <tr class="text-secondary bg-light">
+                            <tr class="text-secondary bg-primary-light">
                               <th>
                                 <input
                                   type="checkbox"
@@ -162,7 +162,7 @@
                             v-if="studentsList && schoolSelected()"
                             class="user-table table"
                           >
-                            <tr class="text-secondary bg-light">
+                            <tr class="text-secondary bg-primary-light">
                               <th>
                                 <input
                                   type="checkbox"

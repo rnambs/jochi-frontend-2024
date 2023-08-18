@@ -9,7 +9,7 @@
     <div class="main-section">
       <!-- tab for club info -->
       <div
-        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
 
@@ -46,15 +46,15 @@
           id="club-detail"
           class="custom-height-for-club-detail-section h-40 flex-fill"
         >
-          <div class="club-section container-fluid h-100">
+          <div class="club-section container-fluid h-100 pr-0">
             <div
-              class="inner-club club-info d-flex flex-column justify-content-top container-fluid pr-3 py-0 pl-0 custom-overflow h-100"
+              class="inner-club club-info d-flex flex-column justify-content-top container-fluid py-0 pl-0 custom-overflow h-100"
             >
               <div class="info-head my-2 mt-4">
                 <div
                   class="d-flex align-items-center justify-content-between mb-3"
                 >
-                  <h3 class="color-primary font-semi-bold mb-1">
+                  <h3 class="color-primary-dark font-semi-bold mb-1">
                     Club Details
                   </h3>
 
@@ -126,7 +126,7 @@
                     </div>
                   </div>
 
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0 py-12">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12 py-12">
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div class="inner-info-head mb-3">
@@ -335,17 +335,17 @@
                     </div>
                   </div>
 
-                  <div v-if="index == 0" class="col-md-6 col-xs-12 px-0">
+                  <div v-if="index == 0" class="col-md-6 col-xs-12">
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div class="inner-info-head mb-3">
                           <h4 class="color-dark mb-2 font-bold">Tags</h4>
                         </div>
                         <div class="row justify-content-end">
-                          <div class="col-10 col-lg-8 info-tag pr-0">
+                          <div class="col-10 col-lg-8 info-tag">
                             <div class="input-group mb-0 justify-content-end">
                               <div
-                                class="px-4 py-1 ml-1 mb-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 bg-theme align-items-center"
+                                class="px-4 py-1 ml-1 mb-1 rounded-6 color-white d-flex justify-content-center min-w-100 text-14 align-items-center"
                                 v-for="(value, index) in list.taglists"
                                 :key="index"
                                 :style="{
@@ -557,7 +557,7 @@
             </div>
             <!-- details end -->
           </div>
-          <div class="modal-footer"></div>
+          <div class="modal-footer justify-content-end border-top-0"></div>
         </div>
       </div>
     </div>
@@ -777,7 +777,7 @@ export default {
           e.taglists.forEach((tag) => {
             // let index = this.tagColorMap.find((index) => index.tag == tag);
             if (!this.tagColorMap[tag.name]) {
-              let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+              let color = this.randomColorMap();
               const key = tag.name;
 
               obj[key] = color;
@@ -786,6 +786,38 @@ export default {
           this.tagColorMap = obj;
         }
       });
+    },
+    randomColorMap(){
+     let color = "#" + (((1 << 24) * Math.random()) | 0).toString(16);
+     color = color.length<7 ? color + "0".repeat(7 - color.length) : color
+     const isWhiteSpectrumColor = this.isColorInWhiteSpectrum(color);
+
+      if(isWhiteSpectrumColor){
+        return this.randomColorMap()
+      }
+      return color;
+      
+    },
+
+    isColorInWhiteSpectrum(hexColor, threshold = 50) {
+      // Convert hexadecimal color to RGB values
+
+      const hex = hexColor.replace(/^#/, '');
+      const bigint = parseInt(hex, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+
+      // Calculate the difference between each RGB component and the maximum value (255 for white)
+      const diffR = 255 - r;
+      const diffG = 255 - g;
+      const diffB = 255 - b;
+
+      // Calculate the overall difference as a sum of squared differences
+      const overallDiff = diffR ** 2 + diffG ** 2 + diffB ** 2;
+
+      // Compare the overall difference with the squared threshold
+      return overallDiff <= threshold ** 2;
     },
     async ShowClubInCatalog() {
       this.loading = true;

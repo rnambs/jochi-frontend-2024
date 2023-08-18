@@ -103,7 +103,7 @@
                 class="btn btn-primary font-semi-bold px-5"
                 @click="redirectToGg4L()"
               >
-                Sign in with School Passport
+                Sign in with Edlink
               </button>
               <!-- <form action="" class="sign-in" @submit.prevent="GetSignUp">
                 <div class="row mb-3">

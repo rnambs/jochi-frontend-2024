@@ -2,7 +2,7 @@
   <div class="content col-lg-12">
     <div class="row">
       <div class="col-12">
-        <div class="bg-light">
+        <div class="bg-primary-light">
           <div class="tab-content p-1" id="myTabContent">
             <!-- student tab -->
             <div
@@ -54,7 +54,7 @@
               <!-- table -->
               <div class="bg-white mt-2 p-1 rounded">
                 <table class="user-table table">
-                  <tr class="text-secondary bg-light">
+                  <tr class="text-secondary bg-primary-light">
                     <th>School Name</th>
                     <th>State</th>
                     <th>Contact Person</th>
@@ -175,7 +175,7 @@
                 >
                   <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content h-auto">
-                      <div class="modal-header bg-light text-dark">
+                      <div class="modal-header bg-primary-light text-dark">
                         <h5 class="modal-title" id="mediumModalLabel">
                           Change status
                         </h5>
@@ -195,7 +195,7 @@
                           school?
                         </p>
                       </div>
-                      <div class="modal-footer bg-white text-dark">
+                      <div class="modal-footer justify-content-end border-top-0 bg-white text-dark">
                         <button
                           type="button"
                           data-dismiss="modal"

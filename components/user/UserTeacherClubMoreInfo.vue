@@ -185,7 +185,7 @@
                     </div>
                     <button
                       v-if="enableEdit"
-                      class="btn btn-primary rounded-pill mt-2 py-1 px-4"
+                      class="btn btn-primary  mt-2 py-1 px-4"
                       :disabled="!value || dayArrVal.length <= 0"
                       @click.prevent="UpdateTime"
                     >

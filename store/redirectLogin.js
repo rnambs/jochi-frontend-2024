@@ -26,7 +26,7 @@ const actions = {
     // login using gg4l
     async loginUsingGg4l({ commit }, payLoad) {
         try {
-            const response = await this.$axios.$post(BASE_URL + 'auth/gg4l_passport_auth', payLoad)
+            const response = await this.$axios.$post(BASE_URL + 'auth/edlink_auth', payLoad)
             if (status = 200) {
 
                 localStorage.setItem("skippedPrompt", "false")
@@ -56,14 +56,14 @@ const actions = {
         catch (err) {
             console.log(err)
             if (err?.response?.data?.error) {
-                commit('setLoginStatus', false);
+                // commit('setLoginStatus', false);
                 window.$nuxt.$cookies.removeAll();
                 commit('setUserId', '');
                 commit('setErrorType', "error");
                 commit('setErrorMessage', err?.response?.data?.error);
             }
             else if (status = 422) {
-                commit('setLoginStatus', false);
+                // commit('setLoginStatus', false);
                 window.$nuxt.$cookies.removeAll();
                 commit('setUserId', '');
                 commit('setErrorType', "error");
@@ -158,7 +158,6 @@ const mutations = {
     },
     setLoginStatus(state, data) {
         state.loginStatus = data;
-
     },
     setUserType(state, data) {
         state.user_type = data;

@@ -398,7 +398,7 @@ body {
 
 .sb-user-name {
   font-size: 26px;
-  color: #ff6d6d;
+  
   font-weight: 700;
 }
 
@@ -419,7 +419,7 @@ body {
 /* .greet-with-name-sec .name-section {
   font-size: 38px;
   font-weight: 700;
-  color: #ff6d6d;
+  
 } */
 
 .faq-section {
@@ -434,21 +434,19 @@ body {
 }
 
 .dashboard-head {
-  font-size: 32px;
+  font-size: 26px;
+  line-height: 30px;
   font-weight: 700;
   color: #000000;
 }
 
 .dashboard-text-content {
-  font-size: 24px;
-  font-weight: 700;
-  color: #ff6d6d;
+  font-size: 18px;
   line-height: 30px;
-  font-style: italic;
 }
 @media (max-width:764.98px) {
   .dashboard-text-content{
-    font-size: 18px;
+    font-size: 16px;
     line-height: 22px;
   }
 }
@@ -456,7 +454,7 @@ body {
 .study-status-img-section {
   width: 150px;
   height: 150px;
-  border: 10px solid #ff6d6d;
+  border: 10px solid #5534A5;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -479,7 +477,7 @@ body {
 
 .study-status-studied {
   font-weight: 600;
-  color: #ff6d6d;
+  
 }
 
 .arrow.right {
@@ -497,12 +495,12 @@ body {
 }
 
 /* .fac-day {
-  color: #ff6d6d;
+  
   font-size: 12px;
 } */
 
 /* .fac-date {
-  color: #ff6d6d;
+  
   font-size: 50px;
   line-height: 41px;
 } */
@@ -520,7 +518,7 @@ body {
 /* .fa-time-section {
   font-size: 12px;
   padding: 2px 15px;
-  background-color: #ff6d6d;
+  background-
   width: fit-content;
   border-radius: 12px;
   color: #ffffff;
@@ -536,7 +534,7 @@ body {
   line-height: 1.75rem;
 }
 .dmc-head .greet-with-name-sec p.text-40{
-  color: #FF6D6D;
+  
   font-weight: 700;
   font-size: 2.5rem;
   line-height: 2.75rem;
@@ -577,7 +575,7 @@ body {
 }
 .calendar-dashboard .fc-toolbar-chunk .fc-next-button.fc-button, .fc-toolbar-chunk .fc-prev-button.fc-button {
 	 background: none;
-	 border: 1px solid #f0deeb;
+	 border: 1px solid #F1EEF6;
 	 display: flex;
 	 justify-content: center;
 	 align-items: center;
@@ -606,7 +604,7 @@ body {
 	 border-bottom: none;
 	 border-right: none;
 	 border-left: none;
-	 background-color: #f0deeb;
+	 background-color: #F1EEF6;
 	 padding: 5px;
 }
 .calendar-dashboard .fc-theme-standard th .fc-col-header-cell-cushion {
@@ -622,19 +620,19 @@ body {
   color: #000000;
   font-weight: 600;
 }
-.assignment-list .jochi-sub-components-light-bg{
+.assignment-list .bg-white border rounded-8{
     background-color: rgba(255, 255, 255, 0.45);
     box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 9%);
     border-radius: 22px;
 }
-.assignment-list .jochi-sub-components-light-bg p.text-16{
+.assignment-list .bg-white border rounded-8 p.text-16{
   color: #431F1C !important;
   font-weight: 600;
   word-break: break-all;
   font-size: 1rem;
   line-height: 1.5rem;
 }
-.assignment-list .jochi-sub-components-light-bg p.text-14{
+.assignment-list .bg-white border rounded-8 p.text-14{
   font-size: 0.875rem;
   line-height: 1rem;
   color: #878787;

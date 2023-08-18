@@ -94,7 +94,7 @@
                         <span
                           v-if="leader.user_info.user_type_id == '3'"
                           class="
-                            bg-light
+                            bg-primary-light
                             rounded-pill
                             px-3
                             py-1
@@ -160,7 +160,7 @@
                         <span
                           v-if="leader.user_info.user_type_id == '2'"
                           class="
-                            bg-light
+                            bg-primary-light
                             rounded-pill
                             px-3
                             py-1
@@ -228,7 +228,7 @@
                         py-1
                         rounded-pill
                         border-0
-                        bg-light
+                        bg-primary-light
                       "
                       ><span><i class="fas fa-long-arrow-alt-left"></i></span>
                       <span class="font-weight-bold">Back</span></nuxt-link

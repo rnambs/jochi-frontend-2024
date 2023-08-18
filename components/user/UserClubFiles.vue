@@ -21,7 +21,7 @@
     <div class="main-section">
       <!-- tab for club files -->
       <div
-        class="jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
         <!-- end tab for club files -->
         <!-- Club files -->
@@ -63,7 +63,7 @@
         <div class="position-relative">
           <div
             v-bind:class="{
-              'dropdown-club jochi-components-light-bg': true,
+              'dropdown-club bg-white border rounded-10': true,
               'dropdown-club--visible': dropdownVisible,
             }"
           >
@@ -131,7 +131,7 @@
                   class="inner-club club-files container-fluid p-3 d-flex flex-column"
                 >
                   <div class="info-head container-fluid mb-2">
-                    <h3 class="color-primary font-semi-bold mb-1">
+                    <h3 class="color-primary-dark font-semi-bold mb-1">
                       {{ headingName }}
                     </h3>
                   </div>
@@ -263,7 +263,7 @@
                                 class="d-flex flex-column w-50 align-items-end"
                               >
                                 <span
-                                  class="close d-flex align-items-center justify-content-center rounded-circle bg-white color-primary mb-1 font-regular position-absolute z-index-9 mr-2 mt-2"
+                                  class="close d-flex align-items-center justify-content-center rounded-circle bg-white color-primary-dark mb-1 font-regular position-absolute z-index-9 mr-2 mt-2"
                                   @click="spanClose()"
                                   >&times;</span
                                 >
@@ -315,17 +315,17 @@
                         </span>
                       </p>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer justify-content-end border-top-0">
                       <button
                         type="button"
-                        class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+                        class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
                         data-dismiss="modal"
                       >
                         No
                       </button>
                       <button
                         type="button"
-                        class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+                        class="btn btn-primary px-4 py-1 rounded-8 font-semi-bold"
                         data-dismiss="modal"
                         @click="FileRemove"
                       >
@@ -458,7 +458,7 @@
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Home Page</span
                   >
                 </nuxt-link>
@@ -475,7 +475,7 @@
                   }"
                   class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Club Details</span
                   >
                 </nuxt-link>
@@ -491,10 +491,10 @@
                       : 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100'
                   "
                 >
-                  <span class="text-24 color-primary font-semi-bold"
+                  <span class="text-24 color-primary-dark font-semi-bold"
                     >Next Meeting</span
                   >
-                  <span class="text-16 color-primary font-regular">{{
+                  <span class="text-16 color-secondary font-regular">{{
                     clubMoreDetails.announcement
                   }}</span>
                 </div>
@@ -517,7 +517,7 @@
         <div class="modal-content">
           <div class="modal-body no-overflow px-4 pt-4">
             <h3
-              class="modal-title color-primary font-semi-bold"
+              class="modal-title color-primary-dark font-semi-bold"
               id="nextMeetingModalLongTitle"
             >
               Configure Meeting Days
@@ -574,17 +574,17 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer">
+          <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12"
+              class="btn btn-secondary px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Cancel
             </button>
             <button
               v-if="enableEdit"
-              class="btn btn-success rounded-12 mt-2 py-1 px-4 font-semi-bold"
+              class="btn btn-primary rounded-8 mt-2 py-1 px-4 font-semi-bold"
               :disabled="!valueMeeting || dayArrVal.length <= 0"
               @click.prevent="UpdateTime"
             >
@@ -608,7 +608,7 @@
       <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
         <div class="modal-content">
           <div class="modal-header px-4">
-            <h3 class="modal-title color-primary" id="addBannerModalLongTitle">
+            <h3 class="modal-title color-primary-dark" id="addBannerModalLongTitle">
               Add Banner
             </h3>
           </div>
@@ -616,7 +616,7 @@
             <div class="d-flex flex-column overflow-hidden h-100">
               <div
                 size="120"
-                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary-sm mb-3"
+                class="user d-flex align-items-center justify-content-center py-4 rounded card card-primary mb-3"
               >
                 <v-icon
                   class="icon primary white--text text-30 color-secondary"
@@ -648,16 +648,16 @@
                 <v-card-actions class="justify-content-end">
                   <v-btn
                     color="primary"
-                    class="btn btn-secondary font-semi-bold color-white mr-2 py-1 px-3 rounded-12 text-capitalize"
+                    class="btn btn-secondary font-semi-bold mr-2 py-1 px-3 rounded-8 text-capitalize"
                     text
                     data-dismiss="modal"
                     @click="clearCrop"
                     ><span class="font-semi-bold">Cancel</span></v-btn
                   >
                   <v-btn
-                    class="btn btn-success font-semi-bold bg-primary color-dark py-1 px-3 rounded-12 text-capitalize shadow-none"
+                    class="btn btn-primary font-semi-bold bg-primary color-dark py-1 px-3 rounded-8 text-capitalize shadow-none"
                     @click="saveImage(), (dialog = false)"
-                    ><span class="font-semi-bold">Upload</span></v-btn
+                    ><span class="font-semi-bold color-white">Upload</span></v-btn
                   >
                 </v-card-actions>
               </v-card>
@@ -722,24 +722,24 @@
               </div>
             </div>
           </div>
-          <div v-if="!showClubInfo" class="modal-footer">
+          <div v-if="!showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               No
             </button>
             <button
               type="button"
-              class="btn btn-success px-4 py-1 rounded-12 font-semi-bold"
+              class="btn btn-primary px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
               @click="confirmAction()"
             >
               Yes
             </button>
           </div>
-          <div v-if="showClubInfo" class="modal-footer">
+          <div v-if="showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
               class="btn btn-secondary px-4 py-1 rounded-12 font-semi-bold"

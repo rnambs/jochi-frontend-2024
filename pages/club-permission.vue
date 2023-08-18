@@ -3,7 +3,7 @@
     class="
       container-fluid
       main-container
-      jochi-main-bg-light
+      jochi-main-bg-primary-light
       vh-100
       d-flex
       align-items-center

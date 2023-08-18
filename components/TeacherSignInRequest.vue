@@ -7,7 +7,7 @@
     />
     <div class="row">
       <div class="col-12">
-        <div class="bg-light">
+        <div class="bg-primary-light">
           <div class="tab-content p-1" id="myTabContent">
             <!-- student tab -->
             <div
@@ -52,7 +52,7 @@
               <!-- table -->
               <div class="bg-white mt-2 p-1 rounded">
                 <table class="user-table table">
-                  <tr class="text-secondary bg-light">
+                  <tr class="text-secondary bg-primary-light">
                     <th>Name</th>
                     <th>Email Id</th>
                     <th>School</th>
@@ -137,7 +137,7 @@
                 >
                   <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content h-auto">
-                      <div class="modal-header bg-light text-dark">
+                      <div class="modal-header bg-primary-light text-dark">
                         <h5 class="modal-title" id="mediumModalLabel">
                           Confirmation
                         </h5>
@@ -155,19 +155,19 @@
                           Are you sure you want to continue?
                         </p>
                       </div>
-                      <div class="modal-footer bg-white">
+                      <div class="modal-footer justify-content-end border-top-0 bg-white">
                         <button
                           type="button"
                           data-dismiss="modal"
                           @click="AdminSelect(1)"
-                          class="btn btn-primary px-3 py-1 rounded-pill"
+                          class="btn btn-primary px-3 py-1 "
                         >
                           Yes
                         </button>
                         <button
                           type="button"
                           data-dismiss="modal"
-                          class="btn btn-secondary px-3 py-1 rounded-pill"
+                          class="btn btn-secondary px-3 py-1 "
                           aria-label="Close"
                         >
                           No

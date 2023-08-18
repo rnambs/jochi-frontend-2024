@@ -3,31 +3,48 @@
     <!-- profile Page -->
     <section id="study-detail" class="">
       <div
-        class="study-section jochi-components-light-bg custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="study-section bg-white rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
       >
-        <div class="inner-study p-4 d-flex flex-column flex-fill h-100">
-          <div class="d-flex justify-content-between align-items-center">
-            <h2 class="color-primary font-bold">Profile</h2>
+        <div class="inner-study d-flex flex-column flex-fill h-100">
+          <div class="d-flex flex-column justify-content-between align-items-center">
+            <div class="d-flex align-items-center justify-content-between w-100">
+              <h3 class="color-primary-dark heading3 font-bold">Profile</h3>
+              <div class="faq-section d-flex align-items-center">
+                <div class="faq-btn color-dark font-semi-bold mr-4">
+                  <a style="color: #000000" href="https://www.jochi.info/faqs">
+                    FAQ's
+                  </a>
+                </div>
+                <div class="privacy-btn color-dark font-semi-bold">
+                  <a
+                    style="color: #000000"
+                    href="https://www.jochi.info/privacy-policy"
+                  >
+                    Privacy Policy
+                  </a>
+                </div>
+              </div>
+            </div>
             <div
               v-if="user_type == 2 && isSchoolAdmin != '1'"
-              class="d-flex justify-content-between align-items-center"
+              class="d-flex justify-content-end align-items-center w-100"
             >
               <div class="text-center">
                 <button
                   v-if="requestSent != '1'"
                   @click="openRequestConfirm()"
-                  class="btn btn-primary py-1 px-4 rounded-12 font-semi-bold"
+                  class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                 >
                   Request To Become A School Admin
                 </button>
 
                 <span
-                  class="bg-primary py-1 px-4 rounded-12 font-semi-bold"
+                  class="bg-primary py-1 px-4 rounded-8 font-semi-bold text-nowrap"
                   style="color: white"
                   v-if="requestSent == '1'"
                 >
-                  <i class="fas fa-hourglass-half mr-2"></i>Pending Approval For
-                  School Admin</span
+                  <i class="fas fa-hourglass-half mr-2"></i>
+                  <span class="text-nowrap">Pending Approval</span></span
                 >
               </div>
             </div>
@@ -134,7 +151,7 @@
                                   class="pic-edit w-100 d-flex flex-row-reverse position-absolute"
                                 >
                                   <i
-                                    class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-theme text-white"
+                                    class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-primary text-white"
                                   >
                                     <!-- accept=".png,.jpeg,.jpg,.doc,.docx,.pdf" -->
                                     <input
@@ -158,7 +175,7 @@
                                   class="pic-edit w-100 d-flex flex-row-reverse position-absolute"
                                 >
                                   <i
-                                    class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-theme text-white"
+                                    class="fas fa-pen rounded-circle position-relative text-16 d-flex align-items-center justify-content-center bg-primary text-white"
                                   >
                                     <input
                                       id="actual-btn"
@@ -229,7 +246,7 @@
                               @click="enableEdit = true"
                             >
                               <span class="mr-1"
-                                ><i class="fas fa-pencil color-primary"></i
+                                ><i class="fas fa-pencil color-primary-dark"></i
                               ></span>
                               <span>Edit</span>
                             </button>
@@ -243,13 +260,13 @@
                               "
                             >
                               <span class="mr-1"
-                                ><i class="fas fa-times color-primary"></i
+                                ><i class="fas fa-times color-primary-dark"></i
                               ></span>
                               <span>Cancel</span>
                             </button>
                             <button v-if="enableEdit" @click="phoneUpdate()">
                               <span class="mr-1"
-                                ><i class="fas fa-save color-primary"></i
+                                ><i class="fas fa-save color-primary-dark"></i
                               ></span>
                               <span>Update</span>
                             </button>
@@ -299,7 +316,7 @@
                                       type="checkbox"
                                       id="smsNotify"
                                       name="smsNotify"
-                                      class="custom-control-input color-primary"
+                                      class="custom-control-input color-primary-dark"
                                       v-model="smsNotify"
                                     />
                                     <label
@@ -316,7 +333,7 @@
                                       type="checkbox"
                                       id="meetingNotify"
                                       name="meetingNotify"
-                                      class="custom-control-input color-primary"
+                                      class="custom-control-input color-primary-dark"
                                       v-model="meetingNotify"
                                     />
                                     <label
@@ -334,7 +351,7 @@
                                       type="checkbox"
                                       id="clubNotify"
                                       name="clubNotify"
-                                      class="custom-control-input color-primary"
+                                      class="custom-control-input color-primary-dark"
                                       v-model="clubNotify"
                                     />
                                     <label
@@ -351,7 +368,7 @@
                                       type="checkbox"
                                       id="assignmentNotify"
                                       name="assignmentNotify"
-                                      class="custom-control-input color-primary"
+                                      class="custom-control-input color-primary-dark"
                                       v-model="assignmentNotify"
                                     />
                                     <label
@@ -368,7 +385,7 @@
                                       type="checkbox"
                                       id="sessionNotify"
                                       name="sessionNotify"
-                                      class="custom-control-input color-primary"
+                                      class="custom-control-input color-primary-dark"
                                       v-model="sessionNotify"
                                     />
                                     <label
@@ -395,7 +412,7 @@
                     >
                       <div
                         data-intro="Find your advisor details."
-                        class="jochi-components-light-bg p-4 h-100"
+                        class="bg-white border rounded-10 p-4 h-100"
                       >
                         <div class="">
                           <div v-if="user_type == '3'" class="col-md-12">
@@ -488,13 +505,13 @@
                                     class="d-flex align-items-center justify-content-center flex-wrap"
                                   >
                                     <button
-                                      class="btn btn-secondary px-3 py-1 rounded-pill mr-2 mb-2"
+                                      class="btn btn-secondary px-3 py-1  mr-2 mb-2"
                                       @click="respondRequest(2, advisor)"
                                     >
                                       Reject
                                     </button>
                                     <button
-                                      class="btn btn-primary px-3 py-1 mb-2 rounded-pill"
+                                      class="btn btn-primary px-3 py-1 mb-2 "
                                       @click="respondRequest(1, advisor)"
                                     >
                                       Accept
@@ -579,17 +596,17 @@
             <div class="modal-body">
               <div>Are you sure you want to delete the profile image?</div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-4 rounded-12 font-semi-bold"
+                class="btn btn-secondary py-1 px-4 rounded-8 font-semi-bold"
                 data-dismiss="modal"
               >
                 Close
               </button>
               <button
                 type="button"
-                class="btn btn-success py-1 px-4 rounded-12 font-semi-bold"
+                class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                 data-dismiss="modal"
                 @click="confirmDelete()"
               >
@@ -623,17 +640,17 @@
             <div class="modal-body px-3 bold-6">
               Send request to become a school admin?
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-3 rounded-12 font-semi-bold"
+                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
                 data-dismiss="modal"
               >
                 Cancel
               </button>
               <button
                 type="button"
-                class="btn btn-success py-1 px-3 rounded-12 font-semi-bold"
+                class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
                 :disabled="processingUpgrade"
                 @click="upgrade()"
               >

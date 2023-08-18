@@ -93,7 +93,7 @@
 
       <!-- Teacher Sidebar -->
       <div
-        class="sidebar-section col-sm-4 col-md-5 col-lg-6 d-flex justify-content-between jochi-components-light-bg p-3 p-lg-4 position-fixed flex-column"
+        class="sidebar-section col-sm-4 col-md-5 col-lg-6 d-flex justify-content-between bg-white border rounded-10 p-3 p-lg-4 position-fixed flex-column"
         id="clickableId"
       >
         <!-- <div class="logo-section mt-3 p-2">
@@ -206,7 +206,7 @@
               alt=""
             />
             <h4
-              class="color-primary mb-0 mt-2 font-semi-bold text-18 text-center text-lg-left"
+              class="color-primary-dark mb-0 mt-2 font-semi-bold text-18 text-center text-lg-left"
             >
               Tophia
             </h4>
@@ -342,7 +342,7 @@
                   <img src="../../static/image/advisor.png" alt="" />
                 </div>
                 <span class="ml-3 color-secondary text-capitalize font-medium"
-                  >Advisor</span
+                  >Your Students</span
                 >
               </nuxt-link>
             </li>

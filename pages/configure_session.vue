@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="row">
         <div class="col-2">
-          <div class="sd-sidebar jochi-components-light-bg p-4">
+          <div class="sd-sidebar bg-white border rounded-10 p-4">
             <div class="sb-head-section">
               <div
                 class="d-flex align-items-start justify-content-between mb-3"
@@ -103,12 +103,12 @@
             </div>
           </div>
         </div>
-        <div class="col-10 dashboard-main-content jochi-components-light-bg p-5">
+        <div class="col-10 dashboard-main-content bg-white border rounded-10 p-5">
             <h2 class="jochi-headings mb-1">Step One:</h2>
             <h2 class="jochi-headings mb-1">Configure your Session</h2>
             <div class="row h-75 align-items-center justify-content-center">
                 <div class="col-4">
-                    <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+                    <div class="bg-white border rounded-8 drag-drop p-4 position-realtive">
                         <div class="p-4 text-center">
                             <h2 class="jochi-headings mb-4">Regular Studying</h2>
                             <p>Set your own timer, goals, and breaks.</p>
@@ -116,7 +116,7 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="jochi-sub-components-light-bg drag-drop p-4 position-realtive">
+                    <div class="bg-white border rounded-8 drag-drop p-4 position-realtive">
                         <div class="p-4 text-center">
                             <h2 class="jochi-headings mb-4">Pomodorro Technique</h2>
                             <p>Definition of this technique will go here...</p>
@@ -258,7 +258,7 @@ body {
     margin: 12px 0;
 }
 
-.jochi-sub-components-light-bg {
+.bg-white border rounded-8 {
   background-color: rgba(255, 255, 255, 0.45);
   -webkit-box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 9%);
   box-shadow: 0px 0px 32px -4px rgb(0 1 0 / 9%);
@@ -266,7 +266,7 @@ body {
 }
 
 .jochi-headings {
-  color: #ff6d6d;
+  
   font-weight: 700;
 }
 
@@ -319,7 +319,7 @@ body {
 
 .sb-user-name {
   font-size: 26px;
-  color: #ff6d6d;
+  
   font-weight: 700;
 }
 
@@ -542,7 +542,7 @@ body {
 }
 
 .fc-scroller.fc-scroller-liquid-absolute::-webkit-scrollbar-thumb {
-  background: #ff6d6d;
+  background: #5534A5;
 }
 
 .fc-timegrid-event-harness > .fc-timegrid-event {
@@ -562,7 +562,7 @@ body {
   color: #000000;
 }
 
-.jochi-components-light-bg.pending-assignment-popup {
+.bg-white border rounded-10.pending-assignment-popup {
   top: 12px;
   bottom: 12px;
   left: 12px;
@@ -572,7 +572,7 @@ body {
   transition: transform 1s ease;
 }
 
-.jochi-components-light-bg.pending-assignment-popup.active {
+.bg-white border rounded-10.pending-assignment-popup.active {
   transform: scale(1);
   transition: transform 1s ease;
 }
