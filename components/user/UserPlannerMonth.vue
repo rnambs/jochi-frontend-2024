@@ -588,6 +588,7 @@
                               :identifier="reloadCount"
                               @infinite="loadNext"
                             >
+                            <div slot="no-more">That's all!</div>
                             </infinite-loading>
                           </client-only>
                         </div>
