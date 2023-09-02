@@ -4521,11 +4521,16 @@ export default {
       // peerSelected
     },
     mapAssignmentDetail(data) {
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString( data.assignment_description, 'text/html');
+      const textContent = doc.body.textContent;
+
       this.isSharedAssignment = data.isShared;
       this.schoologyAssignment = data.schoologyAssignment;
       this.assignmentId = data.id;
       this.assignmentName = data.task;
-      this.assignmentDescription = data.assignment_description;
+      this.assignmentDescription = textContent;
       this.submissionId = data.submission_id;
       this.grade = data.grade;
       this.gradePossible = data.grade_possible;
