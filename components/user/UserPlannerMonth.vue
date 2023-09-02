@@ -4904,6 +4904,11 @@ export default {
           duration: 5000,
         });
       }
+      this.offset = 0;
+      this.tempAssts = [];
+      this.reloadNext = true;
+      this.reloadCount += 1;
+      this.GetAssignment();
     },
     submitAndCompleteAssignment() {
       $(".modal").modal("hide");
