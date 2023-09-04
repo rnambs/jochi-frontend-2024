@@ -588,6 +588,7 @@
                               :identifier="reloadCount"
                               @infinite="loadNext"
                             >
+                            <div slot="no-more">That's all!</div>
                             </infinite-loading>
                           </client-only>
                         </div>
@@ -4521,11 +4522,16 @@ export default {
       // peerSelected
     },
     mapAssignmentDetail(data) {
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString( data.assignment_description, 'text/html');
+      const textContent = doc.body.textContent;
+
       this.isSharedAssignment = data.isShared;
       this.schoologyAssignment = data.schoologyAssignment;
       this.assignmentId = data.id;
       this.assignmentName = data.task;
-      this.assignmentDescription = data.assignment_description;
+      this.assignmentDescription = textContent;
       this.submissionId = data.submission_id;
       this.grade = data.grade;
       this.gradePossible = data.grade_possible;
@@ -4898,6 +4904,11 @@ export default {
           duration: 5000,
         });
       }
+      this.offset = 0;
+      this.tempAssts = [];
+      this.reloadNext = true;
+      this.reloadCount += 1;
+      this.GetAssignment();
     },
     submitAndCompleteAssignment() {
       $(".modal").modal("hide");
