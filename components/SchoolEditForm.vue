@@ -150,7 +150,7 @@
 
                   <div class="form-group required">
                     <label for="contact-person" class="form-control-label"
-                      >School ID </label
+                      >District ID </label
                     ><input
                       type="text"
                       id="school_lms_id"
