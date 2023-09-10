@@ -151,29 +151,29 @@
                       >District ID </label
                     ><input
                       type="text"
-                      id="district_id"
+                      id="school_lms_id"
                       class="form-control"
-                      v-model="district_id"
+                      v-model="school_lms_id"
                       :class="{
-                        'is-invalid': submitted && $v.district_id.$error,
+                        'is-invalid': submitted && $v.school_lms_id.$error,
                       }"
                     />
                     <div
-                      v-if="submitted && $v.district_id.$error"
+                      v-if="submitted && $v.school_lms_id.$error"
                       class="invalid-feedback"
                     >
-                      <span v-if="!$v.district_id.required"
+                      <span v-if="!$v.school_lms_id.required"
                         >This field is required</span
                       >
                     </div>
                     <!-- :class="{
-                        'is-invalid': submitted && $v.district_id.$error,
+                        'is-invalid': submitted && $v.school_lms_id.$error,
                       }" -->
                     <!-- <div
-                      v-if="submitted && $v.district_id.$error"
+                      v-if="submitted && $v.school_lms_id.$error"
                       class="invalid-feedback"
                     >
-                      <span v-if="!$v.district_id.required"
+                      <span v-if="!$v.school_lms_id.required"
                         >This field is required</span
                       >
                     </div> -->
@@ -345,7 +345,7 @@ export default {
       processing: false,
       // GG4L_client_id: "",
       // GG4L_client_secret: "",
-      district_id: "",
+      school_lms_id: "",
       district_access_token: "",
       // GG4L_sis_id: "",
     };
@@ -360,7 +360,7 @@ export default {
     Description: { required },
     // GG4L_client_id: { required },
     // GG4L_client_secret: { required },
-    district_id: { required },
+    school_lms_id: { required },
     district_access_token: { required },
     // GG4L_sis_id: { required },
   },
@@ -410,7 +410,7 @@ export default {
           time_zone: this.timezonelist,
           // GG4L_client_id: this.GG4L_client_id,
           // GG4L_client_secret: this.GG4L_client_secret,
-          district_id: this.district_id,
+          school_lms_id: this.school_lms_id,
           district_access_token: this.district_access_token,
           // GG4L_sis_id: this.GG4L_sis_id,
         });
