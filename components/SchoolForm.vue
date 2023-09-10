@@ -152,6 +152,7 @@
                     ><input
                       type="text"
                       id="school_lms_id"
+                      name="school_lms_id"
                       class="form-control"
                       v-model="school_lms_id"
                       :class="{
