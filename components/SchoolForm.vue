@@ -293,6 +293,52 @@
                       >
                     </div>
                   </div>
+                  <div class="form-group required">
+                    <label for="access" class="form-control-label"
+                      >Select the Jochi Access</label
+                    >
+                    <div>
+                    <div class="form-check form-check-inline">
+                    <input 
+                    class="form-check-input" 
+                    type="radio" 
+                    name="access" 
+                    value="FullAccess"
+                    v-model="selectedAccess"
+                    id="fullaccess"
+                    :class="{
+                        'is-invalid': submitted && $v.selectedAccess.$error,
+                      }"
+                    >
+                    <label class="form-check-label" for="fullaccess">
+                      Full Access
+                    </label>
+                   </div>
+                   <div class="form-check form-check-inline">
+                    <input class="form-check-input" 
+                    type="radio" 
+                    name="access" 
+                    value="ClubOnly"
+                    v-model="selectedAccess"
+                    id="clubonlyaccess"
+                    :class="{
+                        'is-invalid': submitted && $v.selectedAccess.$error,
+                      }"
+                    >
+                    <label class="form-check-label" for="clubonlyaccess">
+                      Club Only Access
+                    </label>
+                   </div>
+                  </div>
+                   <div
+                      v-if="submitted && $v.selectedAccess.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.selectedAccess.required"
+                        >This field is required</span
+                      >
+                    </div>
+                    </div>
                   <button
                     type="submit"
                     class="btn btn-primary btn-flat m-b-30 m-t-30"
@@ -341,6 +387,7 @@ export default {
       statelist: "",
       Description: "",
       timezonelist: "",
+      selectedAccess: "",
       submitted: false,
       processing: false,
       // GG4L_client_id: "",
@@ -357,6 +404,7 @@ export default {
     phone: { required, minLength: minLength(10), maxLength: maxLength(14) },
     statelist: { required },
     timezonelist: { required },
+    selectedAccess: { required },
     Description: { required },
     // GG4L_client_id: { required },
     // GG4L_client_secret: { required },
@@ -408,6 +456,7 @@ export default {
           name: this.Schoolname,
           contact_person: this.ContactPerson,
           time_zone: this.timezonelist,
+          access_type:this.selectedAccess,
           // GG4L_client_id: this.GG4L_client_id,
           // GG4L_client_secret: this.GG4L_client_secret,
           district_id: this.district_id,

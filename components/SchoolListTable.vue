@@ -60,7 +60,7 @@
                     <th>Contact Person</th>
                     <th>Email Id</th>
                     <th>Phone Number</th>
-                    <th>Description</th>
+                    <th>Access</th>
                     <th>Actions</th>
                   </tr>
                   <tr v-if="schools.length == 0">
@@ -83,7 +83,7 @@
                     <td class="text-nowrap">{{ school.contactPerson }}</td>
                     <td class="text-nowrap">{{ school.emailId }}</td>
                     <td class="text-nowrap">{{ school.phoneNumber }}</td>
-                    <td>{{ school.description }}</td>
+                    <td>{{ school.selectedAccess }}</td>
                     <td>
                       <div class="d-flex w-100 justify-content-between">
                         <div class="custom-control custom-switch">
@@ -248,6 +248,7 @@ export default {
       schoolList: [],
       updateId: 0,
       updateStat: "",
+      selectedAccess : "",
     };
   },
   mounted() {
@@ -316,7 +317,7 @@ export default {
         var contactPerson = element.contact_person;
         var emailId = element.email;
         var phoneNumber = element.phone;
-        var description = element.description;
+        var selectedAccess = element.access_type;
         var schoolId = element.id;
         if (element.states) {
           var state = element.states.state_name;
@@ -326,7 +327,7 @@ export default {
         schoolArray["contactPerson"] = contactPerson;
         schoolArray["emailId"] = emailId;
         schoolArray["phoneNumber"] = phoneNumber;
-        schoolArray["description"] = description;
+        schoolArray["selectedAccess"] = selectedAccess;
         schoolArray["state"] = state;
         schoolArray["schoolId"] = schoolId;
         schoolArray["status"] = element.status;
@@ -334,7 +335,6 @@ export default {
 
         this.schoolList.push(schoolArray);
       });
-
       this.paginateCount = pageNum;
       this.paginateRange = Math.ceil(this.schoolCount / this.selectValue);
       this.totalPage();
