@@ -462,7 +462,6 @@ export default {
       this.district_id = this.schoolDetails.district_id;
       this.district_access_token = this.schoolDetails.district_access_token;
       // this.GG4L_sis_id = this.schoolDetails.GG4L_sis_id;
-      console.log(this.selectedAccess);
     },
     async UpdateSchools() {
       this.submitted = true;
