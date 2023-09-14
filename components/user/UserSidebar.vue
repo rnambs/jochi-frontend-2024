@@ -410,44 +410,28 @@
           id="accordionExample"
         >
           <li class="nav-item px-1 parent-menu my-1 my-md-2">
-            <a
-              @click="$event.target.classList.toggle('active')"
-              class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
-              type="button"
-              data-toggle="collapse"
-              data-target="#collapseThree"
-              aria-expanded="false"
-              aria-controls="collapseThree"
+            <nuxt-link
+              to="/club-detail"
+              class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center"
             >
               <i class="icon icon--club"></i>
               <span
                 class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none"
-                >Teams & Clubs</span
+                >Activity</span
               >
-            </a>
-            <div
-              id="collapseThree"
-              class="collapse collapse-for-link"
-              aria-labelledby="headingThree"
-              data-parent="#accordionExample"
+            </nuxt-link>
+          </li>
+          <li class="nav-item px-1 parent-menu my-1 my-md-2">
+            <nuxt-link
+            to="/club-catalogue"
+              class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center"
             >
-              <ul class="ml-4 ml-md-0 flex-row flex-md-column nav sub-menu">
-                <li class="nav-item px-1 w-auto mb-1 mb-md-2">
-                  <nuxt-link
-                    to="/club-detail"
-                    class="nav-link btn p-1 text-center"
-                    >Activity</nuxt-link
-                  >
-                </li>
-                <li class="nav-item px-1 w-auto mb-1">
-                  <nuxt-link
-                    to="/club-catalogue"
-                    class="nav-link btn p-1 text-center"
-                    >Catalog</nuxt-link
-                  >
-                </li>
-              </ul>
-            </div>
+              <i class="icon icon--club-catalog"></i>
+              <span
+                class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none"
+                >Catalog</span
+              >
+            </nuxt-link>
           </li>
 
           <li class="nav-item px-1 parent-menu mb-1 mb-md-2 mt-auto">
