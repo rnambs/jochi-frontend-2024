@@ -226,7 +226,14 @@
               to="/club-catalogue"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center"
             >
-              <i class="icon icon--club-catalog"></i>
+            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M11 5H21" stroke="#B8BBD5" stroke-width="1.26" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11 9H16" stroke="#B8BBD5" stroke-width="1.26" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="3" y="5" width="4" height="4" rx="1" stroke="#B8BBD5" stroke-width="1.26" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11 15H21" stroke="#B8BBD5" stroke-width="1.26" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11 19H16" stroke="#B8BBD5" stroke-width="1.26" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="3" y="15" width="4" height="4" rx="1" stroke="#B8BBD5" stroke-width="1.26" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></span>
               <span
                 class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none"
                 >Catalog</span
