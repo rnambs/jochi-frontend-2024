@@ -29,7 +29,7 @@ export default {
   },
   mounted() {
     const schoolAccess = localStorage.getItem('schoolAccess');
-    if (schoolAccess !== 'FullAccess') {
+    if (schoolAccess == 'ClubOnly') {
   // Handle unauthorized access as needed (e.g., redirect)
   this.$router.push("/");
 }
