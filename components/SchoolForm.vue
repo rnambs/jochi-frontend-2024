@@ -300,7 +300,7 @@
                     <div>
                     <div class="form-check form-check-inline">
                     <input 
-                    class="form-check-input" 
+                    class="form-check-input cursor-pointer" 
                     type="radio" 
                     name="access" 
                     value="FullAccess"
@@ -315,7 +315,7 @@
                     </label>
                    </div>
                    <div class="form-check form-check-inline">
-                    <input class="form-check-input" 
+                    <input class="form-check-input cursor-pointer" 
                     type="radio" 
                     name="access" 
                     value="ClubOnly"

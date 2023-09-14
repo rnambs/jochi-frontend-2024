@@ -297,49 +297,39 @@
                     </div>
                   </div>
                   <div class="form-group required">
-                    
-                    <label for="access" class="form-control-label"
+                    <div>
+                    <label  for="access" class="form-control-label"
                       >Select the Jochi Access</label
                     >
+                    <span class="fa-solid fa-circle-info cursor-pointer" data-bs-toggle="tooltip"  data-bs-placement="right" title="School access can be updated from club only access to full access, but it cannot be updated from full access to club only access."></span>
+                  </div>
                     <div>
                     <div class="form-check form-check-inline">
                     <input 
-                    class="form-check-input" 
+                    class="form-check-input cursor-pointer" 
                     type="radio" 
                     name="access" 
                     value="FullAccess"
                     v-model="selectedAccess"
                     id="fullaccess"
-                    :class="{ 'is-invalid': submitted && !$v.selectedAccess.$model }"
                     >
                     <label class="form-check-label" for="fullaccess">
                       Full Access
                     </label>
                    </div>
-                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" 
+                   <div class="form-check form-check-inline"  v-show="selectedAccess !== 'FullAccess'">
+                    <input class="form-check-input cursor-pointer" 
                     type="radio" 
                     name="access" 
                     value="ClubOnly"
                     v-model="selectedAccess"
                     id="clubonlyaccess"
-                    :class="{ 'is-invalid': submitted && !$v.selectedAccess.$model }"
-                    :disabled="selectedAccess === 'ClubOnly' || selectedAccess === null"
-                    @click="handleClubOnlyRadioClick"
                     >
                     <label class="form-check-label" for="clubonlyaccess">
                       Club Only Access
                     </label>
                    </div>
                    </div>
-                   <div
-                      v-if="submitted && $v.selectedAccess.$error"
-                      class="invalid-feedback"
-                    >
-                      <span v-if="!$v.selectedAccess.required"
-                        >This field is required</span
-                      >
-                    </div>
                     </div>
                   <button
                     type="submit"
@@ -420,6 +410,9 @@ export default {
 
   },
   computed: {
+    shouldShowClubOnlyDiv() {
+    return this.selectedAccess !== 'FullAccess';
+  },
     ...mapState("schoolEditForm", {
       schoolDetails: (state) => state.schoolDetails,
       timezone: (state) => state.timezone,
@@ -456,7 +449,12 @@ export default {
       this.statelist = this.schoolDetails.state;
       this.Description = this.schoolDetails.description;
       this.timezonelist = this.schoolDetails.time_zone;
-      this.selectedAccess =this.schoolDetails.access_type;
+      // this.selectedAccess =this.schoolDetails.access_type;
+      if (this.schoolDetails.access_type === null) {
+    this.selectedAccess = 'FullAccess';
+  } else {
+    this.selectedAccess = this.schoolDetails.access_type;
+  }
       // this.GG4L_client_id = this.schoolDetails.GG4L_client_id;
       // this.GG4L_client_secret = this.schoolDetails.GG4L_client_secret;
       this.district_id = this.schoolDetails.district_id;
@@ -503,12 +501,6 @@ export default {
         this.processing = false;
       }
     },
-    handleClubOnlyRadioClick() {
-    if (this.selectedAccess === 'ClubOnly' || this.selectedAccess === null) {
-      // Prevent changing the radio button when it should be disabled
-      return false;
-    }
-  }
   },
 };
 </script>

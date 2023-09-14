@@ -1,6 +1,6 @@
 <template>
   <section id="header" class="">
-    <nav class="navbar navbar-expand-md navbar-light bg-white p-0" id="clickableId">
+    <nav class="navbar navbar-expand-md navbar-light bg-white p-0" id="clickableId"  v-if="schoolAccessType != 'ClubOnly' ">
       <nuxt-link to="/teacher-dashboard"
         class="navbar-brand d-flex align-items-center justify-content-center mr-0">
         <span class="bg-primary-dark rounded-14 d-flex  align-items-center justify-content-center p-2">
@@ -180,6 +180,91 @@
 
       </div>
     </nav>
+    <nav class="navbar navbar-expand-md navbar-light bg-white p-0" id="clickableId" v-else>
+      <nuxt-link to="/club-detail"
+        class="navbar-brand d-flex align-items-center justify-content-center mr-0">
+        <span class="bg-primary-dark rounded-14 d-flex  align-items-center justify-content-center p-2">
+          <img src="../../static/image/v4/logo-ms.png" alt="jochi logo" class="img-logo-v4 object-fit-contain">
+        </span>
+      </nuxt-link>
+      <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse border-bottom" id="navbarContent">
+        <ul class="navbar-nav mr-auto flex-column vertical-nav accordion bg-white border-right pb-0 pb-md-5"
+          id="accordionExample">
+          <!-- Home -->
+        
+          <!-- Appoinments -->
+      
+          <!-- Availability -->
+          <!-- Sync Calendar -->
+          <!-- <li class="nav-item px-1 parent-menu my-1 my-md-2">
+            <nuxt-link to="/teacher-syncCalendar"
+              class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
+              <img src="../../static/image/sync-solid.png" alt="Sync Calendar Icon" />
+              <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Sync Calendar</span>
+            </nuxt-link>
+          </li> -->
+          <!-- Teams & Clubs -->
+          <li class="nav-item px-1 parent-menu my-1 my-md-2">
+            <a @click="$event.target.classList.toggle('active')" 
+              class="ml-4 mx-md-auto nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
+              type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+              aria-controls="collapseOne">
+              <i class="icon icon--club"></i>
+              <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Teams & Clubs</span>
+            </a>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <ul class="ml-4 ml-md-0 flex-row flex-md-column nav sub-menu">
+                <li class="nav-item px-1 w-auto mb-1 mb-md-2">
+                  <nuxt-link to="/club-detail" @click="$event.target.classList.toggle('active')"
+                    class="nav-link btn p-1 text-center">Existing</nuxt-link>
+                </li>
+                <li class="nav-item px-1 w-auto mb-1 mb-md-2">
+                  <nuxt-link to="/club-catalogue" @click="$event.target.classList.toggle('active')"
+                    class="nav-link btn p-1 text-center">Catalog</nuxt-link>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <!-- Advisor -->
+          <!-- nav bottom -->
+          <!-- settings -->
+          <!-- <li class="nav-item px-1 parent-menu mb-1 mb-md-2 mt-auto">
+            <nuxt-link to="#"
+              class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
+              <i class="icon icon--settings"></i>
+              <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Settings</span>
+            </nuxt-link>
+          </li> -->
+          <li class="nav-item px-1 parent-menu mb-1 mb-md-2 mt-auto">
+            <a @click="GetLogout()" href="#"
+              class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center">
+              <i class="icon icon--logout"></i>
+              <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Logout</span>
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto header mr-3">
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Cloud</a>
+          </li> -->
+          <li class="nav-item d-flex justify-content-center p-2">
+            <nuxt-link to="/user-profile"
+              class="ml-3 mx-md-auto nav-link d-inline-flex justify-content-start justify-content-md-center">
+              <img v-bind:src="
+                profile && profile != 'null' ? profile : defaultImage
+              " class="rounded-circle img-profile" alt="Profile image" id="profileImage" />
+              <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Profile</span>
+            </nuxt-link>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
     <!--  Logout  confirmation  -->
     <div class="modal fade" id="logoutConfirmation" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
       aria-hidden="true">
@@ -220,6 +305,7 @@
         profile: "",
         defaultImage: defaultImage,
         isSchoolAdmin: "0",
+        schoolAccessType: "",
       };
     },
 
@@ -232,6 +318,7 @@
       }
       this.UserDetails();
       this.getPushNotifications();
+      this.schoolAccessType = localStorage.getItem("schoolAccess");
       this.getNotifications();
       this.getCount();
       if (this.user_type != "3") {

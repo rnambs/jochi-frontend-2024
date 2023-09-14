@@ -83,7 +83,7 @@
                     <td class="text-nowrap">{{ school.contactPerson }}</td>
                     <td class="text-nowrap">{{ school.emailId }}</td>
                     <td class="text-nowrap">{{ school.phoneNumber }}</td>
-                    <td>{{ school.selectedAccess }}</td>
+                    <td class="text-nowrap">{{ formattedSelectedAccess(school.selectedAccess) }}</td>
                     <td>
                       <div class="d-flex w-100 justify-content-between">
                         <div class="custom-control custom-switch">
@@ -256,6 +256,16 @@ export default {
     this.pageCount = 10;
   },
   computed: {
+    formattedSelectedAccess() {
+    return (selectedAccess) => { // Receive selectedAccess as an argument
+      if (selectedAccess) {
+      
+        return selectedAccess.replace(/([a-z])([A-Z])/g, '$1 $2');
+      } else {
+        return 'Full Access'; 
+      }
+    };
+  },
     ...mapState("schoolListTable", {
       schools: (state) => state.schools,
       schoolCount: (state) => state.schoolCount,

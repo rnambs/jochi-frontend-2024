@@ -20,5 +20,12 @@ export default {
       link: [{ rel: "stylesheet", href: "/css/style01.css" }],
     };
   },
+  mounted() {
+    const schoolAccess = localStorage.getItem('schoolAccess');
+    if (schoolAccess !== 'FullAccess') {
+  // Handle unauthorized access as needed (e.g., redirect)
+  this.$router.push("/");
+}
+  },
 };
 </script>
