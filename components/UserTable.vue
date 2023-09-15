@@ -551,10 +551,11 @@ export default {
       this.pageTotalStudent = Math.ceil(this.studentsCount / this.selectValue);
     },
     async FetchSchool() {
+      
       await this.fetchSchool({
         school_id: this.$route.query.id,
       });
-      this.Lms_id = this.schoolDetails.district_id;
+      this.Lms_id = this.schoolDetails.school_lms_id;
     },
     setDeleteId(deleteiD) {
       deleteID = deleteiD;
@@ -620,9 +621,10 @@ export default {
       }
     },
     async FetchLmsId() {
+
       await this.fetchLmsId({
         id: this.schoolDetails.id,
-        district_id: this.Lms_id,
+        school_lms_id: this.Lms_id,
       });
       if (this.successMessage != "") {
         this.$toast.open({
