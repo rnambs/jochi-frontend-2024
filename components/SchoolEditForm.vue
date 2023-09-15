@@ -306,7 +306,7 @@
                     <div>
                     <div class="form-check form-check-inline">
                     <input 
-                    class="form-check-input cursor-pointer" 
+                    :class="{ 'form-check-input': true, 'cursor-pointer': selectedAccess !== 'FullAccess' }"
                     type="radio" 
                     name="access" 
                     value="FullAccess"
@@ -317,7 +317,7 @@
                       Full Access
                     </label>
                    </div>
-                   <div class="form-check form-check-inline"  v-show="selectedAccess !== 'FullAccess'">
+                   <div class="form-check form-check-inline"  v-if="showClubOnlyDiv">
                     <input class="form-check-input cursor-pointer" 
                     type="radio" 
                     name="access" 
@@ -410,9 +410,6 @@ export default {
 
   },
   computed: {
-    shouldShowClubOnlyDiv() {
-    return this.selectedAccess !== 'FullAccess';
-  },
     ...mapState("schoolEditForm", {
       schoolDetails: (state) => state.schoolDetails,
       timezone: (state) => state.timezone,
@@ -423,6 +420,18 @@ export default {
       errorType: (state) => state.errorType,
     }),
   },
+  watch: {
+  selectedAccess(newValue) {
+    // Watch for changes in selectedAccess
+    if (newValue !== "FullAccess") {
+      
+      this.showClubOnlyDiv = true;
+    } else {
+      // Otherwise, hide the Club Only div
+      // this.showClubOnlyDiv = false;
+    }
+  },
+},
   methods: {
     ...mapActions("schoolEditForm", {
       fetchSchool: "fetchSchool",
