@@ -302,7 +302,20 @@
                     <label  for="access" class="form-control-label"
                       >Select the Jochi Access</label
                     >
-                    <span class="fa-solid fa-circle-info cursor-pointer" data-bs-toggle="tooltip"  data-bs-placement="right" title="School access can be updated from club only access to full access, but it cannot be updated from full access to club only access."></span>
+                    <span
+  @click="toggleTooltip"
+  @mouseover="showTooltip = true"
+      @mouseleave="showTooltip = false"
+  class="fa-solid fa-circle-info cursor-pointer tooltip-trigger"
+  :class="{ 'active': showTooltip }"
+></span>
+
+                    <span v-show="showTooltip" class="outlined-span">
+                      School access can be updated from
+                       club only access to full access,
+                        but it cannot be updated from
+                         full access to club only access.
+                    </span>
                   </div>
                     <div>
                     <div class="form-check form-check-inline">
@@ -361,6 +374,7 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
+import { ref } from 'vue';
 import {
   required,
   email,
@@ -372,6 +386,7 @@ export default {
   name: "SchoolEditForm",
   data() {
     return {
+      showTooltip: false,
       Email: "",
       ContactPerson: "",
       Schoolname: "",
@@ -380,6 +395,7 @@ export default {
       Description: "",
       timezonelist: "",
       selectedAccess: "",
+      showClubOnlyDiv: false,
       submitted: false,
       processing: false,
       // GG4L_client_id: "",
@@ -448,6 +464,9 @@ export default {
         ? x[1]
         : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "") + x[4];
     },
+    toggleTooltip() {
+      this.showTooltip = !this.showTooltip;
+    },
     async FetchSchool() {
       await this.fetchSchool({
         school_id: this.$route.query.id,
@@ -514,3 +533,11 @@ export default {
   },
 };
 </script>
+<style>
+  .outlined-span {
+    border: 1px solid black; /* You can adjust the width and color as needed */
+    padding: 2px; /* Optional: Add padding to the text inside the span */
+    white-space: nowrap;
+    font-size: 0.8rem;
+  }
+</style>

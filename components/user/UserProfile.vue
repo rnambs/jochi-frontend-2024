@@ -729,14 +729,18 @@ export default {
   created() {
     this.UserDetails();
     this.user_type = localStorage.getItem("user_type");
-    if (this.user_type == "3") {
-      this.getAllAdvisors();
-      this.getAdvisor();
+    this.schoolAccessType = localStorage.getItem('schoolAccess');
+    if (this.user_type == "3" && this.schoolAccessType != 'ClubOnly') {
+        this.getAllAdvisors();
+        this.getAdvisor();
     } else {
-      this.schoolAdminStatus();
+        if (this.schoolAccessType !== 'ClubOnly') {
+            this.schoolAdminStatus();
+        }
     }
     this.fetchSettings();
-  },
+},
+
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);
     setTimeout(() => {

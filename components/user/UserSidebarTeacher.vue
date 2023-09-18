@@ -181,12 +181,12 @@
       </div>
     </nav>
     <nav class="navbar navbar-expand-md navbar-light bg-white p-0" id="clickableId" v-else>
-      <nuxt-link to="/club-detail"
+      <div
         class="navbar-brand d-flex align-items-center justify-content-center mr-0">
         <span class="bg-primary-dark rounded-14 d-flex  align-items-center justify-content-center p-2">
           <img src="../../static/image/v4/logo-ms.png" alt="jochi logo" class="img-logo-v4 object-fit-contain">
         </span>
-      </nuxt-link>
+      </div>
       <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarContent"
         aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -331,7 +331,7 @@
       this.schoolAccessType = localStorage.getItem("schoolAccess");
       this.getNotifications();
       this.getCount();
-      if (this.user_type != "3") {
+      if (this.user_type != "3" && this.schoolAccessType != 'ClubOnly') {
         this.schoolAdminStatus();
       }
 

@@ -378,8 +378,7 @@
       class="navbar navbar-expand-md navbar-light bg-white p-0"
       id="clickableId"
     >
-      <nuxt-link
-        to="/club-detail"
+      <div
         class="navbar-brand d-flex align-items-center justify-content-center mr-0"
       >
         <span
@@ -391,7 +390,7 @@
             class="img-logo-v4 object-fit-contain"
           />
         </span>
-      </nuxt-link>
+      </div>
       <button
         class="navbar-toggler mr-3"
         type="button"

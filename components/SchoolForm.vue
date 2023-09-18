@@ -295,9 +295,25 @@
                     </div>
                   </div>
                   <div class="form-group required">
+                    <div>
                     <label for="access" class="form-control-label"
                       >Select the Jochi Access</label
                     >
+                    <span
+  @click="toggleTooltip"
+  @mouseover="showTooltip = true"
+      @mouseleave="showTooltip = false"
+  class="fa-solid fa-circle-info cursor-pointer tooltip-trigger"
+  :class="{ 'active': showTooltip }"
+></span>
+
+                    <span v-show="showTooltip" class="outlined-span">
+                      School access can be updated from
+                       club only access to full access,
+                        but it cannot be updated from
+                         full access to club only access.
+                    </span>
+                  </div>
                     <div>
                     <div class="form-check form-check-inline">
                     <input 
@@ -368,6 +384,7 @@
   </div>
 </template>
 <script>
+import { ref } from 'vue';
 import { mapState, mapActions } from "vuex";
 import VueToast from "vue-toast-notification";
 import {
@@ -381,6 +398,7 @@ export default {
   name: "SchoolForm",
   data() {
     return {
+      showTooltip: false,
       Email: "",
       ContactPerson: "",
       Schoolname: "",
@@ -434,6 +452,9 @@ export default {
       fetchStates: "fetchStates",
       fetchTimeZone: "fetchTimeZone",
     }),
+    toggleTooltip() {
+      this.showTooltip = !this.showTooltip;
+    },
     acceptNumber() {
       var x = this.phone
         .replace(/\D/g, "")
@@ -484,3 +505,11 @@ export default {
   },
 };
 </script>
+<style>
+  .outlined-span {
+    border: 2px solid black; /* You can adjust the width and color as needed */
+    padding: 2px; /* Optional: Add padding to the text inside the span */
+    white-space: nowrap;
+    font-size: 0.8rem;
+  }
+</style>
