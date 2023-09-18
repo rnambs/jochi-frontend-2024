@@ -1,0 +1,216 @@
+// BUTTON
+.btn{
+    text-transform: capitalize;
+    border: none;
+    &:hover,&:focus,&:active,&:active:focus{border: none;}
+    font-size: 1rem;
+    line-height: 1.5rem;
+    box-shadow: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 0.625rem 1rem;
+    border-radius: 8px;
+    position: relative;
+    letter-spacing: 0.5px;
+    transition: 0.3s ease all;
+    width: fit-content;
+    &.btn-sign-in {
+        background-color: $theme-secondary-color;
+        color: $white;
+        @include borderRadius(15);
+        font-size: 1.5625rem;
+        line-height: 2.375rem;
+        @include font-weight($font-weight-semibold);
+        padding: 0.75rem 3.12rem;
+        &::after{
+            content: '';
+            position: absolute;
+            background-image: url('../image/v4/login-button-arrow.png');
+            background-position: left;
+            background-repeat: no-repeat;
+            background-size: contain;
+            transform: rotate(-150deg);
+            width: 2.63669rem;
+            height: 4.66906rem;
+            right: -24%;
+            top: -46%;
+        }
+        @media (max-width: $lg-screen) {
+            font-size: 1.25rem;
+            line-height: 2rem;
+            padding: 0.5rem 2.75rem;
+            @include borderRadius(8);
+            &::after{
+                width: 1.85131rem;
+                height: 3.27838rem;
+            }
+        }
+        @media (max-width: $md-screen) {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+            @include borderRadius(8);
+        }
+    }
+    &.btn-lg{
+        font-size: 1.375rem;
+        line-height: 1.5rem;
+        padding: 1.125rem;
+    }
+    &.btn-md{
+        padding: 0.625rem 1rem;
+    }
+    &.btn-sm{
+        padding: 0.5rem 1rem;
+        &.text-13{
+            font-size: 0.813rem;
+        }
+    }
+    &:hover,&:focus,&:active,&:active:focus,&:visited{
+        opacity: 1;
+        box-shadow: none;
+    }
+    &.btn-primary{
+        font-weight: 500;
+        background-color: $theme-color;
+        color: $white;
+        &:hover,&:focus,&:active,&:active:focus{
+            background-color: $theme-light-color !important;
+        }
+    }
+    &.btn-drag-card-open{
+        width: 2.097rem;
+        height: 1.11838rem;
+        border-radius: 0.37281rem;
+        font-size: 0.43806rem;
+        font-weight: 500;
+        background: #3284FF;
+        color: #ffffff;
+    }
+    &.btn-dark{
+        font-weight: 600;
+        background-color: $black;
+        color: $white;
+    }
+    &.btn-void{
+        background-color: transparent;
+        color: $text-gray;
+        border: 1px solid $border-color;
+        &:hover{
+            color: $font-secondary-dark;
+        }
+    }
+    // &.btn-success{
+    //     background-color: $confirm-green !important;
+    //     color: $black;
+    //     &:hover{
+    //         background-color: $icon-bg-green !important;
+    //     }
+    // }
+    &.btn-secondary{
+        background-color: $white;
+        color: $font-label-color;
+        border: 1px solid $border-color;
+        font-weight: 600;
+        &:hover{
+            background-color: $bg-gray-light;
+        }
+    }
+    span.arrow{
+        padding-left: 0.5rem;
+    }
+    span.arrow-text{
+        padding-left: 0rem;
+    }
+    &:hover{
+        transition: ease-in-out all 0.3s;
+        span.arrow{
+            padding-left: 0rem;
+        }
+        span.arrow-text{
+            padding-left: 0.5rem;
+        }
+    }
+    &.btn-rounded{
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+        box-shadow: 0px 2px 15px 0px rgba(194, 132, 132, 0.39);
+        &:hover{
+            transform: rotate(90deg);
+            transition: ease all 0.5s;
+        }
+    }
+    &.btn-close{
+        display: flex;
+        color: $theme-color;
+        font-size: 30px;
+        font-weight: 600;
+    }
+}
+.btn-circle{
+    width: 24px;
+    height: 24px;
+}
+.tab-btns{
+    // transform: rotate(-90deg);
+    // top: 50vh;
+    // right: -114px;
+    top: 0;
+    button.tab-btn{
+        padding: 5px 20px;
+        background-color: $primary-light01;
+        color: #ffffff;
+        border-radius: 0 0 14px 14px;
+        transition: background-color 0.5s ease;
+        &.selected{
+            background-color: $theme-color;
+        }
+    }
+}
+
+.subtask-btn{
+    i{
+        &::after{
+            content: "\f111";
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Font Awesome 5 Pro';
+        }
+    }
+    &.selected{
+        i{
+            &::after{
+                content: "\f192";
+                display: inline-block;
+                font-style: normal;
+                font-variant: normal;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                font-family: 'Font Awesome 5 Pro';
+                color: $theme-color;
+            }
+        }
+    }
+}
+.btn-icon-lg{
+    width: 2.75rem;
+    min-width: 2.75rem;
+    height: 2.75rem;
+    position: relative;
+    @media (max-width: $lg-screen) {
+        width: 2.5rem;
+        min-width: 2.5rem;
+        height: 2.5rem;
+    }
+    @media (max-width: $md-screen) {
+        width: 2.125rem;
+        min-width: 2.125rem;
+        height: 2.125rem;
+    }
+}
