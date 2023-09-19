@@ -31,7 +31,25 @@
       <div id="fountainTextG_3" class="fountainTextG animation">. &nbsp;</div>
       <div id="fountainTextG_4" class="fountainTextG animation">. &nbsp;</div>
     </div>
-    <div class="row main-row flex-row vh-100 m-0 w-100">
+    <div class="row main-row flex-row custom-full-height m-0 w-100">
+      <div
+        class="col-md-6 img-section login-cover d-flex flex-column align-items-center justify-content-between h-md-100 flex-fill"
+      >
+        <div class="logo-img d-flex align-items-center w-100">
+          <img src="../static/image/logo.png" alt="" class="logo-icon" />
+        </div>
+        <img
+          src="../static/image/login-img.png"
+          alt="undraw"
+          class="img-responsive jump"
+        />
+        <p class="mb-0 color-dark text-16 font-regular">
+          <a class="color-dark" href="https://www.jochi.info/faqs"> FAQ's </a>|
+          <a class="color-dark" href="  https://www.jochi.info/privacy-policy">
+            Privacy Policy
+          </a>
+        </p>
+      </div>
       <div
         class="col-md-6 form-section d-flex align-items-center justify-content-center h-md-100"
       >
@@ -39,47 +57,25 @@
 
         <section
           id="sign-up"
-          class="login-box d-flex flex-column h-100 w-100"
+          class="login-box d-flex flex-column h-100 justify-content-between"
         >
-        <div class="d-flex flex-column align-items-center justify-content-center h-100">
-          <div class="logo-img d-flex align-items-center justify-content-center justify-content-md-start w-100">
-            <img src="../static/image/jochi-rid-logo.png" alt="" class="logo-icon" />
-          </div>
           <div
-            class="d-flex flex-column my-0 my-md-auto w-100 justify-content-center p-3 px-3 px-md-5 px-lg-3"
+            class="d-flex flex-column h-100 justify-content-center p-3 px-3 px-md-5 px-lg-3"
           >
             <div
-              class="card border-0 rounded-22 p-1 p-md-4 p-xl-5 d-flex flex-column align-items-center align-items-md-start"
+              class="card bg-primary-light rounded-22 p-4 p-xl-5 d-flex flex-column justify-content-center align-items-center mt-0 mt-lg-5"
             >
-              <!-- <img
+              <img
                 src="../static/image/edlink-jochi.png"
                 alt=""
                 class="mb-2 mb-lg-4 passport-img py-4 py-md-2 py-xl-4"
-              /> -->
-              <div class="d-flex flex-column align-items-center align-items-md-start mb-4 mb-lg-5">
-                <h1 class="heading1 color-text-primary text-center text-md-left">Welcome to Jochi!</h1>
-                <p class="mb-4 text-24 color-text-gray text-center text-md-left font-semi-bold">Sign-in with your school account</p>
-                <button
-                  class="btn btn-sign-in"
-                  @click="redirectToGg4L()"
-                >
-                Single-Sign On
-                </button>
-              </div>
-              <div class="d-flex flex-column">
-                <a href="mailto:contact@jochi.info" class="d-flex align-items-center text-decoration-none mb-2">
-                  <img src="../static/image/magic-trick-dynamic-color.png" alt="magic trick" class="btn-icon-lg me-1" />
-                  <p class="mb-0 text-24 color-text-gray font-semi-bold">Support & Tutorials</p>
-                </a>
-                <a href="  https://www.jochi.info/privacy-policy" class="d-flex align-items-center text-decoration-none mb-2">
-                  <img src="../static/image/sheild-dynamic-color.png" alt="magic trick" class="btn-icon-lg me-1" />
-                  <p class="mb-0 text-24 color-text-gray font-semi-bold">Privacy Policy</p>
-                </a>
-                <a href="" class="d-flex align-items-center text-decoration-none mb-2">
-                  <img src="../static/image/club-icon.png" alt="magic trick" class="btn-icon-lg me-1" />
-                  <p class="mb-0 text-24 color-text-gray font-semi-bold">Clubs by Jochi</p>
-                </a>
-              </div>
+              />
+              <button
+                class="btn btn-primary font-semi-bold px-5 px-md-3 px-lg-5"
+                @click="redirectToGg4L()"
+              >
+                Sign in with your school email
+              </button>
               <!-- <form action="" class="sign-in" @submit.prevent="GetSignUp">
                 <div class="row mb-3">
                   <div class="col-12">
@@ -196,7 +192,7 @@
                 </div>
               </form> -->
             </div>
-            <!-- <div
+            <div
               class="login-icon-area d-flex align-items-center justify-content-between p-4"
             >
               <a class="btn" href="https://www.instagram.com/jochi.info/"
@@ -220,44 +216,24 @@
                 href="https://www.youtube.com/channel/UCu063irMWPCQz4AkWkdwCBA"
                 ><img src="../static/image/social-icon/YouTube Png.png" alt=""
               /></a>
-            </div> -->
+            </div>
           </div>
-        </div>
-          <div class="d-flex d-md-none flex-column color-dark">
-            <a class="text-decoration-none text-15 color-text-gray font-semi-bold text-center mb-1" href="">contact@jochi.info</a>
-            <a class="text-decoration-none text-15 color-text-gray font-semi-bold text-center" href="">www.jochi.info</a>
-          </div>
-          <!-- <div class="d-flex flex-column justify-content-center">
+          <div class="d-flex flex-column justify-content-center">
             <a
               href="https://www.jochi.info"
               class="text-center color-secondary font-regular text-16"
               >www.jochi.info</a
-            > -->
+            >
             <!-- <span class="text-center color-secondary font-regular text-16">
               contact@jochi.info</span
             > -->
-            <!-- <a
+            <a
               href="mailto:contact@jochi.info"
               class="text-center color-secondary font-regular text-16"
               >contact@jochi.info</a
             >
-          </div> -->
-        </section>
-      </div>
-      <div
-        class="col-md-6 img-section login-cover d-none d-md-flex flex-column align-items-center justify-content-between h-md-100 flex-fill"
-      >
-        <div class="d-flex flex-column align-items-center bg-theme-secondary w-100 h-100 rounded-30 p-4">
-          <img
-            src="../static/image/icon-image-group.png"
-            alt="undraw"
-            class="img-responsive jump my-auto"
-          />
-          <div class="d-flex flex-column color-dark">
-            <a class="text-decoration-none text-15 color-white font-semi-bold text-center mb-1" href="">contact@jochi.info</a>
-            <a class="text-decoration-none text-15 color-white font-semi-bold text-center" href="">www.jochi.info</a>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   </div>
@@ -281,7 +257,7 @@ export default {
   name: "student-signup",
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/custom.css" }],
+      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
     };
   },
   components: {
