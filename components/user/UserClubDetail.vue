@@ -14,11 +14,12 @@
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-3">
             <h2
-              data-intro="View and manage all of your existing commitments."
-              class="tab-head color-primary-dark font-semi-bold"
-            >
-              Club Details
-            </h2>
+  class="tab-head color-primary-dark font-semi-bold"
+  data-intro="View and manage all of your existing commitments."
+>
+  <span v-if="schoolAccess === 'ClubOnly'">My Activities</span>
+  <span v-else>Club Details</span>
+</h2>
             <div class="inner-tab-section container-fluid p-0">
               <div
                 class="row m-auto px-2 d-flex justify-content-between align-items-center"
@@ -45,23 +46,21 @@
                   data-intro="Turn on ‘Sync to Planner’ to sync your extracurricular commitments to your calendar on Jochi."
                   class="col-md-4 px-0"
                 >
-                  <div
-                    v-if="user == '3'"
-                    class="custom-switch pb-2 float-right"
-                  >
-                    <input
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="custom-Switches"
-                      v-model="availability"
-                      @change="SyncClub()"
-                    />
-                    <label
-                      class="custom-control-label font-normal color-dark text-14"
-                      for="custom-Switches"
-                      >Sync to Planner
-                    </label>
-                  </div>
+                <div v-if="!(user === '3' || user === '2'  && schoolAccess === 'ClubOnly')" class="custom-switch pb-2 float-right">
+  <input
+    type="checkbox"
+    class="custom-control-input"
+    id="custom-Switches"
+    v-model="availability"
+    @change="SyncClub()"
+  />
+  <label
+    class="custom-control-label font-normal color-dark text-14"
+    for="custom-Switches"
+  >Sync to Planner
+  </label>
+</div>
+
                 </div>
               </div>
             </div>
@@ -205,6 +204,7 @@ export default {
       availability: "",
       tags: [],
       user: "",
+      schoolAccess: "",
       startTime: null,
     };
   },
@@ -217,6 +217,7 @@ export default {
 
     SelectValue = "";
     this.user = localStorage.getItem("user_type");
+    this.schoolAccess = localStorage.getItem("schoolAccess");
 
     this.GetTag();
     this.MyClubList();
