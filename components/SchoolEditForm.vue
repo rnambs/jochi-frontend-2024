@@ -298,10 +298,11 @@
                     </div>
                   </div>
                   <div class="form-group required">
-                    <div>
+                    <div class="d-inline-flex">
                     <label  for="access" class="form-control-label"
                       >Select the Jochi Access</label
                     >
+                    <div class="position-relative ml-1">
                     <span
   @click="toggleTooltip"
   @mouseover="showTooltip = true"
@@ -316,6 +317,7 @@
                         but it cannot be updated from
                          full access to club only access.
                     </span>
+                    </div>
                   </div>
                     <div>
                     <div class="form-check form-check-inline">
@@ -535,9 +537,27 @@ export default {
 </script>
 <style>
   .outlined-span {
-    border: 1px solid black; /* You can adjust the width and color as needed */
-    padding: 2px; /* Optional: Add padding to the text inside the span */
-    white-space: nowrap;
     font-size: 0.8rem;
+    position: absolute;
+    left: -8px;
+    top: calc(16px + 12px);
+    background: white;
+    z-index: 9;
+    width: 300px;
+    white-space: normal;
+    border: 1px solid #ced4da;
+    padding: 4px;
+    border-radius: 7px
+  }
+  .outlined-span::before{
+  top: -7px;
+    left: 8px;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-bottom: 7px solid #ced4da;
+    position: absolute;
+    display: inline-block;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    content: '';
   }
 </style>
