@@ -50,7 +50,7 @@
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span
                                                         class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary mr-1"></i>
+                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
                                                     </span>
                                                 </div>
                                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
@@ -96,7 +96,7 @@
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span
                                                         class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary mr-1"></i>
+                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
                                                     </span>
                                                 </div>
                                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
@@ -152,7 +152,7 @@
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span
                                                         class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary mr-1"></i>
+                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
                                                     </span>
                                                 </div>
                                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
@@ -198,7 +198,7 @@
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span
                                                         class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary mr-1"></i>
+                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
                                                     </span>
                                                 </div>
                                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
@@ -254,7 +254,7 @@
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span
                                                         class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary mr-1"></i>
+                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
                                                     </span>
                                                 </div>
                                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
@@ -300,7 +300,7 @@
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span
                                                         class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary mr-1"></i>
+                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
                                                     </span>
                                                 </div>
                                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
@@ -356,7 +356,7 @@
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span
                                                         class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary mr-1"></i>
+                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
                                                     </span>
                                                 </div>
                                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
@@ -406,7 +406,7 @@
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span
                                                         class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary mr-1"></i>
+                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
                                                     </span>
                                                 </div>
                                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
