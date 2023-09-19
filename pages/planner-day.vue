@@ -15,12 +15,18 @@
 import UserSidebar from "~/components/user/UserSidebar.vue";
 import UserDailyPlanner from "~/components/user/UserDailyPlanner.vue";
 export default {
-  // middleware: "authenticated",
+  // middleware: "auth",
   head() {
     return {
       link: [{ rel: "stylesheet", href: "/css/style01.css" }],
     };
   },
-  mounted() {},
+  mounted() {
+    const schoolAccess = localStorage.getItem('schoolAccess');
+    if (schoolAccess == 'ClubOnly') {
+  // Handle unauthorized access as needed (e.g., redirect)
+  this.$router.push("/");
+}
+  },
 };
 </script>

@@ -20,6 +20,7 @@ import UserSidebarTeacher from "~/components/user/UserSidebarTeacher.vue";
 import UserClubDetail from "~/components/user/UserClubDetail.vue";
 export default {
   // middleware: "authenticated",
+  // middleware: 'auth',
   head() {
     return {
       link: [{ rel: "stylesheet", href: "/css/style01.css" }],

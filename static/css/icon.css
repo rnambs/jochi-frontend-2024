@@ -156,6 +156,9 @@
 .icon--club {
   background-image: url("../image/v4/icon/activities.svg");
 }
+.icon--club-catalog {
+  background-image: url("../image/v4/icon/catalog.svg");
+}
 .icon--study {
   background-image: url("../image/v4/icon/study.svg");
 }
@@ -218,6 +221,12 @@
 }
 .nav-link.nuxt-link-active .icon--advisor, .nav-link:hover .icon--advisor {
   background-image: url("../image/v4/icon/advisor-active.svg");
+}
+.nav-link.nuxt-link-active .icon--club, .nav-link:hover .icon--club {
+  background-image: url("../image/v4/icon/activities-active.svg");
+}
+.nav-link.nuxt-link-active .icon--club-catalog, .nav-link:hover .icon--club-catalog {
+  background-image: url("../image/v4/icon/catalog-active.svg");
 }
 .nav-link.nuxt-link-active .icon--settings, .nav-link:hover .icon--settings {
   background-image: url("../image/v4/icon/cog-active.svg");

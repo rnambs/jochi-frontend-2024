@@ -20,6 +20,7 @@ const state = {
     studentSignUp: false,
     schoolAdminRequested: '',
     schoolAdmin: '',
+    schoolAccess: '',
 }
 const actions = {
 
@@ -46,6 +47,7 @@ const actions = {
                 commit('setStudentSignUp', response.data.studentSignUp);
                 commit('setSchoolAdminRequested', response.data.school_admin_requested);
                 commit('setSchoolAdmin', response.data.school_admin);
+                commit('setSchoolAccess', response.data.school_access_type);
                 if (response.data.user_type_id == 1) {
                     this.$router.push('/dashboard');
                 }
@@ -158,6 +160,7 @@ const mutations = {
     },
     setLoginStatus(state, data) {
         state.loginStatus = data;
+        localStorage.setItem('loginStatus', data);
     },
     setUserType(state, data) {
         state.user_type = data;
@@ -228,6 +231,10 @@ const mutations = {
         localStorage.setItem('schoolAdmin', data)
 
     },
+    setSchoolAccess(state, data){
+state.schoolAccess = data;
+localStorage.setItem('schoolAccess', data)
+    },
 }
 const getters = {
 
@@ -280,6 +287,9 @@ const getters = {
     },
     schoolAdmin: () => {
         return state.schoolAdmin;
+    },
+    schoolAccess: () =>{
+        return state.schoolAccess;
     }
 }
 

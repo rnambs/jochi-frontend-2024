@@ -294,11 +294,16 @@ export default {
     this.redirect = GG4L_REDIRECT_LOGIN_URL;
     if (localStorage.getItem("email")) {
       var userType = localStorage.getItem("user_type");
+      var schoolAccess = localStorage.getItem("schoolAccess");
       if (userType == "1") {
         this.$router.push("/dashboard");
-      } else if (userType == "3") {
+      }else if (userType == "3" && schoolAccess == 'ClubOnly') {
+        this.$router.push("/club-detail");
+      }else if (userType == "3") {
         this.$router.push("/student-dashboard");
-      } else if (userType == "2") {
+      } else if (userType == "2" && schoolAccess == 'ClubOnly') {
+        this.$router.push("/club-detail");
+      }else if (userType == "2") {
         this.$router.push("/teacher-dashboard");
       }
     }
