@@ -425,14 +425,7 @@
             to="/club-catalogue"
               class="ml-4 mx-md-auto nav-link btn d-inline-flex justify-content-start justify-content-md-center"
             >
-            <span><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M11 5H21" stroke="#B8BBD5" stroke-width="1.26" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11 9H16" stroke="#B8BBD5" stroke-width="1.26" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="3" y="5" width="4" height="4" rx="1" stroke="#B8BBD5" stroke-width="1.26" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11 15H21" stroke="#B8BBD5" stroke-width="1.26" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11 19H16" stroke="#B8BBD5" stroke-width="1.26" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="3" y="15" width="4" height="4" rx="1" stroke="#B8BBD5" stroke-width="1.26" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></span>
+            <i class="icon icon--club-catalog"></i>
               <span
                 class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none"
                 >Catalog</span
@@ -458,6 +451,94 @@
           <!-- <li class="nav-item">
             <a class="nav-link" href="#">Cloud</a>
           </li> -->
+          <li
+            class="nav-item d-flex justify-content-start justify-content-lg-center p-2"
+          >
+            <div class="dropdown btn-notification my-auto d-flex flex-column">
+              <a
+                class="dropdown-toggle ml-3 mx-md-auto d-inline-flex align-items-center justify-content-start justify-content-md-center text-decoration-none"
+                href="#"
+                data-toggle="dropdown"
+                @click="getNotifications()"
+              >
+                <span class="position-relative d-flex">
+                  <i class="icon icon--notification"></i>
+                  <!-- <span v-if="notificationCount > 0" class="notify-span">{{
+                    notificationCount
+                  }}</span> -->
+                  <span
+                    v-if="notificationCount > 0"
+                    class="position-absolute top-0 right-0 bg-danger p-1 mr-1 rounded-circle"
+                  ></span>
+                </span>
+                <span
+                  class="ml-3 text-14 color-secondary text-capitalize font-medium d-block d-md-none text-decoration-none"
+                  >Notifications</span
+                >
+              </a>
+              <div class="dropdown-menu notify">
+                <!-- notification -->
+                <div
+                  class="notifications dropdown-item px-2"
+                  v-if="notificationList && notificationList.length > 0"
+                >
+                  <div
+                    class="d-flex justify-content-between align-items-center px-3 my-2"
+                  >
+                    <h5 class="color-primary-dark font-semi-bold mb-0">
+                      Notifications
+                    </h5>
+                    <button
+                      class="color-dark font-semi-bold text-18 btn p-0"
+                      @click="clearNotifications()"
+                    >
+                      Clear all
+                    </button>
+                  </div>
+                  <div class="notification-text px-3 py-1 hidden-scroll">
+                    <!-- :class="
+                        data.isViewed
+                          ? 'unread d-flex flex-column p-3 card card-primary bg-white rounded-22 my-3 cursor-pointer'
+                          : 'read d-flex flex-column p-3 card card-void my-3 cursor-pointer'
+                      " -->
+                    <div
+                      class="d-flex flex-column p-3 card bg-primary-light border-0 my-3 cursor-pointer"
+                      v-for="(data, index) in notificationList"
+                      :key="index"
+                      @click="onNotificationClick(data.id, data.meetingType)"
+                    >
+                      <p
+                        class="color-dark font-semi-bold text-14 text-wrap mb-0"
+                      >
+                        {{ data.message }}
+                      </p>
+                      <p
+                        class="color-secondary text-12 font-regulat mb-0 d-flex justify-content-end align-items-center"
+                      >
+                        <span class="mr-2">{{ data.timestamp }}</span>
+
+                        <span
+                          :class="
+                            data.isViewed
+                              ? 'unread bg-transparent '
+                              : 'read bg-primary d-block notify-span-icon rounded-circle'
+                          "
+                        >
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="notifications dropdown-item px-2 no-notify"
+                  v-if="!notificationList || notificationList.length == 0"
+                >
+                  No notifications to display
+                </div>
+                <!-- notification End -->
+              </div>
+            </div>
+          </li>
           <li class="nav-item d-flex justify-content-center p-2">
             <nuxt-link
               to="/user-profile"
