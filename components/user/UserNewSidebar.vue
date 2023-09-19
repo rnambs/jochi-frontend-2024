@@ -574,7 +574,7 @@
                 @click="getNotifications()"
               >
                 <span class="position-relative d-flex">
-                  <i class="icon icon--notification"></i>
+                  <i class="i-notification-bell j-icon i-lg bg-text-secondary"></i>
                   <!-- <span v-if="notificationCount > 0" class="notify-span">{{
                     notificationCount
                   }}</span> -->

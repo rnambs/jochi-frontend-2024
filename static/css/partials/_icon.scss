@@ -1,5 +1,5 @@
 // icon
-$icon-names: "sun","half-sun","half-moon","list-check","note-book","chat-group","call-ring","location","plus-circle","arrow-left","arrow-right","club-catalog","club-existing","planner","task","calendar","meeting","activities","study","cog","logout","schedule","meeting-availability","meeting-view","session","analytics","search","more-dotes";
+$icon-names: "sun","half-sun","half-moon","list-check","note-book","chat-group","call-ring","location","plus-circle","arrow-left","arrow-right","club-catalog","club-existing","planner","task","calendar","meeting","activities","study","cog","logout","schedule","meeting-availability","meeting-view","session","analytics","search","more-dotes","advisor","availability","appoinments","home","notification-bell","school","filter-calendar","filter-funnel";
 
 @each $icon-name in $icon-names {
     .i-#{$icon-name} {
@@ -68,16 +68,16 @@ $icon-names: "sun","half-sun","half-moon","list-check","note-book","chat-group",
     // &--study{background-image: url('../image/v4/icon/study.svg');}
     // &--settings{background-image: url('../image/v4/icon/cog.svg');}
     // &--logout{background-image: url('../image/v4/icon/logout.svg');}
-    &--notification{background-image: url('../image/v4/icon/notification-bell.svg');}
-    &--school{background-image: url('../image/v4/icon/school.svg');}
-    &--home{background-image: url('../image/v4/icon/home.svg');}
-    &--appoinments{background-image: url('../image/v4/icon/appoinments.svg');}
-    &--availability{background-image: url('../image/v4/icon/availability.svg');}
-    &--advisor{background-image: url('../image/v4/icon/advisor.svg');}
-    &--filter-calendar{background-image: url('../image/v4/icon/filter-calendar.svg');}
-    &--filter-funnel{background-image: url('../image/v4/icon/filter-funnel.svg');}
-    &--plus-circle{background-image: url('../image/v4/icon/plus-circle.svg');}
-    &--plus-circle-active{background-image: url('../image/v4/icon/plus-circle-active.svg');}
+    // &--notification{background-image: url('../image/v4/icon/notification-bell.svg');}
+    // &--school{background-image: url('../image/v4/icon/school.svg');}
+    // &--home{background-image: url('../image/v4/icon/home.svg');}
+    // &--appoinments{background-image: url('../image/v4/icon/appoinments.svg');}
+    // &--availability{background-image: url('../image/v4/icon/availability.svg');}
+    // &--advisor{background-image: url('../image/v4/icon/advisor.svg');}
+    // &--filter-calendar{background-image: url('../image/v4/icon/filter-calendar.svg');}
+    // &--filter-funnel{background-image: url('../image/v4/icon/filter-funnel.svg');}
+    // &--plus-circle{background-image: url('../image/v4/icon/plus-circle.svg');}
+    // &--plus-circle-active{background-image: url('../image/v4/icon/plus-circle-active.svg');}
 
     // Icon size
     &.icon-xs {

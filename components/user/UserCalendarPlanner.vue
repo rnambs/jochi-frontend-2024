@@ -19,7 +19,7 @@
                                             <div class="dropdown-select form-control form-sm form-transparent"
                                                 type="button" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
-                                                <i class="icon icon--filter-funnel icon-sm mr-1"></i>
+                                                <i class="i-filter-funnel j-icon i-sm bg-gray mr-1"></i>
                                                 <span id="dLabel" class="mr-3">Filter</span>
                                                 <span class="caret"><i
                                                         class="fas fa-chevron-down font-medium"></i></span>
