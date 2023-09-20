@@ -214,14 +214,14 @@
                             }"
                           />
                         </p>
-                        <div
+                        <!-- <div
                           v-if="submitted && $v.name.$error"
                           class="invalid-feedback"
                         >
                           <span v-if="!$v.name.required"
                             >This field is required</span
                           >
-                        </div>
+                        </div> -->
                       </td>
                     </tr>
                     <tr>
@@ -243,14 +243,14 @@
                             }"
                           ></textarea>
                         </p>
-                        <div
+                        <!-- <div
                           v-if="submitted && $v.description.$error"
                           class="invalid-feedback"
                         >
                           <span v-if="!$v.description.required"
                             >This field is required</span
                           >
-                        </div>
+                        </div> -->
                       </td>
                     </tr>
                     <tr>
@@ -272,14 +272,14 @@
                             <option value="Sports">Team</option>
                           </select>
                         </p>
-                        <div
+                        <!-- <div
                           v-if="submitted && $v.activity_type.$error"
                           class="invalid-feedback"
                         >
                           <span v-if="!$v.activity_type.required"
                             >This field is required</span
                           >
-                        </div>
+                        </div> -->
                       </td>
                     </tr>
                   </table>
