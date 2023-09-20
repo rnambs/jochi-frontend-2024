@@ -87,10 +87,10 @@
                         }"
                         class="mr-2"
                       >
-                        <span class="ml-2 text-dark"
+                        <span class="ml-3 text-dark"
                           ><i class="fas fa-eye"></i></span>
                       </nuxt-link>
-                      <button
+                      <!-- <button
                         @click="setDeleteId(club.clubId)"
                         data-toggle="modal"
                         data-target="#mediumModal"
@@ -98,7 +98,7 @@
                         <span>
                           <i class="fa fa-trash" aria-hidden="true"></i>
                         </span>
-                      </button>
+                      </button> -->
                     </td>
                     <!-- <td>
                       <div class="d-flex w-100 justify-content-between">
@@ -304,7 +304,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
