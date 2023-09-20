@@ -18,7 +18,7 @@
                 <div class="privacy-btn color-dark font-semi-bold">
                   <a
                     style="color: #000000"
-                    href="https://www.jochi.info/privacy-policy"
+                    href="https://jochi.notion.site/Privacy-Policy-91d3a5ff9e5a49f0b4f8a4a830091bab"
                   >
                     Privacy Policy
                   </a>

@@ -365,9 +365,10 @@ export default {
     description: { required },
   },
   mounted() {
-    if (process.client) { 
-      window.addEventListener("orientationchange", this.handleOrientationChange);
-    }
+    // if (process.client) { 
+      
+    // }
+    window.addEventListener("orientationchange", this.handleOrientationChange);
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     const page = "ClubCatalog";
     const distinct_id = localStorage.getItem("distinctId");
