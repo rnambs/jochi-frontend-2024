@@ -46,7 +46,7 @@
                   data-intro="Turn on ‘Sync to Planner’ to sync your extracurricular commitments to your calendar on Jochi."
                   class="col-md-4 px-0"
                 >
-                <div v-if="!(user === '3' || user === '2'  && schoolAccess === 'ClubOnly')" class="custom-switch pb-2 float-right">
+                <div v-if="(schoolAccess != 'ClubOnly'  && user != '2')" class="custom-switch pb-2 float-right">
   <input
     type="checkbox"
     class="custom-control-input"
