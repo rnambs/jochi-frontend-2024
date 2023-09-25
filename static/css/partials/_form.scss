@@ -1,6 +1,6 @@
 // input field
 .form-row,.form-group{
-    label.form-label{
+    label,label.form-label{
         color: $font-gray01;
     }
 	.form-control{
@@ -23,7 +23,9 @@
 		height: 2.625rem;
 		padding: 0.67rem 0.87rem;
 	}
-    
+    textarea.form-control{
+        height: unset;
+    }
 	// color
 	.form-transparent{
 		background-color: var(--color-basic);
@@ -261,20 +263,19 @@
             }
         }
         .dropdown.drop-down{
-            background-color: $white;    
+            background-color: var(--color-basic);    
             position: absolute;
             z-index: 99;
             top: calc(2.2em + 2px);
             left: 0;
-            background: $white;
             width: 10em;
             height: 10em;
             font-weight: 400;
             .select-list{
                 width: 13.3em;
                 @include borderRadius(8);
-                border: 1px solid $border-form-color;
-                background-color: $white;
+                border: 1px solid var(--form-border);
+                background-color: var(--color-basic);  
                 height: 10em;
                 overflow: hidden;
                 display: -webkit-box;
@@ -291,7 +292,7 @@
                 -ms-flex-pack: justify;
                 justify-content: space-between;
                 ul{
-                    background-color: $white;
+                    background-color: var(--color-basic);
                     list-style-type: none;
                     padding: 0;
                     margin: 0;
@@ -314,6 +315,10 @@
                         &.active{
                             background-color: $theme-color;
                             color: $white;
+                        }
+                        &.active{
+                            background-color: var(--bg-card-secondary);
+                            color: $font-secondary-dark;
                         }
                     }
                 }
@@ -583,6 +588,143 @@
       border-color: $theme-color !important;
   }
 
+  // time Picker Add Assignment
+.vdp-datepicker.form-control{
+    input[type="text"]{
+        color: $font-secondary-dark;
+        cursor: pointer;
+        padding-top: 0.15em;
+    }
+    &.dropdown-menu-top{
+        .vdp-datepicker__calendar{
+            top: unset;
+            bottom: 42px;
+        }
+    }
+}
+.vdp-datepicker__calendar{
+    background-color: var(--color-basic) !important;
+    top: 38px;
+    right: 0;
+    color: $font-gray01;
+    font-family: $text-primary-style;
+    font-size: 14px;
+    line-height: 1em;
+    @include borderRadius(15);
+    border: 1px solid var(--form-border) !important;
+    z-index: 99999 !important;
+    padding: 8px 8px 16px;
+    overflow: hidden;
+    header{
+        line-height: 25px;
+        span.prev{
+            &::after{
+                display: none;
+            }
+            &::before{
+                content: 'f054';
+                position: absolute;
+                left: 35%;
+                top: 35%;
+                width: 10px;
+                height: 10px;
+                transform: translateX(-50%) translateY(-50%);
+                transform: rotate(135deg);
+                border: 6px solid transparent;
+                color: var(--text-primary);
+                border: solid var(--text-primary);
+                border-width: 0 2px 2px 0;
+            }
+            &:hover{
+                background-color: var(--form-border);
+            }
+        }
+        span.day__month_btn.up{
+            color: $font-secondary-dark;
+            font-weight: 600;
+            font-size: 13px;
+            &:hover{
+                background-color: var(--form-border);
+            }
+        }
+        span.next{
+            &::after{
+                display: none;
+            }
+            &::before{
+                content: 'f054';
+                position: absolute;
+                left: 35%;
+                top: 35%;
+                width: 10px;
+                height: 10px;
+                transform: translateX(-50%) translateY(-50%);
+                transform: rotate(-45deg);
+                border: 6px solid transparent;
+                color: var(--text-primary);
+                border: solid var(--text-primary);
+                border-width: 0 2px 2px 0;
+            }
+            &:hover{
+                background-color: var(--form-border);
+            }
+        }
+    }
+    // week head
+    span.cell.day-header{
+        color: $font-gray01;
+        font-weight: 600;
+        font-size: 12px;
+    }
+    span.cell.day{
+        color: $font-secondary-dark;
+        font-size: 12px;
+        white-space: nowrap;
+        text-align: center;
+        vertical-align: middle;
+        height: 24px;
+        line-height: 24px;
+        font-size: 12px;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        cursor: pointer;
+        &.selected{
+            background-color: $theme-color;
+            color: $white;
+        }
+        &:hover{
+            border: none !important;
+            background-color: var(--form-border);
+        }
+        &.disabled{
+            color: $font-gray01;
+        }
+    }
+    span.cell.month{
+        border-radius: 4px;
+        &.selected{
+            background-color: $theme-color;
+            color: $white;
+        }
+        &:hover{
+            border: none !important;
+            background-color: #eee;
+        }
+    }
+    span.cell.year{
+        border-radius: 4px;
+        &.selected{
+            background-color: $theme-color;
+            color: $white;
+        }
+        &:hover{
+            border: none !important;
+            background-color: #eee;
+        }
+    }
+}
+
 // Theme Switcher
 .theme-switcher {
 	background-color: var(--bg-card-secondary);
@@ -597,12 +739,13 @@
 		display: block;
 		position: absolute;
 		z-index: 1;
+        width: calc((100% - 6px) / 2);
 		top: 3px;
 		transform: translatex(-110%);
 		bottom: 3px;
-		border-radius: 6px;
+		border-radius: 8px;
 		transition: 0.15s ease, transform 0.25s ease-out;
-		background-color: var(--bg-card-tertiary);
+		background-color: var(--text-primary-white);
 		box-shadow: var(--slider-shadow);
 	}
 	input {
@@ -614,10 +757,6 @@
 
 		&:nth-of-type(2):checked ~ .slider {
 			transform: translateX(100%);
-		}
-
-		&:nth-of-type(3):checked ~ .slider {
-			transform: translateX(200%);
 		}
 	}
 	label {
