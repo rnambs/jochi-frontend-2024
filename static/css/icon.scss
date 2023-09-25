@@ -22,6 +22,9 @@
     &--club {
         background-image: url('../image/v4/icon/activities.svg');
     }
+    &--club-catalog {
+        background-image: url('../image/v4/icon/catalog.svg');
+    }
     &--study {
         background-image: url('../image/v4/icon/study.svg');
     }
@@ -90,6 +93,12 @@
             }
             &--advisor{
                 background-image: url('../image/v4/icon/advisor-active.svg');
+            }
+            &--club {
+                background-image: url('../image/v4/icon/activities-active.svg');
+            }
+            &--club-catalog {
+                background-image: url('../image/v4/icon/catalog-active.svg');
             }
             &--settings {
                 background-image: url('../image/v4/icon/cog-active.svg');

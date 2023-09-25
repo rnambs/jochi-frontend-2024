@@ -139,16 +139,21 @@ export default {
         // this.$router.push("/admin-login");
       } else {
         let user_type = localStorage.getItem("user_type");
-        if (user_type == 3 || user_type == "3") {
+        let schoolAccess = localStorage.getItem("schoolAccess");
+        if (schoolAccess == 'ClubOnly' && user_type == 3 ) {
           console.log("studentSignUp value", this.studentSignUp);
           if (this.studentSignUp == true || this.studentSignUp == "true") {
             localStorage.setItem("studentSignUp", this.studentSignUp);
             this.$store.commit("setStartProductGuide", true);
           }
-          this.$router.push("/student-dashboard");
-        } else {
-          this.$router.push("/teacher-dashboard");
-        }
+          this.$router.push("/club-detail");
+        }  else if (user_type == 3 ) {
+  this.$router.push("/student-dashboard");
+} else if (schoolAccess == 'ClubOnly' && user_type == 2) {
+  this.$router.push("/club-detail");
+} else {
+  this.$router.push("/teacher-dashboard");
+}
       }
     },
   },

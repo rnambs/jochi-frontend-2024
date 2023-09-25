@@ -1,0 +1,109 @@
+// icon
+$icon-names: "sun","half-sun","half-moon","list-check","note-book","chat-group","call-ring","location","plus-circle","arrow-left","arrow-right","club-catalog","club-existing","planner","task","calendar","meeting","activities","study","cog","logout","schedule","meeting-availability","meeting-view","session","analytics","search","more-dotes","advisor","availability","appoinments","home","notification-bell","school","filter-calendar","filter-funnel";
+
+@each $icon-name in $icon-names {
+    .i-#{$icon-name} {
+        @extend .icon !optional;
+        -webkit-mask-image: url('../image/v4/icon/#{$icon-name}.svg');
+        mask-image: url('../image/v4/icon/#{$icon-name}.svg');
+    }
+}
+
+.j-icon {
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    /* OR cover OR fixed values */
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-size: contain;
+    /* OR cover OR fixed values */
+    mask-position: center;
+    mask-repeat: no-repeat;
+    // Icon size
+    &.i-xs {
+        width: 0.875rem;
+        min-width: 0.875rem;
+        height: 0.875rem;
+    }
+    &.i-sm{
+        width: 1.125rem;
+        min-width: 1.125rem;
+        height: 1.125rem;
+    }
+    &.i-md{
+        width: 1.25rem;
+        min-width: 1.25rem;
+        height: 1.25rem;
+    }
+    &.i-lg{
+        width: 1.5rem;
+        min-width: 1.5rem;
+        height: 1.5rem;
+    }
+    &.i-xl{
+        width: 1.875rem;
+        min-width: 1.875rem;
+        height: 1.875rem;
+    }
+}
+
+// Icons
+
+.icon {
+    display: block;
+    width: 1.5rem;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    // &--dashboard{background-image: url('../image/v4/icon/dash.svg');}
+    // &--planner{background-image: url('../image/v4/icon/planner.svg');}
+    // &--calendar{background-image: url('../image/v4/icon/calendar.svg');}
+    // &--meeting{background-image: url('../image/v4/icon/meeting.svg');}
+    // &--club{background-image: url('../image/v4/icon/activities.svg');}
+    // &--study{background-image: url('../image/v4/icon/study.svg');}
+    // &--settings{background-image: url('../image/v4/icon/cog.svg');}
+    // &--logout{background-image: url('../image/v4/icon/logout.svg');}
+    // &--notification{background-image: url('../image/v4/icon/notification-bell.svg');}
+    // &--school{background-image: url('../image/v4/icon/school.svg');}
+    // &--home{background-image: url('../image/v4/icon/home.svg');}
+    // &--appoinments{background-image: url('../image/v4/icon/appoinments.svg');}
+    // &--availability{background-image: url('../image/v4/icon/availability.svg');}
+    // &--advisor{background-image: url('../image/v4/icon/advisor.svg');}
+    // &--filter-calendar{background-image: url('../image/v4/icon/filter-calendar.svg');}
+    // &--filter-funnel{background-image: url('../image/v4/icon/filter-funnel.svg');}
+    // &--plus-circle{background-image: url('../image/v4/icon/plus-circle.svg');}
+    // &--plus-circle-active{background-image: url('../image/v4/icon/plus-circle-active.svg');}
+
+    // Icon size
+    &.icon-xs {
+        width: 0.875rem;
+        min-width: 0.875rem;
+        height: 0.875rem;
+    }
+    &.icon-sm{
+        width: 1.125rem;
+        min-width: 1.125rem;
+        height: 1.125rem;
+    }
+    &.icon-md{
+        width: 1.25rem;
+        min-width: 1.25rem;
+        height: 1.25rem;
+    }
+    &.icon-lg{
+        width: 1.5rem;
+        min-width: 1.5rem;
+        height: 1.5rem;
+    }
+    &.icon-xl{
+        width: 1.875rem;
+        min-width: 1.875rem;
+        height: 1.875rem;
+    }
+    // icon list
+}

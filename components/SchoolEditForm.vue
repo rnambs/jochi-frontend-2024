@@ -150,10 +150,11 @@
 
                   <div class="form-group required">
                     <label for="contact-person" class="form-control-label"
-                      >School ID </label
+                      >School ID</label
                     ><input
                       type="text"
                       id="school_lms_id"
+                      name="school_lms_id"
                       class="form-control"
                       v-model="school_lms_id"
                       :class="{
@@ -296,6 +297,56 @@
                       >
                     </div>
                   </div>
+                  <div class="form-group required">
+                    <div class="d-inline-flex">
+                    <label  for="access" class="form-control-label"
+                      >Select the Jochi Access</label
+                    >
+                    <div class="position-relative ml-1">
+                    <span
+  @click="toggleTooltip"
+  @mouseover="showTooltip = true"
+      @mouseleave="showTooltip = false"
+  class="fa-solid fa-circle-info cursor-pointer tooltip-trigger"
+  :class="{ 'active': showTooltip }"
+></span>
+
+                    <span v-show="showTooltip" class="outlined-span">
+                      School access can be updated from
+                       club only access to full access,
+                        but it cannot be updated from
+                         full access to club only access.
+                    </span>
+                    </div>
+                  </div>
+                    <div>
+                    <div class="form-check form-check-inline">
+                    <input 
+                    :class="{ 'form-check-input': true, 'cursor-pointer': selectedAccess !== 'FullAccess' }"
+                    type="radio" 
+                    name="access" 
+                    value="FullAccess"
+                    v-model="selectedAccess"
+                    id="fullaccess"
+                    >
+                    <label class="form-check-label" for="fullaccess">
+                      Full Access
+                    </label>
+                   </div>
+                   <div class="form-check form-check-inline"  v-if="showClubOnlyDiv">
+                    <input class="form-check-input cursor-pointer" 
+                    type="radio" 
+                    name="access" 
+                    value="ClubOnly"
+                    v-model="selectedAccess"
+                    id="clubonlyaccess"
+                    >
+                    <label class="form-check-label" for="clubonlyaccess">
+                      Club Only Access
+                    </label>
+                   </div>
+                   </div>
+                    </div>
                   <button
                     type="submit"
                     class="btn btn-primary btn-flat m-b-30 m-t-30"
@@ -325,6 +376,7 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
+import { ref } from 'vue';
 import {
   required,
   email,
@@ -336,6 +388,7 @@ export default {
   name: "SchoolEditForm",
   data() {
     return {
+      showTooltip: false,
       Email: "",
       ContactPerson: "",
       Schoolname: "",
@@ -343,6 +396,8 @@ export default {
       statelist: "",
       Description: "",
       timezonelist: "",
+      selectedAccess: "",
+      showClubOnlyDiv: false,
       submitted: false,
       processing: false,
       // GG4L_client_id: "",
@@ -359,6 +414,7 @@ export default {
     phone: { required, minLength: minLength(10), maxLength: maxLength(14) },
     statelist: { required },
     timezonelist: { required },
+    selectedAccess: { required },
     Description: { required },
     // GG4L_client_id: { required },
     // GG4L_client_secret: { required },
@@ -370,6 +426,7 @@ export default {
     this.FetchSchool();
     this.fetchStates();
     this.fetchTimeZone();
+
   },
   computed: {
     ...mapState("schoolEditForm", {
@@ -382,6 +439,18 @@ export default {
       errorType: (state) => state.errorType,
     }),
   },
+  watch: {
+  selectedAccess(newValue) {
+    // Watch for changes in selectedAccess
+    if (newValue !== "FullAccess") {
+      
+      this.showClubOnlyDiv = true;
+    } else {
+      // Otherwise, hide the Club Only div
+      // this.showClubOnlyDiv = false;
+    }
+  },
+},
   methods: {
     ...mapActions("schoolEditForm", {
       fetchSchool: "fetchSchool",
@@ -397,6 +466,9 @@ export default {
         ? x[1]
         : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "") + x[4];
     },
+    toggleTooltip() {
+      this.showTooltip = !this.showTooltip;
+    },
     async FetchSchool() {
       await this.fetchSchool({
         school_id: this.$route.query.id,
@@ -408,6 +480,12 @@ export default {
       this.statelist = this.schoolDetails.state;
       this.Description = this.schoolDetails.description;
       this.timezonelist = this.schoolDetails.time_zone;
+      // this.selectedAccess =this.schoolDetails.access_type;
+      if (this.schoolDetails.access_type === null) {
+    this.selectedAccess = 'FullAccess';
+  } else {
+    this.selectedAccess = this.schoolDetails.access_type;
+  }
       // this.GG4L_client_id = this.schoolDetails.GG4L_client_id;
       // this.GG4L_client_secret = this.schoolDetails.GG4L_client_secret;
       this.school_lms_id = this.schoolDetails.school_lms_id;
@@ -430,6 +508,7 @@ export default {
           name: this.Schoolname,
           contact_person: this.ContactPerson,
           time_zone: this.timezonelist,
+          access_type:this.selectedAccess,
           // GG4L_client_id: this.GG4L_client_id,
           // GG4L_client_secret: this.GG4L_client_secret,
           school_lms_id: this.school_lms_id,
@@ -456,3 +535,29 @@ export default {
   },
 };
 </script>
+<style>
+  .outlined-span {
+    font-size: 0.8rem;
+    position: absolute;
+    left: -8px;
+    top: calc(16px + 12px);
+    background: white;
+    z-index: 9;
+    width: 300px;
+    white-space: normal;
+    border: 1px solid #ced4da;
+    padding: 4px;
+    border-radius: 7px
+  }
+  .outlined-span::before{
+  top: -7px;
+    left: 8px;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-bottom: 7px solid #ced4da;
+    position: absolute;
+    display: inline-block;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    content: '';
+  }
+</style>

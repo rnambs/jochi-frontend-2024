@@ -551,6 +551,7 @@ export default {
       this.pageTotalStudent = Math.ceil(this.studentsCount / this.selectValue);
     },
     async FetchSchool() {
+      
       await this.fetchSchool({
         school_id: this.$route.query.id,
       });
@@ -620,6 +621,7 @@ export default {
       }
     },
     async FetchLmsId() {
+
       await this.fetchLmsId({
         id: this.schoolDetails.id,
         school_lms_id: this.Lms_id,
