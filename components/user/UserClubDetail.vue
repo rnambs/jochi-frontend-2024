@@ -9,7 +9,7 @@
     <div class="main-section">
       <!-- tab for club detail -->
       <div
-        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-global border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid mt-3">
@@ -95,12 +95,12 @@
                       "
                     >
                       <img
-                        src="../../static/image/Trophy.png"
+                        src="../../static/image/trophy.svg"
                         alt=""
                         class="img-fluid ct-team"
                       />
                       <img
-                        src="../../static/image/Badge.png"
+                        src="../../static/image/badge.svg"
                         alt=""
                         class="img-fluid ct-club"
                       />
