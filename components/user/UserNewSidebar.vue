@@ -62,7 +62,7 @@
               <ul class="flex-row flex-md-column nav sub-menu">
                 <li class="nav-item w-auto mb-1 mb-md-2">
                   <nuxt-link
-                    to="/planner-day"
+                    to="/task"
                     @click="$event.target.classList.toggle('active')"
                     class="nav-link btn text-center w-100 justify-content-start"
                     >
@@ -76,7 +76,7 @@
                 </li>
                 <li class="nav-item w-auto mb-1 mb-md-2">
                   <nuxt-link
-                    to="/planner-week"
+                    to="/calendar"
                     @click="$event.target.classList.toggle('active')"
                     class="nav-link btn text-center w-100 justify-content-start"
                     >
