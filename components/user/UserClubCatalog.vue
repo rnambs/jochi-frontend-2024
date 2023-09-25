@@ -8,10 +8,10 @@
     />
     <div class="main-section">
       <div
-        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
-          <div class="tab-section container-fluid">
+          <div class="tab-section container-fluid px-0">
             <div class="d-flex justify-content-between align-item-center">
               <div class="d-flex flex-column">
                 <h2
@@ -50,7 +50,7 @@
                     v-on:keyup="debounceSearch()"
                   />
                   <span class="input-icon custom-search-icon position-absolute">
-                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <i class="i-search j-icon i-md bg-text-secondary"></i>
                   </span>
                 </div>
               </div>
@@ -84,7 +84,7 @@
           class="d-flex flex-column flex-fill h-40 pr-3"
         >
           <div
-            class="inner-club container-fluid bg-transparent custom-overflow pe-2 mr--2 mt-0 d-flex flex-column flex-fill"
+            class="inner-club container-fluid bg-transparent custom-overflow p-0 mr--2 mt-0 ml-1 d-flex flex-column flex-fill"
           >
             <div
               class="pt-4 pb-3 border-bottom"
@@ -93,11 +93,11 @@
             >
               <div class="row catalog-row">
                 <div class="col-lg-4">
-                  <h4 class="mb-2 color-dark font-semi-bold text-capitalize">
+                  <h5 class="mb-1 color-dark text-18 font-semibold text-capitalize">
                     {{ list["name"] }}
-                  </h4>
+                  </h5>
 
-                  <p class="color-secondary fort-regular text-14 mb-0">
+                  <p class="color-gray fort-regular text-14 mb-0">
                     {{ list.activity_type == "Clubs" ? "Club" : "Team" }}
                   </p>
                 </div>
@@ -128,7 +128,7 @@
                       </p>
                       <span
                         v-if="list.tagList.length == 0"
-                        class="to-do-li color-secondary"
+                        class="to-do-li color-gray text-14"
                       >
                         No tags available
                       </span>
@@ -207,7 +207,7 @@
                             v-model="name"
                             autocomplete="off"
                             maxlength="100"
-                            class="form-control bg-white custom-form-control"
+                            class="form-control bg-global custom-form-control"
                             placeholder="Name"
                             :class="{
                               'is-invalid': submitted && $v.name.$error,
@@ -237,7 +237,7 @@
                             type="text"
                             autocomplete="off"
                             maxlength="700"
-                            class="form-control bg-white custom-form-control"
+                            class="form-control bg-global custom-form-control"
                             :class="{
                               'is-invalid': submitted && $v.description.$error,
                             }"
@@ -261,7 +261,7 @@
                           <span class="pr-2"></span>
                           <select
                             v-model="activity_type"
-                            class="custom-select form-control bg-white"
+                            class="custom-select form-control bg-global"
                             :class="{
                               'is-invalid':
                                 submitted && $v.activity_type.$error,
