@@ -10,7 +10,7 @@
     <div class="main-section">
       <!-- tab section for View all meeting -->
       <div
-        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid">
@@ -114,9 +114,69 @@
               </div>
               <div
                 v-if="slot_date.length == 0"
-                class="empty-schedule d-flex align-items-center justify-content-center h-100"
+                class="empty-schedule row  h-100"
               >
-                <p>No meetings found</p>
+                    <div class="col-12 col-md-10 col-lg-8 col-xl-6 d-flex flex-column align-items-center justify-content-center mx-auto">
+                      <span>
+                        <svg width="178" height="140" viewBox="0 0 178 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="89.0027" cy="60.2795" rx="60.2795" ry="60.2795" fill="#EAECF0"/>
+                          <g filter="url(#filter0_dd_787_7105)">
+                          <path d="M90.8576 18.5479C78.3696 18.5479 67.3229 24.7187 60.6004 34.1775C58.4051 33.6598 56.1158 33.3859 53.7625 33.3859C37.3729 33.3859 24.0864 46.6723 24.0864 63.062C24.0864 79.4516 37.3729 92.7381 53.7625 92.7381L127.953 92.7381C142.294 92.738 153.919 81.1124 153.919 66.7715C153.919 52.4305 142.294 40.8049 127.953 40.8049C126.934 40.8049 125.929 40.8636 124.941 40.9777C119.257 27.7842 106.136 18.5479 90.8576 18.5479Z" fill="#F9FAFB"/>
+                          <ellipse cx="53.7625" cy="63.0613" rx="29.6761" ry="29.6761" fill="url(#paint0_linear_787_7105)"/>
+                          <ellipse cx="90.8575" cy="55.643" rx="37.0951" ry="37.0951" fill="url(#paint1_linear_787_7105)"/>
+                          <ellipse cx="127.953" cy="66.7708" rx="25.9666" ry="25.9666" fill="url(#paint2_linear_787_7105)"/>
+                          </g>
+                          <ellipse cx="25.2451" cy="22.0251" rx="5.79611" ry="5.79611" fill="#F2F4F7"/>
+                          <ellipse cx="21.7681" cy="126.355" rx="8.11455" ry="8.11455" fill="#F2F4F7"/>
+                          <ellipse cx="168.989" cy="40.5726" rx="8.11455" ry="8.11455" fill="#F2F4F7"/>
+                          <ellipse cx="156.238" cy="9.27361" rx="4.63689" ry="4.63689" fill="#F2F4F7"/>
+                          <g filter="url(#filter1_b_787_7105)">
+                          <rect x="61.0029" y="71.8716" width="55.6426" height="55.6427" rx="27.8213" fill="#344054" fill-opacity="0.4"/>
+                          <path d="M95.7801 102.591C96.1406 102.591 96.3208 102.591 96.4668 102.671C96.5873 102.737 96.6995 102.861 96.7531 102.987C96.8182 103.14 96.8018 103.304 96.7691 103.63C96.5993 105.321 96.0172 106.951 95.0668 108.374C93.923 110.085 92.2973 111.42 90.3952 112.207C88.4932 112.995 86.4002 113.201 84.381 112.8C82.3618 112.398 80.507 111.407 79.0513 109.951C77.5955 108.495 76.6041 106.641 76.2025 104.621C75.8008 102.602 76.007 100.509 76.7948 98.6071C77.5827 96.7051 78.9169 95.0794 80.6287 93.9356C82.051 92.9852 83.6809 92.4031 85.3725 92.2333C85.6988 92.2006 85.8619 92.1842 86.0153 92.2493C86.1417 92.3029 86.2657 92.4151 86.3317 92.5356C86.4118 92.6816 86.4118 92.8618 86.4118 93.2223V101.55C86.4118 101.914 86.4118 102.096 86.4827 102.235C86.545 102.358 86.6446 102.457 86.767 102.52C86.9061 102.591 87.0883 102.591 87.4527 102.591H95.7801Z" stroke="white" stroke-width="2.60232" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M91.6164 88.0176C91.6164 87.6572 91.6164 87.477 91.6964 87.3309C91.7625 87.2105 91.8864 87.0983 92.0129 87.0446C92.1662 86.9796 92.3294 86.996 92.6556 87.0287C95.0347 87.2673 97.2713 88.3199 98.9769 90.0255C100.683 91.7311 101.735 93.9677 101.974 96.3467C102.006 96.673 102.023 96.8362 101.958 96.9895C101.904 97.116 101.792 97.2399 101.671 97.3059C101.525 97.386 101.345 97.386 100.985 97.386L92.6573 97.386C92.293 97.386 92.1108 97.386 91.9716 97.3151C91.8492 97.2527 91.7497 97.1532 91.6873 97.0307C91.6164 96.8916 91.6164 96.7094 91.6164 96.345V88.0176Z" stroke="white" stroke-width="2.60232" stroke-linecap="round" stroke-linejoin="round"/>
+                          </g>
+                          <defs>
+                          <filter id="filter0_dd_787_7105" x="0.901988" y="18.5478" width="176.202" height="120.559" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                          <feMorphology radius="4.63689" operator="erode" in="SourceAlpha" result="effect1_dropShadow_787_7105"/>
+                          <feOffset dy="9.27378"/>
+                          <feGaussianBlur stdDeviation="4.63689"/>
+                          <feColorMatrix type="matrix" values="0 0 0 0 0.0627451 0 0 0 0 0.0941176 0 0 0 0 0.156863 0 0 0 0.03 0"/>
+                          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_787_7105"/>
+                          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                          <feMorphology radius="4.63689" operator="erode" in="SourceAlpha" result="effect2_dropShadow_787_7105"/>
+                          <feOffset dy="23.1844"/>
+                          <feGaussianBlur stdDeviation="13.9107"/>
+                          <feColorMatrix type="matrix" values="0 0 0 0 0.0627451 0 0 0 0 0.0941176 0 0 0 0 0.156863 0 0 0 0.08 0"/>
+                          <feBlend mode="normal" in2="effect1_dropShadow_787_7105" result="effect2_dropShadow_787_7105"/>
+                          <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_787_7105" result="shape"/>
+                          </filter>
+                          <filter id="filter1_b_787_7105" x="51.7292" y="62.5978" width="74.1901" height="74.1901" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                          <feGaussianBlur in="BackgroundImageFix" stdDeviation="4.63689"/>
+                          <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_787_7105"/>
+                          <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_787_7105" result="shape"/>
+                          </filter>
+                          <linearGradient id="paint0_linear_787_7105" x1="30.9755" y1="43.4539" x2="83.4386" y2="92.7374" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#D0D5DD"/>
+                          <stop offset="0.350715" stop-color="white" stop-opacity="0"/>
+                          </linearGradient>
+                          <linearGradient id="paint1_linear_787_7105" x1="62.3738" y1="31.1337" x2="127.953" y2="92.738" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#D0D5DD"/>
+                          <stop offset="0.350715" stop-color="white" stop-opacity="0"/>
+                          </linearGradient>
+                          <linearGradient id="paint2_linear_787_7105" x1="108.015" y1="49.6143" x2="153.92" y2="92.7373" gradientUnits="userSpaceOnUse">
+                          <stop stop-color="#D0D5DD"/>
+                          <stop offset="0.350715" stop-color="white" stop-opacity="0"/>
+                          </linearGradient>
+                          </defs>
+                          </svg>                    
+                      </span>
+                      <h5 class="heading5 text-18 color-primary-dark text-center">No Scheduled Meetings</h5>
+                      <p class="text-center">You don't have any upcoming meetings scheduled yet. Start by booking a meeting to stay connected with your classmates and teachers.</p>
+                      <button class="btn btn-primary">Book a Meeting</button>
+                    </div>
               </div>
             </div>
           </div>
@@ -313,7 +373,7 @@
                           name="detailMeetingName"
                           autocomplete="off"
                           maxlength="100"
-                          class="form-control bg-white"
+                          class="form-control bg-global"
                           v-model="detailMeetingName"
                           :class="{
                             'is-invalid':
@@ -344,7 +404,7 @@
                           name="detailMeetingDesc"
                           autocomplete="off"
                           maxlength="500"
-                          class="form-control bg-white"
+                          class="form-control bg-global"
                           v-model="detailMeetingDesc"
                           :class="{
                             'is-invalid':
@@ -370,7 +430,7 @@
                       >
                         <span class="pr-2"></span>
                         <select
-                          class="form-control bg-white"
+                          class="form-control bg-global"
                           tabindex=""
                           name="detailConversationType"
                           v-model="detailConversationType"
@@ -418,7 +478,7 @@
                           name="detailVenue"
                           autocomplete="off"
                           maxlength="200"
-                          class="form-control custom-form-control bg-white"
+                          class="form-control custom-form-control bg-global"
                           v-model="detailVenue"
                           :class="{
                             'is-invalid': submitted && $v.detailVenue.$error,
@@ -1137,4 +1197,3 @@ export default {
   },
 };
 </script>
-

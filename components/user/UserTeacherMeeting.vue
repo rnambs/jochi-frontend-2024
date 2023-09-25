@@ -10,7 +10,7 @@
     <div class="main-section">
       <!-- tab section for teacher meeting -->
       <div
-        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive"
+        class="bg-global border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column position-realtive"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid w-100">
@@ -21,7 +21,7 @@
               Schedule A Meeting!
             </h2>
             <div class="inner-tab-section container-fluid p-0">
-              <div class="row m-0">
+              <div class="row px--12">
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
                     data-intro="First, choose your meeting type. Will you be meeting with a teacher or peer?"
@@ -152,7 +152,7 @@
             class="meeting-section container-fluid d-flex custom-overflow pe-2 mr--2 flex-fill"
           >
             <div
-              class="inner-meeting flex-fill container-fluid py-3 pl-0 scroll"
+              class="inner-meeting flex-fill container-fluid pb-3 px-0 scroll"
             >
               <div
                 class="row Meeting-row text-center h-100 align-items-center px-4 px-md-5 px-lg-3 px-xl-5"
@@ -162,9 +162,15 @@
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img
                       src="~/assets/images/v4/undraw/step1.svg"
-                      class="img-illustrate"
+                      class="img-illustrate img-theme light"
                       alt=""
                     />
+                    <img
+                      src="~/assets/images/v4/undraw/step1-dark.svg"
+                      class="img-illustrate img-theme dark"
+                      alt=""
+                    />
+                    
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary-dark font-medium">Step 1</h6>
                       <p class="color-secondary text-12">
@@ -177,7 +183,12 @@
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img
                       src="~/assets/images/v4/undraw/step2.svg"
-                      class="img-illustrate"
+                      class="img-illustrate img-theme light"
+                      alt=""
+                    />
+                    <img
+                      src="~/assets/images/v4/undraw/step2-dark.svg"
+                      class="img-illustrate img-theme dark"
                       alt=""
                     />
                     <div class="d-flex flex-column justify-content-center">
@@ -192,7 +203,12 @@
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img
                       src="~/assets/images/v4/undraw/step3.svg"
-                      class="img-illustrate"
+                      class="img-illustrate img-theme light"
+                      alt=""
+                    />
+                    <img
+                      src="~/assets/images/v4/undraw/step3-dark.svg"
+                      class="img-illustrate img-theme dark"
                       alt=""
                     />
                     <div class="d-flex flex-column justify-content-center">
@@ -205,14 +221,14 @@
                 </div>
               </div>
               <div class="col-12 p-0">
-                <div class="row Meeting-row pl-0 pr-3 pt-3">
+                <div class="row Meeting-row ps-0 pr-2 pt-2">
                   <div
                     class="col-md-3 mb-4 py-0"
                     v-for="(Schedule, index) in slot_date"
                     :key="index"
                   >
                     <div
-                      class="meeting-list p-3 cursor-pointer card card-void bg-primary-light border-0 align-items-center h-100"
+                      class="meeting-list p--12 cursor-pointer card card-secondary border-0 align-items-center h-100"
                       v-on:click="
                         modalValue(
                           Schedule.dateFormat,
@@ -224,11 +240,11 @@
                         openConfirmMeetingModal();
                       "
                     >
-                      <h6 class="font-bold color-dark text-center">
+                      <h6 class="font-semi-bold color-dark text-center">
                         {{ Schedule["dateFormat"] }}
                       </h6>
                       <p
-                        class="time color-secondary font-normal text-14 mb-1 text-center"
+                        class="time color-primary font-normal text-14 mb-0 text-center"
                       >
                         {{ Schedule["from"] }}
                         {{ Schedule["end"] ? "to " + Schedule["end"] : "" }}

@@ -6,6 +6,7 @@
     --color-basic       : rgba(255, 255, 255, 1);
     --bg-backdrop       : rgba(255, 255, 255,0.5);
     --bg-card-primary   : rgba(255, 255, 255, 1);
+    --bg-card-primary02 : rgba(255, 255, 255, 1);
     --bg-card-secondary : rgba(241, 238, 246, 1);
     --bg-card-tertiary  : rgba(245, 245, 245, 1);
     --color-border      : rgba(234, 234, 234, 1);
@@ -21,6 +22,7 @@
         --color-basic       : rgba(23, 24, 33, 1);
         --bg-backdrop       : rgba(0, 0, 0,0.5);
         --bg-card-primary   : rgba(44, 45, 51, 1);
+        --bg-card-primary02 : rgba(33, 34, 45, 1);
         --bg-card-secondary : rgba(33, 34, 45, 1);
         --bg-card-tertiary  : rgba(23, 24, 33, 1);
         --color-border      : rgba(33, 34, 45, 1);
@@ -140,6 +142,7 @@ $label-green: #159E00;
 .bg-primary-dark{background-color: $font-primary-dark !important;}
 .bg-danger{background-color: $danger-color !important;}
 .bg-card-primary{background-color: var(--bg-card-primary);}
+.bg-card-primary02{background-color: var(--bg-card-primary02);}
 .bg-card-secondary{background-color: var(--bg-card-secondary);}
 .bg-card-tertiary{background-color: var(--bg-card-tertiary);}
 .bg-text-secondary{background-color: var(--text-secondary);}

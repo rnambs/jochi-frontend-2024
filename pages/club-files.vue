@@ -2,7 +2,7 @@
   <div class="inner-section">
     <!-- header -->
 
-    <div v-if="user_type == 3"><UserSidebar /></div>
+    <div v-if="user_type == 3"><UserNewSidebar /></div>
     <div v-else><UserSidebarTeacher /></div>
 
     <!-- end section -->
@@ -16,14 +16,14 @@
 </template>
 
 <script>
-import UserSidebar from "~/components/user/UserSidebar.vue";
+import UserNewSidebar from "~/components/user/UserNewSidebar.vue";
 import UserSidebarTeacher from "~/components/user/UserSidebarTeacher.vue";
 import UserClubFiles from "~/components/user/UserClubFiles.vue";
 export default {
   // middleware: "authenticated",
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [{ rel: "stylesheet", href: "/css/custom.css" }],
     };
   },
   data() {

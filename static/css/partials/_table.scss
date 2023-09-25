@@ -1,0 +1,36 @@
+@mixin customTable {
+    table{
+        border-collapse: separate;
+        border-spacing: 0 12px;
+        thead{
+            tr{
+                td{
+                    font-size: 0.8rem;
+                    border-top: none;
+                    color: var(--text-primary-dark);
+                    border-bottom: 1px solid var(--color-border);
+                    padding: 5px 10px;
+                }
+            }
+        }
+        tbody{
+            tr{
+                @include borderRadius(12);
+                td{
+                    color: var(--text-primary-dark);
+                    text-transform: capitalize;
+                    padding: 10px;
+                    border-top: none;
+                    vertical-align: middle;
+                    .comment-icon{
+                        font-size: 1.3rem;
+                        color: $icon-color;
+                    }
+                    .btn{
+                        border-radius: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
