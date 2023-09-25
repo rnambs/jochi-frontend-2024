@@ -1,19 +1,19 @@
 <template>
   <div class="inner-section">
     <!-- sidebar -->
-    <UserSidebar />
+    <UserNewSidebar />
     <!-- sidebar -->
     <UserTeacherMeeting />
   </div>
 </template>
 <script>
-import UserSidebar from "../components/user/UserSidebar.vue";
+import UserNewSidebar from "../components/user/UserNewSidebar.vue";
 import UserTeacherMeeting from "../components/user/UserTeacherMeeting.vue";
 export default {
   // middleware: "authenticated",
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [{ rel: "stylesheet", href: "/css/custom.css" }],
     };
   },
   mounted() {

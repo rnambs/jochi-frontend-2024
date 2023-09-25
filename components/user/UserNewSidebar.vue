@@ -651,18 +651,6 @@
               </div>
             </div>
           </li>
-          <li class="nav-item d-flex p-2">
-            <div class="theme-switcher mx-3 mx-md-0">
-              <input type="radio" id="light-theme" name="themes" v-model="selectedTheme" value="light" checked />
-              <label for="light-theme">
-                <span>Light</span>
-              </label>
-              <input type="radio" id="dark-theme" name="themes" v-model="selectedTheme" value="dark" />
-              <label for="dark-theme">
-                <span>Dark</span>
-              </label>
-            </div>
-          </li>
           <li class="nav-item d-flex justify-content-center p-2">
             <nuxt-link
               to="/user-profile"
@@ -739,7 +727,6 @@ export default {
       firstName: "",
       profile: "",
       defaultImage: defaultImage,
-      selectedTheme: "light", // Initially select the "light" theme
       accordionOpened:false
     };
   },
@@ -856,12 +843,6 @@ export default {
       if (newValue) {
         this.startIntro();
       }
-    },
-    selectedTheme(newTheme) {
-      // When the selected theme changes, apply it to the <html> element's class
-      const html = document.documentElement; // <html> element
-      html.classList.remove("light-theme", "dark-theme"); // Remove all theme classes
-      html.classList.add(newTheme + "-theme"); // Add the selected theme class
     },
     accordionOpened(value) {
       eventBus.$emit('accordionOpened', value);

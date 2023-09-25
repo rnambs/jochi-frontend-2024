@@ -56,7 +56,7 @@
                 alt=""
                 class="mb-2 mb-lg-4 passport-img py-4 py-md-2 py-xl-4"
               /> -->
-              <div class="d-flex flex-column align-items-center align-items-md-start mb-4 mb-lg-5">
+              <div class="d-flex flex-column align-items-center align-items-md-start">
                 <h1 class="heading1 color-text-primary text-center text-md-left">Welcome to Jochi!</h1>
                 <p class="mb-4 text-24 color-text-gray text-center text-md-left font-semi-bold">Sign-in with your school account</p>
                 <button
@@ -66,7 +66,7 @@
                 Single-Sign On
                 </button>
               </div>
-              <div class="d-flex flex-column">
+              <div class="d-flex flex-column login-link-groups">
                 <a href="mailto:contact@jochi.info" class="d-flex align-items-center text-decoration-none mb-2">
                   <img src="../static/image/magic-trick-dynamic-color.png" alt="magic trick" class="btn-icon-lg me-1" />
                   <p class="mb-0 text-24 color-text-gray font-semi-bold">Support & Tutorials</p>
