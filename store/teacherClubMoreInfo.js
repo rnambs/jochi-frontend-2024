@@ -203,9 +203,12 @@ const actions = {
   },
   //timeslot
   async slotswithId({ commit }) {
-
+    const token = localStorage.getItem('token')
     try {
       const response = await this.$axios.$get(BASE_URL + 'custom/availability/all_slots', {
+        headers: {
+          'Authorization': ` ${token}`
+        },
       });
       commit('setAvailableSlot', response.data);
     }

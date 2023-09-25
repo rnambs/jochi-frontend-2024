@@ -1,0 +1,12 @@
+:root{
+    &.dark-theme {
+        img.img-illustrate{
+            &.light{display: none;}
+            &.dark{display: block;}
+        }
+    }
+}
+img.img-illustrate{
+    &.light{display: block;}
+    &.dark{display: none;}
+}

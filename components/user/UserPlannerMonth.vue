@@ -2394,7 +2394,7 @@ import * as animationData from "~/assets/animation.json";
 import * as animationDataSuccess from "~/assets/success.json";
 import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
-import "../../static/css/var.scss";
+// import "../../static/css/var.scss";
 import moment from "moment";
 import "vue2-timepicker/dist/VueTimepicker.css";
 import draggable from "vuedraggable";

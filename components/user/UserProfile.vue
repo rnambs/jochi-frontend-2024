@@ -18,13 +18,14 @@
                 <div class="privacy-btn color-dark font-semi-bold">
                   <a
                     style="color: #000000"
-                    href="https://www.jochi.info/privacy-policy"
+                    href="https://jochi.notion.site/Privacy-Policy-91d3a5ff9e5a49f0b4f8a4a830091bab"
                   >
                     Privacy Policy
                   </a>
                 </div>
               </div>
             </div>
+            <div  v-if="schoolAccessType != 'ClubOnly'">
             <div
               v-if="user_type == 2 && isSchoolAdmin != '1'"
               class="d-flex justify-content-end align-items-center w-100"
@@ -48,6 +49,7 @@
                 >
               </div>
             </div>
+          </div>
             <div
               class="d-flex justify-content-between align-items-center sch-admin"
               v-if="user_type == 2 && isSchoolAdmin == '1'"
@@ -297,7 +299,7 @@
                               code</span
                             >
                           </div>
-
+                          <div  v-if="schoolAccessType != 'ClubOnly' ">
                           <div class="col-xl-12">
                             <div
                               data-intro="With the guidelines previous mentioned in mind, opt in/choose your preferences to receive certain notifications via your school email and SMS."
@@ -399,6 +401,7 @@
                             </div>
                           </div>
                         </div>
+                        </div>
                       </div>
                     </div>
                     <div
@@ -410,7 +413,7 @@
                       "
                       class="col-md-6"
                     >
-                      <div
+                      <div  v-if="schoolAccessType != 'ClubOnly' "
                         data-intro="Find your advisor details."
                         class="bg-white border rounded-10 p-4 h-100"
                       >
@@ -719,25 +722,31 @@ export default {
       requestSent: "0",
       isSchoolAdmin: "0",
       processingUpgrade: false,
+      schoolAccessType: "",
     };
   },
 
   created() {
     this.UserDetails();
     this.user_type = localStorage.getItem("user_type");
-    if (this.user_type == "3") {
-      this.getAllAdvisors();
-      this.getAdvisor();
+    this.schoolAccessType = localStorage.getItem('schoolAccess');
+    if (this.user_type == "3" && this.schoolAccessType != 'ClubOnly') {
+        this.getAllAdvisors();
+        this.getAdvisor();
     } else {
-      this.schoolAdminStatus();
+        if (this.schoolAccessType !== 'ClubOnly') {
+            this.schoolAdminStatus();
+        }
     }
     this.fetchSettings();
-  },
+},
+
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);
     setTimeout(() => {
       this.startIntro();
     }, 1000);
+    this.schoolAccessType = localStorage.getItem("schoolAccess")
   },
   computed: {
     ...mapState("profilePage", {
