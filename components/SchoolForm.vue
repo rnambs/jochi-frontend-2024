@@ -148,10 +148,11 @@
 
                   <div class="form-group required">
                     <label for="contact-person" class="form-control-label"
-                      >School ID </label
+                      >School ID</label
                     ><input
                       type="text"
                       id="school_lms_id"
+                      name="school_lms_id"
                       class="form-control"
                       v-model="school_lms_id"
                       :class="{
@@ -293,6 +294,70 @@
                       >
                     </div>
                   </div>
+                  <div class="form-group required">
+                    <div class="d-inline-flex">
+                    <label for="access" class="form-control-label"
+                      >Select the Jochi Access</label
+                    >
+                    <div class="position-relative ml-1">
+                      <span
+  @click="toggleTooltip"
+  @mouseover="showTooltip = true"
+      @mouseleave="showTooltip = false"
+  class="fa-solid fa-circle-info cursor-pointer tooltip-trigger"
+  :class="{ 'active': showTooltip }"
+></span>
+
+                    <span v-show="showTooltip" class="outlined-span">
+                      School access can be updated from
+                       club only access to full access,
+                        but it cannot be updated from
+                         full access to club only access.
+                    </span>
+                    </div>
+                  </div>
+                    <div>
+                    <div class="form-check form-check-inline">
+                    <input 
+                    class="form-check-input cursor-pointer" 
+                    type="radio" 
+                    name="access" 
+                    value="FullAccess"
+                    v-model="selectedAccess"
+                    id="fullaccess"
+                    :class="{
+                        'is-invalid': submitted && $v.selectedAccess.$error,
+                      }"
+                    >
+                    <label class="form-check-label" for="fullaccess">
+                      Full Access
+                    </label>
+                   </div>
+                   <div class="form-check form-check-inline">
+                    <input class="form-check-input cursor-pointer" 
+                    type="radio" 
+                    name="access" 
+                    value="ClubOnly"
+                    v-model="selectedAccess"
+                    id="clubonlyaccess"
+                    :class="{
+                        'is-invalid': submitted && $v.selectedAccess.$error,
+                      }"
+                    >
+                    <label class="form-check-label" for="clubonlyaccess">
+                      Club Only Access
+                    </label>
+                   </div>
+                  </div>
+                   <div
+                      v-if="submitted && $v.selectedAccess.$error"
+                      class="invalid-feedback"
+                    >
+                      <span v-if="!$v.selectedAccess.required"
+                        >This field is required</span
+                      >
+                    </div>
+                    </div>
                   <button
                     type="submit"
                     class="btn btn-primary btn-flat m-b-30 m-t-30"
@@ -321,6 +386,7 @@
   </div>
 </template>
 <script>
+import { ref } from 'vue';
 import { mapState, mapActions } from "vuex";
 import VueToast from "vue-toast-notification";
 import {
@@ -334,6 +400,7 @@ export default {
   name: "SchoolForm",
   data() {
     return {
+      showTooltip: false,
       Email: "",
       ContactPerson: "",
       Schoolname: "",
@@ -341,6 +408,7 @@ export default {
       statelist: "",
       Description: "",
       timezonelist: "",
+      selectedAccess: "",
       submitted: false,
       processing: false,
       // GG4L_client_id: "",
@@ -357,6 +425,7 @@ export default {
     phone: { required, minLength: minLength(10), maxLength: maxLength(14) },
     statelist: { required },
     timezonelist: { required },
+    selectedAccess: { required },
     Description: { required },
     // GG4L_client_id: { required },
     // GG4L_client_secret: { required },
@@ -385,6 +454,9 @@ export default {
       fetchStates: "fetchStates",
       fetchTimeZone: "fetchTimeZone",
     }),
+    toggleTooltip() {
+      this.showTooltip = !this.showTooltip;
+    },
     acceptNumber() {
       var x = this.phone
         .replace(/\D/g, "")
@@ -408,6 +480,7 @@ export default {
           name: this.Schoolname,
           contact_person: this.ContactPerson,
           time_zone: this.timezonelist,
+          access_type:this.selectedAccess,
           // GG4L_client_id: this.GG4L_client_id,
           // GG4L_client_secret: this.GG4L_client_secret,
           school_lms_id: this.school_lms_id,
@@ -434,3 +507,29 @@ export default {
   },
 };
 </script>
+<style>
+  .outlined-span {
+    font-size: 0.8rem;
+    position: absolute;
+    left: -8px;
+    top: calc(16px + 12px);
+    background: white;
+    z-index: 9;
+    width: 300px;
+    white-space: normal;
+    border: 1px solid #ced4da;
+    padding: 4px;
+    border-radius: 7px
+  }
+  .outlined-span::before{
+  top: -7px;
+    left: 8px;
+    border-right: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-bottom: 7px solid #ced4da;
+    position: absolute;
+    display: inline-block;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    content: '';
+  }
+</style>

@@ -1,0 +1,124 @@
+.navbar{
+    .navbar-brand{
+        width: 120px;
+        height: 70px;
+        padding-left: 24px;
+        border-right: 1px solid $border-color;
+        background-color: var(--bg-card-primary);
+        @media (max-width:$sm-screen) {
+            margin-left: 0px;
+            border-right: none !important;
+        }
+        .img-logo-v4{
+            width: 22px;
+            min-width: 22px;
+            height: 22px;
+        }
+    }
+    &.navbar-expand-md{
+        min-height: 56px;
+        z-index: 1031;
+        background-color: var(--color-basic);
+        @media (max-width: $sm-screen) {
+            height: unset;
+            min-height: unset;
+        }
+        ul{
+            &.vertical-nav {
+                padding-left: 0px;
+                background-color: var(--bg-card-primary);
+                @media (min-width: $sm-screen) {  
+                    position: fixed !important;
+                    top: 70px;
+                    left: 0;
+                    // width: 120px;
+                    height: calc(100% - 70px);
+                    overflow-y: auto;
+                    padding-top: 16px;
+                    padding-left: 24px;
+                }
+                li.nav-item{
+                    &.parent-menu{
+                        .nav-link{
+                            position: relative;
+                            display: inline-flex;
+                            width: auto;
+                            padding: 0.625rem 0.75rem;
+                            margin: 0rem 1.23rem;
+                            min-width: 48px;
+                            height: 44px;
+                            @media (max-width: $md-screen) {min-width: 54px;}
+                            &.nuxt-link-active,&.accordion-link:not(.collapsed){
+                                background-color: var(--color-gray-active) !important;
+                            }
+                        }
+                        .collapse-for-link{
+                            width: 180px;
+                            @media (max-width: $sm-screen) { 
+                                width: 100%;
+                            }
+                            // .collapse{
+                            //     width: 180px;
+                            //     @media (max-width: $sm-screen) { 
+                            //         width: 100%;
+                            //     }
+                            //     &:not(.show){
+                            //         width: 0px;
+                            //         display: block;
+                            //     }
+                            // }
+                            ul.sub-menu{
+                                position: fixed;
+                                top: 70px;
+                                left: 119px;
+                                height: 100%;
+                                width: 180px;
+                                border-left: 1px solid $border-color;
+                                border-top: 1px solid $border-color;
+                                padding: 1.5rem 0.85rem;
+                                @media (max-width: $sm-screen) {  
+                                    position: relative;
+                                    border: none !important;
+                                    top: unset;
+                                    left: unset;
+                                    padding: 1rem 0rem;
+                                    margin: 0rem 1.23rem;
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+                ul{
+                    // Sub menu items
+                    &.sub-menu{
+                        .nav-item{
+                            .nav-link{
+                                font-size: 1rem;
+                                line-height: 1.5rem;
+                                @include font-weight($font-weight-semibold);
+                                margin: 0rem;
+                                &.nuxt-link-active{
+                                    background-color: var(--color-gray-active) !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // Header
+        ul.header{
+            li.nav-item{
+                .nav-link{
+                    .img-profile{
+                        width: 34px;
+                        min-width: 34px;
+                        height: 34px;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}

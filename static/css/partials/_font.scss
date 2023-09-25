@@ -1,0 +1,110 @@
+// prppins font family
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+// FONT WEIGHT
+$font-weight-light      : 300;
+$font-weight-regular    : 400;
+$font-weight-medium     : 500;
+$font-weight-semibold   : 600;
+$font-weight-bold       : 700;
+
+// Define a mixin to apply font weight
+@mixin font-weight($weight) {
+  font-weight: $weight;
+}
+
+.font-bold{
+    @include font-weight($font-weight-bold);
+}
+.font-semi-bold{
+    @include font-weight($font-weight-semibold);
+}
+.font-medium{
+    @include font-weight($font-weight-medium);
+}
+.font-regular{
+    @include font-weight($font-weight-regular);
+}
+.font-light{
+    @include font-weight($font-weight-light);
+}
+
+h1,h2,h3,h4,h5,h6{@include font-weight($font-weight-semibold);}
+
+
+// FONT SIZE
+
+// Heading size
+.heading1{
+    font-size: 3.125rem;
+    line-height: 3.5rem;
+    @media (max-width: $lg-screen) {
+        font-size:2.75rem;
+    }
+    @media (max-width: $md-screen) {
+        font-size:2.5rem;
+    }
+}
+
+// Font Size
+.text-7{
+    font-size: 0438;
+}
+
+.text-10{
+    font-size: 10px;
+    line-height: 14px;
+}
+.text-12{
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+.text-14{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+.text-16{
+    font-size: 1rem;
+    line-height: 1.5rem;
+    &.line-height-1{
+        line-height: 1rem;
+    }
+    @media (max-width:$xs-screen ){
+        font-size: 0.875rem;
+        line-height: 1rem;
+    }
+}
+.text-18{
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    @media (max-width:$xs-screen ){
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+}
+.text-24{
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    @media (max-width: $lg-screen) {
+        font-size:1.25rem;
+    }
+    @media (max-width: $md-screen) {
+        font-size:1.125rem;
+        line-height: 1.5rem;
+    }
+    @media (max-width:$xs-screen ){
+        font-size: 1rem;
+    }
+}
+.text-30{
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+.text-40{
+    font-size: 2.5rem;
+    line-height: 2.75rem;
+}
+.text-50{
+    font-size: 3.125rem;
+    line-height: 3.5rem;
+}
