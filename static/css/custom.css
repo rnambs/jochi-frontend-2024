@@ -1896,6 +1896,7 @@ img.img-theme.dark {
   max-height: 75vh;
   font-size: 0.813rem;
   padding: 4px 16px;
+  color: var(--text-secondary);
 }
 @media (max-width: 1199.98px) {
   .modal .modal-dialog .modal-content .modal-body {
