@@ -2181,6 +2181,8 @@ export default {
         };
       }
 
+      console.log("isSharedSession", this.sessionDetail.isSharedSession, "true", this.sharedNewSessionId, "false", this.sessionData.id, "false", this.sessionDetail.id)
+
       // await this.addStudyTime({
       //   sessionId: this.sharedNewSessionId
       //     ? this.sharedNewSessionId
