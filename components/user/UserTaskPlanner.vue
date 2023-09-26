@@ -141,11 +141,33 @@
                                         <p class="mb-0 color-dark font-medium text-14">Todo</p>
                                     </div>
                                     <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
+                                    <div v-for="item in tempAssts"
+                            :key="item.id">
                                     <div class="card card-primary p-3 mb-3">
                                         <div class="d-flex align-items-center justify-content-between mb-2">
                                             <div class="d-flex flex-wrap align-items-center">
-                                                <span class="task-label task-label--yellow my-1 mr-1">Done</span>
-                                                <span class="task-label task-label--yellow my-1 mr-1">Art</span>
+                                                <span class="task-label  my-1 mr-1"
+                                                :class="{
+                                          'task-label--yellow': item.priority == '1',
+                                          'task-label--violet': item.priority == '2',
+                                          'task-label--green': item.priority == '3',
+                                          'task-label--red': item.priority == '4',
+                                        }">{{
+                                          item.priority == "1"
+                                            ? "Urgent"
+                                            : item.priority == "2"
+                                            ? "Important"
+                                            : item.priority == "3"
+                                            ? "Can Wait"
+                                            : item.priority == "4"
+                                            ? "Overdue"
+                                            : ""
+                                        }}</span>
+                                                <span class="task-label task-label--yellow my-1 mr-1">{{
+                                          item.subject.subject_name
+                                            ? item.subject.subject_name
+                                            : item.subject
+                                        }}</span>
                                             </div>
                                             <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                                                 <div class="dropdown-select form-control" type="button"
@@ -186,53 +208,17 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card card-primary p-3 mb-3">
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <div class="d-flex flex-wrap align-items-center">
-                                                <span class="task-label task-label--yellow my-1 mr-1">Done</span>
-                                                <span class="task-label task-label--yellow my-1 mr-1">Geography</span>
-                                            </div>
-                                            <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
-                                                <div class="dropdown-select form-control" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span
-                                                        class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
-                                                    </span>
-                                                </div>
-                                                <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
-                                                    aria-labelledby="dLabel">
-                                                    <li class="item p-2">Edit</li>
-                                                    <li class="item p-2">Remove</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <h6 class="color-dark font-semi-bold text-14 mb-1">Research Lab Art</h6>
-                                        <p class="text-10 color-gray mb-2">Research Lab Art refers to artistic creations
-                                            inspired by or created within a research laboratory setting</p>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex">
-                                                <img src="../../static/image/v4/avatar/avatat1.png" alt="avatar 1"
-                                                    class="img-avatar img-avatar--sm">
-                                                <img src="../../static/image/v4/avatar/avatar2.png" alt="avatar 1"
-                                                    class="img-avatar img-avatar--sm ml--4">
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <button class="btn p-0 mr-2">
-                                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M7.29041 0.666992C3.74267 0.666992 0.866211 3.54345 0.866211 7.09119C0.866211 10.6389 3.74267 13.5154 7.29041 13.5154C10.8381 13.5154 13.7146 10.6389 13.7146 7.09119C13.7146 3.54345 10.8381 0.666992 7.29041 0.666992ZM9.67595 7.16392L6.06233 9.32066C6.03646 9.33637 6.00351 9.33715 5.97686 9.32144C5.95099 9.30654 5.93453 9.27873 5.93453 9.24774V7.09096V4.93419C5.93453 4.90363 5.95099 4.87539 5.97686 4.86046C6.00351 4.84518 6.03646 4.84596 6.06233 4.86124L9.67595 7.01842C9.70182 7.03312 9.71713 7.06153 9.71713 7.09094C9.71713 7.12098 9.70184 7.14883 9.67595 7.16392Z"
-                                                            fill="#5534A5" />
-                                                    </svg>
-                                                </button>
-                                                <button class="btn btn-drag-card-open">
-                                                    Open
-                                                </button>
-                                            </div>
                                         </div>
                                     </div>
+                                    <client-only>
+                            <infinite-loading
+                              class="d-flex align-items-center w-100 justify-content-center"
+                              :identifier="reloadCount"
+                              @infinite="loadNext"
+                            >
+                            <div slot="no-more">That's all!</div>
+                            </infinite-loading>
+                          </client-only>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-3">
@@ -243,11 +229,34 @@
                                         <p class="mb-0 color-dark font-medium text-14">Done</p>
                                     </div>
                                     <span class="border-pb-1 bg-task-green w-100 d-flex mb-3"></span>
-                                    <div class="card card-primary p-3 mb-3">
+                                    <div  v-for="item in completedAssignmentList"
+                            :key="item.id">
+                                    <div class="card card-primary p-3 mb-3"> 
                                         <div class="d-flex align-items-center justify-content-between mb-2">
                                             <div class="d-flex flex-wrap align-items-center">
-                                                <span class="task-label task-label--green my-1 mr-1">Doing</span>
-                                                <span class="task-label task-label--green my-1 mr-1">History</span>
+                                                <span class="task-label  my-1 mr-1"
+                                                :class="{
+                                          'task-label--yellow': item.priority == '1',
+                                          'task-label--violet': item.priority == '2',
+                                          'task-label--green': item.priority == '3',
+                                          'task-label--red': item.priority == '4',
+                                        }"
+                                                >   {{
+                                          item.priority == "1"
+                                            ? "Urgent"
+                                            : item.priority == "2"
+                                            ? "Important"
+                                            : item.priority == "3"
+                                            ? "Can Wait"
+                                            : item.priority == "4"
+                                            ? "Overdue"
+                                            : ""
+                                        }}</span>
+                                                <span class="task-label task-label--green my-1 mr-1"> {{
+                                          item.subject.subject_name
+                                            ? item.subject.subject_name
+                                            : item.subject
+                                        }}    </span>
                                             </div>
                                             <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                                                 <div class="dropdown-select form-control" type="button"
@@ -264,9 +273,8 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <h6 class="color-dark font-semi-bold text-14 mb-1">Daily Journal Choir </h6>
-                                        <p class="text-10 color-gray mb-2">Brainstorming brings team members' diverse
-                                            experience into play.</p>
+                                        <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
+                                        <p class="text-10 color-gray mb-2" v-html="item.assignment_description"></p>
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex">
                                                 <img src="../../static/image/v4/avatar/avatat1.png" alt="avatar 1"
@@ -289,51 +297,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card card-primary p-3 mb-3">
-                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                            <div class="d-flex flex-wrap align-items-center">
-                                                <span class="task-label task-label--green my-1 mr-1">Doing</span>
-                                                <span class="task-label task-label--green my-1 mr-1">History</span>
-                                            </div>
-                                            <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
-                                                <div class="dropdown-select form-control" type="button"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span
-                                                        class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                        <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
-                                                    </span>
-                                                </div>
-                                                <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
-                                                    aria-labelledby="dLabel">
-                                                    <li class="item p-2">Edit</li>
-                                                    <li class="item p-2">Remove</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <h6 class="color-dark font-semi-bold text-14 mb-1">Civil War Essay Health</h6>
-                                        <p class="text-10 color-gray mb-2">User research helps you to create an optimal
-                                            product for users.</p>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex">
-                                                <img src="../../static/image/v4/avatar/avatat1.png" alt="avatar 1"
-                                                    class="img-avatar img-avatar--sm">
-                                                <img src="../../static/image/v4/avatar/avatar2.png" alt="avatar 1"
-                                                    class="img-avatar img-avatar--sm ml--4">
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <button class="btn p-0 mr-2">
-                                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M7.29041 0.666992C3.74267 0.666992 0.866211 3.54345 0.866211 7.09119C0.866211 10.6389 3.74267 13.5154 7.29041 13.5154C10.8381 13.5154 13.7146 10.6389 13.7146 7.09119C13.7146 3.54345 10.8381 0.666992 7.29041 0.666992ZM9.67595 7.16392L6.06233 9.32066C6.03646 9.33637 6.00351 9.33715 5.97686 9.32144C5.95099 9.30654 5.93453 9.27873 5.93453 9.24774V7.09096V4.93419C5.93453 4.90363 5.95099 4.87539 5.97686 4.86046C6.00351 4.84518 6.03646 4.84596 6.06233 4.86124L9.67595 7.01842C9.70182 7.03312 9.71713 7.06153 9.71713 7.09094C9.71713 7.12098 9.70184 7.14883 9.67595 7.16392Z"
-                                                            fill="#5534A5" />
-                                                    </svg>
-                                                </button>
-                                                <button class="btn btn-drag-card-open">
-                                                    Open
-                                                </button>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -456,11 +419,13 @@
     import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import { mapState, mapActions } from "vuex";
-import { eventBus } from "~/plugins/eventbus.js"
+import { eventBus } from "~/plugins/eventbus.js";
+import InfiniteLoading from "vue-infinite-loading";
 export default {
   name: "UserStudentTask",
   components: {
     lottie,
+    InfiniteLoading,
   },
   head() {
     return {
@@ -478,13 +443,284 @@ export default {
   },
   data() {
     return {
-        accordionOpened:false
+        accordionOpened:false,
+        completedAssignmentList: [],
+        reloadCount: 0,
+        tempOffset: -1,
+      reloadNext: false,
+      offset: 0,
+      limit: 10,
+      pendingAssignments: [],
+      tempAssts: [],
     }
   },
   created() {
     eventBus.$on('accordionOpened', (newValue) => {
       this.accordionOpened = newValue;
     });
+  },
+  mounted(){
+    this.user_id = localStorage.getItem("id");
+    this.GetStudents();
+    this.getSubjectsList();
+    this.getAllCompletedAssignments();
+  },
+  computed: {
+    ...mapState("teacherMeeting",{
+        students: (state) => state.students,
+    }),
+    ...mapState("quotedMessage",{
+        quoteMessage: (state) => state.quoteMessage,
+      viewed: (state) => state.viewed,
+      assignment: (state) => state.assignment,
+      sharedAssignment: (state) => state.sharedAssignment,
+      successMessage: (state) => state.successMessage,
+      SuccessType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+      errorMessageQuote: (state) => state.errorMessage,
+      errorTypeQuote: (state) => state.errorType,
+      subjectsData: (state) => state.subjectsData,
+      assignmentsList: (state) => state.assignmentsList,
+      sharedAssignmentsList: (state) => state.sharedAssignmentsList,
+      completedAssignments: (state) => state.completedAssignments,
+      completedSharedAssignments: (state) => state.completedSharedAssignments,
+      newAdditionalMaterial: (state) => state.newAdditionalMaterial,
+      allSubTskCompleted: (state) => state.allSubTskCompleted,
+      overdues: (state) => state.overdues,
+      sharedOverdues: (state) => state.sharedOverdues,
+    }),
+},
+methods:{
+    ...mapActions("quotedMessage", {
+      showQuotedMessage: "showQuotedMessage",
+      getDailyPlanner: "getDailyPlanner",
+      addAssignment: "addAssignment",
+      getAssignment: "getAssignment",
+      updateAssignment: "updateAssignment",
+      getSubjectsList: "getSubjectsList",
+      getAssignments: "getAssignments",
+      completeTask: "completeTask",
+      getCompletedAssignments: "getCompletedAssignments",
+      uploadAdditionalMaterial: "uploadAdditionalMaterial",
+      deleteAssignments: "deleteAssignments",
+      assignmentSubmit: "assignmentSubmit",
+    }),
+    ...mapActions("teacherMeeting", {
+      getStudents: "getStudents",
+    }),
+    async GetStudents() {
+      await this.getStudents({
+        school_id: localStorage.getItem("school_id"),
+        studentId: localStorage.getItem("id"),
+      });
+    },
+    async getAllCompletedAssignments() {
+      await this.getCompletedAssignments({
+        userId: localStorage.getItem("id"),
+        date: moment().format("YYYY-MM-DD"),
+        type: "Weekly",
+      });
+      let completed = [];
+      completed = this.completedAssignments;
+      this.completedAssignmentList = [];
+      this.completedAssignments.forEach((e) => {
+        let asst = {};
+        asst = e;
+        this.completedAssignmentList.push(asst);
+      });
+      this.completedSharedAssignments.forEach((e) => {
+        let asst = {};
+        asst = e.assignments;
+        this.completedAssignmentList.push(asst);
+      });
+      console.log(this.completedAssignmentList);
+    },
+    async GetSubjectList() {
+      await this.getSubjectsList({});
+    },
+    async loadNext($state) {
+      if (this.tempOffset != this.offset || this.reloadNext) {
+        this.reloadNext = false;
+        this.tempOffset = this.offset;
+        this.pendingAssignments = [];
+        await this.getAssignments({ offset: this.offset, limit: this.limit });
+        if (this.offset == 0) {
+          await this.mapOverdues();
+        }
+        this.offset = this.offset + this.limit;
+        this.assignmentMaterials = [];
+        await this.mapAssignments();
+        await this.mapSharedAssignments();
+        if (this.pendingAssignments.length > 0) {
+          this.tempAssts.push(...this.pendingAssignments);
+        console.log(this.pendingAssignments);
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      }
+    },
+    mapOverdues() {
+      if (this.overdues && this.overdues.length > 0) {
+        this.overdues.forEach((e) => {
+          let asst = this.mapData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
+
+      if (this.sharedOverdues && this.sharedOverdues.length > 0) {
+        this.sharedOverdues.forEach((e) => {
+          let asst = this.mapSharedData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
+    },
+    mapData(e) {
+      if (e) {
+        let item = {};
+        this.assignmentMaterials = [];
+
+        item.assignment_description = e.assignment_description;
+        if (e.assignment_materials && e.assignment_materials.length > 0) {
+          e.assignment_materials.forEach((m) => {
+            let data = {};
+            data = m;
+            this.assignmentMaterials.push(data);
+          });
+        }
+        item.assignment_materials = this.assignmentMaterials;
+        item.completed_date = e.completed_date;
+        item.dueTimeFormat = e.dueTimeFormat;
+        item.due_date = e.due_date;
+        item.due_time = e.due_time;
+        item.id = e.id;
+        item.priority = e.priority;
+        item.schoologyAssignment = e.schoologyAssignment;
+        item.schoologyAssignmentId = e.schoologyAssignmentId;
+        item.subTasks = e.subTasks;
+        item.subject = e.subject;
+        item.subjects = e.subjects;
+        item.task = e.task;
+        item.task_status = e.task_status;
+        item.updatedAt = e.updatedAt;
+        item.user_id = e.user_id;
+        item.shared_users_id = e.shared_users_id;
+        item.submission_id =
+          e.submission_id && e.submission_id != "" ? e.submission_id : null;
+        item.grade = e.grade;
+        item.grade_possible = e.grade_possible;
+        item.peers = this.mapPeers(e);
+        if (e.due_date) {
+          item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        }
+        item.isShared = false;
+        return item;
+      }
+    },
+    mapSharedData(e) {
+      let item = {};
+      this.assignmentMaterials = [];
+
+      if (e && e.assignments) {
+        item.assignment_description = e.assignments.assignment_description;
+        if (
+          e.assignments?.assignment_materials &&
+          e.assignments?.assignment_materials.length > 0
+        ) {
+          e.assignments?.assignment_materials.forEach((m) => {
+            let data = {};
+            data = m;
+            this.assignmentMaterials.push(data);
+          });
+        }
+        item.assignment_materials = this.assignmentMaterials;
+        item.completed_date = e.assignments.completed_date;
+        item.dueTimeFormat = e.assignments.dueTimeFormat;
+        item.due_date = e.assignments.due_date;
+        item.due_time = e.assignments.due_time;
+        item.id = e.assignments.id;
+        item.priority = e.assignments.priority;
+        item.schoologyAssignment = e.assignments.schoologyAssignment;
+        item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+        item.subTasks = e.assignments?.subTasks;
+        item.subject = e.assignments?.subjects?.subject_name;
+        item.subjects = e.assignments?.subjects;
+        item.task = e.assignments.task;
+        item.task_status = e.assignments.task_status;
+        item.updatedAt = e.assignments.updatedAt;
+        item.user_id = e.assignments.user_id;
+        item.shared_users_id = e.shared_users_id;
+        item.submission_id =
+          e.submission_id && e.submission_id != "" ? e.submission_id : null;
+        item.peers = this.mapPeers(e);
+        if (e.assignments.due_date) {
+          item.formattedDate = moment(e.assignments.due_date).format(
+            "MMMM Do, YYYY"
+          );
+        }
+        item.isShared = true;
+        return item;
+      }
+    },
+    mapPeers(e) {
+      let user_id = localStorage.getItem("id");
+      let peers = [];
+      if (
+        e.assignments?.assignment_shared_users &&
+        e.assignments?.assignment_shared_users.length > 0
+      ) {
+        e.assignments?.assignment_shared_users.forEach((item) => {
+          let peer = {};
+          if (item.shared_users_id != user_id) {
+            if (item.users) {
+              peer = item.users;
+              peer.id = item.shared_users_id;
+              peers.push(peer);
+            }
+          }
+        });
+      }
+      if (e.assignment_shared_users && e.assignment_shared_users?.length > 0) {
+        e.assignment_shared_users.forEach((item) => {
+          let peer = {};
+          if (item.shared_users_id != user_id) {
+            if (item.users) {
+              peer = item.users;
+              peer.id = item.shared_users_id;
+              peers.push(peer);
+            }
+          }
+        });
+      }
+      let exists = peers.find(
+        (ele) => ele.id.toString() == e.assignments?.user_id.toString()
+      );
+
+      if (e.assignments?.users && !exists) {
+        let user = {};
+        user = e.assignments?.users;
+        user.id = e.user_id;
+        peers.push(user);
+      }
+      return peers;
+    },
+    mapAssignments() {
+      if (this.assignmentsList && this.assignmentsList.length > 0) {
+        this.assignmentsList.forEach((e) => {
+          let asst = this.mapData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
+    },
+    mapSharedAssignments() {
+      if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
+        this.sharedAssignmentsList.forEach((e) => {
+          let asst = this.mapSharedData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
+    },
   },
 }
 </script>
