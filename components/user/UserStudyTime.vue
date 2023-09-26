@@ -268,7 +268,7 @@
                     <div class="d-flex flex-column mb-2">
                       <button
                         v-if="sessionDetail.startSession"
-                        @click="checkIfCompletedAsst()"
+                        @click="checkIfCompletedAsst(); startSessionNowClicked=true"
                         class="btn btn-primary py-2 text-center"
                       >
                         Start Session Now
@@ -1466,6 +1466,7 @@ export default {
       pageCount: 0,
       scheduleLater: false,
       startTimeMixpanel: null,
+      startSessionNowClicked:false
     };
   },
 
@@ -2173,13 +2174,15 @@ export default {
         };
       } else {
         addStudyPayload = {
-          sessionId: this.sessionData.id
+          sessionId: this.startSessionNowClicked? this.sessionDetail.id: this.sessionData.id
             ? this.sessionData.id
             : this.sessionDetail.id,
           min: totalTimeStudied,
           status: studyStatus,
         };
       }
+
+      console.log("startSessionNowClicked", this.startSessionNowClicked, this.sessionDetail.id)
 
       // await this.addStudyTime({
       //   sessionId: this.sharedNewSessionId
@@ -2819,6 +2822,7 @@ export default {
       if (this.currentTab == 0) {
         this.getAllStudySessions();
       }
+      this.startSessionNowClicked=false;
     },
     async checkTime() {
       if (this.checkStartSession()) {
