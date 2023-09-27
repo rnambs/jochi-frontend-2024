@@ -332,7 +332,7 @@
                                     class="d-flex align-items-center justify-content-center flex-wrap"
                                   >
                                     <button
-                                      class="btn btn-secondary px-3 py-1  mr-2 mb-2"
+                                      class="btn btn-void px-3 py-1  mr-2 mb-2"
                                       @click="respondRequest(2, advisor)"
                                     >
                                       Reject
@@ -462,9 +462,9 @@
                             </div>
                           </div>
                     </div>
-                    <div class="col-12 col-md-8 card card-primary">
+                    <div class="col-12 col-md-8 card card-primary02 p-3 p-lg-4 rounded-20">
                       <div
-                        class="card card-primary p-2 d-flex flex-column mb-3"
+                        class="card card-primary02 p-2 d-flex flex-column mb-3 border border--form2"
                       >
                         <p
                           class="mb-0 text-16 color-secondary d-flex flex-row align-items-center"
@@ -475,7 +475,7 @@
                           <span class="ml-2">{{ email }}</span>
                         </p>
                       </div>
-                      <div class="card card-primary p-2 mb-3">
+                      <div class="card card-primary02 p-2 mb-3 border border--form2">
                         <p
                           class="mb-0 text-16 color-secondary d-flex flex-row align-items-baseline"
                         >
@@ -520,7 +520,7 @@
                             <span class="color-primary-dark">Update</span>
                           </button>
 
-                          <div class="card card-primary p-2">
+                          <div class="card card-primary02 p-2 border border--form2">
                             <p
                               class="mb-0 text-16 color-secondary d-flex flex-row align-items-center"
                             >
@@ -667,7 +667,7 @@
             <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+                class="btn btn-void py-1 px-3 rounded-8 font-semi-bold"
                 data-dismiss="modal"
               >
                 Cancel

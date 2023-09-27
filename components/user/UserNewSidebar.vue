@@ -693,7 +693,7 @@
           <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+              class="btn btn-void py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel

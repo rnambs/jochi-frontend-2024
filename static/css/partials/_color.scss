@@ -11,6 +11,7 @@
     --bg-card-tertiary  : rgba(245, 245, 245, 1);
     --color-border      : rgba(234, 234, 234, 1);
     --form-border       : rgba(208, 213, 221, 1);
+    --form2-border      : rgba(208, 213, 221, 1);
     --text-primary-white: rgba(255, 255, 255, 1); 
     --text-primary      : rgba(0, 0, 0, 1);
     --text-primary-dark : rgba(20, 21, 34, 1);
@@ -27,6 +28,7 @@
         --bg-card-tertiary  : rgba(23, 24, 33, 1);
         --color-border      : rgba(33, 34, 45, 1);
         --form-border       : rgba(44, 45, 51, 1);
+        --form2-border      : rgba(44, 45, 51, 1);
         --text-primary-white: rgba(0, 0, 0, 1); 
         --text-primary      : rgba(255, 255, 255, 1);
         --text-primary-dark : rgba(255, 255, 255, 1);
@@ -153,6 +155,8 @@ $label-green: #159E00;
     border-style: solid;
     border-color: var(--color-border) !important;
     &--form{border-color: var(--form-border) !important;}
+    &--form2{border-color: var(--form2-border) !important}
+
 }
 .border-top,.border-right,.border-bottom,.border-left{border-color: var(--color-border) !important;}
 .border-form-color{
