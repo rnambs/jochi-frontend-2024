@@ -898,10 +898,14 @@
               </p>
               <p class="color-secondary text-16 font-regular mb-1">
                 Study Method :
-                <span>{{
-                  sessionMode == "regular"
+                <span>{{ startSessionNowClicked? (sessionDetail.studyMethod == "1"
+                            ? "Pomodoro"
+                            : sessionDetail.studyMethod == "2"
+                            ? "Regular"
+                            : ""):
+                  (sessionMode == "regular"
                     ? "Regular Studying"
-                    : "Pomodoro Studying"
+                    : "Pomodoro Studying")
                 }}</span>
               </p>
               <p class="color-secondary text-16 font-regular mb-1">
@@ -2304,7 +2308,7 @@ export default {
     },
     async onLogSession() {
       await this.addRating({
-        session_id: this.sharedNewSessionId
+        session_id: this.startSessionNowClicked ? this.sessionDetail.id : this.sharedNewSessionId
           ? this.sharedNewSessionId
           : this.sessionData.id
           ? this.sessionData.id
