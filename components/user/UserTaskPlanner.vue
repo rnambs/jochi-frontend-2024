@@ -21,6 +21,10 @@
                                                 <span class="caret"><i
                                                         class="fas fa-chevron-down font-medium"></i></span>
                                             </div>
+                                            <div>
+    <!-- Your Vue component's template here -->
+    <button @click="completeAssignment">Complete Assignment</button>
+  </div>
                                             <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
                                                 <li class="item p-2">This week</li>
                                                 <li class="item p-2">This week</li>
@@ -143,6 +147,7 @@
                                     <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
                                     <div v-for="item in tempAssts"
                             :key="item.id">
+                            <drag>
                                     <div class="card card-primary p-3 mb-3">
                                         <div class="d-flex align-items-center justify-content-between mb-2">
                                             <div class="d-flex flex-wrap align-items-center">
@@ -184,9 +189,8 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <h6 class="color-dark font-semi-bold text-14 mb-1">AP History</h6>
-                                        <p class="text-10 color-gray mb-2">Brainstorming brings team members' diverse
-                                            experience into play.</p>
+                                        <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
+                                        <p class="text-10 color-gray mb-2">{{ item.assignment_description }}</p>
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex">
                                                 <img src="../../static/image/v4/avatar/avatat1.png" alt="avatar 1"
@@ -209,6 +213,7 @@
                                             </div>
                                         </div>
                                         </div>
+                                    </drag>
                                     </div>
                                     <client-only>
                             <infinite-loading
@@ -222,6 +227,10 @@
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-3">
+                                <drop
+                          class="drop color-secondary text-16 h-100 d-flex flex-column"
+                          @drop="completeAssignment()"
+                        >
                                 <div class="card card-tertiary px-3 pt-3 rounded-12 w-100 h-100">
                                     <div class="d-flex align-items-center mb-3">
                                         <span class="mr-2"><span
@@ -231,6 +240,7 @@
                                     <span class="border-pb-1 bg-task-green w-100 d-flex mb-3"></span>
                                     <div  v-for="item in completedAssignmentList"
                             :key="item.id">
+                            <drag>
                                     <div class="card card-primary p-3 mb-3"> 
                                         <div class="d-flex align-items-center justify-content-between mb-2">
                                             <div class="d-flex flex-wrap align-items-center">
@@ -297,8 +307,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                </drag>
                                     </div>
                                 </div>
+                                </drop>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="card card-tertiary px-3 pt-3 rounded-12 w-100 h-100">
@@ -357,6 +369,15 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        <!-- <client-only>
+                            <infinite-loading
+                              class="d-flex align-items-center w-100 justify-content-center"
+                              :identifier="reloadCount"
+                              @infinite="OverdueNext"
+                            >
+                            <div slot="no-more">That's all!</div>
+                            </infinite-loading>
+                          </client-only> -->
                                     </div>
                                     <div class="card card-primary p-3 mb-3">
                                         <div class="d-flex align-items-center justify-content-between mb-2">
@@ -421,11 +442,13 @@ import * as animationData from "~/assets/animation.json";
 import { mapState, mapActions } from "vuex";
 import { eventBus } from "~/plugins/eventbus.js";
 import InfiniteLoading from "vue-infinite-loading";
+import draggable from "vuedraggable";
 export default {
   name: "UserStudentTask",
   components: {
     lottie,
     InfiniteLoading,
+    draggable,
   },
   head() {
     return {
@@ -452,6 +475,16 @@ export default {
       limit: 10,
       pendingAssignments: [],
       tempAssts: [],
+      draggable: "Drag Me",
+      drag: false,
+      completeAsstId: 0,
+      undoAsstId: 0,
+      assignmentId: 0,
+      schoologyAssignment: "",
+      submissionId: "",
+      assignmentMaterials: [],
+      overdueAssignmentList: [],
+      doingAssignmentList: [],
     }
   },
   created() {
@@ -464,6 +497,7 @@ export default {
     this.GetStudents();
     this.getSubjectsList();
     this.getAllCompletedAssignments();
+    // this.fetchDataWithOffsetLimit();
   },
   computed: {
     ...mapState("teacherMeeting",{
@@ -534,33 +568,110 @@ methods:{
         asst = e.assignments;
         this.completedAssignmentList.push(asst);
       });
-      console.log(this.completedAssignmentList);
+      // console.log(this.completedAssignmentList);
     },
     async GetSubjectList() {
       await this.getSubjectsList({});
     },
-    async loadNext($state) {
-      if (this.tempOffset != this.offset || this.reloadNext) {
-        this.reloadNext = false;
-        this.tempOffset = this.offset;
-        this.pendingAssignments = [];
-        await this.getAssignments({ offset: this.offset, limit: this.limit });
-        if (this.offset == 0) {
-          await this.mapOverdues();
-        }
-        this.offset = this.offset + this.limit;
-        this.assignmentMaterials = [];
-        await this.mapAssignments();
-        await this.mapSharedAssignments();
-        if (this.pendingAssignments.length > 0) {
-          this.tempAssts.push(...this.pendingAssignments);
-        console.log(this.pendingAssignments);
-          $state.loaded();
-        } else {
-          $state.complete();
-        }
+//     async completeAssignment(completed = true) {
+//       this.processingCompleteAssignment = true;
+//     let assignment = data.item;
+//   this.completeAsstId = assignment.id;
+//   this.assignmentId = assignment.id;
+//   this.schoologyAssignment = assignment.schoologyAssignment;
+//   this.submissionId = assignment.submission_id;
+//       await this.completeTask({
+//         assignment_id: completed ? this.completeAsstId : this.undoAsstId,
+//         status: completed ? "Completed" : "Pending",
+//       });
+//       this.processingCompleteAssignment = false;
+//       if (this.successMessage != "") {
+//         this.openAssignment = false;
+//         this.offset = 0;
+//         this.tempAssts = [];
+//         this.reloadNext = true;
+//         this.reloadCount += 1;
+
+//         this.getAllCompletedAssignments();
+//         this.completeAsstId = 0;
+//         this.$toast.open({
+//           message: this.successMessage,
+//           type: this.SuccessType,
+//           duration: 5000,
+//         });
+//       } else if (this.errorMessage != "") {
+//         this.$toast.open({
+//           message: this.errorMessage,
+//           type: this.errorType,
+//           duration: 5000,
+//         });
+//       }
+//     },
+async fetchDataWithOffsetLimit(offset, limit) {
+      this.pendingAssignments = [];
+      await this.getAssignments({ offset, limit });
+
+      if (offset === 0) {
+        await this.mapOverdues();
       }
+
+      this.offset = offset + limit;
+      this.assignmentMaterials = [];
+      await this.mapAssignments();
+      await this.mapSharedAssignments();
+
+      return this.pendingAssignments;
     },
+    async loadNext($state) {
+  if (this.tempOffset !== this.offset || this.reloadNext) {
+    this.reloadNext = false;
+    this.tempOffset = this.offset;
+
+    const pendingAssignments = await this.fetchDataWithOffsetLimit(this.offset, this.limit);
+
+    // Filter pending assignments
+    const filteredPendingAssignments = pendingAssignments.filter(item => item.task_status === 'Pending');
+    const filteredOverdueAssignments = pendingAssignments.filter(item => item.task_status === 'Overdue');
+    const filteredDoingAssignments = pendingAssignments.filter(item => item.task_status === 'Doing');
+
+    if (filteredPendingAssignments.length > 0) {
+      this.tempAssts.push(...filteredPendingAssignments);
+      console.log(filteredPendingAssignments);
+      this.overdueAssignmentList.push(...filteredOverdueAssignments);
+      console.log(filteredOverdueAssignments); 
+      this.doingAssignmentList.push(...filteredDoingAssignments);
+      console.log(filteredDoingAssignments);
+      
+      $state.loaded();
+    } else {
+      $state.complete();
+    }
+  }
+},
+
+  //   async OverdueNext($state) {
+  //     console.log("Inside OverdueNext");
+  // console.log("tempOffset:", this.tempOffset);
+  // console.log("offset:", this.offset);
+  // console.log("reloadNext:", this.reloadNext);
+  //     if (this.tempOffset !== this.offset || this.reloadNext) {
+  //        console.log("Executing OverdueNext");
+  //       this.reloadNext = false;
+  //       this.tempOffset = this.offset;
+
+  //       const pendingAssignments = await this.fetchDataWithOffsetLimit(this.offset, this.limit);
+  //       const filteredOverdueAssignments = pendingAssignments.filter(item => item.task_status == 'Overdue');
+  //       if (filteredOverdueAssignments.length > 0) {
+  //         this.overdueAssignmentList.push(...filteredOverdueAssignments);
+  //         console.log('aa', this.overdueAssignmentList);
+  //         $state.loaded();
+  //       } else {
+  //         $state.complete();
+  //       }
+  //     }
+  //   },
+
+    
     mapOverdues() {
       if (this.overdues && this.overdues.length > 0) {
         this.overdues.forEach((e) => {
@@ -702,6 +813,7 @@ methods:{
         user = e.assignments?.users;
         user.id = e.user_id;
         peers.push(user);
+        // console.log(user);
       }
       return peers;
     },
@@ -719,6 +831,31 @@ methods:{
           let asst = this.mapSharedData(e);
           this.pendingAssignments.push(asst);
         });
+      }
+    },
+    async completeAssignment() {
+    //   this.processingCompleteAssignment = true;
+      await this.completeTask({
+        assignment_id: 272496,
+        status: "Doing",
+      });
+    //   this.processingCompleteAssignment = false;
+      if (this.successMessage != "") {
+        // this.getAllCompletedAssignments();
+        // this.completeAsstId = 0;
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+        // await this.GetWeeklyPlanner();
       }
     },
   },
