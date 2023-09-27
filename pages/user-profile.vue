@@ -12,7 +12,7 @@
     </div>
 
     <div v-if="userType == '2'">
-      <UserSidebarTeacher />
+      <UserNewSidebarTeacher />
       <UserProfile />
     </div>
 
@@ -22,7 +22,7 @@
 <script>
 import UserNewSidebar from "~/components/user/UserNewSidebar.vue";
 // import UserTeacherSidebar from "~/components/user/UserTeacherSidebar.vue";
-import UserSidebarTeacher from "~/components/user/UserSidebarTeacher.vue";
+import UserNewSidebarTeacher from "~/components/user/UserNewSidebarTeacher.vue";
 
 import UserProfile from "~/components/user/UserProfile.vue";
 export default {

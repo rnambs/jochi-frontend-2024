@@ -8,7 +8,7 @@
 
     <!-- {{user_type==3?<UserSidebar />:<UserTeacherSidebar />}} -->
     <div v-if="user_type == 3"><UserNewSidebar /></div>
-    <div v-else><UserSidebarTeacher /></div>
+    <div v-else><UserNewSidebarTeacher /></div>
 
     <!-- sidebar -->
 
@@ -18,7 +18,7 @@
 <script>
 import UserNewSidebar from "~/components/user/UserNewSidebar.vue";
 // import UserTeacherSidebar from "~/components/user/UserTeacherSidebar.vue";
-import UserSidebarTeacher from "~/components/user/UserSidebarTeacher.vue";
+import UserNewSidebarTeacher from "~/components/user/UserNewSidebarTeacher.vue";
 
 import UserStudentClubView from "~/components/user/UserStudentClubView.vue";
 export default {

@@ -1,6 +1,6 @@
 <template>
   <div class="inner-section">
-    <UserSidebarTeacher />
+    <UserNewSidebarTeacher />
 
     <!-- sidebar -->
     <UserTeacherDashboard />
@@ -13,7 +13,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 // import UserSidebar from "~/components/user/UserTeacherSidebar.vue";
-import UserSidebarTeacher from "~/components/user/UserSidebarTeacher.vue";
+import UserNewSidebarTeacher from "~/components/user/UserNewSidebarTeacher.vue";
 
 import UserTeacherDashboard from "~/components/user/UserTeacherDashboard.vue";
 export default {
@@ -46,7 +46,7 @@ export default {
   },
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [{ rel: "stylesheet", href: "/css/custom.css" }],
     };
   },
 };

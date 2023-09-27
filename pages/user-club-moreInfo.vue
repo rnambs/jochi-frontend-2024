@@ -2,7 +2,7 @@
   <div class="inner-section">
     <!-- header -->
 
-    <UserSidebarTeacher />
+    <UserNewSidebarTeacher />
 
     <!-- end section -->
 
@@ -15,14 +15,14 @@
 </template>
 <script>
 // import UserTeacherSidebar from "~/components/user/UserTeacherSidebar.vue";
-import UserSidebarTeacher from "~/components/user/UserSidebarTeacher.vue";
+import UserNewSidebarTeacher from "~/components/user/UserNewSidebarTeacher.vue";
 
 import UserTeacherClubMoreInfo from "~/components/user/UserTeacherClubMoreInfo.vue";
 export default {
   // middleware: "authenticated",
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [{ rel: "stylesheet", href: "/css/custom.css" }],
     };
   },
 };

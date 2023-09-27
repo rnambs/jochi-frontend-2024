@@ -3,7 +3,7 @@
     <!-- header -->
 
     <div v-if="user_type == 3"><UserNewSidebar /></div>
-    <div v-else><UserSidebarTeacher /></div>
+    <div v-else><UserNewSidebarTeacher /></div>
 
     <!-- end section -->
 
@@ -17,7 +17,7 @@
 
 <script>
 import UserNewSidebar from "~/components/user/UserNewSidebar.vue";
-import UserSidebarTeacher from "~/components/user/UserSidebarTeacher.vue";
+import UserNewSidebarTeacher from "~/components/user/UserNewSidebarTeacher.vue";
 import UserClubFiles from "~/components/user/UserClubFiles.vue";
 export default {
   // middleware: "authenticated",
