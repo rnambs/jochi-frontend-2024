@@ -547,7 +547,7 @@
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
+              class="btn btn-void px-4 py-1 rounded-8 font-semi-bold"
               aria-label="Close"
             >
               No
@@ -1090,7 +1090,7 @@
           <div class="modal-footer justify-content-end border-top-0 px-4">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8"
+              class="btn btn-void px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Cancel
@@ -1238,7 +1238,7 @@
           <div v-if="!showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
+              class="btn btn-void px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               No
@@ -1255,7 +1255,7 @@
           <div v-if="showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
+              class="btn btn-void px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Close

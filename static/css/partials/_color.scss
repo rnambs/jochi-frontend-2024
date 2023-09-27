@@ -149,19 +149,19 @@ $label-green: #159E00;
 .bg-calendar-blue{background-color: $calendar-blue;}
 // BOrders
 .border{
-    border-width: 1px;
+    border-width: 1.5px;
     border-style: solid;
     border-color: var(--color-border) !important;
     &--form{border-color: var(--form-border) !important;}
 }
 .border-top,.border-right,.border-bottom,.border-left{border-color: var(--color-border) !important;}
 .border-form-color{
-    border: 1px solid $border-form-color !important;
+    border: 1.5px solid $border-form-color !important;
 }
 .border-theme{
-    border: 1px solid $theme-color !important;
+    border: 1.5px solid $theme-color !important;
 }
 .border-white{
-    border: 1px solid $white !important;
+    border: 1.5px solid $white !important;
 }
 .border-pb-1{padding-bottom: 2px;}

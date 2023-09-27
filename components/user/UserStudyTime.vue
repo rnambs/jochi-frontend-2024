@@ -1200,7 +1200,7 @@
           <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8"
+              class="btn btn-void px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Close
@@ -1274,7 +1274,7 @@
           <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8"
+              class="btn btn-void px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Close

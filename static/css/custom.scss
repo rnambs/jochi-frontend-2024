@@ -799,7 +799,7 @@ input[type="radio"]{
 
 .card{
     @include borderRadius(10);
-    border: 1px solid $border-color;
+    border: 1.5px solid $border-color;
     margin-bottom: 0px;
     box-shadow: none !important;
     background-color: var(--color-basic);
@@ -808,16 +808,16 @@ input[type="radio"]{
     }
     &.card-primary{
         background-color: var(--bg-card-primary);
-        border: 1px solid $border-color;
+        border: 1.5px solid $border-color;
     }
     &.card-primary02{
         background-color: var(--bg-card-primary02);
-        border: 1px solid $border-color;
+        border: 1.5px solid $border-color;
     }
     &.card-primary-void{
         background-color: transparent;
         backdrop-filter: blur(60px);
-        border: 1px solid $border-color;
+        border: 1.5px solid $border-color;
     }
     &.card-secondary{
         background-color: var(--bg-card-secondary);
@@ -825,11 +825,11 @@ input[type="radio"]{
     }
     &.card-tertiary{
         background-color: var(--bg-card-tertiary);
-        border: 1px solid $border-color;
+        border: 1.5px solid $border-color;
     }
     &.card-void{
         background-color: transparent;
-        border: 1px solid $border-color;
+        border: 1.5px solid $border-color;
         // box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
         // box-shadow: 0px 0px 40px 7px rgba(255, 124, 124, 0.22)
     }

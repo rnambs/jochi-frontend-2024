@@ -278,7 +278,7 @@
 }
 
 .border {
-  border-width: 1px;
+  border-width: 1.5px;
   border-style: solid;
   border-color: var(--color-border) !important;
 }
@@ -291,15 +291,15 @@
 }
 
 .border-form-color {
-  border: 1px solid #BCBCBC !important;
+  border: 1.5px solid #BCBCBC !important;
 }
 
 .border-theme {
-  border: 1px solid #5534A5 !important;
+  border: 1.5px solid #5534A5 !important;
 }
 
 .border-white {
-  border: 1px solid #ffffff !important;
+  border: 1.5px solid #ffffff !important;
 }
 
 .border-pb-1 {
@@ -784,7 +784,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn.btn-void {
   background-color: transparent;
   color: #A3A3A3;
-  border: 1px solid #BCBCBC;
+  border: 1px solid var(--form-border);
 }
 .btn.btn-void:hover {
   background-color: var(--text-primary-white);
@@ -851,12 +851,13 @@ h1, h2, h3, h4, h5, h6 {
 .tab-btns button.tab-btn {
   padding: 5px 20px;
   background-color: #DDD6ED;
-  color: #ffffff;
+  color: #475467;
   border-radius: 0 0 14px 14px;
   transition: background-color 0.5s ease;
 }
 .tab-btns button.tab-btn.selected {
   background-color: #5534A5;
+  color: #ffffff;
 }
 
 .subtask-btn i::after {
@@ -2306,7 +2307,7 @@ input[type=radio] {
 
 .card {
   border-radius: 10px;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   margin-bottom: 0px;
   box-shadow: none !important;
   background-color: var(--color-basic);
@@ -2316,17 +2317,17 @@ input[type=radio] {
 }
 .card.card-primary {
   background-color: var(--bg-card-primary);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
 }
 .card.card-primary02 {
   background-color: var(--bg-card-primary02);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
 }
 .card.card-primary-void {
   background-color: transparent;
   -webkit-backdrop-filter: blur(60px);
           backdrop-filter: blur(60px);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
 }
 .card.card-secondary {
   background-color: var(--bg-card-secondary);
@@ -2334,11 +2335,11 @@ input[type=radio] {
 }
 .card.card-tertiary {
   background-color: var(--bg-card-tertiary);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
 }
 .card.card-void {
   background-color: transparent;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
 }
 .card.card-transparent {
   background-color: transparent;
