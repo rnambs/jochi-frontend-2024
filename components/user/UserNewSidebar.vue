@@ -660,7 +660,7 @@
                 v-bind:src="
                   profile && profile != 'null' ? profile : defaultImage
                 "
-                class="rounded-circle img-profile"
+                class="rounded-circle img-profile border"
                 alt="Profile image"
                 id="profileImage"
               />

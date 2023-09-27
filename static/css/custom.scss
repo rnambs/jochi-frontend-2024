@@ -4117,9 +4117,9 @@ img.dark-icon{
                     .profile-pic{
                         width: 140px;
                         height: 140px;
-                        border: 1px solid $border-color;
+                        border: 1.5px solid var(--form-border);
                         @include borderRadius(8);
-                        background-color: $white;
+                        background-color: var(--bg-card-secondary);
                         object-fit: contain;
                     }
                     .middle {

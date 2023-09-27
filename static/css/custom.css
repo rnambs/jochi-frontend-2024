@@ -4195,9 +4195,9 @@ img.dark-icon {
 .inner-section .main-section .study-section .upload-image .proof-img-wrp .profile-pic {
   width: 140px;
   height: 140px;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--form-border);
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: var(--bg-card-secondary);
   -o-object-fit: contain;
      object-fit: contain;
 }

@@ -184,7 +184,7 @@
               class="ml-3 mx-md-auto nav-link d-inline-flex justify-content-start justify-content-md-center">
               <img v-bind:src="
                 profile && profile != 'null' ? profile : defaultImage
-              " class="rounded-circle img-profile" alt="Profile image" id="profileImage" />
+              " class="rounded-circle img-profile border" alt="Profile image" id="profileImage" />
               <span class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none">Profile</span>
             </nuxt-link>
           </li>
