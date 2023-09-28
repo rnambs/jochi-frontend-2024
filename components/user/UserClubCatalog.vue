@@ -175,7 +175,7 @@
 
         <!-- Create new modal -->
 
-        <div
+        <!-- <div
           class="modal fade"
           id="createNewModal"
           tabindex="-1"
@@ -304,9 +304,120 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- Create new modal end -->
+
+        <!-- Create own club modal -->
+        <div
+          class="modal fade"
+          id="createNewModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="createClubModalCenterTitle"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3
+                  class="color-primary-dark font-semi-bold"
+                  id="createClubModalLongTitle"
+                >
+                  Create your own club
+                </h3>
+              </div>
+              <div class="modal-body no-overflow px-4">
+                <form name="announcement">
+                  <fieldset>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        id="clubName"
+                        placeholder="Name"
+                        class="form-control"
+                        v-model="name"
+                        name="clubName"
+                        :class="{
+                          'is-invalid': submitted && $v.name.$error,
+                        }"
+                      />
+                      <div
+                        v-if="submitted && $v.name.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.name.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <textarea
+                        class="form-control"
+                        id="descriptionText"
+                        v-model="description"
+                        name="description"
+                        maxlength="800"
+                        placeholder="Description"
+                        :class="{
+                          'is-invalid': submitted && $v.description.$error,
+                        }"
+                      ></textarea>
+                      <div
+                        v-if="submitted && $v.description.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.description.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <select
+                        v-model="activity_type"
+                        class="form-control"
+                        :class="{
+                          'is-invalid':
+                            submitted && $v.activity_type.$error,
+                        }"
+                      >
+                        <option value="" selected disabled>Type</option>
+                        <option value="Clubs">Club</option>
+                        <option value="Sports">Team</option>
+                      </select>
+                      <div
+                        v-if="submitted && $v.activity_type.$error"
+                        class="invalid-feedback"
+                      >
+                        <span v-if="!$v.activity_type.required"
+                          >This field is required</span
+                        >
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+              <div class="modal-footer justify-content-end border-top-0">
+                <button
+                  type="button"
+                  class="btn btn-secondary px-3 py-1 rounded-8 font-semi-bold"
+                  data-dismiss="modal"
+                  @click="resetClubData"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary px-3 py-1 rounded-8 font-semi-bold"
+                  @click="createNewClub"
+                >
+                Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Create own club modal -->
       </div>
     </div>
   </div>
@@ -365,9 +476,10 @@ export default {
     description: { required },
   },
   mounted() {
-    if (process.client) { 
-      window.addEventListener("orientationchange", this.handleOrientationChange);
-    }
+    // if (process.client) { 
+      
+    // }
+    window.addEventListener("orientationchange", this.handleOrientationChange);
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     const page = "ClubCatalog";
     const distinct_id = localStorage.getItem("distinctId");

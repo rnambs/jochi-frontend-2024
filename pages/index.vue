@@ -71,7 +71,7 @@
                   <img src="../static/image/magic-trick-dynamic-color.png" alt="magic trick" class="btn-icon-lg me-1" />
                   <p class="mb-0 text-24 color-text-gray font-semi-bold">Support & Tutorials</p>
                 </a>
-                <a href="  https://www.jochi.info/privacy-policy" class="d-flex align-items-center text-decoration-none mb-2">
+                <a href="https://www.notion.so/jochi/Privacy-Policy-91d3a5ff9e5a49f0b4f8a4a830091bab" class="d-flex align-items-center text-decoration-none mb-2">
                   <img src="../static/image/sheild-dynamic-color.png" alt="magic trick" class="btn-icon-lg me-1" />
                   <p class="mb-0 text-24 color-text-gray font-semi-bold">Privacy Policy</p>
                 </a>
@@ -318,11 +318,16 @@ export default {
     this.redirect = GG4L_REDIRECT_LOGIN_URL;
     if (localStorage.getItem("email")) {
       var userType = localStorage.getItem("user_type");
+      var schoolAccess = localStorage.getItem("schoolAccess");
       if (userType == "1") {
         this.$router.push("/dashboard");
-      } else if (userType == "3") {
+      }else if (userType == "3" && schoolAccess == 'ClubOnly') {
+        this.$router.push("/club-detail");
+      }else if (userType == "3") {
         this.$router.push("/student-dashboard");
-      } else if (userType == "2") {
+      } else if (userType == "2" && schoolAccess == 'ClubOnly') {
+        this.$router.push("/club-detail");
+      }else if (userType == "2") {
         this.$router.push("/teacher-dashboard");
       }
     }

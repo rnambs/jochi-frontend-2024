@@ -6,7 +6,7 @@ export const defaultImage = 'https://jochi-live.s3.amazonaws.com/profilePic/defa
 
 export const BASE_URL = 'https://api.jochi.live/';
 // export const BASE_URL = 'https://api.jochi.devateam.com/';
-// export const BASE_URL = 'http://localhost:5000/';
+// export const BASE_URL = 'http://localhost:3000/';
 
 export const REDIRECT_LOGIN_URL = 'https://www.jochi.live/redirect-login';
 // export const REDIRECT_LOGIN_URL = 'https://jochi.devateam.com/redirect-login';

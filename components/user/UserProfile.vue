@@ -7,9 +7,9 @@
       >
         <div class="inner-study d-flex flex-column flex-fill h-100">
           <div class="d-flex flex-column justify-content-between align-items-center">
-            <div class="d-flex flex-wrap align-items-center justify-content-between w-100 pr-3">
+            <div class="d-flex align-items-center justify-content-between w-100 pr-3">
               <h3 class="color-primary-dark heading3 font-bold">Profile</h3>
-              <div class="faq-section d-flex flex-wrap align-items-center">
+              <div class="faq-section d-flex align-items-center">
                 <div class="theme-switcher mx-3">
                   <input type="radio" id="light-theme" name="themes" v-model="selectedTheme" value="light" checked />
                   <label for="light-theme" class="cursor-pointer">
@@ -365,7 +365,7 @@
                     <div class="col-12 col-md-4">
                       <div
                             data-intro="With the guidelines previous mentioned in mind, opt in/choose your preferences to receive certain notifications via your school email and SMS."
-                            class="border-0 p-0 h-100 d-flex flex-column"
+                            class="card border-0 p-0 h-100 d-flex flex-column"
                           >
                             <h4 class="color-dark font-semi-bold">
                               Notification Settings
@@ -511,13 +511,13 @@
                             <span class="mr-1"
                               ><i class="fas fa-times color-primary-dark"></i
                             ></span>
-                            <span class="color-primary-dark">Cancel</span>
+                            <span>Cancel</span>
                           </button>
                           <button v-if="enableEdit" @click="phoneUpdate()">
                             <span class="mr-1"
                               ><i class="fas fa-save color-primary-dark"></i
                             ></span>
-                            <span class="color-primary-dark">Update</span>
+                            <span>Update</span>
                           </button>
 
                           <div class="card card-primary02 p-2 border border--form2">
@@ -530,7 +530,7 @@
                               <input
                                 :disabled="!enableEdit"
                                 type="text"
-                                class="pl-3 word-break text-truncate color-text-primary"
+                                class="pl-3 word-break text-truncate"
                                 v-model="phoneNumber"
                                 @change="checkValueChange()"
                                 @input="checkValue()"
