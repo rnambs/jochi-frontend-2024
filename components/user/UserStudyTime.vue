@@ -268,7 +268,7 @@
                     <div class="d-flex flex-column mb-2">
                       <button
                         v-if="sessionDetail.startSession"
-                        @click="checkIfCompletedAsst()"
+                        @click="checkIfCompletedAsst(); startSessionNowClicked=true"
                         class="btn btn-primary py-2 text-center"
                       >
                         Start Session Now
@@ -898,10 +898,14 @@
               </p>
               <p class="color-gray text-16 font-regular mb-2">
                 Study Method :
-                <span>{{
-                  sessionMode == "regular"
+                <span>{{ startSessionNowClicked? (sessionDetail.studyMethod == "1"
+                            ? "Pomodoro"
+                            : sessionDetail.studyMethod == "2"
+                            ? "Regular"
+                            : ""):
+                  (sessionMode == "regular"
                     ? "Regular Studying"
-                    : "Pomodoro Studying"
+                    : "Pomodoro Studying")
                 }}</span>
               </p>
               <p class="color-gray text-16 font-regular mb-2">
@@ -1468,6 +1472,7 @@ export default {
       pageCount: 0,
       scheduleLater: false,
       startTimeMixpanel: null,
+      startSessionNowClicked:false
     };
   },
 
@@ -2175,13 +2180,15 @@ export default {
         };
       } else {
         addStudyPayload = {
-          sessionId: this.sessionData.id
+          sessionId: this.startSessionNowClicked? this.sessionDetail.id: this.sessionData.id
             ? this.sessionData.id
             : this.sessionDetail.id,
           min: totalTimeStudied,
           status: studyStatus,
         };
       }
+
+      console.log("startSessionNowClicked", this.startSessionNowClicked, this.sessionDetail.id)
 
       // await this.addStudyTime({
       //   sessionId: this.sharedNewSessionId
@@ -2303,7 +2310,7 @@ export default {
     },
     async onLogSession() {
       await this.addRating({
-        session_id: this.sharedNewSessionId
+        session_id: this.startSessionNowClicked ? this.sessionDetail.id : this.sharedNewSessionId
           ? this.sharedNewSessionId
           : this.sessionData.id
           ? this.sessionData.id
@@ -2821,6 +2828,7 @@ export default {
       if (this.currentTab == 0) {
         this.getAllStudySessions();
       }
+      this.startSessionNowClicked=false;
     },
     async checkTime() {
       if (this.checkStartSession()) {
