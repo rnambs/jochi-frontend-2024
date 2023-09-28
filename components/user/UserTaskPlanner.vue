@@ -21,10 +21,6 @@
                                                 <span class="caret"><i
                                                         class="fas fa-chevron-down font-medium"></i></span>
                                             </div>
-                                            <div>
-    <!-- Your Vue component's template here -->
-    <button @click="completeAssignment">Complete Assignment</button>
-  </div>
                                             <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
                                                 <li class="item p-2">This week</li>
                                                 <li class="item p-2">This week</li>
