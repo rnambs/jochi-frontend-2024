@@ -105,7 +105,7 @@
                                 font-family: 'Font Awesome 5 Pro';
                                 position: absolute;
                                 right:12px;
-                                top: 9px;
+                                top: 0;
                                 font-size: 14px;
                             }
                             input{
@@ -131,21 +131,21 @@
                         min-height: 80px;
                     }
                     .dropdown{
-                        .dropdown-select{
-                            position: relative;
-                            &::after{
-                                content: "\f107";
-                                display: inline-block;
-                                font-style: normal;
-                                font-variant: normal;
-                                text-rendering: auto;
-                                -webkit-font-smoothing: antialiased;
-                                font-family: 'Font Awesome 5 Pro';
-                                position: absolute;
-                                right: 6px;
-                                font-size: 14px;
-                            }
-                        }
+                        // .dropdown-select{
+                        //     position: relative;
+                        //     &::after{
+                        //         content: "\f107";
+                        //         display: inline-block;
+                        //         font-style: normal;
+                        //         font-variant: normal;
+                        //         text-rendering: auto;
+                        //         -webkit-font-smoothing: antialiased;
+                        //         font-family: 'Font Awesome 5 Pro';
+                        //         position: absolute;
+                        //         right: 6px;
+                        //         font-size: 14px;
+                        //     }
+                        // }
                         .dropdown-menu{
                             .item{
                                 cursor: pointer;

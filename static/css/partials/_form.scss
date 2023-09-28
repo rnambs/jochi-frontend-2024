@@ -9,8 +9,8 @@
 		@include borderRadius(8);
 		font-size: 1rem;
 		line-height: 1.25rem;
-		height: 3rem;
-		padding: 0.67rem 0.93rem;
+		height: 2.5rem;
+		padding: 0.5rem 0.93rem;
 		border: 1px solid var(--form-border);
         background-color: var(--color-basic);
 		color: $font-secondary-dark;
@@ -593,7 +593,7 @@
     input[type="text"]{
         color: $font-secondary-dark;
         cursor: pointer;
-        padding-top: 0.15em;
+        padding-top: 0em;
     }
     &.dropdown-menu-top{
         .vdp-datepicker__calendar{

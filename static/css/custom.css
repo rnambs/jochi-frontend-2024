@@ -919,8 +919,8 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 8px;
   font-size: 1rem;
   line-height: 1.25rem;
-  height: 3rem;
-  padding: 0.67rem 0.93rem;
+  height: 2.5rem;
+  padding: 0.5rem 0.93rem;
   border: 1px solid var(--form-border);
   background-color: var(--color-basic);
   color: var(--text-secondary-dark);
@@ -1435,7 +1435,7 @@ h1, h2, h3, h4, h5, h6 {
 .vdp-datepicker.form-control input[type=text] {
   color: var(--text-secondary-dark);
   cursor: pointer;
-  padding-top: 0.15em;
+  padding-top: 0em;
 }
 .vdp-datepicker.form-control.dropdown-menu-top .vdp-datepicker__calendar {
   top: unset;
@@ -1943,7 +1943,7 @@ img.img-theme.dark {
   font-family: "Font Awesome 5 Pro";
   position: absolute;
   right: 12px;
-  top: 9px;
+  top: 0;
   font-size: 14px;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker input {
@@ -1965,21 +1965,6 @@ img.img-theme.dark {
 }
 .modal .modal-dialog .modal-content .modal-body .form-group #message-text {
   min-height: 80px;
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .dropdown .dropdown-select {
-  position: relative;
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .dropdown .dropdown-select::after {
-  content: "\f107";
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  font-family: "Font Awesome 5 Pro";
-  position: absolute;
-  right: 6px;
-  font-size: 14px;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group .dropdown .dropdown-menu .item {
   cursor: pointer;
