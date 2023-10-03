@@ -5952,8 +5952,15 @@ select.form-control.is-invalid {
   }
 }
 
-.task-container {
-  max-height: calc(100vh - 352px);
+.task-container, .calendar-container {
   overflow: hidden;
   overflow-y: auto;
+}
+
+.calendar-container {
+  max-height: calc(100vh - 290px);
+}
+
+.task-container {
+  max-height: calc(100vh - 352px);
 }/*# sourceMappingURL=custom.css.map */

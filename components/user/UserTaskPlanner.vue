@@ -28,7 +28,7 @@
                                       </div>
                                   </div>
                                   <div class="m-1 d-flex justify-content-end">
-                                    <button class="btn btn-primary py-1 px-3 mr-3">Add Assignment</button>
+                                    <button class="btn btn-primary py-1 px-3">Add Assignment</button>
                                   </div>
                               </div>
                           </div>

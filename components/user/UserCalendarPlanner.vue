@@ -74,7 +74,7 @@
                                     <div class="calendar-head d-flex align-items-center my-3 p-2 pl-3 mx--12">
                                         <p class="mb-0 color-dark font-bold text-14">Monday 03</p>
                                     </div>
-                                    <div class="d-flex flex-column w-100 h-100 border-right px--12">
+                                    <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
                                         <div class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Morning</p>
@@ -149,7 +149,7 @@
                                     <div class="calendar-head calendar-head--active d-flex align-items-center my-3 p-2 pl-3 mx--12">
                                         <p class="mb-0 font-bold text-14">Tuesday 04</p>
                                     </div>
-                                    <div class="d-flex flex-column w-100 h-100 border-right px--12">
+                                    <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
                                         <div class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Morning</p>
@@ -230,7 +230,7 @@
                                     <div class="calendar-head d-flex align-items-center my-3 p-2 pl-3 mx--12">
                                         <p class="mb-0 color-dark font-bold text-14">Wednesday 05</p>
                                     </div>
-                                    <div class="d-flex flex-column w-100 h-100 border-right px--12">
+                                    <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
                                         <div class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Morning</p>
@@ -311,7 +311,7 @@
                                     <div class="calendar-head d-flex align-items-center my-3 p-2 pl-3 mx--12">
                                         <p class="mb-0 color-dark font-bold text-14">Thursday 06</p>
                                     </div>
-                                    <div class="d-flex flex-column w-100 h-100 border-right px--12">
+                                    <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
                                         <div class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Morning</p>
@@ -396,7 +396,7 @@
                                     <div class="calendar-head d-flex align-items-center my-3 p-2 pl-3 mx--12">
                                         <p class="mb-0 color-dark font-bold text-14">Friday 07</p>
                                     </div>
-                                    <div class="d-flex flex-column w-100 h-100 border-right px--12">
+                                    <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
                                         <div class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Morning</p>
