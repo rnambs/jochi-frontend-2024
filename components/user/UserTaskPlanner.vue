@@ -10,8 +10,8 @@
                             <div class="col-12">
                                 <h2 class="heading2 font-semi-bold color-primary-dark mb-1">Tasks</h2>
                                 <p class="color-tertiary font-medium mb-1">Task For this week</p>
-                                <div class="row m-0 mb-3">
-                                    <div class="col-md-5 col-lg-3 pb-0 pr-3">
+                                <div class="d-flex flex-wrap">
+                                    <div class="pb-0 pr-3 m-1 mr-auto">
                                         <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto">
                                             <div class="dropdown-select form-control form-sm form-transparent"
                                                 type="button" data-toggle="dropdown" aria-haspopup="true"
@@ -26,6 +26,9 @@
                                                 <li class="item p-2">This week</li>
                                             </ul>
                                         </div>
+                                    </div>
+                                    <div class="m-1 d-flex justify-content-end">
+                                      <button class="btn btn-primary py-1 px-3 mr-3">Add Assignment</button>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +84,9 @@
                                                 </div>
                                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                     aria-labelledby="dLabel">
-                                                    <li class="item p-2">Edit</li>
+                                                    <li @click="EditAssignmentModal()" class="item p-2">
+                                                      Edit
+                                                    </li>
                                                     <li class="item p-2">Remove</li>
                                                 </ul>
                                             </div>
@@ -211,7 +216,7 @@
                               :identifier="reloadCount"
                               @infinite="loadNext"
                             >
-                            <div slot="no-more">That's all!</div>
+                            <div class="mb-2" slot="no-more"><span class="color-gray">That's all!</span></div>
                             </infinite-loading>
                           </client-only>
                                 </div>
@@ -388,7 +393,7 @@
                               :identifier="overduereloadCount"
                               @infinite="overdueNext"
                             >
-                            <div slot="no-more">That's all!</div>
+                            <div slot="no-more"><span class="color-gray">That's all!</span></div>
                             </infinite-loading>
                           </client-only>
                                 </div>
@@ -489,6 +494,218 @@
       </div>
     </div>
 
+            <div class="modal fade" id="editAssignment" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+                <div class="modal-content">
+                  <div class="modal-header pb-1">
+                    <h3 class="modal-title" id="editAssignmentModalLongTitle">
+                      Edit Assignment
+                    </h3>
+                  </div>
+                  <div class="modal-body px-3">
+                          <form >
+                            <div class="form-group mb-2">
+                              <label for="recipient-name" class="col-form-label py-1"
+                                >Subject here<em>*</em></label
+                              >
+                              <!-- <input
+                                v-if="schoologyAssignment == '1'"
+                                type="text"
+                                class="form-control"
+                                id="message-text"
+                                maxlength="125"
+                                placeholder="Enter assignment name"
+                              /> -->
+                              <select
+                                class="form-control"
+                              >
+                                <option value="">Select subject</option>
+                                <option>Jochi Maths</option>
+                              </select>
+                              <!-- <div
+                                v-if="submitted && $v.subject.$error"
+                                class="invalid-feedback"
+                              >
+                                <span v-if="!$v.subject.required"
+                                  >This field is required</span
+                                >
+                              </div> -->
+                            </div>
+                            <div class="form-group mb-2">
+                              <label for="assignment-name" class="col-form-label py-1"
+                                >Assignment Name<em>*</em></label
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="assignment-name"
+                                maxlength="60"
+                                placeholder="Enter assignment name"
+                              />
+                            </div>
+                            <div class="form-group mb-2">
+                              <label for="message-text" class="col-form-label py-1"
+                                >Task</label
+                              >
+                              <textarea
+                                class="form-control"
+                                id="message-text"
+                                rows="3"
+                                maxlength="500"
+                                placeholder="Enter assignment description"
+                              ></textarea>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6 ml-auto py-0">
+                                <div class="form-group mb-2 mb-0">
+                                  <label
+                                    for="recipient-name"
+                                    class="col-form-label py-1"
+                                    >Priority<em>*</em></label
+                                  >
+                                  <div class="dropdown input-icon-area">
+                                    <button
+                                      id="dLabel"
+                                      class="dropdown-select form-control text-left"
+                                      type="button"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                    >
+                                      <span class="">Select priority</span
+                                      >
+                                    </button>
+                                    <ul
+                                      class="dropdown-menu border"
+                                      aria-labelledby="dLabel"
+                                    >
+                                      <li
+                                        class="item low-color"
+                                      >
+                                        <span>Can Wait</span>
+                                      </li>
+                                      <li
+                                        class="item medium-color"
+                                      >
+                                        <span>Important</span>
+                                      </li>
+                                      <li
+                                        class="item high-color"
+                                      >
+                                        <span>Urgent</span>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6 ml-auto py-0">
+                                <div class="form-group mb-2">
+                                  <label
+                                    for="recipient-name"
+                                    class="col-form-label py-1"
+                                    >Date<em>*</em></label
+                                  >
+                                  <date-picker
+                                    class="form-control dropdown-menu-top"
+                                    placeholder="MM/DD/YYYY"
+                                    format="MM/dd/yyyy"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <!-- <div class="row mt-0">
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <label
+                                    for="recipient-name"
+                                    class="col-form-label"
+                                    >Time<em>*</em></label
+                                  >
+                                  <div>
+                                    <vue-timepicker
+                                      format="hh:mm A"
+                                      name="timeValue"
+                                      class="show-cursor dropdown-menu-top"
+                                    ></vue-timepicker>
+                                  </div>
+                                </div>
+                              </div>
+                            </div> -->
+                            <div
+                              class="d-flex justify-content-between align-items-center mb-2"
+                            >
+                              <h6 class="color-dark font-semi-bold mb-0">
+                                Sub Tasks
+                              </h6>
+                              <a class="btn p-0">
+                                <span class="color-secondary"
+                                  ><i class="fas fa-plus-circle"></i
+                                ></span>
+                              </a>
+                            </div>
+                            <div
+                              class="d-flex flex-row align-items-start"
+                            >
+                              <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                <label class="form-label" for="name"
+                                  >Add a sub-task</label
+                                >
+                                <input
+                                  type="text"
+                                  maxlength="100"
+                                  v-model="subTaskName"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="pt-4">
+                                <button
+                                  class="btn btn-primary btn-sm mt-2"
+                                >
+                                  Add
+                                </button>
+                              </div>
+                            </div>
+
+                            <div
+                              class="d-flex justify-content-between align-items-center mb-2"
+                            >
+                              <h6 class="color-dark font-semi-bold mb-0">
+                                Invite Peers
+                              </h6>
+                              <a class="btn p-0">
+                                <span class="color-secondary"
+                                  ><i class="fas fa-plus-circle"></i
+                                ></span>
+                              </a>
+                            </div>
+
+                            <!-- Additional Material Add -->
+                            <div
+                              class="d-flex justify-content-between align-items-center mb-2"
+                            >
+                              <h6 class="color-dark font-semi-bold mb-0">
+                                Additional Material
+                              </h6>
+                              <a class="btn p-0">
+                                <span class="color-secondary"
+                                  ><i class="fas fa-plus-circle"></i
+                                ></span>
+                              </a>
+                            </div>
+                          </form>
+                  </div>
+                  <div class="modal-footer justify-content-end border-top-0">
+                    <button type="button" class="btn btn-void py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
+                      Cancel
+                    </button>
+                    <button data-dismiss="modal" type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold">
+                      Update
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <!-- End Daily Calander -->
         </div>
     </div>
@@ -899,6 +1116,9 @@ async completeAssignment(completed = true) {
     this.completeAsstId = 0;
   }
 },
+    EditAssignmentModal() {
+        $("#editAssignment").modal({ backdrop: true });
+    },
   },
 }
 </script>

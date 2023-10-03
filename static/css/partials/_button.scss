@@ -96,9 +96,18 @@
     &.btn-void{
         background-color: transparent;
         color: $text-gray;
-        border: 1px solid $border-color;
+        border: 1px solid var(--form-border);
         &:hover{
+            background-color: var(--text-primary-white);
             color: $font-secondary-dark;
+        }
+    }
+    &.btn-transparent{
+        background-color: transparent;
+        color: $text-gray;
+        border: none;
+        &:hover{
+            color: $text-gray;
         }
     }
     // &.btn-success{
@@ -162,11 +171,12 @@
     button.tab-btn{
         padding: 5px 20px;
         background-color: $primary-light01;
-        color: #ffffff;
+        color: $font-secondary-color;
         border-radius: 0 0 14px 14px;
         transition: background-color 0.5s ease;
         &.selected{
             background-color: $theme-color;
+            color: $white;
         }
     }
 }

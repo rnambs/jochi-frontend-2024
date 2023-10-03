@@ -21,7 +21,7 @@
     <div class="main-section">
       <!-- tab for club files -->
       <div
-        class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
       >
         <!-- end tab for club files -->
         <!-- Club files -->
@@ -63,7 +63,7 @@
         <div class="position-relative">
           <div
             v-bind:class="{
-              'dropdown-club bg-white border rounded-10': true,
+              'dropdown-club bg-global border rounded-10': true,
               'dropdown-club--visible': dropdownVisible,
             }"
           >
@@ -123,15 +123,15 @@
         </div>
         <section id="club-detail" class="flex-fill d-flex flex-column h-40">
           <div
-            class="club-section container-fluid pt-2 d-flex flex-column custom-overflow flex-fill"
+            class="club-section container-fluid p-0 pt-2 d-flex flex-column custom-overflow flex-fill"
           >
             <div class="row my-0 flex-fill">
               <div class="col d-flex h-md-100">
                 <div
-                  class="inner-club club-files container-fluid p-3 d-flex flex-column"
+                  class="inner-club club-files container-fluid p-0 d-flex flex-column"
                 >
-                  <div class="info-head container-fluid mb-2">
-                    <h3 class="color-primary-dark font-semi-bold mb-1">
+                  <div class="info-head container-fluid mb-2 px-0">
+                    <h3 class="text-24 color-primary-dark font-semibold mb-1">
                       {{ headingName }}
                     </h3>
                   </div>
@@ -139,10 +139,10 @@
                     class="custom-overflow image-overflow d-flex flex-column h-100"
                   >
                     <div
-                      class="row info-row container-fluid my-0 mx-auto align-items-start"
+                      class="row info-row my-0 mx-auto align-items-start"
                     >
                       <div
-                        class="col-md-3 col-sm-6 p-2"
+                        class="col-md-3 col-sm-6"
                         v-for="(list, index) in allList"
                         :key="index"
                       >
@@ -163,7 +163,7 @@
                               data-target="#exampleModalCenter"
                             ></i
                           ></span>
-                          <figure class="figure w-100">
+                          <figure class="figure w-100 border rounded-8">
                             <a :href="list.original_file_name" target="_blank">
                               <div class="img-figure">
                                 <img
@@ -198,7 +198,7 @@
                               data-target="#exampleModalCenter"
                             ></i
                           ></span>
-                          <figure class="figure w-100">
+                          <figure class="figure w-100 border rounded-8">
                             <a :href="list.original_file_name" download>
                               <div class="img-figure">
                                 <img
@@ -232,7 +232,7 @@
                               data-target="#exampleModalCenter"
                             ></i
                           ></span>
-                          <figure class="figure w-100">
+                          <figure class="figure w-100 border rounded-8">
                             <div class="img-figure">
                               <img
                                 class="figure-img cursor-pointer"
@@ -263,7 +263,7 @@
                                 class="d-flex flex-column w-50 align-items-end"
                               >
                                 <span
-                                  class="close d-flex align-items-center justify-content-center rounded-circle bg-white color-primary-dark mb-1 font-regular position-absolute z-index-9 mr-2 mt-2"
+                                  class="close d-flex align-items-center justify-content-center rounded-circle bg-global color-primary-dark mb-1 font-regular position-absolute z-index-9 mr-2 mt-2"
                                   @click="spanClose()"
                                   >&times;</span
                                 >
@@ -318,7 +318,7 @@
                     <div class="modal-footer justify-content-end border-top-0">
                       <button
                         type="button"
-                        class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
+                        class="btn btn-void px-4 py-1 rounded-8 font-semi-bold"
                         data-dismiss="modal"
                       >
                         No
@@ -349,7 +349,7 @@
                       enctype="multipart/form-data"
                       class="d-flex flex-column align-items-center w-100 h-100"
                     >
-                      <div class="py-4 upload-area h-100">
+                      <div class="upload-area h-100">
                         <div class="proof-img-wrp mt-3 mb-3">
                           <img
                             v-if="fileCheck && profileImageUrl"
@@ -444,9 +444,9 @@
 
         <!-- End Club files -->
         <section id="tab" class="">
-          <div class="info-tab container-fluid mb-3 px-3">
+          <div class="info-tab container-fluid mb-3 px-0">
             <div class="row tab-row m-0 px-3">
-              <div class="col-md-4 col-xs-12 py-2 py-md-0">
+              <div class="col-md-4 col-xs-12 py-2 py-md-0 px-0">
                 <nuxt-link
                   :to="{
                     path: '/club-moreInfo',
@@ -456,14 +456,14 @@
                       type: activity_type,
                     },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
+                  class="inner-tab d-flex align-items-center justify-content-center btn btn-primary btn-lg w-100"
                 >
-                  <span class="text-24 color-primary-dark font-semi-bold"
+                  <span class="font-semi-bold"
                     >Home Page</span
                   >
                 </nuxt-link>
               </div>
-              <div class="col-md-4 col-xs-12 py-2 py-md-0">
+              <div class="col-md-4 col-xs-12 py-2 py-md-0 px-0 px-md-3">
                 <nuxt-link
                   :to="{
                     path: '/club-info',
@@ -473,30 +473,30 @@
                       type: activity_type,
                     },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
+                  class="inner-tab d-flex align-items-center justify-content-center btn btn-primary btn-lg w-100"
                 >
-                  <span class="text-24 color-primary-dark font-semi-bold"
+                  <span class="font-semi-bold"
                     >Club Details</span
                   >
                 </nuxt-link>
               </div>
               <div
                 @click="onNextMeeting"
-                class="col-md-4 col-xs-12 py-2 py-md-0"
+                class="col-md-4 col-xs-12 py-2 py-md-0 px-0"
               >
                 <div
                   :class="
                     enableEdit
-                      ? 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100 cursor-pointer'
-                      : 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100'
+                      ? 'inner-tab default d-flex flex-column align-items-center justify-content-center btn btn-primary btn-lg w-100 cursor-pointer'
+                      : 'inner-tab default d-flex flex-column align-items-center justify-content-center btn btn-primary btn-lg w-100'
                   "
                 >
-                  <span class="text-24 color-primary-dark font-semi-bold"
+                  <span class="font-semi-bold"
                     >Next Meeting</span
                   >
-                  <span class="text-16 color-secondary font-regular">{{
+                  <!-- <span class="text-16 color-secondary font-regular">{{
                     clubMoreDetails.announcement
-                  }}</span>
+                  }}</span> -->
                 </div>
               </div>
             </div>
@@ -577,7 +577,7 @@
           <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8"
+              class="btn btn-void px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Cancel
@@ -725,7 +725,7 @@
           <div v-if="!showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
+              class="btn btn-void px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               No

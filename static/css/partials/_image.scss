@@ -1,12 +1,37 @@
 :root{
     &.dark-theme {
-        img.img-illustrate{
+        img.img-theme{
             &.light{display: none;}
             &.dark{display: block;}
         }
     }
 }
-img.img-illustrate{
+img.img-theme{
     &.light{display: block;}
     &.dark{display: none;}
+}
+.meeting-section{
+    img.img-illustrate{
+        padding: 0.5rem;
+        padding-bottom: 2rem;
+        width: 100%;
+        object-fit: contain;
+        @media (min-width: 1396.98px) {
+            width: 65%;
+            margin: auto;
+        }
+        @media (max-width: 1396.98px) {
+            width: 70%;
+            margin: auto;
+        }
+        @media (max-width: 1024.98px) {
+            width: 60%;
+            margin: auto;
+        }
+        @media (max-width: 767.98px) {
+            padding: 1rem;
+            width: 60%;
+            margin: 0;
+        }
+    }
 }

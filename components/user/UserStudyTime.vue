@@ -15,7 +15,7 @@
     <!-- session  -->
     <div
       v-if="currentTab == 0"
-      class="bg-white custom-margin-for-main-section custom-full-height d-flex"
+      class="bg-global m--12 custom-full-height d-flex"
     >
       <div
         class="study-section d-flex flex-column flex-fill px-4 custom-overflow py-md-2 py-lg-3"
@@ -26,7 +26,7 @@
               <div
                 data-intro="The study room is a tool for you to use to tackle your assignments/tasks. Click here to schedule a study session for sometime later."
                 @click="scheduleLaterClick('assignment', $event)"
-                class="position-absolute send-later bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
+                class="position-absolute send-later bg-global border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
               >
                 <img src="~/assets/images/v4/send-later.png" />
               </div>
@@ -58,7 +58,7 @@
               <div
                 data-intro="Want to just set yourself accountable while getting general work here? Click here to schedule a regular study session for later."
                 @click="scheduleLaterClick('study', $event)"
-                class="position-absolute send-later bg-white border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
+                class="position-absolute send-later bg-global border rounded-10 d-flex align-items-center justify-content-center cursor-pointer"
               >
                 <img src="~/assets/images/v4/send-later.png" />
               </div>
@@ -289,13 +289,13 @@
 
     <div
       v-if="currentTab == 1"
-      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
+      class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column hidden-scroll"
     >
       <h3 class="color-primary-dark heading3 font-bold mb-1">Step One:</h3>
       <h3 class="color-primary-dark heading3 font-bold mb-1">Choose An Assignment</h3>
       <div class="d-flex align-items-center justify-content-between">
         <div class="d-flex">
-          <button @click="onBack()" class="btn color-secondary">
+          <button @click="onBack()" class="btn btn-transparent">
             <span class="mr-2 arrow"
               ><i class="fas fa-long-arrow-alt-left"></i></span
             ><span class="arrow-text">Back</span>
@@ -338,7 +338,7 @@
           >
             <div
               @click="onAssignmentSelect(detail)"
-              class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between cursor-pointer"
+              class="card card-primary rounded-8 drag-drop p-4 position-realtive h-100 justify-content-between cursor-pointer"
             >
               <div class="d-flex flex-column">
                 <div
@@ -370,7 +370,7 @@
                   </div>
                 </div>
                 <div class="text-center">
-                  <h4 class="color-dark font-semi-bold mb-1 word-break">
+                  <h4 class="text-18 color-dark font-semi-bold mb-1 word-break">
                     <!-- French Oral Practice -->
                     {{ detail.task }}
                   </h4>
@@ -406,22 +406,22 @@
                         />
                         <label
                           for=""
-                          class="mb-0 text-14 color-secondary cursor-pointer text-truncate"
+                          class="mb-0 text-14 color-gray cursor-pointer text-truncate"
                           >{{ subtask.title }}</label
                         >
                       </div>
                     </div>
                   </div>
                   <div v-if="detail.subTasks && detail.subTasks.length > 4">
-                    <span class="text-12 color-secondary">
+                    <span class="text-12 color-gray">
                       + {{ detail.subTasks.length - 4 }} more
                     </span>
                   </div>
                 </div>
               </div>
               <div class="">
-                <h6 class="mb-1 font-medium">Additional Materials</h6>
-                <div class="d-flex align-items-center justify-content-between">
+                <h6 class="mb-0 font-medium color-primary-dark">Additional Materials</h6>
+                <div class="row px--12 d-flex align-items-center justify-content-between">
                   <div
                     v-if="
                       detail.assignment_materials &&
@@ -436,7 +436,7 @@
                         :key="index"
                       >
                         <span
-                          class="text-capitalize color-secondary text-truncate w-100"
+                          class="text-capitalize color-gray text-truncate w-100"
                         >
                           {{ file.file_type }} &nbsp;:&nbsp;{{ file.file_name }}
                         </span>
@@ -448,16 +448,16 @@
                         detail.assignment_materials.length > 2
                       "
                     >
-                      <span class="text-12 color-secondary">
+                      <span class="text-12 color-gray">
                         + {{ detail.assignment_materials.length - 2 }} more
                       </span>
                     </div>
                   </div>
                   <div v-else class="col-8 py-0 pl-0 material-link">
-                    <span class="color-secondary">No documents added!</span>
+                    <p class="color-gray text-14 mb-0">No documents added!</p>
                   </div>
-                  <div class="col-4 material-date py-0 text-right text-10">
-                    {{ detail.formattedDate }}
+                  <div class="col-4">
+                    <p class="material-date py-0 text-right text-10 color-gray mb-0">{{ detail.formattedDate }}</p>
                   </div>
                 </div>
               </div>
@@ -469,14 +469,14 @@
 
     <div
       v-if="currentTab == 2"
-      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
+      class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column hidden-scroll"
     >
       <h3 class="color-primary-dark heading3 font-bold mb-1">
         Step {{ sessionType == "study" ? "One" : "Two" }}:
       </h3>
       <h3 class="color-primary-dark heading3 font-bold mb-1">Configure your Session</h3>
       <div class="d-flex">
-        <button @click="onBack()" class="btn color-secondary">
+        <button @click="onBack()" class="btn btn-transparent">
           <span class="mr-2 arrow"
             ><i class="fas fa-long-arrow-alt-left"></i></span
           ><span class="arrow-text">Back</span>
@@ -490,12 +490,12 @@
               class="col-12 col-md-5 col-lg-4"
             >
               <div
-                class="bg-white border rounded-8 drag-drop px-4 py-5 position-realtive h-100 d-flex align-items-center justify-content-center flex-column cursor-pointer"
+                class="card card-primary rounded-8 drag-drop px-4 py-5 position-realtive h-100 align-items-center justify-content-center cursor-pointer"
               >
                 <h3 class="color-primary-dark heading3 text-center font-bold mb-1">
                   Regular Studying
                 </h3>
-                <p class="color-dark font-semi-bold text-center text-18">
+                <p class="color-gray font-semi-bold text-center text-18">
                   Set your own timer, goals, and breaks.
                 </p>
               </div>
@@ -505,12 +505,12 @@
               class="col-12 col-md-5 col-lg-4"
             >
               <div
-                class="bg-white border rounded-8 drag-drop px-4 py-5 position-realtive d-flex align-items-center justify-content-center flex-column cursor-pointer"
+                class="card card-primary rounded-8 drag-drop px-4 py-5 position-realtive align-items-center cursor-pointer"
               >
                 <h3 class="color-primary-dark heading3 font-bold mb-1 text-center">
                   Pomodoro Technique
                 </h3>
-                <p class="color-dark font-semi-bold text-18 text-center">
+                <p class="color-gray font-semi-bold text-18 text-center">
                   Definition of this technique will go here...
                 </p>
                 <button
@@ -537,14 +537,14 @@
     <!-- step two configure -->
     <div
       v-if="currentTab == 3"
-      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column hidden-scroll"
+      class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column hidden-scroll"
     >
       <h3 class="color-primary-dark heading3 font-bold mb-1">
         Step {{ sessionType == "study" ? "Two" : "Three" }}:
       </h3>
       <h3 class="color-primary-dark heading3 font-bold mb-1">Configure your Session</h3>
       <div class="d-flex">
-        <button @click="onBack()" class="btn color-secondary">
+        <button @click="onBack()" class="btn btn-transparent">
           <span class="mr-2 arrow"
             ><i class="fas fa-long-arrow-alt-left"></i></span
           ><span class="arrow-text">Back</span>
@@ -553,7 +553,7 @@
       <div class="row h-40 flex-grow-1">
         <div class="col-lg-7 h-md-100 d-flex flex-column">
           <div
-            class="card card-void p-4 h-40 flex-fill mb-4 h-min-200"
+            class="card card-primary p-4 h-40 flex-fill mb-4 h-min-200"
           >
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">
@@ -595,14 +595,14 @@
                 </button>
               </div>
             </div>
-            <div class="custom-overflow pr-2 mr--2 d-flex flex-column pl-3">
+            <div class="custom-overflow pr-2 mr--2 d-flex flex-column">
               <div v-for="goal in goalsList" :key="goal">
-                <div class="card card-transparent show-icon p-1 mt-1">
+                <div class="card card-transparent border-0 show-icon p-1 mt-1">
                   <div
                     class="d-flex align-items-center justify-content-between"
                   >
                     <p
-                      class="mb-0 color-secondary text-16 font-regular pr-3 d-flex"
+                      class="mb-0 color-gray text-16 font-regular pr-3 d-flex"
                     >
                       <span><i class="far fa-circle"></i></span>
                       <span class="word-break ml-2">{{ goal }}</span>
@@ -617,12 +617,12 @@
               </div>
               <div v-if="sessionType == 'assignment'">
                 <div v-for="task in selectedAssignment.subTasks" :key="task.id">
-                  <div class="card card-transparent show-icon p-1 mt-1">
+                  <div class="card card-transparent border-0 show-icon p-1 mt-1">
                     <div
                       class="d-flex align-items-center justify-content-between"
                     >
                       <p
-                        class="mb-0 color-secondary text-16 font-regular pr-3 d-flex w-100"
+                        class="mb-0 color-gary text-16 font-regular pr-3 d-flex w-100"
                       >
                         <span><i class="far fa-circle"></i></span>
                         <span class="ml-2 w-100">{{ task.title }}</span>
@@ -634,7 +634,7 @@
             </div>
           </div>
 
-          <div class="card card-void h-40 flex-fill p-4 h-min-200">
+          <div class="card card-primary h-40 flex-fill p-4 h-min-200">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
               <a
@@ -704,7 +704,7 @@
           </div>
         </div>
         <div class="col-lg-5 d-flex flex-column h-100">
-          <div class="card card-void p-4 m-0 flex-column h-100">
+          <div class="card card-primary p-4 m-0 flex-column h-100">
             <div class="d-flex flex-column justify-content-between h-100">
               <div class="d-flex flex-column h-40 flex-fill">
                 <h3 class="color-dark heading3 font-semi-bold mb-1">
@@ -825,41 +825,41 @@
                     </div>
 
                     <div
-                      class="d-flex flex-column flex-sm-row flex-lg-column flex-xl-row justify-content-between position-relative"
+                      class="d-flex flex-column"
                     >
-                      <div class="d-flex flex-column">
-                        <div class="py-1">
+                      <div class="row d-flex flex-wrap">
+                        <div class="col-12 col-sm-6 col-md-12 col-lg-6 px--12">
                           <button
-                            v-if="!scheduleLater"
-                            type="submit"
-                            :disabled="processingStudySession"
-                            class="btn btn-primary btn-sm"
-                          >
-                            Start Session
-                          </button>
-                        </div>
-                        <div class="py-1">
-                          <button
-                            v-if="
-                              !sessionDetail.id ||
-                              (sessionDetail && sessionDetail.userId == userId)
-                            "
-                            type="button"
-                            @click="openScheduleForLater()"
-                            class="btn btn-primary btn-sm"
+                          v-if="
+                            !sessionDetail.id ||
+                            (sessionDetail && sessionDetail.userId == userId)
+                          "
+                          type="button"
+                          @click="openScheduleForLater()"
+                          class="btn btn-void btn-sm w-100"
                           >
                             Schedule for later
                           </button>
                         </div>
+                        <div class="col-12 col-sm-6 col-md-12 col-lg-6 px--12">
+                          <button
+                            v-if="!scheduleLater"
+                            type="submit"
+                            :disabled="processingStudySession"
+                            class="btn btn-primary btn-sm w-100"
+                          >
+                            Start Session
+                          </button>
+                        </div>
                       </div>
 
-                      <div class="d-flex justify-content-end mt-4">
+                      <!-- <div class="d-flex justify-content-end mt-4">
                         <img
                           src="../../static/image/v4/dashboard_img.svg"
                           alt=""
                           class="img-fluid card-img"
                         />
-                      </div>
+                      </div> -->
                     </div>
                   </form>
                 </div>
@@ -875,7 +875,7 @@
 
     <div
       v-if="currentTab == 4"
-      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex show-scroll"
+      class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex"
     >
       <div class="d-flex flex-column flex-fill">
         <div class="row">
@@ -884,9 +884,9 @@
           >
             <div class="card card-void p-4 flex-fill mb-4">
               <div class="">
-                <h1 class="color-primary-dark font-bold mb-2">Working on</h1>
+                <h2 class="color-primary-dark font-semi-bold mb-2">Working on</h2>
               </div>
-              <p class="color-dark text-24 font-semi-bold mb-1">
+              <p class="color-dark text-24 font-semi-bold mb-2">
                 <span>Subject Name: </span>
                 <span class="word-break">
                   {{
@@ -896,7 +896,7 @@
                   }}
                 </span>
               </p>
-              <p class="color-secondary text-16 font-regular mb-1">
+              <p class="color-gray text-16 font-regular mb-2">
                 Study Method :
                 <span>{{ startSessionNowClicked? (sessionDetail.studyMethod == "1"
                             ? "Pomodoro"
@@ -908,41 +908,41 @@
                     : "Pomodoro Studying")
                 }}</span>
               </p>
-              <p class="color-secondary text-16 font-regular mb-1">
+              <p class="color-gray text-16 font-regular mb-2">
                 Remaining Cycles :
                 {{ totalCycles - currentCycle }}
               </p>
-              <p class="color-secondary text-16 font-regular mb-1">
+              <p class="color-gray text-16 font-regular mb-2">
                 Remaining Repetitions :
                 {{ repetitionCount - currentRepetitionNum }}
               </p>
 
-              <h3 class="color-dark font-semi-bold mb-0">Goals</h3>
+              <h3 class="color-primary-dark font-semi-bold mb-2">Goals</h3>
               <div v-for="goal in goalsList" :key="goal">
-                <div class="card card-transparent show-icon p-1 mt-1">
+                <div class="card card-transparent border-0 show-icon py-1 mt-1">
                   <div
                     class="d-flex align-items-center justify-content-between"
                   >
                     <p
-                      class="mb-0 color-secondary text-16 font-regular pr-3 d-flex"
+                      class="mb-0 color-gary text-16 font-regular pr-3 d-flex"
                     >
                       <span><i class="far fa-circle"></i></span>
-                      <span class="word-break ml-2">{{ goal }}</span>
+                      <span class="color-gray word-break ml-2">{{ goal }}</span>
                     </p>
                   </div>
                 </div>
               </div>
               <div v-if="sessionType == 'assignment'">
                 <div v-for="task in selectedAssignment.subTasks" :key="task.id">
-                  <div class="card card-transparent show-icon p-1 mt-1">
+                  <div class="card card-transparent border-0 show-icon py-1 mt-1">
                     <div
                       class="d-flex align-items-center justify-content-between"
                     >
                       <p
-                        class="mb-0 color-secondary text-16 font-regular pr-3 d-flex w-100"
+                        class="mb-0 color-gray text-16 font-regular pr-3 d-flex w-100"
                       >
                         <span><i class="far fa-circle"></i></span>
-                        <span class="ml-2 w-100">{{ task.title }}</span>
+                        <span class="color-gray ml-2 w-100">{{ task.title }}</span>
                       </p>
                     </div>
                   </div>
@@ -955,13 +955,13 @@
                     selectedAssignment.subTasks.length <= 0)
                 "
               >
-                <span class="color-secondary text-16 font-regular"
+                <span class="color-gray text-16 font-regular"
                   >No goals listed</span
                 >
               </div>
             </div>
             <div class="card card-void p-4">
-              <h3 class="color-dark font-semi-bold mb-0">Invited Peers</h3>
+              <h3 class="color-primary-dark font-semi-bold mb-0">Invited Peers</h3>
               <div class="hidden-scroll p-3 pl-4 row my-0">
                 <div
                   v-for="peer in peerList"
@@ -983,14 +983,14 @@
                     />
                   </div>
                   <div class="ld-details-section">
-                    <p class="ld-heading mb-1">{{ peer.first_name }}</p>
+                    <p class="ld-heading mb-1 color-gray">{{ peer.first_name }}</p>
                   </div>
                 </div>
                 <div
                   v-if="!peerList || peerList.length <= 0"
                   class="d-flex align-items-center my-2 mr-3 min-w-200"
                 >
-                  <span class="color-secondary text-16 font-regular"
+                  <span class="color-gray text-16 font-regular"
                     >No peers invited!</span
                   >
                 </div>
@@ -1006,8 +1006,8 @@
             >
               <div class="d-flex flex-column flex-fill justify-content-between">
                 <div class="d-flex flex-column mb-4">
-                  <h1 class="color-primary-dark font-bold mb-0">Timer</h1>
-                  <p class="color-dark text-24 font-semi-bold mb-1">
+                  <h2 class="color-primary-dark font-semi-bold mb-1">Timer</h2>
+                  <p class="color-gray text-18 font-semi-bold mb-1">
                     You got this!
                   </p>
                 </div>
@@ -1042,7 +1042,8 @@
                       </g>
                     </svg>
                     <div class="inner-timer">
-                      <img src="../../static/image/v4/alarm.png" alt="" />
+                      <img src="../../static/image/v4/alarm-black.svg" alt="clock" class="img-theme light" />
+                      <img src="../../static/image/v4/alarm-white.svg" alt="clock" class="img-theme dark" />
                     </div>
                     <p class="mb-2">
                       <span
@@ -1097,12 +1098,13 @@
 
     <div
       v-if="currentTab == 5"
-      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex align-items-center justify-content-center hidden-scroll"
+      class="border-0 rounded-10 p-0 m--12 custom-full-height d-flex align-items-center justify-content-center hidden-scroll"
     >
+      <!-- <h2 class="color-primary-dark font-semi-bold mb-1">Rate</h2> -->
       <div
-        class="px-5 py-4 d-flex flex-column card card-void col-lg-7"
+        class="p-5 d-flex flex-column card card-primary rounded-14 col-lg-7"
       >
-        <h3 class="color-primary-dark heading3 font-semi-bold mb-1">Rate your session</h3>
+        <h3 class="color-primary-dark heading3 font-semi-bold mb-1">Rate Your Session</h3>
         <div class="d-flex flex-column py-3 px-0">
           <div class="mb-3">
             <h4 class="color-dark font-semi-bold">Focus</h4>
@@ -1110,9 +1112,9 @@
               <star-rating
                 class="mb-2"
                 v-model="focusRating"
-                inactive-color="#DDD6ED"
+                inactive-color="#d3c8e6"
                 active-color="#5534A5"
-                border-color="#F9F9F9"
+                border-color="#d3c8e6"
                 v-bind:border-width="4"
                 v-bind:star-size="21"
                 v-bind:padding="1"
@@ -1120,7 +1122,7 @@
                 v-bind:rounded-corners="true"
                 v-bind:max-rating="5"
               ></star-rating>
-              <p class="total-value px-4">{{ focusRating }}<sub>/5</sub></p>
+              <p class="total-value px-4 color-text-primary">{{ focusRating }}<span>/5</span></p>
             </div>
           </div>
           <div class="mb-3">
@@ -1129,9 +1131,9 @@
               <star-rating
                 class="mb-2"
                 v-model="focusEfficiency"
-                inactive-color="#DDD6ED"
+                inactive-color="#d3c8e6"
                 active-color="#5534A5"
-                border-color="#F9F9F9"
+                border-color="#d3c8e6"
                 v-bind:border-width="4"
                 v-bind:star-size="21"
                 v-bind:padding="1"
@@ -1139,7 +1141,7 @@
                 v-bind:rounded-corners="true"
                 v-bind:max-rating="5"
               ></star-rating>
-              <p class="total-value px-4">{{ focusEfficiency }}<sub>/5</sub></p>
+              <p class="total-value px-4 color-text-primary">{{ focusEfficiency }}<span>/5</span></p>
             </div>
           </div>
           <div class="mb-3">
@@ -1148,9 +1150,9 @@
               <star-rating
                 class="mb-2"
                 v-model="focusWorkComplete"
-                inactive-color="#DDD6ED"
+                inactive-color="#d3c8e6"
                 active-color="#5534A5"
-                border-color="#F9F9F9"
+                border-color="#d3c8e6"
                 v-bind:border-width="4"
                 v-bind:star-size="21"
                 v-bind:padding="1"
@@ -1158,8 +1160,8 @@
                 v-bind:rounded-corners="true"
                 v-bind:max-rating="5"
               ></star-rating>
-              <p class="total-value px-4">
-                {{ focusWorkComplete }}<sub>/5</sub>
+              <p class="total-value px-4 color-text-primary">
+                {{ focusWorkComplete }}<span>/5</span>
               </p>
             </div>
           </div>
@@ -1167,7 +1169,7 @@
         <button
           type="button"
           @click.prevent="onLogSession()"
-          class="btn btn-primary mb-3 mt-2 pl-3 pr-3"
+          class="btn btn-primary my-2 pl-3 pr-3 ml-auto"
         >
           Log Session
         </button>
@@ -1202,7 +1204,7 @@
           <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8"
+              class="btn btn-void px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Close
@@ -1253,7 +1255,7 @@
           <div class="modal-body overflow-initial">
             <div class="form-group required">
               <date-picker
-                class="form-control bg-white"
+                class="form-control bg-global"
                 placeholder="Date"
                 format="MM/dd/yyyy"
                 :value="scheduledDate"
@@ -1276,7 +1278,7 @@
           <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8"
+              class="btn btn-void px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Close
@@ -1364,7 +1366,7 @@ export default {
   head() {
     return {
       link: [
-        { rel: "stylesheet", href: "/css/style01.css" },
+        { rel: "stylesheet", href: "/css/custom.css" },
         {
           rel: "stylesheet",
           href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
