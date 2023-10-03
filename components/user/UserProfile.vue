@@ -245,7 +245,7 @@
                           <div v-if="user_type == '3'" class="col-md-12 p-0">
                             <div
                               v-if="advisorDetail && advisorDetail.first_name"
-                              class="card card-primary p-3"
+                              class="card card-void p-3"
                             >
                               <h4 class="color-dark font-semi-bold">
                                 Your Advisor

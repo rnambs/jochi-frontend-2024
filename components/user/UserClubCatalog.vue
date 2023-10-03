@@ -319,15 +319,15 @@
         >
           <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
             <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header pb-2">
                 <h3
-                  class="color-primary-dark font-semi-bold"
+                  class="modal-title color-primary-dark heading3 font-semi-bold mb-0"
                   id="createClubModalLongTitle"
                 >
                   Create your own club
                 </h3>
               </div>
-              <div class="modal-body no-overflow px-4">
+              <div class="modal-body no-overflow px-3">
                 <form name="announcement">
                   <fieldset>
                     <div class="form-group">
@@ -397,7 +397,7 @@
                   </fieldset>
                 </form>
               </div>
-              <div class="modal-footer justify-content-end border-top-0">
+              <div class="modal-footer justify-content-end border-top-0 pt-2">
                 <button
                   type="button"
                   class="btn btn-secondary px-3 py-1 rounded-8 font-semi-bold"

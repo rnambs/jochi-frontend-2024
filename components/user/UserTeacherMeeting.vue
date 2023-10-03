@@ -279,9 +279,8 @@
                 role="document"
               >
                 <div class="modal-content px-4">
-                  <div class="modal-body mt-4">
-                    <form action="">
-                      <h3
+                  <div class="modal-header pb-0">
+                    <h3
                         class="modal-title color-primary-dark heading3 font-semi-bold mb-0"
                         id="exampleModalLongTitle"
                       >
@@ -306,16 +305,19 @@
                           </h4>
                         </span>
                       </h3>
-                      <h5 class="color-secondary font-semi-bold">
+                  </div>
+                  <div class="modal-body">
+                    <form action="">
+                      <h6 class="color-secondary font-semi-bold mb-1">
                         {{ popupValue[0] }}
-                      </h5>
-                      <p class="color-primary font-regular mb-2">
+                      </h6>
+                      <p class="color-primary text-14 font-regular mb-2">
                         {{ popupFrom[0] }}
                         {{ popupEnd[0] ? "to " + popupEnd[0] : "" }}
                       </p>
 
                       <div
-                        class="mb-0 d-flex col-12 col-md-10 col-lg-9 align-items-center form-row py-0 px-1 mb-3"
+                        class="mb-0 d-flex col-12 align-items-center form-row py-0 px-1 mb-3"
                       >
                         <input
                           type="text"
@@ -339,7 +341,7 @@
                         </div>
                       </div>
                       <div
-                        class="mb-0 col-12 col-md-11 col-lg-10 d-flex align-items-center form-row py-0 px-1 mb-3"
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0 px-1 mb-3"
                       >
                         <textarea
                           type="text"
@@ -366,19 +368,20 @@
                       </div>
 
                       <div
-                        class="mb-0 col-12 col-md-7 col-lg-6 d-flex align-items-center form-row py-0 px-1 mb-3"
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0 px-1 mb-3"
                       >
                         <select
                           class="form-control mb-0"
                           tabindex=""
                           name="conversation_type"
+                          placeholder="Type of Meeting"
                           v-model="conversation_type"
                           :class="{
                             'is-invalid':
                               submitted && $v.conversation_type.$error,
                           }"
                         >
-                          <option value="" disabled selected>
+                          <option value="" disabled>
                             Type of Meeting
                           </option>
                           <option value="Video Conference">
@@ -396,7 +399,7 @@
                         </div>
                       </div>
                       <div
-                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0 px-1"
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0 px-1"
                       >
                         <input
                           type="text"

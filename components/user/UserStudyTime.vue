@@ -291,38 +291,38 @@
       v-if="currentTab == 1"
       class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column hidden-scroll"
     >
-      <h3 class="color-primary-dark heading3 font-bold mb-1">Step One:</h3>
-      <h3 class="color-primary-dark heading3 font-bold mb-1">Choose An Assignment</h3>
-      <div class="d-flex align-items-center justify-content-between">
-        <div class="d-flex">
-          <button @click="onBack()" class="btn btn-transparent">
-            <span class="mr-2 arrow"
-              ><i class="fas fa-long-arrow-alt-left"></i></span
-            ><span class="arrow-text">Back</span>
-          </button>
+        <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+          <h3 class="color-primary-dark heading3 font-bold mb-1 mr-3">Step One : <span>Choose An Assignment</span> </h3>
+            <!-- <h3 class="color-primary-dark heading3 font-bold mb-1"></h3> -->
+          <div class="d-flex flex-wrap flex-fill align-items-center">
+            <div
+              v-if="
+                pendingAssignments &&
+                pendingAssignments.length > 0 &&
+                (sharedAssignmentsCount > 10 || assignmentsCount > 10)
+              "
+              class="d-flex align-items-center"
+            >
+              <button :disabled="disablePrevious" @click="previous" class="btn btn-void mr-2 px-2">
+                <span
+                  ><i class="i-arrow-left j-icon i-xs bg-text-secondary"></i
+                ></span>
+              </button>
+              <button :disabled="disableNext" @click="next" class="btn btn-void px-2">
+                <span
+                  ><i class="i-arrow-right j-icon i-xs bg-text-secondary"></i
+                ></span>
+              </button>
+            </div>
+            <div class="d-flex ml-auto">
+              <button @click="onBack()" class="btn btn-void">
+                <span class="mr-2 arrow"
+                  ><i class="i-arrow-left j-icon i-xs bg-text-secondary"></i></span
+                ><span class="arrow-text">Back</span>
+              </button>
+            </div>
+          </div>
         </div>
-        <div
-          v-if="
-            pendingAssignments &&
-            pendingAssignments.length > 0 &&
-            (sharedAssignmentsCount > 10 || assignmentsCount > 10)
-          "
-          class="d-flex align-items-center"
-        >
-          <button :disabled="disablePrevious" @click="previous" class="btn p-1">
-            <span
-              class="bg-primary d-flex align-items-center justify-content-center rounded-circle btn-circle"
-              ><i class="fa-solid fa-chevron-left color-white text-12"></i
-            ></span>
-          </button>
-          <button :disabled="disableNext" @click="next" class="btn p-1">
-            <span
-              class="ml-1 bg-primary d-flex align-items-center justify-content-center rounded-circle btn-circle"
-              ><i class="fa-solid fa-chevron-right color-white text-12"></i
-            ></span>
-          </button>
-        </div>
-      </div>
       <div
         v-if="!pendingAssignments || pendingAssignments.length < 1"
         class="d-flex align-items-center justify-content-center w-100 h-100"
@@ -471,17 +471,20 @@
       v-if="currentTab == 2"
       class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column hidden-scroll"
     >
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+
       <h3 class="color-primary-dark heading3 font-bold mb-1">
-        Step {{ sessionType == "study" ? "One" : "Two" }}:
+        Step {{ sessionType == "study" ? "One" : "Two" }} : <span>Configure your Session</span>
       </h3>
-      <h3 class="color-primary-dark heading3 font-bold mb-1">Configure your Session</h3>
+      <!-- <h3 class="color-primary-dark heading3 font-bold mb-1"></h3> -->
       <div class="d-flex">
-        <button @click="onBack()" class="btn btn-transparent">
+        <button @click="onBack()" class="btn btn-void">
           <span class="mr-2 arrow"
-            ><i class="fas fa-long-arrow-alt-left"></i></span
+            ><i class="i-arrow-left j-icon i-xs bg-text-secondary"></i></span
           ><span class="arrow-text">Back</span>
         </button>
       </div>
+    </div>
       <div class="d-flex flex-column flex-fill justify-content-center">
         <div>
           <div class="row justify-content-center">
@@ -490,7 +493,7 @@
               class="col-12 col-md-5 col-lg-4"
             >
               <div
-                class="card card-primary rounded-8 drag-drop px-4 py-5 position-realtive h-100 align-items-center justify-content-center cursor-pointer"
+                class="card card-primary02 rounded-8 drag-drop px-4 py-5 position-realtive h-100 align-items-center justify-content-center cursor-pointer"
               >
                 <h3 class="color-primary-dark heading3 text-center font-bold mb-1">
                   Regular Studying
@@ -505,7 +508,7 @@
               class="col-12 col-md-5 col-lg-4"
             >
               <div
-                class="card card-primary rounded-8 drag-drop px-4 py-5 position-realtive align-items-center cursor-pointer"
+                class="card card-primary02 rounded-8 drag-drop px-4 py-5 position-realtive align-items-center cursor-pointer"
               >
                 <h3 class="color-primary-dark heading3 font-bold mb-1 text-center">
                   Pomodoro Technique
@@ -539,21 +542,24 @@
       v-if="currentTab == 3"
       class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column hidden-scroll"
     >
+    <div class="d-flex flex-wrap align-items-center justify-content-between">
+      
       <h3 class="color-primary-dark heading3 font-bold mb-1">
-        Step {{ sessionType == "study" ? "Two" : "Three" }}:
+        Step {{ sessionType == "study" ? "Two" : "Three" }}: <span>Configure your Session</span>
       </h3>
-      <h3 class="color-primary-dark heading3 font-bold mb-1">Configure your Session</h3>
+      <!-- <h3 class="color-primary-dark heading3 font-bold mb-1"></h3> -->
       <div class="d-flex">
-        <button @click="onBack()" class="btn btn-transparent">
+        <button @click="onBack()" class="btn btn-void">
           <span class="mr-2 arrow"
-            ><i class="fas fa-long-arrow-alt-left"></i></span
+            ><i class="i-arrow-left j-icon i-xs bg-text-secondary"></i></span
           ><span class="arrow-text">Back</span>
         </button>
       </div>
+    </div>
       <div class="row h-40 flex-grow-1">
         <div class="col-lg-7 h-md-100 d-flex flex-column">
           <div
-            class="card card-primary p-4 h-40 flex-fill mb-4 h-min-200"
+            class="card card-primary02 p-4 h-40 flex-fill mb-4 h-min-200"
           >
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">
@@ -609,8 +615,8 @@
                     </p>
                     <span
                       @click="deleteGoal(goal)"
-                      class="color-primary-dark fa-icon show-hover d-none btn p-0"
-                      ><i class="fas fa-trash-alt"></i
+                      class="fa-icon show-hover d-none btn p-0"
+                      ><i class="fas fa-trash-alt color-primary-dark"></i
                     ></span>
                   </div>
                 </div>
@@ -634,7 +640,7 @@
             </div>
           </div>
 
-          <div class="card card-primary h-40 flex-fill p-4 h-min-200">
+          <div class="card card-primary02 h-40 flex-fill p-4 h-min-200">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h3 class="color-dark font-semi-bold mb-0">Invite Peers</h3>
               <a
@@ -704,7 +710,7 @@
           </div>
         </div>
         <div class="col-lg-5 d-flex flex-column h-100">
-          <div class="card card-primary p-4 m-0 flex-column h-100">
+          <div class="card card-primary02 p-4 m-0 flex-column h-100">
             <div class="d-flex flex-column justify-content-between h-100">
               <div class="d-flex flex-column h-40 flex-fill">
                 <h3 class="color-dark heading3 font-semi-bold mb-1">
@@ -1102,7 +1108,7 @@
     >
       <!-- <h2 class="color-primary-dark font-semi-bold mb-1">Rate</h2> -->
       <div
-        class="p-5 d-flex flex-column card card-primary rounded-14 col-lg-7"
+        class="p-5 d-flex flex-column card card-primary02 rounded-14 col-lg-7"
       >
         <h3 class="color-primary-dark heading3 font-semi-bold mb-1">Rate Your Session</h3>
         <div class="d-flex flex-column py-3 px-0">
