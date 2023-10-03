@@ -5950,4 +5950,10 @@ select.form-control.is-invalid {
   .login-link-groups {
     margin-top: 3rem;
   }
+}
+
+.task-container {
+  max-height: calc(100vh - 352px);
+  overflow: hidden;
+  overflow-y: auto;
 }/*# sourceMappingURL=custom.css.map */
