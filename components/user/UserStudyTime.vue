@@ -40,7 +40,7 @@
                 <h3 class="color-primary-dark heading3 font-semi-bold mb-1">
                   Complete An Assignment
                 </h3>
-                <p class="mb-0 color-dark font-semi-bold text-16">
+                <p class="mb-0 color-gray font-semi-bold text-16">
                   Tackle your upcoming assignments
                 </p>
               </div>
@@ -72,7 +72,7 @@
                 <h3 class="color-primary-dark heading3 font-semi-bold mb-1">
                   Start A New Study Session
                 </h3>
-                <p class="mb-0 color-dark font-semi-bold text-16">
+                <p class="mb-0 color-gray font-semi-bold text-16">
                   Stay focused while you study, and monitor your productivity
                 </p>
               </div>

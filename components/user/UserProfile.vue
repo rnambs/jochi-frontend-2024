@@ -7,10 +7,10 @@
       >
         <div class="inner-study d-flex flex-column flex-fill h-100">
           <div class="d-flex flex-column justify-content-between align-items-center">
-            <div class="d-flex align-items-center justify-content-between w-100 pr-3">
-              <h3 class="color-primary-dark heading3 font-bold">Profile</h3>
-              <div class="faq-section d-flex align-items-center">
-                <div class="theme-switcher mx-3">
+            <div class="d-flex flex-wrap align-items-center justify-content-between w-100 pr-3">
+              <h3 class="color-primary-dark heading3 font-bold mr-3">Profile</h3>
+              <div class="faq-section d-flex flex-wrap align-items-center">
+                <div class="theme-switcher mr-3">
                   <input type="radio" id="light-theme" name="themes" v-model="selectedTheme" value="light" checked />
                   <label for="light-theme" class="cursor-pointer">
                     <span>

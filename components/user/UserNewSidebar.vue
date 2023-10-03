@@ -19,7 +19,7 @@
         </span>
       </nuxt-link>
       <button
-        class="navbar-toggler mr-3"
+        class="navbar-toggler mr-3 px-2"
         type="button"
         data-toggle="collapse"
         data-target="#navbarContent"
@@ -27,7 +27,7 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"><i class="i-hand-burger j-icon i-xl bg-text-secondary"></i></span>
       </button>
 
       <div class="collapse navbar-collapse border-bottom" id="navbarContent">
@@ -573,7 +573,7 @@
                 data-toggle="dropdown"
                 @click="getNotifications()"
               >
-                <span class="position-relative d-flex">
+                <span class="position-relative d-flex ml-2 ml-md-0">
                   <i class="i-notification-bell j-icon i-lg bg-text-secondary"></i>
                   <!-- <span v-if="notificationCount > 0" class="notify-span">{{
                     notificationCount
