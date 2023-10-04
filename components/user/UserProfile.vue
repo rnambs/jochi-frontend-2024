@@ -763,6 +763,11 @@ export default {
     setTimeout(() => {
       this.startIntro();
     }, 1000);
+    const savedTheme = localStorage.getItem('selectedTheme');
+  if (savedTheme) {
+    // Set the selectedTheme property to the saved theme
+    this.selectedTheme = savedTheme;
+  }
   },
   computed: {
     ...mapState("profilePage", {
@@ -786,6 +791,7 @@ export default {
   },
   watch: {
     selectedTheme(newTheme) {
+      localStorage.setItem('selectedTheme', newTheme);
       // When the selected theme changes, apply it to the <html> element's class
       const html = document.documentElement; // <html> element
       html.classList.remove("light-theme", "dark-theme"); // Remove all theme classes
