@@ -213,7 +213,7 @@
                 <table class="w-100 table-modal custom-row-table">
                   <tr>
                     <td class="tmodal-data">Type</td>
-                    <td class="tmodal-data">
+                    <td class="tmodal-data color-gray">
                       <span class="pr-2"></span>
                       {{ detailType }}
                     </td>
@@ -221,7 +221,7 @@
 
                   <tr>
                     <td class="tmodal-data">With</td>
-                    <td class="tmodal-data d-flex align-items-center flex-wrap">
+                    <td class="tmodal-data color-gray d-flex align-items-center flex-wrap">
                       <span class="pr-2"></span>
                       <span v-if="detailType == 'Teacher'"
                         >{{ detailWith }}
@@ -253,7 +253,7 @@
 
                   <tr>
                     <td class="tmodal-data">Date</td>
-                    <td class="tmodal-data">
+                    <td class="tmodal-data color-gray">
                       <div
                         class="mb-0 col-12 d-flex align-items-center form-row py-0"
                       >
@@ -355,7 +355,7 @@
 
                   <tr v-if="!isDateChanged">
                     <td class="tmodal-data">Time</td>
-                    <td class="tmodal-data">
+                    <td class="tmodal-data color-gray">
                       <span class="pr-2"></span>
                       {{ detailTime }}
                     </td>

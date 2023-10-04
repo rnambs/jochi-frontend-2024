@@ -1861,6 +1861,12 @@ img.img-theme.dark {
   color: #696969;
 }
 
+.calendar-dashboard .fc-header-toolbar.fc-toolbar.fc-toolbar-ltr h2.fc-toolbar-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
 .customModal #Welcome {
   z-index: 4;
   height: 90vh;
@@ -2008,7 +2014,7 @@ img.img-theme.dark {
   color: #5534A5;
 }
 .modal .modal-dialog .modal-content .modal-body table.table-modal .tmodal-data, .modal .modal-dialog .modal-content .modal-body table.table-modal .tmodal-data {
-  color: #2D2D2F;
+  color: var(--text-primary-dark);
   font-size: 0.95rem;
   line-height: 2;
 }
