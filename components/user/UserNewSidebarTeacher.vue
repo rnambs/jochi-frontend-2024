@@ -7,9 +7,11 @@
           <img src="../../static/image/v4/logo-ms.png" alt="jochi logo" class="img-logo-v4 object-fit-contain">
         </span>
       </nuxt-link>
-      <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarContent"
+      <button class="navbar-toggler mr-3 px-2" type="button" data-toggle="collapse" data-target="#navbarContent"
         aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon">
+          <i class="i-hand-burger j-icon i-xl bg-text-secondary"></i>
+        </span>
       </button>
 
       <div class="collapse navbar-collapse border-bottom" id="navbarContent">

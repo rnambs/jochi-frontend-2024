@@ -31,7 +31,7 @@
                     <h3 class="color-primary-dark heading3 font-semi-bold mb-1">
                       When Are You Free?
                     </h3>
-                    <p class="mb-0 color-dark font-semi-bold text-16">
+                    <p class="mb-0 color-gray font-semi-bold text-16">
                       Use this page to set your availability so that your peers
                       know when works best for you.
                     </p>
