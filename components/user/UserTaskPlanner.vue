@@ -2,8 +2,7 @@
     <div>
         <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
             <!-- Daily Calander -->
-
-            <section id="taskPlanner" class="">
+ <section id="taskPlanner" class="">
                 <div class="m--12 custom-full-height d-flex planner-day-responsive">
                     <div class="d-flex flex-column flex-fill w-100">
                         <div class="row">
@@ -23,22 +22,24 @@
                                             </div>
                                             <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
                                                 <li class="item p-2">This week</li>
-                                                <li class="item p-2">This week</li>
+                                                <li class="item p-2">This Month</li>
+                                                <li class="item p-2">All</li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="m-1 d-flex justify-content-end">
-                                      <button class="btn btn-primary py-1 px-3 mr-3">Add Assignment</button>
+                                      <button @click="AddAssignmentModal()"
+                                      class="btn btn-primary py-1 px-3 mr-3">Add Assignment</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row h-100">
                             <div class="col-12 col-sm-6 col-lg-3">
-                              <!-- <drop
+                              <drop
                           class="drop color-secondary text-16 h-100 d-flex flex-column"
                           @drop="doingDrop"
-                        > -->
+                        >
                                 <div class="card card-tertiary px-3 pt-3 rounded-12 w-100 h-100">
                                     <div class="d-flex align-items-center mb-3">
                                         <span class="mr-2"><span
@@ -48,6 +49,7 @@
                                     <span class="border-pb-1 bg-task-violet w-100 d-flex mb-3"></span>
                                     <div v-for="item in doingAssignments"
                             :key="item.id">
+                            <drag :transfer-data="{ item }">
                                     <div class="card card-primary p-3 mb-3">
                                         <div class="d-flex align-items-center justify-content-between mb-2">
                                             <div class="d-flex flex-wrap align-items-center">
@@ -115,6 +117,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    </drag>
                                   </div>
                                   <client-only>
                             <infinite-loading
@@ -126,7 +129,7 @@
                             </infinite-loading>
                           </client-only>
                                 </div>
-                                <!-- </drop> -->
+                                </drop>
                             </div>
                             <div class="col-12 col-sm-6 col-lg-3">
                               <drop
@@ -402,98 +405,6 @@
                     </div>
                 </div>
             </section>
-            <div
-      class="modal fade"
-      id="completeConfirm"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="completeConfirmModalCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
-        <div class="modal-content">
-          <div class="modal-header pb-1">
-            <h4 class="modal-title" id="completeConfirmModalLongTitle">
-              Complete Assignment Confirmation
-            </h4>
-          </div>
-          <div class="modal-body px-3 bold-6">
-            <p class="mb-0">Mark assignment as completed?</p>
-            <p class="mb-0" v-if="schoologyAssignment == '1' && !submissionId">Did you forget to submit your work?</p>
-          </div>
-          <div class="modal-footer justify-content-end border-top-0">
-            <button
-              type="button"
-              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
-              :disabled="processingCompleteAssignment"
-              @click="completeAssignment()"
-            >
-              Complete
-            </button>
-            <button
-              v-if="schoologyAssignment == '1'"
-              type="button"
-              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
-              @click="submitAndCompleteAssignment()"
-              :disabled="submissionId"
-            >
-              Submit Assignment
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="undoAssignmentConfirmation"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="undoAssignmentConfirmationModalCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
-        <div class="modal-content">
-          <div class="modal-header pb-1">
-            <h4
-              class="modal-title"
-              id="undoAssignmentConfirmationModalLongTitle"
-            >
-            Re-Open Assignment
-            </h4>
-          </div>
-          <div class="modal-body px-3">
-            <p class="mb-0">
-              This action will mark this assignment as incomplete again
-            </p>
-          </div>
-          <div class="modal-footer justify-content-end border-top-0">
-            <button
-              type="button"
-              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <button
-              data-dismiss="modal"
-              type="button"
-              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
-              @click="undoAsstComplete()"
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
             <div class="modal fade" id="editAssignment" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
               aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
@@ -521,7 +432,8 @@
                                 class="form-control"
                               >
                                 <option value="">Select subject</option>
-                                <option>Jochi Maths</option>
+                                <option>Jochi Math Test Course</option>
+                                <option>Personal</option>
                               </select>
                               <!-- <div
                                 v-if="submitted && $v.subject.$error"
@@ -614,7 +526,7 @@
                                 </div>
                               </div>
                             </div>
-                            <!-- <div class="row mt-0">
+                            <div class="row mt-0">
                               <div class="col-6">
                                 <div class="form-group">
                                   <label
@@ -631,7 +543,7 @@
                                   </div>
                                 </div>
                               </div>
-                            </div> -->
+                            </div>
                             <div
                               class="d-flex justify-content-between align-items-center mb-2"
                             >
@@ -654,7 +566,6 @@
                                 <input
                                   type="text"
                                   maxlength="100"
-                                  v-model="subTaskName"
                                   class="form-control"
                                 />
                               </div>
@@ -706,23 +617,314 @@
                 </div>
               </div>
             </div>
+            <div class="modal fade" id="AddAssignment" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+                <div class="modal-content">
+                  <div class="modal-header pb-1">
+                    <h3 class="modal-title" id="editAssignmentModalLongTitle">
+                      Add Assignment
+                    </h3>
+                  </div>
+                  <div class="modal-body px-3">
+                          <form >
+                            <div class="form-group mb-2">
+                              <label for="recipient-name" class="col-form-label py-1"
+                                >Subject here<em>*</em></label
+                              >
+                              <!-- <input
+                                v-if="schoologyAssignment == '1'"
+                                type="text"
+                                class="form-control"
+                                id="message-text"
+                                maxlength="125"
+                                placeholder="Enter assignment name"
+                              /> -->
+                              <select
+                                class="form-control"
+                                v-model="subject"
+                                    :class="{
+                                      'is-invalid':
+                                        submitted && $v.subject.$error,
+                                    }"
+                              >
+                                <option value="">Select subject</option>
+                                <option>Jochi Math Test Course</option>
+                                <option>Personal</option>
+                              </select>
+                              <div
+                                v-if="submitted && $v.subject.$error"
+                                class="invalid-feedback"
+                              >
+                                <span v-if="!$v.subject.required"
+                                  >This field is required</span
+                                >
+                              </div>
+                            </div>
+                            <div class="form-group mb-2">
+                              <label for="assignment-name" class="col-form-label py-1"
+                                >Assignment Name<em>*</em></label
+                              >
+                              <input
+                                type="text"
+                                class="form-control"
+                                id="assignment-name"
+                                maxlength="125"
+                                placeholder="Enter assignment name"
+                                :class="{
+                                      'is-invalid':
+                                        submitted && $v.assignmentName.$error,
+                                    }"
+                              />
+                              <div
+                                    v-if="submitted && $v.assignmentName.$error"
+                                    class="invalid-feedback"
+                                  >
+                                    <span v-if="!$v.assignmentName.required"
+                                      >This field is required</span
+                                    >
+                                  </div>
+                            </div>
+                            <div class="form-group mb-2">
+                              <label for="message-text" class="col-form-label py-1"
+                                >Task</label
+                              >
+                              <textarea
+                                class="form-control"
+                                id="message-text"
+                                rows="3"
+                                maxlength="500"
+                                v-model="assignmentDescription"
+                                placeholder="Enter assignment description"
+                              ></textarea>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6 ml-auto py-0">
+                                <div class="form-group mb-2 mb-0">
+                                  <label
+                                    for="recipient-name"
+                                    class="col-form-label py-1"
+                                    >Priority<em>*</em></label
+                                  >
+                                  <div class="dropdown input-icon-area">
+                                    <button
+                                      id="dLabel"
+                                      class="dropdown-select form-control text-left"
+                                      type="button"
+                                      data-toggle="dropdown"
+                                      aria-haspopup="true"
+                                      aria-expanded="false"
+                                    >
+                                      <span class="">Select priority</span
+                                      >
+                                    </button>
+                                    <ul
+                                      class="dropdown-menu border"
+                                      aria-labelledby="dLabel"
+                                    >
+                                      <li
+                                        class="item low-color"
+                                      >
+                                        <span>Can Wait</span>
+                                      </li>
+                                      <li
+                                        class="item medium-color"
+                                      >
+                                        <span>Important</span>
+                                      </li>
+                                      <li
+                                        class="item high-color"
+                                      >
+                                        <span>Urgent</span>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <div
+                                      v-if="
+                                        submitted &&
+                                        priorityVal != 'Urgent' &&
+                                        priorityVal != 'Important' &&
+                                        priorityVal != 'Can Wait'
+                                      "
+                                      class="invalid-feedback"
+                                      style="display: block"
+                                    >
+                                      <span
+                                        v-if="
+                                          priorityVal != 'Urgent' &&
+                                          priorityVal != 'Important' &&
+                                          priorityVal != 'Can Wait'
+                                        "
+                                        >This field is required</span
+                                      >
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6 ml-auto py-0">
+                                <div class="form-group mb-2">
+                                  <label
+                                    for="recipient-name"
+                                    class="col-form-label py-1"
+                                    >Date<em>*</em></label
+                                  >
+                                  <date-picker
+                                    class="form-control dropdown-menu-top"
+                                    placeholder="MM/DD/YYYY"
+                                    format="MM/dd/yyyy"
+                                    v-model="dateValue"
+                                    :class="{
+                                          'is-invalid':
+                                            submitted && $v.dateValue.$error,
+                                        }"
+                                  />
+                                  <div
+                                        v-if="submitted && $v.dateValue.$error"
+                                        class="invalid-feedback"
+                                      >
+                                        <span v-if="!$v.dateValue.required"
+                                          >This field is required</span
+                                        >
+                                      </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row mt-0">
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <label
+                                    for="recipient-name"
+                                    class="col-form-label"
+                                    >Time<em>*</em></label
+                                  >
+                                  <div>
+                                    <vue-timepicker
+                                    close-on-complete
+                                    v-model="timeValue"
+                                      format="hh:mm A"
+                                      name="timeValue"
+                                      class="show-cursor dropdown-menu-top"
+                                      :class="{
+                                            'is-invalid':
+                                              submitted &&
+                                              ($v.timeValue.$error ||
+                                                !validTime),
+                                          }"
+                                    ></vue-timepicker>
+                                    <div
+                                          v-if="
+                                            submitted &&
+                                            ($v.timeValue.$error || !validTime)
+                                          "
+                                          class="invalid-feedback"
+                                        >
+                                          <span
+                                            v-if="
+                                              !$v.timeValue.required ||
+                                              !validTime
+                                            "
+                                            >Not a valid time</span
+                                          >
+                                        </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="d-flex justify-content-between align-items-center mb-2"
+                            >
+                              <h6 class="color-dark font-semi-bold mb-0">
+                                Sub Tasks
+                              </h6>
+                              <a class="btn p-0">
+                                <span class="color-secondary"
+                                  ><i class="fas fa-plus-circle"></i
+                                ></span>
+                              </a>
+                            </div>
+                            <div
+                              class="d-flex flex-row align-items-start"
+                            >
+                              <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                <label class="form-label" for="name"
+                                  >Add a sub-task</label
+                                >
+                                <input
+                                  type="text"
+                                  maxlength="100"
+                                  class="form-control"
+                                />
+                              </div>
+                              <div class="pt-4">
+                                <button
+                                  class="btn btn-primary btn-sm mt-2"
+                                >
+                                  Add
+                                </button>
+                              </div>
+                            </div>
+
+                            <div
+                              class="d-flex justify-content-between align-items-center mb-2"
+                            >
+                              <h6 class="color-dark font-semi-bold mb-0">
+                                Invite Peers
+                              </h6>
+                              <a class="btn p-0">
+                                <span class="color-secondary"
+                                  ><i class="fas fa-plus-circle"></i
+                                ></span>
+                              </a>
+                            </div>
+
+                            <!-- Additional Material Add -->
+                            <div
+                              class="d-flex justify-content-between align-items-center mb-2"
+                            >
+                              <h6 class="color-dark font-semi-bold mb-0">
+                                Additional Material
+                              </h6>
+                              <a class="btn p-0">
+                                <span class="color-secondary"
+                                  ><i class="fas fa-plus-circle"></i
+                                ></span>
+                              </a>
+                            </div>
+                          </form>
+                  </div>
+                  <div class="modal-footer justify-content-end border-top-0">
+                    <button type="button" class="btn btn-void py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
+                      Cancel
+                    </button>
+                    <button @click="AddAssignment()"
+                    data-dismiss="modal" type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold">
+                      Update
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <!-- End Daily Calander -->
         </div>
     </div>
 </template>
 <script>
-    import lottie from "vue-lottie/src/lottie.vue";
+import { required, requiredIf } from "vuelidate/lib/validators";
+import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import { mapState, mapActions } from "vuex";
 import { eventBus } from "~/plugins/eventbus.js";
 import InfiniteLoading from "vue-infinite-loading";
 import draggable from "vuedraggable";
+import VueTimepicker from "vue2-timepicker";
+import "vue2-timepicker/dist/VueTimepicker.css";
+import "vue2-timepicker/dist/VueTimepicker.css";
 export default {
   name: "UserStudentTask",
   components: {
     lottie,
     InfiniteLoading,
     draggable,
+    VueTimepicker,
   },
   head() {
     return {
@@ -770,6 +972,11 @@ export default {
       doingAssignmentList: [],
       overdueAssignments:[],
       doingAssignments: [],
+      subject: "",
+      submitted: false,
+      assignmentDescription: "",
+      dateValue: "",
+      timeValue: "",
     }
   },
   created() {
@@ -782,7 +989,6 @@ export default {
     this.GetStudents();
     this.getSubjectsList();
     this.getAllCompletedAssignments();
-    // this.fetchDataWithOffsetLimit();
   },
   computed: {
     ...mapState("teacherMeeting",{
@@ -810,6 +1016,13 @@ export default {
       sharedOverdues: (state) => state.sharedOverdues,
     }),
 },
+validations: {
+    subject: { required },
+    dateValue: { required },
+    timeValue: { required },
+    assignmentName: { required },
+    // assignmentDescription: { required },
+  },
 methods:{
     ...mapActions("quotedMessage", {
       showQuotedMessage: "showQuotedMessage",
@@ -861,17 +1074,14 @@ async doingNext($state) {
       if (this.doingtempOffset != this.doingoffset || this.reloadNext) {
         this.reloadNext = false;
         this.doingtempOffset = this.doingoffset;
-        this.pendingAssignments = [];
+        this.doingAssignmentList = [];
         await this.getAssignments({ offset: this.doingoffset, limit: this.doinglimit, filter: 'Doing' });
-        if (this.doingoffset == 0) {
-          await this.mapOverdues();
-        }
         this.doingoffset = this.doingoffset + this.doinglimit;
         this.assignmentMaterials = [];
         await this.mapAssignments();
         await this.mapSharedAssignments();
-        if (this.pendingAssignments.length > 0) {
-          this.doingAssignments.push(...this.pendingAssignments);
+        if (this.doingAssignmentList.length > 0) {
+          this.doingAssignments.push(...this.doingAssignmentList);
           $state.loaded();
         } else {
           $state.complete();
@@ -884,9 +1094,6 @@ async loadNext($state) {
         this.tempOffset = this.offset;
         this.pendingAssignments = [];
         await this.getAssignments({ offset: this.offset, limit: this.limit, filter: 'Pending' });
-        if (this.offset == 0) {
-          // await this.mapOverdues();
-        }
         this.offset = this.offset + this.limit;
         this.assignmentMaterials = [];
         await this.mapAssignments();
@@ -939,7 +1146,6 @@ async loadNext($state) {
       if (e) {
         let item = {};
         this.assignmentMaterials = [];
-
         item.assignment_description = e.assignment_description;
         if (e.assignment_materials && e.assignment_materials.length > 0) {
           e.assignment_materials.forEach((m) => {
@@ -980,7 +1186,6 @@ async loadNext($state) {
     mapSharedData(e) {
       let item = {};
       this.assignmentMaterials = [];
-
       if (e && e.assignments) {
         item.assignment_description = e.assignments.assignment_description;
         if (
@@ -1069,7 +1274,10 @@ async loadNext($state) {
         this.assignmentsList.forEach((e) => {
           let asst = this.mapData(e);
           this.pendingAssignments.push(asst);
-        });
+          const doingAssignmentLists = this.pendingAssignments.filter((asst) => asst.task_status === 'Doing');
+    this.doingAssignmentList.push(...doingAssignmentLists);
+    this.pendingAssignments = this.pendingAssignments.filter((asst) => asst.task_status !== 'Doing');
+          });
       }
     },
     mapSharedAssignments() {
@@ -1077,28 +1285,25 @@ async loadNext($state) {
         this.sharedAssignmentsList.forEach((e) => {
           let asst = this.mapSharedData(e);
           this.pendingAssignments.push(asst);
+          const doingAssignmentLists = this.pendingAssignments.filter((asst) => asst.task_status === 'Doing');
+    this.doingAssignmentList.push(...doingAssignmentLists);
+    this.pendingAssignments = this.pendingAssignments.filter((asst) => asst.task_status !== 'Doing');
         });
       }
     },
     confirmUndo(data, event) {
       let assignment = data.item;
       this.undoAsstId = assignment.id;
-      // $("#undoAssignmentConfirmation").modal({ backdrop: true });
       this.completeAssignment(false);
     },
     handleDrop(data, event) {
-  // $("#completeConfirm").modal({ backdrop: true });
-
   let assignment = data.item;
   this.completeAsstId = assignment.id;
   this.assignmentId = assignment.id;
   this.schoologyAssignment = assignment.schoologyAssignment;
   this.submissionId = assignment.submission_id;
-
-  // Call completeAssignment function here if needed
   this.completeAssignment(true);
 },
-
 async completeAssignment(completed = true) {
   this.processingCompleteAssignment = true;
   await this.completeTask({
@@ -1108,17 +1313,60 @@ async completeAssignment(completed = true) {
   this.processingCompleteAssignment = false;
   if (this.successMessage != "") {
     this.openAssignment = false;
+    this.doingoffset = 0;
     this.offset = 0;
     this.tempAssts = [];
+    this.doingAssignments = [];
     this.reloadNext = true;
     this.reloadCount += 1;
+    this.doingreloadCount += 1;
+    this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Doing' });
+    this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Pending' });
+    this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Overdue' });
     this.getAllCompletedAssignments();
     this.completeAsstId = 0;
   }
 },
-    EditAssignmentModal() {
+doingDrop(data, event) {
+  let assignment = data.item;
+  this.completeAsstId = assignment.id;
+  this.assignmentId = assignment.id;
+  this.schoologyAssignment = assignment.schoologyAssignment;
+  this.submissionId = assignment.submission_id;
+  this.doingAssignment();
+},
+async doingAssignment() {
+  this.processingCompleteAssignment = true;
+  await this.completeTask({
+    assignment_id: this.assignmentId,
+    status: 'Doing',
+  });
+  this.processingCompleteAssignment = false;
+  if (this.successMessage != "") {
+    this.openAssignment = false;
+    this.offset = 0;
+    this.doingoffset = 0;
+    this.doingAssignments = [];
+    this.tempAssts = [];
+    this.reloadNext = true;
+    this.reloadCount += 1;
+    this.doingreloadCount += 1;
+    this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Doing' });
+    this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Pending' });
+    this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Overdue' });
+    this.getAllCompletedAssignments();
+    this.completeAsstId = 0;
+  }
+},
+EditAssignmentModal() {
         $("#editAssignment").modal({ backdrop: true });
     },
+AddAssignmentModal() {
+        $("#AddAssignment").modal({ backdrop: true });
+    },
+AddAssignment(){
+
+    }
   },
 }
 </script>
