@@ -132,7 +132,7 @@
                     class="col-md-6 col-xs-12 h-md-100 d-flex"
                   >
                     <div
-                      class="inner-info container-fluid p-2 d-flex flex-column card card-secondary border-0 rounded-22 p-4"
+                      class="inner-info container-fluid d-flex flex-column card card-secondary border-0 rounded-22 p-3 p-lg-4"
                     >
                       <div
                         class="d-flex align-items-center justify-content-between mb-3 px-2"
@@ -373,7 +373,7 @@
                   </div>
                   <div class="col-md-6 col-xs-12 h-100 d-flex">
                     <div
-                      class="inner-info container-fluid p-2 d-flex flex-column card card-secondary border-0 rounded-10 p-4"
+                      class="inner-info container-fluid d-flex flex-column card card-secondary border-0 rounded-10 p-3 p-lg-4"
                     >
                       <div
                         class="d-flex align-items-center justify-content-between mb-2 px-2"

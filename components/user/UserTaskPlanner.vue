@@ -8,7 +8,7 @@
                       <div class="row">
                           <div class="col-12">
                               <h2 class="heading2 font-semi-bold color-primary-dark mb-1">Tasks</h2>
-                              <p class="color-tertiary font-medium mb-1">Task For this week</p>
+                              <p class="color-tertiary font-medium mb-1">Task for this week</p>
                               <div class="d-flex flex-wrap">
                                   <div class="pb-0 pr-3 m-1 mr-auto">
                                       <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto">
