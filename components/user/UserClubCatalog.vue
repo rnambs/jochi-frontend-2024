@@ -81,10 +81,10 @@
 
         <section
           id="club-detail"
-          class="d-flex flex-column flex-fill h-40 pr-3"
+          class="d-flex flex-column flex-fill h-40"
         >
           <div
-            class="inner-club container-fluid bg-transparent custom-overflow p-0 mr--2 mt-0 ml-1 d-flex flex-column flex-fill"
+            class="inner-club container-fluid bg-transparent custom-overflow p-0 pr-3 mt-0 ml-1 d-flex flex-column flex-fill"
           >
             <div
               class="pt-4 pb-3 border-bottom"

@@ -65,6 +65,7 @@
     .fc-view-harness.fc-view-harness-active{
         height: 29vh !important;
         min-height: 240px;
+        max-height: 300px;
         .fc-daygrid.fc-dayGridMonth-view.fc-view{
             table.fc-scrollgrid.fc-scrollgrid-liquid{
                 tr.fc-scrollgrid-section.fc-scrollgrid-section-header{

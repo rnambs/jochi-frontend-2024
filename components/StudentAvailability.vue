@@ -70,7 +70,7 @@
                       ><i>30 Minute Slot</i></span
                     >
                   </p>
-                  <div class="inner-slot hidden-scroll h-40 flex-fill mb-4">
+                  <div class="inner-slot hidden-scroll mb-4">
                     <span v-for="(slot, index) in slotsArrayShow" :key="index">
                       <div
                         :class="

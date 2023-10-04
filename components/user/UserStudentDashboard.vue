@@ -16,7 +16,7 @@
     />
     <div class="main-section">
       <div
-        class="bg-white custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
+        class="m--12 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
       >
         <div class="dmc-head d-flex align-items-start">
           <div class="greet-with-name-sec">
@@ -25,10 +25,10 @@
         </div>
         <div class="d-flex flex-column h-40 flex-fill">
           <div class="row h-100">
-            <div class="col-xl-8 h-100 height-md-unset">
-              <div class="d-flex flex-column h-100">
+            <div class="col-xl-8 height-md-unset max-h-100">
+              <div class="d-flex flex-column h-100 max-h-100">
                 <div
-                  class="bg-white border rounded-8 p-4 pr-1 pb-1 h-50"
+                  class="card card-primary02 rounded-8 p-4 pr-1 pb-1 h-50 max-h-50"
                 >
                   <div class="row position-relative justify-content-between h-100">
                     <div class="col-7">
@@ -47,7 +47,7 @@
                               </defs>
                             </svg>
                           </span>
-                          <p class="dashboard-head mb-2">
+                          <p class="dashboard-head color-primary-dark mb-2">
                             <span>Welcome Back, </span>
                             <span> {{ firstName }}</span>
                           </p>
@@ -62,12 +62,17 @@
                       <img
                         src="~/static/image/v4/dashboard_img.svg"
                         alt=""
-                        class="img-fluid mt-4 h-100 w-auto object-fit-contain"
+                        class="img-fluid mt-4 h-100 w-auto object-fit-contain img-theme light"
+                      />
+                      <img
+                        src="~/static/image/v4/dashboard_img_dark.svg"
+                        alt=""
+                        class="img-fluid mt-4 h-100 w-auto object-fit-contain img-theme dark"
                       />
                     </div>
                   </div>
                 </div>
-                <div class="d-flex flex-column h-lg-50 flex-fill">
+                <div class="d-flex flex-column h-lg-50 max-h-50 flex-fill">
                   <div
                     class="row mt-1 h-100 height-md-unset flex-column flex-lg-row pt-2"
                   >
@@ -459,7 +464,7 @@ export default {
       link: [
         {
           rel: "stylesheet",
-          href: "/css/style01.css",
+          href: "/css/custom.css",
         },
         {
           rel: "stylesheet",
@@ -1046,7 +1051,6 @@ export default {
   font-size: 26px;
   line-height: 30px;
   font-weight: 700;
-  color: #000000;
 }
 
 .dashboard-text-content {
