@@ -3732,7 +3732,7 @@ export default {
         this.reloadNext = false;
         this.tempOffset = this.offset;
         this.pendingAssignments = [];
-        await this.getAssignments({ offset: this.offset, limit: this.limit });
+        await this.getAssignments({ offset: this.offset, limit: this.limit, filter: 'Pending' });
         if (this.offset == 0) {
           await this.mapOverdues();
         }
