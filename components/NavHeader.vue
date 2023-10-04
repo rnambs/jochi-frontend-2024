@@ -3,10 +3,11 @@
     <div class="top-left">
       <div class="navbar-header d-flex align-items-center">
         <a class="navbar-brand" href="/dashboard">
-          <img src="~/assets/images/jochi..png" alt="Logo" />
+          <img :src="JOCHI_LOGO" alt="Logo" class="jochi-logo"  />
         </a>
         <a class="navbar-brand hidden" href="/dashboard">
-          <img src="../assets/images/Icon/logo-icon.png" alt="Logo" />
+          <!-- <img src="../assets/images/Icon/logo-icon.png" alt="Logo" /> -->
+          <img :src="JOCHI_LOGO" alt="Logo" class="jochi-logo" />
         </a>
         <a id="menuToggle" class="menutoggle" @click="menuToggle()"
           ><i class="fa fa-bars"></i
@@ -25,7 +26,7 @@
           >
             <img
               class="user-avatar rounded-circle"
-              src="~/assets/images/admin.jpg"
+              :src="JOCHI_PRO_PIC"
               alt="User Avatar"
             />
           </a>
@@ -46,8 +47,15 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
+import { JOCHI_LOGO, JOCHI_PRO_PIC } from "../assets/js/constants";
 export default {
   name: "NavHeader",
+  data() {
+    return {
+      JOCHI_LOGO : JOCHI_LOGO,
+      JOCHI_PRO_PIC : JOCHI_PRO_PIC,
+    }
+  },
   mounted() {
     if (!localStorage.getItem("email")) {
       this.$router.push("/admin-login");
@@ -126,3 +134,12 @@ export default {
   // middleware: "authenticated",
 };
 </script>
+
+<style>
+.jochi-logo{
+  width: 40px;
+    height: 40px;
+    min-width: 40px;
+    object-fit: contain;
+}
+</style>
