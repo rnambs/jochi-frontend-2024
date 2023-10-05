@@ -27,29 +27,12 @@
                                           </ul>
                                       </div>
                                   </div>
-                                  <div
-                          class="col-md-8 d-flex justify-content-start justify-content-md-end"
-                        >
-                          <button
-                            @click="
+                                  <div class="m-1 d-flex justify-content-end">
+                                    <button
+                                    @click="
                               openAssignment = true;
                               isAddAssignment = true;
-                              resetAssignment();
-                            "
-                            class="btn btn-primary py-1 px-3 mr-3"
-                          >
-                            Add Assignment
-                          </button>
-                          <button
-                            @click="confirmDeletion()"
-
-                            class="btn btn-danger py-1 px-3"
-                          >
-                            Delete selected
-                          </button>
-                        </div>
-                                  <div class="m-1 d-flex justify-content-end">
-                                    <button @click="AddAssignmentModal()"
+                              EditAssignmentModal();"
                                     class="btn btn-primary py-1 px-3 mr-3">Add Assignment</button>
                                   </div>
                               </div>
@@ -110,7 +93,7 @@
                                                   </div>
                                                   <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                       aria-labelledby="dLabel">
-                                                      <li @click="EditAssignmentModal()" class="item p-2">
+                                                      <li @click="onCardClick(item)" class="item p-2">
                                                         Edit
                                                       </li>
                                                       <li class="item p-2">Remove</li>
@@ -210,7 +193,7 @@
                                               </div>
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
-                                                  <li class="item p-2">Edit</li>
+                                                  <li @click="onCardClick(item)" class="item p-2">Edit</li>
                                                   <li class="item p-2">Remove</li>
                                               </ul>
                                           </div>
@@ -309,7 +292,7 @@
                                               </div>
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
-                                                  <li class="item p-2">Edit</li>
+                                                  <li @click="onCardClick(item)" class="item p-2">Edit</li>
                                                   <li class="item p-2">Remove</li>
                                               </ul>
                                           </div>
@@ -397,7 +380,7 @@
                                               </div>
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
-                                                  <li class="item p-2">Edit</li>
+                                                  <li @click="onCardClick(item)" class="item p-2">Edit</li>
                                                   <li class="item p-2">Remove</li>
                                               </ul>
                                           </div>
@@ -444,574 +427,23 @@
                   </div>
               </div>
           </section>
-          <div class="modal fade" id="editAssignment" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
-              <div class="modal-content">
-                <div class="modal-header pb-1">
-                  <h3 class="modal-title" id="editAssignmentModalLongTitle">
-                    Edit Assignment
-                  </h3>
-                </div>
-                <div class="modal-body px-3">
-                        <form >
-                          <div class="form-group mb-2">
-                            <label for="recipient-name" class="col-form-label py-1"
-                              >Subject here<em>*</em></label
-                            >
-                            <!-- <input
-                              v-if="schoologyAssignment == '1'"
-                              type="text"
-                              class="form-control"
-                              id="message-text"
-                              maxlength="125"
-                              placeholder="Enter assignment name"
-                            /> -->
-                            <select
-                              class="form-control"
-                            >
-                              <option value="">Select subject</option>
-                              <option>Jochi Math Test Course</option>
-                              <option>Personal</option>
-                            </select>
-                            <!-- <div
-                              v-if="submitted && $v.subject.$error"
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.subject.required"
-                                >This field is required</span
-                              >
-                            </div> -->
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="assignment-name" class="col-form-label py-1"
-                              >Assignment Name<em>*</em></label
-                            >
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="assignment-name"
-                              maxlength="60"
-                              placeholder="Enter assignment name"
-                            />
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="message-text" class="col-form-label py-1"
-                              >Task</label
-                            >
-                            <textarea
-                              class="form-control"
-                              id="message-text"
-                              rows="3"
-                              maxlength="500"
-                              placeholder="Enter assignment description"
-                            ></textarea>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6 ml-auto py-0">
-                              <div class="form-group mb-2 mb-0">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label py-1"
-                                  >Priority<em>*</em></label
-                                >
-                                <div class="dropdown input-icon-area">
-                                  <button
-                                    id="dLabel"
-                                    class="dropdown-select form-control text-left"
-                                    type="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                  >
-                                    <span class="">Select priority</span
-                                    >
-                                  </button>
-                                  <ul
-                                    class="dropdown-menu border"
-                                    aria-labelledby="dLabel"
-                                  >
-                                    <li
-                                      class="item low-color"
-                                    >
-                                      <span>Can Wait</span>
-                                    </li>
-                                    <li
-                                      class="item medium-color"
-                                    >
-                                      <span>Important</span>
-                                    </li>
-                                    <li
-                                      class="item high-color"
-                                    >
-                                      <span>Urgent</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-6 ml-auto py-0">
-                              <div class="form-group mb-2">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label py-1"
-                                  >Date<em>*</em></label
-                                >
-                                <date-picker
-                                  class="form-control dropdown-menu-top"
-                                  placeholder="MM/DD/YYYY"
-                                  format="MM/dd/yyyy"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row mt-0">
-                            <div class="col-6">
-                              <div class="form-group">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label"
-                                  >Time<em>*</em></label
-                                >
-                                <div>
-                                  <vue-timepicker
-                                    format="hh:mm A"
-                                    name="timeValue"
-                                    class="show-cursor dropdown-menu-top"
-                                  ></vue-timepicker>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Sub Tasks
-                            </h6>
-                            <a class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
-                          <div
-                            class="d-flex flex-row align-items-start"
-                          >
-                            <div class="form-row mb-2 mx-0 mr-2 w-100">
-                              <label class="form-label" for="name"
-                                >Add a sub-task</label
-                              >
-                              <input
-                                type="text"
-                                maxlength="100"
-                                class="form-control"
-                              />
-                            </div>
-                            <div class="pt-4">
-                              <button
-                                class="btn btn-primary btn-sm mt-2"
-                              >
-                                Add
-                              </button>
-                            </div>
-                          </div>
-
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Invite Peers
-                            </h6>
-                            <a class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
-
-                          <!-- Additional Material Add -->
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Additional Material
-                            </h6>
-                            <a class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
-                        </form>
-                </div>
-                <div class="modal-footer justify-content-end border-top-0">
-                  <button type="button" class="btn btn-void py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
-                    Cancel
-                  </button>
-                  <button data-dismiss="modal" type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold">
-                    Update
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal fade" id="AddAssignment" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
-              <div class="modal-content">
-                <div class="modal-header pb-1">
-                  <h3 class="modal-title" id="editAssignmentModalLongTitle">
-                    Add Assignment
-                  </h3>
-                </div>
-                <div class="modal-body px-3">
-                        <form >
-                          <div class="form-group mb-2">
-                            <label for="recipient-name" class="col-form-label py-1"
-                              >Subject here<em>*</em></label
-                            >
-                            <!-- <input
-                              v-if="schoologyAssignment == '1'"
-                              type="text"
-                              class="form-control"
-                              id="message-text"
-                              maxlength="125"
-                              placeholder="Enter assignment name"
-                            /> -->
-                            <select
-                              class="form-control"
-                              v-model="subject"
-                                  :class="{
-                                    'is-invalid':
-                                      submitted && $v.subject.$error,
-                                  }"
-                            >
-                              <option value="">Select subject</option>
-                              <option>Jochi Math Test Course</option>
-                              <option>Personal</option>
-                            </select>
-                            <div
-                              v-if="submitted && $v.subject.$error"
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.subject.required"
-                                >This field is required</span
-                              >
-                            </div>
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="assignment-name" class="col-form-label py-1"
-                              >Assignment Name<em>*</em></label
-                            >
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="assignment-name"
-                              maxlength="125"
-                              placeholder="Enter assignment name"
-                              :class="{
-                                    'is-invalid':
-                                      submitted && $v.assignmentName.$error,
-                                  }"
-                            />
-                            <div
-                                  v-if="submitted && $v.assignmentName.$error"
-                                  class="invalid-feedback"
-                                >
-                                  <span v-if="!$v.assignmentName.required"
-                                    >This field is required</span
-                                  >
-                                </div>
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="message-text" class="col-form-label py-1"
-                              >Task</label
-                            >
-                            <textarea
-                              class="form-control"
-                              id="message-text"
-                              rows="3"
-                              maxlength="500"
-                              v-model="assignmentDescription"
-                              placeholder="Enter assignment description"
-                            ></textarea>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6 ml-auto py-0">
-                              <div class="form-group mb-2 mb-0">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label py-1"
-                                  >Priority<em>*</em></label
-                                >
-                                <div class="dropdown input-icon-area">
-                                  <button
-                                    id="dLabel"
-                                    class="dropdown-select form-control text-left"
-                                    type="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                  >
-                                    <span class="">Select priority</span
-                                    >
-                                  </button>
-                                  <ul
-                                    class="dropdown-menu border"
-                                    aria-labelledby="dLabel"
-                                  >
-                                    <li
-                                      class="item low-color"
-                                    >
-                                      <span>Can Wait</span>
-                                    </li>
-                                    <li
-                                      class="item medium-color"
-                                    >
-                                      <span>Important</span>
-                                    </li>
-                                    <li
-                                      class="item high-color"
-                                    >
-                                      <span>Urgent</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div
-                                    v-if="
-                                      submitted &&
-                                      priorityVal != 'Urgent' &&
-                                      priorityVal != 'Important' &&
-                                      priorityVal != 'Can Wait'
-                                    "
-                                    class="invalid-feedback"
-                                    style="display: block"
-                                  >
-                                    <span
-                                      v-if="
-                                        priorityVal != 'Urgent' &&
-                                        priorityVal != 'Important' &&
-                                        priorityVal != 'Can Wait'
-                                      "
-                                      >This field is required</span
-                                    >
-                                  </div>
-                              </div>
-                            </div>
-                            <div class="col-md-6 ml-auto py-0">
-                              <div class="form-group mb-2">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label py-1"
-                                  >Date<em>*</em></label
-                                >
-                                <date-picker
-                                  class="form-control dropdown-menu-top"
-                                  placeholder="MM/DD/YYYY"
-                                  format="MM/dd/yyyy"
-                                  v-model="dateValue"
-                                  :class="{
-                                        'is-invalid':
-                                          submitted && $v.dateValue.$error,
-                                      }"
-                                />
-                                <div
-                                      v-if="submitted && $v.dateValue.$error"
-                                      class="invalid-feedback"
-                                    >
-                                      <span v-if="!$v.dateValue.required"
-                                        >This field is required</span
-                                      >
-                                    </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row mt-0">
-                            <div class="col-6">
-                              <div class="form-group">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label"
-                                  >Time<em>*</em></label
-                                >
-                                <div>
-                                  <vue-timepicker
-                                  close-on-complete
-                                  v-model="timeValue"
-                                    format="hh:mm A"
-                                    name="timeValue"
-                                    class="show-cursor dropdown-menu-top"
-                                    :class="{
-                                          'is-invalid':
-                                            submitted &&
-                                            ($v.timeValue.$error ||
-                                              !validTime),
-                                        }"
-                                  ></vue-timepicker>
-                                  <div
-                                        v-if="
-                                          submitted &&
-                                          ($v.timeValue.$error || !validTime)
-                                        "
-                                        class="invalid-feedback"
-                                      >
-                                        <span
-                                          v-if="
-                                            !$v.timeValue.required ||
-                                            !validTime
-                                          "
-                                          >Not a valid time</span
-                                        >
-                                      </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Sub Tasks
-                            </h6>
-                            <a class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
-                          <div
-                            class="d-flex flex-row align-items-start"
-                          >
-                            <div class="form-row mb-2 mx-0 mr-2 w-100">
-                              <label class="form-label" for="name"
-                                >Add a sub-task</label
-                              >
-                              <input
-                                type="text"
-                                maxlength="100"
-                                class="form-control"
-                              />
-                            </div>
-                            <div class="pt-4">
-                              <button
-                                class="btn btn-primary btn-sm mt-2"
-                              >
-                                Add
-                              </button>
-                            </div>
-                          </div>
-
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Invite Peers
-                            </h6>
-                            <a class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
-
-                          <!-- Additional Material Add -->
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Additional Material
-                            </h6>
-                            <a class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
-                        </form>
-                </div>
-                <div class="modal-footer justify-content-end border-top-0">
-                  <button type="button" class="btn btn-void py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
-                    Cancel
-                  </button>
-                  <button @click="AddAssignment()"
-                  data-dismiss="modal" type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold">
-                    Update
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
           <div
-                        v-if="openAssignment"
-                        class="position-absolute w-100 h-100 top-0 left-0"
-                      >
-                        <div
-                          class="d-flex card flex-column h-100 p-4 rounded-10 col-12 col-lg-8 float-right border-0"
-                        >
-                          <div
-                            class="d-flex flex-column flex-md-row justify-content-between mb-2 border-bottom"
-                          >
-                          <div class="d-flex flex-wrap w-100">
-                            <h3 class="color-primary-dark font-semi-bold">
-                              {{ isAddAssignment ? "Add" : "Edit" }} Assignment
-                            </h3>
-                            <!-- grades section -->
-                            <div
-                            class="d-flex align-items-center mb-2 ml-auto"
-                                 v-if="submissionId && grade && gradePossible"
-                              >
-                              <p class="mb-0">Grade</p><span class="px-1">:</span>
-                                    <p class="mb-0 bg-primary-light01 px-2 rounded-pill font-semi-bold color-primary"><span>{{
-                                      grade
-                                    }}</span>/<span>{{ gradePossible }}</span></p>
-                                    <!-- <span v-if="gradePossible"
-                                      >Grade Possible</span
-                                    >: -->
-                            </div>
-                            <!-- grades section end -->
-                          </div>
-                            <p class="mb-0 cursor-pointer d-none d-xl-block ml-3 pt-1">
-                              <span
-                                @click="
-                                  openAssignment = false;
-                                  isAddAssignment = true;
-                                  assignmentId = '';
-                                  closePopup();
-                                "
-                                ><i class="fas fa-times"></i
-                              ></span>
-                            </p>
-                            <div
-                              class="d-flex justify-content-end d-block d-xl-none ml-3"
+          class="modal fade" id="editAssignment" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+              <div class="modal-content">
+                <div class="modal-header pb-1">
+                  <h3 class="modal-title" id="editAssignmentModalLongTitle">
+                    {{ isAddAssignment ? "Add" : "Edit" }} Assignment
+                  </h3>
+                </div>
+                <div class="modal-body px-3">
+                        <form >
+                          <div class="form-group mb-2">
+                            <label for="recipient-name" class="col-form-label py-1"
+                              >Subject here<em>*</em></label
                             >
-                              <button
-                                v-if="!isAddAssignment"
-                                class="btn btn-primary border border-dark py-0 px-4 rounded-8 font-semi-bold mb-2"
-                                @click="confirmComplete"
-                              >
-                                <span>Mark as complete</span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            class="d-flex flex-column justify-content-between h-40 flex-fill"
-                          >
-                            <div
-                              class="d-flex flex-column custom-overflow px-2 pr-3 me--3 mb-2"
-                            >
-                              <form
-                                v-if="!isSharedAssignment"
-                                ref="assignmentForm"
-                                id="assignmentForm"
-                              >
-                                <div class="form-group">
-                                  <label
-                                    for="recipient-name"
-                                    class="col-form-label"
-                                    >Subject<em>*</em></label
-                                  >
-                                  <input
+                            <input
                                     v-if="schoologyAssignment == '1'"
                                     type="text"
                                     class="form-control"
@@ -1020,48 +452,46 @@
                                     maxlength="60"
                                     placeholder="Enter assignment name"
                                   />
-                                  <select
-                                    v-else
-                                    class="form-control"
-                                    tabindex=""
+                            <select
+                            v-else
+                              class="form-control"
+                              tabindex=""
                                     v-model="subject"
                                     :class="{
                                       'is-invalid':
                                         submitted && $v.subject.$error,
                                     }"
-                                  >
-                                    <option value="">Select subject</option>
-                                    <option
-                                      v-bind:value="{
+                            >
+                              <option value="">Select subject</option>
+                              <option
+                              v-bind:value="{
                                         id: subjects.id,
                                         text: subjects.subject_name,
                                       }"
                                       v-for="(subjects, index) in subjectsData"
                                       :key="index"
-                                    >
+                                      >
                                       {{ subjects.subject_name }}
                                     </option>
-                                    <option v-if="subjectsData.length == 0">
-                                      No data
-                                    </option>
-                                  </select>
-                                  <div
-                                    v-if="submitted && $v.subject.$error"
-                                    class="invalid-feedback"
-                                  >
-                                    <span v-if="!$v.subject.required"
-                                      >This field is required</span
-                                    >
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <label
-                                    for="message-text"
-                                    class="col-form-label"
-                                    >Assignment Name<em>*</em></label
-                                  >
-                                  <input
-                                    type="text"
+                              <option v-if="subjectsData.length == 0">
+                                No data
+                              </option>
+                            </select>
+                            <div
+                              v-if="submitted && $v.subject.$error"
+                              class="invalid-feedback"
+                            >
+                              <span v-if="!$v.subject.required"
+                                >This field is required</span
+                              >
+                            </div>
+                          </div>
+                          <div class="form-group mb-2">
+                            <label for="assignment-name" class="col-form-label py-1"
+                              >Assignment Name<em>*</em></label
+                            >
+                            <input
+                            type="text"
                                     class="form-control"
                                     id="message-text"
                                     v-model="assignmentName"
@@ -1071,8 +501,8 @@
                                       'is-invalid':
                                         submitted && $v.assignmentName.$error,
                                     }"
-                                  />
-                                  <div
+                            />
+                            <div
                                     v-if="submitted && $v.assignmentName.$error"
                                     class="invalid-feedback"
                                   >
@@ -1080,48 +510,46 @@
                                       >This field is required</span
                                     >
                                   </div>
-                                </div>
-                                <div class="form-group">
-                                  <label
-                                    for="message-text"
-                                    class="col-form-label"
-                                    >Task</label
-                                  >
-                                  <textarea
-                                    class="form-control"
+                          </div>
+                          <div class="form-group mb-2">
+                            <label for="message-text" class="col-form-label py-1"
+                              >Task</label
+                            >
+                            <textarea
+                            class="form-control"
                                     id="message-text"
                                     rows="3"
                                     v-model="assignmentDescription"
                                     maxlength="500"
                                     placeholder="Enter assignment description"
-                                  ></textarea>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6 ml-auto">
-                                    <div class="form-group mb-0">
-                                      <label
-                                        for="recipient-name"
-                                        class="col-form-label"
-                                        >Priority<em>*</em></label
-                                      >
-                                      <div class="dropdown input-icon-area">
-                                        <button
-                                          id="dLabel"
-                                          class="dropdown-select form-control text-left"
-                                          type="button"
-                                          data-toggle="dropdown"
-                                          aria-haspopup="true"
-                                          aria-expanded="false"
-                                        >
-                                          <span class="caret">
+                            ></textarea>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6 ml-auto py-0">
+                              <div class="form-group mb-2 mb-0">
+                                <label
+                                  for="recipient-name"
+                                  class="col-form-label py-1"
+                                  >Priority<em>*</em></label
+                                >
+                                <div class="dropdown input-icon-area">
+                                  <button
+                                    id="dLabel"
+                                    class="dropdown-select form-control text-left"
+                                    type="button"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                  >
+                                  <span class="caret">
                                             {{
                                               priorityVal
                                                 ? priorityVal
                                                 : "Select priority"
                                             }}</span
-                                          >
-                                        </button>
-                                        <ul
+                                    >
+                                  </button>
+                                  <ul
                                           class="dropdown-menu border"
                                           aria-labelledby="dLabel"
                                         >
@@ -1144,9 +572,9 @@
                                             <span>Urgent</span>
                                           </li>
                                         </ul>
-                                      </div>
-                                    </div>
-                                    <div
+                                </div>
+                              </div>
+                              <div
                                       v-if="
                                         submitted &&
                                         priorityVal != 'Urgent' &&
@@ -1165,16 +593,16 @@
                                         >This field is required</span
                                       >
                                     </div>
-                                  </div>
-                                  <div class="col-md-6 ml-auto">
-                                    <div class="form-group">
-                                      <label
-                                        for="recipient-name"
-                                        class="col-form-label"
-                                        >Date<em>*</em></label
-                                      >
-                                      <date-picker
-                                        class="form-control dropdown-menu-top"
+                            </div>
+                            <div class="col-md-6 ml-auto py-0">
+                              <div class="form-group mb-2">
+                                <label
+                                  for="recipient-name"
+                                  class="col-form-label py-1"
+                                  >Date<em>*</em></label
+                                >
+                                <date-picker
+                                class="form-control dropdown-menu-top"
                                         placeholder="MM/DD/YYYY"
                                         format="MM/dd/yyyy"
                                         v-model="dateValue"
@@ -1183,8 +611,8 @@
                                             submitted && $v.dateValue.$error,
                                         }"
                                         :disabled-dates="disabledDates"
-                                      />
-                                      <div
+                                />
+                                <div
                                         v-if="submitted && $v.dateValue.$error"
                                         class="invalid-feedback"
                                       >
@@ -1192,20 +620,20 @@
                                           >This field is required</span
                                         >
                                       </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row mt-0">
-                                  <div class="col-6">
-                                    <div class="form-group">
-                                      <label
-                                        for="recipient-name"
-                                        class="col-form-label"
-                                        >Time<em>*</em></label
-                                      >
-                                      <div>
-                                        <vue-timepicker
-                                          @change="checkValidTime"
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row mt-0">
+                            <div class="col-6">
+                              <div class="form-group">
+                                <label
+                                  for="recipient-name"
+                                  class="col-form-label"
+                                  >Time<em>*</em></label
+                                >
+                                <div>
+                                  <vue-timepicker
+                                  @change="checkValidTime"
                                           close-on-complete
                                           format="hh:mm A"
                                           v-model="timeValue"
@@ -1218,8 +646,8 @@
                                               ($v.timeValue.$error ||
                                                 !validTime),
                                           }"
-                                        ></vue-timepicker>
-                                        <div
+                                  ></vue-timepicker>
+                                  <div
                                           v-if="
                                             submitted &&
                                             ($v.timeValue.$error || !validTime)
@@ -1234,23 +662,23 @@
                                             >Not a valid time</span
                                           >
                                         </div>
-                                      </div>
-                                    </div>
-                                  </div>
                                 </div>
-                                <div
-                                  class="d-flex justify-content-between align-items-center mb-2"
-                                >
-                                  <h6 class="color-dark font-semi-bold mb-0">
-                                    Sub Tasks 1
-                                  </h6>
-                                  <a @click="onAddSubTaskClick" class="btn p-0">
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="d-flex justify-content-between align-items-center mb-2"
+                          >
+                            <h6 class="color-dark font-semi-bold mb-0">
+                              Sub Tasks
+                            </h6>
+                            <a @click="onAddSubTaskClick" class="btn p-0">
                                     <span class="color-secondary"
                                       ><i class="fas fa-plus-circle"></i
                                     ></span>
                                   </a>
-                                </div>
-                                <div
+                          </div>
+                          <div
                                   v-if="addSubTask"
                                   class="d-flex flex-row align-items-start"
                                 >
@@ -1274,8 +702,29 @@
                                     </button>
                                   </div>
                                 </div>
+                          <!-- <div
+                            class="d-flex flex-row align-items-start"
+                          >
+                            <div class="form-row mb-2 mx-0 mr-2 w-100">
+                              <label class="form-label" for="name"
+                                >Add a sub-task</label
+                              >
+                              <input
+                                type="text"
+                                maxlength="100"
+                                class="form-control"
+                              />
+                            </div>
+                            <div class="pt-4">
+                              <button
+                                class="btn btn-primary btn-sm mt-2"
+                              >
+                                Add
+                              </button>
+                            </div>
+                          </div> -->
 
-                                <div
+                          <div
                                   class="custom-overflow pr-2 mr--2 d-flex flex-column"
                                 >
                                   <div
@@ -1315,19 +764,20 @@
                                   </div>
                                 </div>
 
-                                <div
-                                  class="d-flex justify-content-between align-items-center mb-2"
-                                >
-                                  <h6 class="color-dark font-semi-bold mb-0">
-                                    Invite Peers
-                                  </h6>
-                                  <a @click="onInviteClick" class="btn p-0">
+                          <!-- Additional Material Add -->
+                          <div
+                            class="d-flex justify-content-between align-items-center mb-2"
+                          >
+                            <h6 class="color-dark font-semi-bold mb-0">
+                              Invite Peers
+                            </h6>
+                            <a @click="onInviteClick" class="btn p-0">
                                     <span class="color-secondary"
                                       ><i class="fas fa-plus-circle"></i
                                     ></span>
                                   </a>
-                                </div>
-                                <div
+                          </div>
+                          <div
                                   v-if="invitePeer"
                                   class="d-flex flex-row align-items-start"
                                 >
@@ -1395,7 +845,7 @@
                                         </p>
                                       </div>
                                     </div>
-                                    <button
+                                    <!-- <button
                                       type="button"
                                       role="button"
                                       class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none"
@@ -1409,11 +859,9 @@
                                           class="fas fa-trash-alt color-danger"
                                         ></i
                                       ></span>
-                                    </button>
+                                    </button> -->
                                   </div>
                                 </div>
-
-                                <!-- Additional Material Add -->
                                 <div
                                   class="d-flex justify-content-between align-items-center mb-2"
                                 >
@@ -1534,407 +982,10 @@
                                     </div>
                                   </div>
                                 </div>
-                                <!-- Additional Material Add End -->
-                              </form>
-
-                              <form
-                                v-if="isSharedAssignment"
-                                ref="assignmentForm"
-                                id="assignmentForm"
-                              >
-                                <div class="form-group">
-                                  <label
-                                    for="recipient-name"
-                                    class="col-form-label"
-                                    >Subject:</label
-                                  >
-                                  &nbsp;{{ subject }}
-                                </div>
-                                <div class="form-group">
-                                  <label
-                                    for="message-text"
-                                    class="col-form-label"
-                                    >Assignment Name:</label
-                                  >
-                                  &nbsp;{{ assignmentName }}
-                                </div>
-                                <div class="form-group">
-                                  <label
-                                    for="message-text"
-                                    class="col-form-label"
-                                    >Task:</label
-                                  >
-                                  &nbsp;{{ assignmentDescription }}
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6 ml-auto">
-                                    <div class="form-group mb-0">
-                                      <label
-                                        for="recipient-name"
-                                        class="col-form-label"
-                                        >Priority:</label
-                                      >&nbsp;
-                                      <!-- <span v-if="priorityVal != 'Overdue'" -->
-                                      <span>{{ priorityVal }} </span>
-                                      <!-- <div
-                                        v-else
-                                        class="dropdown input-icon-area"
-                                      >
-                                        <button
-                                          id="dLabel"
-                                          class="
-                                            dropdown-select
-                                            form-control
-                                            text-left
-                                          "
-                                          type="button"
-                                          data-toggle="dropdown"
-                                          aria-haspopup="true"
-                                          aria-expanded="false"
-                                          requ
-                                        >
-                                          <span class="caret">
-                                            {{
-                                              priorityVal && !prior
-                                                ? priorityVal
-                                                : prior == 1
-                                                ? "Urgent"
-                                                : prior == 2
-                                                ? "Important"
-                                                : prior == 3
-                                                ? "Can Wait"
-                                                : "Select priority"
-                                            }}</span
-                                          >
-                                        </button>
-                                        <ul
-                                          class="dropdown-menu"
-                                          aria-labelledby="dLabel"
-                                        >
-                                          <li
-                                            @click="prior = 3"
-                                            class="item low-color"
-                                          >
-                                            <span>Can Wait</span>
-                                          </li>
-                                          <li
-                                            @click="prior = 2"
-                                            class="item medium-color"
-                                          >
-                                            <span>Important</span>
-                                          </li>
-                                          <li
-                                            @click="prior = 1"
-                                            class="item high-color"
-                                          >
-                                            <span>Urgent</span>
-                                          </li>
-                                        </ul>
-                                      </div> -->
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6 ml-auto">
-                                    <div class="form-group">
-                                      <label
-                                        for="recipient-name"
-                                        class="col-form-label"
-                                        >Date:</label
-                                      >
-                                      &nbsp;{{ dateValue }}
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row mt-0">
-                                  <div class="col-6">
-                                    <div class="form-group">
-                                      <label
-                                        for="recipient-name"
-                                        class="col-form-label"
-                                        >Time:</label
-                                      >
-                                      <div>&nbsp;{{ timeValue }}</div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div
-                                  class="d-flex justify-content-between align-items-center mb-2"
-                                >
-                                  <h6 class="color-dark font-semi-bold mb-0">
-                                    Sub Tasks
-                                  </h6>
-                                  <a @click="onAddSubTaskClick" class="btn p-0">
-                                    <span class="color-secondary"
-                                      ><i class="fas fa-plus-circle"></i
-                                    ></span>
-                                  </a>
-                                </div>
-                                <div
-                                  v-if="addSubTask"
-                                  class="d-flex flex-row align-items-start"
-                                >
-                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
-                                    <label class="form-label" for="name"
-                                      >Add a sub-task</label
-                                    >
-                                    <input
-                                      type="text"
-                                      maxlength="100"
-                                      v-model="subTaskName"
-                                      class="form-control"
-                                    />
-                                  </div>
-                                  <div class="pt-4">
-                                    <button
-                                      class="btn btn-primary btn-sm mt-2"
-                                      @click="onAddNewSubTask"
-                                    >
-                                      Add
-                                    </button>
-                                  </div>
-                                </div>
-                                <div
-                                  class="custom-overflow pr-2 mr--2 d-flex flex-column"
-                                >
-                                  <div
-                                    v-for="subTask in subTasksList"
-                                    :key="subTask"
-                                  >
-                                    <div
-                                      class="card card-transparent show-icon p-1 mb-1"
-                                    >
-                                      <div
-                                        class="d-flex align-items-center justify-content-between"
-                                      >
-                                        <p
-                                          class="mb-0 color-secondary text-16 font-regular word-break pr-3"
-                                        >
-                                          <span
-                                            class="subtask-btn mr-1"
-                                            :class="{
-                                              selected:
-                                                subTask.task_status ==
-                                                'Completed',
-                                            }"
-                                            ><i></i
-                                          ></span>
-                                          <span>{{ subTask.title }}</span>
-                                        </p>
-                                        <span
-                                          v-if="
-                                            subTask.task_status != 'Completed'
-                                          "
-                                          @click="deleteSubTask(subTask)"
-                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
-                                          ><i class="fas fa-trash-alt"></i
-                                        ></span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div
-                                  class="d-flex justify-content-between align-items-center mb-2"
-                                >
-                                  <h6 class="color-dark font-semi-bold mb-0">
-                                    Invited Peers
-                                  </h6>
-                                </div>
-                                <div
-                                  v-if="invitePeer"
-                                  class="d-flex flex-row align-items-start"
-                                >
-                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
-                                    <label class="form-label" for="name"
-                                      >Invite peers</label
-                                    >
-                                    <multiselect
-                                      v-model="peerSelected"
-                                      :options="students"
-                                      track-by="first_name"
-                                      label="first_name"
-                                      :placeholder="
-                                        peerSelected.length > 3
-                                          ? ''
-                                          : 'Select students'
-                                      "
-                                      :multiple="true"
-                                      :max="4"
-                                    >
-                                      <span slot="maxElements"
-                                        >Maximum of 4 students selected</span
-                                      >
-                                      <span slot="noResult">No data found</span>
-                                    </multiselect>
-                                  </div>
-                                  <div class="pt-4">
-                                    <button
-                                      @click="onInvitePeer"
-                                      class="btn btn-primary btn-sm mt-2"
-                                    >
-                                      Add
-                                    </button>
-                                  </div>
-                                </div>
-                                <div class="hidden-scroll px-3 row my-0">
-                                  <div
-                                    v-for="peer of peerList"
-                                    :key="peer.id"
-                                    class="h-fit-content"
-                                  >
-                                    <div
-                                      class="d-flex align-items-center my-2 mr-3 min-w-200"
-                                    >
-                                      <div class="ld-img-section mr-3">
-                                        <div class="ld-img-holder">
-                                          <img
-                                            v-if="peer.profile_pic"
-                                            :src="peer.profile_pic"
-                                            alt=""
-                                          />
-                                          <img
-                                            v-else
-                                            src="~/static/image/avatar.png"
-                                            alt=""
-                                          />
-                                        </div>
-                                      </div>
-                                      <div class="ld-details-section">
-                                        <p class="ld-heading mb-1">
-                                          {{ peer.first_name }}
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <!-- Additional Material Add -->
-                                <div
-                                  class="d-flex justify-content-between align-items-center mb-2"
-                                >
-                                  <h6 class="color-dark font-semi-bold mb-0">
-                                    Additional Material
-                                  </h6>
-                                  <a
-                                    @click="onAdditionalMatClick"
-                                    class="btn p-0"
-                                  >
-                                    <span class="color-secondary"
-                                      ><i class="fas fa-plus-circle"></i
-                                    ></span>
-                                  </a>
-                                </div>
-                                <div
-                                  v-if="additionalMaterial"
-                                  class="d-flex flex-row align-items-start"
-                                >
-                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
-                                    <label class="form-label" for="name"
-                                      >Add Additional Material</label
-                                    >
-                                    <!-- <input type="text" class="form-control" /> -->
-                                    <select
-                                      v-model="materialType"
-                                      class="form-select form-control mb-2"
-                                      aria-label="Default select example"
-                                    >
-                                      <option value="">
-                                        Choose material type
-                                      </option>
-                                      <option value="file">File</option>
-                                      <option value="link">Link</option>
-                                    </select>
-                                    <div class="row m-0">
-                                      <div class="col-9 py-0">
-                                        <input
-                                          v-if="materialType == 'file'"
-                                          type="file"
-                                          class="form-control px-2"
-                                          placeholder="Upload File"
-                                          id="fileUpload"
-                                          @change="onFileChange"
-                                          accept=".png,.jpeg,.jpg,.pdf"
-                                        />
-                                      </div>
-                                      <div class="col-9 py-0">
-                                        <input
-                                          v-if="materialType == 'link'"
-                                          type="text"
-                                          class="form-control px-2"
-                                          placeholder="Paste Link"
-                                          v-model="link"
-                                        />
-                                      </div>
-                                      <div class="col-3 p-0"></div>
-                                    </div>
-                                  </div>
-                                  <div class="pt-4">
-                                    <button
-                                      type="button"
-                                      @click="UploadAttachment"
-                                      class="btn btn-primary btn-sm mt-2"
-                                    >
-                                      Add
-                                    </button>
-                                  </div>
-                                </div>
-                                <div class="hidden-scroll px-3 row my-0">
-                                  <div
-                                    v-for="item of additionalMaterialList"
-                                    :key="item.id"
-                                    class="h-fit-content w-100"
-                                  >
-                                    <div
-                                      v-if="item.link"
-                                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 show-icon"
-                                    >
-                                      <div class="ld-details-section w-100">
-                                        <p
-                                          @click="openLink(item)"
-                                          class="ld-heading mb-1 text-truncate cursor-pointer"
-                                        >
-                                          <!-- {{ peer.first_name }} -->
-                                          {{ item.link }}
-                                        </p>
-                                      </div>
-                                      <span
-                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
-                                        @click="deleteAdditionalMat(item)"
-                                        ><i class="fas fa-trash-alt"></i
-                                      ></span>
-                                    </div>
-                                    <div
-                                      v-else
-                                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 show-icon"
-                                    >
-                                      <div class="ld-details-section w-100">
-                                        <p
-                                          @click="openLink(item)"
-                                          class="ld-heading mb-1 text-truncate cursor-pointer"
-                                        >
-                                          <!-- {{ peer.first_name }} -->
-                                          {{
-                                            item.file_type &&
-                                            item.file_type != "link"
-                                              ? item.file_name
-                                              : item.material
-                                          }}
-                                        </p>
-                                      </div>
-                                      <span
-                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
-                                        @click="deleteAdditionalMat(item)"
-                                        ><i class="fas fa-trash-alt"></i
-                                      ></span>
-                                    </div>
-                                  </div>
-                                </div>
-                                <!-- Additional Material Add End -->
-                              </form>
-                            </div>
-
-                            <div class="d-flex justify-content-end px-2">
-                              
-                              <button
+                        </form>
+                </div>
+                <div class="modal-footer justify-content-end border-top-0">
+                  <button
                                 v-if="
                                   !isAddAssignment && schoologyAssignment == '1'
                                 "
@@ -1967,10 +1018,50 @@
                               >
                                 {{ isAddAssignment ? "Add" : "Update" }}
                               </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+      class="modal fade"
+      id="removePeerConfirmation"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="removePeerConfirmationModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h4 class="modal-title" id="removePeerConfirmationModalLongTitle">
+              Remove Peer Confirmation
+            </h4>
+          </div>
+          <div class="modal-body px-3">
+            <p class="mb-0">Are you sure want to remove the peer?</p>
+          </div>
+          <div class="modal-footer justify-content-end border-top-0">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              data-dismiss="modal"
+              type="button"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+              @click="removePeer()"
+            >
+              Confirm
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+         
           <!-- End Daily Calander -->
       </div>
   </div>
@@ -2051,6 +1142,30 @@ data() {
         to: new Date(),
       },
       processing: false,
+      gg4lSubject: "",
+      subject: "",
+      assignmentName: "",
+      peerSelected: [],
+      materialType : "",
+      isAddAssignment: true,
+      additionalMaterialList: [],
+      link: "",
+      materialType: "",
+      priorityVal: "",
+      addSubTask: false,
+      subTasksList: [],
+      invitePeer: false,
+      peerList: [],
+      additionalMaterial: false,
+      subTaskName: "",
+      choosenAssignments: [],
+      isSharedAssignment: false,
+      grade: "",
+      gradePossible: "",
+      invalidSubmitUrl:false,
+      submittedAsst:false,
+      disableSubmit:false,
+      invalidSubmitText:false
   }
 },
 created() {
@@ -2433,11 +1548,13 @@ if (this.successMessage != "") {
 }
 },
 EditAssignmentModal() {
+  console.log("EditAssignmentModal")
+      this.resetAssignment();
       $("#editAssignment").modal({ backdrop: true });
   },
-AddAssignmentModal() {
-      $("#AddAssignment").modal({ backdrop: true });
-  },
+// AddAssignmentModal() {
+//       $("#AddAssignment").modal({ backdrop: true });
+//   },
   async resetAssignment() {
       this.choosenAssignments = [];
       this.schoologyAssignment = "";
@@ -2472,9 +1589,9 @@ AddAssignmentModal() {
       this.additionalMaterial = false;
       this.assignmentId='';
 
-      $('input[name="daterange"]').val("");
+      // $('input[name="daterange"]').val("");
       fromDate = "";
-      $(".dropdown-select").text("Select priority");
+      // $(".dropdown-select").text("Select priority");
       this.priorityVal = "";
       this.subject = "";
       this.task = "";
@@ -2532,6 +1649,7 @@ AddAssignmentModal() {
       // this.GetAssignment();
       // this.GetWeeklyPlanner();
       this.openAssignment = false;
+      $('#editAssignment').modal('hide');
     },
     async AddAssignment() {
       this.submitted = true;
@@ -2804,8 +1922,203 @@ mapPeerInvited(data) {
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
       this.openAssignment = true;
+      this.EditAssignmentModal();
       this.mapAssignmentDetail(data);
       this.mapPeerInvited(data);
+      
+
+    },
+    submitAssignment() {
+      this.submittedAsst=false;
+      this.onResetSubmit();
+      $("#submitAssignmentConfirmation").modal({ backdrop: true });
+    },
+    deleteAdditionalMat(item) {
+      this.additionalMaterialList;
+      const index = this.additionalMaterialList.indexOf(item);
+      if (index > -1) {
+        this.additionalMaterialList.splice(index, 1); // 2nd parameter means remove one item only
+      }
+    },
+    openLink(material) {
+      let link = material.link
+        ? material.link
+        : material.name
+        ? material.name
+        : material.file_name;
+      if (material.file_type) {
+        link = material.material;
+      }
+      window.open(
+        link,
+        "_blank" // <- This is what makes it open in a new window.
+      );
+    },
+    async UploadAttachment() {
+      if (!this.materialType) {
+        return this.$toast.open({
+          message: "Please choose file type",
+          type: "warning",
+          duration: 5000,
+        });
+        return false;
+      }
+
+      this.processingUpload = true;
+      const data = new FormData();
+      if (this.materialType == "file") {
+        if (this.file) {
+          data.append("file", this.file);
+          await this.uploadAdditionalMaterial(data, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          if (this.errorMessageQuote != "") {
+            return this.$toast.open({
+              message: this.errorMessageQuote,
+              type: this.errorTypeQuote,
+              duration: 4000,
+            });
+          }
+
+          this.additionalMaterialList.push({
+            id: this.newAdditionalMaterial.id,
+            name: this.newAdditionalMaterial.material,
+            material: this.file.name,
+          });
+          this.processingUpload = false;
+          this.file = "";
+          if (document.querySelector("#fileUpload"))
+            document.querySelector("#fileUpload").value = "";
+        } else {
+          this.processingUpload = false;
+
+          return this.$toast.open({
+            message: "Please add valid file",
+            type: "warning",
+            duration: 5000,
+          });
+          return false;
+        }
+      } else {
+        let urlValid = this.isValidHttpUrl(this.link);
+        if (urlValid) {
+          this.additionalMaterialList.push({
+            id: Math.random(),
+            link: this.link,
+          });
+          this.link = "";
+        }
+        this.processingUpload = false;
+        return;
+      }
+      this.processingUpload = false;
+    },
+    isValidHttpUrl(urlLink, showError=true) {
+      let url;
+
+      try {
+        url = new URL(urlLink);
+      } catch (_) {
+        if(showError){
+        this.$toast.open({
+          message: "Please add valid URL",
+          type: "warning",
+          duration: 5000,
+        });
+      }
+        return false;
+      }
+
+      let valid = url.protocol === "http:" || url.protocol === "https:";
+      if (!valid) {
+        this.$toast.open({
+          message: "Please add valid URL",
+          type: "warning",
+          duration: 5000,
+        });
+      }
+
+      return valid;
+    },
+    onChangeLink(){
+      if(this.submittedAsst){
+        if(!this.isValidHttpUrl(this.linkSubmit, false)){
+          this.invalidSubmitUrl=true;
+          return false;
+        }else{
+          this.invalidSubmitUrl=false;
+          return true;
+        }
+
+      }
+    },
+    onAddNewSubTask() {
+      if (this.subTaskName) {
+        let sub = {};
+        sub.title = this.subTaskName;
+        this.subTasksList.push(sub);
+      } else {
+        this.$toast.open({
+          message: "Please add a valid sub task ",
+          type: "warning",
+          duration: 5000,
+        });
+      }
+      this.subTaskName = "";
+      this.addSubTask = false;
+    },
+    deleteSubTask(subTask) {
+      if (this.assignmentId) {
+        // deleted_subTask
+        this.deletedSubTasksArray.push(subTask.id);
+      }
+      this.subTasksList = this.subTasksList.filter((e) => e != subTask);
+    },
+    onInvitePeer() {
+      this.peerList = [];
+      this.peerSelected.forEach((e) => {
+        this.peerList.push(e);
+      });
+      this.invitePeer = false;
+    },
+    removePeerConfirm(id, event) {
+      event.stopPropagation();
+      $("#removePeerConfirmation").modal({ backdrop: true });
+      this.removePeerId = id;
+    },
+    removePeer() {
+      this.removedPeerList.push(this.removePeerId);
+      const index = this.peerList.findIndex(
+        (item) => item.id == this.removePeerId
+      );
+      if (index > -1) {
+        this.peerList.splice(index, 1); // 2nd parameter means remove one item only
+      }
+      const index1 = this.peerSelected.findIndex(
+        (item) => item.id == this.removePeerId
+      );
+      if (index1 > -1) {
+        this.peerSelected.splice(index1, 1); // 2nd parameter means remove one item only
+      }
+    },
+    onFileChange(e) {
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        if (document.querySelector("#fileUpload"))
+          document.querySelector("#fileUpload").value = "";
+
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
+      if (e.target.files[0]) {
+        this.file = e.target.files[0];
+      }
     },
 },
 }
