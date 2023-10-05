@@ -8,7 +8,7 @@
                       <div class="row">
                           <div class="col-12">
                               <h2 class="heading2 font-semi-bold color-primary-dark mb-1">Tasks</h2>
-                              <p class="color-tertiary font-medium mb-1">Task For this week</p>
+                              <p class="color-tertiary font-medium mb-1">Task for this week</p>
                               <div class="d-flex flex-wrap">
                                   <div class="pb-0 pr-3 m-1 mr-auto">
                                       <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto">
@@ -96,7 +96,7 @@
                                                       <li @click="onCardClick(item)" class="item p-2">
                                                         Edit
                                                       </li>
-                                                      <li class="item p-2">Remove</li>
+                                                      <li @click="confirmDeletion()" class="item p-2">Delete</li>
                                                   </ul>
                                               </div>
                                           </div>
@@ -195,6 +195,8 @@
                                                   aria-labelledby="dLabel">
                                                   <li @click="onCardClick(item)" class="item p-2">Edit</li>
                                                   <li class="item p-2">Remove</li>
+                                                  <li class="item p-2">Edit</li>
+                                                  <li @click="confirmDeletion()" class="item p-2">Delete</li>
                                               </ul>
                                           </div>
                                       </div>
@@ -294,6 +296,8 @@
                                                   aria-labelledby="dLabel">
                                                   <li @click="onCardClick(item)" class="item p-2">Edit</li>
                                                   <li class="item p-2">Remove</li>
+                                                  <li class="item p-2">Edit</li>
+                                                  <li @click="confirmDeletion()" class="item p-2">Delete</li>
                                               </ul>
                                           </div>
                                       </div>
@@ -382,6 +386,8 @@
                                                   aria-labelledby="dLabel">
                                                   <li @click="onCardClick(item)" class="item p-2">Edit</li>
                                                   <li class="item p-2">Remove</li>
+                                                  <li class="item p-2">Edit</li>
+                                                  <li @click="confirmDeletion()" class="item p-2">Delete</li>
                                               </ul>
                                           </div>
                                       </div>
@@ -1023,45 +1029,46 @@
             </div>
           </div>
           <div
-      class="modal fade"
-      id="removePeerConfirmation"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="removePeerConfirmationModalCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
-        <div class="modal-content">
-          <div class="modal-header pb-1">
-            <h4 class="modal-title" id="removePeerConfirmationModalLongTitle">
-              Remove Peer Confirmation
-            </h4>
+            class="modal fade"
+            id="deleteAssignmentConfirmation"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="deleteAssignmentConfirmationModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+              <div class="modal-content">
+                <div class="modal-header pb-1">
+                  <h4
+                    class="modal-title"
+                    id="deleteAssignmentConfirmationModalLongTitle"
+                  >
+                    Delete assignment confirmation
+                  </h4>
+                </div>
+                <div class="modal-body px-3">
+                  <p class="mb-0">Delete selected assignments?</p>
+                </div>
+                <div class="modal-footer justify-content-end border-top-0">
+                  <button
+                    type="button"
+                    class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    data-dismiss="modal"
+                    type="button"
+                    class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+                    @click="deleteAssts()"
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="modal-body px-3">
-            <p class="mb-0">Are you sure want to remove the peer?</p>
-          </div>
-          <div class="modal-footer justify-content-end border-top-0">
-            <button
-              type="button"
-              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
-              data-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <button
-              data-dismiss="modal"
-              type="button"
-              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
-              @click="removePeer()"
-            >
-              Confirm
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-         
           <!-- End Daily Calander -->
       </div>
   </div>
@@ -2119,6 +2126,9 @@ mapPeerInvited(data) {
       if (e.target.files[0]) {
         this.file = e.target.files[0];
       }
+  },
+  confirmDeletion() {
+      $("#deleteAssignmentConfirmation").modal({ backdrop: true });
     },
 },
 }

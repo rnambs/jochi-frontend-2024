@@ -97,6 +97,7 @@
         background-color: transparent;
         color: $text-gray;
         border: 1px solid var(--form-border);
+        &:active,&:focus{border: 1px solid var(--form-border);}
         &:hover{
             background-color: var(--text-primary-white);
             color: $font-secondary-dark;

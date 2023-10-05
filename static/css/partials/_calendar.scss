@@ -65,6 +65,7 @@
     .fc-view-harness.fc-view-harness-active{
         height: 29vh !important;
         min-height: 240px;
+        max-height: 300px;
         .fc-daygrid.fc-dayGridMonth-view.fc-view{
             table.fc-scrollgrid.fc-scrollgrid-liquid{
                 tr.fc-scrollgrid-section.fc-scrollgrid-section-header{
@@ -413,4 +414,10 @@
             }
         }
     }
+}
+
+.calendar-dashboard .fc-header-toolbar.fc-toolbar.fc-toolbar-ltr h2.fc-toolbar-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
 }

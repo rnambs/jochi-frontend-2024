@@ -25,5 +25,8 @@ export const MIXPANEL_TOKEN = 'b9cdd17303381147a3e2c53700e2da94'; //client accou
 // export const GG4L_REDIRECT_LOGIN_URL = "https://ed.link/sso/login?client_id=515bbb1e-ba82-455d-8fe1-e70535190a8a&redirect_uri=http%3A%2F%2Flocalhost%3A3101%2Fredirect-login&response_type=code"
 export const GG4L_REDIRECT_LOGIN_URL = "https://ed.link/sso/login?client_id=515bbb1e-ba82-455d-8fe1-e70535190a8a&redirect_uri=" + REDIRECT_LOGIN_URL + "&response_type=code"
 // export const GG4L_REDIRECT_URL = "https://sso.gg4l.com/oauth/loginwith/logout?redirect_uri="
+export const GG4L_REDIRECT_URL = "https://sso.gg4l.com/oauth/loginwith/logout?redirect_uri=";
+export const JOCHI_LOGO="https://jochi-live.s3.amazonaws.com/clubImages/1693820705728.png";
+export const JOCHI_PRO_PIC="https://jochi-live.s3.amazonaws.com/clubImages/1695899320326.png";
 
 // encodeURI

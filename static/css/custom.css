@@ -90,6 +90,14 @@
   }
 }
 
+.max-h-100 {
+  max-height: 100%;
+}
+
+.max-h-50 {
+  max-height: 50%;
+}
+
 .lext-limited {
   max-height: 36px;
   overflow: hidden;
@@ -800,6 +808,9 @@ h1, h2, h3, h4, h5, h6 {
   color: #A3A3A3;
   border: 1px solid var(--form-border);
 }
+.btn.btn-void:active, .btn.btn-void:focus {
+  border: 1px solid var(--form-border);
+}
 .btn.btn-void:hover {
   background-color: var(--text-primary-white);
   color: var(--text-secondary-dark);
@@ -1406,7 +1417,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 0.025rem;
   cursor: pointer;
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.4) 100%), #F0F0F0;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04), 0px 1px 0px 0px #FFF, 0px 0px 8px 0px rgba(0, 0, 0, 0.02) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.06) inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.04) inset, 0px 1px 1px 0px rgba(0, 0, 0, 0.04) inset;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04), 0px 1px 0px 0px var(--color-basic), 0px 0px 8px 0px rgba(0, 0, 0, 0.02) inset, 0px 0px 0px 0.5px rgba(0, 0, 0, 0.06) inset, 0px 2px 4px 0px rgba(0, 0, 0, 0.04) inset, 0px 1px 1px 0px rgba(0, 0, 0, 0.04) inset;
   border: none;
 }
 .custom-switch .custom-control-label::after {
@@ -1850,6 +1861,12 @@ img.img-theme.dark {
   color: #696969;
 }
 
+.calendar-dashboard .fc-header-toolbar.fc-toolbar.fc-toolbar-ltr h2.fc-toolbar-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
 .customModal #Welcome {
   z-index: 4;
   height: 90vh;
@@ -1948,6 +1965,9 @@ img.img-theme.dark {
   cursor: pointer;
   padding: 0.6rem 0.75rem;
 }
+.modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker > div {
+  width: 100%;
+}
 .modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker::before {
   content: "\f073";
   display: inline-block;
@@ -1969,6 +1989,7 @@ img.img-theme.dark {
 }
 .modal .modal-dialog .modal-content .modal-body .form-group .form-control.vdp-datepicker input[type=text] {
   line-height: 18px;
+  z-index: 9;
 }
 .modal .modal-dialog .modal-content .modal-body .form-group select.form-control {
   cursor: pointer;
@@ -1985,39 +2006,15 @@ img.img-theme.dark {
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 0.3rem 1rem;
+  padding: 0.3rem 0.65rem;
   font-size: 0.8rem;
-  color: #344054;
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .dropdown .dropdown-menu .item .low-color {
-  margin-right: 5px;
-  background-color: #F6D73C;
-  width: 10px;
-  height: 10px;
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .dropdown .dropdown-menu .item .medium-color {
-  background-color: #00CCA0;
-  width: 10px;
-  height: 10px;
-  margin-right: 5px;
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .dropdown .dropdown-menu .item .high-color {
-  background-color: #EF382E;
-  width: 10px;
-  height: 10px;
-  margin-right: 5px;
-}
-.modal .modal-dialog .modal-content .modal-body .form-group .dropdown .dropdown-menu .item:hover {
-  background-color: var(--color-border);
-  color: #ffffff;
-  border-radius: 0.3rem;
 }
 .modal .modal-dialog .modal-content .modal-body .required-button {
   font-size: 80%;
   color: #5534A5;
 }
 .modal .modal-dialog .modal-content .modal-body table.table-modal .tmodal-data, .modal .modal-dialog .modal-content .modal-body table.table-modal .tmodal-data {
-  color: #2D2D2F;
+  color: var(--text-primary-dark);
   font-size: 0.95rem;
   line-height: 2;
 }
@@ -3274,8 +3271,8 @@ img.dark-icon {
 }
 .inner-section .main-section #Daily-Calander .fc-toolbar-chunk .fc-next-button.fc-button,
 .inner-section .main-section #Daily-Calander .fc-toolbar-chunk .fc-prev-button.fc-button {
-  background: none;
-  border: 1px solid #F1EEF6;
+  background: var(--color-basic);
+  border: 1px solid var(--form2-border);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3594,8 +3591,8 @@ img.dark-icon {
 }
 .inner-section .main-section #Weekly-Calander .fc-toolbar-chunk .fc-next-button.fc-button,
 .inner-section .main-section #Weekly-Calander .fc-toolbar-chunk .fc-prev-button.fc-button {
-  background: none;
-  border: 1px solid #F1EEF6;
+  background: var(--color-basic);
+  border: 1px solid var(--form2-border);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3809,8 +3806,8 @@ img.dark-icon {
 }
 .inner-section .main-section #Monthly-Calander .fc-toolbar-chunk .fc-next-button.fc-button,
 .inner-section .main-section #Monthly-Calander .fc-toolbar-chunk .fc-prev-button.fc-button {
-  background: none;
-  border: 1px solid #F1EEF6;
+  background: var(--color-basic);
+  border: 1px solid var(--form2-border);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -4801,6 +4798,7 @@ img.dark-icon {
 .calendar-sm .fc-view-harness.fc-view-harness-active {
   height: 29vh !important;
   min-height: 240px;
+  max-height: 300px;
 }
 .calendar-sm .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid {
   border: none;
@@ -4976,8 +4974,8 @@ img.dark-icon {
 }
 .calendar-dashboard .fc-toolbar-chunk .fc-next-button.fc-button,
 .calendar-dashboard .fc-toolbar-chunk .fc-prev-button.fc-button {
-  background: none;
-  border: 1px solid #F1EEF6;
+  background: var(--color-basic);
+  border: 1px solid var(--form2-border);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -4990,6 +4988,7 @@ img.dark-icon {
 .calendar-dashboard .fc-view-harness.fc-view-harness-active {
   height: 29vh !important;
   min-height: 240px;
+  max-height: 300px;
 }
 .calendar-dashboard .fc-view-harness.fc-view-harness-active .fc-daygrid.fc-dayGridMonth-view.fc-view table.fc-scrollgrid.fc-scrollgrid-liquid {
   border: none;
