@@ -579,8 +579,6 @@ body {
 	 margin: 0;
 }
 .calendar-dashboard .fc-toolbar-chunk .fc-next-button.fc-button, .fc-toolbar-chunk .fc-prev-button.fc-button {
-	 background: none;
-	 border: 1px solid #F1EEF6;
 	 display: flex;
 	 justify-content: center;
 	 align-items: center;

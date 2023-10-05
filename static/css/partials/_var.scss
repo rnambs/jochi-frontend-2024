@@ -402,8 +402,8 @@ $sm-screen-h         : 767.98px;
     }
     .fc-toolbar-chunk .fc-next-button.fc-button,
     .fc-toolbar-chunk .fc-prev-button.fc-button {
-        background: none;
-        border: 1px solid #F1EEF6;
+        background: var(--color-basic);
+        border: 1px solid var(--form2-border);
         display: flex;
         justify-content: center;
         align-items: center;

@@ -95,7 +95,9 @@
                             <div
                               class="study-status-img position-absolute d-flex w-100 h-100 align-items-center justify-content-center"
                             >
-                              <img src="~/static/image/v4/alarm.png" alt="" />
+                              <!-- <img src="~/static/image/v4/alarm.png" alt="" /> -->
+                              <img src="~/static/image/v4/alarm-black.svg" alt="clock" class="img-theme light" />
+                              <img src="~/static/image/v4/alarm-white.svg" alt="clock" class="img-theme dark" />
                             </div>
                           </div>
                           <div
@@ -195,7 +197,7 @@
             </div>
             <div class="col-xl-4 mt-3 mt-xl-0 h-md-100">
               <div
-                class="card card-tertiary border rounded-8 h-100 d-flex flex-column overflow-hidden"
+                class="card card-secondary border rounded-8 h-100 d-flex flex-column overflow-hidden"
               >
                 <div class="calendar-dashboard px-4 pt-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />

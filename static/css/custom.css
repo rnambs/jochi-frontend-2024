@@ -3271,8 +3271,8 @@ img.dark-icon {
 }
 .inner-section .main-section #Daily-Calander .fc-toolbar-chunk .fc-next-button.fc-button,
 .inner-section .main-section #Daily-Calander .fc-toolbar-chunk .fc-prev-button.fc-button {
-  background: none;
-  border: 1px solid #F1EEF6;
+  background: var(--color-basic);
+  border: 1px solid var(--form2-border);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3591,8 +3591,8 @@ img.dark-icon {
 }
 .inner-section .main-section #Weekly-Calander .fc-toolbar-chunk .fc-next-button.fc-button,
 .inner-section .main-section #Weekly-Calander .fc-toolbar-chunk .fc-prev-button.fc-button {
-  background: none;
-  border: 1px solid #F1EEF6;
+  background: var(--color-basic);
+  border: 1px solid var(--form2-border);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3806,8 +3806,8 @@ img.dark-icon {
 }
 .inner-section .main-section #Monthly-Calander .fc-toolbar-chunk .fc-next-button.fc-button,
 .inner-section .main-section #Monthly-Calander .fc-toolbar-chunk .fc-prev-button.fc-button {
-  background: none;
-  border: 1px solid #F1EEF6;
+  background: var(--color-basic);
+  border: 1px solid var(--form2-border);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -4974,8 +4974,8 @@ img.dark-icon {
 }
 .calendar-dashboard .fc-toolbar-chunk .fc-next-button.fc-button,
 .calendar-dashboard .fc-toolbar-chunk .fc-prev-button.fc-button {
-  background: none;
-  border: 1px solid #F1EEF6;
+  background: var(--color-basic);
+  border: 1px solid var(--form2-border);
   display: flex;
   justify-content: center;
   align-items: center;
