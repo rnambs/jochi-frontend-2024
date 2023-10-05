@@ -2734,6 +2734,79 @@ AddAssignmentModal() {
       this.submitted = false;
       this.processing = false;
     },
+    mapAssignmentDetail(data) {
+
+const parser = new DOMParser();
+const doc = parser.parseFromString( data.assignment_description, 'text/html');
+const textContent = doc.body.textContent;
+
+this.isSharedAssignment = data.isShared;
+this.schoologyAssignment = data.schoologyAssignment;
+this.assignmentId = data.id;
+this.assignmentName = data.task;
+this.assignmentDescription = textContent;
+this.submissionId = data.submission_id;
+this.grade = data.grade;
+this.gradePossible = data.grade_possible;
+this.priorityVal =
+  data.priority == "1"
+    ? "Urgent"
+    : data.priority == "2"
+    ? "Important"
+    : data.priority == "3"
+    ? "Can Wait"
+    : data.priority == "4"
+    ? "Overdue"
+    : "";
+
+if (data.isShared) {
+  this.subject = data.subject;
+  this.subjectId = data.subjects.id;
+} else {
+  this.subject = {
+    id: data.subjects?.id,
+    text: data.subjects?.subject_name,
+  };
+}
+if (this.schoologyAssignment == "1") {
+  this.gg4lSubject = data.subject;
+}
+this.dateValue = data.due_date
+  ? moment(data.due_date).format("MM/DD/YYYY")
+  : "";
+this.timeValue = data.due_time;
+this.subTasksList = [];
+if (data.subTasks && data.subTasks.length > 0) {
+  data.subTasks.forEach((e) => {
+    let item = {};
+    item = e;
+    this.subTasksList.push(item);
+  });
+}
+this.peerList = data.peers;
+this.additionalMaterialList = data.assignment_materials
+  ? data.assignment_materials
+  : [];
+},
+mapPeerInvited(data) {
+      this.peerSelected = [];
+      if (data.peers && data.peers?.length > 0 && this.students.length > 0) {
+        data.peers.forEach((e) => {
+          let studs = this.students.find(
+            (s) => s.id.toString() == e.id.toString()
+          );
+          this.peerSelected.push(studs);
+        });
+      }
+    },
+    onCardClick(data) {
+      this.resetAssignment();
+      this.deletedSubTasksArray = [];
+      this.isAddAssignment = false;
+      this.openAssignment = true;
+      this.mapAssignmentDetail(data);
+      this.mapPeerInvited(data);
+    },
 },
 }
 </script>
