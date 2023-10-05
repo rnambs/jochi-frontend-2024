@@ -2,14 +2,10 @@
   <header id="header" class="header">
     <div class="top-left">
       <div class="navbar-header d-flex align-items-center">
-        <a class="navbar-brand" href="/dashboard">
-          <img :src="JOCHI_LOGO" alt="Logo" class="jochi-logo"  />
+        <a class="navbar-brand d-flex align-items-center justify-content-center" href="/dashboard">
+          <img src="~/assets/images/logo-grid.png" alt="Logo" class="jochi-logo"  />
         </a>
-        <a class="navbar-brand hidden" href="/dashboard">
-          <!-- <img src="../assets/images/Icon/logo-icon.png" alt="Logo" /> -->
-          <img :src="JOCHI_LOGO" alt="Logo" class="jochi-logo" />
-        </a>
-        <a id="menuToggle" class="menutoggle" @click="menuToggle()"
+        <a id="menuToggle" class="menutoggle d-flex align-items-center justify-content-center" @click="menuToggle()"
           ><i class="fa fa-bars"></i
         ></a>
       </div>
@@ -47,12 +43,11 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
-import { JOCHI_LOGO, JOCHI_PRO_PIC } from "../assets/js/constants";
+import { JOCHI_PRO_PIC } from "../assets/js/constants";
 export default {
   name: "NavHeader",
   data() {
     return {
-      JOCHI_LOGO : JOCHI_LOGO,
       JOCHI_PRO_PIC : JOCHI_PRO_PIC,
     }
   },
