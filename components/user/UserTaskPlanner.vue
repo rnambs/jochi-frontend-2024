@@ -92,7 +92,7 @@
                                                       <li @click="EditAssignmentModal()" class="item p-2">
                                                         Edit
                                                       </li>
-                                                      <li class="item p-2">Remove</li>
+                                                      <li @click="confirmDeletion()" class="item p-2">Delete</li>
                                                   </ul>
                                               </div>
                                           </div>
@@ -190,7 +190,7 @@
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
                                                   <li class="item p-2">Edit</li>
-                                                  <li class="item p-2">Remove</li>
+                                                  <li @click="confirmDeletion()" class="item p-2">Delete</li>
                                               </ul>
                                           </div>
                                       </div>
@@ -289,7 +289,7 @@
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
                                                   <li class="item p-2">Edit</li>
-                                                  <li class="item p-2">Remove</li>
+                                                  <li @click="confirmDeletion()" class="item p-2">Delete</li>
                                               </ul>
                                           </div>
                                       </div>
@@ -377,7 +377,7 @@
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
                                                   <li class="item p-2">Edit</li>
-                                                  <li class="item p-2">Remove</li>
+                                                  <li @click="confirmDeletion()" class="item p-2">Delete</li>
                                               </ul>
                                           </div>
                                       </div>
@@ -921,6 +921,47 @@
               </div>
             </div>
           </div>
+          <div
+            class="modal fade"
+            id="deleteAssignmentConfirmation"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="deleteAssignmentConfirmationModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+              <div class="modal-content">
+                <div class="modal-header pb-1">
+                  <h4
+                    class="modal-title"
+                    id="deleteAssignmentConfirmationModalLongTitle"
+                  >
+                    Delete assignment confirmation
+                  </h4>
+                </div>
+                <div class="modal-body px-3">
+                  <p class="mb-0">Delete selected assignments?</p>
+                </div>
+                <div class="modal-footer justify-content-end border-top-0">
+                  <button
+                    type="button"
+                    class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    data-dismiss="modal"
+                    type="button"
+                    class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+                    @click="deleteAssts()"
+                  >
+                    Confirm
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           <!-- End Daily Calander -->
       </div>
   </div>
@@ -1384,7 +1425,10 @@ AddAssignmentModal() {
   },
 AddAssignment(){
 
-  }
+  },
+  confirmDeletion() {
+      $("#deleteAssignmentConfirmation").modal({ backdrop: true });
+    },
 },
 }
 </script>
