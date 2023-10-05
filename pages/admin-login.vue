@@ -6,8 +6,9 @@
           <div class="login-logo">
             <img
               class="align-content"
-              src="~/assets/images/jochi..svg"
+              :src="JOCHI_LOGO"
               alt=""
+              style="max-width: 150px"
             />
           </div>
           <div class="login-form" v-if="!isLoggedIn">
@@ -75,6 +76,7 @@
 <script>
 import { required, email, minLength } from "vuelidate/lib/validators";
 import { mapState, mapActions } from "vuex";
+import { JOCHI_LOGO } from "../assets/js/constants";
 
 export default {
   data() {
@@ -87,6 +89,7 @@ export default {
       submitted: false,
       isLoggedIn: false,
       processing: false,
+      JOCHI_LOGO:JOCHI_LOGO
     };
   },
   validations: {

@@ -123,8 +123,9 @@
                                 <div
                                   v-if="
                                     this.profile &&
-                                    this.profile !=
-                                      'https://jochi-developement.s3.ap-south-1.amazonaws.com/profilePic/1634542050892.png'
+                                    (this.profile !=
+                                      'https://jochi-developement.s3.ap-south-1.amazonaws.com/profilePic/1634542050892.png' 
+                                      && this.profile != JOCHI_PRO_PIC)
                                   "
                                   class="middle position-absolute text-center"
                                 >
@@ -694,7 +695,7 @@
 import { mapState, mapActions } from "vuex";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
-import { defaultImage } from "../../assets/js/constants";
+import { defaultImage, JOCHI_PRO_PIC } from "../../assets/js/constants";
 var fileCheck = false;
 var filepptCheck = false;
 
@@ -729,6 +730,7 @@ export default {
       filepptCheck: false,
       profile: "",
       defaultImage: defaultImage,
+      JOCHI_PRO_PIC: JOCHI_PRO_PIC,
       submitted: false,
       user_type: "",
       phoneNumber: "",
