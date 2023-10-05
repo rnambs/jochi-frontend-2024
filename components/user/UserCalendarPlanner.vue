@@ -9,7 +9,7 @@
                             <div class="col-12 pb-1">
                                 <div class="d-flex align-items-center">
                                     <h2 class="heading2 font-semi-bold color-primary-dark mb-2">Calendar</h2>
-                                    <div class="d-flex d-lg-none align-items-center mb-2 ml-2 ml-sm-auto">
+                                    <div class="d-flex d-lg-none align-items-center mb-2 ml-2">
                                         <p class="mb-0 font-bold text-18 color-secondary-dark mx-1">September</p>
                                     </div>
                                 </div>

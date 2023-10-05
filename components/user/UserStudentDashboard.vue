@@ -26,7 +26,7 @@
         <div class="d-flex flex-column h-40 flex-fill">
           <div class="row h-100">
             <div class="col-xl-8 height-md-unset max-h-100">
-              <div class="d-flex flex-column h-100 max-h-100">
+              <div class="d-flex flex-column h-md-100">
                 <div
                   class="card card-primary02 rounded-8 p-4 pr-1 pb-1 h-50 max-h-50"
                 >
@@ -82,7 +82,7 @@
                         class="card card-primary02 border-0 rounded-8 h-100"
                       >
                         <div
-                          class="study-status-card d-flex flex-row flex-lg-column justify-content-center align-items-center h-100"
+                          class="study-status-card d-flex flex-row flex-lg-column justify-content-center align-items-center h-100 p-3 p-lg-0"
                         >
                           <div
                             class="position-relative d-flex mr-3 mr-lg-0 mt-2"
@@ -248,7 +248,7 @@
                 data-intro="See a brief overview of upcoming assignments day-by-day."
                 class="d-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-hide"
               >
-                <h4 class="color-black font-semi-bold px-4">
+                <h4 class="color-primary-dark font-semi-bold px-4">
                   Assignments List
                 </h4>
                 <div
