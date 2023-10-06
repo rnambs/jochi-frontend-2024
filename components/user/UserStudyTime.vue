@@ -45,12 +45,22 @@
                 </p>
               </div>
               <div
-                class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
+                class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-center"
               >
-                <img
+                <!-- <img
                   src="../../static/image/folder.png"
                   alt=""
                   class="card-img"
+                /> -->
+                <img
+                  src="~/static/image/v4/complete-assignment-light.svg"
+                  alt=""
+                  class="card-img img-theme light"
+                />
+                <img
+                  src="~/static/image/v4/complete-assignment-dark.svg"
+                  alt=""
+                  class="card-img img-theme dark"
                 />
               </div>
             </div>
@@ -77,12 +87,22 @@
                 </p>
               </div>
               <div
-                class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-end"
+                class="col-sm-5 col-md-4 col-xl-5 d-flex justify-content-center"
               >
-                <img
+                <!-- <img
                   src="../../static/image/lamp.png"
                   alt=""
                   class="card-img"
+                /> -->
+                <img
+                  src="~/static/image/v4/study-session-light.svg"
+                  alt=""
+                  class="card-img img-theme light"
+                />
+                <img
+                  src="~/static/image/v4/study-session-dark.svg"
+                  alt=""
+                  class="card-img img-theme dark"
                 />
               </div>
             </div>
@@ -106,7 +126,7 @@
                       showSessionDetail = true;
                       setDetail(sessionItem);
                     "
-                    class="d-flex card border-0 bg-gray-light p-3 d-flex flex-column mb-3 cursor-pointer"
+                    class="d-flex card card-secondary border-0 p-3 d-flex flex-column mb-3 cursor-pointer"
                   >
                     <h6 class="color-dark font-semi-bold mb-1">
                       {{ sessionItem.name }}

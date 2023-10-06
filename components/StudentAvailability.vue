@@ -39,11 +39,22 @@
                   <div
                     class="col-sm-5 col-md-4 col-xl-5 col-xxl-12 d-flex align-items-center align-items-xxl-start justify-content-end"
                   >
-                    <img
+                    <!-- <img
                       src="~/static/image/Calendar-2.png"
                       alt=""
                       class="card-img small-size"
-                    />
+                    /> -->
+                    <img
+                        src="~/static/image/v4/free-time-light.svg"
+                        alt=""
+                        class="card-img small-size img-theme light"
+                      />
+                      <img
+                        src="~/static/image/v4/free-time-dark.svg"
+                        alt=""
+                        class="card-img small-size img-theme dark"
+                      />
+
                   </div>
                 </div>
                 <div
