@@ -940,7 +940,7 @@
                   </h4>
                 </div>
                 <div class="modal-body px-3">
-                  <p class="mb-0">Delete selected assignments?</p>
+                  <p class="mb-0">Delete selected assignment?</p>
                 </div>
                 <div class="modal-footer justify-content-end border-top-0">
                   <button

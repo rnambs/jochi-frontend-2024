@@ -117,7 +117,7 @@
                       >
                         <ul class="list-unstyled">
                           <li
-                            class="text-12 lh-24 color-secondary"
+                            class="text-12 lh-18 color-secondary"
                             v-for="(todos, index) in list.todoArr"
                             :key="index"
                           >

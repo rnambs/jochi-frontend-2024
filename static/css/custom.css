@@ -375,6 +375,9 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.75rem;
   line-height: 1rem;
 }
+.text-12.lh-18 {
+  line-height: 1.125rem;
+}
 .text-12.lh-24 {
   line-height: 1.5rem;
 }
