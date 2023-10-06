@@ -74,7 +74,7 @@
                 </div>
                 <div class="d-flex flex-column h-lg-50 max-h-50 flex-fill">
                   <div
-                    class="row mt-1 h-100 height-md-unset flex-column flex-lg-row pt-2"
+                    class="row mt-1 h-100 height-md-unset flex-column flex-md-row pt-2"
                   >
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                       <div
@@ -82,7 +82,7 @@
                         class="card card-primary02 border-0 rounded-8 h-100"
                       >
                         <div
-                          class="study-status-card d-flex flex-row flex-lg-column justify-content-center align-items-center h-100 p-3 p-lg-0"
+                          class="study-status-card d-flex justify-content-center align-items-center h-100 p-3 p-lg-0"
                         >
                           <div
                             class="position-relative d-flex mr-3 mr-lg-0 mt-2"
@@ -101,7 +101,7 @@
                             </div>
                           </div>
                           <div
-                            class="study-status-text text-left text-lg-center my-2 px-2"
+                            class="study-status-text text-left text-md-center my-2 px-2"
                           >
                             <p class="study-status-studied mb-1 break-word">
                               {{ duration }} Minutes Studied Today
@@ -123,7 +123,7 @@
                       class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill"
                     >
                       <div
-                        class="d-flex flex-column custom-overflow faculty-availability-card-outer h-100 p-3 py-4 h-max-lg-400"
+                        class="d-flex flex-column custom-overflow faculty-availability-card-outer h-100 p-3 py-4 h-max-md-400"
                       >
                         <div class="row">
                           <div class="col-12 mb-2">
@@ -1073,7 +1073,7 @@ export default {
   font-weight: 600;
   
 }
-@media (min-width: 991.98px) {
+@media (min-width: 959.98px) {
   .h-lg-100 {
     height: 100% !important;
   }
