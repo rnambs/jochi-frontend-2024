@@ -28,7 +28,11 @@
                                       </div>
                                   </div>
                                   <div class="m-1 d-flex justify-content-end">
-                                    <button @click="AddAssignmentModal()"
+                                    <button
+                                    @click="
+                              openAssignment = true;
+                              isAddAssignment = true;
+                              EditAssignmentModal();"
                                     class="btn btn-primary py-1 px-3 mr-3">Add Assignment</button>
                                   </div>
                               </div>
@@ -89,7 +93,7 @@
                                                   </div>
                                                   <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                       aria-labelledby="dLabel">
-                                                      <li @click="EditAssignmentModal()" class="item p-2">
+                                                      <li @click="onCardClick(item)" class="item p-2">
                                                         Edit
                                                       </li>
                                                       <li @click="confirmDeletion()" class="item p-2">Delete</li>
@@ -189,6 +193,8 @@
                                               </div>
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
+                                                  <li @click="onCardClick(item)" class="item p-2">Edit</li>
+                                                  <li class="item p-2">Remove</li>
                                                   <li class="item p-2">Edit</li>
                                                   <li @click="confirmDeletion()" class="item p-2">Delete</li>
                                               </ul>
@@ -288,6 +294,8 @@
                                               </div>
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
+                                                  <li @click="onCardClick(item)" class="item p-2">Edit</li>
+                                                  <li class="item p-2">Remove</li>
                                                   <li class="item p-2">Edit</li>
                                                   <li @click="confirmDeletion()" class="item p-2">Delete</li>
                                               </ul>
@@ -376,6 +384,8 @@
                                               </div>
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
+                                                  <li @click="onCardClick(item)" class="item p-2">Edit</li>
+                                                  <li class="item p-2">Remove</li>
                                                   <li class="item p-2">Edit</li>
                                                   <li @click="confirmDeletion()" class="item p-2">Delete</li>
                                               </ul>
@@ -423,13 +433,14 @@
                   </div>
               </div>
           </section>
-          <div class="modal fade" id="editAssignment" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
+          <div
+          class="modal fade" id="editAssignment" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
               <div class="modal-content">
                 <div class="modal-header pb-1">
                   <h3 class="modal-title" id="editAssignmentModalLongTitle">
-                    Edit Assignment
+                    {{ isAddAssignment ? "Add" : "Edit" }} Assignment
                   </h3>
                 </div>
                 <div class="modal-body px-3">
@@ -437,238 +448,40 @@
                           <div class="form-group mb-2">
                             <label for="recipient-name" class="col-form-label py-1"
                               >Subject here<em>*</em></label
-                            >
-                            <!-- <input
-                              v-if="schoologyAssignment == '1'"
-                              type="text"
-                              class="form-control"
-                              id="message-text"
-                              maxlength="125"
-                              placeholder="Enter assignment name"
-                            /> -->
-                            <select
-                              class="form-control"
-                            >
-                              <option value="">Select subject</option>
-                              <option>Jochi Math Test Course</option>
-                              <option>Personal</option>
-                            </select>
-                            <!-- <div
-                              v-if="submitted && $v.subject.$error"
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.subject.required"
-                                >This field is required</span
-                              >
-                            </div> -->
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="assignment-name" class="col-form-label py-1"
-                              >Assignment Name<em>*</em></label
                             >
                             <input
-                              type="text"
-                              class="form-control"
-                              id="assignment-name"
-                              maxlength="60"
-                              placeholder="Enter assignment name"
-                            />
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="message-text" class="col-form-label py-1"
-                              >Task</label
-                            >
-                            <textarea
-                              class="form-control"
-                              id="message-text"
-                              rows="3"
-                              maxlength="500"
-                              placeholder="Enter assignment description"
-                            ></textarea>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6 ml-auto py-0">
-                              <div class="form-group mb-2 mb-0">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label py-1"
-                                  >Priority<em>*</em></label
-                                >
-                                <div class="dropdown input-icon-area">
-                                  <button
-                                    id="dLabel"
-                                    class="dropdown-select form-control text-left"
-                                    type="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                  >
-                                    <span class="">Select priority</span
-                                    >
-                                  </button>
-                                  <ul
-                                    class="dropdown-menu border"
-                                    aria-labelledby="dLabel"
-                                  >
-                                    <li
-                                      class="item low-color"
-                                    >
-                                      <span>Can Wait</span>
-                                    </li>
-                                    <li
-                                      class="item medium-color"
-                                    >
-                                      <span>Important</span>
-                                    </li>
-                                    <li
-                                      class="item high-color"
-                                    >
-                                      <span>Urgent</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-6 ml-auto py-0">
-                              <div class="form-group mb-2">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label py-1"
-                                  >Date<em>*</em></label
-                                >
-                                <date-picker
-                                  class="form-control dropdown-menu-top"
-                                  placeholder="MM/DD/YYYY"
-                                  format="MM/dd/yyyy"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row mt-0">
-                            <div class="col-6">
-                              <div class="form-group">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label"
-                                  >Time<em>*</em></label
-                                >
-                                <div>
-                                  <vue-timepicker
-                                    format="hh:mm A"
-                                    name="timeValue"
-                                    class="show-cursor dropdown-menu-top"
-                                  ></vue-timepicker>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Sub Tasks
-                            </h6>
-                            <a class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
-                          <div
-                            class="d-flex flex-row align-items-start"
-                          >
-                            <div class="form-row mb-2 mx-0 mr-2 w-100">
-                              <label class="form-label" for="name"
-                                >Add a sub-task</label
-                              >
-                              <input
-                                type="text"
-                                maxlength="100"
-                                class="form-control"
-                              />
-                            </div>
-                            <div class="pt-4">
-                              <button
-                                class="btn btn-primary btn-sm mt-2"
-                              >
-                                Add
-                              </button>
-                            </div>
-                          </div>
-
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Invite Peers
-                            </h6>
-                            <a class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
-
-                          <!-- Additional Material Add -->
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Additional Material
-                            </h6>
-                            <a class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
-                        </form>
-                </div>
-                <div class="modal-footer justify-content-end border-top-0">
-                  <button type="button" class="btn btn-void py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
-                    Cancel
-                  </button>
-                  <button data-dismiss="modal" type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold">
-                    Update
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal fade" id="AddAssignment" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
-              <div class="modal-content">
-                <div class="modal-header pb-1">
-                  <h3 class="modal-title" id="editAssignmentModalLongTitle">
-                    Add Assignment
-                  </h3>
-                </div>
-                <div class="modal-body px-3">
-                        <form >
-                          <div class="form-group mb-2">
-                            <label for="recipient-name" class="col-form-label py-1"
-                              >Subject here<em>*</em></label
-                            >
-                            <!-- <input
-                              v-if="schoologyAssignment == '1'"
-                              type="text"
-                              class="form-control"
-                              id="message-text"
-                              maxlength="125"
-                              placeholder="Enter assignment name"
-                            /> -->
+                                    v-if="schoologyAssignment == '1'"
+                                    type="text"
+                                    class="form-control"
+                                    id="message-text"
+                                    v-model="gg4lSubject"
+                                    maxlength="60"
+                                    placeholder="Enter assignment name"
+                                  />
                             <select
+                            v-else
                               class="form-control"
-                              v-model="subject"
-                                  :class="{
-                                    'is-invalid':
-                                      submitted && $v.subject.$error,
-                                  }"
+                              tabindex=""
+                                    v-model="subject"
+                                    :class="{
+                                      'is-invalid':
+                                        submitted && $v.subject.$error,
+                                    }"
                             >
                               <option value="">Select subject</option>
-                              <option>Jochi Math Test Course</option>
-                              <option>Personal</option>
+                              <option
+                              v-bind:value="{
+                                        id: subjects.id,
+                                        text: subjects.subject_name,
+                                      }"
+                                      v-for="(subjects, index) in subjectsData"
+                                      :key="index"
+                                      >
+                                      {{ subjects.subject_name }}
+                                    </option>
+                              <option v-if="subjectsData.length == 0">
+                                No data
+                              </option>
                             </select>
                             <div
                               v-if="submitted && $v.subject.$error"
@@ -684,99 +497,108 @@
                               >Assignment Name<em>*</em></label
                             >
                             <input
-                              type="text"
-                              class="form-control"
-                              id="assignment-name"
-                              maxlength="125"
-                              placeholder="Enter assignment name"
-                              :class="{
-                                    'is-invalid':
-                                      submitted && $v.assignmentName.$error,
-                                  }"
+                            type="text"
+                                    class="form-control"
+                                    id="message-text"
+                                    v-model="assignmentName"
+                                    maxlength="125"
+                                    placeholder="Enter assignment name"
+                                    :class="{
+                                      'is-invalid':
+                                        submitted && $v.assignmentName.$error,
+                                    }"
                             />
                             <div
-                                  v-if="submitted && $v.assignmentName.$error"
-                                  class="invalid-feedback"
-                                >
-                                  <span v-if="!$v.assignmentName.required"
-                                    >This field is required</span
-                                  >
-                                </div>
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="message-text" class="col-form-label py-1"
-                              >Task</label
-                            >
-                            <textarea
-                              class="form-control"
-                              id="message-text"
-                              rows="3"
-                              maxlength="500"
-                              v-model="assignmentDescription"
-                              placeholder="Enter assignment description"
-                            ></textarea>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6 ml-auto py-0">
-                              <div class="form-group mb-2 mb-0">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label py-1"
-                                  >Priority<em>*</em></label
-                                >
-                                <div class="dropdown input-icon-area">
-                                  <button
-                                    id="dLabel"
-                                    class="dropdown-select form-control text-left"
-                                    type="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                  >
-                                    <span class="">Select priority</span
-                                    >
-                                  </button>
-                                  <ul
-                                    class="dropdown-menu border"
-                                    aria-labelledby="dLabel"
-                                  >
-                                    <li
-                                      class="item low-color"
-                                    >
-                                      <span>Can Wait</span>
-                                    </li>
-                                    <li
-                                      class="item medium-color"
-                                    >
-                                      <span>Important</span>
-                                    </li>
-                                    <li
-                                      class="item high-color"
-                                    >
-                                      <span>Urgent</span>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div
-                                    v-if="
-                                      submitted &&
-                                      priorityVal != 'Urgent' &&
-                                      priorityVal != 'Important' &&
-                                      priorityVal != 'Can Wait'
-                                    "
+                                    v-if="submitted && $v.assignmentName.$error"
                                     class="invalid-feedback"
-                                    style="display: block"
                                   >
-                                    <span
+                                    <span v-if="!$v.assignmentName.required"
+                                      >This field is required</span
+                                    >
+                                  </div>
+                          </div>
+                          <div class="form-group mb-2">
+                            <label for="message-text" class="col-form-label py-1"
+                              >Task</label
+                            >
+                            <textarea
+                            class="form-control"
+                                    id="message-text"
+                                    rows="3"
+                                    v-model="assignmentDescription"
+                                    maxlength="500"
+                                    placeholder="Enter assignment description"
+                            ></textarea>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6 ml-auto py-0">
+                              <div class="form-group mb-2 mb-0">
+                                <label
+                                  for="recipient-name"
+                                  class="col-form-label py-1"
+                                  >Priority<em>*</em></label
+                                >
+                                <div class="dropdown input-icon-area">
+                                  <button
+                                    id="dLabel"
+                                    class="dropdown-select form-control text-left"
+                                    type="button"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                  >
+                                  <span class="caret">
+                                            {{
+                                              priorityVal
+                                                ? priorityVal
+                                                : "Select priority"
+                                            }}</span
+                                    >
+                                  </button>
+                                  <ul
+                                          class="dropdown-menu border"
+                                          aria-labelledby="dLabel"
+                                        >
+                                          <li
+                                            @click="priorityVal = 'Can Wait'"
+                                            class="item low-color"
+                                          >
+                                            <span>Can Wait</span>
+                                          </li>
+                                          <li
+                                            @click="priorityVal = 'Important'"
+                                            class="item medium-color"
+                                          >
+                                            <span>Important</span>
+                                          </li>
+                                          <li
+                                            @click="priorityVal = 'Urgent'"
+                                            class="item high-color"
+                                          >
+                                            <span>Urgent</span>
+                                          </li>
+                                        </ul>
+                                </div>
+                              </div>
+                              <div
                                       v-if="
+                                        submitted &&
                                         priorityVal != 'Urgent' &&
                                         priorityVal != 'Important' &&
                                         priorityVal != 'Can Wait'
                                       "
-                                      >This field is required</span
+                                      class="invalid-feedback"
+                                      style="display: block"
                                     >
-                                  </div>
-                              </div>
+                                      <span
+                                        v-if="
+                                          priorityVal != 'Urgent' &&
+                                          priorityVal != 'Important' &&
+                                          priorityVal != 'Can Wait'
+                                        "
+                                        >This field is required</span
+                                      >
+                                    </div>
                             </div>
                             <div class="col-md-6 ml-auto py-0">
                               <div class="form-group mb-2">
@@ -786,23 +608,24 @@
                                   >Date<em>*</em></label
                                 >
                                 <date-picker
-                                  class="form-control dropdown-menu-top"
-                                  placeholder="MM/DD/YYYY"
-                                  format="MM/dd/yyyy"
-                                  v-model="dateValue"
-                                  :class="{
-                                        'is-invalid':
-                                          submitted && $v.dateValue.$error,
-                                      }"
+                                class="form-control dropdown-menu-top"
+                                        placeholder="MM/DD/YYYY"
+                                        format="MM/dd/yyyy"
+                                        v-model="dateValue"
+                                        :class="{
+                                          'is-invalid':
+                                            submitted && $v.dateValue.$error,
+                                        }"
+                                        :disabled-dates="disabledDates"
                                 />
                                 <div
-                                      v-if="submitted && $v.dateValue.$error"
-                                      class="invalid-feedback"
-                                    >
-                                      <span v-if="!$v.dateValue.required"
-                                        >This field is required</span
+                                        v-if="submitted && $v.dateValue.$error"
+                                        class="invalid-feedback"
                                       >
-                                    </div>
+                                        <span v-if="!$v.dateValue.required"
+                                          >This field is required</span
+                                        >
+                                      </div>
                               </div>
                             </div>
                           </div>
@@ -816,33 +639,35 @@
                                 >
                                 <div>
                                   <vue-timepicker
-                                  close-on-complete
-                                  v-model="timeValue"
-                                    format="hh:mm A"
-                                    name="timeValue"
-                                    class="show-cursor dropdown-menu-top"
-                                    :class="{
-                                          'is-invalid':
-                                            submitted &&
-                                            ($v.timeValue.$error ||
-                                              !validTime),
-                                        }"
+                                  @change="checkValidTime"
+                                          close-on-complete
+                                          format="hh:mm A"
+                                          v-model="timeValue"
+                                          name="timeValue"
+                                          class="show-cursor dropdown-menu-top"
+                                          :value="timeValue"
+                                          :class="{
+                                            'is-invalid':
+                                              submitted &&
+                                              ($v.timeValue.$error ||
+                                                !validTime),
+                                          }"
                                   ></vue-timepicker>
                                   <div
-                                        v-if="
-                                          submitted &&
-                                          ($v.timeValue.$error || !validTime)
-                                        "
-                                        class="invalid-feedback"
-                                      >
-                                        <span
                                           v-if="
-                                            !$v.timeValue.required ||
-                                            !validTime
+                                            submitted &&
+                                            ($v.timeValue.$error || !validTime)
                                           "
-                                          >Not a valid time</span
+                                          class="invalid-feedback"
                                         >
-                                      </div>
+                                          <span
+                                            v-if="
+                                              !$v.timeValue.required ||
+                                              !validTime
+                                            "
+                                            >Not a valid time</span
+                                          >
+                                        </div>
                                 </div>
                               </div>
                             </div>
@@ -853,13 +678,37 @@
                             <h6 class="color-dark font-semi-bold mb-0">
                               Sub Tasks
                             </h6>
-                            <a class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
+                            <a @click="onAddSubTaskClick" class="btn p-0">
+                                    <span class="color-secondary"
+                                      ><i class="fas fa-plus-circle"></i
+                                    ></span>
+                                  </a>
                           </div>
                           <div
+                                  v-if="addSubTask"
+                                  class="d-flex flex-row align-items-start"
+                                >
+                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                    <label class="form-label" for="name"
+                                      >Add a sub-task</label
+                                    >
+                                    <input
+                                      type="text"
+                                      maxlength="100"
+                                      v-model="subTaskName"
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div class="pt-4">
+                                    <button
+                                      class="btn btn-primary btn-sm mt-2"
+                                      @click="onAddNewSubTask"
+                                    >
+                                      Add
+                                    </button>
+                                  </div>
+                                </div>
+                          <!-- <div
                             class="d-flex flex-row align-items-start"
                           >
                             <div class="form-row mb-2 mx-0 mr-2 w-100">
@@ -879,44 +728,302 @@
                                 Add
                               </button>
                             </div>
-                          </div>
+                          </div> -->
 
                           <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Invite Peers
-                            </h6>
-                            <a class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
-                          </div>
+                                  class="custom-overflow pr-2 mr--2 d-flex flex-column"
+                                >
+                                  <div
+                                    v-for="subTask in subTasksList"
+                                    :key="subTask"
+                                  >
+                                    <div
+                                      class="card card-transparent show-icon p-1 mb-1"
+                                    >
+                                      <div
+                                        class="d-flex align-items-center justify-content-between"
+                                      >
+                                        <p
+                                          class="mb-0 color-secondary text-16 font-regular word-break pr-3"
+                                        >
+                                          <span
+                                            class="subtask-btn mr-1"
+                                            :class="{
+                                              selected:
+                                                subTask.task_status ==
+                                                'Completed',
+                                            }"
+                                            ><i></i
+                                          ></span>
+                                          <span>{{ subTask.title }}</span>
+                                        </p>
+                                        <span
+                                          v-if="
+                                            subTask.task_status != 'Completed'
+                                          "
+                                          @click="deleteSubTask(subTask)"
+                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                                          ><i class="fas fa-trash-alt"></i
+                                        ></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
 
                           <!-- Additional Material Add -->
                           <div
                             class="d-flex justify-content-between align-items-center mb-2"
                           >
                             <h6 class="color-dark font-semi-bold mb-0">
-                              Additional Material
+                              Invite Peers
                             </h6>
-                            <a class="btn p-0">
-                              <span class="color-secondary"
-                                ><i class="fas fa-plus-circle"></i
-                              ></span>
-                            </a>
+                            <a @click="onInviteClick" class="btn p-0">
+                                    <span class="color-secondary"
+                                      ><i class="fas fa-plus-circle"></i
+                                    ></span>
+                                  </a>
                           </div>
+                          <div
+                                  v-if="invitePeer"
+                                  class="d-flex flex-row align-items-start"
+                                >
+                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                    <label class="form-label" for="name"
+                                      >Invite peers</label
+                                    >
+                                    <!-- <input type="text" class="form-control" /> -->
+                                    <multiselect
+                                      v-model="peerSelected"
+                                      :options="students"
+                                      track-by="first_name"
+                                      label="first_name"
+                                      :placeholder="
+                                        peerSelected.length > 3
+                                          ? ''
+                                          : 'Select students'
+                                      "
+                                      :multiple="true"
+                                      :max="4"
+                                    >
+                                      <span slot="maxElements"
+                                        >Maximum of 4 students selected</span
+                                      >
+                                      <span slot="noResult">No data found</span>
+                                    </multiselect>
+                                  </div>
+                                  <div class="pt-4">
+                                    <button
+                                      @click="onInvitePeer"
+                                      class="btn btn-primary btn-sm mt-2"
+                                    >
+                                      {{ isAddAssignment ? "Add" : "Save" }}
+                                    </button>
+                                  </div>
+                                </div>
+                                <div class="hidden-scroll px-3 row my-0">
+                                  <div
+                                    v-for="peer of peerList"
+                                    :key="peer.id"
+                                    class="h-fit-content show-icon d-flex align-items-center position-realtive"
+                                  >
+                                    <div
+                                      class="d-flex align-items-center my-2 mr-3"
+                                    >
+                                      <div
+                                        class="ld-img-section mr-2 d-flex flex-column"
+                                      >
+                                        <div class="ld-img-holder">
+                                          <img
+                                            v-if="peer.profile_pic"
+                                            :src="peer.profile_pic"
+                                            alt=""
+                                          />
+                                          <img
+                                            v-else
+                                            src="~/static/image/avatar.png"
+                                            alt=""
+                                          />
+                                        </div>
+                                      </div>
+                                      <div class="ld-details-section">
+                                        <p class="ld-heading mb-0">
+                                          {{ peer.first_name }}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <!-- <button
+                                      type="button"
+                                      role="button"
+                                      class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none"
+                                      @click="
+                                        removePeerConfirm(peer.id, $event)
+                                      "
+                                    >
+                                      <span
+                                        class="color-primary-dark fa-icon show-hover btn p-0 ml-05"
+                                        ><i
+                                          class="fas fa-trash-alt color-danger"
+                                        ></i
+                                      ></span>
+                                    </button> -->
+                                  </div>
+                                </div>
+                                <div
+                                  class="d-flex justify-content-between align-items-center mb-2"
+                                >
+                                  <h6 class="color-dark font-semi-bold mb-0">
+                                    Additional Material
+                                  </h6>
+                                  <a
+                                    @click="onAdditionalMatClick"
+                                    class="btn p-0"
+                                  >
+                                    <span class="color-secondary"
+                                      ><i class="fas fa-plus-circle"></i
+                                    ></span>
+                                  </a>
+                                </div>
+                                <div
+                                  v-if="additionalMaterial"
+                                  class="d-flex flex-row align-items-start"
+                                >
+                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                    <label class="form-label" for="name"
+                                      >Add Additional Material</label
+                                    >
+                                    <!-- <input type="text" class="form-control" /> -->
+                                    <select
+                                      v-model="materialType"
+                                      class="form-select form-control mb-2"
+                                      aria-label="Default select example"
+                                    >
+                                      <option value="">
+                                        Choose material type
+                                      </option>
+                                      <option value="file">File</option>
+                                      <option value="link">Link</option>
+                                    </select>
+                                    <div class="row m-0">
+                                      <div class="col-9 py-0">
+                                        <input
+                                          v-if="materialType == 'file'"
+                                          type="file"
+                                          class="form-control px-2"
+                                          placeholder="Upload File"
+                                          @change="onFileChange"
+                                          id="fileUpload"
+                                          accept=".png,.jpeg,.jpg,.pdf"
+                                        />
+                                      </div>
+                                      <div class="col-9 py-0">
+                                        <input
+                                          v-if="materialType == 'link'"
+                                          type="text"
+                                          class="form-control px-2"
+                                          placeholder="Paste Link"
+                                          v-model="link"
+                                        />
+                                      </div>
+                                      <div class="col-3 p-0"></div>
+                                    </div>
+                                  </div>
+                                  <div class="pt-4">
+                                    <button
+                                      type="button"
+                                      @click="UploadAttachment"
+                                      class="btn btn-primary btn-sm mt-2"
+                                    >
+                                      Add
+                                    </button>
+                                  </div>
+                                </div>
+                                <div class="hidden-scroll px-3 row my-0">
+                                  <div
+                                    v-for="item of additionalMaterialList"
+                                    :key="item.id"
+                                    class="h-fit-content cursor-pointer w-100"
+                                  >
+                                    <div
+                                      v-if="item.link"
+                                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon"
+                                    >
+                                      <div class="ld-details-section w-100">
+                                        <p
+                                          @click="openLink(item)"
+                                          class="ld-heading mb-1 text-link text-truncate"
+                                        >
+                                          <!-- {{ peer.first_name }} -->
+                                          {{ item.link }}
+                                        </p>
+                                      </div>
+                                      <span
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                                        @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
+                                    </div>
+                                    <div
+                                      v-else
+                                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon"
+                                    >
+                                      <div class="ld-details-section w-100">
+                                        <p
+                                          @click="openLink(item)"
+                                          class="ld-heading mb-1 text-link text-truncate"
+                                        >
+                                          <!-- {{ peer.first_name }} -->
+                                          {{
+                                            item.file_type &&
+                                            item.file_type != "link"
+                                              ? item.file_name
+                                              : item.material
+                                          }}
+                                        </p>
+                                      </div>
+                                      <span
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                                        @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
+                                    </div>
+                                  </div>
+                                </div>
                         </form>
                 </div>
                 <div class="modal-footer justify-content-end border-top-0">
-                  <button type="button" class="btn btn-void py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
-                    Cancel
-                  </button>
-                  <button @click="AddAssignment()"
-                  data-dismiss="modal" type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold">
-                    Update
-                  </button>
+                  <button
+                                v-if="
+                                  !isAddAssignment && schoologyAssignment == '1'
+                                "
+                                type="button"
+                                class="btn btn-primary py-1 px-3 mr-auto"
+                                :disabled="processing || submissionId"
+                                @click="submitAssignment()"
+                              >
+                                Submit Assignment
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-secondary py-1 px-3 mr-2"
+                                @click="
+                                  openAssignment = false;
+                                  closePopup();
+                                "
+                              >
+                                Close
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-primary py-1 px-3"
+                                :disabled="processing"
+                                @click="
+                                  isAddAssignment
+                                    ? AddAssignment()
+                                    : UpdateAssignment()
+                                "
+                              >
+                                {{ isAddAssignment ? "Add" : "Update" }}
+                              </button>
                 </div>
               </div>
             </div>
@@ -977,6 +1084,7 @@ import draggable from "vuedraggable";
 import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
 import "vue2-timepicker/dist/VueTimepicker.css";
+var fromDate = "";
 export default {
 name: "UserStudentTask",
 components: {
@@ -1036,6 +1144,35 @@ data() {
     assignmentDescription: "",
     dateValue: "",
     timeValue: "",
+    openAssignment: false,
+    disabledDates: {
+        to: new Date(),
+      },
+      processing: false,
+      gg4lSubject: "",
+      subject: "",
+      assignmentName: "",
+      peerSelected: [],
+      materialType : "",
+      isAddAssignment: true,
+      additionalMaterialList: [],
+      link: "",
+      materialType: "",
+      priorityVal: "",
+      addSubTask: false,
+      subTasksList: [],
+      invitePeer: false,
+      peerList: [],
+      additionalMaterial: false,
+      subTaskName: "",
+      choosenAssignments: [],
+      isSharedAssignment: false,
+      grade: "",
+      gradePossible: "",
+      invalidSubmitUrl:false,
+      submittedAsst:false,
+      disableSubmit:false,
+      invalidSubmitText:false
   }
 },
 created() {
@@ -1406,7 +1543,7 @@ if (this.successMessage != "") {
   this.offset = 0;
   this.doingoffset = 0;
   this.doingAssignments = [];
-  this.tempAssts = [];
+  // this.tempAssts = [];
   this.reloadNext = true;
   this.reloadCount += 1;
   this.doingreloadCount += 1;
@@ -1418,13 +1555,577 @@ if (this.successMessage != "") {
 }
 },
 EditAssignmentModal() {
+  console.log("EditAssignmentModal")
+      this.resetAssignment();
       $("#editAssignment").modal({ backdrop: true });
   },
-AddAssignmentModal() {
-      $("#AddAssignment").modal({ backdrop: true });
-  },
-AddAssignment(){
+// AddAssignmentModal() {
+//       $("#AddAssignment").modal({ backdrop: true });
+//   },
+  async resetAssignment() {
+      this.choosenAssignments = [];
+      this.schoologyAssignment = "";
+      this.peerSelected = [];
+      this.isSharedAssignment = false;
+      this.subject = "";
+      this.assignmentName = "";
+      this.assignmentDescription = "";
+      this.priorityVal = "";
+      this.dateValue = "";
+      this.timeValue = "";
+      this.subTasksList = [];
+      this.peerList = [];
+      this.additionalMaterialList = [];
+      this.invitePeer = false;
+      this.materialType = "";
+      this.additionalMaterial = false;
+      this.addSubTask = false;
+      this.submitted = false;
+      this.value = "";
+      this.dateValue = "";
+      this.file = "";
+      this.link = "";
+      this.submissionId = "";
+      this.schoologyAssignment = "";
+      this.grade = "";
+      this.gradePossible = "";
+      this.invalidSubmitUrl=false;
+      this.submittedAsst=false;
+      this.disableSubmit=false;
+      this.invalidSubmitText=false;
+      this.additionalMaterial = false;
+      this.assignmentId='';
 
+      // $('input[name="daterange"]').val("");
+      fromDate = "";
+      // $(".dropdown-select").text("Select priority");
+      this.priorityVal = "";
+      this.subject = "";
+      this.task = "";
+      (fromDate = ""), $('input[name="daterange"]').val("");
+      fromDate = "";
+      this.priorityVal = "";
+      this.timeValue = null;
+      this.subject = "";
+      this.task = "";
+      this.taskValue = "";
+      this.timeList = "";
+      this.timeValue = "";
+      let clearTimeBtn = document.getElementsByClassName("clear-btn")[0];
+      clearTimeBtn?.click();
+    },
+    checkValidTime() {
+      if (this.timeValue) {
+        let tempTime =
+          typeof this.timeValue == "object"
+            ? this.timeValue.hh +
+              ":" +
+              this.timeValue.mm +
+              " " +
+              this.timeValue.A
+            : this.timeValue;
+        let valid = moment(tempTime, "h:mm A", true).isValid();
+
+        if (valid && tempTime.split(" ")[1].length > 1) {
+          this.validTime = true;
+          this.timeValue = tempTime;
+        } else {
+          this.validTime = false;
+        }
+        return valid;
+      } else {
+        return false;
+      }
+    },
+    onAddSubTaskClick() {
+      this.addSubTask = true;
+    },
+    onInviteClick() {
+      this.invitePeer = true;
+    },
+    onAdditionalMatClick() {
+      this.additionalMaterial = true;
+    },
+    closePopup() {
+      this.offset = 0;
+      this.tempAssts = [];
+      this.reloadNext = true;
+      this.reloadCount += 1;
+      this.deletedSubTasksArray = [];
+
+      // this.GetAssignment();
+      // this.GetWeeklyPlanner();
+      this.openAssignment = false;
+      $('#editAssignment').modal('hide');
+    },
+    async AddAssignment() {
+      this.submitted = true;
+      this.$v.$touch();
+      if (this.$v.$invalid || !this.validTime) {
+        return;
+      }
+      this.processing = true;
+      const df = moment(this.dateValue).format("YYYY-MM-DD");
+      this.loading = true;
+      const peersSelected = [];
+      if (this.peerList.length > 0) {
+        this.peerList.forEach((e) => {
+          peersSelected.push(e.id);
+        });
+      }
+
+      let assignment_materials = [];
+      if (
+        this.additionalMaterialList &&
+        this.additionalMaterialList.length > 0
+      ) {
+        this.additionalMaterialList.forEach((e) => {
+          // assignment_materials.push(e.link ? e.link : e.material);
+          if (e) {
+            assignment_materials.push(
+              e.link ? e.link : e.name ? e.name : e.material
+            );
+          }
+        });
+      }
+      let subTaskLists = [];
+      this.subTasksList.forEach((e) => {
+        subTaskLists.push(e.title);
+      });
+
+      await this.addAssignment({
+        user_id: localStorage.getItem("id"),
+        task: this.assignmentName,
+        assignment_description: this.assignmentDescription,
+        subject: this.subject?.id,
+        subject_id: this.subject?.id,
+        due_time: this.timeValue,
+        due_date: df,
+        priority:
+          this.priorityVal == "Urgent"
+            ? 1
+            : this.priorityVal == "Important"
+            ? 2
+            : this.priorityVal == "Can Wait"
+            ? 3
+            : "",
+        shared_users_ids: peersSelected,
+        assignment_materials: assignment_materials,
+        subTasks: subTaskLists,
+      });
+      this.loading = false;
+
+      if (this.successMessage != "") {
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
+        // this.GetAssignment();
+        // this.getAssignmentsList();
+        this.openAssignment = false;
+
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 4000,
+        });
+        this.resetAssignment();
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      this.submitted = false;
+      this.processing = false;
+
+      // this.GetWeeklyPlanner();
+    },
+    async UpdateAssignment() {
+      if (this.priorityVal == "Overdue" && !this.isSharedAssignment) {
+        this.$toast.open({
+          message: "Please select the priority",
+          type: "error",
+          duration: 5000,
+        });
+        return;
+      }
+      this.submitted = true;
+      if (!this.isSharedAssignment) {
+        this.$v.$touch();
+        if (this.$v.$invalid || !this.validTime) {
+          return;
+        }
+      }
+
+      let priority = 0;
+
+      if (this.priorityVal == "Urgent") {
+        priority = "1";
+      } else if (this.priorityVal == "Important") {
+        priority = "2";
+      } else if (this.priorityVal == "Can Wait") {
+        priority = "3";
+      } else if (this.priorityVal == "Overdue") {
+        priority = this.prior;
+      }
+      this.processing = true;
+      this.loading = true;
+      const dfE = moment(this.dateValue).format("YYYY-MM-DD");
+
+      const peersSelected = [];
+      if (this.peerList.length > 0) {
+        this.peerList.forEach((e) => {
+          peersSelected.push(e.id);
+        });
+      }
+
+      let removed = [];
+      this.removedPeerList.forEach((e) => {
+        const index = this.peerList.findIndex((item) => item.id == e);
+        if (index < 0) {
+          removed.push(e);
+        }
+      });
+
+      removed = [...new Set(removed)];
+
+      let assignment_materials = [];
+      if (
+        this.additionalMaterialList &&
+        this.additionalMaterialList.length > 0
+      ) {
+        this.additionalMaterialList.forEach((e) => {
+          // assignment_materials.push(e.link ? e.link : e.material);
+          if (e) {
+            assignment_materials.push(
+              e.link ? e.link : e.name ? e.name : e.material
+            );
+          }
+        });
+      }
+      let subTaskLists = [];
+      this.subTasksList.forEach((e) => {
+        subTaskLists.push(e.title);
+      });
+      await this.updateAssignment({
+        assignment_id: this.assignmentId,
+        user_id: localStorage.getItem("id"),
+        task: this.assignmentName,
+        assignment_description: this.assignmentDescription,
+        subject: this.isSharedAssignment ? this.subjectId : this.subject?.id,
+        subject_id: this.isSharedAssignment ? this.subjectId : this.subject?.id,
+        due_time: this.timeValue,
+        due_date: dfE,
+        priority: priority,
+        shared_users_ids: peersSelected,
+        assignment_materials: assignment_materials,
+        subTasks: subTaskLists,
+        deleted_subTask: this.deletedSubTasksArray,
+        removed_users: removed,
+      });
+      this.loading = false;
+      this.removedPeerList = [];
+      if (this.successMessage != "") {
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
+        this.deletedSubTasksArray = [];
+
+        // this.GetAssignment();
+        // this.getAssignmentsList();
+        this.openAssignment = false;
+
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        this.resetAssignment();
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      // this.GetWeeklyPlanner();
+      this.submitted = false;
+      this.processing = false;
+    },
+    mapAssignmentDetail(data) {
+
+const parser = new DOMParser();
+const doc = parser.parseFromString( data.assignment_description, 'text/html');
+const textContent = doc.body.textContent;
+
+this.isSharedAssignment = data.isShared;
+this.schoologyAssignment = data.schoologyAssignment;
+this.assignmentId = data.id;
+this.assignmentName = data.task;
+this.assignmentDescription = textContent;
+this.submissionId = data.submission_id;
+this.grade = data.grade;
+this.gradePossible = data.grade_possible;
+this.priorityVal =
+  data.priority == "1"
+    ? "Urgent"
+    : data.priority == "2"
+    ? "Important"
+    : data.priority == "3"
+    ? "Can Wait"
+    : data.priority == "4"
+    ? "Overdue"
+    : "";
+
+if (data.isShared) {
+  this.subject = data.subject;
+  this.subjectId = data.subjects.id;
+} else {
+  this.subject = {
+    id: data.subjects?.id,
+    text: data.subjects?.subject_name,
+  };
+}
+if (this.schoologyAssignment == "1") {
+  this.gg4lSubject = data.subject;
+}
+this.dateValue = data.due_date
+  ? moment(data.due_date).format("MM/DD/YYYY")
+  : "";
+this.timeValue = data.due_time;
+this.subTasksList = [];
+if (data.subTasks && data.subTasks.length > 0) {
+  data.subTasks.forEach((e) => {
+    let item = {};
+    item = e;
+    this.subTasksList.push(item);
+  });
+}
+this.peerList = data.peers;
+this.additionalMaterialList = data.assignment_materials
+  ? data.assignment_materials
+  : [];
+},
+mapPeerInvited(data) {
+      this.peerSelected = [];
+      if (data.peers && data.peers?.length > 0 && this.students.length > 0) {
+        data.peers.forEach((e) => {
+          let studs = this.students.find(
+            (s) => s.id.toString() == e.id.toString()
+          );
+          this.peerSelected.push(studs);
+        });
+      }
+    },
+    onCardClick(data) {
+      this.resetAssignment();
+      this.deletedSubTasksArray = [];
+      this.isAddAssignment = false;
+      this.openAssignment = true;
+      this.EditAssignmentModal();
+      this.mapAssignmentDetail(data);
+      this.mapPeerInvited(data);
+      
+
+    },
+    submitAssignment() {
+      this.submittedAsst=false;
+      this.onResetSubmit();
+      $("#submitAssignmentConfirmation").modal({ backdrop: true });
+    },
+    deleteAdditionalMat(item) {
+      this.additionalMaterialList;
+      const index = this.additionalMaterialList.indexOf(item);
+      if (index > -1) {
+        this.additionalMaterialList.splice(index, 1); // 2nd parameter means remove one item only
+      }
+    },
+    openLink(material) {
+      let link = material.link
+        ? material.link
+        : material.name
+        ? material.name
+        : material.file_name;
+      if (material.file_type) {
+        link = material.material;
+      }
+      window.open(
+        link,
+        "_blank" // <- This is what makes it open in a new window.
+      );
+    },
+    async UploadAttachment() {
+      if (!this.materialType) {
+        return this.$toast.open({
+          message: "Please choose file type",
+          type: "warning",
+          duration: 5000,
+        });
+        return false;
+      }
+
+      this.processingUpload = true;
+      const data = new FormData();
+      if (this.materialType == "file") {
+        if (this.file) {
+          data.append("file", this.file);
+          await this.uploadAdditionalMaterial(data, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          if (this.errorMessageQuote != "") {
+            return this.$toast.open({
+              message: this.errorMessageQuote,
+              type: this.errorTypeQuote,
+              duration: 4000,
+            });
+          }
+
+          this.additionalMaterialList.push({
+            id: this.newAdditionalMaterial.id,
+            name: this.newAdditionalMaterial.material,
+            material: this.file.name,
+          });
+          this.processingUpload = false;
+          this.file = "";
+          if (document.querySelector("#fileUpload"))
+            document.querySelector("#fileUpload").value = "";
+        } else {
+          this.processingUpload = false;
+
+          return this.$toast.open({
+            message: "Please add valid file",
+            type: "warning",
+            duration: 5000,
+          });
+          return false;
+        }
+      } else {
+        let urlValid = this.isValidHttpUrl(this.link);
+        if (urlValid) {
+          this.additionalMaterialList.push({
+            id: Math.random(),
+            link: this.link,
+          });
+          this.link = "";
+        }
+        this.processingUpload = false;
+        return;
+      }
+      this.processingUpload = false;
+    },
+    isValidHttpUrl(urlLink, showError=true) {
+      let url;
+
+      try {
+        url = new URL(urlLink);
+      } catch (_) {
+        if(showError){
+        this.$toast.open({
+          message: "Please add valid URL",
+          type: "warning",
+          duration: 5000,
+        });
+      }
+        return false;
+      }
+
+      let valid = url.protocol === "http:" || url.protocol === "https:";
+      if (!valid) {
+        this.$toast.open({
+          message: "Please add valid URL",
+          type: "warning",
+          duration: 5000,
+        });
+      }
+
+      return valid;
+    },
+    onChangeLink(){
+      if(this.submittedAsst){
+        if(!this.isValidHttpUrl(this.linkSubmit, false)){
+          this.invalidSubmitUrl=true;
+          return false;
+        }else{
+          this.invalidSubmitUrl=false;
+          return true;
+        }
+
+      }
+    },
+    onAddNewSubTask() {
+      if (this.subTaskName) {
+        let sub = {};
+        sub.title = this.subTaskName;
+        this.subTasksList.push(sub);
+      } else {
+        this.$toast.open({
+          message: "Please add a valid sub task ",
+          type: "warning",
+          duration: 5000,
+        });
+      }
+      this.subTaskName = "";
+      this.addSubTask = false;
+    },
+    deleteSubTask(subTask) {
+      if (this.assignmentId) {
+        // deleted_subTask
+        this.deletedSubTasksArray.push(subTask.id);
+      }
+      this.subTasksList = this.subTasksList.filter((e) => e != subTask);
+    },
+    onInvitePeer() {
+      this.peerList = [];
+      this.peerSelected.forEach((e) => {
+        this.peerList.push(e);
+      });
+      this.invitePeer = false;
+    },
+    removePeerConfirm(id, event) {
+      event.stopPropagation();
+      $("#removePeerConfirmation").modal({ backdrop: true });
+      this.removePeerId = id;
+    },
+    removePeer() {
+      this.removedPeerList.push(this.removePeerId);
+      const index = this.peerList.findIndex(
+        (item) => item.id == this.removePeerId
+      );
+      if (index > -1) {
+        this.peerList.splice(index, 1); // 2nd parameter means remove one item only
+      }
+      const index1 = this.peerSelected.findIndex(
+        (item) => item.id == this.removePeerId
+      );
+      if (index1 > -1) {
+        this.peerSelected.splice(index1, 1); // 2nd parameter means remove one item only
+      }
+    },
+    onFileChange(e) {
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        if (document.querySelector("#fileUpload"))
+          document.querySelector("#fileUpload").value = "";
+
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
+      if (e.target.files[0]) {
+        this.file = e.target.files[0];
+      }
   },
   confirmDeletion() {
       $("#deleteAssignmentConfirmation").modal({ backdrop: true });
