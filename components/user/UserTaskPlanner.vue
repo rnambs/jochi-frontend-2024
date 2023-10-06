@@ -547,7 +547,7 @@
                                     aria-haspopup="true"
                                     aria-expanded="false"
                                   >
-                                  <span class="caret">
+                                  <span class="">
                                             {{
                                               priorityVal
                                                 ? priorityVal
@@ -701,7 +701,7 @@
                                   </div>
                                   <div class="pt-4">
                                     <button
-                                      class="btn btn-primary btn-sm mt-2"
+                                      class="btn btn-primary btn-sm mt-1"
                                       @click="onAddNewSubTask"
                                     >
                                       Add
@@ -814,7 +814,7 @@
                                   <div class="pt-4">
                                     <button
                                       @click="onInvitePeer"
-                                      class="btn btn-primary btn-sm mt-2"
+                                      class="btn btn-primary btn-sm mt-1"
                                     >
                                       {{ isAddAssignment ? "Add" : "Save" }}
                                     </button>
@@ -904,7 +904,7 @@
                                       <option value="link">Link</option>
                                     </select>
                                     <div class="row m-0">
-                                      <div class="col-9 py-0">
+                                      <div class="col-12 py-0">
                                         <input
                                           v-if="materialType == 'file'"
                                           type="file"
@@ -915,7 +915,7 @@
                                           accept=".png,.jpeg,.jpg,.pdf"
                                         />
                                       </div>
-                                      <div class="col-9 py-0">
+                                      <div class="col-12 py-0">
                                         <input
                                           v-if="materialType == 'link'"
                                           type="text"
@@ -931,7 +931,7 @@
                                     <button
                                       type="button"
                                       @click="UploadAttachment"
-                                      class="btn btn-primary btn-sm mt-2"
+                                      class="btn btn-primary btn-sm mt-1"
                                     >
                                       Add
                                     </button>

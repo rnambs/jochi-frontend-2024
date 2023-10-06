@@ -18,6 +18,9 @@
             color: $font-secondary-light;
         }
 		&:hover,&:active,&:focus,&:focus-visible,&:focus-within,&:visited,&:target{box-shadow: none;}
+        &[type="file"]{
+            color: $form-color;
+        }
 	}
 	.form-sm{
 		height: 2.625rem;

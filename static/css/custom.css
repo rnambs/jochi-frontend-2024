@@ -956,6 +956,9 @@ h1, h2, h3, h4, h5, h6 {
 .form-row .form-control:hover, .form-row .form-control:active, .form-row .form-control:focus, .form-row .form-control:focus-visible, .form-row .form-control:focus-within, .form-row .form-control:visited, .form-row .form-control:target, .form-group .form-control:hover, .form-group .form-control:active, .form-group .form-control:focus, .form-group .form-control:focus-visible, .form-group .form-control:focus-within, .form-group .form-control:visited, .form-group .form-control:target {
   box-shadow: none;
 }
+.form-row .form-control[type=file], .form-group .form-control[type=file] {
+  color: #787486;
+}
 .form-row .form-sm, .form-group .form-sm {
   height: 2.625rem;
   padding: 0.67rem 0.87rem;
