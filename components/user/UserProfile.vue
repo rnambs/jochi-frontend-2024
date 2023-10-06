@@ -86,6 +86,7 @@
                     <div class="form-field">{{ email }}</div>
                   </div> -->
                 <div class="flex-fill d-flex flex-column">
+                  <div>
                   <div
                     :class="
                       (advisorDetail && advisorDetail.first_name) ||
@@ -352,6 +353,7 @@
                         </div>
                       </div>
                     </div>
+                  </div>
                     <!-- <div class="col-12 col-md-4">
                         <div class="card card-primary h-100 ">
                               <nuxt-link to="/user-reset-password" class="btn btn-void d-flex flex-column align-items-start">
@@ -361,7 +363,7 @@
                         </div>
                       </div> -->
                   </div>
-                  <div class="row px--12 flex-fill">
+                  <div class="row px--12 max-h-50 flex-fill">
                     
                     <div class="col-12 col-md-4">
                       <div
