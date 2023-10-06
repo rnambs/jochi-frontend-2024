@@ -633,6 +633,11 @@ h1, h2, h3, h4, h5, h6 {
   mask-image: url("../image/v4/icon/hand-burger.svg");
 }
 
+.i-presentation {
+  -webkit-mask-image: url("../image/v4/icon/presentation.svg");
+  mask-image: url("../image/v4/icon/presentation.svg");
+}
+
 .j-icon {
   display: inline-block;
   background-size: contain;
@@ -672,7 +677,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 1.875rem;
 }
 
-.icon, .i-sun, .i-half-sun, .i-half-moon, .i-list-check, .i-note-book, .i-chat-group, .i-call-ring, .i-location, .i-plus-circle, .i-arrow-left, .i-arrow-right, .i-club-catalog, .i-club-existing, .i-planner, .i-task, .i-calendar, .i-meeting, .i-activities, .i-study, .i-cog, .i-logout, .i-schedule, .i-meeting-availability, .i-meeting-view, .i-session, .i-analytics, .i-search, .i-more-dotes, .i-advisor, .i-availability, .i-appoinments, .i-home, .i-notification-bell, .i-school, .i-filter-calendar, .i-filter-funnel, .i-hand-burger {
+.icon, .i-sun, .i-half-sun, .i-half-moon, .i-list-check, .i-note-book, .i-chat-group, .i-call-ring, .i-location, .i-plus-circle, .i-arrow-left, .i-arrow-right, .i-club-catalog, .i-club-existing, .i-planner, .i-task, .i-calendar, .i-meeting, .i-activities, .i-study, .i-cog, .i-logout, .i-schedule, .i-meeting-availability, .i-meeting-view, .i-session, .i-analytics, .i-search, .i-more-dotes, .i-advisor, .i-availability, .i-appoinments, .i-home, .i-notification-bell, .i-school, .i-filter-calendar, .i-filter-funnel, .i-hand-burger, .i-presentation {
   display: block;
   width: 1.5rem;
   min-width: 1.5rem;
@@ -681,27 +686,27 @@ h1, h2, h3, h4, h5, h6 {
   background-position: center;
   background-size: contain;
 }
-.icon.icon-xs, .icon-xs.i-sun, .icon-xs.i-half-sun, .icon-xs.i-half-moon, .icon-xs.i-list-check, .icon-xs.i-note-book, .icon-xs.i-chat-group, .icon-xs.i-call-ring, .icon-xs.i-location, .icon-xs.i-plus-circle, .icon-xs.i-arrow-left, .icon-xs.i-arrow-right, .icon-xs.i-club-catalog, .icon-xs.i-club-existing, .icon-xs.i-planner, .icon-xs.i-task, .icon-xs.i-calendar, .icon-xs.i-meeting, .icon-xs.i-activities, .icon-xs.i-study, .icon-xs.i-cog, .icon-xs.i-logout, .icon-xs.i-schedule, .icon-xs.i-meeting-availability, .icon-xs.i-meeting-view, .icon-xs.i-session, .icon-xs.i-analytics, .icon-xs.i-search, .icon-xs.i-more-dotes, .icon-xs.i-advisor, .icon-xs.i-availability, .icon-xs.i-appoinments, .icon-xs.i-home, .icon-xs.i-notification-bell, .icon-xs.i-school, .icon-xs.i-filter-calendar, .icon-xs.i-filter-funnel, .icon-xs.i-hand-burger {
+.icon.icon-xs, .icon-xs.i-sun, .icon-xs.i-half-sun, .icon-xs.i-half-moon, .icon-xs.i-list-check, .icon-xs.i-note-book, .icon-xs.i-chat-group, .icon-xs.i-call-ring, .icon-xs.i-location, .icon-xs.i-plus-circle, .icon-xs.i-arrow-left, .icon-xs.i-arrow-right, .icon-xs.i-club-catalog, .icon-xs.i-club-existing, .icon-xs.i-planner, .icon-xs.i-task, .icon-xs.i-calendar, .icon-xs.i-meeting, .icon-xs.i-activities, .icon-xs.i-study, .icon-xs.i-cog, .icon-xs.i-logout, .icon-xs.i-schedule, .icon-xs.i-meeting-availability, .icon-xs.i-meeting-view, .icon-xs.i-session, .icon-xs.i-analytics, .icon-xs.i-search, .icon-xs.i-more-dotes, .icon-xs.i-advisor, .icon-xs.i-availability, .icon-xs.i-appoinments, .icon-xs.i-home, .icon-xs.i-notification-bell, .icon-xs.i-school, .icon-xs.i-filter-calendar, .icon-xs.i-filter-funnel, .icon-xs.i-hand-burger, .icon-xs.i-presentation {
   width: 0.875rem;
   min-width: 0.875rem;
   height: 0.875rem;
 }
-.icon.icon-sm, .icon-sm.i-sun, .icon-sm.i-half-sun, .icon-sm.i-half-moon, .icon-sm.i-list-check, .icon-sm.i-note-book, .icon-sm.i-chat-group, .icon-sm.i-call-ring, .icon-sm.i-location, .icon-sm.i-plus-circle, .icon-sm.i-arrow-left, .icon-sm.i-arrow-right, .icon-sm.i-club-catalog, .icon-sm.i-club-existing, .icon-sm.i-planner, .icon-sm.i-task, .icon-sm.i-calendar, .icon-sm.i-meeting, .icon-sm.i-activities, .icon-sm.i-study, .icon-sm.i-cog, .icon-sm.i-logout, .icon-sm.i-schedule, .icon-sm.i-meeting-availability, .icon-sm.i-meeting-view, .icon-sm.i-session, .icon-sm.i-analytics, .icon-sm.i-search, .icon-sm.i-more-dotes, .icon-sm.i-advisor, .icon-sm.i-availability, .icon-sm.i-appoinments, .icon-sm.i-home, .icon-sm.i-notification-bell, .icon-sm.i-school, .icon-sm.i-filter-calendar, .icon-sm.i-filter-funnel, .icon-sm.i-hand-burger {
+.icon.icon-sm, .icon-sm.i-sun, .icon-sm.i-half-sun, .icon-sm.i-half-moon, .icon-sm.i-list-check, .icon-sm.i-note-book, .icon-sm.i-chat-group, .icon-sm.i-call-ring, .icon-sm.i-location, .icon-sm.i-plus-circle, .icon-sm.i-arrow-left, .icon-sm.i-arrow-right, .icon-sm.i-club-catalog, .icon-sm.i-club-existing, .icon-sm.i-planner, .icon-sm.i-task, .icon-sm.i-calendar, .icon-sm.i-meeting, .icon-sm.i-activities, .icon-sm.i-study, .icon-sm.i-cog, .icon-sm.i-logout, .icon-sm.i-schedule, .icon-sm.i-meeting-availability, .icon-sm.i-meeting-view, .icon-sm.i-session, .icon-sm.i-analytics, .icon-sm.i-search, .icon-sm.i-more-dotes, .icon-sm.i-advisor, .icon-sm.i-availability, .icon-sm.i-appoinments, .icon-sm.i-home, .icon-sm.i-notification-bell, .icon-sm.i-school, .icon-sm.i-filter-calendar, .icon-sm.i-filter-funnel, .icon-sm.i-hand-burger, .icon-sm.i-presentation {
   width: 1.125rem;
   min-width: 1.125rem;
   height: 1.125rem;
 }
-.icon.icon-md, .icon-md.i-sun, .icon-md.i-half-sun, .icon-md.i-half-moon, .icon-md.i-list-check, .icon-md.i-note-book, .icon-md.i-chat-group, .icon-md.i-call-ring, .icon-md.i-location, .icon-md.i-plus-circle, .icon-md.i-arrow-left, .icon-md.i-arrow-right, .icon-md.i-club-catalog, .icon-md.i-club-existing, .icon-md.i-planner, .icon-md.i-task, .icon-md.i-calendar, .icon-md.i-meeting, .icon-md.i-activities, .icon-md.i-study, .icon-md.i-cog, .icon-md.i-logout, .icon-md.i-schedule, .icon-md.i-meeting-availability, .icon-md.i-meeting-view, .icon-md.i-session, .icon-md.i-analytics, .icon-md.i-search, .icon-md.i-more-dotes, .icon-md.i-advisor, .icon-md.i-availability, .icon-md.i-appoinments, .icon-md.i-home, .icon-md.i-notification-bell, .icon-md.i-school, .icon-md.i-filter-calendar, .icon-md.i-filter-funnel, .icon-md.i-hand-burger {
+.icon.icon-md, .icon-md.i-sun, .icon-md.i-half-sun, .icon-md.i-half-moon, .icon-md.i-list-check, .icon-md.i-note-book, .icon-md.i-chat-group, .icon-md.i-call-ring, .icon-md.i-location, .icon-md.i-plus-circle, .icon-md.i-arrow-left, .icon-md.i-arrow-right, .icon-md.i-club-catalog, .icon-md.i-club-existing, .icon-md.i-planner, .icon-md.i-task, .icon-md.i-calendar, .icon-md.i-meeting, .icon-md.i-activities, .icon-md.i-study, .icon-md.i-cog, .icon-md.i-logout, .icon-md.i-schedule, .icon-md.i-meeting-availability, .icon-md.i-meeting-view, .icon-md.i-session, .icon-md.i-analytics, .icon-md.i-search, .icon-md.i-more-dotes, .icon-md.i-advisor, .icon-md.i-availability, .icon-md.i-appoinments, .icon-md.i-home, .icon-md.i-notification-bell, .icon-md.i-school, .icon-md.i-filter-calendar, .icon-md.i-filter-funnel, .icon-md.i-hand-burger, .icon-md.i-presentation {
   width: 1.25rem;
   min-width: 1.25rem;
   height: 1.25rem;
 }
-.icon.icon-lg, .icon-lg.i-sun, .icon-lg.i-half-sun, .icon-lg.i-half-moon, .icon-lg.i-list-check, .icon-lg.i-note-book, .icon-lg.i-chat-group, .icon-lg.i-call-ring, .icon-lg.i-location, .icon-lg.i-plus-circle, .icon-lg.i-arrow-left, .icon-lg.i-arrow-right, .icon-lg.i-club-catalog, .icon-lg.i-club-existing, .icon-lg.i-planner, .icon-lg.i-task, .icon-lg.i-calendar, .icon-lg.i-meeting, .icon-lg.i-activities, .icon-lg.i-study, .icon-lg.i-cog, .icon-lg.i-logout, .icon-lg.i-schedule, .icon-lg.i-meeting-availability, .icon-lg.i-meeting-view, .icon-lg.i-session, .icon-lg.i-analytics, .icon-lg.i-search, .icon-lg.i-more-dotes, .icon-lg.i-advisor, .icon-lg.i-availability, .icon-lg.i-appoinments, .icon-lg.i-home, .icon-lg.i-notification-bell, .icon-lg.i-school, .icon-lg.i-filter-calendar, .icon-lg.i-filter-funnel, .icon-lg.i-hand-burger {
+.icon.icon-lg, .icon-lg.i-sun, .icon-lg.i-half-sun, .icon-lg.i-half-moon, .icon-lg.i-list-check, .icon-lg.i-note-book, .icon-lg.i-chat-group, .icon-lg.i-call-ring, .icon-lg.i-location, .icon-lg.i-plus-circle, .icon-lg.i-arrow-left, .icon-lg.i-arrow-right, .icon-lg.i-club-catalog, .icon-lg.i-club-existing, .icon-lg.i-planner, .icon-lg.i-task, .icon-lg.i-calendar, .icon-lg.i-meeting, .icon-lg.i-activities, .icon-lg.i-study, .icon-lg.i-cog, .icon-lg.i-logout, .icon-lg.i-schedule, .icon-lg.i-meeting-availability, .icon-lg.i-meeting-view, .icon-lg.i-session, .icon-lg.i-analytics, .icon-lg.i-search, .icon-lg.i-more-dotes, .icon-lg.i-advisor, .icon-lg.i-availability, .icon-lg.i-appoinments, .icon-lg.i-home, .icon-lg.i-notification-bell, .icon-lg.i-school, .icon-lg.i-filter-calendar, .icon-lg.i-filter-funnel, .icon-lg.i-hand-burger, .icon-lg.i-presentation {
   width: 1.5rem;
   min-width: 1.5rem;
   height: 1.5rem;
 }
-.icon.icon-xl, .icon-xl.i-sun, .icon-xl.i-half-sun, .icon-xl.i-half-moon, .icon-xl.i-list-check, .icon-xl.i-note-book, .icon-xl.i-chat-group, .icon-xl.i-call-ring, .icon-xl.i-location, .icon-xl.i-plus-circle, .icon-xl.i-arrow-left, .icon-xl.i-arrow-right, .icon-xl.i-club-catalog, .icon-xl.i-club-existing, .icon-xl.i-planner, .icon-xl.i-task, .icon-xl.i-calendar, .icon-xl.i-meeting, .icon-xl.i-activities, .icon-xl.i-study, .icon-xl.i-cog, .icon-xl.i-logout, .icon-xl.i-schedule, .icon-xl.i-meeting-availability, .icon-xl.i-meeting-view, .icon-xl.i-session, .icon-xl.i-analytics, .icon-xl.i-search, .icon-xl.i-more-dotes, .icon-xl.i-advisor, .icon-xl.i-availability, .icon-xl.i-appoinments, .icon-xl.i-home, .icon-xl.i-notification-bell, .icon-xl.i-school, .icon-xl.i-filter-calendar, .icon-xl.i-filter-funnel, .icon-xl.i-hand-burger {
+.icon.icon-xl, .icon-xl.i-sun, .icon-xl.i-half-sun, .icon-xl.i-half-moon, .icon-xl.i-list-check, .icon-xl.i-note-book, .icon-xl.i-chat-group, .icon-xl.i-call-ring, .icon-xl.i-location, .icon-xl.i-plus-circle, .icon-xl.i-arrow-left, .icon-xl.i-arrow-right, .icon-xl.i-club-catalog, .icon-xl.i-club-existing, .icon-xl.i-planner, .icon-xl.i-task, .icon-xl.i-calendar, .icon-xl.i-meeting, .icon-xl.i-activities, .icon-xl.i-study, .icon-xl.i-cog, .icon-xl.i-logout, .icon-xl.i-schedule, .icon-xl.i-meeting-availability, .icon-xl.i-meeting-view, .icon-xl.i-session, .icon-xl.i-analytics, .icon-xl.i-search, .icon-xl.i-more-dotes, .icon-xl.i-advisor, .icon-xl.i-availability, .icon-xl.i-appoinments, .icon-xl.i-home, .icon-xl.i-notification-bell, .icon-xl.i-school, .icon-xl.i-filter-calendar, .icon-xl.i-filter-funnel, .icon-xl.i-hand-burger, .icon-xl.i-presentation {
   width: 1.875rem;
   min-width: 1.875rem;
   height: 1.875rem;

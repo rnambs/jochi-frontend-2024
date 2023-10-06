@@ -538,7 +538,7 @@
               to="#"
               class=" nav-link btn d-inline-flex justify-content-start justify-content-md-center"
             >
-            <i class="i-cog j-icon i-lg bg-text-secondary"></i>
+            <i class="i-presentation j-icon i-lg bg-text-secondary"></i>
               <span
                 class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none"
                 >Settings</span
