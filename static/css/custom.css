@@ -2551,6 +2551,21 @@ img.card-img {
   }
 }
 
+@media (max-width: 959.98px) {
+  .h-max-md-400 {
+    max-height: 400px !important;
+  }
+}
+
+.study-status-card {
+  flex-direction: column;
+}
+@media (max-width: 959.98px) {
+  .study-status-card {
+    flex-direction: row;
+  }
+}
+
 .min-h-dashboard {
   min-height: 568.98px;
 }

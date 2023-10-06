@@ -1032,6 +1032,17 @@ img.card-img{
         max-height: 400px !important;
     }
 }
+.h-max-md-400{
+    @media (max-width: 959.98px) {
+        max-height: 400px !important;
+    }
+}
+.study-status-card{
+    flex-direction: column;
+    @media (max-width : 959.98px) {
+        flex-direction: row;
+    }
+}
 .min-h-dashboard{
     min-height: 568.98px;
 }

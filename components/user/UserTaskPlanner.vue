@@ -499,9 +499,7 @@
                             <input
                             type="text"
                                     class="form-control"
-                                    id="message-text"
                                     v-model="assignmentName"
-                                    maxlength="125"
                                     placeholder="Enter assignment name"
                                     :class="{
                                       'is-invalid':
