@@ -39,7 +39,7 @@
           <!-- Planner -->
           <li class="nav-item d-flex flex-column flex-md-row px-1 parent-menu my-1 my-md-2">
             <a
-              @click="$event.target.classList.toggle('active'); accordionToggle()"
+              @click="$event.target.classList.toggle('active'); accordionToggle($event, 'planner')"
               class=" nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button"
               data-toggle="collapse"
@@ -132,7 +132,7 @@
           <!-- Meeting -->
           <li class="nav-item d-flex flex-column flex-md-row px-1 parent-menu my-1 my-md-2">
             <a
-              @click="$event.target.classList.toggle('active'); accordionToggle()"
+              @click="$event.target.classList.toggle('active'); accordionToggle($event, 'meeting')"
               class=" nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button"
               data-toggle="collapse"
@@ -214,7 +214,7 @@
           <!-- Teams & Clubs -->
           <li class="nav-item d-flex flex-column flex-md-row px-1 parent-menu my-1 my-md-2">
             <a
-              @click="$event.target.classList.toggle('active'); accordionToggle()"
+              @click="$event.target.classList.toggle('active'); accordionToggle($event, 'club')"
               class=" nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button"
               data-toggle="collapse"
@@ -282,7 +282,7 @@
           <!-- Study Room -->
           <li class="nav-item d-flex flex-column flex-md-row px-1 parent-menu my-1 my-md-2">
             <a
-              @click="$event.target.classList.toggle('active'); accordionToggle()"
+              @click="$event.target.classList.toggle('active'); accordionToggle($event, 'study')"
               class=" nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button"
               data-toggle="collapse"
@@ -727,7 +727,9 @@ export default {
       firstName: "",
       profile: "",
       defaultImage: defaultImage,
-      accordionOpened:false
+      accordionOpened:null,
+      menuClicked:"",
+      isMenuOpened:false,
     };
   },
 
@@ -1022,16 +1024,13 @@ export default {
         });
       }
     },
-   accordionToggle(){
-      const element = document.querySelector('.accordion-link'); // Assuming there is only one element with this class
-      const collapsed = element.classList.contains('collapsed');
+   accordionToggle(event, menu){
+      this.isMenuOpened=(this.menuClicked!=menu) || (!this.isMenuOpened && this.menuClicked==menu);
+      this.menuClicked=menu;
+      // const element = document.querySelector('.accordion-link'); // Assuming there is only one element with this class
+      const collapsed = event.target.classList.contains('active');
       console.log("inside accordionToggle", collapsed);
-
-      if(!collapsed){
-      this.accordionOpened=true;
-      } else {
-        this.accordionOpened=false;
-      }
+      this.accordionOpened=this.isMenuOpened;
     }
   },
   destroyed() {
