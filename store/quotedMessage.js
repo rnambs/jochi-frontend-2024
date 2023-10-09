@@ -355,7 +355,7 @@ const actions = {
   async getCompletedAssignments({ commit }, payLoad) {
     const token = localStorage.getItem('token')
     try {
-      const response = await this.$axios.$get(BASE_URL + `planner/all_completed_assignments?user_id=${payLoad.userId}&date=${payLoad.date}&type=${payLoad.type}`, {
+      const response = await this.$axios.$get(BASE_URL + `planner/all_completed_assignments?user_id=${payLoad.userId}&type=${payLoad.type}&limit=${payLoad.limit}&offset=${payLoad.offset}`, {
         headers: {
           'Authorization': ` ${token}`
         },
