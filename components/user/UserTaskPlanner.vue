@@ -1,5 +1,11 @@
 <template>
   <div>
+    <lottie
+      v-if="loading"
+      :options="lottieOptions"
+      v-on:animCreated="handleAnimation"
+      class="lottie-loader"
+    />
       <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
           <!-- Daily Calander -->
 <section id="taskPlanner" class="">
@@ -8,7 +14,7 @@
                       <div class="row">
                           <div class="col-12">
                               <h2 class="heading2 font-semi-bold color-primary-dark mb-1">Tasks</h2>
-                              <p class="color-tertiary font-medium mb-1">Task for this week</p>
+                              <p class="color-tertiary font-medium mb-1">{{ assignmentTypeText }}</p>
                               <div class="d-flex flex-wrap">
                                   <div class="pb-0 pr-3 m-1 mr-auto">
                                       <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto">
@@ -21,9 +27,9 @@
                                                       class="fas fa-chevron-down font-medium"></i></span>
                                           </div>
                                           <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
-                                              <li class="item p-2">This week</li>
-                                              <li class="item p-2">This Month</li>
-                                              <li class="item p-2">All</li>
+                                              <li class="item p-2" @click="weeklyAssignments()">This week</li>
+                                              <li class="item p-2" @click="monthlyAssignments()">This Month</li>
+                                              <li class="item p-2" @click="allAssignments()">All</li>
                                           </ul>
                                       </div>
                                   </div>
@@ -57,7 +63,8 @@
                                     <div v-for="item in doingAssignments"
                               :key="item.id">
                               <drag :transfer-data="{ item }">
-                                      <div class="card card-primary p-3 mb-3">
+                                      <div @click="onCardClick(item)" 
+                                      class="card card-primary p-3 mb-3 clickable">
                                           <div class="d-flex align-items-center justify-content-between mb-2">
                                               <div class="d-flex flex-wrap align-items-center">
                                                 <span class="task-label  my-1 mr-1"
@@ -96,33 +103,34 @@
                                                       <li @click="onCardClick(item)" class="item p-2">
                                                         Edit
                                                       </li>
-                                                      <li @click="confirmDeletion()" class="item p-2">Delete</li>
+                                                      <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
                                                   </ul>
                                               </div>
                                           </div>
                                           <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
                                           <p class="text-10 color-gray mb-2">{{ item.assignment_description }}</p>
-                                          <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center justify-content-between">
                                               <div class="d-flex">
-                                                  <img src="../../static/image/v4/avatar/avatat1.png" alt="avatar 1"
-                                                      class="img-avatar img-avatar--sm">
-                                                  <img src="../../static/image/v4/avatar/avatar2.png" alt="avatar 1"
-                                                      class="img-avatar img-avatar--sm ml--4">
-                                              </div>
-                                              <div class="d-flex align-items-center">
-                                                  <button class="btn p-0 mr-2">
-                                                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                          xmlns="http://www.w3.org/2000/svg">
-                                                          <path
-                                                              d="M7.29041 0.666992C3.74267 0.666992 0.866211 3.54345 0.866211 7.09119C0.866211 10.6389 3.74267 13.5154 7.29041 13.5154C10.8381 13.5154 13.7146 10.6389 13.7146 7.09119C13.7146 3.54345 10.8381 0.666992 7.29041 0.666992ZM9.67595 7.16392L6.06233 9.32066C6.03646 9.33637 6.00351 9.33715 5.97686 9.32144C5.95099 9.30654 5.93453 9.27873 5.93453 9.24774V7.09096V4.93419C5.93453 4.90363 5.95099 4.87539 5.97686 4.86046C6.00351 4.84518 6.03646 4.84596 6.06233 4.86124L9.67595 7.01842C9.70182 7.03312 9.71713 7.06153 9.71713 7.09094C9.71713 7.12098 9.70184 7.14883 9.67595 7.16392Z"
-                                                              fill="#5534A5" />
-                                                      </svg>
-                                                  </button>
-                                                  <button class="btn btn-drag-card-open">
-                                                      Open
-                                                  </button>
-                                              </div>
-                                          </div>
+                                        <div  v-for="(peer, index) in item.peers"
+                                        :key="index">
+                                        <img
+                                          v-if="peer.profile_pic"
+                                          :src="peer.profile_pic"
+                                          alt=""
+                                                    class="img-avatar img-avatar--sm">
+                                                    <img
+                                          v-else
+                                          src="~/static/image/avatar.png"
+                                          alt=""
+                                          class="img-avatar img-avatar--sm">
+                                        </div>
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <button class="btn btn-drag-card-open">
+                                                    Open
+                                                </button>
+                                            </div> 
+                                            </div>
                                       </div>
                                       </drag>
                                     </div>
@@ -157,7 +165,8 @@
                                   <div v-for="item in tempAssts"
                           :key="item.id">
                           <drag :transfer-data="{ item }">
-                                  <div class="card card-primary p-3 mb-3">
+                            <div @click="onCardClick(item)" 
+                                      class="card card-primary p-3 mb-3 clickable">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
                                           <div class="d-flex flex-wrap align-items-center">
                                               <span class="task-label  my-1 mr-1"
@@ -194,35 +203,34 @@
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
                                                   <li @click="onCardClick(item)" class="item p-2">Edit</li>
-                                                  <li class="item p-2">Remove</li>
-                                                  <li class="item p-2">Edit</li>
-                                                  <li @click="confirmDeletion()" class="item p-2">Delete</li>
+                                                  <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
                                               </ul>
                                           </div>
                                       </div>
                                       <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
                                       <p class="text-10 color-gray mb-2">{{ item.assignment_description }}</p>
                                       <div class="d-flex align-items-center justify-content-between">
-                                          <div class="d-flex">
-                                              <img src="../../static/image/v4/avatar/avatat1.png" alt="avatar 1"
+                                            <div class="d-flex">
+                                      <div  v-for="(peer, index) in item.peers"
+                                      :key="index">
+                                      <img
+                                        v-if="peer.profile_pic"
+                                        :src="peer.profile_pic"
+                                        alt=""
                                                   class="img-avatar img-avatar--sm">
-                                              <img src="../../static/image/v4/avatar/avatar2.png" alt="avatar 1"
-                                                  class="img-avatar img-avatar--sm ml--4">
+                                                  <img
+                                        v-else
+                                        src="~/static/image/avatar.png"
+                                        alt=""
+                                        class="img-avatar img-avatar--sm">
+                                      </div>
                                           </div>
                                           <div class="d-flex align-items-center">
-                                              <button class="btn p-0 mr-2">
-                                                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                      xmlns="http://www.w3.org/2000/svg">
-                                                      <path
-                                                          d="M7.29041 0.666992C3.74267 0.666992 0.866211 3.54345 0.866211 7.09119C0.866211 10.6389 3.74267 13.5154 7.29041 13.5154C10.8381 13.5154 13.7146 10.6389 13.7146 7.09119C13.7146 3.54345 10.8381 0.666992 7.29041 0.666992ZM9.67595 7.16392L6.06233 9.32066C6.03646 9.33637 6.00351 9.33715 5.97686 9.32144C5.95099 9.30654 5.93453 9.27873 5.93453 9.24774V7.09096V4.93419C5.93453 4.90363 5.95099 4.87539 5.97686 4.86046C6.00351 4.84518 6.03646 4.84596 6.06233 4.86124L9.67595 7.01842C9.70182 7.03312 9.71713 7.06153 9.71713 7.09094C9.71713 7.12098 9.70184 7.14883 9.67595 7.16392Z"
-                                                          fill="#5534A5" />
-                                                  </svg>
-                                              </button>
                                               <button class="btn btn-drag-card-open">
                                                   Open
                                               </button>
+                                          </div> 
                                           </div>
-                                      </div>
                                       </div>
                                   </drag>
                                   </div>
@@ -254,10 +262,11 @@
                                   <span class="border-pb-1 bg-task-green w-100 d-flex mb-3"></span>
                                   </div>
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
-                                  <div  v-for="item in completedAssignmentList"
+                                  <div  v-for="item in doneAssignmentsList"
                           :key="item.id">
                           <drag :transfer-data="{ item }">
-                                  <div class="card card-primary p-3 mb-3"> 
+                            <div @click="onCardClick(item)" 
+                                      class="card card-primary p-3 mb-3 clickable">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
                                           <div class="d-flex flex-wrap align-items-center">
                                               <span class="task-label  my-1 mr-1"
@@ -295,38 +304,46 @@
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
                                                   <li @click="onCardClick(item)" class="item p-2">Edit</li>
-                                                  <li class="item p-2">Remove</li>
-                                                  <li class="item p-2">Edit</li>
-                                                  <li @click="confirmDeletion()" class="item p-2">Delete</li>
+                                                  <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
                                               </ul>
                                           </div>
                                       </div>
                                       <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
                                       <p class="text-10 color-gray mb-2" v-html="item.assignment_description"></p>
                                       <div class="d-flex align-items-center justify-content-between">
-                                          <div class="d-flex">
-                                              <img src="../../static/image/v4/avatar/avatat1.png" alt="avatar 1"
+                                            <div class="d-flex">
+                                      <div  v-for="(peer, index) in item.peers"
+                                      :key="index">
+                                      <img
+                                        v-if="peer.profile_pic"
+                                        :src="peer.profile_pic"
+                                        alt=""
                                                   class="img-avatar img-avatar--sm">
-                                              <img src="../../static/image/v4/avatar/avatar2.png" alt="avatar 1"
-                                                  class="img-avatar img-avatar--sm ml--4">
+                                                  <img
+                                        v-else
+                                        src="~/static/image/avatar.png"
+                                        alt=""
+                                        class="img-avatar img-avatar--sm">
+                                      </div>
                                           </div>
                                           <div class="d-flex align-items-center">
-                                              <button class="btn p-0 mr-2">
-                                                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                      xmlns="http://www.w3.org/2000/svg">
-                                                      <path
-                                                          d="M7.29041 0.666992C3.74267 0.666992 0.866211 3.54345 0.866211 7.09119C0.866211 10.6389 3.74267 13.5154 7.29041 13.5154C10.8381 13.5154 13.7146 10.6389 13.7146 7.09119C13.7146 3.54345 10.8381 0.666992 7.29041 0.666992ZM9.67595 7.16392L6.06233 9.32066C6.03646 9.33637 6.00351 9.33715 5.97686 9.32144C5.95099 9.30654 5.93453 9.27873 5.93453 9.24774V7.09096V4.93419C5.93453 4.90363 5.95099 4.87539 5.97686 4.86046C6.00351 4.84518 6.03646 4.84596 6.06233 4.86124L9.67595 7.01842C9.70182 7.03312 9.71713 7.06153 9.71713 7.09094C9.71713 7.12098 9.70184 7.14883 9.67595 7.16392Z"
-                                                          fill="#5534A5" />
-                                                  </svg>
-                                              </button>
                                               <button class="btn btn-drag-card-open">
                                                   Open
                                               </button>
+                                          </div> 
                                           </div>
-                                      </div>
                                   </div>
                               </drag>
                                   </div>
+                                  <client-only>
+                            <infinite-loading
+                              class="d-flex align-items-center w-100 justify-content-center"
+                              :identifier="donereloadCount"
+                              @infinite="doneNext"
+                            >
+                            <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                            </infinite-loading>
+                          </client-only>
                                   </div>
                               </div>
                               </drop>
@@ -347,7 +364,8 @@
                                   <div  v-for="item in overdueAssignments"
                           :key="item.id">
                           <drag :transfer-data="{ item }">
-                                  <div class="card card-primary p-3 mb-3">
+                            <div @click="onCardClick(item)" 
+                                      class="card card-primary p-3 mb-3 clickable">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
                                           <div class="d-flex flex-wrap align-items-center">
                                             <span class="task-label  my-1 mr-1"
@@ -385,35 +403,34 @@
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
                                                   <li @click="onCardClick(item)" class="item p-2">Edit</li>
-                                                  <li class="item p-2">Remove</li>
-                                                  <li class="item p-2">Edit</li>
-                                                  <li @click="confirmDeletion()" class="item p-2">Delete</li>
+                                                  <!-- <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li> -->
                                               </ul>
                                           </div>
                                       </div>
                                       <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
                                       <p class="text-10 color-gray mb-2">{{ item.assignment_description }}</p>
                                       <div class="d-flex align-items-center justify-content-between">
-                                          <div class="d-flex">
-                                              <img src="../../static/image/v4/avatar/avatat1.png" alt="avatar 1"
+                                            <div class="d-flex">
+                                      <div  v-for="(peer, index) in item.peers"
+                                      :key="index">
+                                      <img
+                                        v-if="peer.profile_pic"
+                                        :src="peer.profile_pic"
+                                        alt=""
                                                   class="img-avatar img-avatar--sm">
-                                              <img src="../../static/image/v4/avatar/avatar2.png" alt="avatar 1"
-                                                  class="img-avatar img-avatar--sm ml--4">
+                                                  <img
+                                        v-else
+                                        src="~/static/image/avatar.png"
+                                        alt=""
+                                        class="img-avatar img-avatar--sm">
+                                      </div>
                                           </div>
                                           <div class="d-flex align-items-center">
-                                              <button class="btn p-0 mr-2">
-                                                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                                                      xmlns="http://www.w3.org/2000/svg">
-                                                      <path
-                                                          d="M7.29041 0.666992C3.74267 0.666992 0.866211 3.54345 0.866211 7.09119C0.866211 10.6389 3.74267 13.5154 7.29041 13.5154C10.8381 13.5154 13.7146 10.6389 13.7146 7.09119C13.7146 3.54345 10.8381 0.666992 7.29041 0.666992ZM9.67595 7.16392L6.06233 9.32066C6.03646 9.33637 6.00351 9.33715 5.97686 9.32144C5.95099 9.30654 5.93453 9.27873 5.93453 9.24774V7.09096V4.93419C5.93453 4.90363 5.95099 4.87539 5.97686 4.86046C6.00351 4.84518 6.03646 4.84596 6.06233 4.86124L9.67595 7.01842C9.70182 7.03312 9.71713 7.06153 9.71713 7.09094C9.71713 7.12098 9.70184 7.14883 9.67595 7.16392Z"
-                                                          fill="#5534A5" />
-                                                  </svg>
-                                              </button>
                                               <button class="btn btn-drag-card-open">
                                                   Open
                                               </button>
+                                          </div> 
                                           </div>
-                                      </div>
                                   </div>
                                   </drag>
                                   </div>
@@ -442,9 +459,26 @@
                   <h3 class="modal-title" id="editAssignmentModalLongTitle">
                     {{ isAddAssignment ? "Add" : "Edit" }} Assignment
                   </h3>
+                  <!-- grades section -->
+                  <div
+                            class="d-flex align-items-center mb-2 ml-auto"
+                            v-if="submissionId && grade && gradePossible"
+                              >
+                              <p class="mb-0">Grade</p><span class="px-1">:</span>
+                                    <p class="mb-0 bg-primary-light01 px-2 rounded-pill font-semi-bold color-primary"><span>{{
+                                      grade
+                                    }}</span>/<span>{{ gradePossible }}</span></p>
+                                    <!-- <span v-if="gradePossible"
+                                      >Grade Possible</span
+                                    >: -->
+                            </div>
+                            <!-- grades section end -->
                 </div>
                 <div class="modal-body px-3">
-                        <form >
+                        <form 
+                                v-if="!isSharedAssignment"
+                                ref="assignmentForm"
+                                id="assignmentForm">
                           <div class="form-group mb-2">
                             <label for="recipient-name" class="col-form-label py-1"
                               >Subject here<em>*</em></label
@@ -987,6 +1021,379 @@
                                   </div>
                                 </div>
                         </form>
+                        <form 
+                                v-if="isSharedAssignment"
+                                ref="assignmentForm"
+                                id="assignmentForm">
+                          <div class="form-group mb-2">
+                            <label for="recipient-name" class="col-form-label py-1"
+                              >Subject here:</label
+                            >
+                            &nbsp;{{ subject }}  
+                          </div>
+                          <div class="form-group mb-2">
+                            <label for="assignment-name" class="col-form-label py-1"
+                              >Assignment Name:</label
+                            >
+                            &nbsp;{{ assignmentName }}
+                          </div>
+                          <div class="form-group mb-2">
+                            <label for="message-text" class="col-form-label py-1"
+                              >Task:</label
+                            >
+                            &nbsp;{{ assignmentDescription }}
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6 ml-auto py-0">
+                              <div class="form-group mb-2 mb-0">
+                                <label
+                                  for="recipient-name"
+                                  class="col-form-label py-1"
+                                  >Priority:</label
+                                >&nbsp;
+                                <span>{{ priorityVal }}</span>
+                              </div>
+                            </div>
+                            <div class="col-md-6 ml-auto py-0">
+                              <div class="form-group mb-2">
+                                <label
+                                  for="recipient-name"
+                                  class="col-form-label py-1"
+                                  >Date:</label
+                                >
+                                &nbsp;{{ dateValue }}
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row mt-0">
+                            <div class="col-6">
+                              <div class="form-group">
+                                <label
+                                  for="recipient-name"
+                                  class="col-form-label"
+                                  >Time:</label
+                                >
+                                <div>&nbsp;{{ timeValue }}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="d-flex justify-content-between align-items-center mb-2"
+                          >
+                            <h6 class="color-dark font-semi-bold mb-0">
+                              Sub Tasks
+                            </h6>
+                            <a @click="onAddSubTaskClick" class="btn p-0">
+                                    <span class="color-secondary"
+                                      ><i class="fas fa-plus-circle"></i
+                                    ></span>
+                                  </a>
+                          </div>
+                          <div
+                                  v-if="addSubTask"
+                                  class="d-flex flex-row align-items-start"
+                                >
+                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                    <label class="form-label" for="name"
+                                      >Add a sub-task</label
+                                    >
+                                    <input
+                                      type="text"
+                                      maxlength="100"
+                                      v-model="subTaskName"
+                                      class="form-control"
+                                    />
+                                  </div>
+                                  <div class="pt-4">
+                                    <button
+                                      class="btn btn-primary btn-sm mt-2"
+                                      @click="onAddNewSubTask"
+                                    >
+                                      Add
+                                    </button>
+                                  </div>
+                                </div>
+                          <!-- <div
+                            class="d-flex flex-row align-items-start"
+                          >
+                            <div class="form-row mb-2 mx-0 mr-2 w-100">
+                              <label class="form-label" for="name"
+                                >Add a sub-task</label
+                              >
+                              <input
+                                type="text"
+                                maxlength="100"
+                                class="form-control"
+                              />
+                            </div>
+                            <div class="pt-4">
+                              <button
+                                class="btn btn-primary btn-sm mt-2"
+                              >
+                                Add
+                              </button>
+                            </div>
+                          </div> -->
+
+                          <div
+                                  class="custom-overflow pr-2 mr--2 d-flex flex-column"
+                                >
+                                  <div
+                                    v-for="subTask in subTasksList"
+                                    :key="subTask"
+                                  >
+                                    <div
+                                      class="card card-transparent show-icon p-1 mb-1"
+                                    >
+                                      <div
+                                        class="d-flex align-items-center justify-content-between"
+                                      >
+                                        <p
+                                          class="mb-0 color-secondary text-16 font-regular word-break pr-3"
+                                        >
+                                          <span
+                                            class="subtask-btn mr-1"
+                                            :class="{
+                                              selected:
+                                                subTask.task_status ==
+                                                'Completed',
+                                            }"
+                                            ><i></i
+                                          ></span>
+                                          <span>{{ subTask.title }}</span>
+                                        </p>
+                                        <span
+                                          v-if="
+                                            subTask.task_status != 'Completed'
+                                          "
+                                          @click="deleteSubTask(subTask)"
+                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                                          ><i class="fas fa-trash-alt"></i
+                                        ></span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                          <!-- Additional Material Add -->
+                          <div
+                            class="d-flex justify-content-between align-items-center mb-2"
+                          >
+                            <h6 class="color-dark font-semi-bold mb-0">
+                              Invite Peers
+                            </h6>
+                            <a @click="onInviteClick" class="btn p-0">
+                                    <span class="color-secondary"
+                                      ><i class="fas fa-plus-circle"></i
+                                    ></span>
+                                  </a>
+                          </div>
+                          <div
+                                  v-if="invitePeer"
+                                  class="d-flex flex-row align-items-start"
+                                >
+                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                    <label class="form-label" for="name"
+                                      >Invite peers</label
+                                    >
+                                    <!-- <input type="text" class="form-control" /> -->
+                                    <multiselect
+                                      v-model="peerSelected"
+                                      :options="students"
+                                      track-by="first_name"
+                                      label="first_name"
+                                      :placeholder="
+                                        peerSelected.length > 3
+                                          ? ''
+                                          : 'Select students'
+                                      "
+                                      :multiple="true"
+                                      :max="4"
+                                    >
+                                      <span slot="maxElements"
+                                        >Maximum of 4 students selected</span
+                                      >
+                                      <span slot="noResult">No data found</span>
+                                    </multiselect>
+                                  </div>
+                                  <div class="pt-4">
+                                    <button
+                                      @click="onInvitePeer"
+                                      class="btn btn-primary btn-sm mt-2"
+                                    >
+                                      {{ isAddAssignment ? "Add" : "Save" }}
+                                    </button>
+                                  </div>
+                                </div>
+                                <div class="hidden-scroll px-3 row my-0">
+                                  <div
+                                    v-for="peer of peerList"
+                                    :key="peer.id"
+                                    class="h-fit-content show-icon d-flex align-items-center position-realtive"
+                                  >
+                                    <div
+                                      class="d-flex align-items-center my-2 mr-3"
+                                    >
+                                      <div
+                                        class="ld-img-section mr-2 d-flex flex-column"
+                                      >
+                                        <div class="ld-img-holder">
+                                          <img
+                                            v-if="peer.profile_pic"
+                                            :src="peer.profile_pic"
+                                            alt=""
+                                          />
+                                          <img
+                                            v-else
+                                            src="~/static/image/avatar.png"
+                                            alt=""
+                                          />
+                                        </div>
+                                      </div>
+                                      <div class="ld-details-section">
+                                        <p class="ld-heading mb-0">
+                                          {{ peer.first_name }}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <!-- <button
+                                      type="button"
+                                      role="button"
+                                      class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none"
+                                      @click="
+                                        removePeerConfirm(peer.id, $event)
+                                      "
+                                    >
+                                      <span
+                                        class="color-primary-dark fa-icon show-hover btn p-0 ml-05"
+                                        ><i
+                                          class="fas fa-trash-alt color-danger"
+                                        ></i
+                                      ></span>
+                                    </button> -->
+                                  </div>
+                                </div>
+                                <div
+                                  class="d-flex justify-content-between align-items-center mb-2"
+                                >
+                                  <h6 class="color-dark font-semi-bold mb-0">
+                                    Additional Material
+                                  </h6>
+                                  <a
+                                    @click="onAdditionalMatClick"
+                                    class="btn p-0"
+                                  >
+                                    <span class="color-secondary"
+                                      ><i class="fas fa-plus-circle"></i
+                                    ></span>
+                                  </a>
+                                </div>
+                                <div
+                                  v-if="additionalMaterial"
+                                  class="d-flex flex-row align-items-start"
+                                >
+                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                                    <label class="form-label" for="name"
+                                      >Add Additional Material</label
+                                    >
+                                    <!-- <input type="text" class="form-control" /> -->
+                                    <select
+                                      v-model="materialType"
+                                      class="form-select form-control mb-2"
+                                      aria-label="Default select example"
+                                    >
+                                      <option value="">
+                                        Choose material type
+                                      </option>
+                                      <option value="file">File</option>
+                                      <option value="link">Link</option>
+                                    </select>
+                                    <div class="row m-0">
+                                      <div class="col-9 py-0">
+                                        <input
+                                          v-if="materialType == 'file'"
+                                          type="file"
+                                          class="form-control px-2"
+                                          placeholder="Upload File"
+                                          @change="onFileChange"
+                                          id="fileUpload"
+                                          accept=".png,.jpeg,.jpg,.pdf"
+                                        />
+                                      </div>
+                                      <div class="col-9 py-0">
+                                        <input
+                                          v-if="materialType == 'link'"
+                                          type="text"
+                                          class="form-control px-2"
+                                          placeholder="Paste Link"
+                                          v-model="link"
+                                        />
+                                      </div>
+                                      <div class="col-3 p-0"></div>
+                                    </div>
+                                  </div>
+                                  <div class="pt-4">
+                                    <button
+                                      type="button"
+                                      @click="UploadAttachment"
+                                      class="btn btn-primary btn-sm mt-2"
+                                    >
+                                      Add
+                                    </button>
+                                  </div>
+                                </div>
+                                <div class="hidden-scroll px-3 row my-0">
+                                  <div
+                                    v-for="item of additionalMaterialList"
+                                    :key="item.id"
+                                    class="h-fit-content cursor-pointer w-100"
+                                  >
+                                    <div
+                                      v-if="item.link"
+                                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon"
+                                    >
+                                      <div class="ld-details-section w-100">
+                                        <p
+                                          @click="openLink(item)"
+                                          class="ld-heading mb-1 text-link text-truncate"
+                                        >
+                                          <!-- {{ peer.first_name }} -->
+                                          {{ item.link }}
+                                        </p>
+                                      </div>
+                                      <span
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                                        @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
+                                    </div>
+                                    <div
+                                      v-else
+                                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon"
+                                    >
+                                      <div class="ld-details-section w-100">
+                                        <p
+                                          @click="openLink(item)"
+                                          class="ld-heading mb-1 text-link text-truncate"
+                                        >
+                                          <!-- {{ peer.first_name }} -->
+                                          {{
+                                            item.file_type &&
+                                            item.file_type != "link"
+                                              ? item.file_name
+                                              : item.material
+                                          }}
+                                        </p>
+                                      </div>
+                                      <span
+                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                                        @click="deleteAdditionalMat(item)"
+                                        ><i class="fas fa-trash-alt"></i
+                                      ></span>
+                                    </div>
+                                  </div>
+                                </div>
+                        </form>
                 </div>
                 <div class="modal-footer justify-content-end border-top-0">
                   <button
@@ -1067,6 +1474,130 @@
               </div>
             </div>
           </div>
+          <div
+        class="modal fade"
+        id="submitAssignmentConfirmation"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="submitAssignmentConfirmationModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered add-assmt"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header pb-1">
+              <h4
+                class="modal-title"
+                id="submitAssignmentConfirmationModalLongTitle"
+              >
+                Submit Assignment
+              </h4>
+            </div>
+            <div class="modal-body px-3">
+              <!-- Additional Material Add -->
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <p class="mb-0">
+                  Submit Additional Material
+                </p>
+               
+              </div>
+              <div class="d-flex flex-row align-items-start">
+                <div class="form-row mb-2 mx-0 mr-2 w-100">
+                 
+                  <select
+                    v-model="materialTypeSubmit"
+                    class="form-select form-control mb-2"
+                    aria-label="Default select example"
+                  >
+                    <option value="">Choose material type</option>
+                    <!-- <option value="file">File</option> -->
+                    <option value="link">Link</option>
+                    <option value="text">Text</option>
+                  </select>
+                  <div class="d-flex flex-column w-100">
+                    <div class="row m-0 px--12">
+                      <div class="col-12 py-0 p-0">
+                        <input
+                          id="fileUploadSubmit"
+                          v-if="materialTypeSubmit == 'file'"
+                          type="file"
+                          class="form-control px-2 cursor-pointer"
+                          placeholder="Upload File"
+                          @change="onFileChangeSubmit"
+                          accept=".png,.jpeg,.jpg,.pdf"
+                        />
+                      </div>
+                    </div>
+                    <div class="row m-0 px--12">
+                      <div class="col-12 py-0 p-0">
+                        <input
+                          v-if="materialTypeSubmit == 'link'"
+                          type="text"
+                          class="form-control px-2"
+                          placeholder="Paste Link"
+                          v-model="linkSubmit"
+                          maxlength="500"
+                          @input="onChangeLink()"
+                        />
+                      </div>
+                      <div
+                      v-if="submittedAsst && materialTypeSubmit == 'link'"
+                      class="invalid-feedback" style="display:block !important"
+                    > 
+                      <span v-if="!linkSubmit || invalidSubmitUrl"
+                        >Please add a valid URL</span
+                      >
+                    </div>
+                    </div>
+                    <div class="row m-0 px--12">
+                      <div class="col-12 p-0">
+                        <textarea
+                          v-if="materialTypeSubmit == 'text'"
+                          class="form-control px-2"
+                          rows="4"
+                          placeholder="Enter description"
+                          v-model="textSubmit"
+                          maxlength="1000"
+                          @input="onChangeText()"
+                        ></textarea>
+                      </div>
+                      <div
+                      v-if="submittedAsst && materialTypeSubmit == 'text'"
+                      class="invalid-feedback" style="display:block !important"
+                    >
+                      <span v-if="invalidSubmitText"
+                        >Please add a valid description</span
+                      >
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Material Add End -->
+            <div class="modal-footer justify-content-end border-top-0">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                :disabled="disableSubmit"
+                type="button"
+                class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+                @click="submitAsst()"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
           <!-- End Daily Calander -->
       </div>
   </div>
@@ -1111,17 +1642,24 @@ data() {
       completedAssignmentList: [],
       doingreloadCount: 0,
       overduereloadCount: 0,
+      donereloadCount: 0,
       reloadCount: 0,
       tempOffset: -1,
       overduetempOffset: -1,
       doingtempOffset: -1,
+      donetempOffset: -1,
+      doingreloadNext: false,
     reloadNext: false,
+    donereloadNext: false,
+    overduereloadNext: false,
     offset: 0,
     limit: 10,
     overdueoffset: 0,
     overduelimit: 10,
     doingoffset: 0,
+    doneoffset: 0,
     doinglimit: 10,
+    donelimit: 10,
     pendingAssignments: [],
     tempAssts: [],
     draggable: "Drag Me",
@@ -1170,7 +1708,17 @@ data() {
       invalidSubmitUrl:false,
       submittedAsst:false,
       disableSubmit:false,
-      invalidSubmitText:false
+      invalidSubmitText:false,
+      loading: false,
+      lottieOptions: { animationData: animationData.default },
+      anim: null,
+      removedPeerList: [],
+      doneAssignmentsList: [],
+      materialTypeSubmit: "",
+      linkSubmit: "",
+      monthlyAssignmentsCalled: false, // Flag for monthlyAssignments
+    allAssignmentsCalled: false,     // Flag for allAssignments
+    assignmentType: 'Weekly',
   }
 },
 created() {
@@ -1182,7 +1730,7 @@ mounted(){
   this.user_id = localStorage.getItem("id");
   this.GetStudents();
   this.getSubjectsList();
-  this.getAllCompletedAssignments();
+  // this.getAllCompletedAssignments();
 },
 computed: {
   ...mapState("teacherMeeting",{
@@ -1209,6 +1757,15 @@ computed: {
     overdues: (state) => state.overdues,
     sharedOverdues: (state) => state.sharedOverdues,
   }),
+  assignmentTypeText() {
+      if (this.assignmentType === 'Monthly') {
+        return 'Task for this Month';
+      } else if (this.assignmentType === 'All') {
+        return 'All completed Task';
+      } else {
+        return 'Task for this Week';
+      }
+    },
 },
 validations: {
   subject: { required },
@@ -1241,39 +1798,48 @@ methods:{
       studentId: localStorage.getItem("id"),
     });
   },
-  async getAllCompletedAssignments() {
-    await this.getCompletedAssignments({
-      userId: localStorage.getItem("id"),
-      date: moment().format("YYYY-MM-DD"),
-      type: "Weekly",
-    });
-    let completed = [];
-    completed = this.completedAssignments;
-    this.completedAssignmentList = [];
-    this.completedAssignments.forEach((e) => {
-      let asst = {};
-      asst = e;
-      this.completedAssignmentList.push(asst);
-    });
-    this.completedSharedAssignments.forEach((e) => {
-      let asst = {};
-      asst = e.assignments;
-      this.completedAssignmentList.push(asst);
-    });
-  },
+  handleAnimation: function (anim) {
+      this.anim = anim;
+    },
   async GetSubjectList() {
     await this.getSubjectsList({});
   },
+    monthlyAssignments() {
+      // Set the assignmentType to "Monthly" when clicking monthlyAssignments
+      this.assignmentType = 'Monthly';
+      this.doneoffset = 0;
+      this.doneAssignmentsList = [];
+      this.donereloadNext = true;
+      this.donereloadCount +=1;
+      this.monthlyAssignmentsCalled = true;
+    },
+  allAssignments() {
+    this.assignmentType = 'All';
+    this.doneoffset = 0;
+    this.doneAssignmentsList = [];
+    this.donereloadNext = true;
+    this.donereloadCount +=1;
+    this.allAssignmentsCalled = true; 
+  },
+  weeklyAssignments() {
+    this.assignmentType = 'Weekly';
+    this.doneoffset = 0;
+    this.doneAssignmentsList = [];
+    this.donereloadNext = true;
+    this.donereloadCount +=1;
+    this.allAssignmentsCalled = true; 
+  },
+
 async doingNext($state) {
-    if (this.doingtempOffset != this.doingoffset || this.reloadNext) {
-      this.reloadNext = false;
+    if (this.doingtempOffset != this.doingoffset || this.doingreloadNext) {
+      this.doingreloadNext = false;
       this.doingtempOffset = this.doingoffset;
       this.doingAssignmentList = [];
       await this.getAssignments({ offset: this.doingoffset, limit: this.doinglimit, filter: 'Doing' });
       this.doingoffset = this.doingoffset + this.doinglimit;
       this.assignmentMaterials = [];
-      await this.mapAssignments();
-      await this.mapSharedAssignments();
+      await this.doingmapAssignments();
+      await this.doingmapSharedAssignments();
       if (this.doingAssignmentList.length > 0) {
         this.doingAssignments.push(...this.doingAssignmentList);
         $state.loaded();
@@ -1282,6 +1848,22 @@ async doingNext($state) {
       }
     }
   },
+  doingmapAssignments() {
+      if (this.assignmentsList && this.assignmentsList.length > 0) {
+        this.assignmentsList.forEach((e) => {
+          let asst = this.mapData(e);
+          this.doingAssignmentList.push(asst);
+        });
+      }
+    },
+    doingmapSharedAssignments() {
+      if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
+        this.sharedAssignmentsList.forEach((e) => {
+          let asst = this.mapSharedData(e);
+          this.doingAssignmentList.push(asst);
+        });
+      }
+    },
 async loadNext($state) {
     if (this.tempOffset != this.offset || this.reloadNext) {
       this.reloadNext = false;
@@ -1300,9 +1882,50 @@ async loadNext($state) {
       }
     }
   },
+  async doneNext($state) {
+    if (this.donetempOffset != this.doneoffset || this.donereloadNext) {
+      this.donereloadNext = false;
+      this.donetempOffset = this.doneoffset;
+      this.completedAssignmentList = [];
+      await this.getCompletedAssignments({ 
+      offset: this.doneoffset, 
+      limit: this.donelimit, 
+      userId: localStorage.getItem("id"),
+      date: moment().format("YYYY-MM-DD"),
+      type: this.assignmentType, // Use the assignmentType here
+    });
+      this.doneoffset = this.doneoffset + this.donelimit;
+    await this.copyCompletedAssignments();
+    await this.copyCompletedSharedAssignments();
+      if (this.completedAssignmentList.length > 0) {
+        this.doneAssignmentsList.push(...this.completedAssignmentList);
+        $state.loaded();
+      } else {
+        $state.complete();
+      }
+    }
+  },
+  copyCompletedAssignments() {
+    if (this.completedAssignments && this.completedAssignments.length > 0) {
+      this.completedAssignments.forEach((e) => {
+    let asst = {};
+    asst = e;
+    this.completedAssignmentList.push(asst);
+      });
+    }
+  },
+copyCompletedSharedAssignments() {
+  if (this.completedSharedAssignments && this.completedSharedAssignments.length > 0) {
+      this.completedSharedAssignments.forEach((e) => {
+    let asst = {};
+    asst = e;
+    this.completedAssignmentList.push(asst);
+      });
+    }
+  },
   async overdueNext($state) {
-    if (this.overduetempOffset != this.overdueoffset || this.reloadNext) {
-      this.reloadNext = false;
+    if (this.overduetempOffset != this.overdueoffset || this.overduereloadNext) {
+      this.overduereloadNext = false;
       this.overduetempOffset = this.overdueoffset;
       this.overdueAssignmentList = [];
       await this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Overdue' });
@@ -1464,27 +2087,21 @@ async loadNext($state) {
     return peers;
   },
   mapAssignments() {
-    if (this.assignmentsList && this.assignmentsList.length > 0) {
-      this.assignmentsList.forEach((e) => {
-        let asst = this.mapData(e);
-        this.pendingAssignments.push(asst);
-        const doingAssignmentLists = this.pendingAssignments.filter((asst) => asst.task_status === 'Doing');
-  this.doingAssignmentList.push(...doingAssignmentLists);
-  this.pendingAssignments = this.pendingAssignments.filter((asst) => asst.task_status !== 'Doing');
+      if (this.assignmentsList && this.assignmentsList.length > 0) {
+        this.assignmentsList.forEach((e) => {
+          let asst = this.mapData(e);
+          this.pendingAssignments.push(asst);
         });
-    }
-  },
-  mapSharedAssignments() {
-    if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
-      this.sharedAssignmentsList.forEach((e) => {
-        let asst = this.mapSharedData(e);
-        this.pendingAssignments.push(asst);
-        const doingAssignmentLists = this.pendingAssignments.filter((asst) => asst.task_status === 'Doing');
-  this.doingAssignmentList.push(...doingAssignmentLists);
-  this.pendingAssignments = this.pendingAssignments.filter((asst) => asst.task_status !== 'Doing');
-      });
-    }
-  },
+      }
+    },
+    mapSharedAssignments() {
+      if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
+        this.sharedAssignmentsList.forEach((e) => {
+          let asst = this.mapSharedData(e);
+          this.pendingAssignments.push(asst);
+        });
+      }
+    },
   confirmUndo(data, event) {
     let assignment = data.item;
     this.undoAsstId = assignment.id;
@@ -1508,16 +2125,17 @@ this.processingCompleteAssignment = false;
 if (this.successMessage != "") {
   this.openAssignment = false;
   this.doingoffset = 0;
+  this.doneoffset = 0;
   this.offset = 0;
   this.tempAssts = [];
   this.doingAssignments = [];
+  this.doneAssignmentsList = [];
+  this.doingreloadNext = true;
   this.reloadNext = true;
+  this.donereloadNext = true;
   this.reloadCount += 1;
   this.doingreloadCount += 1;
-  this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Doing' });
-  this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Pending' });
-  this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Overdue' });
-  this.getAllCompletedAssignments();
+  this.donereloadCount +=1;
   this.completeAsstId = 0;
 }
 },
@@ -1538,17 +2156,19 @@ await this.completeTask({
 this.processingCompleteAssignment = false;
 if (this.successMessage != "") {
   this.openAssignment = false;
-  this.offset = 0;
   this.doingoffset = 0;
+  this.doneoffset = 0;
+  this.offset = 0;
+  this.tempAssts = [];
   this.doingAssignments = [];
-  // this.tempAssts = [];
+  this.doneAssignmentsList = [];
+  this.doneAssignmentsList = [];
   this.reloadNext = true;
+  this.donereloadNext = true;
+  this.doingreloadNext = true;
   this.reloadCount += 1;
   this.doingreloadCount += 1;
-  this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Doing' });
-  this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Pending' });
-  this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Overdue' });
-  this.getAllCompletedAssignments();
+  this.donereloadCount +=1; 
   this.completeAsstId = 0;
 }
 },
@@ -1938,6 +2558,15 @@ mapPeerInvited(data) {
       this.onResetSubmit();
       $("#submitAssignmentConfirmation").modal({ backdrop: true });
     },
+    onResetSubmit(){
+      this.invalidSubmitUrl=false;
+      this.submittedAsst=false;
+      this.disableSubmit=false;
+      this.invalidSubmitText=false;
+      this.materialTypeSubmit='';
+      this.linkSubmit='';
+      this.textSubmit='';
+    },
     deleteAdditionalMat(item) {
       this.additionalMaterialList;
       const index = this.additionalMaterialList.indexOf(item);
@@ -2128,6 +2757,134 @@ mapPeerInvited(data) {
   confirmDeletion() {
       $("#deleteAssignmentConfirmation").modal({ backdrop: true });
     },
+    async deleteAssts() {
+      await this.deleteAssignments({
+        assignments_ids: this.choosenAssignments,
+      });
+      if (this.successMessage != "") {
+        this.choosenAssignments = [];
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
+        this.openAssignment = false;
+        // this.getAllCompletedAssignments();
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+        // await this.GetMonthlyPlanner();
+      }
+    },
+    onChooseMultiple(id) {
+      if (this.choosenAssignments.includes(id)) {
+        let index = this.choosenAssignments.indexOf(id);
+        this.choosenAssignments.splice(index, 1);
+      } else {
+        this.choosenAssignments.push(id);
+      }
+      this.confirmDeletion();
+    },
+    onFileChangeSubmit(e) {
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        if (document.querySelector("#fileUploadSubmit"))
+          document.querySelector("#fileUploadSubmit").value = "";
+
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
+
+      if (e.target.files[0]) {
+        this.fileSubmit = e.target.files[0];
+        e.target.files[0].value = "";
+      }
+    },
+    async submitAsst() {
+      if(!this.materialTypeSubmit) {
+        this.$toast.open({
+          message: "Please fill the details",
+          type: "warning",
+          duration: 4000,
+        });
+        return;
+      }
+      this.submittedAsst = true;
+      this.disableSubmit=true;
+      this.invalidSubmitUrl=false;
+      var payload = {};
+      if (this.materialTypeSubmit == "text") {
+        if(!this.textSubmit || this.onChangeText()){
+          this.invalidSubmitText=true;
+          this.disableSubmit=false;
+          return
+        }else{
+          this.invalidSubmitText=false;
+        }
+        payload = {
+          assignment_id: this.assignmentId,
+          type: "text",
+          text: this.textSubmit,
+        };
+      } else if (this.materialTypeSubmit == "link") {
+        const isValidHttpUrl = this.onChangeLink()
+        if(!isValidHttpUrl){
+          this.disableSubmit=false;
+          return
+        }
+        payload = {
+          assignment_id: this.assignmentId,
+          type: "link",
+          url: this.linkSubmit,
+        };
+      }
+      
+      await this.assignmentSubmit(payload);
+      this.disableSubmit=false;
+      this.submittedAsst=false;
+      if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 4000,
+        });
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+        this.submissionId="1"
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      this.offset = 0;
+      this.tempAssts = [];
+      this.reloadNext = true;
+      this.reloadCount += 1;
+      // this.GetAssignment();
+    },
+    onChangeText(){
+      if(this.submittedAsst && this.textSubmit){
+       this.invalidSubmitText=false;
+      }else if(this.submittedAsst && !this.textSubmit){
+       this.invalidSubmitText=true;
+      }
+      return this.invalidSubmitText;
+    },
 },
 }
 </script>
+<style scoped>
+.clickable {
+  cursor: pointer;
+}
+</style>
