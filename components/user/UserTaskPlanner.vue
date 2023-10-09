@@ -533,9 +533,7 @@
                             <input
                             type="text"
                                     class="form-control"
-                                    id="message-text"
                                     v-model="assignmentName"
-                                    maxlength="125"
                                     placeholder="Enter assignment name"
                                     :class="{
                                       'is-invalid':
@@ -735,7 +733,7 @@
                                   </div>
                                   <div class="pt-4">
                                     <button
-                                      class="btn btn-primary btn-sm mt-2"
+                                      class="btn btn-primary btn-sm mt-1"
                                       @click="onAddNewSubTask"
                                     >
                                       Add
@@ -848,7 +846,7 @@
                                   <div class="pt-4">
                                     <button
                                       @click="onInvitePeer"
-                                      class="btn btn-primary btn-sm mt-2"
+                                      class="btn btn-primary btn-sm mt-1"
                                     >
                                       {{ isAddAssignment ? "Add" : "Save" }}
                                     </button>
@@ -938,7 +936,7 @@
                                       <option value="link">Link</option>
                                     </select>
                                     <div class="row m-0">
-                                      <div class="col-9 py-0">
+                                      <div class="col-12 py-0">
                                         <input
                                           v-if="materialType == 'file'"
                                           type="file"
@@ -949,7 +947,7 @@
                                           accept=".png,.jpeg,.jpg,.pdf"
                                         />
                                       </div>
-                                      <div class="col-9 py-0">
+                                      <div class="col-12 py-0">
                                         <input
                                           v-if="materialType == 'link'"
                                           type="text"
@@ -965,7 +963,7 @@
                                     <button
                                       type="button"
                                       @click="UploadAttachment"
-                                      class="btn btn-primary btn-sm mt-2"
+                                      class="btn btn-primary btn-sm mt-1"
                                     >
                                       Add
                                     </button>
@@ -1454,7 +1452,7 @@
                   </h4>
                 </div>
                 <div class="modal-body px-3">
-                  <p class="mb-0">Delete selected assignments?</p>
+                  <p class="mb-0">Delete selected assignment?</p>
                 </div>
                 <div class="modal-footer justify-content-end border-top-0">
                   <button
