@@ -4196,7 +4196,7 @@ export default {
         this.tempOffset = this.offset;
 
         this.pendingAssignments = [];
-        await this.getAssignments({ offset: this.offset, limit: this.limit });
+        await this.getAssignments({ offset: this.offset, limit: this.limit, filter: 'Pending' });
         if (this.offset == 0) {
           await this.mapOverdues();
         }
@@ -4581,7 +4581,9 @@ export default {
       await this.getCompletedAssignments({
         userId: localStorage.getItem("id"),
         date: moment().format("YYYY-MM-DD"),
-        type: "Monthly",
+        type: "All",
+        offset: 0,
+        limit: 10,
       });
       let completed = [];
       completed = this.completedAssignments;
