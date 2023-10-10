@@ -63,8 +63,8 @@
                                     <div v-for="(item, index) in doingAssignments"
                               :key="item.id">
                               <drag :transfer-data="{ item }">
-                                      <div @click="onCardClick(item)" 
-                                      class="card card-primary p-3 mb-3 clickable">
+                                      <div 
+                                      class="card card-primary p-3 mb-3">
                                           <div class="d-flex align-items-center justify-content-between mb-2">
                                               <div class="d-flex flex-wrap align-items-center">
                                                 <span class="task-label  my-1 mr-1"
@@ -103,10 +103,13 @@
                                                       <li @click="onCardClick(item)" class="item p-2">
                                                         Edit
                                                       </li>
-                                                      <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                                      <div  v-if="item.shared_users_id != user_id">
+                                                  <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                                </div>
                                                   </ul>
                                               </div>
                                           </div>
+                                          <div class="clickable" @click="onCardClick(item)">
                                           <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
                                           <p class="text-10 color-gray mb-2">{{ item.assignment_description }}</p>
                                             <div class="d-flex align-items-center justify-content-between">
@@ -130,6 +133,7 @@
                                                     Open
                                                 </button>
                                             </div> 
+                                            </div>
                                             </div>
                                       </div>
                                       </drag>
@@ -203,7 +207,9 @@
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
                                                   <li @click="onCardClick(item)" class="item p-2">Edit</li>
+                                                  <div  v-if="item.shared_users_id != user_id">
                                                   <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                                </div>
                                               </ul>
                                           </div>
                                       </div>
@@ -365,8 +371,8 @@
                                   <div  v-for="item in overdueAssignments"
                           :key="item.id">
                           <drag :transfer-data="{ item }">
-                            <div @click="onCardClick(item)" 
-                                      class="card card-primary p-3 mb-3 clickable">
+                            <div  
+                                      class="card card-primary p-3 mb-3">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
                                           <div class="d-flex flex-wrap align-items-center">
                                             <span class="task-label  my-1 mr-1"
@@ -404,10 +410,13 @@
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
                                                   <li @click="onCardClick(item)" class="item p-2">Edit</li>
+                                                  <div  v-if="item.shared_users_id != user_id">
                                                   <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                                </div>
                                               </ul>
                                           </div>
                                       </div>
+                                      <div class="clickable" @click="onCardClick(item)">
                                       <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
                                       <p class="text-10 color-gray mb-2">{{ item.assignment_description }}</p>
                                       <div class="d-flex align-items-center justify-content-between">
@@ -432,6 +441,7 @@
                                               </button>
                                           </div> 
                                           </div>
+                                        </div>
                                   </div>
                                   </drag>
                                   </div>
@@ -1141,7 +1151,7 @@
                                 >
                                   <div
                                     v-for="subTask in subTasksList"
-                                    :key="subTask"
+                                    :key="subTask.id"
                                   >
                                     <div
                                       class="card card-transparent show-icon p-1 mb-1"
@@ -1706,7 +1716,9 @@ import draggable from "vuedraggable";
 import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
 import "vue2-timepicker/dist/VueTimepicker.css";
+import moment from "moment";
 var fromDate = "";
+var endDate = "";
 export default {
 name: "UserStudentTask",
 components: {
@@ -1774,6 +1786,7 @@ data() {
     dateValue: "",
     timeValue: "",
     openAssignment: false,
+    date_today: new Date(),
     disabledDates: {
         to: new Date(),
       },
@@ -1824,8 +1837,58 @@ mounted(){
   this.school_id = localStorage.getItem("school_id")
   this.user_id = localStorage.getItem("id");
   this.GetStudents();
+  this.disabledDates.to = new Date(
+      this.date_today.getFullYear(),
+      this.date_today.getMonth(),
+      this.date_today.getDate()
+    );
+     //date picker
+     var today = new Date();
+    var future = new Date();
+    future.setDate(future.getDate() + 30);
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+      dd = "0" + dd;
+    }
+    if (mm < 10) {
+      mm = "0" + mm;
+    }
+    var today = dd + "/" + mm + "/" + yyyy;
+
+    $(function () {
+      fromDate = "";
+      endDate = "";
+      $('input[name="daterange"]').daterangepicker({
+        // autoUpdateInput: false,
+        singleDatePicker: true,
+        minDate: today,
+        maxDate: future,
+        opens: "left",
+        locale: {
+          // format: "DD-MM-YYYY",
+          cancelLabel: "Clear",
+        },
+      });
+
+      $('input[name="daterange"]').on(
+        "apply.daterangepicker",
+        function (ev, picker) {
+          $(this).val(picker.startDate.format("YYYY/MM/DD"));
+          fromDate = picker.startDate.format("YYYY-MM-DD");
+          endDate = picker.endDate.format("YYYY-MM-DD");
+        }
+      );
+
+      $('input[name="daterange"]').on(
+        "cancel.daterangepicker",
+        function (ev, picker) {
+          $(this).val("");
+        }
+      );
+    });
   this.getSubjectsList();
-  // this.getAllCompletedAssignments();
 },
 computed: {
   ...mapState("teacherMeeting",{
@@ -1996,7 +2059,6 @@ async loadNext($state) {
 
       if (this.completedAssignmentList.length > 0) {
         this.doneAssignmentsList.push(...this.completedAssignmentList);
-        console.log("doneAssignmentsList", this.doneAssignmentsList);
         $state.loaded();
       } else {
         $state.complete();
@@ -2268,7 +2330,6 @@ await this.completeTask({
   status: 'Doing',
 });
 this.processingCompleteAssignment = false;
-console.log('Reached this point');
 if (this.successMessage != "") {
   // this.openAssignment = false;
   this.doingoffset = 0;
@@ -2288,6 +2349,7 @@ if (this.successMessage != "") {
 },
 EditAssignmentModal() {
       this.openAssignment = true;
+      this.resetAssignment();
       $("#editAssignment").modal({ backdrop: true });
   },
   async resetAssignment() {
@@ -2467,8 +2529,6 @@ EditAssignmentModal() {
       }
       this.submitted = false;
       this.processing = false;
-
-      // this.GetWeeklyPlanner();
     },
     async UpdateAssignment() {
       if (this.priorityVal == "Overdue" && !this.isSharedAssignment) {
@@ -2557,16 +2617,20 @@ EditAssignmentModal() {
       this.loading = false;
       this.removedPeerList = [];
       if (this.successMessage != "") {
+        this.doingoffset = 0;
+        this.doingAssignments = [];
+        this.doingreloadNext = true;
+        this.doingreloadCount +=1;
         this.offset = 0;
         this.tempAssts = [];
         this.reloadNext = true;
         this.reloadCount += 1;
+        this.overdueoffset = 0;
+        this.overdueAssignments = [];
+        this.overduereloadNext = true;
+        this.overduereloadCount +=1;
         this.deletedSubTasksArray = [];
-
-        // this.GetAssignment();
-        // this.getAssignmentsList();
         this.openAssignment = false;
-
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -2878,6 +2942,10 @@ mapPeerInvited(data) {
         this.tempAssts = [];
         this.reloadNext = true;
         this.reloadCount += 1;
+        this.overdueoffset = 0;
+        this.overdueAssignments = [];
+        this.overduereloadNext = true;
+        this.overduereloadCount +=1;
         this.openAssignment = false;
         // this.getAllCompletedAssignments();
         this.$toast.open({
