@@ -894,7 +894,7 @@ export default {
       if (type == "Peer" || type == "Teacher") {
         this.$router.push("/viewall-meeting");
       } else if (type == "Assignment") {
-        this.$router.push("/planner-day");
+        this.$router.push("/task");
       } else if (
         type == "Session" ||
         type == "Study session" ||
