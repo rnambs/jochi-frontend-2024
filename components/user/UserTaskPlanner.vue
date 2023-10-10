@@ -60,7 +60,7 @@
                                   <span class="border-pb-1 bg-task-violet w-100 d-flex mb-3"></span>
                                   </div>
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
-                                    <div v-for="item in doingAssignments"
+                                    <div v-for="(item, index) in doingAssignments"
                               :key="item.id">
                               <drag :transfer-data="{ item }">
                                       <div @click="onCardClick(item)" 
@@ -165,8 +165,8 @@
                                   <div v-for="item in tempAssts"
                           :key="item.id">
                           <drag :transfer-data="{ item }">
-                            <div @click="onCardClick(item)" 
-                                      class="card card-primary p-3 mb-3 clickable">
+                            <div 
+                                      class="card card-primary p-3 mb-3">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
                                           <div class="d-flex flex-wrap align-items-center">
                                               <span class="task-label  my-1 mr-1"
@@ -207,6 +207,7 @@
                                               </ul>
                                           </div>
                                       </div>
+                                      <div class="clickable" @click="onCardClick(item)">
                                       <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
                                       <p class="text-10 color-gray mb-2">{{ item.assignment_description }}</p>
                                       <div class="d-flex align-items-center justify-content-between">
@@ -231,6 +232,7 @@
                                               </button>
                                           </div> 
                                           </div>
+                                        </div>
                                       </div>
                                   </drag>
                                   </div>
@@ -265,8 +267,8 @@
                                   <div  v-for="item in doneAssignmentsList"
                           :key="item.id">
                           <drag :transfer-data="{ item }">
-                            <div @click="onCardClick(item)" 
-                                      class="card card-primary p-3 mb-3 clickable">
+                            <div 
+                                      class="card card-primary p-3 mb-3">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
                                           <div class="d-flex flex-wrap align-items-center">
                                               <span class="task-label  my-1 mr-1"
@@ -287,13 +289,12 @@
                                           ? "Overdue"
                                           : ""
                                       }}</span>
-                                              <span class="task-label task-label--green my-1 mr-1"> {{
-                                        item.subject.subject_name
+                                              <span class="task-label task-label--green my-1 mr-1">{{ item.subject.subject_name
                                           ? item.subject.subject_name
                                           : item.subject
-                                      }}    </span>
+                                                    }}</span>
                                           </div>
-                                          <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
+                                          <!-- <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                                               <div class="dropdown-select form-control" type="button"
                                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                   <span
@@ -306,7 +307,7 @@
                                                   <li @click="onCardClick(item)" class="item p-2">Edit</li>
                                                   <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
                                               </ul>
-                                          </div>
+                                          </div> -->
                                       </div>
                                       <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
                                       <p class="text-10 color-gray mb-2" v-html="item.assignment_description"></p>
@@ -403,7 +404,7 @@
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
                                                   <li @click="onCardClick(item)" class="item p-2">Edit</li>
-                                                  <!-- <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li> -->
+                                                  <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
                                               </ul>
                                           </div>
                                       </div>
@@ -767,7 +768,7 @@
                                 >
                                   <div
                                     v-for="subTask in subTasksList"
-                                    :key="subTask"
+                                    :key="subTask.id"
                                   >
                                     <div
                                       class="card card-transparent show-icon p-1 mb-1"
@@ -883,7 +884,7 @@
                                         </p>
                                       </div>
                                     </div>
-                                    <!-- <button
+                                    <button
                                       type="button"
                                       role="button"
                                       class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none"
@@ -897,7 +898,7 @@
                                           class="fas fa-trash-alt color-danger"
                                         ></i
                                       ></span>
-                                    </button> -->
+                                    </button>
                                   </div>
                                 </div>
                                 <div
@@ -1182,11 +1183,6 @@
                             <h6 class="color-dark font-semi-bold mb-0">
                               Invite Peers
                             </h6>
-                            <a @click="onInviteClick" class="btn p-0">
-                                    <span class="color-secondary"
-                                      ><i class="fas fa-plus-circle"></i
-                                    ></span>
-                                  </a>
                           </div>
                           <div
                                   v-if="invitePeer"
@@ -1598,6 +1594,103 @@
           </div>
         </div>
       </div>
+      <div
+        class="modal fade"
+        id="completeConfirm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="completeConfirmModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered add-assmt"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header pb-1">
+              <h4 class="modal-title" id="completeConfirmModalLongTitle">
+                Complete Assignment Confirmation
+              </h4>
+            </div>
+            <div class="modal-body px-3 bold-6">
+              <p class="mb-0">Mark assignment as completed?</p>
+              <p class="mb-0" v-if="schoologyAssignment == '1' && !submissionId">Did you forget to submit your work?</p>
+            </div>
+            <div class="modal-footer justify-content-end border-top-0">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+                :disabled="processingCompleteAssignment"
+                @click="completeAssignment()"
+              >
+                Complete
+              </button>
+              <button
+              v-if="schoologyAssignment == '1'"
+              type="button"
+              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+              @click="submitAndCompleteAssignment()"
+              :disabled="submissionId"
+            >
+              Submit Assignment
+            </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="undoAssignmentConfirmation"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="undoAssignmentConfirmationModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered add-assmt"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header pb-1">
+              <h4
+                class="modal-title"
+                id="undoAssignmentConfirmationModalLongTitle"
+              >
+              Re-Open Assignment
+              </h4>
+            </div>
+            <div class="modal-body px-3">
+              <p class="mb-0">
+                This action will mark this assignment as incomplete again
+              </p>
+            </div>
+            <div class="modal-footer justify-content-end border-top-0">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                data-dismiss="modal"
+                type="button"
+                class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+                @click="undoAsstComplete()"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
           <!-- End Daily Calander -->
       </div>
   </div>
@@ -1719,6 +1812,7 @@ data() {
       monthlyAssignmentsCalled: false, // Flag for monthlyAssignments
     allAssignmentsCalled: false,     // Flag for allAssignments
     assignmentType: 'Weekly',
+    school_id: ''
   }
 },
 created() {
@@ -1727,6 +1821,7 @@ created() {
   });
 },
 mounted(){
+  this.school_id = localStorage.getItem("school_id")
   this.user_id = localStorage.getItem("id");
   this.GetStudents();
   this.getSubjectsList();
@@ -1894,11 +1989,14 @@ async loadNext($state) {
       date: moment().format("YYYY-MM-DD"),
       type: this.assignmentType, // Use the assignmentType here
     });
+    this.assignmentMaterials = [];
       this.doneoffset = this.doneoffset + this.donelimit;
-    await this.copyCompletedAssignments();
-    await this.copyCompletedSharedAssignments();
+      await this.copyCompletedAssignments();
+      await this.copyCompletedSharedAssignments();
+
       if (this.completedAssignmentList.length > 0) {
         this.doneAssignmentsList.push(...this.completedAssignmentList);
+        console.log("doneAssignmentsList", this.doneAssignmentsList);
         $state.loaded();
       } else {
         $state.complete();
@@ -1908,18 +2006,16 @@ async loadNext($state) {
   copyCompletedAssignments() {
     if (this.completedAssignments && this.completedAssignments.length > 0) {
       this.completedAssignments.forEach((e) => {
-    let asst = {};
-    asst = e;
-    this.completedAssignmentList.push(asst);
+          let asst = this.mapData(e);
+          this.completedAssignmentList.push(asst);
       });
     }
   },
 copyCompletedSharedAssignments() {
   if (this.completedSharedAssignments && this.completedSharedAssignments.length > 0) {
-      this.completedSharedAssignments.forEach((e) => {
-    let asst = {};
-    asst = e;
-    this.completedAssignmentList.push(asst);
+    this.completedSharedAssignments.forEach((e) => {
+          let asst = this.mapSharedData(e);
+          this.completedAssignmentList.push(asst);
       });
     }
   },
@@ -1934,7 +2030,7 @@ copyCompletedSharedAssignments() {
       }
       this.overdueoffset = this.overdueoffset + this.overduelimit;
       this.assignmentMaterials = [];
-      await this.mapAssignments();
+      // await this.mapAssignments();
       // await this.mapSharedAssignments();
       if (this.overdueAssignmentList.length > 0) {
         this.overdueAssignments.push(...this.overdueAssignmentList);
@@ -2102,18 +2198,27 @@ copyCompletedSharedAssignments() {
         });
       }
     },
-  confirmUndo(data, event) {
-    let assignment = data.item;
+    confirmUndo(data) {
+      let assignment = data.item;
     this.undoAsstId = assignment.id;
-    this.completeAssignment(false);
-  },
+      $("#undoAssignmentConfirmation").modal({ backdrop: true });
+    },
+    undoAsstComplete() {
+      this.completeAssignment(false);
+    },
+  // confirmUndo(data, event) {
+  //   let assignment = data.item;
+  //   this.undoAsstId = assignment.id;
+  //   this.completeAssignment(false);
+  // },
   handleDrop(data, event) {
 let assignment = data.item;
 this.completeAsstId = assignment.id;
 this.assignmentId = assignment.id;
 this.schoologyAssignment = assignment.schoologyAssignment;
 this.submissionId = assignment.submission_id;
-this.completeAssignment(true);
+// this.completeAssignment(true);
+$("#completeConfirm").modal({ backdrop: true });
 },
 async completeAssignment(completed = true) {
 this.processingCompleteAssignment = true;
@@ -2137,6 +2242,15 @@ if (this.successMessage != "") {
   this.doingreloadCount += 1;
   this.donereloadCount +=1;
   this.completeAsstId = 0;
+  this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        this.openAssignment = false;
+
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
 }
 },
 doingDrop(data, event) {
@@ -2154,32 +2268,28 @@ await this.completeTask({
   status: 'Doing',
 });
 this.processingCompleteAssignment = false;
+console.log('Reached this point');
 if (this.successMessage != "") {
-  this.openAssignment = false;
+  // this.openAssignment = false;
   this.doingoffset = 0;
-  this.doneoffset = 0;
+  this.doingAssignments = [];
+  this.doingreloadNext = true;
+  this.doingreloadCount += 1;
   this.offset = 0;
   this.tempAssts = [];
-  this.doingAssignments = [];
-  this.doneAssignmentsList = [];
-  this.doneAssignmentsList = [];
   this.reloadNext = true;
-  this.donereloadNext = true;
-  this.doingreloadNext = true;
   this.reloadCount += 1;
-  this.doingreloadCount += 1;
+  this.doneoffset = 0;
+  this.doneAssignmentsList = [];
+  this.donereloadNext = true;
   this.donereloadCount +=1; 
   this.completeAsstId = 0;
 }
 },
 EditAssignmentModal() {
-  console.log("EditAssignmentModal")
-      this.resetAssignment();
+      this.openAssignment = true;
       $("#editAssignment").modal({ backdrop: true });
   },
-// AddAssignmentModal() {
-//       $("#AddAssignment").modal({ backdrop: true });
-//   },
   async resetAssignment() {
       this.choosenAssignments = [];
       this.schoologyAssignment = "";
@@ -2270,9 +2380,6 @@ EditAssignmentModal() {
       this.reloadNext = true;
       this.reloadCount += 1;
       this.deletedSubTasksArray = [];
-
-      // this.GetAssignment();
-      // this.GetWeeklyPlanner();
       this.openAssignment = false;
       $('#editAssignment').modal('hide');
     },
@@ -2312,6 +2419,7 @@ EditAssignmentModal() {
       });
 
       await this.addAssignment({
+        school_id: localStorage.getItem("school_id"),
         user_id: localStorage.getItem("id"),
         task: this.assignmentName,
         assignment_description: this.assignmentDescription,
@@ -2430,6 +2538,7 @@ EditAssignmentModal() {
         subTaskLists.push(e.title);
       });
       await this.updateAssignment({
+        school_id: localStorage.getItem("school_id"),
         assignment_id: this.assignmentId,
         user_id: localStorage.getItem("id"),
         task: this.assignmentName,
@@ -2550,8 +2659,6 @@ mapPeerInvited(data) {
       this.EditAssignmentModal();
       this.mapAssignmentDetail(data);
       this.mapPeerInvited(data);
-      
-
     },
     submitAssignment() {
       this.submittedAsst=false;
@@ -2763,6 +2870,10 @@ mapPeerInvited(data) {
       });
       if (this.successMessage != "") {
         this.choosenAssignments = [];
+        this.doingoffset = 0;
+        this.doingAssignments = [];
+        this.doingreloadNext = true;
+        this.doingreloadCount +=1;
         this.offset = 0;
         this.tempAssts = [];
         this.reloadNext = true;
@@ -2879,6 +2990,10 @@ mapPeerInvited(data) {
        this.invalidSubmitText=true;
       }
       return this.invalidSubmitText;
+    },
+    confirmComplete() {
+      this.completeAsstId = this.assignmentId;
+      $("#completeConfirm").modal({ backdrop: true });
     },
 },
 }
