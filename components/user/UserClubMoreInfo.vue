@@ -6,7 +6,7 @@
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     />
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- tab for club info -->
       <div
         class="bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
@@ -305,7 +305,7 @@
                           <h5 class="text-18 color-dark mb-2 font-semibold">To do!</h5>
                         </div>
                         <div
-                          class="form-group ml-4"
+                          class="form-group ml-4 color-gray"
                           v-if="
                             !clubMoreDetails.todo ||
                             clubMoreDetails.todo.length <= 0
@@ -1276,6 +1276,7 @@ import Multiselect from "vue-multiselect";
 import VueTimepicker from "vue2-timepicker";
 import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
+import { eventBus } from "~/plugins/eventbus.js";
 
 var today = new Date();
 var activityDate = "";
@@ -1291,6 +1292,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       loading: false,
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
@@ -1388,6 +1390,11 @@ export default {
         }),
       },
     },
+  },
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     if (localStorage.getItem("schoolAdmin")) {

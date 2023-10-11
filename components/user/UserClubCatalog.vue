@@ -6,7 +6,7 @@
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     />
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <div
         class="bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
       >
@@ -428,6 +428,7 @@ import Multiselect from "vue-multiselect";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import { required } from "vuelidate/lib/validators";
+import { eventBus } from "~/plugins/eventbus.js";
 
 var SelectValue = "";
 var list_data = [];
@@ -450,6 +451,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       user_type: 0,
       list_data: [],
       value: "",
@@ -474,6 +476,11 @@ export default {
     activity_type: { required },
     name: { required },
     description: { required },
+  },
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     // if (process.client) { 

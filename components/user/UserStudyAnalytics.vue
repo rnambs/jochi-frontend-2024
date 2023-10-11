@@ -1,5 +1,5 @@
 <template>
-  <div class="main-section">
+  <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
     <!-- Study Page -->
     <div
       class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex"
@@ -302,6 +302,7 @@ import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 // import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
+import { eventBus } from "~/plugins/eventbus.js";
 export default {
   props: ["studentId"],
   name: "dashBoard",
@@ -322,6 +323,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       legends: [],
       legendsTotal: [],
       anim: null, // for saving the reference to the animation
@@ -350,6 +352,11 @@ export default {
       percentage:[],
       bgColor:[]
     };
+  },
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);

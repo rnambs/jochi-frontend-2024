@@ -18,7 +18,7 @@
         <div id="fountainTextG_10" class="fountainTextG">.</div>
       </div>
     </div>
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- tab for club files -->
       <div
         class="bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
@@ -759,6 +759,7 @@ import { mapState, mapActions } from "vuex";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import VueCropper from "vue-cropperjs";
+import { eventBus } from "~/plugins/eventbus.js";
 
 var fileCheck = false;
 var filepptCheck = false;
@@ -772,6 +773,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       profilePic: null,
       profileImageUrl: "",
       loading: false,
@@ -807,6 +809,11 @@ export default {
       startTime: null,
       isSchoolAdmin: "0",
     };
+  },
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     if (localStorage.getItem("schoolAdmin")) {

@@ -6,7 +6,7 @@
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     />
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- tab for club info -->
       <div
         class="bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
@@ -957,6 +957,7 @@ import "vue-croppa/dist/vue-croppa.css";
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
 import VueCropper from "vue-cropperjs";
+import { eventBus } from "~/plugins/eventbus.js";
 
 var headingName = "";
 var clubId = "";
@@ -972,6 +973,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       value: [],
       valueMeeting: "",
       name: "",
@@ -1018,7 +1020,11 @@ export default {
       isSchoolAdmin: "0",
     };
   },
-
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
+  },
   mounted() {
     if (localStorage.getItem("schoolAdmin")) {
       this.isSchoolAdmin = localStorage.getItem("schoolAdmin");

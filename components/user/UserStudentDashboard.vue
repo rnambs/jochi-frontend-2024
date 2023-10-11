@@ -14,7 +14,7 @@
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     />
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <div
         class="m--12 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
       >
@@ -450,6 +450,7 @@ import { mapState, mapActions } from "vuex";
 import FullCalendar, { Calendar } from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import { eventBus } from "~/plugins/eventbus.js";
 
 var eventList = [];
 var Peerarray = [];
@@ -477,6 +478,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       isSmallScreen: false,
       isMediumScreen: false,
       isLargeScreen: false,
@@ -582,6 +584,9 @@ export default {
   },
   created() {
     this.loading=true;
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);

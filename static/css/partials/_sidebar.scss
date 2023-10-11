@@ -87,6 +87,9 @@
                                 border-left: 1px solid $border-color;
                                 border-top: 1px solid $border-color;
                                 padding: 1.5rem 0.85rem;
+                                animation: 0.5s fadeIn;
+                                animation-fill-mode: forwards;
+                                visibility: hidden;
                                 @media (max-width: $sm-screen) {  
                                     position: relative;
                                     border: none !important;
@@ -131,5 +134,15 @@
                 }
             }
         }
+    }
+}
+
+// Animations
+@keyframes fadeIn {
+    99% {
+        visibility: hidden;
+    }
+    100% {
+      visibility: visible;
     }
 }
