@@ -902,7 +902,7 @@
                                       class="d-flex align-items-center my-2 mr-3"
                                     >
                                       <div
-                                        class="ld-img-section mr-2 d-flex flex-column"
+                                        class="ld-img-section position-relative mr-2 d-flex flex-column"
                                       >
                                         <div class="ld-img-holder">
                                           <img
@@ -916,6 +916,21 @@
                                             alt=""
                                           />
                                         </div>
+                                        <button
+                                          type="button"
+                                          role="button"
+                                          class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none"
+                                          @click="
+                                            removePeerConfirm(peer.id, $event)
+                                          "
+                                        >
+                                          <span
+                                            class="color-primary-dark fa-icon show-hover btn p-0 ml-05"
+                                            ><i
+                                              class="fas fa-trash-alt color-danger"
+                                            ></i
+                                          ></span>
+                                        </button>
                                       </div>
                                       <div class="ld-details-section">
                                         <p class="ld-heading mb-0">
@@ -923,21 +938,6 @@
                                         </p>
                                       </div>
                                     </div>
-                                    <button
-                                      type="button"
-                                      role="button"
-                                      class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none"
-                                      @click="
-                                        removePeerConfirm(peer.id, $event)
-                                      "
-                                    >
-                                      <span
-                                        class="color-primary-dark fa-icon show-hover btn p-0 ml-05"
-                                        ><i
-                                          class="fas fa-trash-alt color-danger"
-                                        ></i
-                                      ></span>
-                                    </button>
                                   </div>
                                 </div>
                                 <div
