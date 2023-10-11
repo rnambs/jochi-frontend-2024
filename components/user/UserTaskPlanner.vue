@@ -1759,11 +1759,11 @@ computed: {
   }),
   assignmentTypeText() {
       if (this.assignmentType === 'Monthly') {
-        return 'Task for this Month';
+        return 'Task for this month';
       } else if (this.assignmentType === 'All') {
-        return 'All completed Task';
+        return 'All completed task';
       } else {
-        return 'Task for this Week';
+        return 'Task for this week';
       }
     },
 },
