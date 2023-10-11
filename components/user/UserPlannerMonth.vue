@@ -454,7 +454,7 @@
                                           <label
                                             for=""
                                             class="mb-0 text-truncate cursor-pointer"
-                                            >{{ sub.title }}</label
+                                            >{{ sub.id}}</label
                                           >
                                         </div>
                                       </div>
