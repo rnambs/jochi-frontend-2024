@@ -7,7 +7,7 @@
       class="lottie-loader"
     />
 
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
@@ -208,6 +208,7 @@ import { mapState, mapActions } from "vuex";
 import VueToast from "vue-toast-notification";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
+import { eventBus } from "~/plugins/eventbus.js";
 var ismounted = false;
 var dateClickValue = "";
 var slot_id = [];
@@ -230,6 +231,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       currentTime: "",
       weekend: "",
       month: "",
@@ -303,6 +305,11 @@ export default {
       },
       startTime: null,
     };
+  },
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);

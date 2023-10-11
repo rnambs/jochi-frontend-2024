@@ -1,5 +1,5 @@
 <template>
-  <div class="main-section">
+  <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
     <!-- profile Page -->
     <section id="study-detail" class="">
       <div
@@ -698,6 +698,7 @@ import { mapState, mapActions } from "vuex";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import { defaultImage, JOCHI_PRO_PIC } from "../../assets/js/constants";
+import { eventBus } from "~/plugins/eventbus.js";
 var fileCheck = false;
 var filepptCheck = false;
 
@@ -718,6 +719,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       email: "",
       name: "",
       schoolName: "",
@@ -750,7 +752,6 @@ export default {
       selectedTheme: "light", // Initially select the "light" theme
     };
   },
-
   created() {
     this.UserDetails();
     this.user_type = localStorage.getItem("user_type");
@@ -761,6 +762,9 @@ export default {
       this.schoolAdminStatus();
     }
     this.fetchSettings();
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);

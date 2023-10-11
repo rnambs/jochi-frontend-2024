@@ -7,7 +7,7 @@
       class="lottie-loader"
     />
 
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- tab section for teacher meeting -->
       <div
         class="bg-global border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column position-realtive"
@@ -461,6 +461,7 @@ import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import * as animationDataSuccess from "~/assets/decoration.json";
 import { required } from "vuelidate/lib/validators";
+import { eventBus } from "~/plugins/eventbus.js";
 
 var fromDate = "";
 var endDate = "";
@@ -494,6 +495,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       value: "",
       slot_date: [],
       from: [],
@@ -533,6 +535,11 @@ export default {
     meeting_name: { required },
     meeting_description: { required },
     conversation_type: { required },
+  },
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);

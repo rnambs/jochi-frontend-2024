@@ -1735,6 +1735,9 @@ h1, h2, h3, h4, h5, h6 {
   border-left: 1px solid var(--color-border);
   border-top: 1px solid var(--color-border);
   padding: 1.5rem 0.85rem;
+  animation: 0.5s fadeIn;
+  animation-fill-mode: forwards;
+  visibility: hidden;
 }
 @media (max-width: 767.98px) {
   .navbar.navbar-expand-md ul.vertical-nav li.nav-item.parent-menu .collapse-for-link ul.sub-menu {
@@ -1764,6 +1767,14 @@ h1, h2, h3, h4, h5, h6 {
      object-fit: cover;
 }
 
+@keyframes fadeIn {
+  99% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
 :root.dark-theme img.img-theme.light {
   display: none;
 }
