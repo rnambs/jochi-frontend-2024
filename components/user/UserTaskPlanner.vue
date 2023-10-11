@@ -1483,7 +1483,7 @@
                     class="modal-title"
                     id="deleteAssignmentConfirmationModalLongTitle"
                   >
-                    Delete assignment confirmation
+                    Delete Assignment Confirmation
                   </h4>
                 </div>
                 <div class="modal-body px-3">
