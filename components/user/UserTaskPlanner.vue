@@ -22,7 +22,7 @@
                                               type="button" data-toggle="dropdown" aria-haspopup="true"
                                               aria-expanded="false">
                                               <i class="i-filter-calendar j-icon i-sm bg-gray mr-1"></i>
-                                              <span id="dLabel" class="mr-3">This week</span>
+                                              <span id="dLabel" class="mr-3">{{ TypeText }}</span>
                                               <span class="caret"><i
                                                       class="fas fa-chevron-down font-medium"></i></span>
                                           </div>
@@ -777,6 +777,14 @@
                                   class="custom-overflow pr-2 mr--2 d-flex flex-column"
                                 >
                                   <div
+                                  @click="
+                                            confirmSubTaskComplete(
+                                              $event,
+                                              subTask.id,
+                                              // item.id,
+                                              subTask.task_status
+                                            )
+                                          "
                                     v-for="subTask in subTasksList"
                                     :key="subTask.id"
                                   >
@@ -786,6 +794,27 @@
                                       <div
                                         class="d-flex align-items-center justify-content-between"
                                       >
+                                      <input
+                                            :id="subTask.title"
+                                            v-model="subTask.title"
+                                            :value="
+                                              subTask.task_status == 'Completed'
+                                                ? subTask.title
+                                                : ''
+                                            "
+                                            type="radio"
+                                            class="mr-2 "
+                                            :class="{
+                                              selected:
+                                                subTask.task_status ==
+                                                'Completed',
+                                            }"
+                                          />
+                                          <label
+                                              for=""
+                                              class="mb-0 text-truncate cursor-pointer"
+                                              >{{ subTask.title }}</label
+                                            >
                                         <p
                                           class="mb-0 color-secondary text-16 font-regular word-break pr-3"
                                         >
@@ -1701,6 +1730,100 @@
           </div>
         </div>
       </div>
+      <!-- Sub task undo confirmation  -->
+      <div
+        class="modal fade"
+        id="undoSubTaskConfirm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="undoSubTaskConfirmModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered add-assmt"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-body px-3">
+              <h4
+                class="modal-title color-primary-dark font-bold mt-3"
+                id="undoSubTaskConfirmModalLongTitle"
+              >
+              Re-Open Sub-Task
+              </h4>
+              <p class="mb-0">
+                This action will mark this sub-task as incomplete again
+              </p>
+            </div>
+            <div class="modal-footer justify-content-end border-top-0">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
+                :disabled="processingSubCompleteAssignment"
+                @click="undoCompleteSubTask()"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+       <!-- Sub task completion confirmation  -->
+       <div
+        class="modal fade"
+        id="completeSubTaskConfirm"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="completeConfirmModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered add-assmt"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-body px-3">
+              <h4
+                class="modal-title color-primary-dark font-bold mt-3"
+                id="completeConfirmModalLongTitle"
+              >
+                Complete Sub-Task Confirmation
+              </h4>
+              <p class="mb-0">
+                Mark sub-task as completed?
+              </p>
+            </div>
+            <div class="modal-footer justify-content-end border-top-0">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
+                :disabled="processingSubCompleteAssignment"
+                @click="
+                  processingSubCompleteAssignment = true;
+                  completeSubTask();
+                "
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sub task completion confirmation end  -->
           <!-- End Daily Calander -->
       </div>
   </div>
@@ -1825,7 +1948,8 @@ data() {
       monthlyAssignmentsCalled: false, // Flag for monthlyAssignments
     allAssignmentsCalled: false,     // Flag for allAssignments
     assignmentType: 'Weekly',
-    school_id: ''
+    school_id: '',
+    processingSubCompleteAssignment: false,
   }
 },
 created() {
@@ -1922,6 +2046,15 @@ computed: {
         return 'All completed Task';
       } else {
         return 'Task for this Week';
+      }
+    },
+    TypeText() {
+      if (this.assignmentType === 'Monthly') {
+        return 'This Month';
+      } else if (this.assignmentType === 'All') {
+        return 'All Assignment';
+      } else {
+        return 'This Week';
       }
     },
 },
@@ -2082,41 +2215,40 @@ copyCompletedSharedAssignments() {
     }
   },
   async overdueNext($state) {
-    if (this.overduetempOffset != this.overdueoffset || this.overduereloadNext) {
-      this.overduereloadNext = false;
-      this.overduetempOffset = this.overdueoffset;
-      this.overdueAssignmentList = [];
-      await this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Overdue' });
-      if (this.overdueoffset == 0) {
-        await this.mapOverdues();
-      }
-      this.overdueoffset = this.overdueoffset + this.overduelimit;
-      this.assignmentMaterials = [];
-      // await this.mapAssignments();
-      // await this.mapSharedAssignments();
-      if (this.overdueAssignmentList.length > 0) {
-        this.overdueAssignments.push(...this.overdueAssignmentList);
-        $state.loaded();
-      } else {
-        $state.complete();
-      }
+  if (this.overduetempOffset != this.overdueoffset || this.overduereloadNext) {
+    this.overduereloadNext = false;
+    this.overduetempOffset = this.overdueoffset;
+    this.overdueAssignmentList = [];
+    await this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Overdue' });
+    if (this.overdueoffset == 0) {
+      await this.mapOverdues();
     }
-  },
-  mapOverdues() {
-    if (this.overdues && this.overdues.length > 0) {
-      this.overdues.forEach((e) => {
-        let asst = this.mapData(e);
-        this.overdueAssignmentList.push(asst);
-      });
+    this.overdueoffset = this.overdueoffset + this.overduelimit;
+    this.assignmentMaterials = [];
+    // await this.mapAssignments();
+    // await this.mapSharedAssignments();
+    if (this.overdueAssignmentList.length > 0) {
+      this.overdueAssignments.push(...this.overdueAssignmentList);
+      $state.loaded();
+    } else {
+      $state.complete();
     }
-
-    if (this.sharedOverdues && this.sharedOverdues.length > 0) {
-      this.sharedOverdues.forEach((e) => {
-        let asst = this.mapSharedData(e);
-        this.overdueAssignmentList.push(asst);
-      });
-    }
-  },
+  }
+},
+mapOverdues() {
+  if (this.overdues && this.overdues.length > 0) {
+    this.overdues.forEach((e) => {
+      let asst = this.mapData(e);
+      this.overdueAssignmentList.push(asst);
+    });
+  }
+  if (this.sharedOverdues && this.sharedOverdues.length > 0) {
+    this.sharedOverdues.forEach((e) => {
+      let asst = this.mapSharedData(e);
+      this.overdueAssignmentList.push(asst);
+    });
+  }
+},
   mapData(e) {
     if (e) {
       let item = {};
@@ -3062,6 +3194,49 @@ mapPeerInvited(data) {
     confirmComplete() {
       this.completeAsstId = this.assignmentId;
       $("#completeConfirm").modal({ backdrop: true });
+    },
+    confirmSubTaskComplete(event, id, asstId, status) {
+      this.completeAsstId = asstId;
+      this.completeSubTaskId = id;
+      if (status == "Completed") {
+        this.undoSubtaskId = id;
+        $("#undoSubTaskConfirm").modal({ backdrop: true });
+      } else {
+        $("#completeSubTaskConfirm").modal({ backdrop: true });
+      }
+      event.preventDefault();
+      event.stopPropagation();
+    },
+    async undoCompleteSubTask() {
+      this.completeSubTask(false);
+    },
+    async completeSubTask(completed = true) {
+      // this.processingSubCompleteAssignment = true;
+      await this.completeTask({
+        task_id: completed ? this.completeSubTaskId : this.undoSubtaskId,
+        status: completed ? "Completed" : "Pending",
+      });
+      this.processingSubCompleteAssignment = false;
+      $(".modal").modal("hide");
+      $(".modal-backdrop").remove();
+      // await this.GetMonthlyPlanner();
+
+      if (this.successMessage != "") {
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
+        this.completeSubTaskId = 0;
+        this.completeAsstId = 0;
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        // await this.getAssignmentsList();
+        // await this.getAllCompletedAssignments();
+      }
+      // this.GetMonthlyPlanner();
     },
 },
 }
