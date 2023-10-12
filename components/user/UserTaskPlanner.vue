@@ -2638,10 +2638,6 @@ EditAssignmentModal() {
       this.additionalMaterial = true;
     },
     closePopup() {
-      this.offset = 0;
-      this.tempAssts = [];
-      this.reloadNext = true;
-      this.reloadCount += 1;
       this.deletedSubTasksArray = [];
       this.openAssignment = false;
       $('#editAssignment').modal('hide');
@@ -2678,7 +2674,7 @@ EditAssignmentModal() {
       }
       let subTaskLists = [];
       this.subTasksList.forEach((e) => {
-        subTaskLists.push({ title: e.title, task_status: e.task_status });
+        subTaskLists.push(e.title);
       });
 
       await this.addAssignment({
@@ -2796,7 +2792,7 @@ EditAssignmentModal() {
       }
       let subTaskLists = [];
       this.subTasksList.forEach((e) => {
-        subTaskLists.push({ title: e.title, task_status: e.task_status });
+        subTaskLists.push(e.title);
       });
       await this.updateAssignment({
         school_id: localStorage.getItem("school_id"),
@@ -3091,8 +3087,8 @@ mapPeerInvited(data) {
     },
     removePeerConfirm(id, event) {
       event.stopPropagation();
-      $("#removePeerConfirmation").modal({ backdrop: true });
       this.removePeerId = id;
+      this.removePeer();
     },
     removePeer() {
       this.removedPeerList.push(this.removePeerId);
@@ -3107,6 +3103,11 @@ mapPeerInvited(data) {
       );
       if (index1 > -1) {
         this.peerSelected.splice(index1, 1); // 2nd parameter means remove one item only
+        this.$toast.open({
+          message: "Removed Peer Successfully",
+          type: "warning",
+          duration: 5000,
+        });
       }
     },
     onFileChange(e) {
@@ -3148,7 +3149,6 @@ mapPeerInvited(data) {
         this.overduereloadNext = true;
         this.overduereloadCount +=1;
         this.openAssignment = false;
-        // this.getAllCompletedAssignments();
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -3157,7 +3157,6 @@ mapPeerInvited(data) {
 
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
-        // await this.GetMonthlyPlanner();
       }
     },
     onChooseMultiple(id) {
@@ -3250,7 +3249,6 @@ mapPeerInvited(data) {
       this.tempAssts = [];
       this.reloadNext = true;
       this.reloadCount += 1;
-      // this.GetAssignment();
     },
     onChangeText(){
       if(this.submittedAsst && this.textSubmit){
@@ -3288,7 +3286,6 @@ mapPeerInvited(data) {
       this.processingSubCompleteAssignment = false;
       $(".modal").modal("hide");
       $(".modal-backdrop").remove();
-      // await this.GetMonthlyPlanner();
 
       if (this.successMessage != "") {
         this.doingoffset = 0;
