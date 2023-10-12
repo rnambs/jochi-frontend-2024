@@ -10,7 +10,7 @@
 }
 </style>
 <template>
-  <div class="main-section">
+  <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
     <!-- Study Page -->
     <!-- session  -->
     <div
@@ -1383,6 +1383,8 @@ import * as animationData from "~/assets/animation.json";
 import { mapState, mapActions } from "vuex";
 import VueTimepicker from "vue2-timepicker";
 import { NavigationGuardNext, Route } from "vue-router";
+import { eventBus } from "~/plugins/eventbus.js";
+
 export default {
   name: "ClubEditForm",
   components: {
@@ -1403,6 +1405,7 @@ export default {
 
   data() {
     return {
+      accordionOpened:false,
       Subject: "",
       SubjectName: "",
       studyTypes: "",
@@ -1501,7 +1504,11 @@ export default {
       startSessionNowClicked:false
     };
   },
-
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
+  },
   beforeMount() {
     var self = this;
     window.onbeforeunload = function (e) {

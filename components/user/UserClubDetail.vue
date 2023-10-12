@@ -6,7 +6,7 @@
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     />
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- tab for club detail -->
       <div
         class="bg-global border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column"
@@ -174,6 +174,7 @@ import { mapState, mapActions } from "vuex";
 import Multiselect from "vue-multiselect";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
+import { eventBus } from "~/plugins/eventbus.js";
 var SelectValue = "";
 var list_data = [];
 
@@ -195,6 +196,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       list_data: [],
       value: "",
       loading: false,
@@ -207,6 +209,11 @@ export default {
       schoolAccess: "",
       startTime: null,
     };
+  },
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);

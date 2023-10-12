@@ -6,7 +6,7 @@
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     />
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- tab for club info -->
       <div
         class="bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
@@ -569,6 +569,7 @@ import { mapState, mapActions } from "vuex";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import Multiselect from "vue-multiselect";
+import { eventBus } from "~/plugins/eventbus.js";
 var headingName = "";
 var clubId = "";
 var list_data = [];
@@ -581,6 +582,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       value: [],
       valueMeeting: "",
       name: "",
@@ -613,7 +615,11 @@ export default {
       initialLoading: false,
     };
   },
-
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
+  },
   mounted() {
     this.initialLoading = false;
     this.userType = localStorage.getItem("user_type");

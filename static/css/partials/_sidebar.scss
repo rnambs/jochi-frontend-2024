@@ -104,6 +104,9 @@
                     // Sub menu items
                     &.sub-menu{
                         .nav-item{
+                            animation: 0.5s fadeIn;
+                            animation-fill-mode: forwards;
+                            visibility: hidden;
                             .nav-link{
                                 font-size: 1rem;
                                 line-height: 1.5rem;
@@ -131,5 +134,15 @@
                 }
             }
         }
+    }
+}
+
+// Animations
+@keyframes fadeIn {
+    99% {
+        visibility: hidden;
+    }
+    100% {
+      visibility: visible;
     }
 }

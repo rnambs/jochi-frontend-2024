@@ -7,7 +7,7 @@
       class="lottie-loader"
     />
 
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- tab section for View all meeting -->
       <div
         class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column"
@@ -561,6 +561,7 @@ import Multiselect from "vue-multiselect";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import { required } from "vuelidate/lib/validators";
+import { eventBus } from "~/plugins/eventbus.js";
 
 var slot_date = [];
 var Peerarray = [];
@@ -587,6 +588,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       value: "",
       date: "",
       slot_date: [],
@@ -638,6 +640,11 @@ export default {
     detailMeetingDesc: { required },
     detailConversationType: { required },
     detailVenue: { required },
+  },
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);
