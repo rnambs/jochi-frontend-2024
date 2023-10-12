@@ -776,46 +776,64 @@
                           <div
                                   class="custom-overflow pr-2 mr--2 d-flex flex-column"
                                 >
-                                  <div
-                                  @click="
-                                            confirmSubTaskComplete(
-                                              $event,
-                                              subTask.id,
-                                              // item.id,
-                                              subTask.task_status
-                                            )
-                                          "
+                                 <div v-if="isAddAssignment === false">
+                                   <div
                                     v-for="subTask in subTasksList"
                                     :key="subTask.id"
-                                  >
+                                    >
+                                    <div
+                                      class="card card-transparent show-icon p-1 mb-1"
+                                    >
+                                      <div
+                                      
+                                        class="d-flex align-items-center justify-content-between"
+                                      >
+                                      <div class="d-flex align-items-center p-1">
+                                        <input
+                                       @click="
+                                              confirmSubTaskComplete(
+                                                $event,
+                                                subTask.id,
+                                                // item.id,
+                                                subTask.task_status
+                                              )
+                                            "
+                                              :id="subTask.title"
+                                              v-model="subTask.title"
+                                              :value="
+                                                subTask.task_status == 'Completed'
+                                                  ? subTask.title
+                                                  : ''
+                                              "
+                                              type="radio"
+                                              class="mr-2 cursor-pointer"
+                                            />
+                                            <span>{{ subTask.title }}</span>
+                                      </div>
+                                        <span
+                                          v-if="
+                                            subTask.task_status != 'Completed'
+                                          "
+                                          @click="deleteSubTask(subTask)"
+                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                                          ><i class="fas fa-trash-alt"></i
+                                        ></span>
+                                      </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                 <div v-else>
+                                  <div
+                                    v-for="subTask in subTasksList"
+                                    :key="subTask.id"
+                                    >
                                     <div
                                       class="card card-transparent show-icon p-1 mb-1"
                                     >
                                       <div
                                         class="d-flex align-items-center justify-content-between"
                                       >
-                                      <input
-                                            :id="subTask.title"
-                                            v-model="subTask.title"
-                                            :value="
-                                              subTask.task_status == 'Completed'
-                                                ? subTask.title
-                                                : ''
-                                            "
-                                            type="radio"
-                                            class="mr-2 "
-                                            :class="{
-                                              selected:
-                                                subTask.task_status ==
-                                                'Completed',
-                                            }"
-                                          />
-                                          <label
-                                              for=""
-                                              class="mb-0 text-truncate cursor-pointer"
-                                              >{{ subTask.title }}</label
-                                            >
-                                        <p
+                                          <p
                                           class="mb-0 color-secondary text-16 font-regular word-break pr-3"
                                         >
                                           <span
@@ -839,6 +857,7 @@
                                         ></span>
                                       </div>
                                     </div>
+                                   </div>
                                   </div>
                                 </div>
 
@@ -1178,7 +1197,53 @@
                           <div
                                   class="custom-overflow pr-2 mr--2 d-flex flex-column"
                                 >
-                                  <div
+                                <div v-if="isAddAssignment === false">
+                                   <div
+                                    v-for="subTask in subTasksList"
+                                    :key="subTask.id"
+                                    >
+                                    <div
+                                      class="card card-transparent show-icon p-1 mb-1"
+                                    >
+                                      <div
+                                      
+                                        class="d-flex align-items-center justify-content-between"
+                                      >
+                                      <div class="d-flex align-items-center p-1">
+                                        <input
+                                       @click="
+                                              confirmSubTaskComplete(
+                                                $event,
+                                                subTask.id,
+                                                // item.id,
+                                                subTask.task_status
+                                              )
+                                            "
+                                              :id="subTask.title"
+                                              v-model="subTask.title"
+                                              :value="
+                                                subTask.task_status == 'Completed'
+                                                  ? subTask.title
+                                                  : ''
+                                              "
+                                              type="radio"
+                                              class="mr-2 cursor-pointer"
+                                            />
+                                            <span>{{ subTask.title }}</span>
+                                      </div>
+                                        <span
+                                          v-if="
+                                            subTask.task_status != 'Completed'
+                                          "
+                                          @click="deleteSubTask(subTask)"
+                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                                          ><i class="fas fa-trash-alt"></i
+                                        ></span>
+                                      </div>
+                                    </div>
+                                   </div>
+                                  </div>
+                                  <div v-else
                                     v-for="subTask in subTasksList"
                                     :key="subTask.id"
                                   >
@@ -2426,15 +2491,19 @@ if (this.successMessage != "") {
   this.doingoffset = 0;
   this.doneoffset = 0;
   this.offset = 0;
+  this.overdueoffset = 0;
   this.tempAssts = [];
   this.doingAssignments = [];
   this.doneAssignmentsList = [];
+  this.overdueAssignments = [];
   this.doingreloadNext = true;
   this.reloadNext = true;
   this.donereloadNext = true;
+  this.overduereloadNext = true;
   this.reloadCount += 1;
   this.doingreloadCount += 1;
   this.donereloadCount +=1;
+  this.overduereloadCount +=1;
   this.completeAsstId = 0;
   this.$toast.open({
           message: this.successMessage,
@@ -2609,7 +2678,7 @@ EditAssignmentModal() {
       }
       let subTaskLists = [];
       this.subTasksList.forEach((e) => {
-        subTaskLists.push(e.title);
+        subTaskLists.push({ title: e.title, task_status: e.task_status });
       });
 
       await this.addAssignment({
@@ -2727,7 +2796,7 @@ EditAssignmentModal() {
       }
       let subTaskLists = [];
       this.subTasksList.forEach((e) => {
-        subTaskLists.push(e.title);
+        subTaskLists.push({ title: e.title, task_status: e.task_status });
       });
       await this.updateAssignment({
         school_id: localStorage.getItem("school_id"),
@@ -3195,14 +3264,14 @@ mapPeerInvited(data) {
       this.completeAsstId = this.assignmentId;
       $("#completeConfirm").modal({ backdrop: true });
     },
-    confirmSubTaskComplete(event, id, asstId, status) {
+    confirmSubTaskComplete(event, id, status, asstId) {
       this.completeAsstId = asstId;
       this.completeSubTaskId = id;
       if (status == "Completed") {
         this.undoSubtaskId = id;
-        $("#undoSubTaskConfirm").modal({ backdrop: true });
+        this.undoCompleteSubTask();
       } else {
-        $("#completeSubTaskConfirm").modal({ backdrop: true });
+        this.completeSubTask();
       }
       event.preventDefault();
       event.stopPropagation();
@@ -3222,10 +3291,22 @@ mapPeerInvited(data) {
       // await this.GetMonthlyPlanner();
 
       if (this.successMessage != "") {
-        this.offset = 0;
-        this.tempAssts = [];
-        this.reloadNext = true;
-        this.reloadCount += 1;
+        this.doingoffset = 0;
+  this.doneoffset = 0;
+  this.offset = 0;
+  this.overdueoffset = 0;
+  this.tempAssts = [];
+  this.doingAssignments = [];
+  this.doneAssignmentsList = [];
+  this.overdueAssignments = [];
+  this.doingreloadNext = true;
+  this.reloadNext = true;
+  this.donereloadNext = true;
+  this.overduereloadNext = true;
+  this.reloadCount += 1;
+  this.doingreloadCount += 1;
+  this.donereloadCount +=1;
+  this.overduereloadCount +=1;
         this.completeSubTaskId = 0;
         this.completeAsstId = 0;
         this.$toast.open({
@@ -3233,10 +3314,7 @@ mapPeerInvited(data) {
           type: this.SuccessType,
           duration: 5000,
         });
-        // await this.getAssignmentsList();
-        // await this.getAllCompletedAssignments();
       }
-      // this.GetMonthlyPlanner();
     },
 },
 }
