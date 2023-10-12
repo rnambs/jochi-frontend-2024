@@ -788,7 +788,7 @@
                                       
                                         class="d-flex align-items-center justify-content-between"
                                       >
-                                      <div class="d-flex align-items-center p-1">
+                                      <div class="d-flex align-items-center p-1 form-group checkbox">
                                         <input
                                        @click="
                                               confirmSubTaskComplete(
@@ -805,10 +805,10 @@
                                                   ? subTask.title
                                                   : ''
                                               "
-                                              type="radio"
+                                              type="checkbox"
                                               class="mr-2 cursor-pointer"
                                             />
-                                            <span>{{ subTask.title }}</span>
+                                            <label>{{ subTask.title }}</label>
                                       </div>
                                         <span
                                           v-if="
@@ -1209,7 +1209,7 @@
                                       
                                         class="d-flex align-items-center justify-content-between"
                                       >
-                                      <div class="d-flex align-items-center p-1">
+                                      <div class="d-flex align-items-center p-1 form-group checkbox">
                                         <input
                                        @click="
                                               confirmSubTaskComplete(
@@ -1226,7 +1226,7 @@
                                                   ? subTask.title
                                                   : ''
                                               "
-                                              type="radio"
+                                              type="checkbox"
                                               class="mr-2 cursor-pointer"
                                             />
                                             <span>{{ subTask.title }}</span>

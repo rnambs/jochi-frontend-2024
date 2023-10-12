@@ -1647,6 +1647,51 @@ h1, h2, h3, h4, h5, h6 {
   width: 20px;
 }
 
+.form-group.checkbox {
+  display: block;
+  margin-bottom: 0px;
+}
+.form-group.checkbox input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+.form-group.checkbox label {
+  position: relative;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+.form-group.checkbox label:before {
+  content: "";
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 2px solid #5534A5;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 5px;
+  border-radius: 8px;
+}
+.form-group.checkbox input:checked + label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 9px;
+  width: 5px;
+  height: 12px;
+  border: solid #5534A5;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
 .navbar .navbar-brand {
   width: 120px;
   height: 70px;
