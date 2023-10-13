@@ -790,20 +790,13 @@
                                       >
                                       <div class="p-1 form-group checkbox">
                                         <input
-                                         @click="
-                                              confirmSubTaskComplete(
-                                                $event,
-                                                subTask.id,
-                                                // item.id,
-                                                subTask.task_status
-                                              )
-                                            "
-                                              :id="'checkbox-' + subTask.id"
-                                              :checked="subTask.task_status == 'Completed'"
-                                              type="checkbox"
-                                              class="mr-2 cursor-pointer"
-                                            />
-                                            <label :for="'checkbox-' + subTask.id">{{ subTask.title }}</label>
+    @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status)"
+    :id="subTask.id"
+    :value="subTask.task_status == 'Completed' ? 'Completed' : ''"
+    type="checkbox"
+    class="mr-2 cursor-pointer"
+  />
+  <label :for="subTask.id">{{ subTask.title }}</label>
                                       </div>
                                         <span
                                           v-if="
@@ -2690,6 +2683,7 @@ EditAssignmentModal() {
       this.deletedSubTasksArray = [];
       this.openAssignment = false;
       $('#editAssignment').modal('hide');
+      this.resetAssignment();
     },
     async AddAssignment() {
       this.submitted = true;
@@ -3320,16 +3314,14 @@ mapPeerInvited(data) {
       this.completeAsstId = this.assignmentId;
       $("#completeConfirm").modal({ backdrop: true });
     },
-    confirmSubTaskComplete(event, id, status, asstId) {
+    confirmSubTaskComplete(event, id, status, asstId,) {
       this.completeAsstId = asstId;
       this.completeSubTaskId = id;
       if (status == "Completed") {
         this.undoSubtaskId = id;
-        subTask.task_status = '';
         this.undoCompleteSubTask();
       } else {
         this.completeSubTask();
-        subTask.task_status = 'Completed';
       }
       event.preventDefault();
       event.stopPropagation();
