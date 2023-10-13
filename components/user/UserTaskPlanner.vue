@@ -111,7 +111,7 @@
                                           </div>
                                           <div class="clickable" @click="onCardClick(item)">
                                           <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                                          <p class="text-10 color-gray mb-2">{{ item.assignment_description }}</p>
+                                          <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
                                             <div class="d-flex align-items-center justify-content-between">
                                               <div class="d-flex">
                                         <div  v-for="(peer, index) in item.peers"
@@ -215,7 +215,7 @@
                                       </div>
                                       <div class="clickable" @click="onCardClick(item)">
                                       <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                                      <p class="text-10 color-gray mb-2">{{ item.assignment_description }}</p>
+                                      <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
                                       <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex">
                                       <div  v-for="(peer, index) in item.peers"
@@ -316,7 +316,7 @@
                                           </div> -->
                                       </div>
                                       <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
-                                      <p class="text-10 color-gray mb-2" v-html="item.assignment_description"></p>
+                                      <p class="text-10 color-gray mb-2 task-description" v-html="item.assignment_description"></p>
                                       <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex">
                                       <div  v-for="(peer, index) in item.peers"
@@ -418,7 +418,7 @@
                                       </div>
                                       <div class="clickable" @click="onCardClick(item)">
                                       <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                                      <p class="text-10 color-gray mb-2">{{ item.assignment_description }}</p>
+                                      <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
                                       <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex">
                                       <div  v-for="(peer, index) in item.peers"
