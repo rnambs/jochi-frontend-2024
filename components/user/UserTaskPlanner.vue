@@ -60,9 +60,8 @@
                                   <span class="border-pb-1 bg-task-violet w-100 d-flex mb-3"></span>
                                   </div>
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
-                                    <div v-for="(item, index) in doingAssignments"
-                              :key="item.id">
-                              <drag :transfer-data="{ item }">
+                                    <div v-for="(item, index) in doingAssignments" :key="item.id">
+                                      <drag :transfer-data="{ item, source: 'doingAssignments' }">
                                       <div 
                                       class="card card-primary p-3 mb-3">
                                           <div class="d-flex align-items-center justify-content-between mb-2">
@@ -272,7 +271,8 @@
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
                                   <div  v-for="item in doneAssignmentsList"
                           :key="item.id">
-                          <drag :transfer-data="{ item }">
+                          <drag :transfer-data="{ item, source: 'doneAssignments' }">
+                          
                             <div 
                                       class="card card-primary p-3 mb-3">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
@@ -370,7 +370,6 @@
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
                                   <div  v-for="item in overdueAssignments"
                           :key="item.id">
-                          <drag :transfer-data="{ item }">
                             <div  
                                       class="card card-primary p-3 mb-3">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
@@ -778,19 +777,19 @@
                                 >
                                  <div v-if="isAddAssignment === false">
                                    <div
-                                    v-for="subTask in subTasksList"
-                                    :key="subTask.id"
-                                    >
-                                    <div
+                                     v-for="subTask in subTasksList"
+                                     :key="subTask.id"
+                                     >
+                                     <div
                                       class="card card-transparent show-icon p-1 mb-1"
-                                    >
+                                     >
                                       <div
                                       
                                         class="d-flex align-items-center justify-content-between"
                                       >
-                                      <div class="d-flex align-items-center p-1 form-group checkbox">
+                                      <div class="p-1 form-group checkbox">
                                         <input
-                                       @click="
+                                         @click="
                                               confirmSubTaskComplete(
                                                 $event,
                                                 subTask.id,
@@ -798,17 +797,12 @@
                                                 subTask.task_status
                                               )
                                             "
-                                              :id="subTask.title"
-                                              v-model="subTask.title"
-                                              :value="
-                                                subTask.task_status == 'Completed'
-                                                  ? subTask.title
-                                                  : ''
-                                              "
+                                              :id="'checkbox-' + subTask.id"
+                                              :checked="subTask.task_status == 'Completed'"
                                               type="checkbox"
                                               class="mr-2 cursor-pointer"
                                             />
-                                            <label>{{ subTask.title }}</label>
+                                            <label :for="'checkbox-' + subTask.id">{{ subTask.title }}</label>
                                       </div>
                                         <span
                                           v-if="
@@ -1209,7 +1203,7 @@
                                       
                                         class="d-flex align-items-center justify-content-between"
                                       >
-                                      <div class="d-flex align-items-center p-1 form-group checkbox">
+                                      <div class="p-1 form-group checkbox">
                                         <input
                                        @click="
                                               confirmSubTaskComplete(
@@ -1229,7 +1223,7 @@
                                               type="checkbox"
                                               class="mr-2 cursor-pointer"
                                             />
-                                            <span>{{ subTask.title }}</span>
+                                            <label :for="subTask.title">{{ subTask.title }}</label>
                                       </div>
                                         <span
                                           v-if="
@@ -1795,6 +1789,52 @@
           </div>
         </div>
       </div>
+      <div
+        class="modal fade"
+        id="undoAssignmentConfirmationoverdue"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="undoAssignmentConfirmationModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered add-assmt"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header pb-1">
+              <h4
+                class="modal-title"
+                id="undoAssignmentConfirmationModalLongTitle"
+              >
+              Re-Open Assignment
+              </h4>
+            </div>
+            <div class="modal-body px-3">
+              <p class="mb-0">
+                This action will mark this assignment as incomplete again
+              </p>
+            </div>
+            <div class="modal-footer justify-content-end border-top-0">
+              <button
+                type="button"
+                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                data-dismiss="modal"
+                type="button"
+                class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+                @click="doingAssignment()"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Sub task undo confirmation  -->
       <div
         class="modal fade"
@@ -2015,6 +2055,7 @@ data() {
     assignmentType: 'Weekly',
     school_id: '',
     processingSubCompleteAssignment: false,
+    sourceassignment: '',
   }
 },
 created() {
@@ -2458,18 +2499,19 @@ mapOverdues() {
       }
     },
     confirmUndo(data) {
+      const { item, source } = data;
       let assignment = data.item;
     this.undoAsstId = assignment.id;
+    if (source === 'doingAssignments') {
+      this.sourceassignment = source;
+      this.undoAsstComplete();
+    } else {
       $("#undoAssignmentConfirmation").modal({ backdrop: true });
+    }  
     },
     undoAsstComplete() {
-      this.completeAssignment(false);
+      this.completeAssignment(false,);
     },
-  // confirmUndo(data, event) {
-  //   let assignment = data.item;
-  //   this.undoAsstId = assignment.id;
-  //   this.completeAssignment(false);
-  // },
   handleDrop(data, event) {
 let assignment = data.item;
 this.completeAsstId = assignment.id;
@@ -2505,24 +2547,30 @@ if (this.successMessage != "") {
   this.donereloadCount +=1;
   this.overduereloadCount +=1;
   this.completeAsstId = 0;
-  this.$toast.open({
-          message: this.successMessage,
-          type: this.SuccessType,
-          duration: 5000,
-        });
+  if (this.sourceassignment !== 'doingAssignments') {
+      this.$toast.open({
+        message: this.successMessage,
+        type: this.SuccessType,
+        duration: 5000,
+      });
+    }
         this.openAssignment = false;
-
+        this.sourceassignment = '',
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
 }
 },
 doingDrop(data, event) {
+  const { item, source } = data;
 let assignment = data.item;
 this.completeAsstId = assignment.id;
 this.assignmentId = assignment.id;
 this.schoologyAssignment = assignment.schoologyAssignment;
 this.submissionId = assignment.submission_id;
-this.doingAssignment();
+if (source === 'doneAssignments') {
+      this.sourceassignment = source;
+      $("#undoAssignmentConfirmationoverdue").modal({ backdrop: true });
+    }
 },
 async doingAssignment() {
 this.processingCompleteAssignment = true;
@@ -2924,6 +2972,7 @@ mapPeerInvited(data) {
     submitAssignment() {
       this.submittedAsst=false;
       this.onResetSubmit();
+      $('#editAssignment').modal('hide');
       $("#submitAssignmentConfirmation").modal({ backdrop: true });
     },
     onResetSubmit(){
@@ -3245,10 +3294,18 @@ mapPeerInvited(data) {
           duration: 5000,
         });
       }
+      this.doneoffset = 0;
       this.offset = 0;
+      this.doingoffset = 0;
+      this.doneAssignmentsList = [];
       this.tempAssts = [];
+      this.doingAssignmentList = [];
+      this.donereloadNext = true;
       this.reloadNext = true;
+      this.doingreloadNext = true;
+      this.donereloadCount +=1;
       this.reloadCount += 1;
+      this.doingreloadCount +=1;
     },
     onChangeText(){
       if(this.submittedAsst && this.textSubmit){
@@ -3267,9 +3324,11 @@ mapPeerInvited(data) {
       this.completeSubTaskId = id;
       if (status == "Completed") {
         this.undoSubtaskId = id;
+        subTask.task_status = '';
         this.undoCompleteSubTask();
       } else {
         this.completeSubTask();
+        subTask.task_status = 'Completed';
       }
       event.preventDefault();
       event.stopPropagation();
@@ -3284,26 +3343,7 @@ mapPeerInvited(data) {
         status: completed ? "Completed" : "Pending",
       });
       this.processingSubCompleteAssignment = false;
-      $(".modal").modal("hide");
-      $(".modal-backdrop").remove();
-
       if (this.successMessage != "") {
-        this.doingoffset = 0;
-  this.doneoffset = 0;
-  this.offset = 0;
-  this.overdueoffset = 0;
-  this.tempAssts = [];
-  this.doingAssignments = [];
-  this.doneAssignmentsList = [];
-  this.overdueAssignments = [];
-  this.doingreloadNext = true;
-  this.reloadNext = true;
-  this.donereloadNext = true;
-  this.overduereloadNext = true;
-  this.reloadCount += 1;
-  this.doingreloadCount += 1;
-  this.donereloadCount +=1;
-  this.overduereloadCount +=1;
         this.completeSubTaskId = 0;
         this.completeAsstId = 0;
         this.$toast.open({
@@ -3313,6 +3353,14 @@ mapPeerInvited(data) {
         });
       }
     },
+    submitAndCompleteAssignment() {
+      $(".modal").modal("hide");
+      $(".modal-backdrop").remove();
+      this.submitAssignment();
+    },
+    handleDrag(item) {
+    // You can perform additional actions with the dragged item if needed
+  }
 },
 }
 </script>
