@@ -175,7 +175,7 @@
                       </span>
                       <h5 class="heading5 text-18 color-primary-dark text-center">No Scheduled Meetings</h5>
                       <p class="text-center">You don't have any upcoming meetings scheduled yet. Start by booking a meeting to stay connected with your classmates and teachers.</p>
-                      <button class="btn btn-primary">Book a Meeting</button>
+                      <nuxt-link to="/teacher-meeting" class="btn btn-primary">Book a Meeting</nuxt-link>
                     </div>
               </div>
             </div>
