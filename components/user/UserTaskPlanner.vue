@@ -47,9 +47,9 @@
                       <div class="row h-100">
                           <div class="col-12 col-sm-6 col-lg-3">
                             <drop
-                        class="drop color-secondary text-16 h-100 d-flex flex-column"
-                        @drop="doingDrop"
-                      >
+                              class="drop color-secondary text-16 h-100 d-flex flex-column"
+                                 @drop="doingDrop"
+                                  >
                               <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
                                 <div class="d-flex flex-column pr-2">
                                   <div class="d-flex align-items-center mb-3">
@@ -788,11 +788,12 @@
                                       
                                         class="d-flex align-items-center justify-content-between"
                                       >
-                                      <div class="p-1 form-group checkbox">
+                                      <div 
+                                      @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)"
+                                      class="p-1 form-group checkbox">
                                         <input
-    @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status)"
     :id="subTask.id"
-    :value="subTask.task_status == 'Completed' ? 'Completed' : ''"
+    :checked="subTask.task_status === 'Completed'"
     type="checkbox"
     class="mr-2 cursor-pointer"
   />
@@ -1197,27 +1198,16 @@
                                       
                                         class="d-flex align-items-center justify-content-between"
                                       >
-                                      <div class="p-1 form-group checkbox">
+                                      <div 
+                                      @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)"
+                                      class="p-1 form-group checkbox">
                                         <input
-                                       @click="
-                                              confirmSubTaskComplete(
-                                                $event,
-                                                subTask.id,
-                                                // item.id,
-                                                subTask.task_status
-                                              )
-                                            "
-                                              :id="subTask.title"
-                                              v-model="subTask.title"
-                                              :value="
-                                                subTask.task_status == 'Completed'
-                                                  ? subTask.title
-                                                  : ''
-                                              "
-                                              type="checkbox"
-                                              class="mr-2 cursor-pointer"
-                                            />
-                                            <label :for="subTask.title">{{ subTask.title }}</label>
+    :id="subTask.id"
+    :checked="subTask.task_status === 'Completed'"
+    type="checkbox"
+    class="mr-2 cursor-pointer"
+  />
+  <label :for="subTask.id">{{ subTask.title }}</label>
                                       </div>
                                         <span
                                           v-if="
@@ -2050,6 +2040,7 @@ data() {
     school_id: '',
     processingSubCompleteAssignment: false,
     sourceassignment: '',
+
   }
 },
 created() {
@@ -2502,7 +2493,7 @@ mapOverdues() {
     } else {
       $("#undoAssignmentConfirmation").modal({ backdrop: true });
     }  
-    },
+  },
     undoAsstComplete() {
       this.completeAssignment(false,);
     },
@@ -2514,7 +2505,7 @@ this.schoologyAssignment = assignment.schoologyAssignment;
 this.submissionId = assignment.submission_id;
 // this.completeAssignment(true);
 $("#completeConfirm").modal({ backdrop: true });
-},
+  },
 async completeAssignment(completed = true) {
 this.processingCompleteAssignment = true;
 await this.completeTask({
@@ -2556,6 +2547,7 @@ if (this.successMessage != "") {
 },
 doingDrop(data, event) {
   const { item, source } = data;
+    this.dragStartedWithinContainer = false;
 let assignment = data.item;
 this.completeAsstId = assignment.id;
 this.assignmentId = assignment.id;
@@ -2564,6 +2556,9 @@ this.submissionId = assignment.submission_id;
 if (source === 'doneAssignments') {
       this.sourceassignment = source;
       $("#undoAssignmentConfirmationoverdue").modal({ backdrop: true });
+    }
+    else{
+      this.doingAssignment();
     }
 },
 async doingAssignment() {
@@ -2587,6 +2582,10 @@ if (this.successMessage != "") {
   this.doneAssignmentsList = [];
   this.donereloadNext = true;
   this.donereloadCount +=1; 
+  this.overdueoffset = 0;
+  this.overdueAssignments = [];
+  this.overduereloadNext = true; 
+  this.overduereloadCount +=1;
   this.completeAsstId = 0;
 }
 },
@@ -3314,13 +3313,16 @@ mapPeerInvited(data) {
       this.completeAsstId = this.assignmentId;
       $("#completeConfirm").modal({ backdrop: true });
     },
-    confirmSubTaskComplete(event, id, status, asstId,) {
-      this.completeAsstId = asstId;
+    
+    confirmSubTaskComplete(event, id, status, subTask) {
+      // this.completeAsstId = asstId;
       this.completeSubTaskId = id;
       if (status == "Completed") {
+        subTask.task_status = ''
         this.undoSubtaskId = id;
         this.undoCompleteSubTask();
       } else {
+        subTask.task_status = 'Completed';
         this.completeSubTask();
       }
       event.preventDefault();
@@ -3336,8 +3338,13 @@ mapPeerInvited(data) {
         status: completed ? "Completed" : "Pending",
       });
       this.processingSubCompleteAssignment = false;
+     
       if (this.successMessage != "") {
+        this.doneoffset = 0;
+        this.doneAssignmentsList = [];
+        this.donereloadNext = true;
         this.completeSubTaskId = 0;
+        this.donereloadCount +=1;
         this.completeAsstId = 0;
         this.$toast.open({
           message: this.successMessage,
