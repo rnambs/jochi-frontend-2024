@@ -370,6 +370,7 @@
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
                                   <div  v-for="item in overdueAssignments"
                           :key="item.id">
+                          <drag :transfer-data="{ item }">
                             <div  
                                       class="card card-primary p-3 mb-3">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
@@ -442,7 +443,7 @@
                                           </div>
                                         </div>
                                   </div>
-                                  </drag>
+                                </drag>
                                   </div>
                                   <client-only>
                           <infinite-loading
