@@ -167,7 +167,7 @@
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
                                   <div v-for="item in tempAssts"
                           :key="item.id">
-                          <drag :transfer-data="{ item }">
+                          <drag :transfer-data="{ item, source: 'todoAssignments' }">
                             <div 
                                       class="card card-primary p-3 mb-3">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
@@ -370,7 +370,7 @@
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
                                   <div  v-for="item in overdueAssignments"
                           :key="item.id">
-                          <drag :transfer-data="{ item }">
+                          <drag :transfer-data="{ item, source: 'overdueAssignments' }">
                             <div  
                                       class="card card-primary p-3 mb-3">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
@@ -2487,24 +2487,29 @@ mapOverdues() {
       const { item, source } = data;
       let assignment = data.item;
     this.undoAsstId = assignment.id;
-    if (source === 'doingAssignments') {
-      this.sourceassignment = source;
-      this.undoAsstComplete();
-    } else {
-      $("#undoAssignmentConfirmation").modal({ backdrop: true });
-    }  
+    if (source === 'doingAssignments' || source === 'overdueAssignments') {
+    this.sourceassignment = source;
+    this.undoAsstComplete();
+  } else if (source !== 'todoAssignments') {
+    // Add a condition to exclude 'todoAssignments'
+    $("#undoAssignmentConfirmation").modal({ backdrop: true });
+  }
   },
     undoAsstComplete() {
       this.completeAssignment(false,);
     },
   handleDrop(data, event) {
+    const { item, source } = data;
 let assignment = data.item;
 this.completeAsstId = assignment.id;
 this.assignmentId = assignment.id;
 this.schoologyAssignment = assignment.schoologyAssignment;
 this.submissionId = assignment.submission_id;
 // this.completeAssignment(true);
-$("#completeConfirm").modal({ backdrop: true });
+if (source !== 'doneAssignments') {
+    // Add a condition to exclude 'doneAssignments'
+    $("#completeConfirm").modal({ backdrop: true });
+  }
   },
 async completeAssignment(completed = true) {
 this.processingCompleteAssignment = true;
@@ -2553,13 +2558,12 @@ this.completeAsstId = assignment.id;
 this.assignmentId = assignment.id;
 this.schoologyAssignment = assignment.schoologyAssignment;
 this.submissionId = assignment.submission_id;
-if (source === 'doneAssignments') {
-      this.sourceassignment = source;
-      $("#undoAssignmentConfirmationoverdue").modal({ backdrop: true });
-    }
-    else{
-      this.doingAssignment();
-    }
+  if (source === 'doneAssignments') {
+    this.sourceassignment = source;
+    $("#undoAssignmentConfirmationoverdue").modal({ backdrop: true });
+  } else if (source !== 'doingAssignments') {
+    this.doingAssignment();
+  }
 },
 async doingAssignment() {
 this.processingCompleteAssignment = true;
