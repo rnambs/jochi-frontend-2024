@@ -2043,7 +2043,9 @@ data() {
     sourceassignment: '',
     typeOfAssignment:'',
     doingItem: {},
-    doingType:''
+    doingType:'',
+    todoItem: {},
+    todoType:''
   }
 },
 created() {
@@ -2497,6 +2499,8 @@ mapOverdues() {
       const { item, source } = data;
       let assignment = data.item;
     this.undoAsstId = assignment.id;
+    this.todoItem = data.item;
+    this.todoType = data.sourceType;
     if (source === 'doingAssignments' || source === 'overdueAssignments') {
     this.sourceassignment = source;
     this.undoAsstComplete(data);
@@ -2507,7 +2511,7 @@ mapOverdues() {
   },
     undoAsstComplete(data) {
       this.completeAssignment(false);
-      this.removeItemFromList(data.sourceType, data.item)
+      this.removeItemFromList(this.todoType, this.todoItem)
     },
   handleDrop(data, event) {
     const { item, source } = data;
