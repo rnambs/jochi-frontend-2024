@@ -2517,7 +2517,7 @@ mapOverdues() {
     this.schoologyAssignment = assignment.schoologyAssignment;
     this.submissionId = assignment.submission_id;
     if (source !== 'doneAssignments') {
-      this.completeAssignment(true);
+      // this.completeAssignment(true);
       this.removeItemFromList(data.sourceType, data.item)
       this.sourceassignment = source;
         // Add a condition to exclude 'doneAssignments'
@@ -2565,17 +2565,16 @@ mapOverdues() {
       }
     },
     async doingAssignment() {
-    this.removeItemFromList(this.doingType, this.doingItem)
     this.processingCompleteAssignment = true;
     await this.completeTask({
       assignment_id: this.assignmentId,
       status: 'Doing',
     });
     this.processingCompleteAssignment = false;
+    this.removeItemFromList(this.doingType, this.doingItem)
     if (this.successMessage != "") {
       // this.openAssignment = false;
       this.sourceassignment = '',
-      console.log(this.sourceassignment);
       this.loadUpdatedData('Doing')
       this.completeAsstId = 0;
     }
@@ -3346,7 +3345,7 @@ mapOverdues() {
     handleDrag(item) {
     // You can perform additional actions with the dragged item if needed
   },
-  loadUpdatedData(type=''){
+  loadUpdatedData(type){
     const assignmentType = type??this.typeOfAssignment;
     switch (assignmentType) {
       case "Pending": {
@@ -3379,6 +3378,10 @@ mapOverdues() {
         this.overdueAssignments = [];
         this.overduereloadNext = true;
         this.overduereloadCount +=1; 
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
         break;
       }
 
