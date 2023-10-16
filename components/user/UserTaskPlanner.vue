@@ -2346,7 +2346,10 @@ mapOverdues() {
     if (e) {
       let item = {};
       this.assignmentMaterials = [];
-      item.assignment_description = e.assignment_description;
+      const parser = new DOMParser();
+      const doc = parser.parseFromString( e.assignment_description, 'text/html');
+      const textContent = doc.body.textContent;
+      item.assignment_description = textContent;
       if (e.assignment_materials && e.assignment_materials.length > 0) {
         e.assignment_materials.forEach((m) => {
           let data = {};
@@ -2387,7 +2390,10 @@ mapOverdues() {
     let item = {};
     this.assignmentMaterials = [];
     if (e && e.assignments) {
-      item.assignment_description = e.assignments.assignment_description;
+      const parser = new DOMParser();
+      const doc = parser.parseFromString( e.assignments.assignment_description, 'text/html');
+      const textContent = doc.body.textContent;
+      item.assignment_description = textContent;
       if (
         e.assignments?.assignment_materials &&
         e.assignments?.assignment_materials.length > 0
@@ -3304,7 +3310,7 @@ mapPeerInvited(data) {
       this.doingoffset = 0;
       this.doneAssignmentsList = [];
       this.tempAssts = [];
-      this.doingAssignmentList = [];
+      this.doingAssignments = [];
       this.donereloadNext = true;
       this.reloadNext = true;
       this.doingreloadNext = true;
