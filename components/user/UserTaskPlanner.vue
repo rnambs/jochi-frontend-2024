@@ -2509,6 +2509,7 @@ this.schoologyAssignment = assignment.schoologyAssignment;
 this.submissionId = assignment.submission_id;
 // this.completeAssignment(true);
 if (source !== 'doneAssignments') {
+  this.sourceassignment = source;
     // Add a condition to exclude 'doneAssignments'
     $("#completeConfirm").modal({ backdrop: true });
   }
@@ -2539,7 +2540,7 @@ if (this.successMessage != "") {
   this.donereloadCount +=1;
   this.overduereloadCount +=1;
   this.completeAsstId = 0;
-  if (this.sourceassignment !== 'doingAssignments') {
+  if (this.sourceassignment == 'doneAssignments') {
       this.$toast.open({
         message: this.successMessage,
         type: this.SuccessType,
@@ -2575,6 +2576,8 @@ await this.completeTask({
 this.processingCompleteAssignment = false;
 if (this.successMessage != "") {
   // this.openAssignment = false;
+  this.sourceassignment = '',
+  console.log(this.sourceassignment);
   this.doingoffset = 0;
   this.doingAssignments = [];
   this.doingreloadNext = true;
