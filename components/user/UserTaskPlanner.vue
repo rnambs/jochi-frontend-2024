@@ -498,7 +498,7 @@
                                     v-if="schoologyAssignment == '1'"
                                     type="text"
                                     class="form-control"
-                                    id="message-text"
+                                    
                                     v-model="gg4lSubject"
                                     maxlength="60"
                                     placeholder="Enter assignment name"
@@ -1953,6 +1953,7 @@ head() {
     ],
   };
 },
+
 data() {
   return {
       accordionOpened:false,
@@ -2104,6 +2105,7 @@ mounted(){
       );
     });
   this.getSubjectsList();
+  this.checkValidTime();
 },
 computed: {
   ...mapState("teacherMeeting",{
@@ -2552,7 +2554,6 @@ if (this.successMessage != "") {
 },
 doingDrop(data, event) {
   const { item, source } = data;
-    this.dragStartedWithinContainer = false;
 let assignment = data.item;
 this.completeAsstId = assignment.id;
 this.assignmentId = assignment.id;
@@ -2596,7 +2597,11 @@ if (this.successMessage != "") {
 EditAssignmentModal() {
       this.openAssignment = true;
       this.resetAssignment();
-      $("#editAssignment").modal({ backdrop: true });
+      // $("#editAssignment").modal({ backdrop: true });
+      $('#editAssignment').modal({
+    backdrop: 'static',
+    keyboard: false
+  });
   },
   async resetAssignment() {
       this.choosenAssignments = [];
@@ -2631,7 +2636,6 @@ EditAssignmentModal() {
       this.invalidSubmitText=false;
       this.additionalMaterial = false;
       this.assignmentId='';
-
       // $('input[name="daterange"]').val("");
       fromDate = "";
       // $(".dropdown-select").text("Select priority");
