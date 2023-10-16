@@ -61,7 +61,7 @@
                                   </div>
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
                                     <div v-for="(item, index) in doingAssignments" :key="item.id">
-                                      <drag :transfer-data="{ item, source: 'doingAssignments' }">
+                                      <drag :transfer-data="{ item, source: 'doingAssignments', sourceType:'Doing' }">
                                       <div 
                                       class="card card-primary p-3 mb-3">
                                           <div class="d-flex align-items-center justify-content-between mb-2">
@@ -99,7 +99,7 @@
                                                   </div>
                                                   <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                       aria-labelledby="dLabel">
-                                                      <li @click="onCardClick(item)" class="item p-2">
+                                                      <li @click="onCardClick(item, 'Doing')" class="item p-2">
                                                         Edit
                                                       </li>
                                                       <div  v-if="item.shared_users_id != user_id">
@@ -108,7 +108,7 @@
                                                   </ul>
                                               </div>
                                           </div>
-                                          <div class="clickable" @click="onCardClick(item)">
+                                          <div class="clickable" @click="onCardClick(item, 'Doing')">
                                           <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
                                           <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
                                             <div class="d-flex align-items-center justify-content-between">
@@ -167,7 +167,7 @@
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
                                   <div v-for="item in tempAssts"
                           :key="item.id">
-                          <drag :transfer-data="{ item, source: 'todoAssignments' }">
+                          <drag :transfer-data="{ item, source: 'todoAssignments', sourceType:'Pending' }">
                             <div 
                                       class="card card-primary p-3 mb-3">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
@@ -205,14 +205,14 @@
                                               </div>
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
-                                                  <li @click="onCardClick(item)" class="item p-2">Edit</li>
+                                                  <li @click="onCardClick(item, 'Pending')" class="item p-2">Edit</li>
                                                   <div  v-if="item.shared_users_id != user_id">
                                                   <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
                                                 </div>
                                               </ul>
                                           </div>
                                       </div>
-                                      <div class="clickable" @click="onCardClick(item)">
+                                      <div class="clickable" @click="onCardClick(item, 'Pending')">
                                       <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
                                       <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
                                       <div class="d-flex align-items-center justify-content-between">
@@ -271,7 +271,7 @@
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
                                   <div  v-for="item in doneAssignmentsList"
                           :key="item.id">
-                          <drag :transfer-data="{ item, source: 'doneAssignments' }">
+                          <drag :transfer-data="{ item, source: 'doneAssignments', sourceType:'Done' }">
                           
                             <div 
                                       class="card card-primary p-3 mb-3">
@@ -370,7 +370,7 @@
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
                                   <div  v-for="item in overdueAssignments"
                           :key="item.id">
-                          <drag :transfer-data="{ item, source: 'overdueAssignments' }">
+                          <drag :transfer-data="{ item, source: 'overdueAssignments', sourceType:'Overdue' }">
                             <div  
                                       class="card card-primary p-3 mb-3">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
@@ -409,14 +409,14 @@
                                               </div>
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
-                                                  <li @click="onCardClick(item)" class="item p-2">Edit</li>
+                                                  <li @click="onCardClick(item, 'Overdue')" class="item p-2">Edit</li>
                                                   <div  v-if="item.shared_users_id != user_id">
                                                   <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
                                                 </div>
                                               </ul>
                                           </div>
                                       </div>
-                                      <div class="clickable" @click="onCardClick(item)">
+                                      <div class="clickable" @click="onCardClick(item, 'Overdue')">
                                       <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
                                       <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
                                       <div class="d-flex align-items-center justify-content-between">
@@ -2041,7 +2041,9 @@ data() {
     school_id: '',
     processingSubCompleteAssignment: false,
     sourceassignment: '',
-
+    typeOfAssignment:'',
+    doingItem: {},
+    doingType:''
   }
 },
 created() {
@@ -2497,120 +2499,95 @@ mapOverdues() {
     this.undoAsstId = assignment.id;
     if (source === 'doingAssignments' || source === 'overdueAssignments') {
     this.sourceassignment = source;
-    this.undoAsstComplete();
+    this.undoAsstComplete(data);
   } else if (source !== 'todoAssignments') {
     // Add a condition to exclude 'todoAssignments'
     $("#undoAssignmentConfirmation").modal({ backdrop: true });
   }
   },
-    undoAsstComplete() {
-      this.completeAssignment(false,);
+    undoAsstComplete(data) {
+      this.completeAssignment(false);
+      this.removeItemFromList(data.sourceType, data.item)
     },
   handleDrop(data, event) {
     const { item, source } = data;
-let assignment = data.item;
-this.completeAsstId = assignment.id;
-this.assignmentId = assignment.id;
-this.schoologyAssignment = assignment.schoologyAssignment;
-this.submissionId = assignment.submission_id;
-// this.completeAssignment(true);
-if (source !== 'doneAssignments') {
-  this.sourceassignment = source;
-    // Add a condition to exclude 'doneAssignments'
-    $("#completeConfirm").modal({ backdrop: true });
-  }
+    let assignment = data.item;
+    this.completeAsstId = assignment.id;
+    this.assignmentId = assignment.id;
+    this.schoologyAssignment = assignment.schoologyAssignment;
+    this.submissionId = assignment.submission_id;
+    if (source !== 'doneAssignments') {
+      this.completeAssignment(true);
+      this.removeItemFromList(data.sourceType, data.item)
+      this.sourceassignment = source;
+        // Add a condition to exclude 'doneAssignments'
+        $("#completeConfirm").modal({ backdrop: true });
+      }
   },
-async completeAssignment(completed = true) {
-this.processingCompleteAssignment = true;
-await this.completeTask({
-  assignment_id: completed ? this.completeAsstId : this.undoAsstId,
-  status: completed ? "Completed" : "Pending",
-});
-this.processingCompleteAssignment = false;
-if (this.successMessage != "") {
-  this.openAssignment = false;
-  this.doingoffset = 0;
-  this.doneoffset = 0;
-  this.offset = 0;
-  this.overdueoffset = 0;
-  this.tempAssts = [];
-  this.doingAssignments = [];
-  this.doneAssignmentsList = [];
-  this.overdueAssignments = [];
-  this.doingreloadNext = true;
-  this.reloadNext = true;
-  this.donereloadNext = true;
-  this.overduereloadNext = true;
-  this.reloadCount += 1;
-  this.doingreloadCount += 1;
-  this.donereloadCount +=1;
-  this.overduereloadCount +=1;
-  this.completeAsstId = 0;
-  if (this.sourceassignment == 'doneAssignments') {
-      this.$toast.open({
-        message: this.successMessage,
-        type: this.SuccessType,
-        duration: 5000,
-      });
+  async completeAssignment(completed = true) {
+    this.processingCompleteAssignment = true;
+    await this.completeTask({
+      assignment_id: completed ? this.completeAsstId : this.undoAsstId,
+      status: completed ? "Completed" : "Pending",
+    });
+    this.processingCompleteAssignment = false;
+    if (this.successMessage != "") {
+      this.openAssignment = false;
+      completed? this.loadUpdatedData('Done'):this.loadUpdatedData('Pending');
+      this.completeAsstId = 0;
+      if (this.sourceassignment == 'doneAssignments') {
+          this.$toast.open({
+            message: this.successMessage,
+            type: this.SuccessType,
+            duration: 5000,
+          });
+        }
+            this.openAssignment = false;
+            this.sourceassignment = '',
+            $(".modal").modal("hide");
+            $(".modal-backdrop").remove();
     }
-        this.openAssignment = false;
-        this.sourceassignment = '',
-        $(".modal").modal("hide");
-        $(".modal-backdrop").remove();
-}
-},
-doingDrop(data, event) {
-  const { item, source } = data;
-let assignment = data.item;
-this.completeAsstId = assignment.id;
-this.assignmentId = assignment.id;
-this.schoologyAssignment = assignment.schoologyAssignment;
-this.submissionId = assignment.submission_id;
-  if (source === 'doneAssignments') {
-    this.sourceassignment = source;
-    $("#undoAssignmentConfirmationoverdue").modal({ backdrop: true });
-  } else if (source !== 'doingAssignments') {
-    this.doingAssignment();
-  }
-},
-async doingAssignment() {
-this.processingCompleteAssignment = true;
-await this.completeTask({
-  assignment_id: this.assignmentId,
-  status: 'Doing',
-});
-this.processingCompleteAssignment = false;
-if (this.successMessage != "") {
-  // this.openAssignment = false;
-  this.sourceassignment = '',
-  console.log(this.sourceassignment);
-  this.doingoffset = 0;
-  this.doingAssignments = [];
-  this.doingreloadNext = true;
-  this.doingreloadCount += 1;
-  this.offset = 0;
-  this.tempAssts = [];
-  this.reloadNext = true;
-  this.reloadCount += 1;
-  this.doneoffset = 0;
-  this.doneAssignmentsList = [];
-  this.donereloadNext = true;
-  this.donereloadCount +=1; 
-  this.overdueoffset = 0;
-  this.overdueAssignments = [];
-  this.overduereloadNext = true; 
-  this.overduereloadCount +=1;
-  this.completeAsstId = 0;
-}
-},
-EditAssignmentModal() {
-      this.openAssignment = true;
-      this.resetAssignment();
-      // $("#editAssignment").modal({ backdrop: true });
-      $('#editAssignment').modal({
-    backdrop: 'static',
-    keyboard: false
-  });
+  },
+  doingDrop(data, event) {
+    const { item, source } = data;
+    let assignment = data.item;
+    this.completeAsstId = assignment.id;
+    this.assignmentId = assignment.id;
+    this.schoologyAssignment = assignment.schoologyAssignment;
+    this.submissionId = assignment.submission_id;
+    this.doingItem = data.item;
+    this.doingType = data.sourceType;
+      if (source === 'doneAssignments') {
+        this.sourceassignment = source;
+        $("#undoAssignmentConfirmationoverdue").modal({ backdrop: true });
+      } else if (source !== 'doingAssignments') {
+        this.doingAssignment();
+      }
+    },
+    async doingAssignment() {
+    this.removeItemFromList(this.doingType, this.doingItem)
+    this.processingCompleteAssignment = true;
+    await this.completeTask({
+      assignment_id: this.assignmentId,
+      status: 'Doing',
+    });
+    this.processingCompleteAssignment = false;
+    if (this.successMessage != "") {
+      // this.openAssignment = false;
+      this.sourceassignment = '',
+      console.log(this.sourceassignment);
+      this.loadUpdatedData('Doing')
+      this.completeAsstId = 0;
+    }
+  },
+  EditAssignmentModal() {
+    this.openAssignment = true;
+    this.resetAssignment();
+    // $("#editAssignment").modal({ backdrop: true });
+    $('#editAssignment').modal({
+      backdrop: 'static',
+      keyboard: false
+    });
   },
   async resetAssignment() {
       this.choosenAssignments = [];
@@ -2662,6 +2639,7 @@ EditAssignmentModal() {
       this.timeValue = "";
       let clearTimeBtn = document.getElementsByClassName("clear-btn")[0];
       clearTimeBtn?.click();
+      this.typeOfAssignment='';
     },
     checkValidTime() {
       if (this.timeValue) {
@@ -2873,18 +2851,7 @@ EditAssignmentModal() {
       this.loading = false;
       this.removedPeerList = [];
       if (this.successMessage != "") {
-        this.doingoffset = 0;
-        this.doingAssignments = [];
-        this.doingreloadNext = true;
-        this.doingreloadCount +=1;
-        this.offset = 0;
-        this.tempAssts = [];
-        this.reloadNext = true;
-        this.reloadCount += 1;
-        this.overdueoffset = 0;
-        this.overdueAssignments = [];
-        this.overduereloadNext = true;
-        this.overduereloadCount +=1;
+        this.loadUpdatedData();
         this.deletedSubTasksArray = [];
         this.openAssignment = false;
         this.$toast.open({
@@ -2908,59 +2875,59 @@ EditAssignmentModal() {
     },
     mapAssignmentDetail(data) {
 
-const parser = new DOMParser();
-const doc = parser.parseFromString( data.assignment_description, 'text/html');
-const textContent = doc.body.textContent;
+      const parser = new DOMParser();
+      const doc = parser.parseFromString( data.assignment_description, 'text/html');
+      const textContent = doc.body.textContent;
 
-this.isSharedAssignment = data.isShared;
-this.schoologyAssignment = data.schoologyAssignment;
-this.assignmentId = data.id;
-this.assignmentName = data.task;
-this.assignmentDescription = textContent;
-this.submissionId = data.submission_id;
-this.grade = data.grade;
-this.gradePossible = data.grade_possible;
-this.priorityVal =
-  data.priority == "1"
-    ? "Urgent"
-    : data.priority == "2"
-    ? "Important"
-    : data.priority == "3"
-    ? "Can Wait"
-    : data.priority == "4"
-    ? "Overdue"
-    : "";
+      this.isSharedAssignment = data.isShared;
+      this.schoologyAssignment = data.schoologyAssignment;
+      this.assignmentId = data.id;
+      this.assignmentName = data.task;
+      this.assignmentDescription = textContent;
+      this.submissionId = data.submission_id;
+      this.grade = data.grade;
+      this.gradePossible = data.grade_possible;
+      this.priorityVal =
+        data.priority == "1"
+          ? "Urgent"
+          : data.priority == "2"
+          ? "Important"
+          : data.priority == "3"
+          ? "Can Wait"
+          : data.priority == "4"
+          ? "Overdue"
+          : "";
 
-if (data.isShared) {
-  this.subject = data.subject;
-  this.subjectId = data.subjects.id;
-} else {
-  this.subject = {
-    id: data.subjects?.id,
-    text: data.subjects?.subject_name,
-  };
-}
-if (this.schoologyAssignment == "1") {
-  this.gg4lSubject = data.subject;
-}
-this.dateValue = data.due_date
-  ? moment(data.due_date).format("MM/DD/YYYY")
-  : "";
-this.timeValue = data.due_time;
-this.subTasksList = [];
-if (data.subTasks && data.subTasks.length > 0) {
-  data.subTasks.forEach((e) => {
-    let item = {};
-    item = e;
-    this.subTasksList.push(item);
-  });
-}
-this.peerList = data.peers;
-this.additionalMaterialList = data.assignment_materials
-  ? data.assignment_materials
-  : [];
-},
-mapPeerInvited(data) {
+      if (data.isShared) {
+        this.subject = data.subject;
+        this.subjectId = data.subjects.id;
+      } else {
+        this.subject = {
+          id: data.subjects?.id,
+          text: data.subjects?.subject_name,
+        };
+      }
+      if (this.schoologyAssignment == "1") {
+        this.gg4lSubject = data.subject;
+      }
+      this.dateValue = data.due_date
+        ? moment(data.due_date).format("MM/DD/YYYY")
+        : "";
+      this.timeValue = data.due_time;
+      this.subTasksList = [];
+      if (data.subTasks && data.subTasks.length > 0) {
+        data.subTasks.forEach((e) => {
+          let item = {};
+          item = e;
+          this.subTasksList.push(item);
+        });
+      }
+      this.peerList = data.peers;
+      this.additionalMaterialList = data.assignment_materials
+        ? data.assignment_materials
+        : [];
+    },
+    mapPeerInvited(data) {
       this.peerSelected = [];
       if (data.peers && data.peers?.length > 0 && this.students.length > 0) {
         data.peers.forEach((e) => {
@@ -2971,7 +2938,7 @@ mapPeerInvited(data) {
         });
       }
     },
-    onCardClick(data) {
+    onCardClick(data, type) {
       this.resetAssignment();
       this.deletedSubTasksArray = [];
       this.isAddAssignment = false;
@@ -2979,6 +2946,7 @@ mapPeerInvited(data) {
       this.EditAssignmentModal();
       this.mapAssignmentDetail(data);
       this.mapPeerInvited(data);
+      this.typeOfAssignment = type;
     },
     submitAssignment() {
       this.submittedAsst=false;
@@ -3377,6 +3345,82 @@ mapPeerInvited(data) {
     },
     handleDrag(item) {
     // You can perform additional actions with the dragged item if needed
+  },
+  loadUpdatedData(type=''){
+    const assignmentType = type??this.typeOfAssignment;
+    switch (assignmentType) {
+      case "Pending": {
+      //  to do
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
+        break;
+      }
+      case "Doing": {
+      //  doing
+        this.doingoffset = 0;
+        this.doingAssignments = [];
+        this.doingreloadNext = true;
+        this.doingreloadCount +=1;
+        break;
+      }
+      case "Done": {
+        // done
+        this.doneoffset = 0;
+        this.doneAssignmentsList = [];
+        this.donereloadNext = true;
+        this.donereloadCount +=1;
+        break;
+      }
+      case "Overdue": {
+        // overdue 
+        this.overdueoffset = 0;
+        this.overdueAssignments = [];
+        this.overduereloadNext = true;
+        this.overduereloadCount +=1; 
+        break;
+      }
+
+      default: {
+        return "";
+      }
+    }
+  },
+  removeItemFromList(type, item){
+    switch (type) {
+      case "Pending": {
+        const index = this.tempAssts.indexOf(item);
+        if (index > -1) { 
+          this.tempAssts.splice(index, 1);
+        }
+        break;
+      }
+      case "Doing": {
+        const index = this.doingAssignments.indexOf(item);
+        if (index > -1) { 
+          this.doingAssignments.splice(index, 1); 
+        }
+        break;
+      }
+      case "Done": {
+        const index = this.doneAssignmentsList.indexOf(item);
+        if (index > -1) { 
+          this.doneAssignmentsList.splice(index, 1); 
+        }
+        break;
+      }
+      case "Overdue": {
+        const index = this.overdueAssignments.indexOf(item);
+        if (index > -1) { 
+          this.overdueAssignments.splice(index, 1);
+        }
+        break;
+      }
+      default: {
+        return "";
+      }
+    }
   }
 },
 }
