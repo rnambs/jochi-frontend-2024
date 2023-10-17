@@ -2049,11 +2049,13 @@ data() {
   }
 },
 created() {
+  this.loading = true;
   eventBus.$on('accordionOpened', (newValue) => {
     this.accordionOpened = newValue;
   });
 },
 mounted(){
+  this.loading = false;
   this.school_id = localStorage.getItem("school_id")
   this.user_id = localStorage.getItem("id");
   this.GetStudents();
@@ -2539,7 +2541,7 @@ mapOverdues() {
       this.openAssignment = false;
       completed? this.loadUpdatedData('Done'):this.loadUpdatedData('Pending');
       this.completeAsstId = 0;
-      if (this.sourceassignment == 'doneAssignments') {
+      if(this.sourceassignment != 'doingAssignments'){
           this.$toast.open({
             message: this.successMessage,
             type: this.SuccessType,
@@ -2576,13 +2578,13 @@ mapOverdues() {
     });
     this.processingCompleteAssignment = false;
     this.removeItemFromList(this.doingType, this.doingItem)
-    if (this.successMessage != "") {
+    if (this.successMessage != "") {  
       // this.openAssignment = false;
       this.sourceassignment = '',
       this.loadUpdatedData('Doing')
       this.completeAsstId = 0;
-    }
-  },
+  }
+},
   EditAssignmentModal() {
     this.openAssignment = true;
     this.resetAssignment();
@@ -2770,7 +2772,7 @@ mapOverdues() {
     async UpdateAssignment() {
       if (this.priorityVal == "Overdue" && !this.isSharedAssignment) {
         this.$toast.open({
-          message: "Please select the priority",
+          message: "Please Select the Priority",
           type: "error",
           duration: 5000,
         });
@@ -2990,7 +2992,7 @@ mapOverdues() {
     async UploadAttachment() {
       if (!this.materialType) {
         return this.$toast.open({
-          message: "Please choose file type",
+          message: "Please Choose File Type",
           type: "warning",
           duration: 5000,
         });
@@ -3028,7 +3030,7 @@ mapOverdues() {
           this.processingUpload = false;
 
           return this.$toast.open({
-            message: "Please add valid file",
+            message: "Please Add Valid File",
             type: "warning",
             duration: 5000,
           });
@@ -3056,7 +3058,7 @@ mapOverdues() {
       } catch (_) {
         if(showError){
         this.$toast.open({
-          message: "Please add valid URL",
+          message: "Please Add Valid URL",
           type: "warning",
           duration: 5000,
         });
@@ -3067,7 +3069,7 @@ mapOverdues() {
       let valid = url.protocol === "http:" || url.protocol === "https:";
       if (!valid) {
         this.$toast.open({
-          message: "Please add valid URL",
+          message: "Please Add Valid URL",
           type: "warning",
           duration: 5000,
         });
@@ -3094,7 +3096,7 @@ mapOverdues() {
         this.subTasksList.push(sub);
       } else {
         this.$toast.open({
-          message: "Please add a valid sub task ",
+          message: "Please Add a Valid Sub Task ",
           type: "warning",
           duration: 5000,
         });
@@ -3221,7 +3223,7 @@ mapOverdues() {
     async submitAsst() {
       if(!this.materialTypeSubmit) {
         this.$toast.open({
-          message: "Please fill the details",
+          message: "Please Fill the Details",
           type: "warning",
           duration: 4000,
         });
