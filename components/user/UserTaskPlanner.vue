@@ -789,15 +789,17 @@
                                         class="d-flex align-items-center justify-content-between"
                                       >
                                       <div 
-                                      @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)"
+                                      
                                       class="p-1 form-group checkbox">
+                                      <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
                                         <input
-    :id="subTask.id"
-    :checked="subTask.task_status === 'Completed'"
-    type="checkbox"
-    class="mr-2 cursor-pointer"
-  />
-  <label :for="subTask.id">{{ subTask.title }}</label>
+                                          :id="subTask.id"
+                                          class="mr-2 cursor-pointer"
+                                          v-model="subTask.isTaskCompleted"
+                                          type="checkbox"
+                                          @change="updateTaskStaus($event, subTask)" 
+                                        />
+                                      <label :for="subTask.id">{{ subTask.title }}</label>
                                       </div>
                                         <span
                                           v-if="
@@ -1199,15 +1201,16 @@
                                         class="d-flex align-items-center justify-content-between"
                                       >
                                       <div 
-                                      @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)"
                                       class="p-1 form-group checkbox">
+                                      <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
                                         <input
-    :id="subTask.id"
-    :checked="subTask.task_status === 'Completed'"
-    type="checkbox"
-    class="mr-2 cursor-pointer"
-  />
-  <label :for="subTask.id">{{ subTask.title }}</label>
+                                          :id="subTask.id"
+                                          class="mr-2 cursor-pointer"
+                                          v-model="subTask.isTaskCompleted"
+                                          type="checkbox"
+                                          @change="updateTaskStaus($event, subTask)" 
+                                        />
+                                      <label :for="subTask.id">{{ subTask.title }}</label>
                                       </div>
                                         <span
                                           v-if="
@@ -2924,6 +2927,7 @@ mapOverdues() {
         data.subTasks.forEach((e) => {
           let item = {};
           item = e;
+          item.isTaskCompleted=item.task_status=='Completed'?true:false;
           this.subTasksList.push(item);
         });
       }
@@ -3430,6 +3434,17 @@ mapOverdues() {
         return "";
       }
     }
+  },
+  updateTaskStaus(event, task){
+    this.completeSubTaskId = task.id;
+      if (task.isTaskCompleted) {
+        this.undoSubtaskId = task.id;
+        this.undoCompleteSubTask();
+      } else {
+        this.completeSubTask();
+      }
+      event.preventDefault();
+      event.stopPropagation();
   }
 },
 }
