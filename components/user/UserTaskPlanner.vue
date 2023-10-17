@@ -3435,7 +3435,7 @@ mapOverdues() {
   },
   updateTaskStaus(event, task){
     this.completeSubTaskId = task.id;
-      if (task.isTaskCompleted) {
+      if (!task.isTaskCompleted) {
         this.undoSubtaskId = task.id;
         this.undoCompleteSubTask();
       } else {
