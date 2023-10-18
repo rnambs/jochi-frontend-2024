@@ -8,32 +8,38 @@
           <div class="d-flex flex-column flex-fill w-100">
             <div class="row">
               <div class="col-12">
-                <h2 class="heading2 font-semi-bold color-primary-dark mb-1">Tasks</h2>
-                <p class="color-tertiary font-medium mb-1">{{ assignmentTypeText }}</p>
                 <div class="d-flex flex-wrap">
-                  <div class="pb-0 pr-3 m-1 mr-auto">
-                    <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto">
-                      <div class="dropdown-select form-control form-sm form-transparent" type="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="i-filter-calendar j-icon i-sm bg-gray mr-1"></i>
-                        <span id="dLabel" class="mr-3">{{ TypeText }}</span>
-                        <span class="caret"><i class="fas fa-chevron-down font-medium"></i></span>
+                  <div class="d-flex flex-column pr-3 mr-auto">
+                    <h2 class="heading2 font-semi-bold color-primary-dark mb-1">Tasks</h2>
+                    <p class="color-tertiary font-medium mb-1">{{ assignmentTypeText }}</p>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <div class="d-flex flex-wrap">
+                    <div class="pb-0 m-1 mr-3">
+                      <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto">
+                        <div class="dropdown-select form-control form-sm form-transparent" type="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="i-filter-calendar j-icon i-sm bg-gray mr-1"></i>
+                          <span id="dLabel" class="mr-3">{{ TypeText }}</span>
+                          <span class="caret"><i class="fas fa-chevron-down font-medium"></i></span>
+                        </div>
+                        <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
+                          <li class="item p-2" @click="weeklyAssignments()"
+                            :class="{ active: assignmentType === 'Weekly' }">This week</li>
+                          <li class="item p-2" @click="monthlyAssignments()"
+                            :class="{ active: assignmentType === 'Monthly' }">This Month</li>
+                          <li class="item p-2" @click="allAssignments()" :class="{ active: assignmentType === 'All' }">All
+                          </li>
+                        </ul>
                       </div>
-                      <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
-                        <li class="item p-2" @click="weeklyAssignments()"
-                          :class="{ active: assignmentType === 'Weekly' }">This week</li>
-                        <li class="item p-2" @click="monthlyAssignments()"
-                          :class="{ active: assignmentType === 'Monthly' }">This Month</li>
-                        <li class="item p-2" @click="allAssignments()" :class="{ active: assignmentType === 'All' }">All
-                        </li>
-                      </ul>
+                    </div>
+                    <div class="m-1 d-flex justify-content-end">
+                      <button @click="
+                        openAssignment = true;
+                      isAddAssignment = true;
+                      EditAssignmentModal();" class="btn btn-primary py-1 px-3 mr-3">Add Assignment</button>
                     </div>
                   </div>
-                  <div class="m-1 d-flex justify-content-end">
-                    <button @click="
-                      openAssignment = true;
-                    isAddAssignment = true;
-                    EditAssignmentModal();" class="btn btn-primary py-1 px-3 mr-3">Add Assignment</button>
                   </div>
                 </div>
               </div>
