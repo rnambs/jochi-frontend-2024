@@ -99,7 +99,7 @@
                             <div class="clickable" @click="onCardClick(item, 'Doing')">
                               <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
                               <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
-                              <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center justify-content-start">
                                 <div class="d-flex">
                                   <div v-for="(peer, index) in item.peers" :key="index">
                                     <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
@@ -107,11 +107,11 @@
                                     <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
                                   </div>
                                 </div>
-                                <div class="d-flex align-items-center">
+                                <!-- <div class="d-flex align-items-center">
                                   <button class="btn btn-drag-card-open">
                                     Open
                                   </button>
-                                </div>
+                                </div> -->
                               </div>
                             </div>
                           </div>
@@ -185,7 +185,7 @@
                             <div class="clickable" @click="onCardClick(item, 'Pending')">
                               <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
                               <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
-                              <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex align-items-center justify-content-start">
                                 <div class="d-flex">
                                   <div v-for="(peer, index) in item.peers" :key="index">
                                     <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
@@ -193,11 +193,11 @@
                                     <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
                                   </div>
                                 </div>
-                                <div class="d-flex align-items-center">
+                                <!-- <div class="d-flex align-items-center">
                                   <button class="btn btn-drag-card-open">
                                     Open
                                   </button>
-                                </div>
+                                </div> -->
                               </div>
                             </div>
                           </div>
@@ -269,7 +269,7 @@
                             </div>
                             <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
                             <p class="text-10 color-gray mb-2 task-description" v-html="item.assignment_description"></p>
-                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-start">
                               <div class="d-flex">
                                 <div v-for="(peer, index) in item.peers" :key="index">
                                   <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
@@ -277,11 +277,11 @@
                                   <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
                                 </div>
                               </div>
-                              <div class="d-flex align-items-center">
+                              <!-- <div class="d-flex align-items-center">
                                 <button class="btn btn-drag-card-open">
                                   Open
                                 </button>
-                              </div>
+                              </div> -->
                             </div>
                           </div>
                         </drag>
@@ -355,7 +355,7 @@
                           <div class="clickable" @click="onCardClick(item, 'Overdue')">
                             <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
                             <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
-                            <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-start">
                               <div class="d-flex">
                                 <div v-for="(peer, index) in item.peers" :key="index">
                                   <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
@@ -363,11 +363,11 @@
                                   <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
                                 </div>
                               </div>
-                              <div class="d-flex align-items-center">
+                              <!-- <div class="d-flex align-items-center">
                                 <button class="btn btn-drag-card-open">
                                   Open
                                 </button>
-                              </div>
+                              </div> -->
                             </div>
                           </div>
                         </div>
