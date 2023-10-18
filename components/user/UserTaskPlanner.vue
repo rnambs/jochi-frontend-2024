@@ -2901,32 +2901,36 @@ export default {
 }
 
 .dragging {
-  opacity: 0.5;
+  opacity: 0.75;
   /* Initial opacity, you can adjust it as needed */
   transition: opacity 0.3s;
   /* Apply a transition effect to the opacity property */
-  background-color: red;
+  border: 1.25px dashed rgba(80, 48, 229, 0.59);
+  background-color: rgba(80, 48, 229, 0.06);
 }
 
 .draggingTodo {
-  opacity: 0.5;
+  opacity: 0.75;
   /* Initial opacity, you can adjust it as needed */
   transition: opacity 0.3s;
   /* Apply a transition effect to the opacity property */
-  background-color: rgb(83, 36, 159);
+  border: 1.25px dashed rgba(80, 48, 229, 0.59);
+  background-color: rgba(80, 48, 229, 0.06);
 }
 .draggingDone {
-  opacity: 0.5;
+  opacity: 0.75;
   /* Initial opacity, you can adjust it as needed */
   transition: opacity 0.3s;
   /* Apply a transition effect to the opacity property */
-  background-color: rgb(185, 207, 43);
+  border: 1.25px dashed rgba(80, 48, 229, 0.59);
+  background-color: rgba(80, 48, 229, 0.06);
 }
 .draggingDue {
-  opacity: 0.5;
+  opacity: 0.75;
   /* Initial opacity, you can adjust it as needed */
   transition: opacity 0.3s;
   /* Apply a transition effect to the opacity property */
-  background-color: rgb(150, 26, 57);
+  border: 1.25px dashed rgba(80, 48, 229, 0.59);
+  background-color: rgba(80, 48, 229, 0.06);
 }
 </style>
