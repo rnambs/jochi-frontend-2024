@@ -1,307 +1,258 @@
 <template>
   <div>
-    <lottie
-      v-if="loading"
-      :options="lottieOptions"
-      v-on:animCreated="handleAnimation"
-      class="lottie-loader"
-    />
-      <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
-          <!-- Daily Calander -->
-<section id="taskPlanner" class="">
-              <div class="m--12 custom-full-height d-flex planner-day-responsive">
-                  <div class="d-flex flex-column flex-fill w-100">
-                      <div class="row">
-                          <div class="col-12">
-                              <h2 class="heading2 font-semi-bold color-primary-dark mb-1">Tasks</h2>
-                              <p class="color-tertiary font-medium mb-1">{{ assignmentTypeText }}</p>
-                              <div class="d-flex flex-wrap">
-                                  <div class="pb-0 pr-3 m-1 mr-auto">
-                                      <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto">
-                                          <div class="dropdown-select form-control form-sm form-transparent"
-                                              type="button" data-toggle="dropdown" aria-haspopup="true"
-                                              aria-expanded="false">
-                                              <i class="i-filter-calendar j-icon i-sm bg-gray mr-1"></i>
-                                              <span id="dLabel" class="mr-3">{{ TypeText }}</span>
-                                              <span class="caret"><i
-                                                      class="fas fa-chevron-down font-medium"></i></span>
-                                          </div>
-                                          <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
-                                              <li class="item p-2" @click="weeklyAssignments()" :class="{ active: assignmentType === 'Weekly' }">This week</li>
-                                              <li class="item p-2" @click="monthlyAssignments()" :class="{ active: assignmentType === 'Monthly' }">This Month</li>
-                                              <li class="item p-2" @click="allAssignments()" :class="{ active: assignmentType === 'All' }">All</li>
-                                          </ul>
-                                      </div>
-                                  </div>
-                                  <div class="m-1 d-flex justify-content-end">
-                                    <button
-                                    @click="
-                              openAssignment = true;
-                              isAddAssignment = true;
-                              EditAssignmentModal();"
-                                    class="btn btn-primary py-1 px-3 mr-3">Add Assignment</button>
-                                  </div>
-                              </div>
-                          </div>
+    <lottie v-if="loading" :options="lottieOptions" v-on:animCreated="handleAnimation" class="lottie-loader" />
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
+      <!-- Daily Calander -->
+      <section id="taskPlanner" class="">
+        <div class="m--12 custom-full-height d-flex planner-day-responsive">
+          <div class="d-flex flex-column flex-fill w-100">
+            <div class="row">
+              <div class="col-12">
+                <h2 class="heading2 font-semi-bold color-primary-dark mb-1">Tasks</h2>
+                <p class="color-tertiary font-medium mb-1">{{ assignmentTypeText }}</p>
+                <div class="d-flex flex-wrap">
+                  <div class="pb-0 pr-3 m-1 mr-auto">
+                    <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto">
+                      <div class="dropdown-select form-control form-sm form-transparent" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="i-filter-calendar j-icon i-sm bg-gray mr-1"></i>
+                        <span id="dLabel" class="mr-3">{{ TypeText }}</span>
+                        <span class="caret"><i class="fas fa-chevron-down font-medium"></i></span>
                       </div>
-                      <div class="row h-100">
-                          <div class="col-12 col-sm-6 col-lg-3">
-                            <drop             
-                              class="drop color-secondary text-16 h-100 d-flex flex-column"
-                                 @drop="doingDrop"
-                                  >
-                              <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
-                                <div class="d-flex flex-column pr-2">
-                                  <div class="d-flex align-items-center mb-3">
-                                      <span class="mr-2"><span
-                                              class="bg-task-violet p-1 rounded-circle d-flex"></span></span>
-                                      <p class="mb-0 color-dark font-medium text-14">Doing</p>
-                                  </div>
-                                  <span class="border-pb-1 bg-task-violet w-100 d-flex mb-3"></span>
-                                  </div>
-                                  <div class="d-flex flex-column task-container pr-2 mb-3">
-                                    <div v-for="(item, index) in doingAssignments" :key="item.id">
-                                      <drag :transfer-data="{ item, source: 'doingAssignments', sourceType:'Doing' }">
-                                      <div 
-                                      class="card card-primary p-3 mb-3">
-                                          <div class="d-flex align-items-center justify-content-between mb-2">
-                                              <div class="d-flex flex-wrap align-items-center">
-                                                <span class="task-label  my-1 mr-1"
-                                                  :class="{
-                                            'task-label--yellow': item.priority == '1',
-                                            'task-label--violet': item.priority == '2',
-                                            'task-label--green': item.priority == '3',
-                                            'task-label--red': item.priority == '4',
-                                          }">{{
-                                            item.priority == "1"
-                                              ? "Urgent"
-                                              : item.priority == "2"
-                                              ? "Important"
-                                              : item.priority == "3"
-                                              ? "Can Wait"
-                                              : item.priority == "4"
-                                              ? "Overdue"
-                                              : ""
-                                          }}</span>
-                                                  <span class="task-label task-label--violet my-1 mr-1">{{
-                                            item.subject.subject_name
-                                              ? item.subject.subject_name
-                                              : item.subject
-                                          }}</span>
-                                              </div>
-                                              <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
-                                                  <div class="dropdown-select form-control" type="button"
-                                                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                      <span
-                                                          class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                          <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
-                                                      </span>
-                                                  </div>
-                                                  <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
-                                                      aria-labelledby="dLabel">
-                                                      <li @click="onCardClick(item, 'Doing')" class="item p-2">
-                                                        Edit
-                                                      </li>
-                                                      <div  v-if="item.shared_users_id != user_id">
-                                                  <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
-                                                </div>
-                                                  </ul>
-                                              </div>
-                                          </div>
-                                          <div class="clickable" @click="onCardClick(item, 'Doing')">
-                                          <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                                          <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
-                                            <div class="d-flex align-items-center justify-content-between">
-                                              <div class="d-flex">
-                                        <div  v-for="(peer, index) in item.peers"
-                                        :key="index">
-                                        <img
-                                          v-if="peer.profile_pic"
-                                          :src="peer.profile_pic"
-                                          alt=""
-                                                    class="img-avatar img-avatar--sm">
-                                                    <img
-                                          v-else
-                                          src="~/static/image/avatar.png"
-                                          alt=""
-                                          class="img-avatar img-avatar--sm">
-                                        </div>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <button class="btn btn-drag-card-open">
-                                                    Open
-                                                </button>
-                                            </div> 
-                                            </div>
-                                            </div>
-                                      </div>
-                                      </drag>
-                                    </div>
-                                    <client-only>
-                                      <infinite-loading
-                                        class="d-flex align-items-center w-100 justify-content-center"
-                                        :identifier="doingreloadCount"
-                                        @infinite="doingNext"
-                                      >
-                                      <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
-                                      </infinite-loading>
-                                    </client-only>
-                                  </div>
+                      <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
+                        <li class="item p-2" @click="weeklyAssignments()"
+                          :class="{ active: assignmentType === 'Weekly' }">This week</li>
+                        <li class="item p-2" @click="monthlyAssignments()"
+                          :class="{ active: assignmentType === 'Monthly' }">This Month</li>
+                        <li class="item p-2" @click="allAssignments()" :class="{ active: assignmentType === 'All' }">All
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="m-1 d-flex justify-content-end">
+                    <button @click="
+                      openAssignment = true;
+                    isAddAssignment = true;
+                    EditAssignmentModal();" class="btn btn-primary py-1 px-3 mr-3">Add Assignment</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row h-100">
+              <div class="col-12 col-sm-6 col-lg-3">
+                <drop class="drop color-secondary text-16 h-100 d-flex flex-column" @drop="doingDrop">
+                  <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
+                    <div class="d-flex flex-column pr-2">
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="mr-2"><span class="bg-task-violet p-1 rounded-circle d-flex"></span></span>
+                        <p class="mb-0 color-dark font-medium text-14">Doing</p>
+                      </div>
+                      <span class="border-pb-1 bg-task-violet w-100 d-flex mb-3"></span>
+                    </div>
+                    <div class="d-flex flex-column task-container pr-2 mb-3">
+                      <div v-for="(item, index) in doingAssignments" :key="item.id">
+                        <drag :transfer-data="{ item, source: 'doingAssignments', sourceType: 'Doing' }"
+                          @dragstart="handleDragStart(index)" @dragend="handleDragEnd()">
+                          <div class="card card-primary p-3 mb-3"
+                            :class="{ 'dragging': isDragging && index === draggingIndex }">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                              <div class="d-flex flex-wrap align-items-center">
+                                <span class="task-label  my-1 mr-1" :class="{
+                                  'task-label--yellow': item.priority == '1',
+                                  'task-label--violet': item.priority == '2',
+                                  'task-label--green': item.priority == '3',
+                                  'task-label--red': item.priority == '4',
+                                }">{{
+  item.priority == "1"
+  ? "Urgent"
+  : item.priority == "2"
+    ? "Important"
+    : item.priority == "3"
+      ? "Can Wait"
+      : item.priority == "4"
+        ? "Overdue"
+        : ""
+}}</span>
+                                <span class="task-label task-label--violet my-1 mr-1">{{
+                                  item.subject.subject_name
+                                  ? item.subject.subject_name
+                                  : item.subject
+                                }}</span>
+                              </div>
+                              <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
+                                <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  <span class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
+                                    <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
+                                  </span>
                                 </div>
-                              </drop>
-                          </div>
-                          <div class="col-12 col-sm-6 col-lg-3">
-                            <drop
-                        class="drop color-secondary text-16 h-100 d-flex flex-column"
-                        @drop="confirmUndo"
-                      >
-                              <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
-                                <div class="d-flex flex-column pr-2">
-                                  <div class="d-flex align-items-center mb-3">
-                                      <span class="mr-2"><span
-                                              class="bg-task-yellow p-1 rounded-circle d-flex"></span></span>
-                                      <p class="mb-0 color-dark font-medium text-14">Todo</p>
+                                <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
+                                  <li @click="onCardClick(item, 'Doing')" class="item p-2">
+                                    Edit
+                                  </li>
+                                  <div v-if="item.shared_users_id != user_id">
+                                    <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
                                   </div>
-                                  <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
-                                  </div>
-                                  <div class="d-flex flex-column task-container pr-2 mb-3">
-                                  <div v-for="item in tempAssts"
-                          :key="item.id">
-                          <drag :transfer-data="{ item, source: 'todoAssignments', sourceType:'Pending' }"
-                          >
-                            <div 
-                                      class="card card-primary p-3 mb-3">
-                                      <div class="d-flex align-items-center justify-content-between mb-2">
-                                          <div class="d-flex flex-wrap align-items-center">
-                                              <span class="task-label  my-1 mr-1"
-                                              :class="{
-                                        'task-label--yellow': item.priority == '1',
-                                        'task-label--violet': item.priority == '2',
-                                        'task-label--green': item.priority == '3',
-                                        'task-label--red': item.priority == '4',
-                                      }">{{
-                                        item.priority == "1"
-                                          ? "Urgent"
-                                          : item.priority == "2"
-                                          ? "Important"
-                                          : item.priority == "3"
-                                          ? "Can Wait"
-                                          : item.priority == "4"
-                                          ? "Overdue"
-                                          : ""
-                                      }}</span>
-                                              <span class="task-label task-label--yellow my-1 mr-1">{{
-                                        item.subject.subject_name
-                                          ? item.subject.subject_name
-                                          : item.subject
-                                      }}</span>
-                                          </div>
-                                          <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
-                                              <div class="dropdown-select form-control" type="button"
-                                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  <span
-                                                      class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                      <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
-                                                  </span>
-                                              </div>
-                                              <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
-                                                  aria-labelledby="dLabel">
-                                                  <li @click="onCardClick(item, 'Pending')" class="item p-2">Edit</li>
-                                                  <div  v-if="item.shared_users_id != user_id">
-                                                  <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
-                                                </div>
-                                              </ul>
-                                          </div>
-                                      </div>
-                                      <div class="clickable" @click="onCardClick(item, 'Pending')">
-                                      <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                                      <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
-                                      <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex">
-                                      <div  v-for="(peer, index) in item.peers"
-                                      :key="index">
-                                      <img
-                                        v-if="peer.profile_pic"
-                                        :src="peer.profile_pic"
-                                        alt=""
-                                                  class="img-avatar img-avatar--sm">
-                                                  <img
-                                        v-else
-                                        src="~/static/image/avatar.png"
-                                        alt=""
-                                        class="img-avatar img-avatar--sm">
-                                      </div>
-                                          </div>
-                                          <div class="d-flex align-items-center">
-                                              <button class="btn btn-drag-card-open">
-                                                  Open
-                                              </button>
-                                          </div> 
-                                          </div>
-                                        </div>
-                                      </div>
-                                  </drag>
-                                  </div>
-                                  <client-only>
-                          <infinite-loading
-                            class="d-flex align-items-center w-100 justify-content-center"
-                            :identifier="reloadCount"
-                            @infinite="loadNext"
-                          >
-                          <div class="mb-2" slot="no-more"><span class="color-gray text-12">That's all!</span></div>
-                          </infinite-loading>
-                        </client-only>
+                                </ul>
                               </div>
                             </div>
-                            </drop>
+                            <div class="clickable" @click="onCardClick(item, 'Doing')">
+                              <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
+                              <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
+                              <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex">
+                                  <div v-for="(peer, index) in item.peers" :key="index">
+                                    <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
+                                      class="img-avatar img-avatar--sm">
+                                    <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
+                                  </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                  <button class="btn btn-drag-card-open">
+                                    Open
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div class="col-12 col-sm-6 col-lg-3">
-                              <drop
-                        class="drop color-secondary text-16 h-100 d-flex flex-column"
-                        @drop="handleDrop"
-                      >
-                              <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
-                                <div class="d-flex flex-column pr-2">
-                                  <div class="d-flex align-items-center mb-3">
-                                      <span class="mr-2"><span
-                                              class="bg-task-green p-1 rounded-circle d-flex"></span></span>
-                                      <p class="mb-0 color-dark font-medium text-14">Done</p>
+                        </drag>
+                      </div>
+                      <client-only>
+                        <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
+                          :identifier="doingreloadCount" @infinite="doingNext">
+                          <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                        </infinite-loading>
+                      </client-only>
+                    </div>
+                  </div>
+                </drop>
+              </div>
+              <div class="col-12 col-sm-6 col-lg-3">
+                <drop class="drop color-secondary text-16 h-100 d-flex flex-column" @drop="confirmUndo">
+                  <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
+                    <div class="d-flex flex-column pr-2">
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="mr-2"><span class="bg-task-yellow p-1 rounded-circle d-flex"></span></span>
+                        <p class="mb-0 color-dark font-medium text-14">Todo</p>
+                      </div>
+                      <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
+                    </div>
+                    <div class="d-flex flex-column task-container pr-2 mb-3">
+                      <div v-for="(item, index) in tempAssts" :key="item.id">
+                        <drag :transfer-data="{ item, source: 'todoAssignments', sourceType: 'Pending' }"
+                          @dragstart="handleDragStartTodo(index)" @dragend="handleDragEndTodo()">
+                          <div class="card card-primary p-3 mb-3"
+                            :class="{ 'draggingTodo': isDraggingTodo && index === draggingIndexTodo }">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                              <div class="d-flex flex-wrap align-items-center">
+                                <span class="task-label  my-1 mr-1" :class="{
+                                  'task-label--yellow': item.priority == '1',
+                                  'task-label--violet': item.priority == '2',
+                                  'task-label--green': item.priority == '3',
+                                  'task-label--red': item.priority == '4',
+                                }">{{
+  item.priority == "1"
+  ? "Urgent"
+  : item.priority == "2"
+    ? "Important"
+    : item.priority == "3"
+      ? "Can Wait"
+      : item.priority == "4"
+        ? "Overdue"
+        : ""
+}}</span>
+                                <span class="task-label task-label--yellow my-1 mr-1">{{
+                                  item.subject.subject_name
+                                  ? item.subject.subject_name
+                                  : item.subject
+                                }}</span>
+                              </div>
+                              <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
+                                <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  <span class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
+                                    <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
+                                  </span>
+                                </div>
+                                <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
+                                  <li @click="onCardClick(item, 'Pending')" class="item p-2">Edit</li>
+                                  <div v-if="item.shared_users_id != user_id">
+                                    <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
                                   </div>
-                                  <span class="border-pb-1 bg-task-green w-100 d-flex mb-3"></span>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="clickable" @click="onCardClick(item, 'Pending')">
+                              <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
+                              <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
+                              <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex">
+                                  <div v-for="(peer, index) in item.peers" :key="index">
+                                    <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
+                                      class="img-avatar img-avatar--sm">
+                                    <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
                                   </div>
-                                  <div class="d-flex flex-column task-container pr-2 mb-3">
-                                  <div  v-for="item in doneAssignmentsList"
-                          :key="item.id">
-                          <drag :transfer-data="{ item, source: 'doneAssignments', sourceType:'Done' }">
-                          
-                            <div 
-                                      class="card card-primary p-3 mb-3">
-                                      <div class="d-flex align-items-center justify-content-between mb-2">
-                                          <div class="d-flex flex-wrap align-items-center">
-                                              <span class="task-label  my-1 mr-1"
-                                              :class="{
-                                        'task-label--yellow': item.priority == '1',
-                                        'task-label--violet': item.priority == '2',
-                                        'task-label--green': item.priority == '3',
-                                        'task-label--red': item.priority == '4',
-                                      }"
-                                              >   {{
-                                        item.priority == "1"
-                                          ? "Urgent"
-                                          : item.priority == "2"
-                                          ? "Important"
-                                          : item.priority == "3"
-                                          ? "Can Wait"
-                                          : item.priority == "4"
-                                          ? "Overdue"
-                                          : ""
-                                      }}</span>
-                                              <span class="task-label task-label--green my-1 mr-1">{{ item.subject.subject_name
-                                          ? item.subject.subject_name
-                                          : item.subject
-                                                    }}</span>
-                                          </div>
-                                          <!-- <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
+                                </div>
+                                <div class="d-flex align-items-center">
+                                  <button class="btn btn-drag-card-open">
+                                    Open
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </drag>
+                      </div>
+                      <client-only>
+                        <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
+                          :identifier="reloadCount" @infinite="loadNext">
+                          <div class="mb-2" slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                        </infinite-loading>
+                      </client-only>
+                    </div>
+                  </div>
+                </drop>
+              </div>
+              <div class="col-12 col-sm-6 col-lg-3">
+                <drop class="drop color-secondary text-16 h-100 d-flex flex-column" @drop="handleDrop">
+                  <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
+                    <div class="d-flex flex-column pr-2">
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="mr-2"><span class="bg-task-green p-1 rounded-circle d-flex"></span></span>
+                        <p class="mb-0 color-dark font-medium text-14">Done</p>
+                      </div>
+                      <span class="border-pb-1 bg-task-green w-100 d-flex mb-3"></span>
+                    </div>
+                    <div class="d-flex flex-column task-container pr-2 mb-3">
+                      <div v-for="(item,index) in doneAssignmentsList" :key="item.id">
+                        <drag :transfer-data="{ item, source: 'doneAssignments', sourceType: 'Done' }"
+                        @dragstart="handleDragStartDone(index)" @dragend="handleDragEndDone()">
+
+                          <div class="card card-primary p-3 mb-3" :class="{ 'draggingDone': isDraggingDone && index === draggingIndexDone }">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                              <div class="d-flex flex-wrap align-items-center">
+                                <span class="task-label  my-1 mr-1" :class="{
+                                  'task-label--yellow': item.priority == '1',
+                                  'task-label--violet': item.priority == '2',
+                                  'task-label--green': item.priority == '3',
+                                  'task-label--red': item.priority == '4',
+                                }"> {{
+  item.priority == "1"
+  ? "Urgent"
+  : item.priority == "2"
+    ? "Important"
+    : item.priority == "3"
+      ? "Can Wait"
+      : item.priority == "4"
+        ? "Overdue"
+        : ""
+}}</span>
+                                <span class="task-label task-label--green my-1 mr-1">{{ item.subject.subject_name
+                                  ? item.subject.subject_name
+                                  : item.subject
+                                }}</span>
+                              </div>
+                              <!-- <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                                               <div class="dropdown-select form-control" type="button"
                                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                   <span
@@ -315,444 +266,282 @@
                                                   <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
                                               </ul>
                                           </div> -->
-                                      </div>
-                                      <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
-                                      <p class="text-10 color-gray mb-2 task-description" v-html="item.assignment_description"></p>
-                                      <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex">
-                                      <div  v-for="(peer, index) in item.peers"
-                                      :key="index">
-                                      <img
-                                        v-if="peer.profile_pic"
-                                        :src="peer.profile_pic"
-                                        alt=""
-                                                  class="img-avatar img-avatar--sm">
-                                                  <img
-                                        v-else
-                                        src="~/static/image/avatar.png"
-                                        alt=""
-                                        class="img-avatar img-avatar--sm">
-                                      </div>
-                                          </div>
-                                          <div class="d-flex align-items-center">
-                                              <button class="btn btn-drag-card-open">
-                                                  Open
-                                              </button>
-                                          </div> 
-                                          </div>
-                                  </div>
-                              </drag>
-                                  </div>
-                                  <client-only>
-                            <infinite-loading
-                              class="d-flex align-items-center w-100 justify-content-center"
-                              :identifier="donereloadCount"
-                              @infinite="doneNext"
-                            >
-                            <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
-                            </infinite-loading>
-                          </client-only>
-                                  </div>
-                              </div>
-                              </drop>
-                          </div>
-                          <div class="col-12 col-sm-6 col-lg-3">
-                              <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
-                                <div class="d-flex flex-column pr-2">
-                                  <div class="d-flex align-items-center mb-3">
-                                      <span class="mr-2">
-                                        <span class="bg-task-red p-1 rounded-circle d-flex">
-                                            </span>
-                                          </span>
-                                      <p class="mb-0 color-dark font-medium text-14">Overdue</p>
-                                  </div>
-                                  <span class="border-pb-1 bg-task-red w-100 d-flex mb-3"></span>
+                            </div>
+                            <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
+                            <p class="text-10 color-gray mb-2 task-description" v-html="item.assignment_description"></p>
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex">
+                                <div v-for="(peer, index) in item.peers" :key="index">
+                                  <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
+                                    class="img-avatar img-avatar--sm">
+                                  <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
                                 </div>
-                                  <div class="d-flex flex-column task-container pr-2 mb-3">
-                                  <div  v-for="item in overdueAssignments"
-                          :key="item.id">
-                          <drag :transfer-data="{ item, source: 'overdueAssignments', sourceType:'Overdue' }">
-                            <div  
-                                      class="card card-primary p-3 mb-3">
-                                      <div class="d-flex align-items-center justify-content-between mb-2">
-                                          <div class="d-flex flex-wrap align-items-center">
-                                            <span class="task-label  my-1 mr-1"
-                                              :class="{
-                                        'task-label--yellow': item.priority == '1',
-                                        'task-label--violet': item.priority == '2',
-                                        'task-label--green': item.priority == '3',
-                                        'task-label--red': item.priority == '4',
-                                      }"
-                                              >   {{
-                                        item.priority == "1"
-                                          ? "Urgent"
-                                          : item.priority == "2"
-                                          ? "Important"
-                                          : item.priority == "3"
-                                          ? "Can Wait"
-                                          : item.priority == "4"
-                                          ? "Overdue"
-                                          : ""
-                                      }}</span>
-                                               <span class="task-label task-label--red my-1 mr-1"> {{
-                                        item.subject.subject_name
-                                          ? item.subject.subject_name
-                                          : item.subject
-                                      }}    </span>
-                                          </div>
-                                          <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
-                                              <div class="dropdown-select form-control" type="button"
-                                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  <span
-                                                      class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                                      <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
-                                                  </span>
-                                              </div>
-                                              <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
-                                                  aria-labelledby="dLabel">
-                                                  <li @click="onCardClick(item, 'Overdue')" class="item p-2">Edit</li>
-                                                  <div  v-if="item.shared_users_id != user_id">
-                                                  <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
-                                                </div>
-                                              </ul>
-                                          </div>
-                                      </div>
-                                      <div class="clickable" @click="onCardClick(item, 'Overdue')">
-                                      <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                                      <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
-                                      <div class="d-flex align-items-center justify-content-between">
-                                            <div class="d-flex">
-                                      <div  v-for="(peer, index) in item.peers"
-                                      :key="index">
-                                      <img
-                                        v-if="peer.profile_pic"
-                                        :src="peer.profile_pic"
-                                        alt=""
-                                                  class="img-avatar img-avatar--sm">
-                                                  <img
-                                        v-else
-                                        src="~/static/image/avatar.png"
-                                        alt=""
-                                        class="img-avatar img-avatar--sm">
-                                      </div>
-                                          </div>
-                                          <div class="d-flex align-items-center">
-                                              <button class="btn btn-drag-card-open">
-                                                  Open
-                                              </button>
-                                          </div> 
-                                          </div>
-                                        </div>
-                                  </div>
-                                </drag>
-                                  </div>
-                                  <client-only>
-                          <infinite-loading
-                            class="d-flex align-items-center w-100 justify-content-center"
-                            :identifier="overduereloadCount"
-                            @infinite="overdueNext"
-                          >
-                          <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
-                          </infinite-loading>
-                        </client-only>
+                              </div>
+                              <div class="d-flex align-items-center">
+                                <button class="btn btn-drag-card-open">
+                                  Open
+                                </button>
                               </div>
                             </div>
                           </div>
+                        </drag>
                       </div>
+                      <client-only>
+                        <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
+                          :identifier="donereloadCount" @infinite="doneNext">
+                          <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                        </infinite-loading>
+                      </client-only>
+                    </div>
                   </div>
+                </drop>
               </div>
-          </section>
-          <div
-          class="modal fade" id="editAssignment" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
-              <div class="modal-content">
-                <div class="modal-header pb-1">
-                  <h3 class="modal-title" id="editAssignmentModalLongTitle">
-                    {{ isAddAssignment ? "Add" : "Edit" }} Assignment
-                  </h3>
-                  <!-- grades section -->
-                  <div
-                            class="d-flex align-items-center mb-2 ml-auto"
-                            v-if="submissionId && grade && gradePossible"
-                              >
-                              <p class="mb-0">Grade</p><span class="px-1">:</span>
-                                    <p class="mb-0 bg-primary-light01 px-2 rounded-pill font-semi-bold color-primary"><span>{{
-                                      grade
-                                    }}</span>/<span>{{ gradePossible }}</span></p>
-                                    <!-- <span v-if="gradePossible"
+              <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
+                  <div class="d-flex flex-column pr-2">
+                    <div class="d-flex align-items-center mb-3">
+                      <span class="mr-2">
+                        <span class="bg-task-red p-1 rounded-circle d-flex">
+                        </span>
+                      </span>
+                      <p class="mb-0 color-dark font-medium text-14">Overdue</p>
+                    </div>
+                    <span class="border-pb-1 bg-task-red w-100 d-flex mb-3"></span>
+                  </div>
+                  <div class="d-flex flex-column task-container pr-2 mb-3">
+                    <div v-for="(item,index) in overdueAssignments" :key="item.id">
+                      <drag :transfer-data="{ item, source: 'overdueAssignments', sourceType: 'Overdue' }"
+                      @dragstart="handleDragStartDue(index)" @dragend="handleDragEndDue()">
+                        <div class="card card-primary p-3 mb-3" :class="{ 'draggingDue': isDraggingDue && index === draggingIndexDue }">
+                          <div class="d-flex align-items-center justify-content-between mb-2">
+                            <div class="d-flex flex-wrap align-items-center">
+                              <span class="task-label  my-1 mr-1" :class="{
+                                'task-label--yellow': item.priority == '1',
+                                'task-label--violet': item.priority == '2',
+                                'task-label--green': item.priority == '3',
+                                'task-label--red': item.priority == '4',
+                              }"> {{
+  item.priority == "1"
+  ? "Urgent"
+  : item.priority == "2"
+    ? "Important"
+    : item.priority == "3"
+      ? "Can Wait"
+      : item.priority == "4"
+        ? "Overdue"
+        : ""
+}}</span>
+                              <span class="task-label task-label--red my-1 mr-1"> {{
+                                item.subject.subject_name
+                                ? item.subject.subject_name
+                                : item.subject
+                              }} </span>
+                            </div>
+                            <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
+                              <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <span class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
+                                  <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
+                                </span>
+                              </div>
+                              <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
+                                <li @click="onCardClick(item, 'Overdue')" class="item p-2">Edit</li>
+                                <div v-if="item.shared_users_id != user_id">
+                                  <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                </div>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="clickable" @click="onCardClick(item, 'Overdue')">
+                            <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
+                            <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
+                            <div class="d-flex align-items-center justify-content-between">
+                              <div class="d-flex">
+                                <div v-for="(peer, index) in item.peers" :key="index">
+                                  <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
+                                    class="img-avatar img-avatar--sm">
+                                  <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
+                                </div>
+                              </div>
+                              <div class="d-flex align-items-center">
+                                <button class="btn btn-drag-card-open">
+                                  Open
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </drag>
+                    </div>
+                    <client-only>
+                      <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
+                        :identifier="overduereloadCount" @infinite="overdueNext">
+                        <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                      </infinite-loading>
+                    </client-only>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="modal fade" id="editAssignment" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+          <div class="modal-content">
+            <div class="modal-header pb-1">
+              <h3 class="modal-title" id="editAssignmentModalLongTitle">
+                {{ isAddAssignment ? "Add" : "Edit" }} Assignment
+              </h3>
+              <!-- grades section -->
+              <div class="d-flex align-items-center mb-2 ml-auto" v-if="submissionId && grade && gradePossible">
+                <p class="mb-0">Grade</p><span class="px-1">:</span>
+                <p class="mb-0 bg-primary-light01 px-2 rounded-pill font-semi-bold color-primary"><span>{{
+                  grade
+                }}</span>/<span>{{ gradePossible }}</span></p>
+                <!-- <span v-if="gradePossible"
                                       >Grade Possible</span
                                     >: -->
-                            </div>
-                            <!-- grades section end -->
+              </div>
+              <!-- grades section end -->
+            </div>
+            <div class="modal-body px-3">
+              <form v-if="!isSharedAssignment" ref="assignmentForm" id="assignmentForm">
+                <div class="form-group mb-2">
+                  <label for="recipient-name" class="col-form-label py-1">Subject here<em>*</em></label>
+                  <input v-if="schoologyAssignment == '1'" type="text" class="form-control" v-model="gg4lSubject"
+                    maxlength="60" placeholder="Enter assignment name" />
+                  <select v-else class="form-control" tabindex="" v-model="subject" :class="{
+                    'is-invalid':
+                      submitted && $v.subject.$error,
+                  }">
+                    <option value="">Select subject</option>
+                    <option v-bind:value="{
+                      id: subjects.id,
+                      text: subjects.subject_name,
+                    }" v-for="(subjects, index) in subjectsData" :key="index">
+                      {{ subjects.subject_name }}
+                    </option>
+                    <option v-if="subjectsData.length == 0">
+                      No data
+                    </option>
+                  </select>
+                  <div v-if="submitted && $v.subject.$error" class="invalid-feedback">
+                    <span v-if="!$v.subject.required">This field is required</span>
+                  </div>
                 </div>
-                <div class="modal-body px-3">
-                        <form 
-                                v-if="!isSharedAssignment"
-                                ref="assignmentForm"
-                                id="assignmentForm">
-                          <div class="form-group mb-2">
-                            <label for="recipient-name" class="col-form-label py-1"
-                              >Subject here<em>*</em></label
-                            >
-                            <input
-                                    v-if="schoologyAssignment == '1'"
-                                    type="text"
-                                    class="form-control"
-                                    
-                                    v-model="gg4lSubject"
-                                    maxlength="60"
-                                    placeholder="Enter assignment name"
-                                  />
-                            <select
-                            v-else
-                              class="form-control"
-                              tabindex=""
-                                    v-model="subject"
-                                    :class="{
-                                      'is-invalid':
-                                        submitted && $v.subject.$error,
-                                    }"
-                            >
-                              <option value="">Select subject</option>
-                              <option
-                              v-bind:value="{
-                                        id: subjects.id,
-                                        text: subjects.subject_name,
-                                      }"
-                                      v-for="(subjects, index) in subjectsData"
-                                      :key="index"
-                                      >
-                                      {{ subjects.subject_name }}
-                                    </option>
-                              <option v-if="subjectsData.length == 0">
-                                No data
-                              </option>
-                            </select>
-                            <div
-                              v-if="submitted && $v.subject.$error"
-                              class="invalid-feedback"
-                            >
-                              <span v-if="!$v.subject.required"
-                                >This field is required</span
-                              >
-                            </div>
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="assignment-name" class="col-form-label py-1"
-                              >Assignment Name<em>*</em></label
-                            >
-                            <input
-                            type="text"
-                                    class="form-control"
-                                    v-model="assignmentName"
-                                    placeholder="Enter assignment name"
-                                    :class="{
-                                      'is-invalid':
-                                        submitted && $v.assignmentName.$error,
-                                    }"
-                            />
-                            <div
-                                    v-if="submitted && $v.assignmentName.$error"
-                                    class="invalid-feedback"
-                                  >
-                                    <span v-if="!$v.assignmentName.required"
-                                      >This field is required</span
-                                    >
-                                  </div>
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="message-text" class="col-form-label py-1"
-                              >Task</label
-                            >
-                            <textarea
-                            class="form-control"
-                                    id="message-text"
-                                    rows="3"
-                                    v-model="assignmentDescription"
-                                    maxlength="500"
-                                    placeholder="Enter assignment description"
-                            ></textarea>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6 ml-auto py-0">
-                              <div class="form-group mb-2 mb-0">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label py-1"
-                                  >Priority<em>*</em></label
-                                >
-                                <div class="dropdown input-icon-area">
-                                  <button
-                                    id="dLabel"
-                                    class="dropdown-select form-control text-left"
-                                    type="button"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                  >
-                                  <span class="">
-                                            {{
-                                              priorityVal
-                                                ? priorityVal
-                                                : "Select priority"
-                                            }}</span
-                                    >
-                                  </button>
-                                  <ul
-                                          class="dropdown-menu border"
-                                          aria-labelledby="dLabel"
-                                        >
-                                          <li
-                                            @click="priorityVal = 'Can Wait'"
-                                            class="item low-color"
-                                          >
-                                            <span>Can Wait</span>
-                                          </li>
-                                          <li
-                                            @click="priorityVal = 'Important'"
-                                            class="item medium-color"
-                                          >
-                                            <span>Important</span>
-                                          </li>
-                                          <li
-                                            @click="priorityVal = 'Urgent'"
-                                            class="item high-color"
-                                          >
-                                            <span>Urgent</span>
-                                          </li>
-                                        </ul>
-                                </div>
-                              </div>
-                              <div
-                                      v-if="
-                                        submitted &&
-                                        priorityVal != 'Urgent' &&
-                                        priorityVal != 'Important' &&
-                                        priorityVal != 'Can Wait'
-                                      "
-                                      class="invalid-feedback"
-                                      style="display: block"
-                                    >
-                                      <span
-                                        v-if="
-                                          priorityVal != 'Urgent' &&
-                                          priorityVal != 'Important' &&
-                                          priorityVal != 'Can Wait'
-                                        "
-                                        >This field is required</span
-                                      >
-                                    </div>
-                            </div>
-                            <div class="col-md-6 ml-auto py-0">
-                              <div class="form-group mb-2">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label py-1"
-                                  >Date<em>*</em></label
-                                >
-                                <date-picker
-                                class="form-control dropdown-menu-top"
-                                        placeholder="MM/DD/YYYY"
-                                        format="MM/dd/yyyy"
-                                        v-model="dateValue"
-                                        :class="{
-                                          'is-invalid':
-                                            submitted && $v.dateValue.$error,
-                                        }"
-                                        :disabled-dates="disabledDates"
-                                />
-                                <div
-                                        v-if="submitted && $v.dateValue.$error"
-                                        class="invalid-feedback"
-                                      >
-                                        <span v-if="!$v.dateValue.required"
-                                          >This field is required</span
-                                        >
-                                      </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row mt-0">
-                            <div class="col-6">
-                              <div class="form-group">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label"
-                                  >Time<em>*</em></label
-                                >
-                                <div>
-                                  <vue-timepicker
-                                  @change="checkValidTime"
-                                          close-on-complete
-                                          format="hh:mm A"
-                                          v-model="timeValue"
-                                          name="timeValue"
-                                          class="show-cursor dropdown-menu-top"
-                                          :value="timeValue"
-                                          :class="{
-                                            'is-invalid':
-                                              submitted &&
-                                              ($v.timeValue.$error ||
-                                                !validTime),
-                                          }"
-                                  ></vue-timepicker>
-                                  <div
-                                          v-if="
-                                            submitted &&
-                                            ($v.timeValue.$error || !validTime)
-                                          "
-                                          class="invalid-feedback"
-                                        >
-                                          <span
-                                            v-if="
-                                              !$v.timeValue.required ||
-                                              !validTime
-                                            "
-                                            >Not a valid time</span
-                                          >
-                                        </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Sub Tasks
-                            </h6>
-                            <a @click="onAddSubTaskClick" class="btn p-0">
-                                    <span class="color-secondary"
-                                      ><i class="fas fa-plus-circle"></i
-                                    ></span>
-                                  </a>
-                          </div>
-                          <div
-                                  v-if="addSubTask"
-                                  class="d-flex flex-row align-items-start"
-                                >
-                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
-                                    <label class="form-label" for="name"
-                                      >Add a sub-task</label
-                                    >
-                                    <input
-                                      type="text"
-                                      maxlength="100"
-                                      v-model="subTaskName"
-                                      class="form-control"
-                                    />
-                                  </div>
-                                  <div class="pt-4">
-                                    <button
-                                      class="btn btn-primary btn-sm mt-1"
-                                      @click="onAddNewSubTask"
-                                    >
-                                      Add
-                                    </button>
-                                  </div>
-                                </div>
-                          <!-- <div
+                <div class="form-group mb-2">
+                  <label for="assignment-name" class="col-form-label py-1">Assignment Name<em>*</em></label>
+                  <input type="text" class="form-control" v-model="assignmentName" placeholder="Enter assignment name"
+                    :class="{
+                      'is-invalid':
+                        submitted && $v.assignmentName.$error,
+                    }" />
+                  <div v-if="submitted && $v.assignmentName.$error" class="invalid-feedback">
+                    <span v-if="!$v.assignmentName.required">This field is required</span>
+                  </div>
+                </div>
+                <div class="form-group mb-2">
+                  <label for="message-text" class="col-form-label py-1">Task</label>
+                  <textarea class="form-control" id="message-text" rows="3" v-model="assignmentDescription"
+                    maxlength="500" placeholder="Enter assignment description"></textarea>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 ml-auto py-0">
+                    <div class="form-group mb-2 mb-0">
+                      <label for="recipient-name" class="col-form-label py-1">Priority<em>*</em></label>
+                      <div class="dropdown input-icon-area">
+                        <button id="dLabel" class="dropdown-select form-control text-left" type="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="">
+                            {{
+                              priorityVal
+                              ? priorityVal
+                              : "Select priority"
+                            }}</span>
+                        </button>
+                        <ul class="dropdown-menu border" aria-labelledby="dLabel">
+                          <li @click="priorityVal = 'Can Wait'" class="item low-color">
+                            <span>Can Wait</span>
+                          </li>
+                          <li @click="priorityVal = 'Important'" class="item medium-color">
+                            <span>Important</span>
+                          </li>
+                          <li @click="priorityVal = 'Urgent'" class="item high-color">
+                            <span>Urgent</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div v-if="submitted &&
+                      priorityVal != 'Urgent' &&
+                      priorityVal != 'Important' &&
+                      priorityVal != 'Can Wait'
+                      " class="invalid-feedback" style="display: block">
+                      <span v-if="priorityVal != 'Urgent' &&
+                        priorityVal != 'Important' &&
+                        priorityVal != 'Can Wait'
+                        ">This field is required</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 ml-auto py-0">
+                    <div class="form-group mb-2">
+                      <label for="recipient-name" class="col-form-label py-1">Date<em>*</em></label>
+                      <date-picker class="form-control dropdown-menu-top" placeholder="MM/DD/YYYY" format="MM/dd/yyyy"
+                        v-model="dateValue" :class="{
+                          'is-invalid':
+                            submitted && $v.dateValue.$error,
+                        }" :disabled-dates="disabledDates" />
+                      <div v-if="submitted && $v.dateValue.$error" class="invalid-feedback">
+                        <span v-if="!$v.dateValue.required">This field is required</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-0">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Time<em>*</em></label>
+                      <div>
+                        <vue-timepicker @change="checkValidTime" close-on-complete format="hh:mm A" v-model="timeValue"
+                          name="timeValue" class="show-cursor dropdown-menu-top" :value="timeValue" :class="{
+                            'is-invalid':
+                              submitted &&
+                              ($v.timeValue.$error ||
+                                !validTime),
+                          }"></vue-timepicker>
+                        <div v-if="submitted &&
+                          ($v.timeValue.$error || !validTime)
+                          " class="invalid-feedback">
+                          <span v-if="!$v.timeValue.required ||
+                            !validTime
+                            ">Not a valid time</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="color-dark font-semi-bold mb-0">
+                    Sub Tasks
+                  </h6>
+                  <a @click="onAddSubTaskClick" class="btn p-0">
+                    <span class="color-secondary"><i class="fas fa-plus-circle"></i></span>
+                  </a>
+                </div>
+                <div v-if="addSubTask" class="d-flex flex-row align-items-start">
+                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                    <label class="form-label" for="name">Add a sub-task</label>
+                    <input type="text" maxlength="100" v-model="subTaskName" class="form-control" />
+                  </div>
+                  <div class="pt-4">
+                    <button class="btn btn-primary btn-sm mt-1" @click="onAddNewSubTask">
+                      Add
+                    </button>
+                  </div>
+                </div>
+                <!-- <div
                             class="d-flex flex-row align-items-start"
                           >
                             <div class="form-row mb-2 mx-0 mr-2 w-100">
@@ -774,58 +563,30 @@
                             </div>
                           </div> -->
 
-                          <div
-                                  class="custom-overflow pr-2 mr--2 d-flex flex-column"
-                                >
-                                 <div v-if="isAddAssignment === false">
-                                   <div
-                                     v-for="subTask in subTasksList"
-                                     :key="subTask.id"
-                                     >
-                                     <div
-                                      class="card card-transparent show-icon p-1 mb-1"
-                                     >
-                                      <div
-                                      
-                                        class="d-flex align-items-center justify-content-between"
-                                      >
-                                      <div 
-                                      
-                                      class="p-1 form-group checkbox">
-                                      <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
-                                        <input
-                                          :id="subTask.id"
-                                          class="mr-2 cursor-pointer"
-                                          type="checkbox"
-                                          v-model="subTask.isTaskCompleted"
-                                          @change="updateTaskIds(subTask.id)"
-                                        />
-                                      <label :for="subTask.id">{{ subTask.title }}</label>
-                                      </div>
-                                        <span
-                                          v-if="
-                                            subTask.task_status != 'Completed'
-                                          "
-                                          @click="deleteSubTask(subTask)"
-                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
-                                          ><i class="fas fa-trash-alt"></i
-                                        ></span>
-                                      </div>
-                                    </div>
-                                   </div>
-                                  </div>
-                                 <div v-else>
-                                  <div
-                                    v-for="subTask in subTasksList"
-                                    :key="subTask.id"
-                                    >
-                                    <div
-                                      class="card card-transparent show-icon p-1 mb-1"
-                                    >
-                                      <div
-                                        class="d-flex align-items-center justify-content-between"
-                                      >
-                                          <!-- <p
+                <div class="custom-overflow pr-2 mr--2 d-flex flex-column">
+                  <div v-if="isAddAssignment === false">
+                    <div v-for="subTask in subTasksList" :key="subTask.id">
+                      <div class="card card-transparent show-icon p-1 mb-1">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="p-1 form-group checkbox">
+                            <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
+                            <input :id="subTask.id" class="mr-2 cursor-pointer" type="checkbox"
+                              v-model="subTask.isTaskCompleted" @change="updateTaskIds(subTask.id)" />
+                            <label :for="subTask.id">{{ subTask.title }}</label>
+                          </div>
+                          <span v-if="subTask.task_status != 'Completed'
+                            " @click="deleteSubTask(subTask)"
+                            class="color-primary-dark fa-icon show-hover d-none btn p-0"><i
+                              class="fas fa-trash-alt"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div v-else>
+                    <div v-for="subTask in subTasksList" :key="subTask.id">
+                      <div class="card card-transparent show-icon p-1 mb-1">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <!-- <p
                                           class="mb-0 color-secondary text-16 font-regular word-break pr-3"
                                         >
                                           <span
@@ -839,343 +600,200 @@
                                           ></span>
                                           <span>{{ subTask.title }}</span>
                                         </p> -->
-                                        <div 
-                                      
-                                      class="p-1 form-group checkbox">
-                                      <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
-                                      <input
-                                          :id="subTask.id"
-                                          class="mr-2 cursor-pointer"
-                                          type="checkbox"
-                                        />
-                                      <label :for="subTask.id">{{ subTask.title }}</label>
-                                      </div>
-                                        <span
-                                          v-if="
-                                            subTask.task_status != 'Completed'
-                                          "
-                                          @click="deleteSubTask(subTask)"
-                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
-                                          ><i class="fas fa-trash-alt"></i
-                                        ></span>
-                                      </div>
-                                    </div>
-                                   </div>
-                                  </div>
-                                </div>
+                          <div class="p-1 form-group checkbox">
+                            <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
+                            <input :id="subTask.id" class="mr-2 cursor-pointer" type="checkbox" />
+                            <label :for="subTask.id">{{ subTask.title }}</label>
+                          </div>
+                          <span v-if="subTask.task_status != 'Completed'
+                            " @click="deleteSubTask(subTask)"
+                            class="color-primary-dark fa-icon show-hover d-none btn p-0"><i
+                              class="fas fa-trash-alt"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                          <!-- Additional Material Add -->
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Invite Peers
-                            </h6>
-                            <a @click="onInviteClick" class="btn p-0">
-                                    <span class="color-secondary"
-                                      ><i class="fas fa-plus-circle"></i
-                                    ></span>
-                                  </a>
-                          </div>
-                          <div
-                                  v-if="invitePeer"
-                                  class="d-flex flex-row align-items-start"
-                                >
-                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
-                                    <label class="form-label" for="name"
-                                      >Invite peers</label
-                                    >
-                                    <!-- <input type="text" class="form-control" /> -->
-                                    <multiselect
-                                      v-model="peerSelected"
-                                      :options="students"
-                                      track-by="first_name"
-                                      label="first_name"
-                                      :placeholder="
-                                        peerSelected.length > 3
-                                          ? ''
-                                          : 'Select students'
-                                      "
-                                      :multiple="true"
-                                      :max="4"
-                                    >
-                                      <span slot="maxElements"
-                                        >Maximum of 4 students selected</span
-                                      >
-                                      <span slot="noResult">No data found</span>
-                                    </multiselect>
-                                  </div>
-                                  <div class="pt-4">
-                                    <button
-                                      @click="onInvitePeer"
-                                      class="btn btn-primary btn-sm mt-1"
-                                    >
-                                      {{ isAddAssignment ? "Add" : "Save" }}
-                                    </button>
-                                  </div>
-                                </div>
-                                <div class="hidden-scroll px-3 row my-0">
-                                  <div
-                                    v-for="peer of peerList"
-                                    :key="peer.id"
-                                    class="h-fit-content show-icon d-flex align-items-center position-realtive"
-                                  >
-                                    <div
-                                      class="d-flex align-items-center my-2 mr-3"
-                                    >
-                                      <div
-                                        class="ld-img-section position-relative mr-2 d-flex flex-column"
-                                      >
-                                        <div class="ld-img-holder">
-                                          <img
-                                            v-if="peer.profile_pic"
-                                            :src="peer.profile_pic"
-                                            alt=""
-                                          />
-                                          <img
-                                            v-else
-                                            src="~/static/image/avatar.png"
-                                            alt=""
-                                          />
-                                        </div>
-                                        <button
-                                          type="button"
-                                          role="button"
-                                          class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none"
-                                          @click="
-                                            removePeerConfirm(peer.id, $event)
-                                          "
-                                        >
-                                          <span
-                                            class="color-primary-dark fa-icon show-hover btn p-0 ml-05"
-                                            ><i
-                                              class="fas fa-trash-alt color-danger"
-                                            ></i
-                                          ></span>
-                                        </button>
-                                      </div>
-                                      <div class="ld-details-section">
-                                        <p class="ld-heading mb-0">
-                                          {{ peer.first_name }}
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div
-                                  class="d-flex justify-content-between align-items-center mb-2"
-                                >
-                                  <h6 class="color-dark font-semi-bold mb-0">
-                                    Additional Material
-                                  </h6>
-                                  <a
-                                    @click="onAdditionalMatClick"
-                                    class="btn p-0"
-                                  >
-                                    <span class="color-secondary"
-                                      ><i class="fas fa-plus-circle"></i
-                                    ></span>
-                                  </a>
-                                </div>
-                                <div
-                                  v-if="additionalMaterial"
-                                  class="d-flex flex-row align-items-start"
-                                >
-                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
-                                    <label class="form-label" for="name"
-                                      >Add Additional Material</label
-                                    >
-                                    <!-- <input type="text" class="form-control" /> -->
-                                    <select
-                                      v-model="materialType"
-                                      class="form-select form-control mb-2"
-                                      aria-label="Default select example"
-                                    >
-                                      <option value="">
-                                        Choose material type
-                                      </option>
-                                      <option value="file">File</option>
-                                      <option value="link">Link</option>
-                                    </select>
-                                    <div class="row m-0">
-                                      <div class="col-12 py-0">
-                                        <input
-                                          v-if="materialType == 'file'"
-                                          type="file"
-                                          class="form-control px-2"
-                                          placeholder="Upload File"
-                                          @change="onFileChange"
-                                          id="fileUpload"
-                                          accept=".png,.jpeg,.jpg,.pdf"
-                                        />
-                                      </div>
-                                      <div class="col-12 py-0">
-                                        <input
-                                          v-if="materialType == 'link'"
-                                          type="text"
-                                          class="form-control px-2"
-                                          placeholder="Paste Link"
-                                          v-model="link"
-                                        />
-                                      </div>
-                                      <div class="col-3 p-0"></div>
-                                    </div>
-                                  </div>
-                                  <div class="pt-4">
-                                    <button
-                                      type="button"
-                                      @click="UploadAttachment"
-                                      class="btn btn-primary btn-sm mt-1"
-                                    >
-                                      Add
-                                    </button>
-                                  </div>
-                                </div>
-                                <div class="hidden-scroll px-3 row my-0">
-                                  <div
-                                    v-for="item of additionalMaterialList"
-                                    :key="item.id"
-                                    class="h-fit-content cursor-pointer w-100"
-                                  >
-                                    <div
-                                      v-if="item.link"
-                                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon"
-                                    >
-                                      <div class="ld-details-section w-100">
-                                        <p
-                                          @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link text-truncate"
-                                        >
-                                          <!-- {{ peer.first_name }} -->
-                                          {{ item.link }}
-                                        </p>
-                                      </div>
-                                      <span
-                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
-                                        @click="deleteAdditionalMat(item)"
-                                        ><i class="fas fa-trash-alt"></i
-                                      ></span>
-                                    </div>
-                                    <div
-                                      v-else
-                                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon"
-                                    >
-                                      <div class="ld-details-section w-100">
-                                        <p
-                                          @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link text-truncate"
-                                        >
-                                          <!-- {{ peer.first_name }} -->
-                                          {{
-                                            item.file_type &&
-                                            item.file_type != "link"
-                                              ? item.file_name
-                                              : item.material
-                                          }}
-                                        </p>
-                                      </div>
-                                      <span
-                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
-                                        @click="deleteAdditionalMat(item)"
-                                        ><i class="fas fa-trash-alt"></i
-                                      ></span>
-                                    </div>
-                                  </div>
-                                </div>
-                        </form>
-                        <form 
-                                v-if="isSharedAssignment"
-                                ref="assignmentForm"
-                                id="assignmentForm">
-                          <div class="form-group mb-2">
-                            <label for="recipient-name" class="col-form-label py-1"
-                              >Subject here:</label
-                            >
-                            &nbsp;{{ subject }}  
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="assignment-name" class="col-form-label py-1"
-                              >Assignment Name:</label
-                            >
-                            &nbsp;{{ assignmentName }}
-                          </div>
-                          <div class="form-group mb-2">
-                            <label for="message-text" class="col-form-label py-1"
-                              >Task:</label
-                            >
-                            &nbsp;{{ assignmentDescription }}
-                          </div>
-                          <div class="row">
-                            <div class="col-md-6 ml-auto py-0">
-                              <div class="form-group mb-2 mb-0">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label py-1"
-                                  >Priority:</label
-                                >&nbsp;
-                                <span>{{ priorityVal }}</span>
-                              </div>
-                            </div>
-                            <div class="col-md-6 ml-auto py-0">
-                              <div class="form-group mb-2">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label py-1"
-                                  >Date:</label
-                                >
-                                &nbsp;{{ dateValue }}
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row mt-0">
-                            <div class="col-6">
-                              <div class="form-group">
-                                <label
-                                  for="recipient-name"
-                                  class="col-form-label"
-                                  >Time:</label
-                                >
-                                <div>&nbsp;{{ timeValue }}</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Sub Tasks
-                            </h6>
-                            <a @click="onAddSubTaskClick" class="btn p-0">
-                                    <span class="color-secondary"
-                                      ><i class="fas fa-plus-circle"></i
-                                    ></span>
-                                  </a>
-                          </div>
-                          <div
-                                  v-if="addSubTask"
-                                  class="d-flex flex-row align-items-start"
-                                >
-                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
-                                    <label class="form-label" for="name"
-                                      >Add a sub-task</label
-                                    >
-                                    <input
-                                      type="text"
-                                      maxlength="100"
-                                      v-model="subTaskName"
-                                      class="form-control"
-                                    />
-                                  </div>
-                                  <div class="pt-4">
-                                    <button
-                                      class="btn btn-primary btn-sm mt-2"
-                                      @click="onAddNewSubTask"
-                                    >
-                                      Add
-                                    </button>
-                                  </div>
-                                </div>
-                          <!-- <div
+                <!-- Additional Material Add -->
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="color-dark font-semi-bold mb-0">
+                    Invite Peers
+                  </h6>
+                  <a @click="onInviteClick" class="btn p-0">
+                    <span class="color-secondary"><i class="fas fa-plus-circle"></i></span>
+                  </a>
+                </div>
+                <div v-if="invitePeer" class="d-flex flex-row align-items-start">
+                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                    <label class="form-label" for="name">Invite peers</label>
+                    <!-- <input type="text" class="form-control" /> -->
+                    <multiselect v-model="peerSelected" :options="students" track-by="first_name" label="first_name"
+                      :placeholder="peerSelected.length > 3
+                        ? ''
+                        : 'Select students'
+                        " :multiple="true" :max="4">
+                      <span slot="maxElements">Maximum of 4 students selected</span>
+                      <span slot="noResult">No data found</span>
+                    </multiselect>
+                  </div>
+                  <div class="pt-4">
+                    <button @click="onInvitePeer" class="btn btn-primary btn-sm mt-1">
+                      {{ isAddAssignment ? "Add" : "Save" }}
+                    </button>
+                  </div>
+                </div>
+                <div class="hidden-scroll px-3 row my-0">
+                  <div v-for="peer of peerList" :key="peer.id"
+                    class="h-fit-content show-icon d-flex align-items-center position-realtive">
+                    <div class="d-flex align-items-center my-2 mr-3">
+                      <div class="ld-img-section position-relative mr-2 d-flex flex-column">
+                        <div class="ld-img-holder">
+                          <img v-if="peer.profile_pic" :src="peer.profile_pic" alt="" />
+                          <img v-else src="~/static/image/avatar.png" alt="" />
+                        </div>
+                        <button type="button" role="button"
+                          class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none" @click="
+                            removePeerConfirm(peer.id, $event)
+                            ">
+                          <span class="color-primary-dark fa-icon show-hover btn p-0 ml-05"><i
+                              class="fas fa-trash-alt color-danger"></i></span>
+                        </button>
+                      </div>
+                      <div class="ld-details-section">
+                        <p class="ld-heading mb-0">
+                          {{ peer.first_name }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="color-dark font-semi-bold mb-0">
+                    Additional Material
+                  </h6>
+                  <a @click="onAdditionalMatClick" class="btn p-0">
+                    <span class="color-secondary"><i class="fas fa-plus-circle"></i></span>
+                  </a>
+                </div>
+                <div v-if="additionalMaterial" class="d-flex flex-row align-items-start">
+                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                    <label class="form-label" for="name">Add Additional Material</label>
+                    <!-- <input type="text" class="form-control" /> -->
+                    <select v-model="materialType" class="form-select form-control mb-2"
+                      aria-label="Default select example">
+                      <option value="">
+                        Choose material type
+                      </option>
+                      <option value="file">File</option>
+                      <option value="link">Link</option>
+                    </select>
+                    <div class="row m-0">
+                      <div class="col-12 py-0">
+                        <input v-if="materialType == 'file'" type="file" class="form-control px-2"
+                          placeholder="Upload File" @change="onFileChange" id="fileUpload"
+                          accept=".png,.jpeg,.jpg,.pdf" />
+                      </div>
+                      <div class="col-12 py-0">
+                        <input v-if="materialType == 'link'" type="text" class="form-control px-2"
+                          placeholder="Paste Link" v-model="link" />
+                      </div>
+                      <div class="col-3 p-0"></div>
+                    </div>
+                  </div>
+                  <div class="pt-4">
+                    <button type="button" @click="UploadAttachment" class="btn btn-primary btn-sm mt-1">
+                      Add
+                    </button>
+                  </div>
+                </div>
+                <div class="hidden-scroll px-3 row my-0">
+                  <div v-for="item of additionalMaterialList" :key="item.id" class="h-fit-content cursor-pointer w-100">
+                    <div v-if="item.link"
+                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon">
+                      <div class="ld-details-section w-100">
+                        <p @click="openLink(item)" class="ld-heading mb-1 text-link text-truncate">
+                          <!-- {{ peer.first_name }} -->
+                          {{ item.link }}
+                        </p>
+                      </div>
+                      <span class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                        @click="deleteAdditionalMat(item)"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                    <div v-else
+                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon">
+                      <div class="ld-details-section w-100">
+                        <p @click="openLink(item)" class="ld-heading mb-1 text-link text-truncate">
+                          <!-- {{ peer.first_name }} -->
+                          {{
+                            item.file_type &&
+                            item.file_type != "link"
+                            ? item.file_name
+                            : item.material
+                          }}
+                        </p>
+                      </div>
+                      <span class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                        @click="deleteAdditionalMat(item)"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <form v-if="isSharedAssignment" ref="assignmentForm" id="assignmentForm">
+                <div class="form-group mb-2">
+                  <label for="recipient-name" class="col-form-label py-1">Subject here:</label>
+                  &nbsp;{{ subject }}
+                </div>
+                <div class="form-group mb-2">
+                  <label for="assignment-name" class="col-form-label py-1">Assignment Name:</label>
+                  &nbsp;{{ assignmentName }}
+                </div>
+                <div class="form-group mb-2">
+                  <label for="message-text" class="col-form-label py-1">Task:</label>
+                  &nbsp;{{ assignmentDescription }}
+                </div>
+                <div class="row">
+                  <div class="col-md-6 ml-auto py-0">
+                    <div class="form-group mb-2 mb-0">
+                      <label for="recipient-name" class="col-form-label py-1">Priority:</label>&nbsp;
+                      <span>{{ priorityVal }}</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6 ml-auto py-0">
+                    <div class="form-group mb-2">
+                      <label for="recipient-name" class="col-form-label py-1">Date:</label>
+                      &nbsp;{{ dateValue }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-0">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Time:</label>
+                      <div>&nbsp;{{ timeValue }}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="color-dark font-semi-bold mb-0">
+                    Sub Tasks
+                  </h6>
+                  <a @click="onAddSubTaskClick" class="btn p-0">
+                    <span class="color-secondary"><i class="fas fa-plus-circle"></i></span>
+                  </a>
+                </div>
+                <div v-if="addSubTask" class="d-flex flex-row align-items-start">
+                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                    <label class="form-label" for="name">Add a sub-task</label>
+                    <input type="text" maxlength="100" v-model="subTaskName" class="form-control" />
+                  </div>
+                  <div class="pt-4">
+                    <button class="btn btn-primary btn-sm mt-2" @click="onAddNewSubTask">
+                      Add
+                    </button>
+                  </div>
+                </div>
+                <!-- <div
                             class="d-flex flex-row align-items-start"
                           >
                             <div class="form-row mb-2 mx-0 mr-2 w-100">
@@ -1197,160 +815,87 @@
                             </div>
                           </div> -->
 
-                          <div
-                                  class="custom-overflow pr-2 mr--2 d-flex flex-column"
-                                >
-                                <div v-if="isAddAssignment === false">
-                                   <div
-                                    v-for="subTask in subTasksList"
-                                    :key="subTask.id"
-                                    >
-                                    <div
-                                      class="card card-transparent show-icon p-1 mb-1"
-                                    >
-                                      <div
-                                      
-                                        class="d-flex align-items-center justify-content-between"
-                                      >
-                                      <div 
-                                      
-                                      class="p-1 form-group checkbox">
-                                      <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
-                                        <input
-                                          :id="subTask.id"
-                                          class="mr-2 cursor-pointer"
-                                          type="checkbox"
-                                          v-model="subTask.isTaskCompleted"
-                                          @change="updateTaskIds(subTask.id)"
-                                        />
-                                      <label :for="subTask.id">{{ subTask.title }}</label>
-                                      </div>
-                                        <span
-                                          v-if="
-                                            subTask.task_status != 'Completed'
-                                          "
-                                          @click="deleteSubTask(subTask)"
-                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
-                                          ><i class="fas fa-trash-alt"></i
-                                        ></span>
-                                      </div>
-                                    </div>
-                                   </div>
-                                  </div>
-                                  <div v-else
-                                    v-for="subTask in subTasksList"
-                                    :key="subTask.id"
-                                  >
-                                    <div
-                                      class="card card-transparent show-icon p-1 mb-1"
-                                    >
-                                      <div
-                                        class="d-flex align-items-center justify-content-between"
-                                      >
-                                        <p
-                                          class="mb-0 color-secondary text-16 font-regular word-break pr-3"
-                                        >
-                                          <span
-                                            class="subtask-btn mr-1"
-                                            :class="{
-                                              selected:
-                                                subTask.task_status ==
-                                                'Completed',
-                                            }"
-                                            ><i></i
-                                          ></span>
-                                          <span>{{ subTask.title }}</span>
-                                        </p>
-                                        <span
-                                          v-if="
-                                            subTask.task_status != 'Completed'
-                                          "
-                                          @click="deleteSubTask(subTask)"
-                                          class="color-primary-dark fa-icon show-hover d-none btn p-0"
-                                          ><i class="fas fa-trash-alt"></i
-                                        ></span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                          <!-- Additional Material Add -->
-                          <div
-                            class="d-flex justify-content-between align-items-center mb-2"
-                          >
-                            <h6 class="color-dark font-semi-bold mb-0">
-                              Invite Peers
-                            </h6>
+                <div class="custom-overflow pr-2 mr--2 d-flex flex-column">
+                  <div v-if="isAddAssignment === false">
+                    <div v-for="subTask in subTasksList" :key="subTask.id">
+                      <div class="card card-transparent show-icon p-1 mb-1">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="p-1 form-group checkbox">
+                            <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
+                            <input :id="subTask.id" class="mr-2 cursor-pointer" type="checkbox"
+                              v-model="subTask.isTaskCompleted" @change="updateTaskIds(subTask.id)" />
+                            <label :for="subTask.id">{{ subTask.title }}</label>
                           </div>
-                          <div
-                                  v-if="invitePeer"
-                                  class="d-flex flex-row align-items-start"
-                                >
-                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
-                                    <label class="form-label" for="name"
-                                      >Invite peers</label
-                                    >
-                                    <!-- <input type="text" class="form-control" /> -->
-                                    <multiselect
-                                      v-model="peerSelected"
-                                      :options="students"
-                                      track-by="first_name"
-                                      label="first_name"
-                                      :placeholder="
-                                        peerSelected.length > 3
-                                          ? ''
-                                          : 'Select students'
-                                      "
-                                      :multiple="true"
-                                      :max="4"
-                                    >
-                                      <span slot="maxElements"
-                                        >Maximum of 4 students selected</span
-                                      >
-                                      <span slot="noResult">No data found</span>
-                                    </multiselect>
-                                  </div>
-                                  <div class="pt-4">
-                                    <button
-                                      @click="onInvitePeer"
-                                      class="btn btn-primary btn-sm mt-2"
-                                    >
-                                      {{ isAddAssignment ? "Add" : "Save" }}
-                                    </button>
-                                  </div>
-                                </div>
-                                <div class="hidden-scroll px-3 row my-0">
-                                  <div
-                                    v-for="peer of peerList"
-                                    :key="peer.id"
-                                    class="h-fit-content show-icon d-flex align-items-center position-realtive"
-                                  >
-                                    <div
-                                      class="d-flex align-items-center my-2 mr-3"
-                                    >
-                                      <div
-                                        class="ld-img-section mr-2 d-flex flex-column"
-                                      >
-                                        <div class="ld-img-holder">
-                                          <img
-                                            v-if="peer.profile_pic"
-                                            :src="peer.profile_pic"
-                                            alt=""
-                                          />
-                                          <img
-                                            v-else
-                                            src="~/static/image/avatar.png"
-                                            alt=""
-                                          />
-                                        </div>
-                                      </div>
-                                      <div class="ld-details-section">
-                                        <p class="ld-heading mb-0">
-                                          {{ peer.first_name }}
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <!-- <button
+                          <span v-if="subTask.task_status != 'Completed'
+                            " @click="deleteSubTask(subTask)"
+                            class="color-primary-dark fa-icon show-hover d-none btn p-0"><i
+                              class="fas fa-trash-alt"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div v-else v-for="subTask in subTasksList" :key="subTask.id">
+                    <div class="card card-transparent show-icon p-1 mb-1">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <p class="mb-0 color-secondary text-16 font-regular word-break pr-3">
+                          <span class="subtask-btn mr-1" :class="{
+                            selected:
+                              subTask.task_status ==
+                              'Completed',
+                          }"><i></i></span>
+                          <span>{{ subTask.title }}</span>
+                        </p>
+                        <span v-if="subTask.task_status != 'Completed'
+                          " @click="deleteSubTask(subTask)"
+                          class="color-primary-dark fa-icon show-hover d-none btn p-0"><i
+                            class="fas fa-trash-alt"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Additional Material Add -->
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="color-dark font-semi-bold mb-0">
+                    Invite Peers
+                  </h6>
+                </div>
+                <div v-if="invitePeer" class="d-flex flex-row align-items-start">
+                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                    <label class="form-label" for="name">Invite peers</label>
+                    <!-- <input type="text" class="form-control" /> -->
+                    <multiselect v-model="peerSelected" :options="students" track-by="first_name" label="first_name"
+                      :placeholder="peerSelected.length > 3
+                        ? ''
+                        : 'Select students'
+                        " :multiple="true" :max="4">
+                      <span slot="maxElements">Maximum of 4 students selected</span>
+                      <span slot="noResult">No data found</span>
+                    </multiselect>
+                  </div>
+                  <div class="pt-4">
+                    <button @click="onInvitePeer" class="btn btn-primary btn-sm mt-2">
+                      {{ isAddAssignment ? "Add" : "Save" }}
+                    </button>
+                  </div>
+                </div>
+                <div class="hidden-scroll px-3 row my-0">
+                  <div v-for="peer of peerList" :key="peer.id"
+                    class="h-fit-content show-icon d-flex align-items-center position-realtive">
+                    <div class="d-flex align-items-center my-2 mr-3">
+                      <div class="ld-img-section mr-2 d-flex flex-column">
+                        <div class="ld-img-holder">
+                          <img v-if="peer.profile_pic" :src="peer.profile_pic" alt="" />
+                          <img v-else src="~/static/image/avatar.png" alt="" />
+                        </div>
+                      </div>
+                      <div class="ld-details-section">
+                        <p class="ld-heading mb-0">
+                          {{ peer.first_name }}
+                        </p>
+                      </div>
+                    </div>
+                    <!-- <button
                                       type="button"
                                       role="button"
                                       class="btn btn-tag-remove position-absolute left-0 rounded-circle d-none"
@@ -1365,227 +910,133 @@
                                         ></i
                                       ></span>
                                     </button> -->
-                                  </div>
-                                </div>
-                                <div
-                                  class="d-flex justify-content-between align-items-center mb-2"
-                                >
-                                  <h6 class="color-dark font-semi-bold mb-0">
-                                    Additional Material
-                                  </h6>
-                                  <a
-                                    @click="onAdditionalMatClick"
-                                    class="btn p-0"
-                                  >
-                                    <span class="color-secondary"
-                                      ><i class="fas fa-plus-circle"></i
-                                    ></span>
-                                  </a>
-                                </div>
-                                <div
-                                  v-if="additionalMaterial"
-                                  class="d-flex flex-row align-items-start"
-                                >
-                                  <div class="form-row mb-2 mx-0 mr-2 w-100">
-                                    <label class="form-label" for="name"
-                                      >Add Additional Material</label
-                                    >
-                                    <!-- <input type="text" class="form-control" /> -->
-                                    <select
-                                      v-model="materialType"
-                                      class="form-select form-control mb-2"
-                                      aria-label="Default select example"
-                                    >
-                                      <option value="">
-                                        Choose material type
-                                      </option>
-                                      <option value="file">File</option>
-                                      <option value="link">Link</option>
-                                    </select>
-                                    <div class="row m-0">
-                                      <div class="col-9 py-0">
-                                        <input
-                                          v-if="materialType == 'file'"
-                                          type="file"
-                                          class="form-control px-2"
-                                          placeholder="Upload File"
-                                          @change="onFileChange"
-                                          id="fileUpload"
-                                          accept=".png,.jpeg,.jpg,.pdf"
-                                        />
-                                      </div>
-                                      <div class="col-9 py-0">
-                                        <input
-                                          v-if="materialType == 'link'"
-                                          type="text"
-                                          class="form-control px-2"
-                                          placeholder="Paste Link"
-                                          v-model="link"
-                                        />
-                                      </div>
-                                      <div class="col-3 p-0"></div>
-                                    </div>
-                                  </div>
-                                  <div class="pt-4">
-                                    <button
-                                      type="button"
-                                      @click="UploadAttachment"
-                                      class="btn btn-primary btn-sm mt-2"
-                                    >
-                                      Add
-                                    </button>
-                                  </div>
-                                </div>
-                                <div class="hidden-scroll px-3 row my-0">
-                                  <div
-                                    v-for="item of additionalMaterialList"
-                                    :key="item.id"
-                                    class="h-fit-content cursor-pointer w-100"
-                                  >
-                                    <div
-                                      v-if="item.link"
-                                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon"
-                                    >
-                                      <div class="ld-details-section w-100">
-                                        <p
-                                          @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link text-truncate"
-                                        >
-                                          <!-- {{ peer.first_name }} -->
-                                          {{ item.link }}
-                                        </p>
-                                      </div>
-                                      <span
-                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
-                                        @click="deleteAdditionalMat(item)"
-                                        ><i class="fas fa-trash-alt"></i
-                                      ></span>
-                                    </div>
-                                    <div
-                                      v-else
-                                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon"
-                                    >
-                                      <div class="ld-details-section w-100">
-                                        <p
-                                          @click="openLink(item)"
-                                          class="ld-heading mb-1 text-link text-truncate"
-                                        >
-                                          <!-- {{ peer.first_name }} -->
-                                          {{
-                                            item.file_type &&
-                                            item.file_type != "link"
-                                              ? item.file_name
-                                              : item.material
-                                          }}
-                                        </p>
-                                      </div>
-                                      <span
-                                        class="color-primary-dark fa-icon show-hover d-none btn p-0"
-                                        @click="deleteAdditionalMat(item)"
-                                        ><i class="fas fa-trash-alt"></i
-                                      ></span>
-                                    </div>
-                                  </div>
-                                </div>
-                        </form>
+                  </div>
                 </div>
-                <div class="modal-footer justify-content-end border-top-0">
-                  <button
-                                v-if="
-                                  !isAddAssignment && schoologyAssignment == '1'
-                                "
-                                type="button"
-                                class="btn btn-primary py-1 px-3 mr-auto"
-                                :disabled="processing || submissionId"
-                                @click="submitAssignment()"
-                              >
-                                Submit Assignment
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-secondary py-1 px-3 mr-2"
-                                @click="
-                                  openAssignment = false;
-                                  closePopup();
-                                "
-                              >
-                                Close
-                              </button>
-                              <button
-                                type="button"
-                                class="btn btn-primary py-1 px-3"
-                                :disabled="processing"
-                                @click="
-                                  isAddAssignment
-                                    ? AddAssignment()
-                                    : UpdateAssignment()
-                                "
-                              >
-                                {{ isAddAssignment ? "Add" : "Update" }}
-                              </button>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="color-dark font-semi-bold mb-0">
+                    Additional Material
+                  </h6>
+                  <a @click="onAdditionalMatClick" class="btn p-0">
+                    <span class="color-secondary"><i class="fas fa-plus-circle"></i></span>
+                  </a>
                 </div>
-              </div>
+                <div v-if="additionalMaterial" class="d-flex flex-row align-items-start">
+                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                    <label class="form-label" for="name">Add Additional Material</label>
+                    <!-- <input type="text" class="form-control" /> -->
+                    <select v-model="materialType" class="form-select form-control mb-2"
+                      aria-label="Default select example">
+                      <option value="">
+                        Choose material type
+                      </option>
+                      <option value="file">File</option>
+                      <option value="link">Link</option>
+                    </select>
+                    <div class="row m-0">
+                      <div class="col-9 py-0">
+                        <input v-if="materialType == 'file'" type="file" class="form-control px-2"
+                          placeholder="Upload File" @change="onFileChange" id="fileUpload"
+                          accept=".png,.jpeg,.jpg,.pdf" />
+                      </div>
+                      <div class="col-9 py-0">
+                        <input v-if="materialType == 'link'" type="text" class="form-control px-2"
+                          placeholder="Paste Link" v-model="link" />
+                      </div>
+                      <div class="col-3 p-0"></div>
+                    </div>
+                  </div>
+                  <div class="pt-4">
+                    <button type="button" @click="UploadAttachment" class="btn btn-primary btn-sm mt-2">
+                      Add
+                    </button>
+                  </div>
+                </div>
+                <div class="hidden-scroll px-3 row my-0">
+                  <div v-for="item of additionalMaterialList" :key="item.id" class="h-fit-content cursor-pointer w-100">
+                    <div v-if="item.link"
+                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon">
+                      <div class="ld-details-section w-100">
+                        <p @click="openLink(item)" class="ld-heading mb-1 text-link text-truncate">
+                          <!-- {{ peer.first_name }} -->
+                          {{ item.link }}
+                        </p>
+                      </div>
+                      <span class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                        @click="deleteAdditionalMat(item)"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                    <div v-else
+                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon">
+                      <div class="ld-details-section w-100">
+                        <p @click="openLink(item)" class="ld-heading mb-1 text-link text-truncate">
+                          <!-- {{ peer.first_name }} -->
+                          {{
+                            item.file_type &&
+                            item.file_type != "link"
+                            ? item.file_name
+                            : item.material
+                          }}
+                        </p>
+                      </div>
+                      <span class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                        @click="deleteAdditionalMat(item)"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer justify-content-end border-top-0">
+              <button v-if="!isAddAssignment && schoologyAssignment == '1'
+                " type="button" class="btn btn-primary py-1 px-3 mr-auto" :disabled="processing || submissionId"
+                @click="submitAssignment()">
+                Submit Assignment
+              </button>
+              <button type="button" class="btn btn-secondary py-1 px-3 mr-2" @click="
+                openAssignment = false;
+              closePopup();
+              ">
+                Close
+              </button>
+              <button type="button" class="btn btn-primary py-1 px-3" :disabled="processing" @click="
+                isAddAssignment
+                  ? AddAssignment()
+                  : UpdateAssignment()
+                ">
+                {{ isAddAssignment ? "Add" : "Update" }}
+              </button>
             </div>
           </div>
-          <div
-            class="modal fade"
-            id="deleteAssignmentConfirmation"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="deleteAssignmentConfirmationModalCenterTitle"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
-              <div class="modal-content">
-                <div class="modal-header pb-1">
-                  <h4
-                    class="modal-title"
-                    id="deleteAssignmentConfirmationModalLongTitle"
-                  >
-                    Delete Assignment Confirmation
-                  </h4>
-                </div>
-                <div class="modal-body px-3">
-                  <p class="mb-0">Delete selected assignment?</p>
-                </div>
-                <div class="modal-footer justify-content-end border-top-0">
-                  <button
-                    type="button"
-                    class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
-                    data-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    data-dismiss="modal"
-                    type="button"
-                    class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
-                    @click="deleteAssts()"
-                  >
-                    Confirm
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-        class="modal fade"
-        id="submitAssignmentConfirmation"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="submitAssignmentConfirmationModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div
-          class="modal-dialog modal-dialog-centered add-assmt"
-          role="document"
-        >
+        </div>
+      </div>
+      <div class="modal fade" id="deleteAssignmentConfirmation" tabindex="-1" role="dialog"
+        aria-labelledby="deleteAssignmentConfirmationModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
           <div class="modal-content">
             <div class="modal-header pb-1">
-              <h4
-                class="modal-title"
-                id="submitAssignmentConfirmationModalLongTitle"
-              >
+              <h4 class="modal-title" id="deleteAssignmentConfirmationModalLongTitle">
+                Delete Assignment Confirmation
+              </h4>
+            </div>
+            <div class="modal-body px-3">
+              <p class="mb-0">Delete selected assignment?</p>
+            </div>
+            <div class="modal-footer justify-content-end border-top-0">
+              <button type="button" class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
+                Cancel
+              </button>
+              <button data-dismiss="modal" type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+                @click="deleteAssts()">
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="submitAssignmentConfirmation" tabindex="-1" role="dialog"
+        aria-labelledby="submitAssignmentConfirmationModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+          <div class="modal-content">
+            <div class="modal-header pb-1">
+              <h4 class="modal-title" id="submitAssignmentConfirmationModalLongTitle">
                 Submit Assignment
               </h4>
             </div>
@@ -1595,16 +1046,13 @@
                 <p class="mb-0">
                   Submit Additional Material
                 </p>
-               
+
               </div>
               <div class="d-flex flex-row align-items-start">
                 <div class="form-row mb-2 mx-0 mr-2 w-100">
-                 
-                  <select
-                    v-model="materialTypeSubmit"
-                    class="form-select form-control mb-2"
-                    aria-label="Default select example"
-                  >
+
+                  <select v-model="materialTypeSubmit" class="form-select form-control mb-2"
+                    aria-label="Default select example">
                     <option value="">Choose material type</option>
                     <!-- <option value="file">File</option> -->
                     <option value="link">Link</option>
@@ -1613,58 +1061,31 @@
                   <div class="d-flex flex-column w-100">
                     <div class="row m-0 px--12">
                       <div class="col-12 py-0 p-0">
-                        <input
-                          id="fileUploadSubmit"
-                          v-if="materialTypeSubmit == 'file'"
-                          type="file"
-                          class="form-control px-2 cursor-pointer"
-                          placeholder="Upload File"
-                          @change="onFileChangeSubmit"
-                          accept=".png,.jpeg,.jpg,.pdf"
-                        />
+                        <input id="fileUploadSubmit" v-if="materialTypeSubmit == 'file'" type="file"
+                          class="form-control px-2 cursor-pointer" placeholder="Upload File" @change="onFileChangeSubmit"
+                          accept=".png,.jpeg,.jpg,.pdf" />
                       </div>
                     </div>
                     <div class="row m-0 px--12">
                       <div class="col-12 py-0 p-0">
-                        <input
-                          v-if="materialTypeSubmit == 'link'"
-                          type="text"
-                          class="form-control px-2"
-                          placeholder="Paste Link"
-                          v-model="linkSubmit"
-                          maxlength="500"
-                          @input="onChangeLink()"
-                        />
+                        <input v-if="materialTypeSubmit == 'link'" type="text" class="form-control px-2"
+                          placeholder="Paste Link" v-model="linkSubmit" maxlength="500" @input="onChangeLink()" />
                       </div>
-                      <div
-                      v-if="submittedAsst && materialTypeSubmit == 'link'"
-                      class="invalid-feedback" style="display:block !important"
-                    > 
-                      <span v-if="!linkSubmit || invalidSubmitUrl"
-                        >Please add a valid URL</span
-                      >
-                    </div>
+                      <div v-if="submittedAsst && materialTypeSubmit == 'link'" class="invalid-feedback"
+                        style="display:block !important">
+                        <span v-if="!linkSubmit || invalidSubmitUrl">Please add a valid URL</span>
+                      </div>
                     </div>
                     <div class="row m-0 px--12">
                       <div class="col-12 p-0">
-                        <textarea
-                          v-if="materialTypeSubmit == 'text'"
-                          class="form-control px-2"
-                          rows="4"
-                          placeholder="Enter description"
-                          v-model="textSubmit"
-                          maxlength="1000"
-                          @input="onChangeText()"
-                        ></textarea>
+                        <textarea v-if="materialTypeSubmit == 'text'" class="form-control px-2" rows="4"
+                          placeholder="Enter description" v-model="textSubmit" maxlength="1000"
+                          @input="onChangeText()"></textarea>
                       </div>
-                      <div
-                      v-if="submittedAsst && materialTypeSubmit == 'text'"
-                      class="invalid-feedback" style="display:block !important"
-                    >
-                      <span v-if="invalidSubmitText"
-                        >Please add a valid description</span
-                      >
-                    </div>
+                      <div v-if="submittedAsst && materialTypeSubmit == 'text'" class="invalid-feedback"
+                        style="display:block !important">
+                        <span v-if="invalidSubmitText">Please add a valid description</span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1673,37 +1094,20 @@
 
             <!-- Additional Material Add End -->
             <div class="modal-footer justify-content-end border-top-0">
-              <button
-                type="button"
-                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
-                data-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
                 Cancel
               </button>
-              <button
-                :disabled="disableSubmit"
-                type="button"
-                class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
-                @click="submitAsst()"
-              >
+              <button :disabled="disableSubmit" type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+                @click="submitAsst()">
                 Submit
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div
-        class="modal fade"
-        id="completeConfirm"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="completeConfirmModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div
-          class="modal-dialog modal-dialog-centered add-assmt"
-          role="document"
-        >
+      <div class="modal fade" id="completeConfirm" tabindex="-1" role="dialog"
+        aria-labelledby="completeConfirmModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
           <div class="modal-content">
             <div class="modal-header pb-1">
               <h4 class="modal-title" id="completeConfirmModalLongTitle">
@@ -1715,53 +1119,29 @@
               <p class="mb-0" v-if="schoologyAssignment == '1' && !submissionId">Did you forget to submit your work?</p>
             </div>
             <div class="modal-footer justify-content-end border-top-0">
-              <button
-                type="button"
-                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
-                data-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
                 Cancel
               </button>
-              <button
-                type="button"
-                class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
-                :disabled="processingCompleteAssignment"
-                @click="completeAssignment()"
-              >
+              <button type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+                :disabled="processingCompleteAssignment" @click="completeAssignment()">
                 Complete
               </button>
-              <button
-              v-if="schoologyAssignment == '1'"
-              type="button"
-              class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
-              @click="submitAndCompleteAssignment()"
-              :disabled="submissionId"
-            >
-              Submit Assignment
-            </button>
+              <button v-if="schoologyAssignment == '1'" type="button"
+                class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold" @click="submitAndCompleteAssignment()"
+                :disabled="submissionId">
+                Submit Assignment
+              </button>
             </div>
           </div>
         </div>
       </div>
-      <div
-        class="modal fade"
-        id="undoAssignmentConfirmation"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="undoAssignmentConfirmationModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div
-          class="modal-dialog modal-dialog-centered add-assmt"
-          role="document"
-        >
+      <div class="modal fade" id="undoAssignmentConfirmation" tabindex="-1" role="dialog"
+        aria-labelledby="undoAssignmentConfirmationModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
           <div class="modal-content">
             <div class="modal-header pb-1">
-              <h4
-                class="modal-title"
-                id="undoAssignmentConfirmationModalLongTitle"
-              >
-              Re-Open Assignment
+              <h4 class="modal-title" id="undoAssignmentConfirmationModalLongTitle">
+                Re-Open Assignment
               </h4>
             </div>
             <div class="modal-body px-3">
@@ -1770,44 +1150,24 @@
               </p>
             </div>
             <div class="modal-footer justify-content-end border-top-0">
-              <button
-                type="button"
-                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
-                data-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
                 Cancel
               </button>
-              <button
-                data-dismiss="modal"
-                type="button"
-                class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
-                @click="undoAsstComplete()"
-              >
+              <button data-dismiss="modal" type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+                @click="undoAsstComplete()">
                 Confirm
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div
-        class="modal fade"
-        id="undoAssignmentConfirmationoverdue"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="undoAssignmentConfirmationModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div
-          class="modal-dialog modal-dialog-centered add-assmt"
-          role="document"
-        >
+      <div class="modal fade" id="undoAssignmentConfirmationoverdue" tabindex="-1" role="dialog"
+        aria-labelledby="undoAssignmentConfirmationModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
           <div class="modal-content">
             <div class="modal-header pb-1">
-              <h4
-                class="modal-title"
-                id="undoAssignmentConfirmationModalLongTitle"
-              >
-              Re-Open Assignment
+              <h4 class="modal-title" id="undoAssignmentConfirmationModalLongTitle">
+                Re-Open Assignment
               </h4>
             </div>
             <div class="modal-body px-3">
@@ -1816,19 +1176,11 @@
               </p>
             </div>
             <div class="modal-footer justify-content-end border-top-0">
-              <button
-                type="button"
-                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
-                data-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
                 Cancel
               </button>
-              <button
-                data-dismiss="modal"
-                type="button"
-                class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
-                @click="doingAssignment()"
-              >
+              <button data-dismiss="modal" type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"
+                @click="doingAssignment()">
                 Confirm
               </button>
             </div>
@@ -1836,69 +1188,38 @@
         </div>
       </div>
       <!-- Sub task undo confirmation  -->
-      <div
-        class="modal fade"
-        id="undoSubTaskConfirm"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="undoSubTaskConfirmModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div
-          class="modal-dialog modal-dialog-centered add-assmt"
-          role="document"
-        >
+      <div class="modal fade" id="undoSubTaskConfirm" tabindex="-1" role="dialog"
+        aria-labelledby="undoSubTaskConfirmModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
           <div class="modal-content">
             <div class="modal-body px-3">
-              <h4
-                class="modal-title color-primary-dark font-bold mt-3"
-                id="undoSubTaskConfirmModalLongTitle"
-              >
-              Re-Open Sub-Task
+              <h4 class="modal-title color-primary-dark font-bold mt-3" id="undoSubTaskConfirmModalLongTitle">
+                Re-Open Sub-Task
               </h4>
               <p class="mb-0">
                 This action will mark this sub-task as incomplete again
               </p>
             </div>
             <div class="modal-footer justify-content-end border-top-0">
-              <button
-                type="button"
-                class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
-                data-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
+                data-dismiss="modal">
                 Cancel
               </button>
-              <button
-                type="button"
-                class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
-                :disabled="processingSubCompleteAssignment"
-                @click="undoCompleteSubTask()"
-              >
+              <button type="button" class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
+                :disabled="processingSubCompleteAssignment" @click="undoCompleteSubTask()">
                 Confirm
               </button>
             </div>
           </div>
         </div>
       </div>
-       <!-- Sub task completion confirmation  -->
-       <div
-        class="modal fade"
-        id="completeSubTaskConfirm"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="completeConfirmModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div
-          class="modal-dialog modal-dialog-centered add-assmt"
-          role="document"
-        >
+      <!-- Sub task completion confirmation  -->
+      <div class="modal fade" id="completeSubTaskConfirm" tabindex="-1" role="dialog"
+        aria-labelledby="completeConfirmModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
           <div class="modal-content">
             <div class="modal-body px-3">
-              <h4
-                class="modal-title color-primary-dark font-bold mt-3"
-                id="completeConfirmModalLongTitle"
-              >
+              <h4 class="modal-title color-primary-dark font-bold mt-3" id="completeConfirmModalLongTitle">
                 Complete Sub-Task Confirmation
               </h4>
               <p class="mb-0">
@@ -1906,22 +1227,15 @@
               </p>
             </div>
             <div class="modal-footer justify-content-end border-top-0">
-              <button
-                type="button"
-                class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
-                data-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary py-1 px-4 rounded-8 mr-2 font-semi-bold"
+                data-dismiss="modal">
                 Cancel
               </button>
-              <button
-                type="button"
-                class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
-                :disabled="processingSubCompleteAssignment"
-                @click="
+              <button type="button" class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
+                :disabled="processingSubCompleteAssignment" @click="
                   processingSubCompleteAssignment = true;
-                  completeSubTask();
-                "
-              >
+                completeSubTask();
+                ">
                 Confirm
               </button>
             </div>
@@ -1929,8 +1243,8 @@
         </div>
       </div>
       <!-- Sub task completion confirmation end  -->
-          <!-- End Daily Calander -->
-      </div>
+      <!-- End Daily Calander -->
+    </div>
   </div>
 </template>
 <script>
@@ -1949,33 +1263,41 @@ import { Drag, Drop } from 'vue-drag-drop';
 var fromDate = "";
 var endDate = "";
 export default {
-name: "UserStudentTask",
-components: {
-  lottie,
-  InfiniteLoading,
-  draggable,
-  VueTimepicker,
-  Drag,
-  Drop,
-},
-head() {
-  return {
-    link: [
-      {
-        rel: "stylesheet",
-        href: "/css/custom.css",
-      },
-      {
-        rel: "stylesheet",
-        href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
-      },
-    ],
-  };
-},
+  name: "UserStudentTask",
+  components: {
+    lottie,
+    InfiniteLoading,
+    draggable,
+    VueTimepicker,
+    Drag,
+    Drop,
+  },
+  head() {
+    return {
+      link: [
+        {
+          rel: "stylesheet",
+          href: "/css/custom.css",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
+        },
+      ],
+    };
+  },
 
-data() {
-  return {
-      accordionOpened:false,
+  data() {
+    return {
+      isDragging: false,
+      isDraggingTodo: false,
+      isDraggingDone: false,
+      isDraggingDue: false,
+      draggingIndex: null,
+      draggingIndexTodo: null,
+      draggingIndexDone: null,
+      draggingIndexDue: null,
+      accordionOpened: false,
       completedAssignmentList: [],
       doingreloadCount: 0,
       overduereloadCount: 0,
@@ -1986,40 +1308,40 @@ data() {
       doingtempOffset: -1,
       donetempOffset: -1,
       doingreloadNext: false,
-    reloadNext: false,
-    donereloadNext: false,
-    overduereloadNext: false,
-    offset: 0,
-    limit: 10,
-    overdueoffset: 0,
-    overduelimit: 10,
-    doingoffset: 0,
-    doneoffset: 0,
-    doinglimit: 10,
-    donelimit: 10,
-    pendingAssignments: [],
-    tempAssts: [],
-    draggable: "Drag Me",
-    drag: false,
-    completeAsstId: 0,
-    undoAsstId: 0,
-    assignmentId: 0,
-    schoologyAssignment: "",
-    submissionId: "",
-    processingCompleteAssignment: false,
-    assignmentMaterials: [],
-    overdueAssignmentList: [],
-    doingAssignmentList: [],
-    overdueAssignments:[],
-    doingAssignments: [],
-    subject: "",
-    submitted: false,
-    assignmentDescription: "",
-    dateValue: "",
-    timeValue: "",
-    openAssignment: false,
-    date_today: new Date(),
-    disabledDates: {
+      reloadNext: false,
+      donereloadNext: false,
+      overduereloadNext: false,
+      offset: 0,
+      limit: 10,
+      overdueoffset: 0,
+      overduelimit: 10,
+      doingoffset: 0,
+      doneoffset: 0,
+      doinglimit: 10,
+      donelimit: 10,
+      pendingAssignments: [],
+      tempAssts: [],
+      draggable: "Drag Me",
+      drag: false,
+      completeAsstId: 0,
+      undoAsstId: 0,
+      assignmentId: 0,
+      schoologyAssignment: "",
+      submissionId: "",
+      processingCompleteAssignment: false,
+      assignmentMaterials: [],
+      overdueAssignmentList: [],
+      doingAssignmentList: [],
+      overdueAssignments: [],
+      doingAssignments: [],
+      subject: "",
+      submitted: false,
+      assignmentDescription: "",
+      dateValue: "",
+      timeValue: "",
+      openAssignment: false,
+      date_today: new Date(),
+      disabledDates: {
         to: new Date(),
       },
       processing: false,
@@ -2027,7 +1349,7 @@ data() {
       subject: "",
       assignmentName: "",
       peerSelected: [],
-      materialType : "",
+      materialType: "",
       isAddAssignment: true,
       additionalMaterialList: [],
       link: "",
@@ -2043,10 +1365,10 @@ data() {
       isSharedAssignment: false,
       grade: "",
       gradePossible: "",
-      invalidSubmitUrl:false,
-      submittedAsst:false,
-      disableSubmit:false,
-      invalidSubmitText:false,
+      invalidSubmitUrl: false,
+      submittedAsst: false,
+      disableSubmit: false,
+      invalidSubmitText: false,
       loading: false,
       lottieOptions: { animationData: animationData.default },
       anim: null,
@@ -2055,39 +1377,39 @@ data() {
       materialTypeSubmit: "",
       linkSubmit: "",
       monthlyAssignmentsCalled: false, // Flag for monthlyAssignments
-    allAssignmentsCalled: false,     // Flag for allAssignments
-    assignmentType: 'Weekly',
-    school_id: '',
-    processingSubCompleteAssignment: false,
-    sourceassignment: '',
-    typeOfAssignment:'',
-    doingItem: {},
-    doingType:'',
-    todoItem: {},
-    todoType:'',
-    doneItem: {},
-    doneType:'',
-    task_ids: [],
-  }
-},
-created() {
-  this.loading = true;
-  eventBus.$on('accordionOpened', (newValue) => {
-    this.accordionOpened = newValue;
-  });
-},
-mounted(){
-  this.loading = false;
-  this.school_id = localStorage.getItem("school_id")
-  this.user_id = localStorage.getItem("id");
-  this.GetStudents();
-  this.disabledDates.to = new Date(
+      allAssignmentsCalled: false,     // Flag for allAssignments
+      assignmentType: 'Weekly',
+      school_id: '',
+      processingSubCompleteAssignment: false,
+      sourceassignment: '',
+      typeOfAssignment: '',
+      doingItem: {},
+      doingType: '',
+      todoItem: {},
+      todoType: '',
+      doneItem: {},
+      doneType: '',
+      task_ids: [],
+    }
+  },
+  created() {
+    this.loading = true;
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
+  },
+  mounted() {
+    this.loading = false;
+    this.school_id = localStorage.getItem("school_id")
+    this.user_id = localStorage.getItem("id");
+    this.GetStudents();
+    this.disabledDates.to = new Date(
       this.date_today.getFullYear(),
       this.date_today.getMonth(),
       this.date_today.getDate()
     );
-     //date picker
-     var today = new Date();
+    //date picker
+    var today = new Date();
     var future = new Date();
     future.setDate(future.getDate() + 30);
     var dd = today.getDate();
@@ -2132,36 +1454,36 @@ mounted(){
         }
       );
     });
-  this.getSubjectsList();
-  this.checkValidTime();
-},
-computed: {
-  ...mapState("teacherMeeting",{
+    this.getSubjectsList();
+    this.checkValidTime();
+  },
+  computed: {
+    ...mapState("teacherMeeting", {
       students: (state) => state.students,
-  }),
-  ...mapState("quotedMessage",{
+    }),
+    ...mapState("quotedMessage", {
       quoteMessage: (state) => state.quoteMessage,
-    viewed: (state) => state.viewed,
-    assignment: (state) => state.assignment,
-    sharedAssignment: (state) => state.sharedAssignment,
-    successMessage: (state) => state.successMessage,
-    SuccessTypeSubTasks: (state) => state.SuccessTypeSubTasks,
-    SuccessType: (state) => state.SuccessType,
-    errorMessage: (state) => state.errorMessage,
-    errorType: (state) => state.errorType,
-    errorMessageQuote: (state) => state.errorMessage,
-    errorTypeQuote: (state) => state.errorType,
-    subjectsData: (state) => state.subjectsData,
-    assignmentsList: (state) => state.assignmentsList,
-    sharedAssignmentsList: (state) => state.sharedAssignmentsList,
-    completedAssignments: (state) => state.completedAssignments,
-    completedSharedAssignments: (state) => state.completedSharedAssignments,
-    newAdditionalMaterial: (state) => state.newAdditionalMaterial,
-    allSubTskCompleted: (state) => state.allSubTskCompleted,
-    overdues: (state) => state.overdues,
-    sharedOverdues: (state) => state.sharedOverdues,
-  }),
-  assignmentTypeText() {
+      viewed: (state) => state.viewed,
+      assignment: (state) => state.assignment,
+      sharedAssignment: (state) => state.sharedAssignment,
+      successMessage: (state) => state.successMessage,
+      SuccessTypeSubTasks: (state) => state.SuccessTypeSubTasks,
+      SuccessType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+      errorMessageQuote: (state) => state.errorMessage,
+      errorTypeQuote: (state) => state.errorType,
+      subjectsData: (state) => state.subjectsData,
+      assignmentsList: (state) => state.assignmentsList,
+      sharedAssignmentsList: (state) => state.sharedAssignmentsList,
+      completedAssignments: (state) => state.completedAssignments,
+      completedSharedAssignments: (state) => state.completedSharedAssignments,
+      newAdditionalMaterial: (state) => state.newAdditionalMaterial,
+      allSubTskCompleted: (state) => state.allSubTskCompleted,
+      overdues: (state) => state.overdues,
+      sharedOverdues: (state) => state.sharedOverdues,
+    }),
+    assignmentTypeText() {
       if (this.assignmentType === 'Monthly') {
         return 'Completed task for this month';
       } else if (this.assignmentType === 'All') {
@@ -2179,89 +1501,123 @@ computed: {
         return 'This Week';
       }
     },
-},
-validations: {
-  subject: { required },
-  dateValue: { required },
-  timeValue: { required },
-  assignmentName: { required },
-  // assignmentDescription: { required },
-},
-methods:{
-  ...mapActions("quotedMessage", {
-    showQuotedMessage: "showQuotedMessage",
-    getDailyPlanner: "getDailyPlanner",
-    addAssignment: "addAssignment",
-    getAssignment: "getAssignment",
-    updateAssignment: "updateAssignment",
-    getSubjectsList: "getSubjectsList",
-    getAssignments: "getAssignments",
-    completeTask: "completeTask",
-    getCompletedAssignments: "getCompletedAssignments",
-    uploadAdditionalMaterial: "uploadAdditionalMaterial",
-    deleteAssignments: "deleteAssignments",
-    assignmentSubmit: "assignmentSubmit",
-  }),
-  ...mapActions("teacherMeeting", {
-    getStudents: "getStudents",
-  }),
-  async GetStudents() {
-    await this.getStudents({
-      school_id: localStorage.getItem("school_id"),
-      studentId: localStorage.getItem("id"),
-    });
   },
-  handleAnimation: function (anim) {
+  validations: {
+    subject: { required },
+    dateValue: { required },
+    timeValue: { required },
+    assignmentName: { required },
+    // assignmentDescription: { required },
+  },
+  methods: {
+    ...mapActions("quotedMessage", {
+      showQuotedMessage: "showQuotedMessage",
+      getDailyPlanner: "getDailyPlanner",
+      addAssignment: "addAssignment",
+      getAssignment: "getAssignment",
+      updateAssignment: "updateAssignment",
+      getSubjectsList: "getSubjectsList",
+      getAssignments: "getAssignments",
+      completeTask: "completeTask",
+      getCompletedAssignments: "getCompletedAssignments",
+      uploadAdditionalMaterial: "uploadAdditionalMaterial",
+      deleteAssignments: "deleteAssignments",
+      assignmentSubmit: "assignmentSubmit",
+    }),
+    ...mapActions("teacherMeeting", {
+      getStudents: "getStudents",
+    }),
+    handleDragStart(index) {
+      // When the drag starts, set isDragging to true to add the class
+      this.isDragging = true;
+      this.draggingIndex = index;
+    },
+    handleDragEnd() {
+      // When the drag ends, set isDragging to false to remove the class
+      this.isDragging = false;
+      this.draggingIndex = null;
+    },
+    handleDragStartTodo(index) {
+      this.isDraggingTodo = true;
+      this.draggingIndexTodo = index;
+    },
+    handleDragEndTodo() {
+      this.isDraggingTodo = false;
+      this.draggingIndexTodo = null;
+    },
+    handleDragStartDone(index) {
+      this.isDraggingDone = true;
+      this.draggingIndexDone = index;
+    },
+    handleDragEndDone() {
+      this.isDraggingDone = false;
+      this.draggingIndexDone = null;
+    },
+    handleDragStartDue(index) {
+      this.isDraggingDue = true;
+      this.draggingIndexDue = index;
+    },
+    handleDragEndDue() {
+      this.isDraggingDue = false;
+      this.draggingIndexDue = null;
+    },
+    async GetStudents() {
+      await this.getStudents({
+        school_id: localStorage.getItem("school_id"),
+        studentId: localStorage.getItem("id"),
+      });
+    },
+    handleAnimation: function (anim) {
       this.anim = anim;
     },
-  async GetSubjectList() {
-    await this.getSubjectsList({});
-  },
+    async GetSubjectList() {
+      await this.getSubjectsList({});
+    },
     monthlyAssignments() {
       // Set the assignmentType to "Monthly" when clicking monthlyAssignments
       this.assignmentType = 'Monthly';
       this.doneoffset = 0;
       this.doneAssignmentsList = [];
       this.donereloadNext = true;
-      this.donereloadCount +=1;
+      this.donereloadCount += 1;
       this.monthlyAssignmentsCalled = true;
     },
-  allAssignments() {
-    this.assignmentType = 'All';
-    this.doneoffset = 0;
-    this.doneAssignmentsList = [];
-    this.donereloadNext = true;
-    this.donereloadCount +=1;
-    this.allAssignmentsCalled = true; 
-  },
-  weeklyAssignments() {
-    this.assignmentType = 'Weekly';
-    this.doneoffset = 0;
-    this.doneAssignmentsList = [];
-    this.donereloadNext = true;
-    this.donereloadCount +=1;
-    this.allAssignmentsCalled = true; 
-  },
+    allAssignments() {
+      this.assignmentType = 'All';
+      this.doneoffset = 0;
+      this.doneAssignmentsList = [];
+      this.donereloadNext = true;
+      this.donereloadCount += 1;
+      this.allAssignmentsCalled = true;
+    },
+    weeklyAssignments() {
+      this.assignmentType = 'Weekly';
+      this.doneoffset = 0;
+      this.doneAssignmentsList = [];
+      this.donereloadNext = true;
+      this.donereloadCount += 1;
+      this.allAssignmentsCalled = true;
+    },
 
-async doingNext($state) {
-    if (this.doingtempOffset != this.doingoffset || this.doingreloadNext) {
-      this.doingreloadNext = false;
-      this.doingtempOffset = this.doingoffset;
-      this.doingAssignmentList = [];
-      await this.getAssignments({ offset: this.doingoffset, limit: this.doinglimit, filter: 'Doing' });
-      this.doingoffset = this.doingoffset + this.doinglimit;
-      this.assignmentMaterials = [];
-      await this.doingmapAssignments();
-      await this.doingmapSharedAssignments();
-      if (this.doingAssignmentList.length > 0) {
-        this.doingAssignments.push(...this.doingAssignmentList);
-        $state.loaded();
-      } else {
-        $state.complete();
+    async doingNext($state) {
+      if (this.doingtempOffset != this.doingoffset || this.doingreloadNext) {
+        this.doingreloadNext = false;
+        this.doingtempOffset = this.doingoffset;
+        this.doingAssignmentList = [];
+        await this.getAssignments({ offset: this.doingoffset, limit: this.doinglimit, filter: 'Doing' });
+        this.doingoffset = this.doingoffset + this.doinglimit;
+        this.assignmentMaterials = [];
+        await this.doingmapAssignments();
+        await this.doingmapSharedAssignments();
+        if (this.doingAssignmentList.length > 0) {
+          this.doingAssignments.push(...this.doingAssignmentList);
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
       }
-    }
-  },
-  doingmapAssignments() {
+    },
+    doingmapAssignments() {
       if (this.assignmentsList && this.assignmentsList.length > 0) {
         this.assignmentsList.forEach((e) => {
           let asst = this.mapData(e);
@@ -2277,234 +1633,234 @@ async doingNext($state) {
         });
       }
     },
-async loadNext($state) {
-    if (this.tempOffset != this.offset || this.reloadNext) {
-      this.reloadNext = false;
-      this.tempOffset = this.offset;
-      this.pendingAssignments = [];
-      await this.getAssignments({ offset: this.offset, limit: this.limit, filter: 'Pending' });
-      this.offset = this.offset + this.limit;
-      this.assignmentMaterials = [];
-      await this.mapAssignments();
-      await this.mapSharedAssignments();
-      if (this.pendingAssignments.length > 0) {
-        this.tempAssts.push(...this.pendingAssignments);
-        $state.loaded();
-      } else {
-        $state.complete();
+    async loadNext($state) {
+      if (this.tempOffset != this.offset || this.reloadNext) {
+        this.reloadNext = false;
+        this.tempOffset = this.offset;
+        this.pendingAssignments = [];
+        await this.getAssignments({ offset: this.offset, limit: this.limit, filter: 'Pending' });
+        this.offset = this.offset + this.limit;
+        this.assignmentMaterials = [];
+        await this.mapAssignments();
+        await this.mapSharedAssignments();
+        if (this.pendingAssignments.length > 0) {
+          this.tempAssts.push(...this.pendingAssignments);
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
       }
-    }
-  },
-  async doneNext($state) {
-    if (this.donetempOffset != this.doneoffset || this.donereloadNext) {
-      this.donereloadNext = false;
-      this.donetempOffset = this.doneoffset;
-      this.completedAssignmentList = [];
-      await this.getCompletedAssignments({ 
-      offset: this.doneoffset, 
-      limit: this.donelimit, 
-      userId: localStorage.getItem("id"),
-      date: moment().format("YYYY-MM-DD"),
-      type: this.assignmentType, // Use the assignmentType here
-    });
-    this.assignmentMaterials = [];
-      this.doneoffset = this.doneoffset + this.donelimit;
-      await this.copyCompletedAssignments();
-      await this.copyCompletedSharedAssignments();
+    },
+    async doneNext($state) {
+      if (this.donetempOffset != this.doneoffset || this.donereloadNext) {
+        this.donereloadNext = false;
+        this.donetempOffset = this.doneoffset;
+        this.completedAssignmentList = [];
+        await this.getCompletedAssignments({
+          offset: this.doneoffset,
+          limit: this.donelimit,
+          userId: localStorage.getItem("id"),
+          date: moment().format("YYYY-MM-DD"),
+          type: this.assignmentType, // Use the assignmentType here
+        });
+        this.assignmentMaterials = [];
+        this.doneoffset = this.doneoffset + this.donelimit;
+        await this.copyCompletedAssignments();
+        await this.copyCompletedSharedAssignments();
 
-      if (this.completedAssignmentList.length > 0) {
-        this.doneAssignmentsList.push(...this.completedAssignmentList);
-        $state.loaded();
-      } else {
-        $state.complete();
+        if (this.completedAssignmentList.length > 0) {
+          this.doneAssignmentsList.push(...this.completedAssignmentList);
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
       }
-    }
-  },
-  copyCompletedAssignments() {
-    if (this.completedAssignments && this.completedAssignments.length > 0) {
-      this.completedAssignments.forEach((e) => {
+    },
+    copyCompletedAssignments() {
+      if (this.completedAssignments && this.completedAssignments.length > 0) {
+        this.completedAssignments.forEach((e) => {
           let asst = this.mapData(e);
           this.completedAssignmentList.push(asst);
-      });
-    }
-  },
-copyCompletedSharedAssignments() {
-  if (this.completedSharedAssignments && this.completedSharedAssignments.length > 0) {
-    this.completedSharedAssignments.forEach((e) => {
+        });
+      }
+    },
+    copyCompletedSharedAssignments() {
+      if (this.completedSharedAssignments && this.completedSharedAssignments.length > 0) {
+        this.completedSharedAssignments.forEach((e) => {
           let asst = this.mapSharedData(e);
           this.completedAssignmentList.push(asst);
-      });
-    }
-  },
-  async overdueNext($state) {
-  if (this.overduetempOffset != this.overdueoffset || this.overduereloadNext) {
-    this.overduereloadNext = false;
-    this.overduetempOffset = this.overdueoffset;
-    this.overdueAssignmentList = [];
-    await this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Overdue' });
-    if (this.overdueoffset == 0) {
-      await this.mapOverdues();
-    }
-    this.overdueoffset = this.overdueoffset + this.overduelimit;
-    this.assignmentMaterials = [];
-    // await this.mapAssignments();
-    // await this.mapSharedAssignments();
-    if (this.overdueAssignmentList.length > 0) {
-      this.overdueAssignments.push(...this.overdueAssignmentList);
-      $state.loaded();
-    } else {
-      $state.complete();
-    }
-  }
-},
-mapOverdues() {
-  if (this.overdues && this.overdues.length > 0) {
-    this.overdues.forEach((e) => {
-      let asst = this.mapData(e);
-      this.overdueAssignmentList.push(asst);
-    });
-  }
-  if (this.sharedOverdues && this.sharedOverdues.length > 0) {
-    this.sharedOverdues.forEach((e) => {
-      let asst = this.mapSharedData(e);
-      this.overdueAssignmentList.push(asst);
-    });
-  }
-},
-  mapData(e) {
-    if (e) {
+        });
+      }
+    },
+    async overdueNext($state) {
+      if (this.overduetempOffset != this.overdueoffset || this.overduereloadNext) {
+        this.overduereloadNext = false;
+        this.overduetempOffset = this.overdueoffset;
+        this.overdueAssignmentList = [];
+        await this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Overdue' });
+        if (this.overdueoffset == 0) {
+          await this.mapOverdues();
+        }
+        this.overdueoffset = this.overdueoffset + this.overduelimit;
+        this.assignmentMaterials = [];
+        // await this.mapAssignments();
+        // await this.mapSharedAssignments();
+        if (this.overdueAssignmentList.length > 0) {
+          this.overdueAssignments.push(...this.overdueAssignmentList);
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      }
+    },
+    mapOverdues() {
+      if (this.overdues && this.overdues.length > 0) {
+        this.overdues.forEach((e) => {
+          let asst = this.mapData(e);
+          this.overdueAssignmentList.push(asst);
+        });
+      }
+      if (this.sharedOverdues && this.sharedOverdues.length > 0) {
+        this.sharedOverdues.forEach((e) => {
+          let asst = this.mapSharedData(e);
+          this.overdueAssignmentList.push(asst);
+        });
+      }
+    },
+    mapData(e) {
+      if (e) {
+        let item = {};
+        this.assignmentMaterials = [];
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(e.assignment_description, 'text/html');
+        const textContent = doc.body.textContent;
+        item.assignment_description = textContent;
+        if (e.assignment_materials && e.assignment_materials.length > 0) {
+          e.assignment_materials.forEach((m) => {
+            let data = {};
+            data = m;
+            this.assignmentMaterials.push(data);
+          });
+        }
+        item.assignment_materials = this.assignmentMaterials;
+        item.completed_date = e.completed_date;
+        item.dueTimeFormat = e.dueTimeFormat;
+        item.due_date = e.due_date;
+        item.due_time = e.due_time;
+        item.id = e.id;
+        item.priority = e.priority;
+        item.schoologyAssignment = e.schoologyAssignment;
+        item.schoologyAssignmentId = e.schoologyAssignmentId;
+        item.subTasks = e.subTasks;
+        item.subject = e.subject;
+        item.subjects = e.subjects;
+        item.task = e.task;
+        item.task_status = e.task_status;
+        item.updatedAt = e.updatedAt;
+        item.user_id = e.user_id;
+        item.shared_users_id = e.shared_users_id;
+        item.submission_id =
+          e.submission_id && e.submission_id != "" ? e.submission_id : null;
+        item.grade = e.grade;
+        item.grade_possible = e.grade_possible;
+        item.peers = this.mapPeers(e);
+        if (e.due_date) {
+          item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        }
+        item.isShared = false;
+        return item;
+      }
+    },
+    mapSharedData(e) {
       let item = {};
       this.assignmentMaterials = [];
-      const parser = new DOMParser();
-      const doc = parser.parseFromString( e.assignment_description, 'text/html');
-      const textContent = doc.body.textContent;
-      item.assignment_description = textContent;
-      if (e.assignment_materials && e.assignment_materials.length > 0) {
-        e.assignment_materials.forEach((m) => {
-          let data = {};
-          data = m;
-          this.assignmentMaterials.push(data);
-        });
+      if (e && e.assignments) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(e.assignments.assignment_description, 'text/html');
+        const textContent = doc.body.textContent;
+        item.assignment_description = textContent;
+        if (
+          e.assignments?.assignment_materials &&
+          e.assignments?.assignment_materials.length > 0
+        ) {
+          e.assignments?.assignment_materials.forEach((m) => {
+            let data = {};
+            data = m;
+            this.assignmentMaterials.push(data);
+          });
+        }
+        item.assignment_materials = this.assignmentMaterials;
+        item.completed_date = e.assignments.completed_date;
+        item.dueTimeFormat = e.assignments.dueTimeFormat;
+        item.due_date = e.assignments.due_date;
+        item.due_time = e.assignments.due_time;
+        item.id = e.assignments.id;
+        item.priority = e.assignments.priority;
+        item.schoologyAssignment = e.assignments.schoologyAssignment;
+        item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+        item.subTasks = e.assignments?.subTasks;
+        item.subject = e.assignments?.subjects?.subject_name;
+        item.subjects = e.assignments?.subjects;
+        item.task = e.assignments.task;
+        item.task_status = e.assignments.task_status;
+        item.updatedAt = e.assignments.updatedAt;
+        item.user_id = e.assignments.user_id;
+        item.shared_users_id = e.shared_users_id;
+        item.submission_id =
+          e.submission_id && e.submission_id != "" ? e.submission_id : null;
+        item.peers = this.mapPeers(e);
+        if (e.assignments.due_date) {
+          item.formattedDate = moment(e.assignments.due_date).format(
+            "MMMM Do, YYYY"
+          );
+        }
+        item.isShared = true;
+        return item;
       }
-      item.assignment_materials = this.assignmentMaterials;
-      item.completed_date = e.completed_date;
-      item.dueTimeFormat = e.dueTimeFormat;
-      item.due_date = e.due_date;
-      item.due_time = e.due_time;
-      item.id = e.id;
-      item.priority = e.priority;
-      item.schoologyAssignment = e.schoologyAssignment;
-      item.schoologyAssignmentId = e.schoologyAssignmentId;
-      item.subTasks = e.subTasks;
-      item.subject = e.subject;
-      item.subjects = e.subjects;
-      item.task = e.task;
-      item.task_status = e.task_status;
-      item.updatedAt = e.updatedAt;
-      item.user_id = e.user_id;
-      item.shared_users_id = e.shared_users_id;
-      item.submission_id =
-        e.submission_id && e.submission_id != "" ? e.submission_id : null;
-      item.grade = e.grade;
-      item.grade_possible = e.grade_possible;
-      item.peers = this.mapPeers(e);
-      if (e.due_date) {
-        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-      }
-      item.isShared = false;
-      return item;
-    }
-  },
-  mapSharedData(e) {
-    let item = {};
-    this.assignmentMaterials = [];
-    if (e && e.assignments) {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString( e.assignments.assignment_description, 'text/html');
-      const textContent = doc.body.textContent;
-      item.assignment_description = textContent;
+    },
+    mapPeers(e) {
+      let user_id = localStorage.getItem("id");
+      let peers = [];
       if (
-        e.assignments?.assignment_materials &&
-        e.assignments?.assignment_materials.length > 0
+        e.assignments?.assignment_shared_users &&
+        e.assignments?.assignment_shared_users.length > 0
       ) {
-        e.assignments?.assignment_materials.forEach((m) => {
-          let data = {};
-          data = m;
-          this.assignmentMaterials.push(data);
+        e.assignments?.assignment_shared_users.forEach((item) => {
+          let peer = {};
+          if (item.shared_users_id != user_id) {
+            if (item.users) {
+              peer = item.users;
+              peer.id = item.shared_users_id;
+              peers.push(peer);
+            }
+          }
         });
       }
-      item.assignment_materials = this.assignmentMaterials;
-      item.completed_date = e.assignments.completed_date;
-      item.dueTimeFormat = e.assignments.dueTimeFormat;
-      item.due_date = e.assignments.due_date;
-      item.due_time = e.assignments.due_time;
-      item.id = e.assignments.id;
-      item.priority = e.assignments.priority;
-      item.schoologyAssignment = e.assignments.schoologyAssignment;
-      item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
-      item.subTasks = e.assignments?.subTasks;
-      item.subject = e.assignments?.subjects?.subject_name;
-      item.subjects = e.assignments?.subjects;
-      item.task = e.assignments.task;
-      item.task_status = e.assignments.task_status;
-      item.updatedAt = e.assignments.updatedAt;
-      item.user_id = e.assignments.user_id;
-      item.shared_users_id = e.shared_users_id;
-      item.submission_id =
-        e.submission_id && e.submission_id != "" ? e.submission_id : null;
-      item.peers = this.mapPeers(e);
-      if (e.assignments.due_date) {
-        item.formattedDate = moment(e.assignments.due_date).format(
-          "MMMM Do, YYYY"
-        );
+      if (e.assignment_shared_users && e.assignment_shared_users?.length > 0) {
+        e.assignment_shared_users.forEach((item) => {
+          let peer = {};
+          if (item.shared_users_id != user_id) {
+            if (item.users) {
+              peer = item.users;
+              peer.id = item.shared_users_id;
+              peers.push(peer);
+            }
+          }
+        });
       }
-      item.isShared = true;
-      return item;
-    }
-  },
-  mapPeers(e) {
-    let user_id = localStorage.getItem("id");
-    let peers = [];
-    if (
-      e.assignments?.assignment_shared_users &&
-      e.assignments?.assignment_shared_users.length > 0
-    ) {
-      e.assignments?.assignment_shared_users.forEach((item) => {
-        let peer = {};
-        if (item.shared_users_id != user_id) {
-          if (item.users) {
-            peer = item.users;
-            peer.id = item.shared_users_id;
-            peers.push(peer);
-          }
-        }
-      });
-    }
-    if (e.assignment_shared_users && e.assignment_shared_users?.length > 0) {
-      e.assignment_shared_users.forEach((item) => {
-        let peer = {};
-        if (item.shared_users_id != user_id) {
-          if (item.users) {
-            peer = item.users;
-            peer.id = item.shared_users_id;
-            peers.push(peer);
-          }
-        }
-      });
-    }
-    let exists = peers.find(
-      (ele) => ele.id.toString() == e.assignments?.user_id.toString()
-    );
+      let exists = peers.find(
+        (ele) => ele.id.toString() == e.assignments?.user_id.toString()
+      );
 
-    if (e.assignments?.users && !exists) {
-      let user = {};
-      user = e.assignments?.users;
-      user.id = e.user_id;
-      peers.push(user);
-    }
-    return peers;
-  },
-  mapAssignments() {
+      if (e.assignments?.users && !exists) {
+        let user = {};
+        user = e.assignments?.users;
+        user.id = e.user_id;
+        peers.push(user);
+      }
+      return peers;
+    },
+    mapAssignments() {
       if (this.assignmentsList && this.assignmentsList.length > 0) {
         this.assignmentsList.forEach((e) => {
           let asst = this.mapData(e);
@@ -2523,70 +1879,72 @@ mapOverdues() {
     confirmUndo(data) {
       const { item, source } = data;
       let assignment = data.item;
-    this.undoAsstId = assignment.id;
-    this.todoItem = data.item;
-    this.todoType = data.sourceType;
-    if (source === 'doingAssignments' || source === 'overdueAssignments') {
-    this.sourceassignment = source;
-    this.undoAsstComplete(data);
-  } else if (source !== 'todoAssignments') {
-    // Add a condition to exclude 'todoAssignments'
-    $("#undoAssignmentConfirmation").modal({ backdrop: true });
-  }
-  },
+      this.undoAsstId = assignment.id;
+      this.todoItem = data.item;
+      this.todoType = data.sourceType;
+      if (source === 'doingAssignments' || source === 'overdueAssignments') {
+        this.sourceassignment = source;
+        this.undoAsstComplete(data);
+      } else if (source !== 'todoAssignments') {
+        // Add a condition to exclude 'todoAssignments'
+        $("#undoAssignmentConfirmation").modal({ backdrop: true });
+      }
+      this.isDragging = false;
+      this.draggingIndex = null;
+    },
     undoAsstComplete(data) {
       this.completeAssignment(false);
       this.removeItemFromList(this.todoType, this.todoItem)
     },
-  handleDrop(data, event) {
-    const { item, source } = data;
-    let assignment = data.item;
-    this.completeAsstId = assignment.id;
-    this.assignmentId = assignment.id;
-    this.schoologyAssignment = assignment.schoologyAssignment;
-    this.submissionId = assignment.submission_id;
-    if (source !== 'doneAssignments') {
-      this.sourceassignment = source;
-      this.doneItem = data.item;
-      this.doneType = data.sourceType;
+    handleDrop(data, event) {
+      const { item, source } = data;
+      let assignment = data.item;
+      this.completeAsstId = assignment.id;
+      this.assignmentId = assignment.id;
+      this.schoologyAssignment = assignment.schoologyAssignment;
+      this.submissionId = assignment.submission_id;
+      if (source !== 'doneAssignments') {
+        this.sourceassignment = source;
+        this.doneItem = data.item;
+        this.doneType = data.sourceType;
         // Add a condition to exclude 'doneAssignments'
         $("#completeConfirm").modal({ backdrop: true });
       }
-  },
-  async completeAssignment(completed = true) {
-    this.processingCompleteAssignment = true;
-    await this.completeTask({
-      assignment_id: completed ? this.completeAsstId : this.undoAsstId,
-      status: completed ? "Completed" : "Pending",
-    });
-    this.processingCompleteAssignment = false;
-    this.removeItemFromList(this.doneType, this.doneItem);
-    if (this.successMessage != "") {
-      this.openAssignment = false;
-      completed? this.loadUpdatedData('Done'):this.loadUpdatedData('Pending');
-      this.completeAsstId = 0;
-      if(this.sourceassignment != 'doingAssignments'){
+    },
+    async completeAssignment(completed = true) {
+      this.processingCompleteAssignment = true;
+      await this.completeTask({
+        assignment_id: completed ? this.completeAsstId : this.undoAsstId,
+        status: completed ? "Completed" : "Pending",
+      });
+      this.processingCompleteAssignment = false;
+      this.removeItemFromList(this.doneType, this.doneItem);
+      if (this.successMessage != "") {
+        this.openAssignment = false;
+        completed ? this.loadUpdatedData('Done') : this.loadUpdatedData('Pending');
+        this.completeAsstId = 0;
+        if (this.sourceassignment != 'doingAssignments') {
           this.$toast.open({
             message: this.successMessage,
             type: this.SuccessType,
             duration: 5000,
           });
         }
-            this.openAssignment = false;
-            this.sourceassignment = '',
-            $(".modal").modal("hide");
-            $(".modal-backdrop").remove();
-    }
-  },
-  doingDrop(data, event) {
-    const { item, source } = data;
-    let assignment = data.item;
-    this.completeAsstId = assignment.id;
-    this.assignmentId = assignment.id;
-    this.schoologyAssignment = assignment.schoologyAssignment;
-    this.submissionId = assignment.submission_id;
-    this.doingItem = data.item;
-    this.doingType = data.sourceType;
+        this.openAssignment = false;
+        this.sourceassignment = '',
+          $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+      }
+    },
+    doingDrop(data, event) {
+      const { item, source } = data;
+      let assignment = data.item;
+      this.completeAsstId = assignment.id;
+      this.assignmentId = assignment.id;
+      this.schoologyAssignment = assignment.schoologyAssignment;
+      this.submissionId = assignment.submission_id;
+      this.doingItem = data.item;
+      this.doingType = data.sourceType;
       if (source === 'doneAssignments') {
         this.sourceassignment = source;
         $("#undoAssignmentConfirmationoverdue").modal({ backdrop: true });
@@ -2595,30 +1953,30 @@ mapOverdues() {
       }
     },
     async doingAssignment() {
-    this.processingCompleteAssignment = true;
-    await this.completeTask({
-      assignment_id: this.assignmentId,
-      status: 'Doing',
-    });
-    this.processingCompleteAssignment = false;
-    this.removeItemFromList(this.doingType, this.doingItem)
-    if (this.successMessage != "") {  
-      // this.openAssignment = false;
-      this.sourceassignment = '',
-      this.loadUpdatedData('Doing')
-      this.completeAsstId = 0;
-  }
-},
-  EditAssignmentModal() {
-    this.openAssignment = true;
-    this.resetAssignment();
-    // $("#editAssignment").modal({ backdrop: true });
-    $('#editAssignment').modal({
-      backdrop: 'static',
-      keyboard: false
-    });
-  },
-  async resetAssignment() {
+      this.processingCompleteAssignment = true;
+      await this.completeTask({
+        assignment_id: this.assignmentId,
+        status: 'Doing',
+      });
+      this.processingCompleteAssignment = false;
+      this.removeItemFromList(this.doingType, this.doingItem)
+      if (this.successMessage != "") {
+        // this.openAssignment = false;
+        this.sourceassignment = '',
+          this.loadUpdatedData('Doing')
+        this.completeAsstId = 0;
+      }
+    },
+    EditAssignmentModal() {
+      this.openAssignment = true;
+      this.resetAssignment();
+      // $("#editAssignment").modal({ backdrop: true });
+      $('#editAssignment').modal({
+        backdrop: 'static',
+        keyboard: false
+      });
+    },
+    async resetAssignment() {
       this.choosenAssignments = [];
       this.schoologyAssignment = "";
       this.peerSelected = [];
@@ -2645,12 +2003,12 @@ mapOverdues() {
       this.schoologyAssignment = "";
       this.grade = "";
       this.gradePossible = "";
-      this.invalidSubmitUrl=false;
-      this.submittedAsst=false;
-      this.disableSubmit=false;
-      this.invalidSubmitText=false;
+      this.invalidSubmitUrl = false;
+      this.submittedAsst = false;
+      this.disableSubmit = false;
+      this.invalidSubmitText = false;
       this.additionalMaterial = false;
-      this.assignmentId='';
+      this.assignmentId = '';
       // $('input[name="daterange"]').val("");
       fromDate = "";
       // $(".dropdown-select").text("Select priority");
@@ -2668,17 +2026,17 @@ mapOverdues() {
       this.timeValue = "";
       let clearTimeBtn = document.getElementsByClassName("clear-btn")[0];
       clearTimeBtn?.click();
-      this.typeOfAssignment='';
+      this.typeOfAssignment = '';
     },
     checkValidTime() {
       if (this.timeValue) {
         let tempTime =
           typeof this.timeValue == "object"
             ? this.timeValue.hh +
-              ":" +
-              this.timeValue.mm +
-              " " +
-              this.timeValue.A
+            ":" +
+            this.timeValue.mm +
+            " " +
+            this.timeValue.A
             : this.timeValue;
         let valid = moment(tempTime, "h:mm A", true).isValid();
 
@@ -2756,10 +2114,10 @@ mapOverdues() {
           this.priorityVal == "Urgent"
             ? 1
             : this.priorityVal == "Important"
-            ? 2
-            : this.priorityVal == "Can Wait"
-            ? 3
-            : "",
+              ? 2
+              : this.priorityVal == "Can Wait"
+                ? 3
+                : "",
         shared_users_ids: peersSelected,
         assignment_materials: assignment_materials,
         subTasks: subTaskLists,
@@ -2876,11 +2234,11 @@ mapOverdues() {
         subTasks: subTaskLists,
         deleted_subTask: this.deletedSubTasksArray,
         removed_users: removed,
-        task_ids:this.task_ids,
+        task_ids: this.task_ids,
       });
       this.loading = false;
       this.removedPeerList = [];
-      if(this.SuccessTypeSubTasks == true){
+      if (this.SuccessTypeSubTasks == true) {
         this.subtaskUpdatedData();
       }
       if (this.successMessage != "") {
@@ -2910,7 +2268,7 @@ mapOverdues() {
     mapAssignmentDetail(data) {
 
       const parser = new DOMParser();
-      const doc = parser.parseFromString( data.assignment_description, 'text/html');
+      const doc = parser.parseFromString(data.assignment_description, 'text/html');
       const textContent = doc.body.textContent;
 
       this.isSharedAssignment = data.isShared;
@@ -2925,12 +2283,12 @@ mapOverdues() {
         data.priority == "1"
           ? "Urgent"
           : data.priority == "2"
-          ? "Important"
-          : data.priority == "3"
-          ? "Can Wait"
-          : data.priority == "4"
-          ? "Overdue"
-          : "";
+            ? "Important"
+            : data.priority == "3"
+              ? "Can Wait"
+              : data.priority == "4"
+                ? "Overdue"
+                : "";
 
       if (data.isShared) {
         this.subject = data.subject;
@@ -2984,19 +2342,19 @@ mapOverdues() {
       this.typeOfAssignment = type;
     },
     submitAssignment() {
-      this.submittedAsst=false;
+      this.submittedAsst = false;
       this.onResetSubmit();
       $('#editAssignment').modal('hide');
       $("#submitAssignmentConfirmation").modal({ backdrop: true });
     },
-    onResetSubmit(){
-      this.invalidSubmitUrl=false;
-      this.submittedAsst=false;
-      this.disableSubmit=false;
-      this.invalidSubmitText=false;
-      this.materialTypeSubmit='';
-      this.linkSubmit='';
-      this.textSubmit='';
+    onResetSubmit() {
+      this.invalidSubmitUrl = false;
+      this.submittedAsst = false;
+      this.disableSubmit = false;
+      this.invalidSubmitText = false;
+      this.materialTypeSubmit = '';
+      this.linkSubmit = '';
+      this.textSubmit = '';
     },
     deleteAdditionalMat(item) {
       this.additionalMaterialList;
@@ -3009,8 +2367,8 @@ mapOverdues() {
       let link = material.link
         ? material.link
         : material.name
-        ? material.name
-        : material.file_name;
+          ? material.name
+          : material.file_name;
       if (material.file_type) {
         link = material.material;
       }
@@ -3080,19 +2438,19 @@ mapOverdues() {
       }
       this.processingUpload = false;
     },
-    isValidHttpUrl(urlLink, showError=true) {
+    isValidHttpUrl(urlLink, showError = true) {
       let url;
 
       try {
         url = new URL(urlLink);
       } catch (_) {
-        if(showError){
-        this.$toast.open({
-          message: "Please Add Valid URL",
-          type: "warning",
-          duration: 5000,
-        });
-      }
+        if (showError) {
+          this.$toast.open({
+            message: "Please Add Valid URL",
+            type: "warning",
+            duration: 5000,
+          });
+        }
         return false;
       }
 
@@ -3107,13 +2465,13 @@ mapOverdues() {
 
       return valid;
     },
-    onChangeLink(){
-      if(this.submittedAsst){
-        if(!this.isValidHttpUrl(this.linkSubmit, false)){
-          this.invalidSubmitUrl=true;
+    onChangeLink() {
+      if (this.submittedAsst) {
+        if (!this.isValidHttpUrl(this.linkSubmit, false)) {
+          this.invalidSubmitUrl = true;
           return false;
-        }else{
-          this.invalidSubmitUrl=false;
+        } else {
+          this.invalidSubmitUrl = false;
           return true;
         }
 
@@ -3189,8 +2547,8 @@ mapOverdues() {
       if (e.target.files[0]) {
         this.file = e.target.files[0];
       }
-  },
-  confirmDeletion() {
+    },
+    confirmDeletion() {
       $("#deleteAssignmentConfirmation").modal({ backdrop: true });
     },
     async deleteAssts() {
@@ -3202,7 +2560,7 @@ mapOverdues() {
         this.doingoffset = 0;
         this.doingAssignments = [];
         this.doingreloadNext = true;
-        this.doingreloadCount +=1;
+        this.doingreloadCount += 1;
         this.offset = 0;
         this.tempAssts = [];
         this.reloadNext = true;
@@ -3210,7 +2568,7 @@ mapOverdues() {
         this.overdueoffset = 0;
         this.overdueAssignments = [];
         this.overduereloadNext = true;
-        this.overduereloadCount +=1;
+        this.overduereloadCount += 1;
         this.openAssignment = false;
         this.$toast.open({
           message: this.successMessage,
@@ -3251,7 +2609,7 @@ mapOverdues() {
       }
     },
     async submitAsst() {
-      if(!this.materialTypeSubmit) {
+      if (!this.materialTypeSubmit) {
         this.$toast.open({
           message: "Please Fill the Details",
           type: "warning",
@@ -3260,16 +2618,16 @@ mapOverdues() {
         return;
       }
       this.submittedAsst = true;
-      this.disableSubmit=true;
-      this.invalidSubmitUrl=false;
+      this.disableSubmit = true;
+      this.invalidSubmitUrl = false;
       var payload = {};
       if (this.materialTypeSubmit == "text") {
-        if(!this.textSubmit || this.onChangeText()){
-          this.invalidSubmitText=true;
-          this.disableSubmit=false;
+        if (!this.textSubmit || this.onChangeText()) {
+          this.invalidSubmitText = true;
+          this.disableSubmit = false;
           return
-        }else{
-          this.invalidSubmitText=false;
+        } else {
+          this.invalidSubmitText = false;
         }
         payload = {
           assignment_id: this.assignmentId,
@@ -3278,8 +2636,8 @@ mapOverdues() {
         };
       } else if (this.materialTypeSubmit == "link") {
         const isValidHttpUrl = this.onChangeLink()
-        if(!isValidHttpUrl){
-          this.disableSubmit=false;
+        if (!isValidHttpUrl) {
+          this.disableSubmit = false;
           return
         }
         payload = {
@@ -3288,10 +2646,10 @@ mapOverdues() {
           url: this.linkSubmit,
         };
       }
-      
+
       await this.assignmentSubmit(payload);
-      this.disableSubmit=false;
-      this.submittedAsst=false;
+      this.disableSubmit = false;
+      this.submittedAsst = false;
       if (this.successMessage != "") {
         this.$toast.open({
           message: this.successMessage,
@@ -3300,7 +2658,7 @@ mapOverdues() {
         });
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
-        this.submissionId="1"
+        this.submissionId = "1"
       } else if (this.errorMessage != "") {
         this.$toast.open({
           message: this.errorMessage,
@@ -3317,15 +2675,15 @@ mapOverdues() {
       this.donereloadNext = true;
       this.reloadNext = true;
       this.doingreloadNext = true;
-      this.donereloadCount +=1;
+      this.donereloadCount += 1;
       this.reloadCount += 1;
-      this.doingreloadCount +=1;
+      this.doingreloadCount += 1;
     },
-    onChangeText(){
-      if(this.submittedAsst && this.textSubmit){
-       this.invalidSubmitText=false;
-      }else if(this.submittedAsst && !this.textSubmit){
-       this.invalidSubmitText=true;
+    onChangeText() {
+      if (this.submittedAsst && this.textSubmit) {
+        this.invalidSubmitText = false;
+      } else if (this.submittedAsst && !this.textSubmit) {
+        this.invalidSubmitText = true;
       }
       return this.invalidSubmitText;
     },
@@ -3333,7 +2691,7 @@ mapOverdues() {
       this.completeAsstId = this.assignmentId;
       $("#completeConfirm").modal({ backdrop: true });
     },
-    
+
     confirmSubTaskComplete(event, id, status, subTask) {
       // this.completeAsstId = asstId;
       this.completeSubTaskId = id;
@@ -3358,13 +2716,13 @@ mapOverdues() {
         status: completed ? "Completed" : "Pending",
       });
       this.processingSubCompleteAssignment = false;
-     
+
       if (this.successMessage != "") {
         this.doneoffset = 0;
         this.doneAssignmentsList = [];
         this.donereloadNext = true;
         this.completeSubTaskId = 0;
-        this.donereloadCount +=1;
+        this.donereloadCount += 1;
         this.completeAsstId = 0;
         this.$toast.open({
           message: this.successMessage,
@@ -3378,144 +2736,142 @@ mapOverdues() {
       $(".modal-backdrop").remove();
       this.submitAssignment();
     },
-    handleDrag(item) {
-    // You can perform additional actions with the dragged item if needed
-  },
-  loadUpdatedData(type){
-    const assignmentType = type??this.typeOfAssignment;
-    switch (assignmentType) {
-      case "Pending": {
-      //  to do
-        this.offset = 0;
-        this.tempAssts = [];
-        this.reloadNext = true;
-        this.reloadCount += 1;
-        break;
-      }
-      case "Doing": {
-      //  doing
-        this.doingoffset = 0;
-        this.doingAssignments = [];
-        this.doingreloadNext = true;
-        this.doingreloadCount +=1;
-        break;
-      }
-      case "Done": {
-        // done
-        this.doneoffset = 0;
-        this.doneAssignmentsList = [];
-        this.donereloadNext = true;
-        this.donereloadCount +=1;
-        break;
-      }
-      case "Overdue": {
-        // overdue 
-        this.overdueoffset = 0;
-        this.overdueAssignments = [];
-        this.overduereloadNext = true;
-        this.overduereloadCount +=1; 
-        this.offset = 0;
-        this.tempAssts = [];
-        this.reloadNext = true;
-        this.reloadCount += 1;
-        break;
-      }
 
-      default: {
-        return "";
-      }
-    }
-  },
-  subtaskUpdatedData(type){
-    const assignmentType = type??this.typeOfAssignment;
-    switch (assignmentType) {
-      case "Pending": {
-      //  to do
-        this.offset = 0;
-        this.tempAssts = [];
-        this.reloadNext = true;
-        this.reloadCount += 1;
-        this.doneoffset = 0;
-        this.doneAssignmentsList = [];
-        this.donereloadNext = true;
-        this.donereloadCount +=1;
-        break;
-      }
-      case "Doing": {
-      //  doing
-        this.doingoffset = 0;
-        this.doingAssignments = [];
-        this.doingreloadNext = true;
-        this.doingreloadCount +=1;
-        this.doneoffset = 0;
-        this.doneAssignmentsList = [];
-        this.donereloadNext = true;
-        this.donereloadCount +=1;
-        break;
-      }
-      case "Done": {
-        // done
-        this.doneoffset = 0;
-        this.doneAssignmentsList = [];
-        this.donereloadNext = true;
-        this.donereloadCount +=1;
-        break;
-      }
-      case "Overdue": {
-        // overdue 
-        this.overdueoffset = 0;
-        this.overdueAssignments = [];
-        this.overduereloadNext = true;
-        this.overduereloadCount +=1; 
-        this.offset = 0;
-        this.tempAssts = [];
-        this.reloadNext = true;
-        this.reloadCount += 1;
-        break;
-      }
+    loadUpdatedData(type) {
+      const assignmentType = type ?? this.typeOfAssignment;
+      switch (assignmentType) {
+        case "Pending": {
+          //  to do
+          this.offset = 0;
+          this.tempAssts = [];
+          this.reloadNext = true;
+          this.reloadCount += 1;
+          break;
+        }
+        case "Doing": {
+          //  doing
+          this.doingoffset = 0;
+          this.doingAssignments = [];
+          this.doingreloadNext = true;
+          this.doingreloadCount += 1;
+          break;
+        }
+        case "Done": {
+          // done
+          this.doneoffset = 0;
+          this.doneAssignmentsList = [];
+          this.donereloadNext = true;
+          this.donereloadCount += 1;
+          break;
+        }
+        case "Overdue": {
+          // overdue 
+          this.overdueoffset = 0;
+          this.overdueAssignments = [];
+          this.overduereloadNext = true;
+          this.overduereloadCount += 1;
+          this.offset = 0;
+          this.tempAssts = [];
+          this.reloadNext = true;
+          this.reloadCount += 1;
+          break;
+        }
 
-      default: {
-        return "";
-      }
-    }
-  },
-  removeItemFromList(type, item){
-    switch (type) {
-      case "Pending": {
-        const index = this.tempAssts.indexOf(item);
-        if (index > -1) { 
-          this.tempAssts.splice(index, 1);
+        default: {
+          return "";
         }
-        break;
       }
-      case "Doing": {
-        const index = this.doingAssignments.indexOf(item);
-        if (index > -1) { 
-          this.doingAssignments.splice(index, 1); 
+    },
+    subtaskUpdatedData(type) {
+      const assignmentType = type ?? this.typeOfAssignment;
+      switch (assignmentType) {
+        case "Pending": {
+          //  to do
+          this.offset = 0;
+          this.tempAssts = [];
+          this.reloadNext = true;
+          this.reloadCount += 1;
+          this.doneoffset = 0;
+          this.doneAssignmentsList = [];
+          this.donereloadNext = true;
+          this.donereloadCount += 1;
+          break;
         }
-        break;
-      }
-      case "Done": {
-        const index = this.doneAssignmentsList.indexOf(item);
-        if (index > -1) { 
-          this.doneAssignmentsList.splice(index, 1); 
+        case "Doing": {
+          //  doing
+          this.doingoffset = 0;
+          this.doingAssignments = [];
+          this.doingreloadNext = true;
+          this.doingreloadCount += 1;
+          this.doneoffset = 0;
+          this.doneAssignmentsList = [];
+          this.donereloadNext = true;
+          this.donereloadCount += 1;
+          break;
         }
-        break;
-      }
-      case "Overdue": {
-        const index = this.overdueAssignments.indexOf(item);
-        if (index > -1) { 
-          this.overdueAssignments.splice(index, 1);
+        case "Done": {
+          // done
+          this.doneoffset = 0;
+          this.doneAssignmentsList = [];
+          this.donereloadNext = true;
+          this.donereloadCount += 1;
+          break;
         }
-        break;
+        case "Overdue": {
+          // overdue 
+          this.overdueoffset = 0;
+          this.overdueAssignments = [];
+          this.overduereloadNext = true;
+          this.overduereloadCount += 1;
+          this.offset = 0;
+          this.tempAssts = [];
+          this.reloadNext = true;
+          this.reloadCount += 1;
+          break;
+        }
+
+        default: {
+          return "";
+        }
       }
-      default: {
-        return "";
+    },
+    removeItemFromList(type, item) {
+      switch (type) {
+        case "Pending": {
+          const index = this.tempAssts.indexOf(item);
+          if (index > -1) {
+            this.tempAssts.splice(index, 1);
+          }
+          break;
+        }
+        case "Doing": {
+          const index = this.doingAssignments.indexOf(item);
+          if (index > -1) {
+            this.doingAssignments.splice(index, 1);
+          }
+          break;
+        }
+        case "Done": {
+          const index = this.doneAssignmentsList.indexOf(item);
+          if (index > -1) {
+            this.doneAssignmentsList.splice(index, 1);
+          }
+          break;
+        }
+        case "Overdue": {
+          const index = this.overdueAssignments.indexOf(item);
+          if (index > -1) {
+            this.overdueAssignments.splice(index, 1);
+          }
+          break;
+        }
+        default: {
+          return "";
+        }
       }
-    }
-  },
-  updateTaskStaus(event, task){
-    this.completeSubTaskId = task.id;
+    },
+    updateTaskStaus(event, task) {
+      this.completeSubTaskId = task.id;
       if (!task.isTaskCompleted) {
         this.undoSubtaskId = task.id;
         this.undoCompleteSubTask();
@@ -3524,8 +2880,8 @@ mapOverdues() {
       }
       event.preventDefault();
       event.stopPropagation();
-  },
-  updateTaskIds(subTaskId) {
+    },
+    updateTaskIds(subTaskId) {
       // Check if the subTaskId is in the task_ids array
       const index = this.task_ids.indexOf(subTaskId);
       if (index === -1) {
@@ -3536,11 +2892,41 @@ mapOverdues() {
         this.task_ids.splice(index, 1);
       }
     }
-},
+  },
 }
 </script>
 <style scoped>
 .clickable {
   cursor: pointer;
+}
+
+.dragging {
+  opacity: 0.5;
+  /* Initial opacity, you can adjust it as needed */
+  transition: opacity 0.3s;
+  /* Apply a transition effect to the opacity property */
+  background-color: red;
+}
+
+.draggingTodo {
+  opacity: 0.5;
+  /* Initial opacity, you can adjust it as needed */
+  transition: opacity 0.3s;
+  /* Apply a transition effect to the opacity property */
+  background-color: rgb(83, 36, 159);
+}
+.draggingDone {
+  opacity: 0.5;
+  /* Initial opacity, you can adjust it as needed */
+  transition: opacity 0.3s;
+  /* Apply a transition effect to the opacity property */
+  background-color: rgb(185, 207, 43);
+}
+.draggingDue {
+  opacity: 0.5;
+  /* Initial opacity, you can adjust it as needed */
+  transition: opacity 0.3s;
+  /* Apply a transition effect to the opacity property */
+  background-color: rgb(150, 26, 57);
 }
 </style>
