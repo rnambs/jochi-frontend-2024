@@ -25,7 +25,8 @@ const state = {
   allSubTskCompleted: false,
   overdues: [],
   sharedOverdues: [],
-  trainingsMatches: []
+  trainingsMatches: [],
+  SuccessTypeSubTasks: false,
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -255,6 +256,7 @@ const actions = {
         commit('setErrorType', "");
         commit('setSuccessMessage', "Assignment Updated Successfully");
         commit('setSuccessType', "success");
+        commit('setSuccessTypeSubTasks', response.completed_assignment);
       }
     } catch (e) {
       if (e?.response?.data?.message == "Unauthorized") {
@@ -597,6 +599,9 @@ const mutations = {
   setSuccessMessage(state, data) {
     state.successMessage = data;
   },
+  setSuccessTypeSubTasks(state, data) {
+    state.SuccessTypeSubTasks = data;
+  },
   setSuccessType(state, data) {
     state.successType = data;
   },
@@ -675,6 +680,9 @@ const getters = {
   },
   successMessage: () => {
     return state.successMessage;
+  },
+  SuccessTypeSubTasks: () => {
+    return state.SuccessTypeSubTasks;
   },
   successType: () => {
     return state.successType;
