@@ -46,7 +46,7 @@
                       </div>
                       <div class="row h-100">
                           <div class="col-12 col-sm-6 col-lg-3">
-                            <drop
+                            <drop             
                               class="drop color-secondary text-16 h-100 d-flex flex-column"
                                  @drop="doingDrop"
                                   >
@@ -167,7 +167,8 @@
                                   <div class="d-flex flex-column task-container pr-2 mb-3">
                                   <div v-for="item in tempAssts"
                           :key="item.id">
-                          <drag :transfer-data="{ item, source: 'todoAssignments', sourceType:'Pending' }">
+                          <drag :transfer-data="{ item, source: 'todoAssignments', sourceType:'Pending' }"
+                          >
                             <div 
                                       class="card card-primary p-3 mb-3">
                                       <div class="d-flex align-items-center justify-content-between mb-2">
@@ -1944,6 +1945,7 @@ import VueTimepicker from "vue2-timepicker";
 import "vue2-timepicker/dist/VueTimepicker.css";
 import "vue2-timepicker/dist/VueTimepicker.css";
 import moment from "moment";
+import { Drag, Drop } from 'vue-drag-drop';
 var fromDate = "";
 var endDate = "";
 export default {
@@ -1953,6 +1955,8 @@ components: {
   InfiniteLoading,
   draggable,
   VueTimepicker,
+  Drag,
+  Drop,
 },
 head() {
   return {
@@ -2061,6 +2065,8 @@ data() {
     doingType:'',
     todoItem: {},
     todoType:'',
+    doneItem: {},
+    doneType:'',
     task_ids: [],
   }
 },
@@ -2157,11 +2163,11 @@ computed: {
   }),
   assignmentTypeText() {
       if (this.assignmentType === 'Monthly') {
-        return 'Task for this month';
+        return 'Completed task for this month';
       } else if (this.assignmentType === 'All') {
         return 'All completed task';
       } else {
-        return 'Task for this week';
+        return 'Completed task for this week';
       }
     },
     TypeText() {
@@ -2540,9 +2546,9 @@ mapOverdues() {
     this.schoologyAssignment = assignment.schoologyAssignment;
     this.submissionId = assignment.submission_id;
     if (source !== 'doneAssignments') {
-      // this.completeAssignment(true);
-      this.removeItemFromList(data.sourceType, data.item)
       this.sourceassignment = source;
+      this.doneItem = data.item;
+      this.doneType = data.sourceType;
         // Add a condition to exclude 'doneAssignments'
         $("#completeConfirm").modal({ backdrop: true });
       }
@@ -2554,6 +2560,7 @@ mapOverdues() {
       status: completed ? "Completed" : "Pending",
     });
     this.processingCompleteAssignment = false;
+    this.removeItemFromList(this.doneType, this.doneItem);
     if (this.successMessage != "") {
       this.openAssignment = false;
       completed? this.loadUpdatedData('Done'):this.loadUpdatedData('Pending');
