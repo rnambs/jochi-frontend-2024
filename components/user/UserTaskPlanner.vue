@@ -2139,6 +2139,7 @@ computed: {
     assignment: (state) => state.assignment,
     sharedAssignment: (state) => state.sharedAssignment,
     successMessage: (state) => state.successMessage,
+    SuccessTypeSubTasks: (state) => state.SuccessTypeSubTasks,
     SuccessType: (state) => state.SuccessType,
     errorMessage: (state) => state.errorMessage,
     errorType: (state) => state.errorType,
@@ -2870,9 +2871,11 @@ mapOverdues() {
         removed_users: removed,
         task_ids:this.task_ids,
       });
-      console.log(this.task_ids);
       this.loading = false;
       this.removedPeerList = [];
+      if(this.SuccessTypeSubTasks == true){
+        this.subtaskUpdatedData();
+      }
       if (this.successMessage != "") {
         this.loadUpdatedData();
         this.deletedSubTasksArray = [];
@@ -2945,7 +2948,6 @@ mapOverdues() {
           item = e;
           item.isTaskCompleted = item.task_status !== 'Completed' ? false : true;
           this.subTasksList.push(item);
-          console.log('Return Response',this.subTasksList);
         });
       }
       this.peerList = data.peers;
@@ -3111,7 +3113,7 @@ mapOverdues() {
       }
     },
     onAddNewSubTask() {
-      if (this.subTaskName) {
+      if (this.subTaskName && this.subTaskName.trim() !== "") {
         let sub = {};
         sub.title = this.subTaskName;
         this.subTasksList.push(sub);
@@ -3381,6 +3383,51 @@ mapOverdues() {
         this.tempAssts = [];
         this.reloadNext = true;
         this.reloadCount += 1;
+        break;
+      }
+      case "Doing": {
+      //  doing
+        this.doingoffset = 0;
+        this.doingAssignments = [];
+        this.doingreloadNext = true;
+        this.doingreloadCount +=1;
+        break;
+      }
+      case "Done": {
+        // done
+        this.doneoffset = 0;
+        this.doneAssignmentsList = [];
+        this.donereloadNext = true;
+        this.donereloadCount +=1;
+        break;
+      }
+      case "Overdue": {
+        // overdue 
+        this.overdueoffset = 0;
+        this.overdueAssignments = [];
+        this.overduereloadNext = true;
+        this.overduereloadCount +=1; 
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
+        break;
+      }
+
+      default: {
+        return "";
+      }
+    }
+  },
+  subtaskUpdatedData(type){
+    const assignmentType = type??this.typeOfAssignment;
+    switch (assignmentType) {
+      case "Pending": {
+      //  to do
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
         this.doneoffset = 0;
         this.doneAssignmentsList = [];
         this.donereloadNext = true;
@@ -3393,6 +3440,10 @@ mapOverdues() {
         this.doingAssignments = [];
         this.doingreloadNext = true;
         this.doingreloadCount +=1;
+        this.doneoffset = 0;
+        this.doneAssignmentsList = [];
+        this.donereloadNext = true;
+        this.donereloadCount +=1;
         break;
       }
       case "Done": {
@@ -3477,7 +3528,6 @@ mapOverdues() {
         // If already in the array, remove it
         this.task_ids.splice(index, 1);
       }
-      console.log(this.task_ids);
     }
 },
 }
