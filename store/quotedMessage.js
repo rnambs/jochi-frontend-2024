@@ -168,7 +168,7 @@ const actions = {
       if (response.message == "Assignment added successfully") {
         commit('setErrorMessage', "");
         commit('setErrorType', "");
-        commit('setSuccessMessage', "Assignment added successfully");
+        commit('setSuccessMessage', "Assignment Added Successfully");
         commit('setSuccessType', "success");
       }
     } catch (e) {
@@ -253,7 +253,7 @@ const actions = {
       if (response.message == "Assignment updated successfully") {
         commit('setErrorMessage', "");
         commit('setErrorType', "");
-        commit('setSuccessMessage', "Assignment updated successfully");
+        commit('setSuccessMessage', "Assignment Updated Successfully");
         commit('setSuccessType', "success");
       }
     } catch (e) {
