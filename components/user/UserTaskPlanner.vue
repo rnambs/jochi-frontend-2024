@@ -27,9 +27,9 @@
                                                       class="fas fa-chevron-down font-medium"></i></span>
                                           </div>
                                           <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
-                                              <li class="item p-2" @click="weeklyAssignments()">This week</li>
-                                              <li class="item p-2" @click="monthlyAssignments()">This Month</li>
-                                              <li class="item p-2" @click="allAssignments()">All</li>
+                                              <li class="item p-2" @click="weeklyAssignments()" :class="{ active: assignmentType === 'Weekly' }">This week</li>
+                                              <li class="item p-2" @click="monthlyAssignments()" :class="{ active: assignmentType === 'Monthly' }">This Month</li>
+                                              <li class="item p-2" @click="allAssignments()" :class="{ active: assignmentType === 'All' }">All</li>
                                           </ul>
                                       </div>
                                   </div>
@@ -795,9 +795,9 @@
                                         <input
                                           :id="subTask.id"
                                           class="mr-2 cursor-pointer"
-                                          v-model="subTask.isTaskCompleted"
                                           type="checkbox"
-                                          @change="updateTaskStaus($event, subTask)" 
+                                          v-model="subTask.isTaskCompleted"
+                                          @change="updateTaskIds(subTask.id)"
                                         />
                                       <label :for="subTask.id">{{ subTask.title }}</label>
                                       </div>
@@ -824,7 +824,7 @@
                                       <div
                                         class="d-flex align-items-center justify-content-between"
                                       >
-                                          <p
+                                          <!-- <p
                                           class="mb-0 color-secondary text-16 font-regular word-break pr-3"
                                         >
                                           <span
@@ -837,7 +837,18 @@
                                             ><i></i
                                           ></span>
                                           <span>{{ subTask.title }}</span>
-                                        </p>
+                                        </p> -->
+                                        <div 
+                                      
+                                      class="p-1 form-group checkbox">
+                                      <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
+                                      <input
+                                          :id="subTask.id"
+                                          class="mr-2 cursor-pointer"
+                                          type="checkbox"
+                                        />
+                                      <label :for="subTask.id">{{ subTask.title }}</label>
+                                      </div>
                                         <span
                                           v-if="
                                             subTask.task_status != 'Completed'
@@ -1201,14 +1212,15 @@
                                         class="d-flex align-items-center justify-content-between"
                                       >
                                       <div 
+                                      
                                       class="p-1 form-group checkbox">
                                       <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
                                         <input
                                           :id="subTask.id"
                                           class="mr-2 cursor-pointer"
-                                          v-model="subTask.isTaskCompleted"
                                           type="checkbox"
-                                          @change="updateTaskStaus($event, subTask)" 
+                                          v-model="subTask.isTaskCompleted"
+                                          @change="updateTaskIds(subTask.id)"
                                         />
                                       <label :for="subTask.id">{{ subTask.title }}</label>
                                       </div>
@@ -2048,7 +2060,8 @@ data() {
     doingItem: {},
     doingType:'',
     todoItem: {},
-    todoType:''
+    todoType:'',
+    task_ids: [],
   }
 },
 created() {
@@ -2855,7 +2868,9 @@ mapOverdues() {
         subTasks: subTaskLists,
         deleted_subTask: this.deletedSubTasksArray,
         removed_users: removed,
+        task_ids:this.task_ids,
       });
+      console.log(this.task_ids);
       this.loading = false;
       this.removedPeerList = [];
       if (this.successMessage != "") {
@@ -2868,6 +2883,7 @@ mapOverdues() {
           duration: 5000,
         });
         this.resetAssignment();
+        this.task_ids = [];
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
       } else if (this.errorMessage != "") {
@@ -2927,8 +2943,9 @@ mapOverdues() {
         data.subTasks.forEach((e) => {
           let item = {};
           item = e;
-          item.isTaskCompleted=item.task_status=='Completed'?true:false;
+          item.isTaskCompleted = item.task_status !== 'Completed' ? false : true;
           this.subTasksList.push(item);
+          console.log('Return Response',this.subTasksList);
         });
       }
       this.peerList = data.peers;
@@ -3364,6 +3381,10 @@ mapOverdues() {
         this.tempAssts = [];
         this.reloadNext = true;
         this.reloadCount += 1;
+        this.doneoffset = 0;
+        this.doneAssignmentsList = [];
+        this.donereloadNext = true;
+        this.donereloadCount +=1;
         break;
       }
       case "Doing": {
@@ -3445,7 +3466,19 @@ mapOverdues() {
       }
       event.preventDefault();
       event.stopPropagation();
-  }
+  },
+  updateTaskIds(subTaskId) {
+      // Check if the subTaskId is in the task_ids array
+      const index = this.task_ids.indexOf(subTaskId);
+      if (index === -1) {
+        // If not in the array, add it
+        this.task_ids.push(subTaskId);
+      } else {
+        // If already in the array, remove it
+        this.task_ids.splice(index, 1);
+      }
+      console.log(this.task_ids);
+    }
 },
 }
 </script>
