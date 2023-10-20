@@ -60,9 +60,7 @@
                       @dragover="doingDropStart()"
                       @dragleave="doingDropEnd()"
                       @drop="doingDrop">
-                      <div :class="{ 'dropping': isDropping }">
-                        <pre>drop div</pre>
-                      </div>
+                      <div class="drop-zone" :class="{ 'dropping': isDropping }"></div>
                       <div v-for="(item, index) in doingAssignments" :key="item.id">
                         <drag :transfer-data="{ item, source: 'doingAssignments', sourceType: 'Doing' }"
                           @dragstart="handleDragStart(index)" @dragend="handleDragEnd()">
@@ -154,8 +152,8 @@
                       @dragover="todoDropStart()"
                       @dragleave="todoDropEnd()"
                       @drop="confirmUndo">
-                      <div :class="{ 'dropping': isDroppingTodo }">
-                        <pre>drop div</pre>
+                      <div class="drop-zone" :class="{ 'dropping': isDroppingTodo }">
+                        
                       </div>
                       <div v-for="(item, index) in tempAssts" :key="item.id">
                         <drag :transfer-data="{ item, source: 'todoAssignments', sourceType: 'Pending' }"
@@ -246,8 +244,8 @@
                       @dragover="doneDropStart()"
                       @dragleave="doneDropEnd()"
                       @drop="handleDrop">
-                      <div :class="{ 'dropping': isDroppingDone }">
-                        <pre>drop div</pre>
+                      <div class="drop-zone" :class="{ 'dropping': isDroppingDone }">
+                        
                       </div>
                       <div v-for="(item,index) in doneAssignmentsList" :key="item.id">
                         <drag :transfer-data="{ item, source: 'doneAssignments', sourceType: 'Done' }"
@@ -2989,7 +2987,7 @@ export default {
   border: 1.25px dashed rgba(80, 48, 229, 0.59);
   background-color: rgba(80, 48, 229, 0.06);
 }
-.draggingDone {
+.draggingDone,.draggingDue {
   opacity: 0.75;
   /* Initial opacity, you can adjust it as needed */
   transition: opacity 0.3s;
@@ -2997,20 +2995,19 @@ export default {
   border: 1.25px dashed rgba(80, 48, 229, 0.59);
   background-color: rgba(80, 48, 229, 0.06);
 }
-.draggingDue {
-  opacity: 0.75;
-  /* Initial opacity, you can adjust it as needed */
-  transition: opacity 0.3s;
-  /* Apply a transition effect to the opacity property */
-  border: 1.25px dashed rgba(80, 48, 229, 0.59);
-  background-color: rgba(80, 48, 229, 0.06);
+.drop-zone{
+  min-height: 0px;
+  opacity: 0;
 }
-  /* .drop.over {
-      border-color: #cf1919;
-      background: #30be2b;
-    } */
-  .dropping{
-    background-color: #cf1919;
-    display: block;
-  }
+.dropping{
+  border: 1.25px solid rgba(80, 48, 229, 0.59);
+  background-color: rgba(80, 48, 229, 0.06);
+  display: block;
+  opacity: 1;
+  min-height: 100px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  /* transition: ease-in-out 0.3s all; */
+}
 </style>
