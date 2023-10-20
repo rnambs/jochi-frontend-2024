@@ -31,33 +31,33 @@
                                             </ul>
                                         </div>
                                         <div class="border border--form rounded-8 d-flex align-items-center mb-2">
-                                            <button class="btn btn-void border-0 p-2 mx-1">
+                                            <button @click="goToPreviousWeek()" class="btn btn-void border-0 p-2 mx-1">
                                                 <span class="d-flex">
                                                     <i class="i-arrow-left j-icon i-xs bg-text-secondary"></i>
                                                 </span>  
                                             </button>
-                                            <p class="mb-0 font-medium color-secondary-dark mx-1">Week 02</p>
-                                            <button class="btn btn-void border-0 p-2 mx-1">
+                                            <p class="mb-0 font-medium color-secondary-dark mx-1">{{ weekNumberText }}</p>
+                                            <button @click="goToNextWeek()" class="btn btn-void border-0 p-2 mx-1">
                                                 <span class="d-flex">
                                                     <i class="i-arrow-right j-icon i-xs bg-text-secondary"></i>
                                                 </span>  
                                             </button>
                                         </div>
                                         <div class="d-none d-lg-flex align-items-center mb-2 justify-content-center flex-fill">
-                                            <p class="mb-0 font-bold text-18 color-primary-dark mx-1">September</p>
+                                            <p class="mb-0 font-bold text-18 color-primary-dark mx-1">{{ monthText }}</p>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-wrap">
-                                        <button class="btn btn-primary mr-2 mb-2">
+                                        <!-- <button class="btn btn-primary mr-2 mb-2">
                                             <span class="d-flex mr-1">
                                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M6.22974 6.62916V1.60059H7.90593V6.62916H12.9345V8.30535H7.90593V13.3339H6.22974V8.30535H1.20117V6.62916H6.22974Z" fill="white"/>
                                                 </svg>
                                             </span>                                            
                                             <span>Add task</span>
-                                        </button>
-                                        <button class="btn btn-void mb-2">                                          
-                                            <span>Show Weekend</span>
+                                        </button> -->
+                                        <button @click="toggleWeekends" class="btn btn-void mb-2">                                          
+                                            <span>{{ showWeekends ? 'Hide Weekends' : 'Show Weekends' }}</span>
                                             <span class="d-flex ms-1">
                                                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M5.13281 14.8L11.5328 8.4L5.13281 2" stroke="#EAEAEA" stroke-width="2.13333" stroke-linecap="round" stroke-linejoin="round"/>
@@ -68,11 +68,21 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- <div class="row h-100">
+                        <div v-for="(day, index) in days" :key="index" class="col">
+                        <div class="card">
+                            <div class="card-body" :class="{ 'calendar-head--active': isToday(day.dateNumber) }">
+                            <p class="mb-0 color-dark font-bold text-14">{{ day.name }} {{ day.dateNumber }}</p>
+                            
+                            </div>
+                        </div>
+                        </div>
+                    </div> -->
                         <div class="row h-100">
-                            <div class="col-12 col-sm-6 col-md-4 col-lg px-0 pt-0">
+                            <div v-for="(day, index) in days" :key="index" class="col-12 col-sm-6 col-md-4 col-lg px-0 pt-0">
                                 <div class="card border-0 rounded-12 w-100 h-100">
                                     <div class="calendar-head d-flex align-items-center my-3 p-2 pl-3 mx--12">
-                                        <p class="mb-0 color-dark font-bold text-14">Monday 03</p>
+                                        <p class="mb-0 color-dark font-bold text-14">{{ day.name }} {{ day.dateNumber }}</p>
                                     </div>
                                     <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
                                         <div class="cal-time-zone d-flex align-items-center mb-2">
@@ -144,7 +154,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-md-4 col-lg px-0 pt-0">
+                            <!-- <div class="col-12 col-sm-6 col-md-4 col-lg px-0 pt-0">
                                 <div class="card border-0 rounded-12 w-100 h-100">
                                     <div class="calendar-head calendar-head--active d-flex align-items-center my-3 p-2 pl-3 mx--12">
                                         <p class="mb-0 font-bold text-14">Tuesday 04</p>
@@ -462,7 +472,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -498,7 +508,12 @@ export default {
   },
   data() {
     return {
-        accordionOpened:false
+        accordionOpened:false,
+        days: [],
+        currentDate: new Date(),
+        showWeekends: false,
+        monthText: '',
+        weekNumberText: '',
     }
   },
   created() {
@@ -506,5 +521,106 @@ export default {
       this.accordionOpened = newValue;
     });
   },
+  mounted(){
+    this.generateDays();
+    this.updateWeekNumber();
+    this.updateWeekNumberAndMonth();
+  },
+  methods :{
+    goToPreviousWeek() {
+        this.currentDate.setDate(this.currentDate.getDate() - 7);
+        this.days = [];
+        this.generateDays();
+        this.updateWeekNumber();
+        this.updateWeekNumberAndMonth();
+      },
+      goToNextWeek() {
+        this.currentDate.setDate(this.currentDate.getDate() + 7);
+        this.days = [];
+        this.generateDays();
+        this.updateWeekNumber();
+        this.updateWeekNumberAndMonth();
+      },
+    isToday(dateNumber) {
+      const today = new Date();
+      return today.getDate() === dateNumber; // You can adjust this condition based on your date structure.
+    },
+    getStartOfWeek() {
+    const currentDate = new Date();
+    const dayOfWeek = currentDate.getDay(); // 0 (Sunday) to 6 (Saturday)
+  
+    // Calculate the number of days to subtract to get to Monday (1)
+    const daysToMonday = (dayOfWeek === 0 ? 6 : dayOfWeek - 1);
+    
+    // Calculate the date of the start of the week (Monday)
+    currentDate.setDate(currentDate.getDate() - daysToMonday);
+    
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    
+    return `${year}-${month}-${day}`;
+  },
+    generateDays() {
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  
+    // Calculate the start day of the week based on the button's state
+    const startDay = new Date(this.currentDate);
+    let dayOffset = 0;
+  
+    if (!this.showWeekends) {
+      // If weekends are hidden, start from Monday
+      dayOffset = this.currentDate.getDay() === 0 ? 1 : -this.currentDate.getDay() + 1;
+    } else {
+      // If weekends are shown, start from Wednesday
+      dayOffset = -this.currentDate.getDay() + 3;
+    }
+  
+    startDay.setDate(this.currentDate.getDate() + dayOffset);
+  
+    const daysToShow = this.showWeekends ? 5 : 5;
+  
+    for (let i = 0; i < daysToShow; i++) {
+      const currentDate = new Date(startDay);
+      currentDate.setDate(startDay.getDate() + i);
+      const year = currentDate.getFullYear();
+      const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+      const dateNumber = currentDate.getDate().toString().padStart(2, '0');
+  
+      this.days.push({
+        name: daysOfWeek[currentDate.getDay()],
+        date: `${year}-${month}-${dateNumber}`, // Format to match API
+        dateNumber: dateNumber
+      });
+      console.log(this.days);
+    }
+  },
+  updateWeekNumber() {
+  // Calculate the week number within the month
+  const weekNumber = Math.ceil(this.currentDate.getDate() / 7);
+
+  // Update the text within the <p> tag
+  this.weekNumberText = `Week ${weekNumber.toString().padStart(2, '0')}`;
+},
+updateWeekNumberAndMonth() {
+  // Calculate the week number within the month
+  const weekNumber = Math.ceil(this.currentDate.getDate() / 7);
+
+  // Get the month name
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const monthName = monthNames[this.currentDate.getMonth()];
+
+  // Update the text within the <p> tags
+  this.weekNumberText = `Week ${weekNumber.toString().padStart(2, '0')}`;
+  this.monthText = monthName;
+},
+  toggleWeekends() {
+        this.loading = true;
+        this.showWeekends = !this.showWeekends;
+        this.days = [];
+        this.generateDays();
+        this.loading = false;
+      },
+  }
 }
 </script>
