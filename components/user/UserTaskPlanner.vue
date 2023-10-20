@@ -98,11 +98,17 @@
                                   </span>
                                 </div>
                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
-                                  <li @click="onCardClick(item, 'Doing')" class="item p-2">
+                                  <li class="item px-2 py-1">
+                                    Move to ToDo
+                                  </li>
+                                  <li class="item px-2 py-1">
+                                    Move to Done
+                                  </li>
+                                  <li @click="onCardClick(item, 'Doing')" class="item px-2 py-1">
                                     Edit
                                   </li>
                                   <div v-if="item.shared_users_id != user_id">
-                                    <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                    <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
                               </div>
@@ -192,9 +198,15 @@
                                   </span>
                                 </div>
                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
-                                  <li @click="onCardClick(item, 'Pending')" class="item p-2">Edit</li>
+                                  <li class="item px-2 py-1">
+                                    Move to Doing
+                                  </li>
+                                  <li class="item px-2 py-1">
+                                    Move to Done
+                                  </li>
+                                  <li @click="onCardClick(item, 'Pending')" class="item px-2 py-1">Edit</li>
                                   <div v-if="item.shared_users_id != user_id">
-                                    <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                    <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
                               </div>
@@ -368,9 +380,18 @@
                                 </span>
                               </div>
                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
-                                <li @click="onCardClick(item, 'Overdue')" class="item p-2">Edit</li>
+                                  <li class="item px-2 py-1">
+                                    Move to Doing
+                                  </li>
+                                  <li class="item px-2 py-1">
+                                    Move to ToDo
+                                  </li>
+                                  <li class="item px-2 py-1">
+                                    Move to Done
+                                  </li>
+                                <li @click="onCardClick(item, 'Overdue')" class="item px-2 py-1">Edit</li>
                                 <div v-if="item.shared_users_id != user_id">
-                                  <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                  <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                 </div>
                               </ul>
                             </div>
