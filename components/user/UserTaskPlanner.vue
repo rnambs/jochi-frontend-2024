@@ -44,7 +44,390 @@
                 </div>
               </div>
             </div>
+
             <div class="row h-100">
+              <div class="col-12 col-sm-6 col-lg-3">
+                  <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
+                    <div class="d-flex flex-column pr-2">
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="mr-2"><span class="bg-task-violet p-1 rounded-circle d-flex"></span></span>
+                        <p class="mb-0 color-dark font-medium text-14">Doing</p>
+                      </div>
+                      <span class="border-pb-1 bg-task-violet w-100 d-flex mb-3"></span>
+                    </div>
+                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column"
+                      @dragover="doingDropStart()"
+                      @dragleave="doingDropEnd()"
+                      @drop="doingDrop">
+                    <div class="drop-zone" :class="{ 'dropping': isDropping }"></div>
+                    <div class="d-flex flex-column task-container pr-2 mb-3">
+                      <div v-for="(item, index) in doingAssignments" :key="item.id">
+                        <drag :transfer-data="{ item, source: 'doingAssignments', sourceType: 'Doing' }"
+                          @dragstart="handleDragStart(index)" @dragend="handleDragEnd()">
+                          <div class="card card-primary p-3 mb-3"
+                            :class="{ 'dragging': isDragging && index === draggingIndex }">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                              <div class="d-flex flex-wrap align-items-center">
+                                <span class="task-label  my-1 mr-1" :class="{
+                                  'task-label--yellow': item.priority == '1',
+                                  'task-label--violet': item.priority == '2',
+                                  'task-label--green': item.priority == '3',
+                                  'task-label--red': item.priority == '4',
+                                }">{{
+  item.priority == "1"
+  ? "Urgent"
+  : item.priority == "2"
+    ? "Important"
+    : item.priority == "3"
+      ? "Can Wait"
+      : item.priority == "4"
+        ? "Overdue"
+        : ""
+}}</span>
+                                <span class="task-label task-label--violet my-1 mr-1">{{
+                                  item.subject.subject_name
+                                  ? item.subject.subject_name
+                                  : item.subject
+                                }}</span>
+                              </div>
+                              <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
+                                <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  <span class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
+                                    <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
+                                  </span>
+                                </div>
+                                <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
+                                  <li @click="onCardClick(item, 'Doing')" class="item px-2 py-1">
+                                    Edit
+                                  </li>
+                                  <div v-if="item.shared_users_id != user_id">
+                                    <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
+                                    <li @click="movetoTodo(item, 'Doing')" class="item px-2 py-1">
+                                    Move to ToDo
+                                  </li>
+                                  <li @click="movetoDone(item.id, 'Doing')" class="item px-2 py-1">
+                                    Move to Done
+                                  </li>
+                                  </div>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="clickable" @click="onCardClick(item, 'Doing')">
+                              <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
+                              <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
+                              <div class="d-flex align-items-center justify-content-start">
+                                <div class="d-flex">
+                                  <div v-for="(peer, index) in item.peers" :key="index">
+                                    <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
+                                      class="img-avatar img-avatar--sm">
+                                    <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
+                                  </div>
+                                </div>
+                                <!-- <div class="d-flex align-items-center">
+                                  <button class="btn btn-drag-card-open">
+                                    Open
+                                  </button>
+                                </div> -->
+                              </div>
+                            </div>
+                          </div>
+                        </drag>
+                      </div>
+                      <client-only>
+                        <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
+                          :identifier="doingreloadCount" @infinite="doingNext">
+                          <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                        </infinite-loading>
+                      </client-only>
+                    
+                    </div>
+                  </drop>
+                  </div>
+              </div>
+              <div class="col-12 col-sm-6 col-lg-3">
+                  <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
+                    <div class="d-flex flex-column pr-2">
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="mr-2"><span class="bg-task-yellow p-1 rounded-circle d-flex"></span></span>
+                        <p class="mb-0 color-dark font-medium text-14">Todo</p>
+                      </div>
+                      <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
+                    </div>
+                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                      @dragover="todoDropStart()"
+                      @dragleave="todoDropEnd()"
+                      @drop="confirmUndo">
+                      <div class="drop-zone" :class="{ 'dropping': isDroppingTodo }"></div>
+                    <div class="d-flex flex-column task-container pr-2 mb-3"> 
+                      <div v-for="(item, index) in tempAssts" :key="item.id">
+                        <drag :transfer-data="{ item, source: 'todoAssignments', sourceType: 'Pending' }"
+                          @dragstart="handleDragStartTodo(index)" @dragend="handleDragEndTodo()">
+                          <div class="card card-primary p-3 mb-3"
+                            :class="{ 'draggingTodo': isDraggingTodo && index === draggingIndexTodo }">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                              <div class="d-flex flex-wrap align-items-center">
+                                <span class="task-label  my-1 mr-1" :class="{
+                                  'task-label--yellow': item.priority == '1',
+                                  'task-label--violet': item.priority == '2',
+                                  'task-label--green': item.priority == '3',
+                                  'task-label--red': item.priority == '4',
+                                }">{{
+  item.priority == "1"
+  ? "Urgent"
+  : item.priority == "2"
+    ? "Important"
+    : item.priority == "3"
+      ? "Can Wait"
+      : item.priority == "4"
+        ? "Overdue"
+        : ""
+}}</span>
+                                <span class="task-label task-label--yellow my-1 mr-1">{{
+                                  item.subject.subject_name
+                                  ? item.subject.subject_name
+                                  : item.subject
+                                }}</span>
+                              </div>
+                              <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
+                                <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  <span class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
+                                    <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
+                                  </span>
+                                </div>
+                                <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
+                                  <li class="item px-2 py-1">
+                                    Move to Doing
+                                  </li>
+                                  <li class="item px-2 py-1">
+                                    Move to Done
+                                  </li>
+                                  <li @click="onCardClick(item, 'Pending')" class="item px-2 py-1">Edit</li>
+                                  <div v-if="item.shared_users_id != user_id">
+                                    <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
+                                  </div>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="clickable" @click="onCardClick(item, 'Pending')">
+                              <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
+                              <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
+                              <div class="d-flex align-items-center justify-content-start">
+                                <div class="d-flex">
+                                  <div v-for="(peer, index) in item.peers" :key="index">
+                                    <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
+                                      class="img-avatar img-avatar--sm">
+                                    <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
+                                  </div>
+                                </div>
+                                <!-- <div class="d-flex align-items-center">
+                                  <button class="btn btn-drag-card-open">
+                                    Open
+                                  </button>
+                                </div> -->
+                              </div>
+                            </div>
+                          </div>
+                        </drag>
+                      </div>
+                      <client-only>
+                        <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
+                          :identifier="reloadCount" @infinite="loadNext">
+                          <div class="mb-2" slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                        </infinite-loading>
+                      </client-only>
+                    </div>
+                     </drop>
+                  </div>
+              </div>
+              <div class="col-12 col-sm-6 col-lg-3">
+                  <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
+                    <div class="d-flex flex-column pr-2">
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="mr-2"><span class="bg-task-green p-1 rounded-circle d-flex"></span></span>
+                        <p class="mb-0 color-dark font-medium text-14">Done</p>
+                      </div>
+                      <span class="border-pb-1 bg-task-green w-100 d-flex mb-3"></span>
+                    </div>
+                    <div class="d-flex flex-column task-container pr-2 mb-3">
+                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                      @dragover="doneDropStart()"
+                      @dragleave="doneDropEnd()"
+                      @drop="handleDrop">
+                      <div class="drop-zone" :class="{ 'dropping': isDroppingDone }">
+                        
+                      </div>
+                      <div v-for="(item,index) in doneAssignmentsList" :key="item.id">
+                        <drag :transfer-data="{ item, source: 'doneAssignments', sourceType: 'Done' }"
+                        @dragstart="handleDragStartDone(index)" @dragend="handleDragEndDone()">
+
+                          <div class="card card-primary p-3 mb-3" :class="{ 'draggingDone': isDraggingDone && index === draggingIndexDone }">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                              <div class="d-flex flex-wrap align-items-center">
+                                <span class="task-label  my-1 mr-1" :class="{
+                                  'task-label--yellow': item.priority == '1',
+                                  'task-label--violet': item.priority == '2',
+                                  'task-label--green': item.priority == '3',
+                                  'task-label--red': item.priority == '4',
+                                }"> {{
+  item.priority == "1"
+  ? "Urgent"
+  : item.priority == "2"
+    ? "Important"
+    : item.priority == "3"
+      ? "Can Wait"
+      : item.priority == "4"
+        ? "Overdue"
+        : ""
+}}</span>
+                                <span class="task-label task-label--green my-1 mr-1">{{ item.subject.subject_name
+                                  ? item.subject.subject_name
+                                  : item.subject
+                                }}</span>
+                              </div>
+                              <!-- <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
+                                              <div class="dropdown-select form-control" type="button"
+                                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                  <span
+                                                      class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
+                                                      <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
+                                                  </span>
+                                              </div>
+                                              <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
+                                                  aria-labelledby="dLabel">
+                                                  <li @click="onCardClick(item)" class="item p-2">Edit</li>
+                                                  <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                              </ul>
+                                          </div> -->
+                            </div>
+                            <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
+                            <p class="text-10 color-gray mb-2 task-description" v-html="item.assignment_description"></p>
+                            <div class="d-flex align-items-center justify-content-start">
+                              <div class="d-flex">
+                                <div v-for="(peer, index) in item.peers" :key="index">
+                                  <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
+                                    class="img-avatar img-avatar--sm">
+                                  <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
+                                </div>
+                              </div>
+                              <!-- <div class="d-flex align-items-center">
+                                <button class="btn btn-drag-card-open">
+                                  Open
+                                </button>
+                              </div> -->
+                            </div>
+                          </div>
+                        </drag>
+                      </div>
+                      <client-only>
+                        <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
+                          :identifier="donereloadCount" @infinite="doneNext">
+                          <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                        </infinite-loading>
+                      </client-only>
+                    </drop>
+                    </div>
+                  </div> 
+              </div>
+              <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
+                  <div class="d-flex flex-column pr-2">
+                    <div class="d-flex align-items-center mb-3">
+                      <span class="mr-2">
+                        <span class="bg-task-red p-1 rounded-circle d-flex">
+                        </span>
+                      </span>
+                      <p class="mb-0 color-dark font-medium text-14">Overdue</p>
+                    </div>
+                    <span class="border-pb-1 bg-task-red w-100 d-flex mb-3"></span>
+                  </div>
+                  <div class="d-flex flex-column task-container pr-2 mb-3">
+                    <div v-for="(item,index) in overdueAssignments" :key="item.id">
+                      <drag :transfer-data="{ item, source: 'overdueAssignments', sourceType: 'Overdue' }"
+                      @dragstart="handleDragStartDue(index)" @dragend="handleDragEndDue()">
+                        <div class="card card-primary p-3 mb-3" :class="{ 'draggingDue': isDraggingDue && index === draggingIndexDue }">
+                          <div class="d-flex align-items-center justify-content-between mb-2">
+                            <div class="d-flex flex-wrap align-items-center">
+                              <span class="task-label  my-1 mr-1" :class="{
+                                'task-label--yellow': item.priority == '1',
+                                'task-label--violet': item.priority == '2',
+                                'task-label--green': item.priority == '3',
+                                'task-label--red': item.priority == '4',
+                              }"> {{
+  item.priority == "1"
+  ? "Urgent"
+  : item.priority == "2"
+    ? "Important"
+    : item.priority == "3"
+      ? "Can Wait"
+      : item.priority == "4"
+        ? "Overdue"
+        : ""
+}}</span>
+                              <span class="task-label task-label--red my-1 mr-1"> {{
+                                item.subject.subject_name
+                                ? item.subject.subject_name
+                                : item.subject
+                              }} </span>
+                            </div>
+                            <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
+                              <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <span class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
+                                  <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
+                                </span>
+                              </div>
+                              <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
+                                  <li class="item px-2 py-1">
+                                    Move to Doing
+                                  </li>
+                                  <li class="item px-2 py-1">
+                                    Move to ToDo
+                                  </li>
+                                  <li class="item px-2 py-1">
+                                    Move to Done
+                                  </li>
+                                <li @click="onCardClick(item, 'Overdue')" class="item px-2 py-1">Edit</li>
+                                <div v-if="item.shared_users_id != user_id">
+                                  <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
+                                </div>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="clickable" @click="onCardClick(item, 'Overdue')">
+                            <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
+                            <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
+                            <div class="d-flex align-items-center justify-content-start">
+                              <div class="d-flex">
+                                <div v-for="(peer, index) in item.peers" :key="index">
+                                  <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
+                                    class="img-avatar img-avatar--sm">
+                                  <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
+                                </div>
+                              </div>
+                              <!-- <div class="d-flex align-items-center">
+                                <button class="btn btn-drag-card-open">
+                                  Open
+                                </button>
+                              </div> -->
+                            </div>
+                          </div>
+                        </div>
+                      </drag>
+                    </div>
+                    <client-only>
+                      <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
+                        :identifier="overduereloadCount" @infinite="overdueNext">
+                        <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                      </infinite-loading>
+                    </client-only>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row h-100 d-none">
               <div class="col-12 col-sm-6 col-lg-3">
                 
                   <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
@@ -158,9 +541,7 @@
                       @dragover="todoDropStart()"
                       @dragleave="todoDropEnd()"
                       @drop="confirmUndo">
-                      <div class="drop-zone" :class="{ 'dropping': isDroppingTodo }">
-                        
-                      </div>
+                      <div class="drop-zone" :class="{ 'dropping': isDroppingTodo }"></div>
                       <div v-for="(item, index) in tempAssts" :key="item.id">
                         <drag :transfer-data="{ item, source: 'todoAssignments', sourceType: 'Pending' }"
                           @dragstart="handleDragStartTodo(index)" @dragend="handleDragEndTodo()">
@@ -256,9 +637,7 @@
                       @dragover="doneDropStart()"
                       @dragleave="doneDropEnd()"
                       @drop="handleDrop">
-                      <div class="drop-zone" :class="{ 'dropping': isDroppingDone }">
-                        
-                      </div>
+                      <!-- <div class="drop-zone" :class="{ 'dropping': isDroppingDone }"></div> -->
                       <div v-for="(item,index) in doneAssignmentsList" :key="item.id">
                         <drag :transfer-data="{ item, source: 'doneAssignments', sourceType: 'Done' }"
                         @dragstart="handleDragStartDone(index)" @dragend="handleDragEndDone()">
@@ -1584,6 +1963,8 @@ export default {
     },
     doingDropEnd() {
       // When the drag ends, set isDragging to false to remove the class
+  //     setTimeout(() => {
+  // }, 300);
       this.isDropping = false;
       // this.draggingIndex = null;
     },
@@ -2982,6 +3363,19 @@ export default {
         // If already in the array, remove it
         this.task_ids.splice(index, 1);
       }
+    },
+    movetoTodo(item,type){
+      this.undoAsstId = item.id;
+      this.typeOfAssignment = type;
+      console.log(this.typeOfAssignment)
+      console.log(this.undoAsstId)
+      this.undoAsstComplete();
+      this.loadUpdatedData('Doing')
+    },
+    movetoDone(id){
+      this.completeAsstId = id;
+      $("#completeConfirm").modal({ backdrop: true });
+      // this.loadUpdatedData('Doing')
     }
   },
 }
@@ -3019,8 +3413,10 @@ export default {
 .drop-zone{
   min-height: 0px;
   opacity: 0;
+  transition: ease-in-out 0.1s all;
 }
 .dropping{
+  transition: background-color 0.2s ease, border 0.2s ease;
   border: 1.25px solid rgba(80, 48, 229, 0.59);
   background-color: rgba(80, 48, 229, 0.06);
   display: block;
