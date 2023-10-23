@@ -2635,6 +2635,10 @@ img.card-img {
   }
 }
 
+.max-h-100 {
+  max-height: 400px !important;
+}
+
 .study-status-card {
   flex-direction: column;
 }
@@ -2794,6 +2798,10 @@ img.dark-icon {
 
 .faculty-availability-card {
   min-height: 90px;
+  margin-bottom: 1.5rem;
+}
+.faculty-availability-card:last-child {
+  margin-bottom: 0rem;
 }
 .faculty-availability-card:hover .fa-card-date {
   background-color: var(--text-primary-white) !important;

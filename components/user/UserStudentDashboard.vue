@@ -74,7 +74,7 @@
                 </div>
                 <div class="d-flex flex-column h-lg-50 max-h-50 flex-fill">
                   <div
-                    class="row mt-1 h-100 height-md-unset flex-column flex-md-row pt-2"
+                    class="row mt-1 h-100 max-h-md-100 flex-column flex-md-row pt-2"
                   >
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                       <div
@@ -120,17 +120,17 @@
                     </div>
                     <div
                       data-intro="View your upcoming meetings for the month. "
-                      class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill"
+                      class="col-12 col-md-8 px-0  h-40 h-lg-100 flex-fill"
                     >
                       <div
-                        class="d-flex flex-column custom-overflow faculty-availability-card-outer h-100 p-3 py-4 h-max-md-400"
+                        class="d-flex flex-column custom-overflow faculty-availability-card-outer h-100 px-3 py-0 max-h-100"
                       >
                         <div class="row">
-                          <div class="col-12 mb-2">
+                          <div class="col-12 py-0">
                             <div
                               v-for="(list, index) in slot_date"
                               :key="index"
-                              class="faculty-availability-card mb-4"
+                              class="faculty-availability-card"
                             >
                               <div class="row">
                                 <div class="col-3 py-0">
@@ -195,7 +195,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-xl-4 mt-3 mt-xl-0 h-md-100">
+            <div class="col-xl-4 mt-3 mt-xl-0 max-h-md-100">
               <div
                 class="card card-secondary border rounded-8 h-100 d-flex flex-column overflow-hidden"
               >
