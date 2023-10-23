@@ -85,73 +85,57 @@
                                         <p class="mb-0 color-dark font-bold text-14">{{ day.name }} {{ day.dateNumber }}</p>
                                     </div>
                                     <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
+                                        <div v-for="(item, index) in filteredEvents(day.date)" :key="index">
                                         <div class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Morning</p>
                                         </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
+                                        <div
+                                        v-if="item.groupId == 'assignment' || item.groupId == 'shared-assignment'"
+                                        class="card card-secondary rounded-4 mb-3 p-2">
                                             <div class="d-flex mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-list-check j-icon i-xs bg-global"></i>
                                                 </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Daily Journal Choir</p>
+                                                <p class="mb-0 text-14 font-medium color-primary-light">{{ item.title }}</p>
                                             </div>
-                                            <p class="color-secondary text-12 mb-1"><span>11:00 AM </span> > <span> 12 :00 AM</span></p>
+                                            <p class="color-secondary text-12 mb-1"><span>{{ item.time }}</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> {{ item.date }}</span></p>
                                             </div>
                                         </div>
                                         <div class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-sun j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Afternoon</p>
                                         </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
+                                        <div 
+                                        v-if="item.groupId == 'study'"
+                                        class="card card-secondary rounded-4 mb-3 p-2">
                                             <div class="d-flex align-items-center">
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">Civil War Essay</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                    <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.timeValNum }}</span></p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Daily Journal Choir</p>
-                                            </div>
-                                            <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                            <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                        <div
+                                        v-if="item.groupId == 'peer-meeting'"
+                                        class="card card-transparent border-0 rounded-4 mb-3 py-2">
                                             <div class="d-flex mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-chat-group j-icon i-xs bg-global"></i>
                                                 </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Meeting with Mr. Roy</p>
+                                                <p class="mb-0 text-14 font-medium color-primary-light">Meeting with {{ item.title }}</p>
                                             </div>
-                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>{{ item.startTime }} </span> > <span> {{ item.endTime }}</span></p>
                                         </div>
                                         <div class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-moon j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Evening</p>
                                         </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Daily Journal Choir</p>
-                                            </div>
-                                            <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                            <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
-                                            </div>
                                         </div>
-                                    </div>
+                                </div>
                                 </div>
                             </div>
                             <!-- <div class="col-12 col-sm-6 col-md-4 col-lg px-0 pt-0">
@@ -487,6 +471,7 @@
 import * as animationData from "~/assets/animation.json";
 import { mapState, mapActions } from "vuex";
 import { eventBus } from "~/plugins/eventbus.js"
+// var eventList = [];
 export default {
   name: "UserStudentCalendar",
   components: {
@@ -514,6 +499,141 @@ export default {
         showWeekends: false,
         monthText: '',
         weekNumberText: '',
+
+
+        isAssignmentEdit: false,
+      date_today: new Date(),
+    //   disabledDates: {
+    //     to: new Date(),
+    //   },
+      submitted: false,
+      processing: false,
+      processingUpload: false,
+      processingUploadSubmit: false,
+      processingCompleteAssignment: false,
+      processingSubCompleteAssignment: false,
+      subject: "",
+      subjectId: "",
+      task: "",
+      priorityVal: "",
+      timeValue: "",
+      subjectValue: "",
+      taskValue: "",
+      timeList: "",
+      popTitle: "",
+      popMeeting: "",
+      popTime: "",
+      popDate: "",
+      dateValue: "",
+      idNum: "",
+      meetingDetails: [],
+      dateListValue: "",
+      calendarDate: "",
+      loading: false,
+      anim: null, // for saving the reference to the animation
+    //   lottieOptions: { animationData: animationData.default },
+    //   lottieOptionsSuccess: {
+    //     animationData: animationDataSuccess.default,
+    //     loop: false,
+    //   },
+    //   calendarApi: Calendar,
+    //   calendarOptions: {
+    //     displayEventTime: false,
+    //     plugins: [timeGridPlugin, interactionPlugin],
+    //     headerToolbar: {
+    //       left: "prev",
+    //       center: "title",
+    //       right: "next",
+    //     },
+    //     customButtons: {
+    //       prev: {
+    //         icon: "chevron-left",
+    //         click: this.goPrev.bind(this),
+    //       },
+    //       next: {
+    //         icon: "chevron-right",
+    //         click: this.goNext.bind(this),
+    //       },
+    //     },
+    //     initialView: "timeGridWeek",
+    //     allDaySlot: false,
+    //     unselectAuto: false,
+    //     timeZone: "local",
+    //     selectable: true,
+    //     // events: eventList,
+    //     eventClick: this.eventClicked,
+    //     datesSet: this.handleMonthChange,
+    //     slotDuration: "00:15:00",
+    //     slotEventOverlap: false,
+    //     eventMaxStack: true, // for all non-TimeGrid views
+    //     views: {
+    //       timeGrid: {
+    //         dayMaxEventRows: 4, // adjust to 6 only for timeGridWeek/timeGridDay
+    //       },
+    //     },
+    //   },
+      draggable: "Drag Me",
+      assignmentName: "",
+      assignmentDescription: "",
+      addSubTask: false,
+      subTaskName: "",
+      subTasksList: [],
+      invitePeer: false,
+      peerSelected: [],
+      peerList: [],
+      completeAsstId: 0,
+      removePeerId: 0,
+      playCelebration: false,
+      completeSubTasktId: 0,
+      openAssignment: false,
+      isAddAssignment: true,
+      pendingAssignments: [],
+      filterType: "",
+      additionalMaterial: false,
+      materialType: "",
+      additionalMaterialList: [],
+      additionalMaterialListSubmit: [],
+      link: "",
+      linkSubmit: "",
+      file: "",
+      fileSubmit: "",
+      assignmentId: 0,
+      isSharedAssignment: false,
+      assignmentList: [],
+      assignmentMaterials: [],
+      validTime: false,
+      completedAssignmentList: [],
+      deletedSubTasksArray: [],
+      tempCompleted: [],
+      drag: false,
+      viewMore: false,
+      viewMoreId: "",
+      offset: 0,
+      limit: 10,
+      tempAssts: [],
+      gg4lSubject: "",
+      schoologyAssignment: "",
+      reloadCount: 0,
+      tempOffset: -1,
+      reloadNext: false,
+      chooseMultiple: false,
+      choosenAssignments: [],
+      undoAsstId: 0,
+      undoSubtaskId: 0,
+      user_id: "",
+      removedPeerList: [],
+      prior: "4",
+      startTime: null,
+      alertMessage: "",
+      materialTypeSubmit: "",
+      submissionId: "",
+      grade: "",
+      gradePossible: "",
+      invalidSubmitUrl:false,
+      submittedAsst:false,
+      disableSubmit:false,
+      invalidSubmitText:false,
+      eventList:[],
     }
   },
   created() {
@@ -525,14 +645,368 @@ export default {
     this.generateDays();
     this.updateWeekNumber();
     this.updateWeekNumberAndMonth();
+    this.user_id = localStorage.getItem("id");
+    this.GetStudents();
+    this.getSubjectsList();
+    this.GetWeeklyPlanner();
+  },
+  computed: {
+    ...mapState("plannerWeek", {
+      plannerList: (state) => state.plannerList,
+      sessionList: (state) => state.sessionList,
+      assignment: (state) => state.assignment,
+      meetingList: (state) => state.meetingList,
+      successMessage: (state) => state.successMessage,
+      SuccessType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+      subjectsData: (state) => state.subjectsData,
+      sharedAstList: (state) => state.sharedAstList,
+      sharedSessionList: (state) => state.sharedSessionList,
+      clubMeetings: (state) => state.clubMeetings,
+      trainingsMatches: (state) => state.trainingsMatches,
+    }),
+    ...mapState("quotedMessage", {
+      quoteMessage: (state) => state.quoteMessage,
+      viewed: (state) => state.viewed,
+      // plannerList: (state) => state.plannerList,
+      // meetingList: (state) => state.meetingList,
+      assignment: (state) => state.assignment,
+      sharedAssignment: (state) => state.sharedAssignment,
+      successMessage: (state) => state.successMessage,
+      SuccessType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+      errorMessageQuote: (state) => state.errorMessage,
+      errorTypeQuote: (state) => state.errorType,
+      subjectsData: (state) => state.subjectsData,
+      assignmentsList: (state) => state.assignmentsList,
+      sharedAssignmentsList: (state) => state.sharedAssignmentsList,
+      completedAssignments: (state) => state.completedAssignments,
+      completedSharedAssignments: (state) => state.completedSharedAssignments,
+      newAdditionalMaterial: (state) => state.newAdditionalMaterial,
+      allSubTskCompleted: (state) => state.allSubTskCompleted,
+      overdues: (state) => state.overdues,
+      sharedOverdues: (state) => state.sharedOverdues,
+    }),
+    ...mapState("teacherMeeting", {
+      students: (state) => state.students,
+      students: (state) => state.students,
+    }),
   },
   methods :{
+    ...mapActions("plannerWeek", {
+      getWeeklyPlanner: "getWeeklyPlanner",
+      addAssignment: "addAssignment",
+      updateAssignment: "updateAssignment",
+      getAssignment: "getAssignment",
+      getSubjectsList: "getSubjectsList",
+      getWeeklyPlannerFilter: "getWeeklyPlannerFilter",
+    }),
+    ...mapActions("quotedMessage", {
+      showQuotedMessage: "showQuotedMessage",
+      getDailyPlanner: "getDailyPlanner",
+      addAssignment: "addAssignment",
+      getAssignment: "getAssignment",
+      updateAssignment: "updateAssignment",
+      getSubjectsList: "getSubjectsList",
+      getAssignments: "getAssignments",
+      completeTask: "completeTask",
+      getCompletedAssignments: "getCompletedAssignments",
+      uploadAdditionalMaterial: "uploadAdditionalMaterial",
+      deleteAssignments: "deleteAssignments",
+      assignmentSubmit: "assignmentSubmit",
+    }),
+    ...mapActions("teacherMeeting", {
+      getStudents: "getStudents",
+    }),
+    async GetSubjectList() {
+      await this.getSubjectsList({});
+    },
+    async GetWeeklyPlanner() {
+      this.eventList = [];
+    //   this.loading = true;
+    //   const format = "YYYY-MM-DD";
+    //   this.calendarDate = moment(this.calendarApi.view.activeStart).format(
+    //     format
+    //   );
+
+      await this.getWeeklyPlanner({
+        user_id: localStorage.getItem("id"),
+        type: "Weekly",
+        date: this.getStartOfWeek(),
+      });
+      this.eventList = [];
+      this.meetingDetails = [];
+      this.plannerList.forEach((element) => {
+        if (element.due_date) {
+        //   var scheduleObject = {};
+          var plannerObj = {};
+          var id = element.id;
+          var assignment = element.subject;
+          var time = element.due_time;
+          var date = this.dateConversion(element.due_date);
+
+          var title = element.task;
+
+          if (element.priority == "1") {
+            var color = "#EF382E";
+          } else if (element.priority == "2") {
+            var color = "#F6D73C";
+          } else if (element.priority == "3") {
+            var color = "#38a272";
+          }
+          // else if (element.priority == "4") {
+          //   var color = "#a7a7a7";
+          // }
+          if (element.task_status == "Completed") {
+            var color = "#a7a7a7";
+          }
+          var dateMeeting = element.due_date;
+          var tmeMeeting = "";
+          if (element.due_time) {
+            tmeMeeting = this.formatAMPM(element.due_time);
+          }
+          var start = dateMeeting;
+
+          plannerObj["assignment"] = assignment;
+          plannerObj["time"] = time;
+          plannerObj["date"] = date;
+          plannerObj["title"] = title;
+          plannerObj["id"] = id;
+
+          plannerObj["title"] = title;
+          plannerObj["color"] = color;
+          plannerObj["start"] = start;
+          plannerObj["id"] = id;
+          plannerObj["groupId"] = "assignment";
+          this.eventList.push(plannerObj);
+          this.assignmentList.push(plannerObj);
+        }
+      });
+    //   console.log(this.assignmentList);
+      this.clubMeetings?.forEach((element) => {
+        // var meetingobj = {};
+        var listobj = {};
+        if (element.title != null) {
+          var title = "Meeting with " + element.title;
+        }
+        if (element.club_name != null) {
+          var title = element.club_name + " Meeting";
+        }
+
+        var color = "#07BEB8";
+        listobj["groupId"] = "club-meeting";
+
+        var dateMeeting = element.date;
+        var timeValNum = element.default_slots?.start_time;
+        var tmeMeeting = "";
+        if (element.default_slots?.start_time) {
+          tmeMeeting = this.formatAMPM(element.default_slots?.start_time);
+        }
+        var start = dateMeeting;
+        listobj["title"] = title;
+        listobj["color"] = color;
+        listobj["start"] = start;
+        listobj["id"] = element.clubs?.id;
+        // meetingobj["groupId"] = "Meeting";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Club";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        this.eventList.push(listobj);
+      });
+    //   console.log("eventList",this.eventList);
+      this.meetingList?.forEach((element) => {
+        // var meetingobj = {};
+        var listobj = {};
+
+        // if (element.club_name != null) {
+        var title = element.title;
+        // }
+
+        var meeting = element.meeting_type;
+        if (meeting == "Peer") {
+          var color = "#64B5FC";
+          listobj["groupId"] = "peer-meeting";
+        } else if (meeting == "Teacher") {
+            listobj["groupId"] = "teacher-meeting";
+          var color = "#073BBF";
+        }
+        var startTime = element.start_time;
+        var endTime = element.end_time;
+        var dateMeeting = element.date;
+        var timeValNum = element.start_time;
+        var tmeMeeting = "";
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
+        var start = dateMeeting;
+        listobj["title"] = title;
+        listobj["color"] = color;
+        listobj["start"] = start;
+        listobj["id"] = element.id;
+        // meetingobj["groupId"] = "Meeting";
+        listobj["startTime"] = startTime;
+        listobj["endTime"] = endTime;
+        listobj["title"] = title;
+        listobj["meeting"] = meeting;
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        this.eventList.push(listobj);
+      });
+    //   console.log("eventList",this.eventList);
+      this.sessionList?.forEach((element) => {
+        // var meetingobj = {};
+        var listobj = {};
+        let title = "";
+        if (element.assignment_id) {
+          title = "Study Session " + element.assignments?.task;
+        } else {
+          title = "Study Session " + element.subject?.subject_name;
+        }
+
+        const color = element.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.time;
+        var tmeMeeting = "";
+        if (element.time) {
+          tmeMeeting = this.formatAMPM(element.time);
+        }
+        var start = dateMeeting;
+        listobj["title"] = title;
+        listobj["color"] = color;
+        listobj["start"] = start;
+        listobj["id"] = element.id;
+        listobj["groupId"] = "study";
+        // meetingobj["type"] = "study";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        // this.meetingDetails.push(listobj);
+        this.eventList.push(listobj);
+      });
+      this.sharedAstList.forEach((element) => {
+        if (element.due_date) {
+        //   var scheduleObject = {};
+          var plannerObj = {};
+          var id = element.id;
+          var assignment = element.subject;
+          var time = element.due_time;
+          var date = this.dateConversion(element.due_date);
+
+          var title = element.task;
+
+          if (element.priority == "1") {
+            var color = "#EF382E";
+          } else if (element.priority == "2") {
+            var color = "#F6D73C";
+          } else if (element.priority == "3") {
+            var color = "#38a272";
+          }
+          // else if (element.priority == "4") {
+          //   var color = "#a7a7a7";
+          // }
+          if (element.task_status == "Completed") {
+            var color = "#a7a7a7";
+          }
+          var dateMeeting = element.due_date;
+          var tmeMeeting = "";
+          if (element.due_time) {
+            tmeMeeting = this.formatAMPM(element.due_time);
+          }
+          var start = dateMeeting;
+
+          plannerObj["assignment"] = assignment;
+          plannerObj["time"] = time;
+          plannerObj["date"] = date;
+          plannerObj["title"] = title;
+          plannerObj["id"] = id;
+
+          plannerObj["title"] = title;
+          plannerObj["color"] = color;
+          plannerObj["start"] = start;
+          plannerObj["id"] = id;
+          plannerObj["groupId"] = "shared-assignment";
+          this.eventList.push(plannerObj);
+          this.assignmentList.push(plannerObj);
+        }
+      });
+      this.sharedSessionList?.forEach((element) => {
+        // var meetingobj = {};
+        var listobj = {};
+        let title = "";
+        if (element.studyroom.assignment_id) {
+          title = "Study Session " + element.studyroom.assignments?.task;
+        } else {
+          title = "Study Session " + element.studyroom.subject?.subject_name;
+        }
+
+        const color = element.studyroom.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.start_time;
+        var tmeMeeting = "";
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
+        var start = dateMeeting;
+        listobj["title"] = title;
+        listobj["color"] = color;
+        listobj["start"] = start;
+        listobj["id"] = element.session_id;
+        listobj["groupId"] = "study";
+        // meetingobj["type"] = "study";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        // this.meetingDetails.push(listobj);
+        this.eventList.push(listobj);
+      });
+      this.trainingsMatches?.forEach((element) => {
+        if (element.date) {
+          var plannerObj = {};
+
+          if (element.session_type == "Match") {
+            var color = "#ad2b89";
+          } else {
+            var color = "#da70d6";
+          }
+          var dateMeeting = element.date;
+          var tmeMeeting = "";
+          if (element.time) {
+            tmeMeeting = this.formatAMPM(element.time);
+          }
+          var start = dateMeeting;
+
+          plannerObj["title"] = element.title;
+          plannerObj["color"] = color;
+          plannerObj["start"] = start;
+          plannerObj["id"] = element.id;
+          plannerObj["groupId"] =
+            element.session_type == "Match" ? "matches" : "trainings";
+          this.eventList.push(plannerObj);
+        }
+      });
+      console.log("eventList",this.eventList);
+    //   this.calendarOptions.events = eventList;
+    //   this.loading = false;
+    },
     goToPreviousWeek() {
         this.currentDate.setDate(this.currentDate.getDate() - 7);
         this.days = [];
         this.generateDays();
         this.updateWeekNumber();
         this.updateWeekNumberAndMonth();
+        this.getWeeklyPlanner();
       },
       goToNextWeek() {
         this.currentDate.setDate(this.currentDate.getDate() + 7);
@@ -540,6 +1014,7 @@ export default {
         this.generateDays();
         this.updateWeekNumber();
         this.updateWeekNumberAndMonth();
+        this.getWeeklyPlanner();
       },
     isToday(dateNumber) {
       const today = new Date();
@@ -592,7 +1067,7 @@ export default {
         date: `${year}-${month}-${dateNumber}`, // Format to match API
         dateNumber: dateNumber
       });
-      console.log(this.days);
+    //   console.log(this.days);
     }
   },
   updateWeekNumber() {
@@ -621,6 +1096,61 @@ updateWeekNumberAndMonth() {
         this.generateDays();
         this.loading = false;
       },
+      async GetStudents() {
+      await this.getStudents({
+        school_id: localStorage.getItem("school_id"),
+        studentId: localStorage.getItem("id"),
+      });
+    },
+    dateConversion(value) {
+  const monthNames = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+
+  var dateValue = new Date(value);
+  var month = monthNames[dateValue.getMonth()];
+  var day = dateValue.getDate();
+  var year = dateValue.getFullYear();
+
+  return month + " " + day + ", " + year;
+},
+    ordinal_suffix_of(i) {
+      var j = i % 10,
+        k = i % 100;
+      if (j == 1 && k != 11) {
+        return "st";
+      }
+      if (j == 2 && k != 12) {
+        return "nd";
+      }
+      if (j == 3 && k != 13) {
+        return "rd";
+      }
+      return "th";
+    },
+    formatAMPM(input) {
+      if (input) {
+        var time = input;
+        var hours = Number(time.match(/^(\d+)/)[1]);
+        var minutes = Number(time.match(/:(\d+)/)[1]);
+        var AMPM = time.match(/\s(.*)$/)[1];
+        if (AMPM == "PM" && hours < 12) hours = hours + 12;
+        if (AMPM == "AM" && hours == 12) hours = hours - 12;
+        var sHours = hours.toString();
+        var sMinutes = minutes.toString();
+        if (hours < 10) sHours = "0" + sHours;
+        if (minutes < 10) sMinutes = "0" + sMinutes;
+        var strTime = sHours + ":" + sMinutes;
+        return strTime;
+      }
+    },
+    filteredEvents(date) {
+      return this.eventList.filter((item) => {
+        // Check if the event's start date matches the specified date
+        return item.start === date;
+      });
+    },
   }
 }
 </script>
