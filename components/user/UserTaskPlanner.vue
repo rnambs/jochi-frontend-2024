@@ -46,7 +46,7 @@
             </div>
             <div class="row h-100">
               <div class="col-12 col-sm-6 col-lg-3">
-                <drop class="drop color-secondary text-16 h-100 d-flex flex-column" @drop="doingDrop">
+                
                   <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
                     <div class="d-flex flex-column pr-2">
                       <div class="d-flex align-items-center mb-3">
@@ -56,6 +56,11 @@
                       <span class="border-pb-1 bg-task-violet w-100 d-flex mb-3"></span>
                     </div>
                     <div class="d-flex flex-column task-container pr-2 mb-3">
+                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column"
+                      @dragover="doingDropStart()"
+                      @dragleave="doingDropEnd()"
+                      @drop="doingDrop">
+                      <div class="drop-zone" :class="{ 'dropping': isDropping }"></div>
                       <div v-for="(item, index) in doingAssignments" :key="item.id">
                         <drag :transfer-data="{ item, source: 'doingAssignments', sourceType: 'Doing' }"
                           @dragstart="handleDragStart(index)" @dragend="handleDragEnd()">
@@ -93,11 +98,17 @@
                                   </span>
                                 </div>
                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
-                                  <li @click="onCardClick(item, 'Doing')" class="item p-2">
+                                  <li class="item px-2 py-1">
+                                    Move to ToDo
+                                  </li>
+                                  <li class="item px-2 py-1">
+                                    Move to Done
+                                  </li>
+                                  <li @click="onCardClick(item, 'Doing')" class="item px-2 py-1">
                                     Edit
                                   </li>
                                   <div v-if="item.shared_users_id != user_id">
-                                    <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                    <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
                               </div>
@@ -129,12 +140,11 @@
                           <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
                         </infinite-loading>
                       </client-only>
+                    </drop>
                     </div>
                   </div>
-                </drop>
               </div>
               <div class="col-12 col-sm-6 col-lg-3">
-                <drop class="drop color-secondary text-16 h-100 d-flex flex-column" @drop="confirmUndo">
                   <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
                     <div class="d-flex flex-column pr-2">
                       <div class="d-flex align-items-center mb-3">
@@ -144,6 +154,13 @@
                       <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
                     </div>
                     <div class="d-flex flex-column task-container pr-2 mb-3">
+                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                      @dragover="todoDropStart()"
+                      @dragleave="todoDropEnd()"
+                      @drop="confirmUndo">
+                      <div class="drop-zone" :class="{ 'dropping': isDroppingTodo }">
+                        
+                      </div>
                       <div v-for="(item, index) in tempAssts" :key="item.id">
                         <drag :transfer-data="{ item, source: 'todoAssignments', sourceType: 'Pending' }"
                           @dragstart="handleDragStartTodo(index)" @dragend="handleDragEndTodo()">
@@ -181,9 +198,15 @@
                                   </span>
                                 </div>
                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
-                                  <li @click="onCardClick(item, 'Pending')" class="item p-2">Edit</li>
+                                  <li class="item px-2 py-1">
+                                    Move to Doing
+                                  </li>
+                                  <li class="item px-2 py-1">
+                                    Move to Done
+                                  </li>
+                                  <li @click="onCardClick(item, 'Pending')" class="item px-2 py-1">Edit</li>
                                   <div v-if="item.shared_users_id != user_id">
-                                    <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                    <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
                               </div>
@@ -215,12 +238,11 @@
                           <div class="mb-2" slot="no-more"><span class="color-gray text-12">That's all!</span></div>
                         </infinite-loading>
                       </client-only>
+                    </drop>
                     </div>
                   </div>
-                </drop>
               </div>
               <div class="col-12 col-sm-6 col-lg-3">
-                <drop class="drop color-secondary text-16 h-100 d-flex flex-column" @drop="handleDrop">
                   <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
                     <div class="d-flex flex-column pr-2">
                       <div class="d-flex align-items-center mb-3">
@@ -230,6 +252,13 @@
                       <span class="border-pb-1 bg-task-green w-100 d-flex mb-3"></span>
                     </div>
                     <div class="d-flex flex-column task-container pr-2 mb-3">
+                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                      @dragover="doneDropStart()"
+                      @dragleave="doneDropEnd()"
+                      @drop="handleDrop">
+                      <div class="drop-zone" :class="{ 'dropping': isDroppingDone }">
+                        
+                      </div>
                       <div v-for="(item,index) in doneAssignmentsList" :key="item.id">
                         <drag :transfer-data="{ item, source: 'doneAssignments', sourceType: 'Done' }"
                         @dragstart="handleDragStartDone(index)" @dragend="handleDragEndDone()">
@@ -298,9 +327,9 @@
                           <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
                         </infinite-loading>
                       </client-only>
+                    </drop>
                     </div>
-                  </div>
-                </drop>
+                  </div> 
               </div>
               <div class="col-12 col-sm-6 col-lg-3">
                 <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
@@ -351,9 +380,18 @@
                                 </span>
                               </div>
                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
-                                <li @click="onCardClick(item, 'Overdue')" class="item p-2">Edit</li>
+                                  <li class="item px-2 py-1">
+                                    Move to Doing
+                                  </li>
+                                  <li class="item px-2 py-1">
+                                    Move to ToDo
+                                  </li>
+                                  <li class="item px-2 py-1">
+                                    Move to Done
+                                  </li>
+                                <li @click="onCardClick(item, 'Overdue')" class="item px-2 py-1">Edit</li>
                                 <div v-if="item.shared_users_id != user_id">
-                                  <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                  <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                 </div>
                               </ul>
                             </div>
@@ -1295,6 +1333,9 @@ export default {
 
   data() {
     return {
+      isDropping: false,
+      isDroppingTodo: false,
+      isDroppingDone: false,
       isDragging: false,
       isDraggingTodo: false,
       isDraggingDone: false,
@@ -1533,15 +1574,56 @@ export default {
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
     }),
+    doingDropStart() {
+      // When the drag starts, set isDragging to true to add the class
+      if (this.isDragging) {
+        return;
+    }
+      this.isDropping = true;
+      // this.draggingIndex = index;
+    },
+    doingDropEnd() {
+      // When the drag ends, set isDragging to false to remove the class
+      this.isDropping = false;
+      // this.draggingIndex = null;
+    },
+    todoDropStart() {
+      // When the drag starts, set isDragging to true to add the class
+      if (this.isDraggingTodo) {
+        return;
+    }
+      this.isDroppingTodo = true;
+      // this.draggingIndex = index;
+    },
+    todoDropEnd() {
+      // When the drag ends, set isDragging to false to remove the class
+      this.isDroppingTodo = false;
+      // this.draggingIndex = null;
+    },
+    doneDropStart() {
+      // When the drag starts, set isDragging to true to add the class
+      if (this.isDraggingDone) {
+        return;
+    }
+      this.isDroppingDone = true;
+      // this.draggingIndex = index;
+    },
+    doneDropEnd() {
+      // When the drag ends, set isDragging to false to remove the class
+      this.isDroppingDone = false;
+      // this.draggingIndex = null;
+    },
     handleDragStart(index) {
       // When the drag starts, set isDragging to true to add the class
       this.isDragging = true;
       this.draggingIndex = index;
+      this.isDropping = false;
     },
     handleDragEnd() {
       // When the drag ends, set isDragging to false to remove the class
       this.isDragging = false;
       this.draggingIndex = null;
+      this.isDropping = false;
     },
     handleDragStartTodo(index) {
       this.isDraggingTodo = true;
@@ -1897,6 +1979,7 @@ export default {
       }
       this.isDragging = false;
       this.draggingIndex = null;
+      this.isDroppingTodo = false;
     },
     undoAsstComplete(data) {
       this.completeAssignment(false);
@@ -1916,6 +1999,7 @@ export default {
         // Add a condition to exclude 'doneAssignments'
         $("#completeConfirm").modal({ backdrop: true });
       }
+      this.isDroppingDone = false;
     },
     async completeAssignment(completed = true) {
       this.processingCompleteAssignment = true;
@@ -1957,6 +2041,7 @@ export default {
       } else if (source !== 'doingAssignments') {
         this.doingAssignment();
       }
+      this.isDropping = false;
     },
     async doingAssignment() {
       this.processingCompleteAssignment = true;
@@ -2905,8 +2990,7 @@ export default {
 .clickable {
   cursor: pointer;
 }
-
-.dragging {
+.dragging,.draggingTodo,.draggingDone,.draggingDue {
   opacity: 0.75;
   /* Initial opacity, you can adjust it as needed */
   transition: opacity 0.3s;
@@ -2914,29 +2998,19 @@ export default {
   border: 1.25px dashed rgba(80, 48, 229, 0.59);
   background-color: rgba(80, 48, 229, 0.06);
 }
-
-.draggingTodo {
-  opacity: 0.75;
-  /* Initial opacity, you can adjust it as needed */
-  transition: opacity 0.3s;
-  /* Apply a transition effect to the opacity property */
-  border: 1.25px dashed rgba(80, 48, 229, 0.59);
-  background-color: rgba(80, 48, 229, 0.06);
+.drop-zone{
+  min-height: 0px;
+  opacity: 0;
 }
-.draggingDone {
-  opacity: 0.75;
-  /* Initial opacity, you can adjust it as needed */
-  transition: opacity 0.3s;
-  /* Apply a transition effect to the opacity property */
-  border: 1.25px dashed rgba(80, 48, 229, 0.59);
+.dropping{
+  border: 1.25px solid rgba(80, 48, 229, 0.59);
   background-color: rgba(80, 48, 229, 0.06);
-}
-.draggingDue {
-  opacity: 0.75;
-  /* Initial opacity, you can adjust it as needed */
-  transition: opacity 0.3s;
-  /* Apply a transition effect to the opacity property */
-  border: 1.25px dashed rgba(80, 48, 229, 0.59);
-  background-color: rgba(80, 48, 229, 0.06);
+  display: block;
+  opacity: 1;
+  min-height: 100px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  /* transition: ease-in-out 0.3s all; */
 }
 </style>
