@@ -106,7 +106,7 @@
                                     <li @click="movetoTodo(item, 'Doing')" class="item px-2 py-1">
                                     Move to ToDo
                                   </li>
-                                  <li @click="movetoDone(item.id, 'Doing')" class="item px-2 py-1">
+                                  <li @click="movetoDone(item, 'Doing')" class="item px-2 py-1">
                                     Move to Done
                                   </li>
                                   </div>
@@ -197,15 +197,15 @@
                                   </span>
                                 </div>
                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
-                                  <li class="item px-2 py-1">
-                                    Move to Doing
-                                  </li>
-                                  <li class="item px-2 py-1">
-                                    Move to Done
-                                  </li>
                                   <li @click="onCardClick(item, 'Pending')" class="item px-2 py-1">Edit</li>
                                   <div v-if="item.shared_users_id != user_id">
                                     <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
+                                    <li @click="movetoDoing(item, 'Pending')" class="item px-2 py-1">
+                                    Move to Doing
+                                  </li>
+                                  <li @click="movetoDone(item, 'Pending')" class="item px-2 py-1">
+                                    Move to Done
+                                  </li>
                                   </div>
                                 </ul>
                               </div>
@@ -286,7 +286,7 @@
                                   : item.subject
                                 }}</span>
                               </div>
-                              <!-- <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
+                              <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                                               <div class="dropdown-select form-control" type="button"
                                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                   <span
@@ -296,10 +296,14 @@
                                               </div>
                                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0"
                                                   aria-labelledby="dLabel">
-                                                  <li @click="onCardClick(item)" class="item p-2">Edit</li>
-                                                  <li @click="onChooseMultiple(item.id)" class="item p-2">Remove</li>
+                                                  <li @click="movetoDoing(item, 'Done')" class="item px-2 py-1">
+                                    Move to Doing
+                                  </li>
+                                  <li @click="movetoTodo(item, 'Done')" class="item px-2 py-1">
+                                    Move to Todo
+                                  </li>
                                               </ul>
-                                          </div> -->
+                                          </div>
                             </div>
                             <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
                             <p class="text-10 color-gray mb-2 task-description" v-html="item.assignment_description"></p>
@@ -379,16 +383,16 @@
                                 </span>
                               </div>
                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
-                                  <li class="item px-2 py-1">
+                                <li @click="onCardClick(item, 'Overdue')" class="item px-2 py-1">Edit</li>
+                                <li @click="movetoDoing(item, 'Overdue')" class="item px-2 py-1">
                                     Move to Doing
                                   </li>
-                                  <li class="item px-2 py-1">
+                                  <li @click="movetoTodo(item, 'Overdue')" class="item px-2 py-1">
                                     Move to ToDo
                                   </li>
-                                  <li class="item px-2 py-1">
+                                  <li  @click="movetoDone(item, 'Overdue')" class="item px-2 py-1">
                                     Move to Done
                                   </li>
-                                <li @click="onCardClick(item, 'Overdue')" class="item px-2 py-1">Edit</li>
                                 <div v-if="item.shared_users_id != user_id">
                                   <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                 </div>
@@ -481,12 +485,6 @@
                                   </span>
                                 </div>
                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
-                                  <li class="item px-2 py-1">
-                                    Move to ToDo
-                                  </li>
-                                  <li class="item px-2 py-1">
-                                    Move to Done
-                                  </li>
                                   <li @click="onCardClick(item, 'Doing')" class="item px-2 py-1">
                                     Edit
                                   </li>
@@ -579,12 +577,6 @@
                                   </span>
                                 </div>
                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
-                                  <li class="item px-2 py-1">
-                                    Move to Doing
-                                  </li>
-                                  <li class="item px-2 py-1">
-                                    Move to Done
-                                  </li>
                                   <li @click="onCardClick(item, 'Pending')" class="item px-2 py-1">Edit</li>
                                   <div v-if="item.shared_users_id != user_id">
                                     <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
@@ -759,15 +751,6 @@
                                 </span>
                               </div>
                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
-                                  <li class="item px-2 py-1">
-                                    Move to Doing
-                                  </li>
-                                  <li class="item px-2 py-1">
-                                    Move to ToDo
-                                  </li>
-                                  <li class="item px-2 py-1">
-                                    Move to Done
-                                  </li>
                                 <li @click="onCardClick(item, 'Overdue')" class="item px-2 py-1">Edit</li>
                                 <div v-if="item.shared_users_id != user_id">
                                   <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
@@ -2394,13 +2377,18 @@ export default {
         this.openAssignment = false;
         completed ? this.loadUpdatedData('Done') : this.loadUpdatedData('Pending');
         this.completeAsstId = 0;
-        if (this.sourceassignment != 'doingAssignments') {
+        console.log(this.todoType);
+        if (this.sourceassignment != 'doingAssignments' || this.todoType != 'Doing') {
           this.$toast.open({
             message: this.successMessage,
             type: this.SuccessType,
             duration: 5000,
           });
         }
+        this.doneType = '';
+        this.doneItem = {};
+        this.todoType = '';
+        this.todoItem = {};
         this.openAssignment = false;
         this.sourceassignment = '',
           $(".modal").modal("hide");
@@ -3367,16 +3355,41 @@ export default {
     movetoTodo(item,type){
       this.undoAsstId = item.id;
       this.typeOfAssignment = type;
-      console.log(this.typeOfAssignment)
-      console.log(this.undoAsstId)
-      this.undoAsstComplete();
-      this.loadUpdatedData('Doing')
+      this.todoItem = item;
+      this.todoType = this.typeOfAssignment;
+      if (this.todoType == 'Done'){
+        $("#undoAssignmentConfirmation").modal({ backdrop: true });
+      }else{
+        this.undoAsstComplete();
+      } 
     },
-    movetoDone(id){
-      this.completeAsstId = id;
+    movetoDone(item,type){
+      let assignment = item;
+      this.completeAsstId = assignment.id;
+      this.assignmentId = assignment.id;
+      this.schoologyAssignment = assignment.schoologyAssignment;
+      this.submissionId = assignment.submission_id;
+      this.completeAsstId = item.id;
+      this.typeOfAssignment = type;
+      this.doneItem = item;
+      this.doneType = this.typeOfAssignment;
       $("#completeConfirm").modal({ backdrop: true });
-      // this.loadUpdatedData('Doing')
-    }
+    },
+    movetoDoing(item, type) {
+      let assignment = item;
+      this.completeAsstId = assignment.id;
+      this.assignmentId = assignment.id;
+      this.schoologyAssignment = assignment.schoologyAssignment;
+      this.submissionId = assignment.submission_id;
+      this.typeOfAssignment = type;
+      this.doingItem = item;
+      this.doingType = this.typeOfAssignment;
+      if (this.doingType == 'Done') {
+        $("#undoAssignmentConfirmationoverdue").modal({ backdrop: true });
+      } else  {
+        this.doingAssignment();
+      }
+  },
   },
 }
 </script>
