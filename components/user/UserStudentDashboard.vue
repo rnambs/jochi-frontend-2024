@@ -173,7 +173,7 @@
                                         {{ list.start_time }}
                                       </div>
                                     </div>
-                                    <i class="fas fa-chevron-right font-medium"></i>
+                                    <i class="fas fa-chevron-right font-medium color-dark"></i>
                                   </div>
                                 </div>
                               </div>
