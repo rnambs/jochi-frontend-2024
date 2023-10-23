@@ -25,7 +25,7 @@
         </div>
         <div class="d-flex flex-column h-40 flex-fill">
           <div class="row h-100">
-            <div class="col-xl-8 height-md-unset max-h-100">
+            <div class="col-xl-8 max-h-md-100">
               <div class="d-flex flex-column h-md-100">
                 <div
                   class="card card-primary02 rounded-8 p-4 pr-1 pb-1 h-50 max-h-50"
@@ -135,7 +135,7 @@
                               <div class="row">
                                 <div class="col-3 py-0">
                                   <div
-                                    class="bg-white border rounded-8 fa-card-date d-flex flex-column align-items-center justify-content-center w-100 p-3"
+                                    class="bg-card-secondary border rounded-8 fa-card-date d-flex flex-column align-items-center justify-content-center w-100 p-3"
                                   >
                                     <p class="color-primary-dark text-12 mb-1">
                                       {{ list.date_day }}
@@ -147,9 +147,9 @@
                                     </p>
                                   </div>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-9 py-0 d-flex">
                                   <div
-                                    class="d-flex justify-content-between align-items-center cursor-pointer"
+                                    class="d-flex justify-content-between align-items-center cursor-pointer w-100"
                                     @click="onCardClick(list)"
                                   >
                                     <div class="fa-meeting-faculty-details">
@@ -173,7 +173,7 @@
                                         {{ list.start_time }}
                                       </div>
                                     </div>
-                                    <i class="arrow right"></i>
+                                    <i class="fas fa-chevron-right font-medium"></i>
                                   </div>
                                 </div>
                               </div>
