@@ -93,7 +93,7 @@
                                         <div @click="handleAssignmentClick(item)"
                                         v-if="item.groupId == 'assignment' || item.groupId == 'shared-assignment'"
                                         class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
+                                            <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-list-check j-icon i-xs bg-global"></i>
                                                 </span>
@@ -119,17 +119,17 @@
                                         v-if="item.groupId == 'club-meeting'"
                                         class="card card-secondary rounded-4 mb-3 p-2">
                                             <div class="d-flex align-items-center">
-                                                <i class="i-club-meeting j-icon i-xl bg-global"></i>
-                                                <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.time }}</span></p>
-                                                </div>
+                                              <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                <i class="i-club-meeting j-icon i-xs bg-global"></i>
+                                              </span>
+                                              <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
                                             </div>
+                                            <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.time }}</span></p>
                                         </div>
                                         <div @click="handleMeetingClick(item)"
                                         v-if="item.groupId == 'peer-meeting'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
+                                            <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-club-meeting j-icon i-xs bg-global"></i>
                                                 </span>
@@ -140,7 +140,7 @@
                                         <div @click="handleTrainingsClick(item)"
                                         v-if="item.groupId == 'trainings'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
+                                            <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-team-match-training j-icon i-xs bg-global"></i>
                                                 </span>
@@ -151,7 +151,7 @@
                                         <div @click="handleMatchesClick(item)"
                                         v-if="item.groupId == 'matches'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
+                                            <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-team-match-training j-icon i-xs bg-global"></i>
                                                 </span>
@@ -169,7 +169,7 @@
                                         <div @click="handleAssignmentClick(item)"
                                         v-if="item.groupId == 'assignment' || item.groupId == 'shared-assignment'"
                                         class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
+                                            <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-list-check j-icon i-xs bg-global"></i>
                                                 </span>
@@ -195,17 +195,17 @@
                                         v-if="item.groupId == 'club-meeting'"
                                         class="card card-secondary rounded-4 mb-3 p-2">
                                             <div class="d-flex align-items-center">
-                                                <i class="i-club-meeting j-icon i-xl bg-global"></i>
-                                                <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.time }}</span></p>
-                                                </div>
+                                              <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                <i class="i-club-meeting j-icon i-xs bg-global"></i>
+                                              </span>
+                                              <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
                                             </div>
+                                            <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.time }}</span></p>
                                         </div>
                                         <div @click="handleMeetingClick(item)"
                                         v-if="item.groupId == 'peer-meeting'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
+                                            <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-club-meeting j-icon i-xs bg-global"></i>
                                                 </span>
@@ -216,7 +216,7 @@
                                         <div @click="handleTrainingsClick(item)"
                                         v-if="item.groupId == 'trainings'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
+                                            <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-team-match-training j-icon i-xs bg-global"></i>
                                                 </span>
@@ -227,7 +227,7 @@
                                         <div @click="handleMatchesClick(item)"
                                         v-if="item.groupId == 'matches'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
+                                            <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-team-match-training j-icon i-xs bg-global"></i>
                                                 </span>
@@ -245,7 +245,7 @@
                                         <div @click="handleAssignmentClick(item)"
                                         v-if="item.groupId == 'assignment' || item.groupId == 'shared-assignment'"
                                         class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
+                                            <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-list-check j-icon i-xs bg-global"></i>
                                                 </span>
@@ -271,17 +271,17 @@
                                         v-if="item.groupId == 'club-meeting'"
                                         class="card card-secondary rounded-4 mb-3 p-2">
                                             <div class="d-flex align-items-center">
-                                                <i class="i-club-meeting j-icon i-xl bg-global"></i>
-                                                <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.time }}</span></p>
-                                                </div>
+                                              <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                <i class="i-club-meeting j-icon i-xs bg-global"></i>
+                                              </span>
+                                              <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
                                             </div>
+                                            <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.time }}</span></p>
                                         </div>
                                         <div @click="handleMeetingClick(item)"
                                         v-if="item.groupId == 'peer-meeting'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
+                                            <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-club-meeting j-icon i-xs bg-global"></i>
                                                 </span>
@@ -292,7 +292,7 @@
                                         <div @click="handleTrainingsClick(item)"
                                         v-if="item.groupId == 'trainings'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
+                                            <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-team-match-training j-icon i-xs bg-global"></i>
                                                 </span>
@@ -303,7 +303,7 @@
                                         <div @click="handleMatchesClick(item)"
                                         v-if="item.groupId == 'matches'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
+                                            <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-team-match-training j-icon i-xs bg-global"></i>
                                                 </span>
