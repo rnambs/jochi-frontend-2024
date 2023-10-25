@@ -1,7 +1,6 @@
 <template>
     <div>
         <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
-
             <section id="calendarPlanner" class="">
                 <div class="m--12 custom-full-height d-flex planner-day-responsive">
                     <div class="d-flex flex-column flex-fill w-100 position-relative">
@@ -81,9 +80,9 @@
                         <div class="row h-100">
                             <div v-for="(day, index) in days" :key="index" class="col-12 col-sm-6 col-md-4 col-lg px-0 pt-0">
                                 <div class="card border-0 rounded-12 w-100 h-100">
-                                    <div class="calendar-head d-flex align-items-center my-3 p-2 pl-3 mx--12">
+                                      <div class="calendar-head d-flex align-items-center my-3 p-2 pl-3 mx--12" :class="{ 'calendar-head--active': isToday(day.date) }">
                                         <p class="mb-0 color-dark font-bold text-14">{{ day.name }} {{ day.dateNumber }}</p>
-                                    </div>
+                                      </div>
                                     <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
                                         <div  class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
@@ -312,328 +311,9 @@
                                             <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Time: {{ item.time }}</span></p>
                                         </div>
                                         </div>
-                                </div>
-                                </div>
-                            </div>
-                            <!-- <div class="col-12 col-sm-6 col-md-4 col-lg px-0 pt-0">
-                                <div class="card border-0 rounded-12 w-100 h-100">
-                                    <div class="calendar-head calendar-head--active d-flex align-items-center my-3 p-2 pl-3 mx--12">
-                                        <p class="mb-0 font-bold text-14">Tuesday 04</p>
-                                    </div>
-                                    <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Morning</p>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex align-items-center">
-                                                <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
-                                                <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">Humanities</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 6,2023</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-sun j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Afternoon</p>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Humanities</p>
-                                            </div>
-                                            <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                            <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Meeting with Mr. tony</p>
-                                            </div>
-                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                        </div>
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-half-moon j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Evening</p>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex align-items-center">
-                                                <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
-                                                <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">Research Lab Art</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">AP History</p>
-                                            </div>
-                                            <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                            <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Meeting with Mr. Roy</p>
-                                            </div>
-                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-md-4 col-lg px-0 pt-0">
-                                <div class="card border-0 rounded-12 w-100 h-100">
-                                    <div class="calendar-head d-flex align-items-center my-3 p-2 pl-3 mx--12">
-                                        <p class="mb-0 color-dark font-bold text-14">Wednesday 05</p>
-                                    </div>
-                                    <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Morning</p>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex align-items-center">
-                                                <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
-                                                <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">Civil War Essay</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-sun j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Afternoon</p>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex align-items-center">
-                                                <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
-                                                <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">Research Lab Art</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Research Lab Art</p>
-                                            </div>
-                                            <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                            <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Meeting with Mr. Tom</p>
-                                            </div>
-                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                        </div>
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-half-moon j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Evening</p>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Daily Journal Choir</p>
-                                            </div>
-                                            <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                            <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex align-items-center">
-                                                <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
-                                                <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">Daily Journal Choir</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 col-lg px-0 pt-0">
-                                <div class="card border-0 rounded-12 w-100 h-100">
-                                    <div class="calendar-head d-flex align-items-center my-3 p-2 pl-3 mx--12">
-                                        <p class="mb-0 color-dark font-bold text-14">Thursday 06</p>
-                                    </div>
-                                    <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Morning</p>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex align-items-center">
-                                                <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
-                                                <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">Research Lab Art</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-sun j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Afternoon</p>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Exit Ticket</p>
-                                            </div>
-                                            <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                            <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-half-moon j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Evening</p>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-call-ring j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">AP History Roundtable</p>
-                                            </div>
-                                            <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                            <div class="d-flex align-items-center mt-2">
-                                                <i class="i-location j-icon i-xs bg-text-secondary"></i>
-                                                <p class="color-secondary text-10 mb-0">Seoul</p>
-                                            </div>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex align-items-center">
-                                                <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
-                                                <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">Civil War Essay</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Exit Ticket</p>
-                                            </div>
-                                            <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                            <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Meeting with Mr. Tony</p>
-                                            </div>
-                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 col-lg px-0 pt-0">
-                                <div class="card border-0 rounded-12 w-100 h-100">
-                                    <div class="calendar-head d-flex align-items-center my-3 p-2 pl-3 mx--12">
-                                        <p class="mb-0 color-dark font-bold text-14">Friday 07</p>
-                                    </div>
-                                    <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Morning</p>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex align-items-center">
-                                                <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
-                                                <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">Exit Ticket</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 9,2023</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-sun j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Afternoon</p>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex align-items-center">
-                                                <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
-                                                <div class="d-flex flex-column">
-                                                    <p class="color-secondary text-12 mb-1">Civil War Essay</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Civil War Essay</p>
-                                            </div>
-                                            <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                            <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="card card-transparent border-0 rounded-4 mb-3 py-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Meeting with Mr. Roy</p>
-                                            </div>
-                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                        </div>
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-half-moon j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Evening</p>
-                                        </div>
-                                        <div class="card card-secondary rounded-4 mb-3 p-2">
-                                            <div class="d-flex mb-1">
-                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
-                                                </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">Humanities</p>
-                                            </div>
-                                            <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
-                                            <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -1248,10 +928,7 @@ export default {
         this.getStartOfWeek();
         this.GetWeeklyPlanner();
       },
-    isToday(dateNumber) {
-      const today = new Date();
-      return today.getDate() === dateNumber; // You can adjust this condition based on your date structure.
-    },
+   
     getStartOfWeek() {
     const dayOfWeek = this.currentDate.getDay(); // 0 (Sunday) to 6 (Saturday)
 
@@ -1298,7 +975,7 @@ export default {
         date: `${year}-${month}-${dateNumber}`, // Format to match API
         dateNumber: dateNumber
       });
-    //   console.log(this.days);
+      console.log(this.days);
     }
   },
   updateWeekNumber() {
@@ -1486,6 +1163,15 @@ handleAssignmentClick(item) {
     }
   }
 },
+isToday(date) {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = (today.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based, so add 1 and format with leading zero
+        const day = today.getDate().toString().padStart(2, '0');
+        const todayString = `${year}-${month}-${day}`;
+        
+        return date === todayString;
+    }
 
   }
 }
