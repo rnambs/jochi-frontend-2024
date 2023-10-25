@@ -1126,7 +1126,7 @@ export default {
           var date = this.dateConversion(element.due_date);
 
           var title = element.task;
-          var time = element.due_timejoc  ;
+          var time = element.due_time  ;
 
           if (element.priority == "1") {
             var color = "#EF382E";
