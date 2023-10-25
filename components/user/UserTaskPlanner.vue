@@ -3397,25 +3397,7 @@ export default {
 .clickable {
   cursor: pointer;
 }
-
-.dragging {
-  opacity: 0.75;
-  /* Initial opacity, you can adjust it as needed */
-  transition: opacity 0.3s;
-  /* Apply a transition effect to the opacity property */
-  border: 1.25px dashed rgba(80, 48, 229, 0.59);
-  background-color: rgba(80, 48, 229, 0.06);
-}
-
-.draggingTodo {
-  opacity: 0.75;
-  /* Initial opacity, you can adjust it as needed */
-  transition: opacity 0.3s;
-  /* Apply a transition effect to the opacity property */
-  border: 1.25px dashed rgba(80, 48, 229, 0.59);
-  background-color: rgba(80, 48, 229, 0.06);
-}
-.draggingDone,.draggingDue {
+.dragging,.draggingTodo,.draggingDone,.draggingDue {
   opacity: 0.75;
   /* Initial opacity, you can adjust it as needed */
   transition: opacity 0.3s;
