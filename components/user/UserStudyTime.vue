@@ -508,10 +508,10 @@
                 class="bg-white border rounded-8 drag-drop px-4 py-5 position-realtive d-flex align-items-center justify-content-center flex-column cursor-pointer"
               >
                 <h3 class="color-primary-dark heading3 font-bold mb-1 text-center">
-                  Pomodoro Technique
+                  Pomodoro Timer
                 </h3>
                 <p class="color-dark font-semi-bold text-18 text-center">
-                  Definition of this technique will go here...
+                  Boost your productivity.
                 </p>
                 <button
                   @click="$event.stopPropagation()"
@@ -521,6 +521,7 @@
                     style="color: #ffffff"
                     href="https://www.jochi.info/post/what-is-the-pomodoro-technique"
                     class="text-decoration-none"
+                    target="blank"
                   >
                     Click to Learn More</a
                   >
