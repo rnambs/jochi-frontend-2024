@@ -85,30 +85,26 @@
                                         <p class="mb-0 color-dark font-bold text-14">{{ day.name }} {{ day.dateNumber }}</p>
                                     </div>
                                     <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
-                                        <div v-for="(item, index) in filteredEvents(day.date)" :key="index">
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
+                                        <div  class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Morning</p>
                                         </div>
-                                        <div
+                                        <div v-for="(item, index) in filteredEvents(day.date , 'Morning')" :key="item.id">
+                                        <div @click="handleAssignmentClick(item)"
                                         v-if="item.groupId == 'assignment' || item.groupId == 'shared-assignment'"
                                         class="card card-secondary rounded-4 mb-3 p-2">
                                             <div class="d-flex mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-list-check j-icon i-xs bg-global"></i>
                                                 </span>
-                                                <p class="mb-0 text-14 font-medium color-primary-light">{{ item.title }}</p>
+                                                <p class="mb-0 text-14 font-medium c  olor-primary-light">{{ item.title }}</p>
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>{{ item.time }}</span></p>
                                             <div class="d-flex justify-content-end">
                                                 <p class="color-secondary text-12 mb-0"><span>Due : </span><span> {{ item.date }}</span></p>
                                             </div>
                                         </div>
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
-                                            <i class="i-sun j-icon i-lg bg-text-secondary mr-1"></i>
-                                            <p class="color-secondary text-12 mb-0">Afternoon</p>
-                                        </div>
-                                        <div 
+                                        <div @click="handleStudyCardClick(item)"
                                         v-if="item.groupId == 'study'"
                                         class="card card-secondary rounded-4 mb-3 p-2">
                                             <div class="d-flex align-items-center">
@@ -119,20 +115,201 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div
+                                        <div @click="handleClubMeetingClick(item)"
+                                        v-if="item.groupId == 'club-meeting'"
+                                        class="card card-secondary rounded-4 mb-3 p-2">
+                                            <div class="d-flex align-items-center">
+                                                <i class="i-club-meeting j-icon i-xl bg-global"></i>
+                                                <div class="d-flex flex-column">
+                                                    <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.time }}</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div @click="handleMeetingClick(item)"
                                         v-if="item.groupId == 'peer-meeting'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
                                             <div class="d-flex mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
+                                                    <i class="i-club-meeting j-icon i-xs bg-global"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light">Meeting with {{ item.title }}</p>
                                             </div>
                                             <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>{{ item.startTime }} </span> > <span> {{ item.endTime }}</span></p>
                                         </div>
+                                        <div @click="handleTrainingsClick(item)"
+                                        v-if="item.groupId == 'trainings'"
+                                        class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                            <div class="d-flex mb-1">
+                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                    <i class="i-team-match-training j-icon i-xs bg-global"></i>
+                                                </span>
+                                                <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
+                                            </div>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Date: {{ item.time }}</span></p>
+                                        </div>
+                                        <div @click="handleMatchesClick(item)"
+                                        v-if="item.groupId == 'matches'"
+                                        class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                            <div class="d-flex mb-1">
+                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                    <i class="i-team-match-training j-icon i-xs bg-global"></i>
+                                                </span>
+                                                <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
+                                            </div>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Time: {{ item.time }}</span></p>
+                                        </div>
+                                        </div>
+                                        <div class="cal-time-zone d-flex align-items-center mb-2">
+                                            <i class="i-sun j-icon i-lg bg-text-secondary mr-1"></i>
+                                            <p class="color-secondary text-12 mb-0">Afternoon</p>
+                                        </div>
+                                        <div v-for="(item, index) in filteredEvents(day.date , 'Afternoon')" :key="item.id">
+                                          <!-- <h6>{{ getTimePeriod(item.time) }}</h6> -->
+                                        <div @click="handleAssignmentClick(item)"
+                                        v-if="item.groupId == 'assignment' || item.groupId == 'shared-assignment'"
+                                        class="card card-secondary rounded-4 mb-3 p-2">
+                                            <div class="d-flex mb-1">
+                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
+                                                </span>
+                                                <p class="mb-0 text-14 font-medium c  olor-primary-light">{{ item.title }}</p>
+                                            </div>
+                                            <p class="color-secondary text-12 mb-1"><span>{{ item.time }}</span></p>
+                                            <div class="d-flex justify-content-end">
+                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> {{ item.date }}</span></p>
+                                            </div>
+                                        </div>
+                                        <div @click="handleStudyCardClick(item)"
+                                        v-if="item.groupId == 'study'"
+                                        class="card card-secondary rounded-4 mb-3 p-2">
+                                            <div class="d-flex align-items-center">
+                                                <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
+                                                <div class="d-flex flex-column">
+                                                    <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.timeValNum }}</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div @click="handleClubMeetingClick(item)"
+                                        v-if="item.groupId == 'club-meeting'"
+                                        class="card card-secondary rounded-4 mb-3 p-2">
+                                            <div class="d-flex align-items-center">
+                                                <i class="i-club-meeting j-icon i-xl bg-global"></i>
+                                                <div class="d-flex flex-column">
+                                                    <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.time }}</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div @click="handleMeetingClick(item)"
+                                        v-if="item.groupId == 'peer-meeting'"
+                                        class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                            <div class="d-flex mb-1">
+                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                    <i class="i-club-meeting j-icon i-xs bg-global"></i>
+                                                </span>
+                                                <p class="mb-0 text-14 font-medium color-primary-light">Meeting with {{ item.title }}</p>
+                                            </div>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>{{ item.startTime }} </span> > <span> {{ item.endTime }}</span></p>
+                                        </div>
+                                        <div @click="handleTrainingsClick(item)"
+                                        v-if="item.groupId == 'trainings'"
+                                        class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                            <div class="d-flex mb-1">
+                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                    <i class="i-team-match-training j-icon i-xs bg-global"></i>
+                                                </span>
+                                                <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
+                                            </div>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Date: {{ item.time }}</span></p>
+                                        </div>
+                                        <div @click="handleMatchesClick(item)"
+                                        v-if="item.groupId == 'matches'"
+                                        class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                            <div class="d-flex mb-1">
+                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                    <i class="i-team-match-training j-icon i-xs bg-global"></i>
+                                                </span>
+                                                <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
+                                            </div>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Time: {{ item.time }}</span></p>
+                                        </div>
+                                        </div>
                                         <div class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-moon j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Evening</p>
+                                        </div>
+                                        <div v-for="(item, index) in filteredEvents(day.date , 'Evening')" :key="item.id">
+                                          <!-- <h6>{{ getTimePeriod(item.time) }}</h6> -->
+                                        <div @click="handleAssignmentClick(item)"
+                                        v-if="item.groupId == 'assignment' || item.groupId == 'shared-assignment'"
+                                        class="card card-secondary rounded-4 mb-3 p-2">
+                                            <div class="d-flex mb-1">
+                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
+                                                </span>
+                                                <p class="mb-0 text-14 font-medium c  olor-primary-light">{{ item.title }}</p>
+                                            </div>
+                                            <p class="color-secondary text-12 mb-1"><span>{{ item.time }}</span></p>
+                                            <div class="d-flex justify-content-end">
+                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> {{ item.date }}</span></p>
+                                            </div>
+                                        </div>
+                                        <div @click="handleStudyCardClick(item)"
+                                        v-if="item.groupId == 'study'"
+                                        class="card card-secondary rounded-4 mb-3 p-2">
+                                            <div class="d-flex align-items-center">
+                                                <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
+                                                <div class="d-flex flex-column">
+                                                    <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.timeValNum }}</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div @click="handleClubMeetingClick(item)"
+                                        v-if="item.groupId == 'club-meeting'"
+                                        class="card card-secondary rounded-4 mb-3 p-2">
+                                            <div class="d-flex align-items-center">
+                                                <i class="i-club-meeting j-icon i-xl bg-global"></i>
+                                                <div class="d-flex flex-column">
+                                                    <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.time }}</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div @click="handleMeetingClick(item)"
+                                        v-if="item.groupId == 'peer-meeting'"
+                                        class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                            <div class="d-flex mb-1">
+                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                    <i class="i-club-meeting j-icon i-xs bg-global"></i>
+                                                </span>
+                                                <p class="mb-0 text-14 font-medium color-primary-light">Meeting with {{ item.title }}</p>
+                                            </div>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>{{ item.startTime }} </span> > <span> {{ item.endTime }}</span></p>
+                                        </div>
+                                        <div @click="handleTrainingsClick(item)"
+                                        v-if="item.groupId == 'trainings'"
+                                        class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                            <div class="d-flex mb-1">
+                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                    <i class="i-team-match-training j-icon i-xs bg-global"></i>
+                                                </span>
+                                                <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
+                                            </div>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Date: {{ item.time }}</span></p>
+                                        </div>
+                                        <div @click="handleMatchesClick(item)"
+                                        v-if="item.groupId == 'matches'"
+                                        class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                            <div class="d-flex mb-1">
+                                                <span class="rounded-4 p-1 bg-primary-light mr-1">
+                                                    <i class="i-team-match-training j-icon i-xs bg-global"></i>
+                                                </span>
+                                                <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
+                                            </div>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Time: {{ item.time }}</span></p>
                                         </div>
                                         </div>
                                 </div>
@@ -463,6 +640,34 @@
             </section>
 
             <!-- End Daily Calander -->
+            <div
+      class="modal fade"
+      id="alertModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="alertModalModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+        <div class="modal-content">
+          <div class="modal-header pb-1">
+            <h4 class="modal-title" id="alertModalModalLongTitle">Alert</h4>
+          </div>
+          <div class="modal-body px-3">
+            <p class="mb-0">{{ alertMessage }}</p>
+          </div>
+          <div class="modal-footer justify-content-end border-top-0">
+            <button
+              type="button"
+              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+              data-dismiss="modal"
+            >
+              Ok
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
         </div>
     </div>
 </template>
@@ -634,6 +839,7 @@ export default {
       disableSubmit:false,
       invalidSubmitText:false,
       eventList:[],
+      showMorningSection: false,
     }
   },
   created() {
@@ -723,6 +929,15 @@ export default {
     async GetSubjectList() {
       await this.getSubjectsList({});
     },
+    getTimeOfDay(time) {
+      if (time < "12:00") {
+        return "Morning";
+      } else if (time < "17:00") {
+        return "Afternoon";
+      } else {
+        return "Evening";
+      }
+    },
     async GetWeeklyPlanner() {
       this.eventList = [];
     //   this.loading = true;
@@ -763,6 +978,7 @@ export default {
             var color = "#a7a7a7";
           }
           var dateMeeting = element.due_date;
+          var task_status = element.task_status;
           var tmeMeeting = "";
           if (element.due_time) {
             tmeMeeting = this.formatAMPM(element.due_time);
@@ -774,6 +990,7 @@ export default {
           plannerObj["date"] = date;
           plannerObj["title"] = title;
           plannerObj["id"] = id;
+          plannerObj["taskStatus"] = task_status;
 
           plannerObj["title"] = title;
           plannerObj["color"] = color;
@@ -800,6 +1017,7 @@ export default {
 
         var dateMeeting = element.date;
         var timeValNum = element.default_slots?.start_time;
+        var time = element.default_slots?.start_time;
         var tmeMeeting = "";
         if (element.default_slots?.start_time) {
           tmeMeeting = this.formatAMPM(element.default_slots?.start_time);
@@ -810,7 +1028,7 @@ export default {
         listobj["start"] = start;
         listobj["id"] = element.clubs?.id;
         // meetingobj["groupId"] = "Meeting";
-
+        listobj["time"] = time;
         listobj["title"] = title;
         listobj["meeting"] = "Club";
         listobj["dateMeeting"] = dateMeeting;
@@ -835,6 +1053,7 @@ export default {
             listobj["groupId"] = "teacher-meeting";
           var color = "#073BBF";
         }
+        var time = element.start_time;
         var startTime = element.start_time;
         var endTime = element.end_time;
         var dateMeeting = element.date;
@@ -848,6 +1067,7 @@ export default {
         listobj["color"] = color;
         listobj["start"] = start;
         listobj["id"] = element.id;
+        listobj["time"] = time;
         // meetingobj["groupId"] = "Meeting";
         listobj["startTime"] = startTime;
         listobj["endTime"] = endTime;
@@ -871,6 +1091,8 @@ export default {
 
         const color = element.subject?.color_code;
         // }
+        var status = element.status;
+        var time = element.time;
         var dateMeeting = element.date;
         var timeValNum = element.time;
         var tmeMeeting = "";
@@ -883,6 +1105,8 @@ export default {
         listobj["start"] = start;
         listobj["id"] = element.id;
         listobj["groupId"] = "study";
+        listobj["time"] = time;
+        listobj["status"] = status;
         // meetingobj["type"] = "study";
 
         listobj["title"] = title;
@@ -902,6 +1126,7 @@ export default {
           var date = this.dateConversion(element.due_date);
 
           var title = element.task;
+          var time = element.due_timejoc  ;
 
           if (element.priority == "1") {
             var color = "#EF382E";
@@ -928,7 +1153,6 @@ export default {
           plannerObj["date"] = date;
           plannerObj["title"] = title;
           plannerObj["id"] = id;
-
           plannerObj["title"] = title;
           plannerObj["color"] = color;
           plannerObj["start"] = start;
@@ -953,6 +1177,8 @@ export default {
         var dateMeeting = element.date;
         var timeValNum = element.start_time;
         var tmeMeeting = "";
+        var status = element.studyroom.status;
+        var time = element.start_time;
         if (element.start_time) {
           tmeMeeting = this.formatAMPM(element.start_time);
         }
@@ -962,6 +1188,8 @@ export default {
         listobj["start"] = start;
         listobj["id"] = element.session_id;
         listobj["groupId"] = "study";
+        listobj["time"] = time;
+        listobj["status"] = status;
         // meetingobj["type"] = "study";
 
         listobj["title"] = title;
@@ -980,6 +1208,7 @@ export default {
           } else {
             var color = "#da70d6";
           }
+          var time = element.time;
           var dateMeeting = element.date;
           var tmeMeeting = "";
           if (element.time) {
@@ -991,6 +1220,7 @@ export default {
           plannerObj["color"] = color;
           plannerObj["start"] = start;
           plannerObj["id"] = element.id;
+          plannerObj["time"] = time;
           plannerObj["groupId"] =
             element.session_type == "Match" ? "matches" : "trainings";
           this.eventList.push(plannerObj);
@@ -1006,7 +1236,8 @@ export default {
         this.generateDays();
         this.updateWeekNumber();
         this.updateWeekNumberAndMonth();
-        this.getWeeklyPlanner();
+        this.getStartOfWeek();
+        this.GetWeeklyPlanner();
       },
       goToNextWeek() {
         this.currentDate.setDate(this.currentDate.getDate() + 7);
@@ -1014,25 +1245,25 @@ export default {
         this.generateDays();
         this.updateWeekNumber();
         this.updateWeekNumberAndMonth();
-        this.getWeeklyPlanner();
+        this.getStartOfWeek();
+        this.GetWeeklyPlanner();
       },
     isToday(dateNumber) {
       const today = new Date();
       return today.getDate() === dateNumber; // You can adjust this condition based on your date structure.
     },
     getStartOfWeek() {
-    const currentDate = new Date();
-    const dayOfWeek = currentDate.getDay(); // 0 (Sunday) to 6 (Saturday)
-  
+    const dayOfWeek = this.currentDate.getDay(); // 0 (Sunday) to 6 (Saturday)
+
     // Calculate the number of days to subtract to get to Monday (1)
     const daysToMonday = (dayOfWeek === 0 ? 6 : dayOfWeek - 1);
     
     // Calculate the date of the start of the week (Monday)
-    currentDate.setDate(currentDate.getDate() - daysToMonday);
+    this.currentDate.setDate(this.currentDate.getDate() - daysToMonday);
     
-    const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    const day = String(currentDate.getDate()).padStart(2, '0');
+    const year = this.currentDate.getFullYear();
+    const month = String(this.currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(this.currentDate.getDate()).padStart(2, '0');
     
     return `${year}-${month}-${day}`;
   },
@@ -1145,12 +1376,117 @@ updateWeekNumberAndMonth() {
         return strTime;
       }
     },
-    filteredEvents(date) {
-      return this.eventList.filter((item) => {
-        // Check if the event's start date matches the specified date
-        return item.start === date;
-      });
+    filteredEvents(date, timePeriod) {
+    return this.eventList.filter((item) => {
+      const eventTimePeriod = this.getTimePeriod(item.time);
+      return item.start === date && eventTimePeriod === timePeriod;
+    });
+  },
+    getTimePeriod(time) {
+      const timeParts = time.split(' ');
+      const hour = parseInt(timeParts[0].split(':')[0]);
+      const period = timeParts[1];
+  
+      if (period === 'AM') {
+        if (hour < 12) {
+          return 'Morning';
+        } else {
+          return 'Evening';
+        }
+      } else if (period === 'PM') {
+        if (hour < 5) {
+          return 'Afternoon';
+        } else if (hour < 12) {
+          return 'Evening';
+        } 
+      }
     },
+    handleStudyCardClick(item) {
+    if (item.groupId === "study") {
+      if (item.status === "STOP") {
+        this.alertMessage = "This session has already been completed";
+        $("#alertModal").modal({ backdrop: true });
+      } else {
+        this.$router.push(`/study-time?id=${item.id}`);
+      }
+    }
+  },
+  handleClubMeetingClick(item) {
+  if (item.groupId === "club-meeting") {
+    let club = this.clubMeetings.find((e) => e.clubs?.id == item.id);
+    const eventStartDate = moment(item.start);
+    const currentDate = moment();
+    if (eventStartDate.isBefore(currentDate)) {
+      this.alertMessage = "No actions can be performed on past events";
+      $("#alertModal").modal({ backdrop: true });
+    } else {
+      this.$router.push(`/club-moreInfo?id=${item.id}&name=${club.club_name}&type=${club.clubs.activity_type}`);
+    }
+  }
+},
+handleMeetingClick(item) {
+  if (item.groupId === "peer-meeting" || item.groupId === "teacher-meeting") {
+    // Compare the event's 'start' date with the current date
+    const eventStartDate = moment(item.start);
+    const currentDate = moment();
+    
+    if (eventStartDate.isBefore(currentDate)) {
+      this.alertMessage = "No actions can be performed on past events";
+      $("#alertModal").modal({ backdrop: true });
+    } else {
+      this.$router.push(`/viewall-meeting?id=${item.id}&type=${item.groupId}`);
+    }
+  }
+},
+handleMatchesClick(item) {
+  if (item.groupId === "matches") {
+    let club = this.trainingsMatches.find((e) => e.id == item.id);
+    // Compare the event's 'start' date with the current date
+    const eventStartDate = moment(item.start);
+    const currentDate = moment();
+    console.log(eventStartDate);
+    if (eventStartDate.isBefore(currentDate)) {
+      this.alertMessage = "No actions can be performed on past events";
+      $("#alertModal").modal({ backdrop: true });
+    } else {
+      return this.$router.push(
+            `/club-moreInfo?id=${club.clubs.id}&name=${club.clubs.name}&type=${club.clubs.activity_type}`
+          );
+    }
+  }
+},
+handleTrainingsClick(item) {
+  if (item.groupId === "trainings") {
+    let club = this.trainingsMatches.find((e) => e.id == item.id);
+    console.log(club);
+    const eventStartDate = moment(item.start);
+    const currentDate = moment();
+    console.log(eventStartDate);
+    if (eventStartDate.isBefore(currentDate)) {
+      this.alertMessage = "No actions can be performed on past events";
+      $("#alertModal").modal({ backdrop: true });
+    } else {
+      return this.$router.push(
+            `/club-moreInfo?id=${club.clubs.id}&name=${club.clubs.name}&type=${club.clubs.activity_type}`
+          );
+    }
+  }
+},
+handleAssignmentClick(item) {
+  if (item.groupId === "assignment" ||item.groupId === "shared-assignment") {
+    let taskStatus = item.taskStatus;
+    console.log(taskStatus);
+    if (taskStatus == "Completed") {
+      this.alertMessage = "This is a completed assignment";
+      $("#alertModal").modal({ backdrop: true });
+    } else {
+      return this.$router.push(
+            `/task`
+          );
+    }
+  }
+},
+
   }
 }
 </script>
