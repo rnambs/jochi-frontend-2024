@@ -2251,7 +2251,7 @@ export default {
         item.schoologyAssignment = e.assignments.schoologyAssignment;
         item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
         item.subTasks = e.assignments?.subTasks;
-        item.subject = e.assignments?.subjects?.subject_name;
+        item.subject = e.assignments?.subjects?.subject_name ?? "";
         item.subjects = e.assignments?.subjects;
         item.task = e.assignments.task;
         item.task_status = e.assignments.task_status;
