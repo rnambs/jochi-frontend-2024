@@ -1,5 +1,11 @@
 <template>
-    <div>
+  <div>
+      <lottie
+      v-if="loading"
+      :options="lottieOptions"
+      v-on:animCreated="handleAnimation"
+      class="lottie-loader"
+      />
         <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
             <section id="calendarPlanner" class="">
                 <div class="m--12 custom-full-height d-flex planner-day-responsive">
@@ -24,9 +30,10 @@
                                                         class="fas fa-chevron-down font-medium"></i></span>
                                             </div>
                                             <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
-                                                <li class="item p-2">Daily</li>
-                                                <li class="item p-2">Weekly</li>
-                                                <li class="item p-2">Monthly</li>
+                                                <li @click="GetWeeklyPlanner()" class="item p-2">All</li>
+                                                <li @click="updateFilter('Assignments')" class="item p-2">Assignment</li>
+                                                <li @click="updateFilter('Meetings')" class="item p-2">Meeting</li>
+                                                <li @click="updateFilter('Session')" class="item p-2">Study Sessions</li>
                                             </ul>
                                         </div>
                                         <div class="border border--form rounded-8 d-flex align-items-center mb-2">
@@ -84,7 +91,7 @@
                                         <p class="mb-0 color-dark font-bold text-14">{{ day.name }} {{ day.dateNumber }}</p>
                                       </div>
                                     <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
-                                        <div  class="cal-time-zone d-flex align-items-center mb-2">
+                                        <div v-if="filteredEvents(day.date , 'Morning').length > 0"  class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Morning</p>
                                         </div>
@@ -126,7 +133,7 @@
                                             </div>
                                         </div>
                                         <div @click="handleMeetingClick(item)"
-                                        v-if="item.groupId == 'peer-meeting'"
+                                        v-if="item.groupId == 'peer-meeting' || item.groupId == 'teacher-meeting'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
                                             <div class="d-flex mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
@@ -159,7 +166,7 @@
                                             <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Time: {{ item.time }}</span></p>
                                         </div>
                                         </div>
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
+                                        <div v-if="filteredEvents(day.date , 'Afternoon').length > 0" class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-sun j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Afternoon</p>
                                         </div>
@@ -202,7 +209,7 @@
                                             </div>
                                         </div>
                                         <div @click="handleMeetingClick(item)"
-                                        v-if="item.groupId == 'peer-meeting'"
+                                        v-if="item.groupId == 'peer-meeting' || item.groupId == 'teacher-meeting'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
                                             <div class="d-flex mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
@@ -235,7 +242,7 @@
                                             <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Time: {{ item.time }}</span></p>
                                         </div>
                                         </div>
-                                        <div class="cal-time-zone d-flex align-items-center mb-2">
+                                        <div v-if="filteredEvents(day.date , 'Evening').length > 0" class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-moon j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Evening</p>
                                         </div>
@@ -278,7 +285,7 @@
                                             </div>
                                         </div>
                                         <div @click="handleMeetingClick(item)"
-                                        v-if="item.groupId == 'peer-meeting'"
+                                        v-if="item.groupId == 'peer-meeting' || item.groupId == 'teacher-meeting'"
                                         class="card card-transparent border-0 rounded-4 mb-3 py-2">
                                             <div class="d-flex mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
@@ -348,8 +355,8 @@
         </div>
       </div>
     </div>
-        </div>
-    </div>
+  </div>
+</div>
 </template>
 <script>
     import lottie from "vue-lottie/src/lottie.vue";
@@ -416,7 +423,7 @@ export default {
       calendarDate: "",
       loading: false,
       anim: null, // for saving the reference to the animation
-    //   lottieOptions: { animationData: animationData.default },
+      lottieOptions: { animationData: animationData.default },
     //   lottieOptionsSuccess: {
     //     animationData: animationDataSuccess.default,
     //     loop: false,
@@ -535,6 +542,7 @@ export default {
     this.GetStudents();
     this.getSubjectsList();
     this.GetWeeklyPlanner();
+    // this.GetWeeklyPlannerFilter()
   },
   computed: {
     ...mapState("plannerWeek", {
@@ -606,6 +614,9 @@ export default {
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
     }),
+    handleAnimation: function (anim) {
+      this.anim = anim;
+    },
     async GetSubjectList() {
       await this.getSubjectsList({});
     },
@@ -619,6 +630,7 @@ export default {
       }
     },
     async GetWeeklyPlanner() {
+      this.loading = true;
       this.eventList = [];
     //   this.loading = true;
     //   const format = "YYYY-MM-DD";
@@ -906,9 +918,234 @@ export default {
           this.eventList.push(plannerObj);
         }
       });
+      this.loading = false;
       console.log("eventList",this.eventList);
-    //   this.calendarOptions.events = eventList;
-    //   this.loading = false;
+    },
+    updateFilter(selectedFilter) {
+      this.filterType = selectedFilter;
+      this.GetWeeklyPlannerFilter();
+    },
+   async GetWeeklyPlannerFilter(){
+    this.loading = true;
+    this.eventList = [];
+      await this.getWeeklyPlannerFilter({
+        plannerType: "Weekly",
+        date: this.getStartOfWeek(),
+        filter: this.filterType,
+      });
+      this.meetingDetails = [];
+      this.plannerList.forEach((element) => {
+        if (element.due_date) {
+        //   var scheduleObject = {};
+          var plannerObj = {};
+          var id = element.id;
+          var assignment = element.subject;
+          var time = element.due_time;
+          var date = this.dateConversion(element.due_date);
+
+          var title = element.task;
+
+          if (element.priority == "1") {
+            var color = "#EF382E";
+          } else if (element.priority == "2") {
+            var color = "#F6D73C";
+          } else if (element.priority == "3") {
+            var color = "#38a272";
+          }
+          // else if (element.priority == "4") {
+          //   var color = "#a7a7a7";
+          // }
+          if (element.task_status == "Completed") {
+            var color = "#a7a7a7";
+          }
+          var dateMeeting = element.due_date;
+          var task_status = element.task_status;
+          var tmeMeeting = "";
+          if (element.due_time) {
+            tmeMeeting = this.formatAMPM(element.due_time);
+          }
+          var start = dateMeeting;
+
+          plannerObj["assignment"] = assignment;
+          plannerObj["time"] = time;
+          plannerObj["date"] = date;
+          plannerObj["title"] = title;
+          plannerObj["id"] = id;
+          plannerObj["taskStatus"] = task_status;
+
+          plannerObj["title"] = title;
+          plannerObj["color"] = color;
+          plannerObj["start"] = start;
+          plannerObj["id"] = id;
+          plannerObj["groupId"] = "assignment";
+          this.eventList.push(plannerObj);
+          this.assignmentList.push(plannerObj);
+        }
+      });
+      this.meetingList?.forEach((element) => {
+        // var meetingobj = {};
+        var listobj = {};
+
+        // if (element.club_name != null) {
+        var title = element.title;
+        // }
+
+        var meeting = element.meeting_type;
+        if (meeting == "Peer") {
+          var color = "#64B5FC";
+          listobj["groupId"] = "peer-meeting";
+        } else if (meeting == "Teacher") {
+            listobj["groupId"] = "teacher-meeting";
+          var color = "#073BBF";
+        }
+        var time = element.start_time;
+        var startTime = element.start_time;
+        var endTime = element.end_time;
+        var dateMeeting = element.date;
+        var timeValNum = element.start_time;
+        var tmeMeeting = "";
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
+        var start = dateMeeting;
+        listobj["title"] = title;
+        listobj["color"] = color;
+        listobj["start"] = start;
+        listobj["id"] = element.id;
+        listobj["time"] = time;
+        // meetingobj["groupId"] = "Meeting";
+        listobj["startTime"] = startTime;
+        listobj["endTime"] = endTime;
+        listobj["title"] = title;
+        listobj["meeting"] = meeting;
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        this.meetingDetails.push(listobj);
+        this.eventList.push(listobj);
+      });
+    //   console.log("eventList",this.eventList);
+      this.sessionList?.forEach((element) => {
+        // var meetingobj = {};
+        var listobj = {};
+        let title = "";
+        if (element.assignment_id) {
+          title = "Study Session " + element.assignments?.task;
+        } else {
+          title = "Study Session " + element.subject?.subject_name;
+        }
+
+        const color = element.subject?.color_code;
+        // }
+        var status = element.status;
+        var time = element.time;
+        var dateMeeting = element.date;
+        var timeValNum = element.time;
+        var tmeMeeting = "";
+        if (element.time) {
+          tmeMeeting = this.formatAMPM(element.time);
+        }
+        var start = dateMeeting;
+        listobj["title"] = title;
+        listobj["color"] = color;
+        listobj["start"] = start;
+        listobj["id"] = element.id;
+        listobj["groupId"] = "study";
+        listobj["time"] = time;
+        listobj["status"] = status;
+        // meetingobj["type"] = "study";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        // this.meetingDetails.push(listobj);
+        this.eventList.push(listobj);
+      });
+      this.sharedAstList.forEach((element) => {
+        if (element.due_date) {
+        //   var scheduleObject = {};
+          var plannerObj = {};
+          var id = element.id;
+          var assignment = element.subject;
+          var time = element.due_time;
+          var date = this.dateConversion(element.due_date);
+
+          var title = element.task;
+          var time = element.due_time  ;
+
+          if (element.priority == "1") {
+            var color = "#EF382E";
+          } else if (element.priority == "2") {
+            var color = "#F6D73C";
+          } else if (element.priority == "3") {
+            var color = "#38a272";
+          }
+          // else if (element.priority == "4") {
+          //   var color = "#a7a7a7";
+          // }
+          if (element.task_status == "Completed") {
+            var color = "#a7a7a7";
+          }
+          var dateMeeting = element.due_date;
+          var tmeMeeting = "";
+          if (element.due_time) {
+            tmeMeeting = this.formatAMPM(element.due_time);
+          }
+          var start = dateMeeting;
+
+          plannerObj["assignment"] = assignment;
+          plannerObj["time"] = time;
+          plannerObj["date"] = date;
+          plannerObj["title"] = title;
+          plannerObj["id"] = id;
+          plannerObj["title"] = title;
+          plannerObj["color"] = color;
+          plannerObj["start"] = start;
+          plannerObj["id"] = id;
+          plannerObj["groupId"] = "shared-assignment";
+          this.eventList.push(plannerObj);
+          this.assignmentList.push(plannerObj);
+        }
+      });
+      this.sharedSessionList?.forEach((element) => {
+        // var meetingobj = {};
+        var listobj = {};
+        let title = "";
+        if (element.studyroom.assignment_id) {
+          title = "Study Session " + element.studyroom.assignments?.task;
+        } else {
+          title = "Study Session " + element.studyroom.subject?.subject_name;
+        }
+
+        const color = element.studyroom.subject?.color_code;
+        // }
+        var dateMeeting = element.date;
+        var timeValNum = element.start_time;
+        var tmeMeeting = "";
+        var status = element.studyroom.status;
+        var time = element.start_time;
+        if (element.start_time) {
+          tmeMeeting = this.formatAMPM(element.start_time);
+        }
+        var start = dateMeeting;
+        listobj["title"] = title;
+        listobj["color"] = color;
+        listobj["start"] = start;
+        listobj["id"] = element.session_id;
+        listobj["groupId"] = "study";
+        listobj["time"] = time;
+        listobj["status"] = status;
+        // meetingobj["type"] = "study";
+
+        listobj["title"] = title;
+        listobj["meeting"] = "Study Session";
+        listobj["dateMeeting"] = dateMeeting;
+        listobj["timeValNum"] = timeValNum;
+        // this.meetingDetails.push(listobj);
+        this.eventList.push(listobj);
+      });
+      this.loading = false;
+      console.log("eventList",this.eventList);
     },
     goToPreviousWeek() {
         this.currentDate.setDate(this.currentDate.getDate() - 7);
@@ -998,11 +1235,11 @@ updateWeekNumberAndMonth() {
   this.monthText = monthName;
 },
   toggleWeekends() {
-        this.loading = true;
         this.showWeekends = !this.showWeekends;
         this.days = [];
         this.generateDays();
-        this.loading = false;
+        this.getStartOfWeek();
+        // this.GetWeeklyPlanner();
       },
       async GetStudents() {
       await this.getStudents({
