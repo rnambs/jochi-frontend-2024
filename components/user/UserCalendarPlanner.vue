@@ -25,15 +25,15 @@
                                                 type="button" data-toggle="dropdown" aria-haspopup="true"
                                                 aria-expanded="false">
                                                 <i class="i-filter-funnel j-icon i-sm bg-gray mr-1"></i>
-                                                <span id="dLabel" class="mr-3">Filter</span>
+                                                <span id="dLabel" class="mr-3">{{ filterText }}</span>
                                                 <span class="caret"><i
                                                         class="fas fa-chevron-down font-medium"></i></span>
                                             </div>
                                             <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
-                                                <li @click="GetWeeklyPlanner()" class="item p-2">All</li>
-                                                <li @click="updateFilter('Assignments')" class="item p-2">Assignment</li>
-                                                <li @click="updateFilter('Meetings')" class="item p-2">Meeting</li>
-                                                <li @click="updateFilter('Session')" class="item p-2">Study Sessions</li>
+                                                <li @click="GetWeeklyPlanner()" :class="{ 'active': filterType === 'All' }" class="item p-2">All</li>
+                                                <li @click="updateFilter('Assignments')" :class="{ 'active': filterType === 'Assignments' }" class="item p-2">Assignments</li>
+                                                <li @click="updateFilter('Meetings')" :class="{ 'active': filterType === 'Meetings' }" class="item p-2">Meetings</li>
+                                                <li @click="updateFilter('Session')" :class="{ 'active': filterType === 'Session' }" class="item p-2">Study Sessions</li>
                                             </ul>
                                         </div>
                                         <div class="border border--form rounded-8 d-flex align-items-center mb-2">
@@ -82,7 +82,9 @@
                                         <p class="mb-0 color-dark font-bold text-14">{{ day.name }} {{ day.dateNumber }}</p>
                                       </div>
                                     <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
-                                      <div></div>
+                                      <div v-if="filteredEvents(day.date , 'Morning').length == 0 && filteredEvents(day.date , 'Afternoon').length == 0 && filteredEvents(day.date , 'Evening').length == 0">
+                                        <p>No events for the Day</p>
+                                      </div>
                                         <div v-if="filteredEvents(day.date , 'Morning').length > 0"  class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
                                             <p class="color-secondary text-12 mb-0">Morning</p>
@@ -90,7 +92,7 @@
                                         <div v-for="(item, index) in filteredEvents(day.date , 'Morning')" :key="item.id">
                                         <div @click="handleAssignmentClick(item)"
                                           v-if="item.groupId == 'assignment' || item.groupId == 'shared-assignment'"
-                                          class="card card-secondary rounded-4 mb-3 p-2">
+                                          class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-list-check j-icon i-xs bg-global"></i>
@@ -104,7 +106,7 @@
                                         </div>
                                         <div @click="handleStudyCardClick(item)"
                                           v-if="item.groupId == 'study'"
-                                          class="card card-secondary rounded-4 mb-3 p-2">
+                                          class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-center">
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
@@ -115,7 +117,7 @@
                                         </div>
                                         <div @click="handleMeetingClick(item)"
                                           v-if="item.groupId == 'peer-meeting' || item.groupId == 'teacher-meeting'"
-                                          class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                          class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-club-meeting j-icon i-xs bg-global"></i>
@@ -126,7 +128,7 @@
                                         </div>
                                         <div @click="handleClubMeetingClick(item)"
                                           v-if="item.groupId == 'club-meeting'"
-                                          class="card card-secondary rounded-4 mb-3 p-2">
+                                          class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-center">
                                               <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                 <i class="i-club-meeting j-icon i-xs bg-global"></i>
@@ -137,7 +139,7 @@
                                         </div>
                                         <div @click="handleTrainingsClick(item)"
                                           v-if="item.groupId == 'trainings'"
-                                          class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                          class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-team-match-training j-icon i-xs bg-global"></i>
@@ -148,7 +150,7 @@
                                         </div>
                                         <div @click="handleMatchesClick(item)"
                                           v-if="item.groupId == 'matches'"
-                                          class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                          class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-team-match-training j-icon i-xs bg-global"></i>
@@ -165,7 +167,7 @@
                                         <div v-for="(item, index) in filteredEvents(day.date , 'Afternoon')" :key="item.id">
                                         <div @click="handleAssignmentClick(item)"
                                           v-if="item.groupId == 'assignment' || item.groupId == 'shared-assignment'"
-                                          class="card card-secondary rounded-4 mb-3 p-2">
+                                          class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-list-check j-icon i-xs bg-global"></i>
@@ -179,7 +181,7 @@
                                         </div>
                                         <div @click="handleStudyCardClick(item)"
                                           v-if="item.groupId == 'study'"
-                                          class="card card-secondary rounded-4 mb-3 p-2">
+                                          class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-center">
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
@@ -190,7 +192,7 @@
                                         </div>
                                         <div @click="handleMeetingClick(item)"
                                           v-if="item.groupId == 'peer-meeting' || item.groupId == 'teacher-meeting'"
-                                          class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                          class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-club-meeting j-icon i-xs bg-global"></i>
@@ -201,7 +203,7 @@
                                         </div>
                                         <div @click="handleClubMeetingClick(item)"
                                           v-if="item.groupId == 'club-meeting'"
-                                          class="card card-secondary rounded-4 mb-3 p-2">
+                                          class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-center">
                                               <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                 <i class="i-club-meeting j-icon i-xs bg-global"></i>
@@ -212,7 +214,7 @@
                                         </div>
                                         <div @click="handleTrainingsClick(item)"
                                           v-if="item.groupId == 'trainings'"
-                                          class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                          class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-team-match-training j-icon i-xs bg-global"></i>
@@ -223,7 +225,7 @@
                                         </div>
                                         <div @click="handleMatchesClick(item)"
                                           v-if="item.groupId == 'matches'"
-                                          class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                          class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-team-match-training j-icon i-xs bg-global"></i>
@@ -240,7 +242,7 @@
                                         <div v-for="(item, index) in filteredEvents(day.date , 'Evening')" :key="item.id">
                                         <div @click="handleAssignmentClick(item)"
                                           v-if="item.groupId == 'assignment' || item.groupId == 'shared-assignment'"
-                                          class="card card-secondary rounded-4 mb-3 p-2">
+                                          class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-list-check j-icon i-xs bg-global"></i>
@@ -254,7 +256,7 @@
                                         </div>
                                         <div @click="handleStudyCardClick(item)"
                                           v-if="item.groupId == 'study'"
-                                          class="card card-secondary rounded-4 mb-3 p-2">
+                                          class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-center">
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
@@ -265,7 +267,7 @@
                                         </div>
                                         <div @click="handleMeetingClick(item)"
                                           v-if="item.groupId == 'peer-meeting' || item.groupId == 'teacher-meeting'"
-                                          class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                          class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-club-meeting j-icon i-xs bg-global"></i>
@@ -276,7 +278,7 @@
                                         </div>
                                         <div @click="handleClubMeetingClick(item)"
                                           v-if="item.groupId == 'club-meeting'"
-                                          class="card card-secondary rounded-4 mb-3 p-2">
+                                          class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-center">
                                               <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                 <i class="i-club-meeting j-icon i-xs bg-global"></i>
@@ -287,7 +289,7 @@
                                         </div>
                                         <div @click="handleTrainingsClick(item)"
                                           v-if="item.groupId == 'trainings'"
-                                          class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                          class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-team-match-training j-icon i-xs bg-global"></i>
@@ -298,7 +300,7 @@
                                         </div>
                                         <div @click="handleMatchesClick(item)"
                                           v-if="item.groupId == 'matches'"
-                                          class="card card-transparent border-0 rounded-4 mb-3 py-2">
+                                          class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
                                                     <i class="i-team-match-training j-icon i-xs bg-global"></i>
@@ -528,6 +530,17 @@ export default {
       students: (state) => state.students,
       students: (state) => state.students,
     }),
+    filterText() {
+      if (this.filterType === 'Assignments') {
+        return 'Assignments';
+      } else if (this.filterType === 'Meetings') {
+        return 'Meetings';
+      } else if (this.filterType === 'Session') {
+        return 'Study Sessions';
+      } else if (this.filterType === 'All') {
+        return 'All';
+      }
+    }
   },
   methods :{
     ...mapActions("plannerWeek", {
@@ -562,6 +575,7 @@ export default {
       await this.getSubjectsList({});
     },
     async GetWeeklyPlanner() {
+      this.filterType = 'All'
       this.loading = true;
       this.eventList = [];
       await this.getWeeklyPlanner({
@@ -1125,10 +1139,10 @@ export default {
       }
     },
     filteredEvents(date, timePeriod) {
-    return this.eventList.filter((item) => {
-      const eventTimePeriod = this.getTimePeriod(item.time);
-      return item.start === date && eventTimePeriod === timePeriod;
-    });
+        return this.eventList.filter((item) => {
+        const eventTimePeriod = this.getTimePeriod(item.time);
+        return item.start === date && eventTimePeriod === timePeriod;
+      });
     },
     getTimePeriod(time) {
       const timeParts = time.split(' ');
