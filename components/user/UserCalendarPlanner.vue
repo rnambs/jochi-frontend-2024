@@ -120,7 +120,7 @@
                                           class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-club-meeting j-icon i-xs bg-global"></i>
+                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light">Meeting with {{ item.title }}</p>
                                             </div>
@@ -195,7 +195,7 @@
                                           class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-club-meeting j-icon i-xs bg-global"></i>
+                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light">Meeting with {{ item.title }}</p>
                                             </div>
@@ -270,7 +270,7 @@
                                           class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-club-meeting j-icon i-xs bg-global"></i>
+                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light">Meeting with {{ item.title }}</p>
                                             </div>
@@ -726,6 +726,7 @@ export default {
           var plannerObj = {};
           var id = element.id;
           var assignment = element.subject;
+          var task_status = element.task_status;
           var time = element.due_time;
           var date = this.dateConversion(element.due_date);
           var title = element.task;
@@ -755,6 +756,7 @@ export default {
           plannerObj["color"] = color;
           plannerObj["start"] = start;
           plannerObj["id"] = id;
+          plannerObj["taskStatus"] = task_status;
           plannerObj["groupId"] = "shared-assignment";
           this.eventList.push(plannerObj);
           this.assignmentList.push(plannerObj);
@@ -820,7 +822,6 @@ export default {
         }
       });
       this.loading = false;
-      console.log("eventList",this.eventList);
     },
     updateFilter(selectedFilter) {
       this.filterType = selectedFilter;
@@ -1012,7 +1013,6 @@ export default {
         this.eventList.push(listobj);
       });
       this.loading = false;
-      console.log("eventList",this.eventList);
     },
     goToPreviousWeek() {
       this.currentDate.setDate(this.currentDate.getDate() - 7);
@@ -1068,7 +1068,6 @@ export default {
           date: `${year}-${month}-${dateNumber}`, // Format to match API
           dateNumber: dateNumber
         });
-        console.log(this.days);
       }
     },
     updateWeekNumber() {
@@ -1206,7 +1205,6 @@ export default {
         // Compare the event's 'start' date with the current date
         const eventStartDate = moment(item.start);
         const currentDate = moment();
-        console.log(eventStartDate);
         if (eventStartDate.isBefore(currentDate)) {
           this.alertMessage = "No actions can be performed on past events";
           $("#alertModal").modal({ backdrop: true });
@@ -1220,10 +1218,8 @@ export default {
     handleTrainingsClick(item) {
       if (item.groupId === "trainings") {
         let club = this.trainingsMatches.find((e) => e.id == item.id);
-        console.log(club);
         const eventStartDate = moment(item.start);
         const currentDate = moment();
-        console.log(eventStartDate);
         if (eventStartDate.isBefore(currentDate)) {
           this.alertMessage = "No actions can be performed on past events";
           $("#alertModal").modal({ backdrop: true });
@@ -1237,7 +1233,6 @@ export default {
     handleAssignmentClick(item) {
       if (item.groupId === "assignment" ||item.groupId === "shared-assignment") {
         let taskStatus = item.taskStatus;
-        console.log(taskStatus);
         if (taskStatus == "Completed") {
           this.alertMessage = "This is a completed assignment";
           $("#alertModal").modal({ backdrop: true });
