@@ -1176,9 +1176,10 @@ export default {
       if (item.groupId === "club-meeting") {
         let club = this.clubMeetings.find((e) => e.clubs?.id == item.id);
         const eventStartDate = moment(item.start);
-        const currentDate = moment();
-        if (eventStartDate.isBefore(currentDate)) {
-          this.alertMessage = "No actions can be performed on past events";
+        // const currentDate = moment();
+        if (eventStartDate.isBefore(moment().format("YYYY-MM-DD"))) {
+        this.alertMessage = "No actions can be performed on past events";
+        $("#alertModal").modal({ backdrop: true });
           $("#alertModal").modal({ backdrop: true });
         } else {
           this.$router.push(`/club-moreInfo?id=${item.id}&name=${club.club_name}&type=${club.clubs.activity_type}`);
@@ -1189,10 +1190,9 @@ export default {
       if (item.groupId === "peer-meeting" || item.groupId === "teacher-meeting") {
         // Compare the event's 'start' date with the current date
         const eventStartDate = moment(item.start);
-        const currentDate = moment();
-        
-        if (eventStartDate.isBefore(currentDate)) {
-          this.alertMessage = "No actions can be performed on past events";
+        // const currentDate = moment();   
+        if (eventStartDate.isBefore(moment().format("YYYY-MM-DD"))) {
+        this.alertMessage = "No actions can be performed on past events";
           $("#alertModal").modal({ backdrop: true });
         } else {
           this.$router.push(`/viewall-meeting?id=${item.id}&type=${item.groupId}`);
@@ -1204,9 +1204,9 @@ export default {
         let club = this.trainingsMatches.find((e) => e.id == item.id);
         // Compare the event's 'start' date with the current date
         const eventStartDate = moment(item.start);
-        const currentDate = moment();
-        if (eventStartDate.isBefore(currentDate)) {
-          this.alertMessage = "No actions can be performed on past events";
+        // const currentDate = moment();
+        if (eventStartDate.isBefore(moment().format("YYYY-MM-DD"))) {
+        this.alertMessage = "No actions can be performed on past events";
           $("#alertModal").modal({ backdrop: true });
         } else {
           return this.$router.push(
@@ -1219,9 +1219,9 @@ export default {
       if (item.groupId === "trainings") {
         let club = this.trainingsMatches.find((e) => e.id == item.id);
         const eventStartDate = moment(item.start);
-        const currentDate = moment();
-        if (eventStartDate.isBefore(currentDate)) {
-          this.alertMessage = "No actions can be performed on past events";
+        // const currentDate = moment();  
+        if (eventStartDate.isBefore(moment().format("YYYY-MM-DD"))) {
+        this.alertMessage = "No actions can be performed on past events";
           $("#alertModal").modal({ backdrop: true });
         } else {
           return this.$router.push(
