@@ -252,14 +252,13 @@
                       </div>
                       <span class="border-pb-1 bg-task-green w-100 d-flex mb-3"></span>
                     </div>
-                    <div class="d-flex flex-column task-container pr-2 mb-3">
-                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
                       @dragover="doneDropStart()"
                       @dragleave="doneDropEnd()"
                       @drop="handleDrop">
-                      <div class="drop-zone" :class="{ 'dropping': isDroppingDone }">
-                        
+                      <div class="drop-zone" :class="{ 'dropping': isDroppingDone }">             
                       </div>
+                    <div class="d-flex flex-column task-container pr-2 mb-3">
                       <div v-for="(item,index) in doneAssignmentsList" :key="item.id">
                         <drag :transfer-data="{ item, source: 'doneAssignments', sourceType: 'Done' }"
                         @dragstart="handleDragStartDone(index)" @dragend="handleDragEndDone()">
@@ -333,8 +332,8 @@
                           <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
                         </infinite-loading>
                       </client-only>
-                    </drop>
                     </div>
+                  </drop>
                   </div> 
               </div>
               <div class="col-12 col-sm-6 col-lg-3">
