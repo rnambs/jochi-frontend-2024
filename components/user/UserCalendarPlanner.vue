@@ -1237,9 +1237,7 @@ export default {
           this.alertMessage = "This is a completed assignment";
           $("#alertModal").modal({ backdrop: true });
         } else {
-          return this.$router.push(
-                `/task`
-              );
+          return this.$router.push(`/task?id=${item.id}`);
         }
       }
     },
