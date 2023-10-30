@@ -1814,7 +1814,21 @@ export default {
       this.accordionOpened = newValue;
     });
   },
-  mounted() {
+  async mounted() {
+    const taskId = this.$route.query.id;
+    if (taskId) {
+      
+      await this.getAssignment({
+        id: taskId,
+      })
+      if(taskId){
+      let data = this.mapData(this.assignment);
+      if(!data)
+      data = this.mapSharedData(this.sharedAssignment);
+      this.onCardClick(data, data.task_status);
+    }
+    }
+    
     this.loading = false;
     this.school_id = localStorage.getItem("school_id")
     this.user_id = localStorage.getItem("id");
@@ -2384,7 +2398,6 @@ export default {
         this.openAssignment = false;
         completed ? this.loadUpdatedData('Done') : this.loadUpdatedData('Pending');
         this.completeAsstId = 0;
-        console.log(this.todoType);
         if (this.sourceassignment != 'doingAssignments' || this.todoType != 'Doing') {
           this.$toast.open({
             message: this.successMessage,
