@@ -816,7 +816,7 @@
               <form v-if="!isSharedAssignment" ref="assignmentForm" id="assignmentForm">
                 <div class="form-group mb-2">
                   <label for="recipient-name" class="col-form-label py-1">Subject here<em>*</em></label>
-                  <input v-if="schoologyAssignment == '1'" type="text" class="form-control" v-model="gg4lSubject"
+                  <!-- <input v-if="schoologyAssignment == '1'" type="text" class="form-control" v-model="gg4lSubject"
                     maxlength="60" placeholder="Enter assignment name" />
                   <select v-else class="form-control" tabindex="" v-model="subject" :class="{
                     'is-invalid':
@@ -835,6 +835,33 @@
                   </select>
                   <div v-if="submitted && $v.subject.$error" class="invalid-feedback">
                     <span v-if="!$v.subject.required">This field is required</span>
+                  </div> -->
+                  <div
+                    class="dropdown"
+                  >
+                    <div
+                      class="dropdown-select d-inline-flex form-control rounded-8 border border--form color-secondary font-normal text-16 pr-2"
+                      type="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <span id="dLabel" class="mr-auto color-secondary">
+                        Select Subject</span
+                      >
+                      <span class="caret color-secondary"
+                        ><i class="fas fa-chevron-down font-medium"></i
+                      ></span>
+                    </div>
+
+                    <ul
+                      class="dropdown-menu w-100 rounded-12 border border--form mt-0 p-2"
+                      aria-labelledby="dLabel"
+                    >
+                      <li class="item p-2">Select Subject</li>
+                      <li class="item p-2">Jochi Math Test Course</li>
+                      <li class="item p-2">Personal</li>
+                    </ul>
                   </div>
                 </div>
                 <div class="form-group mb-2">

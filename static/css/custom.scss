@@ -852,6 +852,7 @@ input[type="radio"]{
     span.fa-icon{
         &.show-hover{
             display: block !important;
+            color: inherit;
         }
     }
 }
