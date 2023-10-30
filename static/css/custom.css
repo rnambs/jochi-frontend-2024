@@ -2456,6 +2456,7 @@ input[type=radio] {
 
 .show-icon:hover span.fa-icon.show-hover {
   display: block !important;
+  color: inherit;
 }
 
 .show-icon:hover .btn-tag-remove {
