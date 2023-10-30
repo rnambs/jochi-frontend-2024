@@ -138,6 +138,7 @@
                         <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
                           :identifier="doingreloadCount" @infinite="doingNext">
                           <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                          <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
                         </infinite-loading>
                       </client-only>
                     
@@ -235,6 +236,7 @@
                         <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
                           :identifier="reloadCount" @infinite="loadNext">
                           <div class="mb-2" slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                          <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
                         </infinite-loading>
                       </client-only>
                     </div>
@@ -328,6 +330,7 @@
                         <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
                           :identifier="donereloadCount" @infinite="doneNext">
                           <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                          <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
                         </infinite-loading>
                       </client-only>
                     </drop>
@@ -424,6 +427,7 @@
                       <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
                         :identifier="overduereloadCount" @infinite="overdueNext">
                         <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                        <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
                       </infinite-loading>
                     </client-only>
                   </div>
@@ -519,6 +523,7 @@
                         <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
                           :identifier="doingreloadCount" @infinite="doingNext">
                           <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                          <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
                         </infinite-loading>
                       </client-only>
                     </drop>
@@ -609,6 +614,7 @@
                         <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
                           :identifier="reloadCount" @infinite="loadNext">
                           <div class="mb-2" slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                          <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
                         </infinite-loading>
                       </client-only>
                     </drop>
@@ -696,6 +702,7 @@
                         <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
                           :identifier="donereloadCount" @infinite="doneNext">
                           <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                          <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
                         </infinite-loading>
                       </client-only>
                     </drop>
@@ -783,6 +790,7 @@
                       <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
                         :identifier="overduereloadCount" @infinite="overdueNext">
                         <div slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                        <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
                       </infinite-loading>
                     </client-only>
                   </div>
