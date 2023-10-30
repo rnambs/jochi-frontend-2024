@@ -513,7 +513,7 @@
                               <input
                                 :disabled="!enableEdit"
                                 type="text"
-                                class="pl-3 word-break text-truncate w-100"
+                                class="pl-3 word-break text-truncate w-100 color-secondary"
                                 v-model="phoneNumber"
                                 @change="checkValueChange()"
                                 @input="checkValue()"
