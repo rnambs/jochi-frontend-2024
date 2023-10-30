@@ -1221,7 +1221,7 @@
                     <input type="text" maxlength="100" v-model="subTaskName" class="form-control" />
                   </div>
                   <div class="pt-4">
-                    <button class="btn btn-primary btn-sm mt-2" @click="onAddNewSubTask">
+                    <button class="btn btn-primary btn-sm mt-1" @click="onAddNewSubTask">
                       Add
                     </button>
                   </div>
@@ -1307,7 +1307,7 @@
                     </multiselect>
                   </div>
                   <div class="pt-4">
-                    <button @click="onInvitePeer" class="btn btn-primary btn-sm mt-2">
+                    <button @click="onInvitePeer" class="btn btn-primary btn-sm mt-1">
                       {{ isAddAssignment ? "Add" : "Save" }}
                     </button>
                   </div>
@@ -1379,7 +1379,7 @@
                     </div>
                   </div>
                   <div class="pt-4">
-                    <button type="button" @click="UploadAttachment" class="btn btn-primary btn-sm mt-2">
+                    <button type="button" @click="UploadAttachment" class="btn btn-primary btn-sm mt-1">
                       Add
                     </button>
                   </div>
