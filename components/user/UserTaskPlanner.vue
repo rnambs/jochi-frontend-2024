@@ -73,7 +73,7 @@
                                   'task-label--violet': item.priority == '2',
                                   'task-label--green': item.priority == '3',
                                   'task-label--red': item.priority == '4',
-                                }">{{
+                                }"><span>{{
   item.priority == "1"
   ? "Urgent"
   : item.priority == "2"
@@ -83,12 +83,12 @@
       : item.priority == "4"
         ? "Overdue"
         : ""
-}}</span>
-                                <span class="task-label task-label--violet my-1 mr-1">{{
+}}</span></span>
+                                <span class="task-label task-label--violet my-1 mr-1"><span>{{
                                   item.subject.subject_name
                                   ? item.subject.subject_name
                                   : item.subject
-                                }}</span>
+                                }}</span></span>
                               </div>
                               <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                                 <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
@@ -172,7 +172,7 @@
                                   'task-label--violet': item.priority == '2',
                                   'task-label--green': item.priority == '3',
                                   'task-label--red': item.priority == '4',
-                                }">{{
+                                }"><span>{{
   item.priority == "1"
   ? "Urgent"
   : item.priority == "2"
@@ -182,12 +182,12 @@
       : item.priority == "4"
         ? "Overdue"
         : ""
-}}</span>
-                                <span class="task-label task-label--yellow my-1 mr-1">{{
+}}</span></span>
+                                <span class="task-label task-label--yellow my-1 mr-1"><span>{{
                                   item.subject.subject_name
                                   ? item.subject.subject_name
                                   : item.subject
-                                }}</span>
+                                }}</span></span>
                               </div>
                               <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                                 <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
@@ -270,7 +270,7 @@
                                   'task-label--violet': item.priority == '2',
                                   'task-label--green': item.priority == '3',
                                   'task-label--red': item.priority == '4',
-                                }"> {{
+                                }"><span> {{
   item.priority == "1"
   ? "Urgent"
   : item.priority == "2"
@@ -280,11 +280,11 @@
       : item.priority == "4"
         ? "Overdue"
         : ""
-}}</span>
-                                <span class="task-label task-label--green my-1 mr-1">{{ item.subject.subject_name
+}}</span></span>
+                                <span class="task-label task-label--green my-1 mr-1"><span>{{ item.subject.subject_name
                                   ? item.subject.subject_name
                                   : item.subject
-                                }}</span>
+                                }}</span></span>
                               </div>
                               <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                                               <div class="dropdown-select form-control" type="button"
@@ -358,7 +358,7 @@
                                 'task-label--violet': item.priority == '2',
                                 'task-label--green': item.priority == '3',
                                 'task-label--red': item.priority == '4',
-                              }"> {{
+                              }"><span> {{
   item.priority == "1"
   ? "Urgent"
   : item.priority == "2"
@@ -368,12 +368,12 @@
       : item.priority == "4"
         ? "Overdue"
         : ""
-}}</span>
-                              <span class="task-label task-label--red my-1 mr-1"> {{
+}}</span></span>
+                              <span class="task-label task-label--red my-1 mr-1"><span> {{
                                 item.subject.subject_name
                                 ? item.subject.subject_name
                                 : item.subject
-                              }} </span>
+                              }} </span></span>
                             </div>
                             <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                               <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
@@ -460,7 +460,7 @@
                                   'task-label--violet': item.priority == '2',
                                   'task-label--green': item.priority == '3',
                                   'task-label--red': item.priority == '4',
-                                }">{{
+                                }"><span>{{
   item.priority == "1"
   ? "Urgent"
   : item.priority == "2"
@@ -470,12 +470,12 @@
       : item.priority == "4"
         ? "Overdue"
         : ""
-}}</span>
-                                <span class="task-label task-label--violet my-1 mr-1">{{
+}}</span></span>
+                                <span class="task-label task-label--violet my-1 mr-1"><span>{{
                                   item.subject.subject_name
                                   ? item.subject.subject_name
                                   : item.subject
-                                }}</span>
+                                }}</span></span>
                               </div>
                               <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                                 <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
@@ -552,7 +552,7 @@
                                   'task-label--violet': item.priority == '2',
                                   'task-label--green': item.priority == '3',
                                   'task-label--red': item.priority == '4',
-                                }">{{
+                                }"><span>{{
   item.priority == "1"
   ? "Urgent"
   : item.priority == "2"
@@ -562,12 +562,12 @@
       : item.priority == "4"
         ? "Overdue"
         : ""
-}}</span>
-                                <span class="task-label task-label--yellow my-1 mr-1">{{
+}}</span></span>
+                                <span class="task-label task-label--yellow my-1 mr-1"><span>{{
                                   item.subject.subject_name
                                   ? item.subject.subject_name
                                   : item.subject
-                                }}</span>
+                                }}</span></span>
                               </div>
                               <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                                 <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
@@ -642,7 +642,7 @@
                                   'task-label--violet': item.priority == '2',
                                   'task-label--green': item.priority == '3',
                                   'task-label--red': item.priority == '4',
-                                }"> {{
+                                }"><span> {{
   item.priority == "1"
   ? "Urgent"
   : item.priority == "2"
@@ -652,11 +652,11 @@
       : item.priority == "4"
         ? "Overdue"
         : ""
-}}</span>
-                                <span class="task-label task-label--green my-1 mr-1">{{ item.subject.subject_name
+}}</span></span>
+                                <span class="task-label task-label--green my-1 mr-1"><span>{{ item.subject.subject_name
                                   ? item.subject.subject_name
                                   : item.subject
-                                }}</span>
+                                }}</span></span>
                               </div>
                               <!-- <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                                               <div class="dropdown-select form-control" type="button"
@@ -726,7 +726,7 @@
                                 'task-label--violet': item.priority == '2',
                                 'task-label--green': item.priority == '3',
                                 'task-label--red': item.priority == '4',
-                              }"> {{
+                              }"><span> {{
   item.priority == "1"
   ? "Urgent"
   : item.priority == "2"
@@ -736,12 +736,12 @@
       : item.priority == "4"
         ? "Overdue"
         : ""
-}}</span>
-                              <span class="task-label task-label--red my-1 mr-1"> {{
+}}</span></span>
+                              <span class="task-label task-label--red my-1 mr-1"> <span>{{
                                 item.subject.subject_name
                                 ? item.subject.subject_name
                                 : item.subject
-                              }} </span>
+                              }} </span></span>
                             </div>
                             <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
                               <div class="dropdown-select form-control" type="button" data-toggle="dropdown"

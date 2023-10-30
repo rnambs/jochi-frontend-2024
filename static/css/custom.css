@@ -6033,6 +6033,7 @@ select.form-control.is-invalid {
   justify-content: center;
   height: 1.07319rem;
   min-width: 2.23969rem;
+  max-width: 7rem;
   border-radius: 4px;
   text-align: center;
   font-size: 0.57838rem;
@@ -6054,6 +6055,11 @@ select.form-control.is-invalid {
 .task-label--red {
   background-color: rgba(219, 27, 36, 0.2);
   color: #DB1B24;
+}
+.task-label span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .img-avatar {
