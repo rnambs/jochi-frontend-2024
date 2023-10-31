@@ -823,9 +823,9 @@
               <form v-if="!isSharedAssignment" ref="assignmentForm" id="assignmentForm">
                 <div class="form-group mb-2">
                   <label for="recipient-name" class="col-form-label py-1">Subject here<em>*</em></label>
-                  <!-- <input v-if="schoologyAssignment == '1'" type="text" class="form-control" v-model="gg4lSubject"
-                    maxlength="60" placeholder="Enter assignment name" />
-                  <select v-else class="form-control" tabindex="" v-model="subject" :class="{
+                  <input v-if="schoologyAssignment == '1'" type="text" class="form-control" v-model="gg4lSubject"
+                    maxlength="100" placeholder="Enter assignment name" />
+                  <!-- <select v-else class="form-control" tabindex="" v-model="subject" :class="{
                     'is-invalid':
                       submitted && $v.subject.$error,
                   }">
@@ -843,7 +843,7 @@
                   <div v-if="submitted && $v.subject.$error" class="invalid-feedback">
                     <span v-if="!$v.subject.required">This field is required</span>
                   </div> -->
-                  <div
+                  <div v-else
                     class="dropdown"
                   >
                     <div
@@ -852,9 +852,13 @@
                       data-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false"
+                      :class="{
+                      'is-invalid':
+                      submitted && $v.subject.$error,
+                  }"
                     >
-                      <span id="dLabel" class="mr-auto color-secondary">
-                        Select Subject</span
+                      <span id="dLabel" class="mr-auto color-secondary text-truncate">
+                        {{ subject ? subject.text : 'Select Subject' }}</span
                       >
                       <span class="caret color-secondary"
                         ><i class="fas fa-chevron-down font-medium"></i
@@ -865,9 +869,15 @@
                       class="dropdown-menu w-100 rounded-12 border border--form mt-0 p-2"
                       aria-labelledby="dLabel"
                     >
-                      <li class="item p-2">Select Subject</li>
-                      <li class="item p-2">Jochi Math Test Course</li>
-                      <li class="item p-2">Personal</li>
+                      <li v-for="(subjects, index) in subjectsData" :key="index" class="item p-2" @click="selectSubject(subjects)">
+                        {{ subjects.subject_name }}
+                      </li>
+                      <li v-if="subjectsData.length == 0">
+                      No data
+                      </li>
+                      <div v-if="submitted && $v.subject.$error" class="invalid-feedback">
+                      <span v-if="!$v.subject.required">This field is required</span>
+                  </div>
                     </ul>
                   </div>
                 </div>
@@ -1789,7 +1799,6 @@ export default {
       },
       processing: false,
       gg4lSubject: "",
-      subject: "",
       assignmentName: "",
       peerSelected: [],
       materialType: "",
@@ -3437,6 +3446,12 @@ export default {
         this.doingAssignment();
       }
   },
+  selectSubject(selectedSubject) {
+      this.subject = {
+      id: selectedSubject.id,
+      text: selectedSubject.subject_name
+    };
+  }
   },
 }
 </script>
