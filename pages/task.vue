@@ -21,6 +21,12 @@ export default {
       link: [{ rel: "stylesheet", href: "/css/custom.css" }],
     };
   },
-  mounted() {},
+  mounted() {
+    const user_type = localStorage.getItem('user_type');
+    if (user_type == 2) {
+  // Handle unauthorized access as needed (e.g., redirect)
+    this.$router.push("/");
+  }
+  },
 };
 </script>
