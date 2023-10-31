@@ -83,7 +83,7 @@
                                       </div>
                                     <div class="d-flex flex-column w-100 h-100 border-right px--12 calendar-container">
                                       <div v-if="filteredEvents(day.date , 'Morning').length == 0 && filteredEvents(day.date , 'Afternoon').length == 0 && filteredEvents(day.date , 'Evening').length == 0">
-                                        <p>No events for the Day</p>
+                                        <p>No events for the day</p>
                                       </div>
                                         <div v-if="filteredEvents(day.date , 'Morning').length > 0"  class="cal-time-zone d-flex align-items-center mb-2">
                                             <i class="i-half-sun j-icon i-lg bg-text-secondary mr-1"></i>
@@ -135,7 +135,7 @@
                                               </span>
                                               <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
                                             </div>
-                                            <p class="color-secondary text-12 mb-1"><span>Time : </span><span> {{ item.time }}</span></p>
+                                            <p class="color-secondary text-12 mb-1"><span>  </span><span> {{ item.time }}</span></p>
                                         </div>
                                         <div @click="handleTrainingsClick(item)"
                                           v-if="item.groupId == 'trainings'"
@@ -146,7 +146,7 @@
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
                                             </div>
-                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Time: {{ item.time }}</span></p>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span> {{ item.time }}</span></p>
                                         </div>
                                         <div @click="handleMatchesClick(item)"
                                           v-if="item.groupId == 'matches'"
@@ -157,7 +157,7 @@
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
                                             </div>
-                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Time: {{ item.time }}</span></p>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span> {{ item.time }}</span></p>
                                         </div>
                                         </div>
                                         <div v-if="filteredEvents(day.date , 'Afternoon').length > 0" class="cal-time-zone d-flex align-items-center mb-2">
@@ -210,7 +210,7 @@
                                               </span>
                                               <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
                                             </div>
-                                            <p class="color-secondary text-12 mb-1"><span>Time : </span><span> {{ item.time }}</span></p>
+                                            <p class="color-secondary text-12 mb-1"><span> </span><span> {{ item.time }}</span></p>
                                         </div>
                                         <div @click="handleTrainingsClick(item)"
                                           v-if="item.groupId == 'trainings'"
@@ -232,7 +232,7 @@
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
                                             </div>
-                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Time: {{ item.time }}</span></p>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span> {{ item.time }}</span></p>
                                         </div>
                                         </div>
                                         <div v-if="filteredEvents(day.date , 'Evening').length > 0" class="cal-time-zone d-flex align-items-center mb-2">
@@ -285,7 +285,7 @@
                                               </span>
                                               <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
                                             </div>
-                                            <p class="color-secondary text-12 mb-1"><span>Time : </span><span> {{ item.time }}</span></p>
+                                            <p class="color-secondary text-12 mb-1"><span> </span><span> {{ item.time }}</span></p>
                                         </div>
                                         <div @click="handleTrainingsClick(item)"
                                           v-if="item.groupId == 'trainings'"
@@ -307,7 +307,7 @@
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
                                             </div>
-                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Time: {{ item.time }}</span></p>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span> {{ item.time }}</span></p>
                                         </div>
                                         </div>
                                     </div>
