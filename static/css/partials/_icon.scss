@@ -1,5 +1,5 @@
 // icon
-$icon-names: "sun","half-sun","half-moon","list-check","note-book","chat-group","call-ring","location","plus-circle","arrow-left","arrow-right","club-catalog","club-existing","planner","task","calendar","meeting","activities","study","cog","logout","schedule","meeting-availability","meeting-view","session","analytics","search","more-dotes","advisor","availability","appoinments","home","notification-bell","school","filter-calendar","filter-funnel","hand-burger","presentation","club-meeting","team-match-training";
+$icon-names: "sun","half-sun","half-moon","list-check","note-book","chat-group","call-ring","location","plus-circle","arrow-left","arrow-right","club-catalog","club-existing","planner","task","calendar","meeting","activities","study","cog","logout","schedule","meeting-availability","meeting-view","session","analytics","search","more-dotes","advisor","availability","appoinments","home","notification-bell","school","filter-calendar","filter-funnel","hand-burger","presentation","club-meeting","team-match-training","mail","school","phone","edit-pen";
 
 @each $icon-name in $icon-names {
     .i-#{$icon-name} {
