@@ -101,7 +101,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>{{ item.time }}</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> {{ item.date }}</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> {{ item.date }}</span></p>
                                             </div>
                                         </div>
                                         <div @click="handleStudyCardClick(item)"
@@ -111,7 +111,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.timeValNum }}</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> {{ item.timeValNum }}</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -176,7 +176,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>{{ item.time }}</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> {{ item.date }}</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> {{ item.date }}</span></p>
                                             </div>
                                         </div>
                                         <div @click="handleStudyCardClick(item)"
@@ -186,7 +186,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.timeValNum }}</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> {{ item.timeValNum }}</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -251,7 +251,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>{{ item.time }}</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> {{ item.date }}</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> {{ item.date }}</span></p>
                                             </div>
                                         </div>
                                         <div @click="handleStudyCardClick(item)"
@@ -261,7 +261,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.timeValNum }}</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> {{ item.timeValNum }}</span></p>
                                                 </div>
                                             </div>
                                         </div>
