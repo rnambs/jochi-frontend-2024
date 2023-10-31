@@ -300,7 +300,7 @@
                   </tr>
 
                   <tr v-if="isDateChanged && slot_date_selection.length > 0">
-                    <td style="vertical-align: top" class="pt-3">
+                    <td style="vertical-align: top" class="pt-3 tmodal-data">
                       Select Time
                     </td>
                     <td>
@@ -323,8 +323,8 @@
                                 class="p-3"
                                 :class="
                                   Schedule.slot_id == selectedSlot
-                                    ? 'card card-primary border-theme'
-                                    : 'card card-white'
+                                    ? 'card card-tertiary border'
+                                    : 'card card-tertiary border'
                                 "
                               >
                                 <h6>{{ Schedule["dateFormat"] }}</h6>

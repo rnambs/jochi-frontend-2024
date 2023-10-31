@@ -95,13 +95,13 @@
                                           class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
+                                                    <i class="i-list-check j-icon i-xs bg-white"></i>
                                                 </span>
-                                                <p class="mb-0 text-14 font-medium c  olor-primary-light">{{ item.title }}</p>
+                                                <p class="mb-0 text-14 font-medium color-primary-light">{{ item.title }}</p>
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>{{ item.time }}</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> {{ item.date }}</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> {{ item.date }}</span></p>
                                             </div>
                                         </div>
                                         <div @click="handleStudyCardClick(item)"
@@ -111,7 +111,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.timeValNum }}</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> {{ item.timeValNum }}</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@
                                           class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
+                                                    <i class="i-chat-group j-icon i-xs bg-white"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light">Meeting with {{ item.title }}</p>
                                             </div>
@@ -131,9 +131,9 @@
                                           class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-center">
                                               <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                <i class="i-club-meeting j-icon i-xs bg-global"></i>
+                                                <i class="i-club-meeting j-icon i-xs bg-white"></i>
                                               </span>
-                                              <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
+                                              <p class="mb-0 text-14 font-medium color-primary-light">{{ item.title }}</p>
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>  </span><span> {{ item.time }}</span></p>
                                         </div>
@@ -142,7 +142,7 @@
                                           class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-team-match-training j-icon i-xs bg-global"></i>
+                                                    <i class="i-team-match-training j-icon i-xs bg-white"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
                                             </div>
@@ -153,7 +153,7 @@
                                           class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-team-match-training j-icon i-xs bg-global"></i>
+                                                    <i class="i-team-match-training j-icon i-xs bg-white"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
                                             </div>
@@ -170,13 +170,13 @@
                                           class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
+                                                    <i class="i-list-check j-icon i-xs bg-white"></i>
                                                 </span>
-                                                <p class="mb-0 text-14 font-medium c  olor-primary-light">{{ item.title }}</p>
+                                                <p class="mb-0 text-14 font-medium color-primary-light">{{ item.title }}</p>
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>{{ item.time }}</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> {{ item.date }}</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> {{ item.date }}</span></p>
                                             </div>
                                         </div>
                                         <div @click="handleStudyCardClick(item)"
@@ -186,7 +186,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.timeValNum }}</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> {{ item.timeValNum }}</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -195,7 +195,7 @@
                                           class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
+                                                    <i class="i-chat-group j-icon i-xs bg-white"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light">Meeting with {{ item.title }}</p>
                                             </div>
@@ -206,9 +206,9 @@
                                           class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-center">
                                               <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                <i class="i-club-meeting j-icon i-xs bg-global"></i>
+                                                <i class="i-club-meeting j-icon i-xs bg-white"></i>
                                               </span>
-                                              <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
+                                              <p class="mb-0 text-14 font-medium color-primary-light">{{ item.title }}</p>
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span> </span><span> {{ item.time }}</span></p>
                                         </div>
@@ -217,7 +217,7 @@
                                           class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-team-match-training j-icon i-xs bg-global"></i>
+                                                    <i class="i-team-match-training j-icon i-xs bg-white"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
                                             </div>
@@ -228,7 +228,7 @@
                                           class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-team-match-training j-icon i-xs bg-global"></i>
+                                                    <i class="i-team-match-training j-icon i-xs bg-white"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
                                             </div>
@@ -245,13 +245,13 @@
                                           class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-list-check j-icon i-xs bg-global"></i>
+                                                    <i class="i-list-check j-icon i-xs bg-white"></i>
                                                 </span>
-                                                <p class="mb-0 text-14 font-medium c  olor-primary-light">{{ item.title }}</p>
+                                                <p class="mb-0 text-14 font-medium color-primary-light">{{ item.title }}</p>
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>{{ item.time }}</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> {{ item.date }}</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> {{ item.date }}</span></p>
                                             </div>
                                         </div>
                                         <div @click="handleStudyCardClick(item)"
@@ -261,7 +261,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> {{ item.timeValNum }}</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> {{ item.timeValNum }}</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -270,7 +270,7 @@
                                           class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-chat-group j-icon i-xs bg-global"></i>
+                                                    <i class="i-chat-group j-icon i-xs bg-white"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light">Meeting with {{ item.title }}</p>
                                             </div>
@@ -281,9 +281,9 @@
                                           class="card card-secondary rounded-4 mb-3 p-2 cursor-pointer">
                                             <div class="d-flex align-items-center">
                                               <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                <i class="i-club-meeting j-icon i-xs bg-global"></i>
+                                                <i class="i-club-meeting j-icon i-xs bg-white"></i>
                                               </span>
-                                              <p class="color-secondary text-12 mb-1">{{ item.title }}</p>
+                                              <p class="mb-0 text-14 font-medium color-primary-light">{{ item.title }}</p>
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span> </span><span> {{ item.time }}</span></p>
                                         </div>
@@ -292,7 +292,7 @@
                                           class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-team-match-training j-icon i-xs bg-global"></i>
+                                                    <i class="i-team-match-training j-icon i-xs bg-white"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
                                             </div>
@@ -303,7 +303,7 @@
                                           class="card card-transparent border-0 rounded-4 mb-3 py-2 cursor-pointer">
                                             <div class="d-flex align-items-start mb-1">
                                                 <span class="rounded-4 p-1 bg-primary-light mr-1">
-                                                    <i class="i-team-match-training j-icon i-xs bg-global"></i>
+                                                    <i class="i-team-match-training j-icon i-xs bg-white"></i>
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
                                             </div>

@@ -6751,7 +6751,7 @@ select.form-control{
 }
 
 .custom-modal-ts-height {
-    height: 266px;
+    max-height: 266px;
     overflow: auto;
     .modal-time-schedules {
         .meeting-list {
