@@ -5934,7 +5934,7 @@ select.form-control.is-invalid {
 }
 
 .custom-modal-ts-height {
-  height: 266px;
+  max-height: 266px;
   overflow: auto;
 }
 .custom-modal-ts-height .modal-time-schedules .meeting-list {

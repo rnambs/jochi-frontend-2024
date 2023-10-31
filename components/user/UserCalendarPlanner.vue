@@ -88,7 +88,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>11:00 AM </span> > <span> 12 :00 AM</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> Jan 3,2023</span></p>
                                             </div>
                                         </div>
                                         <div class="cal-time-zone d-flex align-items-center mb-2">
@@ -100,7 +100,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">Civil War Essay</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> Jan 3,2023</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,7 +113,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> Jan 3,2023</span></p>
                                             </div>
                                         </div>
                                         <div class="card card-transparent border-0 rounded-4 mb-3 py-2">
@@ -138,7 +138,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> Jan 3,2023</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -159,7 +159,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">Humanities</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 6,2023</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> Jan 6,2023</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -176,7 +176,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> Jan 3,2023</span></p>
                                             </div>
                                         </div>
                                         <div class="card card-transparent border-0 rounded-4 mb-3 py-2">
@@ -197,7 +197,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">Research Lab Art</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> Jan 3,2023</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,7 +210,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> Jan 3,2023</span></p>
                                             </div>
                                         </div>
                                         <div class="card card-transparent border-0 rounded-4 mb-3 py-2">
@@ -240,7 +240,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">Civil War Essay</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> Jan 3,2023</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -253,7 +253,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">Research Lab Art</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> Jan 3,2023</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -266,7 +266,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> Jan 3,2023</span></p>
                                             </div>
                                         </div>
                                         <div class="card card-transparent border-0 rounded-4 mb-3 py-2">
@@ -291,7 +291,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> Jan 3,2023</span></p>
                                             </div>
                                         </div>
                                         <div class="card card-secondary rounded-4 mb-3 p-2">
@@ -299,7 +299,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">Daily Journal Choir</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> Jan 3,2023</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -321,7 +321,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">Research Lab Art</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> Jan 3,2023</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -338,7 +338,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> Jan 3,2023</span></p>
                                             </div>
                                         </div>
                                         <div class="cal-time-zone d-flex align-items-center mb-2">
@@ -363,7 +363,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">Civil War Essay</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> Jan 3,2023</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -376,7 +376,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> Jan 3,2023</span></p>
                                             </div>
                                         </div>
                                         <div class="card card-transparent border-0 rounded-4 mb-3 py-2">
@@ -406,7 +406,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">Exit Ticket</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 9,2023</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> Jan 9,2023</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -419,7 +419,7 @@
                                                 <i class="i-note-book j-icon i-xl bg-text-secondary mr-2"></i>
                                                 <div class="d-flex flex-column">
                                                     <p class="color-secondary text-12 mb-1">Civil War Essay</p>
-                                                    <p class="color-secondary text-12 mb-1"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                    <p class="color-secondary text-12 mb-1"><span>Due: </span><span> Jan 3,2023</span></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -432,7 +432,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> Jan 3,2023</span></p>
                                             </div>
                                         </div>
                                         <div class="card card-transparent border-0 rounded-4 mb-3 py-2">
@@ -457,7 +457,7 @@
                                             </div>
                                             <p class="color-secondary text-12 mb-1"><span>9:00 AM </span> > <span> 10 :00 AM</span></p>
                                             <div class="d-flex justify-content-end">
-                                                <p class="color-secondary text-12 mb-0"><span>Due : </span><span> Jan 3,2023</span></p>
+                                                <p class="color-secondary text-12 mb-0"><span>Due: </span><span> Jan 3,2023</span></p>
                                             </div>
                                         </div>
                                     </div>
