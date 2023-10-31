@@ -820,7 +820,6 @@ export default {
             element.session_type == "Match" ? "matches" : "trainings";
           this.eventList.push(plannerObj);
         }
-        console.log(this.eventList);
       });
       this.loading = false;
     },
