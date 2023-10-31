@@ -804,7 +804,7 @@ export default {
             var color = "#da70d6";
           }
           var time = element.time;
-          var dateMeeting = element.date;
+          var dateMeeting = moment(element.date).format('YYYY-MM-DD');
           var tmeMeeting = "";
           if (element.time) {
             tmeMeeting = this.formatAMPM(element.time);
@@ -820,6 +820,7 @@ export default {
             element.session_type == "Match" ? "matches" : "trainings";
           this.eventList.push(plannerObj);
         }
+        console.log(this.eventList);
       });
       this.loading = false;
     },
@@ -1151,16 +1152,16 @@ export default {
       if (period === 'AM') {
         if (hour <= 12) {
           return 'Morning';
-        } else {
-          return 'Evening';
-        }
-      } else if (period === 'PM') {
-        if (hour < 5) {
-          return 'Afternoon';
-        } else if (hour < 12) {
-          return 'Evening';
         } 
-      }
+        } else if (period === 'PM') {
+          if (hour === 12) {
+            return 'Afternoon';
+          } else if (hour < 5) {
+            return 'Afternoon';
+          } else if (hour < 12) {
+            return 'Evening';
+          }
+        }
     },
     handleStudyCardClick(item) {
       if (item.groupId === "study") {
