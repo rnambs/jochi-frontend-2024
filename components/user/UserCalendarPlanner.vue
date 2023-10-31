@@ -473,6 +473,7 @@ export default {
       invalidSubmitText:false,
       eventList:[],
       showMorningSection: false,
+      newDate: '',
     }
   },
   created() {
@@ -825,7 +826,9 @@ export default {
     },
     updateFilter(selectedFilter) {
       this.filterType = selectedFilter;
+      if (this.filterType !== 'All') {
       this.GetWeeklyPlannerFilter();
+      }
     },
     async GetWeeklyPlannerFilter(){
       this.loading = true;
@@ -1021,7 +1024,7 @@ export default {
       this.updateWeekNumber();
       this.updateWeekNumberAndMonth();
       this.getStartOfWeek();
-      this.GetWeeklyPlanner();
+      this.getData();
     },
     goToNextWeek() {
       this.currentDate.setDate(this.currentDate.getDate() + 7);
@@ -1030,7 +1033,17 @@ export default {
       this.updateWeekNumber();
       this.updateWeekNumberAndMonth();
       this.getStartOfWeek();
-      this.GetWeeklyPlanner();
+      this.getData();
+    },
+    getData(){
+      switch (this.filterType) {
+        case "All": {
+          this.GetWeeklyPlanner(); 
+        }
+        default: {
+          this.updateFilter(this.filterType)
+        }
+      }
     },
     getStartOfWeek() {
       const dayOfWeek = this.currentDate.getDay(); // 0 (Sunday) to 6 (Saturday)
@@ -1054,7 +1067,9 @@ export default {
       } else {
         // If weekends are shown, start from Wednesday
         dayOffset = -this.currentDate.getDay() + 3;
-      }
+         this.newDate = new Date(this.currentDate);
+        this.newDate.setDate(this.currentDate.getDate() + dayOffset);
+      } 
       startDay.setDate(this.currentDate.getDate() + dayOffset);
       const daysToShow = this.showWeekends ? 5 : 5;
       for (let i = 0; i < daysToShow; i++) {
@@ -1076,19 +1091,36 @@ export default {
       this.weekNumberText = `Week ${weekNumber.toString().padStart(2, '0')}`;
     },
     updateWeekNumberAndMonth() {
-      // Calculate the week number within the month
-      const weekNumber = Math.ceil(this.currentDate.getDate() / 7);
-      // Get the month name
-      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      const monthName = monthNames[this.currentDate.getMonth()];
-      this.weekNumberText = `Week ${weekNumber.toString().padStart(2, '0')}`;
-      this.monthText = monthName;
+    // Calculate the week number within the month
+      if (this.showWeekends) {
+        this.newDate
+        // Get the month name from this.newDate
+        const monthnames = [
+          'January', 'February', 'March', 'April', 'May', 'June',
+          'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+        const weekNumber = Math.ceil(this.newDate.getDate() / 7);
+        this.weekNumberText = `Week ${weekNumber.toString().padStart(2, '0')}`;
+        const monthname = monthnames[this.newDate.getMonth()];
+        this.monthText = monthname;
+      } else {
+        // Get the month name from this.currentDate
+        const monthNames = [
+          'January', 'February', 'March', 'April', 'May', 'June',
+          'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+        const weekNumber = Math.ceil(this.currentDate.getDate() / 7);
+        this.weekNumberText = `Week ${weekNumber.toString().padStart(2, '0')}`;
+        const monthName = monthNames[this.currentDate.getMonth()];
+        this.monthText = monthName;
+      }
     },
     toggleWeekends() {
       this.showWeekends = !this.showWeekends;
       this.days = [];
       this.generateDays();
       this.getStartOfWeek();
+      this.updateWeekNumberAndMonth();
     },
     async GetStudents() {
       await this.getStudents({
@@ -1176,7 +1208,6 @@ export default {
       if (item.groupId === "club-meeting") {
         let club = this.clubMeetings.find((e) => e.clubs?.id == item.id);
         const eventStartDate = moment(item.start);
-        // const currentDate = moment();
         if (eventStartDate.isBefore(moment().format("YYYY-MM-DD"))) {
         this.alertMessage = "No actions can be performed on past events";
         $("#alertModal").modal({ backdrop: true });
@@ -1189,8 +1220,7 @@ export default {
     handleMeetingClick(item) {
       if (item.groupId === "peer-meeting" || item.groupId === "teacher-meeting") {
         // Compare the event's 'start' date with the current date
-        const eventStartDate = moment(item.start);
-        // const currentDate = moment();   
+        const eventStartDate = moment(item.start);  
         if (eventStartDate.isBefore(moment().format("YYYY-MM-DD"))) {
         this.alertMessage = "No actions can be performed on past events";
           $("#alertModal").modal({ backdrop: true });
@@ -1204,7 +1234,6 @@ export default {
         let club = this.trainingsMatches.find((e) => e.id == item.id);
         // Compare the event's 'start' date with the current date
         const eventStartDate = moment(item.start);
-        // const currentDate = moment();
         if (eventStartDate.isBefore(moment().format("YYYY-MM-DD"))) {
         this.alertMessage = "No actions can be performed on past events";
           $("#alertModal").modal({ backdrop: true });
@@ -1219,7 +1248,6 @@ export default {
       if (item.groupId === "trainings") {
         let club = this.trainingsMatches.find((e) => e.id == item.id);
         const eventStartDate = moment(item.start);
-        // const currentDate = moment();  
         if (eventStartDate.isBefore(moment().format("YYYY-MM-DD"))) {
         this.alertMessage = "No actions can be performed on past events";
           $("#alertModal").modal({ backdrop: true });
