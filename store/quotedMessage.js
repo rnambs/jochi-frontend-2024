@@ -545,6 +545,7 @@ const actions = {
       }
     } catch (e) {
       console.log(e);
+      console.log("response",e?.response?.data?.message);
       if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -553,12 +554,19 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      else if (e?.response?.data?.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage',e?.response?.data?.message);
+        commit('setErrorType', "error");
+      }
       else if (e?.response?.data?.error) {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', e?.response?.data?.error);
         commit('setErrorType', "error");
       }
+     
     }
 
   },
