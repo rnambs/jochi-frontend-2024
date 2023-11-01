@@ -3318,10 +3318,10 @@ export default {
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
         this.submissionId = "1"
-      } else if (this.errorMessage != "") {
+      } else if (this.errorMessageQuote != "") {
         this.$toast.open({
-          message: this.errorMessage,
-          type: this.errorType,
+          message: this.errorMessageQuote,
+          type: this.errorTypeQuote,
           duration: 5000,
         });
       }
