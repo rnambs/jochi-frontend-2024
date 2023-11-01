@@ -1101,7 +1101,7 @@
               :disabled="!value || dayArrVal.length <= 0"
               @click.prevent="UpdateTime"
             >
-              Update the next meeting
+              Update the next meeting 
             </button>
           </div>
         </div>
@@ -1582,6 +1582,7 @@ export default {
       });
       this.dayArrVal = tempArray;
       this.loading = true;
+      this.value = "";
       await this.updateTime({
         club_id: this.clubId,
         user_id: localStorage.getItem("id"),
@@ -1590,7 +1591,6 @@ export default {
       });
 
       this.loading = false;
-
       if (this.successMessage != "") {
         $("#nextMeetingModal").modal("hide");
         this.$toast.open({
@@ -1605,7 +1605,6 @@ export default {
           duration: 5000,
         });
       }
-      this.value = "";
       this.getClubMoreInfo();
     },
     async Removetodo(val) {
