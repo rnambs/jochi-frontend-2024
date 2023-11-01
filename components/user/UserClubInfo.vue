@@ -454,7 +454,7 @@
                       type: clubDetails.activity_type,
                     },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center btn btn-primary btn-lg w-100"
+                  class="inner-tab d-flex align-items-center justify-content-center btn btn-primary btn-lg w-100 h-100"
                 >
                   <span class="font-semi-bold"
                     >Home Page</span
@@ -471,7 +471,7 @@
                       type: clubDetails.activity_type,
                     },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center btn btn-primary btn-lg w-100"
+                  class="inner-tab d-flex align-items-center justify-content-center btn btn-primary btn-lg w-100 h-100"
                 >
                   <span class="font-semi-bold"
                     >Files & Slides</span
@@ -492,9 +492,9 @@
                   <span class="font-semi-bold"
                     >Next Meeting</span
                   >
-                  <!-- <span class="text-16 color-secondary font-regular">{{
+                  <span class="text-16 color-white font-regular mx-2">{{
                     clubMoreDetails.announcement
-                  }}</span> -->
+                  }}</span>
                 </div>
                 <!-- </nuxt-link> -->
               </div>
