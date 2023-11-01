@@ -101,14 +101,14 @@
                                   <li @click="onCardClick(item, 'Doing')" class="item px-2 py-1">
                                     Edit
                                   </li>
-                                  <div v-if="item.shared_users_id != user_id">
-                                    <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
-                                    <li @click="movetoTodo(item, 'Doing')" class="item px-2 py-1">
+                                  <li @click="movetoTodo(item, 'Doing')" class="item px-2 py-1">
                                     Move to ToDo
                                   </li>
                                   <li @click="movetoDone(item, 'Doing')" class="item px-2 py-1">
                                     Move to Done
                                   </li>
+                                  <div v-if="item.shared_users_id != user_id">
+                                    <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
                               </div>
@@ -199,14 +199,14 @@
                                 </div>
                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
                                   <li @click="onCardClick(item, 'Pending')" class="item px-2 py-1">Edit</li>
-                                  <div v-if="item.shared_users_id != user_id">
-                                    <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
-                                    <li @click="movetoDoing(item, 'Pending')" class="item px-2 py-1">
+                                  <li @click="movetoDoing(item, 'Pending')" class="item px-2 py-1">
                                     Move to Doing
                                   </li>
                                   <li @click="movetoDone(item, 'Pending')" class="item px-2 py-1">
                                     Move to Done
                                   </li>
+                                  <div v-if="item.shared_users_id != user_id">
+                                    <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
                               </div>
@@ -2401,9 +2401,10 @@ export default {
       this.isDragging = false;
       this.draggingIndex = null;
       this.isDroppingTodo = false;
+      this.isDraggingDue = false;
     },
     undoAsstComplete(data) {
-      this.completeAssignment(false);
+      this.completeAssignment(data,false);
       this.removeItemFromList(this.todoType, this.todoItem)
     },
     handleDrop(data, event) {
@@ -2422,7 +2423,7 @@ export default {
       }
       this.isDroppingDone = false;
     },
-    async completeAssignment(completed = true) {
+    async completeAssignment(data,completed = true) {
       this.processingCompleteAssignment = true;
       await this.completeTask({
         assignment_id: completed ? this.completeAsstId : this.undoAsstId,
@@ -2434,7 +2435,8 @@ export default {
         this.openAssignment = false;
         completed ? this.loadUpdatedData('Done') : this.loadUpdatedData('Pending');
         this.completeAsstId = 0;
-        if (this.sourceassignment != 'doingAssignments' || this.todoType != 'Doing') {
+        console.log(data.item.task_status);
+        if (this.sourceassignment != 'doingAssignments' && data.item.task_status != 'Overdue' && this.todoType !== 'Doing') {
           this.$toast.open({
             message: this.successMessage,
             type: this.SuccessType,
