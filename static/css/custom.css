@@ -6115,4 +6115,5 @@ select.form-control.is-invalid {
 
 .task-container {
   max-height: calc(100vh - 290px);
+  flex-grow: 1;
 }/*# sourceMappingURL=custom.css.map */
