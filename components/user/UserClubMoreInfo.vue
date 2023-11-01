@@ -543,7 +543,7 @@
               Are you sure you want to delete this item?
             </p>
           </div>
-          <div class="modal-footer justify-content-end border-top-0 bg-global text-dark">
+          <div class="modal-footer justify-content-end border-top-0 text-dark">
             <button
               type="button"
               data-dismiss="modal"
