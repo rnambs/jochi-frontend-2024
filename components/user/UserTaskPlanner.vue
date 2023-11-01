@@ -1319,7 +1319,7 @@
                   </div>
                 </div>
                 <div class="row mt-0">
-                  <div class="col-6">
+                  <div class="col-6 py-1">
                     <div class="form-group">
                       <label for="recipient-name" class="col-form-label">Time<em>*</em></label>
                       <div>
