@@ -1191,36 +1191,153 @@
               </form>
               <form v-if="isSharedAssignment" ref="assignmentForm" id="assignmentForm">
                 <div class="form-group mb-2">
-                  <label for="recipient-name" class="col-form-label py-1">Subject here:</label>
-                  &nbsp;{{ subject }}
+                  <label for="recipient-name" class="col-form-label py-1">Subject here<em>*</em></label>
+                  <input v-if="schoologyAssignment == '1'" type="text" disabled="disabled" class="form-control" v-model="gg4lSubject"
+                    maxlength="100" placeholder="Enter assignment name" />
+                  <!-- <select v-else class="form-control" tabindex="" v-model="subject" :class="{
+                    'is-invalid':
+                      submitted && $v.subject.$error,
+                  }">
+                    <option value="">Select subject</option>
+                    <option v-bind:value="{
+                      id: subjects.id,
+                      text: subjects.subject_name,
+                    }" v-for="(subjects, index) in subjectsData" :key="index">
+                      {{ subjects.subject_name }}
+                    </option>
+                    <option v-if="subjectsData.length == 0">
+                      No data
+                    </option>
+                  </select>
+                  <div v-if="submitted && $v.subject.$error" class="invalid-feedback">
+                    <span v-if="!$v.subject.required">This field is required</span>
+                  </div> -->
+                  <div v-else
+                    class="dropdown"
+                  >
+                    <div
+                      class="dropdown-select d-inline-flex form-control rounded-8 border border--form color-secondary font-normal text-16 pr-2 disabled"
+                      type="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      :class="{
+                      'is-invalid':
+                      submitted && $v.subject.$error,
+                  }"
+                    >
+                      <span id="dLabel" class="mr-auto color-secondary text-truncate">
+                        {{ subject ? subject.text : 'Select Subject' }}</span
+                      >
+                      <span class="caret color-secondary"
+                        ><i class="fas fa-chevron-down font-medium"></i
+                      ></span>
+                    </div>
+
+                    <ul
+                      class="dropdown-menu w-100 rounded-12 border border--form mt-0 p-2"
+                      aria-labelledby="dLabel"
+                    >
+                      <li v-for="(subjects, index) in subjectsData" :key="index" class="item p-2" @click="selectSubject(subjects)">
+                        {{ subjects.subject_name }}
+                      </li>
+                      <li v-if="subjectsData.length == 0">
+                      No data
+                      </li>
+                      <div v-if="submitted && $v.subject.$error" class="invalid-feedback">
+                      <span v-if="!$v.subject.required">This field is required</span>
+                  </div>
+                    </ul>
+                  </div>
                 </div>
                 <div class="form-group mb-2">
-                  <label for="assignment-name" class="col-form-label py-1">Assignment Name:</label>
-                  &nbsp;{{ assignmentName }}
+                  <label for="assignment-name" class="col-form-label py-1">Assignment Name<em>*</em></label>
+                  <input type="text" disabled="disabled" class="form-control" v-model="assignmentName" placeholder="Enter assignment name"
+                    :class="{
+                      'is-invalid':
+                        submitted && $v.assignmentName.$error,
+                    }" />
+                  <div v-if="submitted && $v.assignmentName.$error" class="invalid-feedback">
+                    <span v-if="!$v.assignmentName.required">This field is required</span>
+                  </div>
                 </div>
                 <div class="form-group mb-2">
-                  <label for="message-text" class="col-form-label py-1">Task:</label>
-                  &nbsp;{{ assignmentDescription }}
+                  <label for="message-text" class="col-form-label py-1">Task</label>
+                  <textarea disabled="disabled" class="form-control" id="message-text" rows="3" v-model="assignmentDescription"
+                    maxlength="500" placeholder="Enter assignment description"></textarea>
                 </div>
                 <div class="row">
-                  <div class="col-md-6 ml-auto py-0">
+                  <div class="col-md-6 ml-auto py-0 disabled">
                     <div class="form-group mb-2 mb-0">
-                      <label for="recipient-name" class="col-form-label py-1">Priority:</label>&nbsp;
-                      <span>{{ priorityVal }}</span>
+                      <label for="recipient-name" class="col-form-label py-1">Priority<em>*</em></label>
+                      <div class="dropdown input-icon-area">
+                        <button id="dLabel" class="dropdown-select form-control text-left" type="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="">
+                            {{
+                              priorityVal
+                              ? priorityVal
+                              : "Select priority"
+                            }}</span>
+                        </button>
+                        <ul class="dropdown-menu border" aria-labelledby="dLabel">
+                          <li @click="priorityVal = 'Can Wait'" class="item low-color">
+                            <span>Can Wait</span>
+                          </li>
+                          <li @click="priorityVal = 'Important'" class="item medium-color">
+                            <span>Important</span>
+                          </li>
+                          <li @click="priorityVal = 'Urgent'" class="item high-color">
+                            <span>Urgent</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div v-if="submitted &&
+                      priorityVal != 'Urgent' &&
+                      priorityVal != 'Important' &&
+                      priorityVal != 'Can Wait'
+                      " class="invalid-feedback" style="display: block">
+                      <span v-if="priorityVal != 'Urgent' &&
+                        priorityVal != 'Important' &&
+                        priorityVal != 'Can Wait'
+                        ">This field is required</span>
                     </div>
                   </div>
                   <div class="col-md-6 ml-auto py-0">
                     <div class="form-group mb-2">
-                      <label for="recipient-name" class="col-form-label py-1">Date:</label>
-                      &nbsp;{{ dateValue }}
+                      <label for="recipient-name" class="col-form-label py-1">Date<em>*</em></label>
+                      <date-picker disabled="disabled" class="form-control dropdown-menu-top" placeholder="MM/DD/YYYY" format="MM/dd/yyyy"
+                        v-model="dateValue" :class="{
+                          'is-invalid':
+                            submitted && $v.dateValue.$error,
+                        }" :disabled-dates="disabledDates" />
+                      <div v-if="submitted && $v.dateValue.$error" class="invalid-feedback">
+                        <span v-if="!$v.dateValue.required">This field is required</span>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <div class="row mt-0">
                   <div class="col-6">
                     <div class="form-group">
-                      <label for="recipient-name" class="col-form-label">Time:</label>
-                      <div>&nbsp;{{ timeValue }}</div>
+                      <label for="recipient-name" class="col-form-label">Time<em>*</em></label>
+                      <div>
+                        <vue-timepicker disabled="disabled" @change="checkValidTime" close-on-complete format="hh:mm A" v-model="timeValue"
+                          name="timeValue" class="show-cursor dropdown-menu-top" :value="timeValue" :class="{
+                            'is-invalid':
+                              submitted &&
+                              ($v.timeValue.$error ||
+                                !validTime),
+                          }"></vue-timepicker>
+                        <div v-if="submitted &&
+                          ($v.timeValue.$error || !validTime)
+                          " class="invalid-feedback">
+                          <span v-if="!$v.timeValue.required ||
+                            !validTime
+                            ">Not a valid time</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1284,21 +1401,34 @@
                       </div>
                     </div>
                   </div>
-                  <div v-else v-for="subTask in subTasksList" :key="subTask.id">
-                    <div class="card card-transparent show-icon p-1 mb-1">
-                      <div class="d-flex align-items-center justify-content-between">
-                        <p class="mb-0 color-secondary text-16 font-regular word-break pr-3">
-                          <span class="subtask-btn mr-1" :class="{
-                            selected:
-                              subTask.task_status ==
-                              'Completed',
-                          }"><i></i></span>
-                          <span>{{ subTask.title }}</span>
-                        </p>
-                        <span v-if="subTask.task_status != 'Completed'
-                          " @click="deleteSubTask(subTask)"
-                          class="color-primary-dark fa-icon show-hover d-none btn p-0"><i
-                            class="fas fa-trash-alt"></i></span>
+                  <div v-else>
+                    <div v-for="subTask in subTasksList" :key="subTask.id">
+                      <div class="card card-transparent show-icon p-1 mb-1">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <!-- <p
+                                          class="mb-0 color-secondary text-16 font-regular word-break pr-3"
+                                        >
+                                          <span
+                                            class="subtask-btn mr-1"
+                                            :class="{
+                                              selected:
+                                                subTask.task_status ==
+                                                'Completed',
+                                            }"
+                                            ><i></i
+                                          ></span>
+                                          <span>{{ subTask.title }}</span>
+                                        </p> -->
+                          <div class="p-1 form-group checkbox">
+                            <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
+                            <input :id="subTask.id" class="mr-2 cursor-pointer" type="checkbox" />
+                            <label :for="subTask.id">{{ subTask.title }}</label>
+                          </div>
+                          <span v-if="subTask.task_status != 'Completed'
+                            " @click="deleteSubTask(subTask)"
+                            class="color-primary-dark fa-icon show-hover d-none btn p-0"><i
+                              class="fas fa-trash-alt"></i></span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1383,12 +1513,12 @@
                       <option value="link">Link</option>
                     </select>
                     <div class="row m-0">
-                      <div class="col-9 py-0">
+                      <div class="col-12 py-0">
                         <input v-if="materialType == 'file'" type="file" class="form-control px-2"
                           placeholder="Upload File" @change="onFileChange" id="fileUpload"
                           accept=".png,.jpeg,.jpg,.pdf" />
                       </div>
-                      <div class="col-9 py-0">
+                      <div class="col-12 py-0">
                         <input v-if="materialType == 'link'" type="text" class="form-control px-2"
                           placeholder="Paste Link" v-model="link" />
                       </div>
@@ -1842,6 +1972,7 @@ export default {
       doneItem: {},
       doneType: '',
       task_ids: [],
+      OverdueToast: false,
     }
   },
   created() {
@@ -2391,6 +2522,10 @@ export default {
       this.undoAsstId = assignment.id;
       this.todoItem = data.item;
       this.todoType = data.sourceType;
+      if(data.item.task_status = 'Overdue'){
+        this.OverdueToast = true
+        console.log(this.OverdueToast);
+      }
       if (source === 'doingAssignments' || source === 'overdueAssignments') {
         this.sourceassignment = source;
         this.undoAsstComplete(data);
@@ -2435,8 +2570,7 @@ export default {
         this.openAssignment = false;
         completed ? this.loadUpdatedData('Done') : this.loadUpdatedData('Pending');
         this.completeAsstId = 0;
-        console.log(data.item.task_status);
-        if (this.sourceassignment != 'doingAssignments' && data.item.task_status != 'Overdue' && this.todoType !== 'Doing') {
+        if (this.sourceassignment != 'doingAssignments' && this.todoType !== 'Doing') {
           this.$toast.open({
             message: this.successMessage,
             type: this.SuccessType,
@@ -3486,4 +3620,8 @@ export default {
   margin-bottom: 16px;
   /* transition: ease-in-out 0.3s all; */
 }
+.disabled {
+    pointer-events: none; /* Prevent interaction with the contents */
+}
+
 </style>
