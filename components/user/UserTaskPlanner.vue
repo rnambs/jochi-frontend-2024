@@ -1227,7 +1227,7 @@
                   }"
                     >
                       <span id="dLabel" class="mr-auto color-secondary text-truncate">
-                        {{ subject ? subject.text : 'Select Subject' }}</span
+                        {{ subject }}</span
                       >
                       <span class="caret color-secondary"
                         ><i class="fas fa-chevron-down font-medium"></i
@@ -2522,9 +2522,8 @@ export default {
       this.undoAsstId = assignment.id;
       this.todoItem = data.item;
       this.todoType = data.sourceType;
-      if(data.item.task_status = 'Overdue'){
+      if(data.item.task_status == 'Overdue' || data.item.task_status == 'Doing' || this.todoType == 'Doing') {
         this.OverdueToast = true
-        console.log(this.OverdueToast);
       }
       if (source === 'doingAssignments' || source === 'overdueAssignments') {
         this.sourceassignment = source;
@@ -2539,6 +2538,11 @@ export default {
       this.isDraggingDue = false;
     },
     undoAsstComplete(data) {
+      if(this.todoType == 'Doing' ||this.todoType == 'Overdue' ) {
+        this.OverdueToast = true
+      }else{
+        this.OverdueToast = false;
+      }
       this.completeAssignment(data,false);
       this.removeItemFromList(this.todoType, this.todoItem)
     },
@@ -2549,6 +2553,9 @@ export default {
       this.assignmentId = assignment.id;
       this.schoologyAssignment = assignment.schoologyAssignment;
       this.submissionId = assignment.submission_id;
+      if(data.item.task_status == 'Pending' || data.item.task_status == 'Overdue'|| data.item.task_status == 'Doing'){
+        this.OverdueToast = false;
+      }
       if (source !== 'doneAssignments') {
         this.sourceassignment = source;
         this.doneItem = data.item;
@@ -2570,7 +2577,7 @@ export default {
         this.openAssignment = false;
         completed ? this.loadUpdatedData('Done') : this.loadUpdatedData('Pending');
         this.completeAsstId = 0;
-        if (this.sourceassignment != 'doingAssignments' && this.todoType !== 'Doing') {
+        if (this.OverdueToast == false) {
           this.$toast.open({
             message: this.successMessage,
             type: this.SuccessType,
