@@ -1973,6 +1973,7 @@ export default {
       doneType: '',
       task_ids: [],
       OverdueToast: false,
+      DoingToast: false,
     }
   },
   created() {
@@ -2603,6 +2604,11 @@ export default {
       this.submissionId = assignment.submission_id;
       this.doingItem = data.item;
       this.doingType = data.sourceType;
+      if(data.item.task_status == 'Pending' || data.item.task_status == 'Overdue'){
+        this.DoingToast = true;
+      } if(data.item.task_status == 'Done'){
+        this.DoingToast = false;
+      }
       if (source === 'doneAssignments') {
         this.sourceassignment = source;
         $("#undoAssignmentConfirmationoverdue").modal({ backdrop: true });
@@ -2620,6 +2626,13 @@ export default {
       this.processingCompleteAssignment = false;
       this.removeItemFromList(this.doingType, this.doingItem)
       if (this.successMessage != "") {
+        if(this.DoingToast == false){
+        this.$toast.open({
+            message: "Completed Assignment Undone Successfully",
+            type: this.SuccessType,
+            duration: 5000,
+          });
+        }
         // this.openAssignment = false;
         this.sourceassignment = '',
           this.loadUpdatedData('Doing')
@@ -3583,6 +3596,11 @@ export default {
       this.typeOfAssignment = type;
       this.doingItem = item;
       this.doingType = this.typeOfAssignment;
+      if(this.doingType == 'Pending' ||  this.doingType == 'Overdue' ) {
+        this.DoingToast = true
+      }else{
+        this.DoingToast = false;
+      }
       if (this.doingType == 'Done') {
         $("#undoAssignmentConfirmationoverdue").modal({ backdrop: true });
       } else  {
