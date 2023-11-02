@@ -323,8 +323,8 @@
                                 class="p-3"
                                 :class="
                                   Schedule.slot_id == selectedSlot
-                                    ? 'card card-tertiary border'
-                                    : 'card card-tertiary border'
+                                    ? 'card card-secondary border-theme'
+                                    : 'card card-tertiary'
                                 "
                               >
                                 <h6>{{ Schedule["dateFormat"] }}</h6>
