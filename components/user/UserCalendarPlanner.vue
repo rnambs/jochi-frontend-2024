@@ -221,7 +221,7 @@
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
                                             </div>
-                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Date: {{ item.time }}</span></p>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span> {{ item.time }}</span></p>
                                         </div>
                                         <div @click="handleMatchesClick(item)"
                                           v-if="item.groupId == 'matches'"
@@ -296,7 +296,7 @@
                                                 </span>
                                                 <p class="mb-0 text-14 font-medium color-primary-light"> {{ item.title }}</p>
                                             </div>
-                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span>Date: {{ item.time }}</span></p>
+                                            <p class="color-primary-light text-12 mb-1 ml-4 pl-1"><span> {{ item.time }}</span></p>
                                         </div>
                                         <div @click="handleMatchesClick(item)"
                                           v-if="item.groupId == 'matches'"
