@@ -102,7 +102,7 @@
                                     Edit
                                   </li>
                                   <li @click="movetoTodo(item, 'Doing')" class="item px-2 py-1">
-                                    Move to ToDo
+                                    Move to Todo
                                   </li>
                                   <li @click="movetoDone(item, 'Doing')" class="item px-2 py-1">
                                     Move to Done
@@ -390,7 +390,7 @@
                                     Move to Doing
                                   </li>
                                   <li @click="movetoTodo(item, 'Overdue')" class="item px-2 py-1">
-                                    Move to ToDo
+                                    Move to Todo
                                   </li>
                                   <li  @click="movetoDone(item, 'Overdue')" class="item px-2 py-1">
                                     Move to Done
@@ -1307,7 +1307,7 @@
                   <div class="col-md-6 ml-auto py-0">
                     <div class="form-group mb-2">
                       <label for="recipient-name" class="col-form-label py-1">Date<em>*</em></label>
-                      <date-picker disabled="disabled" class="form-control dropdown-menu-top" placeholder="MM/DD/YYYY" format="MM/dd/yyyy"
+                      <date-picker disabled="disabled" class="form-control dropdown-menu-top cursor-auto" placeholder="MM/DD/YYYY" format="MM/dd/yyyy"
                         v-model="dateValue" :class="{
                           'is-invalid':
                             submitted && $v.dateValue.$error,
@@ -1324,7 +1324,7 @@
                       <label for="recipient-name" class="col-form-label py-0">Time<em>*</em></label>
                       <div>
                         <vue-timepicker disabled="disabled" @change="checkValidTime" close-on-complete format="hh:mm A" v-model="timeValue"
-                          name="timeValue" class="show-cursor dropdown-menu-top" :value="timeValue" :class="{
+                          name="timeValue" class="show-cursor dropdown-menu-top cursor-auto" :value="timeValue" :class="{
                             'is-invalid':
                               submitted &&
                               ($v.timeValue.$error ||
