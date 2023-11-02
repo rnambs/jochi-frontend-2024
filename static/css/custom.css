@@ -1200,6 +1200,9 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   cursor: pointer;
 }
+.form-row span.vue__time-picker.time-picker input.display-time:disabled, .form-group span.vue__time-picker.time-picker input.display-time:disabled {
+  cursor: auto;
+}
 .form-row span.vue__time-picker.time-picker .controls > *, .form-group span.vue__time-picker.time-picker .controls > * {
   display: flex;
   cursor: pointer;
@@ -1506,6 +1509,9 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-secondary-dark);
   cursor: pointer;
   padding-top: 0em;
+}
+.vdp-datepicker.form-control input[type=text]:disabled {
+  cursor: auto;
 }
 .vdp-datepicker.form-control.dropdown-menu-top .vdp-datepicker__calendar {
   top: unset;
@@ -2522,6 +2528,10 @@ input[type=radio] {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+
+.cursor-auto {
+  cursor: auto !important;
 }
 
 .h-40 {
