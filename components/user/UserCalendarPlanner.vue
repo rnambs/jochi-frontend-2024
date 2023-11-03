@@ -1170,27 +1170,17 @@ export default {
       }
     },
     filteredEvents(date, timePeriod) {
-  // First, sort the eventList by time in ascending order
-  const sortedEventList = this.eventList.slice().sort((a, b) => {
-    // Assuming time is in HH:MM format, you might need to adjust the parsing logic
-    const timeA = a.time.split(':').map(Number);
-    const timeB = b.time.split(':').map(Number);
-
-    if (timeA[0] === timeB[0]) {
-      return timeA[1] - timeB[1];
-    }
-    return timeA[0] - timeB[0];
-  });
-
-  // Now, filter the sorted array
-  const filteredEvents = sortedEventList.filter((item) => {
-    const eventTimePeriod = this.getTimePeriod(item.time);
-    return item.start === date && eventTimePeriod === timePeriod;
-  });
-
-  return filteredEvents;
-},
-
+      const sortedEventList = this.eventList.slice().sort((a, b) => {
+      const timeA = this.formatAMPM(a.time);
+      const timeB = this.formatAMPM(b.time);
+      return timeA.localeCompare(timeB);
+    });
+      const filteredEvents = sortedEventList.filter((item) => {
+      const eventTimePeriod = this.getTimePeriod(item.time);
+      return item.start === date && eventTimePeriod === timePeriod;
+    });
+    return filteredEvents;
+  },
     getTimePeriod(time) {
       const timeParts = time.split(' ');
       const hour = parseInt(timeParts[0].split(':')[0]);
