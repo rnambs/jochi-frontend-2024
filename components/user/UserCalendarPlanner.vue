@@ -15,7 +15,7 @@
                                 <div class="d-flex align-items-center">
                                     <h2 class="heading2 font-semi-bold color-primary-dark mb-2">Calendar</h2>
                                     <div class="d-flex d-lg-none align-items-center mb-2 ml-2">
-                                        <p class="mb-0 font-bold text-18 color-secondary-dark mx-1">September</p>
+                                        <p class="mb-0 font-bold text-18 color-secondary-dark mx-1">{{ monthText }}</p>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-wrap align-items-center justify-content-between">
@@ -1170,11 +1170,27 @@ export default {
       }
     },
     filteredEvents(date, timePeriod) {
-        return this.eventList.filter((item) => {
-        const eventTimePeriod = this.getTimePeriod(item.time);
-        return item.start === date && eventTimePeriod === timePeriod;
-      });
-    },
+  // First, sort the eventList by time in ascending order
+  const sortedEventList = this.eventList.slice().sort((a, b) => {
+    // Assuming time is in HH:MM format, you might need to adjust the parsing logic
+    const timeA = a.time.split(':').map(Number);
+    const timeB = b.time.split(':').map(Number);
+
+    if (timeA[0] === timeB[0]) {
+      return timeA[1] - timeB[1];
+    }
+    return timeA[0] - timeB[0];
+  });
+
+  // Now, filter the sorted array
+  const filteredEvents = sortedEventList.filter((item) => {
+    const eventTimePeriod = this.getTimePeriod(item.time);
+    return item.start === date && eventTimePeriod === timePeriod;
+  });
+
+  return filteredEvents;
+},
+
     getTimePeriod(time) {
       const timeParts = time.split(' ');
       const hour = parseInt(timeParts[0].split(':')[0]);
