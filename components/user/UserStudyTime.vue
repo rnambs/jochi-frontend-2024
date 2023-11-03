@@ -534,7 +534,7 @@
                   Pomodoro Technique
                 </h3>
                 <p class="color-gray font-semi-bold text-18 text-center">
-                  Definition of this technique will go here...
+                  Boost your productivity
                 </p>
                 <button
                   @click="$event.stopPropagation()"
