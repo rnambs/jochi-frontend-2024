@@ -533,7 +533,7 @@
                 <h3 class="color-primary-dark heading3 font-bold mb-1 text-center">
                   Pomodoro Timer
                 </h3>
-                <p class="color-dark font-semi-bold text-18 text-center">
+                <p class="color-gray font-semi-bold text-18 text-center">
                   Boost your productivity.
                 </p>
                 <button
