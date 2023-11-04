@@ -337,7 +337,7 @@
           </div>
           <div class="modal-body px-3">This will log you out of your account</div>
           <div class="modal-footer justify-content-end border-top-0">
-            <button type="button" class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
+            <button type="button" class="btn btn-void py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
               Cancel
             </button>
             <button data-dismiss="modal" type="button" class="btn btn-primary py-1 px-3 rounded-8 font-semi-bold"

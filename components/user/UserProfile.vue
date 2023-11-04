@@ -1,34 +1,50 @@
 <template>
-  <div class="main-section">
+  <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
     <!-- profile Page -->
     <section id="study-detail" class="">
       <div
-        class="study-section bg-white rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="study-section rounded-10 m--12 custom-full-height d-flex flex-column"
       >
         <div class="inner-study d-flex flex-column flex-fill h-100">
           <div class="d-flex flex-column justify-content-between align-items-center">
-            <div class="d-flex align-items-center justify-content-between w-100">
-              <h3 class="color-primary-dark heading3 font-bold">Profile</h3>
-              <div class="faq-section d-flex align-items-center">
-                <div class="faq-btn color-dark font-semi-bold mr-4">
-                  <a style="color: #000000" href="https://www.jochi.info/faqs">
+            <div class="d-flex flex-wrap align-items-center justify-content-between w-100 pr-3">
+              <h3 class="color-primary-dark heading3 font-bold mr-3">Profile</h3>
+              <div class="faq-section d-flex flex-wrap align-items-center">
+                <div class="theme-switcher mr-3">
+                  <input type="radio" id="light-theme" name="themes" v-model="selectedTheme" value="light" checked />
+                  <label for="light-theme" class="cursor-pointer">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                      Light
+                    </span>
+                  </label>
+                  <input type="radio" id="dark-theme" name="themes" v-model="selectedTheme" value="dark" />
+                  <label for="dark-theme" class="cursor-pointer">
+                    <span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                      Dark
+                    </span>
+                  </label>
+                  <span class="slider"></span>
+                </div>
+                <div class="faq-btn mr-4">
+                  <a class="color-dark font-semi-bold" href="https://www.jochi.info/faqs">
                     FAQ's
                   </a>
                 </div>
-                <div class="privacy-btn color-dark font-semi-bold">
+                <div class="privacy-btn">
                   <a
-                    style="color: #000000"
-                    href="https://jochi.notion.site/Privacy-Policy-91d3a5ff9e5a49f0b4f8a4a830091bab"
+                    class="color-dark font-semi-bold"
+                    href="https://www.jochi.info/privacy-policy"
                   >
                     Privacy Policy
                   </a>
                 </div>
               </div>
             </div>
-            <div  v-if="schoolAccessType != 'ClubOnly'">
             <div
               v-if="user_type == 2 && isSchoolAdmin != '1'"
-              class="d-flex justify-content-end align-items-center w-100"
+              class="d-flex justify-content-end align-items-center w-100 my-2"
             >
               <div class="text-center">
                 <button
@@ -49,7 +65,6 @@
                 >
               </div>
             </div>
-          </div>
             <div
               class="d-flex justify-content-between align-items-center sch-admin"
               v-if="user_type == 2 && isSchoolAdmin == '1'"
@@ -59,31 +74,32 @@
           </div>
 
           <div
-            class="profile-row study-row px-2 d-flex flex-column flex-fill justify-content-start pt-3"
+            class="profile-row study-row d-flex flex-column flex-fill justify-content-start pr-2"
           >
             <div
               class="study-col d-flex flex-column justify-content-start flex-fill"
             >
-              <div class="form-section mx-auto w-100 py-3">
+              <div class="form-section mx-auto w-100 pt-3 flex-fill d-flex flex-column">
                 <!-- <form action="" class="container"> -->
                 <!-- <div class="form-group">
                     <label for="">Email</label>
                     <div class="form-field">{{ email }}</div>
                   </div> -->
-                <div>
+                <div class="flex-fill d-flex flex-column">
+                  <div>
                   <div
                     :class="
                       (advisorDetail && advisorDetail.first_name) ||
                       requestList.length > 0
                         ? 'row'
-                        : 'row d-flex justify-content-center'
+                        : 'row d-flex'
                     "
                   >
                     <!----image-->
-                    <div class="col-md-6">
+                    <div class="col-12 col-md-6">
                       <div
                         data-intro="Custom your profile on Jochi by uploading a profile picture."
-                        class="study-col profile-col d-flex flex-column justify-content-end align-items-center flex-fill"
+                        class="study-col profile-col d-flex align-items-center flex-fill"
                       >
                         <form id="form" enctype="multipart/form-data">
                           <div class="">
@@ -108,8 +124,9 @@
                                 <div
                                   v-if="
                                     this.profile &&
-                                    this.profile !=
-                                      'https://jochi-developement.s3.ap-south-1.amazonaws.com/profilePic/1634542050892.png'
+                                    (this.profile !=
+                                      'https://jochi-developement.s3.ap-south-1.amazonaws.com/profilePic/1634542050892.png' 
+                                      && this.profile != JOCHI_PRO_PIC)
                                   "
                                   class="middle position-absolute text-center"
                                 >
@@ -194,10 +211,6 @@
                               </div>
                             </div>
                           </div>
-                          <h4 class="text-center color-dark font-semi-bold">
-                            <!-- <span><i class="fas fa-user"></i></span> -->
-                            {{ name }}
-                          </h4>
 
                           <!-- <button
             id="clckPrevent"
@@ -208,199 +221,12 @@
           <span class="mr-2"><i class="fas fa-save"></i></span> <span>Save Changes</span>
           </button> -->
                         </form>
-                      </div>
-                      <div class="col-12 col-md-12">
-                        <div
-                          class="card card-primary p-2 h-100 d-flex flex-column"
-                        >
-                          <p
-                            class="mb-0 text-16 color-secondary d-flex flex-row align-items-center"
-                          >
-                            <span class="text-20"
-                              ><i class="fas fa-envelope"></i
-                            ></span>
-                            <span class="ml-2">{{ email }}</span>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="card card-primary p-2 h-100">
-                          <p
-                            class="mb-0 text-16 color-secondary d-flex flex-row align-items-baseline"
-                          >
-                            <span class="text-20"
-                              ><i class="fas fa-school"></i
-                            ></span>
-                            <span class="ml-2">{{ schoolName }}</span>
-                          </p>
-                        </div>
-                      </div>
-
-                      <div v-if="user_type == 3" class="col-md-12">
-                        <div class="row">
-                          <div
-                            data-intro="Want to receive text updates about upcoming assignments, meetings, and more? Add your phone number to do so. Please note that this is entirely optional and if you are under the age of 18 you must get parental/guardian consent to opt in."
-                            class="col-xl-12"
-                          >
-                            <button
-                              class="mr-2"
-                              v-if="!enableEdit"
-                              @click="enableEdit = true"
-                            >
-                              <span class="mr-1"
-                                ><i class="fas fa-pencil color-primary-dark"></i
-                              ></span>
-                              <span>Edit</span>
-                            </button>
-
-                            <button
-                              class="mr-2"
-                              v-if="enableEdit"
-                              @click="
-                                enableEdit = false;
-                                cancelEditPhone();
-                              "
-                            >
-                              <span class="mr-1"
-                                ><i class="fas fa-times color-primary-dark"></i
-                              ></span>
-                              <span>Cancel</span>
-                            </button>
-                            <button v-if="enableEdit" @click="phoneUpdate()">
-                              <span class="mr-1"
-                                ><i class="fas fa-save color-primary-dark"></i
-                              ></span>
-                              <span>Update</span>
-                            </button>
-
-                            <div class="card card-primary p-2">
-                              <p
-                                class="mb-0 text-16 color-secondary d-flex flex-row align-items-center"
-                              >
-                                <span class="text-20"
-                                  ><i class="fas fa-phone"></i
-                                ></span>
-                                <input
-                                  :disabled="!enableEdit"
-                                  type="text"
-                                  class="pl-3 word-break text-truncate"
-                                  v-model="phoneNumber"
-                                  @change="checkValueChange()"
-                                  @input="checkValue()"
-                                  maxlength="15"
-                                />
-                              </p>
-                            </div>
-                            <span
-                              class="mt-1"
-                              v-if="phoneInvalid"
-                              style="color: red"
-                              >Please enter a valid phone number with country
-                              code</span
-                            >
-                          </div>
-                          <div  v-if="schoolAccessType != 'ClubOnly' ">
-                          <div class="col-xl-12">
-                            <div
-                              data-intro="With the guidelines previous mentioned in mind, opt in/choose your preferences to receive certain notifications via your school email and SMS."
-                              class="card card-primary p-3 h-100 d-flex flex-column"
-                            >
-                              <h4 class="color-dark font-semi-bold">
-                                Notification Settings
-                              </h4>
-                              <div class="col-xl-12 align-items-center">
-                                <div class="d-flex flex-wrap">
-                                  <div class="custom-switch pb-1 mr-3">
-                                    <input
-                                      @change="
-                                        updateNotification($event, 'sms')
-                                      "
-                                      type="checkbox"
-                                      id="smsNotify"
-                                      name="smsNotify"
-                                      class="custom-control-input color-primary-dark"
-                                      v-model="smsNotify"
-                                    />
-                                    <label
-                                      class="custom-control-label font-normal color-dark text-14 cursor-pointer"
-                                      for="smsNotify"
-                                      >SMS Notification
-                                    </label>
-                                  </div>
-                                  <div class="custom-switch pb-1 mr-3">
-                                    <input
-                                      @change="
-                                        updateNotification($event, 'meeting')
-                                      "
-                                      type="checkbox"
-                                      id="meetingNotify"
-                                      name="meetingNotify"
-                                      class="custom-control-input color-primary-dark"
-                                      v-model="meetingNotify"
-                                    />
-                                    <label
-                                      class="custom-control-label font-normal color-dark text-14 cursor-pointer"
-                                      for="meetingNotify"
-                                      >Meeting Notification
-                                    </label>
-                                  </div>
-
-                                  <div class="custom-switch pb-1 mr-3">
-                                    <input
-                                      @change="
-                                        updateNotification($event, 'club')
-                                      "
-                                      type="checkbox"
-                                      id="clubNotify"
-                                      name="clubNotify"
-                                      class="custom-control-input color-primary-dark"
-                                      v-model="clubNotify"
-                                    />
-                                    <label
-                                      class="custom-control-label font-normal color-dark text-14 cursor-pointer"
-                                      for="clubNotify"
-                                      >Club Notification
-                                    </label>
-                                  </div>
-                                  <div class="custom-switch pb-1 mr-3">
-                                    <input
-                                      @change="
-                                        updateNotification($event, 'assignment')
-                                      "
-                                      type="checkbox"
-                                      id="assignmentNotify"
-                                      name="assignmentNotify"
-                                      class="custom-control-input color-primary-dark"
-                                      v-model="assignmentNotify"
-                                    />
-                                    <label
-                                      class="custom-control-label font-normal color-dark text-14 cursor-pointer"
-                                      for="assignmentNotify"
-                                      >Assignment Notification
-                                    </label>
-                                  </div>
-                                  <div class="custom-switch pb-1 mr-3">
-                                    <input
-                                      @change="
-                                        updateNotification($event, 'session')
-                                      "
-                                      type="checkbox"
-                                      id="sessionNotify"
-                                      name="sessionNotify"
-                                      class="custom-control-input color-primary-dark"
-                                      v-model="sessionNotify"
-                                    />
-                                    <label
-                                      class="custom-control-label font-normal color-dark text-14 cursor-pointer"
-                                      for="sessionNotify"
-                                      >Study Session Notification
-                                    </label>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                        <div class="d-flex flex-column align-items-start ml-3">
+                          <h4 class="text-center color-dark font-semi-bold ">
+                            <!-- <span><i class="fas fa-user"></i></span> -->
+                            {{ name }}name
+                          </h4>
+                          <p class="mb-0 color-gray">{{ email }}</p>
                         </div>
                       </div>
                     </div>
@@ -411,17 +237,17 @@
                           advisorDetail.first_name) ||
                         requestList.length > 0
                       "
-                      class="col-md-6"
+                      class="col-12 col-md-6"
                     >
-                      <div  v-if="schoolAccessType != 'ClubOnly' "
+                      <div
                         data-intro="Find your advisor details."
-                        class="bg-white border rounded-10 p-4 h-100"
+                        class="border-0 rounded-10 h-100"
                       >
                         <div class="">
-                          <div v-if="user_type == '3'" class="col-md-12">
+                          <div v-if="user_type == '3'" class="col-md-12 p-0">
                             <div
                               v-if="advisorDetail && advisorDetail.first_name"
-                              class="card card-primary p-3"
+                              class="card card-void p-3"
                             >
                               <h4 class="color-dark font-semi-bold">
                                 Your Advisor
@@ -458,8 +284,8 @@
                               </div>
                             </div>
                           </div>
-                          <div v-if="requestList.length > 0" class="col-md-12">
-                            <div class="card card-primary p-3">
+                          <div v-if="requestList.length > 0" class="col-md-12 p-0">
+                            <div class="card border p-3">
                               <h4 class="color-dark font-semi-bold">
                                 Advisor Requests
                               </h4>
@@ -508,7 +334,7 @@
                                     class="d-flex align-items-center justify-content-center flex-wrap"
                                   >
                                     <button
-                                      class="btn btn-secondary px-3 py-1  mr-2 mb-2"
+                                      class="btn btn-void px-3 py-1  mr-2 mb-2"
                                       @click="respondRequest(2, advisor)"
                                     >
                                       Reject
@@ -527,7 +353,7 @@
                         </div>
                       </div>
                     </div>
-
+                  </div>
                     <!-- <div class="col-12 col-md-4">
                         <div class="card card-primary h-100 ">
                               <nuxt-link to="/user-reset-password" class="btn btn-void d-flex flex-column align-items-start">
@@ -536,6 +362,204 @@
                               </nuxt-link>
                         </div>
                       </div> -->
+                  </div>
+                  <div class="row px--12 max-h-50 flex-fill">
+                    
+                    <div class="col-12 col-md-4">
+                      <div
+                            data-intro="With the guidelines previous mentioned in mind, opt in/choose your preferences to receive certain notifications via your school email and SMS."
+                            class="card border-0 p-0 h-100 d-flex flex-column"
+                          >
+                            <h4 class="color-dark font-semi-bold">
+                              Notification Settings
+                            </h4>
+                            <div class="col-xl-12 px-0 align-items-center">
+                              <div class="d-flex flex-column">
+                                <div class="custom-switch pb-3 mr-3">
+                                  <input
+                                    @change="
+                                      updateNotification($event, 'sms')
+                                    "
+                                    type="checkbox"
+                                    id="smsNotify"
+                                    name="smsNotify"
+                                    class="custom-control-input color-primary-dark"
+                                    v-model="smsNotify"
+                                  />
+                                  <label
+                                    class="custom-control-label font-normal color-dark text-14 cursor-pointer"
+                                    for="smsNotify"
+                                    >SMS Notification
+                                  </label>
+                                </div>
+                                <div class="custom-switch pb-3 mr-3">
+                                  <input
+                                    @change="
+                                      updateNotification($event, 'meeting')
+                                    "
+                                    type="checkbox"
+                                    id="meetingNotify"
+                                    name="meetingNotify"
+                                    class="custom-control-input color-primary-dark"
+                                    v-model="meetingNotify"
+                                  />
+                                  <label
+                                    class="custom-control-label font-normal color-dark text-14 cursor-pointer"
+                                    for="meetingNotify"
+                                    >Meeting Notification
+                                  </label>
+                                </div>
+
+                                <div class="custom-switch pb-3 mr-3">
+                                  <input
+                                    @change="
+                                      updateNotification($event, 'club')
+                                    "
+                                    type="checkbox"
+                                    id="clubNotify"
+                                    name="clubNotify"
+                                    class="custom-control-input color-primary-dark"
+                                    v-model="clubNotify"
+                                  />
+                                  <label
+                                    class="custom-control-label font-normal color-dark text-14 cursor-pointer"
+                                    for="clubNotify"
+                                    >Club Notification
+                                  </label>
+                                </div>
+                                <div class="custom-switch pb-3 mr-3">
+                                  <input
+                                    @change="
+                                      updateNotification($event, 'assignment')
+                                    "
+                                    type="checkbox"
+                                    id="assignmentNotify"
+                                    name="assignmentNotify"
+                                    class="custom-control-input color-primary-dark"
+                                    v-model="assignmentNotify"
+                                  />
+                                  <label
+                                    class="custom-control-label font-normal color-dark text-14 cursor-pointer"
+                                    for="assignmentNotify"
+                                    >Assignment Notification
+                                  </label>
+                                </div>
+                                <div class="custom-switch pb-3 mr-3">
+                                  <input
+                                    @change="
+                                      updateNotification($event, 'session')
+                                    "
+                                    type="checkbox"
+                                    id="sessionNotify"
+                                    name="sessionNotify"
+                                    class="custom-control-input color-primary-dark"
+                                    v-model="sessionNotify"
+                                  />
+                                  <label
+                                    class="custom-control-label font-normal color-dark text-14 cursor-pointer"
+                                    for="sessionNotify"
+                                    >Study Session Notification
+                                  </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-12 col-md-8 card card-primary02 p-3 p-lg-4 rounded-20">
+                      <div
+                        class="card card-primary02 p-2 d-flex flex-column mb-3 border border--form2"
+                      >
+                        <p
+                          class="mb-0 text-16 color-secondary d-flex flex-row align-items-center"
+                        >
+                          <span class="text-20"
+                            ><i class="fas fa-envelope"></i
+                          ></span>
+                          <span class="ml-2">{{ email }}</span>
+                        </p>
+                      </div>
+                      <div class="card card-primary02 p-2 mb-3 border border--form2">
+                        <p
+                          class="mb-0 text-16 color-secondary d-flex flex-row align-items-baseline"
+                        >
+                          <span class="text-20"
+                            ><i class="fas fa-school"></i
+                          ></span>
+                          <span class="ml-2">{{ schoolName }}</span>
+                        </p>
+                      </div>
+                      <div
+                          data-intro="Want to receive text updates about upcoming assignments, meetings, and more? Add your phone number to do so. Please note that this is entirely optional and if you are under the age of 18 you must get parental/guardian consent to opt in."
+                          class=""
+                        >
+                          <button
+                            class="mr-3"
+                            v-if="!enableEdit"
+                            @click="enableEdit = true"
+                          >
+                            <span class="mr-1"
+                              ><i class="fas fa-pencil color-primary-dark"></i
+                            ></span>
+                            <span class="color-primary-dark">Edit</span>
+                          </button>
+
+                          <button
+                            class="mr-2"
+                            v-if="enableEdit"
+                            @click="
+                              enableEdit = false;
+                              cancelEditPhone();
+                            "
+                          >
+                            <span class="mr-1"
+                              ><i class="fas fa-times color-primary-dark"></i
+                            ></span>
+                            <span>Cancel</span>
+                          </button>
+                          <button v-if="enableEdit" @click="phoneUpdate()">
+                            <span class="mr-1"
+                              ><i class="fas fa-save color-primary-dark"></i
+                            ></span>
+                            <span>Update</span>
+                          </button>
+
+                          <div class="card card-primary02 p-2 border border--form2">
+                            <p
+                              class="mb-0 text-16 color-secondary d-flex flex-row align-items-center"
+                            >
+                              <span class="text-20"
+                                ><i class="fas fa-phone"></i
+                              ></span>
+                              <input
+                                :disabled="!enableEdit"
+                                type="text"
+                                class="pl-3 word-break text-truncate"
+                                v-model="phoneNumber"
+                                @change="checkValueChange()"
+                                @input="checkValue()"
+                                maxlength="15"
+                              />
+                            </p>
+                          </div>
+                          <span
+                            class="mt-1"
+                            v-if="phoneInvalid"
+                            style="color: red"
+                            >Please enter a valid phone number with country
+                            code</span
+                          >
+                      </div>
+                    </div>
+
+                    <!-- <div v-if="user_type == 3" class="col-md-12">
+                      <div class="row">
+                        
+
+                        <div class="col-xl-12">
+                          
+                        </div>
+                      </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="row justify-content-center">
@@ -646,7 +670,7 @@
             <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
-                class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+                class="btn btn-void py-1 px-3 rounded-8 font-semi-bold"
                 data-dismiss="modal"
               >
                 Cancel
@@ -673,7 +697,8 @@
 import { mapState, mapActions } from "vuex";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
-import { defaultImage } from "../../assets/js/constants";
+import { defaultImage, JOCHI_PRO_PIC } from "../../assets/js/constants";
+import { eventBus } from "~/plugins/eventbus.js";
 var fileCheck = false;
 var filepptCheck = false;
 
@@ -694,6 +719,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       email: "",
       name: "",
       schoolName: "",
@@ -708,6 +734,7 @@ export default {
       filepptCheck: false,
       profile: "",
       defaultImage: defaultImage,
+      JOCHI_PRO_PIC: JOCHI_PRO_PIC,
       submitted: false,
       user_type: "",
       phoneNumber: "",
@@ -722,31 +749,33 @@ export default {
       requestSent: "0",
       isSchoolAdmin: "0",
       processingUpgrade: false,
-      schoolAccessType: "",
+      selectedTheme: "light", // Initially select the "light" theme
     };
   },
-
   created() {
     this.UserDetails();
     this.user_type = localStorage.getItem("user_type");
-    this.schoolAccessType = localStorage.getItem('schoolAccess');
-    if (this.user_type == "3" && this.schoolAccessType != 'ClubOnly') {
-        this.getAllAdvisors();
-        this.getAdvisor();
+    if (this.user_type == "3") {
+      this.getAllAdvisors();
+      this.getAdvisor();
     } else {
-        if (this.schoolAccessType !== 'ClubOnly') {
-            this.schoolAdminStatus();
-        }
+      this.schoolAdminStatus();
     }
     this.fetchSettings();
-},
-
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
+  },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);
     setTimeout(() => {
       this.startIntro();
     }, 1000);
-    this.schoolAccessType = localStorage.getItem("schoolAccess")
+    const savedTheme = localStorage.getItem('selectedTheme');
+  if (savedTheme) {
+    // Set the selectedTheme property to the saved theme
+    this.selectedTheme = savedTheme;
+  }
   },
   computed: {
     ...mapState("profilePage", {
@@ -766,6 +795,15 @@ export default {
     }),
     startProductGuide() {
       return this.$store.state.startProductGuide;
+    },
+  },
+  watch: {
+    selectedTheme(newTheme) {
+      localStorage.setItem('selectedTheme', newTheme);
+      // When the selected theme changes, apply it to the <html> element's class
+      const html = document.documentElement; // <html> element
+      html.classList.remove("light-theme", "dark-theme"); // Remove all theme classes
+      html.classList.add(newTheme + "-theme"); // Add the selected theme class
     },
   },
   methods: {

@@ -7,12 +7,12 @@
     <!-- sidebar -->
 
     <div v-if="userType == '3'">
-      <UserSidebar />
+      <UserNewSidebar />
       <UserProfile />
     </div>
 
     <div v-if="userType == '2'">
-      <UserSidebarTeacher />
+      <UserNewSidebarTeacher />
       <UserProfile />
     </div>
 
@@ -20,16 +20,16 @@
   </div>
 </template>
 <script>
-import UserSidebar from "~/components/user/UserSidebar.vue";
+import UserNewSidebar from "~/components/user/UserNewSidebar.vue";
 // import UserTeacherSidebar from "~/components/user/UserTeacherSidebar.vue";
-import UserSidebarTeacher from "~/components/user/UserSidebarTeacher.vue";
+import UserNewSidebarTeacher from "~/components/user/UserNewSidebarTeacher.vue";
 
 import UserProfile from "~/components/user/UserProfile.vue";
 export default {
   // middleware: "authenticated",
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [{ rel: "stylesheet", href: "/css/custom.css" }],
     };
   },
   data() {

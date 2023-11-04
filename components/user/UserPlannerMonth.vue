@@ -454,7 +454,7 @@
                                           <label
                                             for=""
                                             class="mb-0 text-truncate cursor-pointer"
-                                            >{{ sub.title }}</label
+                                            >{{ sub.id}}</label
                                           >
                                         </div>
                                       </div>
@@ -1914,7 +1914,7 @@
             <div class="modal-footer justify-content-end border-top-0 px-4">
               <button
                 data-dismiss="modal"
-                class="btn btn-secondary px-4 py-1 rounded-8"
+                class="btn btn-void px-4 py-1 rounded-8"
               >
                 Cancel
               </button>
@@ -4196,7 +4196,7 @@ export default {
         this.tempOffset = this.offset;
 
         this.pendingAssignments = [];
-        await this.getAssignments({ offset: this.offset, limit: this.limit });
+        await this.getAssignments({ offset: this.offset, limit: this.limit, filter: 'Pending' });
         if (this.offset == 0) {
           await this.mapOverdues();
         }
@@ -4581,7 +4581,9 @@ export default {
       await this.getCompletedAssignments({
         userId: localStorage.getItem("id"),
         date: moment().format("YYYY-MM-DD"),
-        type: "Monthly",
+        type: "All",
+        offset: 0,
+        limit: 10,
       });
       let completed = [];
       completed = this.completedAssignments;

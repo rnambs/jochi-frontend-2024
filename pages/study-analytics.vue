@@ -4,20 +4,20 @@
     <!-- <UserNavHeader /> -->
     <!-- end section -->
     <!-- sidebar -->
-    <UserSidebar />
+    <UserNewSidebar />
     <!-- sidebar -->
     <UserStudyAnalytics />
   </div>
 </template>
 <script>
 // import UserNavHeader from "~/components/user/UserNavHeader.vue";
-import UserSidebar from "~/components/user/UserSidebar.vue";
+import UserNewSidebar from "~/components/user/UserNewSidebar.vue";
 import UserStudyAnalytics from "~/components/user/UserStudyAnalytics.vue";
 export default {
   // middleware: "authenticated",
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [{ rel: "stylesheet", href: "/css/custom.css" }],
     };
   },
   mounted() {

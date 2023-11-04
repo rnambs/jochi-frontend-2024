@@ -912,7 +912,7 @@ aside.left-panel {
   top: 0;
   z-index: 999; }
 .right-panel .navbar-brand {
-  width: 250px;
+  /* width: 250px; */
   display: inline-block; }
 .open .right-panel .navbar-brand {
   display: none; }
@@ -2286,7 +2286,7 @@ footer.site-footer {
     max-width: 23px;
   }
   .open .right-panel .navbar-header .navbar-brand{
-    width: 250px;
+    /* width: 250px; */
     display: block;
   }
   .open .right-panel .navbar-header .navbar-brand.hidden{

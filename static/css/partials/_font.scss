@@ -55,9 +55,21 @@ h1,h2,h3,h4,h5,h6{@include font-weight($font-weight-semibold);}
     font-size: 10px;
     line-height: 14px;
 }
+.task-description{
+    p{
+        font-size: 10px;
+        line-height: 14px;
+    }
+}
 .text-12{
     font-size: 0.75rem;
     line-height: 1rem;
+    &.lh-18{
+        line-height: 1.125rem;
+    }
+    &.lh-24{
+        line-height: 1.5rem;
+    }
 }
 .text-14{
     font-size: 0.875rem;

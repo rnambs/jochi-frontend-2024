@@ -6,10 +6,10 @@
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     />
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- tab for club info -->
       <div
-        class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
 
@@ -46,7 +46,7 @@
           id="club-detail"
           class="custom-height-for-club-detail-section h-40 flex-fill"
         >
-          <div class="club-section container-fluid h-100 pr-0">
+          <div class="club-section container-fluid h-100 p-0">
             <div
               class="inner-club club-info d-flex flex-column justify-content-top container-fluid py-0 pl-0 custom-overflow h-100"
             >
@@ -54,7 +54,7 @@
                 <div
                   class="d-flex align-items-center justify-content-between mb-3"
                 >
-                  <h3 class="color-primary-dark font-semi-bold mb-1">
+                  <h3 class="text-24 color-primary-dark font-semibold mb-1">
                     Club Details
                   </h3>
 
@@ -78,13 +78,13 @@
                     class="col-md-6 col-xs-12 pr-0 pl-3 py-12"
                   >
                     <div class="inner-info-head mb-2">
-                      <h4 class="color-dark mb-2 font-bold">
+                      <h5 class="text-18 color-dark mb-2 font-semibold">
                         About the {{ headingName }}
-                      </h4>
+                      </h5>
                     </div>
                     <p
                       v-if="!editDescription"
-                      class="mb-2 text-14 color-secondary"
+                      class="mb-2 text-14 color-gray"
                     >
                       {{ clubDetails.description }}
                       <span
@@ -130,7 +130,7 @@
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div class="inner-info-head mb-3">
-                          <h4 class="color-dark mb-2 font-bold">Leaders</h4>
+                          <h5 class="text-18 color-dark mb-2 font-semibold">Leaders</h5>
                         </div>
                         <div class="row justify-content-end">
                           <div class="col-10 col-lg-8">
@@ -158,7 +158,7 @@
                                             :src="data.user_info.profile_pic"
                                             alt=""
                                           />
-                                          <span v-else>{{
+                                          <span class="color-primary-dark" v-else>{{
                                             data.user_info.first_name.charAt(0)
                                           }}</span>
                                         </div>
@@ -170,7 +170,7 @@
                                         class="ld-details-section"
                                       >
                                         <p
-                                          class="mb-1 color-dark text-18 font-semi-bold"
+                                          class="mb-1 color-dark text-16 font-semi-bold"
                                         >
                                           {{
                                             data.user_info.first_name +
@@ -185,7 +185,7 @@
                                           }}
                                         </p>
                                         <p
-                                          class="text-16 color-secondary mb-0 text-truncate"
+                                          class="text-14 color-gray mb-0 text-truncate"
                                         >
                                           {{ data.user_info.email }}
                                         </p>
@@ -224,7 +224,7 @@
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-3">
-                          <h4 class="color-dark mb-2 font-bold">Add Leaders</h4>
+                          <h5 class="text-18 color-dark mb-2 font-bold">Add Leaders</h5>
                         </div>
 
                         <div
@@ -260,7 +260,7 @@
 
                   <div v-if="index == 0" class="col-md-6 col-xs-12 pr-0 pl-3">
                     <div class="inner-info-head mb-2 mt-4">
-                      <h4 class="color-dark mb-2 font-bold">Members</h4>
+                      <h5 class="text-18 color-dark mb-2 font-semibold">Members</h5>
                     </div>
                     <div
                       class="members-thumbnail-list d-flex flex-column align-items-center justify-content-start mt-3 position-relative"
@@ -339,7 +339,7 @@
                     <div class="row">
                       <div class="col-12 inner-col text-right py-12">
                         <div class="inner-info-head mb-3">
-                          <h4 class="color-dark mb-2 font-bold">Tags</h4>
+                          <h5 class="text-18 color-dark mb-2 font-semibold">Tags</h5>
                         </div>
                         <div class="row justify-content-end">
                           <div class="col-10 col-lg-8 info-tag">
@@ -569,6 +569,7 @@ import { mapState, mapActions } from "vuex";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import Multiselect from "vue-multiselect";
+import { eventBus } from "~/plugins/eventbus.js";
 var headingName = "";
 var clubId = "";
 var list_data = [];
@@ -581,6 +582,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       value: [],
       valueMeeting: "",
       name: "",
@@ -613,7 +615,11 @@ export default {
       initialLoading: false,
     };
   },
-
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
+  },
   mounted() {
     this.initialLoading = false;
     this.userType = localStorage.getItem("user_type");

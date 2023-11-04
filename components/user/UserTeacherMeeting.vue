@@ -7,10 +7,10 @@
       class="lottie-loader"
     />
 
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- tab section for teacher meeting -->
       <div
-        class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive"
+        class="bg-global border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column position-realtive"
       >
         <section id="tab" class="">
           <div class="tab-section container-fluid w-100">
@@ -21,7 +21,7 @@
               Schedule A Meeting!
             </h2>
             <div class="inner-tab-section container-fluid p-0">
-              <div class="row m-0">
+              <div class="row px--12">
                 <div class="col-md-6 col-lg-3 px-2 pr-3">
                   <div
                     data-intro="First, choose your meeting type. Will you be meeting with a teacher or peer?"
@@ -152,7 +152,7 @@
             class="meeting-section container-fluid d-flex custom-overflow pe-2 mr--2 flex-fill"
           >
             <div
-              class="inner-meeting flex-fill container-fluid py-3 pl-0 scroll"
+              class="inner-meeting flex-fill container-fluid pb-3 px-0 scroll"
             >
               <div
                 class="row Meeting-row text-center h-100 align-items-center px-4 px-md-5 px-lg-3 px-xl-5"
@@ -162,9 +162,15 @@
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img
                       src="~/assets/images/v4/undraw/step1.svg"
-                      class="img-illustrate"
+                      class="img-illustrate img-theme light"
                       alt=""
                     />
+                    <img
+                      src="~/assets/images/v4/undraw/step1-dark.svg"
+                      class="img-illustrate img-theme dark"
+                      alt=""
+                    />
+                    
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary-dark font-medium">Step 1</h6>
                       <p class="color-secondary text-12">
@@ -177,7 +183,12 @@
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img
                       src="~/assets/images/v4/undraw/step2.svg"
-                      class="img-illustrate"
+                      class="img-illustrate img-theme light"
+                      alt=""
+                    />
+                    <img
+                      src="~/assets/images/v4/undraw/step2-dark.svg"
+                      class="img-illustrate img-theme dark"
                       alt=""
                     />
                     <div class="d-flex flex-column justify-content-center">
@@ -192,7 +203,12 @@
                   <div class="default-section d-flex flex-row flex-md-column">
                     <img
                       src="~/assets/images/v4/undraw/step3.svg"
-                      class="img-illustrate"
+                      class="img-illustrate img-theme light"
+                      alt=""
+                    />
+                    <img
+                      src="~/assets/images/v4/undraw/step3-dark.svg"
+                      class="img-illustrate img-theme dark"
                       alt=""
                     />
                     <div class="d-flex flex-column justify-content-center">
@@ -205,14 +221,14 @@
                 </div>
               </div>
               <div class="col-12 p-0">
-                <div class="row Meeting-row pl-0 pr-3 pt-3">
+                <div class="row Meeting-row ps-0 pr-2 pt-2">
                   <div
                     class="col-md-3 mb-4 py-0"
                     v-for="(Schedule, index) in slot_date"
                     :key="index"
                   >
                     <div
-                      class="meeting-list p-3 cursor-pointer card card-void bg-primary-light border-0 align-items-center h-100"
+                      class="meeting-list p--12 cursor-pointer card card-secondary border-0 align-items-center h-100"
                       v-on:click="
                         modalValue(
                           Schedule.dateFormat,
@@ -224,11 +240,11 @@
                         openConfirmMeetingModal();
                       "
                     >
-                      <h6 class="font-bold color-dark text-center">
+                      <h6 class="font-semi-bold color-dark text-center">
                         {{ Schedule["dateFormat"] }}
                       </h6>
                       <p
-                        class="time color-secondary font-normal text-14 mb-1 text-center"
+                        class="time color-primary font-normal text-14 mb-0 text-center"
                       >
                         {{ Schedule["from"] }}
                         {{ Schedule["end"] ? "to " + Schedule["end"] : "" }}
@@ -263,9 +279,8 @@
                 role="document"
               >
                 <div class="modal-content px-4">
-                  <div class="modal-body mt-4">
-                    <form action="">
-                      <h3
+                  <div class="modal-header pb-0">
+                    <h3
                         class="modal-title color-primary-dark heading3 font-semi-bold mb-0"
                         id="exampleModalLongTitle"
                       >
@@ -290,16 +305,19 @@
                           </h4>
                         </span>
                       </h3>
-                      <h5 class="color-secondary font-semi-bold">
+                  </div>
+                  <div class="modal-body">
+                    <form action="">
+                      <h6 class="color-secondary font-semi-bold mb-1">
                         {{ popupValue[0] }}
-                      </h5>
-                      <p class="color-primary font-regular mb-2">
+                      </h6>
+                      <p class="color-primary text-14 font-regular mb-2">
                         {{ popupFrom[0] }}
                         {{ popupEnd[0] ? "to " + popupEnd[0] : "" }}
                       </p>
 
                       <div
-                        class="mb-0 d-flex col-12 col-md-10 col-lg-9 align-items-center form-row py-0 px-1 mb-3"
+                        class="mb-0 d-flex col-12 align-items-center form-row py-0 px-1 mb-3"
                       >
                         <input
                           type="text"
@@ -323,7 +341,7 @@
                         </div>
                       </div>
                       <div
-                        class="mb-0 col-12 col-md-11 col-lg-10 d-flex align-items-center form-row py-0 px-1 mb-3"
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0 px-1 mb-3"
                       >
                         <textarea
                           type="text"
@@ -350,19 +368,20 @@
                       </div>
 
                       <div
-                        class="mb-0 col-12 col-md-7 col-lg-6 d-flex align-items-center form-row py-0 px-1 mb-3"
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0 px-1 mb-3"
                       >
                         <select
                           class="form-control mb-0"
                           tabindex=""
                           name="conversation_type"
+                          placeholder="Type of Meeting"
                           v-model="conversation_type"
                           :class="{
                             'is-invalid':
                               submitted && $v.conversation_type.$error,
                           }"
                         >
-                          <option value="" disabled selected>
+                          <option value="" disabled>
                             Type of Meeting
                           </option>
                           <option value="Video Conference">
@@ -380,7 +399,7 @@
                         </div>
                       </div>
                       <div
-                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0 px-1"
+                        class="mb-0 col-12 d-flex align-items-center form-row py-0 px-1"
                       >
                         <input
                           type="text"
@@ -442,6 +461,7 @@ import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import * as animationDataSuccess from "~/assets/decoration.json";
 import { required } from "vuelidate/lib/validators";
+import { eventBus } from "~/plugins/eventbus.js";
 
 var fromDate = "";
 var endDate = "";
@@ -475,6 +495,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       value: "",
       slot_date: [],
       from: [],
@@ -514,6 +535,11 @@ export default {
     meeting_name: { required },
     meeting_description: { required },
     conversation_type: { required },
+  },
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);

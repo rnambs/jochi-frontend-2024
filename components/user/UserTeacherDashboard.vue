@@ -2,7 +2,7 @@
   <div>
     <!-- <div
       id="pageLoader"
-      class="bg-primary-light d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
+      class="bg-primary-light02 d-flex align-items-center justify-content-center position-fixed vh-100 vw-100 left-0 top-0"
       style="z-index: 9"
       v-if="!isHidden"
     >
@@ -25,10 +25,10 @@
       <section id="teacher-detail" class="">
         <div class="teacher-section">
           <div
-            class="inner-teacher bg-white custom-margin-for-main-section custom-full-height d-flex flex-column"
+            class="inner-teacher bg-global m--12 custom-full-height d-flex flex-column"
           >
             <div
-              class="d-flex justify-content-between align-items-start pt-4 px-4"
+              class="d-flex justify-content-between align-items-start"
             >
               <div class="d-flex flex-column">
                 <h5 class="mb-1 color-dark font-semi-bold">
@@ -48,14 +48,14 @@
                   Privacy Policy
                 </div> -->
                 <a
-                  class="btn color-dark font-semi-bold mr-4"
+                  class="btn color-dark font-semi-bold mr-2"
                   href="https://www.jochi.info/privacy-policy"
                 >
                   Privacy Policy
                 </a>
               </div>
             </div>
-            <div class="h-40 flex-fill custom-overflow px-4 pt-4 pb-2 mb-2">
+            <div class="h-40 flex-fill custom-overflow">
               <div class="row h-100">
                 <!-- CALANDER -->
                 <!-- AGENDA -->
@@ -63,14 +63,14 @@
                   class="col-md-6 container custom-teacher-container d-flex flex-column h-100"
                 >
                   <div
-                    class="time-slot container p-4 card card-primary rounded-22 h-100"
+                    class="time-slot container p-4 card card-primary02 rounded-22 h-100"
                   >
                     <h4 class="color-dark mb-4 px-2 font-semi-bold">
-                      Meetings for {{ showDate }}
+                      Meetings for <span class="color-primary">{{ showDate }}</span> 
                     </h4>
                     <div class="h-40 flex-fill hidden-scroll">
                       <div
-                        class="card bg-primary-light border-0 d-flex flex-row align-items-center mb-2 p-3"
+                        class="card bg-primary-light02 border-0 d-flex flex-row align-items-center mb-2 p-3"
                         v-for="(list, index) in listAgenda"
                         :key="index"
                       >
@@ -89,7 +89,7 @@
                           <span class="color-secondary"
                             ><i class="far fa-clock"></i>
                           </span>
-                          <span class="color-secondary font-regular text-16">
+                          <span class="color-gray font-regular text-16">
                             {{ list["time"] + " to " + list["endTime"] }}
                           </span>
                         </div>
@@ -98,7 +98,7 @@
                         v-if="listAgenda.length == 0"
                         class="empty-shedule d-flex h-100 justify-content-center align-items-center"
                       >
-                        <p class="color-secondary text-center">
+                        <p class="color-gray text-center">
                           No meetings for the day
                         </p>
                       </div>
@@ -114,14 +114,14 @@
                 >
                   <!-- TABLE  -->
                   <div
-                    class="teacher-row container mb-4 card card-primary rounded-22 p-0 h-40 flex-fill"
+                    class="teacher-row container mb-4 card card-primary02 rounded-22 p-0 h-40 flex-fill"
                   >
                     <div class="appointment-req d-flex flex-column h-100 p-2">
-                      <h6 class="text-center color-primary-dark pt-3 mb-0">
+                      <h6 class="text-center color-primary-dark pt-2 mb-1">
                         Meeting Requests
                       </h6>
                       <div
-                        class="table-req container py-3 custom-overflow-x custom-overflow h-100"
+                        class="table-req container py-1 custom-overflow-x custom-overflow h-100"
                       >
                         <table class="table mb-0">
                           <thead>
@@ -214,14 +214,14 @@
                           v-if="teachersList.length == 0"
                           class="empty-shedule"
                         >
-                          <p>No data found</p>
+                          <p class="color-gray text-12">No data found</p>
                         </div>
                       </div>
                     </div>
                   </div>
                   <!-- END TABLE  -->
                   <div
-                    class="inner-custom-teacher dashboard-cal calendar-sm container p-3 pt-4 card card-primary rounded-22"
+                    class="inner-custom-teacher dashboard-cal calendar-sm container p-3 pt-5 card card-secondary rounded-22"
                   >
                     <FullCalendar :options="calendarOptions" />
                   </div>
@@ -395,7 +395,7 @@
                 </div>
               </div>
             </div>
-            <div class="modal-footer justify-content-end border-top-0 bg-white text-dark">
+            <div class="modal-footer justify-content-end border-top-0 bg-global text-dark">
               <button
                 v-if="
                   meetingDetail &&

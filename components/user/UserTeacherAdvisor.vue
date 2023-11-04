@@ -11,7 +11,7 @@
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
-          class="teacher-section bg-white border-0 px-4 py-3 custom-margin-for-main-section custom-full-height d-flex flex-column custom-overflow"
+          class="border-0 px-1 py-3 custom-margin-for-main-section custom-full-height d-flex flex-column custom-overflow"
         >
           <div
             v-if="isSchoolAdmin != '1'"
@@ -31,14 +31,14 @@
                   class="card card-primary-void rounded-22 py-4 h-100 position-realtive"
                 >
                   <div class="d-flex flex-column px-4">
-                    <h3 class="color-dark font-semi-bold mb-0">Students</h3>
+                    <h5 class="color-dark font-semi-bold mb-3">Students</h5>
                   </div>
                   <div class="hidden-scroll d-flex flex-column">
                     <div
                       @click="onStudentClick(student)"
                       v-for="student in studentsListAdvisor"
                       :key="student.id"
-                      :class="{ 'bg-primary-light': student.id == studentDetail.id }"
+                      :class="{ 'bg-card-secondary': student.id == studentDetail.id }"
                       class="d-flex align-items-center flex-row p-3 student-list border-bottom cursor-pointer"
                     >
                       <div class="ld-img-section mr-3">
@@ -198,7 +198,7 @@
                             class="col-12 col-lg-6 col-xl-4"
                           >
                             <div
-                              class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
+                              class="bg-card-primary02 border rounded-8 drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
                               :class="{
                                 selected: detail.task_status == 'Completed',
                               }"
@@ -246,7 +246,7 @@
                                   </h4>
                                   <div class="text-center px-3">
                                     <p
-                                      class="color-secondary text-16 line-height-1 font-semi-bold"
+                                      class="color-gray text-16 line-height-1 font-semi-bold"
                                     >
                                       {{ detail.subject }}
                                     </p>
@@ -279,11 +279,11 @@
                                               : ''
                                           "
                                           type="radio"
-                                          class="mr-2 color-secondary cursor-pointer"
+                                          class="mr-2 color-gray cursor-pointer"
                                         />
                                         <label
                                           for=""
-                                          class="mb-0 text-12 color-secondary cursor-pointer"
+                                          class="mb-0 text-12 color-gray cursor-pointer"
                                           >{{ subtask.title }}</label
                                         >
                                       </div>
@@ -314,7 +314,7 @@
                                     >
                                       <span
                                         v-if="index < 2"
-                                        class="color-secondary text-truncate w-100"
+                                        class="color-gray text-truncate w-100"
                                       >
                                         {{
                                           material.file_type == "link"
@@ -324,7 +324,7 @@
                                       </span>
                                     </div>
                                     <span
-                                      class="color-secondary text-12"
+                                      class="color-gray text-12"
                                       v-if="
                                         detail.assignment_materials &&
                                         detail.assignment_materials.length &&
@@ -344,14 +344,14 @@
                                     "
                                     class="col-8 py-0 pl-0 material-link text-12"
                                   >
-                                    <span class="color-secondary text-12"
+                                    <span class="color-gray text-12"
                                       >No documents added!</span
                                     >
                                   </div>
                                   <div
                                     class="col-4 material-date py-0 text-right pr-0"
                                   >
-                                    <span class="text-12">{{
+                                    <span class="text-12 color-gray">{{
                                       detail.due_date
                                     }}</span>
                                   </div>
@@ -388,7 +388,7 @@
                             class="col-12 col-lg-6 col-xl-4"
                           >
                             <div
-                              class="bg-white border rounded-8 drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
+                              class="bg-card-primary02 border rounded-8 drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
                               :class="{
                                 selected: detail.task_status == 'Completed',
                               }"
@@ -436,7 +436,7 @@
                                   </h4>
                                   <div class="text-center px-3">
                                     <p
-                                      class="color-secondary text-16 line-height-1 font-semi-bold"
+                                      class="color-gray text-16 line-height-1 font-semi-bold"
                                     >
                                       {{ detail.subject }}
                                     </p>
@@ -469,11 +469,11 @@
                                               : ''
                                           "
                                           type="radio"
-                                          class="mr-2 color-secondary cursor-pointer"
+                                          class="mr-2 color-gray cursor-pointer"
                                         />
                                         <label
                                           for=""
-                                          class="mb-0 text-12 color-secondary cursor-pointer"
+                                          class="mb-0 text-12 color-gray cursor-pointer"
                                           >{{ subtask.title }}</label
                                         >
                                       </div>
@@ -504,7 +504,7 @@
                                     >
                                       <span
                                         v-if="index < 2"
-                                        class="color-secondary text-truncate w-100"
+                                        class="color-gray text-truncate w-100"
                                       >
                                         {{
                                           material.file_type == "link"
@@ -514,7 +514,7 @@
                                       </span>
                                     </div>
                                     <span
-                                      class="color-secondary text-12"
+                                      class="color-gray text-12"
                                       v-if="
                                         detail.assignment_materials &&
                                         detail.assignment_materials.length &&
@@ -534,14 +534,14 @@
                                     "
                                     class="col-8 py-0 pl-0 material-link text-12"
                                   >
-                                    <span class="color-secondary text-12"
+                                    <span class="color-gray text-12"
                                       >No documents added!</span
                                     >
                                   </div>
                                   <div
                                     class="col-4 material-date py-0 text-right pr-0"
                                   >
-                                    <span class="text-12">{{
+                                    <span class="text-12 color-gray">{{
                                       detail.due_date
                                     }}</span>
                                   </div>
@@ -588,7 +588,7 @@
                   v-else
                   class="card card-primary-void rounded-22 p-4 h-100 position-realtive align-items-center justify-content-center"
                 >
-                  <h6 class="color-secondary">
+                  <h6 class="color-gray">
                     Select a student to show details
                   </h6>
                   <!-- <div class="position-absolute advisor-image col-3">
@@ -638,7 +638,7 @@
             <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
-                class="btn btn-secondary font-semi-bold rounded-8 py-1 px-4"
+                class="btn btn-void font-semi-bold rounded-8 py-1 px-4"
                 data-dismiss="modal"
               >
                 Cancel

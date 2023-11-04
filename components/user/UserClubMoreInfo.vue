@@ -6,10 +6,10 @@
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     />
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- tab for club info -->
       <div
-        class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
         <div
@@ -51,7 +51,7 @@
         <div class="position-relative">
           <div
             v-bind:class="{
-              'dropdown-club bg-white border rounded-10': true,
+              'dropdown-club bg-global border rounded-10': true,
               'dropdown-club--visible': dropdownVisible,
             }"
           >
@@ -115,16 +115,16 @@
 
         <section id="club-detail" class="d-flex flex-column flex-fill h-40">
           <div
-            class="club-section container-fluid mt-2 d-flex flex-column flex-fill h-40 custom-overflow"
+            class="club-section container-fluid mt-2 d-flex flex-column flex-fill h-40 custom-overflow px-0"
           >
             <div
-              class="inner-club club-info d-flex flex-column container-fluid h-40 flex-fill pt-3 px-3"
+              class="inner-club club-info d-flex flex-column container-fluid h-40 flex-fill px-0"
             >
-              <div class="info-head my-2">
-                <h3 class="color-primary-dark font-bold">{{ headingName }}</h3>
+              <div class="info-head mt-2">
+                <h3 class="text-24 color-primary-dark font-semibold mb-1">{{ headingName }}</h3>
               </div>
               <div
-                class="inner-info container-fluid my-1 d-flex flex-column h-40 flex-fill"
+                class="inner-info container-fluid my-1 d-flex flex-column h-40 flex-fill px-0"
               >
                 <div class="row my-0 h-40 flex-fill">
                   <div
@@ -132,7 +132,7 @@
                     class="col-md-6 col-xs-12 h-md-100 d-flex"
                   >
                     <div
-                      class="inner-info container-fluid p-2 d-flex flex-column card card-secondary-sm rounded-22 p-4"
+                      class="inner-info container-fluid d-flex flex-column card card-secondary border-0 rounded-22 p-3 p-lg-4"
                     >
                       <div
                         class="d-flex align-items-center justify-content-between mb-3 px-2"
@@ -298,14 +298,14 @@
                   </div>
                   <div v-else class="col-md-6 col-xs-12 h-md-100 d-flex">
                     <div
-                      class="inner-info container-fluid p-4 d-flex flex-column border rounded-10"
+                      class="inner-info container-fluid p-4 d-flex flex-column card card-secondary border-0 rounded-10"
                     >
                       <div class="h-40 flex-fill custom-overflow">
                         <div class="inner-info-head mb-2">
-                          <h5 class="color-dark mb-2 font-bold">To do!</h5>
+                          <h5 class="text-18 color-dark mb-2 font-semibold">To do!</h5>
                         </div>
                         <div
-                          class="form-group ml-4"
+                          class="form-group ml-4 color-gray"
                           v-if="
                             !clubMoreDetails.todo ||
                             clubMoreDetails.todo.length <= 0
@@ -321,13 +321,13 @@
                               class="row m-0"
                             >
                               <p
-                                class="mb-0 col-8 p-0 color-secondary font-regular text-16 d-flex align-items-center"
+                                class="mb-0 col-8 p-0 font-regular text-16 d-flex align-items-center"
                               >
                                 <span
                                   class="d-flex rounded-circle border-form-color bullet mr-2"
                                 ></span>
                                 <span
-                                  class="input-name color-dark text-truncate"
+                                  class="input-name color-gray text-truncate"
                                 >
                                   {{ todos.todo_list }}</span
                                 >
@@ -339,7 +339,7 @@
                                   @click.prevent="Removetodo(todos.id)"
                                 >
                                   <i
-                                    class="fa fa-times p-1"
+                                    class="fa fa-times p-1 font-regular color-gray"
                                     aria-hidden="true"
                                   ></i
                                 ></span>
@@ -350,7 +350,7 @@
                       </div>
                       <div class="" v-if="enableEdit">
                         <div class="inner-info-head mb-2">
-                          <h5 class="color-dark my-2 font-bold">Add Todo</h5>
+                          <h5 class="text-18 color-dark my-2 font-semibold">Add Todo</h5>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-2">
                           <div class="form-row m-0 flex-fill mr-2">
@@ -373,12 +373,12 @@
                   </div>
                   <div class="col-md-6 col-xs-12 h-100 d-flex">
                     <div
-                      class="inner-info container p-2 d-flex flex-column card card-secondary-sm rounded-10 p-4"
+                      class="inner-info container-fluid d-flex flex-column card card-secondary border-0 rounded-10 p-3 p-lg-4"
                     >
                       <div
                         class="d-flex align-items-center justify-content-between mb-2 px-2"
                       >
-                        <h5 class="color-dark font-bold mb-0">Announcements</h5>
+                        <h5 class="text-18 color-dark font-semibold mb-0">Announcements</h5>
                         <a
                           v-if="enableEdit"
                           href="#"
@@ -394,7 +394,7 @@
                           :key="index"
                         >
                           <div
-                            class="card card-void px-3 py-2 mb-3"
+                            class="card card-void border border--form px-3 py-2 mb-3"
                             :class="
                               item.isRead == 1 ? 'card-void' : 'card-void'
                             "
@@ -422,12 +422,12 @@
                                   class="d-flex flex-wrap justify-content-end"
                                 >
                                   <p
-                                    class="color-secondary font-regular text-nowrap text-14 mb-1"
+                                    class="color-gray font-regular text-nowrap text-14 mb-1"
                                   >
                                     {{ item.date }}<span> &nbsp; </span>
                                   </p>
                                   <p
-                                    class="color-secondary text-nowrap font-regular text-14 mb-0"
+                                    class="color-gray text-nowrap font-regular text-14 mb-0"
                                   >
                                     {{ item.time }}
                                   </p>
@@ -467,51 +467,51 @@
         </section>
 
         <section id="tab" class="">
-          <div class="info-tab container-fluid mb-3 px-3">
+          <div class="info-tab container-fluid mb-3 px-0">
             <div class="row tab-row m-0 px-3">
-              <div class="col-md-4 col-xs-12 py-2 py-md-0">
+              <div class="col-md-4 col-xs-12 py-2 py-md-0 px-0">
                 <nuxt-link
                   :to="{
                     path: '/club-info',
                     query: { id: clubId, name: headingName, type: type },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
+                  class="inner-tab d-flex align-items-center justify-content-center btn btn-primary btn-lg w-100"
                 >
-                  <span class="text-24 color-primary-dark font-semi-bold"
+                  <span class="font-semi-bold"
                     >Club Details</span
                   >
                 </nuxt-link>
               </div>
-              <div class="col-md-4 col-xs-12 py-2 py-md-0">
+              <div class="col-md-4 col-xs-12 py-2 py-md-0 px-0 px-md-3">
                 <nuxt-link
                   :to="{
                     path: '/club-files',
                     query: { id: clubId, name: headingName, type: type },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
+                  class="inner-tab d-flex align-items-center justify-content-center btn btn-primary btn-lg w-100"
                 >
-                  <span class="text-24 color-primary-dark font-semi-bold"
+                  <span class="font-semi-bold"
                     >Files/Slides</span
                   >
                 </nuxt-link>
               </div>
               <div
                 @click="onNextMeeting"
-                class="col-md-4 col-xs-12 py-2 py-md-0"
+                class="col-md-4 col-xs-12 py-2 py-md-0 px-0"
               >
                 <div
                   :class="
                     enableEdit
-                      ? 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100 cursor-pointer'
-                      : 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100'
+                      ? 'inner-tab default d-flex flex-column align-items-center justify-content-center btn btn-primary btn-lg w-100 cursor-pointer'
+                      : 'inner-tab default d-flex flex-column align-items-center justify-content-center btn btn-primary btn-lg w-100'
                   "
                 >
-                  <span class="text-24 color-primary-dark font-semi-bold"
+                  <span class="font-semi-bold"
                     >Next Meeting</span
                   >
-                  <span class="text-16 color-secondary font-regular">{{
+                  <!-- <span class="text-16 color-secondary font-regular">{{
                     clubMoreDetails.announcement
-                  }}</span>
+                  }}</span> -->
                 </div>
               </div>
             </div>
@@ -543,11 +543,11 @@
               Are you sure you want to delete this item?
             </p>
           </div>
-          <div class="modal-footer justify-content-end border-top-0 bg-white text-dark">
+          <div class="modal-footer justify-content-end border-top-0 bg-global text-dark">
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
+              class="btn btn-void px-4 py-1 rounded-8 font-semi-bold"
               aria-label="Close"
             >
               No
@@ -1090,7 +1090,7 @@
           <div class="modal-footer justify-content-end border-top-0 px-4">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8"
+              class="btn btn-void px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Cancel
@@ -1238,7 +1238,7 @@
           <div v-if="!showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
+              class="btn btn-void px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               No
@@ -1255,7 +1255,7 @@
           <div v-if="showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
+              class="btn btn-void px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Close
@@ -1276,6 +1276,7 @@ import Multiselect from "vue-multiselect";
 import VueTimepicker from "vue2-timepicker";
 import VueCropper from "vue-cropperjs";
 import "cropperjs/dist/cropper.css";
+import { eventBus } from "~/plugins/eventbus.js";
 
 var today = new Date();
 var activityDate = "";
@@ -1291,6 +1292,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       loading: false,
       anim: null, // for saving the reference to the animation
       lottieOptions: { animationData: animationData.default },
@@ -1388,6 +1390,11 @@ export default {
         }),
       },
     },
+  },
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     if (localStorage.getItem("schoolAdmin")) {
