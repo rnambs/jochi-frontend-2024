@@ -485,14 +485,14 @@ body {
   
 }
 
-.arrow.right {
+/* .arrow.right {
   border: solid black;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
-}
+} */
 @media (min-width:991.98px) {
   .h-lg-100{
     height: 100% !important;

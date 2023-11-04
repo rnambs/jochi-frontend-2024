@@ -23,7 +23,8 @@ export default {
   },
   mounted() {
     const schoolAccess = localStorage.getItem('schoolAccess');
-    if (schoolAccess == 'ClubOnly') {
+    const user_type = localStorage.getItem('user_type');
+    if (schoolAccess == 'ClubOnly' || user_type == 3 || user_type == 2) {
   // Handle unauthorized access as needed (e.g., redirect)
   this.$router.push("/");
 }
