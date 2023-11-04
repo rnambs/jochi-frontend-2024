@@ -1,8 +1,8 @@
 <template>
-  <div class="main-section">
+  <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
     <!-- Study Page -->
     <div
-      class="bg-white border rounded-10 p-4 custom-margin-for-main-section custom-full-height d-flex"
+      class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex"
     >
       <div class="study-section d-flex flex-column">
         <div
@@ -18,7 +18,7 @@
               <span class="color-dark text-16 font-semi-bold"
                 >{{ duration }} Minutes Studied Today</span
               >
-              <span class="color-secondary text-14 font-normal"
+              <span class="color-gray text-14 font-normal"
                 >{{ durationRemaining }}
                 {{
                   isAdditionalCovered
@@ -27,11 +27,8 @@
                 }}</span
               >
             </p>
-            <img
-              src="../../static/image/v4/alarm.png"
-              alt=""
-              class="img-fluid icon-img ml-2 clock-icon"
-            />
+            <img src="../../static/image/v4/alarm-black.svg" alt="clock" class="img-theme light img-fluid icon-img ml-2 clock-icon" />
+            <img src="../../static/image/v4/alarm-white.svg" alt="clock" class="img-theme dark img-fluid icon-img ml-2 clock-icon" />
           </div>
         </div>
         <div class="study-row d-flex flex-column px-2 pb-3">
@@ -39,7 +36,7 @@
             <div class="col-md-6 pt-2 pb-0">
               <h4
                 data-intro="Here you can break down how you’ve spent the week studying so far."
-                class="color-dark font-semi-bold mb-0"
+                class="text-18 color-dark font-semi-bold mb-0"
               >
                 Weekly Dashboard
               </h4>
@@ -47,7 +44,7 @@
             <div class="col-md-6 pt-2 pb-0">
               <h4
                 data-intro="Or you can view a general overview of your studying across the school year."
-                class="color-dark font-semi-bold mb-0"
+                class="text-18 color-dark font-semi-bold mb-0"
               >
                 Dashboard
               </h4>
@@ -55,8 +52,8 @@
           </div>
           <div class="row inner-row mt-0 text-center mb-2">
             <div class="col-md-3 py-2">
-              <div class="inner-col card card-void p-2">
-                <h6 class="color-dark font-semi-bold">Total Minutes</h6>
+              <div class="inner-col card card-primary p-2">
+                <h6 class="color-dark font-medium">Total Minutes</h6>
                 <p class="total-value text-24 color-dark font-semi-bold">
                   {{
                     mySession.total_minutes_week
@@ -75,8 +72,8 @@
               </div>
             </div>
             <div class="col-md-3 py-2">
-              <div class="inner-col card card-void p-2">
-                <h6 class="color-dark font-semi-bold">Total Sessions</h6>
+              <div class="inner-col card card-primary p-2">
+                <h6 class="color-dark font-medium">Total Sessions</h6>
                 <p class="total-value text-24 color-dark font-semi-bold">
                   {{
                     mySession.total_sessions_week
@@ -95,16 +92,16 @@
               </div>
             </div>
             <div class="col-md-3 py-2">
-              <div class="inner-col card card-void p-2">
-                <h6 class="color-dark font-semi-bold">Total Minutes</h6>
+              <div class="inner-col card card-primary p-2">
+                <h6 class="color-dark font-medium">Total Minutes</h6>
                 <p class="total-value text-24 color-dark">
                   {{ mySession.total_minutes ? mySession.total_minutes : 0 }}
                 </p>
               </div>
             </div>
             <div class="col-md-3 py-2">
-              <div class="inner-col card card-void p-2">
-                <h6 class="color-dark font-semi-bold">Total Sessions</h6>
+              <div class="inner-col card card-primary p-2">
+                <h6 class="color-dark font-medium">Total Sessions</h6>
                 <p class="total-value text-24 color-dark">
                   {{ mySession.total_sessions ? mySession.total_sessions : 0 }}
                 </p>
@@ -114,7 +111,7 @@
           <div class="row inner-row mt-0 mb-2">
             <div class="col-12 col-lg-6 py-2">
               <div
-                class="inner-col card card-void p-3 h-100 d-flex align-items-center justify-content-center"
+                class="inner-col card card-primary p-3 h-100 d-flex align-items-center justify-content-center"
               >
                 <!-- {{mySession.weekly_pi_chart}} -->
                 <div class="d-flex h-100">
@@ -147,7 +144,7 @@
             </div>
             <div class="col-12 col-lg-6 py-2">
               <div
-                class="inner-col card card-void p-3 h-100 d-flex align-items-center justify-content-center"
+                class="inner-col card card-primary p-3 h-100 d-flex align-items-center justify-content-center"
               >
                 <div class="d-flex">
                   <div class="d-flex flex-column justify-content-center">
@@ -161,7 +158,7 @@
                         class="chart-color mx-2"
                       >
                       </span>
-                      <span class="chart-text">
+                      <span class="chart-text color-dark">
                         {{ item.value }}
                       </span>
                     </div>
@@ -183,15 +180,15 @@
           </div>
           <div class="row inner-row mt-0">
             <div class="col-md-12 pt-2 pb-0">
-              <h4 class="color-dark font-semi-bold mb-0">Progress Chart</h4>
+              <h4 class="text-18 color-dark font-semi-bold mb-0">Progress Chart</h4>
             </div>
             <div class="col-md-6 mb-2">
-              <div class="inner-col card card-void p-2">
+              <div class="inner-col card card-primary p-2">
                 <canvas id="progress1" width="600" height="380"></canvas>
               </div>
             </div>
             <div class="col-md-6 mb-2">
-              <div class="inner-col card card-void p-2">
+              <div class="inner-col card card-primary p-2">
                 <canvas id="progress2" width="600" height="380"></canvas>
               </div>
             </div>
@@ -305,6 +302,7 @@ import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 // import Multiselect from 'vue-multiselect'
 import { mapState, mapActions } from "vuex";
+import { eventBus } from "~/plugins/eventbus.js";
 export default {
   props: ["studentId"],
   name: "dashBoard",
@@ -315,7 +313,7 @@ export default {
   head() {
     return {
       link: [
-        { rel: "stylesheet", href: "/css/style01.css" },
+        { rel: "stylesheet", href: "/css/custom.css" },
         {
           rel: "stylesheet",
           href: "https://cdnjs.cloudflare.com/ajax/libs/intro.js/6.0.0/introjs.css",
@@ -325,6 +323,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       legends: [],
       legendsTotal: [],
       anim: null, // for saving the reference to the animation
@@ -353,6 +352,11 @@ export default {
       percentage:[],
       bgColor:[]
     };
+  },
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);

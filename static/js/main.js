@@ -3,6 +3,23 @@ $.noConflict();
 jQuery(document).ready(function($) {
 
 	"use strict";
+	function applyTheme(theme) {
+		// When the selected theme changes, apply it to the <html> element's class
+		const html = document.documentElement; // <html> element
+		html.classList.remove("light-theme", "dark-theme"); // Remove all theme classes
+		html.classList.add(theme + "-theme"); // Add the selected theme class
+	  }
+	
+	  // Initialize the selected theme from localStorage or set a default theme
+	  const selectedTheme = localStorage.getItem('selectedTheme') || 'light';
+	  applyTheme(selectedTheme);
+	
+	  // Watch for changes in the selected theme and update localStorage and <html> class
+	  $('.theme-switch').on('change', function() {
+		const newTheme = $(this).val();
+		localStorage.setItem('selectedTheme', newTheme);
+		applyTheme(newTheme);
+	  });
 
 	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
 		new SelectFx(el);
@@ -31,6 +48,7 @@ jQuery(document).ready(function($) {
 
 	// var chartsheight = $('.flotRealtime2').height();
 	// $('.userActivity').css('height', chartsheight-150);
+
 
 
 

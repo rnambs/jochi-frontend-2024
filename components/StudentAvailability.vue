@@ -7,17 +7,17 @@
       class="lottie-loader"
     />
 
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
-          class="teacher-section bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
+          class="teacher-section bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
         >
-          <h3 class="color-primary-dark heading3 font-semi-bold m-0 px-4 pt-4">
+          <h3 class="color-primary-dark heading3 font-semi-bold m-0 px-1 pt-2">
             When Are You Free?
           </h3>
           <div
-            class="inner-teacher container-fluid px-4 py-2 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow"
+            class="inner-teacher container-fluid px-1 py-2 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow"
           >
             <div class="row h-100">
               <div
@@ -25,13 +25,13 @@
               >
                 <div
                   @click="setSessionType('assignment', false)"
-                  class="row card card-void m-0 mb-4 py-4 px-2 flex-row calendar-box w-100"
+                  class="row card card-void m-0 mb-4 py-4 px-2 flex-row calendar-box container w-100"
                 >
                   <div class="col-sm-7 col-md-8 col-xl-7 col-xxl-12 d-flex flex-column justify-content-center justify-content-xxl-start">
                     <h3 class="color-primary-dark heading3 font-semi-bold mb-1">
                       When Are You Free?
                     </h3>
-                    <p class="mb-0 color-dark font-semi-bold text-16">
+                    <p class="mb-0 color-gray font-semi-bold text-16">
                       Use this page to set your availability so that your peers
                       know when works best for you.
                     </p>
@@ -39,16 +39,27 @@
                   <div
                     class="col-sm-5 col-md-4 col-xl-5 col-xxl-12 d-flex align-items-center align-items-xxl-start justify-content-end"
                   >
-                    <img
+                    <!-- <img
                       src="~/static/image/Calendar-2.png"
                       alt=""
                       class="card-img small-size"
-                    />
+                    /> -->
+                    <img
+                        src="~/static/image/v4/free-time-light.svg"
+                        alt=""
+                        class="card-img small-size img-theme light"
+                      />
+                      <img
+                        src="~/static/image/v4/free-time-dark.svg"
+                        alt=""
+                        class="card-img small-size img-theme dark"
+                      />
+
                   </div>
                 </div>
                 <div
                   data-intro="Pre-set your availability so your peers know when you are available to meet. If you don’t set custom availability, Jochi will rely on your commitments that appear on your Jochi calendar. Here, you can choose a specific upcoming date to set your availability."
-                  class="time-slot calendar-sm container card card-primary rounded-22 border-0 pt-4 mt-4 p-0"
+                  class="time-slot calendar-sm container card card-secondary rounded-22 border-0 pt-5 mt-4 p-0"
                 >
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
@@ -57,11 +68,11 @@
                 class="col-md-5 custom-teacher-container d-flex flex-column h-100"
               >
                 <div
-                  class="time-slot container card card-primary rounded-22 p-4 flex-fill h-40"
+                  class="time-slot container card border-0 rounded-22 p-1 flex-fill h-40"
                 >
                   <p
                     data-intro="To set your custom availability, choose a series of 30 minute slots that work for you."
-                    class="time-head pb-1"
+                    class="time-head pb-1 px-1"
                   >
                     <span class="color-dark text-16 font-semi-bold">{{
                       date_string
@@ -70,7 +81,7 @@
                       ><i>30 Minute Slot</i></span
                     >
                   </p>
-                  <div class="inner-slot hidden-scroll h-40 flex-fill mb-5">
+                  <div class="inner-slot hidden-scroll mb-4">
                     <span v-for="(slot, index) in slotsArrayShow" :key="index">
                       <div
                         :class="
@@ -85,10 +96,10 @@
                       </div>
                     </span>
                   </div>
-                  <form action="" class="">
+                  <form action="" class="d-flex flex-column align-items-center justify-content-center px-1">
                     <div
                       data-intro="Save time and block out these slots for an entire week or month. You can also set this as your default preferences."
-                      class="row slot-form"
+                      class="row card w-100 slot-form"
                     >
                       <div class="col">
                         <div class="custom-switch mb-3">
@@ -158,11 +169,19 @@
                         </div>
                       </div>
                     </div>
-                    <div class="row slot-form container m-0 p-0">
-                      <div class="form-group col-12">
+                    <div class="row container m-0 px-0 py-2">
+                      <div class="form-group col-12 col-sm-6 py-0 pl-0 pr-0 pr-sm-2">
                         <button
                           type="submit"
-                          class="btn btn-primary my-2 py-1 px-4 float-right"
+                          class="btn btn-void my-2 px-4 w-100"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                      <div class="form-group col-12 col-sm-6 py-0 pr-0 pl-0 pl-sm-2">
+                        <button
+                          type="submit"
+                          class="btn btn-primary my-2 px-4 w-100"
                           @click.prevent="UpdateTeacherAvailability()"
                         >
                           Update
@@ -189,6 +208,7 @@ import { mapState, mapActions } from "vuex";
 import VueToast from "vue-toast-notification";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
+import { eventBus } from "~/plugins/eventbus.js";
 var ismounted = false;
 var dateClickValue = "";
 var slot_id = [];
@@ -211,6 +231,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       currentTime: "",
       weekend: "",
       month: "",
@@ -284,6 +305,11 @@ export default {
       },
       startTime: null,
     };
+  },
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);

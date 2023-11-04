@@ -105,8 +105,10 @@ export default {
     async getTokenDevice() {
       try {
         this.currentToken = await this.$fire?.messaging?.getToken();
+        const deviceTokenWeb = this.currentToken.toString();
+        console.log("Device Token (Web):", deviceTokenWeb);
         await this.sendDeviceToken({
-          deviceTokenWeb: this.currentToken.toString(),
+          deviceTokenWeb,
         });
         this.$fire.messaging.onMessage((payload) => {
           // alert("alerting" + payload);

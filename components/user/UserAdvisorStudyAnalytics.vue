@@ -138,7 +138,7 @@
                         class="chart-color mx-2"
                       >
                       </span>
-                      <span class="chart-text">
+                      <span class="chart-text color-dark">
                         {{ item.value }}
                       </span>
                     </div>
@@ -291,7 +291,7 @@ export default {
   },
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [{ rel: "stylesheet", href: "/css/custom.css" }],
     };
   },
   data() {

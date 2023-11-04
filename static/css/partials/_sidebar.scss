@@ -7,7 +7,10 @@
         background-color: var(--bg-card-primary);
         @media (max-width:$sm-screen) {
             margin-left: 0px;
+            padding-left: 0px;
+            width: 86px;
             border-right: none !important;
+            background-color: var(--color-basic);
         }
         .img-logo-v4{
             width: 22px;
@@ -23,10 +26,17 @@
             height: unset;
             min-height: unset;
         }
+        .navbar-toggler{
+            &:hover{background-color: var(--bg-card-primary02);}
+            .navbar-toggler-icon{
+                background-image: none;
+
+            }
+        }
         ul{
             &.vertical-nav {
                 padding-left: 0px;
-                background-color: var(--bg-card-primary);
+                background-color: var(--color-basic);
                 @media (min-width: $sm-screen) {  
                     position: fixed !important;
                     top: 70px;
@@ -36,6 +46,7 @@
                     overflow-y: auto;
                     padding-top: 16px;
                     padding-left: 24px;
+                    background-color: var(--bg-card-primary);
                 }
                 li.nav-item{
                     &.parent-menu{
@@ -93,6 +104,9 @@
                     // Sub menu items
                     &.sub-menu{
                         .nav-item{
+                            animation: 0.5s fadeIn;
+                            animation-fill-mode: forwards;
+                            visibility: hidden;
                             .nav-link{
                                 font-size: 1rem;
                                 line-height: 1.5rem;
@@ -120,5 +134,15 @@
                 }
             }
         }
+    }
+}
+
+// Animations
+@keyframes fadeIn {
+    99% {
+        visibility: hidden;
+    }
+    100% {
+      visibility: visible;
     }
 }

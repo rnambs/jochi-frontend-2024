@@ -6,10 +6,10 @@
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     />
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <!-- tab for club info -->
       <div
-        class="bg-white border rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
+        class="bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
       >
         <!-- end tab for club info -->
 
@@ -54,7 +54,7 @@
         <div class="position-relative">
           <div
             v-bind:class="{
-              'dropdown-club bg-white border rounded-10': true,
+              'dropdown-club bg-global border rounded-10': true,
               'dropdown-club--visible': dropdownVisible,
             }"
           >
@@ -113,12 +113,12 @@
           </div>
         </div>
         <section id="club-detail" class="flex-fill custom-overflow">
-          <div class="club-section container-fluid mt-2">
+          <div class="club-section container-fluid mt-2 pl-0">
             <div
               class="inner-club club-info d-flex flex-column justify-content-top container-fluid pr-0 py-0 pl-0"
             >
               <div class="my-2">
-                <h3 class="color-primary-dark font-semi-bold mb-1">Club Details</h3>
+                <h3 class="text-24 color-primary-dark font-semibold mb-1">Club Details</h3>
               </div>
               <div class="inner-info">
                 <div
@@ -128,9 +128,9 @@
                 >
                   <div v-if="index == 0" class="col-md-6 col-xs-12 pl-3 py-12">
                     <div class="inner-info-head mb-2">
-                      <h4 class="color-dark mb-2 font-bold">
+                      <h5 class="text-18 color-dark mb-2 font-semibold">
                         About the {{ headingName }}
-                      </h4>
+                      </h5>
                     </div>
                     <p
                       v-if="!editDescription"
@@ -183,9 +183,9 @@
                         <div
                           class="d-flex mb-3 justify-content-end align-items-center mb-2"
                         >
-                          <h4 class="color-dark mb-0 mr-2 font-bold">
+                          <h5 class="text-18 color-dark mb-0 mr-2 font-semibold">
                             Leaders
-                          </h4>
+                          </h5>
                           <a
                             v-if="enableEdit"
                             href="#"
@@ -286,7 +286,7 @@
                     class="col-md-6 col-xs-12 pr-0 pl-3 py-12"
                   >
                     <div class="mb-2 mt-4">
-                      <h4 class="color-dark mb-2 font-bold">Members</h4>
+                      <h5 class="text-18 color-dark mb-2 font-semibold">Members</h5>
                     </div>
                     <div
                       class="members-thumbnail-list d-flex flex-column align-items-center justify-content-start mt-3 position-relative"
@@ -367,7 +367,7 @@
                         <div
                           class="inner-info-head mb-2 d-flex align-items-center justify-content-end"
                         >
-                          <h4 class="color-dark mb-0 mr-2 font-bold">Tags</h4>
+                          <h5 class="text-18 color-dark mb-0 mr-2 font-semibold">Tags</h5>
                         </div>
                         <div class="row justify-content-end">
                           <div class="col-10 col-lg-8 info-tag">
@@ -411,7 +411,7 @@
                         v-if="enableEdit"
                       >
                         <div class="inner-info-head mb-3">
-                          <h4 class="color-dark mb-2 font-bold">Add Tags</h4>
+                          <h5 class="text-18 color-dark mb-2 font-semibold">Add Tags</h5>
                         </div>
                         <div
                           class="d-flex align-items-center justify-content-end"
@@ -442,9 +442,9 @@
         </section>
 
         <section id="tab" class="">
-          <div class="info-tab container-fluid mb-3 px-3">
+          <div class="info-tab container-fluid mb-3 px-0">
             <div class="row tab-row m-0 px-3">
-              <div class="col-md-4 col-xs-12 py-2 py-md-0">
+              <div class="col-md-4 col-xs-12 py-2 py-md-0 px-0">
                 <nuxt-link
                   :to="{
                     path: '/club-moreInfo',
@@ -454,14 +454,14 @@
                       type: clubDetails.activity_type,
                     },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
+                  class="inner-tab d-flex align-items-center justify-content-center btn btn-primary btn-lg w-100"
                 >
-                  <span class="text-24 color-primary-dark font-semi-bold"
+                  <span class="font-semi-bold"
                     >Home Page</span
                   >
                 </nuxt-link>
               </div>
-              <div class="col-md-4 col-xs-12 py-2 py-md-0">
+              <div class="col-md-4 col-xs-12 py-2 py-md-0 px-0 px-md-3">
                 <nuxt-link
                   :to="{
                     path: '/club-files',
@@ -471,30 +471,30 @@
                       type: clubDetails.activity_type,
                     },
                   }"
-                  class="inner-tab d-flex align-items-center justify-content-center p-2 rounded-10 h-100"
+                  class="inner-tab d-flex align-items-center justify-content-center btn btn-primary btn-lg w-100"
                 >
-                  <span class="text-24 color-primary-dark font-semi-bold"
+                  <span class="font-semi-bold"
                     >Files & Slides</span
                   >
                 </nuxt-link>
               </div>
               <div
                 @click="onNextMeeting"
-                class="col-md-4 col-xs-12 py-2 py-md-0"
+                class="col-md-4 col-xs-12 py-2 py-md-0 px-0"
               >
                 <div
                   :class="
                     enableEdit
-                      ? 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100 cursor-pointer'
-                      : 'inner-tab default d-flex flex-column align-items-center justify-content-center p-2 rounded-10 h-100'
+                      ? 'inner-tab default d-flex flex-column align-items-center justify-content-center btn btn-primary btn-lg w-100 cursor-pointer'
+                      : 'inner-tab default d-flex flex-column align-items-center justify-content-center btn btn-primary btn-lg w-100'
                   "
                 >
-                  <span class="text-24 color-primary-dark font-semi-bold"
+                  <span class="font-semi-bold"
                     >Next Meeting</span
                   >
-                  <span class="text-16 color-secondary font-regular">{{
+                  <!-- <span class="text-16 color-secondary font-regular">{{
                     clubMoreDetails.announcement
-                  }}</span>
+                  }}</span> -->
                 </div>
                 <!-- </nuxt-link> -->
               </div>
@@ -577,7 +577,7 @@
           <div class="modal-footer justify-content-end border-top-0 px-4">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8"
+              class="btn btn-void px-4 py-1 rounded-8"
               data-dismiss="modal"
             >
               Cancel
@@ -773,7 +773,7 @@
             <button
               type="button"
               data-dismiss="modal"
-              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
+              class="btn btn-void px-4 py-1 rounded-8 font-semi-bold"
               aria-label="Close"
             >
               Close
@@ -919,7 +919,7 @@
           <div v-if="!showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
+              class="btn btn-void px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               No
@@ -936,7 +936,7 @@
           <div v-if="showClubInfo" class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary px-4 py-1 rounded-8 font-semi-bold"
+              class="btn btn-void px-4 py-1 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Close
@@ -957,6 +957,7 @@ import "vue-croppa/dist/vue-croppa.css";
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
 import VueCropper from "vue-cropperjs";
+import { eventBus } from "~/plugins/eventbus.js";
 
 var headingName = "";
 var clubId = "";
@@ -972,6 +973,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       value: [],
       valueMeeting: "",
       name: "",
@@ -1018,7 +1020,11 @@ export default {
       isSchoolAdmin: "0",
     };
   },
-
+  created() {
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
+  },
   mounted() {
     if (localStorage.getItem("schoolAdmin")) {
       this.isSchoolAdmin = localStorage.getItem("schoolAdmin");

@@ -19,7 +19,7 @@
         </span>
       </nuxt-link>
       <button
-        class="navbar-toggler mr-3"
+        class="navbar-toggler mr-3 px-2"
         type="button"
         data-toggle="collapse"
         data-target="#navbarContent"
@@ -27,7 +27,7 @@
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"><i class="i-hand-burger j-icon i-xl bg-text-secondary"></i></span>
       </button>
 
       <div class="collapse navbar-collapse border-bottom" id="navbarContent">
@@ -39,7 +39,7 @@
           <!-- Planner -->
           <li class="nav-item d-flex flex-column flex-md-row px-1 parent-menu my-1 my-md-2">
             <a
-              @click="$event.target.classList.toggle('active'); accordionOpened=!accordionOpened"
+              @click="$event.target.classList.toggle('active'); accordionToggle($event, 'planner')"
               class=" nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button"
               data-toggle="collapse"
@@ -132,7 +132,7 @@
           <!-- Meeting -->
           <li class="nav-item d-flex flex-column flex-md-row px-1 parent-menu my-1 my-md-2">
             <a
-              @click="$event.target.classList.toggle('active'); accordionOpened=!accordionOpened"
+              @click="$event.target.classList.toggle('active'); accordionToggle($event, 'meeting')"
               class=" nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button"
               data-toggle="collapse"
@@ -214,7 +214,7 @@
           <!-- Teams & Clubs -->
           <li class="nav-item d-flex flex-column flex-md-row px-1 parent-menu my-1 my-md-2">
             <a
-              @click="$event.target.classList.toggle('active'); accordionOpened=!accordionOpened"
+              @click="$event.target.classList.toggle('active'); accordionToggle($event, 'club')"
               class=" nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button"
               data-toggle="collapse"
@@ -282,7 +282,7 @@
           <!-- Study Room -->
           <li class="nav-item d-flex flex-column flex-md-row px-1 parent-menu my-1 my-md-2">
             <a
-              @click="$event.target.classList.toggle('active'); accordionOpened=!accordionOpened"
+              @click="$event.target.classList.toggle('active'); accordionToggle($event, 'study')"
               class=" nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button"
               data-toggle="collapse"
@@ -538,7 +538,7 @@
               to="#"
               class=" nav-link btn d-inline-flex justify-content-start justify-content-md-center"
             >
-            <i class="i-cog j-icon i-lg bg-text-secondary"></i>
+            <i class="i-presentation j-icon i-lg bg-text-secondary"></i>
               <span
                 class="ml-3 color-secondary text-capitalize font-medium d-block d-md-none"
                 >Settings</span
@@ -573,7 +573,7 @@
                 data-toggle="dropdown"
                 @click="getNotifications()"
               >
-                <span class="position-relative d-flex">
+                <span class="position-relative d-flex ml-2 ml-md-0">
                   <i class="i-notification-bell j-icon i-lg bg-text-secondary"></i>
                   <!-- <span v-if="notificationCount > 0" class="notify-span">{{
                     notificationCount
@@ -651,18 +651,6 @@
               </div>
             </div>
           </li>
-          <li class="nav-item d-flex p-2">
-            <div class="theme-switcher mx-3 mx-md-0">
-              <input type="radio" id="light-theme" name="themes" v-model="selectedTheme" value="light" checked />
-              <label for="light-theme">
-                <span>Light</span>
-              </label>
-              <input type="radio" id="dark-theme" name="themes" v-model="selectedTheme" value="dark" />
-              <label for="dark-theme">
-                <span>Dark</span>
-              </label>
-            </div>
-          </li>
           <li class="nav-item d-flex justify-content-center p-2">
             <nuxt-link
               to="/user-profile"
@@ -672,7 +660,7 @@
                 v-bind:src="
                   profile && profile != 'null' ? profile : defaultImage
                 "
-                class="rounded-circle img-profile"
+                class="rounded-circle img-profile border"
                 alt="Profile image"
                 id="profileImage"
               />
@@ -705,7 +693,7 @@
           <div class="modal-footer justify-content-end border-top-0">
             <button
               type="button"
-              class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold"
+              class="btn btn-void py-1 px-3 rounded-8 font-semi-bold"
               data-dismiss="modal"
             >
               Cancel
@@ -739,8 +727,9 @@ export default {
       firstName: "",
       profile: "",
       defaultImage: defaultImage,
-      selectedTheme: "light", // Initially select the "light" theme
-      accordionOpened:false
+      accordionOpened:null,
+      menuClicked:"",
+      isMenuOpened:false,
     };
   },
 
@@ -857,12 +846,6 @@ export default {
         this.startIntro();
       }
     },
-    selectedTheme(newTheme) {
-      // When the selected theme changes, apply it to the <html> element's class
-      const html = document.documentElement; // <html> element
-      html.classList.remove("light-theme", "dark-theme"); // Remove all theme classes
-      html.classList.add(newTheme + "-theme"); // Add the selected theme class
-    },
     accordionOpened(value) {
       eventBus.$emit('accordionOpened', value);
     },
@@ -911,7 +894,7 @@ export default {
       if (type == "Peer" || type == "Teacher") {
         this.$router.push("/viewall-meeting");
       } else if (type == "Assignment") {
-        this.$router.push("/planner-day");
+        this.$router.push("/task");
       } else if (
         type == "Session" ||
         type == "Study session" ||
@@ -1041,6 +1024,14 @@ export default {
         });
       }
     },
+   accordionToggle(event, menu){
+      this.isMenuOpened=(this.menuClicked!=menu) || (!this.isMenuOpened && this.menuClicked==menu);
+      this.menuClicked=menu;
+      // const element = document.querySelector('.accordion-link'); // Assuming there is only one element with this class
+      const collapsed = event.target.classList.contains('active');
+      console.log("inside accordionToggle", collapsed);
+      this.accordionOpened=this.isMenuOpened;
+    }
   },
   destroyed() {
     window.removeEventListener(

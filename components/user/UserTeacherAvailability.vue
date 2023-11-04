@@ -10,37 +10,37 @@
     <div class="main-section">
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
-        <div class="teacher-section bg-white border-0 rounded-10
-        custom-margin-for-main-section custom-full-height
+        <div class="teacher-section bg-global border-0 rounded-10
+        m--12 custom-full-height
         d-flex
         flex-column">
-          <div class="d-flex flex-wrap align-items-center justify-content-between px-4 pt-4">
-            <h3 class="color-primary-dark heading3 font-semi-bold m-0 me-2 mb-2">Custom Avaliability</h3>
+          <div class="d-flex flex-wrap align-items-center justify-content-between">
+            <h3 class="color-primary-dark heading3 font-semi-bold m-0">Custom Avaliability</h3>
             <nuxt-link to="/teacher-syncCalendar">
-            <button class="btn btn-primary mb-2 px-5 ml-auto">
+            <button class="btn btn-primary my-2 px-5 ml-auto">
               <span class="mr-2">{{ syncStatus == 1 ? "Disable" : "Enable" }}</span>
               <i class="fab fa-google"></i>
               <span class="ml-2">Calendar Sync</span>
             </button>
             </nuxt-link>
           </div>
-          <div class="inner-teacher container-fluid px-4 pb-4 pt-3 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow">
+          <div class="inner-teacher container-fluid d-flex flex-column flex-fill h-40 custom-overflow">
             <div class="row h-100">
               <div class="col-md-7 text-light custom-teacher-container d-flex flex-column ">
-                <div class="time-slot calendar-sm container card card-primary rounded-22 p-3 pt-4 mb-4">
+                <div class="time-slot calendar-sm container card card-secondary rounded-22 p-3 pt-5 mb-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
-                <div class="time-slot-week container card card-primary rounded-22 p-3 pt-4">
+                <div class="time-slot-week container card card-secondary rounded-22 p-3 pt-5">
                   <FullCalendar :options="calendar" />
                 </div>
               </div>
               <div class="col-md-5 custom-teacher-container d-flex flex-column h-100">
-                <div class="time-slot container card card-primary rounded-22 p-4 flex-fill h-40">
-                  <p class="time-head pb-1">
+                <div class="time-slot container card border-0 p-0 rounded-22 flex-fill h-40">
+                  <p class="time-head pb-1 my-1 px-2">
                     <span class="color-dark text-16 font-semi-bold">{{ date_string }}</span>
                     <span class="color-secondary text-14 font-normal"><i>30 Minute Slot</i></span>
                   </p>
-                  <div class="inner-slot hidden-scroll h-40 flex-fill mb-5">
+                  <div class="inner-slot hidden-scroll mb-4">
                     <span v-for="(slot, index) in slotsArrayShow" :key="index">
                       <div
 
@@ -56,10 +56,10 @@
                       </div>
                     </span>
                   </div>
-                  <form action="" class="">
-                    <div class="row slot-form">
-                      <div class="col">
-                        <div class="custom-switch mb-3 switch-right">
+                  <form action="" class="d-flex flex-column align-items-center justify-content-center px-1">
+                    <div class="row card w-100 slot-form">
+                      <div class="col pb-0">
+                        <div class="custom-switch mb-3">
                           <input
                             type="checkbox"
                             class="custom-control-input"
@@ -69,13 +69,13 @@
                             name="default-cal"
                           />
                           <label
-                            class="custom-control-label form-label color-dark"
+                            class="custom-control-label font-normal color-dark form-label"
                             for="switch_month"
                             >Apply for the month</label
                           >
                         </div>
 
-                        <div class="custom-switch mb-3 switch-right">
+                        <div class="custom-switch mb-3">
                           <input
                             type="checkbox"
                             class="custom-control-input"
@@ -85,17 +85,14 @@
                             @change="weekToggle"
                           />
                           <label
-                            class="custom-control-label
-                        font-normal
-                        color-dark
-                        text-14 form-label"
+                            class="custom-control-label font-normal color-dark form-label"
                             for="switch_week"
                             >Apply for the week</label
                           >
                         </div>
                       </div>
-                      <div class="col">
-                        <div class="custom-switch mb-3 switch-right">
+                      <div class="col pb-0">
+                        <div class="custom-switch mb-3">
                           <input
                             type="checkbox"
                             class="custom-control-input"
@@ -104,10 +101,7 @@
                             @change="defaultToggle"
                           />
                           <label
-                            class="custom-control-label
-                        font-normal
-                        color-dark
-                        text-14 form-label"
+                            class="custom-control-label font-normal color-dark form-label"
                             for="switch_time"
                             >Set default time
                           </label>
@@ -115,7 +109,7 @@
 
                         <div
                           v-if="isWeek || isMonth || isTime"
-                          class="custom-switch mb-3 switch-right"
+                          class="custom-switch mb-3"
                         >
                           <input
                             type="checkbox"
@@ -125,21 +119,21 @@
                             v-model="weekend"
                           />
                           <label
-                            class="custom-control-label
-                        font-normal
-                        color-dark
-                        text-14 form-label"
+                            class="custom-control-label font-normal color-dark form-label"
                             for="switch_day"
                             >Include weekends</label
                           >
                         </div>
                       </div>
                     </div>
-                    <div class="row slot-form container m-0 p-0">
-                      <div class="form-group col-12">
+                    <div class="row container m-0 px-0 py-2">
+                      <div class="form-group col-12 col-sm-6 py-0 pl-0 pr-0 pr-sm-2"><button type="submit" class="btn btn-void my-2 px-4 w-100">
+                        Cancel
+                      </button></div>
+                      <div class="form-group col-12 col-sm-6 py-0 pr-0 pl-0 pl-sm-2">
                         <button
                           type="submit"
-                          class="btn btn-primary my-2 py-1 px-4 float-right"
+                          class="btn btn-primary my-2 px-4 w-100"
                           @click.prevent="UpdateTeacherAvailability()"
                         >
                           Update

@@ -1,0 +1,208 @@
+
+
+// welcome quotes
+.customModal{
+    #Welcome{
+        z-index: 4;
+        height: 90vh;
+        margin:auto;
+        top: -24px;
+        left: 0;
+        width:100%;
+        background-color: $white;
+        @include borderRadius(10);
+        border: 1px solid $border-color;
+        border-radius: .75rem;
+        border: none;
+        backdrop-filter: blur(5px);
+        .quotes-section{
+            color: $white;
+        }
+    }
+    @media (max-width:959.98px) {
+        .row{
+            display: block;
+        }               
+    }
+}
+
+.modal-backdrop.fade.show{
+    opacity: 0.5;
+    display: block;
+}
+
+// common popUp
+.modal{
+    z-index: 99999;
+    overflow: unset !important;
+    .modal-dialog{
+        @media (max-width:1024.98px) {
+            max-width: 400px;
+        }
+        .modal-content{
+            height: auto;
+            border: none;
+            border-top: 4px solid $theme-color;
+            background-color: var(--bg-card-secondary);
+            background-size:cover;
+            @include borderRadius(12);
+            .modal-header{
+                background-color: transparent;
+                border-radius: 6px 6px 0px 0px;
+                border: none;
+                .modal-title{
+                    color: $black;
+                    font-weight: 600;
+                    font-size: 1.25rem;
+                }
+                .close{
+                    color: $theme-color;
+
+                    &:hover{
+                        color: $theme-color;
+                    }
+                    span{
+                        border: none;
+                        text-shadow: none;
+                    }
+                }
+            } 
+            .modal-body{
+                background-color: transparent;
+                max-height: 75vh;
+                font-size: 0.813rem;
+                padding: 4px 16px;
+                color: var(--text-secondary);
+                @media (max-width:$lg-screen) {
+                    max-height: 50vh;
+                }
+                &.no-overflow{
+                    overflow: unset !important;
+                }
+                .data-overflow{
+                    width: 330px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+                .col-form-label{
+                    color: $font-gray01;
+                }
+                .form-group{
+                    .form-control{
+                        font-size: 0.9rem;
+                        &.vdp-datepicker{
+                            position: relative;
+                            cursor: pointer;
+                            padding: 0.6rem 0.75rem;
+                            &>div{
+                                width: 100%;
+                            }
+                            &::before{
+                                content: "\f073";
+                                display: inline-block;
+                                font-style: normal;
+                                font-variant: normal;
+                                text-rendering: auto;
+                                -webkit-font-smoothing: antialiased;
+                                font-family: 'Font Awesome 5 Pro';
+                                position: absolute;
+                                right:12px;
+                                top: 0;
+                                font-size: 14px;
+                            }
+                            input{
+                                width: 100%;
+                            }
+                            &.is-invalid{
+                                &::after{
+                                    display: none;
+                                }
+                            }
+                            input[type="text"]{
+                                line-height: 18px;
+                                z-index: 9;
+                            }
+                        }
+                    }
+                    select.form-control{
+                        cursor: pointer;
+                        &.is-invalid{
+                            appearance: unset !important;
+                        }
+                    }
+                    #message-text{
+                        min-height: 80px;
+                    }
+                    .dropdown{
+                        // .dropdown-select{
+                        //     position: relative;
+                        //     &::after{
+                        //         content: "\f107";
+                        //         display: inline-block;
+                        //         font-style: normal;
+                        //         font-variant: normal;
+                        //         text-rendering: auto;
+                        //         -webkit-font-smoothing: antialiased;
+                        //         font-family: 'Font Awesome 5 Pro';
+                        //         position: absolute;
+                        //         right: 6px;
+                        //         font-size: 14px;
+                        //     }
+                        // }
+                        .dropdown-menu{
+                            .item{
+                                cursor: pointer;
+                                display: flex;
+                                align-items: center;
+                                padding: 0.3rem 0.65rem;
+                                font-size: 0.8rem;
+                            }
+                        }
+                    }
+                    
+                }
+                .required-button{
+                    font-size: 80%;
+                    color: #5534A5;
+                }
+                table.table-modal{
+                    .tmodal-data, .tmodal-data{
+                        color: $font-primary-dark;
+                        font-size: 0.95rem;
+                        line-height: 2;
+                        @media (max-width:1024.98px) {
+                            font-size: 0.85rem;
+                        }
+                        .tdata-overflow{
+                            width: 250px;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+                .confirm-text{
+                    .delete-text{
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                }
+                .date-picker.badge.badge-pill.badge-color{
+                    background-color: $Global-background-element;
+                    box-shadow: 0px 0px 8px -4px rgb(0 1 0 / 25%);
+                    color: $font-secondary-dark;
+                    width: 56px;
+                    &.active{
+                        background-color: $theme-color;
+                        color: $white;
+                    }
+                }
+            }
+            .modal-footer{
+                border: none;
+                .btn-primary {font-size: 0.875rem;}
+                .btn-secondary {font-size: 0.875rem;}
+            }
+        }
+    }
+}
