@@ -67,9 +67,15 @@ body{
 //         }
 //     }
 // }
+.max-h-md-100{
+    max-height: 100%;
+}
 @media (max-height:768.98px) and (max-width:$lg-screen) {
     .height-md-unset{
         height: unset !important;
+    }
+    .max-h-md-100{
+        max-height: unset;
     }
 }
 
@@ -846,6 +852,7 @@ input[type="radio"]{
     span.fa-icon{
         &.show-hover{
             display: block !important;
+            color: inherit;
         }
     }
 }
@@ -915,6 +922,9 @@ input[type="radio"]{
 
 .cursor-pointer{
     cursor: pointer;
+}
+.cursor-auto{
+    cursor: auto !important;
 }
 .h-40{
     height: 40%;
@@ -1038,6 +1048,9 @@ img.card-img{
     @media (max-width: 959.98px) {
         max-height: 400px !important;
     }
+}
+.max-h-100{
+    max-height: 400px !important;
 }
 .study-status-card{
     flex-direction: column;
@@ -1200,9 +1213,13 @@ img.dark-icon{
 // }
 .faculty-availability-card{
     min-height: 90px;
+    margin-bottom: 1.5rem;
+    &:last-child{
+        margin-bottom: 0rem;
+    }
     &:hover{
         .fa-card-date{
-            background-color: $primary-light01 !important;
+            background-color: var(--text-primary-white) !important;
         }
     }
 }
@@ -6737,7 +6754,7 @@ select.form-control{
 }
 
 .custom-modal-ts-height {
-    height: 266px;
+    max-height: 266px;
     overflow: auto;
     .modal-time-schedules {
         .meeting-list {
@@ -6947,6 +6964,7 @@ $b-toaster-zindex: 1100 !default;
     justify-content: center;
     height: 1.07319rem;
     min-width: 2.23969rem;
+    max-width: 7rem;
     @include borderRadius(4);
     text-align: center;
     font-size: 0.57838rem;
@@ -6968,6 +6986,7 @@ $b-toaster-zindex: 1100 !default;
         background-color: $color-red-op-20;
         color: $color-red;
     }
+    span{white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 }
 
 // Avatar
@@ -7010,4 +7029,4 @@ $b-toaster-zindex: 1100 !default;
     overflow-y: auto;
 }
 .calendar-container{max-height: calc(100vh - 290px);}
-.task-container{max-height: calc(100vh - 352px);}
+.task-container{max-height: calc(100vh - 290px); flex-grow: 1;}

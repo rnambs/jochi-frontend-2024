@@ -537,11 +537,13 @@ export default {
     conversation_type: { required },
   },
   created() {
+    this.loading= true;
     eventBus.$on('accordionOpened', (newValue) => {
       this.accordionOpened = newValue;
     });
   },
   mounted() {
+    this.loading= false;
     window.addEventListener("orientationchange", this.handleOrientationChange);
     const page = "MeetingSchedule";
     const distinct_id = localStorage.getItem("distinctId");

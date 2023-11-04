@@ -223,6 +223,9 @@
             text-align: left;
             width: 100%;
             cursor: pointer;
+            &:disabled{
+                cursor: auto;
+            }
         }
         .controls>*{
             display: flex;
@@ -602,6 +605,9 @@
         color: $font-secondary-dark;
         cursor: pointer;
         padding-top: 0em;
+        &:disabled{
+            cursor: auto;
+        }
     }
     &.dropdown-menu-top{
         .vdp-datepicker__calendar{
