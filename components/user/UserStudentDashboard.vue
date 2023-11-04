@@ -14,9 +14,9 @@
       v-on:animCreated="handleAnimation"
       class="lottie-loader"
     />
-    <div class="main-section">
+    <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <div
-        class="bg-white custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
+        class="m--12 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
       >
         <div class="dmc-head d-flex align-items-start">
           <div class="greet-with-name-sec">
@@ -25,10 +25,10 @@
         </div>
         <div class="d-flex flex-column h-40 flex-fill">
           <div class="row h-100">
-            <div class="col-xl-8 h-100 height-md-unset">
-              <div class="d-flex flex-column h-100">
+            <div class="col-xl-8 height-md-unset max-h-100">
+              <div class="d-flex flex-column h-md-100">
                 <div
-                  class="bg-white border rounded-8 p-4 pr-1 pb-1 h-50"
+                  class="card card-primary02 rounded-8 p-4 pr-1 pb-1 h-50 max-h-50"
                 >
                   <div class="row position-relative justify-content-between h-100">
                     <div class="col-7">
@@ -47,7 +47,7 @@
                               </defs>
                             </svg>
                           </span>
-                          <p class="dashboard-head mb-2">
+                          <p class="dashboard-head color-primary-dark mb-2">
                             <span>Welcome Back, </span>
                             <span> {{ firstName }}</span>
                           </p>
@@ -62,22 +62,27 @@
                       <img
                         src="~/static/image/v4/dashboard_img.svg"
                         alt=""
-                        class="img-fluid mt-4 h-100 w-auto object-fit-contain"
+                        class="img-fluid mt-4 h-100 w-auto object-fit-contain img-theme light"
+                      />
+                      <img
+                        src="~/static/image/v4/dashboard_img_dark.svg"
+                        alt=""
+                        class="img-fluid mt-4 h-100 w-auto object-fit-contain img-theme dark"
                       />
                     </div>
                   </div>
                 </div>
-                <div class="d-flex flex-column h-lg-50 flex-fill">
+                <div class="d-flex flex-column h-lg-50 max-h-50 flex-fill">
                   <div
-                    class="row mt-1 h-100 height-md-unset flex-column flex-lg-row pt-2"
+                    class="row mt-1 h-100 height-md-unset flex-column flex-md-row pt-2"
                   >
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                       <div
                         data-intro="See how you are working towards your daily study goals."
-                        class="bg-white border-0 rounded-8 h-100"
+                        class="card card-primary02 border-0 rounded-8 h-100"
                       >
                         <div
-                          class="study-status-card d-flex flex-row flex-lg-column justify-content-center align-items-center h-100"
+                          class="study-status-card d-flex justify-content-center align-items-center h-100 p-3 p-lg-0"
                         >
                           <div
                             class="position-relative d-flex mr-3 mr-lg-0 mt-2"
@@ -90,11 +95,13 @@
                             <div
                               class="study-status-img position-absolute d-flex w-100 h-100 align-items-center justify-content-center"
                             >
-                              <img src="~/static/image/v4/alarm.png" alt="" />
+                              <!-- <img src="~/static/image/v4/alarm.png" alt="" /> -->
+                              <img src="~/static/image/v4/alarm-black.svg" alt="clock" class="img-theme light" />
+                              <img src="~/static/image/v4/alarm-white.svg" alt="clock" class="img-theme dark" />
                             </div>
                           </div>
                           <div
-                            class="study-status-text text-left text-lg-center my-2 px-2"
+                            class="study-status-text text-left text-md-center my-2 px-2"
                           >
                             <p class="study-status-studied mb-1 break-word">
                               {{ duration }} Minutes Studied Today
@@ -116,7 +123,7 @@
                       class="col-12 col-md-8 px-0 h-40 h-lg-100 flex-fill"
                     >
                       <div
-                        class="d-flex flex-column custom-overflow faculty-availability-card-outer h-100 p-3 py-4 h-max-lg-400"
+                        class="d-flex flex-column custom-overflow faculty-availability-card-outer h-100 p-3 py-4 h-max-md-400"
                       >
                         <div class="row">
                           <div class="col-12 mb-2">
@@ -190,7 +197,7 @@
             </div>
             <div class="col-xl-4 mt-3 mt-xl-0 h-md-100">
               <div
-                class="bg-white border rounded-8 h-100 d-flex flex-column overflow-hidden"
+                class="card card-secondary border rounded-8 h-100 d-flex flex-column overflow-hidden"
               >
                 <div class="calendar-dashboard px-4 pt-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
@@ -200,7 +207,7 @@
                     data-intro="See a brief overview of upcoming assignments day-by-day."
                     class="d-md-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-show"
                   >
-                    <h4 class="color-black font-semi-bold px-4">
+                    <h4 class="color-primary-dark font-semi-bold px-4">
                       Assignments List
                     </h4>
                     <div
@@ -209,7 +216,7 @@
                       <div
                         v-for="item in assignmentList"
                         :key="item.id"
-                        class="bg-gray-light rounded-8 p-3 pr-1 pb-1 mb-3"
+                        class="card card-tertiary rounded-8 p-3 pr-1 pb-1 mb-3"
                       >
                         <p
                           class="mb-1 word-break text-16 font-semi-bold color-dark"
@@ -223,7 +230,7 @@
                       </div>
                       <div
                         v-if="!assignmentList || assignmentList.length <= 0"
-                        class="bg-gray-light rounded-8 p-3 pr-1 pb-1 mb-3"
+                        class="card card-tertiary rounded-8 p-3 pr-1 pb-1 mb-3"
                       >
                         <p
                           class="mb-1 word-break text-16 font-semi-bold color-dark"
@@ -241,7 +248,7 @@
                 data-intro="See a brief overview of upcoming assignments day-by-day."
                 class="d-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-hide"
               >
-                <h4 class="color-black font-semi-bold px-4">
+                <h4 class="color-primary-dark font-semi-bold px-4">
                   Assignments List
                 </h4>
                 <div
@@ -254,7 +261,7 @@
                     <div
                       v-for="item in assignmentList"
                       :key="item.id"
-                      class="bg-gray-light rounded-8 p-3 pr-1 pb-1 mb-3"
+                      class="card card-tertiary rounded-8 p-3 pr-1 pb-1 mb-3"
                     >
                       <p
                         class="mb-1 word-break text-16 font-semi-bold color-dark"
@@ -269,7 +276,7 @@
                   </div>
                   <div
                     v-if="!assignmentList || assignmentList.length <= 0"
-                    class="bg-gray-light rounded-8 p-3 pr-1 pb-1 mb-3"
+                    class="card card-tertiary rounded-8 p-3 pr-1 pb-1 mb-3"
                   >
                     <p
                       class="mb-1 word-break text-16 font-semi-bold color-dark"
@@ -443,6 +450,7 @@ import { mapState, mapActions } from "vuex";
 import FullCalendar, { Calendar } from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import { eventBus } from "~/plugins/eventbus.js";
 
 var eventList = [];
 var Peerarray = [];
@@ -459,7 +467,7 @@ export default {
       link: [
         {
           rel: "stylesheet",
-          href: "/css/style01.css",
+          href: "/css/custom.css",
         },
         {
           rel: "stylesheet",
@@ -470,6 +478,7 @@ export default {
   },
   data() {
     return {
+      accordionOpened:false,
       isSmallScreen: false,
       isMediumScreen: false,
       isLargeScreen: false,
@@ -575,6 +584,9 @@ export default {
   },
   created() {
     this.loading=true;
+    eventBus.$on('accordionOpened', (newValue) => {
+      this.accordionOpened = newValue;
+    });
   },
   mounted() {
     window.addEventListener("orientationchange", this.handleOrientationChange);
@@ -1046,7 +1058,6 @@ export default {
   font-size: 26px;
   line-height: 30px;
   font-weight: 700;
-  color: #000000;
 }
 
 .dashboard-text-content {
@@ -1067,7 +1078,7 @@ export default {
   font-weight: 600;
   
 }
-@media (min-width: 991.98px) {
+@media (min-width: 959.98px) {
   .h-lg-100 {
     height: 100% !important;
   }

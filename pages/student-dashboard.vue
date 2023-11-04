@@ -6,7 +6,7 @@
 
     <!-- sidebar -->
 
-    <div><UserSidebar /></div>
+    <div><UserNewSidebar /></div>
 
     <!-- sidebar -->
 
@@ -14,14 +14,14 @@
   </div>
 </template>
 <script>
-import UserSidebar from "~/components/user/UserSidebar.vue";
+import UserNewSidebar from "~/components/user/UserNewSidebar.vue";
 
 import UserStudentDashboard from "~/components/user/UserStudentDashboard.vue";
 export default {
   // middleware: "authenticated",
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [{ rel: "stylesheet", href: "/css/custom.css" }],
     };
   },
   data() {
@@ -443,7 +443,6 @@ body {
   font-size: 26px;
   line-height: 30px;
   font-weight: 700;
-  color: #000000;
 }
 
 .dashboard-text-content {
@@ -580,8 +579,6 @@ body {
 	 margin: 0;
 }
 .calendar-dashboard .fc-toolbar-chunk .fc-next-button.fc-button, .fc-toolbar-chunk .fc-prev-button.fc-button {
-	 background: none;
-	 border: 1px solid #F1EEF6;
 	 display: flex;
 	 justify-content: center;
 	 align-items: center;

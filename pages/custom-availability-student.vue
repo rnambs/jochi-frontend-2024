@@ -1,7 +1,7 @@
 <template>
   <div class="inner-section">
     <!-- sidebar -->
-    <UserSidebar />
+    <UserNewSidebar />
 
     <!-- sidebar -->
 
@@ -10,14 +10,14 @@
 </template>
 <script>
 // import UserTeacherSidebar from "~/components/user/UserTeacherSidebar.vue";
-import UserSidebar from "~/components/user/UserSidebarTeacher.vue";
+import UserNewSidebar from "~/components/user/UserNewSidebar.vue";
 
 import StudentAvailability from "~/components/StudentAvailability.vue";
 export default {
   // middleware: "authenticated",
   head() {
     return {
-      link: [{ rel: "stylesheet", href: "/css/style01.css" }],
+      link: [{ rel: "stylesheet", href: "/css/custom.css" }],
     };
   },
   mounted() {

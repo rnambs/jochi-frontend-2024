@@ -11,14 +11,14 @@
       <!-- teacher Page -->
       <section id="teacher-detail" class="">
         <div
-          class="teacher-section bg-white border-0 rounded-10 custom-margin-for-main-section custom-full-height d-flex flex-column"
+          class="teacher-section bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
         >
-          <h3 class="color-primary-dark heading3 font-semi-bold m-0 px-4 pt-4">
+          <h3 class="color-primary-dark heading3 font-semi-bold mb-2">
             Your Meetings
           </h3>
 
           <div
-            class="inner-teacher px-4 pt-4 pb-2 mb-2 d-flex flex-column h-40 flex-fill custom-overflow"
+            class="inner-teacher d-flex flex-column h-40 flex-fill custom-overflow"
           >
             <div class="d-flex h-100 flex-column">
               <div>
@@ -28,7 +28,7 @@
                     class="col-md-6 custom-teacher-container d-flex flex-column"
                   >
                     <div
-                      class="inner-custom-teacher text-light p-3 pt-4 card card-primary rounded-22 flex-fill calendar-sm"
+                      class="inner-custom-teacher text-light p-3 pt-5 card card-secondary rounded-22 flex-fill calendar-sm"
                     >
                       <FullCalendar :options="calendarOptions" />
                     </div>
@@ -40,7 +40,7 @@
                     class="col-md-6 custom-teacher-container d-flex flex-column"
                   >
                     <div
-                      class="inner-custom-teacher p-3 card card-primary rounded-22 flex-fill calendar-sm"
+                      class="inner-custom-teacher p-3 card card-primary02 rounded-22 flex-fill calendar-sm"
                     >
                       <h4 class="font-semi-bold color-dark text-center">
                         Meetings
@@ -132,10 +132,10 @@
 
               <!-- TABLE  -->
               <div
-                class="teacher-row d-flex flex-column flex-fill h-40 mt-4 p-0"
+                class="teacher-row d-flex flex-column flex-fill h-40 mt-3 p-0"
               >
                 <div
-                  class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary rounded-22"
+                  class="col-md-12 p-0 custom-teacher-container d-flex flex-column card card-primary02 rounded-22"
                 >
                   <div class="appointment-req d-flex flex-column h-100 pb-2">
                     <h4 class="text-center color-dark font-semi-bold pt-4 mb-3">
@@ -221,7 +221,7 @@
                         v-if="teachersList.length == 0"
                         class="empty-shedule"
                       >
-                        <p>No data found</p>
+                        <p class="color-gray text-12">No data found</p>
                       </div>
                     </div>
                   </div>
@@ -395,7 +395,7 @@
                 </div>
               </div>
             </div>
-            <div class="modal-footer justify-content-end border-top-0 bg-white text-dark">
+            <div class="modal-footer justify-content-end border-top-0 bg-global text-dark">
               <button
                 v-if="
                   meetingDetail &&

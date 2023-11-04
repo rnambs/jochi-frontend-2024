@@ -6,8 +6,9 @@
           <div class="login-logo">
             <img
               class="align-content"
-              src="~/assets/images/jochi..svg"
+              src="~/assets/images/logo-grid.png"
               alt=""
+              style="max-width: 150px"
             />
           </div>
           <div class="login-form" v-if="!isLoggedIn">
@@ -86,7 +87,7 @@ export default {
       eye: "fa fa-fw fa-eye-slash field-icon",
       submitted: false,
       isLoggedIn: false,
-      processing: false,
+      processing: false
     };
   },
   validations: {

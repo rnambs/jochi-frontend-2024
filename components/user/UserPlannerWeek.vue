@@ -1822,7 +1822,7 @@
             <button
               aria-label="Close"
               data-dismiss="modal"
-              class="btn btn-secondary px-4 py-1 rounded-8"
+              class="btn btn-void px-4 py-1 rounded-8"
             >
               Cancel
             </button>
@@ -3732,7 +3732,7 @@ export default {
         this.reloadNext = false;
         this.tempOffset = this.offset;
         this.pendingAssignments = [];
-        await this.getAssignments({ offset: this.offset, limit: this.limit });
+        await this.getAssignments({ offset: this.offset, limit: this.limit, filter: 'Pending' });
         if (this.offset == 0) {
           await this.mapOverdues();
         }
