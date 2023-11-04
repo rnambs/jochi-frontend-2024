@@ -25,7 +25,8 @@ const state = {
   allSubTskCompleted: false,
   overdues: [],
   sharedOverdues: [],
-  trainingsMatches: []
+  trainingsMatches: [],
+  SuccessTypeSubTasks: false,
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -168,7 +169,7 @@ const actions = {
       if (response.message == "Assignment added successfully") {
         commit('setErrorMessage', "");
         commit('setErrorType', "");
-        commit('setSuccessMessage', "Assignment added successfully");
+        commit('setSuccessMessage', "Assignment Added Successfully");
         commit('setSuccessType', "success");
       }
     } catch (e) {
@@ -253,8 +254,9 @@ const actions = {
       if (response.message == "Assignment updated successfully") {
         commit('setErrorMessage', "");
         commit('setErrorType', "");
-        commit('setSuccessMessage', "Assignment updated successfully");
+        commit('setSuccessMessage', "Assignment Updated Successfully");
         commit('setSuccessType', "success");
+        commit('setSuccessTypeSubTasks', response.completed_assignment);
       }
     } catch (e) {
       if (e?.response?.data?.message == "Unauthorized") {
@@ -543,6 +545,7 @@ const actions = {
       }
     } catch (e) {
       console.log(e);
+      console.log("response",e?.response?.data?.message);
       if (e?.response?.data?.message == "Unauthorized") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
@@ -551,12 +554,19 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
+      else if (e?.response?.data?.message) {
+        commit('setSuccessMessage', "");
+        commit('setSuccessType', "");
+        commit('setErrorMessage',e?.response?.data?.message);
+        commit('setErrorType', "error");
+      }
       else if (e?.response?.data?.error) {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', e?.response?.data?.error);
         commit('setErrorType', "error");
       }
+     
     }
 
   },
@@ -596,6 +606,9 @@ const mutations = {
   },
   setSuccessMessage(state, data) {
     state.successMessage = data;
+  },
+  setSuccessTypeSubTasks(state, data) {
+    state.SuccessTypeSubTasks = data;
   },
   setSuccessType(state, data) {
     state.successType = data;
@@ -675,6 +688,9 @@ const getters = {
   },
   successMessage: () => {
     return state.successMessage;
+  },
+  SuccessTypeSubTasks: () => {
+    return state.SuccessTypeSubTasks;
   },
   successType: () => {
     return state.successType;

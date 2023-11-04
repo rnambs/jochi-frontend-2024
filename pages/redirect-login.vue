@@ -146,7 +146,7 @@ export default {
           console.log("studentSignUp value", this.studentSignUp);
           if (this.studentSignUp == true || this.studentSignUp == "true") {
             localStorage.setItem("studentSignUp", this.studentSignUp);
-            this.$store.commit("setStartProductGuide", true);
+            // this.$store.commit("setStartProductGuide", true); /* Commented for hiding tutorial part */
           }
           this.$router.push("/club-detail");
         }  else if (user_type == 3 ) {

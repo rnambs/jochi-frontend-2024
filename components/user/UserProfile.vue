@@ -473,17 +473,17 @@
                           class="mb-0 text-16 color-secondary d-flex flex-row align-items-center"
                         >
                           <span class="text-20"
-                            ><i class="fas fa-envelope"></i
+                            ><i class="i-mail j-icon i-lg bg-text-secondary"></i
                           ></span>
                           <span class="ml-2">{{ email }}</span>
                         </p>
                       </div>
                       <div class="card card-primary02 p-2 mb-3 border border--form2">
                         <p
-                          class="mb-0 text-16 color-secondary d-flex flex-row align-items-baseline"
+                          class="mb-0 text-16 color-secondary d-flex flex-row align-items-center"
                         >
                           <span class="text-20"
-                            ><i class="fas fa-school"></i
+                            ><i class="i-school j-icon i-lg bg-text-secondary"></i
                           ></span>
                           <span class="ml-2">{{ schoolName }}</span>
                         </p>
@@ -493,34 +493,14 @@
                           class=""
                         >
                           <button
-                            class="mr-3"
+                            class="mr-3 d-inline-flex"
                             v-if="!enableEdit"
                             @click="enableEdit = true"
                           >
-                            <span class="mr-1"
-                              ><i class="fas fa-pencil color-primary-dark"></i
+                            <span class="d-flex"
+                              ><i class="i-edit-pen j-icon i-md bg-primary-dark"></i
                             ></span>
                             <span class="color-primary-dark">Edit</span>
-                          </button>
-
-                          <button
-                            class="mr-2"
-                            v-if="enableEdit"
-                            @click="
-                              enableEdit = false;
-                              cancelEditPhone();
-                            "
-                          >
-                            <span class="mr-1"
-                              ><i class="fas fa-times color-primary-dark"></i
-                            ></span>
-                            <span>Cancel</span>
-                          </button>
-                          <button v-if="enableEdit" @click="phoneUpdate()">
-                            <span class="mr-1"
-                              ><i class="fas fa-save color-primary-dark"></i
-                            ></span>
-                            <span>Update</span>
                           </button>
 
                           <div class="card card-primary02 p-2 border border--form2">
@@ -528,12 +508,12 @@
                               class="mb-0 text-16 color-secondary d-flex flex-row align-items-center"
                             >
                               <span class="text-20"
-                                ><i class="fas fa-phone"></i
+                                ><i class="i-phone j-icon i-lg bg-text-secondary"></i
                               ></span>
                               <input
                                 :disabled="!enableEdit"
                                 type="text"
-                                class="pl-3 word-break text-truncate"
+                                class="pl-3 word-break text-truncate w-100 color-secondary"
                                 v-model="phoneNumber"
                                 @change="checkValueChange()"
                                 @input="checkValue()"
@@ -542,12 +522,26 @@
                             </p>
                           </div>
                           <span
-                            class="mt-1"
+                            class="mt-1 text-12 color-danger"
                             v-if="phoneInvalid"
-                            style="color: red"
                             >Please enter a valid phone number with country
                             code</span
                           >
+                      </div>
+
+                      <div class="d-flex flex-wrap mt-3 align-items-center justify-content-end">
+                        <button
+                            class="btn btn-secondary btn-sm mr-2"
+                            v-if="enableEdit"
+                            @click="
+                              enableEdit = false;
+                              cancelEditPhone();
+                            "
+                          >Cancel
+                          </button>
+                          <button class="btn btn-primary btn-sm" v-if="enableEdit" @click="phoneUpdate()">
+                            Save changes
+                          </button>
                       </div>
                     </div>
 

@@ -533,7 +533,7 @@
           </li> -->
           <!-- nav bottom -->
           <!-- settings -->
-          <li @click="startGuide()" class="nav-item d-flex px-1 parent-menu mb-1 mb-md-2 mt-auto">
+          <!-- <li @click="startGuide()" class="nav-item d-flex px-1 parent-menu mb-1 mb-md-2 mt-auto">
             <nuxt-link
               to="#"
               class=" nav-link btn d-inline-flex justify-content-start justify-content-md-center"
@@ -544,8 +544,8 @@
                 >Settings</span
               >
             </nuxt-link>
-          </li>
-          <li class="nav-item d-flex px-1 parent-menu my-1 my-md-2">
+          </li> -->
+          <li class="nav-item d-flex px-1 parent-menu mb-1 mb-md-2 mt-auto">
             <a
               @click="GetLogout()"
               href="#"
