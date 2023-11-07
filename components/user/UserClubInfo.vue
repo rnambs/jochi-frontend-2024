@@ -257,7 +257,7 @@
                                 <button
                                   v-if="leadersInfo.length >= 3"
                                   @click="openViewMoreMembers(true)"
-                                  class="btn btn-void mt-2 py-1 px-0"
+                                  class="btn btn-void mt-2 py-1 px-1"
                                 >
                                   <span class="font-semi-bold mr-1"
                                     >View More</span
@@ -292,7 +292,7 @@
                       class="members-thumbnail-list d-flex flex-column align-items-center justify-content-start mt-3 position-relative"
                     >
                       <div class="first-row">
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex align-items-center pl-4">
                           <div
                             v-for="index in 4"
                             :key="index"
