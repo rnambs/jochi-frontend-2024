@@ -243,9 +243,10 @@
                         Breaktime At :
                         <span>{{ sessionDetail.breakTimeAt }}</span>
                       </p>
-                      <p class="mb-0 color-secondary font-regular text-16 mb-1">
+                      <p v-if="sessionDetail.studyMethod != 2" class="mb-0 color-secondary font-regular text-16 mb-1">
                         Repetitions : <span>{{ sessionDetail.repeat }}</span>
                       </p>
+
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">Peers</h5>
