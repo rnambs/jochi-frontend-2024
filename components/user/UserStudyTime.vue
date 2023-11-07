@@ -243,9 +243,10 @@
                         Breaktime At :
                         <span>{{ sessionDetail.breakTimeAt }}</span>
                       </p>
-                      <p class="mb-0 color-secondary font-regular text-16 mb-1">
+                      <p v-if="sessionDetail.studyMethod != 2" class="mb-0 color-secondary font-regular text-16 mb-1">
                         Repetitions : <span>{{ sessionDetail.repeat }}</span>
                       </p>
+
                     </div>
                     <div class="d-flex flex-column mb-2">
                       <h5 class="color-dark mb-1 font-semi-bold">Peers</h5>
@@ -533,7 +534,7 @@
                 <h3 class="color-primary-dark heading3 font-bold mb-1 text-center">
                   Pomodoro Timer
                 </h3>
-                <p class="color-dark font-semi-bold text-18 text-center">
+                <p class="color-gray font-semi-bold text-18 text-center">
                   Boost your productivity.
                 </p>
                 <button
@@ -751,7 +752,43 @@
                       class="form-group required"
                     >
                       <label class="typo__label">Subject</label>
-                      <select
+                      <div class="position-relative"
+                  >
+                    <div
+                      class="dropdown-select d-inline-flex form-control rounded-8 border border--form color-secondary font-normal text-16 pr-2"
+                      type="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      :class="{
+                      'is-invalid':
+                      submitted && $v.Subject.$error,
+                  }"
+                    >
+                      <span id="dLabel" class="mr-auto color-secondary text-truncate">
+                        {{ Subject ? Subject.text : 'Select Subject' }}</span
+                      >
+                      <span class="caret color-secondary"
+                        ><i class="fas fa-chevron-down font-medium"></i
+                      ></span>
+                    </div>
+
+                    <ul
+                      class="dropdown-menu w-100 rounded-12 border border--form mt-0 p-2"
+                      aria-labelledby="dLabel"
+                    >
+                      <li v-for="(subjects, index) in subjectsData" :key="index" class="item p-2" @click="selectSubject(subjects)">
+                        {{ subjects.subject_name }}
+                      </li>
+                      <li v-if="subjectsData.length == 0">
+                      No data
+                      </li>
+                      <div v-if="submitted && $v.Subject.$error" class="invalid-feedback">
+                      <span v-if="!$v.Subject.required">This field is required</span>
+                  </div>
+                    </ul>
+                  </div>
+                      <!-- <select
                         :disabled="sessionDetail.id"
                         @change="UpdateSubject()"
                         class="form-control"
@@ -773,15 +810,15 @@
                           {{ subjects.subject_name }}
                         </option>
                         <option v-if="subjectsData.length == 0">No data</option>
-                      </select>
-                      <div
+                      </select> -->
+                      <!-- <div
                         v-if="submitted && $v.Subject.$error"
                         class="invalid-feedback"
                       >
                         <span v-if="!$v.Subject.required"
                           >This field is required</span
                         >
-                      </div>
+                      </div> -->
                     </div>
                     <div v-else class="form-group required">
                       <label class="typo__label">Subject</label>
@@ -935,14 +972,16 @@
                     : "Pomodoro Studying")
                 }}</span>
               </p>
-              <p class="color-gray text-16 font-regular mb-2">
-                Remaining Cycles :
-                {{ totalCycles - currentCycle }}
-              </p>
-              <p class="color-gray text-16 font-regular mb-2">
-                Remaining Repetitions :
-                {{ repetitionCount - currentRepetitionNum }}
-              </p>
+              <div  v-if="sessionMode != 'regular'">
+                <p class="color-gray text-16 font-regular mb-2">
+                  Remaining Cycles :
+                  {{ totalCycles - currentCycle }}
+                </p>
+                <p class="color-gray text-16 font-regular mb-2">
+                  Remaining Repetitions :
+                  {{ repetitionCount - currentRepetitionNum }}
+                </p>
+              </div>
 
               <h3 class="color-primary-dark font-semi-bold mb-2">Goals</h3>
               <div v-for="goal in goalsList" :key="goal">
@@ -2955,6 +2994,12 @@ export default {
       if (valid) {
         this.goToSession();
       }
+    },
+    selectSubject(selectedSubject) {
+      this.Subject = {
+      id: selectedSubject.id,
+      text: selectedSubject.subject_name
+    };
     },
     showConfirmSessionStart() {
       $("#confirmAsstStartModal").modal({ backdrop: true });
