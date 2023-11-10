@@ -18,7 +18,7 @@
   data-intro="View and manage all of your existing commitments."
 >
   <span v-if="schoolAccess === 'ClubOnly'">My Activities</span>
-  <span v-else>Club Details</span>
+  <span v-else>Your Pods</span>
 </h2>
             <div class="inner-tab-section container-fluid p-0">
               <div

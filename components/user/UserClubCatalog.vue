@@ -18,7 +18,7 @@
                   data-intro="View all the community service, sports teams, and clubs available at your school. To learn more about different activities, click learn more."
                   class="color-primary-dark font-semi-bold mb-1"
                 >
-                  Club Catalog
+                  Join a Learning Pod
                 </h2>
                 <h4 class="mb-2 color-dark font-semi-bold">
                   Find your people!
@@ -34,7 +34,7 @@
                   class="btn btn-primary py-2 mt-1 h-fit-content px-4"
                   @click="openCreateNewModal"
                 >
-                  Create your own club
+                  Create a New Pod
                 </button>
               </div>
             </div>

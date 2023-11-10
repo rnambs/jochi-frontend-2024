@@ -55,7 +55,7 @@
                   class="d-flex align-items-center justify-content-between mb-3"
                 >
                   <h3 class="text-24 color-primary-dark font-semibold mb-1">
-                    Club Details
+                    Pod Details
                   </h3>
 
                   <a

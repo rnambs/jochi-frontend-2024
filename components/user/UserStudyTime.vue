@@ -855,7 +855,7 @@
                     </div>
 
                     <div class="form-group" v-show="this.studyTypes.id == 2">
-                      <label for="">Duration (In Minutes)</label>
+                      <label for="">How long do you want to study for? (minutes)</label>
                       <input
                         type="number"
                         min="0"
@@ -866,7 +866,7 @@
                       />
                     </div>
                     <div class="form-group" v-show="this.studyTypes.id == 2">
-                      <label for="">Break Time At (In Minutes)</label>
+                      <label for="">After how long do you want to take a break? (minutes)</label>
                       <input
                         type="number"
                         min="0"
@@ -877,7 +877,7 @@
                       />
                     </div>
                     <div class="form-group" v-show="this.studyTypes.id == 2">
-                      <label for="">Break Time (In Minutes)</label>
+                      <label for="">How long do you want your break to be? (minutes)</label>
                       <input
                         type="number"
                         min="0"
