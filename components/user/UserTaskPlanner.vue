@@ -102,7 +102,7 @@
                                     Edit
                                   </li>
                                   <li @click="movetoTodo(item, 'Doing')" class="item px-2 py-1">
-                                    Move to Todo
+                                    Move to To-do
                                   </li>
                                   <li @click="movetoDone(item, 'Doing')" class="item px-2 py-1">
                                     Move to Done
@@ -151,7 +151,7 @@
                     <div class="d-flex flex-column pr-2">
                       <div class="d-flex align-items-center mb-3">
                         <span class="mr-2"><span class="bg-task-yellow p-1 rounded-circle d-flex"></span></span>
-                        <p class="mb-0 color-dark font-medium text-14">Todo</p>
+                        <p class="mb-0 color-dark font-medium text-14">To-do</p>
                       </div>
                       <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
                     </div>
@@ -2083,11 +2083,11 @@ export default {
     }),
     assignmentTypeText() {
       if (this.assignmentType === 'Monthly') {
-        return 'Completed task for this month';
+        return 'Your tasks for this month';
       } else if (this.assignmentType === 'All') {
-        return 'All completed task';
+        return 'All tasks';
       } else {
-        return 'Completed task for this week';
+        return 'Your tasks for this week';
       }
     },
     TypeText() {

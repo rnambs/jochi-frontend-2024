@@ -18,7 +18,7 @@
               data-intro="How to book a meeting with your teachers/peers in just 3 clicks."
               class="color-primary-dark font-semi-bold"
             >
-              Schedule A Meeting!
+              Schedule A Meeting
             </h2>
             <div class="inner-tab-section container-fluid p-0">
               <div class="row px--12">

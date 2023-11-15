@@ -22,7 +22,8 @@
           <div class="greet-with-name-sec">
             <h2 class="color-primary-dark heading3 font-bold mb-0">
               Welcome back, <span> {{ firstName }}!</span>
-              <img src="~/static/image/v4/waving.svg" alt="" class="small-waving-hand"/>
+              <img src="~/static/image/v4/waving.svg" alt="" class="small-waving-hand img-theme light"/>
+              <img src="~/static/image/v4/waving-dark.svg" alt="" class="small-waving-hand img-theme dark"/>
             </h2>
           </div>
         </div>
@@ -38,7 +39,7 @@
                       <div
                       class="dashboard-text-content-section position-absolute w-100" style="top: 0;"
                       >
-                        <h3 style="margin-top: 0;">Your Weekly Summary</h3>
+                        <h3 class="color-primary-dark heading3 font-bold mb-0" style="margin-top: 0;">Your Weekly Summary</h3>
                         <router-link to="/task">
                           <button
                             type="button">
@@ -623,7 +624,7 @@ export default {
         const createdAtDate = moment(item.createdAt);
         const startOfWeek = moment().startOf('isoWeek');
         const endOfWeek = moment().endOf('isoWeek');
-        const isTaskActive = item.task_status !== 'Completed' && item.task_status !== 'Overdue' && item.task_status !== 'Doing';
+        const isTaskActive = item.task_status !== 'Completed' && item.task_status !== 'Overdue';
         const isCreatedThisWeek = createdAtDate.isSameOrAfter(startOfWeek) && createdAtDate.isSameOrBefore(endOfWeek);
         return isTaskActive && isCreatedThisWeek;
       });
@@ -1272,10 +1273,27 @@ export default {
   width: 40px; /* Adjust size as needed */
   height: auto;
   vertical-align: middle;
+  display: inline-block;
 }
 
 .h-max-100 {
   max-height: 100px;
+}
+
+:root.dark-theme img.img-theme.light {
+  display: none;
+}
+
+:root.dark-theme img.img-theme.dark {
+  display: inline-block;
+}
+
+img.img-theme.light {
+  display: inline-block;
+}
+
+img.img-theme.dark {
+  display: none;
 }
 
 /* .assignment-md-show {
