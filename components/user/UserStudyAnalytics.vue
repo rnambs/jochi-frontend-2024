@@ -46,7 +46,7 @@
                 data-intro="Or you can view a general overview of your studying across the school year."
                 class="text-18 color-dark font-semi-bold mb-0"
               >
-                Dashboard
+                All-time Analytics
               </h4>
             </div>
           </div>

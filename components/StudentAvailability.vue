@@ -14,7 +14,7 @@
           class="teacher-section bg-global border-0 rounded-10 m--12 custom-full-height d-flex flex-column"
         >
           <h3 class="color-primary-dark heading3 font-semi-bold m-0 px-1 pt-2">
-            Set your Availability
+            Set Availability
           </h3>
           <div
             class="inner-teacher container-fluid px-1 py-2 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow"
@@ -32,8 +32,8 @@
                       When Are You Free?
                     </h3>
                     <p class="mb-0 color-gray font-semi-bold text-16">
-                      Use this page to set your availability so that your peers
-                      know when works best for you.
+                      Use this page to set your availability so that people
+                      know when you're free.
                     </p>
                   </div>
                   <div
@@ -78,7 +78,7 @@
                       date_string
                     }}</span>
                     <span class="color-secondary text-14 font-normal"
-                      ><i>30 Minute Slot</i></span
+                      ><i>Select 30 minute slots</i></span
                     >
                   </p>
                   <div class="inner-slot hidden-scroll mb-4">
@@ -114,7 +114,7 @@
                           <label
                             class="custom-control-label font-normal color-dark form-label"
                             for="switch_month"
-                            >Apply for the month</label
+                            >Set availability for the month</label
                           >
                         </div>
 
@@ -130,7 +130,7 @@
                           <label
                             class="custom-control-label font-normal color-dark text-14 form-label"
                             for="switch_week"
-                            >Apply for the week</label
+                            >Set availability for the week</label
                           >
                         </div>
                       </div>
@@ -146,7 +146,7 @@
                           <label
                             class="custom-control-label font-normal color-dark text-14 form-label"
                             for="switch_time"
-                            >Set default time
+                            >Set as default availability
                           </label>
                         </div>
 

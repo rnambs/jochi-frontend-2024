@@ -7,7 +7,7 @@
         class="lottie-loader"
       />
       <div class="d-flex justify-content-end">
-        <button @click="toggleWeekends" class="btn btn-primary">{{ showWeekends ? 'Hide Weekends' : 'Show Weekends' }}</button>
+        <button @click="toggleWeekends" class="btn btn-primary">{{ showWeekends ? 'Hide Weekend' : 'Show Weekend' }}</button>
       </div>
       <div>
         <button @click="goToPreviousWeek" class="btn btn-primary">Previous</button>

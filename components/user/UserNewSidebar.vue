@@ -244,7 +244,7 @@
                     <i class="i-club-existing j-icon i-lg bg-text-secondary"></i>
                     <span
                       class="ml-2 color-secondary text-capitalize font-medium"
-                      >Existing</span
+                      >Your Pods</span
                     >
                     </nuxt-link
                   >

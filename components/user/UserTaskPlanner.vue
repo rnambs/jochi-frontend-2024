@@ -954,7 +954,7 @@
                     <div class="form-group">
                       <label for="recipient-name" class="col-form-label">Time<em>*</em></label>
                       <div>
-                        <vue-timepicker @change="checkValidTime" close-on-complete format="hh:mm A" v-model="timeValue"
+                        <vue-timepicker @change="checkValidTime" close-on-complete format="hh:mm a" v-model="timeValue"
                           name="timeValue" class="show-cursor dropdown-menu-top" :value="timeValue" :class="{
                             'is-invalid':
                               submitted &&
@@ -1323,7 +1323,7 @@
                     <div class="form-group">
                       <label for="recipient-name" class="col-form-label py-0">Time<em>*</em></label>
                       <div>
-                        <vue-timepicker disabled="disabled" @change="checkValidTime" close-on-complete format="hh:mm A" v-model="timeValue"
+                        <vue-timepicker disabled="disabled" @change="checkValidTime" close-on-complete format="hh:mm a" v-model="timeValue"
                           name="timeValue" class="show-cursor dropdown-menu-top cursor-auto" :value="timeValue" :class="{
                             'is-invalid':
                               submitted &&
@@ -2085,7 +2085,7 @@ export default {
       if (this.assignmentType === 'Monthly') {
         return 'Your tasks for this month';
       } else if (this.assignmentType === 'All') {
-        return 'All tasks';
+        return 'All of your tasks';
       } else {
         return 'Your tasks for this week';
       }
@@ -2094,7 +2094,7 @@ export default {
       if (this.assignmentType === 'Monthly') {
         return 'This Month';
       } else if (this.assignmentType === 'All') {
-        return 'All Assignment';
+        return 'All Assignments';
       } else {
         return 'This Week';
       }

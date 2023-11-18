@@ -83,7 +83,7 @@
                   Start A New Study Session
                 </h3>
                 <p class="mb-0 color-gray font-semi-bold text-16">
-                  Stay focused while you study, and monitor your productivity
+                  Stay focused while you study and monitor your productivity
                 </p>
               </div>
               <div
@@ -535,9 +535,9 @@
                   Pomodoro Timer
                 </h3>
                 <p class="color-gray font-semi-bold text-18 text-center">
-                  Boost your productivity.
+                  Boost your productivity with short intervals of focused work
                 </p>
-                <button
+                <!-- <button
                   @click="$event.stopPropagation()"
                   class="btn btn-primary py-2 text-center"
                 >
@@ -549,7 +549,7 @@
                   >
                     Click to Learn More</a
                   >
-                </button>
+                </button> -->
               </div>
             </div>
           </div>
@@ -1333,7 +1333,7 @@
             <div class="form-group required">
               <vue-timepicker
                 close-on-complete
-                format="hh:mm A"
+                format="hh:mm a"
                 placeholder="Time"
                 v-model="scheduledTime"
                 name="scheduledTime"

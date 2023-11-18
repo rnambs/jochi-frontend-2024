@@ -173,8 +173,8 @@
                     
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary-dark font-medium">Step 1</h6>
-                      <p class="color-secondary text-12">
-                        Search & Select Meeting Participants
+                      <p class="color-secondary text-14">
+                        Select Meeting Participants
                       </p>
                     </div>
                   </div>
@@ -193,8 +193,8 @@
                     />
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary-dark font-medium">Step 2</h6>
-                      <p class="color-secondary text-12">
-                        Choose Your Date Range
+                      <p class="color-secondary text-14">
+                        Choose Date Range
                       </p>
                     </div>
                   </div>
@@ -213,7 +213,7 @@
                     />
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="color-primary-dark font-medium">Step 3</h6>
-                      <p class="color-secondary text-12">
+                      <p class="color-secondary text-14">
                         Confirm Meeting Details
                       </p>
                     </div>

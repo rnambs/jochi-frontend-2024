@@ -43,18 +43,18 @@
                         <router-link to="/task">
                           <button
                             type="button">
-                        <div style="width: 315.23px; height: 23px; text-align: center; color: #5E5F6B; font-size: 16px; font-family: Poppins; font-weight: 400; line-height: 24px; word-wrap: break-word;" class="center">Let’s see what you have to do! ></div>
+                        <div style="width: 315.23px; height: 23px; text-align: center; color: #5E5F6B; font-size: 16px; font-family: Poppins; font-weight: 400; line-height: 24px; word-wrap: break-word;" class="center">Let’s see what you have to do ></div>
                           </button>
                         </router-link>
                         <!-- <div class="col-12"> -->
                           <div class="row">
-                            <div class="col-4">
-                              <div class="dashboard-text-content-section position-absolute w-100"> 
+                            <div class="col-4 d-flex flex-column">
+                              <div class="dashboard-text-content-section position-relative w-100"> 
                                 <div style="width: 150px; height: 150px; position: relative; background: #5534A5; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
-                                  <div style="position: absolute; left: 50px; top: 50px;">
-                                    <img src="~/static/image/v4/arrow-red.svg" alt="" />
-                                      </div>
+                                    <div style="position: absolute; left: 50px; top: 50px;">
+                                      <img src="~/static/image/v4/arrow-red.svg" alt="" />
+                                    </div>
                                     <div style="width: 100%; height: 23px; left: 20px; top: 10.61px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">To-Do</div>
                                     <div style="width: 100%; height: 36px; left: 29px; top: 107.61px; position: absolute; color: white; font-size: 40px; font-family: Open Sans; font-weight: 700; line-height: 30px; word-wrap: break-word">{{ assignmentCountNew }}</div>
                                 </div>
@@ -62,7 +62,7 @@
                               </div>
 
                             <div class="col-4">
-                              <div class="dashboard-text-content-section position-absolute w-100 "> 
+                              <div class="dashboard-text-content-section position-relative w-100"> 
                                 <div style="width: 150px; height: 150px; position: relative; background: #008001; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
                                   <div style="position: absolute; left: 50px; top: 50px;">
@@ -74,7 +74,7 @@
                               </div>
                             </div>
                             <div class="col-4">
-                              <div class="dashboard-text-content-section position-absolute w-100"> 
+                              <div class="dashboard-text-content-section position-relative w-100"> 
                                 <div style="width: 150px; height: 150px; position: relative; background: #DB1B24; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
                                   <div style="position: absolute; left: 50px; top: 50px;">
@@ -239,7 +239,7 @@
                     class="d-md-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-show"
                   >
                     <h4 class="color-primary-dark font-semi-bold px-4">
-                      Assignments for this Day
+                      Assignments for this day
                     </h4>
                     <div
                       class="d-flex flex-column h-100 custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
@@ -257,6 +257,9 @@
                         <p class="mb-0 text-14">
                           <span>{{ item.due_date }}</span
                           >&nbsp;<span>{{ item.due_time }}</span>
+                        </p>
+                        <p class="mb-0 text-14">
+                          <span>Status: {{ item.task_status }}</span>
                         </p>
                       </div>
                       <div
@@ -467,7 +470,6 @@
       </div>
 
       <!--  prompt pop up end -->
-
       <!-- </div> -->
     </div>
   </div>
@@ -510,6 +512,7 @@ export default {
   },
   data() {
     return {
+      selectedTheme: "light",
       accordionOpened:false,
       isSmallScreen: false,
       isMediumScreen: false,
@@ -671,6 +674,10 @@ export default {
     this.findDeviceSize();
     const phone = localStorage.getItem("phone");
     const skipped = localStorage.getItem("skippedPrompt");
+    const savedTheme = localStorage.getItem('selectedTheme');
+      if (savedTheme) {
+        this.selectedTheme = savedTheme;
+    }
     setTimeout(() => {
       this.loading=false;
       if (!phone && skipped != "true") {
@@ -683,6 +690,13 @@ export default {
       if (newValue) {
         this.startIntro();
       }
+    },
+    selectedTheme(newTheme) {
+      localStorage.setItem('selectedTheme', newTheme);
+      // When the selected theme changes, apply it to the <html> element's class
+      const html = document.documentElement; // <html> element
+      html.classList.remove("light-theme", "dark-theme"); // Remove all theme classes
+      html.classList.add(newTheme + "-theme"); // Add the selected theme class
     },
   },
   methods: {
@@ -1216,7 +1230,6 @@ export default {
 }
 .study-status-studied {
   font-weight: 600;
-  
 }
 @media (min-width: 959.98px) {
   .h-lg-100 {
@@ -1270,9 +1283,9 @@ export default {
 }
 
 .small-waving-hand {
-  width: 40px; /* Adjust size as needed */
+  width: 30px;
   height: auto;
-  vertical-align: middle;
+  vertical-align: left;
   display: inline-block;
 }
 
