@@ -17,7 +17,7 @@
             v-if="isSchoolAdmin != '1'"
             class="d-flex align-items-center justify-content-between px-3"
           >
-            <h3 class="color-primary-dark heading3 font-semi-bold m-0">Advisor</h3>
+            <h3 class="color-primary-dark heading3 font-semi-bold m-0">Your Students</h3>
             <button class="btn btn-primary px-4" @click="openModal">
               Send Request
             </button>
@@ -30,9 +30,9 @@
                 <div
                   class="card card-primary-void rounded-22 py-4 h-100 position-realtive"
                 >
-                  <div class="d-flex flex-column px-4">
+                  <!-- <div class="d-flex flex-column px-4">
                     <h5 class="color-dark font-semi-bold mb-3">Students</h5>
-                  </div>
+                  </div> -->
                   <div class="hidden-scroll d-flex flex-column">
                     <div
                       @click="onStudentClick(student)"
@@ -113,46 +113,25 @@
                             " " +
                             studentDetail.last_name
                           }}
+                          <a :href="`mailto:${studentDetail.email}`">
+                            <img src="~/static/image/v4/email-white.svg" alt="Email" class="small-waving-hand img-theme light"/>
+                            <img src="~/static/image/v4/email-black.svg" alt="Email" class="small-waving-hand img-theme dark"/>
+                          </a>
                         </h3>
                         <div>
                           <div class="row m-0">
-                            <div class="col-12 col-sm-3 col-md-12 col-lg-2 p-1">
-                              <p class="mb-0 color-dark text-16 font-regular">
-                                <span>Email</span>
-                              </p>
-                            </div>
-                            <div class="col-1 p-1">
+                            <!-- <div class="col-1 p-1">
                               <p
                                 class="mb-0 color-dark text-16 font-regular text-right"
                               >
                                 <span>: </span>
                               </p>
-                            </div>
-                            <div class="col-7 col-md-11 col-lg-8 p-1">
+                            </div> -->
+                            <!-- <div class="col-7 col-md-11 col-lg-8 p-1">
                               <p class="mb-0 color-dark text-16 font-semi-bold">
                                 <span>{{ studentDetail.email }}</span>
                               </p>
-                            </div>
-                          </div>
-                          <div class="row m-0">
-                            <div class="col-12 col-sm-3 col-md-12 col-lg-2 p-1">
-                              <p class="mb-0 color-dark text-16 font-regular">
-                                <span>Class</span>
-                              </p>
-                            </div>
-                            <div class="col-1 p-1">
-                              <p
-                                class="mb-0 color-dark text-16 font-regular text-right"
-                              >
-                                <span>: </span>
-                              </p>
-                            </div>
-                            <div class="col-7 col-md-11 col-lg-8 p-1">
-                              <p class="mb-0 color-dark text-16 font-semi-bold">
-                                <!-- <span>{{ studentDetail.schools.name }}</span> -->
-                                <span></span>
-                              </p>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                       </div>
@@ -620,6 +599,7 @@
                 Choose Student
               </h3>
             </div>
+            <h4 class="modal-body">Your students will only appear once they've logged in to Jochi!</h4>
             <div class="modal-body no-overflow px-4">
               <div class="form-row">
                 <multiselect
@@ -959,3 +939,21 @@ export default {
   },
 };
 </script>
+<style>
+.small-waving-hand {
+  width: 22px;
+  height: auto;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.no-break-text {
+  white-space: nowrap; /* Prevents the text from wrapping */
+  overflow: hidden; /* Ensures the overflow text is hidden */
+  text-overflow: ellipsis; /* Adds an ellipsis if the text overflows */
+}
+
+.label {
+  font-weight: semi-bold; /* If you want to maintain the boldness of the label */
+}
+</style>

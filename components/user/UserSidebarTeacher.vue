@@ -4,7 +4,7 @@
       <nuxt-link to="/teacher-dashboard"
         class="navbar-brand d-flex align-items-center justify-content-center mr-0">
         <span class="bg-primary-dark rounded-14 d-flex  align-items-center justify-content-center p-2">
-          <img src="../../static/image/v4/logo-ms.png" alt="jochi logo" class="img-logo-v4 object-fit-contain">
+          <img src="../../static/image/v4/jochilogo.png" alt="jochi logo" class="img-logo-v4 object-fit-contain">
         </span>
       </nuxt-link>
       <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarContent"
@@ -184,7 +184,7 @@
       <div
         class="navbar-brand d-flex align-items-center justify-content-center mr-0">
         <span class="bg-primary-dark rounded-14 d-flex  align-items-center justify-content-center p-2">
-          <img src="../../static/image/v4/logo-ms.png" alt="jochi logo" class="img-logo-v4 object-fit-contain">
+          <img src="../../static/image/v4/jochilogo.png" alt="jochi logo" class="img-logo-v4 object-fit-contain">
         </span>
       </div>
       <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarContent"
