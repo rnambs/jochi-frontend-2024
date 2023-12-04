@@ -18,9 +18,9 @@
                   data-intro="View all the community service, sports teams, and clubs available at your school. To learn more about different activities, click learn more."
                   class="color-primary-dark font-semi-bold mb-1"
                 >
-                  Join a Learning Pod
+                  All Learning Pods
                 </h2>
-                <h4 class="mb-2 color-dark font-semi-bold">
+                <h4 class="mb-1 color-dark text-12 font-semibold">
                   Find your people!
                 </h4>
               </div>

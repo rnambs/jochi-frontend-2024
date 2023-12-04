@@ -47,13 +47,13 @@
               v-if="user_type == 2 && isSchoolAdmin != '1'"
               class="d-flex justify-content-end align-items-center w-100 my-2"
             >
-              <div class="text-center">
+              <div class="text-center d-flex justify-content-center">
                 <button
                   v-if="requestSent != '1'"
                   @click="openRequestConfirm()"
                   class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                 >
-                  Request to be a school admin
+                  Request to be an administrator
                 </button>
 
                 <span
@@ -225,7 +225,7 @@
                         <div class="d-flex flex-column align-items-start ml-3">
                           <h5 class="text-center color-dark font-semi-bold ">
                             <!-- <span><i class="fas fa-user"></i></span> -->
-                            {{ name }}
+                            {{ firstName + ' ' + lastName}}
                           </h5>
                           <p class="mb-0 color-gray">{{ email }}</p>
                         </div>
@@ -743,6 +743,8 @@ export default {
       sessionNotify: false,
       requestSent: "0",
       isSchoolAdmin: "0",
+      firstName: "",
+      lastName: "",
       processingUpgrade: false,
       selectedTheme: "light", // Initially select the "light" theme
     };
@@ -762,6 +764,8 @@ export default {
     });
   },
   mounted() {
+    this.firstName = localStorage.getItem("firstName");
+    this.lastName = localStorage.getItem("lastName");
     window.addEventListener("orientationchange", this.handleOrientationChange);
     setTimeout(() => {
       this.startIntro();

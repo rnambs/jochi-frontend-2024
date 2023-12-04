@@ -520,7 +520,7 @@
                   Regular Studying
                 </h3>
                 <p class="color-gray font-semi-bold text-center text-18">
-                  Set your own timer, goals, and breaks.
+                  Set your own time, goals, and breaks
                 </p>
               </div>
             </div>
@@ -766,7 +766,7 @@
                   }"
                     >
                       <span id="dLabel" class="mr-auto color-secondary text-truncate">
-                        {{ Subject ? Subject.text : 'Select Subject' }}</span
+                        {{ Subject ? Subject.text : 'Select' }}</span
                       >
                       <span class="caret color-secondary"
                         ><i class="fas fa-chevron-down font-medium"></i
@@ -1263,7 +1263,7 @@
               End Session
             </h3>
             <p class="mb-0">
-              If you exit timer, remaining time will not be recorded and the
+              If you end the session, the remaining time will not be recorded and the
               session will be lost. Are you sure you want to exit?
             </p>
           </div>
@@ -1792,9 +1792,9 @@ export default {
         this.breakAt = this.studyTypes.start_time;
         this.repeatLoopBy = this.studyTypes.cycle;
       } else {
-        this.targetDuration = 5;
-        this.breakTime = 2;
-        this.breakAt = 2;
+        this.targetDuration = 30;
+        this.breakTime = 5;
+        this.breakAt = 15;
         this.repeatLoopBy = 1;
         // this.totalCycles = 1;
       }
@@ -1875,7 +1875,7 @@ export default {
       var minutes = 0;
       var seconds = 0;
       if (this.studyTypes?.id == 2) {
-        this.timeCompleted = this.timeCompleted > 0 ? this.timeCompleted : 0;
+        this.timeCompleted = this.timeCompleted >= 0 ? this.timeCompleted : 0;
       }
       // var startTime;
       var running = false;
@@ -2208,7 +2208,7 @@ export default {
           Number(this.targetDuration) < 5
         ) {
           this.$toast.open({
-            message: "Duration must be greater than or equal to 5 minutes",
+            message: "Duration must be at least 5 minutes",
             type: "warning",
             duration: 5000,
           });
@@ -2224,7 +2224,7 @@ export default {
             Number(this.breakAt) >= Number(this.targetDuration))
         ) {
           this.$toast.open({
-            message: "Break At Time must be lesser than Study duration",
+            message: "You can only take a break before the end of the session",
             type: "warning",
             duration: 5000,
           });

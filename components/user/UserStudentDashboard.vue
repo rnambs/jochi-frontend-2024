@@ -41,15 +41,15 @@
                       >
                         <h3 class="color-primary-dark heading3 font-bold mb-0" style="margin-top: 0;">Your Weekly Summary</h3>
                         <router-link to="/task">
-                          <button
-                            type="button">
-                        <div style="width: 315.23px; height: 23px; text-align: center; color: #5E5F6B; font-size: 16px; font-family: Poppins; font-weight: 400; line-height: 24px; word-wrap: break-word;" class="center">Let’s see what you have to do ></div>
+                          <button type="button">
+                            <div class="poppins_text center">Let’s see what you have to do ></div>
                           </button>
                         </router-link>
                         <!-- <div class="col-12"> -->
-                          <div class="row">
-                            <div class="col-4 d-flex flex-column">
-                              <div class="dashboard-text-content-section position-relative w-100"> 
+                          <div class="row1">
+
+                            <div class="col-4 p-0 h-100 d-flex flex-column">
+                              <div class="dashboard-card"> 
                                 <div style="width: 150px; height: 150px; position: relative; background: #5534A5; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
                                     <div style="position: absolute; left: 50px; top: 50px;">
@@ -61,8 +61,8 @@
                               </div>
                               </div>
 
-                            <div class="col-4">
-                              <div class="dashboard-text-content-section position-relative w-100"> 
+                            <div class="col-4 p-0 h-100 d-flex flex-column">
+                              <div class="dashboard-card"> 
                                 <div style="width: 150px; height: 150px; position: relative; background: #008001; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
                                   <div style="position: absolute; left: 50px; top: 50px;">
@@ -73,12 +73,13 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-4">
-                              <div class="dashboard-text-content-section position-relative w-100"> 
+
+                            <div class="col-4 p-0 h-100 d-flex flex-column">
+                              <div class="dashboard-card"> 
                                 <div style="width: 150px; height: 150px; position: relative; background: #DB1B24; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
                                   <div style="position: absolute; left: 50px; top: 50px;">
-                                    <img src="~/static/image/v4/arrow-purple.svg" alt="" />
+                                    <img src="~/static/image/v4/arrow-purple.svg" alt=""/>
                                       </div>
                                     <div style="width: 100%; height: 23px; left: 20px; top: 10.61px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">Overdue</div>
                                     <div style="width: 100%; height: 36px; left: 29px; top: 107.61px; position: absolute; color: white; font-size: 40px; font-family: Open Sans; font-weight: 700; line-height: 30px; word-wrap: break-word">{{ assignmentCountOverdue }}</div>
@@ -134,10 +135,10 @@
                           <div
                             class="study-status-text text-left text-md-center my-2 px-2"
                           >
-                            <p class="study-status-studied mb-1 break-word">
+                            <p class="center poppins_text_bold ">
                               {{ duration }} Minutes Studied Today
                             </p>
-                            <p class="study-status-time-left break-word">
+                            <p class="center poppins_text font-semi-bold break-word">
                               {{ durationRemaining }}
                               {{
                                 isAdditionalCovered
@@ -239,7 +240,7 @@
                     class="d-md-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-show"
                   >
                     <h4 class="color-primary-dark font-semi-bold px-4">
-                      Assignments for this day
+                      Assignment List
                     </h4>
                     <div
                       class="d-flex flex-column h-100 custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
@@ -283,7 +284,7 @@
                 class="d-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-hide"
               >
                 <h4 class="color-primary-dark font-semi-bold px-4">
-                  Assignments for this Day
+                  Assignment List
                 </h4>
                 <div
                   class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2"
@@ -423,7 +424,7 @@
 
       <!--  prompt pop up -->
 
-      <div
+      <!-- <div
         class="modal fade"
         id="promptModal"
         tabindex="-1"
@@ -460,14 +461,14 @@
                 class="btn btn-primary color-white"
                 @click="skipPromt(true)"
               >
-                <!-- <nuxt-link to="/user-profile" class="text-white text-decoration-none"> -->
-                  Update Now
-                <!-- </nuxt-link> -->
+                <nuxt-link to="/user-profile" class="text-white text-decoration-none"> -->
+                 <!--Update Now -->
+                <!-- </nuxt-link>
               </button>
             </div>
           </div>
         </div>
-      </div>
+      </div>  -->
 
       <!--  prompt pop up end -->
       <!-- </div> -->
@@ -1169,18 +1170,18 @@ export default {
   display: flex;
   flex-wrap: wrap; /* Allow buttons to wrap if needed */
   justify-content: space-around;
-  gap: 10px;
+  gap: 20px;
 }
 
 .buttons-container button {
-  flex: 1 1 40%; /* Allow buttons to grow and shrink, but aim for 40% of the container width */
+  flex: 1 1 40%;
   padding: 5px;
   font-size: 0.9em;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin: 0px; /* Add margin for additional spacing */
+  margin: 2px; /* Add margin for additional spacing */
 }
 
 @media (max-width: 600px) {
@@ -1283,8 +1284,8 @@ export default {
 }
 
 .small-waving-hand {
-  width: 30px;
-  height: auto;
+  width: 40px;
+  height: 40px;
   vertical-align: left;
   display: inline-block;
 }
@@ -1307,6 +1308,99 @@ img.img-theme.light {
 
 img.img-theme.dark {
   display: none;
+}
+
+.row1 {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem; /* Adds space between the cards */
+}
+
+.col-4 {
+  flex: 1;
+  width: calc(33.33% - 1rem); /* Subtract the gap from the width */
+  padding: 0; /* No padding needed here */
+}
+
+.dashboard-card-green {
+  background: #008001; /* Card background color */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevents content from spilling out */
+  height: 85%; /* Set to 100% of parent's height */
+  padding: 1rem;
+}
+
+.dashboard-card-red {
+  background: #DB1B24; /* Card background color */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevents content from spilling out */
+  height: 85%; /* Set to 100% of parent's height */
+  padding: 1rem;
+}
+
+.dashboard-card-purple {
+  background: #5534A5; /* Card background color */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevents content from spilling out */
+  height: 85%; /* Set to 100% of parent's height */
+  padding: 1rem;
+}
+
+.card-content {
+  color: white;
+  text-align: center;
+}
+
+.card-image {
+  max-width: 50%; /* Maximum width of the SVG image */
+  max-width: 40%; /* Adjust this as needed */
+  height: auto;
+}
+
+/* Responsive text sizes */
+.card-title {
+  font-size: 1.25rem; /* Base size for card title */
+  margin-top: 0.5rem; /* Spacing above the title */
+}
+
+.card-number {
+  font-size: 2.5rem; /* Adjust this as needed */
+  margin-top: 0.5rem; /* Spacing above the number */
+}
+
+.poppins_text {
+  width: 315.23px; height: 23px; text-align: center; color: #5E5F6B; font-size: 16px; font-family: Poppins; font-weight: 400; line-height: 24px; word-wrap: break-word;
+}
+
+.poppins_text_bold {
+  width: 315.23px; height: 23px; text-align: center; color: #5E5F6B; font-size: 16px; font-family: Poppins; font-weight: 600; line-height: 24px; word-wrap: break-word;
+}
+
+/* Adjust text size based on viewport width */
+@media (max-width: 640px) {
+  .col-4 {
+    width: 100%; /* Each card takes full width on small screens */
+    margin-bottom: 1rem; /* Adds space between stacked cards */
+  }
+  .card-title,
+  .card-number {
+    font-size: 1rem; /* Smaller numbers on smaller screens */
+  }
+  .card-image {
+    max-width: 50%; /* Bigger image relative to the card on small screens */
+  }
 }
 
 /* .assignment-md-show {

@@ -46,6 +46,117 @@
             </div>
 
             <div class="row h-100">
+            
+
+
+
+              <div class="col-12 col-sm-6 col-lg-3">
+                  <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
+                    <div class="d-flex flex-column pr-2">
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="mr-2"><span class="bg-task-yellow p-1 rounded-circle d-flex"></span></span>
+                        <p class="mb-0 color-dark font-medium text-14">To-do</p>
+                      </div>
+                      <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
+                    </div>
+                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                      @dragover="todoDropStart()"
+                      @dragleave="todoDropEnd()"
+                      @drop="confirmUndo">
+                      <div class="drop-zone" :class="{ 'dropping': isDroppingTodo }"></div>
+                    <div class="d-flex flex-column task-container pr-2 mb-3"> 
+                      <div v-for="(item, index) in tempAssts" :key="item.id">
+                        <drag :transfer-data="{ item, source: 'todoAssignments', sourceType: 'Pending' }"
+                          @dragstart="handleDragStartTodo(index)" @dragend="handleDragEndTodo()">
+                          <div class="card card-primary p-3 mb-3"
+                            :class="{ 'draggingTodo': isDraggingTodo && index === draggingIndexTodo }">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                              <div class="d-flex flex-wrap align-items-center">
+                                <span class="task-label  my-1 mr-1" :class="{
+                                  'task-label--yellow': item.priority == '1',
+                                  'task-label--violet': item.priority == '2',
+                                  'task-label--green': item.priority == '3',
+                                  'task-label--red': item.priority == '4',
+                                }"><span>{{
+  item.priority == "1"
+  ? "Urgent"
+  : item.priority == "2"
+    ? "Important"
+    : item.priority == "3"
+      ? "Can Wait"
+      : item.priority == "4"
+        ? "Overdue"
+        : ""
+}}</span></span>
+                                <span class="task-label task-label--yellow my-1 mr-1"><span>{{
+                                  item.subject.subject_name
+                                  ? item.subject.subject_name
+                                  : item.subject
+                                }}</span></span>
+                              </div>
+                              <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
+                                <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
+                                  aria-haspopup="true" aria-expanded="false">
+                                  <span class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
+                                    <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
+                                  </span>
+                                </div>
+                                <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
+                                  <li @click="onCardClick(item, 'Pending')" class="item px-2 py-1">Edit</li>
+                                  <li @click="movetoDoing(item, 'Pending')" class="item px-2 py-1">
+                                    Move to Doing
+                                  </li>
+                                  <li @click="movetoDone(item, 'Pending')" class="item px-2 py-1">
+                                    Move to Done
+                                  </li>
+                                  <div v-if="item.shared_users_id != user_id">
+                                    <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
+                                  </div>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="clickable" @click="onCardClick(item, 'Pending')">
+                              <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
+                              <p class="text-10 color-gray mb-2 task-description text-ellipsis">{{ truncate(item.assignment_description) }}</p>
+                              <p class="color-dark font-semi-bold text-12 mb-1"> Subtasks </p>
+                              <p class="text-10 color-gray mb-2 task-description">
+                                <ul v-if="item.subTasks && item.subTasks.length" style="list-style-type: none;">
+                                  <li v-for="subtask in item.subTasks" :key="subtask.id" :class="{'text-completed': subtask.task_status === 'Completed', 'text-default': subtask.task_status !== 'Completed'}">
+                                    {{ subtask.title }}
+                                  </li>
+                                </ul>
+                                <span v-else>No subtasks added</span>
+                              </p>
+                              <div class="d-flex align-items-center justify-content-start">
+                                <div class="d-flex">
+                                  <div v-for="(peer, index) in item.peers" :key="index">
+                                    <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
+                                      class="img-avatar img-avatar--sm">
+                                    <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
+                                  </div>
+                                </div>
+                                <!-- <div class="d-flex align-items-center">
+                                  <button class="btn btn-drag-card-open">
+                                    Open
+                                  </button>
+                                </div> -->
+                              </div>
+                            </div>
+                          </div>
+                        </drag>
+                      </div>
+                      <client-only>
+                        <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
+                          :identifier="reloadCount" @infinite="loadNext">
+                          <div class="mb-2" slot="no-more"><span class="color-gray text-12">That's all!</span></div>
+                          <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
+                        </infinite-loading>
+                      </client-only>
+                    </div>
+                     </drop>
+                  </div>
+              </div>
+
               <div class="col-12 col-sm-6 col-lg-3">
                   <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
                     <div class="d-flex flex-column pr-2">
@@ -115,7 +226,16 @@
                             </div>
                             <div class="clickable" @click="onCardClick(item, 'Doing')">
                               <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                              <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
+                              <p class="text-10 color-gray mb-2 task-description text_ellipsis">{{ truncate(item.assignment_description) }}</p>
+                              <p class="color-dark font-semi-bold text-12 mb-1"> Subtasks </p>
+                              <p class="text-10 color-gray mb-2 task-description">
+                                <ul v-if="item.subTasks && item.subTasks.length" style="list-style-type: none;">
+                                  <li v-for="subtask in item.subTasks" :key="subtask.id" :class="{'text-completed': subtask.task_status === 'Completed', 'text-default': subtask.task_status !== 'Completed'}">
+                                    {{ subtask.title }}
+                                  </li>
+                                </ul>
+                                <span v-else>No subtasks added</span>
+                              </p>
                               <div class="d-flex align-items-center justify-content-start">
                                 <div class="d-flex">
                                   <div v-for="(peer, index) in item.peers" :key="index">
@@ -146,103 +266,10 @@
                   </drop>
                   </div>
               </div>
-              <div class="col-12 col-sm-6 col-lg-3">
-                  <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
-                    <div class="d-flex flex-column pr-2">
-                      <div class="d-flex align-items-center mb-3">
-                        <span class="mr-2"><span class="bg-task-yellow p-1 rounded-circle d-flex"></span></span>
-                        <p class="mb-0 color-dark font-medium text-14">To-do</p>
-                      </div>
-                      <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
-                    </div>
-                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
-                      @dragover="todoDropStart()"
-                      @dragleave="todoDropEnd()"
-                      @drop="confirmUndo">
-                      <div class="drop-zone" :class="{ 'dropping': isDroppingTodo }"></div>
-                    <div class="d-flex flex-column task-container pr-2 mb-3"> 
-                      <div v-for="(item, index) in tempAssts" :key="item.id">
-                        <drag :transfer-data="{ item, source: 'todoAssignments', sourceType: 'Pending' }"
-                          @dragstart="handleDragStartTodo(index)" @dragend="handleDragEndTodo()">
-                          <div class="card card-primary p-3 mb-3"
-                            :class="{ 'draggingTodo': isDraggingTodo && index === draggingIndexTodo }">
-                            <div class="d-flex align-items-center justify-content-between mb-2">
-                              <div class="d-flex flex-wrap align-items-center">
-                                <span class="task-label  my-1 mr-1" :class="{
-                                  'task-label--yellow': item.priority == '1',
-                                  'task-label--violet': item.priority == '2',
-                                  'task-label--green': item.priority == '3',
-                                  'task-label--red': item.priority == '4',
-                                }"><span>{{
-  item.priority == "1"
-  ? "Urgent"
-  : item.priority == "2"
-    ? "Important"
-    : item.priority == "3"
-      ? "Can Wait"
-      : item.priority == "4"
-        ? "Overdue"
-        : ""
-}}</span></span>
-                                <span class="task-label task-label--yellow my-1 mr-1"><span>{{
-                                  item.subject.subject_name
-                                  ? item.subject.subject_name
-                                  : item.subject
-                                }}</span></span>
-                              </div>
-                              <div class="dropdown dropdown-void form-row d-inline-flex w-auto">
-                                <div class="dropdown-select form-control" type="button" data-toggle="dropdown"
-                                  aria-haspopup="true" aria-expanded="false">
-                                  <span class="icon icon-sm icon--more d-flex align-items-center justify-content-center">
-                                    <i class="i-more-dotes j-icon i-xs bg-text-secondary"></i>
-                                  </span>
-                                </div>
-                                <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
-                                  <li @click="onCardClick(item, 'Pending')" class="item px-2 py-1">Edit</li>
-                                  <li @click="movetoDoing(item, 'Pending')" class="item px-2 py-1">
-                                    Move to Doing
-                                  </li>
-                                  <li @click="movetoDone(item, 'Pending')" class="item px-2 py-1">
-                                    Move to Done
-                                  </li>
-                                  <div v-if="item.shared_users_id != user_id">
-                                    <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
-                                  </div>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="clickable" @click="onCardClick(item, 'Pending')">
-                              <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                              <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
-                              <div class="d-flex align-items-center justify-content-start">
-                                <div class="d-flex">
-                                  <div v-for="(peer, index) in item.peers" :key="index">
-                                    <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
-                                      class="img-avatar img-avatar--sm">
-                                    <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
-                                  </div>
-                                </div>
-                                <!-- <div class="d-flex align-items-center">
-                                  <button class="btn btn-drag-card-open">
-                                    Open
-                                  </button>
-                                </div> -->
-                              </div>
-                            </div>
-                          </div>
-                        </drag>
-                      </div>
-                      <client-only>
-                        <infinite-loading class="d-flex align-items-center w-100 justify-content-center"
-                          :identifier="reloadCount" @infinite="loadNext">
-                          <div class="mb-2" slot="no-more"><span class="color-gray text-12">That's all!</span></div>
-                          <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
-                        </infinite-loading>
-                      </client-only>
-                    </div>
-                     </drop>
-                  </div>
-              </div>
+
+
+
+
               <div class="col-12 col-sm-6 col-lg-3">
                   <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
                     <div class="d-flex flex-column pr-2">
@@ -307,7 +334,8 @@
                                           </div>
                             </div>
                             <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
-                            <p class="text-10 color-gray mb-2 task-description" v-html="item.assignment_description"></p>
+                            <p class="text-10 color-gray mb-2 task-description text_ellipsis" v-html="item.assignment_description"></p>
+                            
                             <div class="d-flex align-items-center justify-content-start">
                               <div class="d-flex">
                                 <div v-for="(peer, index) in item.peers" :key="index">
@@ -403,7 +431,7 @@
                           </div>
                           <div class="clickable" @click="onCardClick(item, 'Overdue')">
                             <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                            <p class="text-10 color-gray mb-2 task-description">{{ item.assignment_description }}</p>
+                            <p class="text-10 color-gray mb-2 task-description task_ellipsis">{{ truncate(item.assignment_description) }}</p>
                             <div class="d-flex align-items-center justify-content-start">
                               <div class="d-flex">
                                 <div v-for="(peer, index) in item.peers" :key="index">
@@ -822,7 +850,7 @@
             <div class="modal-body px-3">
               <form v-if="!isSharedAssignment" ref="assignmentForm" id="assignmentForm">
                 <div class="form-group mb-2">
-                  <label for="recipient-name" class="col-form-label py-1">Subject here<em>*</em></label>
+                  <label for="recipient-name" class="col-form-label py-1">Subject<em>*</em></label>
                   <input v-if="schoologyAssignment == '1'" type="text" class="form-control" v-model="gg4lSubject"
                     maxlength="100" placeholder="Enter assignment name" />
                   <!-- <select v-else class="form-control" tabindex="" v-model="subject" :class="{
@@ -882,7 +910,7 @@
                   </div>
                 </div>
                 <div class="form-group mb-2">
-                  <label for="assignment-name" class="col-form-label py-1">Assignment Name<em>*</em></label>
+                  <label for="assignment-name" class="col-form-label py-1">Assignment<em>*</em></label>
                   <input type="text" class="form-control" v-model="assignmentName" placeholder="Enter assignment name"
                     :class="{
                       'is-invalid':
@@ -893,7 +921,7 @@
                   </div>
                 </div>
                 <div class="form-group mb-2">
-                  <label for="message-text" class="col-form-label py-1">Task</label>
+                  <label for="message-text" class="col-form-label py-1">Description</label>
                   <textarea class="form-control" id="message-text" rows="3" v-model="assignmentDescription"
                     maxlength="500" placeholder="Enter assignment description"></textarea>
                 </div>
@@ -974,7 +1002,7 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-2">
                   <h6 class="color-dark font-semi-bold mb-0">
-                    Sub Tasks
+                    Subtasks
                   </h6>
                   <a @click="onAddSubTaskClick" class="btn p-0">
                     <span class="color-secondary"><i class="fas fa-plus-circle"></i></span>
@@ -982,7 +1010,7 @@
                 </div>
                 <div v-if="addSubTask" class="d-flex flex-row align-items-start">
                   <div class="form-row mb-2 mx-0 mr-2 w-100">
-                    <label class="form-label" for="name">Add a sub-task</label>
+                    <label class="form-label" for="name">Add a subtask</label>
                     <input type="text" maxlength="100" v-model="subTaskName" class="form-control" />
                   </div>
                   <div class="pt-4">
@@ -1343,7 +1371,7 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-2">
                   <h6 class="color-dark font-semi-bold mb-0">
-                    Sub Tasks
+                    Subtasks
                   </h6>
                   <a @click="onAddSubTaskClick" class="btn p-0">
                     <span class="color-secondary"><i class="fas fa-plus-circle"></i></span>
@@ -1351,7 +1379,7 @@
                 </div>
                 <div v-if="addSubTask" class="d-flex flex-row align-items-start">
                   <div class="form-row mb-2 mx-0 mr-2 w-100">
-                    <label class="form-label" for="name">Add a sub-task</label>
+                    <label class="form-label" for="name">Add a subtask</label>
                     <input type="text" maxlength="100" v-model="subTaskName" class="form-control" />
                   </div>
                   <div class="pt-4">
@@ -1696,7 +1724,7 @@
             </div>
             <div class="modal-body px-3 bold-6">
               <p class="mb-0">Mark assignment as completed?</p>
-              <p class="mb-0" v-if="schoologyAssignment == '1' && !submissionId">Did you forget to submit your work?</p>
+              <p class="mb-0" v-if="schoologyAssignment == '1' && !submissionId">Remember to submit your work!</p>
             </div>
             <div class="modal-footer justify-content-end border-top-0">
               <button type="button" class="btn btn-secondary py-1 px-3 rounded-8 font-semi-bold" data-dismiss="modal">
@@ -2222,6 +2250,13 @@ export default {
       this.donereloadNext = true;
       this.donereloadCount += 1;
       this.monthlyAssignmentsCalled = true;
+    },
+    truncate(description) {
+    const maxLength = 100;
+    if (description.length > maxLength) {
+      return description.substring(0, maxLength) + '...';
+    }
+    return description;
     },
     allAssignments() {
       this.assignmentType = 'All';
@@ -3156,7 +3191,7 @@ export default {
         this.subTasksList.push(sub);
       } else {
         this.$toast.open({
-          message: "Please Add a Valid Sub Task ",
+          message: "Please Add a Valid Subtask ",
           type: "warning",
           duration: 5000,
         });
@@ -3649,4 +3684,13 @@ export default {
     pointer-events: none; /* Prevent interaction with the contents */
 }
 
+.text-completed {
+  text-decoration: line-through;
+}
+.text-ellipsis {
+  white-space: nowrap; /* Ensure the text stays on a single line */
+  overflow: hidden; /* Hide text that goes beyond the container's width */
+  text-overflow: ellipsis; /* Add ellipsis at the end of the hidden text */
+  max-width: 300px; /* You can adjust this as needed for your design */
+}
 </style>

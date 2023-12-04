@@ -12,7 +12,7 @@
           class="bg-primary-dark rounded-14 d-flex align-items-center justify-content-center p-2"
         >
           <img
-            src="../../static/image/v4/logo-ms.png"
+            src="../../static/image/v4/jochilogo.png"
             alt="jochi logo"
             class="img-logo-v4 object-fit-contain"
           />

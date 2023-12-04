@@ -79,7 +79,7 @@
                   >
                     <div class="inner-info-head mb-2">
                       <h5 class="text-18 color-dark mb-2 font-semibold">
-                        About the {{ headingName }}
+                        About {{ headingName }}
                       </h5>
                     </div>
                     <p
