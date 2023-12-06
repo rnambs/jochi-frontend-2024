@@ -214,7 +214,7 @@
                                       class="d-flex align-items-center"
                                     >
                                       <span class="color-secondary text-12"
-                                        >No sub tasks added!</span
+                                        >No sub tasks added</span
                                       >
                                     </div>
                                   </div>

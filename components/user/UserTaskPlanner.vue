@@ -1950,6 +1950,11 @@ export default {
       assignmentDescription: "",
       dateValue: "",
       timeValue: "",
+      // timeValue: {
+      //   HH: '10',
+      //   mm: '05',
+      //   A: 'PM'
+      // },
       openAssignment: false,
       date_today: new Date(),
       disabledDates: {
@@ -2731,6 +2736,11 @@ export default {
       this.taskValue = "";
       this.timeList = "";
       this.timeValue = "";
+      // this.timeValue = {
+      //   HH: '11',
+      //   mm: '59',
+      //   A: 'PM'
+      // };
       let clearTimeBtn = document.getElementsByClassName("clear-btn")[0];
       clearTimeBtn?.click();
       this.typeOfAssignment = '';
@@ -2757,6 +2767,7 @@ export default {
       } else {
         return false;
       }
+      console.log(this.timeValue);
     },
     onAddSubTaskClick() {
       this.addSubTask = true;

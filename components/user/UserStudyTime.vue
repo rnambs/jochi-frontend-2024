@@ -149,7 +149,7 @@
                       <p
                         class="mb-0 color-secondary font-normal text-14 text-center"
                       >
-                        <span> No sessions configured yet!</span>
+                        <span> No sessions configured yet</span>
                       </p>
                     </div>
                   </div>
@@ -282,7 +282,7 @@
                           v-if="!invitedPeerList || invitedPeerList.length <= 0"
                           class="d-flex align-items-center my-2 mr-3"
                         >
-                          <span class="color-secondary">No peers invited!</span>
+                          <span class="color-secondary">No peers invited</span>
                         </div>
                       </div>
                     </div>
@@ -313,7 +313,7 @@
       class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column hidden-scroll"
     >
         <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
-          <h3 class="color-primary-dark heading3 font-bold mb-1 mr-3">Step One : <span>Choose An Assignment</span> </h3>
+          <h3 class="color-primary-dark heading3 font-bold mb-1 mr-3">Step One : <span>Choose an Assignment</span> </h3>
             <!-- <h3 class="color-primary-dark heading3 font-bold mb-1"></h3> -->
           <div class="d-flex flex-wrap flex-fill align-items-center">
             <div
@@ -348,7 +348,7 @@
         v-if="!pendingAssignments || pendingAssignments.length < 1"
         class="d-flex align-items-center justify-content-center w-100 h-100"
       >
-        <span class="text-secondary">No pending assignments!</span>
+        <span class="text-secondary">No pending assignments</span>
       </div>
       <div>
         <div class="row">
@@ -475,7 +475,7 @@
                     </div>
                   </div>
                   <div v-else class="col-8 py-0 pl-0 material-link">
-                    <p class="color-gray text-14 mb-0">No documents added!</p>
+                    <p class="color-gray text-14 mb-0">No documents added</p>
                   </div>
                   <div class="col-4">
                     <p class="material-date py-0 text-right text-10 color-gray mb-0">{{ detail.formattedDate }}</p>
@@ -960,25 +960,25 @@
                   }}
                 </span>
               </p>
-              <p class="color-gray text-16 font-regular mb-2">
-                Study Method :
+              <p class="color-dark text-16 font-semi-bold mb-2">
+                Study Method:
                 <span>{{ startSessionNowClicked? (sessionDetail.studyMethod == "1"
                             ? "Pomodoro"
                             : sessionDetail.studyMethod == "2"
                             ? "Regular"
                             : ""):
                   (sessionMode == "regular"
-                    ? "Regular Studying"
-                    : "Pomodoro Studying")
+                    ? "Regular Session"
+                    : "Pomodoro Technique")
                 }}</span>
               </p>
               <div  v-if="sessionMode != 'regular'">
                 <p class="color-gray text-16 font-regular mb-2">
-                  Remaining Cycles :
+                  Remaining Cycles:
                   {{ totalCycles - currentCycle }}
                 </p>
                 <p class="color-gray text-16 font-regular mb-2">
-                  Remaining Repetitions :
+                  Remaining Repetitions:
                   {{ repetitionCount - currentRepetitionNum }}
                 </p>
               </div>
@@ -1057,7 +1057,7 @@
                   class="d-flex align-items-center my-2 mr-3 min-w-200"
                 >
                   <span class="color-gray text-16 font-regular"
-                    >No peers invited!</span
+                    >No peers invited</span
                   >
                 </div>
               </div>
@@ -2132,7 +2132,7 @@ export default {
       let valid = true;
       if (this.sessionType == "study" && (!this.Subject || !this.Subject.id)) {
         this.$toast.open({
-          message: "Please add subject",
+          message: "Please add a subject",
           type: "warning",
           duration: 5000,
         });
@@ -2142,7 +2142,7 @@ export default {
       if (this.studyTypes?.id == 2) {
         if (!this.targetDuration || this.targetDuration == "0") {
           this.$toast.open({
-            message: "Durartion is required",
+            message: "Duration is required",
             type: "warning",
             duration: 5000,
           });
@@ -2170,7 +2170,7 @@ export default {
           (this.targetDuration < 0 || this.breakTime < 0)
         ) {
           this.$toast.open({
-            message: "Durartion and Breaktime must be greater than zero",
+            message: "Duration and Breaktime must be greater than zero",
             type: "warning",
             duration: 5000,
           });

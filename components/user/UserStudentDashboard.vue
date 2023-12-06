@@ -46,43 +46,44 @@
                           </button>
                         </router-link>
                         <!-- <div class="col-12"> -->
-                          <div class="row1">
+                          <div class="row1 d-flex">
 
-                            <div class="col-4 p-0 h-100 d-flex flex-column">
-                              <div class="dashboard-card"> 
-                                <div style="width: 150px; height: 150px; position: relative; background: #5534A5; border-radius: 20px">
+                            <div class="col d-flex flex-column" style="flex: 1;">
+                              <div class="dashboard-card-purple"> 
+                                <div style="width: 10vw; height: 10vw; position: relative; background: #5534A5; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
                                     <div style="position: absolute; left: 50px; top: 50px;">
                                       <img src="~/static/image/v4/arrow-red.svg" alt="" />
                                     </div>
-                                    <div style="width: 100%; height: 23px; left: 20px; top: 10.61px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">To-Do</div>
-                                    <div style="width: 100%; height: 36px; left: 29px; top: 107.61px; position: absolute; color: white; font-size: 40px; font-family: Open Sans; font-weight: 700; line-height: 30px; word-wrap: break-word">{{ assignmentCountNew }}</div>
+                                    <div class = "assignment-status">To-do</div>
+                                    <div class="assignment-count-style">{{ assignmentCountNew }}</div>
+                                    
                                 </div>
                               </div>
                               </div>
 
-                            <div class="col-4 p-0 h-100 d-flex flex-column">
-                              <div class="dashboard-card"> 
-                                <div style="width: 150px; height: 150px; position: relative; background: #008001; border-radius: 20px">
+                            <div class="col d-flex flex-column" style="flex: 1;">
+                              <div class="dashboard-card-green"> 
+                                <div style="width: 10vw; height: 10vw; position: relative; background: #008001; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
                                   <div style="position: absolute; left: 50px; top: 50px;">
                                     <img src="~/static/image/v4/arrow-green.svg" alt="" /> 
                                   </div>
-                                    <div style="width: 100%; height: 23px; left: 20px; top: 10.61px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">Done</div>
-                                    <div style="width: 100%; height: 36px; left: 29px; top: 107.61px; position: absolute; color: white; font-size: 40px; font-family: Open Sans; font-weight: 700; line-height: 30px; word-wrap: break-word">{{ assignmentCountCompleted }}</div>
+                                  <div class = "assignment-status">Done</div>
+                                  <div class = "assignment-count-style">{{ assignmentCountCompleted }}</div>
                                 </div>
                               </div>
                             </div>
 
-                            <div class="col-4 p-0 h-100 d-flex flex-column">
-                              <div class="dashboard-card"> 
-                                <div style="width: 150px; height: 150px; position: relative; background: #DB1B24; border-radius: 20px">
+                            <div class="col d-flex flex-column" style="flex: 1;">
+                              <div class="dashboard-card-red"> 
+                                <div style="width: 10vw; height: 10vw; position: relative; background: #DB1B24; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
                                   <div style="position: absolute; left: 50px; top: 50px;">
                                     <img src="~/static/image/v4/arrow-purple.svg" alt=""/>
                                       </div>
-                                    <div style="width: 100%; height: 23px; left: 20px; top: 10.61px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">Overdue</div>
-                                    <div style="width: 100%; height: 36px; left: 29px; top: 107.61px; position: absolute; color: white; font-size: 40px; font-family: Open Sans; font-weight: 700; line-height: 30px; word-wrap: break-word">{{ assignmentCountOverdue }}</div>
+                                      <div class = "assignment-status">Overdue</div>
+                                      <div class = "assignment-count-style">{{ assignmentCountOverdue }}</div>
                                 </div>
                               </div>
                             </div>
@@ -625,11 +626,13 @@ export default {
     },
     assignmentCountNew() {
       const filteredAssignments = this.assignmentWeeklyList.filter(item => {
-        const createdAtDate = moment(item.createdAt);
+        const createdAtDate = moment(item.createdAt); //when created
+        const dueDate = moment(item.due_date); //when due
         const startOfWeek = moment().startOf('isoWeek');
         const endOfWeek = moment().endOf('isoWeek');
         const isTaskActive = item.task_status !== 'Completed' && item.task_status !== 'Overdue';
-        const isCreatedThisWeek = createdAtDate.isSameOrAfter(startOfWeek) && createdAtDate.isSameOrBefore(endOfWeek);
+        const isCreatedThisWeek = dueDate.isSameOrAfter(startOfWeek) && dueDate.isSameOrBefore(endOfWeek);
+        console.log(startOfWeek, endOfWeek);
         return isTaskActive && isCreatedThisWeek;
       });
       return filteredAssignments.length;
@@ -638,9 +641,10 @@ export default {
     assignmentCountCompleted() {
       const filteredAssignments = this.assignmentWeeklyList.filter(item => {
         const createdAtDate = moment(item.createdAt);
+        const dueDate = moment(item.due_date); //when due
         const startOfWeek = moment().startOf('isoWeek');
         const endOfWeek = moment().endOf('isoWeek');
-        const isCreatedThisWeek = createdAtDate.isSameOrAfter(startOfWeek) && createdAtDate.isSameOrBefore(endOfWeek);
+        const isCreatedThisWeek = dueDate.isSameOrAfter(startOfWeek) && dueDate.isSameOrBefore(endOfWeek);
         return item.task_status === 'Completed' && isCreatedThisWeek;
       });
       return filteredAssignments.length;
@@ -1325,6 +1329,8 @@ img.img-theme.dark {
 .dashboard-card-green {
   background: #008001; /* Card background color */
   border-radius: 20px;
+  height: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1338,6 +1344,8 @@ img.img-theme.dark {
   background: #DB1B24; /* Card background color */
   border-radius: 20px;
   display: flex;
+  height: auto;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -1350,6 +1358,8 @@ img.img-theme.dark {
   background: #5534A5; /* Card background color */
   border-radius: 20px;
   display: flex;
+  height: auto;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -1367,6 +1377,14 @@ img.img-theme.dark {
   max-width: 50%; /* Maximum width of the SVG image */
   max-width: 40%; /* Adjust this as needed */
   height: auto;
+}
+
+.assignment-status {
+  font-size: 1.5vw; font-family: Poppins; font-weight: 500; line-height: 1.2; color: white; position: absolute; top: 5%; left: 15%; word-wrap: break-word;
+}
+
+.assignment-count-style {
+  font-size: 2.5vw; font-family: Open Sans; font-weight: 700; line-height: 1.2; color: white; position: absolute; top: 70%; left: 15%; word-wrap: break-word;
 }
 
 /* Responsive text sizes */
@@ -1387,6 +1405,13 @@ img.img-theme.dark {
 .poppins_text_bold {
   width: 315.23px; height: 23px; text-align: center; color: #5E5F6B; font-size: 16px; font-family: Poppins; font-weight: 600; line-height: 24px; word-wrap: break-word;
 }
+
+/* @media (min-width: 1441px) {
+  .dashboard-card-purple, .dashboard-card-green, .dashboard-card-red {
+    width: 12vw; /* Larger than the default 10vw */
+    /* height: 12vw; */
+  /* } */
+/* } */
 
 /* Adjust text size based on viewport width */
 @media (max-width: 640px) {
