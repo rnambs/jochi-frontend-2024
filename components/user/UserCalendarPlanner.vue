@@ -64,7 +64,7 @@
                                             <span>Add task</span>
                                         </button> -->
                                         <button @click="toggleWeekends" class="btn btn-void mb-2">                                          
-                                            <span>{{ showWeekends ? 'Hide Weekends' : 'Show Weekends' }}</span>
+                                            <span>{{ showWeekends ? 'Hide Weekend' : 'Show Weekend' }}</span>
                                             <span class="d-flex ms-1">
                                                 <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M5.13281 14.8L11.5328 8.4L5.13281 2" stroke="#EAEAEA" stroke-width="2.13333" stroke-linecap="round" stroke-linejoin="round"/>

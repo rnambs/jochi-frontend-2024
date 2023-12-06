@@ -478,7 +478,7 @@
                   class="inner-tab d-flex align-items-center justify-content-center btn btn-primary btn-lg w-100 h-100"
                 >
                   <span class="font-semi-bold"
-                    >Club Details</span
+                    >Pod Details</span
                   >
                 </nuxt-link>
               </div>

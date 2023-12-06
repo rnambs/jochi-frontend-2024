@@ -12,7 +12,7 @@
           class="bg-primary-dark rounded-14 d-flex align-items-center justify-content-center p-2"
         >
           <img
-            src="../../static/image/v4/logo-ms.png"
+            src="../../static/image/v4/jochilogo.png"
             alt="jochi logo"
             class="img-logo-v4 object-fit-contain"
           />
@@ -244,7 +244,7 @@
                     <i class="i-club-existing j-icon i-lg bg-text-secondary"></i>
                     <span
                       class="ml-2 color-secondary text-capitalize font-medium"
-                      >Existing</span
+                      >Your Pods</span
                     >
                     </nuxt-link
                   >

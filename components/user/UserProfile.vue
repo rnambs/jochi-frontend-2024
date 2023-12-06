@@ -28,14 +28,15 @@
                   <span class="slider"></span>
                 </div>
                 <div class="faq-btn mr-4">
-                  <a class="color-dark font-semi-bold" href="https://www.jochi.info/faqs">
-                    FAQ's
+                  <a class="color-dark font-semi-bold" href="https://www.jochi.info/faq" target="blank">
+                    FAQs
                   </a>
                 </div>
                 <div class="privacy-btn">
                   <a
                     class="color-dark font-semi-bold"
-                    href="https://www.jochi.info/privacy-policy"
+                    href="https://jochi.notion.site/Terms-of-Use-eac8a3c7cade407780964b231adaf051"
+                    target = "blank"
                   >
                     Privacy Policy
                   </a>
@@ -46,13 +47,13 @@
               v-if="user_type == 2 && isSchoolAdmin != '1'"
               class="d-flex justify-content-end align-items-center w-100 my-2"
             >
-              <div class="text-center">
+              <div class="text-center d-flex justify-content-center">
                 <button
                   v-if="requestSent != '1'"
                   @click="openRequestConfirm()"
                   class="btn btn-primary py-1 px-4 rounded-8 font-semi-bold"
                 >
-                  Request To Become A School Admin
+                  Request to be an administrator
                 </button>
 
                 <span
@@ -222,10 +223,10 @@
           </button> -->
                         </form>
                         <div class="d-flex flex-column align-items-start ml-3">
-                          <h4 class="text-center color-dark font-semi-bold ">
+                          <h5 class="text-center color-dark font-semi-bold ">
                             <!-- <span><i class="fas fa-user"></i></span> -->
-                            {{ name }}name
-                          </h4>
+                            {{ firstName + ' ' + lastName}}
+                          </h5>
                           <p class="mb-0 color-gray">{{ email }}</p>
                         </div>
                       </div>
@@ -742,6 +743,8 @@ export default {
       sessionNotify: false,
       requestSent: "0",
       isSchoolAdmin: "0",
+      firstName: "",
+      lastName: "",
       processingUpgrade: false,
       selectedTheme: "light", // Initially select the "light" theme
     };
@@ -761,6 +764,8 @@ export default {
     });
   },
   mounted() {
+    this.firstName = localStorage.getItem("firstName");
+    this.lastName = localStorage.getItem("lastName");
     window.addEventListener("orientationchange", this.handleOrientationChange);
     setTimeout(() => {
       this.startIntro();
@@ -820,12 +825,11 @@ export default {
 
     async UserDetails() {
       this.loading = true;
+      this.email = localStorage.getItem("email");
+      this.name = localStorage.getItem("last_name");
       await this.userDetails({
         user_id: localStorage.getItem("id"),
       });
-
-      this.email = localStorage.getItem("email");
-      this.name = localStorage.getItem("first_name");
       this.schoolName = localStorage.getItem("school_name");
       if (localStorage.getItem("profile_pic")) {
         this.profile = localStorage.getItem("profile_pic");
