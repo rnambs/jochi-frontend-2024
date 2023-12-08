@@ -747,15 +747,17 @@ export default {
       lastName: "",
       processingUpgrade: false,
       selectedTheme: "light", // Initially select the "light" theme
+      schoolAccessType: ""
     };
   },
   created() {
+    this.schoolAccessType = localStorage.getItem("schoolAccess");
     this.UserDetails();
     this.user_type = localStorage.getItem("user_type");
-    if (this.user_type == "3") {
+    if (this.user_type == "3" && this.schoolAccessType != "ClubOnly") {
       this.getAllAdvisors();
       this.getAdvisor();
-    } else {
+    } else if (this.schoolAccessType != "ClubOnly") {
       this.schoolAdminStatus();
     }
     this.fetchSettings();
@@ -764,6 +766,7 @@ export default {
     });
   },
   mounted() {
+
     this.firstName = localStorage.getItem("firstName");
     this.lastName = localStorage.getItem("lastName");
     window.addEventListener("orientationchange", this.handleOrientationChange);
