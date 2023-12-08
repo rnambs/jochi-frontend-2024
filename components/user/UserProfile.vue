@@ -44,7 +44,7 @@
               </div>
             </div>
             <div
-              v-if="user_type == 2 && isSchoolAdmin != '1'"
+              v-if="user_type == 2 && isSchoolAdmin != '1' && schoolAccessType !='ClubOnly'"
               class="d-flex justify-content-end align-items-center w-100 my-2"
             >
               <div class="text-center d-flex justify-content-center">
