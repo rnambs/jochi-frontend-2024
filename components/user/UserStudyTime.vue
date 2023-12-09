@@ -83,7 +83,7 @@
                   Start A New Study Session
                 </h3>
                 <p class="mb-0 color-gray font-semi-bold text-16">
-                  Stay focused while you study, and monitor your productivity
+                  Stay focused while you study and monitor your productivity
                 </p>
               </div>
               <div
@@ -149,7 +149,7 @@
                       <p
                         class="mb-0 color-secondary font-normal text-14 text-center"
                       >
-                        <span> No sessions configured yet!</span>
+                        <span> No sessions configured yet</span>
                       </p>
                     </div>
                   </div>
@@ -282,7 +282,7 @@
                           v-if="!invitedPeerList || invitedPeerList.length <= 0"
                           class="d-flex align-items-center my-2 mr-3"
                         >
-                          <span class="color-secondary">No peers invited!</span>
+                          <span class="color-secondary">No peers invited</span>
                         </div>
                       </div>
                     </div>
@@ -313,7 +313,7 @@
       class="border-0 rounded-10 p-1 m--12 custom-full-height d-flex flex-column hidden-scroll"
     >
         <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
-          <h3 class="color-primary-dark heading3 font-bold mb-1 mr-3">Step One : <span>Choose An Assignment</span> </h3>
+          <h3 class="color-primary-dark heading3 font-bold mb-1 mr-3">Step One : <span>Choose an Assignment</span> </h3>
             <!-- <h3 class="color-primary-dark heading3 font-bold mb-1"></h3> -->
           <div class="d-flex flex-wrap flex-fill align-items-center">
             <div
@@ -348,7 +348,7 @@
         v-if="!pendingAssignments || pendingAssignments.length < 1"
         class="d-flex align-items-center justify-content-center w-100 h-100"
       >
-        <span class="text-secondary">No pending assignments!</span>
+        <span class="text-secondary">No pending assignments</span>
       </div>
       <div>
         <div class="row">
@@ -475,7 +475,7 @@
                     </div>
                   </div>
                   <div v-else class="col-8 py-0 pl-0 material-link">
-                    <p class="color-gray text-14 mb-0">No documents added!</p>
+                    <p class="color-gray text-14 mb-0">No documents added</p>
                   </div>
                   <div class="col-4">
                     <p class="material-date py-0 text-right text-10 color-gray mb-0">{{ detail.formattedDate }}</p>
@@ -520,7 +520,7 @@
                   Regular Studying
                 </h3>
                 <p class="color-gray font-semi-bold text-center text-18">
-                  Set your own timer, goals, and breaks.
+                  Set your own time, goals, and breaks
                 </p>
               </div>
             </div>
@@ -535,9 +535,9 @@
                   Pomodoro Timer
                 </h3>
                 <p class="color-gray font-semi-bold text-18 text-center">
-                  Boost your productivity.
+                  Boost your productivity with short intervals of focused work
                 </p>
-                <button
+                <!-- <button
                   @click="$event.stopPropagation()"
                   class="btn btn-primary py-2 text-center"
                 >
@@ -549,7 +549,7 @@
                   >
                     Click to Learn More</a
                   >
-                </button>
+                </button> -->
               </div>
             </div>
           </div>
@@ -766,7 +766,7 @@
                   }"
                     >
                       <span id="dLabel" class="mr-auto color-secondary text-truncate">
-                        {{ Subject ? Subject.text : 'Select Subject' }}</span
+                        {{ Subject ? Subject.text : 'Select' }}</span
                       >
                       <span class="caret color-secondary"
                         ><i class="fas fa-chevron-down font-medium"></i
@@ -855,7 +855,7 @@
                     </div>
 
                     <div class="form-group" v-show="this.studyTypes.id == 2">
-                      <label for="">Duration (In Minutes)</label>
+                      <label for="">How long do you want to study for? (minutes)</label>
                       <input
                         type="number"
                         min="0"
@@ -866,7 +866,7 @@
                       />
                     </div>
                     <div class="form-group" v-show="this.studyTypes.id == 2">
-                      <label for="">Break Time At (In Minutes)</label>
+                      <label for="">After how long do you want to take a break? (minutes)</label>
                       <input
                         type="number"
                         min="0"
@@ -877,7 +877,7 @@
                       />
                     </div>
                     <div class="form-group" v-show="this.studyTypes.id == 2">
-                      <label for="">Break Time (In Minutes)</label>
+                      <label for="">How long do you want your break to be? (minutes)</label>
                       <input
                         type="number"
                         min="0"
@@ -960,25 +960,25 @@
                   }}
                 </span>
               </p>
-              <p class="color-gray text-16 font-regular mb-2">
-                Study Method :
+              <p class="color-dark text-16 font-semi-bold mb-2">
+                Study Method:
                 <span>{{ startSessionNowClicked? (sessionDetail.studyMethod == "1"
                             ? "Pomodoro"
                             : sessionDetail.studyMethod == "2"
                             ? "Regular"
                             : ""):
                   (sessionMode == "regular"
-                    ? "Regular Studying"
-                    : "Pomodoro Studying")
+                    ? "Regular Session"
+                    : "Pomodoro Technique")
                 }}</span>
               </p>
               <div  v-if="sessionMode != 'regular'">
                 <p class="color-gray text-16 font-regular mb-2">
-                  Remaining Cycles :
+                  Remaining Cycles:
                   {{ totalCycles - currentCycle }}
                 </p>
                 <p class="color-gray text-16 font-regular mb-2">
-                  Remaining Repetitions :
+                  Remaining Repetitions:
                   {{ repetitionCount - currentRepetitionNum }}
                 </p>
               </div>
@@ -1057,7 +1057,7 @@
                   class="d-flex align-items-center my-2 mr-3 min-w-200"
                 >
                   <span class="color-gray text-16 font-regular"
-                    >No peers invited!</span
+                    >No peers invited</span
                   >
                 </div>
               </div>
@@ -1263,7 +1263,7 @@
               End Session
             </h3>
             <p class="mb-0">
-              If you exit timer, remaining time will not be recorded and the
+              If you end the session, the remaining time will not be recorded and the
               session will be lost. Are you sure you want to exit?
             </p>
           </div>
@@ -1333,7 +1333,7 @@
             <div class="form-group required">
               <vue-timepicker
                 close-on-complete
-                format="hh:mm A"
+                format="hh:mm a"
                 placeholder="Time"
                 v-model="scheduledTime"
                 name="scheduledTime"
@@ -1792,9 +1792,9 @@ export default {
         this.breakAt = this.studyTypes.start_time;
         this.repeatLoopBy = this.studyTypes.cycle;
       } else {
-        this.targetDuration = 5;
-        this.breakTime = 2;
-        this.breakAt = 2;
+        this.targetDuration = 30;
+        this.breakTime = 5;
+        this.breakAt = 15;
         this.repeatLoopBy = 1;
         // this.totalCycles = 1;
       }
@@ -1875,7 +1875,7 @@ export default {
       var minutes = 0;
       var seconds = 0;
       if (this.studyTypes?.id == 2) {
-        this.timeCompleted = this.timeCompleted > 0 ? this.timeCompleted : 0;
+        this.timeCompleted = this.timeCompleted >= 0 ? this.timeCompleted : 0;
       }
       // var startTime;
       var running = false;
@@ -2132,7 +2132,7 @@ export default {
       let valid = true;
       if (this.sessionType == "study" && (!this.Subject || !this.Subject.id)) {
         this.$toast.open({
-          message: "Please add subject",
+          message: "Please add a subject",
           type: "warning",
           duration: 5000,
         });
@@ -2142,7 +2142,7 @@ export default {
       if (this.studyTypes?.id == 2) {
         if (!this.targetDuration || this.targetDuration == "0") {
           this.$toast.open({
-            message: "Durartion is required",
+            message: "Duration is required",
             type: "warning",
             duration: 5000,
           });
@@ -2170,7 +2170,7 @@ export default {
           (this.targetDuration < 0 || this.breakTime < 0)
         ) {
           this.$toast.open({
-            message: "Durartion and Breaktime must be greater than zero",
+            message: "Duration and Breaktime must be greater than zero",
             type: "warning",
             duration: 5000,
           });
@@ -2208,7 +2208,7 @@ export default {
           Number(this.targetDuration) < 5
         ) {
           this.$toast.open({
-            message: "Duration must be greater than or equal to 5 minutes",
+            message: "Duration must be at least 5 minutes",
             type: "warning",
             duration: 5000,
           });
@@ -2224,7 +2224,7 @@ export default {
             Number(this.breakAt) >= Number(this.targetDuration))
         ) {
           this.$toast.open({
-            message: "Break At Time must be lesser than Study duration",
+            message: "You can only take a break before the end of the session",
             type: "warning",
             duration: 5000,
           });

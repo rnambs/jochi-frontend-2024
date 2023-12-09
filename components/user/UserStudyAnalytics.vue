@@ -46,7 +46,7 @@
                 data-intro="Or you can view a general overview of your studying across the school year."
                 class="text-18 color-dark font-semi-bold mb-0"
               >
-                Dashboard
+                All-time Analytics
               </h4>
             </div>
           </div>
@@ -63,10 +63,10 @@
                     >{{
                       formatted_minute_status_week
                         ? formatted_minute_status_week >= 0
-                          ? "+" + formatted_minute_status_week
+                          ? "+" + formatted_minute_status_week + "%"
                           : formatted_minute_status_week
-                        : "+0"
-                    }}%</sup
+                        : ""
+                    }}</sup
                   >
                 </p>
               </div>
@@ -83,10 +83,10 @@
                     >{{
                       formatted_session_status_week
                         ? formatted_session_status_week >= 0
-                          ? "+" + formatted_session_status_week
+                          ? "+" + formatted_session_status_week + "%"
                           : formatted_session_status_week
-                        : "+0"
-                    }}%</sup
+                        : ""
+                    }}</sup
                   >
                 </p>
               </div>
@@ -406,6 +406,7 @@ export default {
       );
       this.InitPieChart();
       this.roundDecimal();
+      console.log("studentId", this.studentId);
     },
     async InitPieChart() {
       var ctx = document.getElementById("weekly").getContext("2d");
@@ -414,6 +415,7 @@ export default {
       this.bgColor = [];
       this.legends = [];
 
+      console.log("this.mySession.weekly_pi_chart", this.mySession.weekly_pi_chart);
       for (var i = 0; i < this.mySession.weekly_pi_chart.length; i++) {
         let color = this.randomColorMap();
         var obj = this.mySession.weekly_pi_chart[i];
@@ -431,7 +433,7 @@ export default {
 
       if (this.percentage.length < 1) {
         document.getElementById("weeklyContainer").innerHTML =
-          "No data to display!";
+          "No data for the week";
       }
       new Chart(ctx, {
         type: "doughnut",
@@ -483,7 +485,7 @@ export default {
 
       if (percentageTotal.length < 1) {
         document.getElementById("totalPieContainer").innerHTML =
-          "No data to display!";
+          "No data to display";
       }
       new Chart(totalPie, {
         type: "doughnut",
@@ -543,7 +545,7 @@ export default {
           labels: Xdays,
           datasets: [
             {
-              label: "Average ",
+              label: "Overall Average",
               lineTension: 0,
               fill: false,
               pointBackgroundColor: "#7DD175",
@@ -589,6 +591,7 @@ export default {
         workCompletes.push(obj2.workCompletes ? obj2.workCompletes : 0);
         X2days.push(obj2.day);
       }
+      console.log("data: ", this.mySession.total_line_chart_data);
 
       const myChart1 = new Chart(progress2, {
         type: "line",
@@ -602,15 +605,19 @@ export default {
               pointBackgroundColor: "#7DD175",
               borderColor: "#7DD175",
               pointHighlightStroke: "#7DD175",
+              pointRadius: 5, // Marker size
+              pointStyle: "rectRot",
               data: efficiency,
             },
             {
               label: "Focus",
               lineTension: 0,
               fill: false,
-              pointBackgroundColor: "#B4B4B4",
-              borderColor: "#B4B4B4",
-              pointHighlightStroke: "#B4B4B4",
+              pointBackgroundColor: "#171e66",
+              borderColor: "#171e66",
+              pointHighlightStroke: "#171e66",
+              pointRadius: 5, // Marker size
+              pointStyle: "circle",
               data: focusData,
             },
             {
@@ -620,6 +627,8 @@ export default {
               pointBackgroundColor: "#F49196",
               borderColor: "#F49196",
               pointHighlightStroke: "#F49196",
+              pointRadius: 5, // Marker size
+              pointStyle: "triangle",
               data: workCompletes,
             },
           ],
