@@ -387,7 +387,7 @@ export default {
 
       if (this.percentage.length < 1) {
         document.getElementById("weeklyContainer").innerHTML =
-          "No data to display!";
+          "No data for the week";
       }
       new Chart(ctx, {
         type: "doughnut",
@@ -439,7 +439,7 @@ export default {
 
       if (percentageTotal.length < 1) {
         document.getElementById("totalPieContainer").innerHTML =
-          "No data to display!";
+          "No data to display";
       }
       new Chart(totalPie, {
         type: "doughnut",

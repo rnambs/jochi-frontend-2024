@@ -19,6 +19,7 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/firebase": "^7.6.1",
     "@nuxtjs/toast": "^3.3.1",
+    "@upstash/redis": "^1.25.1",
     "awesome-vue-star-rating": "^1.0.9",
     "axios": "^0.27.2",
     "chart.js": "^3.6.0",

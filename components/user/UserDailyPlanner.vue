@@ -214,7 +214,7 @@
                                       class="d-flex align-items-center"
                                     >
                                       <span class="color-secondary text-12"
-                                        >No sub tasks added!</span
+                                        >No sub tasks added</span
                                       >
                                     </div>
                                   </div>
@@ -995,7 +995,7 @@
                                     <vue-timepicker
                                       @change="checkValidTime"
                                       close-on-complete
-                                      format="hh:mm A"
+                                      format="hh:mm a"
                                       v-model="timeValue"
                                       name="timeValue"
                                       class="show-cursor dropdown-menu-top"
@@ -1934,7 +1934,7 @@
                     <div>
                       <vue-timepicker
                         close-on-complete
-                        format="hh:mm A"
+                        format="hh:mm a"
                         v-model="timeValue"
                         name="timeValue"
                         class="show-cursor dropdown-menu-top"
