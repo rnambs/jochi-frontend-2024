@@ -1840,11 +1840,11 @@ export default {
             ? moment(this.activity.activityDate).format("YYYY-MM-DD")
             : "",
           time:
-            this.activity.activityTime.hh +
+            (this.activity.activityTime.hh +
             ":" +
             this.activity.activityTime.mm +
             " " +
-            this.activity.activityTime.A,
+            this.activity.activityTime.A??this.activity.activityTime.a),
           venue: this.activity.activityVenue,
           opponent_team: this.activity.activityOpponentTeam,
         });
@@ -2072,11 +2072,11 @@ export default {
     },
     timeChangeHandler() {
       let time =
-        this.activity.activityTime.hh +
+        (this.activity.activityTime.hh +
         ":" +
         this.activity.activityTime.mm +
         " " +
-        this.activity.activityTime.A;
+        this.activity.activityTime.A??this.activity.activityTime.a);
 
       let isValid = moment(time, "hh:mm A", true).isValid();
       if (!isValid) {

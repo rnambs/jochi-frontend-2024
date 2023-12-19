@@ -3193,11 +3193,11 @@ export default {
       if (this.timeValue) {
         let tempTime =
           typeof this.timeValue == "object"
-            ? this.timeValue.hh +
+            ? (this.timeValue.hh +
               ":" +
               this.timeValue.mm +
               " " +
-              this.timeValue.A
+              this.timeValue.A??this.timeValue.a)
             : this.timeValue;
         let valid = moment(tempTime, "h:mm A", true).isValid();
 
