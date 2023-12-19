@@ -1978,7 +1978,8 @@ export default {
       return valid;
     },
     checkValidTime(time) {
-      let timeFormat = time?.hh + ":" + time?.mm + " " + time?.A;
+      let timeFormat = time?.hh + ":" + time?.mm + " " + time?.a;
+      console.log(time, timeFormat, moment(timeFormat, "hh:mm A", true).isValid());
       return moment(timeFormat, "hh:mm A", true).isValid();
     },
 
@@ -2026,11 +2027,11 @@ export default {
             : "",
           start_time: scheduleNow
             ? todayTime
-            : this.scheduledTime.hh +
+            : (this.scheduledTime.hh +
               ":" +
               this.scheduledTime.mm +
               " " +
-              this.scheduledTime.A,
+              this.scheduledTime.A??this.scheduledTime.a),
           study_method: this.studyTypes?.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
@@ -2054,11 +2055,11 @@ export default {
             : "",
           start_time: scheduleNow
             ? todayTime
-            : this.scheduledTime.hh +
+            : (this.scheduledTime.hh +
               ":" +
               this.scheduledTime.mm +
               " " +
-              this.scheduledTime.A,
+              this.scheduledTime.A??this.scheduledTime.a),
           study_method: this.studyTypes?.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
