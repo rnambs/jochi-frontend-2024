@@ -1333,7 +1333,7 @@
             <div class="form-group required">
               <vue-timepicker
                 close-on-complete
-                format="hh:mm a"
+                format="hh:mm A"
                 placeholder="Time"
                 v-model="scheduledTime"
                 name="scheduledTime"
@@ -1978,7 +1978,7 @@ export default {
       return valid;
     },
     checkValidTime(time) {
-      let timeFormat = time?.hh + ":" + time?.mm + " " + time?.a;
+      let timeFormat = time?.hh + ":" + time?.mm + " " + time?.A;
       console.log(time, timeFormat, moment(timeFormat, "hh:mm A", true).isValid());
       return moment(timeFormat, "hh:mm A", true).isValid();
     },
@@ -2025,13 +2025,15 @@ export default {
             : this.scheduledDate
             ? moment(this.scheduledDate).format("YYYY-MM-DD")
             : "",
-          start_time: scheduleNow
+            start_time: scheduleNow
             ? todayTime
-            : (this.scheduledTime.hh +
+            : (
+              this.scheduledTime.hh +
               ":" +
               this.scheduledTime.mm +
               " " +
-              this.scheduledTime.A??this.scheduledTime.a),
+              (this.scheduledTime.A ? this.scheduledTime.A : this.scheduledTime.a)
+            ),
           study_method: this.studyTypes?.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
@@ -2053,13 +2055,15 @@ export default {
             : this.scheduledDate
             ? moment(this.scheduledDate).format("YYYY-MM-DD")
             : "",
-          start_time: scheduleNow
-            ? todayTime
-            : (this.scheduledTime.hh +
-              ":" +
-              this.scheduledTime.mm +
-              " " +
-              this.scheduledTime.A??this.scheduledTime.a),
+            start_time: scheduleNow
+          ? todayTime
+          : (
+            this.scheduledTime.hh +
+            ":" +
+            this.scheduledTime.mm +
+            " " +
+            (this.scheduledTime.A ? this.scheduledTime.A : this.scheduledTime.a)
+          ),
           study_method: this.studyTypes?.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
