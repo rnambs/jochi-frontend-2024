@@ -254,7 +254,7 @@
                                 </div> -->
                               </div>
                             </div>
-                            <div @click="redirecttoStudysession()" class="d-flex justify-content-end clickable">
+                            <div @click="redirecttoStudysession(item)" class="d-flex justify-content-end clickable">
                               <p class="color-secondary text-12 mb-0"><span>Start Session </span></p>
                             </div>
                           </div>
@@ -3660,9 +3660,7 @@ export default {
       }
   },
   redirecttoStudysession(item){
-    console.log("alert");
-    console.log("alert",item);
-    this.$router.push(`/study-time?id=${item.id}`);
+    this.$router.push({ path: `/study-time`, query: { id: item.id, source: 'task' } });
   },
   selectSubject(selectedSubject) {
       this.subject = {
