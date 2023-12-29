@@ -1528,6 +1528,7 @@ export default {
       counter: false,
       intervalCountDown: null,
       sessionRedirectId: this.$route.query.id,
+      source : this.$route.query.source,
       userId: "",
       assignmentMaterials: [],
       pendingAssignments: [],
@@ -1579,6 +1580,7 @@ export default {
     this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTimeMixpanel = new Date().getTime();
     this.userId = localStorage.getItem("id");
+    if (this.source != "task"){
     if (this.sessionRedirectId) {
       await this.getDetail(this.sessionRedirectId);
       this.redirectMap(this.studySessionDetail);
@@ -1586,6 +1588,19 @@ export default {
       this.mapPeersInvited();
       this.currentTab = 3;
       this.isRedirect = true;
+    }
+  }
+    const taskId = this.$route.query.id;
+    if(taskId){
+      this.sessionType = "assignment"
+      this.currentTab = 2;
+      await this.loadAssignments();
+    if (this.pendingAssignments.length > 0) {
+      const detail = this.pendingAssignments.find(item => item.id == taskId);
+      if (detail) {
+         this.onAssignmentSelectroute(detail);
+      } 
+    } 
     }
     window.addEventListener("beforeunload", function (e) {
       // Cancel the event
@@ -2802,7 +2817,6 @@ export default {
     },
     onAssignmentSelect(detail) {
       this.selectedAssignment = detail;
-
       this.onNext();
     },
     onModeSelect(type) {
@@ -3189,6 +3203,9 @@ export default {
       const intro = this.$intro();
       intro.exit();
       this.$store.commit("setStartProductGuide", false);
+    },
+    onAssignmentSelectroute(detail) {
+      this.selectedAssignment = detail;
     },
   },
 
