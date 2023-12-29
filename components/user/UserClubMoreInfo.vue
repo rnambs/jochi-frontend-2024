@@ -1844,7 +1844,7 @@ export default {
             ":" +
             this.activity.activityTime.mm +
             " " +
-            this.activity.activityTime.A??this.activity.activityTime.a),
+            (this.activity.activityTime.A??this.activity.activityTime.a)),
           venue: this.activity.activityVenue,
           opponent_team: this.activity.activityOpponentTeam,
         });
@@ -2076,7 +2076,7 @@ export default {
         ":" +
         this.activity.activityTime.mm +
         " " +
-        this.activity.activityTime.A??this.activity.activityTime.a);
+        (this.activity.activityTime.A??this.activity.activityTime.a));
 
       let isValid = moment(time, "hh:mm A", true).isValid();
       if (!isValid) {
