@@ -2047,8 +2047,8 @@ export default {
               ":" +
               this.scheduledTime.mm +
               " " +
-              (this.scheduledTime.A ? this.scheduledTime.A : this.scheduledTime.a)
-            ),
+              ((this.scheduledTime.A ? this.scheduledTime.A : this.scheduledTime.a)
+            )),
           study_method: this.studyTypes?.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
@@ -2070,15 +2070,13 @@ export default {
             : this.scheduledDate
             ? moment(this.scheduledDate).format("YYYY-MM-DD")
             : "",
-            start_time: scheduleNow
-          ? todayTime
-          : (
-            this.scheduledTime.hh +
-            ":" +
-            this.scheduledTime.mm +
-            " " +
-            (this.scheduledTime.A ? this.scheduledTime.A : this.scheduledTime.a)
-          ),
+          start_time: scheduleNow
+            ? todayTime
+            : (this.scheduledTime.hh +
+              ":" +
+              this.scheduledTime.mm +
+              " " +
+              (this.scheduledTime.A??this.scheduledTime.a)),
           study_method: this.studyTypes?.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
