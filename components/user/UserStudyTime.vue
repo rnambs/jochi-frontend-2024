@@ -2031,7 +2031,7 @@ export default {
               ":" +
               this.scheduledTime.mm +
               " " +
-              this.scheduledTime.A??this.scheduledTime.a),
+              (this.scheduledTime.A??this.scheduledTime.a)),
           study_method: this.studyTypes?.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
@@ -2059,7 +2059,7 @@ export default {
               ":" +
               this.scheduledTime.mm +
               " " +
-              this.scheduledTime.A??this.scheduledTime.a),
+              (this.scheduledTime.A??this.scheduledTime.a)),
           study_method: this.studyTypes?.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
