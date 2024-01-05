@@ -105,7 +105,7 @@
                         </div>
                       </div>
                       <div
-                        class="d-flex flex-column flex-fill justify-content-center w-50"
+                        class="d-flex flex-wrap flex-fill justify-content-between w-100 align-items-center"
                       >
                         <h3 class="color-primary-dark heading3 font-semi-bold mb-1 mb-md-2">
                           {{
@@ -118,22 +118,25 @@
                             <img src="~/static/image/v4/email-black.svg" alt="Email" class="small-waving-hand img-theme dark"/>
                           </a>
                         </h3>
-                        <div>
+                          <button @click="
+                            EditAssignmentModal();" class="btn btn-primary py-1 px-3 mr-3">Add Assignment
+                          </button>
+                        <!-- <div>
                           <div class="row m-0">
-                            <!-- <div class="col-1 p-1">
+                            <div class="col-1 p-1">
                               <p
                                 class="mb-0 color-dark text-16 font-regular text-right"
                               >
                                 <span>: </span>
                               </p>
-                            </div> -->
-                            <!-- <div class="col-7 col-md-11 col-lg-8 p-1">
+                            </div>
+                            <div class="col-7 col-md-11 col-lg-8 p-1">
                               <p class="mb-0 color-dark text-16 font-semi-bold">
                                 <span>{{ studentDetail.email }}</span>
                               </p>
-                            </div> -->
+                            </div>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                     <div
@@ -636,6 +639,371 @@
           </div>
         </div>
       </div>
+      <!-- Add Assignment Modal -->
+      <div class="modal fade" id="editAssignment" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered add-assmt" role="document">
+  <div class="modal-content">
+    <div class="modal-header pb-1">
+      <h3 class="modal-title" id="editAssignmentModalLongTitle">
+        {{ isAddAssignment ? "Add" : "Edit" }} Assignment
+      </h3>
+      <!-- grades section -->
+      <div class="d-flex align-items-center mb-2 ml-auto" v-if="submissionId && grade && gradePossible">
+        <p class="mb-0">Grade</p><span class="px-1">:</span>
+        <p class="mb-0 bg-primary-light01 px-2 rounded-pill font-semi-bold color-primary"><span>{{
+          grade
+        }}</span>/<span>{{ gradePossible }}</span></p>
+        <!-- <span v-if="gradePossible"
+                              >Grade Possible</span
+                            >: -->
+      </div>
+      <!-- grades section end -->
+    </div>
+    <div class="modal-body px-3">
+      <form v-if="!isSharedAssignment" ref="assignmentForm" id="assignmentForm">
+        <div class="form-group mb-2">
+          <label for="recipient-name" class="col-form-label py-1">Subject<em>*</em></label>
+          <input v-if="schoologyAssignment == '1'" type="text" class="form-control" v-model="gg4lSubject"
+            maxlength="100" placeholder="Enter assignment name" />
+          <!-- <select v-else class="form-control" tabindex="" v-model="subject" :class="{
+            'is-invalid':
+              submitted && $v.subject.$error,
+          }">
+            <option value="">Select subject</option>
+            <option v-bind:value="{
+              id: subjects.id,
+              text: subjects.subject_name,
+            }" v-for="(subjects, index) in subjectsData" :key="index">
+              {{ subjects.subject_name }}
+            </option>
+            <option v-if="subjectsData.length == 0">
+              No data
+            </option>
+          </select>
+          <div v-if="submitted && $v.subject.$error" class="invalid-feedback">
+            <span v-if="!$v.subject.required">This field is required</span>
+          </div> -->
+          <div v-else
+            class="dropdown"
+          >
+            <div
+              class="dropdown-select d-inline-flex form-control rounded-8 border border--form color-secondary font-normal text-16 pr-2"
+              type="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              :class="{
+              'is-invalid':
+              submitted && $v.subject.$error,
+          }"
+            >
+              <span id="dLabel" class="mr-auto color-secondary text-truncate">
+                {{ subject ? subject.text : 'Select Subject' }}</span
+              >
+              <span class="caret color-secondary"
+                ><i class="fas fa-chevron-down font-medium"></i
+              ></span>
+            </div>
+
+            <ul
+              class="dropdown-menu w-100 rounded-12 border border--form mt-0 p-2"
+              aria-labelledby="dLabel"
+            >
+              <li v-for="(subjects, index) in subjectsData" :key="index" class="item p-2" @click="selectSubject(subjects)">
+                {{ subjects.subject_name }}
+              </li>
+              <li v-if="subjectsData.length == 0">
+              No data
+              </li>
+              <div v-if="submitted && $v.subject.$error" class="invalid-feedback">
+              <span v-if="!$v.subject.required">This field is required</span>
+          </div>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group mb-2">
+          <label for="assignment-name" class="col-form-label py-1">Assignment<em>*</em></label>
+          <input type="text" class="form-control" v-model="assignmentName" placeholder="Enter assignment name"
+            :class="{
+              'is-invalid':
+                submitted && $v.assignmentName.$error,
+            }" />
+          <div v-if="submitted && $v.assignmentName.$error" class="invalid-feedback">
+            <span v-if="!$v.assignmentName.required">This field is required</span>
+          </div>
+        </div>
+        <div class="form-group mb-2">
+          <label for="message-text" class="col-form-label py-1">Description</label>
+          <textarea class="form-control" id="message-text" rows="3" v-model="assignmentDescription"
+            maxlength="500" placeholder="Enter assignment description"></textarea>
+        </div>
+        <div class="row">
+          <div class="col-md-6 ml-auto py-0">
+            <div class="form-group mb-2 mb-0">
+              <label for="recipient-name" class="col-form-label py-1">Priority<em>*</em></label>
+              <div class="dropdown input-icon-area">
+                <button id="dLabel" class="dropdown-select form-control text-left" type="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="">
+                    {{
+                      priorityVal
+                      ? priorityVal
+                      : "Select priority"
+                    }}</span>
+                </button>
+                <ul class="dropdown-menu border" aria-labelledby="dLabel">
+                  <li @click="priorityVal = 'Can Wait'" class="item low-color">
+                    <span>Can Wait</span>
+                  </li>
+                  <li @click="priorityVal = 'Important'" class="item medium-color">
+                    <span>Important</span>
+                  </li>
+                  <li @click="priorityVal = 'Urgent'" class="item high-color">
+                    <span>Urgent</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div v-if="submitted &&
+              priorityVal != 'Urgent' &&
+              priorityVal != 'Important' &&
+              priorityVal != 'Can Wait'
+              " class="invalid-feedback" style="display: block">
+              <span v-if="priorityVal != 'Urgent' &&
+                priorityVal != 'Important' &&
+                priorityVal != 'Can Wait'
+                ">This field is required</span>
+            </div>
+          </div>
+          <div class="col-md-6 ml-auto py-0">
+            <div class="form-group mb-2">
+              <label for="recipient-name" class="col-form-label py-1">Date<em>*</em></label>
+              <date-picker class="form-control dropdown-menu-top" placeholder="MM/DD/YYYY" format="MM/dd/yyyy"
+                v-model="dateValue" :class="{
+                  'is-invalid':
+                    submitted && $v.dateValue.$error,
+                }" :disabled-dates="disabledDates" />
+              <div v-if="submitted && $v.dateValue.$error" class="invalid-feedback">
+                <span v-if="!$v.dateValue.required">This field is required</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-0">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Time<em>*</em></label>
+              <div>
+                <vue-timepicker @change="checkValidTime" close-on-complete format="hh:mm A" v-model="timeValue"
+                  name="timeValue" class="show-cursor dropdown-menu-top" :value="timeValue" :class="{
+                    'is-invalid':
+                      submitted &&
+                      ($v.timeValue.$error ||
+                        !validTime),
+                  }"></vue-timepicker>
+                <div v-if="submitted &&
+                  ($v.timeValue.$error || !validTime)
+                  " class="invalid-feedback">
+                  <span v-if="!$v.timeValue.required ||
+                    !validTime
+                    ">Not a valid time</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="color-dark font-semi-bold mb-0">
+                    Subtasks
+                  </h6>
+                  <a @click="onAddSubTaskClick" class="btn p-0">
+                    <span class="color-secondary"><i class="fas fa-plus-circle"></i></span>
+                  </a>
+                </div>
+                <div v-if="addSubTask" class="d-flex flex-row align-items-start">
+                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                    <label class="form-label" for="name">Add a subtask</label>
+                    <input type="text" maxlength="100" v-model="subTaskName" class="form-control" />
+                  </div>
+                  <div class="pt-4">
+                    <button class="btn btn-primary btn-sm mt-1" @click="onAddNewSubTask">
+                      Add
+                    </button>
+                  </div>
+                </div>
+                <!-- <div
+                            class="d-flex flex-row align-items-start"
+                          >
+                            <div class="form-row mb-2 mx-0 mr-2 w-100">
+                              <label class="form-label" for="name"
+                                >Add a sub-task</label
+                              >
+                              <input
+                                type="text"
+                                maxlength="100"
+                                class="form-control"
+                              />
+                            </div>
+                            <div class="pt-4">
+                              <button
+                                class="btn btn-primary btn-sm mt-2"
+                              >
+                                Add
+                              </button>
+                            </div>
+                          </div> -->
+
+                <div class="custom-overflow pr-2 mr--2 d-flex flex-column">
+                  <div v-if="isAddAssignment === false">
+                    <div v-for="subTask in subTasksList" :key="subTask.id">
+                      <div class="card card-transparent show-icon p-1 mb-1">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <div class="p-1 form-group checkbox">
+                            <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
+                            <input :id="subTask.id" class="mr-2 cursor-pointer" type="checkbox"
+                              v-model="subTask.isTaskCompleted" @change="updateTaskIds(subTask.id)" />
+                            <label :for="subTask.id">{{ subTask.title }}</label>
+                          </div>
+                          <span v-if="subTask.task_status != 'Completed'
+                            " @click="deleteSubTask(subTask)"
+                            class="color-primary-dark fa-icon show-hover d-none btn p-0"><i
+                              class="fas fa-trash-alt"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div v-else>
+                    <div v-for="subTask in subTasksList" :key="subTask.id">
+                      <div class="card card-transparent show-icon p-1 mb-1">
+                        <div class="d-flex align-items-center justify-content-between">
+                          <!-- <p
+                                          class="mb-0 color-secondary text-16 font-regular word-break pr-3"
+                                        >
+                                          <span
+                                            class="subtask-btn mr-1"
+                                            :class="{
+                                              selected:
+                                                subTask.task_status ==
+                                                'Completed',
+                                            }"
+                                            ><i></i
+                                          ></span>
+                                          <span>{{ subTask.title }}</span>
+                                        </p> -->
+                          <div class="p-1 form-group checkbox">
+                            <!-- @click="confirmSubTaskComplete($event, subTask.id, subTask.task_status,subTask)" -->
+                            <input :id="subTask.id" class="mr-2 cursor-pointer" type="checkbox" />
+                            <label :for="subTask.id">{{ subTask.title }}</label>
+                          </div>
+                          <span v-if="subTask.task_status != 'Completed'
+                            " @click="deleteSubTask(subTask)"
+                            class="color-primary-dark fa-icon show-hover d-none btn p-0"><i
+                              class="fas fa-trash-alt"></i></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+        <!-- Additional Material Add -->
+        <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="color-dark font-semi-bold mb-0">
+                    Additional Material
+                  </h6>
+                  <a @click="onAdditionalMatClick" class="btn p-0">
+                    <span class="color-secondary"><i class="fas fa-plus-circle"></i></span>
+                  </a>
+                </div>
+                <div v-if="additionalMaterial" class="d-flex flex-row align-items-start">
+                  <div class="form-row mb-2 mx-0 mr-2 w-100">
+                    <label class="form-label" for="name">Add Additional Material</label>
+                    <!-- <input type="text" class="form-control" /> -->
+                    <select v-model="materialType" class="form-select form-control mb-2"
+                      aria-label="Default select example">
+                      <option value="">
+                        Choose material type
+                      </option>
+                      <option value="file">File</option>
+                      <option value="link">Link</option>
+                    </select>
+                    <div class="row m-0">
+                      <div class="col-12 py-0">
+                        <input v-if="materialType == 'file'" type="file" class="form-control px-2"
+                          placeholder="Upload File" @change="onFileChange" id="fileUpload"
+                          accept=".png,.jpeg,.jpg,.pdf" />
+                      </div>
+                      <div class="col-12 py-0">
+                        <input v-if="materialType == 'link'" type="text" class="form-control px-2"
+                          placeholder="Paste Link" v-model="link" />
+                      </div>
+                      <div class="col-3 p-0"></div>
+                    </div>
+                  </div>
+                  <div class="pt-4">
+                    <button type="button" @click="UploadAttachment" class="btn btn-primary btn-sm mt-1">
+                      Add
+                    </button>
+                  </div>
+                </div>
+                <div class="hidden-scroll px-3 row my-0">
+                  <div v-for="item of additionalMaterialList" :key="item.id" class="h-fit-content cursor-pointer w-100">
+                    <div v-if="item.link"
+                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon">
+                      <div class="ld-details-section w-100">
+                        <p @click="openLink(item)" class="ld-heading mb-1 text-link text-truncate">
+                          <!-- {{ peer.first_name }} -->
+                          {{ item.link }}
+                        </p>
+                      </div>
+                      <span class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                        @click="deleteAdditionalMat(item)"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                    <div v-else
+                      class="d-flex align-items-center justify-content-between my-2 mr-3 min-w-200 w-100 show-icon">
+                      <div class="ld-details-section w-100">
+                        <p @click="openLink(item)" class="ld-heading mb-1 text-link text-truncate">
+                          <!-- {{ peer.first_name }} -->
+                          {{
+                            item.file_type &&
+                            item.file_type != "link"
+                            ? item.file_name
+                            : item.material
+                          }}
+                        </p>
+                      </div>
+                      <span class="color-primary-dark fa-icon show-hover d-none btn p-0"
+                        @click="deleteAdditionalMat(item)"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                  </div>
+                </div>
+      </form>
+    </div>
+    <div class="modal-footer justify-content-end border-top-0">
+      <button v-if="!isAddAssignment && schoologyAssignment == '1'
+        " type="button" class="btn btn-primary py-1 px-3 mr-auto" :disabled="processing || submissionId"
+        @click="submitAssignment()">
+        Submit Assignment
+      </button>
+      <button type="button" class="btn btn-secondary py-1 px-3 mr-2" @click="
+        openAssignment = false;
+      closePopup();
+      ">
+        Close
+      </button>
+      <button type="button" class="btn btn-primary py-1 px-3" :disabled="processing" @click="
+        isAddAssignment
+          ? AddAssignment()
+          : UpdateAssignment()
+        ">
+        {{ isAddAssignment ? "Add" : "Update" }}
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Add Assignment Modal End-->
+      
       <!-- meeing detil pop up -->
 
       <!-- End teacher Page -->
@@ -648,12 +1016,18 @@ import VueToast from "vue-toast-notification";
 import lottie from "vue-lottie/src/lottie.vue";
 import * as animationData from "~/assets/animation.json";
 import UserAdvisorStudyAnalytics from "./UserAdvisorStudyAnalytics.vue";
-
+import { required, } from "vuelidate/lib/validators";
+import VueTimepicker from "vue2-timepicker";
+import "vue2-timepicker/dist/VueTimepicker.css";
+import "vue2-timepicker/dist/VueTimepicker.css";
+import moment from "moment";
+var fromDate = "";
 export default {
   name: "UserTeacherAdvisor",
   components: {
     lottie,
     UserAdvisorStudyAnalytics,
+    VueTimepicker,
   },
   data() {
     return {
@@ -670,11 +1044,42 @@ export default {
       showAssignments: true,
       showOverdueAssingments: false,
       isSchoolAdmin: "0",
+      isAddAssignment: true,
+      grade: "",
+      gradePossible: "",
+      isSharedAssignment: false,
+      schoologyAssignment: "",
+      gg4lSubject: "",
+      assignmentName: "",
+      assignmentDescription: "",
+      priorityVal: "",
+      dateValue: "",
+      submitted: false,
+      timeValue: "",
+      subTaskName: "",
+      subTasksList: [],
+      materialType: "",
+      additionalMaterial: false,
+      additionalMaterialList: [],
+      processing: false,
+      submissionId: "",
+      addSubTask: false,
+      subject: "",
+      processingUpload: false,
+      link: "",
+      file: "",
+      disabledDates: {
+        to: new Date(),
+      },
     };
   },
   mounted() {
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     this.getStudentList();
+    this.checkValidTime();
+    this.logSubjectsData();
+    this.getSubjectsList();
+    this.GetSubjectList();
   },
 
   computed: {
@@ -689,7 +1094,20 @@ export default {
       sharedAssignmentsList: (state) => state.sharedAssignmentsList,
       overdueAssignments: (state) => state.overdueAssignments,
       sharedOverdueAssignments: (state) => state.sharedOverdueAssignments,
+      errorMessageQuote: (state) => state.errorMessage,
     }),
+    ...mapState("quotedMessage", {
+      subjectsData: (state) => state.subjectsData,
+      newAdditionalMaterial: (state) => state.newAdditionalMaterial,
+    }),
+    
+  },
+  validations: {
+    subject: { required },
+    dateValue: { required },
+    timeValue: { required },
+    assignmentName: { required },
+    // assignmentDescription: { required },
   },
   methods: {
     ...mapActions("teacherAdvisor", {
@@ -698,6 +1116,16 @@ export default {
       getStudentsList: "getStudentsList",
       getAssignmentsList: "getAssignmentsList",
     }),
+    ...mapActions("quotedMessage", {
+      getSubjectsList: "getSubjectsList",
+      uploadAdditionalMaterial: "uploadAdditionalMaterial",
+    }),
+    async logSubjectsData() {
+      console.log("Subjects Data:", this.subjectsData);
+    },
+    async GetSubjectList() {
+      await this.getSubjectsList({});
+    },
     handleAnimation: function (anim) {
       this.anim = anim;
     },
@@ -935,6 +1363,349 @@ export default {
         this.showOverdueAssingments = true;
         this.showAssignments = false;
       }
+    },
+    EditAssignmentModal(){
+      $('#editAssignment').modal({
+        backdrop: 'static',
+        keyboard: false
+      });
+    },
+    checkValidTime() {
+      if (this.timeValue) {
+        let tempTime =
+          typeof this.timeValue == "object"
+            ? (this.timeValue.hh +
+            ":" +
+            this.timeValue.mm +
+            " " +
+            (this.timeValue.A??this.timeValue.a))
+            : this.timeValue;
+        let valid = moment(tempTime, "h:mm A", true).isValid();
+
+        if (valid && tempTime.split(" ")[1].length > 1) {
+          this.validTime = true;
+          this.timeValue = tempTime;
+        } else {
+          this.validTime = false;
+        }
+        return valid;
+      } else {
+        return false;
+      }
+      console.log(this.timeValue);
+    },
+    onAddSubTaskClick() {
+      this.addSubTask = true;
+    },
+    onAdditionalMatClick() {
+      this.additionalMaterial = true;
+    },
+    closePopup() {
+      this.deletedSubTasksArray = [];
+      this.openAssignment = false;
+      $('#editAssignment').modal('hide');
+      this.resetAssignment();
+    },
+    async resetAssignment() {
+      this.choosenAssignments = [];
+      this.schoologyAssignment = "";
+      this.peerSelected = [];
+      this.isSharedAssignment = false;
+      this.subject = "";
+      this.assignmentName = "";
+      this.assignmentDescription = "";
+      this.priorityVal = "";
+      this.dateValue = "";
+      this.timeValue = "";
+      this.subTasksList = [];
+      this.peerList = [];
+      this.additionalMaterialList = [];
+      this.invitePeer = false;
+      this.materialType = "";
+      this.additionalMaterial = false;
+      this.addSubTask = false;
+      this.submitted = false;
+      this.value = "";
+      this.dateValue = "";
+      this.file = "";
+      this.link = "";
+      this.submissionId = "";
+      this.schoologyAssignment = "";
+      this.grade = "";
+      this.gradePossible = "";
+      this.invalidSubmitUrl = false;
+      this.submittedAsst = false;
+      this.disableSubmit = false;
+      this.invalidSubmitText = false;
+      this.additionalMaterial = false;
+      this.assignmentId = '';
+      // $('input[name="daterange"]').val("");
+      fromDate = "";
+      // $(".dropdown-select").text("Select priority");
+      this.priorityVal = "";
+      this.subject = "";
+      this.task = "";
+      (fromDate = ""), $('input[name="daterange"]').val("");
+      fromDate = "";
+      this.priorityVal = "";
+      this.timeValue = null;
+      this.subject = "";
+      this.task = "";
+      this.taskValue = "";
+      this.timeList = "";
+      this.timeValue = "";
+      // this.timeValue = {
+      //   HH: '11',
+      //   mm: '59',
+      //   A: 'PM'
+      // };
+      let clearTimeBtn = document.getElementsByClassName("clear-btn")[0];
+      clearTimeBtn?.click();
+      this.typeOfAssignment = '';
+    },
+    async AddAssignment() {
+      this.submitted = true;
+      this.$v.$touch();
+      if (this.$v.$invalid || !this.validTime) {
+        return;
+      }
+      this.processing = true;
+      const df = moment(this.dateValue).format("YYYY-MM-DD");
+      this.loading = true;
+      const peersSelected = [];
+      if (this.peerList.length > 0) {
+        this.peerList.forEach((e) => {
+          peersSelected.push(e.id);
+        });
+      }
+
+      let assignment_materials = [];
+      if (
+        this.additionalMaterialList &&
+        this.additionalMaterialList.length > 0
+      ) {
+        this.additionalMaterialList.forEach((e) => {
+          // assignment_materials.push(e.link ? e.link : e.material);
+          if (e) {
+            assignment_materials.push(
+              e.link ? e.link : e.name ? e.name : e.material
+            );
+          }
+        });
+      }
+      let subTaskLists = [];
+      this.subTasksList.forEach((e) => {
+        subTaskLists.push(e.title);
+      });
+
+      await this.addAssignment({
+        school_id: localStorage.getItem("school_id"),
+        user_id: localStorage.getItem("id"),
+        task: this.assignmentName,
+        assignment_description: this.assignmentDescription,
+        subject: this.subject?.id,
+        subject_id: this.subject?.id,
+        due_time: this.timeValue,
+        due_date: df,
+        priority:
+          this.priorityVal == "Urgent"
+            ? 1
+            : this.priorityVal == "Important"
+              ? 2
+              : this.priorityVal == "Can Wait"
+                ? 3
+                : "",
+        shared_users_ids: peersSelected,
+        assignment_materials: assignment_materials,
+        subTasks: subTaskLists,
+      });
+      this.loading = false;
+
+      if (this.successMessage != "") {
+        this.offset = 0;
+        this.tempAssts = [];
+        this.reloadNext = true;
+        this.reloadCount += 1;
+        // this.GetAssignment();
+        // this.getAssignmentsList();
+        this.openAssignment = false;
+
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 4000,
+        });
+        this.resetAssignment();
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      this.submitted = false;
+      this.processing = false;
+    },
+    onAddNewSubTask() {
+      if (this.subTaskName && this.subTaskName.trim() !== "") {
+        let sub = {};
+        sub.title = this.subTaskName;
+        this.subTasksList.push(sub);
+      } else {
+        this.$toast.open({
+          message: "Please Add a Valid Subtask ",
+          type: "warning",
+          duration: 5000,
+        });
+      }
+      this.subTaskName = "";
+      this.addSubTask = false;
+    },
+    updateTaskIds(subTaskId) {
+      // Check if the subTaskId is in the task_ids array
+      const index = this.task_ids.indexOf(subTaskId);
+      if (index === -1) {
+        // If not in the array, add it
+        this.task_ids.push(subTaskId);
+      } else {
+        // If already in the array, remove it
+        this.task_ids.splice(index, 1);
+      }
+    },
+    deleteSubTask(subTask) {
+      if (this.assignmentId) {
+        // deleted_subTask
+        this.deletedSubTasksArray.push(subTask.id);
+      }
+      this.subTasksList = this.subTasksList.filter((e) => e != subTask);
+    },
+    onFileChange(e) {
+      if (
+        e?.target?.files[0]?.size &&
+        e.target.files[0]?.size > 5 * 1024 * 1024
+      ) {
+        if (document.querySelector("#fileUpload"))
+          document.querySelector("#fileUpload").value = "";
+
+        return this.$toast.open({
+          message: "File size must be lesser than 5 MB",
+          type: "warning",
+        });
+      }
+      if (e.target.files[0]) {
+        this.file = e.target.files[0];
+      }
+    },
+    async UploadAttachment() {
+      if (!this.materialType) {
+        return this.$toast.open({
+          message: "Please Choose File Type",
+          type: "warning",
+          duration: 5000,
+        });
+        return false;
+      }
+
+      this.processingUpload = true;
+      const data = new FormData();
+      if (this.materialType == "file") {
+        if (this.file) {
+          data.append("file", this.file);
+          await this.uploadAdditionalMaterial(data, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          if (this.errorMessageQuote != "") {
+            return this.$toast.open({
+              message: this.errorMessageQuote,
+              type: this.errorTypeQuote,
+              duration: 4000,
+            });
+          }
+
+          this.additionalMaterialList.push({
+            id: this.newAdditionalMaterial.id,
+            name: this.newAdditionalMaterial.material,
+            material: this.file.name,
+          });
+          this.processingUpload = false;
+          this.file = "";
+          if (document.querySelector("#fileUpload"))
+            document.querySelector("#fileUpload").value = "";
+        } else {
+          this.processingUpload = false;
+
+          return this.$toast.open({
+            message: "Please Add Valid File",
+            type: "warning",
+            duration: 5000,
+          });
+          return false;
+        }
+      } else {
+        let urlValid = this.isValidHttpUrl(this.link);
+        if (urlValid) {
+          this.additionalMaterialList.push({
+            id: Math.random(),
+            link: this.link,
+          });
+          this.link = "";
+        }
+        this.processingUpload = false;
+        return;
+      }
+      this.processingUpload = false;
+    },
+    openLink(material) {
+      let link = material.link
+        ? material.link
+        : material.name
+          ? material.name
+          : material.file_name;
+      if (material.file_type) {
+        link = material.material;
+      }
+      window.open(
+        link,
+        "_blank" // <- This is what makes it open in a new window.
+      );
+    },
+    deleteAdditionalMat(item) {
+      this.additionalMaterialList;
+      const index = this.additionalMaterialList.indexOf(item);
+      if (index > -1) {
+        this.additionalMaterialList.splice(index, 1); // 2nd parameter means remove one item only
+      }
+    },
+    isValidHttpUrl(urlLink, showError = true) {
+      let url;
+
+      try {
+        url = new URL(urlLink);
+      } catch (_) {
+        if (showError) {
+          this.$toast.open({
+            message: "Please Add Valid URL",
+            type: "warning",
+            duration: 5000,
+          });
+        }
+        return false;
+      }
+
+      let valid = url.protocol === "http:" || url.protocol === "https:";
+      if (!valid) {
+        this.$toast.open({
+          message: "Please Add Valid URL",
+          type: "warning",
+          duration: 5000,
+        });
+      }
+
+      return valid;
     },
   },
 };
