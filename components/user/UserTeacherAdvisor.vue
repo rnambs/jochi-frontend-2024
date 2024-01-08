@@ -119,6 +119,8 @@
                           </a>
                         </h3>
                           <button @click="
+                           openAssignment = true;
+                          isAddAssignment = true;
                             EditAssignmentModal();" class="btn btn-primary py-1 px-3 mr-3">Add Assignment
                           </button>
                         <!-- <div>
@@ -221,6 +223,19 @@
                                   >
                                     {{ detail.subject }}
                                   </div>
+                                  <button
+                                    v-if="detail.createdBy"
+                                    @click="onCardClick(detail)"
+                                    class="btn p-1 m-2"
+                                  >
+                                    <i class="fas fa-pen color-black"></i>
+                                  </button>
+                                  <button
+                                  v-if="detail.createdBy"
+                                    class="btn p-1 m-2"
+                                  >
+                                    <i class="fas fa-trash color-black"></i>
+                                  </button>
                                 </div>
                                 <div class="text-center">
                                   <h4 class="color-dark font-semi-bold mb-1">
@@ -339,9 +354,6 @@
                                   </div>
                                 </div>
                               </div>
-                              <div
-                                class="position-absolute w-100 h-100 d-flex align-items-start justify-content-end success-image"
-                              ></div>
                             </div>
                           </div>
                         </div>
@@ -1077,9 +1089,6 @@ export default {
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     this.getStudentList();
     this.checkValidTime();
-    this.logSubjectsData();
-    this.getSubjectsList();
-    this.GetSubjectList();
   },
 
   computed: {
@@ -1095,9 +1104,9 @@ export default {
       overdueAssignments: (state) => state.overdueAssignments,
       sharedOverdueAssignments: (state) => state.sharedOverdueAssignments,
       errorMessageQuote: (state) => state.errorMessage,
+      subjectsData: (state) => state.subjectsData,
     }),
     ...mapState("quotedMessage", {
-      subjectsData: (state) => state.subjectsData,
       newAdditionalMaterial: (state) => state.newAdditionalMaterial,
     }),
     
@@ -1115,17 +1124,12 @@ export default {
       getStudents: "getStudents",
       getStudentsList: "getStudentsList",
       getAssignmentsList: "getAssignmentsList",
+      getSubjectsList: "getSubjectsList",
+      addAssignment: "addAssignment",
     }),
     ...mapActions("quotedMessage", {
-      getSubjectsList: "getSubjectsList",
       uploadAdditionalMaterial: "uploadAdditionalMaterial",
     }),
-    async logSubjectsData() {
-      console.log("Subjects Data:", this.subjectsData);
-    },
-    async GetSubjectList() {
-      await this.getSubjectsList({});
-    },
     handleAnimation: function (anim) {
       this.anim = anim;
     },
@@ -1197,7 +1201,7 @@ export default {
     },
     async getAssignments() {
       await this.getAssignmentsList({ id: this.studentDetail.id });
-
+      await this.getSubjectsList({ id: this.studentDetail.id });
       this.mapAssignments();
       this.mapSharedAssignments();
       this.mapOverdueAssignments();
@@ -1224,6 +1228,8 @@ export default {
       item.schoologyAssignmentId = e.schoologyAssignmentId;
       item.subTasks = e.subTasks;
       item.subject = e.subject;
+      item.createdBy = e.createdBy
+      item.createdByName = e.createdByName
       item.subjects = e.subjects;
       item.task = e.task;
       item.task_status = e.task_status;
@@ -1257,6 +1263,8 @@ export default {
         item.subTasks = e.assignments?.subTasks;
         item.subject = e.assignments?.subjects?.subject_name;
         item.subjects = e.subjects;
+        item.createdBy = e.createdBy
+        item.createdByName = e.createdByName
         item.task = e.assignments.task;
         item.task_status = e.assignments.task_status;
         item.updatedAt = e.assignments.updatedAt;
@@ -1285,6 +1293,8 @@ export default {
             item.subTasks = e.subTasks;
             item.subject = e.subject;
             item.subjects = e.subjects;
+            item.createdBy = e.createdBy
+            item.createdByName = e.createdByName
             item.task = e.task;
             item.task_status = e.task_status;
             item.updatedAt = e.updatedAt;
@@ -1321,6 +1331,8 @@ export default {
             item.subject = e.assignments?.subjects?.subject_name;
             item.subjects = e.subjects;
             item.task = e.assignments.task;
+            item.createdBy = e.createdBy
+            item.createdByName = e.createdByName
             item.task_status = e.assignments.task_status;
             item.updatedAt = e.assignments.updatedAt;
             item.user_id = e.assignments.user_id;
@@ -1365,6 +1377,7 @@ export default {
       }
     },
     EditAssignmentModal(){
+      this.openAssignment = true;
       $('#editAssignment').modal({
         backdrop: 'static',
         keyboard: false
@@ -1472,12 +1485,6 @@ export default {
       this.processing = true;
       const df = moment(this.dateValue).format("YYYY-MM-DD");
       this.loading = true;
-      const peersSelected = [];
-      if (this.peerList.length > 0) {
-        this.peerList.forEach((e) => {
-          peersSelected.push(e.id);
-        });
-      }
 
       let assignment_materials = [];
       if (
@@ -1500,10 +1507,10 @@ export default {
 
       await this.addAssignment({
         school_id: localStorage.getItem("school_id"),
-        user_id: localStorage.getItem("id"),
+        user_id: this.studentDetail.id,
         task: this.assignmentName,
         assignment_description: this.assignmentDescription,
-        subject: this.subject?.id,
+        // subject: this.subject?.id,
         subject_id: this.subject?.id,
         due_time: this.timeValue,
         due_date: df,
@@ -1515,21 +1522,16 @@ export default {
               : this.priorityVal == "Can Wait"
                 ? 3
                 : "",
-        shared_users_ids: peersSelected,
         assignment_materials: assignment_materials,
         subTasks: subTaskLists,
       });
       this.loading = false;
 
       if (this.successMessage != "") {
-        this.offset = 0;
-        this.tempAssts = [];
-        this.reloadNext = true;
-        this.reloadCount += 1;
-        // this.GetAssignment();
-        // this.getAssignmentsList();
+        this.pendingAssignments = [];
+        this.overdueAssts = [];
+        await this.getAssignments();
         this.openAssignment = false;
-
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -1707,6 +1709,193 @@ export default {
 
       return valid;
     },
+    selectSubject(selectedSubject) {
+      this.subject = {
+      id: selectedSubject.id,
+      text: selectedSubject.subject_name
+    };
+  },
+  onCardClick(detail){
+      this.resetAssignment();
+      this.deletedSubTasksArray = [];
+      this.isAddAssignment = false;
+      this.openAssignment = true;
+      this.EditAssignmentModal();
+      this.mapAssignmentDetail(detail);
+      // this.mapPeerInvited(data);
+      // this.typeOfAssignment = type;
+  },
+  mapAssignmentDetail(data) {
+
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data.assignment_description, 'text/html');
+      const textContent = doc.body.textContent;
+
+      this.isSharedAssignment = data.isShared;
+      this.schoologyAssignment = data.schoologyAssignment;
+      this.createdBy = data.createdBy;
+      this.createdByName = data.createdByName;
+      this.assignmentId = data.id;
+      this.assignmentName = data.task;
+      this.assignmentDescription = textContent;
+      this.submissionId = data.submission_id;
+      this.grade = data.grade;
+      this.gradePossible = data.grade_possible;
+      this.priorityVal =
+        data.priority == "1"
+          ? "Urgent"
+          : data.priority == "2"
+            ? "Important"
+            : data.priority == "3"
+              ? "Can Wait"
+              : data.priority == "4"
+                ? "Overdue"
+                : "";
+
+      if (data.isShared) {
+        this.subject = data.subject;
+        this.subjectId = data.subjects.id;
+      } else {
+        this.subject = {
+          id: data.subjects?.id,
+          text: data.subjects?.subject_name,
+        };
+      }
+      if (this.schoologyAssignment == "1") {
+        this.gg4lSubject = data.subject;
+      }
+      this.dateValue = data.due_date
+        ? moment(data.due_date).format("MM/DD/YYYY")
+        : "";
+      this.timeValue = data.due_time;
+      this.subTasksList = [];
+      if (data.subTasks && data.subTasks.length > 0) {
+        data.subTasks.forEach((e) => {
+          let item = {};
+          item = e;
+          item.isTaskCompleted = item.task_status !== 'Completed' ? false : true;
+          this.subTasksList.push(item);
+        });
+      }
+      this.peerList = data.peers;
+      this.additionalMaterialList = data.assignment_materials
+        ? data.assignment_materials
+        : [];
+    },
+    async UpdateAssignment() {
+      if (this.priorityVal == "Overdue" && !this.isSharedAssignment) {
+        this.$toast.open({
+          message: "Please Select the Priority",
+          type: "error",
+          duration: 5000,
+        });
+        return;
+      }
+      this.submitted = true;
+      if (!this.isSharedAssignment) {
+        this.$v.$touch();
+        if (this.$v.$invalid || !this.validTime) {
+          return;
+        }
+      }
+
+      let priority = 0;
+
+      if (this.priorityVal == "Urgent") {
+        priority = "1";
+      } else if (this.priorityVal == "Important") {
+        priority = "2";
+      } else if (this.priorityVal == "Can Wait") {
+        priority = "3";
+      } else if (this.priorityVal == "Overdue") {
+        priority = this.prior;
+      }
+      this.processing = true;
+      this.loading = true;
+      const dfE = moment(this.dateValue).format("YYYY-MM-DD");
+
+      // const peersSelected = [];
+      // if (this.peerList.length > 0) {
+      //   this.peerList.forEach((e) => {
+      //     peersSelected.push(e.id);
+      //   });
+      // }
+
+      // let removed = [];
+      // this.removedPeerList.forEach((e) => {
+      //   const index = this.peerList.findIndex((item) => item.id == e);
+      //   if (index < 0) {
+      //     removed.push(e);
+      //   }
+      // });
+
+      // removed = [...new Set(removed)];
+
+      let assignment_materials = [];
+      if (
+        this.additionalMaterialList &&
+        this.additionalMaterialList.length > 0
+      ) {
+        this.additionalMaterialList.forEach((e) => {
+          // assignment_materials.push(e.link ? e.link : e.material);
+          if (e) {
+            assignment_materials.push(
+              e.link ? e.link : e.name ? e.name : e.material
+            );
+          }
+        });
+      }
+      let subTaskLists = [];
+      this.subTasksList.forEach((e) => {
+        subTaskLists.push(e.title);
+      });
+      await this.updateAssignment({
+        school_id: localStorage.getItem("school_id"),
+        assignment_id: this.assignmentId,
+        user_id: localStorage.getItem("id"),
+        task: this.assignmentName,
+        assignment_description: this.assignmentDescription,
+        subject: this.isSharedAssignment ? this.subjectId : this.subject?.id,
+        subject_id: this.isSharedAssignment ? this.subjectId : this.subject?.id,
+        due_time: this.timeValue,
+        due_date: dfE,
+        priority: priority,
+        shared_users_ids: peersSelected,
+        assignment_materials: assignment_materials,
+        subTasks: subTaskLists,
+        deleted_subTask: this.deletedSubTasksArray,
+        removed_users: removed,
+        task_ids: this.task_ids,
+      });
+      this.loading = false;
+      this.removedPeerList = [];
+      if (this.SuccessTypeSubTasks == true) {
+        this.subtaskUpdatedData();
+      }
+      if (this.successMessage != "") {
+        this.loadUpdatedData();
+        this.deletedSubTasksArray = [];
+        this.openAssignment = false;
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        this.resetAssignment();
+        this.task_ids = [];
+        $(".modal").modal("hide");
+        $(".modal-backdrop").remove();
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      // this.GetWeeklyPlanner();
+      this.submitted = false;
+      this.processing = false;
+    },
   },
 };
 </script>
@@ -1726,5 +1915,8 @@ export default {
 
 .label {
   font-weight: semi-bold; /* If you want to maintain the boldness of the label */
+}
+.clickable {
+  cursor: pointer;
 }
 </style>
