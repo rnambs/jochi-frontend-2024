@@ -1095,6 +1095,7 @@ export default {
       link: "",
       file: "",
       createdBy: '',
+      task_ids: [],
       disabledDates: {
         to: new Date(),
       },
