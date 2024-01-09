@@ -109,7 +109,7 @@
                                   <li @click="movetoDone(item, 'Pending')" class="item px-2 py-1">
                                     Move to Done
                                   </li>
-                                  <div v-if="item.shared_users_id != user_id">
+                                  <div v-if="item.shared_users_id != user_id && !item.createdBy">
                                     <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
@@ -226,7 +226,7 @@
                                   <li @click="movetoDone(item, 'Doing')" class="item px-2 py-1">
                                     Move to Done
                                   </li>
-                                  <div v-if="item.shared_users_id != user_id">
+                                  <div v-if="item.shared_users_id != user_id && !item.createdBy">
                                     <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
@@ -439,7 +439,7 @@
                                   <li  @click="movetoDone(item, 'Overdue')" class="item px-2 py-1">
                                     Move to Done
                                   </li>
-                                <div v-if="item.shared_users_id != user_id">
+                                <div v-if="item.shared_users_id != user_id && !item.createdBy">
                                   <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                 </div>
                               </ul>
@@ -540,7 +540,7 @@
                                   <li @click="onCardClick(item, 'Doing')" class="item px-2 py-1">
                                     Edit
                                   </li>
-                                  <div v-if="item.shared_users_id != user_id">
+                                  <div v-if="item.shared_users_id != user_id && !item.createdBy">
                                     <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
@@ -631,7 +631,7 @@
                                 </div>
                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
                                   <li @click="onCardClick(item, 'Pending')" class="item px-2 py-1">Edit</li>
-                                  <div v-if="item.shared_users_id != user_id">
+                                  <div v-if="item.shared_users_id != user_id && !item.createdBy">
                                     <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
@@ -807,7 +807,7 @@
                               </div>
                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
                                 <li @click="onCardClick(item, 'Overdue')" class="item px-2 py-1">Edit</li>
-                                <div v-if="item.shared_users_id != user_id">
+                                <div v-if="item.shared_users_id != user_id && !item.createdBy">
                                   <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                 </div>
                               </ul>
@@ -904,7 +904,7 @@
                       :class="{
                       'is-invalid':
                       submitted && $v.subject.$error,
-                      'disabled': isDisabled(),
+                      'disabled': this.createdBy,
                   }"
                     >
                       <span id="dLabel" class="mr-auto color-secondary text-truncate">
@@ -937,7 +937,7 @@
                     :class="{
                       'is-invalid':
                         submitted && $v.assignmentName.$error,
-                        'disabled': isDisabled(),
+                        'disabled': this.createdBy,
                     }" />
                   <div v-if="submitted && $v.assignmentName.$error" class="invalid-feedback">
                     <span v-if="!$v.assignmentName.required">This field is required</span>
@@ -948,7 +948,7 @@
                   <textarea class="form-control" id="message-text" rows="3" v-model="assignmentDescription"
                     maxlength="500" placeholder="Enter assignment description"
                     :class="{
-                        'disabled': isDisabled(),
+                    'disabled': this.createdBy,
                     }"
                     ></textarea>
                 </div>
@@ -958,7 +958,7 @@
                       <label for="recipient-name" class="col-form-label py-1">Priority<em>*</em></label>
                       <div class="dropdown input-icon-area"
                       :class="{
-                        'disabled': isDisabled(),
+                        'disabled': this.createdBy,
                     }"
                       >
                         <button id="dLabel" class="dropdown-select form-control text-left" type="button"
@@ -1001,7 +1001,7 @@
                         v-model="dateValue" :class="{
                           'is-invalid':
                             submitted && $v.dateValue.$error,
-                            'disabled': isDisabled(),                           
+                            'disabled': this.createdBy,                           
                         }" :disabled-dates="disabledDates" />
                       <div v-if="submitted && $v.dateValue.$error" class="invalid-feedback">
                         <span v-if="!$v.dateValue.required">This field is required</span>
@@ -1020,7 +1020,7 @@
                               submitted &&
                               ($v.timeValue.$error ||
                                 !validTime),
-                                'disabled': isDisabled(),
+                                'disabled': this.createdBy,
                           }"></vue-timepicker>
                         <div v-if="submitted &&
                           ($v.timeValue.$error || !validTime)
@@ -2910,6 +2910,7 @@ export default {
       }
       this.submitted = false;
       this.processing = false;
+      this.createdBy = '';
     },
     async UpdateAssignment() {
       if (this.priorityVal == "Overdue" && !this.isSharedAssignment) {
@@ -3024,6 +3025,7 @@ export default {
       // this.GetWeeklyPlanner();
       this.submitted = false;
       this.processing = false;
+      this.createdBy = '';
     },
     mapAssignmentDetail(data) {
 
@@ -3705,10 +3707,7 @@ export default {
       id: selectedSubject.id,
       text: selectedSubject.subject_name
     };
-  },
-  isDisabled() {
-    return this.createdBy !== undefined && this.createdBy !== null;
-    },
+  }, 
   },
 }
 </script>
