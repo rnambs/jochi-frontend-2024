@@ -142,6 +142,14 @@
                                 </div> -->
                               </div>
                             </div>
+                            <div v-if="item.createdBy">
+                              <p class="color-secondary text-12 mb-0">Assignment created by : {{ item.createdByName
+                              }}
+                              </p>
+                            </div>
+                            <div @click="redirecttoStudysession(item)" class="d-flex justify-content-end clickable">
+                              <p class="color-secondary text-12 mb-0"><span>Start Session </span></p>
+                            </div>
                           </div>
                         </drag>
                       </div>
@@ -250,6 +258,14 @@
                                   </button>
                                 </div> -->
                               </div>
+                            </div>
+                            <div v-if="item.createdBy">
+                              <p class="color-secondary text-12 mb-0">Assignment created  by  : {{ item.createdByName
+                              }}
+                              </p>
+                            </div>
+                            <div @click="redirecttoStudysession(item)" class="d-flex justify-content-end clickable">
+                              <p class="color-secondary text-12 mb-0"><span>Start Session </span></p>
                             </div>
                           </div>
                         </drag>
@@ -447,6 +463,11 @@
                               </div> -->
                             </div>
                           </div>
+                          <div v-if="item.createdBy">
+                              <p class="color-secondary text-12 mb-0">Assignment created  by  : {{ item.createdByName
+                              }}
+                              </p>
+                            </div>
                         </div>
                       </drag>
                     </div>
@@ -883,6 +904,7 @@
                       :class="{
                       'is-invalid':
                       submitted && $v.subject.$error,
+                      'disabled': isDisabled(),
                   }"
                     >
                       <span id="dLabel" class="mr-auto color-secondary text-truncate">
@@ -915,6 +937,7 @@
                     :class="{
                       'is-invalid':
                         submitted && $v.assignmentName.$error,
+                        'disabled': isDisabled(),
                     }" />
                   <div v-if="submitted && $v.assignmentName.$error" class="invalid-feedback">
                     <span v-if="!$v.assignmentName.required">This field is required</span>
@@ -923,13 +946,21 @@
                 <div class="form-group mb-2">
                   <label for="message-text" class="col-form-label py-1">Description</label>
                   <textarea class="form-control" id="message-text" rows="3" v-model="assignmentDescription"
-                    maxlength="500" placeholder="Enter assignment description"></textarea>
+                    maxlength="500" placeholder="Enter assignment description"
+                    :class="{
+                        'disabled': isDisabled(),
+                    }"
+                    ></textarea>
                 </div>
                 <div class="row">
                   <div class="col-md-6 ml-auto py-0">
                     <div class="form-group mb-2 mb-0">
                       <label for="recipient-name" class="col-form-label py-1">Priority<em>*</em></label>
-                      <div class="dropdown input-icon-area">
+                      <div class="dropdown input-icon-area"
+                      :class="{
+                        'disabled': isDisabled(),
+                    }"
+                      >
                         <button id="dLabel" class="dropdown-select form-control text-left" type="button"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <span class="">
@@ -970,6 +1001,7 @@
                         v-model="dateValue" :class="{
                           'is-invalid':
                             submitted && $v.dateValue.$error,
+                            'disabled': isDisabled(),                           
                         }" :disabled-dates="disabledDates" />
                       <div v-if="submitted && $v.dateValue.$error" class="invalid-feedback">
                         <span v-if="!$v.dateValue.required">This field is required</span>
@@ -982,12 +1014,13 @@
                     <div class="form-group">
                       <label for="recipient-name" class="col-form-label">Time<em>*</em></label>
                       <div>
-                        <vue-timepicker @change="checkValidTime" close-on-complete format="hh:mm a" v-model="timeValue"
+                        <vue-timepicker @change="checkValidTime" close-on-complete format="hh:mm A" v-model="timeValue"
                           name="timeValue" class="show-cursor dropdown-menu-top" :value="timeValue" :class="{
                             'is-invalid':
                               submitted &&
                               ($v.timeValue.$error ||
                                 !validTime),
+                                'disabled': isDisabled(),
                           }"></vue-timepicker>
                         <div v-if="submitted &&
                           ($v.timeValue.$error || !validTime)
@@ -1094,7 +1127,7 @@
                 </div>
 
                 <!-- Additional Material Add -->
-                <div class="d-flex justify-content-between align-items-center mb-2">
+                <div v-if="!this.createdBy" class="d-flex justify-content-between align-items-center mb-2">
                   <h6 class="color-dark font-semi-bold mb-0">
                     Invite Peers
                   </h6>
@@ -2007,6 +2040,9 @@ export default {
       task_ids: [],
       OverdueToast: false,
       DoingToast: false,
+      createdBy: '',
+      createdByName: ''
+
     }
   },
   created() {
@@ -2435,6 +2471,8 @@ export default {
         item.subTasks = e.subTasks;
         item.subject = e.subject;
         item.subjects = e.subjects;
+        item.createdBy = e.createdBy
+        item.createdByName = e.createdByName
         item.task = e.task;
         item.task_status = e.task_status;
         item.updatedAt = e.updatedAt;
@@ -2482,6 +2520,8 @@ export default {
         item.subTasks = e.assignments?.subTasks;
         item.subject = e.assignments?.subjects?.subject_name ?? "";
         item.subjects = e.assignments?.subjects;
+        item.createdBy = e.createdBy
+        item.createdByName = e.createdByName
         item.task = e.assignments.task;
         item.task_status = e.assignments.task_status;
         item.updatedAt = e.assignments.updatedAt;
@@ -2744,6 +2784,8 @@ export default {
       let clearTimeBtn = document.getElementsByClassName("clear-btn")[0];
       clearTimeBtn?.click();
       this.typeOfAssignment = '';
+      this.createdBy = '';
+      this.createdByName = '';
     },
     checkValidTime() {
       if (this.timeValue) {
@@ -2753,7 +2795,7 @@ export default {
             ":" +
             this.timeValue.mm +
             " " +
-            this.timeValue.A??this.timeValue.a)
+            (this.timeValue.A??this.timeValue.a))
             : this.timeValue;
         let valid = moment(tempTime, "h:mm A", true).isValid();
 
@@ -2991,6 +3033,8 @@ export default {
 
       this.isSharedAssignment = data.isShared;
       this.schoologyAssignment = data.schoologyAssignment;
+      this.createdBy = data.createdBy;
+      this.createdByName = data.createdByName;
       this.assignmentId = data.id;
       this.assignmentName = data.task;
       this.assignmentDescription = textContent;
@@ -3653,12 +3697,18 @@ export default {
         this.doingAssignment();
       }
   },
+  redirecttoStudysession(item){
+    this.$router.push({ path: `/study-time`, query: { id: item.id, source: 'task' } });
+  },
   selectSubject(selectedSubject) {
       this.subject = {
       id: selectedSubject.id,
       text: selectedSubject.subject_name
     };
-  }
+  },
+  isDisabled() {
+    return this.createdBy !== undefined && this.createdBy !== null;
+    },
   },
 }
 </script>

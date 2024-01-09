@@ -11,6 +11,7 @@ const state = {
     errorType: "",
     successMessage: "",
     successType: "",
+    subjectsData: [],
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -157,6 +158,80 @@ const actions = {
         }
 
     },
+    async getSubjectsList({ commit }, payLoad) {
+        const token = localStorage.getItem('token')
+        try {
+          const response = await this.$axios.$get(BASE_URL + `advisor/subjectlist/${payLoad.id}`, {
+            headers: {
+              'Authorization': ` ${token}`
+            },
+          });
+          commit('setSubjectsList', response.data);
+        } catch (e) {
+    
+          commit('setErrorMessage', e?.response?.data?.message);
+          commit('setErrorType', "error");
+          commit('setSuccessMessage', "");
+          commit('setSuccessType', "")
+    
+        }
+      },
+      async addAssignment({ commit }, payLoad) {
+        const token = localStorage.getItem('token')
+        try {
+          const response = await this.$axios.$post(BASE_URL + 'advisor/addAssignment', payLoad, {
+            headers: {
+              'Authorization': ` ${token}`
+            },
+          });
+          if (response.message == "Assignment added successfully") {
+            commit('setErrorMessage', "");
+            commit('setErrorType', "");
+            commit('setSuccessMessage', "Assignment Added Successfully");
+            commit('setSuccessType', "success");
+          }
+        } catch (e) {
+          if (e?.response?.data?.message == "Unauthorized") {
+            commit('setSuccessMessage', "");
+            commit('setSuccessType', "");
+            commit('setErrorMessage', "");
+            commit('setErrorType', "");
+            window.localStorage.clear();
+            this.$router.push('/');
+          }
+          else if (e?.response?.data?.message == "Validation error") {
+            commit('setSuccessMessage', "");
+            commit('setSuccessType', "");
+            commit('setErrorMessage', "All fields are required ");
+            commit('setErrorType', "error");
+          }
+          else if (e?.response?.data?.message == "Please select an upcoming time") {
+            commit('setSuccessMessage', "");
+            commit('setSuccessType', "");
+            commit('setErrorMessage', "Please select an upcoming time");
+            commit('setErrorType', "error");
+          }
+          else if (e?.response?.data?.message == "User Not found") {
+            commit('setSuccessMessage', "");
+            commit('setSuccessType', "");
+            commit('setErrorMessage', "User Not found");
+            commit('setErrorType', "error");
+          }
+          else if (e?.response?.data?.message == "Assignment already Exist") {
+            commit('setSuccessMessage', "");
+            commit('setSuccessType', "");
+            commit('setErrorMessage', "Assignment already Exist");
+            commit('setErrorType', "error");
+          }
+          else {
+            commit('setErrorMessage', e.response.data.error);
+            commit('setErrorType', "error");
+            commit('setSuccessMessage', "");
+            commit('setSuccessType', "");
+          }
+        }
+    
+      },
 
 }
 
@@ -191,6 +266,9 @@ const mutations = {
     setSharedOverdueAssignments(state, data) {
         state.sharedOverdueAssignments = data;
     },
+    setSubjectsList(state, data) {
+        state.subjectsData = data;
+      },
 
 }
 const getters = {
@@ -224,6 +302,9 @@ const getters = {
     sharedOverdueAssignments: () => {
         return state.sharedOverdueAssignments;
     },
+    subjectsData: () => {
+        return state.subjectsData;
+      },
 
 
 }

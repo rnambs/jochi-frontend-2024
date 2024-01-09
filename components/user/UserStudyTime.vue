@@ -1333,7 +1333,7 @@
             <div class="form-group required">
               <vue-timepicker
                 close-on-complete
-                format="hh:mm a"
+                format="hh:mm A"
                 placeholder="Time"
                 v-model="scheduledTime"
                 name="scheduledTime"
@@ -1528,6 +1528,7 @@ export default {
       counter: false,
       intervalCountDown: null,
       sessionRedirectId: this.$route.query.id,
+      source : this.$route.query.source,
       userId: "",
       assignmentMaterials: [],
       pendingAssignments: [],
@@ -1579,6 +1580,8 @@ export default {
     this.$mixpanel.track("Page View", { distinct_id, page });
     this.startTimeMixpanel = new Date().getTime();
     this.userId = localStorage.getItem("id");
+    if (this.source != "task"){
+      console.log("source",this.source)
     if (this.sessionRedirectId) {
       await this.getDetail(this.sessionRedirectId);
       this.redirectMap(this.studySessionDetail);
@@ -1587,6 +1590,20 @@ export default {
       this.currentTab = 3;
       this.isRedirect = true;
     }
+  }else{
+    const taskId = this.$route.query.id;
+    if(taskId){
+      this.sessionType = "assignment"
+      this.currentTab = 2;
+      await this.loadAssignments();
+    if (this.pendingAssignments.length > 0) {
+      const detail = this.pendingAssignments.find(item => item.id == taskId);
+      if (detail) {
+         this.onAssignmentSelectroute(detail);
+      } 
+    } 
+    }
+  }
     window.addEventListener("beforeunload", function (e) {
       // Cancel the event
       if (this.limitedInterval > 0) {
@@ -1978,7 +1995,7 @@ export default {
       return valid;
     },
     checkValidTime(time) {
-      let timeFormat = time?.hh + ":" + time?.mm + " " + time?.a;
+      let timeFormat = time?.hh + ":" + time?.mm + " " + time?.A;
       console.log(time, timeFormat, moment(timeFormat, "hh:mm A", true).isValid());
       return moment(timeFormat, "hh:mm A", true).isValid();
     },
@@ -2025,13 +2042,15 @@ export default {
             : this.scheduledDate
             ? moment(this.scheduledDate).format("YYYY-MM-DD")
             : "",
-          start_time: scheduleNow
+            start_time: scheduleNow
             ? todayTime
-            : (this.scheduledTime.hh +
+            : (
+              this.scheduledTime.hh +
               ":" +
               this.scheduledTime.mm +
               " " +
-              this.scheduledTime.A??this.scheduledTime.a),
+              ((this.scheduledTime.A ? this.scheduledTime.A : this.scheduledTime.a)
+            )),
           study_method: this.studyTypes?.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
@@ -2059,7 +2078,7 @@ export default {
               ":" +
               this.scheduledTime.mm +
               " " +
-              this.scheduledTime.A??this.scheduledTime.a),
+              (this.scheduledTime.A??this.scheduledTime.a)),
           study_method: this.studyTypes?.id,
           subject: this.sessionType != "assignment" ? this.Subject.id : "",
           target_duration:
@@ -2798,7 +2817,6 @@ export default {
     },
     onAssignmentSelect(detail) {
       this.selectedAssignment = detail;
-
       this.onNext();
     },
     onModeSelect(type) {
@@ -3185,6 +3203,9 @@ export default {
       const intro = this.$intro();
       intro.exit();
       this.$store.commit("setStartProductGuide", false);
+    },
+    onAssignmentSelectroute(detail) {
+      this.selectedAssignment = detail;
     },
   },
 
