@@ -265,7 +265,7 @@
                                       :key="subtask.id"
                                     >
                                       <div
-                                        class="pl-2 d-flex align-items-center mb-1 cursor-pointer"
+                                        class="pl-2 d-flex align-items-center mb-1"
                                       >
                                         <input
                                           :id="subtask.title"
@@ -276,11 +276,12 @@
                                               : ''
                                           "
                                           type="radio"
-                                          class="mr-2 color-gray cursor-pointer"
+                                          class="mr-2 color-gray"
+                                          :disabled="subtask.task_status !== 'Completed'"
                                         />
                                         <label
                                           for=""
-                                          class="mb-0 text-12 color-gray cursor-pointer"
+                                          class="mb-0 text-12 color-gray"
                                           >{{ subtask.title }}</label
                                         >
                                       </div>
@@ -465,7 +466,7 @@
                                       :key="subtask.id"
                                     >
                                       <div
-                                        class="pl-2 d-flex align-items-center mb-1 cursor-pointer"
+                                        class="pl-2 d-flex align-items-center mb-1"
                                       >
                                         <input
                                           :id="subtask.title"
@@ -476,11 +477,12 @@
                                               : ''
                                           "
                                           type="radio"
-                                          class="mr-2 color-gray cursor-pointer"
+                                          class="mr-2 color-gray"
+                                          :disabled="subtask.task_status !== 'Completed'"
                                         />
                                         <label
                                           for=""
-                                          class="mb-0 text-12 color-gray cursor-pointer"
+                                          class="mb-0 text-12 color-gray"
                                           >{{ subtask.title }}</label
                                         >
                                       </div>
