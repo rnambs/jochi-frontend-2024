@@ -424,6 +424,19 @@
                                     {{ detail.subject }}
                                   </div>
                                 </div>
+                                <button
+                                    v-if="detail.createdBy"
+                                    @click="onCardClick(detail)"
+                                    class="btn p-1 m-2"
+                                  >
+                                    <i class="fas fa-pen color-black"></i>
+                                  </button>
+                                  <button
+                                  v-if="detail.createdBy"
+                                    class="btn p-1 m-2"
+                                  >
+                                    <i class="fas fa-trash color-black"></i>
+                                  </button>
                                 <div class="text-center">
                                   <h4 class="color-dark font-semi-bold mb-1">
                                     {{ detail.task }}
@@ -541,15 +554,16 @@
                                   </div>
                                 </div>
                               </div>
-                              <div
+                              <!-- Code commented for future use -->
+                              <!-- <div
                                 class="position-absolute w-100 h-100 d-flex align-items-start justify-content-end success-image"
-                              >
+                              > -->
                                 <span
                                   v-if="detail.task_status == 'Completed'"
                                   class="color-primary-dark text-30 check position-absolute"
                                   ><i class="fas fa-check-circle"></i
                                 ></span>
-                              </div>
+                              <!-- </div> -->
                             </div>
                           </div>
                         </div>
@@ -1080,6 +1094,7 @@ export default {
       processingUpload: false,
       link: "",
       file: "",
+      createdBy: '',
       disabledDates: {
         to: new Date(),
       },
