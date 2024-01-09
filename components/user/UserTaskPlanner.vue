@@ -143,7 +143,7 @@
                               </div>
                             </div>
                             <div v-if="item.createdBy">
-                              <p class="color-secondary text-12 mb-0">Assignment created for you by teacher name : {{ item.createdByName
+                              <p class="color-secondary text-12 mb-0">Assignment created by : {{ item.createdByName
                               }}
                               </p>
                             </div>
@@ -260,7 +260,7 @@
                               </div>
                             </div>
                             <div v-if="item.createdBy">
-                              <p class="color-secondary text-12 mb-0">Assignment created for you by teacher name : {{ item.createdByName
+                              <p class="color-secondary text-12 mb-0">Assignment created  by  : {{ item.createdByName
                               }}
                               </p>
                             </div>
@@ -464,7 +464,7 @@
                             </div>
                           </div>
                           <div v-if="item.createdBy">
-                              <p class="color-secondary text-12 mb-0">Assignment created for you by teacher name : {{ item.createdByName
+                              <p class="color-secondary text-12 mb-0">Assignment created  by  : {{ item.createdByName
                               }}
                               </p>
                             </div>
