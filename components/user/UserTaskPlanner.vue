@@ -1384,7 +1384,7 @@
                     <div class="form-group">
                       <label for="recipient-name" class="col-form-label py-0">Time<em>*</em></label>
                       <div>
-                        <vue-timepicker disabled="disabled" @change="checkValidTime" close-on-complete format="hh:mm a" v-model="timeValue"
+                        <vue-timepicker disabled="disabled" @change="checkValidTime" close-on-complete format="hh:mm A" v-model="timeValue"
                           name="timeValue" class="show-cursor dropdown-menu-top cursor-auto" :value="timeValue" :class="{
                             'is-invalid':
                               submitted &&
@@ -2052,6 +2052,7 @@ export default {
     });
   },
   async mounted() {
+    console.log("initial",this.createdBy);
     const taskId = this.$route.query.id;
     if (taskId) {
       
@@ -2919,6 +2920,7 @@ export default {
           type: "error",
           duration: 5000,
         });
+        console.log(this.createdBy);
         return;
       }
       this.submitted = true;
@@ -3016,16 +3018,19 @@ export default {
         $(".modal").modal("hide");
         $(".modal-backdrop").remove();
       } else if (this.errorMessage != "") {
+        console.log("1",this.createdBy);
         this.$toast.open({
           message: this.errorMessage,
           type: this.errorType,
           duration: 5000,
         });
+        // return
       }
       // this.GetWeeklyPlanner();
       this.submitted = false;
       this.processing = false;
-      this.createdBy = '';
+      // this.createdBy = "";
+      console.log("2",this.createdBy);
     },
     mapAssignmentDetail(data) {
 
@@ -3104,6 +3109,7 @@ export default {
       this.mapAssignmentDetail(data);
       this.mapPeerInvited(data);
       this.typeOfAssignment = type;
+      console.log("cardClick",this.createdBy);
     },
     submitAssignment() {
       this.submittedAsst = false;
