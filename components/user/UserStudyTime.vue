@@ -1424,6 +1424,7 @@ import { mapState, mapActions } from "vuex";
 import VueTimepicker from "vue2-timepicker";
 import { NavigationGuardNext, Route } from "vue-router";
 import { eventBus } from "~/plugins/eventbus.js";
+import InfiniteLoading from "vue-infinite-loading";
 
 export default {
   name: "ClubEditForm",
