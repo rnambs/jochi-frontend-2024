@@ -184,7 +184,8 @@
                             <div
                               class="bg-card-primary02 border rounded-8 drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
                               :class="{
-                                selected: detail.task_status == 'Completed',
+                                'bg-card-secondary selected': detail.task_status === 'Completed',
+                                'bg-card-primary02': detail.task_status !== 'Completed',
                               }"
                             >
                               <div class="d-flex flex-column">
@@ -225,6 +226,7 @@
                                   </div>
                                   <button
                                     v-if="detail.createdBy"
+                                    :disabled="detail.task_status == 'Completed'"
                                     @click="onCardClick(detail)"
                                     class="btn p-1 m-2"
                                   >
@@ -232,6 +234,7 @@
                                   </button>
                                   <button
                                   v-if="detail.createdBy"
+                                  :disabled="detail.task_status == 'Completed'"
                                     class="btn p-1 m-2"
                                   >
                                     <i class="fas fa-trash color-black"></i>
