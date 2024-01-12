@@ -1424,6 +1424,7 @@ import { mapState, mapActions } from "vuex";
 import VueTimepicker from "vue2-timepicker";
 import { NavigationGuardNext, Route } from "vue-router";
 import { eventBus } from "~/plugins/eventbus.js";
+import InfiniteLoading from "vue-infinite-loading";
 
 export default {
   name: "ClubEditForm",
@@ -1581,7 +1582,6 @@ export default {
     this.startTimeMixpanel = new Date().getTime();
     this.userId = localStorage.getItem("id");
     if (this.source != "task"){
-      console.log("source",this.source)
     if (this.sessionRedirectId) {
       await this.getDetail(this.sessionRedirectId);
       this.redirectMap(this.studySessionDetail);
@@ -1595,13 +1595,15 @@ export default {
     if(taskId){
       this.sessionType = "assignment"
       this.currentTab = 2;
-      await this.loadAssignments();
-    if (this.pendingAssignments.length > 0) {
-      const detail = this.pendingAssignments.find(item => item.id == taskId);
-      if (detail) {
-         this.onAssignmentSelectroute(detail);
-      } 
-    } 
+      await this.getAssignment({
+        id: taskId,
+      })
+      if(taskId){
+      let data = this.mapData(this.assignment);
+      if(!data)
+      data = this.mapSharedData(this.sharedAssignment);
+      this.onAssignmentSelectroute(data);
+    }
     }
   }
     window.addEventListener("beforeunload", function (e) {
@@ -1653,6 +1655,10 @@ export default {
       sharedOverdueAssignmentsList: (state) =>
         state.sharedOverdueAssignmentsList,
     }),
+    ...mapState("quotedMessage", {
+      assignment: (state) => state.assignment,
+      sharedAssignment: (state) => state.sharedAssignment,
+    }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
     }),
@@ -1677,6 +1683,9 @@ export default {
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
+    }),
+    ...mapActions("quotedMessage", {
+      getAssignment: "getAssignment",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;

@@ -1384,7 +1384,7 @@
                     <div class="form-group">
                       <label for="recipient-name" class="col-form-label py-0">Time<em>*</em></label>
                       <div>
-                        <vue-timepicker disabled="disabled" @change="checkValidTime" close-on-complete format="hh:mm a" v-model="timeValue"
+                        <vue-timepicker disabled="disabled" @change="checkValidTime" close-on-complete format="hh:mm A" v-model="timeValue"
                           name="timeValue" class="show-cursor dropdown-menu-top cursor-auto" :value="timeValue" :class="{
                             'is-invalid':
                               submitted &&
@@ -3025,7 +3025,6 @@ export default {
       // this.GetWeeklyPlanner();
       this.submitted = false;
       this.processing = false;
-      this.createdBy = '';
     },
     mapAssignmentDetail(data) {
 

@@ -184,7 +184,8 @@
                             <div
                               class="bg-card-primary02 border rounded-8 drag-drop p-4 position-realtive h-100 d-flex flex-column justify-content-between assignment-status position-relative"
                               :class="{
-                                selected: detail.task_status == 'Completed',
+                                'bg-card-secondary selected': detail.task_status === 'Completed',
+                                'bg-card-primary02': detail.task_status !== 'Completed',
                               }"
                             >
                               <div class="d-flex flex-column">
@@ -224,14 +225,14 @@
                                     {{ detail.subject }}
                                   </div>
                                   <button
-                                    v-if="detail.createdBy"
+                                    v-if="detail.createdBy && detail.task_status !== 'Completed'"
                                     @click="onCardClick(detail)"
                                     class="btn p-1 m-2"
                                   >
                                     <i class="fas fa-pen color-black"></i>
                                   </button>
                                   <button
-                                  v-if="detail.createdBy"
+                                  v-if="detail.createdBy && detail.task_status !== 'Completed'"
                                     class="btn p-1 m-2"
                                   >
                                     <i class="fas fa-trash color-black"></i>
@@ -1024,6 +1025,13 @@ aria-hidden="true">
           ? AddAssignment()
           : UpdateAssignment()
         ">
+        <v-progress-circular
+        v-if="spinnerLoader"
+        :size="20"
+        color="primary"
+        indeterminate
+      ></v-progress-circular>
+        <!-- <span v-if="spinnerLoader" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
         {{ isAddAssignment ? "Add" : "Update" }}
       </button>
     </div>
@@ -1098,6 +1106,7 @@ export default {
       file: "",
       createdBy: '',
       task_ids: [],
+      spinnerLoader: false,
       disabledDates: {
         to: new Date(),
       },
@@ -1502,6 +1511,7 @@ export default {
       }
       this.processing = true;
       const df = moment(this.dateValue).format("YYYY-MM-DD");
+      this.spinnerLoader = true;
       this.loading = true;
 
       let assignment_materials = [];
@@ -1543,6 +1553,7 @@ export default {
         assignment_materials: assignment_materials,
         subTasks: subTaskLists,
       });
+      this.spinnerLoader = false;
       this.loading = false;
 
       if (this.successMessage != "") {
@@ -1829,6 +1840,7 @@ export default {
         priority = this.prior;
       }
       this.processing = true;
+      this.spinnerLoader = true;
       this.loading = true;
       const dfE = moment(this.dateValue).format("YYYY-MM-DD");
 
@@ -1885,6 +1897,7 @@ export default {
         removed_users: removed,
         task_ids: this.task_ids,
       });
+      this.spinnerLoader = false;
       this.loading = false;
       this.removedPeerList = [];
       if (this.SuccessTypeSubTasks == true) {
