@@ -1596,13 +1596,15 @@ export default {
     if(taskId){
       this.sessionType = "assignment"
       this.currentTab = 2;
-      await this.loadAssignments();
-    if (this.pendingAssignments.length > 0) {
-      const detail = this.pendingAssignments.find(item => item.id == taskId);
-      if (detail) {
-         this.onAssignmentSelectroute(detail);
-      } 
-    } 
+      await this.getAssignment({
+        id: taskId,
+      })
+      if(taskId){
+      let data = this.mapData(this.assignment);
+      if(!data)
+      data = this.mapSharedData(this.sharedAssignment);
+      this.onAssignmentSelectroute(data);
+    }
     }
   }
     window.addEventListener("beforeunload", function (e) {
@@ -1654,6 +1656,10 @@ export default {
       sharedOverdueAssignmentsList: (state) =>
         state.sharedOverdueAssignmentsList,
     }),
+    ...mapState("quotedMessage", {
+      assignment: (state) => state.assignment,
+      sharedAssignment: (state) => state.sharedAssignment,
+    }),
     ...mapState("teacherMeeting", {
       students: (state) => state.students,
     }),
@@ -1678,6 +1684,9 @@ export default {
     }),
     ...mapActions("teacherMeeting", {
       getStudents: "getStudents",
+    }),
+    ...mapActions("quotedMessage", {
+      getAssignment: "getAssignment",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
