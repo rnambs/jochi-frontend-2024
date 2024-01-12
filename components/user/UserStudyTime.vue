@@ -1582,7 +1582,6 @@ export default {
     this.startTimeMixpanel = new Date().getTime();
     this.userId = localStorage.getItem("id");
     if (this.source != "task"){
-      console.log("source",this.source)
     if (this.sessionRedirectId) {
       await this.getDetail(this.sessionRedirectId);
       this.redirectMap(this.studySessionDetail);
