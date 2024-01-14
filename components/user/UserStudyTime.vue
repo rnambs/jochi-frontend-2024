@@ -316,10 +316,11 @@
           <h3 class="color-primary-dark heading3 font-bold mb-1 mr-3">Step One : <span>Choose an Assignment</span> </h3>
             <!-- <h3 class="color-primary-dark heading3 font-bold mb-1"></h3> -->
           <div class="d-flex flex-wrap flex-fill align-items-center">
-            <div
+            <!-- Code commented for alternate feature  -->
+            <!-- <div
               v-if="
-                pendingAssignments &&
-                pendingAssignments.length > 0 &&
+                tempAssts &&
+                tempAssts.length > 0 &&
                 (sharedAssignmentsCount > 10 || assignmentsCount > 10)
               "
               class="d-flex align-items-center"
@@ -334,7 +335,7 @@
                   ><i class="i-arrow-right j-icon i-xs bg-text-secondary"></i
                 ></span>
               </button>
-            </div>
+            </div> -->
             <div class="d-flex ml-auto">
               <button @click="onBack()" class="btn btn-void">
                 <span class="mr-2 arrow"
@@ -345,7 +346,7 @@
           </div>
         </div>
       <div
-        v-if="!pendingAssignments || pendingAssignments.length < 1"
+        v-if="!tempAssts || tempAssts.length < 1"
         class="d-flex align-items-center justify-content-center w-100 h-100"
       >
         <span class="text-secondary">No pending assignments</span>
@@ -353,7 +354,7 @@
       <div>
         <div class="row">
           <div
-            v-for="detail in pendingAssignments"
+            v-for="detail in tempAssts"
             :key="detail.id"
             class="col-md-6 col-lg-4"
           >
@@ -484,6 +485,16 @@
               </div>
             </div>
           </div>
+          <client-only>
+            <infinite-loading
+              class="d-flex align-items-center w-100 justify-content-center"
+              :identifier="reloadCount"
+              @infinite="loadNext"
+            >
+              <div slot="no-more">That's all!</div>
+              <div slot="no-results"><span class="color-gray text-12">That's all!</span></div>
+            </infinite-loading>
+            </client-only>
         </div>
       </div>
     </div>
@@ -1431,6 +1442,7 @@ export default {
   components: {
     lottie,
     VueTimepicker,
+    InfiniteLoading,
   },
   head() {
     return {
@@ -1543,7 +1555,11 @@ export default {
       pageCount: 0,
       scheduleLater: false,
       startTimeMixpanel: null,
-      startSessionNowClicked:false
+      startSessionNowClicked:false,
+      reloadCount: 0,
+      tempOffset: -1,
+      reloadNext: false,
+      tempAssts:[],
     };
   },
   created() {
@@ -1693,20 +1709,44 @@ export default {
     nameWithLang({ name, language }) {
       return `${name} — [${language}]`;
     },
+    async loadNext($state) {
+        // if (this.initialLoad) {
+        // $state.reset();
+        if (this.tempOffset != this.offset || this.reloadNext) {
+          this.reloadNext = false;
+          this.tempOffset = this.offset;
+  
+          this.pendingAssignments = [];
+          await this.getAssignments({ offset: this.offset, limit: this.limit });
+          this.offset = this.offset + this.limit;
+          this.assignmentMaterials = [];
+          await this.mapAssignments();
+          await this.mapSharedAssignments();
+          this.mapOverdueAssignments();
+          this.mapSharedOverdueAssignments();
+          if (this.pendingAssignments.length > 0) {
+            this.tempAssts.push(...this.pendingAssignments);
+            $state.loaded();
+          } else {
+            $state.complete();
+          }
+        }
+      },
 
     preventNav(event) {
       if (this.limitedInterval <= 0) return;
       event.preventDefault();
       event.returnValue = "";
     },
-    previous() {
-      this.offset = this.offset > 0 ? this.offset - this.limit : 0;
-      this.loadAssignments();
-    },
-    next() {
-      this.offset = this.offset + this.limit;
-      this.loadAssignments();
-    },
+    // Functions commented for alternate feature
+    // previous() {
+    //   this.offset = this.offset > 0 ? this.offset - this.limit : 0;
+    //   this.loadAssignments();
+    // },
+    // next() {
+    //   this.offset = this.offset + this.limit;
+    //   this.loadAssignments();
+    // },
     mapPeersInvited() {
       if (this.invitedPeerList && this.invitedPeerList.length > 0) {
         this.peerList = [];
@@ -2596,8 +2636,8 @@ export default {
       }
 
       if (this.currentTab == 1) {
-        this.offset = 0;
-        this.loadAssignments();
+        // this.offset = 0;
+        // this.loadAssignments();
       }
     },
     async setSessionType(type, later = false) {
@@ -2612,25 +2652,25 @@ export default {
 
       this.onNext();
       if (this.currentTab == 1) {
-        this.offset = 0;
-        this.loadAssignments();
+        // this.offset = 0;
+        // this.loadAssignments();
       }
     },
+// code commented for alternate feature
+    // async loadAssignments() {
+    //   await this.getAssignments({
+    //     student_id: parseInt(localStorage.getItem("id")),
+    //     offset: this.offset,
+    //     limit: this.limit,
+    //   });
 
-    async loadAssignments() {
-      await this.getAssignments({
-        student_id: parseInt(localStorage.getItem("id")),
-        offset: this.offset,
-        limit: this.limit,
-      });
-
-      this.mapCount();
-      this.pendingAssignments = [];
-      this.mapAssignments();
-      this.mapSharedAssignments();
-      this.mapOverdueAssignments();
-      this.mapSharedOverdueAssignments();
-    },
+    //   this.mapCount();
+    //   this.pendingAssignments = [];
+    //   this.mapAssignments();
+    //   this.mapSharedAssignments();
+    //   this.mapOverdueAssignments();
+    //   this.mapSharedOverdueAssignments();
+    // },
 
     mapCount() {
       this.sharedAssignmentsCount;

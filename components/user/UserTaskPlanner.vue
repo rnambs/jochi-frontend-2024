@@ -2829,7 +2829,7 @@ export default {
     async AddAssignment() {
       this.submitted = true;
       this.$v.$touch();
-      if (this.$v.$invalid || !this.validTime) {
+      if (!this.priorityVal || this.$v.$invalid || !this.validTime) {
         return;
       }
       this.processing = true;
