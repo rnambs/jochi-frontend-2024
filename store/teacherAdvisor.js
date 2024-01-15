@@ -12,6 +12,7 @@ const state = {
     successMessage: "",
     successType: "",
     subjectsData: [],
+    emailCountList: ''
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -232,6 +233,40 @@ const actions = {
         }
     
       },
+      async emailReminder({ commit }, payLoad) {
+        const { detailId, userId } = payLoad; // Destructure detailId and userId from the payload
+        console.log(detailId);
+        console.log(userId);
+        const token = localStorage.getItem('token');
+        try {
+          const response = await this.$axios.$post(BASE_URL + `advisor/emailReminder/${payLoad.detailId}/${payLoad.userId}`, payLoad, {
+            headers: {
+              'Authorization': ` ${token}`
+            },
+          });
+      
+          console.log('Response:', response.emailCount); // Add this console.log statement
+      
+          if (response.message) {
+            commit('setErrorMessage', "");
+            commit('setErrorType', "");
+            commit('setSuccessMessage', response.message);
+            commit('setSuccessType', "success");
+            commit('setEmailCount', response.emailCount);
+          } 
+        } catch (e) {
+          console.log('Error:', e);
+          console.log("Response Message:", e?.response?.data?.message);
+      
+          if (e?.response?.data?.message == "Mail already sent.") {
+            commit('setSuccessMessage', "");
+            commit('setSuccessType', "");
+            commit('setErrorMessage', "A reminder email has already been sent for the day, you can send another remainder tomorrow");
+            commit('setErrorType', "error");
+          } 
+        }
+      },
+      
 
 }
 
@@ -269,6 +304,9 @@ const mutations = {
     setSubjectsList(state, data) {
         state.subjectsData = data;
       },
+      setEmailCount(state, data) {
+        state.emailCountList = data;
+    },
 
 }
 const getters = {
@@ -305,7 +343,9 @@ const getters = {
     subjectsData: () => {
         return state.subjectsData;
       },
-
+      emailCountList: () => {
+        return state.emailCountList;
+    },
 
 }
 
