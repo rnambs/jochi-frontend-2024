@@ -1107,6 +1107,7 @@ export default {
       createdBy: '',
       task_ids: [],
       spinnerLoader: false,
+      date_today: new Date(),
       disabledDates: {
         to: new Date(),
       },
@@ -1116,6 +1117,11 @@ export default {
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     this.getStudentList();
     this.checkValidTime();
+    this.disabledDates.to = new Date(
+      this.date_today.getFullYear(),
+      this.date_today.getMonth(),
+      this.date_today.getDate()
+    );
   },
 
   computed: {
