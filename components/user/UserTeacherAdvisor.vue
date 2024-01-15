@@ -190,8 +190,9 @@
                             >
                               <div class="d-flex flex-column">
                                 <div
-                                  class="assignment-tag-section d-flex align-items-center mb-2"
+                                  class="assignment-tag-section d-flex justify-content-between align-items-center mb-2"
                                 >
+                                <div class="assignment-tag-section d-flex justify-content-between align-items-start">
                                   <div
                                     class="assignment-tag mr-2 text-nowrap"
                                     :class="
@@ -224,19 +225,22 @@
                                   >
                                     {{ detail.subject }}
                                   </div>
-                                  <button
+                                </div>
+                                  <div class="pe-2">
+                                    <button
                                     v-if="detail.createdBy && detail.task_status !== 'Completed'"
                                     @click="onCardClick(detail)"
-                                    class="btn p-1 m-2"
+                                    class="btn p-1 mx-2"
                                   >
                                     <i class="fas fa-pen color-black"></i>
                                   </button>
                                   <button
                                   v-if="detail.createdBy && detail.task_status !== 'Completed'"
-                                    class="btn p-1 m-2"
+                                    class="btn p-1 mx-2"
                                   >
                                     <i class="fas fa-trash color-black"></i>
                                   </button>
+                                  </div>
                                 </div>
                                 <div class="text-center">
                                   <h4 class="color-dark font-semi-bold mb-1">
@@ -391,8 +395,9 @@
                             >
                               <div class="d-flex flex-column">
                                 <div
-                                  class="assignment-tag-section d-flex align-items-center mb-2"
+                                  class="assignment-tag-section d-flex align-items-center justify-content-between"
                                 >
+                                <div class="d-flex align-items-center justify-content-between">
                                   <div
                                     class="assignment-tag mr-2 text-nowrap"
                                     :class="
@@ -426,19 +431,44 @@
                                     {{ detail.subject }}
                                   </div>
                                 </div>
+                                  <div class="d-flex  p-0">
                                 <button
                                     v-if="detail.createdBy"
                                     @click="onCardClick(detail)"
-                                    class="btn p-1 m-2"
+                                    class="btn p-1 mx-2"
                                   >
                                     <i class="fas fa-pen color-black"></i>
                                   </button>
                                   <button
                                   v-if="detail.createdBy"
-                                    class="btn p-1 m-2"
+                                    class="btn p-1 mx-2"
                                   >
                                     <i class="fas fa-trash color-black"></i>
                                   </button>
+                                  <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student, ${detail.emailCounter === null ? 0 : detail.emailCounter} remainder emails sent so far`"
+                                    class="btn p-1 mx-2"
+                                    @click="emailTrigger(detail.id,detail.user_id
+                                    )"
+                                  >
+                                  <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 24 24"
+                                      id="Notification"
+                                      class="svgShape"
+                                    >
+                                      <path
+                                        d="M22.086 14.672A3.685 3.685 0 0 1 21 12.05V9A9 9 0 0 0 3 9v3.05a3.685
+                                        3.685 0 0 1-1.086 2.622A3.121 3.121 0 0 0 4.121 20H7.1a5 5 0 0 0 9.8
+                                        0h2.98a3.121 3.121 0 0 0 2.207-5.328ZM12 22a3 3 0 0 1-2.816-2h5.632A3 3 0 0 1
+                                        12 22Zm7.879-4H4.121a1.121 1.121 0 0 1-.793-1.914A5.672 5.672 0 0 0 5
+                                        12.05V9a7 7 0 0 1 14 0v3.05a5.672 5.672 0 0 0 1.672 4.036A1.121 1.121 0 0 1
+                                        19.879 18Z"
+                                        fill="#000000"
+                                      ></path>
+                                    </svg>
+                                  </button>
+                                </div>
+                                </div>
                                 <div class="text-center">
                                   <h4 class="color-dark font-semi-bold mb-1">
                                     {{ detail.task }}
@@ -1108,6 +1138,7 @@ export default {
       task_ids: [],
       spinnerLoader: false,
       date_today: new Date(),
+      emailCount: '',
       disabledDates: {
         to: new Date(),
       },
@@ -1138,6 +1169,7 @@ export default {
       sharedOverdueAssignments: (state) => state.sharedOverdueAssignments,
       errorMessageQuote: (state) => state.errorMessage,
       subjectsData: (state) => state.subjectsData,
+      emailCountList: (state) => state.emailCountList,
     }),
     ...mapState("quotedMessage", {
       newAdditionalMaterial: (state) => state.newAdditionalMaterial,
@@ -1159,12 +1191,37 @@ export default {
       getAssignmentsList: "getAssignmentsList",
       getSubjectsList: "getSubjectsList",
       addAssignment: "addAssignment",
+      emailReminder: "emailReminder"
     }),
     ...mapActions("quotedMessage", {
       uploadAdditionalMaterial: "uploadAdditionalMaterial",
     }),
     handleAnimation: function (anim) {
       this.anim = anim;
+    },
+    async emailTrigger(detailId,userId){
+      this.loading = true;
+      this.overdueAssts = [];
+      this.getAssignments();
+      const payload = {
+        detailId: detailId,
+        userId: userId,
+      };
+     await this.emailReminder(payload);
+     this.loading = false;
+    if (this.successMessage != "") {
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 4000,
+        });
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
     },
     async getStudentList() {
       await this.getStudents();
@@ -1324,6 +1381,7 @@ export default {
             item.schoologyAssignment = e.schoologyAssignment;
             item.schoologyAssignmentId = e.schoologyAssignmentId;
             item.subTasks = e.subTasks;
+            item.emailCounter = e.emailCounter;
             item.subject = e.subject;
             item.subjects = e.subjects;
             item.createdBy = e.createdBy
@@ -1372,6 +1430,7 @@ export default {
             item.peers = this.mapPeers(e);
             item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
             item.isShared = true;
+            item.emailCounter = e.emailCounter;
             this.overdueAssts.push(item);
           } else if (e.assignments.task_status == "Completed") {
             this.mapSingleSharedAsst(e);
@@ -1955,5 +2014,10 @@ export default {
 }
 .clickable {
   cursor: pointer;
+}
+.svgShape {
+  width: 20px; 
+  height: 20px; 
+  fill: #000000; 
 }
 </style>
