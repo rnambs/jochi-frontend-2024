@@ -255,7 +255,7 @@ const actions = {
           if (e?.response?.data?.message == "Mail already sent.") {
             commit('setSuccessMessage', "");
             commit('setSuccessType', "");
-            commit('setErrorMessage', "A reminder email has already been sent for the day, you can send another remainder tomorrow");
+            commit('setErrorMessage', "A reminder email has already been sent for the day, you can send another reminder tomorrow");
             commit('setErrorType', "error");
           } 
         }

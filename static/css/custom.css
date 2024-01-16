@@ -2228,6 +2228,7 @@ body {
   padding: 2px 10px;
   border-radius: 8px !important;
   color: #ffffff;
+  max-width: 6.25rem;
 }
 .assignment-tag.red {
   background-color: #ea2626;

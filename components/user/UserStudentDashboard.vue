@@ -49,7 +49,7 @@
                           <div class="row1 d-flex">
 
                             <div class="col d-flex flex-column" style="flex: 1;">
-                              <div class="dashboard-card-purple"> 
+                              <div class="dashboard-card-purple">
                                 <div style="width: 10vw; height: 10vw; position: relative; background: #5534A5; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
                                     <div style="position: absolute; left: 50px; top: 50px;">
@@ -57,17 +57,17 @@
                                     </div>
                                     <div class = "assignment-status">To-do</div>
                                     <div class="assignment-count-style">{{ assignmentCountNew }}</div>
-                                    
+
                                 </div>
                               </div>
                               </div>
 
                             <div class="col d-flex flex-column" style="flex: 1;">
-                              <div class="dashboard-card-green"> 
+                              <div class="dashboard-card-green">
                                 <div style="width: 10vw; height: 10vw; position: relative; background: #008001; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
                                   <div style="position: absolute; left: 50px; top: 50px;">
-                                    <img src="~/static/image/v4/arrow-green.svg" alt="" /> 
+                                    <img src="~/static/image/v4/arrow-green.svg" alt="" />
                                   </div>
                                   <div class = "assignment-status">Done</div>
                                   <div class = "assignment-count-style">{{ assignmentCountCompleted }}</div>
@@ -76,7 +76,7 @@
                             </div>
 
                             <div class="col d-flex flex-column" style="flex: 1;">
-                              <div class="dashboard-card-red"> 
+                              <div class="dashboard-card-red">
                                 <div style="width: 10vw; height: 10vw; position: relative; background: #DB1B24; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
                                   <div style="position: absolute; left: 50px; top: 50px;">
@@ -732,7 +732,7 @@ export default {
       if(updateNow){
         this.$router.push("/user-profile");
       }
-      
+
     },
     activate() {
       setTimeout(() => (this.isHidden = true), 1500);
@@ -1380,7 +1380,7 @@ img.img-theme.dark {
 }
 
 .assignment-status {
-  font-size: 1.5vw; font-family: Poppins; font-weight: 500; line-height: 1.2; color: white; position: absolute; top: 5%; left: 15%; word-wrap: break-word;
+  font-size: 1.5vw; font-family: Poppins; font-weight: 500; line-height: 1.2; color: white; position: absolute; top: 0%; left: 0%; word-wrap: break-word;
 }
 
 .assignment-count-style {
@@ -1443,6 +1443,6 @@ img.img-theme.dark {
 
   .assignment-md-hide {
     display: none !important;
-  } 
+  }
 }*/
 </style>

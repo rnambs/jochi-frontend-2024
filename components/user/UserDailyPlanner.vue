@@ -746,7 +746,7 @@
                         class="d-flex flex-column flex-md-row justify-content-between mb-2 border-bottom"
                       >
                       <div class="d-flex flex-wrap w-100">
-                        
+
                         <h3 class="color-primary-dark font-semi-bold">
                           {{ isAddAssignment ? "Add" : "Edit" }} Assignment
                         </h3>
@@ -2415,11 +2415,11 @@
               <p class="mb-0">
                 Submit Additional Material
               </p>
-            
+
             </div>
             <div class="d-flex flex-row align-items-start">
               <div class="form-row mb-2 mx-0 mr-2 w-100">
-               
+
                 <select
                   v-model="materialTypeSubmit"
                   class="form-select form-control mb-2"
@@ -2459,7 +2459,7 @@
                     <div
                       v-if="submittedAsst && materialTypeSubmit == 'link'"
                       class="invalid-feedback" style="display:block !important"
-                    > 
+                    >
                       <span v-if="!linkSubmit || invalidSubmitUrl"
                         >Please add a valid URL</span
                       >
@@ -4548,7 +4548,7 @@ export default {
           url: this.linkSubmit,
         };
       }
-      
+
       await this.assignmentSubmit(payload);
       this.disableSubmit=false;
       this.submittedAsst=false;
