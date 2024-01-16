@@ -1201,15 +1201,14 @@ export default {
     },
     async emailTrigger(detailId,userId){
       this.loading = true;
-      this.overdueAssts = [];
-      this.getAssignments();
       const payload = {
         detailId: detailId,
         userId: userId,
       };
      await this.emailReminder(payload);
-     this.loading = false;
     if (this.successMessage != "") {
+      this.overdueAssts = [];
+      await this.getAssignments();
         this.$toast.open({
           message: this.successMessage,
           type: this.SuccessType,
@@ -1222,6 +1221,7 @@ export default {
           duration: 5000,
         });
       }
+      this.loading = false;
     },
     async getStudentList() {
       await this.getStudents();
