@@ -142,13 +142,15 @@
                                 </div> -->
                               </div>
                             </div>
-                            <div v-if="item.createdBy">
-                              <p class="color-secondary text-12 mb-0">Assignment created by : {{ item.createdByName
-                              }}
-                              </p>
-                            </div>
-                            <div @click="redirecttoStudysession(item)" class="d-flex justify-content-end clickable">
-                              <p class="color-secondary text-12 mb-0"><span>Start Session </span></p>
+                            <div class="d-flex justify-content-between align-items-start mt-1">
+                              <template v-if="item.createdBy">
+                                <p class="color-secondary text-12 mb-0">Assignment created by: {{ item.createdByName }}</p>
+                              </template>
+                              <div @click="redirecttoStudysession(item)" class="clickable d-flex justify-content-end">
+                                <button class="btn btn-drag-card-open text-nowrap w-auto">
+                                  Start Session
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </drag>
@@ -259,14 +261,17 @@
                                 </div> -->
                               </div>
                             </div>
-                            <div v-if="item.createdBy">
-                              <p class="color-secondary text-12 mb-0">Assignment created  by  : {{ item.createdByName
-                              }}
-                              </p>
+                            <div class="d-flex justify-content-between align-items-start mt-1">
+                              <template v-if="item.createdBy">
+                                <p class="color-secondary text-12 mb-0">Assignment created by: {{ item.createdByName }}</p>
+                              </template>
+                              <div @click="redirecttoStudysession(item)" class="clickable d-flex justify-content-end">
+                                <button class="btn btn-drag-card-open text-nowrap w-auto">
+                                  Start Session
+                                </button>
+                              </div>
                             </div>
-                            <div @click="redirecttoStudysession(item)" class="d-flex justify-content-end clickable">
-                              <p class="color-secondary text-12 mb-0"><span>Start Session </span></p>
-                            </div>
+
                           </div>
                         </drag>
                       </div>
