@@ -1609,17 +1609,16 @@ export default {
   }else{
     const taskId = this.$route.query.id;
     if(taskId){
-      this.sessionType = "assignment"
-      this.currentTab = 2;
       await this.getAssignment({
         id: taskId,
       })
-      if(taskId){
+      this.sessionType = "assignment"
       let data = this.mapData(this.assignment);
-      if(!data)
-      data = this.mapSharedData(this.sharedAssignment);
+      this.currentTab = 2;
+      if (!data) {
+        data = this.mapSharedData(this.sharedAssignment);
+      }
       this.onAssignmentSelectroute(data);
-    }
     }
   }
     window.addEventListener("beforeunload", function (e) {
