@@ -85,8 +85,8 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-12 col-sm-6">
+        <div class="row d-flex">
+          <div class="col-12 col-sm-6 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex  justify-content-between pb-3 align-items-center border-bottom">
                 <div>
@@ -95,10 +95,12 @@
                 </div>
                 <img src="../../assets/images/Icon/info.svg" class="cursor-pointer" alt="info" width="24" height="24" />
               </div>
+              <img src="../../assets/images/graph.png" class="" alt="graph" width="100%" height="auto"/>
             </div>
           </div>
-          <div class="col-12 col-sm-6">
+          <div class="col-12 col-sm-6 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
+              <h2 class="text-16 mb-0 font-semi-bold color-text-100 border-bottom pb-3">Carousel</h2>
             </div>
           </div>
         </div>
