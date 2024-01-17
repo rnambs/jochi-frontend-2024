@@ -226,29 +226,29 @@
                                     {{ detail.subject }}
                                   </div>
                                 </div>
-                                  <div class="pe-2">
+                                  <div class="pe-2 d-flex justify-space-between align-center">
                                     <button
                                     v-if="detail.createdBy && detail.task_status !== 'Completed'"
                                     @click="onCardClick(detail)"
-                                    class="btn p-1 mx-2"
+                                    class="ml-3 text-12"
                                   >
                                     <i class="fas fa-pen color-black"></i>
                                   </button>
                                   <button
                                   v-if="detail.createdBy && detail.task_status !== 'Completed'"
-                                    class="btn p-1 mx-2"
+                                    class="ml-3 text-12"
                                   >
                                     <i class="fas fa-trash color-black"></i>
                                   </button>
                                   </div>
                                 </div>
-                                <div class="text-center">
+                                <div class="text-center my-3">
                                   <h4 class="color-dark font-semi-bold mb-1">
                                     {{ detail.task }}
                                   </h4>
                                   <div class="text-center px-3">
                                     <p
-                                      class="color-gray text-16 line-height-1 font-semi-bold"
+                                      class="color-gray mb-0 text-16 line-height-1 font-semi-bold"
                                     >
                                       {{ detail.subject }}
                                     </p>
@@ -435,18 +435,20 @@
                                 <button
                                     v-if="detail.createdBy"
                                     @click="onCardClick(detail)"
-                                    class="btn p-1 mx-2"
+                                    class="ml-3 text-12"
                                   >
                                     <i class="fas fa-pen color-black"></i>
                                   </button>
                                   <button
                                   v-if="detail.createdBy"
-                                    class="btn p-1 mx-2"
+                                    class="ml-3 text-12"
                                   >
                                     <i class="fas fa-trash color-black"></i>
                                   </button>
-                                  <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student, ${detail.emailCounter === null ? 0 : detail.emailCounter} remainder emails sent so far`"
-                                    class="btn p-1 mx-2"
+
+                                  <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
+${detail.emailCounter === null ? 0 : detail.emailCounter} reminder emails sent so far`"
+                                    class="ml-3 text-12"
                                     @click="emailTrigger(detail.id,detail.user_id
                                     )"
                                   >
@@ -469,13 +471,13 @@
                                   </button>
                                 </div>
                                 </div>
-                                <div class="text-center">
+                                <div class="text-center my-3">
                                   <h4 class="color-dark font-semi-bold mb-1">
                                     {{ detail.task }}
                                   </h4>
                                   <div class="text-center px-3">
                                     <p
-                                      class="color-gray text-16 line-height-1 font-semi-bold"
+                                      class="color-gray mb-0 text-16 line-height-1 font-semi-bold"
                                     >
                                       {{ detail.subject }}
                                     </p>
@@ -599,8 +601,7 @@
                               <!-- </div> -->
                             </div>
                           </div>
-                        </div>
-                        <div
+                          <div
                           class="row text-center w-100 h-100 justify-content-center"
                         >
                           <div
@@ -612,6 +613,7 @@
                           >
                             <p>No overdue assignments</p>
                           </div>
+                        </div>
                         </div>
                       </div>
                     </div>
@@ -1069,7 +1071,7 @@ aria-hidden="true">
 </div>
 </div>
 <!-- Add Assignment Modal End-->
-      
+
       <!-- meeing detil pop up -->
 
       <!-- End teacher Page -->
@@ -1174,7 +1176,7 @@ export default {
     ...mapState("quotedMessage", {
       newAdditionalMaterial: (state) => state.newAdditionalMaterial,
     }),
-    
+
   },
   validations: {
     subject: { required },
@@ -2016,8 +2018,8 @@ export default {
   cursor: pointer;
 }
 .svgShape {
-  width: 20px; 
-  height: 20px; 
-  fill: #000000; 
+  width: 1rem;
+  height: 1rem;
+  fill: #000000;
 }
 </style>

@@ -46,7 +46,7 @@
             </div>
 
             <div class="row h-100">
-            
+
 
 
 
@@ -59,12 +59,12 @@
                       </div>
                       <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
                     </div>
-                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column"
                       @dragover="todoDropStart()"
                       @dragleave="todoDropEnd()"
                       @drop="confirmUndo">
                       <div class="drop-zone" :class="{ 'dropping': isDroppingTodo }"></div>
-                    <div class="d-flex flex-column task-container pr-2 mb-3"> 
+                    <div class="d-flex flex-column task-container pr-2 mb-3">
                       <div v-for="(item, index) in tempAssts" :key="item.id">
                         <drag :transfer-data="{ item, source: 'todoAssignments', sourceType: 'Pending' }"
                           @dragstart="handleDragStartTodo(index)" @dragend="handleDragEndTodo()">
@@ -142,11 +142,14 @@
                                 </div> -->
                               </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-start mt-1">
-                              <template v-if="item.createdBy">
-                                <p class="color-secondary text-12 mb-0">Assignment created by: {{ item.createdByName }}</p>
+                            <div class="d-flex justify-content-between align-items-center mt-1">
+                              <template v-if="item.createdBy" class="d-flex flex-column">
+                                <div class="d-flex flex-column w-100 flex-grow-1">
+                                  <p class="color-dark font-semi-bold text-12 mb-1">Assignment created by</p>
+                                  <p class="text-10 color-gray task-description mb-0"> {{ item.createdByName }} </p>
+                                </div>
                               </template>
-                              <div @click="redirecttoStudysession(item)" class="clickable d-flex justify-content-end">
+                              <div @click="redirecttoStudysession(item)" class="clickable d-flex w-100 justify-content-end">
                                 <button class="btn btn-drag-card-open text-nowrap w-auto">
                                   Start Session
                                 </button>
@@ -261,11 +264,14 @@
                                 </div> -->
                               </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-start mt-1">
+                            <div class="d-flex justify-content-between align-items-center mt-1">
                               <template v-if="item.createdBy">
-                                <p class="color-secondary text-12 mb-0">Assignment created by: {{ item.createdByName }}</p>
+                                <div class="d-flex flex-column w-100 flex-grow-1">
+                                  <p class="color-dark font-semi-bold text-12 mb-1">Assignment created by</p>
+                                  <p class="text-10 color-gray task-description mb-0"> {{ item.createdByName }} </p>
+                                </div>
                               </template>
-                              <div @click="redirecttoStudysession(item)" class="clickable d-flex justify-content-end">
+                              <div @click="redirecttoStudysession(item)" class="clickable d-flex w-100 justify-content-end">
                                 <button class="btn btn-drag-card-open text-nowrap w-auto">
                                   Start Session
                                 </button>
@@ -282,7 +288,7 @@
                           <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
                         </infinite-loading>
                       </client-only>
-                    
+
                     </div>
                   </drop>
                   </div>
@@ -300,11 +306,11 @@
                       </div>
                       <span class="border-pb-1 bg-task-green w-100 d-flex mb-3"></span>
                     </div>
-                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column"
                       @dragover="doneDropStart()"
                       @dragleave="doneDropEnd()"
                       @drop="handleDrop">
-                      <div class="drop-zone" :class="{ 'dropping': isDroppingDone }">             
+                      <div class="drop-zone" :class="{ 'dropping': isDroppingDone }">
                       </div>
                     <div class="d-flex flex-column task-container pr-2 mb-3">
                       <div v-for="(item,index) in doneAssignmentsList" :key="item.id">
@@ -356,7 +362,7 @@
                             </div>
                             <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
                             <p class="text-10 color-gray mb-2 task-description text_ellipsis" v-html="item.assignment_description"></p>
-                            
+
                             <div class="d-flex align-items-center justify-content-start">
                               <div class="d-flex">
                                 <div v-for="(peer, index) in item.peers" :key="index">
@@ -383,7 +389,7 @@
                       </client-only>
                     </div>
                   </drop>
-                  </div> 
+                  </div>
               </div>
               <div class="col-12 col-sm-6 col-lg-3">
                 <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
@@ -490,7 +496,7 @@
 
             <div class="row h-100 d-none">
               <div class="col-12 col-sm-6 col-lg-3">
-                
+
                   <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
                     <div class="d-flex flex-column pr-2">
                       <div class="d-flex align-items-center mb-3">
@@ -593,7 +599,7 @@
                       <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
                     </div>
                     <div class="d-flex flex-column task-container pr-2 mb-3">
-                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column"
                       @dragover="todoDropStart()"
                       @dragleave="todoDropEnd()"
                       @drop="confirmUndo">
@@ -684,7 +690,7 @@
                       <span class="border-pb-1 bg-task-green w-100 d-flex mb-3"></span>
                     </div>
                     <div class="d-flex flex-column task-container pr-2 mb-3">
-                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column"
                       @dragover="doneDropStart()"
                       @dragleave="doneDropEnd()"
                       @drop="handleDrop">
@@ -760,7 +766,7 @@
                       </client-only>
                     </drop>
                     </div>
-                  </div> 
+                  </div>
               </div>
               <div class="col-12 col-sm-6 col-lg-3">
                 <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
@@ -1006,7 +1012,7 @@
                         v-model="dateValue" :class="{
                           'is-invalid':
                             submitted && $v.dateValue.$error,
-                            'disabled': this.createdBy,                           
+                            'disabled': this.createdBy,
                         }" :disabled-dates="disabledDates" />
                       <div v-if="submitted && $v.dateValue.$error" class="invalid-feedback">
                         <span v-if="!$v.dateValue.required">This field is required</span>
@@ -2059,7 +2065,7 @@ export default {
   async mounted() {
     const taskId = this.$route.query.id;
     if (taskId) {
-      
+
       await this.getAssignment({
         id: taskId,
       })
@@ -2070,7 +2076,7 @@ export default {
       this.onCardClick(data, data.task_status);
     }
     }
-    
+
     this.loading = false;
     this.school_id = localStorage.getItem("school_id")
     this.user_id = localStorage.getItem("id");
@@ -3533,7 +3539,7 @@ export default {
           break;
         }
         case "Overdue": {
-          // overdue 
+          // overdue
           this.overdueoffset = 0;
           this.overdueAssignments = [];
           this.overduereloadNext = true;
@@ -3586,7 +3592,7 @@ export default {
           break;
         }
         case "Overdue": {
-          // overdue 
+          // overdue
           this.overdueoffset = 0;
           this.overdueAssignments = [];
           this.overduereloadNext = true;
@@ -3669,7 +3675,7 @@ export default {
         $("#undoAssignmentConfirmation").modal({ backdrop: true });
       }else{
         this.undoAsstComplete();
-      } 
+      }
     },
     movetoDone(item,type){
       let assignment = item;
@@ -3711,7 +3717,7 @@ export default {
       id: selectedSubject.id,
       text: selectedSubject.subject_name
     };
-  }, 
+  },
   },
 }
 </script>
