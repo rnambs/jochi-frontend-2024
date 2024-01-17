@@ -2015,7 +2015,7 @@ img.img-theme.dark {
 }
 
 .modal {
-  z-index: 99999;
+  z-index: 1051;
   overflow: unset !important;
 }
 @media (max-width: 1024.98px) {
