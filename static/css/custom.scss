@@ -7034,3 +7034,37 @@ $b-toaster-zindex: 1100 !default;
 }
 .calendar-container{max-height: calc(100vh - 290px);}
 .task-container{max-height: calc(100vh - 290px); flex-grow: 1;}
+
+// NEW DASHBOARD
+.text-20{
+  font-size: 1.25rem;
+}
+.text-46{
+  font-size: 2.875rem;
+}
+.color-text-50{
+  color: #939393;
+}
+.color-text-100{
+  color: #1A1A1A;
+}
+
+.font-poppins{
+  font-family: Poppins;
+}
+.teacher-dashboard{
+    input[type="text"]{
+      border-radius: 0.625rem;
+      border:transparent;
+      background-color:#F6F6F6;
+      font-size: 0.75rem;
+      color: #939393;
+      font-weight: 400;
+      font-family: Poppins;
+    }
+    .box-card{
+      &:hover{
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      }
+    }
+}
