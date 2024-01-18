@@ -1,8 +1,8 @@
 <template>
   <div class="main-section">
-    <section class="py-4 teacher-dashboard">
+    <section class="py-4 analytic-dashboard">
       <div class="container-fluid">
-        <div class="d-flex justify-space-between align-items-center mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
           <h2 class="text-20 font-poppins font-semi-bold mb-0 flex-grow-1">
             Welcome Back Samantha!</h2>
           <div class="form-group flex-grow-1 mb-0">

@@ -7036,11 +7036,26 @@ $b-toaster-zindex: 1100 !default;
 .task-container{max-height: calc(100vh - 290px); flex-grow: 1;}
 
 // NEW DASHBOARD
+.text-14{
+  font-size: 0.875rem;
+}
+.text-16{
+  font-size: 1rem;
+}
+.text-18{
+  font-size: 1.125rem;
+}
 .text-20{
   font-size: 1.25rem;
 }
+.text-28{
+  font-size: 1.75rem;
+}
 .text-46{
   font-size: 2.875rem;
+}
+.text-white{
+  color: #fff;
 }
 .color-text-50{
   color: #939393;
@@ -7052,19 +7067,25 @@ $b-toaster-zindex: 1100 !default;
 .font-poppins{
   font-family: Poppins;
 }
-.teacher-dashboard{
+.analytic-dashboard{
     input[type="text"]{
       border-radius: 0.625rem;
       border:transparent;
-      background-color:#F6F6F6;
+      background-color:#F6F6F6 !important;
       font-size: 0.75rem;
       color: #939393;
       font-weight: 400;
       font-family: Poppins;
+
     }
+    select{
+      height: 2.75rem !important;
+    }
+
     .box-card{
       &:hover{
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       }
     }
 }
+
