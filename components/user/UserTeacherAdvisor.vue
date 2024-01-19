@@ -1436,7 +1436,7 @@ export default {
             item.peers = this.mapPeers(e);
             item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
             item.isShared = true;
-            item.emailCounter = e.emailCounter;
+            item.emailCounter = e.assignments.emailCounter;
             this.overdueAssts.push(item);
           } else if (e.assignments.task_status == "Completed") {
             this.mapSingleSharedAsst(e);
