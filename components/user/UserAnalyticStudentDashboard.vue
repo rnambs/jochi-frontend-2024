@@ -208,7 +208,7 @@ export default {
     const _this = this;
     var today = new Date();
     var future = new Date();
-    future.setDate(future.getDate() );
+    future.setDate(future.getDate());
     var dd = today.getDate();
     var mm = today.getMonth() + 1; //January is 0!
     var yyyy = today.getFullYear();
