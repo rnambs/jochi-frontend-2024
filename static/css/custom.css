@@ -6311,4 +6311,54 @@ select.form-control.is-invalid {
 .btn-start-session:hover {
   background: #0069d9;
   color: #fff;
+}
+
+.dashboard-card {
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.dashboard-card .green {
+  background: #008001;
+  position: relative;
+}
+.dashboard-card .green:after {
+  content: "";
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
+  background-image: url("../image/v4/arrow-green.svg");
+  background-size: cover;
+  width: 3.25rem;
+  height: 3rem;
+}
+.dashboard-card .red {
+  background: #DB1B24;
+  position: relative;
+  overflow: hidden;
+}
+.dashboard-card .red:after {
+  content: "";
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
+  background-image: url("../image/v4/arrow-purple.svg");
+  background-size: cover;
+  width: 3.25rem;
+  height: 3rem;
+}
+.dashboard-card .purple {
+  background: #5534A5;
+  position: relative;
+  overflow: hidden;
+}
+.dashboard-card .purple:after {
+  content: "";
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
+  background-image: url("../image/v4/arrow-red.svg");
+  background-size: cover;
+  width: 3.25rem;
+  height: 3rem;
 }/*# sourceMappingURL=custom.css.map */
