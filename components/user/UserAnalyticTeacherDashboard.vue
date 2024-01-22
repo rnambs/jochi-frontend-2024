@@ -143,11 +143,11 @@
                       <td class="text-14">30 Min</td>
                       <td>
                         <button class="d-flex btn border border-success text-success px-3 py-1" @click="
-                          openModal(
-                            teacher.studentId,
-                            teacher.reqId,
-                            1,
-                            teacher.selectableDate
+                          TeacherMeetingConfirm(
+                                      teacher.studentId,
+                                      teacher.reqId,
+                                      1,
+                                      teacher.selectableDate
                           )
                         ">
                           <i class="fa fa-check text-12 px-1" aria-hidden="true"></i>
@@ -180,6 +180,10 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
+var isAccepted = false;
+var selectDate = "";
+var dateSelectValue = "";
+var dateStr = "";
 export default{
   data(){
     return{
@@ -243,6 +247,83 @@ export default{
         day = datePart[2];
 
       return month + "-" + day + "-" + year;
+    },
+    async TeacherMeetingConfirm(
+      student_value,
+      request_value,
+      value,
+      dateSelect = null
+    ) {
+      this.loading = true;
+      isAccepted = true;
+      var numValue = value;
+      selectDate = dateSelect;
+      await this.teacherMeetingConfirm({
+        request_id: request_value,
+        student_id: student_value,
+
+        meeting_request: numValue.toString(),
+      });
+      this.loading = false;
+      if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      } else if (this.successMessage != "") {
+        if ($("#mediumModal").hasClass("show")) {
+          $("#mediumModal").modal("hide");
+          $(".modal").modal("hide");
+          $(".modal-backdrop").remove();
+        }
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+        if (dateSelect) {
+          if (dateSelectValue) {
+            let today = new Date();
+            this.currentTime = this.formatAMPM(today);
+
+            var todayStr = today.toISOString().split("T")[0];
+            if (dateSelectValue == todayStr) {
+              $('.fc-day[data-date="' + dateSelectValue + '"]').css(
+                "background-color",
+                "#F49196"
+              );
+            } else {
+              $('.fc-day[data-date="' + dateSelectValue + '"]').css(
+                "background-color",
+                "#424246"
+              );
+            }
+          }
+
+          $('.fc-day[data-date="' + dateSelect + '"]').css(
+            "background-color",
+            "#5B5B5E"
+          );
+          dateSelectValue = dateSelect;
+        }
+
+        if (dateSelect) {
+          dateStr = dateSelect;
+        }
+      }
+      // this.ListTeacherAgenda();
+      this.TeacherMeetingList();
+    },
+    formatAMPM(date) {
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? "PM" : "AM";
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      var strTime = hours + ":" + minutes + " " + ampm;
+      return strTime;
     },
   },
 
