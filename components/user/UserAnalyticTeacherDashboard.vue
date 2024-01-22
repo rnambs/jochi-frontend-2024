@@ -155,7 +155,11 @@
                       </td>
                       <td>
                         <button class="d-flex btn border border-danger text-danger px-3 py-1" @click="
-                          openModal(teacher.studentId, teacher.reqId, 2)
+                                    TeacherMeetingConfirm(
+                                      teacher.studentId,
+                                      teacher.reqId,
+                                      2
+                                    )
                         ">
                           <i class="fa fa-times text-12 px-1" aria-hidden="true"></i>
                         </button>
