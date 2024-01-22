@@ -1344,7 +1344,7 @@ img.img-theme.dark {
 }
 
 .assignment-count-style {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-family: Open Sans;
   font-weight: 700;
   color: white;
