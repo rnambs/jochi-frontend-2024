@@ -179,4 +179,72 @@
   </div>
 </template>
 <script>
+import { mapState, mapActions } from "vuex";
+export default{
+  data(){
+    return{
+      teachersList: [],
+    }
+  },
+  mounted(){
+    this.TeacherMeetingList();
+  },
+  computed: {
+    ...mapState("teacherAppointment", {
+      agendaList: (state) => state.agendaList,
+      successMessage: (state) => state.successMessage,
+      SuccessType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+      teachers: (state) => state.teachers,
+    }),
+  },
+  methods: {
+    ...mapActions("teacherAppointment", {
+      listTeacherAgenda: "listTeacherAgenda",
+      teacherMeetingList: "teacherMeetingList",
+      teacherMeetingConfirm: "teacherMeetingConfirm",
+    }),
+    async TeacherMeetingList() {
+      const { id } = localStorage;
+      await this.teacherMeetingList({ teacher_id: id });
+
+      this.teachersList = this.teachers.map((element) => {
+        const { title, default_slots, student_id, request_id, date, conversation_type, meeting_description, meeting_location, meeting_link, meeting_name } = element;
+        console.log("1",element)
+
+        const Scheduleobj = {
+          date: this.formatDate(date),
+          title,
+          time: default_slots.start_time,
+          studentId: student_id,
+          reqId: request_id,
+          selectableDate: date,
+          conversation_type,
+          dateSelected: date,
+          default_slots,
+          meeting_description,
+          meeting_location,
+          meeting_link,
+          meeting_name,
+        };
+
+        this.teachersList.push(Scheduleobj);
+        console.log("2",this.teachersList);
+
+        return Scheduleobj;
+      });
+      
+    },
+    formatDate(input) {
+      var datePart = input.match(/\d+/g),
+        year = datePart[0], // get only two digits
+        month = datePart[1],
+        day = datePart[2];
+
+      return month + "-" + day + "-" + year;
+    },
+  },
+
+}
 </script>
