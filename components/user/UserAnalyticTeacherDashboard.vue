@@ -104,6 +104,7 @@
             </div>
           </div>
         </div>
+        <!-- TABLE -->
         <div class="row">
           <div class="col-12">
             <div class="border p-3 rounded-20 w-100 box-card">
@@ -172,6 +173,7 @@
             </div>
           </div>
         </div>
+        <!-- TABLE END -->
       </div>
     </section>
   </div>
