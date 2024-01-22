@@ -10,7 +10,7 @@
           </div>
         </div>
         <div class="row d-flex">
-          <div class="col-12 col-sm-4 col-lg-2 h-auto d-flex">
+          <div class="col-12 col-sm-3 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="w-fit-content mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
@@ -26,7 +26,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-4 col-lg-2 h-auto d-flex">
+          <div class="col-12 col-sm-3 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="w-fit-content mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
@@ -42,7 +42,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-4 col-lg-2 h-auto d-flex">
+          <div class="col-12 col-sm-3 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="w-fit-content mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
@@ -58,7 +58,24 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-12 col-lg-6 h-auto d-flex">
+          <div class="col-12 col-sm-3 h-auto d-flex">
+            <div class="border p-3 rounded-20 w-100 box-card">
+              <div class="w-fit-content mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
+                  <rect width="44" height="44" rx="10" fill="#E2E2E2" />
+                  <path
+                    d="M26.19 12H17.81C14.17 12 12 14.17 12 17.81V26.18C12 29.83 14.17 32 17.81 32H26.18C29.82 32 31.99 29.83 31.99 26.19V17.81C32 14.17 29.83 12 26.19 12ZM19.11 26.9C19.11 27.18 18.89 27.4 18.61 27.4H15.82C15.54 27.4 15.32 27.18 15.32 26.9V22.28C15.32 21.65 15.83 21.14 16.46 21.14H18.61C18.89 21.14 19.11 21.36 19.11 21.64V26.9ZM23.89 26.9C23.89 27.18 23.67 27.4 23.39 27.4H20.6C20.32 27.4 20.1 27.18 20.1 26.9V17.74C20.1 17.11 20.61 16.6 21.24 16.6H22.76C23.39 16.6 23.9 17.11 23.9 17.74V26.9H23.89ZM28.68 26.9C28.68 27.18 28.46 27.4 28.18 27.4H25.39C25.11 27.4 24.89 27.18 24.89 26.9V23.35C24.89 23.07 25.11 22.85 25.39 22.85H27.54C28.17 22.85 28.68 23.36 28.68 23.99V26.9Z"
+                    fill="#825DEC" />
+                </svg>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="mb-0 text-14 color-text-50">Students Ahead of Their Work</p>
+                <h2 class="mb-0 text-46 color-text-100">04</h2>
+                <a href="#" class="d-block">View All</a>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-12 col-sm-12 col-lg-6 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex h-100">
                 <div class="d-flex flex-column  justify-content-between align-items-start ">
@@ -83,7 +100,7 @@
               </div>
 
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="row d-flex">
           <div class="col-12 col-sm-6 h-auto d-flex">
@@ -179,6 +196,182 @@
         </div>
         <!-- TABLE END -->
       </div>
+      <div
+        class="modal fade"
+        id="mediumModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="mediumModalLabel"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered modal-md"
+          role="document"
+        >
+          <div class="modal-content h-auto">
+            <div class="modal-header text-dark pb-1">
+              <h3 class="modal-title heading3" id="mediumModalLabel">Meeting Request</h3>
+              <!-- <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+            </div>
+            <div class="modal-body pb-3">
+              <p
+                v-if="meetingDetail && meetingDetail.date"
+                class="font-bold text-24 color-dark mb-1"
+              >
+                {{ meetingDetail.date }}
+              </p>
+              <p
+                v-if="
+                  meetingDetail &&
+                  meetingDetail.default_slots &&
+                  meetingDetail.default_slots.start_time &&
+                  meetingDetail.default_slots.end_time
+                "
+                class="mb-1 font-semi-bold text-18 color-primary-dark"
+              >
+                {{ meetingDetail.default_slots.start_time }} -
+                {{ meetingDetail.default_slots.end_time }}
+              </p>
+              <div class="row py-0">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Name</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span v-if="meetingDetail && meetingDetail.meeting_name">{{
+                      meetingDetail.meeting_name
+                    }}</span>
+                  </p>
+                </div>
+              </div>
+              <div class="row py-0 mt-0">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">With</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span v-if="meetingDetail && meetingDetail.title">{{
+                      meetingDetail.title
+                    }}</span>
+                  </p>
+                </div>
+              </div>
+              <div class="row py-0 mt-0">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">
+                    Description
+                  </p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span
+                      v-if="meetingDetail && meetingDetail.meeting_description"
+                      >{{ meetingDetail.meeting_description }}</span
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="row py-0 mt-0">
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Type</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span
+                      v-if="meetingDetail && meetingDetail.conversation_type"
+                      >{{ meetingDetail.conversation_type }}</span
+                    >
+                  </p>
+                </div>
+              </div>
+              <div
+                v-if="meetingDetail && meetingDetail.meeting_link"
+                class="row py-0"
+              >
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Link</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span>{{ meetingDetail.meeting_link }}</span>
+                  </p>
+                </div>
+              </div>
+              <div
+                v-if="meetingDetail && meetingDetail.meeting_location"
+                class="row py-0 mt-0"
+              >
+                <div class="col-3">
+                  <p class="mb-0 font-semi-bold color-dark text-16">Location</p>
+                </div>
+                <div class="col">
+                  <p class="mb-0 color-dark font-regular text-16 d-flex">
+                    <span class="px-2"> : </span>
+                    <span>{{ meetingDetail.meeting_location }}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-end border-top-0 text-dark">
+              <button
+                v-if="
+                  meetingDetail &&
+                  meetingDetail.studentId &&
+                  meetingDetail.reqId
+                "
+                class="d-flex btn btn-secondary rounded-8 px-4 py-1 mx-2 font-semi-bold"
+                @click="
+                  TeacherMeetingConfirm(
+                    meetingDetail.studentId,
+                    meetingDetail.reqId,
+                    2
+                  )
+                "
+              >
+                <span class="text-16">Reject</span>
+              </button>
+              <button
+                v-if="
+                  meetingDetail &&
+                  meetingDetail.studentId &&
+                  meetingDetail.reqId &&
+                  meetingDetail.selectableDate
+                "
+                class="d-flex btn btn-primary rounded-8 px-4 py-1 font-semi-bold"
+                @click="
+                  TeacherMeetingConfirm(
+                    meetingDetail.studentId,
+                    meetingDetail.reqId,
+                    1,
+                    meetingDetail.selectableDate
+                  )
+                "
+              >
+                <span class="text-16">Accept</span>
+              </button>
+              <button
+                v-else
+                data-dismiss="modal"
+                class="d-flex btn btn-secondary rounded-8 px-4 py-1 mx-2 font-semi-bold"
+              >
+                <span class="text-16">Close</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </template>
@@ -192,6 +385,7 @@ export default{
   data(){
     return{
       teachersList: [],
+      meetingDetail: {},
     }
   },
   mounted(){
@@ -328,6 +522,10 @@ export default{
       minutes = minutes < 10 ? "0" + minutes : minutes;
       var strTime = hours + ":" + minutes + " " + ampm;
       return strTime;
+    },
+    setMeeting(teacher) {
+      $("#mediumModal").modal("show");
+      this.meetingDetail = teacher;
     },
   },
 
