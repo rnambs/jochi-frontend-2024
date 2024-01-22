@@ -24,6 +24,22 @@
                   <i class="fa fa-calendar mx-2 " aria-hidden="true"></i>
                 </button> -->
             </form>
+            <div class="col-md-6 col-lg-3 px-2 pr-3">
+                  <div
+                    data-intro="Choose your date range."
+                    class="form-row d-flex position-relative schedule-meeting-section"
+                  >
+                    <input
+                      type="text"
+                      name="daterange"
+                      autocomplete="off"
+                      placeholder="Date Range"
+                      class="form-control tab-form-control custom-form-control pr-5"
+                      readonly="readonly"
+                    />
+                    <span class="inputfield-icon date-icon position-absolute top-0 right-0"></span>
+                  </div>
+                </div>
 
             <button type="submit" class="btn btn-primary text-14 px-3 w-auto ">
               View Current Progress
@@ -158,4 +174,91 @@
     </section>
   </div>
 </template>
-<script></script>
+<script>
+var fromDate = "";
+var endDate = "";
+
+export default {
+  components: {
+  },
+  data() {
+    return {
+      accordionOpened:false,
+      value: "",
+      slot_date: [],
+      from: [],
+      end: [],
+      teacher_name: "",
+      dateRange: [],
+      popupValue: [],
+      popupFrom: [],
+      popupEnd: [],
+      isShowing: true,
+      isMounted: false,
+      week: false,
+      availability: false,
+      loading: false,
+      processing: false,
+    };
+  },
+  mounted() {
+    this.loading= false;
+    this.startTime = new Date().getTime();
+    this.isMounted = false;
+    const _this = this;
+    var today = new Date();
+    var future = new Date();
+    future.setDate(future.getDate() );
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+      dd = "0" + dd;
+    }
+    if (mm < 10) {
+      mm = "0" + mm;
+    }
+    var today = dd + "/" + mm + "/" + yyyy;
+
+    $(function () {
+      fromDate = "";
+      endDate = "";
+      $('input[name="daterange"]').daterangepicker({
+        autoUpdateInput: false,
+        // minDate: today,
+        maxDate: future,
+        opens: "left",
+        locale: {
+          format: "DD-MM-YYYY",
+          cancelLabel: "Clear",
+        },
+      });
+
+      $('input[name="daterange"]').on(
+        "apply.daterangepicker",
+        function (ev, picker) {
+          $(this).val(
+            picker.startDate.format("MM/DD/YYYY") +
+              " - " +
+              picker.endDate.format("MM/DD/YYYY")
+          );
+          fromDate = picker.startDate.format("YYYY-MM-DD");
+          endDate = picker.endDate.format("YYYY-MM-DD");
+          _this.UpdateTimeSchedule.bind(_this)();
+          _this.isShowing = false;
+        }
+      );
+
+      $('input[name="daterange"]').on(
+        "cancel.daterangepicker",
+        function (ev, picker) {
+          $(this).val("");
+        }
+      );
+    });
+  },
+
+  methods: {
+  },
+};
+</script>
