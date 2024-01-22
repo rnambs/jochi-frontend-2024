@@ -8,22 +8,16 @@
     >
       <h1 data-loading-text="loading..." class="display-4 loading"></h1>
     </div> -->
-    <lottie
-      v-if="loading"
-      :options="lottieOptions"
-      v-on:animCreated="handleAnimation"
-      class="lottie-loader"
-    />
+    <lottie v-if="loading" :options="lottieOptions" v-on:animCreated="handleAnimation" class="lottie-loader" />
     <div :class="!accordionOpened ? 'main-section' : 'main-section opened'">
       <div
-        class="m--12 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll"
-      >
+        class="m--12 custom-margin-for-main-section custom-full-height d-flex flex-column position-realtive hidden-scroll">
         <div class="dmc-head d-flex align-items-start">
           <div class="greet-with-name-sec">
             <h2 class="color-primary-dark heading3 font-bold mb-0">
               Welcome back, <span> {{ firstName }}!</span>
-              <img src="~/static/image/v4/waving.svg" alt="" class="small-waving-hand img-theme light"/>
-              <img src="~/static/image/v4/waving-dark.svg" alt="" class="small-waving-hand img-theme dark"/>
+              <img src="~/static/image/v4/waving.svg" alt="" class="small-waving-hand img-theme light" />
+              <img src="~/static/image/v4/waving-dark.svg" alt="" class="small-waving-hand img-theme dark" />
             </h2>
           </div>
         </div>
@@ -31,111 +25,121 @@
           <div class="row h-100">
             <div class="col-xl-8 max-h-md-100">
               <div class="d-flex flex-column h-md-100">
-                <div
-                class="card card-primary02 rounded-8 p-4 pr-1 pb-1 h-50 max-h-50" style="padding-top: 0;"
-                >
-                  <div class="row position-relative justify-content-between h-100">
-                    <div class="col-7">
-                      <div
-                      class="dashboard-text-content-section position-absolute w-100" style="top: 0;"
-                      >
-                        <h3 class="color-primary-dark heading3 font-bold mb-0" style="margin-top: 0;">Your Weekly Summary</h3>
+                <div class="card card-primary02 rounded-8 p-4 pr-1 pb-1 h-50 max-h-50" style="padding-top: 0;">
+                  <div class="row justify-content-between h-100">
+                    <div class="col-12 col-sm-8">
+                      <div class="dashboard-text-content-section w-100" style="top: 0;">
+                        <h3 class="color-primary-dark heading3 font-bold mb-0" style="margin-top: 0;">Your Weekly Summary
+                        </h3>
                         <router-link to="/task">
                           <button type="button">
                             <div class="poppins_text center">Let’s see what you have to do ></div>
                           </button>
                         </router-link>
                         <!-- <div class="col-12"> -->
-                          <div class="row1 d-flex">
-
-                            <div class="col d-flex flex-column" style="flex: 1;">
-                              <div class="dashboard-card-purple">
-                                <div style="width: 10vw; height: 10vw; position: relative; background: #5534A5; border-radius: 20px">
+                        <div class="row">
+                          <div class="col-12 col-sm-4 d-flex flex-column">
+                            <div class="dashboard-card overflow-hidden  w-100 h-100  ">
+                              <!-- <div style="width: 10vw; height: 10vw; position: relative; background: #5534A5; border-radius: 20px">
                                   <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
                                     <div style="position: absolute; left: 50px; top: 50px;">
                                       <img src="~/static/image/v4/arrow-red.svg" alt="" />
                                     </div>
-                                    <div class = "assignment-status">To-do</div>
-                                    <div class="assignment-count-style">{{ assignmentCountNew }}</div>
-
-                                </div>
-                              </div>
-                              </div>
-
-                            <div class="col d-flex flex-column" style="flex: 1;">
-                              <div class="dashboard-card-green">
-                                <div style="width: 10vw; height: 10vw; position: relative; background: #008001; border-radius: 20px">
-                                  <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
-                                  <div style="position: absolute; left: 50px; top: 50px;">
-                                    <img src="~/static/image/v4/arrow-green.svg" alt="" />
-                                  </div>
-                                  <div class = "assignment-status">Done</div>
-                                  <div class = "assignment-count-style">{{ assignmentCountCompleted }}</div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="col d-flex flex-column" style="flex: 1;">
-                              <div class="dashboard-card-red">
-                                <div style="width: 10vw; height: 10vw; position: relative; background: #DB1B24; border-radius: 20px">
-                                  <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
-                                  <div style="position: absolute; left: 50px; top: 50px;">
-                                    <img src="~/static/image/v4/arrow-purple.svg" alt=""/>
-                                      </div>
-                                      <div class = "assignment-status">Overdue</div>
-                                      <div class = "assignment-count-style">{{ assignmentCountOverdue }}</div>
-                                </div>
+                                </div> -->
+                              <div class="purple p-4 w-100 h-100 ">
+                                <div class="assignment-status mb-3">To-do</div>
+                                <div class="assignment-count-style">{{ assignmentCountNew }}</div>
                               </div>
                             </div>
                           </div>
+                          <div class="col-12 col-sm-4 d-flex flex-column">
+                            <div class="dashboard-card overflow-hidden  w-100 h-100  ">
+                              <!-- <div style="width: 10vw; height: 10vw; position: relative; background: #5534A5; border-radius: 20px">
+                                  <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
+                                    <div style="position: absolute; left: 50px; top: 50px;">
+                                      <img src="~/static/image/v4/arrow-red.svg" alt="" />
+                                    </div>
+                                </div> -->
+                              <div class="green p-4 w-100 h-100 ">
+                                <div class="assignment-status mb-3">Done</div>
+                                <div class="assignment-count-style">{{ assignmentCountCompleted }}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-4 d-flex flex-column">
+                            <div class="dashboard-card overflow-hidden  w-100 h-100  ">
+                              <!-- <div style="width: 10vw; height: 10vw; position: relative; background: #5534A5; border-radius: 20px">
+                                  <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
+                                    <div style="position: absolute; left: 50px; top: 50px;">
+                                      <img src="~/static/image/v4/arrow-red.svg" alt="" />
+                                    </div>
+                                </div> -->
+                              <div class="red p-4 w-100 h-100 ">
+                                <div class="assignment-status mb-3">Overdue</div>
+                                <div class="assignment-count-style">{{ assignmentCountOverdue }}</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- <div class="col d-flex flex-column" style="flex: 1;">
+                            <div class="dashboard-card-green">
+                              <div
+                                style="width: 10vw; height: 10vw; position: relative; background: #008001; border-radius: 20px">
+                                <div
+                                  style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute">
+                                </div>
+                                <div style="position: absolute; left: 50px; top: 50px;">
+                                  <img src="~/static/image/v4/arrow-green.svg" alt="" />
+                                </div>
+                                <div class="assignment-status">Done</div>
+                                <div class="assignment-count-style">{{ assignmentCountCompleted }}</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col d-flex flex-column" style="flex: 1;">
+                            <div class="dashboard-card-red">
+                              <div
+                                style="width: 10vw; height: 10vw; position: relative; background: #DB1B24; border-radius: 20px">
+                                <div
+                                  style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute">
+                                </div>
+                                <div style="position: absolute; left: 50px; top: 50px;">
+                                  <img src="~/static/image/v4/arrow-purple.svg" alt="" />
+                                </div>
+                                <div class="assignment-status">Overdue</div>
+                                <div class="assignment-count-style">{{ assignmentCountOverdue }}</div>
+                              </div>
+                            </div>
+                          </div> -->
+                        </div>
                         <!-- </div> -->
+                      </div>
                     </div>
-                    </div>
-                    <div class="col-4 p-0 h-100 d-flex flex-column">
-                      <img
-                        src="~/static/image/v4/dashboard_img.svg"
-                        alt=""
-                        class="img-fluid mt-4 h-100 w-auto object-fit-contain img-theme light"
-                      />
-                      <img
-                        src="~/static/image/v4/dashboard_img_dark.svg"
-                        alt=""
-                        class="img-fluid mt-4 h-100 w-auto object-fit-contain img-theme dark"
-                      />
+                    <div class="col-12 col-sm-4 p-0 h-100 d-flex flex-column">
+                      <img src="~/static/image/v4/dashboard_img.svg" alt=""
+                        class="img-fluid mt- h-100 w-auto object-fit-contain img-theme light" />
+                      <img src="~/static/image/v4/dashboard_img_dark.svg" alt=""
+                        class="img-fluid mt-4 h-100 w-auto object-fit-contain img-theme dark" />
                     </div>
                   </div>
                 </div>
                 <div class="d-flex flex-column h-lg-50 max-h-50 flex-fill">
-                  <div
-                    class="row mt-1 h-100 max-h-md-100 flex-column flex-md-row pt-2"
-                  >
+                  <div class="row mt-1 h-100 max-h-md-100 flex-column flex-md-row pt-2">
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
-                      <div
-                        data-intro="See how you are working towards your daily study goals."
-                        class="card card-primary02 border-0 rounded-8 h-100"
-                      >
-                        <div
-                          class="study-status-card d-flex justify-content-center align-items-center h-100 p-3 p-lg-0"
-                        >
-                          <div
-                            class="position-relative d-flex mr-3 mr-lg-0 mt-2"
-                          >
-                            <progress-bar
-                              :options="options"
-                              :value="value"
-                              class="d-flex justify-content-center w-100"
-                            />
+                      <div data-intro="See how you are working towards your daily study goals."
+                        class="card card-primary02 border-0 rounded-8 h-100">
+                        <div class="study-status-card d-flex justify-content-center align-items-center h-100 p-3 p-lg-0">
+                          <div class="position-relative d-flex mr-3 mr-lg-0 mt-2">
+                            <progress-bar :options="options" :value="value" class="d-flex justify-content-center w-100" />
                             <div
-                              class="study-status-img position-absolute d-flex w-100 h-100 align-items-center justify-content-center"
-                            >
+                              class="study-status-img position-absolute d-flex w-100 h-100 align-items-center justify-content-center">
                               <!-- <img src="~/static/image/v4/alarm.png" alt="" /> -->
                               <img src="~/static/image/v4/alarm-black.svg" alt="clock" class="img-theme light" />
                               <img src="~/static/image/v4/alarm-white.svg" alt="clock" class="img-theme dark" />
                             </div>
                           </div>
-                          <div
-                            class="study-status-text text-left text-md-center my-2 px-2"
-                          >
+                          <div class="study-status-text text-left text-md-center my-2 px-2">
                             <p class="center poppins_text_bold ">
                               {{ duration }} Minutes Studied Today
                             </p>
@@ -143,66 +147,48 @@
                               {{ durationRemaining }}
                               {{
                                 isAdditionalCovered
-                                  ? "Additional Minutes Covered"
-                                  : "Minutes Left"
+                                ? "Additional Minutes Covered"
+                                : "Minutes Left"
                               }}
                             </p>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div
-                      data-intro="View your upcoming meetings for the month. "
-                      class="col-12 col-md-8 px-0  h-40 h-lg-100 flex-fill"
-                    >
+                    <div data-intro="View your upcoming meetings for the month. "
+                      class="col-12 col-md-8 px-0  h-40 h-lg-100 flex-fill">
                       <div
-                        class="d-flex flex-column custom-overflow faculty-availability-card-outer h-100 px-3 py-0 max-h-100"
-                      >
+                        class="d-flex flex-column custom-overflow faculty-availability-card-outer h-100 px-3 py-0 max-h-100">
                         <div class="row">
                           <div class="col-12 py-0">
-                            <div
-                              v-for="(list, index) in slot_date"
-                              :key="index"
-                              class="faculty-availability-card"
-                            >
+                            <div v-for="(list, index) in slot_date" :key="index" class="faculty-availability-card">
                               <div class="row">
                                 <div class="col-3 py-0">
                                   <div
-                                    class="bg-card-secondary border rounded-8 fa-card-date d-flex flex-column align-items-center justify-content-center w-100 p-3"
-                                  >
+                                    class="bg-card-secondary border rounded-8 fa-card-date d-flex flex-column align-items-center justify-content-center w-100 p-3">
                                     <p class="color-primary-dark text-12 mb-1">
                                       {{ list.date_day }}
                                     </p>
-                                    <p
-                                      class="color-primary-dark font-regular text-30 mb-0"
-                                    >
+                                    <p class="color-primary-dark font-regular text-30 mb-0">
                                       {{ list.date_number }}
                                     </p>
                                   </div>
                                 </div>
                                 <div class="col-9 py-0 d-flex">
-                                  <div
-                                    class="d-flex justify-content-between align-items-center cursor-pointer w-100"
-                                    @click="onCardClick(list)"
-                                  >
+                                  <div class="d-flex justify-content-between align-items-center cursor-pointer w-100"
+                                    @click="onCardClick(list)">
                                     <div class="fa-meeting-faculty-details">
-                                      <p
-                                        class="mb-1 color-seccondary text-14 font-regular"
-                                      >
+                                      <p class="mb-1 color-seccondary text-14 font-regular">
                                         {{
                                           list.type == "Teacher"
-                                            ? "Faculty Meeting"
-                                            : "Peer Meeting"
+                                          ? "Faculty Meeting"
+                                          : "Peer Meeting"
                                         }}
                                       </p>
-                                      <p
-                                        class="mb-1 color-dark text-18 font-bold"
-                                      >
+                                      <p class="mb-1 color-dark text-18 font-bold">
                                         {{ list.new_title }}
                                       </p>
-                                      <div
-                                        class="w-fit-content text-12 px-3 py-1 bg-primary color-white"
-                                      >
+                                      <div class="w-fit-content text-12 px-3 py-1 bg-primary color-white">
                                         {{ list.start_time }}
                                       </div>
                                     </div>
@@ -213,14 +199,9 @@
                             </div>
                           </div>
                         </div>
-                        <div
-                          class="row"
-                          v-if="!slot_date || slot_date.length <= 0"
-                        >
-                          <span
-                            class="d-flex w-100 justify-content-center color-secondary text-16 font-regular"
-                            >No meetings scheduled for this month!</span
-                          >
+                        <div class="row" v-if="!slot_date || slot_date.length <= 0">
+                          <span class="d-flex w-100 justify-content-center color-secondary text-16 font-regular">No
+                            meetings scheduled for this month!</span>
                         </div>
                       </div>
                     </div>
@@ -229,48 +210,32 @@
               </div>
             </div>
             <div class="col-xl-4 mt-3 mt-xl-0 max-h-md-100">
-              <div
-                class="card card-secondary border rounded-8 h-100 d-flex flex-column overflow-hidden"
-              >
+              <div class="card card-secondary border rounded-8 h-100 d-flex flex-column overflow-hidden">
                 <div class="calendar-dashboard px-4 pt-4">
                   <FullCalendar ref="fullCalendar" :options="calendarOptions" />
                 </div>
                 <div v-if="isLargeScreen" class="h-40 flex-fill">
-                  <div
-                    data-intro="See a brief overview of upcoming assignments day-by-day."
-                    class="d-md-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-show"
-                  >
+                  <div data-intro="See a brief overview of upcoming assignments day-by-day."
+                    class="d-md-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-show">
                     <h4 class="color-primary-dark font-semi-bold px-4">
                       Assignment List
                     </h4>
-                    <div
-                      class="d-flex flex-column h-100 custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600"
-                    >
-                      <div
-                        v-for="item in assignmentList"
-                        :key="item.id"
-                        class="card card-tertiary rounded-8 p-3 pr-1 pb-1 mb-3"
-                      >
-                        <p
-                          class="mb-1 word-break text-16 font-semi-bold color-dark"
-                        >
+                    <div class="d-flex flex-column h-100 custom-overflow px-3 mb-3 pt-2 mx-2 h-max-lg-600">
+                      <div v-for="item in assignmentList" :key="item.id"
+                        class="card card-tertiary rounded-8 p-3 pr-1 pb-1 mb-3">
+                        <p class="mb-1 word-break text-16 font-semi-bold color-dark">
                           {{ item.task }}
                         </p>
                         <p class="mb-0 text-14">
-                          <span>{{ item.due_date }}</span
-                          >&nbsp;<span>{{ item.due_time }}</span>
+                          <span>{{ item.due_date }}</span>&nbsp;<span>{{ item.due_time }}</span>
                         </p>
                         <p class="mb-0 text-14">
                           <span>Status: {{ item.task_status }}</span>
                         </p>
                       </div>
-                      <div
-                        v-if="!assignmentList || assignmentList.length <= 0"
-                        class="card card-tertiary rounded-8 p-3 pr-1 pb-1 mb-3"
-                      >
-                        <p
-                          class="mb-1 word-break text-16 font-semi-bold color-dark"
-                        >
+                      <div v-if="!assignmentList || assignmentList.length <= 0"
+                        class="card card-tertiary rounded-8 p-3 pr-1 pb-1 mb-3">
+                        <p class="mb-1 word-break text-16 font-semi-bold color-dark">
                           No assignments for this day!
                         </p>
                       </div>
@@ -280,43 +245,26 @@
               </div>
             </div>
             <div class="w-100 h-40 flex-fill" v-if="!isLargeScreen">
-              <div
-                data-intro="See a brief overview of upcoming assignments day-by-day."
-                class="d-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-hide"
-              >
+              <div data-intro="See a brief overview of upcoming assignments day-by-day."
+                class="d-flex flex-column h-100 flex-fill pb-3 assignment-list assignment-md-hide">
                 <h4 class="color-primary-dark font-semi-bold px-4">
                   Assignment List
                 </h4>
-                <div
-                  class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2"
-                >
-                  <div
-                    v-if="assignmentList && assignmentList.length > 0"
-                    class="h-100 overflow-auto"
-                  >
-                    <div
-                      v-for="item in assignmentList"
-                      :key="item.id"
-                      class="card card-tertiary rounded-8 p-3 pr-1 pb-1 mb-3"
-                    >
-                      <p
-                        class="mb-1 word-break text-16 font-semi-bold color-dark"
-                      >
+                <div class="d-flex flex-column h-40 flex-fill custom-overflow px-3 mb-3 pt-2 mx-2">
+                  <div v-if="assignmentList && assignmentList.length > 0" class="h-100 overflow-auto">
+                    <div v-for="item in assignmentList" :key="item.id"
+                      class="card card-tertiary rounded-8 p-3 pr-1 pb-1 mb-3">
+                      <p class="mb-1 word-break text-16 font-semi-bold color-dark">
                         {{ item.task }}
                       </p>
                       <p class="mb-0 text-14">
-                        <span>{{ item.due_date }}</span
-                        >&nbsp;<span>{{ item.due_time }}</span>
+                        <span>{{ item.due_date }}</span>&nbsp;<span>{{ item.due_time }}</span>
                       </p>
                     </div>
                   </div>
-                  <div
-                    v-if="!assignmentList || assignmentList.length <= 0"
-                    class="card card-tertiary rounded-8 p-3 pr-1 pb-1 mb-3"
-                  >
-                    <p
-                      class="mb-1 word-break text-16 font-semi-bold color-dark"
-                    >
+                  <div v-if="!assignmentList || assignmentList.length <= 0"
+                    class="card card-tertiary rounded-8 p-3 pr-1 pb-1 mb-3">
+                    <p class="mb-1 word-break text-16 font-semi-bold color-dark">
                       No assignments for this day!
                     </p>
                   </div>
@@ -329,24 +277,12 @@
 
       <!-- meeing detil pop up -->
 
-      <div
-        class="modal fade"
-        id="meetingDetailModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="meetingDetailModalCenterTitle"
-        aria-hidden="true"
-      >
-        <div
-          class="modal-dialog modal-md modal-dialog-centered"
-          role="document"
-        >
+      <div class="modal fade" id="meetingDetailModal" tabindex="-1" role="dialog"
+        aria-labelledby="meetingDetailModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
           <div class="modal-content px-4">
             <div class="modal-header pb-0">
-              <h2
-                class="modal-title color-primary-dark font-semi-bold mb-0"
-                id="meetingDetailModalLongTitle"
-              >
+              <h2 class="modal-title color-primary-dark font-semi-bold mb-0" id="meetingDetailModalLongTitle">
                 <span>{{ meetingDetail.type }}</span> Meeting with
                 <h5 class="color-primary-dark font-semi-bold mb-0">
                   <span>{{ meetingDetail.new_title }}</span>
@@ -367,8 +303,7 @@
                     <td class="tmodal-data text-nowrap">Meeting Name</td>
                     <td class="tmodal-data">
                       <p
-                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0 line-break-anywhere"
-                      >
+                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0 line-break-anywhere">
                         {{ meetingDetail.meeting_name }}
                       </p>
                     </td>
@@ -377,8 +312,7 @@
                     <td class="tmodal-data text-nowrap">Description</td>
                     <td class="tmodal-data">
                       <p
-                        class="mb-0 col-12 col-md-11 col-lg-10 d-flex align-items-center form-row py-0 line-break-anywhere"
-                      >
+                        class="mb-0 col-12 col-md-11 col-lg-10 d-flex align-items-center form-row py-0 line-break-anywhere">
                         {{ meetingDetail.meeting_description }}
                       </p>
                     </td>
@@ -386,9 +320,7 @@
                   <tr>
                     <td class="tmodal-data text-nowrap">Type of Meeting</td>
                     <td class="tmodal-data">
-                      <p
-                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0"
-                      >
+                      <p class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0">
                         {{ meetingDetail.conversation_type }}
                       </p>
                     </td>
@@ -397,18 +329,17 @@
                     <td class="tmodal-data text-nowrap">
                       {{
                         meetingDetail.conversation_type == "Video Conference"
-                          ? "Meeting Link"
-                          : "Meeting Location"
+                        ? "Meeting Link"
+                        : "Meeting Location"
                       }}
                     </td>
                     <td class="tmodal-data">
                       <p
-                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0 line-break-anywhere"
-                      >
+                        class="mb-0 col-12 col-md-10 col-lg-9 d-flex align-items-center form-row py-0 line-break-anywhere">
                         {{
                           meetingDetail.conversation_type == "Video Conference"
-                            ? meetingDetail.meeting_link
-                            : meetingDetail.meeting_location
+                          ? meetingDetail.meeting_link
+                          : meetingDetail.meeting_location
                         }}
                       </p>
                     </td>
@@ -463,8 +394,8 @@
                 @click="skipPromt(true)"
               >
                 <nuxt-link to="/user-profile" class="text-white text-decoration-none"> -->
-                 <!--Update Now -->
-                <!-- </nuxt-link>
+      <!--Update Now -->
+      <!-- </nuxt-link>
               </button>
             </div>
           </div>
@@ -515,7 +446,7 @@ export default {
   data() {
     return {
       selectedTheme: "light",
-      accordionOpened:false,
+      accordionOpened: false,
       isSmallScreen: false,
       isMediumScreen: false,
       isLargeScreen: false,
@@ -657,7 +588,7 @@ export default {
     },
   },
   created() {
-    this.loading=true;
+    this.loading = true;
     eventBus.$on('accordionOpened', (newValue) => {
       this.accordionOpened = newValue;
     });
@@ -680,11 +611,11 @@ export default {
     const phone = localStorage.getItem("phone");
     const skipped = localStorage.getItem("skippedPrompt");
     const savedTheme = localStorage.getItem('selectedTheme');
-      if (savedTheme) {
-        this.selectedTheme = savedTheme;
+    if (savedTheme) {
+      this.selectedTheme = savedTheme;
     }
     setTimeout(() => {
-      this.loading=false;
+      this.loading = false;
       if (!phone && skipped != "true") {
         $("#promptModal").modal();
       }
@@ -726,10 +657,10 @@ export default {
         this.isLargeScreen = e.matches;
       });
     },
-    async skipPromt(updateNow=false) {
+    async skipPromt(updateNow = false) {
       console.log("skkip promt");
       localStorage.setItem("skippedPrompt", "true");
-      if(updateNow){
+      if (updateNow) {
         this.$router.push("/user-profile");
       }
 
@@ -805,9 +736,9 @@ export default {
           : 0;
         this.durationRemaining =
           !isNaN(Number(this.goal.duration)) &&
-          !isNaN(Number(this.goal.total_duration_covered))
+            !isNaN(Number(this.goal.total_duration_covered))
             ? Number(this.goal.duration) -
-              Number(this.goal.total_duration_covered)
+            Number(this.goal.total_duration_covered)
             : 0;
 
         if (this.durationRemaining < 0) {
@@ -926,8 +857,8 @@ export default {
           this.meetingType == "Teacher"
             ? element.new_title
             : element.new_title
-            ? element.new_title.split(",")
-            : "";
+              ? element.new_title.split(",")
+              : "";
 
         Scheduleobj["meeting_id"] = element.id;
         Scheduleobj["group_id"] = element.group_id;
@@ -1164,7 +1095,6 @@ export default {
 
 
 <style>
-
 .jump-to-section h3 {
 
   text-align: left;
@@ -1172,7 +1102,8 @@ export default {
 
 .buttons-container {
   display: flex;
-  flex-wrap: wrap; /* Allow buttons to wrap if needed */
+  flex-wrap: wrap;
+  /* Allow buttons to wrap if needed */
   justify-content: space-around;
   gap: 20px;
 }
@@ -1185,7 +1116,8 @@ export default {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin: 2px; /* Add margin for additional spacing */
+  margin: 2px;
+  /* Add margin for additional spacing */
 }
 
 @media (max-width: 600px) {
@@ -1223,19 +1155,23 @@ export default {
   font-size: 18px;
   line-height: 30px;
 }
+
 @media (max-width: 764.98px) {
   .dashboard-text-content {
     font-size: 16px;
     line-height: 22px;
   }
 }
+
 .study-status-img img {
   width: 80px;
   height: auto;
 }
+
 .study-status-studied {
   font-weight: 600;
 }
+
 @media (min-width: 959.98px) {
   .h-lg-100 {
     height: 100% !important;
@@ -1254,10 +1190,12 @@ export default {
   overflow: hidden;
   transform: translate(-50%, -60%);
 }
+
 .loading:before {
   color: #aaa;
   content: attr(data-loading-text);
 }
+
 .loading:after {
   top: 0;
   left: 0;
@@ -1270,18 +1208,22 @@ export default {
   -webkit-animation: loading 5s infinite;
   animation: loading 5s infinite;
 }
+
 @-webkit-keyframes loading {
   0% {
     width: 0;
   }
+
   100% {
     width: 100%;
   }
 }
+
 @keyframes loading {
   0% {
     width: 0;
   }
+
   100% {
     width: 100%;
   }
@@ -1317,17 +1259,21 @@ img.img-theme.dark {
 .row1 {
   display: flex;
   flex-wrap: nowrap;
-  gap: 1rem; /* Adds space between the cards */
+  gap: 1rem;
+  /* Adds space between the cards */
 }
 
 .col-4 {
   flex: 1;
-  width: calc(33.33% - 1rem); /* Subtract the gap from the width */
-  padding: 0; /* No padding needed here */
+  width: calc(33.33% - 1rem);
+  /* Subtract the gap from the width */
+  padding: 0;
+  /* No padding needed here */
 }
 
 .dashboard-card-green {
-  background: #008001; /* Card background color */
+  background: #008001;
+  /* Card background color */
   border-radius: 20px;
   height: auto;
   width: 100%;
@@ -1335,13 +1281,16 @@ img.img-theme.dark {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Prevents content from spilling out */
-  height: 85%; /* Set to 100% of parent's height */
+  overflow: hidden;
+  /* Prevents content from spilling out */
+  height: 85%;
+  /* Set to 100% of parent's height */
   padding: 1rem;
 }
 
 .dashboard-card-red {
-  background: #DB1B24; /* Card background color */
+  background: #DB1B24;
+  /* Card background color */
   border-radius: 20px;
   display: flex;
   height: auto;
@@ -1349,13 +1298,16 @@ img.img-theme.dark {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Prevents content from spilling out */
-  height: 85%; /* Set to 100% of parent's height */
+  overflow: hidden;
+  /* Prevents content from spilling out */
+  height: 85%;
+  /* Set to 100% of parent's height */
   padding: 1rem;
 }
 
 .dashboard-card-purple {
-  background: #5534A5; /* Card background color */
+  background: #5534A5;
+  /* Card background color */
   border-radius: 20px;
   display: flex;
   height: auto;
@@ -1363,8 +1315,10 @@ img.img-theme.dark {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden; /* Prevents content from spilling out */
-  height: 85%; /* Set to 100% of parent's height */
+  overflow: hidden;
+  /* Prevents content from spilling out */
+  height: 85%;
+  /* Set to 100% of parent's height */
   padding: 1rem;
 }
 
@@ -1374,57 +1328,93 @@ img.img-theme.dark {
 }
 
 .card-image {
-  max-width: 50%; /* Maximum width of the SVG image */
-  max-width: 40%; /* Adjust this as needed */
+  max-width: 50%;
+  /* Maximum width of the SVG image */
+  max-width: 40%;
+  /* Adjust this as needed */
   height: auto;
 }
 
 .assignment-status {
-  font-size: 1.5vw; font-family: Poppins; font-weight: 500; line-height: 1.2; color: white; position: absolute; top: 0%; left: 0%; word-wrap: break-word;
+  font-size: 1rem;
+  font-family: Poppins;
+  font-weight: 500;
+  color: white;
+  word-wrap: break-word;
 }
 
 .assignment-count-style {
-  font-size: 2.5vw; font-family: Open Sans; font-weight: 700; line-height: 1.2; color: white; position: absolute; top: 70%; left: 15%; word-wrap: break-word;
+  font-size: 1.75rem;
+  font-family: Open Sans;
+  font-weight: 700;
+  color: white;
+  word-wrap: break-word;
 }
 
 /* Responsive text sizes */
 .card-title {
-  font-size: 1.25rem; /* Base size for card title */
-  margin-top: 0.5rem; /* Spacing above the title */
+  font-size: 1.25rem;
+  /* Base size for card title */
+  margin-top: 0.5rem;
+  /* Spacing above the title */
 }
 
 .card-number {
-  font-size: 2.5rem; /* Adjust this as needed */
-  margin-top: 0.5rem; /* Spacing above the number */
+  font-size: 2.5rem;
+  /* Adjust this as needed */
+  margin-top: 0.5rem;
+  /* Spacing above the number */
 }
 
 .poppins_text {
-  width: 315.23px; height: 23px; text-align: center; color: #5E5F6B; font-size: 16px; font-family: Poppins; font-weight: 400; line-height: 24px; word-wrap: break-word;
+  /* width: 315.23px;
+  height: 23px; */
+  text-align: center;
+  color: #5E5F6B;
+  font-size: 16px;
+  font-family: Poppins;
+  font-weight: 400;
+  line-height: 24px;
+  word-wrap: break-word;
 }
 
 .poppins_text_bold {
-  width: 315.23px; height: 23px; text-align: center; color: #5E5F6B; font-size: 16px; font-family: Poppins; font-weight: 600; line-height: 24px; word-wrap: break-word;
+  width: 315.23px;
+  height: 23px;
+  text-align: center;
+  color: #5E5F6B;
+  font-size: 16px;
+  font-family: Poppins;
+  font-weight: 600;
+  line-height: 24px;
+  word-wrap: break-word;
 }
 
 /* @media (min-width: 1441px) {
   .dashboard-card-purple, .dashboard-card-green, .dashboard-card-red {
     width: 12vw; /* Larger than the default 10vw */
-    /* height: 12vw; */
-  /* } */
+/* height: 12vw; */
+/* } */
 /* } */
 
 /* Adjust text size based on viewport width */
 @media (max-width: 640px) {
   .col-4 {
-    width: 100%; /* Each card takes full width on small screens */
-    margin-bottom: 1rem; /* Adds space between stacked cards */
+    width: 100%;
+    /* Each card takes full width on small screens */
+    margin-bottom: 1rem;
+    /* Adds space between stacked cards */
   }
+
   .card-title,
   .card-number {
-    font-size: 1rem; /* Smaller numbers on smaller screens */
+    font-size: 1rem;
+    /* Smaller numbers on smaller screens */
   }
+
   .card-image {
-    max-width: 50%; /* Bigger image relative to the card on small screens */
+    max-width: 50%;
+    /* Bigger image relative to the card on small screens */
   }
 }
 

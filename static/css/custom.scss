@@ -7492,3 +7492,53 @@ $b-toaster-zindex: 1100 !default;
     color: #fff;
   }
 }
+.dashboard-card {
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  .green{
+    background: #008001;
+    position: relative;
+    &:after{
+      content: '';
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.75rem;
+      background-image: url('../image/v4/arrow-green.svg');
+      background-size: cover;
+      width: 3.25rem;
+      height: 3rem;
+    }
+
+  }
+  .red{
+    background: #DB1B24;
+    position: relative;
+    overflow: hidden;
+    &:after{
+      content: '';
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.75rem;
+      background-image: url('../image/v4/arrow-purple.svg');
+      background-size: cover;
+      width: 3.25rem;
+      height: 3rem;
+    }
+  }
+  .purple{
+    background: #5534A5;
+    position: relative;
+    overflow: hidden;
+    &:after{
+      content: '';
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.75rem;
+      background-image: url('../image/v4/arrow-red.svg');
+      background-size: cover;
+      width: 3.25rem;
+      height: 3rem;
+    }
+  }
+}
