@@ -30,22 +30,22 @@
               {
                 label: 'Ahed', // First dataset label
                 data: [35, 25, 10, 35, 15, 50], // Example data points for Dataset 1
-                backgroundColor: 'rgba(0, 0, 128)', // Example color, customize as needed
-                borderColor: 'rgba(75, 192, 192, 1)', // Example color, customize as needed
+                backgroundColor: 'rgb(22, 91, 170)', // Example color, customize as needed
+                borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed
                 borderWidth: 1,
               },
               {
                 label: 'Behind', // Second dataset label
                 data: [20, 15, 40, 25, 45, 15], // Example data points for Dataset 2
-                backgroundColor: 'rgba(115,79,150)', // Example color, customize as needed
-                borderColor: 'rgba(255, 99, 132, 1)', // Example color, customize as needed
+                backgroundColor: 'rgb(161, 85, 185)', // Example color, customize as needed
+                borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed
                 borderWidth: 1,
               },
               {
                 label: 'Rly Behind', // Third dataset label
                 data: [20, 15, 45, 25, 45, 10], // Example data points for Dataset 3
-                backgroundColor: 'rgba(243, 58, 106)', // Example color, customize as needed
-                borderColor: 'rgba(255, 205, 86, 1)', // Example color, customize as needed
+                backgroundColor: 'rgb(247, 101, 163)', // Example color, customize as needed
+                borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed
                 borderWidth: 1,
               },
             ],
