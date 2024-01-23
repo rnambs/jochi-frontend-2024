@@ -42,7 +42,7 @@
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex justify-content-between align-items-center ">
                 <div class="">
-                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">132 <span
+                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">13 <span
                       class="text-14 color-text-50">/17</span></h2>
                   <p class="mb-0 text-14 color-text-50">Rahul’s Overdue Assignments</p>
                 </div>
@@ -88,7 +88,7 @@
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex justify-content-between align-items-center ">
                 <div class="">
-                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">132 <span
+                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">13 <span
                       class="text-14 color-text-50">/17</span></h2>
                   <p class="mb-0 text-14 color-text-50">Rahul’s Completed Assignments</p>
                 </div>
