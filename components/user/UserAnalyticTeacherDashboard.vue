@@ -39,6 +39,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <p class="mb-0 text-14 color-text-50">Students Falling Behind</p>
                 <h2 class="mb-0 text-46 color-text-100">14</h2>
+                <a href="#" class="d-block">View All</a>
               </div>
             </div>
           </div>
@@ -55,6 +56,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <p class="mb-0 text-14 color-text-50">Students Consistently Behind</p>
                 <h2 class="mb-0 text-46 color-text-100">12</h2>
+                <a href="#" class="d-block">View All</a>
               </div>
             </div>
           </div>
