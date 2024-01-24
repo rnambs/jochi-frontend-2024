@@ -42,8 +42,8 @@
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex justify-content-between align-items-center ">
                 <div class="">
-                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">13 <span
-                      class="text-14 color-text-50">/17</span></h2>
+                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{overdueAssignmentcount}} <span
+                      class="text-14 color-text-50">/{{ this.totalAssignmentCount }}</span></h2>
                   <p class="mb-0 text-14 color-text-50">Rahul’s Overdue Assignments</p>
                 </div>
                 <div class="w-fit-content">
@@ -60,22 +60,35 @@
             <div class="border p-3 rounded-20 w-100 box-card">
               <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
                 Overdue Assignments</h2>
-              <div class="row">
-                <div class="col-12 col-md-3">
-                  <p class="mb-0 text-14 color-text-50">Assignment Name</p>
-                  <h2 class="mb-0 text-16 font-weight-medium color-text-100">Civil War Essay</h2>
-                </div>
-                <div class="col-12 col-md-3">
-                  <p class="mb-0 text-14 color-text-50">Subject</p>
-                  <h2 class="mb-0 text-16 font-weight-medium color-text-100">US History</h2>
-                </div>
-                <div class="col-12 col-md-3">
-                  <p class="mb-0 text-14 color-text-50">Due Date</p>
-                  <h2 class="mb-0 text-16 font-weight-medium color-text-100">12/12/23</h2>
-                </div>
-                <div class="col-12 col-md-3">
-                  <p class="mb-0 text-14 color-text-50">Remind Student</p>
-                  <h2 class="mb-0 text-16 font-weight-medium color-text-100">INSERT BELL ICON</h2>
+                <div class="scrollable-container overflow-auto" style="max-height: 100px;">
+                  <div class="row">
+                    <div class="col-12 col-md-3">
+                      <p class="mb-0 text-14 color-text-50">Assignment Name</p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <p class="mb-0 text-14 color-text-50">Subject</p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <p class="mb-0 text-14 color-text-50">Due Date</p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <p class="mb-0 text-14 color-text-50">Remind Student</p>
+                    </div>
+                  </div>
+
+                  <div class="row" v-for="assignment in overdueAssts" :key="assignment.id">
+                    <div class="col-12 col-md-3">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">INSERT BELL ICON</h2>
+                    </div>
                 </div>
               </div>
             </div>
@@ -88,8 +101,8 @@
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex justify-content-between align-items-center ">
                 <div class="">
-                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">13 <span
-                      class="text-14 color-text-50">/17</span></h2>
+                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ this.completedAssignmentcount }}<span
+                      class="text-14 color-text-50">/{{ this.totalAssignmentCount }}</span></h2>
                   <p class="mb-0 text-14 color-text-50">Rahul’s Completed Assignments</p>
                 </div>
                 <div class="w-fit-content">
@@ -106,22 +119,35 @@
             <div class="border p-3 rounded-20 w-100 box-card">
               <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
                 Completed Assignments</h2>
-              <div class="row">
-                <div class="col-12 col-md-3">
-                  <p class="mb-0 text-14 color-text-50">Assignment Name</p>
-                  <h2 class="mb-0 text-16 font-weight-medium color-text-100">Civil War Essay</h2>
-                </div>
-                <div class="col-12 col-md-3">
-                  <p class="mb-0 text-14 color-text-50">Subject</p>
-                  <h2 class="mb-0 text-16 font-weight-medium color-text-100">US History</h2>
-                </div>
-                <div class="col-12 col-md-3">
-                  <p class="mb-0 text-14 color-text-50">Due Date</p>
-                  <h2 class="mb-0 text-16 font-weight-medium color-text-100">12/12/23</h2>
-                </div>
-                <div class="col-12 col-md-3">
-                  <p class="mb-0 text-14 color-text-50">Remind Student</p>
-                  <h2 class="mb-0 text-16 font-weight-medium color-text-100">INSERT BELL ICON</h2>
+                <div  class="scrollable-container overflow-auto" style="max-height: 100px;">
+                  <div class="row">
+                    <div class="col-12 col-md-3">
+                      <p class="mb-0 text-14 color-text-50">Assignment Name</p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <p class="mb-0 text-14 color-text-50">Subject</p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <p class="mb-0 text-14 color-text-50">Due Date</p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <p class="mb-0 text-14 color-text-50">Remind Student</p>
+                    </div>
+                  </div>
+
+                  <div class="row" v-for="assignment in filteredAssignments" :key="assignment.id">
+                    <div class="col-12 col-md-3">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
+                    </div>
+                    <div class="col-12 col-md-3">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">INSERT BELL ICON</h2>
+                    </div>
                 </div>
               </div>
             </div>
@@ -149,6 +175,7 @@
   </div>
 </template>
 <script>
+import { mapState, mapActions } from "vuex";
 var fromDate = "";
 var endDate = "";
 
@@ -173,9 +200,33 @@ export default {
       availability: false,
       loading: false,
       processing: false,
+      pendingAssignments: [],
+      overdueAssts: [],
+      totalAssignmentCount: '',
+      overdueAssignmentcount: '',
+      completedAssignmentcount: '',
+      filteredAssignments: []
     };
   },
+  computed:{
+    ...mapState("teacherAdvisor", {
+      studentsList: (state) => state.studentsList,
+      studentsListAdvisor: (state) => state.studentsListAdvisor,
+      successMessage: (state) => state.successMessage,
+      successType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+      assignmentList: (state) => state.assignmentList,
+      sharedAssignmentsList: (state) => state.sharedAssignmentsList,
+      overdueAssignments: (state) => state.overdueAssignments,
+      sharedOverdueAssignments: (state) => state.sharedOverdueAssignments,
+      errorMessageQuote: (state) => state.errorMessage,
+      subjectsData: (state) => state.subjectsData,
+      emailCountList: (state) => state.emailCountList,
+    }),
+  },
   mounted() {
+    this.getAssignments();
     this.loading = false;
     this.startTime = new Date().getTime();
     this.isMounted = false;
@@ -233,6 +284,197 @@ export default {
   },
 
   methods: {
+    ...mapActions("teacherAdvisor", {
+      getAssignmentsList: "getAssignmentsList",
+      getSubjectsList: "getSubjectsList",
+    }),
+    async getAssignments() {
+      await this.getAssignmentsList({ id: 292  });
+      await this.getSubjectsList({ id: 292 });
+      this.mapAssignments();
+      this.mapSharedAssignments();
+      this.mapOverdueAssignments();
+      this.mapOverdueSharedAssignments();
+    },
+    mapAssignments() {
+      if (this.assignmentList && this.assignmentList.length > 0) {
+        this.assignmentList.forEach((e) => {
+          this.mapSingleAsst(e);
+        });
+      }
+    },
+    mapSingleAsst(e) {
+      let item = {};
+      item.assignment_description = e.assignment_description;
+      item.assignment_materials = e.assignment_materials;
+      item.completed_date = e.completed_date;
+      item.dueTimeFormat = e.dueTimeFormat;
+      item.due_date = moment(e.due_date).format("MM/DD/YYYY");
+      item.due_time = e.due_time;
+      item.id = e.id;
+      item.priority = e.priority;
+      item.schoologyAssignment = e.schoologyAssignment;
+      item.schoologyAssignmentId = e.schoologyAssignmentId;
+      item.subTasks = e.subTasks;
+      item.subject = e.subject;
+      item.createdBy = e.createdBy
+      item.createdByName = e.createdByName
+      item.subjects = e.subjects;
+      item.task = e.task;
+      item.task_status = e.task_status;
+      item.updatedAt = e.updatedAt;
+      item.user_id = e.user_id;
+      item.peers = this.mapPeers(e);
+      item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+      item.isShared = false;
+      this.pendingAssignments.push(item);
+      console.log("1",this.pendingAssignments);
+    },
+    mapSharedAssignments() {
+      if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
+        this.sharedAssignmentsList.forEach((e) => {
+          this.mapSingleSharedAsst(e);
+        });
+      }
+    },
+    mapSingleSharedAsst(e) {
+      let item = {};
+      if (e.assignments) {
+        item.assignment_description = e.assignments.assignment_description;
+        item.assignment_materials = e.assignments.assignment_materials;
+        item.completed_date = e.assignments.completed_date;
+        item.dueTimeFormat = e.assignments.dueTimeFormat;
+        item.due_date = moment(e.assignments.due_date).format("MM/DD/YYYY");
+        item.due_time = e.assignments.due_time;
+        item.id = e.assignments.id;
+        item.priority = e.assignments.priority;
+        item.schoologyAssignment = e.assignments.schoologyAssignment;
+        item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+        item.subTasks = e.assignments?.subTasks;
+        item.subject = e.assignments?.subjects?.subject_name;
+        item.subjects = e.subjects;
+        item.createdBy = e.createdBy
+        item.createdByName = e.createdByName
+        item.task = e.assignments.task;
+        item.task_status = e.assignments.task_status;
+        item.updatedAt = e.assignments.updatedAt;
+        item.user_id = e.assignments.user_id;
+        item.peers = this.mapPeers(e);
+        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+        item.isShared = true;
+        this.pendingAssignments.push(item);
+        console.log("2",this.pendingAssignments);
+      }
+    },
+    mapOverdueAssignments() {
+      if (this.overdueAssignments && this.overdueAssignments.length > 0) {
+        this.overdueAssignments.forEach((e) => {
+          if (e.task_status != "Completed") {
+            let item = {};
+            item.assignment_description = e.assignment_description;
+            item.assignment_materials = e.assignment_materials;
+            item.completed_date = e.completed_date;
+            item.dueTimeFormat = e.dueTimeFormat;
+            item.due_date = moment(e.due_date).format("MM/DD/YYYY");
+            item.due_time = e.due_time;
+            item.id = e.id;
+            item.priority = e.priority;
+            item.schoologyAssignment = e.schoologyAssignment;
+            item.schoologyAssignmentId = e.schoologyAssignmentId;
+            item.subTasks = e.subTasks;
+            item.emailCounter = e.emailCounter;
+            item.subject = e.subject;
+            item.subjects = e.subjects;
+            item.createdBy = e.createdBy
+            item.createdByName = e.createdByName
+            item.task = e.task;
+            item.task_status = e.task_status;
+            item.updatedAt = e.updatedAt;
+            item.user_id = e.user_id;
+            item.peers = this.mapPeers(e);
+            item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+            item.isShared = false;
+            this.overdueAssts.push(item);
+            console.log("3",this.overdueAssts);
+          } else {
+            this.mapSingleAsst(e);
+          }
+        });
+      }
+    },
+    mapPeers(e) {
+      let user_id = localStorage.getItem("id");
+      let peers = [];
+      if (e.assignment_shared_users && e.assignment_shared_users.length > 0) {
+        e.assignment_shared_users.forEach((item) => {
+          let peer = {};
+          if (item.users && item.shared_users_id != user_id) {
+            peer = item.users;
+            peer.id = item.shared_users_id;
+            peers.push(peer);
+          }
+        });
+      }
+      if (e.assignments?.users) {
+        let user = {};
+        user = e.assignments?.users;
+        user.id = e.user_id;
+        peers.push(user);
+      }
+      return peers;
+    },
+    mapOverdueSharedAssignments() {
+      if (
+        this.sharedOverdueAssignments &&
+        this.sharedOverdueAssignments.length > 0
+      ) {
+        this.sharedOverdueAssignments.forEach((e) => {
+          if (e.assignments && e.assignments.task_status != "Completed") {
+            let item = {};
+            item.assignment_description = e.assignments.assignment_description;
+            item.assignment_materials = e.assignments.assignment_materials;
+            item.completed_date = e.assignments.completed_date;
+            item.dueTimeFormat = e.assignments.dueTimeFormat;
+            item.due_date = moment(e.assignments.due_date).format("MM/DD/YYYY");
+            item.due_time = e.assignments.due_time;
+            item.id = e.assignments.id;
+            item.priority = e.assignments.priority;
+            item.schoologyAssignment = e.assignments.schoologyAssignment;
+            item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
+            item.subTasks = e.assignments?.subTasks;
+            item.subject = e.assignments?.subjects?.subject_name;
+            item.subjects = e.subjects;
+            item.task = e.assignments.task;
+            item.createdBy = e.createdBy
+            item.createdByName = e.createdByName
+            item.task_status = e.assignments.task_status;
+            item.updatedAt = e.assignments.updatedAt;
+            item.user_id = e.assignments.user_id;
+            item.peers = this.mapPeers(e);
+            item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
+            item.isShared = true;
+            item.emailCounter = e.emailCounter;
+            this.overdueAssts.push(item);
+            console.log("4",this.overdueAssts);
+            this.totalAssignmentCount = this.pendingAssignments.length + this.overdueAssts.length
+            this.overdueAssignmentcount = this.overdueAssts.length
+            this.completedAssignmentcount = this.pendingAssignments.filter((assignment) => {
+              return assignment.task_status === 'Completed';
+            }).length;
+            this.filterCompletedAssignments();
+            console.log("5",this.totalAssignmentCount);
+          } else if (e.assignments.task_status == "Completed") {
+            this.mapSingleSharedAsst(e);
+          }
+        });
+      }
+    },
+    filterCompletedAssignments() {
+      this.filteredAssignments = this.pendingAssignments.filter((assignment) => {
+              return assignment.task_status === 'Completed';
+            });
+      console.log("6",this.filteredAssignments.length);
+    }
   },
 };
 </script>
