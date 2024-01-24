@@ -142,18 +142,19 @@
                                 </div> -->
                               </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center mt-1">
-                              <template v-if="item.createdBy" class="d-flex flex-column">
-                                <div class="d-flex flex-column w-100 flex-grow-1">
-                                  <p class="color-dark font-semi-bold text-12 mb-1">Assignment created by</p>
-                                  <p class="text-10 color-gray task-description mb-0"> {{ item.createdByName }} </p>
-                                </div>
-                              </template>
-                              <div @click="redirecttoStudysession(item)" class="clickable d-flex w-100 justify-content-end">
-                                <button class="btn btn-drag-card-open text-nowrap w-auto">
+                            <div class="">
+
+                              <div @click="redirecttoStudysession(item)" class="clickable d-flex w-100 justify-content-end my-2">
+                                <button class="btn btn-start-session text-nowrap w-auto">
                                   Start Session
                                 </button>
                               </div>
+                              <template v-if="item.createdBy">
+                                <div class="dotted w-100 pt-2">
+                                  <p class="text-10 color-gray task-description mb-0">Assignment created by
+                                    {{ item.createdByName }} </p>
+                                </div>
+                              </template>
                             </div>
                           </div>
                         </drag>
@@ -264,18 +265,19 @@
                                 </div> -->
                               </div>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center mt-1">
-                              <template v-if="item.createdBy">
-                                <div class="d-flex flex-column w-100 flex-grow-1">
-                                  <p class="color-dark font-semi-bold text-12 mb-1">Assignment created by</p>
-                                  <p class="text-10 color-gray task-description mb-0"> {{ item.createdByName }} </p>
-                                </div>
-                              </template>
+                            <div class="">
+
                               <div @click="redirecttoStudysession(item)" class="clickable d-flex w-100 justify-content-end">
-                                <button class="btn btn-drag-card-open text-nowrap w-auto">
+                                <button class="btn btn-start-session text-nowrap w-auto my-2 text-14">
                                   Start Session
                                 </button>
                               </div>
+                              <template v-if="item.createdBy" class="border pt-3">
+                                <div class="dotted w-100 pt-2">
+                                  <p class="text-10 color-gray task-description mb-0">Assignment created by
+                                    {{ item.createdByName }} </p>
+                                </div>
+                              </template>
                             </div>
 
                           </div>
