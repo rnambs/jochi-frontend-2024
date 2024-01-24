@@ -192,6 +192,12 @@
                     </tr>
                   </tbody>
                 </table>
+                <div
+                          v-if="teachersList.length == 0"
+                          class="empty-shedule"
+                        >
+                          <p class="color-gray text-12">No Meetings found</p>
+                        </div>
               </div>
             </div>
           </div>
