@@ -37,9 +37,8 @@
                 </svg>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0 text-14 color-text-50">Students Falling Behind</p>
-                <h2 class="mb-0 text-46 color-text-100">14</h2>
-                <a href="#" class="d-block">View All</a>
+                <p class="mb-0 text-14 color-text-50">Students Consistently Behind</p>
+                <h2 class="mb-0 text-46 color-text-100">{{ this.consistenlyBehindCount }}</h2>
               </div>
             </div>
           </div>
@@ -54,9 +53,8 @@
                 </svg>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0 text-14 color-text-50">Students Consistently Behind</p>
+                <p class="mb-0 text-14 color-text-50">Students Falling Behind</p>
                 <h2 class="mb-0 text-46 color-text-100">12</h2>
-                <a href="#" class="d-block">View All</a>
               </div>
             </div>
           </div>
@@ -73,7 +71,6 @@
               <div class="d-flex justify-content-between align-items-center">
                 <p class="mb-0 text-14 color-text-50">Students Ahead of Their Work</p>
                 <h2 class="mb-0 text-46 color-text-100">04</h2>
-                <a href="#" class="d-block">View All</a>
               </div>
             </div>
           </div>
@@ -399,6 +396,7 @@ export default{
   mounted(){
     this.TeacherMeetingList();
     this.GetStudentCount();
+    this.GetConsistentlyList();
   },
   computed: {
     ...mapState("teacherAppointment", {
@@ -411,6 +409,9 @@ export default{
     }),
     ...mapState("teacherAdvisor", {
       studentCount: (state) => state.studentCount,
+      consistenlyBehindCount: (state) => state.consistenlyBehindCount,
+      consistenlyList: (state) => state.consistenlyList,
+
     }),
   },
   methods: {
@@ -420,10 +421,16 @@ export default{
       teacherMeetingConfirm: "teacherMeetingConfirm",
     }),
     ...mapActions("teacherAdvisor", {
-      getStudentCount: "getStudentCount"
+      getStudentCount: "getStudentCount",
+      getConsistentlyList: "getConsistentlyList"
     }),
     async GetStudentCount(){
       await this.getStudentCount();
+    },
+    async GetConsistentlyList(){
+      await this.getConsistentlyList();
+      console.log("1",this.consistenlyBehindCount);
+      console.log("2",this.consistenlyList);
     },
     async TeacherMeetingList() {
       const { id } = localStorage;
