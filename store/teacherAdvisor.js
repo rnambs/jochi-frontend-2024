@@ -14,6 +14,7 @@ const state = {
     subjectsData: [],
     emailCountList: '',
     studentCount: '',
+    consistenlyBehindCount: '',
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
