@@ -26,7 +26,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-3 h-auto d-flex">
+          <div class="col-12 col-sm-3 h-auto d-flex" @click="openModal">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="w-fit-content mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
@@ -38,7 +38,7 @@
               </div>
               <div class="d-flex justify-content-between align-items-center">
                 <p class="mb-0 text-14 color-text-50">Students Consistently Behind</p>
-                <h2 class="mb-0 text-46 color-text-100">{{ this.consistenlyBehindCount }}</h2>
+                <h2 class="mb-0 text-46 color-text-100">{{ this.consistentlyBehindCount !== null ? consistentlyBehindCount : '0' }}</h2>
               </div>
             </div>
           </div>
@@ -378,6 +378,64 @@
         </div>
       </div>
     </section>
+    <div
+        class="modal fade"
+        id="studentList"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="inviteStudentModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered add-assmt"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="inviteStudentModalLongTitle">
+                List of Students
+              </h3>
+            </div>
+            <h4 class="modal-body">Student's who are Consistently Behind</h4>
+                    <div
+                      @click="onStudentClick(student)"
+                      v-for="student in consistenlyList"
+                      :key="student.id"
+                      :class="{ 'bg-card-secondary': student.id }"
+                      class="d-flex align-items-center flex-row p-3 student-list border-bottom cursor-pointer"
+                    >
+                      <div class="ld-img-section mr-3">
+                        <div class="ld-img-holder">
+                          <img
+                            v-if="student.profile_pic"
+                            :src="student.profile_pic"
+                            alt=""
+                          />
+                          <img v-else src="~/static/image/avatar.png" alt="" />
+                        </div>
+                      </div>
+                      <div class="ld-details-section">
+                        <p class="ld-heading mb-1">
+                          {{ student.first_name + " " + student.last_name }}
+                        </p>
+                      </div>
+                    </div>
+                  <div class="modal-body no-overflow px-4">
+                <div class="form-row">
+              </div>
+            </div>
+            <div class="modal-footer justify-content-end border-top-0">
+              <button
+                type="button"
+                class="btn btn-void font-semi-bold rounded-8 py-1 px-4"
+                data-dismiss="modal"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 </template>
 <script>
@@ -409,7 +467,7 @@ export default{
     }),
     ...mapState("teacherAdvisor", {
       studentCount: (state) => state.studentCount,
-      consistenlyBehindCount: (state) => state.consistenlyBehindCount,
+      consistentlyBehindCount: (state) => state.consistentlyBehindCount,
       consistenlyList: (state) => state.consistenlyList,
 
     }),
@@ -429,8 +487,6 @@ export default{
     },
     async GetConsistentlyList(){
       await this.getConsistentlyList();
-      console.log("1",this.consistenlyBehindCount);
-      console.log("2",this.consistenlyList);
     },
     async TeacherMeetingList() {
       const { id } = localStorage;
@@ -438,7 +494,6 @@ export default{
 
       this.teachersList = this.teachers.map((element) => {
         const { title, default_slots, student_id, request_id, date, conversation_type, meeting_description, meeting_location, meeting_link, meeting_name } = element;
-        console.log("1",element)
 
         const Scheduleobj = {
           date: this.formatDate(date),
@@ -457,7 +512,6 @@ export default{
         };
 
         this.teachersList.push(Scheduleobj);
-        console.log("2",this.teachersList);
 
         return Scheduleobj;
       });
@@ -552,6 +606,11 @@ export default{
       $("#mediumModal").modal("show");
       this.meetingDetail = teacher;
     },
+    openModal() {
+      $("#studentList").modal("show");
+    },
+    onStudentClick(student){
+    }
   },
 
 }
