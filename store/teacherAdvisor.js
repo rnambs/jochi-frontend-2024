@@ -15,6 +15,7 @@ const state = {
     emailCountList: '',
     studentCount: '',
     consistenlyBehindCount: '',
+    consistenlyList: [],
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -281,7 +282,27 @@ const actions = {
         }
       },
       
-
+      async getConsistentlyList({ commit }, ) {
+        const token = localStorage.getItem('token')
+        try {
+          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/consistentlyBehind`, {
+            headers: {
+              'Authorization': ` ${token}`
+            },
+          });
+          console.log(response);
+          if(response.status === true ){
+          commit('setconsistenlyBehindCount', response.consistenlyBehindCount);
+          commit('setconsistenlyList',response.data)
+          }
+          
+        } catch (e) { 
+          commit('setErrorMessage', e?.response?.data?.message);
+          commit('setErrorType', "error");
+          commit('setSuccessMessage', "");
+          commit('setSuccessType', "")
+        }
+      },
 }
 
 const mutations = {
@@ -324,6 +345,12 @@ const mutations = {
     setTotalStudentCount(state, data) {
         state.studentCount = data;
     },
+    setconsistenlyBehindCount(state, data) {
+        state.consistenlyBehindCount = data;
+    },
+    setconsistenlyList(state, data) {
+        state.consistenlyList = data;
+    },
 
 }
 const getters = {
@@ -365,6 +392,12 @@ const getters = {
     },
     studentCount: () => {
         return state.studentCount;
+    },
+    consistenlyBehindCount: () => {
+        return state.consistenlyBehindCount;
+    },
+    consistenlyList: () => {
+        return state.consistenlyList;
     },
 
 }
