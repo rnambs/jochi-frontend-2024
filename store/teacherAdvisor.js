@@ -14,7 +14,7 @@ const state = {
     subjectsData: [],
     emailCountList: '',
     studentCount: '',
-    consistenlyBehindCount: '',
+    consistentlyBehindCount: '',
     consistenlyList: [],
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -290,9 +290,9 @@ const actions = {
               'Authorization': ` ${token}`
             },
           });
-          console.log(response);
+          console.log(response.consistentlyBehindCount);
           if(response.status === true ){
-          commit('setconsistenlyBehindCount', response.consistenlyBehindCount);
+          commit('setconsistentlyBehindCount', response.consistentlyBehindCount);
           commit('setconsistenlyList',response.data)
           }
           
@@ -345,8 +345,8 @@ const mutations = {
     setTotalStudentCount(state, data) {
         state.studentCount = data;
     },
-    setconsistenlyBehindCount(state, data) {
-        state.consistenlyBehindCount = data;
+    setconsistentlyBehindCount(state, data) {
+        state.consistentlyBehindCount = data;
     },
     setconsistenlyList(state, data) {
         state.consistenlyList = data;
@@ -393,8 +393,8 @@ const getters = {
     studentCount: () => {
         return state.studentCount;
     },
-    consistenlyBehindCount: () => {
-        return state.consistenlyBehindCount;
+    consistentlyBehindCount: () => {
+        return state.consistentlyBehindCount;
     },
     consistenlyList: () => {
         return state.consistenlyList;
