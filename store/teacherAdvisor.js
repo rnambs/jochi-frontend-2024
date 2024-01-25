@@ -277,7 +277,6 @@ const actions = {
           commit('setErrorType', "error");
           commit('setSuccessMessage', "");
           commit('setSuccessType', "")
-    console.log(e);
         }
       },
       
