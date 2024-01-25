@@ -290,7 +290,6 @@ const actions = {
               'Authorization': ` ${token}`
             },
           });
-          console.log(response.consistentlyBehindCount);
           if(response.status === true ){
           commit('setconsistentlyBehindCount', response.consistentlyBehindCount);
           commit('setconsistenlyList',response.data)
