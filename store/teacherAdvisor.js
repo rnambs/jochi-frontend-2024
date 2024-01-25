@@ -12,8 +12,8 @@ const state = {
     successMessage: "",
     successType: "",
     subjectsData: [],
-    emailCountList: ''
-
+    emailCountList: '',
+    studentCount: '',
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -260,6 +260,26 @@ const actions = {
           } 
         }
       },
+      async getStudentCount({ commit }, ) {
+        const token = localStorage.getItem('token')
+        try {
+          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/totalStudentsCount`, {
+            headers: {
+              'Authorization': ` ${token}`
+            },
+          });
+          if(response.status === true ){
+          commit('setTotalStudentCount', response.student_count);
+          }
+          
+        } catch (e) { 
+          commit('setErrorMessage', e?.response?.data?.message);
+          commit('setErrorType', "error");
+          commit('setSuccessMessage', "");
+          commit('setSuccessType', "")
+    console.log(e);
+        }
+      },
       
 
 }
@@ -301,6 +321,9 @@ const mutations = {
       setEmailCount(state, data) {
         state.emailCountList = data;
     },
+    setTotalStudentCount(state, data) {
+        state.studentCount = data;
+    },
 
 }
 const getters = {
@@ -339,6 +362,9 @@ const getters = {
       },
       emailCountList: () => {
         return state.emailCountList;
+    },
+    studentCount: () => {
+        return state.studentCount;
     },
 
 }
