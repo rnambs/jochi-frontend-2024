@@ -21,8 +21,8 @@
                 </svg>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0 text-14 color-text-50">Total # of Students</p>
-                <h2 class="mb-0 text-46 color-text-100">132</h2>
+                <p class="mb-0 text-14 color-text-50">Total Number of Students</p>
+                <h2 class="mb-0 text-46 color-text-100">{{this.studentCount}}</h2>
               </div>
             </div>
           </div>
@@ -398,6 +398,7 @@ export default{
   },
   mounted(){
     this.TeacherMeetingList();
+    this.GetStudentCount();
   },
   computed: {
     ...mapState("teacherAppointment", {
@@ -408,6 +409,9 @@ export default{
       errorType: (state) => state.errorType,
       teachers: (state) => state.teachers,
     }),
+    ...mapState("teacherAdvisor", {
+      studentCount: (state) => state.studentCount,
+    }),
   },
   methods: {
     ...mapActions("teacherAppointment", {
@@ -415,6 +419,12 @@ export default{
       teacherMeetingList: "teacherMeetingList",
       teacherMeetingConfirm: "teacherMeetingConfirm",
     }),
+    ...mapActions("teacherAdvisor", {
+      getStudentCount: "getStudentCount"
+    }),
+    async GetStudentCount(){
+      await this.getStudentCount();
+    },
     async TeacherMeetingList() {
       const { id } = localStorage;
       await this.teacherMeetingList({ teacher_id: id });
