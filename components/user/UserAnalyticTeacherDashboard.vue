@@ -26,7 +26,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-3 h-auto d-flex" @click="openModal('consistentlyBehindlist')">
+          <div class="col-12 col-sm-3 h-auto d-flex clickable" @click="openModal('consistentlyBehindlist')">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="w-fit-content mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
@@ -42,7 +42,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-3 h-auto d-flex">
+          <div class="col-12 col-sm-3 h-auto d-flex clickable" @click="openModal('fallingBehindlist')">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="w-fit-content mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
@@ -52,13 +52,13 @@
                     fill="#825DEC" />
                 </svg>
               </div>
-              <div class="d-flex justify-content-between align-items-center" @click="openModal('fallingBehindlist')">
+              <div class="d-flex justify-content-between align-items-center">
                 <p class="mb-0 text-14 color-text-50">Students Falling Behind</p>
                 <h2 class="mb-0 text-46 color-text-100">{{ this.fallingBehindCount !== null ? fallingBehindCount : '0' }}</h2>
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-3 h-auto d-flex">
+          <div class="col-12 col-sm-3 h-auto d-flex clickable"  @click="openModal('aheadlist')">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="w-fit-content mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
@@ -68,7 +68,7 @@
                     fill="#825DEC" />
                 </svg>
               </div>
-              <div class="d-flex justify-content-between align-items-center"  @click="openModal('aheadlist')">
+              <div class="d-flex justify-content-between align-items-center">
                 <p class="mb-0 text-14 color-text-50">Students Ahead of Their Work</p>
                 <h2 class="mb-0 text-46 color-text-100">04</h2>
               </div>
@@ -420,6 +420,9 @@
                         </p>
                       </div>
                     </div>
+                    <div v-if="this.studentsList == 0">
+                    <p>No student's found</p>
+                    </div>
                   <div class="modal-body no-overflow px-4">
                 <div class="form-row">
               </div>
@@ -430,7 +433,7 @@
                 class="btn btn-void font-semi-bold rounded-8 py-1 px-4"
                 data-dismiss="modal"
               >
-                Cancel
+                Close
               </button>
             </div>
           </div>
