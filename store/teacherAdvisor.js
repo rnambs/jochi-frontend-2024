@@ -16,6 +16,8 @@ const state = {
     studentCount: '',
     consistentlyBehindCount: '',
     consistenlyList: [],
+    fallingBehindCount: "",
+    fallingBehindlist: [],
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -302,6 +304,27 @@ const actions = {
           commit('setSuccessType', "")
         }
       },
+      async getFallingList({ commit }, ) {
+        const token = localStorage.getItem('token')
+        try {
+          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/fallingBehind`, {
+            headers: {
+              'Authorization': ` ${token}`
+            },
+          });
+          console.log(response);
+          if(response.status === true ){
+          commit('setfallingBehindCount', response.fallingBehindCount);
+          commit('setfallingList',response.data)
+          }
+          
+        } catch (e) { 
+          commit('setErrorMessage', e?.response?.data?.message);
+          commit('setErrorType', "error");
+          commit('setSuccessMessage', "");
+          commit('setSuccessType', "")
+        }
+      },
 }
 
 const mutations = {
@@ -350,6 +373,12 @@ const mutations = {
     setconsistenlyList(state, data) {
         state.consistenlyList = data;
     },
+    setfallingBehindCount(state, data) {
+      state.fallingBehindCount = data;
+  },
+  setfallingList(state, data) {
+      state.fallingBehindlist = data;
+  },
 
 }
 const getters = {
@@ -398,6 +427,12 @@ const getters = {
     consistenlyList: () => {
         return state.consistenlyList;
     },
+    fallingBehindCount: () => {
+      return state.fallingBehindCount;
+  },
+  fallingBehindlist: () => {
+      return state.fallingBehindlist;
+  },
 
 }
 
