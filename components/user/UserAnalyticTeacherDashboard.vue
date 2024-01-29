@@ -26,7 +26,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-3 h-auto d-flex" @click="openModal">
+          <div class="col-12 col-sm-3 h-auto d-flex" @click="openModal('consistentlyBehindlist')">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="w-fit-content mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
@@ -52,7 +52,7 @@
                     fill="#825DEC" />
                 </svg>
               </div>
-              <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center" @click="openModal('fallingBehindlist')">
                 <p class="mb-0 text-14 color-text-50">Students Falling Behind</p>
                 <h2 class="mb-0 text-46 color-text-100">{{ this.fallingBehindCount !== null ? fallingBehindCount : '0' }}</h2>
               </div>
@@ -68,7 +68,7 @@
                     fill="#825DEC" />
                 </svg>
               </div>
-              <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center"  @click="openModal('aheadlist')">
                 <p class="mb-0 text-14 color-text-50">Students Ahead of Their Work</p>
                 <h2 class="mb-0 text-46 color-text-100">04</h2>
               </div>
@@ -393,13 +393,13 @@
           <div class="modal-content">
             <div class="modal-header">
               <h3 class="modal-title" id="inviteStudentModalLongTitle">
-                List of Students
+                List of Student's who are {{ modalListType === 'consistentlyBehindlist' ? 'Consistently Behind' : (modalListType === 'fallingBehindlist' ? 'Falling Behind' : 'Ahead') }}
               </h3>
             </div>
-            <h4 class="modal-body">Student's who are Consistently Behind</h4>
+            <h4 class="modal-body"></h4>
                     <div
                       @click="onStudentClick(student)"
-                      v-for="student in consistenlyList"
+                      v-for="student in studentsList"
                       :key="student.id"
                       :class="{ 'bg-card-secondary': student.id }"
                       class="d-flex align-items-center flex-row p-3 student-list border-bottom cursor-pointer"
@@ -449,6 +449,8 @@ export default{
     return{
       teachersList: [],
       meetingDetail: {},
+      studentsList: [],
+      modalListType: '',
     }
   },
   mounted(){
@@ -493,8 +495,6 @@ export default{
     },
     async GetFallingList(){
       await this.getFallingList();
-      console.log("1",this.fallingBehindCount);
-      console.log("2",this.fallingBehindlist);
     },
     async TeacherMeetingList() {
       const { id } = localStorage;
@@ -614,7 +614,16 @@ export default{
       $("#mediumModal").modal("show");
       this.meetingDetail = teacher;
     },
-    openModal() {
+    openModal(listType) {
+      this.modalListType = listType;
+      if (listType === 'consistentlyBehindlist') {
+        this.studentsList = this.$store.state.teacherAdvisor.consistenlyList;
+      } else if (listType === 'fallingBehindlist') {
+        this.studentsList = this.$store.state.teacherAdvisor.fallingBehindlist;
+      } else if (listType === 'aheadlist') {
+        // this.studentsList = this.$store.state.teacherAdvisor.aheadlist;
+        console.log("data",this.modalListType);
+      }
       $("#studentList").modal("show");
     },
     onStudentClick(student){
