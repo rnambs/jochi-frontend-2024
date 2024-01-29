@@ -70,7 +70,7 @@
               </div>
               <div class="d-flex justify-content-between align-items-center">
                 <p class="mb-0 text-14 color-text-50">Students Ahead of Their Work</p>
-                <h2 class="mb-0 text-46 color-text-100">04</h2>
+                <h2 class="mb-0 text-46 color-text-100">{{ this.aheadCount }}</h2>
               </div>
             </div>
           </div>
@@ -461,6 +461,7 @@ export default{
     this.GetStudentCount();
     this.GetConsistentlyList();
     this.GetFallingList();
+    this.GetAheadList();
   },
   computed: {
     ...mapState("teacherAppointment", {
@@ -477,6 +478,8 @@ export default{
       consistenlyList: (state) => state.consistenlyList,
       fallingBehindCount:(state) => state.fallingBehindCount,
       fallingBehindlist:(state) => state.fallingBehindlist,
+      aheadCount:(state) => state.aheadCount,
+      aheadList:(state) => state.aheadList,
     }),
   },
   methods: {
@@ -489,6 +492,7 @@ export default{
       getStudentCount: "getStudentCount",
       getConsistentlyList: "getConsistentlyList",
       getFallingList: "getFallingList",
+      getAheadList: "getAheadList",
     }),
     async GetStudentCount(){
       await this.getStudentCount();
@@ -498,6 +502,9 @@ export default{
     },
     async GetFallingList(){
       await this.getFallingList();
+    },
+    async GetAheadList(){
+       await this.getAheadList();
     },
     async TeacherMeetingList() {
       const { id } = localStorage;
@@ -624,12 +631,15 @@ export default{
       } else if (listType === 'fallingBehindlist') {
         this.studentsList = this.$store.state.teacherAdvisor.fallingBehindlist;
       } else if (listType === 'aheadlist') {
-        // this.studentsList = this.$store.state.teacherAdvisor.aheadlist;
+        this.studentsList = this.$store.state.teacherAdvisor.aheadList;
         console.log("data",this.modalListType);
       }
       $("#studentList").modal("show");
     },
     onStudentClick(student){
+      $("#studentList").modal("hide");
+      console.log("data",student);
+      this.$router.push(`/student-analytic-dashboard?id=${student.id}`);
     }
   },
 
