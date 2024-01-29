@@ -312,7 +312,6 @@ const actions = {
               'Authorization': ` ${token}`
             },
           });
-          console.log(response);
           if(response.status === true ){
           commit('setfallingBehindCount', response.fallingBehindCount);
           commit('setfallingList',response.data)
