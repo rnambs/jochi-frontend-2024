@@ -54,7 +54,7 @@
               </div>
               <div class="d-flex justify-content-between align-items-center">
                 <p class="mb-0 text-14 color-text-50">Students Falling Behind</p>
-                <h2 class="mb-0 text-46 color-text-100">12</h2>
+                <h2 class="mb-0 text-46 color-text-100">{{ this.fallingBehindCount !== null ? fallingBehindCount : '0' }}</h2>
               </div>
             </div>
           </div>
@@ -455,6 +455,7 @@ export default{
     this.TeacherMeetingList();
     this.GetStudentCount();
     this.GetConsistentlyList();
+    this.GetFallingList();
   },
   computed: {
     ...mapState("teacherAppointment", {
@@ -469,7 +470,8 @@ export default{
       studentCount: (state) => state.studentCount,
       consistentlyBehindCount: (state) => state.consistentlyBehindCount,
       consistenlyList: (state) => state.consistenlyList,
-
+      fallingBehindCount:(state) => state.fallingBehindCount,
+      fallingBehindlist:(state) => state.fallingBehindlist,
     }),
   },
   methods: {
@@ -480,13 +482,19 @@ export default{
     }),
     ...mapActions("teacherAdvisor", {
       getStudentCount: "getStudentCount",
-      getConsistentlyList: "getConsistentlyList"
+      getConsistentlyList: "getConsistentlyList",
+      getFallingList: "getFallingList",
     }),
     async GetStudentCount(){
       await this.getStudentCount();
     },
     async GetConsistentlyList(){
       await this.getConsistentlyList();
+    },
+    async GetFallingList(){
+      await this.getFallingList();
+      console.log("1",this.fallingBehindCount);
+      console.log("2",this.fallingBehindlist);
     },
     async TeacherMeetingList() {
       const { id } = localStorage;
