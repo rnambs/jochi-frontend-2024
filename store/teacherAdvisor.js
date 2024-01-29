@@ -18,6 +18,9 @@ const state = {
     consistenlyList: [],
     fallingBehindCount: "",
     fallingBehindlist: [],
+    aheadCount: '',
+    aheadList: [],
+
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -324,6 +327,26 @@ const actions = {
           commit('setSuccessType', "")
         }
       },
+      async getAheadList({ commit }, ) {
+        const token = localStorage.getItem('token')
+        try {
+          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/aheadStudents`, {
+            headers: {
+              'Authorization': ` ${token}`
+            },
+          });
+          if(response.status === true ){
+          commit('setAheadCount', response.aheadOfWorks);
+          commit('setAheadList',response.data)
+          }
+          
+        } catch (e) { 
+          commit('setErrorMessage', e?.response?.data?.message);
+          commit('setErrorType', "error");
+          commit('setSuccessMessage', "");
+          commit('setSuccessType', "")
+        }
+      },
 }
 
 const mutations = {
@@ -378,6 +401,12 @@ const mutations = {
   setfallingList(state, data) {
       state.fallingBehindlist = data;
   },
+  setAheadCount(state, data) {
+    state.aheadCount = data;
+  },
+  setAheadList(state, data) {
+    state.aheadList = data;
+  },
 
 }
 const getters = {
@@ -431,6 +460,12 @@ const getters = {
   },
   fallingBehindlist: () => {
       return state.fallingBehindlist;
+  },
+  aheadCount: () => {
+    return state.aheadCount;
+  },
+  aheadList: () => {
+      return state.aheadList;
   },
 
 }
