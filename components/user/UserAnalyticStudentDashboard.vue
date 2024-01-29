@@ -1,5 +1,11 @@
 <template>
   <div class="main-section">
+    <lottie
+      v-if="loading"
+      :options="lottieOptions"
+      v-on:animCreated="handleAnimation"
+      class="lottie-loader"
+    />
     <section class="py-4 analytic-dashboard">
       <div class="container-fluid">
         <div class="d-flex justify-content-between  align-items-center mb-3">
@@ -176,11 +182,14 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
+import lottie from "vue-lottie/src/lottie.vue";
+import * as animationData from "~/assets/animation.json";
 var fromDate = "";
 var endDate = "";
 
 export default {
   components: {
+    lottie,
   },
   data() {
     return {
@@ -205,7 +214,10 @@ export default {
       totalAssignmentCount: '',
       overdueAssignmentcount: '',
       completedAssignmentcount: '',
-      filteredAssignments: []
+      filteredAssignments: [],
+      studentId: "",
+      lottieOptions: { animationData: animationData.default },
+      anim: null,
     };
   },
   computed:{
@@ -226,8 +238,15 @@ export default {
     }),
   },
   mounted() {
+    const studentId = this.$route.query.id;
+    if(studentId){
+      this.studentId = studentId;
+      this.getAssignments();
+    }else{
+      this.$router.push(`/teacher-analytic-dashboard`);
+    }
     this.getAssignments();
-    this.loading = false;
+    // this.loading = false;
     this.startTime = new Date().getTime();
     this.isMounted = false;
     const _this = this;
@@ -289,12 +308,17 @@ export default {
       getSubjectsList: "getSubjectsList",
     }),
     async getAssignments() {
-      await this.getAssignmentsList({ id: 292  });
-      await this.getSubjectsList({ id: 292 });
+      this.loading = true;
+      await this.getAssignmentsList({ id:  this.studentId });
+      await this.getSubjectsList({ id: this.studentId });
       this.mapAssignments();
       this.mapSharedAssignments();
       this.mapOverdueAssignments();
       this.mapOverdueSharedAssignments();
+      this.loading = false;
+    },
+    handleAnimation: function (anim) {
+      this.anim = anim;
     },
     mapAssignments() {
       if (this.assignmentList && this.assignmentList.length > 0) {
@@ -328,7 +352,6 @@ export default {
       item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
       item.isShared = false;
       this.pendingAssignments.push(item);
-      console.log("1",this.pendingAssignments);
     },
     mapSharedAssignments() {
       if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
@@ -363,7 +386,6 @@ export default {
         item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
         item.isShared = true;
         this.pendingAssignments.push(item);
-        console.log("2",this.pendingAssignments);
       }
     },
     mapOverdueAssignments() {
@@ -395,7 +417,6 @@ export default {
             item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
             item.isShared = false;
             this.overdueAssts.push(item);
-            console.log("3",this.overdueAssts);
           } else {
             this.mapSingleAsst(e);
           }
@@ -455,14 +476,12 @@ export default {
             item.isShared = true;
             item.emailCounter = e.emailCounter;
             this.overdueAssts.push(item);
-            console.log("4",this.overdueAssts);
             this.totalAssignmentCount = this.pendingAssignments.length + this.overdueAssts.length
             this.overdueAssignmentcount = this.overdueAssts.length
             this.completedAssignmentcount = this.pendingAssignments.filter((assignment) => {
               return assignment.task_status === 'Completed';
             }).length;
             this.filterCompletedAssignments();
-            console.log("5",this.totalAssignmentCount);
           } else if (e.assignments.task_status == "Completed") {
             this.mapSingleSharedAsst(e);
           }
@@ -473,7 +492,6 @@ export default {
       this.filteredAssignments = this.pendingAssignments.filter((assignment) => {
               return assignment.task_status === 'Completed';
             });
-      console.log("6",this.filteredAssignments.length);
     }
   },
 };
