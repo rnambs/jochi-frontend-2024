@@ -1283,7 +1283,6 @@ export default {
       this.submitted = false;
     },
     onStudentClick(student) {
-      console.log("1",student)
       this.showStudentProfile = true;
       this.showStudentAnalytics = false;
       this.studentDetail = student;
