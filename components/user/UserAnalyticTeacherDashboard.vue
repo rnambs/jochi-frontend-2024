@@ -6,7 +6,18 @@
           <h2 class="text-20 font-poppins font-semi-bold mb-0 flex-grow-1">
             Welcome Back {{ firstName + ' ' + lastName }}!</h2>
           <div class="form-group flex-grow-1 mb-0">
-            <input type="text" class="form-control" id="search" placeholder="Search Student">
+            <!-- <input type="text" class="form-control" id="search" placeholder="Search Student"> -->
+            <multiselect
+                  v-model="selectedStudent"
+                  :options="studentDetails"
+                  track-by="first_name"
+                  label="first_name"
+                  placeholder="
+                  Select students"
+                  @input="selectedStudentId"
+                >
+                  <span slot="noResult">No data found</span>
+                </multiselect>
           </div>
         </div>
         <div class="row d-flex">
@@ -455,7 +466,8 @@ export default{
       studentsList: [],
       modalListType: '',
       firstName: '',
-      lastName: ''
+      lastName: '',
+      selectedStudent: "",
     }
   },
   mounted(){
@@ -478,6 +490,7 @@ export default{
       teachers: (state) => state.teachers,
     }),
     ...mapState("teacherAdvisor", {
+      studentDetails: (state) => state.studentDetails,
       studentCount: (state) => state.studentCount,
       consistentlyBehindCount: (state) => state.consistentlyBehindCount,
       consistenlyList: (state) => state.consistenlyList,
@@ -514,6 +527,9 @@ export default{
     },
     async GetTaskStatus(){
        await this.getTaskStatus();
+    },
+    selectedStudentId(selectedStudent) {
+      this.$router.push(`/student-analytic-dashboard?id=${selectedStudent.id}`);
     },
     async TeacherMeetingList() {
       const { id } = localStorage;
@@ -641,13 +657,11 @@ export default{
         this.studentsList = this.$store.state.teacherAdvisor.fallingBehindlist;
       } else if (listType === 'aheadlist') {
         this.studentsList = this.$store.state.teacherAdvisor.aheadList;
-        console.log("data",this.modalListType);
       }
       $("#studentList").modal("show");
     },
     onStudentClick(student){
       $("#studentList").modal("hide");
-      console.log("data",student);
       this.$router.push(`/student-analytic-dashboard?id=${student.id}`);
     }
   },
