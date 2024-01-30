@@ -1148,7 +1148,13 @@ export default {
       },
     };
   },
-  mounted() {
+ async mounted() {
+    const studentId = this.$route.query.id;
+    if(studentId){
+    await this.getStudentList();
+    await this.studentsListAdvisor
+    await console.log("studentsListAdvisor",this.studentsListAdvisor);
+    }
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     this.getStudentList();
     this.checkValidTime();
@@ -1277,6 +1283,7 @@ export default {
       this.submitted = false;
     },
     onStudentClick(student) {
+      console.log("1",student)
       this.showStudentProfile = true;
       this.showStudentAnalytics = false;
       this.studentDetail = student;
