@@ -245,7 +245,6 @@ export default {
     }else{
       this.$router.push(`/teacher-analytic-dashboard`);
     }
-    this.getAssignments();
     // this.loading = false;
     this.startTime = new Date().getTime();
     this.isMounted = false;
