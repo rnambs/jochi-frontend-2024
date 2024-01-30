@@ -287,57 +287,81 @@ const actions = {
         }
       },
       
-      async getConsistentlyList({ commit }, ) {
+      // async getConsistentlyList({ commit }, ) {
+      //   const token = localStorage.getItem('token')
+      //   try {
+      //     const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/consistentlyBehind`, {
+      //       headers: {
+      //         'Authorization': ` ${token}`
+      //       },
+      //     });
+      //     if(response.status === true ){
+      //     commit('setconsistentlyBehindCount', response.consistentlyBehindCount);
+      //     commit('setconsistenlyList',response.data)
+      //     }
+          
+      //   } catch (e) { 
+      //     commit('setErrorMessage', e?.response?.data?.message);
+      //     commit('setErrorType', "error");
+      //     commit('setSuccessMessage', "");
+      //     commit('setSuccessType', "")
+      //   }
+      // },
+      // async getFallingList({ commit }, ) {
+      //   const token = localStorage.getItem('token')
+      //   try {
+      //     const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/fallingBehind`, {
+      //       headers: {
+      //         'Authorization': ` ${token}`
+      //       },
+      //     });
+      //     if(response.status === true ){
+      //     commit('setfallingBehindCount', response.fallingBehindCount);
+      //     commit('setfallingList',response.data)
+      //     }
+          
+      //   } catch (e) { 
+      //     commit('setErrorMessage', e?.response?.data?.message);
+      //     commit('setErrorType', "error");
+      //     commit('setSuccessMessage', "");
+      //     commit('setSuccessType', "")
+      //   }
+      // },
+      // async getAheadList({ commit }, ) {
+      //   const token = localStorage.getItem('token')
+      //   try {
+      //     const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/aheadStudents`, {
+      //       headers: {
+      //         'Authorization': ` ${token}`
+      //       },
+      //     });
+      //     if(response.status === true ){
+      //     commit('setAheadCount', response.aheadOfWorks);
+      //     commit('setAheadList',response.data)
+      //     }
+          
+      //   } catch (e) { 
+      //     commit('setErrorMessage', e?.response?.data?.message);
+      //     commit('setErrorType', "error");
+      //     commit('setSuccessMessage', "");
+      //     commit('setSuccessType', "")
+      //   }
+      // },
+      async getTaskStatus({ commit }, ) {
         const token = localStorage.getItem('token')
         try {
-          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/consistentlyBehind`, {
+          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/studentDetails`, {
             headers: {
               'Authorization': ` ${token}`
             },
           });
           if(response.status === true ){
           commit('setconsistentlyBehindCount', response.consistentlyBehindCount);
-          commit('setconsistenlyList',response.data)
-          }
-          
-        } catch (e) { 
-          commit('setErrorMessage', e?.response?.data?.message);
-          commit('setErrorType', "error");
-          commit('setSuccessMessage', "");
-          commit('setSuccessType', "")
-        }
-      },
-      async getFallingList({ commit }, ) {
-        const token = localStorage.getItem('token')
-        try {
-          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/fallingBehind`, {
-            headers: {
-              'Authorization': ` ${token}`
-            },
-          });
-          if(response.status === true ){
+          commit('setconsistenlyList',response.consistentlyBehindData)
           commit('setfallingBehindCount', response.fallingBehindCount);
-          commit('setfallingList',response.data)
-          }
-          
-        } catch (e) { 
-          commit('setErrorMessage', e?.response?.data?.message);
-          commit('setErrorType', "error");
-          commit('setSuccessMessage', "");
-          commit('setSuccessType', "")
-        }
-      },
-      async getAheadList({ commit }, ) {
-        const token = localStorage.getItem('token')
-        try {
-          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/aheadStudents`, {
-            headers: {
-              'Authorization': ` ${token}`
-            },
-          });
-          if(response.status === true ){
-          commit('setAheadCount', response.aheadOfWorks);
-          commit('setAheadList',response.data)
+          commit('setfallingList',response.fallingBehindData)
+          commit('setAheadCount', response.aheadStudentsCount);
+          commit('setAheadList',response.aheadStudentsData)
           }
           
         } catch (e) { 
