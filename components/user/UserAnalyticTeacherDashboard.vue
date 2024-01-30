@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h2 class="text-20 font-poppins font-semi-bold mb-0 flex-grow-1">
-            Welcome Back Samantha!</h2>
+            Welcome Back {{ firstName + ' ' + lastName }}!</h2>
           <div class="form-group flex-grow-1 mb-0">
             <input type="text" class="form-control" id="search" placeholder="Search Student">
           </div>
@@ -454,9 +454,13 @@ export default{
       meetingDetail: {},
       studentsList: [],
       modalListType: '',
+      firstName: '',
+      lastName: ''
     }
   },
   mounted(){
+    this.firstName = localStorage.getItem("firstName");
+    this.lastName = localStorage.getItem("lastName");
     this.TeacherMeetingList();
     this.GetStudentCount();
     // this.GetConsistentlyList();
