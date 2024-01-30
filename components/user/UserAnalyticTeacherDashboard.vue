@@ -459,9 +459,10 @@ export default{
   mounted(){
     this.TeacherMeetingList();
     this.GetStudentCount();
-    this.GetConsistentlyList();
-    this.GetFallingList();
-    this.GetAheadList();
+    // this.GetConsistentlyList();
+    // this.GetFallingList();
+    // this.GetAheadList();
+  this.GetTaskStatus();
   },
   computed: {
     ...mapState("teacherAppointment", {
@@ -493,6 +494,7 @@ export default{
       getConsistentlyList: "getConsistentlyList",
       getFallingList: "getFallingList",
       getAheadList: "getAheadList",
+      getTaskStatus: "getTaskStatus"
     }),
     async GetStudentCount(){
       await this.getStudentCount();
@@ -505,6 +507,9 @@ export default{
     },
     async GetAheadList(){
        await this.getAheadList();
+    },
+    async GetTaskStatus(){
+       await this.getTaskStatus();
     },
     async TeacherMeetingList() {
       const { id } = localStorage;
