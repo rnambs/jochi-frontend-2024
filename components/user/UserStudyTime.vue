@@ -1608,18 +1608,15 @@ export default {
     }
   }else{
     const taskId = this.$route.query.id;
-    if(taskId){
-      await this.getAssignment({
-        id: taskId,
-      })
-      this.sessionType = "assignment"
-      let data = this.mapData(this.assignment);
+  if (taskId) {
+    const data = await this.getAndMapData(taskId);
+    if (data.task_status === "Completed") {
+      this.$router.push("/task");
+    } else {
       this.currentTab = 2;
-      if (!data) {
-        data = this.mapSharedData(this.sharedAssignment);
-      }
       this.onAssignmentSelectroute(data);
     }
+  }
   }
     window.addEventListener("beforeunload", function (e) {
       // Cancel the event
@@ -1708,6 +1705,11 @@ export default {
     nameWithLang({ name, language }) {
       return `${name} — [${language}]`;
     },
+    async getAndMapData(taskId) {
+    await this.getAssignment({ id: taskId });
+    this.sessionType = "assignment";
+    return this.mapData(this.assignment) || this.mapSharedData(this.sharedAssignment);
+  },
     async loadNext($state) {
         // if (this.initialLoad) {
         // $state.reset();

@@ -51,7 +51,7 @@
           </li> -->
           <!-- Teams & Clubs -->
           <li class="nav-item d-flex flex-column flex-md-row px-1 parent-menu my-1 my-md-2">
-            <a @click="$event.target.classList.toggle('active')" 
+            <a @click="$event.target.classList.toggle('active')"
               class="nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
               aria-controls="collapseOne">
@@ -109,8 +109,11 @@
           </li>
         </ul>
         <ul class="navbar-nav ml-auto header mr-3">
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#">Cloud</a>
+          <!-- <li class="nav-item d-flex justify-content-start justify-content-md-center p-1">
+            <a class="nav-link my-auto text-14 font-medium" href="#">FAQ's</a>
+          </li>
+          <li class="nav-item d-flex justify-content-start text-nowrap justify-content-md-center p-1">
+            <a class="nav-link my-auto text-14 font-medium" href="#">Privacy Policy</a>
           </li> -->
           <li class="nav-item d-flex justify-content-start justify-content-md-center p-1">
             <div class="dropdown btn-notification my-auto d-flex flex-column">
@@ -195,7 +198,7 @@
       </div>
     </nav>
     <nav v-else class="navbar navbar-expand-md navbar-light p-0" id="clickableId">
-      <div 
+      <div
         class="navbar-brand d-flex align-items-center justify-content-center mr-0">
         <span class="bg-primary-dark rounded-14 d-flex  align-items-center justify-content-center p-2">
           <img src="../../static/image/v4/jochilogo.png" alt="jochi logo" class="img-logo-v4 object-fit-contain">
@@ -245,7 +248,7 @@
           </li> -->
           <!-- Teams & Clubs -->
           <li class="nav-item d-flex flex-column flex-md-row px-1 parent-menu my-1 my-md-2">
-            <a @click="$event.target.classList.toggle('active')" 
+            <a @click="$event.target.classList.toggle('active')"
               class="nav-link btn accordion-link collapsed d-inline-flex justify-content-start justify-content-md-center"
               type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
               aria-controls="collapseOne">

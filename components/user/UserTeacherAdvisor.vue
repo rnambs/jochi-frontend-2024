@@ -227,7 +227,8 @@
                                   </div>
                                 </div>
                                   <div class="pe-2 d-flex justify-space-between align-center">
-                                    <button
+                                    <!-- Code commented for future use -->
+                                    <!-- <button
                                     v-if="detail.createdBy && detail.task_status !== 'Completed'"
                                     @click="onCardClick(detail)"
                                     class="ml-3 text-12"
@@ -239,7 +240,7 @@
                                     class="ml-3 text-12"
                                   >
                                     <i class="fas fa-trash color-black"></i>
-                                  </button>
+                                  </button> -->
                                   </div>
                                 </div>
                                 <div class="text-center my-3">
@@ -432,7 +433,8 @@
                                   </div>
                                 </div>
                                   <div class="d-flex  p-0">
-                                <button
+                                    <!-- Code commented for future use -->
+                                <!-- <button
                                     v-if="detail.createdBy"
                                     @click="onCardClick(detail)"
                                     class="ml-3 text-12"
@@ -444,7 +446,7 @@
                                     class="ml-3 text-12"
                                   >
                                     <i class="fas fa-trash color-black"></i>
-                                  </button>
+                                  </button> -->
 
                                   <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
 ${detail.emailCounter === null ? 0 : detail.emailCounter} reminder emails sent so far`"
@@ -1175,6 +1177,8 @@ export default {
     }),
     ...mapState("quotedMessage", {
       newAdditionalMaterial: (state) => state.newAdditionalMaterial,
+      errorMessageQuote: (state) => state.errorMessage,
+      errorTypeQuote: (state) => state.errorType,
     }),
 
   },
@@ -1432,7 +1436,7 @@ export default {
             item.peers = this.mapPeers(e);
             item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
             item.isShared = true;
-            item.emailCounter = e.emailCounter;
+            item.emailCounter = e.assignments.emailCounter;
             this.overdueAssts.push(item);
           } else if (e.assignments.task_status == "Completed") {
             this.mapSingleSharedAsst(e);

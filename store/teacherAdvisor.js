@@ -12,7 +12,14 @@ const state = {
     successMessage: "",
     successType: "",
     subjectsData: [],
-    emailCountList: ''
+    emailCountList: '',
+    studentCount: '',
+    consistentlyBehindCount: '',
+    consistenlyList: [],
+    fallingBehindCount: "",
+    fallingBehindlist: [],
+    aheadCount: '',
+    aheadList: [],
 
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
@@ -260,8 +267,110 @@ const actions = {
           } 
         }
       },
+      async getStudentCount({ commit }, ) {
+        const token = localStorage.getItem('token')
+        try {
+          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/totalStudentsCount`, {
+            headers: {
+              'Authorization': ` ${token}`
+            },
+          });
+          if(response.status === true ){
+          commit('setTotalStudentCount', response.student_count);
+          }
+          
+        } catch (e) { 
+          commit('setErrorMessage', e?.response?.data?.message);
+          commit('setErrorType', "error");
+          commit('setSuccessMessage', "");
+          commit('setSuccessType', "")
+        }
+      },
       
-
+      // async getConsistentlyList({ commit }, ) {
+      //   const token = localStorage.getItem('token')
+      //   try {
+      //     const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/consistentlyBehind`, {
+      //       headers: {
+      //         'Authorization': ` ${token}`
+      //       },
+      //     });
+      //     if(response.status === true ){
+      //     commit('setconsistentlyBehindCount', response.consistentlyBehindCount);
+      //     commit('setconsistenlyList',response.data)
+      //     }
+          
+      //   } catch (e) { 
+      //     commit('setErrorMessage', e?.response?.data?.message);
+      //     commit('setErrorType', "error");
+      //     commit('setSuccessMessage', "");
+      //     commit('setSuccessType', "")
+      //   }
+      // },
+      // async getFallingList({ commit }, ) {
+      //   const token = localStorage.getItem('token')
+      //   try {
+      //     const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/fallingBehind`, {
+      //       headers: {
+      //         'Authorization': ` ${token}`
+      //       },
+      //     });
+      //     if(response.status === true ){
+      //     commit('setfallingBehindCount', response.fallingBehindCount);
+      //     commit('setfallingList',response.data)
+      //     }
+          
+      //   } catch (e) { 
+      //     commit('setErrorMessage', e?.response?.data?.message);
+      //     commit('setErrorType', "error");
+      //     commit('setSuccessMessage', "");
+      //     commit('setSuccessType', "")
+      //   }
+      // },
+      // async getAheadList({ commit }, ) {
+      //   const token = localStorage.getItem('token')
+      //   try {
+      //     const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/aheadStudents`, {
+      //       headers: {
+      //         'Authorization': ` ${token}`
+      //       },
+      //     });
+      //     if(response.status === true ){
+      //     commit('setAheadCount', response.aheadOfWorks);
+      //     commit('setAheadList',response.data)
+      //     }
+          
+      //   } catch (e) { 
+      //     commit('setErrorMessage', e?.response?.data?.message);
+      //     commit('setErrorType', "error");
+      //     commit('setSuccessMessage', "");
+      //     commit('setSuccessType', "")
+      //   }
+      // },
+      async getTaskStatus({ commit }, ) {
+        const token = localStorage.getItem('token')
+        try {
+          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/studentDetails`, {
+            headers: {
+              'Authorization': ` ${token}`
+            },
+          });
+          if(response.status === true ){
+          commit('setconsistentlyBehindCount', response.consistentlyBehindCount);
+          commit('setconsistenlyList',response.consistentlyBehindData)
+          commit('setfallingBehindCount', response.fallingBehindCount);
+          commit('setfallingList',response.fallingBehindData)
+          commit('setAheadCount', response.aheadStudentsCount);
+          commit('setAheadList',response.aheadStudentsData)
+          }
+          
+        } catch (e) { 
+          commit('setErrorMessage', e?.response?.data?.message);
+          commit('setErrorType', "error");
+          commit('setSuccessMessage', "");
+          commit('setSuccessType', "")
+        }
+      },
 }
 
 const mutations = {
@@ -301,6 +410,27 @@ const mutations = {
       setEmailCount(state, data) {
         state.emailCountList = data;
     },
+    setTotalStudentCount(state, data) {
+        state.studentCount = data;
+    },
+    setconsistentlyBehindCount(state, data) {
+        state.consistentlyBehindCount = data;
+    },
+    setconsistenlyList(state, data) {
+        state.consistenlyList = data;
+    },
+    setfallingBehindCount(state, data) {
+      state.fallingBehindCount = data;
+  },
+  setfallingList(state, data) {
+      state.fallingBehindlist = data;
+  },
+  setAheadCount(state, data) {
+    state.aheadCount = data;
+  },
+  setAheadList(state, data) {
+    state.aheadList = data;
+  },
 
 }
 const getters = {
@@ -340,6 +470,27 @@ const getters = {
       emailCountList: () => {
         return state.emailCountList;
     },
+    studentCount: () => {
+        return state.studentCount;
+    },
+    consistentlyBehindCount: () => {
+        return state.consistentlyBehindCount;
+    },
+    consistenlyList: () => {
+        return state.consistenlyList;
+    },
+    fallingBehindCount: () => {
+      return state.fallingBehindCount;
+  },
+  fallingBehindlist: () => {
+      return state.fallingBehindlist;
+  },
+  aheadCount: () => {
+    return state.aheadCount;
+  },
+  aheadList: () => {
+      return state.aheadList;
+  },
 
 }
 
