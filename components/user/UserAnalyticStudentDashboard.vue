@@ -36,7 +36,7 @@
             </div>
 
             <div class="col-12 col-sm-4 py-0 d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary text-14 px-3 w-auto">
+              <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto">
                 View Current Progress
               </button>
             </div>
@@ -245,7 +245,6 @@ export default {
     }else{
       this.$router.push(`/teacher-analytic-dashboard`);
     }
-    this.getAssignments();
     // this.loading = false;
     this.startTime = new Date().getTime();
     this.isMounted = false;
@@ -492,6 +491,9 @@ export default {
       this.filteredAssignments = this.pendingAssignments.filter((assignment) => {
               return assignment.task_status === 'Completed';
             });
+    },
+    currentProgress(){
+      this.$router.push(`/teacher-advisor?id=${this.studentId}`);
     }
   },
 };

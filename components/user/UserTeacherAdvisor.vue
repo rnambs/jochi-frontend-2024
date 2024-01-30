@@ -1148,7 +1148,13 @@ export default {
       },
     };
   },
-  mounted() {
+ async mounted() {
+    const studentId = this.$route.query.id;
+    if(studentId){
+    await this.getStudentList();
+    await this.studentsListAdvisor
+    await console.log("studentsListAdvisor",this.studentsListAdvisor);
+    }
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     this.getStudentList();
     this.checkValidTime();
