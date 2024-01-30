@@ -20,7 +20,7 @@ const state = {
     fallingBehindlist: [],
     aheadCount: '',
     aheadList: [],
-
+    studentDetails: []
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -277,6 +277,7 @@ const actions = {
           });
           if(response.status === true ){
           commit('setTotalStudentCount', response.student_count);
+          commit('setTotalStudentDetails', response.studentDetails);
           }
           
         } catch (e) { 
@@ -431,6 +432,9 @@ const mutations = {
   setAheadList(state, data) {
     state.aheadList = data;
   },
+  setTotalStudentDetails(state, data) {
+    state.studentDetails = data;
+  },
 
 }
 const getters = {
@@ -491,6 +495,9 @@ const getters = {
   aheadList: () => {
       return state.aheadList;
   },
+  studentDetails: () => {
+    return state.studentDetails;
+},
 
 }
 
