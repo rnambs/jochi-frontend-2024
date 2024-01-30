@@ -128,7 +128,7 @@
           <div class="col-12 col-sm-6 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
               <h2 class="text-16 mb-0 font-semi-bold color-text-100 border-bottom pb-3">Carousel</h2>
-              <carousel :per-page="1" :navigate-to="someLocalProperty" :adjustableHeight="true"  :mouse-drag="false">
+              <carousel :per-page="1"  :adjustableHeight="true"  :mouse-drag="false">
                 <slide>
                   <h4>Welcome to Jochi!</h4>
                   <p>How Jochi works for
