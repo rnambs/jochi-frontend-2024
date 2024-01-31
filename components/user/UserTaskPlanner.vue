@@ -2007,6 +2007,9 @@ export default {
       task_ids: [],
       OverdueToast: false,
       DoingToast: false,
+      startOfWeek:"",
+      startOfMonth: "",
+      taskDate: ""
     }
   },
   created() {
@@ -2016,6 +2019,8 @@ export default {
     });
   },
   async mounted() {
+      this.startOfWeek = moment().locale('en-gb').startOf('week').format('YYYY-MM-DD');
+      this.taskDate = this.startOfWeek;
     const taskId = this.$route.query.id;
     if (taskId) {
       
@@ -2249,11 +2254,17 @@ export default {
     },
     monthlyAssignments() {
       // Set the assignmentType to "Monthly" when clicking monthlyAssignments
+      this.startOfMonth = moment().startOf('month').format('YYYY-MM-DD');
+      this.taskDate = this.startOfMonth;
       this.assignmentType = 'Monthly';
       this.doneoffset = 0;
       this.doneAssignmentsList = [];
       this.donereloadNext = true;
       this.donereloadCount += 1;
+      this.offset = 0;
+      this.tempAssts = [];
+      this.reloadNext = true;
+      this.reloadCount += 1;
       this.monthlyAssignmentsCalled = true;
     },
     truncate(description) {
@@ -2264,19 +2275,30 @@ export default {
     return description;
     },
     allAssignments() {
+      this.taskDate = "";
       this.assignmentType = 'All';
       this.doneoffset = 0;
       this.doneAssignmentsList = [];
       this.donereloadNext = true;
       this.donereloadCount += 1;
+      this.offset = 0;
+      this.tempAssts = [];
+      this.reloadNext = true;
+      this.reloadCount += 1;
       this.allAssignmentsCalled = true;
     },
     weeklyAssignments() {
+      this.startOfWeek = moment().locale('en-gb').startOf('week').format('YYYY-MM-DD');
+      this.taskDate = this.startOfWeek;
       this.assignmentType = 'Weekly';
       this.doneoffset = 0;
       this.doneAssignmentsList = [];
       this.donereloadNext = true;
       this.donereloadCount += 1;
+      this.offset = 0;
+      this.tempAssts = [];
+      this.reloadNext = true;
+      this.reloadCount += 1;
       this.allAssignmentsCalled = true;
     },
 
@@ -2319,7 +2341,10 @@ export default {
         this.reloadNext = false;
         this.tempOffset = this.offset;
         this.pendingAssignments = [];
-        await this.getAssignments({ offset: this.offset, limit: this.limit, filter: 'Pending' });
+        await this.getAssignments({ offset: this.offset, limit: this.limit, filter: 'Pending',
+          date: this.taskDate,
+          type: this.assignmentType,
+        });
         this.offset = this.offset + this.limit;
         this.assignmentMaterials = [];
         await this.mapAssignments();
