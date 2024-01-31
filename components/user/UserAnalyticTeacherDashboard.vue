@@ -158,6 +158,7 @@
                       </div>
                 </slide>
               </carousel>
+              <!-- code commented for alternate usage -->
               <!-- <v-carousel :show-arrows="false"  delimiter-icon="mdi-circle">
                 <v-carousel-item
                 >
