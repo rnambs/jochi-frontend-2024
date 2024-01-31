@@ -134,14 +134,54 @@
                   <p>How Jochi works for
                     specialists.
                   </p>
+                      <div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <p>Jochi - Watch Video</p>
+                        </a>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        </a>
+                      </div>
                 </slide>
                 <slide>
                   <h4>Jochi for Students</h4>
                   <p>What Jochi looks like for
                     your students.
                   </p>
+                  <div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <p>Jochi - Watch Video</p>
+                        </a>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        </a>
+                      </div>
                 </slide>
               </carousel>
+              <!-- <v-carousel :show-arrows="false"  delimiter-icon="mdi-circle">
+                <v-carousel-item
+                >
+                <div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <p>Jochi - Watch Video</p>
+                        </a>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        </a>
+                      </div>
+                </v-carousel-item>
+                <v-carousel-item
+                >
+                <div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <p>Jochi - Watch Video</p>
+                        </a>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        </a>
+                      </div>
+              </v-carousel-item>
+              </v-carousel> -->
             </div>
           </div>
         </div>
