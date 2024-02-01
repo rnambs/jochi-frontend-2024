@@ -1333,7 +1333,7 @@
             <div class="form-group required">
               <vue-timepicker
                 close-on-complete
-                format="hh:mm a"
+                format="hh:mm A"
                 placeholder="Time"
                 v-model="scheduledTime"
                 name="scheduledTime"
@@ -1978,7 +1978,7 @@ export default {
       return valid;
     },
     checkValidTime(time) {
-      let timeFormat = time?.hh + ":" + time?.mm + " " + time?.a;
+      let timeFormat = time?.hh + ":" + time?.mm + " " + time?.A;
       console.log(time, timeFormat, moment(timeFormat, "hh:mm A", true).isValid());
       return moment(timeFormat, "hh:mm A", true).isValid();
     },
