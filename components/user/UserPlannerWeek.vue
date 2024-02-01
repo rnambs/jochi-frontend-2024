@@ -2890,7 +2890,7 @@ export default {
               ":" +
               this.timeValue.mm +
               " " +
-              this.timeValue.A??this.timeValue.a)
+              (this.timeValue.A??this.timeValue.a))
             : this.timeValue;
         let valid = moment(tempTime, "h:mm A", true).isValid();
 
