@@ -602,7 +602,6 @@ export default{
     async GetGradeLevels(){
        await this.getGradeLevels();
        this.renderChart();
-       this.totalGrades.push('88', '92','High School','Secondary');
        console.log("data",this.totalGrades);
        console.log("data",this.taskStatusData); 
     },
@@ -610,7 +609,9 @@ export default{
         const aheadArray = this.taskStatusData.map(item => item.aheadStudentsCount);
         const behindArray  = this.taskStatusData.map(item => item.consistentlyBehindCount);
         const fallingArray  = this.taskStatusData.map(item => item.fallingBehindCount);
-
+        const allNumbers = [...aheadArray, ...behindArray, ...fallingArray];
+        const highestNumber = Math.max(...allNumbers);
+        console.log("Highest Number:", highestNumber);
         console.log("Behind Array:", behindArray);
         console.log("Falling Array:", fallingArray);
         console.log("Ahead Array:", aheadArray);
