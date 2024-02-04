@@ -606,9 +606,22 @@ export default{
        console.log("data",this.taskStatusData); 
     },
     renderChart() {
-        const aheadArray = this.taskStatusData.map(item => item.aheadStudentsCount);
-        const behindArray  = this.taskStatusData.map(item => item.consistentlyBehindCount);
-        const fallingArray  = this.taskStatusData.map(item => item.fallingBehindCount);
+        // const aheadArray = this.taskStatusData.map(item => item.aheadStudentsCount);
+        // const behindArray  = this.taskStatusData.map(item => item.consistentlyBehindCount);
+        // const fallingArray  = this.taskStatusData.map(item => item.fallingBehindCount);
+
+        const aheadArray = [2,3,4];
+        const behindArray  = [2,1,3];
+        const fallingArray  = [2,5,1,];
+
+        const sumArray = Array.from({ length: aheadArray.length }, (_, i) => aheadArray[i] + behindArray[i] + fallingArray[i]);
+
+        // Find the highest number among the sums
+        const highestSum = Math.max(...sumArray);
+
+        console.log("Sum Array:", sumArray);
+        console.log("Highest Sum:", highestSum);
+
         const allNumbers = [...aheadArray, ...behindArray, ...fallingArray];
         const highestNumber = Math.max(...allNumbers);
         console.log("Highest Number:", highestNumber);
@@ -621,6 +634,7 @@ export default{
           type: 'bar',
           data: {
             labels: this.totalGrades,
+            // labels: ["6","7","8","9","10","11","12"],
             datasets: [
               {
                 label: 'Ahed', // First dataset label
@@ -653,8 +667,8 @@ export default{
               y: {
                 stacked: true,
                 beginAtZero: true,
-                stepSize: 20,      // Set step size to 20
-                max: 120,   
+                stepSize: Math.ceil(highestSum / 5) * 1,      // Set step size to 20
+                max: Math.ceil(highestSum / 5) * 5,  
               },
             },
           },
