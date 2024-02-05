@@ -1306,7 +1306,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-calendar .calendar-table thead th.available span {
   color: rgba(255, 255, 255, 0.45);
-  border: solid rgba(255, 255, 255, 0.45);
+  border: solid #5534A5;
   border-width: 0 2px 2px 0;
 }
 .daterangepicker.ltr.show-calendar.opensleft .drp-calendar .calendar-table tbody td.available {
@@ -6355,24 +6355,4 @@ select.form-control.is-invalid {
 }
 .analytic-dashboard .box-card:hover {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
-.border-top-dotted {
-  border-top-style: dotted;
-}
-
-.dotted {
-  border-top: 2px #dee2e6 dotted;
-}
-
-.btn-start-session {
-  background: #007bff;
-  font-size: 0.75rem;
-  color: #fff;
-  font-weight: 500;
-  padding: 0.25rem 0.75rem !important;
-}
-.btn-start-session:hover {
-  background: #0069d9;
-  color: #fff;
 }/*# sourceMappingURL=custom.css.map */
