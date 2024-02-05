@@ -264,7 +264,7 @@
                           v-if="teachersList.length == 0"
                           class="empty-shedule"
                         >
-                          <p class="color-gray text-12">No Meetings found</p>
+                          <p class="color-gray text-center  text-16">No Meetings found</p>
                         </div>
               </div>
             </div>
