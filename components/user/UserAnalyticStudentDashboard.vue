@@ -30,13 +30,27 @@
           <div class="col-12 px-0 d-flex flex-wrap justify-content-between  align-items-center">
             <div class="col-12 col-sm-8 col-md-8 col-lg-6">
               <form class="row">
-                <div class="form-group mb-3 mb-sm-0  col-12 col-sm-6 py-0">
+                <!-- <div class="form-group mb-3 mb-sm-0  col-12 col-sm-6 py-0">
                   <select class="form-control" id="exampleFormControlSelect1">
-                    <option selected>Week</option>
-                    <option>Month</option>
+                    <option @input="setAssignmentType('weekly')">Week</option>
+                    <option @input="setAssignmentType('monthly')">Month</option>
                     <option>Year</option>
                   </select>
-                </div>
+                </div> -->
+                <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto">
+                        <div class="dropdown-select form-control form-sm form-transparent" type="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="i-filter-calendar j-icon i-sm bg-gray mr-1"></i>
+                          <span id="dLabel" class="mr-3">{{ TypeText }}</span>
+                          <span class="caret"><i class="fas fa-chevron-down font-medium"></i></span>
+                        </div>
+                        <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
+                          <li class="item p-2" @click="setAssignmentType('weekly')"
+                            :class="{ active: assignmentType === 'weekly' }">This week</li>
+                          <li class="item p-2" @click="setAssignmentType('monthly')"
+                            :class="{ active: assignmentType === 'monthly' }">This Month</li>
+                        </ul>
+                      </div>
                 <div data-intro="Choose your date range."
                   class="col-12 col-sm-6 py-0 form-row  d-flex position-relative schedule-meeting-section">
                   <input type="text" name="daterange" autocomplete="off" placeholder="Date Range"
@@ -226,6 +240,7 @@ export default {
       selectedStudent: "",
       lottieOptions: { animationData: animationData.default },
       anim: null,
+      assignmentType:'weekly',
     };
   },
   computed:{
@@ -246,6 +261,13 @@ export default {
       OverdueAssignmentscount: (state) => state.OverdueAssignmentscount,
       OverDueAssignments: (state) => state.OverDueAssignments,
     }),
+    TypeText() {
+      if (this.assignmentType === 'monthly') {
+        return 'This Month';
+      }else {
+        return 'This Week';
+      }
+    },
   },
   mounted() {
     const studentId = this.$route.query.id;
@@ -318,12 +340,17 @@ export default {
       getStudentCount: "getStudentCount",
       getAssignmentsListData: "getAssignmentsListData"
     }),
+    async setAssignmentType(type) {
+      this.assignmentType = type;
+     await this.getAssignments()
+      console.log("1",this.assignmentType);
+    },
     async GetStudentCount(){
       await this.getStudentCount();
     },
     async getAssignments() {
       this.loading = true;
-      await this.getAssignmentsListData();
+      await this.getAssignmentsListData({id:this.studentId,type:this.assignmentType});
       this.mapOverdueAssignments();
       this.mapCompletedAssignments();
       this.loading = false;
