@@ -399,6 +399,38 @@ const actions = {
           commit('setSuccessType', "")
         }
       },
+      async getAssignmentsListData({ commit }, payLoad) {
+        try {
+            const token = localStorage.getItem('token')
+            const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/studentAssignment?studentId=${'243'}&valueType=${'weekly'}`, {
+                headers: {
+                    'Authorization': ` ${token}`
+                },
+            });
+            console.log("data",response);
+            commit('setTotalassignmentscount', response.total_assignments_count);
+            commit('setCompletedAssignmentscount', response.completed_assignments_count);
+            commit('setOverdueAssignmentscount', response.Overdue_assignments_count);
+            commit('setOverdueassignments', response.OverDue_assignments_Details);
+            commit('setCompletedassignments', response.completed_assignments_details);
+        } catch (e) {
+            if (e.response.data.message == "Unauthorized") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                window.localStorage.clear();
+                this.$router.push('/');
+            }
+            else {
+                commit('setErrorMessage', e.response.data.message);
+                commit('setErrorType', "error");
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+            }
+        }
+  
+    },
 }
 
 const mutations = {
