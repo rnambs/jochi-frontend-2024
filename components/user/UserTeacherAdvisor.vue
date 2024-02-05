@@ -1152,8 +1152,8 @@ export default {
     const studentId = this.$route.query.id;
     if(studentId){
     await this.getStudentList();
-    await this.studentsListAdvisor
-    await console.log("studentsListAdvisor",this.studentsListAdvisor);
+    const student = this.studentsListAdvisor.find(student => student.id == studentId);
+    this.onStudentClick(student);
     }
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     this.getStudentList();
@@ -1302,12 +1302,14 @@ export default {
       }
     },
     async getAssignments() {
+      this.loading = true;
       await this.getAssignmentsList({ id: this.studentDetail.id });
       await this.getSubjectsList({ id: this.studentDetail.id });
       this.mapAssignments();
       this.mapSharedAssignments();
       this.mapOverdueAssignments();
       this.mapOverdueSharedAssignments();
+      this.loading = false;
     },
     mapAssignments() {
       if (this.assignmentList && this.assignmentList.length > 0) {

@@ -20,7 +20,9 @@ const state = {
     fallingBehindlist: [],
     aheadCount: '',
     aheadList: [],
-    studentDetails: []
+    studentDetails: [],
+    totalGrades: [],
+    taskStatusData:[]
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -372,6 +374,26 @@ const actions = {
           commit('setSuccessType', "")
         }
       },
+      async getGradeLevels({ commit }, ) {
+        const token = localStorage.getItem('token')
+        try {
+          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/gradeLevels`, {
+            headers: {
+              'Authorization': ` ${token}`
+            },
+          });
+          if(response.status === true ){
+          commit('settotalGrades', response.totalGrades);
+          commit('settaskStatusData',response.data)
+          }
+          
+        } catch (e) { 
+          commit('setErrorMessage', e?.response?.data?.message);
+          commit('setErrorType', "error");
+          commit('setSuccessMessage', "");
+          commit('setSuccessType', "")
+        }
+      },
 }
 
 const mutations = {
@@ -435,6 +457,12 @@ const mutations = {
   setTotalStudentDetails(state, data) {
     state.studentDetails = data;
   },
+  settotalGrades(state, data) {
+    state.totalGrades = data;
+  },
+  settaskStatusData(state, data) {
+    state.taskStatusData = data;
+  },
 
 }
 const getters = {
@@ -497,8 +525,13 @@ const getters = {
   },
   studentDetails: () => {
     return state.studentDetails;
-},
-
+  },
+  totalGrades: () => {
+    return state.totalGrades;
+  },
+  taskStatusData: () => {
+  return state.taskStatusData;
+  },
 }
 
 export default {

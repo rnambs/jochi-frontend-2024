@@ -122,7 +122,12 @@
                 </div>
                 <img src="../../assets/images/Icon/info.svg" class="cursor-pointer" alt="info" width="24" height="24" />
               </div>
-              <img src="../../assets/images/graph.png" class="" alt="graph" width="100%" height="auto"/>
+              <!-- <img src="../../assets/images/graph.png" class="" alt="graph" width="100%" height="auto"/> -->
+              <div>
+                <div id="weeklyContainer" class="chart p-2 color-secondary my-auto">
+                  <canvas ref="myChart"></canvas>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-12 col-sm-6 h-auto d-flex">
@@ -134,14 +139,55 @@
                   <p>How Jochi works for
                     specialists.
                   </p>
+                      <div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <p>Jochi - Watch Video</p>
+                        </a>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        </a>
+                      </div>
                 </slide>
                 <slide>
                   <h4>Jochi for Students</h4>
                   <p>What Jochi looks like for
                     your students.
                   </p>
+                  <div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <p>Jochi - Watch Video</p>
+                        </a>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        </a>
+                      </div>
                 </slide>
               </carousel>
+              <!-- code commented for alternate usage -->
+              <!-- <v-carousel :show-arrows="false"  delimiter-icon="mdi-circle">
+                <v-carousel-item
+                >
+                <div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <p>Jochi - Watch Video</p>
+                        </a>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        </a>
+                      </div>
+                </v-carousel-item>
+                <v-carousel-item
+                >
+                <div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <p>Jochi - Watch Video</p>
+                        </a>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        </a>
+                      </div>
+              </v-carousel-item>
+              </v-carousel> -->
             </div>
           </div>
         </div>
@@ -468,6 +514,7 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
+import Chart from 'chart.js/auto';
 var isAccepted = false;
 var selectDate = "";
 var dateSelectValue = "";
@@ -475,6 +522,7 @@ var dateStr = "";
 export default{
   data(){
     return{
+      chart: null,
       teachersList: [],
       meetingDetail: {},
       studentsList: [],
@@ -482,6 +530,11 @@ export default{
       firstName: '',
       lastName: '',
       selectedStudent: "",
+      data : [
+                { Behind: 1, falling: 0, ahead: 1 },
+                { Behind: 0, falling: 1, ahead: 2 },
+                { Behind: 1, falling: 1, ahead: 0 }
+              ],
     }
   },
   mounted(){
@@ -492,7 +545,8 @@ export default{
     // this.GetConsistentlyList();
     // this.GetFallingList();
     // this.GetAheadList();
-  this.GetTaskStatus();
+    this.GetTaskStatus();
+    this.GetGradeLevels()
   },
   computed: {
     ...mapState("teacherAppointment", {
@@ -512,6 +566,8 @@ export default{
       fallingBehindlist:(state) => state.fallingBehindlist,
       aheadCount:(state) => state.aheadCount,
       aheadList:(state) => state.aheadList,
+      totalGrades:(state) => state.totalGrades,
+      taskStatusData:(state) => state.taskStatusData,
     }),
   },
   methods: {
@@ -525,7 +581,8 @@ export default{
       getConsistentlyList: "getConsistentlyList",
       getFallingList: "getFallingList",
       getAheadList: "getAheadList",
-      getTaskStatus: "getTaskStatus"
+      getTaskStatus: "getTaskStatus",
+      getGradeLevels: "getGradeLevels"
     }),
     async GetStudentCount(){
       await this.getStudentCount();
@@ -541,6 +598,71 @@ export default{
     },
     async GetTaskStatus(){
        await this.getTaskStatus();
+    },
+    async GetGradeLevels(){
+       await this.getGradeLevels();
+       this.renderChart();
+       console.log("data",this.totalGrades);
+       console.log("data",this.taskStatusData); 
+    },
+    renderChart() {
+        const aheadArray = this.taskStatusData.map(item => item.aheadStudentsCount);
+        const behindArray  = this.taskStatusData.map(item => item.consistentlyBehindCount);
+        const fallingArray  = this.taskStatusData.map(item => item.fallingBehindCount);
+
+        const sumArray = Array.from({ length: aheadArray.length }, (_, i) => aheadArray[i] + behindArray[i] + fallingArray[i]);
+
+        // Find the highest number among the sums
+        const highestSum = Math.max(...sumArray);
+
+        // code commented for alternate usage
+
+        // const allNumbers = [...aheadArray, ...behindArray, ...fallingArray];
+        // const highestNumber = Math.max(...allNumbers);
+
+        const ctx = this.$refs.myChart.getContext('2d');
+        this.chart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: this.totalGrades,
+            datasets: [
+              {
+                label: 'Ahed', // First dataset label
+                data: aheadArray, // Example data points for Dataset 1
+                backgroundColor: 'rgb(22, 91, 170)', // Example color, customize as needed
+                borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed
+                borderWidth: 1,
+              },
+              {
+                label: 'Behind', // Second dataset label
+                data: fallingArray, // Example data points for Dataset 2
+                backgroundColor: 'rgb(161, 85, 185)', // Example color, customize as needed
+                borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed
+                borderWidth: 1,
+              },
+              {
+                label: 'Rly Behind', // Third dataset label
+                data: behindArray, // Example data points for Dataset 3
+                backgroundColor: 'rgb(247, 101, 163)', // Example color, customize as needed
+                borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              x: {
+                stacked: true,
+              },
+              y: {
+                stacked: true,
+                beginAtZero: true,
+                stepSize: Math.ceil(highestSum / 5) * 1,      // Set step size to 20
+                max: Math.ceil(highestSum / 5) * 5,  
+              },
+            },
+          },
+        });
     },
     selectedStudentId(selectedStudent) {
       this.$router.push(`/student-analytic-dashboard?id=${selectedStudent.id}`);

@@ -12,7 +12,18 @@
           <h2 class="text-20 font-poppins font-semi-bold mb-0 flex-grow-1">
             Rahul’s Dashboard</h2>
           <div class="form-group flex-grow-1 mb-0">
-            <input type="text" class="form-control" id="search" placeholder="Search Student">
+            <!-- <input type="text" class="form-control" id="search" placeholder="Search Student"> -->
+            <multiselect
+                  v-model="selectedStudent"
+                  :options="studentDetails"
+                  track-by="first_name"
+                  label="first_name"
+                  placeholder="
+                  Select students"
+                  @input="selectedStudentId"
+                >
+                  <span slot="noResult">No data found</span>
+                </multiselect>
           </div>
         </div>
         <div class="row ">
@@ -216,12 +227,14 @@ export default {
       completedAssignmentcount: '',
       filteredAssignments: [],
       studentId: "",
+      selectedStudent: "",
       lottieOptions: { animationData: animationData.default },
       anim: null,
     };
   },
   computed:{
     ...mapState("teacherAdvisor", {
+      studentDetails: (state) => state.studentDetails,
       studentsList: (state) => state.studentsList,
       studentsListAdvisor: (state) => state.studentsListAdvisor,
       successMessage: (state) => state.successMessage,
@@ -246,6 +259,7 @@ export default {
       this.$router.push(`/teacher-analytic-dashboard`);
     }
     // this.loading = false;
+    this.GetStudentCount();
     this.startTime = new Date().getTime();
     this.isMounted = false;
     const _this = this;
@@ -305,7 +319,11 @@ export default {
     ...mapActions("teacherAdvisor", {
       getAssignmentsList: "getAssignmentsList",
       getSubjectsList: "getSubjectsList",
+      getStudentCount: "getStudentCount",
     }),
+    async GetStudentCount(){
+      await this.getStudentCount();
+    },
     async getAssignments() {
       this.loading = true;
       await this.getAssignmentsList({ id:  this.studentId });
@@ -494,7 +512,10 @@ export default {
     },
     currentProgress(){
       this.$router.push(`/teacher-advisor?id=${this.studentId}`);
-    }
+    },
+    selectedStudentId(selectedStudent) {
+      this.$router.push(`/teacher-advisor?id=${this.studentId}`);
+    },
   },
 };
 </script>
