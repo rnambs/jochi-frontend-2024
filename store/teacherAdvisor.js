@@ -402,7 +402,7 @@ const actions = {
       async getAssignmentsListData({ commit }, payLoad) {
         try {
             const token = localStorage.getItem('token')
-            const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/studentAssignment?studentId=${payLoad.id}&valueType=${payLoad.type}`, {
+            const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/studentAssignment?studentId=${payLoad.id}&valueType=${payLoad.type}&from_date=${payLoad.fromDate}&to_date=${payLoad.toDate}`, {
                 headers: {
                     'Authorization': ` ${token}`
                 },
