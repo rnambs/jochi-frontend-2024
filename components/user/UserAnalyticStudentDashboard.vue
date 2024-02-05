@@ -320,7 +320,9 @@ export default {
           );
           fromDate = picker.startDate.format("YYYY-MM-DD");
           endDate = picker.endDate.format("YYYY-MM-DD");
+          _this.getAssignments.bind(_this)();
           _this.isShowing = false;
+          _this.assignmentType = '';
         }
       );
 
@@ -341,6 +343,7 @@ export default {
     }),
     async setAssignmentType(type) {
       this.assignmentType = type;
+      $('input[name="daterange"]').val("");
      await this.getAssignments()
       console.log("1",this.assignmentType);
     },
@@ -349,7 +352,7 @@ export default {
     },
     async getAssignments() {
       this.loading = true;
-      await this.getAssignmentsListData({id:this.studentId,type:this.assignmentType});
+      await this.getAssignmentsListData({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});
       this.mapOverdueAssignments();
       this.mapCompletedAssignments();
       this.loading = false;
