@@ -37,7 +37,7 @@
                     <option>Year</option>
                   </select>
                 </div> -->
-                <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto">
+                <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto mr-2">
                         <div class="dropdown-select form-control form-sm form-transparent" type="button"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i class="i-filter-calendar j-icon i-sm bg-gray mr-1"></i>
@@ -69,8 +69,8 @@
           </div>
         </div>
         <div class="row d-flex">
-          <div class="col-12 col-sm-4 h-auto d-flex">
-            <div class="border p-3 rounded-20 w-100 box-card">
+          <div class="col-12 col-sm-3 h-auto d-flex">
+            <div class="border p-3 rounded-20 w-100 box-card overflow-x-hidden">
               <div class="d-flex justify-content-between align-items-center ">
                 <div class="">
                   <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ OverdueAssignmentscount }} <span
@@ -87,40 +87,41 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-8">
+          <div class="col-12 col-sm-9">
             <div class="border p-3 rounded-20 w-100 box-card">
               <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
                 Overdue Assignments</h2>
-                <div class="scrollable-container overflow-auto" style="max-height: 100px;">
+                <div>
                   <div class="row">
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <p class="mb-0 text-14 color-text-50">Assignment Name</p>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <p class="mb-0 text-14 color-text-50">Subject</p>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-2">
                       <p class="mb-0 text-14 color-text-50">Due Date</p>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-2">
                       <p class="mb-0 text-14 color-text-50">Remind Student</p>
                     </div>
                   </div>
-
-                  <div class="row" v-for="assignment in overdueAssts" :key="assignment.id">
-                    <div class="col-12 col-md-3">
+                <div class="assignment-overflow">
+                  <div class="row " v-for="assignment in overdueAssts" :key="assignment.id">
+                    <div class="col-12 col-md-4">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-2">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-2">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">INSERT BELL ICON</h2>
                     </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -128,7 +129,7 @@
 
         </div>
         <div class="row d-flex">
-          <div class="col-12 col-sm-4 h-auto d-flex">
+          <div class="col-12 col-sm-3 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex justify-content-between align-items-center ">
                 <div class="">
@@ -146,40 +147,35 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-8">
+          <div class="col-12 col-sm-9">
             <div class="border p-3 rounded-20 w-100 box-card">
               <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
                 Completed Assignments</h2>
-                <div  class="scrollable-container overflow-auto" style="max-height: 100px;">
+                <div>
                   <div class="row">
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <p class="mb-0 text-14 color-text-50">Assignment Name</p>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <p class="mb-0 text-14 color-text-50">Subject</p>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <p class="mb-0 text-14 color-text-50">Due Date</p>
                     </div>
-                    <div class="col-12 col-md-3">
-                      <p class="mb-0 text-14 color-text-50">Remind Student</p>
-                    </div>
                   </div>
-
+                <div class="assignment-overflow">
                   <div class="row" v-for="assignment in completedAssignmentsList" :key="assignment.id">
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
                     </div>
-                    <div class="col-12 col-md-3">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">INSERT BELL ICON</h2>
-                    </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -189,6 +185,30 @@
             <div class="border p-3 rounded-20 w-100 box-card">
               <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
                 Recent Grades</h2>
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                      <p class="mb-0 text-14 color-text-50">Assignment Name</p>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <p class="mb-0 text-14 color-text-50">Subject</p>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <p class="mb-0 text-14 color-text-50">Grade</p>
+                    </div>
+                  </div>
+                  <div class="assignment-overflow">
+                  <div class="row" v-for="assignment in completedAssignmentsList" :key="assignment.id">
+                    <div class="col-12 col-md-4">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
+                    </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -410,3 +430,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+.assignment-overflow{
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 6.25rem;
+}
+</style>
