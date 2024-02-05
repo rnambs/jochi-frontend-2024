@@ -610,17 +610,13 @@ export default{
         const behindArray  = this.taskStatusData.map(item => item.consistentlyBehindCount);
         const fallingArray  = this.taskStatusData.map(item => item.fallingBehindCount);
 
-        // const aheadArray = [2,3,4];
-        // const behindArray  = [2,1,3];
-        // const fallingArray  = [2,5,1,];
-
         const sumArray = Array.from({ length: aheadArray.length }, (_, i) => aheadArray[i] + behindArray[i] + fallingArray[i]);
 
         // Find the highest number among the sums
         const highestSum = Math.max(...sumArray);
 
-        // code commented for alternate function
-        
+        // code commented for alternate usage
+
         // const allNumbers = [...aheadArray, ...behindArray, ...fallingArray];
         // const highestNumber = Math.max(...allNumbers);
 
