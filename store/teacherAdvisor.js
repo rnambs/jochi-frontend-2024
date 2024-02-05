@@ -412,7 +412,8 @@ const actions = {
             commit('setCompletedAssignmentscount', response.completed_assignments_count);
             commit('setOverdueAssignmentscount', response.Overdue_assignments_count);
             commit('setOverdueassignments', response.OverDue_assignments_Details);
-            commit('setCompletedassignments', response.completed_assignments_details);
+            commit('setCompletedassignments', response.completed_assignments_details
+);
         } catch (e) {
             if (e.response.data.message == "Unauthorized") {
                 commit('setSuccessMessage', "");
@@ -500,6 +501,21 @@ const mutations = {
   settaskStatusData(state, data) {
     state.taskStatusData = data;
   },
+  setTotalassignmentscount(state, data) {
+    state.totalAssignmentscount = data;
+  },
+  setCompletedAssignmentscount(state, data) {
+    state.completedAssignmentscount = data;
+  },
+  setOverdueAssignmentscount(state, data) {
+    state.OverdueAssignmentscount = data;
+  },
+  setOverdueassignments(state, data) {
+    state.OverDueAssignments = data;
+  },
+  setCompletedassignments(state, data) {
+    state.completedAssignments = data;
+  },
 
 }
 const getters = {
@@ -569,6 +585,22 @@ const getters = {
   taskStatusData: () => {
   return state.taskStatusData;
   },
+  totalAssignmentscount: () => {
+    return state.totalAssignmentscount;
+  },
+  completedAssignmentscount: () => {
+    return state.completedAssignmentscount;
+  },
+  completedAssignments: () => {
+    return state.completedAssignments;
+  },
+  OverdueAssignmentscount: () => {
+    return state.OverdueAssignmentscount;
+  },
+  OverDueAssignments: () => {
+    return state.OverDueAssignments;
+  },  
+  
 }
 
 export default {
