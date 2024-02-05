@@ -606,35 +606,29 @@ export default{
        console.log("data",this.taskStatusData); 
     },
     renderChart() {
-        // const aheadArray = this.taskStatusData.map(item => item.aheadStudentsCount);
-        // const behindArray  = this.taskStatusData.map(item => item.consistentlyBehindCount);
-        // const fallingArray  = this.taskStatusData.map(item => item.fallingBehindCount);
+        const aheadArray = this.taskStatusData.map(item => item.aheadStudentsCount);
+        const behindArray  = this.taskStatusData.map(item => item.consistentlyBehindCount);
+        const fallingArray  = this.taskStatusData.map(item => item.fallingBehindCount);
 
-        const aheadArray = [2,3,4];
-        const behindArray  = [2,1,3];
-        const fallingArray  = [2,5,1,];
+        // const aheadArray = [2,3,4];
+        // const behindArray  = [2,1,3];
+        // const fallingArray  = [2,5,1,];
 
         const sumArray = Array.from({ length: aheadArray.length }, (_, i) => aheadArray[i] + behindArray[i] + fallingArray[i]);
 
         // Find the highest number among the sums
         const highestSum = Math.max(...sumArray);
 
-        console.log("Sum Array:", sumArray);
-        console.log("Highest Sum:", highestSum);
-
-        const allNumbers = [...aheadArray, ...behindArray, ...fallingArray];
-        const highestNumber = Math.max(...allNumbers);
-        console.log("Highest Number:", highestNumber);
-        console.log("Behind Array:", behindArray);
-        console.log("Falling Array:", fallingArray);
-        console.log("Ahead Array:", aheadArray);
+        // code commented for alternate function
+        
+        // const allNumbers = [...aheadArray, ...behindArray, ...fallingArray];
+        // const highestNumber = Math.max(...allNumbers);
 
         const ctx = this.$refs.myChart.getContext('2d');
         this.chart = new Chart(ctx, {
           type: 'bar',
           data: {
             labels: this.totalGrades,
-            // labels: ["6","7","8","9","10","11","12"],
             datasets: [
               {
                 label: 'Ahed', // First dataset label
