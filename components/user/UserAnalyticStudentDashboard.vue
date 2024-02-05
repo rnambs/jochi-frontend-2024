@@ -152,7 +152,7 @@
                     </div>
                   </div>
 
-                  <div class="row" v-for="assignment in filteredAssignments" :key="assignment.id">
+                  <div class="row" v-for="assignment in completedAssignmentsList" :key="assignment.id">
                     <div class="col-12 col-md-3">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
                     </div>
@@ -225,7 +225,7 @@ export default {
       totalAssignmentCount: '',
       overdueAssignmentcount: '',
       completedAssignmentcount: '',
-      filteredAssignments: [],
+      completedAssignmentsList: [],
       studentId: "",
       selectedStudent: "",
       lottieOptions: { animationData: animationData.default },
@@ -328,187 +328,53 @@ export default {
     async getAssignments() {
       this.loading = true;
       await this.getAssignmentsListData();
-      this.mapAssignments();
-      this.mapSharedAssignments();
       this.mapOverdueAssignments();
-      this.mapOverdueSharedAssignments();
+      this.mapCompletedAssignments();
       this.loading = false;
     },
     handleAnimation: function (anim) {
       this.anim = anim;
     },
-    mapAssignments() {
-      if (this.assignmentList && this.assignmentList.length > 0) {
-        this.assignmentList.forEach((e) => {
-          this.mapSingleAsst(e);
-        });
-      }
+    mapOverdueAssignments(){
+      this.overdueAssts = this.OverDueAssignments.map((element) => {
+        const { due_date, emailCounter, emailSendDate, overdueMailSentDate, task_status, subject, task, user_id, id } = element;
+
+        const Scheduleobj = {
+          due_date: this.formatDate(due_date),
+          emailCounter,
+          emailSendDate,
+          overdueMailSentDate,
+          task_status,
+          task,
+          id,
+          subject,
+          user_id
+        };
+        return Scheduleobj;
+      });
+        console.log("1",this.overdueAssts);
     },
-    mapSingleAsst(e) {
-      let item = {};
-      item.assignment_description = e.assignment_description;
-      item.assignment_materials = e.assignment_materials;
-      item.completed_date = e.completed_date;
-      item.dueTimeFormat = e.dueTimeFormat;
-      item.due_date = moment(e.due_date).format("MM/DD/YYYY");
-      item.due_time = e.due_time;
-      item.id = e.id;
-      item.priority = e.priority;
-      item.schoologyAssignment = e.schoologyAssignment;
-      item.schoologyAssignmentId = e.schoologyAssignmentId;
-      item.subTasks = e.subTasks;
-      item.subject = e.subject;
-      item.createdBy = e.createdBy
-      item.createdByName = e.createdByName
-      item.subjects = e.subjects;
-      item.task = e.task;
-      item.task_status = e.task_status;
-      item.updatedAt = e.updatedAt;
-      item.user_id = e.user_id;
-      item.peers = this.mapPeers(e);
-      item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-      item.isShared = false;
-      this.pendingAssignments.push(item);
+    mapCompletedAssignments(){
+      this.completedAssignmentsList = this.completedAssignments.map((element) => {
+        const { due_date, subject, task, id } = element;
+
+        const Scheduleobj = {
+          due_date: this.formatDate(due_date),
+          task,
+          id,
+          subject
+        };
+        return Scheduleobj;
+      });
+        console.log("2",this.completedAssignmentsList);
     },
-    mapSharedAssignments() {
-      if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
-        this.sharedAssignmentsList.forEach((e) => {
-          this.mapSingleSharedAsst(e);
-        });
-      }
-    },
-    mapSingleSharedAsst(e) {
-      let item = {};
-      if (e.assignments) {
-        item.assignment_description = e.assignments.assignment_description;
-        item.assignment_materials = e.assignments.assignment_materials;
-        item.completed_date = e.assignments.completed_date;
-        item.dueTimeFormat = e.assignments.dueTimeFormat;
-        item.due_date = moment(e.assignments.due_date).format("MM/DD/YYYY");
-        item.due_time = e.assignments.due_time;
-        item.id = e.assignments.id;
-        item.priority = e.assignments.priority;
-        item.schoologyAssignment = e.assignments.schoologyAssignment;
-        item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
-        item.subTasks = e.assignments?.subTasks;
-        item.subject = e.assignments?.subjects?.subject_name;
-        item.subjects = e.subjects;
-        item.createdBy = e.createdBy
-        item.createdByName = e.createdByName
-        item.task = e.assignments.task;
-        item.task_status = e.assignments.task_status;
-        item.updatedAt = e.assignments.updatedAt;
-        item.user_id = e.assignments.user_id;
-        item.peers = this.mapPeers(e);
-        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-        item.isShared = true;
-        this.pendingAssignments.push(item);
-      }
-    },
-    mapOverdueAssignments() {
-      if (this.overdueAssignments && this.overdueAssignments.length > 0) {
-        this.overdueAssignments.forEach((e) => {
-          if (e.task_status != "Completed") {
-            let item = {};
-            item.assignment_description = e.assignment_description;
-            item.assignment_materials = e.assignment_materials;
-            item.completed_date = e.completed_date;
-            item.dueTimeFormat = e.dueTimeFormat;
-            item.due_date = moment(e.due_date).format("MM/DD/YYYY");
-            item.due_time = e.due_time;
-            item.id = e.id;
-            item.priority = e.priority;
-            item.schoologyAssignment = e.schoologyAssignment;
-            item.schoologyAssignmentId = e.schoologyAssignmentId;
-            item.subTasks = e.subTasks;
-            item.emailCounter = e.emailCounter;
-            item.subject = e.subject;
-            item.subjects = e.subjects;
-            item.createdBy = e.createdBy
-            item.createdByName = e.createdByName
-            item.task = e.task;
-            item.task_status = e.task_status;
-            item.updatedAt = e.updatedAt;
-            item.user_id = e.user_id;
-            item.peers = this.mapPeers(e);
-            item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-            item.isShared = false;
-            this.overdueAssts.push(item);
-          } else {
-            this.mapSingleAsst(e);
-          }
-        });
-      }
-    },
-    mapPeers(e) {
-      let user_id = localStorage.getItem("id");
-      let peers = [];
-      if (e.assignment_shared_users && e.assignment_shared_users.length > 0) {
-        e.assignment_shared_users.forEach((item) => {
-          let peer = {};
-          if (item.users && item.shared_users_id != user_id) {
-            peer = item.users;
-            peer.id = item.shared_users_id;
-            peers.push(peer);
-          }
-        });
-      }
-      if (e.assignments?.users) {
-        let user = {};
-        user = e.assignments?.users;
-        user.id = e.user_id;
-        peers.push(user);
-      }
-      return peers;
-    },
-    mapOverdueSharedAssignments() {
-      if (
-        this.sharedOverdueAssignments &&
-        this.sharedOverdueAssignments.length > 0
-      ) {
-        this.sharedOverdueAssignments.forEach((e) => {
-          if (e.assignments && e.assignments.task_status != "Completed") {
-            let item = {};
-            item.assignment_description = e.assignments.assignment_description;
-            item.assignment_materials = e.assignments.assignment_materials;
-            item.completed_date = e.assignments.completed_date;
-            item.dueTimeFormat = e.assignments.dueTimeFormat;
-            item.due_date = moment(e.assignments.due_date).format("MM/DD/YYYY");
-            item.due_time = e.assignments.due_time;
-            item.id = e.assignments.id;
-            item.priority = e.assignments.priority;
-            item.schoologyAssignment = e.assignments.schoologyAssignment;
-            item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
-            item.subTasks = e.assignments?.subTasks;
-            item.subject = e.assignments?.subjects?.subject_name;
-            item.subjects = e.subjects;
-            item.task = e.assignments.task;
-            item.createdBy = e.createdBy
-            item.createdByName = e.createdByName
-            item.task_status = e.assignments.task_status;
-            item.updatedAt = e.assignments.updatedAt;
-            item.user_id = e.assignments.user_id;
-            item.peers = this.mapPeers(e);
-            item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-            item.isShared = true;
-            item.emailCounter = e.emailCounter;
-            this.overdueAssts.push(item);
-            this.totalAssignmentCount = this.pendingAssignments.length + this.overdueAssts.length
-            this.overdueAssignmentcount = this.overdueAssts.length
-            this.completedAssignmentcount = this.pendingAssignments.filter((assignment) => {
-              return assignment.task_status === 'Completed';
-            }).length;
-            this.filterCompletedAssignments();
-          } else if (e.assignments.task_status == "Completed") {
-            this.mapSingleSharedAsst(e);
-          }
-        });
-      }
-    },
-    filterCompletedAssignments() {
-      this.filteredAssignments = this.pendingAssignments.filter((assignment) => {
-              return assignment.task_status === 'Completed';
-            });
+    formatDate(input) {
+      var datePart = input.match(/\d+/g),
+        year = datePart[0], // get only two digits
+        month = datePart[1],
+        day = datePart[2];
+
+      return month + "-" + day + "-" + year;
     },
     currentProgress(){
       this.$router.push(`/teacher-advisor?id=${this.studentId}`);
