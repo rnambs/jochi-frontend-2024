@@ -320,7 +320,7 @@ export default {
           );
           fromDate = picker.startDate.format("YYYY-MM-DD");
           endDate = picker.endDate.format("YYYY-MM-DD");
-          _this.UpdateTimeSchedule.bind(_this)();
+          // _this.UpdateTimeSchedule.bind(_this)();
           _this.isShowing = false;
         }
       );
