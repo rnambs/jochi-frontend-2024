@@ -22,7 +22,12 @@ const state = {
     aheadList: [],
     studentDetails: [],
     totalGrades: [],
-    taskStatusData:[]
+    taskStatusData:[],
+    totalAssignmentscount: '',
+    completedAssignmentscount:'',
+    completedAssignments: [],
+    OverdueAssignmentscount: '',
+    OverDueAssignments: []
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
