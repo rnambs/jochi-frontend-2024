@@ -492,7 +492,7 @@
                       </div>
                     </div>
                     <div v-if="this.studentsList == 0">
-                    <p>No student's found</p>
+                    <p class="color-gray text-center text-16">No student's found</p>
                     </div>
                   <div class="modal-body no-overflow px-4">
                 <div class="form-row">
