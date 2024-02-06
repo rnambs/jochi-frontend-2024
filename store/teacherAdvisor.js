@@ -27,7 +27,8 @@ const state = {
     completedAssignmentscount:'',
     completedAssignments: [],
     OverdueAssignmentscount: '',
-    OverDueAssignments: []
+    OverDueAssignments: [],
+    assignmentsGradeList: [],
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -407,7 +408,6 @@ const actions = {
                     'Authorization': ` ${token}`
                 },
             });
-            console.log("data",response);
             commit('setTotalassignmentscount', response.total_assignments_count);
             commit('setCompletedAssignmentscount', response.completed_assignments_count);
             commit('setOverdueAssignmentscount', response.Overdue_assignments_count);
@@ -432,6 +432,33 @@ const actions = {
         }
   
     },
+    async getGradeList({ commit }, payLoad) {
+      try {
+          const token = localStorage.getItem('token')
+          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/student/recentGrades/243`, {
+              headers: {
+                  'Authorization': ` ${token}`
+              },
+          });
+          commit('setGradelist', response.assignments);
+      } catch (e) {
+          if (e.response.data.message == "Unauthorized") {
+              commit('setSuccessMessage', "");
+              commit('setSuccessType', "");
+              commit('setErrorMessage', "");
+              commit('setErrorType', "");
+              window.localStorage.clear();
+              this.$router.push('/');
+          }
+          else {
+              commit('setErrorMessage', e.response.data.message);
+              commit('setErrorType', "error");
+              commit('setSuccessMessage', "");
+              commit('setSuccessType', "");
+          }
+      }
+
+  },
 }
 
 const mutations = {
@@ -516,6 +543,9 @@ const mutations = {
   setCompletedassignments(state, data) {
     state.completedAssignments = data;
   },
+  setGradelist(state, data) {
+    state.assignmentsGradeList = data;
+  },
 
 }
 const getters = {
@@ -599,7 +629,10 @@ const getters = {
   },
   OverDueAssignments: () => {
     return state.OverDueAssignments;
-  },  
+  }, 
+  assignmentsGradeList: () => {
+    return state.assignmentsGradeList;
+  }, 
   
 }
 
