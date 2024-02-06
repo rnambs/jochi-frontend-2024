@@ -20,7 +20,15 @@ const state = {
     fallingBehindlist: [],
     aheadCount: '',
     aheadList: [],
-
+    studentDetails: [],
+    totalGrades: [],
+    taskStatusData:[],
+    totalAssignmentscount: '',
+    completedAssignmentscount:'',
+    completedAssignments: [],
+    OverdueAssignmentscount: '',
+    OverDueAssignments: [],
+    assignmentsGradeList: [],
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -277,6 +285,7 @@ const actions = {
           });
           if(response.status === true ){
           commit('setTotalStudentCount', response.student_count);
+          commit('setTotalStudentDetails', response.studentDetails);
           }
           
         } catch (e) { 
@@ -371,6 +380,85 @@ const actions = {
           commit('setSuccessType', "")
         }
       },
+      async getGradeLevels({ commit }, ) {
+        const token = localStorage.getItem('token')
+        try {
+          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/gradeLevels`, {
+            headers: {
+              'Authorization': ` ${token}`
+            },
+          });
+          if(response.status === true ){
+          commit('settotalGrades', response.totalGrades);
+          commit('settaskStatusData',response.data)
+          }
+          
+        } catch (e) { 
+          commit('setErrorMessage', e?.response?.data?.message);
+          commit('setErrorType', "error");
+          commit('setSuccessMessage', "");
+          commit('setSuccessType', "")
+        }
+      },
+      async getAssignmentsListData({ commit }, payLoad) {
+        try {
+            const token = localStorage.getItem('token')
+            const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/studentAssignment?studentId=${payLoad.id}&valueType=${payLoad.type}&from_date=${payLoad.fromDate}&to_date=${payLoad.toDate}`, {
+                headers: {
+                    'Authorization': ` ${token}`
+                },
+            });
+            commit('setTotalassignmentscount', response.total_assignments_count);
+            commit('setCompletedAssignmentscount', response.completed_assignments_count);
+            commit('setOverdueAssignmentscount', response.Overdue_assignments_count);
+            commit('setOverdueassignments', response.OverDue_assignments_Details);
+            commit('setCompletedassignments', response.completed_assignments_details
+);
+        } catch (e) {
+            if (e.response.data.message == "Unauthorized") {
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+                commit('setErrorMessage', "");
+                commit('setErrorType', "");
+                window.localStorage.clear();
+                this.$router.push('/');
+            }
+            else {
+                commit('setErrorMessage', e.response.data.message);
+                commit('setErrorType', "error");
+                commit('setSuccessMessage', "");
+                commit('setSuccessType', "");
+            }
+        }
+  
+    },
+    async getGradeList({ commit }, payLoad) {
+      try {
+          const token = localStorage.getItem('token')
+          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/student/recentGrades/${payLoad.id}`, {
+              headers: {
+                  'Authorization': ` ${token}`
+              },
+          });
+          commit('setGradelist', response.assignments);
+      } catch (e) {
+          if (e.response.data.message == "Unauthorized") {
+              commit('setSuccessMessage', "");
+              commit('setSuccessType', "");
+              commit('setErrorMessage', "");
+              commit('setErrorType', "");
+              window.localStorage.clear();
+              this.$router.push('/');
+          }
+          else {
+              commit('setErrorMessage', e.response.data.message);
+              commit('setErrorType', "error");
+              commit('setSuccessMessage', "");
+              commit('setSuccessType', "");
+          }
+      }
+
+  },
 }
 
 const mutations = {
@@ -430,6 +518,33 @@ const mutations = {
   },
   setAheadList(state, data) {
     state.aheadList = data;
+  },
+  setTotalStudentDetails(state, data) {
+    state.studentDetails = data;
+  },
+  settotalGrades(state, data) {
+    state.totalGrades = data;
+  },
+  settaskStatusData(state, data) {
+    state.taskStatusData = data;
+  },
+  setTotalassignmentscount(state, data) {
+    state.totalAssignmentscount = data;
+  },
+  setCompletedAssignmentscount(state, data) {
+    state.completedAssignmentscount = data;
+  },
+  setOverdueAssignmentscount(state, data) {
+    state.OverdueAssignmentscount = data;
+  },
+  setOverdueassignments(state, data) {
+    state.OverDueAssignments = data;
+  },
+  setCompletedassignments(state, data) {
+    state.completedAssignments = data;
+  },
+  setGradelist(state, data) {
+    state.assignmentsGradeList = data;
   },
 
 }
@@ -491,7 +606,34 @@ const getters = {
   aheadList: () => {
       return state.aheadList;
   },
-
+  studentDetails: () => {
+    return state.studentDetails;
+  },
+  totalGrades: () => {
+    return state.totalGrades;
+  },
+  taskStatusData: () => {
+  return state.taskStatusData;
+  },
+  totalAssignmentscount: () => {
+    return state.totalAssignmentscount;
+  },
+  completedAssignmentscount: () => {
+    return state.completedAssignmentscount;
+  },
+  completedAssignments: () => {
+    return state.completedAssignments;
+  },
+  OverdueAssignmentscount: () => {
+    return state.OverdueAssignmentscount;
+  },
+  OverDueAssignments: () => {
+    return state.OverDueAssignments;
+  }, 
+  assignmentsGradeList: () => {
+    return state.assignmentsGradeList;
+  }, 
+  
 }
 
 export default {

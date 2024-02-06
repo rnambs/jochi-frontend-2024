@@ -5,6 +5,7 @@
     --theme-light-color : rgba(134, 111, 247, 1);
     --color-basic       : rgba(255, 255, 255, 1);
     --bg-backdrop       : rgba(255, 255, 255,0.5);
+    --bg-dark-backdrop  : rgba(0, 0, 0,0.5);
     --bg-card-primary   : rgba(255, 255, 255, 1);
     --bg-card-primary02 : rgba(255, 255, 255, 1);
     --bg-card-secondary : rgba(241, 238, 246, 1);
@@ -22,6 +23,7 @@
     &.dark-theme {
         --color-basic       : rgba(23, 24, 33, 1);
         --bg-backdrop       : rgba(0, 0, 0,0.5);
+        --bg-dark-backdrop  : rgba(255, 255, 255,0.5);
         --bg-card-primary   : rgba(44, 45, 51, 1);
         --bg-card-primary02 : rgba(33, 34, 45, 1);
         --bg-card-secondary : rgba(33, 34, 45, 1);
@@ -149,6 +151,8 @@ $label-green: #159E00;
 .bg-card-tertiary{background-color: var(--bg-card-tertiary);}
 .bg-text-secondary{background-color: var(--text-secondary);}
 .bg-calendar-blue{background-color: $calendar-blue;}
+.bg-backdrop{background: var(--bg-backdrop);}
+.bg-dark-backdrop{background: var(--bg-dark-backdrop);}
 // BOrders
 .border{
     border-width: 1.5px;

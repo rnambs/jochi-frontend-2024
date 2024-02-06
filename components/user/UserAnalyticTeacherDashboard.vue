@@ -4,9 +4,20 @@
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h2 class="text-20 font-poppins font-semi-bold mb-0 flex-grow-1">
-            Welcome Back Samantha!</h2>
+            Welcome Back {{ firstName + ' ' + lastName }}!</h2>
           <div class="form-group flex-grow-1 mb-0">
-            <input type="text" class="form-control" id="search" placeholder="Search Student">
+            <!-- <input type="text" class="form-control" id="search" placeholder="Search Student"> -->
+            <multiselect
+                  v-model="selectedStudent"
+                  :options="studentDetails"
+                  track-by="first_name"
+                  label="first_name"
+                  placeholder="
+                  Select students"
+                  @input="selectedStudentId"
+                >
+                  <span slot="noResult">No data found</span>
+                </multiselect>
           </div>
         </div>
         <div class="row d-flex">
@@ -101,7 +112,7 @@
             </div>
           </div> -->
         </div>
-        <div class="row d-flex">
+        <div class="row">
           <div class="col-12 col-sm-6 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex  justify-content-between pb-3 align-items-center border-bottom">
@@ -111,12 +122,84 @@
                 </div>
                 <img src="../../assets/images/Icon/info.svg" class="cursor-pointer" alt="info" width="24" height="24" />
               </div>
-              <img src="../../assets/images/graph.png" class="" alt="graph" width="100%" height="auto"/>
+              <!-- <img src="../../assets/images/graph.png" class="" alt="graph" width="100%" height="auto"/> -->
+              <div>
+                <div id="weeklyContainer" class="chart p-2 color-secondary my-auto">
+                  <canvas ref="myChart"></canvas>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-12 col-sm-6 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
-              <h2 class="text-16 mb-0 font-semi-bold color-text-100 border-bottom pb-3">Carousel</h2>
+              <h2 class="text-16 mb-0 font-semi-bold color-text-100 border-bottom pb-3">Welcome to Jochi!</h2>
+              <!-- code commented for alternate usage -->
+              <!-- <carousel :per-page="1"  :adjustableHeight="true"  :mouse-drag="false">
+                <slide>
+                  <h4>Welcome to Jochi!</h4>
+                  <p>How Jochi works for
+                    specialists.
+                  </p>
+                      <div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
+                          <p>Jochi - Watch Video</p>
+                        </a>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        </a>
+                      </div>
+                </slide>
+                <slide>
+                  <h4>Jochi for Students</h4>
+                  <p>What Jochi looks like for
+                    your students.
+                  </p>
+                  <div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
+                          <p>Jochi - Watch Video</p>
+                        </a>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        </a>
+                      </div>
+                </slide>
+              </carousel> -->
+              <v-carousel :show-arrows="false"  delimiter-icon="mdi-circle"   height="auto"  hide-delimiter-background class="pb-5">
+                <v-carousel-item
+                >
+                <div class="position-relative">
+                  <div class="position-absolute w-100 p-2 bg-dark-backdrop">
+                    <p class="mb-1 color-white">How Jochi works for
+                      specialists
+                    </p>
+                    <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank" class="btn btn-secondary py-1">
+                      <span class="mr-1"><i class="fa-solid fa-circle-play"></i></span>
+                      <span>Jochi - Watch Video</span>
+                    </a>
+                  </div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        </a>
+                      </div>
+                </v-carousel-item>
+                <v-carousel-item
+                >
+                <div class="position-relative">
+                  <div class="position-absolute w-100 p-2 bg-dark-backdrop">
+                    <p class="mb-1 color-white">What Jochi looks like for
+                    your students
+                    </p>
+                    <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank" class="btn btn-secondary py-1">
+                      <span class="mr-1"><i class="fa-solid fa-circle-play"></i></span>
+                      <span>Jochi - Watch Video</span>
+                    </a>
+                  </div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        </a>
+                      </div>
+              </v-carousel-item>
+              </v-carousel>
             </div>
           </div>
         </div>
@@ -193,7 +276,7 @@
                           v-if="teachersList.length == 0"
                           class="empty-shedule"
                         >
-                          <p class="color-gray text-12">No Meetings found</p>
+                          <p class="color-gray text-center  text-16">No New Meeting Request's Found</p>
                         </div>
               </div>
             </div>
@@ -421,7 +504,7 @@
                       </div>
                     </div>
                     <div v-if="this.studentsList == 0">
-                    <p>No student's found</p>
+                    <p class="color-gray text-center text-16">No Student's Found</p>
                     </div>
                   <div class="modal-body no-overflow px-4">
                 <div class="form-row">
@@ -443,6 +526,7 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
+import Chart from 'chart.js/auto';
 var isAccepted = false;
 var selectDate = "";
 var dateSelectValue = "";
@@ -450,19 +534,31 @@ var dateStr = "";
 export default{
   data(){
     return{
+      chart: null,
       teachersList: [],
       meetingDetail: {},
       studentsList: [],
       modalListType: '',
+      firstName: '',
+      lastName: '',
+      selectedStudent: "",
+      data : [
+                { Behind: 1, falling: 0, ahead: 1 },
+                { Behind: 0, falling: 1, ahead: 2 },
+                { Behind: 1, falling: 1, ahead: 0 }
+              ],
     }
   },
   mounted(){
+    this.firstName = localStorage.getItem("firstName");
+    this.lastName = localStorage.getItem("lastName");
     this.TeacherMeetingList();
     this.GetStudentCount();
     // this.GetConsistentlyList();
     // this.GetFallingList();
     // this.GetAheadList();
-  this.GetTaskStatus();
+    this.GetTaskStatus();
+    this.GetGradeLevels()
   },
   computed: {
     ...mapState("teacherAppointment", {
@@ -474,6 +570,7 @@ export default{
       teachers: (state) => state.teachers,
     }),
     ...mapState("teacherAdvisor", {
+      studentDetails: (state) => state.studentDetails,
       studentCount: (state) => state.studentCount,
       consistentlyBehindCount: (state) => state.consistentlyBehindCount,
       consistenlyList: (state) => state.consistenlyList,
@@ -481,6 +578,8 @@ export default{
       fallingBehindlist:(state) => state.fallingBehindlist,
       aheadCount:(state) => state.aheadCount,
       aheadList:(state) => state.aheadList,
+      totalGrades:(state) => state.totalGrades,
+      taskStatusData:(state) => state.taskStatusData,
     }),
   },
   methods: {
@@ -494,7 +593,8 @@ export default{
       getConsistentlyList: "getConsistentlyList",
       getFallingList: "getFallingList",
       getAheadList: "getAheadList",
-      getTaskStatus: "getTaskStatus"
+      getTaskStatus: "getTaskStatus",
+      getGradeLevels: "getGradeLevels"
     }),
     async GetStudentCount(){
       await this.getStudentCount();
@@ -510,6 +610,74 @@ export default{
     },
     async GetTaskStatus(){
        await this.getTaskStatus();
+    },
+    async GetGradeLevels(){
+       await this.getGradeLevels();
+       this.renderChart();
+       console.log("data",this.totalGrades);
+       console.log("data",this.taskStatusData); 
+    },
+    renderChart() {
+        const aheadArray = this.taskStatusData.map(item => item.aheadStudentsCount);
+        const behindArray  = this.taskStatusData.map(item => item.consistentlyBehindCount);
+        const fallingArray  = this.taskStatusData.map(item => item.fallingBehindCount);
+
+        const sumArray = Array.from({ length: aheadArray.length }, (_, i) => aheadArray[i] + behindArray[i] + fallingArray[i]);
+
+        // Find the highest number among the sums
+        const highestSum = Math.max(...sumArray);
+
+        // code commented for alternate usage
+
+        // const allNumbers = [...aheadArray, ...behindArray, ...fallingArray];
+        // const highestNumber = Math.max(...allNumbers);
+
+        const ctx = this.$refs.myChart.getContext('2d');
+        this.chart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: this.totalGrades,
+            datasets: [
+              {
+                label: 'Ahead', // First dataset label
+                data: aheadArray, // Example data points for Dataset 1
+                backgroundColor: 'rgb(22, 91, 170)', // Example color, customize as needed
+                borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed
+                borderWidth: 1,
+              },
+              {
+                label: 'Falling Behind', // Second dataset label
+                data: fallingArray, // Example data points for Dataset 2
+                backgroundColor: 'rgb(161, 85, 185)', // Example color, customize as needed
+                borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed
+                borderWidth: 1,
+              },
+              {
+                label: 'Really Behind', // Third dataset label
+                data: behindArray, // Example data points for Dataset 3
+                backgroundColor: 'rgb(247, 101, 163)', // Example color, customize as needed
+                borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              x: {
+                stacked: true,
+              },
+              y: {
+                stacked: true,
+                beginAtZero: true,
+                stepSize: Math.ceil(highestSum / 5) * 1,      // Set step size to 20
+                max: Math.ceil(highestSum / 5) * 5,  
+              },
+            },
+          },
+        });
+    },
+    selectedStudentId(selectedStudent) {
+      this.$router.push(`/student-analytic-dashboard?id=${selectedStudent.id}`);
     },
     async TeacherMeetingList() {
       const { id } = localStorage;
@@ -637,13 +805,11 @@ export default{
         this.studentsList = this.$store.state.teacherAdvisor.fallingBehindlist;
       } else if (listType === 'aheadlist') {
         this.studentsList = this.$store.state.teacherAdvisor.aheadList;
-        console.log("data",this.modalListType);
       }
       $("#studentList").modal("show");
     },
     onStudentClick(student){
       $("#studentList").modal("hide");
-      console.log("data",student);
       this.$router.push(`/student-analytic-dashboard?id=${student.id}`);
     }
   },
