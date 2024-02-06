@@ -435,7 +435,7 @@ const actions = {
     async getGradeList({ commit }, payLoad) {
       try {
           const token = localStorage.getItem('token')
-          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/student/recentGrades/243`, {
+          const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/student/recentGrades/${payLoad.id}`, {
               headers: {
                   'Authorization': ` ${token}`
               },
