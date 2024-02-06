@@ -197,7 +197,7 @@
                     </div>
                   </div>
                   <div class="assignment-overflow">
-                  <div class="row" v-for="assignment in completedAssignmentsList" :key="assignment.id">
+                  <div class="row" v-for="assignment in assignmentsGradeList" :key="assignment.id">
                     <div class="col-12 col-md-4">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
                     </div>
@@ -205,8 +205,14 @@
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
                     </div>
                     <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.grade }}</h2>
                     </div>
+                </div>
+                <div
+                  v-if="assignmentsGradeList.length == 0"
+                  class="empty-shedule"
+                >
+                  <p class="color-gray text-center  text-14">No Assignments found</p>
                 </div>
               </div>
             </div>
@@ -280,6 +286,7 @@ export default {
       completedAssignments: (state) => state.completedAssignments,
       OverdueAssignmentscount: (state) => state.OverdueAssignmentscount,
       OverDueAssignments: (state) => state.OverDueAssignments,
+      assignmentsGradeList:(state) => state.assignmentsGradeList,
     }),
     TypeText() {
       if (this.assignmentType === 'monthly') {
@@ -299,6 +306,7 @@ export default {
     }
     // this.loading = false;
     this.GetStudentCount();
+    this.GetGradeList();
     this.startTime = new Date().getTime();
     this.isMounted = false;
     const _this = this;
@@ -359,16 +367,19 @@ export default {
     ...mapActions("teacherAdvisor", {
       getSubjectsList: "getSubjectsList",
       getStudentCount: "getStudentCount",
-      getAssignmentsListData: "getAssignmentsListData"
+      getAssignmentsListData: "getAssignmentsListData",
+      getGradeList: "getGradeList"
     }),
     async setAssignmentType(type) {
       this.assignmentType = type;
       $('input[name="daterange"]').val("");
      await this.getAssignments()
-      console.log("1",this.assignmentType);
     },
     async GetStudentCount(){
       await this.getStudentCount();
+    },
+    async GetGradeList(){
+      await this.getGradeList();
     },
     async getAssignments() {
       this.loading = true;
@@ -397,7 +408,6 @@ export default {
         };
         return Scheduleobj;
       });
-        console.log("1",this.overdueAssts);
     },
     mapCompletedAssignments(){
       this.completedAssignmentsList = this.completedAssignments.map((element) => {
@@ -411,7 +421,6 @@ export default {
         };
         return Scheduleobj;
       });
-        console.log("2",this.completedAssignmentsList);
     },
     formatDate(input) {
       var datePart = input.match(/\d+/g),
