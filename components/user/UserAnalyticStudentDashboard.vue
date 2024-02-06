@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="d-flex justify-content-between  align-items-center mb-3">
           <h2 class="text-20 font-poppins font-semi-bold mb-0 flex-grow-1">
-            Rahul’s Dashboard</h2>
+            {{ studentDetail }}'s Dashboard</h2>
           <div class="form-group flex-grow-1 mb-0">
             <!-- <input type="text" class="form-control" id="search" placeholder="Search Student"> -->
             <multiselect
@@ -262,6 +262,7 @@ export default {
       lottieOptions: { animationData: animationData.default },
       anim: null,
       assignmentType:'weekly',
+      studentDetail:'',
     };
   },
   computed:{
@@ -291,11 +292,14 @@ export default {
       }
     },
   },
-  mounted() {
+  async mounted() {
     const studentId = this.$route.query.id;
     if(studentId){
       this.studentId = studentId;
-      this.getAssignments();
+      await this.getAssignments();
+      await this.GetStudentCount();
+      const student = this.studentDetails.find(student => student.id == studentId);
+      this.studentDetail = student.first_name + " " + student.last_name;
     }else{
       this.$router.push(`/teacher-analytic-dashboard`);
     }
