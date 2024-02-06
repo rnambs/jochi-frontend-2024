@@ -3,7 +3,7 @@
     <UserNewSidebarTeacher />
 
     <!-- sidebar -->
-    <UserTeacherDashboard />
+    <UserAnalyticTeacherDashboard />
   </div>
 </template>
 <script>
@@ -15,7 +15,7 @@ import * as animationData from "~/assets/animation.json";
 // import UserSidebar from "~/components/user/UserTeacherSidebar.vue";
 import UserNewSidebarTeacher from "~/components/user/UserNewSidebarTeacher.vue";
 
-import UserTeacherDashboard from "~/components/user/UserTeacherDashboard.vue";
+import UserAnalyticTeacherDashboard from "~/components/user/UserAnalyticTeacherDashboard.vue";
 export default {
   // middleware: "authenticated",
   components: {
