@@ -30,13 +30,27 @@
           <div class="col-12 px-0 d-flex flex-wrap justify-content-between  align-items-center">
             <div class="col-12 col-sm-8 col-md-8 col-lg-6">
               <form class="row">
-                <div class="form-group mb-3 mb-sm-0  col-12 col-sm-6 py-0">
+                <!-- <div class="form-group mb-3 mb-sm-0  col-12 col-sm-6 py-0">
                   <select class="form-control" id="exampleFormControlSelect1">
-                    <option selected>Week</option>
-                    <option>Month</option>
+                    <option @input="setAssignmentType('weekly')">Week</option>
+                    <option @input="setAssignmentType('monthly')">Month</option>
                     <option>Year</option>
                   </select>
-                </div>
+                </div> -->
+                <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto mr-2">
+                        <div class="dropdown-select form-control form-sm form-transparent" type="button"
+                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="i-filter-calendar j-icon i-sm bg-gray mr-1"></i>
+                          <span id="dLabel" class="mr-3">{{ TypeText }}</span>
+                          <span class="caret"><i class="fas fa-chevron-down font-medium"></i></span>
+                        </div>
+                        <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
+                          <li class="item p-2" @click="setAssignmentType('weekly')"
+                            :class="{ active: assignmentType === 'weekly' }">This week</li>
+                          <li class="item p-2" @click="setAssignmentType('monthly')"
+                            :class="{ active: assignmentType === 'monthly' }">This Month</li>
+                        </ul>
+                      </div>
                 <div data-intro="Choose your date range."
                   class="col-12 col-sm-6 py-0 form-row  d-flex position-relative schedule-meeting-section">
                   <input type="text" name="daterange" autocomplete="off" placeholder="Date Range"
@@ -50,17 +64,20 @@
               <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto">
                 View Current Progress
               </button>
+              <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto ml-2">
+                Create Report
+              </button>
             </div>
 
           </div>
         </div>
         <div class="row d-flex">
-          <div class="col-12 col-sm-4 h-auto d-flex">
-            <div class="border p-3 rounded-20 w-100 box-card">
+          <div class="col-12 col-sm-3 h-auto d-flex">
+            <div class="border p-3 rounded-20 w-100 box-card overflow-x-hidden">
               <div class="d-flex justify-content-between align-items-center ">
                 <div class="">
-                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{overdueAssignmentcount}} <span
-                      class="text-14 color-text-50">/{{ this.totalAssignmentCount }}</span></h2>
+                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ OverdueAssignmentscount }} <span
+                      class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
                   <p class="mb-0 text-14 color-text-50">Rahul’s Overdue Assignments</p>
                 </div>
                 <div class="w-fit-content">
@@ -73,40 +90,41 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-8">
+          <div class="col-12 col-sm-9">
             <div class="border p-3 rounded-20 w-100 box-card">
               <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
                 Overdue Assignments</h2>
-                <div class="scrollable-container overflow-auto" style="max-height: 100px;">
+                <div>
                   <div class="row">
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <p class="mb-0 text-14 color-text-50">Assignment Name</p>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <p class="mb-0 text-14 color-text-50">Subject</p>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-2">
                       <p class="mb-0 text-14 color-text-50">Due Date</p>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-2">
                       <p class="mb-0 text-14 color-text-50">Remind Student</p>
                     </div>
                   </div>
-
-                  <div class="row" v-for="assignment in overdueAssts" :key="assignment.id">
-                    <div class="col-12 col-md-3">
+                <div class="assignment-overflow">
+                  <div class="row " v-for="assignment in overdueAssts" :key="assignment.id">
+                    <div class="col-12 col-md-4">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-2">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-2">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">INSERT BELL ICON</h2>
                     </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -114,12 +132,12 @@
 
         </div>
         <div class="row d-flex">
-          <div class="col-12 col-sm-4 h-auto d-flex">
+          <div class="col-12 col-sm-3 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex justify-content-between align-items-center ">
                 <div class="">
-                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ this.completedAssignmentcount }}<span
-                      class="text-14 color-text-50">/{{ this.totalAssignmentCount }}</span></h2>
+                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ completedAssignmentscount }}<span
+                      class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
                   <p class="mb-0 text-14 color-text-50">Rahul’s Completed Assignments</p>
                 </div>
                 <div class="w-fit-content">
@@ -132,40 +150,35 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-8">
+          <div class="col-12 col-sm-9">
             <div class="border p-3 rounded-20 w-100 box-card">
               <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
                 Completed Assignments</h2>
-                <div  class="scrollable-container overflow-auto" style="max-height: 100px;">
+                <div>
                   <div class="row">
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <p class="mb-0 text-14 color-text-50">Assignment Name</p>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <p class="mb-0 text-14 color-text-50">Subject</p>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <p class="mb-0 text-14 color-text-50">Due Date</p>
                     </div>
-                    <div class="col-12 col-md-3">
-                      <p class="mb-0 text-14 color-text-50">Remind Student</p>
-                    </div>
                   </div>
-
-                  <div class="row" v-for="assignment in filteredAssignments" :key="assignment.id">
-                    <div class="col-12 col-md-3">
+                <div class="assignment-overflow">
+                  <div class="row" v-for="assignment in completedAssignmentsList" :key="assignment.id">
+                    <div class="col-12 col-md-4">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
                     </div>
-                    <div class="col-12 col-md-3">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">INSERT BELL ICON</h2>
-                    </div>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -175,15 +188,37 @@
             <div class="border p-3 rounded-20 w-100 box-card">
               <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
                 Recent Grades</h2>
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                      <p class="mb-0 text-14 color-text-50">Assignment Name</p>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <p class="mb-0 text-14 color-text-50">Subject</p>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <p class="mb-0 text-14 color-text-50">Grade</p>
+                    </div>
+                  </div>
+                  <div class="assignment-overflow">
+                  <div class="row" v-for="assignment in assignmentsGradeList" :key="assignment.id">
+                    <div class="col-12 col-md-4">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
+                    </div>
+                    <div class="col-12 col-md-4">
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.grade }}</h2>
+                    </div>
+                </div>
+                <div
+                  v-if="assignmentsGradeList.length == 0"
+                  class="empty-shedule"
+                >
+                  <p class="color-gray text-center  text-14">No Assignments found</p>
+                </div>
+              </div>
             </div>
-          </div>
-
-        </div>
-        <div class="row">
-          <div class="col-12 d-flex justify-content-end ">
-            <button type="submit" class="btn btn-primary text-14 px-4 w-auto ">
-              Create Report
-            </button>
           </div>
 
         </div>
@@ -220,16 +255,13 @@ export default {
       availability: false,
       loading: false,
       processing: false,
-      pendingAssignments: [],
       overdueAssts: [],
-      totalAssignmentCount: '',
-      overdueAssignmentcount: '',
-      completedAssignmentcount: '',
-      filteredAssignments: [],
+      completedAssignmentsList: [],
       studentId: "",
       selectedStudent: "",
       lottieOptions: { animationData: animationData.default },
       anim: null,
+      assignmentType:'weekly',
     };
   },
   computed:{
@@ -241,14 +273,23 @@ export default {
       successType: (state) => state.SuccessType,
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
-      assignmentList: (state) => state.assignmentList,
-      sharedAssignmentsList: (state) => state.sharedAssignmentsList,
-      overdueAssignments: (state) => state.overdueAssignments,
-      sharedOverdueAssignments: (state) => state.sharedOverdueAssignments,
       errorMessageQuote: (state) => state.errorMessage,
       subjectsData: (state) => state.subjectsData,
       emailCountList: (state) => state.emailCountList,
+      totalAssignmentscount: (state) => state.totalAssignmentscount,
+      completedAssignmentscount: (state) => state.completedAssignmentscount,
+      completedAssignments: (state) => state.completedAssignments,
+      OverdueAssignmentscount: (state) => state.OverdueAssignmentscount,
+      OverDueAssignments: (state) => state.OverDueAssignments,
+      assignmentsGradeList:(state) => state.assignmentsGradeList,
     }),
+    TypeText() {
+      if (this.assignmentType === 'monthly') {
+        return 'This Month';
+      }else {
+        return 'This Week';
+      }
+    },
   },
   mounted() {
     const studentId = this.$route.query.id;
@@ -260,6 +301,7 @@ export default {
     }
     // this.loading = false;
     this.GetStudentCount();
+    this.GetGradeList();
     this.startTime = new Date().getTime();
     this.isMounted = false;
     const _this = this;
@@ -301,8 +343,9 @@ export default {
           );
           fromDate = picker.startDate.format("YYYY-MM-DD");
           endDate = picker.endDate.format("YYYY-MM-DD");
-          _this.UpdateTimeSchedule.bind(_this)();
+          _this.getAssignments.bind(_this)();
           _this.isShowing = false;
+          _this.assignmentType = '';
         }
       );
 
@@ -317,198 +360,70 @@ export default {
 
   methods: {
     ...mapActions("teacherAdvisor", {
-      getAssignmentsList: "getAssignmentsList",
       getSubjectsList: "getSubjectsList",
       getStudentCount: "getStudentCount",
+      getAssignmentsListData: "getAssignmentsListData",
+      getGradeList: "getGradeList"
     }),
+    async setAssignmentType(type) {
+      this.assignmentType = type;
+      $('input[name="daterange"]').val("");
+     await this.getAssignments()
+    },
     async GetStudentCount(){
       await this.getStudentCount();
     },
+    async GetGradeList(){
+      await this.getGradeList({id:this.studentId});
+    },
     async getAssignments() {
       this.loading = true;
-      await this.getAssignmentsList({ id:  this.studentId });
-      await this.getSubjectsList({ id: this.studentId });
-      this.mapAssignments();
-      this.mapSharedAssignments();
+      await this.getAssignmentsListData({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});
       this.mapOverdueAssignments();
-      this.mapOverdueSharedAssignments();
+      this.mapCompletedAssignments();
       this.loading = false;
     },
     handleAnimation: function (anim) {
       this.anim = anim;
     },
-    mapAssignments() {
-      if (this.assignmentList && this.assignmentList.length > 0) {
-        this.assignmentList.forEach((e) => {
-          this.mapSingleAsst(e);
-        });
-      }
+    mapOverdueAssignments(){
+      this.overdueAssts = this.OverDueAssignments.map((element) => {
+        const { due_date, emailCounter, emailSendDate, overdueMailSentDate, task_status, subject, task, user_id, id } = element;
+
+        const Scheduleobj = {
+          due_date: this.formatDate(due_date),
+          emailCounter,
+          emailSendDate,
+          overdueMailSentDate,
+          task_status,
+          task,
+          id,
+          subject,
+          user_id
+        };
+        return Scheduleobj;
+      });
     },
-    mapSingleAsst(e) {
-      let item = {};
-      item.assignment_description = e.assignment_description;
-      item.assignment_materials = e.assignment_materials;
-      item.completed_date = e.completed_date;
-      item.dueTimeFormat = e.dueTimeFormat;
-      item.due_date = moment(e.due_date).format("MM/DD/YYYY");
-      item.due_time = e.due_time;
-      item.id = e.id;
-      item.priority = e.priority;
-      item.schoologyAssignment = e.schoologyAssignment;
-      item.schoologyAssignmentId = e.schoologyAssignmentId;
-      item.subTasks = e.subTasks;
-      item.subject = e.subject;
-      item.createdBy = e.createdBy
-      item.createdByName = e.createdByName
-      item.subjects = e.subjects;
-      item.task = e.task;
-      item.task_status = e.task_status;
-      item.updatedAt = e.updatedAt;
-      item.user_id = e.user_id;
-      item.peers = this.mapPeers(e);
-      item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-      item.isShared = false;
-      this.pendingAssignments.push(item);
+    mapCompletedAssignments(){
+      this.completedAssignmentsList = this.completedAssignments.map((element) => {
+        const { due_date, subject, task, id } = element;
+
+        const Scheduleobj = {
+          due_date: this.formatDate(due_date),
+          task,
+          id,
+          subject
+        };
+        return Scheduleobj;
+      });
     },
-    mapSharedAssignments() {
-      if (this.sharedAssignmentsList && this.sharedAssignmentsList.length > 0) {
-        this.sharedAssignmentsList.forEach((e) => {
-          this.mapSingleSharedAsst(e);
-        });
-      }
-    },
-    mapSingleSharedAsst(e) {
-      let item = {};
-      if (e.assignments) {
-        item.assignment_description = e.assignments.assignment_description;
-        item.assignment_materials = e.assignments.assignment_materials;
-        item.completed_date = e.assignments.completed_date;
-        item.dueTimeFormat = e.assignments.dueTimeFormat;
-        item.due_date = moment(e.assignments.due_date).format("MM/DD/YYYY");
-        item.due_time = e.assignments.due_time;
-        item.id = e.assignments.id;
-        item.priority = e.assignments.priority;
-        item.schoologyAssignment = e.assignments.schoologyAssignment;
-        item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
-        item.subTasks = e.assignments?.subTasks;
-        item.subject = e.assignments?.subjects?.subject_name;
-        item.subjects = e.subjects;
-        item.createdBy = e.createdBy
-        item.createdByName = e.createdByName
-        item.task = e.assignments.task;
-        item.task_status = e.assignments.task_status;
-        item.updatedAt = e.assignments.updatedAt;
-        item.user_id = e.assignments.user_id;
-        item.peers = this.mapPeers(e);
-        item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-        item.isShared = true;
-        this.pendingAssignments.push(item);
-      }
-    },
-    mapOverdueAssignments() {
-      if (this.overdueAssignments && this.overdueAssignments.length > 0) {
-        this.overdueAssignments.forEach((e) => {
-          if (e.task_status != "Completed") {
-            let item = {};
-            item.assignment_description = e.assignment_description;
-            item.assignment_materials = e.assignment_materials;
-            item.completed_date = e.completed_date;
-            item.dueTimeFormat = e.dueTimeFormat;
-            item.due_date = moment(e.due_date).format("MM/DD/YYYY");
-            item.due_time = e.due_time;
-            item.id = e.id;
-            item.priority = e.priority;
-            item.schoologyAssignment = e.schoologyAssignment;
-            item.schoologyAssignmentId = e.schoologyAssignmentId;
-            item.subTasks = e.subTasks;
-            item.emailCounter = e.emailCounter;
-            item.subject = e.subject;
-            item.subjects = e.subjects;
-            item.createdBy = e.createdBy
-            item.createdByName = e.createdByName
-            item.task = e.task;
-            item.task_status = e.task_status;
-            item.updatedAt = e.updatedAt;
-            item.user_id = e.user_id;
-            item.peers = this.mapPeers(e);
-            item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-            item.isShared = false;
-            this.overdueAssts.push(item);
-          } else {
-            this.mapSingleAsst(e);
-          }
-        });
-      }
-    },
-    mapPeers(e) {
-      let user_id = localStorage.getItem("id");
-      let peers = [];
-      if (e.assignment_shared_users && e.assignment_shared_users.length > 0) {
-        e.assignment_shared_users.forEach((item) => {
-          let peer = {};
-          if (item.users && item.shared_users_id != user_id) {
-            peer = item.users;
-            peer.id = item.shared_users_id;
-            peers.push(peer);
-          }
-        });
-      }
-      if (e.assignments?.users) {
-        let user = {};
-        user = e.assignments?.users;
-        user.id = e.user_id;
-        peers.push(user);
-      }
-      return peers;
-    },
-    mapOverdueSharedAssignments() {
-      if (
-        this.sharedOverdueAssignments &&
-        this.sharedOverdueAssignments.length > 0
-      ) {
-        this.sharedOverdueAssignments.forEach((e) => {
-          if (e.assignments && e.assignments.task_status != "Completed") {
-            let item = {};
-            item.assignment_description = e.assignments.assignment_description;
-            item.assignment_materials = e.assignments.assignment_materials;
-            item.completed_date = e.assignments.completed_date;
-            item.dueTimeFormat = e.assignments.dueTimeFormat;
-            item.due_date = moment(e.assignments.due_date).format("MM/DD/YYYY");
-            item.due_time = e.assignments.due_time;
-            item.id = e.assignments.id;
-            item.priority = e.assignments.priority;
-            item.schoologyAssignment = e.assignments.schoologyAssignment;
-            item.schoologyAssignmentId = e.assignments.schoologyAssignmentId;
-            item.subTasks = e.assignments?.subTasks;
-            item.subject = e.assignments?.subjects?.subject_name;
-            item.subjects = e.subjects;
-            item.task = e.assignments.task;
-            item.createdBy = e.createdBy
-            item.createdByName = e.createdByName
-            item.task_status = e.assignments.task_status;
-            item.updatedAt = e.assignments.updatedAt;
-            item.user_id = e.assignments.user_id;
-            item.peers = this.mapPeers(e);
-            item.formattedDate = moment(e.due_date).format("MMMM Do, YYYY");
-            item.isShared = true;
-            item.emailCounter = e.emailCounter;
-            this.overdueAssts.push(item);
-            this.totalAssignmentCount = this.pendingAssignments.length + this.overdueAssts.length
-            this.overdueAssignmentcount = this.overdueAssts.length
-            this.completedAssignmentcount = this.pendingAssignments.filter((assignment) => {
-              return assignment.task_status === 'Completed';
-            }).length;
-            this.filterCompletedAssignments();
-          } else if (e.assignments.task_status == "Completed") {
-            this.mapSingleSharedAsst(e);
-          }
-        });
-      }
-    },
-    filterCompletedAssignments() {
-      this.filteredAssignments = this.pendingAssignments.filter((assignment) => {
-              return assignment.task_status === 'Completed';
-            });
+    formatDate(input) {
+      var datePart = input.match(/\d+/g),
+        year = datePart[0], // get only two digits
+        month = datePart[1],
+        day = datePart[2];
+
+      return month + "-" + day + "-" + year;
     },
     currentProgress(){
       this.$router.push(`/teacher-advisor?id=${this.studentId}`);
@@ -519,3 +434,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+.assignment-overflow{
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 6.25rem;
+}
+</style>
