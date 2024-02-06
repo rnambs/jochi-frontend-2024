@@ -22,7 +22,7 @@
                   Select students"
                   @input="selectedStudentId"
                 >
-                  <span slot="noResult">No data found</span>
+                  <span slot="noResult">No data Found</span>
                 </multiselect>
           </div>
         </div>
@@ -121,8 +121,37 @@
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
                     </div>
                     <div class="col-12 col-md-2">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">INSERT BELL ICON</h2>
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100"><div class="d-flex  p-0">
+                                  <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
+${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder emails sent so far`"
+                                    class="ml-3 text-12"
+                                    @click="emailTrigger(assignment.id,assignment.user_id
+                                    )"
+                                  >
+                                  <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 24 24"
+                                      id="Notification"
+                                      class="svgShape"
+                                    >
+                                      <path
+                                        d="M22.086 14.672A3.685 3.685 0 0 1 21 12.05V9A9 9 0 0 0 3 9v3.05a3.685
+                                        3.685 0 0 1-1.086 2.622A3.121 3.121 0 0 0 4.121 20H7.1a5 5 0 0 0 9.8
+                                        0h2.98a3.121 3.121 0 0 0 2.207-5.328ZM12 22a3 3 0 0 1-2.816-2h5.632A3 3 0 0 1
+                                        12 22Zm7.879-4H4.121a1.121 1.121 0 0 1-.793-1.914A5.672 5.672 0 0 0 5
+                                        12.05V9a7 7 0 0 1 14 0v3.05a5.672 5.672 0 0 0 1.672 4.036A1.121 1.121 0 0 1
+                                        19.879 18Z"
+                                        fill="#000000"
+                                      ></path>
+                                    </svg>
+                                  </button>
+                                </div>
+                              </h2>
                     </div>
+                </div>
+                <div  v-if="overdueAssts.length == 0"
+                  class="empty-shedule">
+                  <p class="color-gray text-center  text-14">No Overdue Assignments Found</p>
                 </div>
               </div>
               </div>
@@ -163,7 +192,7 @@
                       <p class="mb-0 text-14 color-text-50">Subject</p>
                     </div>
                     <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Due Date</p>
+                      <p class="mb-0 text-14 color-text-50">Completed Date</p>
                     </div>
                   </div>
                 <div class="assignment-overflow">
@@ -177,6 +206,10 @@
                     <div class="col-12 col-md-4">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
                     </div>
+                </div>
+                <div  v-if="completedAssignmentsList.length == 0"
+                  class="empty-shedule">
+                  <p class="color-gray text-center  text-14">No Overdue Assignments Found</p>
                 </div>
               </div>
               </div>
@@ -215,7 +248,7 @@
                   v-if="assignmentsGradeList.length == 0"
                   class="empty-shedule"
                 >
-                  <p class="color-gray text-center  text-14">No Assignments found</p>
+                  <p class="color-gray text-center  text-14">No Assignments Found</p>
                 </div>
               </div>
             </div>
@@ -367,7 +400,8 @@ export default {
       getSubjectsList: "getSubjectsList",
       getStudentCount: "getStudentCount",
       getAssignmentsListData: "getAssignmentsListData",
-      getGradeList: "getGradeList"
+      getGradeList: "getGradeList",
+      emailReminder: "emailReminder"
     }),
     async setAssignmentType(type) {
       this.assignmentType = type;
@@ -434,6 +468,30 @@ export default {
     },
     selectedStudentId(selectedStudent) {
       this.$router.push(`/teacher-advisor?id=${this.studentId}`);
+    },
+    async emailTrigger(detailId,userId){
+      this.loading = true;
+      const payload = {
+        detailId: detailId,
+        userId: userId,
+      };
+     await this.emailReminder(payload);
+    if (this.successMessage != "") {
+      this.overdueAssts = [];
+      await this.getAssignments();
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 4000,
+        });
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
+      this.loading = false;
     },
   },
 };
