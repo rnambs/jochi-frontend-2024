@@ -374,7 +374,7 @@ export default {
       await this.getStudentCount();
     },
     async GetGradeList(){
-      await this.getGradeList();
+      await this.getGradeList({id:this.studentId});
     },
     async getAssignments() {
       this.loading = true;
