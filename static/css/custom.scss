@@ -7549,3 +7549,11 @@ $b-toaster-zindex: 1100 !default;
     }
   }
 }
+
+// vuetify carousal deliminator color change
+i.v-icon.v-icon {
+  color: var(--theme-color) !important;
+  &::after{
+    color: var(--theme-light-color) !important;
+  }
+} 

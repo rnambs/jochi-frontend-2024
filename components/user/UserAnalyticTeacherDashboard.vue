@@ -112,7 +112,7 @@
             </div>
           </div> -->
         </div>
-        <div class="row d-flex">
+        <div class="row">
           <div class="col-12 col-sm-6 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex  justify-content-between pb-3 align-items-center border-bottom">
@@ -133,17 +133,18 @@
           <div class="col-12 col-sm-6 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
               <h2 class="text-16 mb-0 font-semi-bold color-text-100 border-bottom pb-3">Carousel</h2>
-              <carousel :per-page="1"  :adjustableHeight="true"  :mouse-drag="false">
+              <!-- code commented for alternate usage -->
+              <!-- <carousel :per-page="1"  :adjustableHeight="true"  :mouse-drag="false">
                 <slide>
                   <h4>Welcome to Jochi!</h4>
                   <p>How Jochi works for
                     specialists.
                   </p>
                       <div>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <p>Jochi - Watch Video</p>
                         </a>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
                         </a>
                       </div>
@@ -154,19 +155,24 @@
                     your students.
                   </p>
                   <div>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <p>Jochi - Watch Video</p>
                         </a>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
                         </a>
                       </div>
                 </slide>
-              </carousel>
-              <!-- code commented for alternate usage -->
-              <!-- <v-carousel :show-arrows="false"  delimiter-icon="mdi-circle">
+              </carousel> -->
+              <v-carousel :show-arrows="false"  delimiter-icon="mdi-circle"   height="auto"  hide-delimiter-background>
                 <v-carousel-item
                 >
+                <div>
+                  <h4>Welcome to Jochi!</h4>
+                  <p>How Jochi works for
+                    specialists.
+                  </p>
+                </div>
                 <div>
                         <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
                           <p>Jochi - Watch Video</p>
@@ -179,6 +185,12 @@
                 <v-carousel-item
                 >
                 <div>
+                  <h4>Jochi for Students</h4>
+                  <p>What Jochi looks like for
+                    your students.
+                  </p>
+                </div>
+                <div>
                         <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
                           <p>Jochi - Watch Video</p>
                         </a>
@@ -187,7 +199,7 @@
                         </a>
                       </div>
               </v-carousel-item>
-              </v-carousel> -->
+              </v-carousel>
             </div>
           </div>
         </div>
@@ -264,7 +276,7 @@
                           v-if="teachersList.length == 0"
                           class="empty-shedule"
                         >
-                          <p class="color-gray text-center  text-16">No Meetings found</p>
+                          <p class="color-gray text-center  text-16">No New Meeting Request's Found</p>
                         </div>
               </div>
             </div>
@@ -492,7 +504,7 @@
                       </div>
                     </div>
                     <div v-if="this.studentsList == 0">
-                    <p class="color-gray text-center text-16">No student's found</p>
+                    <p class="color-gray text-center text-16">No Student's Found</p>
                     </div>
                   <div class="modal-body no-overflow px-4">
                 <div class="form-row">
@@ -627,21 +639,21 @@ export default{
             labels: this.totalGrades,
             datasets: [
               {
-                label: 'Ahed', // First dataset label
+                label: 'Ahead', // First dataset label
                 data: aheadArray, // Example data points for Dataset 1
                 backgroundColor: 'rgb(22, 91, 170)', // Example color, customize as needed
                 borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed
                 borderWidth: 1,
               },
               {
-                label: 'Behind', // Second dataset label
+                label: 'Falling Behind', // Second dataset label
                 data: fallingArray, // Example data points for Dataset 2
                 backgroundColor: 'rgb(161, 85, 185)', // Example color, customize as needed
                 borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed
                 borderWidth: 1,
               },
               {
-                label: 'Rly Behind', // Third dataset label
+                label: 'Really Behind', // Third dataset label
                 data: behindArray, // Example data points for Dataset 3
                 backgroundColor: 'rgb(247, 101, 163)', // Example color, customize as needed
                 borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed
