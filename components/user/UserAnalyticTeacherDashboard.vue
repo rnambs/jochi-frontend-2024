@@ -264,7 +264,7 @@
                           v-if="teachersList.length == 0"
                           class="empty-shedule"
                         >
-                          <p class="color-gray text-center  text-16">No Meetings found</p>
+                          <p class="color-gray text-center  text-16">No New Meeting Request's Found</p>
                         </div>
               </div>
             </div>
@@ -492,7 +492,7 @@
                       </div>
                     </div>
                     <div v-if="this.studentsList == 0">
-                    <p class="color-gray text-center text-16">No student's found</p>
+                    <p class="color-gray text-center text-16">No Student's Found</p>
                     </div>
                   <div class="modal-body no-overflow px-4">
                 <div class="form-row">
