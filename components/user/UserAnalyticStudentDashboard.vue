@@ -192,7 +192,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
                       <p class="mb-0 text-14 color-text-50">Subject</p>
                     </div>
                     <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Completed Date</p>
+                      <p class="mb-0 text-14 color-text-50">Due Date</p>
                     </div>
                   </div>
                 <div class="assignment-overflow">
@@ -204,7 +204,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
                     </div>
                     <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.completed_date }}</h2>
+                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
                     </div>
                 </div>
                 <div  v-if="completedAssignmentsList.length == 0"
@@ -444,10 +444,10 @@ export default {
     },
     mapCompletedAssignments(){
       this.completedAssignmentsList = this.completedAssignments.map((element) => {
-        const { completed_date, subject, task, id } = element;
+        const { due_date, subject, task, id } = element;
 
         const Scheduleobj = {
-          completed_date: this.formatDate(completed_date),
+          due_date: this.formatDate(due_date),
           task,
           id,
           subject
