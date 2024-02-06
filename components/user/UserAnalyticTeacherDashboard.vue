@@ -133,17 +133,17 @@
           <div class="col-12 col-sm-6 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
               <h2 class="text-16 mb-0 font-semi-bold color-text-100 border-bottom pb-3">Carousel</h2>
-              <carousel :per-page="1"  :adjustableHeight="true"  :mouse-drag="false">
+              <!-- <carousel :per-page="1"  :adjustableHeight="true"  :mouse-drag="false">
                 <slide>
                   <h4>Welcome to Jochi!</h4>
                   <p>How Jochi works for
                     specialists.
                   </p>
                       <div>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <p>Jochi - Watch Video</p>
                         </a>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
                         </a>
                       </div>
@@ -154,17 +154,17 @@
                     your students.
                   </p>
                   <div>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <p>Jochi - Watch Video</p>
                         </a>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
                         </a>
                       </div>
                 </slide>
-              </carousel>
+              </carousel> -->
               <!-- code commented for alternate usage -->
-              <!-- <v-carousel :show-arrows="false"  delimiter-icon="mdi-circle">
+              <v-carousel :show-arrows="false"  delimiter-icon="mdi-circle"   height="auto"  hide-delimiter-background>
                 <v-carousel-item
                 >
                 <div>
@@ -187,7 +187,7 @@
                         </a>
                       </div>
               </v-carousel-item>
-              </v-carousel> -->
+              </v-carousel>
             </div>
           </div>
         </div>
