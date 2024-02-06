@@ -64,6 +64,9 @@
               <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto">
                 View Current Progress
               </button>
+              <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto ml-2">
+                Create Report
+              </button>
             </div>
 
           </div>
@@ -216,14 +219,6 @@
                 </div>
               </div>
             </div>
-          </div>
-
-        </div>
-        <div class="row">
-          <div class="col-12 d-flex justify-content-end ">
-            <button type="submit" class="btn btn-primary text-14 px-4 w-auto ">
-              Create Report
-            </button>
           </div>
 
         </div>
