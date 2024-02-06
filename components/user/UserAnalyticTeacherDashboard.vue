@@ -132,7 +132,7 @@
           </div>
           <div class="col-12 col-sm-6 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
-              <h2 class="text-16 mb-0 font-semi-bold color-text-100 border-bottom pb-3">Carousel</h2>
+              <h2 class="text-16 mb-0 font-semi-bold color-text-100 border-bottom pb-3">Welcome to Jochi!</h2>
               <!-- code commented for alternate usage -->
               <!-- <carousel :per-page="1"  :adjustableHeight="true"  :mouse-drag="false">
                 <slide>
@@ -164,37 +164,37 @@
                       </div>
                 </slide>
               </carousel> -->
-              <v-carousel :show-arrows="false"  delimiter-icon="mdi-circle"   height="auto"  hide-delimiter-background>
+              <v-carousel :show-arrows="false"  delimiter-icon="mdi-circle"   height="auto"  hide-delimiter-background class="pb-5">
                 <v-carousel-item
                 >
-                <div>
-                  <h4>Welcome to Jochi!</h4>
-                  <p>How Jochi works for
-                    specialists.
-                  </p>
-                </div>
-                <div>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
-                          <p>Jochi - Watch Video</p>
-                        </a>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                <div class="position-relative">
+                  <div class="position-absolute w-100 p-2 bg-dark-backdrop">
+                    <p class="mb-1 color-white">How Jochi works for
+                      specialists
+                    </p>
+                    <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank" class="btn btn-secondary py-1">
+                      <span class="mr-1"><i class="fa-solid fa-circle-play"></i></span>
+                      <span>Jochi - Watch Video</span>
+                    </a>
+                  </div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
                         </a>
                       </div>
                 </v-carousel-item>
                 <v-carousel-item
                 >
-                <div>
-                  <h4>Jochi for Students</h4>
-                  <p>What Jochi looks like for
-                    your students.
-                  </p>
-                </div>
-                <div>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
-                          <p>Jochi - Watch Video</p>
-                        </a>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                <div class="position-relative">
+                  <div class="position-absolute w-100 p-2 bg-dark-backdrop">
+                    <p class="mb-1 color-white">What Jochi looks like for
+                    your students
+                    </p>
+                    <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank" class="btn btn-secondary py-1">
+                      <span class="mr-1"><i class="fa-solid fa-circle-play"></i></span>
+                      <span>Jochi - Watch Video</span>
+                    </a>
+                  </div>
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
                         </a>
                       </div>

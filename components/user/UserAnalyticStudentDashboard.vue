@@ -192,7 +192,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
                       <p class="mb-0 text-14 color-text-50">Subject</p>
                     </div>
                     <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Completed Date</p>
+                      <p class="mb-0 text-14 color-text-50">Due Date</p>
                     </div>
                   </div>
                 <div class="assignment-overflow">
