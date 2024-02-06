@@ -174,10 +174,10 @@
                   </p>
                 </div>
                 <div>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <p>Jochi - Watch Video</p>
                         </a>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
                         </a>
                       </div>
@@ -191,10 +191,10 @@
                   </p>
                 </div>
                 <div>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <p>Jochi - Watch Video</p>
                         </a>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
                         </a>
                       </div>
