@@ -291,6 +291,10 @@
   background-color: #3284FF;
 }
 
+.bg-backdrop {
+  background: var(--bg-backdrop);
+}
+
 .border {
   border-width: 1.5px;
   border-style: solid;
