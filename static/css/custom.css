@@ -6355,4 +6355,11 @@ select.form-control.is-invalid {
 }
 .analytic-dashboard .box-card:hover {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+i.v-icon.v-icon {
+  color: var(--theme-color) !important;
+}
+i.v-icon.v-icon::after {
+  color: var(--theme-light-color) !important;
 }/*# sourceMappingURL=custom.css.map */
