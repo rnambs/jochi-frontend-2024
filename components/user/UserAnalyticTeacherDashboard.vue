@@ -631,7 +631,10 @@ export default{
 
         // const allNumbers = [...aheadArray, ...behindArray, ...fallingArray];
         // const highestNumber = Math.max(...allNumbers);
-
+        if (this.totalGrades.length < 1) {
+        document.getElementById("weeklyContainer").innerHTML =
+          "No data Found";
+      }
         const ctx = this.$refs.myChart.getContext('2d');
         this.chart = new Chart(ctx, {
           type: 'bar',
