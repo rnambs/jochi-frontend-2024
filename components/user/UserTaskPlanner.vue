@@ -1027,7 +1027,7 @@
                     <div class="form-group">
                       <label for="recipient-name" class="col-form-label">Time<em>*</em></label>
                       <div>
-                        <vue-timepicker @change="checkValidTime" close-on-complete format="hh:mm a" v-model="timeValue"
+                        <vue-timepicker @change="checkValidTime" close-on-complete format="hh:mm A" v-model="timeValue"
                           name="timeValue" class="show-cursor dropdown-menu-top" :value="timeValue" :class="{
                             'is-invalid':
                               submitted &&
