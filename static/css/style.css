@@ -10,12 +10,12 @@
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 * Tags: html, themplate, Ela Admin
 --------------------------------------------------------- */
-/* 
+/*
 
 
 Googel Fonts  */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
-/* Googel Fonts End  
+/* Googel Fonts End
 
 */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
@@ -133,11 +133,11 @@ Googel Fonts  */
 .mb-15 {
   margin-bottom: 15px; }
 
-/* 
+/*
 
 
 Googel Fonts  */
-/* Googel Fonts End  
+/* Googel Fonts End
 
 */
 .bg-flat-color-1 {
@@ -611,9 +611,9 @@ aside.left-panel {
       @media (max-width:1024px) {
         .navbar .navbar-nav > li {
           padding-left: 0px;
-          padding-right: 0px; 
+          padding-right: 0px;
         }
-        
+
         .navbar .navbar-nav li > a .menu-title-text {
           font-size: 14px; }
 
@@ -626,7 +626,7 @@ aside.left-panel {
       width: 100%; }
       .navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button:before,
       .navbar .navbar-nav li .toggle_nav_button.nav-open:before {
-        color: #03a9f3; 
+        color: #03a9f3;
         text-decoration: none;}
         a.nuxt-link-exact-active.nuxt-link-active{
           color: #03a9f3;
@@ -644,7 +644,7 @@ aside.left-panel {
         position: relative;
         text-decoration: none;
         width: 100%; }
-        .navbar .navbar-nav li > a:hover, 
+        .navbar .navbar-nav li > a:hover,
         .navbar .navbar-nav li > a.nuxt-link-exact-active.nuxt-link-active,
         .navbar .navbar-nav li > a.nuxt-link-exact-active.nuxt-link-active .menu-icon,
          .navbar .navbar-nav li > a:hover .menu-icon {
@@ -930,10 +930,10 @@ aside.left-panel {
   display: none; }
 .open  .right-panel .navbar-brand.hidden {
   width: fit-content;
-  display: block; 
+  display: block;
 }
 .open  .right-panel .navbar-brand.hidden img{
-  width: 23px; 
+  width: 23px;
 }
 
 .open .right-panel {
@@ -2308,13 +2308,13 @@ footer.site-footer {
 
   aside.left-panel {
     max-width: 83px;
-    width: 83px; 
+    width: 83px;
   }
     aside.left-panel .navbar .navbar-header {
-      padding: 0; 
+      padding: 0;
     }
     aside.left-panel .navbar .navbar-brand {
-      display: none; 
+      display: none;
     }
       aside.left-panel .navbar .navbar-brand.hidden {
         padding: 0 0 10px;
@@ -2397,7 +2397,7 @@ footer.site-footer {
         aside.left-panel.open-menu .navbar .navbar-nav li a .menu-title-text{
           width: 100%;
           max-width: 100%;
-          font-size: 12px; 
+          font-size: 12px;
         }
         aside.left-panel.open-menu .navbar .navbar-nav li > a .menu-icon {
           width: 20px;
@@ -2521,8 +2521,8 @@ footer.site-footer {
         -ms-flex: none;
             flex: none; } }
 @media (max-width: 768px) {
-  .navbar {
-    height: 100vh; }
+  /* .navbar {
+    height: 100vh; } */
     .navbar .navbar-nav li.menu-item-has-children > a:before {
       display: block !important; }
     .navbar .main-menu {
@@ -2611,7 +2611,7 @@ footer.site-footer {
    }
    .custom-container .v-card.v-sheet .row{
      margin: 0 0 15px;
-   } 
+   }
    .custom-container .v-data-table table th, .custom-container .v-data-table table td{
      min-width: 80px;
      vertical-align: middle;
@@ -2795,7 +2795,7 @@ form.example::after {
 .modal-footer justify-content-end border-top-0 {
   padding: 2px 16px;
   background-color: #5cb85c;
-  
+
 }
 .modal-body {
   position: relative;
@@ -2811,7 +2811,7 @@ form.example::after {
   height: 400px; /* = 100% of the .modal-dialog block */
 }
 .lms-form {
-  margin-left: 0px !important; 
+  margin-left: 0px !important;
 }
 select.custom-select.custom-select-sm{
   background: none !important;

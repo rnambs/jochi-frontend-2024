@@ -356,11 +356,9 @@
 				th.available{
 					span{
 						color: $global-box-shadow;
-						border: solid $global-box-shadow;
+						border: solid $theme-color;
 						border-width: 0 2px 2px 0;
 					}
-					
-					
 				}
 			}
 			tbody{

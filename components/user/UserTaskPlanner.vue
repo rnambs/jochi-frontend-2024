@@ -46,7 +46,7 @@
             </div>
 
             <div class="row h-100">
-            
+
 
 
 
@@ -59,12 +59,12 @@
                       </div>
                       <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
                     </div>
-                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column"
                       @dragover="todoDropStart()"
                       @dragleave="todoDropEnd()"
                       @drop="confirmUndo">
                       <div class="drop-zone" :class="{ 'dropping': isDroppingTodo }"></div>
-                    <div class="d-flex flex-column task-container pr-2 mb-3"> 
+                    <div class="d-flex flex-column task-container pr-2 mb-3">
                       <div v-for="(item, index) in tempAssts" :key="item.id">
                         <drag :transfer-data="{ item, source: 'todoAssignments', sourceType: 'Pending' }"
                           @dragstart="handleDragStartTodo(index)" @dragend="handleDragEndTodo()">
@@ -109,7 +109,7 @@
                                   <li @click="movetoDone(item, 'Pending')" class="item px-2 py-1">
                                     Move to Done
                                   </li>
-                                  <div v-if="item.shared_users_id != user_id">
+                                  <div v-if="item.shared_users_id != user_id && !item.createdBy">
                                     <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
@@ -141,6 +141,20 @@
                                   </button>
                                 </div> -->
                               </div>
+                            </div>
+                            <div class="">
+
+                              <div @click="redirecttoStudysession(item)" class="clickable d-flex w-100 justify-content-end my-2">
+                                <button class="btn btn-start-session text-nowrap w-auto">
+                                  Start Session
+                                </button>
+                              </div>
+                              <template v-if="item.createdBy">
+                                <div class="dotted w-100 pt-2">
+                                  <p class="text-10 color-gray task-description mb-0">Assignment created by
+                                    {{ item.createdByName }} </p>
+                                </div>
+                              </template>
                             </div>
                           </div>
                         </drag>
@@ -218,7 +232,7 @@
                                   <li @click="movetoDone(item, 'Doing')" class="item px-2 py-1">
                                     Move to Done
                                   </li>
-                                  <div v-if="item.shared_users_id != user_id">
+                                  <div v-if="item.shared_users_id != user_id && !item.createdBy">
                                     <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
@@ -251,6 +265,21 @@
                                 </div> -->
                               </div>
                             </div>
+                            <div class="">
+
+                              <div @click="redirecttoStudysession(item)" class="clickable d-flex w-100 justify-content-end">
+                                <button class="btn btn-start-session text-nowrap w-auto my-2 text-14">
+                                  Start Session
+                                </button>
+                              </div>
+                              <template v-if="item.createdBy" class="border pt-3">
+                                <div class="dotted w-100 pt-2">
+                                  <p class="text-10 color-gray task-description mb-0">Assignment created by
+                                    {{ item.createdByName }} </p>
+                                </div>
+                              </template>
+                            </div>
+
                           </div>
                         </drag>
                       </div>
@@ -261,7 +290,7 @@
                           <div slot="no-results"><span class="color-gray text-12">No Assignments</span></div>
                         </infinite-loading>
                       </client-only>
-                    
+
                     </div>
                   </drop>
                   </div>
@@ -279,11 +308,11 @@
                       </div>
                       <span class="border-pb-1 bg-task-green w-100 d-flex mb-3"></span>
                     </div>
-                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                    <drop class="drop color-secondary text-16 h-100 d-flex flex-column"
                       @dragover="doneDropStart()"
                       @dragleave="doneDropEnd()"
                       @drop="handleDrop">
-                      <div class="drop-zone" :class="{ 'dropping': isDroppingDone }">             
+                      <div class="drop-zone" :class="{ 'dropping': isDroppingDone }">
                       </div>
                     <div class="d-flex flex-column task-container pr-2 mb-3">
                       <div v-for="(item,index) in doneAssignmentsList" :key="item.id">
@@ -335,7 +364,7 @@
                             </div>
                             <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
                             <p class="text-10 color-gray mb-2 task-description text_ellipsis" v-html="item.assignment_description"></p>
-                            
+
                             <div class="d-flex align-items-center justify-content-start">
                               <div class="d-flex">
                                 <div v-for="(peer, index) in item.peers" :key="index">
@@ -362,7 +391,7 @@
                       </client-only>
                     </div>
                   </drop>
-                  </div> 
+                  </div>
               </div>
               <div class="col-12 col-sm-6 col-lg-3">
                 <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
@@ -423,7 +452,7 @@
                                   <li  @click="movetoDone(item, 'Overdue')" class="item px-2 py-1">
                                     Move to Done
                                   </li>
-                                <div v-if="item.shared_users_id != user_id">
+                                <div v-if="item.shared_users_id != user_id && !item.createdBy">
                                   <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                 </div>
                               </ul>
@@ -447,6 +476,11 @@
                               </div> -->
                             </div>
                           </div>
+                          <div v-if="item.createdBy">
+                              <p class="color-secondary text-12 mb-0">Assignment created  by  : {{ item.createdByName
+                              }}
+                              </p>
+                            </div>
                         </div>
                       </drag>
                     </div>
@@ -464,7 +498,7 @@
 
             <div class="row h-100 d-none">
               <div class="col-12 col-sm-6 col-lg-3">
-                
+
                   <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
                     <div class="d-flex flex-column pr-2">
                       <div class="d-flex align-items-center mb-3">
@@ -519,7 +553,7 @@
                                   <li @click="onCardClick(item, 'Doing')" class="item px-2 py-1">
                                     Edit
                                   </li>
-                                  <div v-if="item.shared_users_id != user_id">
+                                  <div v-if="item.shared_users_id != user_id && !item.createdBy">
                                     <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
@@ -567,7 +601,7 @@
                       <span class="border-pb-1 bg-task-yellow w-100 d-flex mb-3"></span>
                     </div>
                     <div class="d-flex flex-column task-container pr-2 mb-3">
-                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column"
                       @dragover="todoDropStart()"
                       @dragleave="todoDropEnd()"
                       @drop="confirmUndo">
@@ -610,7 +644,7 @@
                                 </div>
                                 <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
                                   <li @click="onCardClick(item, 'Pending')" class="item px-2 py-1">Edit</li>
-                                  <div v-if="item.shared_users_id != user_id">
+                                  <div v-if="item.shared_users_id != user_id && !item.createdBy">
                                     <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                   </div>
                                 </ul>
@@ -658,7 +692,7 @@
                       <span class="border-pb-1 bg-task-green w-100 d-flex mb-3"></span>
                     </div>
                     <div class="d-flex flex-column task-container pr-2 mb-3">
-                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column" 
+                      <drop class="drop color-secondary text-16 h-100 d-flex flex-column"
                       @dragover="doneDropStart()"
                       @dragleave="doneDropEnd()"
                       @drop="handleDrop">
@@ -734,7 +768,7 @@
                       </client-only>
                     </drop>
                     </div>
-                  </div> 
+                  </div>
               </div>
               <div class="col-12 col-sm-6 col-lg-3">
                 <div class="card card-tertiary pl-3 pr-2 pt-3 rounded-12 w-100 h-100">
@@ -786,7 +820,7 @@
                               </div>
                               <ul class="dropdown-menu w-100 rounded-12 p-2 end-0" aria-labelledby="dLabel">
                                 <li @click="onCardClick(item, 'Overdue')" class="item px-2 py-1">Edit</li>
-                                <div v-if="item.shared_users_id != user_id">
+                                <div v-if="item.shared_users_id != user_id && !item.createdBy">
                                   <li @click="onChooseMultiple(item.id)" class="item px-2 py-1">Remove</li>
                                 </div>
                               </ul>
@@ -883,6 +917,7 @@
                       :class="{
                       'is-invalid':
                       submitted && $v.subject.$error,
+                      'disabled': this.createdBy,
                   }"
                     >
                       <span id="dLabel" class="mr-auto color-secondary text-truncate">
@@ -915,6 +950,7 @@
                     :class="{
                       'is-invalid':
                         submitted && $v.assignmentName.$error,
+                        'disabled': this.createdBy,
                     }" />
                   <div v-if="submitted && $v.assignmentName.$error" class="invalid-feedback">
                     <span v-if="!$v.assignmentName.required">This field is required</span>
@@ -923,13 +959,21 @@
                 <div class="form-group mb-2">
                   <label for="message-text" class="col-form-label py-1">Description</label>
                   <textarea class="form-control" id="message-text" rows="3" v-model="assignmentDescription"
-                    maxlength="500" placeholder="Enter assignment description"></textarea>
+                    maxlength="500" placeholder="Enter assignment description"
+                    :class="{
+                    'disabled': this.createdBy,
+                    }"
+                    ></textarea>
                 </div>
                 <div class="row">
                   <div class="col-md-6 ml-auto py-0">
                     <div class="form-group mb-2 mb-0">
                       <label for="recipient-name" class="col-form-label py-1">Priority<em>*</em></label>
-                      <div class="dropdown input-icon-area">
+                      <div class="dropdown input-icon-area"
+                      :class="{
+                        'disabled': this.createdBy,
+                    }"
+                      >
                         <button id="dLabel" class="dropdown-select form-control text-left" type="button"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <span class="">
@@ -970,6 +1014,7 @@
                         v-model="dateValue" :class="{
                           'is-invalid':
                             submitted && $v.dateValue.$error,
+                            'disabled': this.createdBy,
                         }" :disabled-dates="disabledDates" />
                       <div v-if="submitted && $v.dateValue.$error" class="invalid-feedback">
                         <span v-if="!$v.dateValue.required">This field is required</span>
@@ -988,6 +1033,7 @@
                               submitted &&
                               ($v.timeValue.$error ||
                                 !validTime),
+                                'disabled': this.createdBy,
                           }"></vue-timepicker>
                         <div v-if="submitted &&
                           ($v.timeValue.$error || !validTime)
@@ -1094,7 +1140,7 @@
                 </div>
 
                 <!-- Additional Material Add -->
-                <div class="d-flex justify-content-between align-items-center mb-2">
+                <div v-if="!this.createdBy" class="d-flex justify-content-between align-items-center mb-2">
                   <h6 class="color-dark font-semi-bold mb-0">
                     Invite Peers
                   </h6>
@@ -2009,7 +2055,10 @@ export default {
       DoingToast: false,
       startOfWeek:"",
       startOfMonth: "",
-      taskDate: ""
+      taskDate: "",
+      createdBy: '',
+      createdByName: ''
+
     }
   },
   created() {
@@ -2023,7 +2072,7 @@ export default {
       this.taskDate = this.startOfWeek;
     const taskId = this.$route.query.id;
     if (taskId) {
-      
+
       await this.getAssignment({
         id: taskId,
       })
@@ -2034,7 +2083,7 @@ export default {
       this.onCardClick(data, data.task_status);
     }
     }
-    
+
     this.loading = false;
     this.school_id = localStorage.getItem("school_id")
     this.user_id = localStorage.getItem("id");
@@ -2460,6 +2509,8 @@ export default {
         item.subTasks = e.subTasks;
         item.subject = e.subject;
         item.subjects = e.subjects;
+        item.createdBy = e.createdBy
+        item.createdByName = e.createdByName
         item.task = e.task;
         item.task_status = e.task_status;
         item.updatedAt = e.updatedAt;
@@ -2507,6 +2558,8 @@ export default {
         item.subTasks = e.assignments?.subTasks;
         item.subject = e.assignments?.subjects?.subject_name ?? "";
         item.subjects = e.assignments?.subjects;
+        item.createdBy = e.createdBy
+        item.createdByName = e.createdByName
         item.task = e.assignments.task;
         item.task_status = e.assignments.task_status;
         item.updatedAt = e.assignments.updatedAt;
@@ -2769,6 +2822,8 @@ export default {
       let clearTimeBtn = document.getElementsByClassName("clear-btn")[0];
       clearTimeBtn?.click();
       this.typeOfAssignment = '';
+      this.createdBy = '';
+      this.createdByName = '';
     },
     checkValidTime() {
       if (this.timeValue) {
@@ -2812,7 +2867,7 @@ export default {
     async AddAssignment() {
       this.submitted = true;
       this.$v.$touch();
-      if (this.$v.$invalid || !this.validTime) {
+      if (!this.priorityVal || this.$v.$invalid || !this.validTime) {
         return;
       }
       this.processing = true;
@@ -2893,6 +2948,7 @@ export default {
       }
       this.submitted = false;
       this.processing = false;
+      this.createdBy = '';
     },
     async UpdateAssignment() {
       if (this.priorityVal == "Overdue" && !this.isSharedAssignment) {
@@ -3016,6 +3072,8 @@ export default {
 
       this.isSharedAssignment = data.isShared;
       this.schoologyAssignment = data.schoologyAssignment;
+      this.createdBy = data.createdBy;
+      this.createdByName = data.createdByName;
       this.assignmentId = data.id;
       this.assignmentName = data.task;
       this.assignmentDescription = textContent;
@@ -3508,7 +3566,7 @@ export default {
           break;
         }
         case "Overdue": {
-          // overdue 
+          // overdue
           this.overdueoffset = 0;
           this.overdueAssignments = [];
           this.overduereloadNext = true;
@@ -3561,7 +3619,7 @@ export default {
           break;
         }
         case "Overdue": {
-          // overdue 
+          // overdue
           this.overdueoffset = 0;
           this.overdueAssignments = [];
           this.overduereloadNext = true;
@@ -3644,7 +3702,7 @@ export default {
         $("#undoAssignmentConfirmation").modal({ backdrop: true });
       }else{
         this.undoAsstComplete();
-      } 
+      }
     },
     movetoDone(item,type){
       let assignment = item;
@@ -3678,12 +3736,15 @@ export default {
         this.doingAssignment();
       }
   },
+  redirecttoStudysession(item){
+    this.$router.push({ path: `/study-time`, query: { id: item.id, source: 'task' } });
+  },
   selectSubject(selectedSubject) {
       this.subject = {
       id: selectedSubject.id,
       text: selectedSubject.subject_name
     };
-  }
+  },
   },
 }
 </script>
