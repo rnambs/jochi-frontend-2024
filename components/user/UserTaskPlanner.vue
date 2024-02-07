@@ -1027,7 +1027,7 @@
                     <div class="form-group">
                       <label for="recipient-name" class="col-form-label">Time<em>*</em></label>
                       <div>
-                        <vue-timepicker @change="checkValidTime" close-on-complete format="hh:mm A" v-model="timeValue"
+                        <vue-timepicker @change="checkValidTime" close-on-complete format="hh:mm a" v-model="timeValue"
                           name="timeValue" class="show-cursor dropdown-menu-top" :value="timeValue" :class="{
                             'is-invalid':
                               submitted &&
@@ -2053,6 +2053,9 @@ export default {
       task_ids: [],
       OverdueToast: false,
       DoingToast: false,
+      startOfWeek:"",
+      startOfMonth: "",
+      taskDate: "",
       createdBy: '',
       createdByName: ''
 
@@ -2065,6 +2068,8 @@ export default {
     });
   },
   async mounted() {
+      this.startOfWeek = moment().locale('en-gb').startOf('week').format('YYYY-MM-DD');
+      this.taskDate = this.startOfWeek;
     const taskId = this.$route.query.id;
     if (taskId) {
 
@@ -2298,11 +2303,17 @@ export default {
     },
     monthlyAssignments() {
       // Set the assignmentType to "Monthly" when clicking monthlyAssignments
+      this.startOfMonth = moment().startOf('month').format('YYYY-MM-DD');
+      this.taskDate = this.startOfMonth;
       this.assignmentType = 'Monthly';
       this.doneoffset = 0;
       this.doneAssignmentsList = [];
       this.donereloadNext = true;
       this.donereloadCount += 1;
+      this.offset = 0;
+      this.tempAssts = [];
+      this.reloadNext = true;
+      this.reloadCount += 1;
       this.monthlyAssignmentsCalled = true;
     },
     truncate(description) {
@@ -2313,19 +2324,30 @@ export default {
     return description;
     },
     allAssignments() {
+      this.taskDate = "";
       this.assignmentType = 'All';
       this.doneoffset = 0;
       this.doneAssignmentsList = [];
       this.donereloadNext = true;
       this.donereloadCount += 1;
+      this.offset = 0;
+      this.tempAssts = [];
+      this.reloadNext = true;
+      this.reloadCount += 1;
       this.allAssignmentsCalled = true;
     },
     weeklyAssignments() {
+      this.startOfWeek = moment().locale('en-gb').startOf('week').format('YYYY-MM-DD');
+      this.taskDate = this.startOfWeek;
       this.assignmentType = 'Weekly';
       this.doneoffset = 0;
       this.doneAssignmentsList = [];
       this.donereloadNext = true;
       this.donereloadCount += 1;
+      this.offset = 0;
+      this.tempAssts = [];
+      this.reloadNext = true;
+      this.reloadCount += 1;
       this.allAssignmentsCalled = true;
     },
 
@@ -2368,7 +2390,10 @@ export default {
         this.reloadNext = false;
         this.tempOffset = this.offset;
         this.pendingAssignments = [];
-        await this.getAssignments({ offset: this.offset, limit: this.limit, filter: 'Pending' });
+        await this.getAssignments({ offset: this.offset, limit: this.limit, filter: 'Pending',
+          date: this.taskDate,
+          type: this.assignmentType,
+        });
         this.offset = this.offset + this.limit;
         this.assignmentMaterials = [];
         await this.mapAssignments();
