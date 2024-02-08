@@ -54,7 +54,7 @@
                 <div data-intro="Choose your date range."
                   class="col-12 col-sm-6 py-0 form-row  d-flex position-relative schedule-meeting-section">
                   <input type="text" name="daterange" autocomplete="off" placeholder="Date Range"
-                    class="form-control tab-form-control custom-form-control pr-5" readonly="readonly" />
+                    class="form-control tab-form-control custom-form-control pr-5 clickable" readonly="readonly" />
                   <span class="inputfield-icon date-icon position-absolute right-0"></span>
                 </div>
               </form>
