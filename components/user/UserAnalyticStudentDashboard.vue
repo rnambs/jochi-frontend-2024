@@ -64,7 +64,13 @@
               <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto">
                 View Current Progress
               </button>
-              <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto ml-2">
+              <button @click="GeneratePdf()" :disabled="submitted" type="submit" class="btn btn-primary text-14 px-3 w-auto ml-2">
+                <v-progress-circular
+                  v-if="spinnerLoader"
+                  :size="20"
+                  color="primary"
+                  indeterminate
+                ></v-progress-circular>
                 Create Report
               </button>
             </div>
@@ -78,7 +84,7 @@
                 <div class="">
                   <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ OverdueAssignmentscount }} <span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
-                  <p class="mb-0 text-14 color-text-50">Rahul’s Overdue Assignments</p>
+                  <p class="mb-0 text-14 color-text-50">{{ studentDetail }}’s Overdue Assignments</p>
                 </div>
                 <div class="w-fit-content">
                   <svg xmlns="http://www.w3.org/2000/svg" width="101" height="51" viewBox="0 0 101 51" fill="none">
@@ -167,7 +173,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
                 <div class="">
                   <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ completedAssignmentscount }}<span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
-                  <p class="mb-0 text-14 color-text-50">Rahul’s Completed Assignments</p>
+                  <p class="mb-0 text-14 color-text-50">{{ studentDetail }}’s Completed Assignments</p>
                 </div>
                 <div class="w-fit-content">
                   <svg xmlns="http://www.w3.org/2000/svg" width="101" height="51" viewBox="0 0 101 51" fill="none">
@@ -296,6 +302,8 @@ export default {
       anim: null,
       assignmentType:'weekly',
       studentDetail:'',
+      spinnerLoader: false,
+      submitted: false,
     };
   },
   computed:{
@@ -401,7 +409,8 @@ export default {
       getStudentCount: "getStudentCount",
       getAssignmentsListData: "getAssignmentsListData",
       getGradeList: "getGradeList",
-      emailReminder: "emailReminder"
+      emailReminder: "emailReminder",
+      generatePdf:"generatePdf"
     }),
     async setAssignmentType(type) {
       this.assignmentType = type;
@@ -493,6 +502,23 @@ export default {
       }
       this.loading = false;
     },
+    GeneratePdf(){
+      this.submitted = true;
+      this.spinnerLoader = true;
+      this.generatePdf({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});      
+      setTimeout(() => {
+        if(this.successMessage){
+        this.$toast.open({
+          message: "Download initiated",
+          type: this.SuccessType,
+          duration: 4000,
+        });
+      }
+        this.spinnerLoader = false;
+        this.submitted = false;
+      
+      }, 5000);
+    }
   },
 };
 </script>
