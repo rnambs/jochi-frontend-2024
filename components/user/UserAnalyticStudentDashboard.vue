@@ -476,7 +476,7 @@ export default {
       this.$router.push(`/teacher-advisor?id=${this.studentId}`);
     },
     selectedStudentId(selectedStudent) {
-      this.$router.push(`/teacher-advisor?id=${this.studentId}`);
+      this.$router.push(`/teacher-advisor?id=${selectedStudent.id}`);
     },
     async emailTrigger(detailId,userId){
       this.loading = true;
