@@ -395,9 +395,10 @@ export default {
       );
 
       $('input[name="daterange"]').on(
-        "cancel.daterangepicker",
+      "cancel.daterangepicker",
         function (ev, picker) {
           $(this).val("");
+            picker.setStartDate(moment());
         }
       );
     });
