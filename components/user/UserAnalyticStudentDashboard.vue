@@ -82,7 +82,7 @@
             <div class="border p-3 rounded-20 w-100 box-card overflow-x-hidden">
               <div class="d-flex justify-content-between align-items-center ">
                 <div class="">
-                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ OverdueAssignmentscount }} <span
+                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ OverdueAssignmentscount + overdueSharedAssignmentsCount }} <span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
                   <p class="mb-0 text-14 color-text-50">{{ studentDetail }}’s Overdue Assignments</p>
                 </div>
@@ -171,7 +171,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex justify-content-between align-items-center ">
                 <div class="">
-                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ completedAssignmentscount }}<span
+                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ completedAssignmentscount + completedSharedAssignmentsCount }}<span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
                   <p class="mb-0 text-14 color-text-50">{{ studentDetail }}’s Completed Assignments</p>
                 </div>
@@ -304,6 +304,8 @@ export default {
       studentDetail:'',
       spinnerLoader: false,
       submitted: false,
+      overdueSharedAssts: [],
+      completedSharedAssts: [],
     };
   },
   computed:{
@@ -324,6 +326,10 @@ export default {
       OverdueAssignmentscount: (state) => state.OverdueAssignmentscount,
       OverDueAssignments: (state) => state.OverDueAssignments,
       assignmentsGradeList:(state) => state.assignmentsGradeList,
+      completedSharedAssignmentsCount:(state) => state.completedSharedAssignmentsCount,
+      completedShareddetails:(state) => state.completedShareddetails,
+      overdueSharedAssignmentsCount:(state) => state.overdueSharedAssignmentsCount,
+      overdueShareddetails:(state) => state.overdueShareddetails,
     }),
     TypeText() {
       if (this.assignmentType === 'monthly') {
@@ -429,6 +435,8 @@ export default {
       await this.getAssignmentsListData({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});
       this.mapOverdueAssignments();
       this.mapCompletedAssignments();
+      this.mapOverduesharedAssignments();
+      this.mapCompletedsharedAssignments();
       this.loading = false;
     },
     handleAnimation: function (anim) {
@@ -464,6 +472,54 @@ export default {
         };
         return Scheduleobj;
       });
+    },
+    mapCompletedsharedAssignments() {
+      this.completedSharedAssts = this.completedShareddetails.map((element) => {
+          const {  assignments } = element;
+          const {
+              task,
+              id,
+              subject,
+              due_date,
+          } = assignments;
+          const userObject = {
+              task,
+              id,
+              subject,
+              due_date: this.formatDate(due_date),
+          };
+          return userObject;
+        });
+        this.completedAssignmentsList = [...this.completedAssignmentsList, ...this.completedSharedAssts];
+    },
+    mapOverduesharedAssignments() {
+      this.overdueSharedAssts = this.overdueShareddetails.map((element) => {
+          const {  assignments } = element;
+          const {
+            emailCounter,
+              emailSendDate,
+              overdueMailSentDate,
+              task_status,
+              task,
+              id,
+              subject,
+              user_id,
+              due_date,
+          } = assignments;
+          const userObject = {
+              due_date: this.formatDate(due_date),
+              emailCounter,
+              emailSendDate,
+              overdueMailSentDate,
+              task_status,
+              task,
+              id,
+              subject,
+              user_id
+          };
+          return userObject;
+        });
+        this.overdueAssts = this.overdueSharedAssts;
     },
     formatDate(input) {
       var datePart = input.match(/\d+/g),
