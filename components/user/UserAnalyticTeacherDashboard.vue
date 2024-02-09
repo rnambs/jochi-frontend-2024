@@ -665,6 +665,18 @@ export default{
             ],
           },
           options: {
+            plugins: {
+              legend: {
+                onHover: function(event, legendItem) {
+                  document.getElementById("weeklyContainer").style.cursor = 'pointer';
+                  // You can add additional hover effects here
+                },
+                onLeave: function(event, legendItem) {
+                  document.getElementById("weeklyContainer").style.cursor = 'default';
+                  // Reset hover effects here
+                }
+              }
+            },
             scales: {
               x: {
                 stacked: true,
