@@ -215,7 +215,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
                 </div>
                 <div  v-if="completedAssignmentsList.length == 0"
                   class="empty-shedule">
-                  <p class="color-gray text-center  text-14">No Overdue Assignments Found</p>
+                  <p class="color-gray text-center  text-14">No Completed Assignments Found</p>
                 </div>
               </div>
               </div>
