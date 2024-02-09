@@ -207,7 +207,7 @@
         <div class="row">
           <div class="col-12">
             <div class="border p-3 rounded-20 w-100 box-card">
-              <h2 class="text-16 mb-0 font-semi-bold color-text-100 pb-3">Meeting Requests</h2>
+              <h2 class="text-16 mb-0 font-semi-bold color-text-100 pb-3 text-center">Meeting Requests</h2>
               <div class="position-relative overflow-x-auto table-responsive  ">
                 <table class="table">
                   <thead>
