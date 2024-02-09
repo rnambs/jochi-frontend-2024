@@ -667,6 +667,8 @@ export default{
           options: {
             plugins: {
               legend: {
+                position: 'bottom',
+                align: 'start',
                 onHover: function(event, legendItem) {
                   document.getElementById("weeklyContainer").style.cursor = 'pointer';
                   // You can add additional hover effects here
@@ -684,8 +686,8 @@ export default{
               y: {
                 stacked: true,
                 beginAtZero: true,
-                stepSize: Math.ceil(highestSum / 5) * 1,      // Set step size to 20
-                max: Math.ceil(highestSum / 5) * 5,  
+                stepSize: Math.ceil(highestSum / 5) * 2,      // Set step size to 20
+                max: Math.ceil(highestSum / 5) * 10,  
               },
             },
           },
