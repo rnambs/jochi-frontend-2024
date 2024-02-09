@@ -207,7 +207,7 @@
         <div class="row">
           <div class="col-12">
             <div class="border p-3 rounded-20 w-100 box-card">
-              <h2 class="text-16 mb-0 font-semi-bold color-text-100 pb-3">Meeting Requests</h2>
+              <h2 class="text-16 mb-0 font-semi-bold color-text-100 pb-3 text-center">Meeting Requests</h2>
               <div class="position-relative overflow-x-auto table-responsive  ">
                 <table class="table">
                   <thead>
@@ -631,7 +631,10 @@ export default{
 
         // const allNumbers = [...aheadArray, ...behindArray, ...fallingArray];
         // const highestNumber = Math.max(...allNumbers);
-
+        if (this.totalGrades.length < 1) {
+        document.getElementById("weeklyContainer").innerHTML =
+          "No data Found";
+      }
         const ctx = this.$refs.myChart.getContext('2d');
         this.chart = new Chart(ctx, {
           type: 'bar',
@@ -662,6 +665,18 @@ export default{
             ],
           },
           options: {
+            plugins: {
+              legend: {
+                onHover: function(event, legendItem) {
+                  document.getElementById("weeklyContainer").style.cursor = 'pointer';
+                  // You can add additional hover effects here
+                },
+                onLeave: function(event, legendItem) {
+                  document.getElementById("weeklyContainer").style.cursor = 'default';
+                  // Reset hover effects here
+                }
+              }
+            },
             scales: {
               x: {
                 stacked: true,

@@ -459,6 +459,45 @@ const actions = {
       }
 
   },
+  async generatePdf({ commit }, payLoad) {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await this.$axios.$get(BASE_URL + `advisor/dashboard/student/report?studentId=${payLoad.id}&valueType=${payLoad.type}&from_date=${payLoad.fromDate}&to_date=${payLoad.toDate}`, {
+            headers: {
+                'Authorization': token
+            },
+            responseType: 'blob' // Set the response type to 'blob'
+        });
+        // Create blob URL from the response
+        const blob = new Blob([response], { type: 'application/pdf' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'report.pdf'); // Set a suitable filename
+        link.addEventListener('click', () => {
+        commit('setSuccessMessage', 'Download initiated');
+        });
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link); 
+
+    } catch (e) {
+        if (e.response && e.response.data.message === "Unauthorized") {
+            commit('setSuccessMessage', "");
+            commit('setSuccessType', "");
+            commit('setErrorMessage', "");
+            commit('setErrorType', "");
+            window.localStorage.clear();
+            this.$router.push('/');
+        } else {
+            commit('setErrorMessage', e.response.data.message);
+            commit('setErrorType', "error");
+            commit('setSuccessMessage', "");
+            commit('setSuccessType', "");
+        }
+    }
+}
+
 }
 
 const mutations = {
@@ -546,6 +585,9 @@ const mutations = {
   setGradelist(state, data) {
     state.assignmentsGradeList = data;
   },
+  setresponseStatus(state, data) {
+    state.responseStatus = data;
+  },
 
 }
 const getters = {
@@ -632,6 +674,9 @@ const getters = {
   }, 
   assignmentsGradeList: () => {
     return state.assignmentsGradeList;
+  }, 
+  responseStatus: () => {
+    return state.responseStatus;
   }, 
   
 }

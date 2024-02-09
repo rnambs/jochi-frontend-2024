@@ -54,7 +54,7 @@
                 <div data-intro="Choose your date range."
                   class="col-12 col-sm-6 py-0 form-row  d-flex position-relative schedule-meeting-section">
                   <input type="text" name="daterange" autocomplete="off" placeholder="Date Range"
-                    class="form-control tab-form-control custom-form-control pr-5" readonly="readonly" />
+                    class="form-control tab-form-control custom-form-control pr-5 clickable" readonly="readonly" />
                   <span class="inputfield-icon date-icon position-absolute right-0"></span>
                 </div>
               </form>
@@ -64,7 +64,13 @@
               <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto">
                 View Current Progress
               </button>
-              <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto ml-2">
+              <button @click="GeneratePdf()" :disabled="submitted" type="submit" class="btn btn-primary text-14 px-3 w-auto ml-2">
+                <v-progress-circular
+                  v-if="spinnerLoader"
+                  :size="20"
+                  color="primary"
+                  indeterminate
+                ></v-progress-circular>
                 Create Report
               </button>
             </div>
@@ -78,7 +84,7 @@
                 <div class="">
                   <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ OverdueAssignmentscount }} <span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
-                  <p class="mb-0 text-14 color-text-50">Rahul’s Overdue Assignments</p>
+                  <p class="mb-0 text-14 color-text-50">{{ studentDetail }}’s Overdue Assignments</p>
                 </div>
                 <div class="w-fit-content">
                   <svg xmlns="http://www.w3.org/2000/svg" width="101" height="51" viewBox="0 0 101 51" fill="none">
@@ -167,7 +173,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
                 <div class="">
                   <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ completedAssignmentscount }}<span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
-                  <p class="mb-0 text-14 color-text-50">Rahul’s Completed Assignments</p>
+                  <p class="mb-0 text-14 color-text-50">{{ studentDetail }}’s Completed Assignments</p>
                 </div>
                 <div class="w-fit-content">
                   <svg xmlns="http://www.w3.org/2000/svg" width="101" height="51" viewBox="0 0 101 51" fill="none">
@@ -209,7 +215,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
                 </div>
                 <div  v-if="completedAssignmentsList.length == 0"
                   class="empty-shedule">
-                  <p class="color-gray text-center  text-14">No Overdue Assignments Found</p>
+                  <p class="color-gray text-center  text-14">No Completed Assignments Found</p>
                 </div>
               </div>
               </div>
@@ -296,6 +302,8 @@ export default {
       anim: null,
       assignmentType:'weekly',
       studentDetail:'',
+      spinnerLoader: false,
+      submitted: false,
     };
   },
   computed:{
@@ -387,9 +395,10 @@ export default {
       );
 
       $('input[name="daterange"]').on(
-        "cancel.daterangepicker",
+      "cancel.daterangepicker",
         function (ev, picker) {
           $(this).val("");
+            picker.setStartDate(moment());
         }
       );
     });
@@ -401,7 +410,8 @@ export default {
       getStudentCount: "getStudentCount",
       getAssignmentsListData: "getAssignmentsListData",
       getGradeList: "getGradeList",
-      emailReminder: "emailReminder"
+      emailReminder: "emailReminder",
+      generatePdf:"generatePdf"
     }),
     async setAssignmentType(type) {
       this.assignmentType = type;
@@ -467,7 +477,7 @@ export default {
       this.$router.push(`/teacher-advisor?id=${this.studentId}`);
     },
     selectedStudentId(selectedStudent) {
-      this.$router.push(`/teacher-advisor?id=${this.studentId}`);
+      this.$router.push(`/teacher-advisor?id=${selectedStudent.id}`);
     },
     async emailTrigger(detailId,userId){
       this.loading = true;
@@ -493,6 +503,23 @@ export default {
       }
       this.loading = false;
     },
+    GeneratePdf(){
+      this.submitted = true;
+      this.spinnerLoader = true;
+      this.generatePdf({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});      
+      setTimeout(() => {
+        if(this.successMessage){
+        this.$toast.open({
+          message: "Download initiated",
+          type: this.SuccessType,
+          duration: 4000,
+        });
+      }
+        this.spinnerLoader = false;
+        this.submitted = false;
+      
+      }, 5000);
+    }
   },
 };
 </script>
