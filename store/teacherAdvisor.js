@@ -29,6 +29,10 @@ const state = {
     OverdueAssignmentscount: '',
     OverDueAssignments: [],
     assignmentsGradeList: [],
+    completedSharedAssignmentsCount: '',
+    completedShareddetails: [],
+    overdueSharedAssignmentsCount: '',
+    overdueShareddetails: []
 }
 // const BASE_URL = "https://jochi-api.devateam.com/";
 
@@ -410,10 +414,13 @@ const actions = {
             });
             commit('setTotalassignmentscount', response.total_assignments_count);
             commit('setCompletedAssignmentscount', response.completed_assignments_count);
-            commit('setOverdueAssignmentscount', response.Overdue_assignments_count);
-            commit('setOverdueassignments', response.OverDue_assignments_Details);
-            commit('setCompletedassignments', response.completed_assignments_details
-);
+            commit('setOverdueAssignmentscount', response.overdue_assignments_count);
+            commit('setOverdueassignments', response.overdue_assignments_details);
+            commit('setCompletedassignments', response.completed_assignments_details);
+            commit('setCompletedSharedAssignmentsCount', response.completed_sharedAssignments_count);
+            commit('setCompletedShareddetails', response.completed_sharedAssignments_details);
+            commit('setOverdueSharedAssignmentsCount', response.overdue_sharedAssignments_count);
+            commit('setOverdueShareddetails', response.overdue_sharedAssignments_details);
         } catch (e) {
             if (e.response.data.message == "Unauthorized") {
                 commit('setSuccessMessage', "");
@@ -588,6 +595,18 @@ const mutations = {
   setresponseStatus(state, data) {
     state.responseStatus = data;
   },
+  setCompletedSharedAssignmentsCount(state, data) {
+    state.completedSharedAssignmentsCount = data;
+  },
+  setCompletedShareddetails(state, data) {
+    state.completedShareddetails = data;
+  },
+  setOverdueSharedAssignmentsCount(state, data) {
+    state.overdueSharedAssignmentsCount = data;
+  },
+  setOverdueShareddetails(state, data) {
+    state.overdueShareddetails = data;
+  },
 
 }
 const getters = {
@@ -678,6 +697,18 @@ const getters = {
   responseStatus: () => {
     return state.responseStatus;
   }, 
+  completedSharedAssignmentsCount: () => {
+    return state.completedSharedAssignmentsCount;
+  },
+  completedShareddetails: () => {
+    return state.completedShareddetails;
+  },
+  overdueSharedAssignmentsCount: () => {
+    return state.overdueSharedAssignmentsCount;
+  },
+  overdueShareddetails: () => {
+    return state.overdueShareddetails;
+  },
   
 }
 
