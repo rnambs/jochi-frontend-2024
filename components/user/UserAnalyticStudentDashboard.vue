@@ -55,7 +55,7 @@
                   class="col-12 col-sm-6 py-0 form-row  d-flex position-relative schedule-meeting-section">
                   <input type="text" name="daterange" autocomplete="off" placeholder="Date Range"
                     class="form-control tab-form-control custom-form-control pr-5 clickable" readonly="readonly" />
-                  <span class="inputfield-icon date-icon position-absolute right-0"></span>
+                  <span class="inputfield-icon date-icon position-absolute right-0 clickable"></span>
                 </div>
               </form>
             </div>
@@ -384,6 +384,10 @@ export default {
         },
       });
 
+          $('.date-icon').click(function() {
+        $('input[name="daterange"]').click();
+      });
+
       $('input[name="daterange"]').on(
         "apply.daterangepicker",
         function (ev, picker) {
@@ -519,7 +523,7 @@ export default {
           };
           return userObject;
         });
-        this.overdueAssts = this.overdueSharedAssts;
+        this.overdueAssts = [...this.overdueAssts, ...this.overdueSharedAssts];
     },
     formatDate(input) {
       var datePart = input.match(/\d+/g),
