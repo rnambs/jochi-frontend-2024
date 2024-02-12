@@ -633,7 +633,7 @@ ${detail.emailCounter === null ? 0 : detail.emailCounter} reminder emails sent s
                   v-else
                   class="card card-primary-void rounded-22 p-4 h-100 position-realtive align-items-center justify-content-center"
                 >
-                  <h6 class="color-gray">
+                  <h6 v-if="!displaytext" class="color-gray">
                     Select a student to show details
                   </h6>
                   <!-- <div class="position-absolute advisor-image col-3">
@@ -1143,6 +1143,7 @@ export default {
       spinnerLoader: false,
       date_today: new Date(),
       emailCount: '',
+      displaytext: false,
       disabledDates: {
         to: new Date(),
       },
@@ -1151,6 +1152,7 @@ export default {
  async mounted() {
     const studentId = this.$route.query.id;
     if(studentId){
+      this.displaytext = true;
     await this.getStudentList();
     const student = this.studentsListAdvisor.find(student => student.id == studentId);
     this.onStudentClick(student);

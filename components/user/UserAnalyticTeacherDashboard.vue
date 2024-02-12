@@ -120,7 +120,8 @@
                   <h2 class="text-16 mb-0 font-semi-bold color-text-100">All Your Students</h2>
                   <p class="text-14 color-text-60 mb-0">Broken down by grade level</p>
                 </div>
-                <img src="../../assets/images/Icon/info.svg" class="cursor-pointer" alt="info" width="24" height="24" />
+                <!-- Code commented for future use -->
+                <!-- <img src="../../assets/images/Icon/info.svg" class="cursor-pointer" alt="info" width="24" height="24" /> -->
               </div>
               <!-- <img src="../../assets/images/graph.png" class="" alt="graph" width="100%" height="auto"/> -->
               <div>
@@ -667,6 +668,8 @@ export default{
           options: {
             plugins: {
               legend: {
+                position: 'bottom',
+                align: 'start',
                 onHover: function(event, legendItem) {
                   document.getElementById("weeklyContainer").style.cursor = 'pointer';
                   // You can add additional hover effects here
@@ -684,8 +687,8 @@ export default{
               y: {
                 stacked: true,
                 beginAtZero: true,
-                stepSize: Math.ceil(highestSum / 5) * 1,      // Set step size to 20
-                max: Math.ceil(highestSum / 5) * 5,  
+                stepSize: Math.ceil(highestSum / 5) * 2,      // Set step size to 20
+                max: Math.ceil(highestSum / 5) * 10,  
               },
             },
           },
