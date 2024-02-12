@@ -476,17 +476,27 @@ const actions = {
             responseType: 'blob' // Set the response type to 'blob'
         });
         // Create blob URL from the response
-        const blob = new Blob([response], { type: 'application/pdf' });
+        const blob = new Blob([response], { type: 'text/html' });
+        // Create a URL for the Blob object
         const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'report.pdf'); // Set a suitable filename
-        link.addEventListener('click', () => {
-        commit('setSuccessMessage', 'Download initiated');
-        });
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link); 
+        // Open the URL in a new tab
+        window.open(url);
+        // Revoke the URL after opening the new tab
+        window.URL.revokeObjectURL(url);
+
+        // code commented for future use
+
+        // const blob = new Blob([response], { type: 'application/pdf' });
+        // const url = window.URL.createObjectURL(blob);
+        // const link = document.createElement('a');
+        // link.href = url;
+        // link.setAttribute('download', 'report.pdf'); // Set a suitable filename
+        // link.addEventListener('click', () => {
+        // commit('setSuccessMessage', 'Download initiated');
+        // });
+        // document.body.appendChild(link);
+        // link.click();
+        // document.body.removeChild(link); 
 
     } catch (e) {
         if (e.response && e.response.data.message === "Unauthorized") {

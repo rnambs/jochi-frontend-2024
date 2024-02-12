@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h2 class="text-20 font-poppins font-semi-bold mb-0 flex-grow-1">
-            Welcome Back {{ firstName + ' ' + lastName }}!</h2>
+            Welcome Back, <br> {{ firstName + ' ' + lastName }}!</h2>
           <div class="form-group flex-grow-1 mb-0">
             <!-- <input type="text" class="form-control" id="search" placeholder="Search Student"> -->
             <multiselect
@@ -48,7 +48,7 @@
                 </svg>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0 text-14 color-text-50">Students Consistently Behind</p>
+                <p class="mb-0 text-14 color-text-50">Students <br> Consistently Behind</p>
                 <h2 class="mb-0 text-46 color-text-100">{{ this.consistentlyBehindCount !== null ? consistentlyBehindCount : '0' }}</h2>
               </div>
             </div>
@@ -64,7 +64,7 @@
                 </svg>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0 text-14 color-text-50">Students Falling Behind</p>
+                <p class="mb-0 text-14 color-text-50">Students <br> Falling Behind</p>
                 <h2 class="mb-0 text-46 color-text-100">{{ this.fallingBehindCount !== null ? fallingBehindCount : '0' }}</h2>
               </div>
             </div>
@@ -80,7 +80,7 @@
                 </svg>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0 text-14 color-text-50">Students Ahead of Their Work</p>
+                <p class="mb-0 text-14 color-text-50">Students <br>  Ahead of Their Work</p>
                 <h2 class="mb-0 text-46 color-text-100">{{ this.aheadCount }}</h2>
               </div>
             </div>
@@ -500,7 +500,7 @@
                       </div>
                       <div class="ld-details-section">
                         <p class="ld-heading mb-1">
-                          {{ student.first_name + " " + student.last_name }}
+                          {{ student.first_name + " " + student.last_name }} View Insights
                         </p>
                       </div>
                     </div>
