@@ -120,7 +120,8 @@
                   <h2 class="text-16 mb-0 font-semi-bold color-text-100">All Your Students</h2>
                   <p class="text-14 color-text-60 mb-0">Broken down by grade level</p>
                 </div>
-                <img src="../../assets/images/Icon/info.svg" class="cursor-pointer" alt="info" width="24" height="24" />
+                <!-- Code commented for future use -->
+                <!-- <img src="../../assets/images/Icon/info.svg" class="cursor-pointer" alt="info" width="24" height="24" /> -->
               </div>
               <!-- <img src="../../assets/images/graph.png" class="" alt="graph" width="100%" height="auto"/> -->
               <div>
