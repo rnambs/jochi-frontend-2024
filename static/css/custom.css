@@ -6373,3 +6373,14 @@ i.v-icon.v-icon {
 i.v-icon.v-icon::after {
   color: var(--theme-light-color) !important;
 }/*# sourceMappingURL=custom.css.map */
+.btn-start-session {
+  background: #007bff;
+  font-size: 0.75rem;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem !important;
+}
+.btn-start-session:hover {
+  background: #0069d9;
+  color: #fff;
+}/*# sourceMappingURL=custom.css.map */
