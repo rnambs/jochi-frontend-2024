@@ -485,7 +485,7 @@
                       v-for="student in studentsList"
                       :key="student.id"
                       :class="{ 'bg-card-secondary': student.id }"
-                      class="d-flex align-items-center flex-row p-3 student-list border-bottom cursor-pointer"
+                      class="d-flex align-items-center flex-row p-3 student-list border-bottom cursor-pointer assignment-overflow"
                     >
                       <div class="ld-img-section mr-3">
                         <div class="ld-img-holder">
@@ -865,3 +865,10 @@ export default{
 
 }
 </script>
+<style scoped>
+.assignment-overflow{
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 6.25rem;
+}
+</style>
