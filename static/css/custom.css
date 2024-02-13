@@ -312,6 +312,9 @@
 .border--form2 {
   border-color: var(--form2-border) !important;
 }
+.border--form3 {
+  border-color: #787486 !important;
+}
 
 .border-top, .border-right, .border-bottom, .border-left {
   border-color: var(--color-border) !important;
@@ -1012,6 +1015,10 @@ h1, h2, h3, h4, h5, h6 {
 .form-row .form-sm, .form-group .form-sm {
   height: 2.625rem;
   padding: 0.67rem 0.87rem;
+}
+.form-row .form-md, .form-group .form-md {
+  height: 2.875rem;
+  padding: 0.82rem 0.87rem;
 }
 .form-row textarea.form-control, .form-group textarea.form-control {
   height: unset;
