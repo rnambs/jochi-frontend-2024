@@ -6354,7 +6354,6 @@ select.form-control.is-invalid {
 .analytic-dashboard input[type=text] {
   border-radius: 0.625rem;
   border: transparent;
-  background-color: #F6F6F6 !important;
   font-size: 0.75rem;
   color: #939393;
   font-weight: 400;
@@ -6372,22 +6371,24 @@ i.v-icon.v-icon {
 }
 i.v-icon.v-icon::after {
   color: var(--theme-light-color) !important;
-}/*# sourceMappingURL=custom.css.map */
-.btn-start-session {
+}
+
+btn-start-session {
   background: #007bff;
   font-size: 0.75rem;
   color: #fff;
   font-weight: 500;
   padding: 0.25rem 0.75rem !important;
 }
-.btn-start-session:hover {
+btn-start-session:hover {
   background: #0069d9;
   color: #fff;
-}/*# sourceMappingURL=custom.css.map */
+}
+
 .border-top-dotted {
   border-top-style: dotted;
 }
 
 .dotted {
   border-top: 2px #dee2e6 dotted;
-}
+}/*# sourceMappingURL=custom.css.map */
