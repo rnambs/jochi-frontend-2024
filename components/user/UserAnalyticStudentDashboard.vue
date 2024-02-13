@@ -37,13 +37,13 @@
                   </select>
                 </div> -->
                 <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto mr-2">
-                        <div class="dropdown-select form-control form-sm form-transparent" type="button"
+                        <div class="dropdown-select form-control form-md form-transparent" type="button"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i class="i-filter-calendar j-icon i-sm bg-gray mr-1"></i>
                           <span id="dLabel" class="mr-3">{{ TypeText }}</span>
                           <span class="caret"><i class="fas fa-chevron-down font-medium"></i></span>
                         </div>
-                        <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
+                        <ul class="dropdown-menu w-100 rounded-12 p-2 mt-2" aria-labelledby="dLabel">
                           <li class="item p-2" @click="setAssignmentType('weekly')"
                             :class="{ active: assignmentType === 'weekly' }">This week</li>
                           <li class="item p-2" @click="setAssignmentType('monthly')"
@@ -53,7 +53,7 @@
                 <div data-intro="Choose your date range."
                   class="col-12 col-sm-6 py-0 form-row  d-flex position-relative schedule-meeting-section">
                   <input type="text" name="daterange" autocomplete="off" placeholder="Date Range"
-                    class="form-control tab-form-control custom-form-control pr-5 clickable" readonly="readonly" />
+                    class="form-control tab-form-control custom-form-control pr-5 clickable border border--form3" readonly="readonly" />
                   <span class="inputfield-icon date-icon position-absolute right-0 clickable"></span>
                 </div>
               </form>
