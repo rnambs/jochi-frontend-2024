@@ -437,7 +437,6 @@ export default {
     },
     async getAssignments() {
       this.loading = true;
-      console.log("type",this.assignmentType);
       await this.getAssignmentsListData({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});
       this.mapAssignments();
       this.mapCompletedAssignments();
@@ -449,7 +448,14 @@ export default {
     mapAssignments() {
       this.overdueAssts = this.mapAssignmentDetails(this.OverDueAssignments);
       this.overdueSharedAssts = this.mapAssignmentDetails(this.overdueShareddetails);
-      this.overdueAssts = [...this.overdueAssts, ...this.overdueSharedAssts];
+      // this.overdueAssts = [...this.overdueAssts, ...this.overdueSharedAssts];
+      const mergedArray = [...this.overdueAssts, ...this.overdueSharedAssts];
+      mergedArray.sort((a, b) => {
+    const dateA = new Date(a.due_date);
+    const dateB = new Date(b.due_date);
+    return dateA - dateB;
+    });
+    this.overdueAssts = mergedArray;
     },
     mapAssignmentDetails(assignments) {
       return assignments.map((element) => {
@@ -472,12 +478,6 @@ export default {
       this.completedAssignmentsList = this.mapCompletedAssignmentDetails(this.completedAssignments);
       this.completedSharedAssts = this.mapCompletedAssignmentDetails(this.completedShareddetails);
       this.completedAssignmentsList = [...this.completedAssignmentsList, ...this.completedSharedAssts];
-      // const mergedArray = [...this.completedAssignmentsList, ...this.completedSharedAssts];
-      // mergedArray.sort((a, b) => {
-      //   return a.task.localeCompare(b.task);
-      // });
-      // console.log("mrarray",mergedArray)
-      // this.completedAssignmentsList = mergedArray;
     },
 
     mapCompletedAssignmentDetails(assignments) {
