@@ -6380,14 +6380,14 @@ i.v-icon.v-icon::after {
   color: var(--theme-light-color) !important;
 }
 
-btn-start-session {
+.btn-start-session {
   background: #007bff;
   font-size: 0.75rem;
   color: #fff;
   font-weight: 500;
   padding: 0.25rem 0.75rem !important;
 }
-btn-start-session:hover {
+.btn-start-session:hover {
   background: #0069d9;
   color: #fff;
 }
