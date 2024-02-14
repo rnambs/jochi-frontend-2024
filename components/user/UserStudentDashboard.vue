@@ -16,8 +16,9 @@
           <div class="greet-with-name-sec">
             <h2 class="color-primary-dark heading3 font-bold mb-0">
               Welcome back, <span> {{ firstName }}!</span>
-              <img src="~/static/image/v4/waving.svg" alt="" class="small-waving-hand img-theme light" />
-              <img src="~/static/image/v4/waving-dark.svg" alt="" class="small-waving-hand img-theme dark" />
+              <!-- code commented for future use -->
+              <!-- <img src="~/static/image/v4/waving.svg" alt="" class="small-waving-hand img-theme light" />
+              <img src="~/static/image/v4/waving-dark.svg" alt="" class="small-waving-hand img-theme dark" /> -->
             </h2>
           </div>
         </div>
