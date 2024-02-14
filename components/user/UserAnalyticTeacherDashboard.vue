@@ -132,7 +132,7 @@
           </div>
           <div class="col-12 col-sm-6 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
-              <h2 class="text-16 mb-0 font-semi-bold color-text-100 border-bottom pb-3">Welcome to Jochi!</h2>
+              <h2 class="text-16 mb-0 font-semi-bold color-text-100 border-bottom pb-3">Get Help</h2>
               <!-- code commented for alternate usage -->
               <!-- <carousel :per-page="1"  :adjustableHeight="true"  :mouse-drag="false">
                 <slide>
@@ -476,7 +476,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h3 class="modal-title" id="inviteStudentModalLongTitle">
-                List of Student's who are {{ modalListType === 'consistentlyBehindlist' ? 'Consistently Behind' : (modalListType === 'fallingBehindlist' ? 'Falling Behind' : 'Ahead') }}
+                 {{ modalListType === 'consistentlyBehindlist' ? 'Consistently Behind' : (modalListType === 'fallingBehindlist' ? 'Falling Behind' : 'Ahead on Work') }}
               </h3>
             </div>
             <h4 class="modal-body"></h4>
