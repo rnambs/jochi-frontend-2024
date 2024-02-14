@@ -167,7 +167,31 @@
               <v-carousel :show-arrows="false"  delimiter-icon="mdi-circle"   height="auto"  hide-delimiter-background class="pb-5">
                 <v-carousel-item
                 >
-                <div class="position-relative">
+                <div class="d-flex">
+                  <a href=" https://www.loom.com/share/926df0f8034b40ab86921280b2fe6152?sid=7772decf-3ff9-4788-bd81-a47d9c52f034" target="_blank" class="mx-2 text-decoration-none w-50"> 
+                    <div class="clickable d-flex flex-column align-items-center justify-content-center">
+                    <img
+                        src="../../static/image/jochi-working.jpg"
+                        alt=""
+                        class="img-fluid ct-team mb-2"
+                      />
+                      <h6 class="font-medium text-18 color-text-primary text-center">How Jochi Works for Students</h6>
+                      <p class="text-12 color-text-primary text-center">A quick walkthrough of how your students interface with Jochi's Academic Planner.</p>
+                  </div>
+                  </a>
+                  <a href="https://www.loom.com/share/b40861022527463c859051e5f7752349?sid=603c092c-bd26-42fb-a4bb-23666db56659" target="_blank" class="mx-2 text-decoration-none w-50">
+                    <div class="clickable d-flex flex-column align-items-center justify-content-center">
+                      <img
+                          src="../../static/image/student-behind.jpg"
+                          alt=""
+                          class="img-fluid ct-team mb-2"
+                        />
+                      <h6 class="font-medium text-18 color-text-primary text-center">Identify Students Falling Behind</h6>
+                        <p class="text-12 color-text-primary text-center">Learn how to make use of your dashboard to identify students falling behind based on grades.</p>
+                    </div>
+                  </a>
+                </div>
+                <!-- <div class="position-relative">
                   <div class="position-absolute w-100 p-2 bg-dark-backdrop">
                     <p class="mb-1 color-white">How Jochi works for
                       specialists
@@ -180,11 +204,35 @@
                         <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank" class="flex">
                           <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif" class="w-100">
                         </a>
-                      </div>
+                      </div> -->
                 </v-carousel-item>
                 <v-carousel-item
                 >
-                <div class="position-relative">
+                <div class="d-flex">
+                  <a href="https://www.loom.com/share/8231a7b76cd24760ab90d47f14c77f1b" target="_blank" class="mx-2 text-decoration-none w-50">
+                    <div class="clickable d-flex flex-column align-items-center justify-content-center">
+                      <img
+                          src="../../static/image/welcome.jpg"
+                          alt=""
+                          class="img-fluid ct-team mb-2"
+                        />
+                        <h6 class="font-medium text-18 color-text-primary text-center">Introduction to Jochi</h6>
+                        <p class="text-12 color-text-primary text-center">A quick walkthrough explaining how you as a learning specialist can use Jochi to atreamline support.</p>
+                    </div>
+                  </a>
+                  <a href="https://docs.jochi.info/getting-started/about-jochi" target="_blank" class="mx-2 text-decoration-none w-50">
+                    <div class="clickable d-flex flex-column align-items-center justify-content-center">
+                      <img
+                          src="../../static/image/support-type.jpg"
+                          alt=""
+                          class="img-fluid ct-team mb-2"
+                        />
+                        <h6 class="font-medium text-18 color-text-primary text-center">Access Support:Our Help Center</h6>
+                        <p class="text-12 color-text-primary text-center">Read our full collection of frequently asked questions about Jochi and our tools</p>
+                    </div>
+                  </a>                  
+                </div>
+                <!-- <div class="position-relative">
                   <div class="position-absolute w-100 p-2 bg-dark-backdrop">
                     <p class="mb-1 color-white">What Jochi looks like for
                     your students
@@ -197,7 +245,7 @@
                         <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
                           <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
                         </a>
-                      </div>
+                      </div> -->
               </v-carousel-item>
               </v-carousel>
             </div>
