@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="d-flex justify-content-between  align-items-center mb-3">
           <h2 class="text-20 font-poppins font-semi-bold mb-0 flex-grow-1">
-            {{ studentDetail }}'s Dashboard</h2>
+            {{ studentDetail + "'s Dashboard" }}</h2>
           <div class="form-group flex-grow-1 mb-0">
             <!-- <input type="text" class="form-control" id="search" placeholder="Search Student"> -->
             <multiselect
@@ -83,7 +83,7 @@
                 <div class="mb-4 mb-xl-0">
                   <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ OverdueAssignmentscount + overdueSharedAssignmentsCount }} <span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
-                  <p class="mb-0 text-14 color-text-50">{{ studentDetail }}’s Overdue Assignments</p>
+                  <p class="mb-0 text-14 color-text-50">{{ studentFirstName }}’s Overdue Assignments</p>
                 </div>
                 <div class="w-fit-content">
                   <svg xmlns="http://www.w3.org/2000/svg" width="101" height="51" viewBox="0 0 101 51" fill="none">
@@ -111,7 +111,7 @@
                       <p class="mb-0 text-14 color-text-50">Due Date</p>
                     </div>
                     <div class="col-12 col-md-2">
-                      <p class="mb-0 text-14 color-text-50">Remind Student</p>
+                      <p class="mb-0 text-14 color-text-50">Remind</p>
                     </div>
                   </div>
                 <div class="assignment-overflow">
@@ -172,7 +172,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
                 <div class="mb-4 mb-xl-0">
                   <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ completedAssignmentscount + completedSharedAssignmentsCount }}<span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
-                  <p class="mb-0 text-14 color-text-50">{{ studentDetail }}’s Completed Assignments</p>
+                  <p class="mb-0 text-14 color-text-50">{{ studentFirstName }}’s Completed Assignments</p>
                 </div>
                 <div class="w-fit-content">
                   <svg xmlns="http://www.w3.org/2000/svg" width="101" height="51" viewBox="0 0 101 51" fill="none">
@@ -305,6 +305,7 @@ export default {
       submitted: false,
       overdueSharedAssts: [],
       completedSharedAssts: [],
+      studentFirstName: '',
     };
   },
   computed:{
@@ -346,6 +347,7 @@ export default {
       await this.GetStudentCount();
       const student = this.studentDetails.find(student => student.id == studentId);
       this.studentDetail = student.first_name + " " + student.last_name;
+      this.studentFirstName = student.first_name;
     }else{
       this.$router.push(`/teacher-analytic-dashboard`);
     }
