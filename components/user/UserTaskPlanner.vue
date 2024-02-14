@@ -2453,9 +2453,9 @@ export default {
         this.overduetempOffset = this.overdueoffset;
         this.overdueAssignmentList = [];
         await this.getAssignments({ offset: this.overdueoffset, limit: this.overduelimit, filter: 'Overdue' });
-        if (this.overdueoffset == 0) {
+        // if (this.overdueoffset == 0) {
           await this.mapOverdues();
-        }
+        // }
         this.overdueoffset = this.overdueoffset + this.overduelimit;
         this.assignmentMaterials = [];
         // await this.mapAssignments();

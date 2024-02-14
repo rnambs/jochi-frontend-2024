@@ -673,9 +673,7 @@ ${detail.emailCounter === null ? 0 : detail.emailCounter} reminder emails sent s
                   :options="studentsList"
                   track-by="first_name"
                   label="first_name"
-                  placeholder="
-                                Select students
-                              "
+                  placeholder="Select students"
                 >
                   <span slot="noResult">No data found</span>
                 </multiselect>

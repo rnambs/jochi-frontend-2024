@@ -3,8 +3,8 @@
     <section class="py-4 analytic-dashboard">
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h2 class="text-20 font-poppins font-semi-bold mb-0 flex-grow-1">
-            Welcome Back, <br> {{ firstName + ' ' + lastName }}!</h2>
+          <h2 class="text-20 font-poppins mb-0 flex-grow-1">
+            <span class="font-regular">Welcome Back,</span> <br> <span class="font-semi-bold">{{ firstName + ' ' + lastName }}!</span></h2>
           <div class="form-group flex-grow-1 mb-0">
             <!-- <input type="text" class="form-control" id="search" placeholder="Search Student"> -->
             <multiselect
@@ -12,8 +12,7 @@
                   :options="studentDetails"
                   track-by="first_name"
                   label="first_name"
-                  placeholder="
-                  Select students"
+                  placeholder="Select students"
                   @input="selectedStudentId"
                 >
                   <span slot="noResult">No data found</span>
@@ -178,8 +177,8 @@
                       <span>Jochi - Watch Video</span>
                     </a>
                   </div>
-                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank">
-                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif">
+                        <a href="https://www.loom.com/share/1bdf0f8ba91f4b5d886861ef9835ff95" target="_blank" class="flex">
+                          <img src="https://cdn.loom.com/sessions/thumbnails/1bdf0f8ba91f4b5d886861ef9835ff95-with-play.gif" class="w-100">
                         </a>
                       </div>
                 </v-carousel-item>
@@ -486,7 +485,7 @@
                       v-for="student in studentsList"
                       :key="student.id"
                       :class="{ 'bg-card-secondary': student.id }"
-                      class="d-flex align-items-center flex-row p-3 student-list border-bottom cursor-pointer"
+                      class="d-flex align-items-center flex-row p-3 student-list border-bottom cursor-pointer assignment-overflow"
                     >
                       <div class="ld-img-section mr-3">
                         <div class="ld-img-holder">
@@ -498,9 +497,12 @@
                           <img v-else src="~/static/image/avatar.png" alt="" />
                         </div>
                       </div>
-                      <div class="ld-details-section">
-                        <p class="ld-heading mb-1">
-                          {{ student.first_name + " " + student.last_name }} View Insights
+                      <div class="ld-details-section w-100 d-flex align-items-center">
+                        <p class="ld-heading mb-1 mr-3">
+                          {{ student.first_name + " " + student.last_name }} 
+                        </p>
+                        <p class="ld-heading mb-1 ml-auto text-nowrap">
+                          View Insights
                         </p>
                       </div>
                     </div>
@@ -514,7 +516,7 @@
             <div class="modal-footer justify-content-end border-top-0">
               <button
                 type="button"
-                class="btn btn-void font-semi-bold rounded-8 py-1 px-4"
+                class="btn btn-secondary py-1 px-3 mr-2"
                 data-dismiss="modal"
               >
                 Close
@@ -618,7 +620,36 @@ export default{
        console.log("data",this.totalGrades);
        console.log("data",this.taskStatusData); 
     },
+    convertToRoman(num) {
+        const romanNumerals = [
+      { value: 1000, numeral: 'M' },
+      { value: 900, numeral: 'CM' },
+      { value: 500, numeral: 'D' },
+      { value: 400, numeral: 'CD' },
+      { value: 100, numeral: 'C' },
+      { value: 90, numeral: 'XC' },
+      { value: 50, numeral: 'L' },
+      { value: 40, numeral: 'XL' },
+      { value: 10, numeral: 'X' },
+      { value: 9, numeral: 'IX' },
+      { value: 5, numeral: 'V' },
+      { value: 4, numeral: 'IV' },
+      { value: 1, numeral: 'I' }
+    ];
+    let roman = '';
+    for (let i = 0; i < romanNumerals.length; i++) {
+        while (num >= romanNumerals[i].value) {
+            roman += romanNumerals[i].numeral;
+            num -= romanNumerals[i].value;
+          }
+        }
+        return roman;
+    },
     renderChart() {
+              const convertedGrades = this.totalGrades.map(item => {
+            const number = parseInt(item, 10);
+            return isNaN(number) ? item : this.convertToRoman(number);
+        });
         const aheadArray = this.taskStatusData.map(item => item.aheadStudentsCount);
         const behindArray  = this.taskStatusData.map(item => item.consistentlyBehindCount);
         const fallingArray  = this.taskStatusData.map(item => item.fallingBehindCount);
@@ -640,7 +671,7 @@ export default{
         this.chart = new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: this.totalGrades,
+            labels: convertedGrades,
             datasets: [
               {
                 label: 'Ahead', // First dataset label
@@ -834,3 +865,10 @@ export default{
 
 }
 </script>
+<style scoped>
+.assignment-overflow{
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 6.25rem;
+}
+</style>

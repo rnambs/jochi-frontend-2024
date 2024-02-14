@@ -18,8 +18,7 @@
                   :options="studentDetails"
                   track-by="first_name"
                   label="first_name"
-                  placeholder="
-                  Select students"
+                  placeholder="Select students"
                   @input="selectedStudentId"
                 >
                   <span slot="noResult">No data Found</span>
@@ -38,13 +37,13 @@
                   </select>
                 </div> -->
                 <div data-intro="Filter tasks" class="dropdown form-row d-inline-flex w-auto mr-2">
-                        <div class="dropdown-select form-control form-sm form-transparent" type="button"
+                        <div class="dropdown-select form-control form-md form-transparent" type="button"
                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i class="i-filter-calendar j-icon i-sm bg-gray mr-1"></i>
                           <span id="dLabel" class="mr-3">{{ TypeText }}</span>
                           <span class="caret"><i class="fas fa-chevron-down font-medium"></i></span>
                         </div>
-                        <ul class="dropdown-menu w-100 rounded-12 p-2" aria-labelledby="dLabel">
+                        <ul class="dropdown-menu w-100 rounded-12 p-2 mt-2" aria-labelledby="dLabel">
                           <li class="item p-2" @click="setAssignmentType('weekly')"
                             :class="{ active: assignmentType === 'weekly' }">This week</li>
                           <li class="item p-2" @click="setAssignmentType('monthly')"
@@ -54,7 +53,7 @@
                 <div data-intro="Choose your date range."
                   class="col-12 col-sm-6 py-0 form-row  d-flex position-relative schedule-meeting-section">
                   <input type="text" name="daterange" autocomplete="off" placeholder="Date Range"
-                    class="form-control tab-form-control custom-form-control pr-5 clickable" readonly="readonly" />
+                    class="form-control tab-form-control custom-form-control pr-5 clickable border border--form3" readonly="readonly" />
                   <span class="inputfield-icon date-icon position-absolute right-0 clickable"></span>
                 </div>
               </form>
@@ -80,8 +79,8 @@
         <div class="row d-flex">
           <div class="col-12 col-sm-3 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card overflow-x-hidden">
-              <div class="d-flex justify-content-between align-items-center ">
-                <div class="">
+              <div class="d-flex flex-column flex-xl-row justify-content-between align-items-start align-items-xl-center ">
+                <div class="mb-4 mb-xl-0">
                   <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ OverdueAssignmentscount + overdueSharedAssignmentsCount }} <span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
                   <p class="mb-0 text-14 color-text-50">{{ studentDetail }}’s Overdue Assignments</p>
@@ -97,7 +96,7 @@
             </div>
           </div>
           <div class="col-12 col-sm-9">
-            <div class="border p-3 rounded-20 w-100 box-card">
+            <div class="border p-3 rounded-20 w-100 box-card h-100">
               <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
                 Overdue Assignments</h2>
                 <div>
@@ -169,8 +168,8 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
         <div class="row d-flex">
           <div class="col-12 col-sm-3 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
-              <div class="d-flex justify-content-between align-items-center ">
-                <div class="">
+              <div class="d-flex flex-column flex-xl-row justify-content-between align-items-start align-items-xl-center ">
+                <div class="mb-4 mb-xl-0">
                   <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ completedAssignmentscount + completedSharedAssignmentsCount }}<span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
                   <p class="mb-0 text-14 color-text-50">{{ studentDetail }}’s Completed Assignments</p>
@@ -186,7 +185,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
             </div>
           </div>
           <div class="col-12 col-sm-9">
-            <div class="border p-3 rounded-20 w-100 box-card">
+            <div class="border p-3 rounded-20 w-100 box-card h-100">
               <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
                 Completed Assignments</h2>
                 <div>
@@ -398,9 +397,9 @@ export default {
           );
           fromDate = picker.startDate.format("YYYY-MM-DD");
           endDate = picker.endDate.format("YYYY-MM-DD");
+          _this.assignmentType = '';
           _this.getAssignments.bind(_this)();
           _this.isShowing = false;
-          _this.assignmentType = '';
         }
       );
 
@@ -425,6 +424,8 @@ export default {
     }),
     async setAssignmentType(type) {
       this.assignmentType = type;
+      fromDate = '',
+      endDate = '',
       $('input[name="daterange"]').val("");
      await this.getAssignments()
     },
@@ -437,20 +438,30 @@ export default {
     async getAssignments() {
       this.loading = true;
       await this.getAssignmentsListData({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});
-      this.mapOverdueAssignments();
+      this.mapAssignments();
       this.mapCompletedAssignments();
-      this.mapOverduesharedAssignments();
-      this.mapCompletedsharedAssignments();
       this.loading = false;
     },
     handleAnimation: function (anim) {
       this.anim = anim;
     },
-    mapOverdueAssignments(){
-      this.overdueAssts = this.OverDueAssignments.map((element) => {
+    mapAssignments() {
+      this.overdueAssts = this.mapAssignmentDetails(this.OverDueAssignments);
+      this.overdueSharedAssts = this.mapAssignmentDetails(this.overdueShareddetails);
+      // this.overdueAssts = [...this.overdueAssts, ...this.overdueSharedAssts];
+      const mergedArray = [...this.overdueAssts, ...this.overdueSharedAssts];
+      mergedArray.sort((a, b) => {
+    const dateA = new Date(a.due_date);
+    const dateB = new Date(b.due_date);
+    return dateA - dateB;
+    });
+    this.overdueAssts = mergedArray;
+    },
+    mapAssignmentDetails(assignments) {
+      return assignments.map((element) => {
         const { due_date, emailCounter, emailSendDate, overdueMailSentDate, task_status, subject, task, user_id, id } = element;
 
-        const Scheduleobj = {
+        return {
           due_date: this.formatDate(due_date),
           emailCounter,
           emailSendDate,
@@ -461,69 +472,25 @@ export default {
           subject,
           user_id
         };
-        return Scheduleobj;
       });
     },
-    mapCompletedAssignments(){
-      this.completedAssignmentsList = this.completedAssignments.map((element) => {
+    mapCompletedAssignments() {
+      this.completedAssignmentsList = this.mapCompletedAssignmentDetails(this.completedAssignments);
+      this.completedSharedAssts = this.mapCompletedAssignmentDetails(this.completedShareddetails);
+      this.completedAssignmentsList = [...this.completedAssignmentsList, ...this.completedSharedAssts];
+    },
+
+    mapCompletedAssignmentDetails(assignments) {
+      return assignments.map((element) => {
         const { due_date, subject, task, id } = element;
 
-        const Scheduleobj = {
+        return {
           due_date: this.formatDate(due_date),
           task,
           id,
           subject
         };
-        return Scheduleobj;
       });
-    },
-    mapCompletedsharedAssignments() {
-      this.completedSharedAssts = this.completedShareddetails.map((element) => {
-          const {  assignments } = element;
-          const {
-              task,
-              id,
-              subject,
-              due_date,
-          } = assignments;
-          const userObject = {
-              task,
-              id,
-              subject,
-              due_date: this.formatDate(due_date),
-          };
-          return userObject;
-        });
-        this.completedAssignmentsList = [...this.completedAssignmentsList, ...this.completedSharedAssts];
-    },
-    mapOverduesharedAssignments() {
-      this.overdueSharedAssts = this.overdueShareddetails.map((element) => {
-          const {  assignments } = element;
-          const {
-            emailCounter,
-              emailSendDate,
-              overdueMailSentDate,
-              task_status,
-              task,
-              id,
-              subject,
-              user_id,
-              due_date,
-          } = assignments;
-          const userObject = {
-              due_date: this.formatDate(due_date),
-              emailCounter,
-              emailSendDate,
-              overdueMailSentDate,
-              task_status,
-              task,
-              id,
-              subject,
-              user_id
-          };
-          return userObject;
-        });
-        this.overdueAssts = [...this.overdueAssts, ...this.overdueSharedAssts];
     },
     formatDate(input) {
       var datePart = input.match(/\d+/g),

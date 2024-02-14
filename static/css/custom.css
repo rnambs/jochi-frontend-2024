@@ -312,6 +312,9 @@
 .border--form2 {
   border-color: var(--form2-border) !important;
 }
+.border--form3 {
+  border-color: #787486 !important;
+}
 
 .border-top, .border-right, .border-bottom, .border-left {
   border-color: var(--color-border) !important;
@@ -1012,6 +1015,10 @@ h1, h2, h3, h4, h5, h6 {
 .form-row .form-sm, .form-group .form-sm {
   height: 2.625rem;
   padding: 0.67rem 0.87rem;
+}
+.form-row .form-md, .form-group .form-md {
+  height: 2.875rem;
+  padding: 0.82rem 0.87rem;
 }
 .form-row textarea.form-control, .form-group textarea.form-control {
   height: unset;
@@ -6354,7 +6361,6 @@ select.form-control.is-invalid {
 .analytic-dashboard input[type=text] {
   border-radius: 0.625rem;
   border: transparent;
-  background-color: #F6F6F6 !important;
   font-size: 0.75rem;
   color: #939393;
   font-weight: 400;
@@ -6372,22 +6378,24 @@ i.v-icon.v-icon {
 }
 i.v-icon.v-icon::after {
   color: var(--theme-light-color) !important;
-}/*# sourceMappingURL=custom.css.map */
-.btn-start-session {
+}
+
+btn-start-session {
   background: #007bff;
   font-size: 0.75rem;
   color: #fff;
   font-weight: 500;
   padding: 0.25rem 0.75rem !important;
 }
-.btn-start-session:hover {
+btn-start-session:hover {
   background: #0069d9;
   color: #fff;
-}/*# sourceMappingURL=custom.css.map */
+}
+
 .border-top-dotted {
   border-top-style: dotted;
 }
 
 .dotted {
   border-top: 2px #dee2e6 dotted;
-}
+}/*# sourceMappingURL=custom.css.map */

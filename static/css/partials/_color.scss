@@ -159,7 +159,8 @@ $label-green: #159E00;
     border-style: solid;
     border-color: var(--color-border) !important;
     &--form{border-color: var(--form-border) !important;}
-    &--form2{border-color: var(--form2-border) !important}
+    &--form2{border-color: var(--form2-border) !important;}
+    &--form3{border-color: $form-color !important;}
 
 }
 .border-top,.border-right,.border-bottom,.border-left{border-color: var(--color-border) !important;}
