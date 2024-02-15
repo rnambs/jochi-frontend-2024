@@ -118,7 +118,9 @@
                             <img src="~/static/image/v4/email-black.svg" alt="Email" class="small-waving-hand img-theme dark"/>
                           </a>
                         </h3>
-                          <button @click="
+                          <button 
+                          v-if="isSchoolAdmin != '1'"
+                          @click="
                            openAssignment = true;
                           isAddAssignment = true;
                             EditAssignmentModal();" class="btn btn-primary py-1 px-3 mr-3">Add Assignment
@@ -447,7 +449,7 @@
                                   >
                                     <i class="fas fa-trash color-black"></i>
                                   </button> -->
-
+                                <div v-if="isSchoolAdmin != '1'">
                                   <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
 ${detail.emailCounter === null ? 0 : detail.emailCounter} reminder emails sent so far`"
                                     class="ml-3 text-12"
@@ -471,6 +473,7 @@ ${detail.emailCounter === null ? 0 : detail.emailCounter} reminder emails sent s
                                       ></path>
                                     </svg>
                                   </button>
+                                </div>
                                 </div>
                                 </div>
                                 <div class="text-center my-3">
