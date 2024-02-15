@@ -63,7 +63,8 @@
               <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto">
                 View Current Progress
               </button>
-              <button @click="GeneratePdf()" :disabled="submitted" type="submit" class="btn btn-primary text-14 px-3 w-auto ml-2">
+              <!-- code commented for later updation  -->
+              <!-- <button @click="GeneratePdf()" :disabled="submitted" type="submit" class="btn btn-primary text-14 px-3 w-auto ml-2">
                 <v-progress-circular
                   v-if="spinnerLoader"
                   :size="20"
@@ -71,7 +72,7 @@
                   indeterminate
                 ></v-progress-circular>
                 Create Report
-              </button>
+              </button> -->
             </div>
 
           </div>
@@ -532,23 +533,25 @@ export default {
       }
       this.loading = false;
     },
-    GeneratePdf(){
-      this.submitted = true;
-      this.spinnerLoader = true;
-      this.generatePdf({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});      
-      setTimeout(() => {
-        if(this.successMessage){
-        this.$toast.open({
-          message: "Download initiated",
-          type: this.SuccessType,
-          duration: 4000,
-        });
-      }
-        this.spinnerLoader = false;
-        this.submitted = false;
+    // code commented for later updation
+
+    // GeneratePdf(){
+    //   this.submitted = true;
+    //   this.spinnerLoader = true;
+    //   this.generatePdf({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});      
+    //   setTimeout(() => {
+    //     if(this.successMessage){
+    //     this.$toast.open({
+    //       message: "Download initiated",
+    //       type: this.SuccessType,
+    //       duration: 4000,
+    //     });
+    //   }
+    //     this.spinnerLoader = false;
+    //     this.submitted = false;
       
-      }, 4000);
-    }
+    //   }, 4000);
+    // }
   },
 };
 </script>
