@@ -547,7 +547,7 @@ export default {
         this.spinnerLoader = false;
         this.submitted = false;
       
-      }, 5000);
+      }, 4000);
     }
   },
 };
