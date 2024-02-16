@@ -1206,7 +1206,7 @@ export default {
           this.alertMessage = "This session has already been completed";
           $("#alertModal").modal({ backdrop: true });
         } else {
-          this.$router.push(`/study-time?id=${item.id}`);
+          this.$router.push({ path: `/study-time`, query: { id: item.id, source: 'calendar' } });
         }
       }
     },

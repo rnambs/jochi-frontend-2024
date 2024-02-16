@@ -26,6 +26,10 @@
 		height: 2.625rem;
 		padding: 0.67rem 0.87rem;
 	}
+    .form-md{
+		height: 2.875rem;
+		padding: 0.82rem 0.87rem;
+	}
     textarea.form-control{
         height: unset;
     }
@@ -356,11 +360,9 @@
 				th.available{
 					span{
 						color: $global-box-shadow;
-						border: solid $global-box-shadow;
+						border: solid $theme-color;
 						border-width: 0 2px 2px 0;
 					}
-					
-					
 				}
 			}
 			tbody{
