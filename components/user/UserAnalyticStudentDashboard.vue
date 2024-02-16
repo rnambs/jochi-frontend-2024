@@ -63,7 +63,8 @@
               <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto">
                 View Current Progress
               </button>
-              <button @click="GeneratePdf()" :disabled="submitted" type="submit" class="btn btn-primary text-14 px-3 w-auto ml-2">
+              <!-- code commented for later updation  -->
+              <!-- <button @click="GeneratePdf()" :disabled="submitted" type="submit" class="btn btn-primary text-14 px-3 w-auto ml-2">
                 <v-progress-circular
                   v-if="spinnerLoader"
                   :size="20"
@@ -71,7 +72,7 @@
                   indeterminate
                 ></v-progress-circular>
                 Create Report
-              </button>
+              </button> -->
             </div>
 
           </div>
@@ -110,7 +111,9 @@
                     <div class="col-12 col-md-2">
                       <p class="mb-0 text-14 color-text-50">Due Date</p>
                     </div>
-                    <div class="col-12 col-md-2">
+                    <div
+                    v-if="isSchoolAdmin != '1'"
+                     class="col-12 col-md-2">
                       <p class="mb-0 text-14 color-text-50">Remind</p>
                     </div>
                   </div>
@@ -125,7 +128,9 @@
                     <div class="col-12 col-md-2">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
                     </div>
-                    <div class="col-12 col-md-2">
+                    <div 
+                    v-if="isSchoolAdmin != '1'"
+                    class="col-12 col-md-2">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100"><div class="d-flex  p-0">
                                   <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
 ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder emails sent so far`"
@@ -306,6 +311,7 @@ export default {
       overdueSharedAssts: [],
       completedSharedAssts: [],
       studentFirstName: '',
+      isSchoolAdmin: ''
     };
   },
   computed:{
@@ -352,6 +358,7 @@ export default {
       this.$router.push(`/teacher-analytic-dashboard`);
     }
     // this.loading = false;
+    this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     this.GetStudentCount();
     this.GetGradeList();
     this.startTime = new Date().getTime();
@@ -532,23 +539,25 @@ export default {
       }
       this.loading = false;
     },
-    GeneratePdf(){
-      this.submitted = true;
-      this.spinnerLoader = true;
-      this.generatePdf({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});      
-      setTimeout(() => {
-        if(this.successMessage){
-        this.$toast.open({
-          message: "Download initiated",
-          type: this.SuccessType,
-          duration: 4000,
-        });
-      }
-        this.spinnerLoader = false;
-        this.submitted = false;
+    // code commented for later updation
+
+    // GeneratePdf(){
+    //   this.submitted = true;
+    //   this.spinnerLoader = true;
+    //   this.generatePdf({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});      
+    //   setTimeout(() => {
+    //     if(this.successMessage){
+    //     this.$toast.open({
+    //       message: "Download initiated",
+    //       type: this.SuccessType,
+    //       duration: 4000,
+    //     });
+    //   }
+    //     this.spinnerLoader = false;
+    //     this.submitted = false;
       
-      }, 4000);
-    }
+    //   }, 4000);
+    // }
   },
 };
 </script>
