@@ -665,8 +665,6 @@ export default{
     async GetGradeLevels(){
        await this.getGradeLevels();
        this.renderChart();
-       console.log("data",this.totalGrades);
-       console.log("data",this.taskStatusData); 
     },
     convertToRoman(num) {
         const romanNumerals = [
