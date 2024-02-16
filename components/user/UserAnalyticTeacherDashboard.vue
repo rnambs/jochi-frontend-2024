@@ -217,7 +217,7 @@
                           class="img-fluid ct-team mb-2"
                         />
                         <h6 class="font-medium text-18 color-text-primary text-center">Introduction to Jochi</h6>
-                        <p class="text-12 color-text-primary text-center">A quick walkthrough explaining how you as a learning specialist can use Jochi to atreamline support.</p>
+                        <p class="text-12 color-text-primary text-center">A quick walkthrough explaining how you as a learning specialist can use Jochi to streamline support.</p>
                     </div>
                   </a>
                   <a href="https://docs.jochi.info/getting-started/about-jochi" target="_blank" class="mx-2 text-decoration-none w-50">
