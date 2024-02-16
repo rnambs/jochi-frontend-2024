@@ -111,7 +111,9 @@
                     <div class="col-12 col-md-2">
                       <p class="mb-0 text-14 color-text-50">Due Date</p>
                     </div>
-                    <div class="col-12 col-md-2">
+                    <div
+                    v-if="isSchoolAdmin != '1'"
+                     class="col-12 col-md-2">
                       <p class="mb-0 text-14 color-text-50">Remind</p>
                     </div>
                   </div>
@@ -126,7 +128,9 @@
                     <div class="col-12 col-md-2">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
                     </div>
-                    <div class="col-12 col-md-2">
+                    <div 
+                    v-if="isSchoolAdmin != '1'"
+                    class="col-12 col-md-2">
                       <h2 class="mb-0 text-16 font-weight-medium color-text-100"><div class="d-flex  p-0">
                                   <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
 ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder emails sent so far`"
@@ -307,6 +311,7 @@ export default {
       overdueSharedAssts: [],
       completedSharedAssts: [],
       studentFirstName: '',
+      isSchoolAdmin: ''
     };
   },
   computed:{
@@ -353,6 +358,7 @@ export default {
       this.$router.push(`/teacher-analytic-dashboard`);
     }
     // this.loading = false;
+    this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     this.GetStudentCount();
     this.GetGradeList();
     this.startTime = new Date().getTime();
