@@ -63,8 +63,7 @@
               <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto">
                 View Current Progress
               </button>
-              <!-- code commented for later updation  -->
-              <!-- <button @click="GeneratePdf()" :disabled="submitted" type="submit" class="btn btn-primary text-14 px-3 w-auto ml-2">
+              <button @click="GeneratePdf()" :disabled="submitted" type="submit" class="btn btn-primary text-14 px-3 w-auto ml-2">
                 <v-progress-circular
                   v-if="spinnerLoader"
                   :size="20"
@@ -72,7 +71,7 @@
                   indeterminate
                 ></v-progress-circular>
                 Create Report
-              </button> -->
+              </button>
             </div>
 
           </div>
@@ -311,7 +310,11 @@ export default {
       overdueSharedAssts: [],
       completedSharedAssts: [],
       studentFirstName: '',
-      isSchoolAdmin: ''
+      isSchoolAdmin: '',
+      fromDate: "",
+      endDate: "",
+      dateRangePicker: null,
+      future: new Date(),
     };
   },
   computed:{
@@ -361,6 +364,8 @@ export default {
     this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     this.GetStudentCount();
     this.GetGradeList();
+    this.future.setDate(this.future.getDate());
+    this.initializeDateRangePicker();
     this.startTime = new Date().getTime();
     this.isMounted = false;
     const _this = this;
@@ -377,49 +382,6 @@ export default {
       mm = "0" + mm;
     }
     var today = dd + "/" + mm + "/" + yyyy;
-
-    $(function () {
-      fromDate = "";
-      endDate = "";
-      $('input[name="daterange"]').daterangepicker({
-        autoUpdateInput: false,
-        // minDate: today,
-        maxDate: future,
-        opens: "left",
-        locale: {
-          format: "DD-MM-YYYY",
-          cancelLabel: "Clear",
-        },
-      });
-
-          $('.date-icon').click(function() {
-        $('input[name="daterange"]').click();
-      });
-
-      $('input[name="daterange"]').on(
-        "apply.daterangepicker",
-        function (ev, picker) {
-          $(this).val(
-            picker.startDate.format("MM/DD/YYYY") +
-            " - " +
-            picker.endDate.format("MM/DD/YYYY")
-          );
-          fromDate = picker.startDate.format("YYYY-MM-DD");
-          endDate = picker.endDate.format("YYYY-MM-DD");
-          _this.assignmentType = '';
-          _this.getAssignments.bind(_this)();
-          _this.isShowing = false;
-        }
-      );
-
-      $('input[name="daterange"]').on(
-      "cancel.daterangepicker",
-        function (ev, picker) {
-          $(this).val("");
-            picker.setStartDate(moment());
-        }
-      );
-    });
   },
 
   methods: {
@@ -433,10 +395,10 @@ export default {
     }),
     async setAssignmentType(type) {
       this.assignmentType = type;
-      fromDate = '',
-      endDate = '',
+      this.fromDate = '',
+      this.endDate = '',
       $('input[name="daterange"]').val("");
-     await this.getAssignments()
+      await this.getAssignments()
     },
     async GetStudentCount(){
       await this.getStudentCount();
@@ -446,7 +408,7 @@ export default {
     },
     async getAssignments() {
       this.loading = true;
-      await this.getAssignmentsListData({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});
+      await this.getAssignmentsListData({id:this.studentId,type:this.assignmentType,fromDate:this.fromDate,toDate:this.endDate});
       this.mapAssignments();
       this.mapCompletedAssignments();
       this.loading = false;
@@ -454,6 +416,53 @@ export default {
     handleAnimation: function (anim) {
       this.anim = anim;
     },
+    initializeDateRangePicker() {
+      // Store reference to Vue component
+      const vm = this;
+
+      // Initialize dateRangePicker
+      this.dateRangePicker = $('input[name="daterange"]').daterangepicker({
+        autoUpdateInput: false,
+        // minDate: today,
+        maxDate: this.future,
+        opens: "left",
+        locale: {
+          format: "DD-MM-YYYY",
+          cancelLabel: "Clear",
+        },
+      });
+
+      // Handle click on date icon
+      $('.date-icon').click(function() {
+        // Open the date range picker when the icon is clicked
+        $('input[name="daterange"]').click();
+      });
+
+      // Handle apply event
+      $('input[name="daterange"]').on("apply.daterangepicker", function(ev, picker) {
+        $(this).val(
+          picker.startDate.format("MM/DD/YYYY") +
+          " - " +
+          picker.endDate.format("MM/DD/YYYY")
+        );
+        vm.fromDate = picker.startDate.format("YYYY-MM-DD");
+        vm.endDate = picker.endDate.format("YYYY-MM-DD");
+        vm.assignmentType = '';
+        vm.getAssignments();
+        vm.isShowing = false;
+      });
+
+      // Handle cancel event
+      $('input[name="daterange"]').on("cancel.daterangepicker", function(ev, picker) {
+        $(this).val("");
+        vm.fromDate = '';
+        vm.endDate = '';
+        vm.assignmentType = 'weekly';
+        vm.getAssignments();
+        picker.setStartDate(moment());
+      });
+    },
+
     mapAssignments() {
       this.overdueAssts = this.mapAssignmentDetails(this.OverDueAssignments);
       this.overdueSharedAssts = this.mapAssignmentDetails(this.overdueShareddetails);
@@ -539,25 +548,29 @@ export default {
       }
       this.loading = false;
     },
-    // code commented for later updation
-
-    // GeneratePdf(){
-    //   this.submitted = true;
-    //   this.spinnerLoader = true;
-    //   this.generatePdf({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});      
-    //   setTimeout(() => {
-    //     if(this.successMessage){
-    //     this.$toast.open({
-    //       message: "Download initiated",
-    //       type: this.SuccessType,
-    //       duration: 4000,
-    //     });
-    //   }
-    //     this.spinnerLoader = false;
-    //     this.submitted = false;
+    GeneratePdf(){
+      this.submitted = true;
+      this.spinnerLoader = true;
+      this.generatePdf({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});      
+      setTimeout(() => {
+        if(this.successMessage){
+        this.$toast.open({
+          message: "Download initiated",
+          type: this.SuccessType,
+          duration: 4000,
+        });
+      }
+        this.spinnerLoader = false;
+        this.submitted = false;
       
-    //   }, 4000);
-    // }
+      }, 4000);
+    }
+  },
+  beforeDestroy() {
+    if (this.dateRangePicker) {
+      // Remove the date range picker when the component is destroyed
+      this.dateRangePicker.data('daterangepicker').remove();
+    }
   },
 };
 </script>
