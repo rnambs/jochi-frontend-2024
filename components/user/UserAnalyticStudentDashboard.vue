@@ -97,72 +97,55 @@
           </div>
           <div class="col-12 col-sm-9">
             <div class="border p-3 rounded-20 w-100 box-card h-100">
-              <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
-                Overdue Assignments</h2>
-                <div>
-                  <div class="row">
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Assignment Name</p>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Subject</p>
-                    </div>
-                    <div class="col-12 col-md-2">
-                      <p class="mb-0 text-14 color-text-50">Due Date</p>
-                    </div>
-                    <div
-                    v-if="isSchoolAdmin != '1'"
-                     class="col-12 col-md-2">
-                      <p class="mb-0 text-14 color-text-50">Remind</p>
-                    </div>
-                  </div>
+              <h2 class="text-18 font-poppins font-semi-bold mb-2 flex-grow-1">
+                Overdue Assignments
+              </h2>
+              <div>
                 <div class="assignment-overflow">
-                  <div class="row " v-for="assignment in overdueAssts" :key="assignment.id">
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
-                    </div>
-                    <div class="col-12 col-md-2">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
-                    </div>
-                    <div 
-                    v-if="isSchoolAdmin != '1'"
-                    class="col-12 col-md-2">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100"><div class="d-flex  p-0">
-                                  <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
+                  <table class="table position-relative">
+                    <thead class="position-sticky top-0 bg-global">
+                      <tr>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Assignment Name</span></th>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Subject</span></th>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Due Date</span></th>
+                        <th v-if="isSchoolAdmin != '1'"><span class="mb-0 text-14 color-text-50 font-regular">Remind</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="assignment in overdueAssts" :key="assignment.id">
+                        <td><span class="text-14 font-poppins font-semi-bold mb-3">{{ assignment.task }}</span></td>
+                        <td><span class="text-14 font-poppins font-semi-bold mb-3">{{ assignment.subject }}</span></td>
+                        <td><span class="text-14 font-poppins font-semi-bold mb-3 text-nowrap">{{ assignment.due_date }}</span></td>
+                        <td v-if="isSchoolAdmin != '1'"><span class="text-14 font-poppins font-semi-bold mb-3 text-nowrap"><button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
 ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder emails sent so far`"
-                                    class="ml-3 text-12"
-                                    @click="emailTrigger(assignment.id,assignment.user_id
-                                    )"
-                                  >
-                                  <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      viewBox="0 0 24 24"
-                                      id="Notification"
-                                      class="svgShape"
-                                    >
-                                      <path
-                                        d="M22.086 14.672A3.685 3.685 0 0 1 21 12.05V9A9 9 0 0 0 3 9v3.05a3.685
-                                        3.685 0 0 1-1.086 2.622A3.121 3.121 0 0 0 4.121 20H7.1a5 5 0 0 0 9.8
-                                        0h2.98a3.121 3.121 0 0 0 2.207-5.328ZM12 22a3 3 0 0 1-2.816-2h5.632A3 3 0 0 1
-                                        12 22Zm7.879-4H4.121a1.121 1.121 0 0 1-.793-1.914A5.672 5.672 0 0 0 5
-                                        12.05V9a7 7 0 0 1 14 0v3.05a5.672 5.672 0 0 0 1.672 4.036A1.121 1.121 0 0 1
-                                        19.879 18Z"
-                                        fill="#000000"
-                                      ></path>
-                                    </svg>
-                                  </button>
-                                </div>
-                              </h2>
-                    </div>
+                                class="ml-3 text-12"
+                                @click="emailTrigger(assignment.id,assignment.user_id
+                                )"
+                              >
+                              <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 24 24"
+                                  id="Notification"
+                                  class="svgShape"
+                                >
+                                  <path
+                                    d="M22.086 14.672A3.685 3.685 0 0 1 21 12.05V9A9 9 0 0 0 3 9v3.05a3.685
+                                    3.685 0 0 1-1.086 2.622A3.121 3.121 0 0 0 4.121 20H7.1a5 5 0 0 0 9.8
+                                    0h2.98a3.121 3.121 0 0 0 2.207-5.328ZM12 22a3 3 0 0 1-2.816-2h5.632A3 3 0 0 1
+                                    12 22Zm7.879-4H4.121a1.121 1.121 0 0 1-.793-1.914A5.672 5.672 0 0 0 5
+                                    12.05V9a7 7 0 0 1 14 0v3.05a5.672 5.672 0 0 0 1.672 4.036A1.121 1.121 0 0 1
+                                    19.879 18Z"
+                                    fill="#000000"
+                                  ></path>
+                                </svg>
+                              </button></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div v-if="overdueAssts.length == 0" class="empty-shedule">
+                    <p class="color-gray text-center text-14">No Overdue Assignments Found</p>
+                  </div>
                 </div>
-                <div  v-if="overdueAssts.length == 0"
-                  class="empty-shedule">
-                  <p class="color-gray text-center  text-14">No Overdue Assignments Found</p>
-                </div>
-              </div>
               </div>
             </div>
           </div>
@@ -190,79 +173,67 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
           </div>
           <div class="col-12 col-sm-9">
             <div class="border p-3 rounded-20 w-100 box-card h-100">
-              <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
-                Completed Assignments</h2>
-                <div>
-                  <div class="row">
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Assignment Name</p>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Subject</p>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Due Date</p>
-                    </div>
-                  </div>
+              <h2 class="text-18 font-poppins font-semi-bold mb-2 flex-grow-1">
+                Completed Assignments
+              </h2>
+              <div>
                 <div class="assignment-overflow">
-                  <div class="row" v-for="assignment in completedAssignmentsList" :key="assignment.id">
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
-                    </div>
-                </div>
-                <div  v-if="completedAssignmentsList.length == 0"
-                  class="empty-shedule">
-                  <p class="color-gray text-center  text-14">No Completed Assignments Found</p>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="border p-3 rounded-20 w-100 box-card">
-              <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
-                Recent Grades</h2>
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Assignment Name</p>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Subject</p>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Grade</p>
-                    </div>
+                  <table class="table position-relative">
+                    <thead class="position-sticky top-0 bg-global">
+                      <tr>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Assignment Name</span></th>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Subject</span></th>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Due Date</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="assignment in completedAssignmentsList" :key="assignment.id">
+                        <td><span class="font-poppins font-semi-bold mb-3">{{ assignment.task }}</span></td>
+                        <td><span class="font-poppins font-semi-bold mb-3">{{ assignment.subject }}</span></td>
+                        <td><span class="font-poppins font-semi-bold mb-3 text-nowrap">{{ assignment.due_date }}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div v-if="completedAssignmentsList.length == 0" class="empty-shedule">
+                    <p class="color-gray text-center text-14">No Completed Assignments Found</p>
                   </div>
-                  <div class="assignment-overflow">
-                  <div class="row" v-for="assignment in assignmentsGradeList" :key="assignment.id">
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.grade }}</h2>
-                    </div>
-                </div>
-                <div
-                  v-if="assignmentsGradeList.length == 0"
-                  class="empty-shedule"
-                >
-                  <p class="color-gray text-center  text-14">No Assignments Found</p>
                 </div>
               </div>
             </div>
           </div>
 
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="border p-3 rounded-20 w-100 box-card h-100">
+              <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
+                Recent Grades
+              </h2>
+              <div>
+                <div class="assignment-overflow">
+                  <table class="table position-relative">
+                    <thead class="position-sticky top-0 bg-global">
+                      <tr>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Assignment Name</span></th>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Subject</span></th>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Grade</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="assignment in assignmentsGradeList" :key="assignment.id">
+                        <td><span class="font-poppins font-semi-bold mb-3">{{ assignment.task }}</span></td>
+                        <td><span class="font-poppins font-semi-bold mb-3">{{ assignment.subject }}</span></td>
+                        <td><span class="font-poppins font-semi-bold mb-3 text-nowrap">{{ assignment.grade }}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div v-if="assignmentsGradeList.length == 0" class="empty-shedule">
+                    <p class="color-gray text-center text-14">No Assignments Found</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -578,6 +549,14 @@ export default {
 .assignment-overflow{
   overflow-x: hidden;
   overflow-y: auto;
-  max-height: 6.25rem;
+  max-height: 8.25rem;
+}
+.table {
+  border-collapse: collapse;
+} 
+.table th,
+.table td {
+  border: none;
+  padding: 0.5rem;
 }
 </style>
