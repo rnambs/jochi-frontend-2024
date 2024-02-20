@@ -59,7 +59,7 @@
               </form>
             </div>
 
-            <div class="col-12 col-sm-4 py-0 d-flex justify-content-end">
+            <div class="col-12 col-md-4 py-0 d-flex justify-content-start justify-content-md-end">
               <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto">
                 View Current Progress
               </button>
