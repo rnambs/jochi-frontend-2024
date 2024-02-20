@@ -551,7 +551,7 @@ export default {
     GeneratePdf(){
       this.submitted = true;
       this.spinnerLoader = true;
-      this.generatePdf({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});      
+      this.generatePdf({id:this.studentId,type:this.assignmentType,fromDate:this.fromDate,toDate:this.endDate});      
       setTimeout(() => {
         if(this.successMessage){
         this.$toast.open({
