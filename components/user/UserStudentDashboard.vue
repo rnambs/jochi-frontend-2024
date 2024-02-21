@@ -49,42 +49,38 @@
                           <div class="row1 d-flex">
 
                             <div class="col d-flex flex-column" style="flex: 1;">
-                              <div class="dashboard-card-purple">
-                                <div style="width: 10vw; height: 10vw; position: relative; background: #5534A5; border-radius: 20px">
-                                  <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
-                                    <div style="position: absolute; left: 50px; top: 50px;">
-                                      <img src="~/static/image/v4/arrow-red.svg" alt="" />
-                                    </div>
+                              <div class="dashboard-card-purple position-relative">
+                                  <div class="position-absolute dash-card-bg-element">
+                                    <img src="~/static/image/v4/arrow-red.svg" alt="" />
+                                  </div>
+                                  <div class="d-flex flex-column justify-content-between h-100 w-100">
                                     <div class = "assignment-status">To-do</div>
                                     <div class="assignment-count-style">{{ assignmentCountNew }}</div>
-
-                                </div>
-                              </div>
-                              </div>
-
-                            <div class="col d-flex flex-column" style="flex: 1;">
-                              <div class="dashboard-card-green">
-                                <div style="width: 10vw; height: 10vw; position: relative; background: #008001; border-radius: 20px">
-                                  <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
-                                  <div style="position: absolute; left: 50px; top: 50px;">
-                                    <img src="~/static/image/v4/arrow-green.svg" alt="" />
                                   </div>
-                                  <div class = "assignment-status">Done</div>
-                                  <div class = "assignment-count-style">{{ assignmentCountCompleted }}</div>
-                                </div>
                               </div>
                             </div>
 
                             <div class="col d-flex flex-column" style="flex: 1;">
-                              <div class="dashboard-card-red">
-                                <div style="width: 10vw; height: 10vw; position: relative; background: #DB1B24; border-radius: 20px">
-                                  <div style="width: 210.75px; height: 32px; left: -29.91px; top: -15.78px; position: absolute"></div>
-                                  <div style="position: absolute; left: 50px; top: 50px;">
-                                    <img src="~/static/image/v4/arrow-purple.svg" alt=""/>
-                                      </div>
-                                      <div class = "assignment-status">Overdue</div>
-                                      <div class = "assignment-count-style">{{ assignmentCountOverdue }}</div>
-                                </div>
+                              <div class="dashboard-card-green position-relative">
+                                  <div class="position-absolute dash-card-bg-element">
+                                    <img src="~/static/image/v4/arrow-green.svg" alt="" />
+                                  </div>
+                                  <div class="d-flex flex-column justify-content-between h-100 w-100">
+                                    <div class = "assignment-status">Done</div>
+                                    <div class="assignment-count-style">{{ assignmentCountCompleted }}</div>
+                                  </div>
+                              </div>
+                            </div>
+
+                            <div class="col d-flex flex-column" style="flex: 1;">
+                              <div class="dashboard-card-red position-relative">
+                                  <div class="position-absolute dash-card-bg-element">
+                                    <img src="~/static/image/v4/arrow-purple.svg" alt="" />
+                                  </div>
+                                  <div class="d-flex flex-column justify-content-between h-100 w-100">
+                                    <div class = "assignment-status">Overdue</div>
+                                    <div class="assignment-count-style">{{ assignmentCountOverdue }}</div>
+                                  </div>
                               </div>
                             </div>
                           </div>
@@ -112,10 +108,10 @@
                     <div class="col-12 col-md-4 h-40 h-lg-100 flex-fill">
                       <div
                         data-intro="See how you are working towards your daily study goals."
-                        class="card card-primary02 border-0 rounded-8 h-100"
+                        class="border-0 rounded-8 h-100"
                       >
                         <div
-                          class="study-status-card d-flex justify-content-center align-items-center h-100 p-3 p-lg-0"
+                          class="d-flex flex-column justify-content-center align-items-center h-100 p-3 p-lg-0"
                         >
                           <div
                             class="position-relative d-flex mr-3 mr-lg-0 mt-2"
@@ -568,7 +564,7 @@ export default {
         text: {
           color: "#FFFFFF",
           shadowEnable: true,
-          shadowColor: "#000000",
+          shadowColor: "rgba(33, 34, 45, 1)",
           fontSize: 14,
           fontFamily: "Helvetica",
           dynamicPosition: false,
@@ -576,7 +572,7 @@ export default {
         },
         progress: {
           color: "#5534A5",
-          backgroundColor: "#000000",
+          backgroundColor: "rgba(33, 34, 45, 1)",
           inverted: false,
         },
         layout: {
@@ -1338,6 +1334,8 @@ img.img-theme.dark {
   overflow: hidden; /* Prevents content from spilling out */
   height: 85%; /* Set to 100% of parent's height */
   padding: 1rem;
+  min-width: 10vw; 
+  min-height: 10vw;
 }
 
 .dashboard-card-red {
@@ -1352,6 +1350,8 @@ img.img-theme.dark {
   overflow: hidden; /* Prevents content from spilling out */
   height: 85%; /* Set to 100% of parent's height */
   padding: 1rem;
+  min-width: 10vw; 
+  min-height: 10vw;
 }
 
 .dashboard-card-purple {
@@ -1366,6 +1366,14 @@ img.img-theme.dark {
   overflow: hidden; /* Prevents content from spilling out */
   height: 85%; /* Set to 100% of parent's height */
   padding: 1rem;
+  min-width: 10vw; 
+  min-height: 10vw;
+}
+
+.dash-card-bg-element{
+  width: 65%;
+  right: -12px;
+  bottom: -4px;
 }
 
 .card-content {
@@ -1380,11 +1388,11 @@ img.img-theme.dark {
 }
 
 .assignment-status {
-  font-size: 1.5vw; font-family: Poppins; font-weight: 500; line-height: 1.2; color: white; position: absolute; top: 0%; left: 0%; word-wrap: break-word;
+  font-size: 1.5vw; font-family: Poppins; font-weight: 500; line-height: 1.2; color: white; word-wrap: break-word;
 }
 
 .assignment-count-style {
-  font-size: 2.5vw; font-family: Open Sans; font-weight: 700; line-height: 1.2; color: white; position: absolute; top: 70%; left: 15%; word-wrap: break-word;
+  font-size: 2.5vw; font-family: Open Sans; font-weight: 700; line-height: 1.2; color: white; word-wrap: break-word;
 }
 
 /* Responsive text sizes */
