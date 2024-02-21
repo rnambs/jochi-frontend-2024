@@ -338,6 +338,13 @@ export default {
       errorMessage: (state) => state.errorMessage,
       errorType: (state) => state.errorType,
     }),
+    ...mapState("teacherSyncCalendar", {
+      syncStatus: (state) => state.syncStatus,
+      successMessage: (state) => state.successMessage,
+      SuccessType: (state) => state.SuccessType,
+      errorMessage: (state) => state.errorMessage,
+      errorType: (state) => state.errorType,
+    }),
     startProductGuide() {
       return this.$store.state.startProductGuide;
     },
