@@ -16,7 +16,7 @@
           <h3 class="color-primary-dark heading3 font-semi-bold m-0 px-1 pt-2">
             Set Availability
           </h3>
-          <button class="btn btn-primary my-2 px-5 ml-auto">
+          <button @click="syncToGoogle()" class="btn btn-primary my-2 px-5 ml-auto">
               <span class="mr-2">{{ syncStatus == 1 ? "Disable" : "Enable" }}</span>
               <i class="fab fa-google"></i>
               <span class="ml-2">Calendar Sync</span>
@@ -363,6 +363,36 @@ export default {
     }),
     async getCalendatSyncStatus() {
       await this.getSyncStatus();
+    },
+    async syncToGoogle() {
+      let authCode = "";
+      if (this.syncStatus == 0) {
+        authCode = await this.$gAuth.getAuthCode();
+      }
+      console.log("1",'working')
+      this.loading = true;
+      await this.updateToken({
+        user_id: localStorage.getItem("id"),
+        status: this.syncStatus == 1 ? false : true,
+        token: authCode,
+      });
+      console.log("2",'working')
+      this.loading = false;
+
+      if (this.successMessage != "") {
+        this.getSyncStatus();
+        this.$toast.open({
+          message: this.successMessage,
+          type: this.SuccessType,
+          duration: 5000,
+        });
+      } else if (this.errorMessage != "") {
+        this.$toast.open({
+          message: this.errorMessage,
+          type: this.errorType,
+          duration: 5000,
+        });
+      }
     },
     handleAnimation: function (anim) {
       this.anim = anim;
