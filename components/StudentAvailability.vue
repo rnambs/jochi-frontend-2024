@@ -16,6 +16,11 @@
           <h3 class="color-primary-dark heading3 font-semi-bold m-0 px-1 pt-2">
             Set Availability
           </h3>
+          <button class="btn btn-primary my-2 px-5 ml-auto">
+              <span class="mr-2">{{ syncStatus == 1 ? "Disable" : "Enable" }}</span>
+              <i class="fab fa-google"></i>
+              <span class="ml-2">Calendar Sync</span>
+            </button>
           <div
             class="inner-teacher container-fluid px-1 py-2 pb-2 mb-2 d-flex flex-column flex-fill h-40 custom-overflow"
           >
