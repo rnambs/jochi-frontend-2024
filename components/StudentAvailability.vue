@@ -355,6 +355,11 @@ export default {
       updateTeacherAvailability: "updateTeacherAvailability",
       availabilitySlotswithId: "availabilitySlotswithId",
     }),
+    ...mapActions("teacherSyncCalendar", {
+      syncGoogleCalendar: "syncGoogleCalendar",
+      updateToken: "updateToken",
+      getSyncStatus: "getSyncStatus",
+    }),
     handleAnimation: function (anim) {
       this.anim = anim;
     },
