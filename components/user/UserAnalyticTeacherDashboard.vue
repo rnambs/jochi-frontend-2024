@@ -3,7 +3,7 @@
     <section class="py-4 analytic-dashboard">
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h2 class="text-20 font-poppins mb-0 flex-grow-1">
+          <h2 class="text-20 color-primary-dark mb-0 flex-grow-1">
             <span class="font-regular">Welcome Back,</span> <br> <span class="font-semi-bold">{{ firstName + ' ' + lastName }}!</span></h2>
           <div class="form-group flex-grow-1 mb-0">
             <!-- <input type="text" class="form-control" id="search" placeholder="Search Student"> -->
@@ -31,8 +31,8 @@
                 </svg>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0 text-14 color-text-50">Total Number of Students</p>
-                <h2 class="mb-0 text-46 color-text-100">{{this.studentCount}}</h2>
+                <p class="mb-0 text-14 color-gray-50">Total Number of Students</p>
+                <h2 class="mb-0 text-46 color-primary-dark">{{this.studentCount}}</h2>
               </div>
             </div>
           </div>
@@ -47,8 +47,8 @@
                 </svg>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0 text-14 color-text-50">Students <br> Consistently Behind</p>
-                <h2 class="mb-0 text-46 color-text-100">{{ this.consistentlyBehindCount !== null ? consistentlyBehindCount : '0' }}</h2>
+                <p class="mb-0 text-14 color-gray-50">Students <br> Consistently Behind</p>
+                <h2 class="mb-0 text-46 color-primary-dark">{{ this.consistentlyBehindCount !== null ? consistentlyBehindCount : '0' }}</h2>
               </div>
             </div>
           </div>
@@ -63,8 +63,8 @@
                 </svg>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0 text-14 color-text-50">Students <br> Falling Behind</p>
-                <h2 class="mb-0 text-46 color-text-100">{{ this.fallingBehindCount !== null ? fallingBehindCount : '0' }}</h2>
+                <p class="mb-0 text-14 color-gray-50">Students <br> Falling Behind</p>
+                <h2 class="mb-0 text-46 color-primary-dark">{{ this.fallingBehindCount !== null ? fallingBehindCount : '0' }}</h2>
               </div>
             </div>
           </div>
@@ -79,8 +79,8 @@
                 </svg>
               </div>
               <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0 text-14 color-text-50">Students <br>  Ahead of Their Work</p>
-                <h2 class="mb-0 text-46 color-text-100">{{ this.aheadCount }}</h2>
+                <p class="mb-0 text-14 color-gray-50">Students <br>  Ahead of Their Work</p>
+                <h2 class="mb-0 text-46 color-primary-dark">{{ this.aheadCount }}</h2>
               </div>
             </div>
           </div>
@@ -116,7 +116,7 @@
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex  justify-content-between pb-3 align-items-center border-bottom">
                 <div>
-                  <h2 class="text-16 mb-0 font-semi-bold color-text-100">All Your Students</h2>
+                  <h2 class="text-16 mb-0 font-semi-bold color-primary-dark">All Your Students</h2>
                   <p class="text-14 color-text-60 mb-0">Broken down by grade level</p>
                 </div>
                 <!-- Code commented for future use -->
@@ -132,7 +132,7 @@
           </div>
           <div class="col-12 col-sm-6 h-auto d-flex">
             <div class="border p-3 rounded-20 w-100 box-card">
-              <h2 class="text-16 mb-0 font-semi-bold color-text-100 border-bottom pb-3">Get Help</h2>
+              <h2 class="text-16 mb-0 font-semi-bold color-primary-dark border-bottom pb-3">Get Help</h2>
               <!-- code commented for alternate usage -->
               <!-- <carousel :per-page="1"  :adjustableHeight="true"  :mouse-drag="false">
                 <slide>
@@ -255,7 +255,7 @@
         <div class="row">
           <div class="col-12">
             <div class="border p-3 rounded-20 w-100 box-card">
-              <h2 class="text-16 mb-0 font-semi-bold color-text-100 pb-3 text-center">Meeting Requests</h2>
+              <h2 class="text-16 mb-0 font-semi-bold color-dark pb-3 text-center">Meeting Requests</h2>
               <div class="position-relative overflow-x-auto table-responsive  ">
                 <table class="table">
                   <thead>
