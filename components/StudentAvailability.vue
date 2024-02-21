@@ -327,6 +327,7 @@ export default {
     this.TeacherAvailableSlot();
     this.AvailabilitySlotswithId();
     this.startIntro();
+    this.getCalendatSyncStatus();
   },
 
   computed: {
@@ -360,6 +361,9 @@ export default {
       updateToken: "updateToken",
       getSyncStatus: "getSyncStatus",
     }),
+    async getCalendatSyncStatus() {
+      await this.getSyncStatus();
+    },
     handleAnimation: function (anim) {
       this.anim = anim;
     },
