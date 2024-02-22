@@ -118,11 +118,13 @@
                         <td><span class="text-14 color-dark font-poppins font-semi-bold mb-3 text-nowrap">{{ assignment.due_date }}</span></td>
                         <td v-if="isSchoolAdmin != '1'"><span class="text-14 color-dark font-poppins font-semi-bold mb-3 text-nowrap"><button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
 ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder emails sent so far`"
-                                class="ml-3 text-12"
+                                class="ml-3 text-12 bg-card-secondary p-2 rounded"
                                 @click="emailTrigger(assignment.id,assignment.user_id
                                 )"
                               >
-                              <i class="i-notification-bell j-icon i-md bg-text-secondary"></i>
+                              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 3.77778C8.25 3.77778 4.75 4.84444 4.75 9.11111V12.6667L3 14.4444H7.375M10 3.77778C14.2 3.77778 15.25 7.33333 15.25 9.11111V12.6667L17 14.4444H12.625M10 3.77778V2M7.375 14.4444V15.3333C7.375 16.2222 7.9 18 10 18C12.1 18 12.625 16.2222 12.625 15.3333V14.4444M7.375 14.4444H12.625" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
                               </button></span></td>
                       </tr>
                     </tbody>
