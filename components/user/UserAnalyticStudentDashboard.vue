@@ -9,7 +9,7 @@
     <section class="py-4 analytic-dashboard">
       <div class="container-fluid">
         <div class="d-flex justify-content-between  align-items-center mb-3">
-          <h2 class="text-20 font-poppins font-semi-bold mb-0 flex-grow-1">
+          <h2 class="text-20 font-poppins font-semi-bold color-primary-dark mb-0 flex-grow-1">
             {{ studentDetail + "'s Dashboard" }}</h2>
           <div class="form-group flex-grow-1 mb-0">
             <!-- <input type="text" class="form-control" id="search" placeholder="Search Student"> -->
@@ -81,7 +81,7 @@
             <div class="border p-3 rounded-20 w-100 box-card overflow-x-hidden">
               <div class="d-flex flex-column flex-xl-row justify-content-between align-items-start align-items-xl-center ">
                 <div class="mb-4 mb-xl-0">
-                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ OverdueAssignmentscount + overdueSharedAssignmentsCount }} <span
+                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-dark mb-2">{{ OverdueAssignmentscount + overdueSharedAssignmentsCount }} <span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
                   <p class="mb-0 text-14 color-text-50">{{ studentFirstName }}’s Overdue Assignments</p>
                 </div>
@@ -97,7 +97,7 @@
           </div>
           <div class="col-12 col-sm-9">
             <div class="border p-3 rounded-20 w-100 box-card h-100">
-              <h2 class="text-18 font-poppins font-semi-bold mb-2 flex-grow-1">
+              <h2 class="text-18 color-dark font-poppins font-semi-bold mb-2 flex-grow-1">
                 Overdue Assignments
               </h2>
               <div>
@@ -113,10 +113,10 @@
                     </thead>
                     <tbody>
                       <tr v-for="assignment in overdueAssts" :key="assignment.id">
-                        <td><span class="text-14 font-poppins font-semi-bold mb-3">{{ assignment.task }}</span></td>
-                        <td><span class="text-14 font-poppins font-semi-bold mb-3">{{ assignment.subject }}</span></td>
-                        <td><span class="text-14 font-poppins font-semi-bold mb-3 text-nowrap">{{ assignment.due_date }}</span></td>
-                        <td v-if="isSchoolAdmin != '1'"><span class="text-14 font-poppins font-semi-bold mb-3 text-nowrap"><button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
+                        <td><span class="text-14 color-dark font-poppins font-semi-bold mb-3">{{ assignment.task }}</span></td>
+                        <td><span class="text-14 color-dark font-poppins font-semi-bold mb-3">{{ assignment.subject }}</span></td>
+                        <td><span class="text-14 color-dark font-poppins font-semi-bold mb-3 text-nowrap">{{ assignment.due_date }}</span></td>
+                        <td v-if="isSchoolAdmin != '1'"><span class="text-14 color-dark font-poppins font-semi-bold mb-3 text-nowrap"><button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
 ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder emails sent so far`"
                                 class="ml-3 text-12"
                                 @click="emailTrigger(assignment.id,assignment.user_id
@@ -157,7 +157,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex flex-column flex-xl-row justify-content-between align-items-start align-items-xl-center ">
                 <div class="mb-4 mb-xl-0">
-                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ completedAssignmentscount + completedSharedAssignmentsCount }}<span
+                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-dark mb-2">{{ completedAssignmentscount + completedSharedAssignmentsCount }}<span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
                   <p class="mb-0 text-14 color-text-50">{{ studentFirstName }}’s Completed Assignments</p>
                 </div>
@@ -173,7 +173,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
           </div>
           <div class="col-12 col-sm-9">
             <div class="border p-3 rounded-20 w-100 box-card h-100">
-              <h2 class="text-18 font-poppins font-semi-bold mb-2 flex-grow-1">
+              <h2 class="text-18 color-dark font-poppins font-semi-bold mb-2 flex-grow-1">
                 Completed Assignments
               </h2>
               <div>
@@ -188,9 +188,9 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
                     </thead>
                     <tbody>
                       <tr v-for="assignment in completedAssignmentsList" :key="assignment.id">
-                        <td><span class="font-poppins font-semi-bold mb-3">{{ assignment.task }}</span></td>
-                        <td><span class="font-poppins font-semi-bold mb-3">{{ assignment.subject }}</span></td>
-                        <td><span class="font-poppins font-semi-bold mb-3 text-nowrap">{{ assignment.due_date }}</span></td>
+                        <td><span class="font-poppins color-dark font-semi-bold mb-3">{{ assignment.task }}</span></td>
+                        <td><span class="font-poppins color-dark font-semi-bold mb-3">{{ assignment.subject }}</span></td>
+                        <td><span class="font-poppins color-dark font-semi-bold mb-3 text-nowrap">{{ assignment.due_date }}</span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -206,7 +206,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
         <div class="row">
           <div class="col-12">
             <div class="border p-3 rounded-20 w-100 box-card h-100">
-              <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
+              <h2 class="text-18 color-dark font-poppins font-semi-bold mb-3 flex-grow-1">
                 Recent Grades
               </h2>
               <div>
@@ -221,9 +221,9 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
                     </thead>
                     <tbody>
                       <tr v-for="assignment in assignmentsGradeList" :key="assignment.id">
-                        <td><span class="font-poppins font-semi-bold mb-3">{{ assignment.task }}</span></td>
-                        <td><span class="font-poppins font-semi-bold mb-3">{{ assignment.subject }}</span></td>
-                        <td><span class="font-poppins font-semi-bold mb-3 text-nowrap">{{ assignment.grade }}</span></td>
+                        <td><span class="font-poppins color-dark font-semi-bold mb-3">{{ assignment.task }}</span></td>
+                        <td><span class="font-poppins color-dark font-semi-bold mb-3">{{ assignment.subject }}</span></td>
+                        <td><span class="font-poppins color-dark font-semi-bold mb-3 text-nowrap">{{ assignment.grade }}</span></td>
                       </tr>
                     </tbody>
                   </table>
