@@ -261,22 +261,22 @@
                   <thead>
                     <tr>
                       <td scope="col"></td>
-                      <td scope="col" class="font-semi-bold text-14">
+                      <td scope="col" class="font-semi-bold color-dark text-14">
                         Name
                       </td>
-                      <td scope="col" class="font-semi-bold text-14">
+                      <td scope="col" class="font-semi-bold color-dark text-14">
                         Date
                       </td>
-                      <td scope="col" class="font-semi-bold text-14">
+                      <td scope="col" class="font-semi-bold color-dark text-14">
                         Time
                       </td>
-                      <td scope="col" class="font-semi-bold text-14">
+                      <td scope="col" class="font-semi-bold color-dark text-14">
                         Duration
                       </td>
-                      <td scope="col" class="font-semi-bold text-14">
+                      <td scope="col" class="font-semi-bold color-dark text-14">
                         Accept
                       </td>
-                      <td scope="col" class="font-semi-bold text-14">
+                      <td scope="col" class="font-semi-bold color-dark text-14">
                         Reject
                       </td>
                     </tr>
@@ -284,10 +284,10 @@
                   <tbody>
                     <tr v-for="teacher in teachersList" :key="teacher.id">
                       <td scope="row"></td>
-                      <td class="text-14">{{ teacher["title"] }}</td>
-                      <td class="text-14">{{ teacher["date"] }}</td>
-                      <td class="text-14">{{ teacher["time"] }}</td>
-                      <td class="text-14">30 Min</td>
+                      <td class="text-14 color-dark">{{ teacher["title"] }}</td>
+                      <td class="text-14 color-dark">{{ teacher["date"] }}</td>
+                      <td class="text-14 color-dark">{{ teacher["time"] }}</td>
+                      <td class="text-14 color-dark">30 Min</td>
                       <td>
                         <button class="d-flex btn border border-success text-success px-3 py-1" @click="
                           TeacherMeetingConfirm(
