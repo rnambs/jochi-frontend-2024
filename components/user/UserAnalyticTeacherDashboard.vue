@@ -279,6 +279,8 @@
                       <td scope="col" class="font-semi-bold color-dark text-14">
                         Reject
                       </td>
+                      <td scope="col" class="font-semi-bold color-dark text-14">
+                      </td>
                     </tr>
                   </thead>
                   <tbody>
