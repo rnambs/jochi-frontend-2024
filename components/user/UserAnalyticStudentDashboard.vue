@@ -9,7 +9,7 @@
     <section class="py-4 analytic-dashboard">
       <div class="container-fluid">
         <div class="d-flex justify-content-between  align-items-center mb-3">
-          <h2 class="text-20 font-poppins font-semi-bold mb-0 flex-grow-1">
+          <h2 class="text-20 font-poppins font-semi-bold color-primary-dark mb-0 flex-grow-1">
             {{ studentDetail + "'s Dashboard" }}</h2>
           <div class="form-group flex-grow-1 mb-0">
             <!-- <input type="text" class="form-control" id="search" placeholder="Search Student"> -->
@@ -59,7 +59,7 @@
               </form>
             </div>
 
-            <div class="col-12 col-sm-4 py-0 d-flex justify-content-end">
+            <div class="col-12 col-md-4 py-0 d-flex justify-content-start justify-content-md-end">
               <button @click="currentProgress()" type="submit" class="btn btn-primary text-14 px-3 w-auto">
                 View Current Progress
               </button>
@@ -81,7 +81,7 @@
             <div class="border p-3 rounded-20 w-100 box-card overflow-x-hidden">
               <div class="d-flex flex-column flex-xl-row justify-content-between align-items-start align-items-xl-center ">
                 <div class="mb-4 mb-xl-0">
-                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ OverdueAssignmentscount + overdueSharedAssignmentsCount }} <span
+                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-dark mb-2">{{ OverdueAssignmentscount + overdueSharedAssignmentsCount }} <span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
                   <p class="mb-0 text-14 color-text-50">{{ studentFirstName }}’s Overdue Assignments</p>
                 </div>
@@ -97,68 +97,42 @@
           </div>
           <div class="col-12 col-sm-9">
             <div class="border p-3 rounded-20 w-100 box-card h-100">
-              <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
-                Overdue Assignments</h2>
-                <div>
-                  <div class="row">
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Assignment Name</p>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Subject</p>
-                    </div>
-                    <div class="col-12 col-md-2">
-                      <p class="mb-0 text-14 color-text-50">Due Date</p>
-                    </div>
-                    <div class="col-12 col-md-2">
-                      <p class="mb-0 text-14 color-text-50">Remind</p>
-                    </div>
-                  </div>
+              <h2 class="text-18 color-dark font-poppins font-semi-bold mb-2 flex-grow-1">
+                Overdue Assignments
+              </h2>
+              <div>
                 <div class="assignment-overflow">
-                  <div class="row " v-for="assignment in overdueAssts" :key="assignment.id">
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
-                    </div>
-                    <div class="col-12 col-md-2">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
-                    </div>
-                    <div class="col-12 col-md-2">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100"><div class="d-flex  p-0">
-                                  <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
+                  <table class="table position-relative">
+                    <thead class="position-sticky top-0 bg-global">
+                      <tr>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Assignment Name</span></th>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Subject</span></th>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Due Date</span></th>
+                        <th v-if="isSchoolAdmin != '1'"><span class="mb-0 text-14 color-text-50 font-regular">Remind</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="assignment in overdueAssts" :key="assignment.id">
+                        <td><span class="text-14 color-dark font-poppins font-semi-bold mb-3">{{ assignment.task }}</span></td>
+                        <td><span class="text-14 color-dark font-poppins font-semi-bold mb-3">{{ assignment.subject }}</span></td>
+                        <td><span class="text-14 color-dark font-poppins font-semi-bold mb-3 text-nowrap">{{ assignment.due_date }}</span></td>
+                        <td v-if="isSchoolAdmin != '1'"><span class="text-14 color-dark font-poppins font-semi-bold mb-3 text-nowrap"><button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
 ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder emails sent so far`"
-                                    class="ml-3 text-12"
-                                    @click="emailTrigger(assignment.id,assignment.user_id
-                                    )"
-                                  >
-                                  <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      viewBox="0 0 24 24"
-                                      id="Notification"
-                                      class="svgShape"
-                                    >
-                                      <path
-                                        d="M22.086 14.672A3.685 3.685 0 0 1 21 12.05V9A9 9 0 0 0 3 9v3.05a3.685
-                                        3.685 0 0 1-1.086 2.622A3.121 3.121 0 0 0 4.121 20H7.1a5 5 0 0 0 9.8
-                                        0h2.98a3.121 3.121 0 0 0 2.207-5.328ZM12 22a3 3 0 0 1-2.816-2h5.632A3 3 0 0 1
-                                        12 22Zm7.879-4H4.121a1.121 1.121 0 0 1-.793-1.914A5.672 5.672 0 0 0 5
-                                        12.05V9a7 7 0 0 1 14 0v3.05a5.672 5.672 0 0 0 1.672 4.036A1.121 1.121 0 0 1
-                                        19.879 18Z"
-                                        fill="#000000"
-                                      ></path>
-                                    </svg>
-                                  </button>
-                                </div>
-                              </h2>
-                    </div>
+                                class="ml-3 text-12 bg-card-secondary p-2 rounded"
+                                @click="emailTrigger(assignment.id,assignment.user_id
+                                )"
+                              >
+                              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 3.77778C8.25 3.77778 4.75 4.84444 4.75 9.11111V12.6667L3 14.4444H7.375M10 3.77778C14.2 3.77778 15.25 7.33333 15.25 9.11111V12.6667L17 14.4444H12.625M10 3.77778V2M7.375 14.4444V15.3333C7.375 16.2222 7.9 18 10 18C12.1 18 12.625 16.2222 12.625 15.3333V14.4444M7.375 14.4444H12.625" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                              </button></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div v-if="overdueAssts.length == 0" class="empty-shedule">
+                    <p class="color-gray text-center text-14">No Overdue Assignments Found</p>
+                  </div>
                 </div>
-                <div  v-if="overdueAssts.length == 0"
-                  class="empty-shedule">
-                  <p class="color-gray text-center  text-14">No Overdue Assignments Found</p>
-                </div>
-              </div>
               </div>
             </div>
           </div>
@@ -170,7 +144,7 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
             <div class="border p-3 rounded-20 w-100 box-card">
               <div class="d-flex flex-column flex-xl-row justify-content-between align-items-start align-items-xl-center ">
                 <div class="mb-4 mb-xl-0">
-                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-text-100 mb-2">{{ completedAssignmentscount + completedSharedAssignmentsCount }}<span
+                  <h2 class="mb-0 text-28 d-flex align-items-baseline color-dark mb-2">{{ completedAssignmentscount + completedSharedAssignmentsCount }}<span
                       class="text-14 color-text-50">/{{ totalAssignmentscount }}</span></h2>
                   <p class="mb-0 text-14 color-text-50">{{ studentFirstName }}’s Completed Assignments</p>
                 </div>
@@ -186,79 +160,67 @@ ${assignment.emailCounter === null ? 0 : assignment.emailCounter} reminder email
           </div>
           <div class="col-12 col-sm-9">
             <div class="border p-3 rounded-20 w-100 box-card h-100">
-              <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
-                Completed Assignments</h2>
-                <div>
-                  <div class="row">
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Assignment Name</p>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Subject</p>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Due Date</p>
-                    </div>
-                  </div>
+              <h2 class="text-18 color-dark font-poppins font-semi-bold mb-2 flex-grow-1">
+                Completed Assignments
+              </h2>
+              <div>
                 <div class="assignment-overflow">
-                  <div class="row" v-for="assignment in completedAssignmentsList" :key="assignment.id">
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.due_date }}</h2>
-                    </div>
-                </div>
-                <div  v-if="completedAssignmentsList.length == 0"
-                  class="empty-shedule">
-                  <p class="color-gray text-center  text-14">No Completed Assignments Found</p>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="border p-3 rounded-20 w-100 box-card">
-              <h2 class="text-18 font-poppins font-semi-bold mb-3 flex-grow-1">
-                Recent Grades</h2>
-                <div class="row">
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Assignment Name</p>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Subject</p>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <p class="mb-0 text-14 color-text-50">Grade</p>
-                    </div>
+                  <table class="table position-relative">
+                    <thead class="position-sticky top-0 bg-global">
+                      <tr>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Assignment Name</span></th>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Subject</span></th>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Due Date</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="assignment in completedAssignmentsList" :key="assignment.id">
+                        <td><span class="font-poppins color-dark font-semi-bold mb-3">{{ assignment.task }}</span></td>
+                        <td><span class="font-poppins color-dark font-semi-bold mb-3">{{ assignment.subject }}</span></td>
+                        <td><span class="font-poppins color-dark font-semi-bold mb-3 text-nowrap">{{ assignment.due_date }}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div v-if="completedAssignmentsList.length == 0" class="empty-shedule">
+                    <p class="color-gray text-center text-14">No Completed Assignments Found</p>
                   </div>
-                  <div class="assignment-overflow">
-                  <div class="row" v-for="assignment in assignmentsGradeList" :key="assignment.id">
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.task }}</h2>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.subject }}</h2>
-                    </div>
-                    <div class="col-12 col-md-4">
-                      <h2 class="mb-0 text-16 font-weight-medium color-text-100">{{ assignment.grade }}</h2>
-                    </div>
-                </div>
-                <div
-                  v-if="assignmentsGradeList.length == 0"
-                  class="empty-shedule"
-                >
-                  <p class="color-gray text-center  text-14">No Assignments Found</p>
                 </div>
               </div>
             </div>
           </div>
 
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="border p-3 rounded-20 w-100 box-card h-100">
+              <h2 class="text-18 color-dark font-poppins font-semi-bold mb-3 flex-grow-1">
+                Recent Grades
+              </h2>
+              <div>
+                <div class="assignment-overflow">
+                  <table class="table position-relative">
+                    <thead class="position-sticky top-0 bg-global">
+                      <tr>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Assignment Name</span></th>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Subject</span></th>
+                        <th><span class="mb-0 text-14 color-text-50 font-regular">Grade</span></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="assignment in assignmentsGradeList" :key="assignment.id">
+                        <td><span class="font-poppins color-dark font-semi-bold mb-3">{{ assignment.task }}</span></td>
+                        <td><span class="font-poppins color-dark font-semi-bold mb-3">{{ assignment.subject }}</span></td>
+                        <td><span class="font-poppins color-dark font-semi-bold mb-3 text-nowrap">{{ assignment.grade }}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div v-if="assignmentsGradeList.length == 0" class="empty-shedule">
+                    <p class="color-gray text-center text-14">No Assignments Found</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -306,6 +268,11 @@ export default {
       overdueSharedAssts: [],
       completedSharedAssts: [],
       studentFirstName: '',
+      isSchoolAdmin: '',
+      fromDate: "",
+      endDate: "",
+      dateRangePicker: null,
+      future: new Date(),
     };
   },
   computed:{
@@ -352,8 +319,11 @@ export default {
       this.$router.push(`/teacher-analytic-dashboard`);
     }
     // this.loading = false;
+    this.isSchoolAdmin = localStorage.getItem("schoolAdmin");
     this.GetStudentCount();
     this.GetGradeList();
+    this.future.setDate(this.future.getDate());
+    this.initializeDateRangePicker();
     this.startTime = new Date().getTime();
     this.isMounted = false;
     const _this = this;
@@ -370,49 +340,6 @@ export default {
       mm = "0" + mm;
     }
     var today = dd + "/" + mm + "/" + yyyy;
-
-    $(function () {
-      fromDate = "";
-      endDate = "";
-      $('input[name="daterange"]').daterangepicker({
-        autoUpdateInput: false,
-        // minDate: today,
-        maxDate: future,
-        opens: "left",
-        locale: {
-          format: "DD-MM-YYYY",
-          cancelLabel: "Clear",
-        },
-      });
-
-          $('.date-icon').click(function() {
-        $('input[name="daterange"]').click();
-      });
-
-      $('input[name="daterange"]').on(
-        "apply.daterangepicker",
-        function (ev, picker) {
-          $(this).val(
-            picker.startDate.format("MM/DD/YYYY") +
-            " - " +
-            picker.endDate.format("MM/DD/YYYY")
-          );
-          fromDate = picker.startDate.format("YYYY-MM-DD");
-          endDate = picker.endDate.format("YYYY-MM-DD");
-          _this.assignmentType = '';
-          _this.getAssignments.bind(_this)();
-          _this.isShowing = false;
-        }
-      );
-
-      $('input[name="daterange"]').on(
-      "cancel.daterangepicker",
-        function (ev, picker) {
-          $(this).val("");
-            picker.setStartDate(moment());
-        }
-      );
-    });
   },
 
   methods: {
@@ -426,10 +353,10 @@ export default {
     }),
     async setAssignmentType(type) {
       this.assignmentType = type;
-      fromDate = '',
-      endDate = '',
+      this.fromDate = '',
+      this.endDate = '',
       $('input[name="daterange"]').val("");
-     await this.getAssignments()
+      await this.getAssignments()
     },
     async GetStudentCount(){
       await this.getStudentCount();
@@ -439,7 +366,7 @@ export default {
     },
     async getAssignments() {
       this.loading = true;
-      await this.getAssignmentsListData({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});
+      await this.getAssignmentsListData({id:this.studentId,type:this.assignmentType,fromDate:this.fromDate,toDate:this.endDate});
       this.mapAssignments();
       this.mapCompletedAssignments();
       this.loading = false;
@@ -447,6 +374,53 @@ export default {
     handleAnimation: function (anim) {
       this.anim = anim;
     },
+    initializeDateRangePicker() {
+      // Store reference to Vue component
+      const vm = this;
+
+      // Initialize dateRangePicker
+      this.dateRangePicker = $('input[name="daterange"]').daterangepicker({
+        autoUpdateInput: false,
+        // minDate: today,
+        maxDate: this.future,
+        opens: "left",
+        locale: {
+          format: "DD-MM-YYYY",
+          cancelLabel: "Clear",
+        },
+      });
+
+      // Handle click on date icon
+      $('.date-icon').click(function() {
+        // Open the date range picker when the icon is clicked
+        $('input[name="daterange"]').click();
+      });
+
+      // Handle apply event
+      $('input[name="daterange"]').on("apply.daterangepicker", function(ev, picker) {
+        $(this).val(
+          picker.startDate.format("MM/DD/YYYY") +
+          " - " +
+          picker.endDate.format("MM/DD/YYYY")
+        );
+        vm.fromDate = picker.startDate.format("YYYY-MM-DD");
+        vm.endDate = picker.endDate.format("YYYY-MM-DD");
+        vm.assignmentType = '';
+        vm.getAssignments();
+        vm.isShowing = false;
+      });
+
+      // Handle cancel event
+      $('input[name="daterange"]').on("cancel.daterangepicker", function(ev, picker) {
+        $(this).val("");
+        vm.fromDate = '';
+        vm.endDate = '';
+        vm.assignmentType = 'weekly';
+        vm.getAssignments();
+        picker.setStartDate(moment());
+      });
+    },
+
     mapAssignments() {
       this.overdueAssts = this.mapAssignmentDetails(this.OverDueAssignments);
       this.overdueSharedAssts = this.mapAssignmentDetails(this.overdueShareddetails);
@@ -535,7 +509,7 @@ export default {
     GeneratePdf(){
       this.submitted = true;
       this.spinnerLoader = true;
-      this.generatePdf({id:this.studentId,type:this.assignmentType,fromDate:fromDate,toDate:endDate});      
+      this.generatePdf({id:this.studentId,type:this.assignmentType,fromDate:this.fromDate,toDate:this.endDate});      
       setTimeout(() => {
         if(this.successMessage){
         this.$toast.open({
@@ -547,7 +521,13 @@ export default {
         this.spinnerLoader = false;
         this.submitted = false;
       
-      }, 5000);
+      }, 4000);
+    }
+  },
+  beforeDestroy() {
+    if (this.dateRangePicker) {
+      // Remove the date range picker when the component is destroyed
+      this.dateRangePicker.data('daterangepicker').remove();
     }
   },
 };
@@ -556,6 +536,14 @@ export default {
 .assignment-overflow{
   overflow-x: hidden;
   overflow-y: auto;
-  max-height: 6.25rem;
+  max-height: 8.25rem;
+}
+.table {
+  border-collapse: collapse;
+} 
+.table th,
+.table td {
+  border: none;
+  padding: 0.5rem;
 }
 </style>

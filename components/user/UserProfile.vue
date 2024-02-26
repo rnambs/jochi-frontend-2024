@@ -43,9 +43,9 @@
                 </div>
               </div>
             </div>
+            <div v-if="displayContent" class="d-flex justify-content-end align-items-center w-100 my-2">
             <div
               v-if="user_type == 2 && isSchoolAdmin != '1' && schoolAccessType !='ClubOnly'"
-              class="d-flex justify-content-end align-items-center w-100 my-2"
             >
               <div class="text-center d-flex justify-content-center">
                 <button
@@ -66,6 +66,7 @@
                 >
               </div>
             </div>
+          </div>
             <div
               class="d-flex justify-content-between align-items-center sch-admin"
               v-if="user_type == 2 && isSchoolAdmin == '1'"
@@ -747,7 +748,8 @@ export default {
       lastName: "",
       processingUpgrade: false,
       selectedTheme: "light", // Initially select the "light" theme
-      schoolAccessType: ""
+      schoolAccessType: "",
+      displayContent:false,
     };
   },
   created() {
@@ -759,14 +761,16 @@ export default {
       this.getAdvisor();
     } else if (this.schoolAccessType != "ClubOnly") {
       this.schoolAdminStatus();
+      setTimeout(() => {
+      this.displayContent = true;
+    }, 2000); 
     }
     this.fetchSettings();
     eventBus.$on('accordionOpened', (newValue) => {
       this.accordionOpened = newValue;
     });
   },
-  mounted() {
-
+   mounted() {
     this.firstName = localStorage.getItem("firstName");
     this.lastName = localStorage.getItem("lastName");
     window.addEventListener("orientationchange", this.handleOrientationChange);

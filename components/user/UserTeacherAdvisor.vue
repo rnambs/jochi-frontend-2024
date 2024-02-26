@@ -118,7 +118,9 @@
                             <img src="~/static/image/v4/email-black.svg" alt="Email" class="small-waving-hand img-theme dark"/>
                           </a>
                         </h3>
-                          <button @click="
+                          <button 
+                          v-if="isSchoolAdmin != '1'"
+                          @click="
                            openAssignment = true;
                           isAddAssignment = true;
                             EditAssignmentModal();" class="btn btn-primary py-1 px-3 mr-3">Add Assignment
@@ -447,30 +449,16 @@
                                   >
                                     <i class="fas fa-trash color-black"></i>
                                   </button> -->
-
+                                <div v-if="isSchoolAdmin != '1'">
                                   <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
 ${detail.emailCounter === null ? 0 : detail.emailCounter} reminder emails sent so far`"
                                     class="ml-3 text-12"
                                     @click="emailTrigger(detail.id,detail.user_id
                                     )"
                                   >
-                                  <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      viewBox="0 0 24 24"
-                                      id="Notification"
-                                      class="svgShape"
-                                    >
-                                      <path
-                                        d="M22.086 14.672A3.685 3.685 0 0 1 21 12.05V9A9 9 0 0 0 3 9v3.05a3.685
-                                        3.685 0 0 1-1.086 2.622A3.121 3.121 0 0 0 4.121 20H7.1a5 5 0 0 0 9.8
-                                        0h2.98a3.121 3.121 0 0 0 2.207-5.328ZM12 22a3 3 0 0 1-2.816-2h5.632A3 3 0 0 1
-                                        12 22Zm7.879-4H4.121a1.121 1.121 0 0 1-.793-1.914A5.672 5.672 0 0 0 5
-                                        12.05V9a7 7 0 0 1 14 0v3.05a5.672 5.672 0 0 0 1.672 4.036A1.121 1.121 0 0 1
-                                        19.879 18Z"
-                                        fill="#000000"
-                                      ></path>
-                                    </svg>
+                                  <i class="i-notification-bell j-icon i-md bg-text-secondary"></i>
                                   </button>
+                                </div>
                                 </div>
                                 </div>
                                 <div class="text-center my-3">

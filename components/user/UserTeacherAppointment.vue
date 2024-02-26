@@ -53,7 +53,7 @@
                           @click="setMeetingView(list)"
                         >
                           <div
-                            class="card card-white w-100 d-flex flex-row align-items-center mb-2 px-3 py-2 cursor-pointer"
+                            class="card card-tertiary w-100 d-flex flex-row align-items-center mb-2 px-3 py-2 cursor-pointer"
                           >
                             <span
                               class="image-icon py-0 d-flex align-items-center justify-content-center bg-primary rounded-circle p-2"
