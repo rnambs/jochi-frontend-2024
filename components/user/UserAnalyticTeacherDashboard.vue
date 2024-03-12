@@ -175,7 +175,7 @@
                         alt=""
                         class="img-fluid ct-team mb-2"
                       />
-                      <h6 class="font-medium text-18 color-text-primary text-center">How Jochi Works for Students</h6>
+                      <h6 class="font-medium text-16 color-text-primary text-center">How Jochi Works for Students</h6>
                       <p class="text-12 color-text-primary text-center">A quick walkthrough of how your students interface with Jochi's Academic Planner.</p>
                   </div>
                   </a>
@@ -186,7 +186,7 @@
                           alt=""
                           class="img-fluid ct-team mb-2"
                         />
-                      <h6 class="font-medium text-18 color-text-primary text-center">Identify Students Falling Behind</h6>
+                      <h6 class="font-medium text-16 color-text-primary text-center">Identify Students Falling Behind</h6>
                         <p class="text-12 color-text-primary text-center">Learn how to make use of your dashboard to identify students falling behind based on grades.</p>
                     </div>
                   </a>
@@ -216,8 +216,8 @@
                           alt=""
                           class="img-fluid ct-team mb-2"
                         />
-                        <h6 class="font-medium text-18 color-text-primary text-center">Introduction to Jochi</h6>
-                        <p class="text-12 color-text-primary text-center">A quick walkthrough explaining how you as a learning specialist can use Jochi to atreamline support.</p>
+                        <h6 class="font-medium text-16 color-text-primary text-center">Introduction to Jochi</h6>
+                        <p class="text-12 color-text-primary text-center">A walkthrough on how you, as a learning specialist, can use Jochi to streamline support.</p>
                     </div>
                   </a>
                   <a href="https://docs.jochi.info/getting-started/about-jochi" target="_blank" class="mx-2 text-decoration-none w-50">
@@ -227,7 +227,7 @@
                           alt=""
                           class="img-fluid ct-team mb-2"
                         />
-                        <h6 class="font-medium text-18 color-text-primary text-center">Access Support:Our Help Center</h6>
+                        <h6 class="font-medium text-16 color-text-primary text-center">Access Support: Our Help Center</h6>
                         <p class="text-12 color-text-primary text-center">Read our full collection of frequently asked questions about Jochi and our tools</p>
                     </div>
                   </a>                  
@@ -324,7 +324,7 @@
                           v-if="teachersList.length == 0"
                           class="empty-shedule"
                         >
-                          <p class="color-gray text-center  text-16">No New Meeting Request's Found</p>
+                          <p class="color-gray text-center  text-16">No meeting requests</p>
                         </div>
               </div>
             </div>
@@ -736,7 +736,7 @@ export default{
                 borderWidth: 1,
               },
               {
-                label: 'Really Behind', // Third dataset label
+                label: 'Consistently Behind', // Third dataset label
                 data: behindArray, // Example data points for Dataset 3
                 backgroundColor: 'rgb(247, 101, 163)', // Example color, customize as needed
                 borderColor: 'rgb(109, 152, 201)', // Example color, customize as needed

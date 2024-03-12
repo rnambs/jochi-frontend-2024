@@ -448,7 +448,7 @@
                                     <i class="fas fa-trash color-black"></i>
                                   </button> -->
 
-                                  <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student,
+                                  <button data-bs-toggle="tooltip" data-bs-placement="right" :title="`This bell icon is to send a reminder email to the student
 ${detail.emailCounter === null ? 0 : detail.emailCounter} reminder emails sent so far`"
                                     class="ml-3 text-12"
                                     @click="emailTrigger(detail.id,detail.user_id
