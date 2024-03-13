@@ -10,7 +10,7 @@
             <multiselect
                   v-model="selectedStudent"
                   :options="studentDetails"
-                  track-by="first_name"
+                  track-by="id"
                   label="first_name"
                   placeholder="Select students"
                   @input="selectedStudentId"
