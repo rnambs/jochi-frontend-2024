@@ -1152,7 +1152,7 @@
                   <div class="form-row mb-2 mx-0 mr-2 w-100">
                     <label class="form-label" for="name">Invite peers</label>
                     <!-- <input type="text" class="form-control" /> -->
-                    <multiselect v-model="peerSelected" :options="students" track-by="first_name" label="first_name"
+                    <multiselect v-model="peerSelected" :options="students" track-by="id" label="first_name"
                       :placeholder="peerSelected.length > 3
                         ? ''
                         : 'Select students'
