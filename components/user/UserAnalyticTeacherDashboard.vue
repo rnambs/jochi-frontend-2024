@@ -10,8 +10,11 @@
             <multiselect
                   v-model="selectedStudent"
                   :options="studentDetails"
+<<<<<<< components/user/UserAnalyticTeacherDashboard.vue
+=======
                   track-by="id"
-                  label="first_name"
+                  label="fullName"
+>>>>>>> components/user/UserAnalyticTeacherDashboard.vue
                   placeholder="Select students"
                   @input="selectedStudentId"
                 >
@@ -529,7 +532,7 @@
                  {{ modalListType === 'consistentlyBehindlist' ? 'Consistently Behind' : (modalListType === 'fallingBehindlist' ? 'Falling Behind' : 'Ahead on Work') }}
               </h3>
             </div>
-            <h4 class="modal-body"></h4>
+            <div class="modal-body">
                     <div
                       @click="onStudentClick(student)"
                       v-for="student in studentsList"
@@ -556,6 +559,7 @@
                         </p>
                       </div>
                     </div>
+                  </div>
                     <div v-if="this.studentsList == 0">
                     <p class="color-gray text-center text-16">No Student's Found</p>
                     </div>
@@ -651,6 +655,9 @@ export default{
     }),
     async GetStudentCount(){
       await this.getStudentCount();
+      this.studentDetails.forEach(student => {
+        student.fullName = `${student.first_name} ${student.last_name}`;
+      });
     },
     async GetConsistentlyList(){
       await this.getConsistentlyList();

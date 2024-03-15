@@ -16,8 +16,11 @@
             <multiselect
                   v-model="selectedStudent"
                   :options="studentDetails"
+<<<<<<< components/user/UserAnalyticStudentDashboard.vue
+=======
                   track-by="id"
-                  label="first_name"
+                  label="fullName"
+>>>>>>> components/user/UserAnalyticStudentDashboard.vue
                   placeholder="Select students"
                   @input="selectedStudentId"
                 >
@@ -360,6 +363,9 @@ export default {
     },
     async GetStudentCount(){
       await this.getStudentCount();
+      this.studentDetails.forEach(student => {
+        student.fullName = `${student.first_name} ${student.last_name}`;
+      });
     },
     async GetGradeList(){
       await this.getGradeList({id:this.studentId});
