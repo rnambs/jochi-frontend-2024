@@ -529,7 +529,7 @@
                  {{ modalListType === 'consistentlyBehindlist' ? 'Consistently Behind' : (modalListType === 'fallingBehindlist' ? 'Falling Behind' : 'Ahead on Work') }}
               </h3>
             </div>
-            <h4 class="modal-body"></h4>
+            <div class="modal-body">
                     <div
                       @click="onStudentClick(student)"
                       v-for="student in studentsList"
@@ -556,6 +556,7 @@
                         </p>
                       </div>
                     </div>
+                  </div>
                     <div v-if="this.studentsList == 0">
                     <p class="color-gray text-center text-16">No Student's Found</p>
                     </div>
