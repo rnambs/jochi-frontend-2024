@@ -1133,10 +1133,16 @@ export default {
         "Jan", "Feb", "Mar", "Apr", "May", "Jun",
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
       ];
-      var dateValue = new Date(value);
-      var month = monthNames[dateValue.getMonth()];
-      var day = dateValue.getDate();
-      var year = dateValue.getFullYear();
+
+      var dateValue = moment(value); 
+      var formattedDate = dateValue.format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ (z)');
+
+      var monthIndex = dateValue.month();
+      var month = monthNames[monthIndex];
+
+      var day = dateValue.date() ;
+      var year = dateValue.year();
+
       return month + " " + day + ", " + year;
     },
     ordinal_suffix_of(i) {
