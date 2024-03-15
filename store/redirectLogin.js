@@ -62,7 +62,7 @@ const actions = {
                 window.$nuxt.$cookies.removeAll();
                 commit('setUserId', '');
                 commit('setErrorType', "error");
-                commit('setErrorMessage', err?.response?.data?.error);
+                commit('setErrorMessage', err?.response?.data?.message);
             }
             else if (status = 422) {
                 // commit('setLoginStatus', false);
