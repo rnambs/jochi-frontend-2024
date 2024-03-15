@@ -11,7 +11,7 @@
                   v-model="selectedStudent"
                   :options="studentDetails"
                   track-by="first_name"
-                  label="first_name"
+                  label="fullName"
                   placeholder="Select students"
                   @input="selectedStudentId"
                 >
@@ -652,6 +652,10 @@ export default{
     }),
     async GetStudentCount(){
       await this.getStudentCount();
+      this.studentDetails.forEach(student => {
+        student.fullName = `${student.first_name} ${student.last_name}`;
+      });
+      console.log(this.studentDetails);
     },
     async GetConsistentlyList(){
       await this.getConsistentlyList();
