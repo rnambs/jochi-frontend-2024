@@ -655,7 +655,6 @@ export default{
       this.studentDetails.forEach(student => {
         student.fullName = `${student.first_name} ${student.last_name}`;
       });
-      console.log(this.studentDetails);
     },
     async GetConsistentlyList(){
       await this.getConsistentlyList();
