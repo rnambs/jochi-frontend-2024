@@ -16,11 +16,8 @@
             <multiselect
                   v-model="selectedStudent"
                   :options="studentDetails"
-<<<<<<< components/user/UserAnalyticStudentDashboard.vue
-=======
                   track-by="id"
                   label="fullName"
->>>>>>> components/user/UserAnalyticStudentDashboard.vue
                   placeholder="Select students"
                   @input="selectedStudentId"
                 >
