@@ -659,7 +659,7 @@ ${detail.emailCounter === null ? 0 : detail.emailCounter} reminder emails sent s
                 <multiselect
                   v-model="selectedStudent"
                   :options="studentsList"
-                  track-by="first_name"
+                  track-by="id"
                   label="fullName"
                   placeholder="Select students"
                 >
