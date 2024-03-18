@@ -101,7 +101,6 @@ const actions = {
         commit('setUserType', '')
         window.$nuxt.$cookies.removeAll();
         window.localStorage.clear();
-        this.$router.push('/');
 
     },
 
