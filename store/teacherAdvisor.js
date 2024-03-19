@@ -422,7 +422,7 @@ const actions = {
             commit('setOverdueSharedAssignmentsCount', response.overdue_sharedAssignments_count);
             commit('setOverdueShareddetails', response.overdue_sharedAssignments_details);
         } catch (e) {
-            if (e.response.data.message == "Unauthorized") {
+            if (e.response.data.message == "This user does not belong to logged in advisor") {
                 commit('setSuccessMessage', "");
                 commit('setSuccessType', "");
                 commit('setErrorMessage', "");
