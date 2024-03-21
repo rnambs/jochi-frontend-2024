@@ -430,6 +430,14 @@ const actions = {
                 window.localStorage.clear();
                 this.$router.push('/');
             }
+            else if(e.response.data.message == "Student does not exist") {
+              commit('setErrorMessage', e.response.data.message);
+              commit('setErrorType', "error");
+              commit('setSuccessMessage', "");
+              commit('setSuccessType', "");
+              window.localStorage.clear();
+                this.$router.push('/');
+          }
             else {
                 commit('setErrorMessage', e.response.data.message);
                 commit('setErrorType', "error");
