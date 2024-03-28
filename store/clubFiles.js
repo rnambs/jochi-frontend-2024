@@ -95,7 +95,7 @@ const actions = {
         window.localStorage.clear();
         this.$router.push('/');
       }
-      else if (e?.response?.data?.message == "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.") {
+      else if (e?.response?.data?.message == "Invalid file type. Only JPEG, JPG, PNG, PDF and PPT files are allowed.") {
         commit('setSuccessMessage', "");
         commit('setSuccessType', "");
         commit('setErrorMessage', "Invalid file type. Only JPEG,JPG,png, pdf and ppt file are allowed.");
