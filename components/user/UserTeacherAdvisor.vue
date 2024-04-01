@@ -659,8 +659,8 @@ ${detail.emailCounter === null ? 0 : detail.emailCounter} reminder emails sent s
                 <multiselect
                   v-model="selectedStudent"
                   :options="studentsList"
-                  track-by="first_name"
-                  label="first_name"
+                  track-by="id"
+                  label="fullName"
                   placeholder="Select students"
                 >
                   <span slot="noResult">No data found</span>
@@ -1230,6 +1230,9 @@ export default {
       await this.getStudentsList({
         school_id: localStorage.getItem("school_id"),
         studentId: localStorage.getItem("id"),
+      });
+      this.studentsList.forEach(student => {
+        student.fullName = `${student.first_name} ${student.last_name}`;
       });
     },
     openModal() {

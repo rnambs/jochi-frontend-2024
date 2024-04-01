@@ -422,7 +422,7 @@ const actions = {
             commit('setOverdueSharedAssignmentsCount', response.overdue_sharedAssignments_count);
             commit('setOverdueShareddetails', response.overdue_sharedAssignments_details);
         } catch (e) {
-            if (e.response.data.message == "Unauthorized") {
+            if (e.response.data.message == "This user does not belong to logged in advisor") {
                 commit('setSuccessMessage', "");
                 commit('setSuccessType', "");
                 commit('setErrorMessage', "");
@@ -430,6 +430,14 @@ const actions = {
                 window.localStorage.clear();
                 this.$router.push('/');
             }
+            else if(e.response.data.message == "Student does not exist") {
+              commit('setErrorMessage', e.response.data.message);
+              commit('setErrorType', "error");
+              commit('setSuccessMessage', "");
+              commit('setSuccessType', "");
+              window.localStorage.clear();
+                this.$router.push('/');
+          }
             else {
                 commit('setErrorMessage', e.response.data.message);
                 commit('setErrorType', "error");

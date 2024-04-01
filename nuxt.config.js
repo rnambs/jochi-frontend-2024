@@ -1,4 +1,5 @@
 const fs = require('fs');
+require('dotenv').config()
 export default {
     store: true,
     // Target: https://go.nuxtjs.dev/config-target
@@ -111,7 +112,7 @@ export default {
         ['@nuxtjs/firebase',
             {
                 config: {
-                    apiKey: "AIzaSyB7G1KkUjOSmoZhauukZpH1nRhJvsfQfQo",
+                    apiKey: process.env.API_KEY,
                     authDomain: "jochi-ff725.firebaseapp.com",
                     projectId: "jochi-ff725",
                     storageBucket: "jochi-ff725.appspot.com",
@@ -122,7 +123,7 @@ export default {
                 services: {
                     messaging: {
                         createServiceWorker: true,
-                        fcmPublicVapidKey: 'BBVr0B9dQ3PolUztt_7Z_XNghUxepkUxSmW_SMh2zPe8vNUcHnFw3J2LXfkxK7-tGtYmjiyiDN2YJgrzDO5vACk', //see step 7
+                        fcmPublicVapidKey: process.env.FCMPUBLIC_VAPID_KEY, //see step 7
                         inject: fs.readFileSync('./serviceWorker.js') //see step 8
                     },
                 }

@@ -16,8 +16,8 @@
             <multiselect
                   v-model="selectedStudent"
                   :options="studentDetails"
-                  track-by="first_name"
-                  label="first_name"
+                  track-by="id"
+                  label="fullName"
                   placeholder="Select students"
                   @input="selectedStudentId"
                 >
@@ -360,6 +360,9 @@ export default {
     },
     async GetStudentCount(){
       await this.getStudentCount();
+      this.studentDetails.forEach(student => {
+        student.fullName = `${student.first_name} ${student.last_name}`;
+      });
     },
     async GetGradeList(){
       await this.getGradeList({id:this.studentId});
