@@ -363,7 +363,8 @@
                                           </div>
                             </div>
                             <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
-                            <p class="text-10 color-gray mb-2 task-description text_ellipsis" v-html="item.assignment_description"></p>
+                            <!-- The below line of code is commented because of client requirement -->
+                            <!-- <p class="text-10 color-gray mb-2 task-description text_ellipsis" v-html="item.assignment_description"></p> -->
 
                             <div class="d-flex align-items-center justify-content-start">
                               <div class="d-flex">
