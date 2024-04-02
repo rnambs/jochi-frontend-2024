@@ -321,13 +321,13 @@
                               class="row m-0"
                             >
                               <p
-                                class="mb-0 col-8 p-0 font-regular text-16 d-flex align-items-center"
+                                class="mb-0 col-8 p-0 font-regular text-16 d-flex"
                               >
                                 <span
-                                  class="d-flex rounded-circle border-form-color bullet mr-2"
+                                  class="d-flex rounded-circle border-form-color bullet mr-2 mt-2"
                                 ></span>
                                 <span
-                                  class="input-name color-gray text-truncate"
+                                  class="input-name color-gray word-break"
                                 >
                                   {{ todos.todo_list }}</span
                                 >
@@ -357,7 +357,7 @@
                             <input
                               class="form-control"
                               v-model="todolist"
-                              maxlength="30"
+                              maxlength="100"
                             />
                           </div>
                           <button
