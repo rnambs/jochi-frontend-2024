@@ -3167,6 +3167,7 @@ export default {
       // }
       if (this.sessionDetail.isSharedSession) {
         let payLoad = {};
+        this.startSessionNowClicked = false;
         if (this.sessionDetail.type == "assignment") {
           payLoad = {
             assignment_id: this.sessionDetail.assignmentId,
