@@ -366,7 +366,7 @@
                             <!-- The below line of code is commented because of client requirement -->
                             <!-- <p class="text-10 color-gray mb-2 task-description text_ellipsis" v-html="item.assignment_description"></p> -->
 
-                            <div class="d-flex align-items-center justify-content-start">
+                            <!-- <div class="d-flex align-items-center justify-content-start">
                               <div class="d-flex">
                                 <div v-for="(peer, index) in item.peers" :key="index">
                                   <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
@@ -374,12 +374,12 @@
                                   <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
                                 </div>
                               </div>
-                              <!-- <div class="d-flex align-items-center">
+                              <div class="d-flex align-items-center">
                                 <button class="btn btn-drag-card-open">
                                   Open
                                 </button>
-                              </div> -->
-                            </div>
+                              </div>
+                            </div> -->
                           </div>
                         </drag>
                       </div>
