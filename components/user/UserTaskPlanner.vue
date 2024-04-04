@@ -2487,10 +2487,14 @@ export default {
       if (e) {
         let item = {};
         this.assignmentMaterials = [];
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(e.assignment_description, 'text/html');
-        const textContent = doc.body.textContent;
-        item.assignment_description = textContent;
+        if (e.assignment_description) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(e.assignment_description, 'text/html');
+          const textContent = doc.body.textContent;
+          item.assignment_description = textContent;
+        } else {
+          item.assignment_description = '';
+        }
         if (e.assignment_materials && e.assignment_materials.length > 0) {
           e.assignment_materials.forEach((m) => {
             let data = {};
@@ -2532,7 +2536,7 @@ export default {
     mapSharedData(e) {
       let item = {};
       this.assignmentMaterials = [];
-      if (e && e.assignments) {
+      if (e && e.assignments) {       
         const parser = new DOMParser();
         const doc = parser.parseFromString(e.assignments.assignment_description, 'text/html');
         const textContent = doc.body.textContent;
