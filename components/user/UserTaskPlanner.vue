@@ -117,7 +117,7 @@
                             </div>
                             <div class="clickable" @click="onCardClick(item, 'Pending')">
                               <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                              <p class="text-10 color-gray mb-2 task-description text-ellipsis">{{ truncate(item.assignment_description) }}</p>
+                              <p class="text-10 color-gray mb-2 task-description text-ellipsis">{{ truncate(item.assignment_description ?? '') }}</p>
                               <p class="color-dark font-semi-bold text-12 mb-1"> Subtasks </p>
                               <p class="text-10 color-gray mb-2 task-description">
                                 <ul v-if="item.subTasks && item.subTasks.length" style="list-style-type: none;">
@@ -240,7 +240,7 @@
                             </div>
                             <div class="clickable" @click="onCardClick(item, 'Doing')">
                               <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                              <p class="text-10 color-gray mb-2 task-description text_ellipsis">{{ truncate(item.assignment_description) }}</p>
+                              <p class="text-10 color-gray mb-2 task-description text_ellipsis">{{ truncate(item.assignment_description ?? '') }}</p>
                               <p class="color-dark font-semi-bold text-12 mb-1"> Subtasks </p>
                               <p class="text-10 color-gray mb-2 task-description">
                                 <ul v-if="item.subTasks && item.subTasks.length" style="list-style-type: none;">
@@ -461,7 +461,7 @@
                           </div>
                           <div class="clickable" @click="onCardClick(item, 'Overdue')">
                             <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                            <p class="text-10 color-gray mb-2 task-description task_ellipsis">{{ truncate(item.assignment_description) }}</p>
+                            <p class="text-10 color-gray mb-2 task-description task_ellipsis">{{ truncate(item.assignment_description ?? '') }}</p>
                             <div class="d-flex align-items-center justify-content-start">
                               <div class="d-flex">
                                 <div v-for="(peer, index) in item.peers" :key="index">
