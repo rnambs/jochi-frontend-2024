@@ -117,7 +117,7 @@
                             </div>
                             <div class="clickable" @click="onCardClick(item, 'Pending')">
                               <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                              <p class="text-10 color-gray mb-2 task-description text-ellipsis">{{ truncate(item.assignment_description) }}</p>
+                              <p class="text-10 color-gray mb-2 task-description text-ellipsis">{{ truncate(item.assignment_description ?? '') }}</p>
                               <p class="color-dark font-semi-bold text-12 mb-1"> Subtasks </p>
                               <p class="text-10 color-gray mb-2 task-description">
                                 <ul v-if="item.subTasks && item.subTasks.length" style="list-style-type: none;">
@@ -240,7 +240,7 @@
                             </div>
                             <div class="clickable" @click="onCardClick(item, 'Doing')">
                               <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                              <p class="text-10 color-gray mb-2 task-description text_ellipsis">{{ truncate(item.assignment_description) }}</p>
+                              <p class="text-10 color-gray mb-2 task-description text_ellipsis">{{ truncate(item.assignment_description ?? '') }}</p>
                               <p class="color-dark font-semi-bold text-12 mb-1"> Subtasks </p>
                               <p class="text-10 color-gray mb-2 task-description">
                                 <ul v-if="item.subTasks && item.subTasks.length" style="list-style-type: none;">
@@ -363,9 +363,10 @@
                                           </div>
                             </div>
                             <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }} </h6>
-                            <p class="text-10 color-gray mb-2 task-description text_ellipsis" v-html="item.assignment_description"></p>
+                            <!-- The below line of code is commented because of client requirement -->
+                            <!-- <p class="text-10 color-gray mb-2 task-description text_ellipsis" v-html="item.assignment_description"></p> -->
 
-                            <div class="d-flex align-items-center justify-content-start">
+                            <!-- <div class="d-flex align-items-center justify-content-start">
                               <div class="d-flex">
                                 <div v-for="(peer, index) in item.peers" :key="index">
                                   <img v-if="peer.profile_pic" :src="peer.profile_pic" alt=""
@@ -373,12 +374,12 @@
                                   <img v-else src="~/static/image/avatar.png" alt="" class="img-avatar img-avatar--sm">
                                 </div>
                               </div>
-                              <!-- <div class="d-flex align-items-center">
+                              <div class="d-flex align-items-center">
                                 <button class="btn btn-drag-card-open">
                                   Open
                                 </button>
-                              </div> -->
-                            </div>
+                              </div>
+                            </div> -->
                           </div>
                         </drag>
                       </div>
@@ -460,7 +461,7 @@
                           </div>
                           <div class="clickable" @click="onCardClick(item, 'Overdue')">
                             <h6 class="color-dark font-semi-bold text-14 mb-1">{{ item.task }}</h6>
-                            <p class="text-10 color-gray mb-2 task-description task_ellipsis">{{ truncate(item.assignment_description) }}</p>
+                            <p class="text-10 color-gray mb-2 task-description task_ellipsis">{{ truncate(item.assignment_description ?? '') }}</p>
                             <div class="d-flex align-items-center justify-content-start">
                               <div class="d-flex">
                                 <div v-for="(peer, index) in item.peers" :key="index">
@@ -2486,10 +2487,14 @@ export default {
       if (e) {
         let item = {};
         this.assignmentMaterials = [];
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(e.assignment_description, 'text/html');
-        const textContent = doc.body.textContent;
-        item.assignment_description = textContent;
+        if (e.assignment_description) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(e.assignment_description, 'text/html');
+          const textContent = doc.body.textContent;
+          item.assignment_description = textContent;
+        } else {
+          item.assignment_description = '';
+        }
         if (e.assignment_materials && e.assignment_materials.length > 0) {
           e.assignment_materials.forEach((m) => {
             let data = {};
@@ -2531,7 +2536,7 @@ export default {
     mapSharedData(e) {
       let item = {};
       this.assignmentMaterials = [];
-      if (e && e.assignments) {
+      if (e && e.assignments) {       
         const parser = new DOMParser();
         const doc = parser.parseFromString(e.assignments.assignment_description, 'text/html');
         const textContent = doc.body.textContent;
